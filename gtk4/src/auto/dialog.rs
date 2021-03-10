@@ -44,11 +44,6 @@ impl Dialog {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_dialog_new()).unsafe_cast() }
     }
-
-    //#[doc(alias = "gtk_dialog_new_with_buttons")]
-    //pub fn with_buttons<P: IsA<Window>>(title: Option<&str>, parent: Option<&P>, flags: DialogFlags, first_button_text: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Dialog {
-    //    unsafe { TODO: call ffi:gtk_dialog_new_with_buttons() }
-    //}
 }
 
 impl Default for Dialog {

@@ -12,7 +12,7 @@ use std::rc::Rc;
 
 impl Dialog {
     #[doc(alias = "gtk_dialog_new_with_buttons")]
-    pub fn new_with_buttons<T: IsA<Window>>(
+    pub fn with_buttons<T: IsA<Window>>(
         title: Option<&str>,
         parent: Option<&T>,
         flags: DialogFlags,
@@ -85,7 +85,6 @@ pub trait DialogExtManual: 'static {
 impl<O: IsA<Dialog> + IsA<Widget>> DialogExtManual for O {
     fn add_buttons(&self, buttons: &[(&str, ResponseType)]) {
         for &(text, id) in buttons {
-            //FIXME: self.add_button don't work on 1.8
             O::add_button(self, text, id);
         }
     }

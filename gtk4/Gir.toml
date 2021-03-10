@@ -809,6 +809,9 @@ manual_traits = ["DialogExtManual"]
     manual = true # to call Dialog::add_button 
     doc_trait_name = "DialogExtManual"
     [[object.function]]
+    name = "new_with_buttons"
+    manual = true # to call dialog.add_button
+    [[object.function]]
     name = "get_response_for_widget"
     manual = true # to use ResponseType
     doc_trait_name = "DialogExtManual"
