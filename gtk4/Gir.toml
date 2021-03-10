@@ -1328,6 +1328,9 @@ manual_traits = ["GtkListStoreExtManual"]
     [[object.function]]
     name = "reorder"
     manual = true # needs to assert the passed new_order = n_total_items
+    [[object.function]]
+    name = "set_column_types"
+    manual = true
 
 [[object]]
 name = "Gtk.ListView"
