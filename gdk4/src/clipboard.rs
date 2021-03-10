@@ -3,7 +3,7 @@
 use crate::Clipboard;
 use glib::object::IsA;
 use glib::translate::*;
-use glib::GString;
+use glib::{GString, ToValue};
 use std::future;
 use std::pin::Pin;
 use std::ptr;
@@ -80,5 +80,14 @@ impl Clipboard {
 
             cancellable
         }))
+    }
+
+    #[doc(alias = "gdk_clipboard_set_value")]
+    #[doc(alias = "gdk_clipboard_set_valist")]
+    #[doc(alias = "gdk_clipboard_set")]
+    pub fn set(&self, value: &dyn ToValue) {
+        unsafe {
+            ffi::gdk_clipboard_set_value(self.to_glib_none().0, value.to_value().to_glib_none().0);
+        }
     }
 }

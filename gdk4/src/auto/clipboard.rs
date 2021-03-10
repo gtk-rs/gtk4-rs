@@ -244,13 +244,6 @@ impl Clipboard {
         }
     }
 
-    #[doc(alias = "gdk_clipboard_set_value")]
-    pub fn set(&self, value: &glib::Value) {
-        unsafe {
-            ffi::gdk_clipboard_set_value(self.to_glib_none().0, value.to_glib_none().0);
-        }
-    }
-
     #[doc(alias = "gdk_clipboard_store_async")]
     pub fn store_async<
         P: IsA<gio::Cancellable>,
