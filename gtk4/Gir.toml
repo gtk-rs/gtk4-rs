@@ -41,7 +41,6 @@ generate = [
     "Gtk.CellRendererMode",
     "Gtk.CellRendererState",
     "Gtk.ConstraintAttribute",
-    "Gtk.ConstraintLayout",
     "Gtk.ConstraintLayoutChild",
     "Gtk.ConstraintRelation",
     "Gtk.ConstraintStrength",
@@ -763,6 +762,17 @@ manual_traits = ["ConstraintGuideExtManual"]
     [[object.function]]
     name = "get_nat_size" # missing inout annotation
     manual = true
+
+[[object]]
+name = "Gtk.ConstraintLayout"
+status = "generate"
+    [[object.function]]
+    name = "add_constraints_from_description"
+    ignore = true
+    [[object.function]]
+    name = "add_constraints_from_descriptionv"
+    rename = "add_constraints_from_description"
+    
 
 [[object]]
 name = "Gtk.CssSection"
