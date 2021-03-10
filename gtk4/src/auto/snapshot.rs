@@ -22,11 +22,6 @@ impl Snapshot {
         unsafe { from_glib_full(ffi::gtk_snapshot_new()) }
     }
 
-    //#[doc(alias = "gtk_snapshot_append_border")]
-    //pub fn append_border(&self, outline: &gsk::RoundedRect, border_width: /*Unimplemented*/FixedArray TypeId { ns_id: 0, id: 20 }; 4, border_color: /*Unimplemented*/FixedArray TypeId { ns_id: 11, id: 79 }; 4) {
-    //    unsafe { TODO: call ffi:gtk_snapshot_append_border() }
-    //}
-
     #[doc(alias = "gtk_snapshot_append_cairo")]
     pub fn append_cairo(&self, bounds: &graphene::Rect) -> Option<cairo::Context> {
         unsafe {

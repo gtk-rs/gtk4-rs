@@ -1821,6 +1821,9 @@ name = "Gtk.Snapshot"
 status = "generate"
 trust_return_value_nullability = false
     [[object.function]]
+    name = "append_border"
+    manual = true
+    [[object.function]]
     name = "append_linear_gradient"
     # use &[ColorStop] instead of &[&ColorStop]
     manual = true
