@@ -210,7 +210,7 @@ name = "Gdk.ContentFormats"
 status = "generate"
     [[object.function]]
     name = "get_gtypes"
-    ignore = true # TODO: figure this out
+    manual = true
 
 [[object]]
 name = "Gdk.ContentSerializer"
