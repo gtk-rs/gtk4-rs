@@ -45,11 +45,6 @@ impl ContentProvider {
         }
     }
 
-    //#[doc(alias = "gdk_content_provider_new_typed")]
-    //pub fn new_typed(type_: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> ContentProvider {
-    //    unsafe { TODO: call ffi:gdk_content_provider_new_typed() }
-    //}
-
     #[doc(alias = "gdk_content_provider_new_union")]
     pub fn new_union(providers: &[ContentProvider]) -> ContentProvider {
         assert_initialized_main_thread!();
