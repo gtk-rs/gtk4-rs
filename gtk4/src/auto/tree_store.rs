@@ -59,9 +59,6 @@ pub trait TreeStoreExt: 'static {
     #[doc(alias = "gtk_tree_store_remove")]
     fn remove(&self, iter: &TreeIter) -> bool;
 
-    //#[doc(alias = "gtk_tree_store_set_column_types")]
-    //fn set_column_types(&self, types: /*Unimplemented*/&CArray TypeId { ns_id: 0, id: 30 });
-
     //#[doc(alias = "gtk_tree_store_set_valist")]
     //fn set_valist(&self, iter: &TreeIter, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported);
 
@@ -195,10 +192,6 @@ impl<O: IsA<TreeStore>> TreeStoreExt for O {
             ))
         }
     }
-
-    //fn set_column_types(&self, types: /*Unimplemented*/&CArray TypeId { ns_id: 0, id: 30 }) {
-    //    unsafe { TODO: call ffi:gtk_tree_store_set_column_types() }
-    //}
 
     //fn set_valist(&self, iter: &TreeIter, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported) {
     //    unsafe { TODO: call ffi:gtk_tree_store_set_valist() }
