@@ -550,6 +550,9 @@ trust_return_value_nullability = false
         [[object.signal.parameter]]
         name = "path"
         transformation = "treepath"
+    [[object.function]]
+    pattern = "cell_(get|set)_valist"
+    ignore = true # not useful for bindings
 
 [[object]]
 name = "Gtk.CellAreaBox"

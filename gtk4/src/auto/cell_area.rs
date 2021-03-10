@@ -81,14 +81,8 @@ pub trait CellAreaExt: 'static {
     //#[doc(alias = "gtk_cell_area_cell_get")]
     //fn cell_get<P: IsA<CellRenderer>>(&self, renderer: &P, first_prop_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
 
-    //#[doc(alias = "gtk_cell_area_cell_get_valist")]
-    //fn cell_get_valist<P: IsA<CellRenderer>>(&self, renderer: &P, first_property_name: &str, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported);
-
     //#[doc(alias = "gtk_cell_area_cell_set")]
     //fn cell_set<P: IsA<CellRenderer>>(&self, renderer: &P, first_prop_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
-
-    //#[doc(alias = "gtk_cell_area_cell_set_valist")]
-    //fn cell_set_valist<P: IsA<CellRenderer>>(&self, renderer: &P, first_property_name: &str, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported);
 
     #[doc(alias = "gtk_cell_area_copy_context")]
     fn copy_context<P: IsA<CellAreaContext>>(&self, context: &P) -> Option<CellAreaContext>;
@@ -373,16 +367,8 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
     //    unsafe { TODO: call ffi:gtk_cell_area_cell_get() }
     //}
 
-    //fn cell_get_valist<P: IsA<CellRenderer>>(&self, renderer: &P, first_property_name: &str, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported) {
-    //    unsafe { TODO: call ffi:gtk_cell_area_cell_get_valist() }
-    //}
-
     //fn cell_set<P: IsA<CellRenderer>>(&self, renderer: &P, first_prop_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
     //    unsafe { TODO: call ffi:gtk_cell_area_cell_set() }
-    //}
-
-    //fn cell_set_valist<P: IsA<CellRenderer>>(&self, renderer: &P, first_property_name: &str, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported) {
-    //    unsafe { TODO: call ffi:gtk_cell_area_cell_set_valist() }
     //}
 
     fn copy_context<P: IsA<CellAreaContext>>(&self, context: &P) -> Option<CellAreaContext> {
