@@ -39,6 +39,9 @@ pub trait GtkListStoreExtManual: 'static {
     #[doc(alias = "gtk_list_store_set_valuesv")]
     fn set(&self, iter: &TreeIter, columns: &[u32], values: &[&dyn ToValue]);
 
+    #[doc(alias = "gtk_list_store_set_column_types")]
+    fn set_column_types(&self, types: &[glib::Type]);
+
     #[doc(alias = "gtk_list_store_set_value")]
     fn set_value(&self, iter: &TreeIter, column: u32, value: &Value);
 }
@@ -133,6 +136,17 @@ impl<O: IsA<ListStore>> GtkListStoreExtManual for O {
                 values.to_glib_none().0,
                 columns.len() as c_int,
             );
+        }
+    }
+
+    fn set_column_types(&self, types: &[glib::Type]) {
+        unsafe {
+            let types_ptr: Vec<glib::ffi::GType> = types.iter().map(|t| t.to_glib()).collect();
+            ffi::gtk_list_store_set_column_types(
+                self.as_ref().to_glib_none().0,
+                types.len() as i32,
+                mut_override(types_ptr.as_ptr()),
+            )
         }
     }
 
