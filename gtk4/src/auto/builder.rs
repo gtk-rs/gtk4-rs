@@ -262,11 +262,6 @@ impl Builder {
         }
     }
 
-    //#[doc(alias = "gtk_builder_value_from_string")]
-    //pub fn value_from_string(&self, pspec: /*Ignored*/&glib::ParamSpec, string: &str) -> Result<glib::Value, glib::Error> {
-    //    unsafe { TODO: call ffi:gtk_builder_value_from_string() }
-    //}
-
     #[doc(alias = "gtk_builder_value_from_string_type")]
     pub fn value_from_string_type(
         &self,
