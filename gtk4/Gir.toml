@@ -2360,6 +2360,9 @@ manual_traits = ["TreeStoreExtManual"]
     [[object.function]]
     pattern = "insert_with_valuesv"
     manual = true
+    [[object.function]]
+    name = "set_column_types"
+    manual = true
 
 [[object]]
 name = "Gtk.TreeView"
