@@ -2359,6 +2359,9 @@ trust_return_value_nullability = false
         [[object.function.parameter]]
         name = "end_path"
         const = true
+    [[object.function]]
+    name = "get_user_data"
+    ignore = true # unsafe 
 
 [[object]]
 name = "Gtk.TreeSortable"
