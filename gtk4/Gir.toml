@@ -177,7 +177,6 @@ ignore = [
 
 manual = [
     # "GObject.ObjectClass",
-    # "GObject.ParamSpec",
     # TODO "GLib.Scanner",
     "cairo.Context",
     "cairo.FontOptions",
@@ -503,6 +502,9 @@ manual_traits = ["BuilderExtManual"]
     name = "get_object"
     manual = true # add dynamic casting
     doc_trait_name = "BuilderExtManual"
+    [[object.function]]
+    name = "value_from_string"
+    manual = true # ParamSpec is a fundemental type
 
 [[object]]
 name = "Gtk.BuilderListItemFactory"
