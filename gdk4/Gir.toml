@@ -177,14 +177,11 @@ name = "Gdk.Clipboard"
 status = "generate"
 generate_builder = true
     [[object.function]]
-    name = "set_value"
-    rename = "set"
+    pattern = "set_(value|valist)"
+    ignore = true
     [[object.function]]
     name = "set"
-    ignore = true
-    [[object.function]]
-    name = "set_valist"
-    ignore = true
+    manual = true # use ToValue
     [[object.function]]
     name = "read_async"
     manual = true # array
