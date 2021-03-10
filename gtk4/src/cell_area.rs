@@ -3,7 +3,7 @@
 use crate::{CellArea, CellAreaContext, CellRenderer, CellRendererState, Widget};
 use gdk::Event;
 use glib::translate::*;
-use glib::IsA;
+use glib::{IsA, ToValue};
 
 pub trait CellAreaExtManual {
     #[doc(alias = "gtk_cell_area_activate_cell")]
@@ -25,6 +25,19 @@ pub trait CellAreaExtManual {
         cell_area: &gdk::Rectangle,
         flags: CellRendererState,
     ) -> i32;
+
+    #[doc(alias = "gtk_cell_area_cell_get_valist")]
+    #[doc(alias = "gtk_cell_area_cell_get_property")]
+    fn cell_get<P: IsA<CellRenderer>>(&self, renderer: &P, property_name: &str) -> glib::Value;
+
+    #[doc(alias = "gtk_cell_area_cell_set_valist")]
+    #[doc(alias = "gtk_cell_area_cell_set_property")]
+    fn cell_set<P: IsA<CellRenderer>>(
+        &self,
+        renderer: &P,
+        property_name: &str,
+        value: &dyn ToValue,
+    );
 }
 
 impl<O: IsA<CellArea>> CellAreaExtManual for O {
@@ -45,6 +58,35 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
                 cell_area.to_glib_none().0,
                 flags.to_glib(),
             ))
+        }
+    }
+
+    fn cell_get<P: IsA<CellRenderer>>(&self, renderer: &P, property_name: &str) -> glib::Value {
+        unsafe {
+            let mut value = glib::Value::uninitialized();
+            ffi::gtk_cell_area_cell_get_property(
+                self.as_ref().to_glib_none().0,
+                renderer.as_ref().to_glib_none().0,
+                property_name.to_glib_none().0,
+                value.to_glib_none_mut().0,
+            );
+            value
+        }
+    }
+
+    fn cell_set<P: IsA<CellRenderer>>(
+        &self,
+        renderer: &P,
+        property_name: &str,
+        value: &dyn ToValue,
+    ) {
+        unsafe {
+            ffi::gtk_cell_area_cell_set_property(
+                self.as_ref().to_glib_none().0,
+                renderer.as_ref().to_glib_none().0,
+                property_name.to_glib_none().0,
+                value.to_value().to_glib_none().0,
+            );
         }
     }
 

@@ -78,12 +78,6 @@ pub trait CellAreaExt: 'static {
     #[doc(alias = "gtk_cell_area_attribute_get_column")]
     fn attribute_get_column<P: IsA<CellRenderer>>(&self, renderer: &P, attribute: &str) -> i32;
 
-    //#[doc(alias = "gtk_cell_area_cell_get")]
-    //fn cell_get<P: IsA<CellRenderer>>(&self, renderer: &P, first_prop_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
-
-    //#[doc(alias = "gtk_cell_area_cell_set")]
-    //fn cell_set<P: IsA<CellRenderer>>(&self, renderer: &P, first_prop_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
-
     #[doc(alias = "gtk_cell_area_copy_context")]
     fn copy_context<P: IsA<CellAreaContext>>(&self, context: &P) -> Option<CellAreaContext>;
 
@@ -362,14 +356,6 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             )
         }
     }
-
-    //fn cell_get<P: IsA<CellRenderer>>(&self, renderer: &P, first_prop_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call ffi:gtk_cell_area_cell_get() }
-    //}
-
-    //fn cell_set<P: IsA<CellRenderer>>(&self, renderer: &P, first_prop_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call ffi:gtk_cell_area_cell_set() }
-    //}
 
     fn copy_context<P: IsA<CellAreaContext>>(&self, context: &P) -> Option<CellAreaContext> {
         unsafe {
