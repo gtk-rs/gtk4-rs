@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{keys::Key, Display, Event, ModifierType};
+use crate::{keys::Key, Display, Event, KeymapKey, ModifierType};
 use glib::translate::*;
-use std::mem;
+use std::{mem, ptr};
 
 impl Display {
     #[doc(alias = "gdk_display_translate_key")]
@@ -33,6 +33,54 @@ impl Display {
                 let level = level.assume_init();
                 let consumed = consumed.assume_init();
                 Some((keyval, effective_group, level, from_glib(consumed)))
+            } else {
+                None
+            }
+        }
+    }
+
+    #[doc(alias = "gdk_display_map_keyval")]
+    pub fn map_keyval(&self, keyval: Key) -> Option<Vec<KeymapKey>> {
+        unsafe {
+            let mut keys = ptr::null_mut();
+            let mut n_keys = mem::MaybeUninit::uninit();
+            let ret = from_glib(ffi::gdk_display_map_keyval(
+                self.to_glib_none().0,
+                keyval.to_glib(),
+                &mut keys,
+                n_keys.as_mut_ptr(),
+            ));
+            if ret {
+                Some(FromGlibContainer::from_glib_full_num(
+                    keys,
+                    n_keys.assume_init() as usize,
+                ))
+            } else {
+                None
+            }
+        }
+    }
+
+    #[doc(alias = "gdk_display_map_keycode")]
+    pub fn map_keycode(&self, keycode: u32) -> Option<Vec<(KeymapKey, Key)>> {
+        unsafe {
+            let mut keys = ptr::null_mut();
+            let mut keyvals = ptr::null_mut();
+            let mut n_entries = mem::MaybeUninit::uninit();
+            let ret = from_glib(ffi::gdk_display_map_keycode(
+                self.to_glib_none().0,
+                keycode,
+                &mut keys,
+                &mut keyvals,
+                n_entries.as_mut_ptr(),
+            ));
+            if ret {
+                let n_keys = n_entries.assume_init() as usize;
+                let keyvals: Vec<u32> = FromGlibContainer::from_glib_full_num(keyvals, n_keys);
+                let keyvals: Vec<Key> = keyvals.into_iter().map(|k| k.into()).collect();
+                let keys: Vec<KeymapKey> = FromGlibContainer::from_glib_full_num(keys, n_keys);
+
+                Some(keys.into_iter().zip(keyvals.into_iter()).collect())
             } else {
                 None
             }

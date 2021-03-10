@@ -286,11 +286,8 @@ status = "generate"
     name = "translate_key"
     manual = true # to return a Key instead of a u32
     [[object.function]]
-    name = "map_keycode"
-    ignore = true # TODO: requires FromGlibPtrArrayContainerAsVec first
-    [[object.function]]
-    name = "map_keyval"
-    ignore = true # TODO: requires FromGlibPtrArrayContainerAsVec first
+    pattern = "map_key(code|val)"
+    manual = true # make use of Key
     [[object.function]]
     name = "put_event"
     manual = true # event is a fundemental type
