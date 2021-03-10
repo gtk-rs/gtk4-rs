@@ -465,13 +465,13 @@ trust_return_value_nullability = false
 name = "Gtk.BoolFilter"
 status = "generate"
 generate_builder = true
+trust_return_value_nullability = false
     [[object.function]]
     name = "new"
     manual = true # use AsRef<Expression>
     [[object.function]]
     name = "set_expression"
     manual = true # use AsRef<Expression>
-trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.Box"

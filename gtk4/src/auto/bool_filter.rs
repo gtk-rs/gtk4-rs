@@ -25,7 +25,7 @@ glib::wrapper! {
 
 impl BoolFilter {
     #[doc(alias = "gtk_bool_filter_get_expression")]
-    pub fn get_expression(&self) -> Expression {
+    pub fn get_expression(&self) -> Option<Expression> {
         unsafe { from_glib_none(ffi::gtk_bool_filter_get_expression(self.to_glib_none().0)) }
     }
 
