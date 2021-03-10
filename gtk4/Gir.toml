@@ -527,8 +527,11 @@ generate_builder = false
 manual_traits = ["CellAreaExtManual"]
 trust_return_value_nullability = false
     [[object.function]]
+    pattern = "cell_[gs]et"
+    ignore = true # we use cell_[gs]et_property
+    [[object.function]]
     pattern = "cell_[gs]et_property"
-    ignore = true # TODO: figure out this
+    manual = true
     [[object.function]]
     pattern = "activate_cell"
     manual = true # to handlndle gdk::Event
