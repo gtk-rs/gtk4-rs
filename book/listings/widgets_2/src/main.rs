@@ -24,7 +24,7 @@ fn on_activate(application: &Application) {
     // ANCHOR: button
     // Create a button
     let button = ButtonBuilder::new()
-        .label("Run stuff")
+        .label("Press me!")
         .margin_top(12)
         .margin_bottom(12)
         .margin_start(12)

@@ -25,7 +25,7 @@ fn on_activate(application: &Application) {
 
     // ANCHOR: button
     // Create a button
-    let button = Button::with_label("Run stuff");
+    let button = Button::with_label("Press me!");
 
     // Set the button margins
     button.set_margin_top(18);

@@ -10,7 +10,7 @@
     - [Subclassing](gobject_subclassing.md)
     - [Properties & Signals]()
     - [Actions]()
-- [Settings]()
+- [Settings](settings.md)
 - [Save Window State of our App]()
 - [Widget Concepts]()
     - [Models & Views]()

@@ -71,7 +71,7 @@ fn on_activate(application: &Application) {
         .build();
 
     // Create a button
-    let button = CustomButton::with_label("Run stuff");
+    let button = CustomButton::with_label("Press me!");
     button.set_margin_top(12);
     button.set_margin_bottom(12);
     button.set_margin_start(12);

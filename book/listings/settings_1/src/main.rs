@@ -1,5 +1,5 @@
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow, Button};
+use gtk::{Align, Application, ApplicationWindowBuilder, SwitchBuilder};
 
 fn main() {
     // Create a new application
@@ -16,25 +16,22 @@ fn main() {
 // When the application is launched…
 fn on_activate(application: &Application) {
     // … create a new window …
-    let window = ApplicationWindow::new(application);
+    let window = ApplicationWindowBuilder::new()
+        .application(application)
+        .title("My GTK App")
+        .build();
 
-    // Set the window title
-    window.set_title(Some("My GTK App"));
-
+    // ANCHOR: button
     // Create a button
-    let button = Button::with_label("Press me!");
-
-    // Set the button margins
-    button.set_margin_top(12);
-    button.set_margin_bottom(12);
-    button.set_margin_start(12);
-    button.set_margin_end(12);
-
-    // Connect callback
-    button.connect_clicked(move |button| {
-        // Set the label to "Hello World!" after the button has been clicked on
-        button.set_label("Hello World!");
-    });
+    let button = SwitchBuilder::new()
+        .margin_top(48)
+        .margin_bottom(48)
+        .margin_start(48)
+        .margin_end(48)
+        .valign(Align::Center)
+        .halign(Align::Center)
+        .build();
+    // ANCHOR_END: button
 
     // Add button
     window.set_child(Some(&button));
