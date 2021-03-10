@@ -2178,6 +2178,12 @@ status = "generate"
     [[object.function]]
     name = "get_valist"
     ignore = true # not useful for bindings
+    [[object.function]]
+    name = "get_value"
+    rename = "get"
+    [[object.function]]
+    name = "get"
+    ignore = true # we use get_value
 
 [[object]]
 name = "Gtk.TreeModelFilter"
