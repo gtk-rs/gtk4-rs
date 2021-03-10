@@ -59,9 +59,6 @@ pub trait TreeStoreExt: 'static {
     #[doc(alias = "gtk_tree_store_remove")]
     fn remove(&self, iter: &TreeIter) -> bool;
 
-    //#[doc(alias = "gtk_tree_store_set_valist")]
-    //fn set_valist(&self, iter: &TreeIter, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported);
-
     #[doc(alias = "gtk_tree_store_swap")]
     fn swap(&self, a: &TreeIter, b: &TreeIter);
 }
@@ -192,10 +189,6 @@ impl<O: IsA<TreeStore>> TreeStoreExt for O {
             ))
         }
     }
-
-    //fn set_valist(&self, iter: &TreeIter, var_args: /*Unknown conversion*//*Unimplemented*/Unsupported) {
-    //    unsafe { TODO: call ffi:gtk_tree_store_set_valist() }
-    //}
 
     fn swap(&self, a: &TreeIter, b: &TreeIter) {
         unsafe {

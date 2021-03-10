@@ -2338,6 +2338,9 @@ manual_traits = ["TreeStoreExtManual"]
     name = "set_value"
     manual = true
     [[object.function]]
+    name = "set_valist"
+    ignore = true # not useful for Rust bindings
+    [[object.function]]
     name = "reorder"
     manual = true
     [[object.function]]
