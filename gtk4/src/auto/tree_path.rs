@@ -30,13 +30,8 @@ impl TreePath {
         unsafe { from_glib_full(ffi::gtk_tree_path_new_first()) }
     }
 
-    //#[doc(alias = "gtk_tree_path_new_from_indices")]
-    //pub fn from_indices(first_index: i32, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> TreePath {
-    //    unsafe { TODO: call ffi:gtk_tree_path_new_from_indices() }
-    //}
-
     #[doc(alias = "gtk_tree_path_new_from_indicesv")]
-    pub fn from_indicesv(indices: &[i32]) -> TreePath {
+    pub fn from_indices(indices: &[i32]) -> TreePath {
         assert_initialized_main_thread!();
         let length = indices.len() as usize;
         unsafe {
