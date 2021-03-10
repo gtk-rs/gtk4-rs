@@ -177,6 +177,15 @@ name = "Gdk.Clipboard"
 status = "generate"
 generate_builder = true
     [[object.function]]
+    name = "set_value"
+    rename = "set"
+    [[object.function]]
+    name = "set"
+    ignore = true
+    [[object.function]]
+    name = "set_valist"
+    ignore = true
+    [[object.function]]
     name = "read_async"
     manual = true # array
 
