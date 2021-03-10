@@ -1302,6 +1302,9 @@ manual_traits = ["GtkListStoreExtManual"]
     name = "set_valuesv"
     ignore = true
     [[object.function]]
+    name = "set_valist"
+    ignore = true # not useful for Rust bindings
+    [[object.function]]
     name = "set"
     manual = true
     doc_trait_name = "GtkListStoreExtManual"
