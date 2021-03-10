@@ -2224,6 +2224,12 @@ status = "generate"
         [[object.function.parameter]]
         name = "path"
         const = true
+    [[object.function]]
+    name = "new_from_indicesv"
+    rename = "from_indices"
+    [[object.function]]
+    name = "new_from_indices"
+    ignore = true
 
 [[object]]
 name = "Gtk.TreeRowReference"
