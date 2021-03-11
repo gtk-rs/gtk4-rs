@@ -71,9 +71,6 @@ pub trait TreeModelFilterExt: 'static {
     #[doc(alias = "gtk_tree_model_filter_refilter")]
     fn refilter(&self);
 
-    //#[doc(alias = "gtk_tree_model_filter_set_modify_func")]
-    //fn set_modify_func<P: Fn(&TreeModel, &TreeIter, &glib::Value, i32) + 'static>(&self, types: /*Unimplemented*/&CArray TypeId { ns_id: 0, id: 30 }, func: P);
-
     #[doc(alias = "gtk_tree_model_filter_set_visible_column")]
     fn set_visible_column(&self, column: i32);
 
@@ -149,10 +146,6 @@ impl<O: IsA<TreeModelFilter>> TreeModelFilterExt for O {
             ffi::gtk_tree_model_filter_refilter(self.as_ref().to_glib_none().0);
         }
     }
-
-    //fn set_modify_func<P: Fn(&TreeModel, &TreeIter, &glib::Value, i32) + 'static>(&self, types: /*Unimplemented*/&CArray TypeId { ns_id: 0, id: 30 }, func: P) {
-    //    unsafe { TODO: call ffi:gtk_tree_model_filter_set_modify_func() }
-    //}
 
     fn set_visible_column(&self, column: i32) {
         unsafe {

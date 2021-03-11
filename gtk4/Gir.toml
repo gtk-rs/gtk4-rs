@@ -2217,6 +2217,10 @@ name = "Gtk.TreeModelFilter"
 status = "generate"
 generate_builder = true
 trust_return_value_nullability = false
+manual_traits = ["TreeModelFilterExtManual"]
+    [[object.function]]
+    name = "set_modify_func"
+    manual = true
     [[object.function]]
     name = "convert_child_path_to_path"
         [[object.function.parameter]]
