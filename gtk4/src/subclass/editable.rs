@@ -354,3 +354,15 @@ unsafe extern "C" fn editable_set_selection_bounds<T: EditableImpl>(
         end_position,
     )
 }
+
+pub unsafe trait EditableClassSubclassExt: ClassStruct {
+    #[doc(alias = "gtk_editable_install_properties")]
+    fn install_properties(&mut self, first_prop: u32) -> u32 {
+        unsafe {
+            let object_class = self as *mut _ as *mut glib::gobject_ffi::GObjectClass;
+            ffi::gtk_editable_install_properties(object_class, first_prop)
+        }
+    }
+}
+
+unsafe impl<T: ClassStruct> EditableClassSubclassExt for T where T::Type: EditableImpl {}

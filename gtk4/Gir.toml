@@ -884,6 +884,9 @@ manual_traits = ["EditableExtManual"]
     name = "insert-text"
     ignore = true # manual
     doc_trait_name = "EditableExtManual"
+    [[object.function]]
+    name = "install_properties"
+    manual = true # handled by EditableClassSubclassExt
 
 [[object]]
 name = "Gtk.Entry"
