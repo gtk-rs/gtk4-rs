@@ -25,13 +25,6 @@ glib::wrapper! {
     }
 }
 
-impl Editable {
-    //#[doc(alias = "gtk_editable_install_properties")]
-    //pub fn install_properties(object_class: /*Ignored*/&mut glib::ObjectClass, first_prop: u32) -> u32 {
-    //    unsafe { TODO: call ffi:gtk_editable_install_properties() }
-    //}
-}
-
 pub const NONE_EDITABLE: Option<&Editable> = None;
 
 pub trait EditableExt: 'static {
