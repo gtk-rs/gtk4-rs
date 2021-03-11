@@ -143,6 +143,7 @@ mod text_view;
 mod tree_model_filter;
 mod tree_model_sort;
 mod tree_path;
+mod tree_row_reference;
 mod tree_sortable;
 mod tree_store;
 mod widget;

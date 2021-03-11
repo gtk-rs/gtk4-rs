@@ -2346,6 +2346,9 @@ status = "generate"
         [[object.function.parameter]]
         name = "path"
         const = true
+    [[object.function]]
+    name = "reordered"
+    manual = true
 
 [[object]]
 name = "Gtk.TreeSelection"

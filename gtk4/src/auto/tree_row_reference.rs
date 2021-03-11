@@ -94,9 +94,4 @@ impl TreeRowReference {
             );
         }
     }
-
-    //#[doc(alias = "gtk_tree_row_reference_reordered")]
-    //pub fn reordered<P: IsA<glib::Object>>(proxy: &P, path: &mut TreePath, iter: &mut TreeIter, new_order: &[i32]) {
-    //    unsafe { TODO: call ffi:gtk_tree_row_reference_reordered() }
-    //}
 }
