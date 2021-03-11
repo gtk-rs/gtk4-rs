@@ -1410,7 +1410,10 @@ name = "Gtk.MessageDialog"
 status = "generate"
 generate_builder = true
     [[object.function]]
-    name = "new"
+    pattern = "new|new_with_markup"
+    manual = true
+    [[object.function]]
+    pattern = "format_secondary_(markup|text)"
     manual = true
 
 [[object]]
