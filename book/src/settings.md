@@ -15,5 +15,4 @@ With another click, it returns to its original state.
 {{#rustdoc_include ../listings/widgets_2/src/main.rs:button}}
 ```
 
-<div style="text-align:center"><img src="images/settings_buttons.png" /></div>
-
+<div style="text-align:center"><img src="img/settings_buttons.png" /></div>

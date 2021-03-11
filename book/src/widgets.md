@@ -10,7 +10,7 @@ Let us say we want to add a button to our app.
 We have quite a bit of choice here, but let's take the most simple one.
 Its name can be found out by clicking on the image ⇒ it is a `GtkButton`.
 
-<div style="text-align:center"><img src="images/widgets_button.png" /></div>
+<div style="text-align:center"><img src="img/widgets_button.png" /></div>
 
 
 The [GTK documentation](https://developer.gnome.org/gtk4/stable/GtkButton.html) tells us also that the (simplified) inheritance tree of a `GtkButton` looks like this:

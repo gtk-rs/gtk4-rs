@@ -22,7 +22,7 @@ So let us create a window there.
 ```
 That's better!
 
-<div style="text-align:center"><img src="images/hello_world_empty.png" /></div>
+<div style="text-align:center"><img src="img/hello_world_empty.png" /></div>
 
 Normally we expect to be able to interact with the user interface.
 Also, the name of the chapter suggests that the phrase “Hello World!” will be involved.
@@ -34,7 +34,7 @@ Also, the name of the chapter suggests that the phrase “Hello World!” will b
 ```
 There is now a button and if we click on it, its label becomes “Hello World!”.
 
-<div style="text-align:center"><img src="images/hello_world_button.png" /></div>
+<div style="text-align:center"><img src="img/hello_world_button.png" /></div>
 
 Was not that hard to create our first `gtk-rs` app, right?
 Let us now get a better understanding of what we did here.
