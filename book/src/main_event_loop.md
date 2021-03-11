@@ -7,7 +7,6 @@ Unsurprisingly, this is called the main event loop.
 <div style="text-align:center"><img src="img/main_event_loop.png" /></div>
 
 The main loop manages all kinds of events — from mouse clicks and keyboard presses to file events.
-You can even spawn [async functions](http://gtk-rs.org/docs/glib/struct.MainContext.html#method.spawn_local) on it.
 It does all of that within the same thread.
 Quickly iterating between all tasks gives the illusion of parallelism.
 That is why you can move the window at the same time as a progress bar is growing.
@@ -37,3 +36,16 @@ For that we just need to spawn a new thread and let the operation run there.
 
 If you come from another language than Rust, you might be uncomfortable with the thought of spawning new threads before even looking at other options.
 Luckily, Rust's safety guarantees allow you to stop worrying about the nasty bugs, concurrency tends to bring.
+
+Normally we want to keep track of the work in the thread.
+In our case, we don't want the user to spawn additional threads while an existing one is still running.
+In order to achieve that we can create a channel.
+The main loop allows us to send a message from multiple places to a single receiver at the main thread.
+We want to send a `bool` to inform, whether we want the button to react to clicks, or not.
+
+<span class="filename">Filename: src/main.rs</span>
+
+```rust ,no_run
+{{#rustdoc_include ../listings/main_event_loop_3/src/main.rs:callback}}
+```
+

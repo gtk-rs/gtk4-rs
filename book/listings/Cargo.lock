@@ -493,6 +493,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "main_event_loop_3"
+version = "0.1.0"
+dependencies = [
+ "gtk4",
+]
+
+[[package]]
 name = "memoffset"
 version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
