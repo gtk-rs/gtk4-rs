@@ -77,13 +77,6 @@ impl Snapshot {
         }
     }
 
-    #[doc(alias = "gtk_snapshot_append_node")]
-    pub fn append_node<P: IsA<gsk::RenderNode>>(&self, node: &P) {
-        unsafe {
-            ffi::gtk_snapshot_append_node(self.to_glib_none().0, node.as_ref().to_glib_none().0);
-        }
-    }
-
     #[doc(alias = "gtk_snapshot_append_outset_shadow")]
     pub fn append_outset_shadow(
         &self,

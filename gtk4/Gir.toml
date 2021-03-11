@@ -1846,6 +1846,10 @@ trust_return_value_nullability = false
     [[object.function]]
     name = "push_debug"
     manual = true # ignore format args
+    [[object.function]]
+    name = "append_node"
+    # use IsRenderNode instead of IsA<RenderNode>
+    manual = true
 
 [[object]]
 name = "Gtk.SortListModel"

@@ -1,12 +1,18 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{RenderNode, Shadow, ShadowNode};
+use crate::{IsRenderNode, RenderNode, RenderNodeType, Shadow};
 use glib::translate::*;
-use glib::IsA;
+
+define_render_node!(
+    ShadowNode,
+    ffi::GskShadowNode,
+    ffi::gsk_shadow_node_get_type,
+    RenderNodeType::ShadowNode
+);
 
 impl ShadowNode {
     #[doc(alias = "gsk_shadow_node_new")]
-    pub fn new<P: IsA<RenderNode>>(child: &P, shadows: &[Shadow]) -> ShadowNode {
+    pub fn new<P: IsRenderNode>(child: &P, shadows: &[Shadow]) -> ShadowNode {
         skip_assert_initialized!();
         let n_shadows = shadows.len() as usize;
         unsafe {
@@ -22,5 +28,15 @@ impl ShadowNode {
     pub fn get_shadow(&self, i: usize) -> Option<Shadow> {
         assert!(i < self.get_n_shadows());
         unsafe { from_glib_none(ffi::gsk_shadow_node_get_shadow(self.to_glib_none().0, i)) }
+    }
+
+    #[doc(alias = "gsk_shadow_node_get_child")]
+    pub fn get_child(&self) -> RenderNode {
+        unsafe { from_glib_none(ffi::gsk_shadow_node_get_child(self.to_glib_none().0)) }
+    }
+
+    #[doc(alias = "gsk_shadow_node_get_n_shadows")]
+    pub fn get_n_shadows(&self) -> usize {
+        unsafe { ffi::gsk_shadow_node_get_n_shadows(self.to_glib_none().0) }
     }
 }

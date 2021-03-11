@@ -1,7 +1,14 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{ColorStop, RepeatingRadialGradientNode};
+use crate::{ColorStop, RenderNodeType};
 use glib::translate::*;
+
+define_render_node!(
+    RepeatingRadialGradientNode,
+    ffi::GskRepeatingRadialGradientNode,
+    ffi::gsk_repeating_radial_gradient_node_get_type,
+    RenderNodeType::RepeatingRadialGradientNode
+);
 
 impl RepeatingRadialGradientNode {
     #[doc(alias = "gsk_repeating_radial_gradient_node_new")]

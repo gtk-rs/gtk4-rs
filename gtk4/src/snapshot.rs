@@ -146,4 +146,14 @@ impl Snapshot {
     pub fn push_debug(&self, message: &str) {
         unsafe { ffi::gtk_snapshot_push_debug(self.to_glib_none().0, message.to_glib_none().0) }
     }
+
+    #[doc(alias = "gtk_snapshot_append_node")]
+    pub fn append_node<P: gsk::IsRenderNode>(&self, node: &P) {
+        unsafe {
+            ffi::gtk_snapshot_append_node(
+                self.to_glib_none().0,
+                node.upcast_ref().to_glib_none().0,
+            );
+        }
+    }
 }

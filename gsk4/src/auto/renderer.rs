@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files)
 // DO NOT EDIT
 
-use crate::RenderNode;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -41,16 +40,6 @@ pub trait RendererExt: 'static {
 
     #[doc(alias = "gsk_renderer_realize")]
     fn realize(&self, surface: &gdk::Surface) -> Result<(), glib::Error>;
-
-    #[doc(alias = "gsk_renderer_render")]
-    fn render<P: IsA<RenderNode>>(&self, root: &P, region: Option<&cairo::Region>);
-
-    #[doc(alias = "gsk_renderer_render_texture")]
-    fn render_texture<P: IsA<RenderNode>>(
-        &self,
-        root: &P,
-        viewport: Option<&graphene::Rect>,
-    ) -> Option<gdk::Texture>;
 
     #[doc(alias = "gsk_renderer_unrealize")]
     fn unrealize(&self);
@@ -92,30 +81,6 @@ impl<O: IsA<Renderer>> RendererExt for O {
             } else {
                 Err(from_glib_full(error))
             }
-        }
-    }
-
-    fn render<P: IsA<RenderNode>>(&self, root: &P, region: Option<&cairo::Region>) {
-        unsafe {
-            ffi::gsk_renderer_render(
-                self.as_ref().to_glib_none().0,
-                root.as_ref().to_glib_none().0,
-                region.to_glib_none().0,
-            );
-        }
-    }
-
-    fn render_texture<P: IsA<RenderNode>>(
-        &self,
-        root: &P,
-        viewport: Option<&graphene::Rect>,
-    ) -> Option<gdk::Texture> {
-        unsafe {
-            from_glib_full(ffi::gsk_renderer_render_texture(
-                self.as_ref().to_glib_none().0,
-                root.as_ref().to_glib_none().0,
-                viewport.to_glib_none().0,
-            ))
         }
     }
 

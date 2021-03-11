@@ -11,34 +11,15 @@ deprecate_by_min_version = true
 
 generate = [
     "Gsk.BlendMode",
-    "Gsk.BlendNode",
-    "Gsk.BlurNode",
-    "Gsk.CairoNode",
     "Gsk.CairoRenderer",
-    "Gsk.ClipNode",
-    "Gsk.ColorMatrixNode",
-    "Gsk.ColorNode",
-    "Gsk.ContainerNode",
     "Gsk.Corner",
-    "Gsk.CrossFadeNode",
-    "Gsk.DebugNode",
     "Gsk.GLRenderer",
-    "Gsk.GLShaderNode",
     "Gsk.GLUniformType",
-    "Gsk.InsetShadowNode",
-    "Gsk.OpacityNode",
-    "Gsk.OutsetShadowNode",
-    "Gsk.Renderer",
     "Gsk.RenderNodeType",
-    "Gsk.RepeatNode",
-    "Gsk.RoundedClipNode",
     "Gsk.ScalingFilter",
     "Gsk.SerializationError",
     "Gsk.ShaderArgsBuilder",
-    "Gsk.TextNode",
-    "Gsk.TextureNode",
     "Gsk.TransformCategory",
-    "Gsk.TransformNode",
 ]
 
 manual = [
@@ -60,9 +41,26 @@ manual = [
     "Graphene.Vec2",
     "Graphene.Vec3",
     "Graphene.Vec4",
+    "Gsk.BlendNode",
+    "Gsk.BlurNode",
+    "Gsk.CairoNode",
+    "Gsk.ClipNode",
+    "Gsk.ColorMatrixNode",
+    "Gsk.ColorNode",
     "Gsk.ColorStop",
+    "Gsk.ContainerNode",
+    "Gsk.CrossFadeNode",
+    "Gsk.DebugNode",
+    "Gsk.GLShaderNode",
+    "Gsk.InsetShadowNode",
+    "Gsk.OpacityNode",
+    "Gsk.OutsetShadowNode",
+    "Gsk.RepeatNode",
+    "Gsk.RoundedClipNode",
     "Gsk.RoundedRect",
     "Gsk.Shadow",
+    "Gsk.TextureNode",
+    "Gsk.TransformNode",
     "Pango.Font",
     "Pango.GlyphInfo",
     "Pango.GlyphString",
@@ -73,27 +71,9 @@ name = "Gsk.*"
 status = "generate"
 
 [[object]]
-name = "Gsk.BorderNode"
-status = "generate"
-manual_traits = ["BorderNodeManualExt"]
-    [[object.function]]
-    name = "get_widths"
-    # gir fails to generate a fixed-size=4 array
-    manual = true
-
-[[object]]
 name = "Gsk.BroadwayRenderer"
 status = "generate"
 cfg_condition = "feature = \"broadway\""
-
-[[object]]
-name = "Gsk.ConicGradientNode"
-status = "generate"
-    [[object.function]]
-    name = "new"
-    # uses &[&ColorStop] instead of a &[ColorStop]
-    manual = true
-
 
 [[object]]
 name = "Gsk.GLShader"
@@ -104,57 +84,16 @@ generate_builder = true
     ignore = true # not useful for bindings
 
 [[object]]
-name = "Gsk.LinearGradientNode"
+name = "Gsk.Renderer"
 status = "generate"
+manual_traits = ["RendererExtManual"]
     [[object.function]]
-    name = "new"
-    # uses &[&ColorStop] instead of a &[ColorStop]
-    manual = true
-
-[[object]]
-name = "Gsk.RadialGradientNode"
-status = "generate"
-    [[object.function]]
-    name = "new"
-    # uses &[&ColorStop] instead of a &[ColorStop]
-    manual = true
-
-[[object]]
-name = "Gsk.RenderNode"
-status = "generate"
-    [[object.function]]
-    name = "draw"
-        [[object.function.parameter]]
-            name = "cr"
-            const = true
-
-[[object]]
-name = "Gsk.RepeatingLinearGradientNode"
-status = "generate"
-    [[object.function]]
-    name = "new"
-    # uses &[&ColorStop] instead of a &[ColorStop]
-    manual = true
-
-[[object]]
-name = "Gsk.RepeatingRadialGradientNode"
-status = "generate"
-    [[object.function]]
-    name = "new"
-    # uses &[&ColorStop] instead of a &[ColorStop]
-    manual = true
-
-
-[[object]]
-name = "Gsk.ShadowNode"
-status = "generate"
-    [[object.function]]
-    name = "new"
-    # uses &[&Shadow] instead of a &[Shadow]
+    name = "render"
+    # uses IsA<RenderNode> but RenderNode is not an Object
     manual = true
     [[object.function]]
-    name = "get_shadow"
-    # needs an assertion that the i < n_shadows
+    name = "render_texture"
+    # uses IsA<RenderNode> but RenderNode is not an Object
     manual = true
 
 [[object]]
