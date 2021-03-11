@@ -26,9 +26,6 @@ pub trait MediaStreamExt: 'static {
     #[doc(alias = "gtk_media_stream_ended")]
     fn ended(&self);
 
-    //#[doc(alias = "gtk_media_stream_error")]
-    //fn error(&self, domain: glib::Quark, code: i32, format: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
-
     #[doc(alias = "gtk_media_stream_get_duration")]
     fn get_duration(&self) -> i64;
 
@@ -155,10 +152,6 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
             ffi::gtk_media_stream_ended(self.as_ref().to_glib_none().0);
         }
     }
-
-    //fn error(&self, domain: glib::Quark, code: i32, format: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call ffi:gtk_media_stream_error() }
-    //}
 
     fn get_duration(&self) -> i64 {
         unsafe { ffi::gtk_media_stream_get_duration(self.as_ref().to_glib_none().0) }

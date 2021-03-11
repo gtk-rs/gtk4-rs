@@ -21,6 +21,7 @@ pub use crate::entry_completion::EntryCompletionExtManual;
 pub use crate::im_context::IMContextExtManual;
 pub use crate::im_context_simple::IMContextSimpleExtManual;
 pub use crate::list_store::GtkListStoreExtManual;
+pub use crate::media_stream::MediaStreamExtManual;
 pub use crate::notebook::NotebookExtManual;
 pub use crate::overlay::OverlayExtManual;
 pub use crate::spin_button::SpinButtonExtManual;

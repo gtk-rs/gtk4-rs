@@ -119,6 +119,7 @@ mod keyval_trigger;
 mod label;
 mod list_box;
 mod list_store;
+mod media_stream;
 mod message_dialog;
 mod mnemonic_trigger;
 mod notebook;
