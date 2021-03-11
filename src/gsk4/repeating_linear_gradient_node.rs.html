@@ -47,12 +47,26 @@
 <span id="44">44</span>
 <span id="45">45</span>
 <span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">ColorStop</span>, <span class="ident">RepeatingLinearGradientNode</span>};
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">ColorStop</span>, <span class="ident">RenderNodeType</span>};
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">graphene</span>::{<span class="ident">Point</span>, <span class="ident">Rect</span>};
+
+<span class="macro">define_render_node</span><span class="macro">!</span>(
+    <span class="ident">RepeatingLinearGradientNode</span>,
+    <span class="ident">ffi</span>::<span class="ident">GskRepeatingLinearGradientNode</span>,
+    <span class="ident">ffi</span>::<span class="ident">gsk_repeating_linear_gradient_node_get_type</span>,
+    <span class="ident">RenderNodeType</span>::<span class="ident">RepeatingLinearGradientNode</span>
+);
 
 <span class="kw">impl</span> <span class="ident">RepeatingLinearGradientNode</span> {
     <span class="doccomment">/// Creates a `RenderNode` that will create a repeating linear gradient</span>
