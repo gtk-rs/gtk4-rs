@@ -1392,12 +1392,16 @@ generate_builder = true
 [[object]]
 name = "Gtk.MediaStream"
 status = "generate"
-    [[object.function]]
-    name = "gerror"
-    ignore = true # TODO: figure out error's ownership
+manual_traits = ["MediaStreamExtManual"]
     [[object.function]]
     name = "error_valist"
     ignore = true # not useful for bindings
+    [[object.function]]
+    name = "error"
+    manual = true
+    [[object.function]]
+    name = "gerror"
+    manual = true
 
 [[object]]
 name = "Gtk.MenuButton"
