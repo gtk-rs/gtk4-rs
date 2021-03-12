@@ -1,4 +1,4 @@
-use glib::{clone, MainContext};
+use glib::{clone, timeout_future_seconds, MainContext};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindowBuilder, ButtonBuilder};
@@ -37,12 +37,13 @@ fn on_activate(application: &Application) {
     // Connect callback
     button.connect_clicked(move |_| {
         let sender = sender.clone();
-        // The long running operation runs now in a separate thread
-        std::thread::spawn(move || {
+        let main_context = MainContext::default();
+
+        // The main loop executes the asynchronous block
+        main_context.spawn_local(async move {
             // Deactivate the button until the operation is done
             sender.send(false);
-            let ten_seconds = std::time::Duration::from_secs(10);
-            std::thread::sleep(ten_seconds);
+            timeout_future_seconds(10).await;
             // Activate the button again
             sender.send(true);
         });

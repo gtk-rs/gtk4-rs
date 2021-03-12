@@ -41,7 +41,7 @@ Normally we want to keep track of the work in the thread.
 In our case, we don't want the user to spawn additional threads while an existing one is still running.
 In order to achieve that we can create a channel.
 The main loop allows us to send a message from multiple places to a single receiver at the main thread.
-We want to send a `bool` to inform, whether we want the button to react to clicks, or not.
+We want to send a `bool` to inform, whether we want the button to react to clicks or not.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -49,3 +49,29 @@ We want to send a `bool` to inform, whether we want the button to react to click
 {{#rustdoc_include ../listings/main_event_loop_3/src/main.rs:callback}}
 ```
 
+Spawning threads is not the only way to run operations asynchronously.
+You can also let the main loop take care of running `async` functions.
+If you do that from the main thread use [`spawn_local`](http://gtk-rs.org/docs/glib/struct.MainContext.html#method.spawn_local), from other threads [`spawn`](http://gtk-rs.org/docs/glib/struct.MainContext.html#method.spawn) has to be used.
+The converted code looks and behaves very similar to the multi-threaded code.
+
+<span class="filename">Filename: src/main.rs</span>
+
+```rust ,no_run
+{{#rustdoc_include ../listings/main_event_loop_4/src/main.rs:callback}}
+```
+
+Since we are single-threaded again, we could even get rid of the channels while achieving the same result.
+
+<span class="filename">Filename: src/main.rs</span>
+
+```rust ,no_run
+{{#rustdoc_include ../listings/main_event_loop_5/src/main.rs:callback}}
+```
+
+But, why didn't we do the same thing with our multi-threaded example?
+
+<span class="filename">Filename: src/main.rs</span>
+
+```rust ,no_run
+{{#rustdoc_include ../listings/main_event_loop_5/src/main.rs:callback}}
+```
