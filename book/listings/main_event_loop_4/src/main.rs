@@ -1,4 +1,4 @@
-use glib::{clone, timeout_future_seconds, MainContext};
+use glib::{clone, timeout_future_seconds, MainContext, PRIORITY_DEFAULT};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindowBuilder, ButtonBuilder};
@@ -33,7 +33,7 @@ fn on_activate(application: &Application) {
         .build();
 
     // ANCHOR: callback
-    let (sender, receiver) = MainContext::channel(glib::PRIORITY_DEFAULT);
+    let (sender, receiver) = MainContext::channel(PRIORITY_DEFAULT);
     // Connect callback
     button.connect_clicked(move |_| {
         let sender = sender.clone();
