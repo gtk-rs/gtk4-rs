@@ -68,10 +68,76 @@ Since we are single-threaded again, we could even get rid of the channels while 
 {{#rustdoc_include ../listings/main_event_loop_5/src/main.rs:callback}}
 ```
 
-But, why didn't we do the same thing with our multi-threaded example?
+But why didn't we do the same thing with our multi-threaded example?
 
 <span class="filename">Filename: src/main.rs</span>
 
-```rust ,no_run
-{{#rustdoc_include ../listings/main_event_loop_5/src/main.rs:callback}}
+```rust ,no_run,compile_fail
+# use glib::{clone, MainContext, PRIORITY_DEFAULT};
+# use gtk::glib;
+# use gtk::prelude::*;
+# use gtk::{Application, ApplicationWindowBuilder, ButtonBuilder};
+# 
+# fn main() {
+#     // Create a new application
+#     let app = Application::new(Some("org.gtk.example.Devel"), Default::default())
+#         .expect("Initialization failed...");
+#     app.connect_activate(|app| on_activate(app));
+# 
+#     // Get command-line arguments
+#     let args: Vec<String> = std::env::args().collect();
+#     // Run the application
+#     app.run(&args);
+# }
+# 
+# // When the application is launched…
+# fn on_activate(application: &Application) {
+#     // … create a new window …
+#     let window = ApplicationWindowBuilder::new()
+#         .application(application)
+#         .title("My GTK App")
+#         .build();
+# 
+#     // Create a button
+#     let button = ButtonBuilder::new()
+#         .label("Press me!")
+#         .margin_top(12)
+#         .margin_bottom(12)
+#         .margin_start(12)
+#         .margin_end(12)
+#         .build();
+# 
+    // Connect callback
+    button.connect_clicked(move |button| {
+        button.clone();
+        // The long running operation runs now in a separate thread
+        std::thread::spawn(move || {
+            // Deactivate the button until the operation is done
+            button.set_sensitive(false);
+            let ten_seconds = std::time::Duration::from_secs(10);
+            std::thread::sleep(ten_seconds);
+            // Activate the button again
+            button.set_sensitive(true);
+        });
+    });
+# 
+#     // Add button
+#     window.set_child(Some(&button));
+#     window.present();
+# }
 ```
+
+Simply because we would get this error message:
+
+```console
+error[E0277]: `NonNull<GObject>` cannot be shared between threads safely
+
+help: within `gtk4::Button`, the trait `Sync` is not implemented for `NonNull<GObject>`
+```
+
+After reference cycles we found the second disadvantage of reference counted GObjects: they are not thread safe.
+
+What does that mean for us in practice?
+If we work on the main thread, we continue to pass GObjects to our closures.
+Calling `clone` on GObjects only increments a reference-counter, so this operation is very cheap.
+If we spawn another thread, we just send our message through a channel and receive it on the main thread.
