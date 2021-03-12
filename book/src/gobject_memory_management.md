@@ -130,7 +130,7 @@ Of course we did: reference cycles.
 `button_increase` holds a strong reference to `button_decrease` and vice-versa.
 A strong reference keeps the referenced object from being deallocated.
 If this chain leads to a circle, none of the objects in this cycle ever get deallocated.
-We obviously do not want our apps to keep allocating memory, so let us use weak references for the buttons instead.
+We obviously do not want our apps to keep allocating memory, so let us use weak references for the buttons instead.[^1]
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -145,3 +145,6 @@ Notice however that we kept the strong reference to `number`.
 If we had only used weak references, `number` would have been dropped and the closure would have never been called.
 Unlike with tricky-to-debug reference cycles, you would have immediately noticed that after testing your app.
 That is why we recommend to default to weak references.
+
+[^1]: In this simple example, GTK actually resolves the reference cycle on its own once you close the window.
+However, the general point to avoid strong references whenever possible remains valid.
