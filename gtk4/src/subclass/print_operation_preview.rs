@@ -56,7 +56,7 @@ pub trait PrintOperationPreviewImpl: ObjectImpl {
 }
 
 unsafe impl<T: PrintOperationPreviewImpl> IsImplementable<T> for PrintOperationPreview {
-    fn interface_init(iface: &mut glib::Class<Self>) {
+    fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
         iface.ready = Some(print_operation_preview_ready::<T>);

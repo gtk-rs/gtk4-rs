@@ -10,7 +10,7 @@ pub trait ScrollableImpl: ObjectImpl {
 }
 
 unsafe impl<T: ScrollableImpl> IsImplementable<T> for Scrollable {
-    fn interface_init(iface: &mut glib::Class<Self>) {
+    fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
         iface.get_border = Some(scrollable_get_border::<T>);

@@ -180,7 +180,7 @@ pub trait SelectionModelImpl: ListModelImpl {
 }
 
 unsafe impl<T: SelectionModelImpl> IsImplementable<T> for SelectionModel {
-    fn interface_init(iface: &mut glib::Class<Self>) {
+    fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
         iface.get_selection_in_range = Some(model_get_selection_in_range::<T>);

@@ -21,7 +21,7 @@ pub trait TreeDragDestImpl: ObjectImpl {
 }
 
 unsafe impl<T: TreeDragDestImpl> IsImplementable<T> for TreeDragDest {
-    fn interface_init(iface: &mut glib::Class<Self>) {
+    fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
         iface.drag_data_received = Some(tree_drag_dest_drag_data_received::<T>);

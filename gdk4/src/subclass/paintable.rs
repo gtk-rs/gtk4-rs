@@ -92,7 +92,7 @@ pub trait PaintableImpl: ObjectImpl {
 }
 
 unsafe impl<T: PaintableImpl> IsImplementable<T> for Paintable {
-    fn interface_init(iface: &mut glib::Class<Self>) {
+    fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
         iface.get_current_image = Some(paintable_get_current_image::<T>);
