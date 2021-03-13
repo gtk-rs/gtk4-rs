@@ -55,7 +55,7 @@ fn on_activate(application: &Application) {
 
 fn main() {
     // Create a new application
-    let app = Application::new(Some("org.gtk.example.Devel"), Default::default())
+    let app = Application::new(Some("org.gtk.example"), Default::default())
         .expect("Initialization failed...");
     app.connect_activate(|app| on_activate(app));
 

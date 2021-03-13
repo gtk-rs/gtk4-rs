@@ -16,3 +16,6 @@ With another click, it returns to its original state.
 ```
 
 <div style="text-align:center"><img src="img/settings_buttons.png" /></div>
+
+
+/usr/share/glib-2.0/schemas

@@ -1,9 +1,10 @@
-use gtk::prelude::*;
+use gtk::gio;
+use gtk::{glib::signal::Inhibit, prelude::*};
 use gtk::{Align, Application, ApplicationWindowBuilder, SwitchBuilder};
 
 fn main() {
     // Create a new application
-    let app = Application::new(Some("org.gtk.example.Devel"), Default::default())
+    let app = Application::new(Some("org.gtk.example"), Default::default())
         .expect("Initialization failed...");
     app.connect_activate(|app| on_activate(app));
 
@@ -21,9 +22,9 @@ fn on_activate(application: &Application) {
         .title("My GTK App")
         .build();
 
-    // ANCHOR: button
-    // Create a button
-    let button = SwitchBuilder::new()
+    // ANCHOR: switch
+    // Create a switch
+    let switch = SwitchBuilder::new()
         .margin_top(48)
         .margin_bottom(48)
         .margin_start(48)
@@ -31,9 +32,14 @@ fn on_activate(application: &Application) {
         .valign(Align::Center)
         .halign(Align::Center)
         .build();
-    // ANCHOR_END: button
+    // ANCHOR_END: switch
+    let settings = gio::Settings::new("org.gtk.example");
+    switch.connect_state_set(|_, is_enabled| {
+        // We don't want to inhibit the signal from being propagated to the default handler
+        Inhibit(false)
+    });
 
     // Add button
-    window.set_child(Some(&button));
+    window.set_child(Some(&switch));
     window.present();
 }
