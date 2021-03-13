@@ -7,88 +7,130 @@ use glib::Cast;
 
 pub trait PaintableImpl: ObjectImpl {
     fn get_current_image(&self, paintable: &Self::Type) -> Paintable {
+        self.parent_get_current_image(paintable)
+    }
+
+    fn get_flags(&self, paintable: &Self::Type) -> PaintableFlags {
+        self.parent_get_flags(paintable)
+    }
+
+    fn get_intrinsic_width(&self, paintable: &Self::Type) -> i32 {
+        self.parent_get_intrinsic_width(paintable)
+    }
+
+    fn get_intrinsic_height(&self, paintable: &Self::Type) -> i32 {
+        self.parent_get_intrinsic_height(paintable)
+    }
+
+    fn get_intrinsic_aspect_ratio(&self, paintable: &Self::Type) -> f64 {
+        self.parent_get_intrinsic_aspect_ratio(paintable)
+    }
+
+    fn snapshot(&self, paintable: &Self::Type, snapshot: &Snapshot, width: f64, height: f64);
+}
+
+pub trait PaintableImplExt: ObjectSubclass {
+    fn parent_get_current_image(&self, paintable: &Self::Type) -> Paintable;
+    fn parent_get_flags(&self, paintable: &Self::Type) -> PaintableFlags;
+    fn parent_get_intrinsic_width(&self, paintable: &Self::Type) -> i32;
+    fn parent_get_intrinsic_height(&self, paintable: &Self::Type) -> i32;
+    fn parent_get_intrinsic_aspect_ratio(&self, paintable: &Self::Type) -> f64;
+    fn parent_snapshot(&self, paintable: &Self::Type, snapshot: &Snapshot, width: f64, height: f64);
+}
+
+impl<T: PaintableImpl> PaintableImplExt for T {
+    fn parent_get_current_image(&self, paintable: &Self::Type) -> Paintable {
         unsafe {
-            let type_ = ffi::gdk_paintable_get_type();
-            let iface = glib::gobject_ffi::g_type_default_interface_ref(type_)
-                as *mut ffi::GdkPaintableInterface;
-            assert!(!iface.is_null());
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<Paintable>()
+                as *const ffi::GdkPaintableInterface;
+            let func = (*parent_iface)
+                .get_current_image
+                .expect("no parent \"get_current_image\" implementation");
 
-            let ret = ((*iface).get_current_image.as_ref().unwrap())(
-                paintable.unsafe_cast_ref::<Paintable>().to_glib_none().0,
-            );
-
-            glib::gobject_ffi::g_type_default_interface_unref(iface as glib::ffi::gpointer);
+            let ret = func(paintable.unsafe_cast_ref::<Paintable>().to_glib_none().0);
 
             from_glib_full(ret)
         }
     }
-    fn get_flags(&self, paintable: &Self::Type) -> PaintableFlags {
+
+    fn parent_get_flags(&self, paintable: &Self::Type) -> PaintableFlags {
         unsafe {
-            let type_ = ffi::gdk_paintable_get_type();
-            let iface = glib::gobject_ffi::g_type_default_interface_ref(type_)
-                as *mut ffi::GdkPaintableInterface;
-            assert!(!iface.is_null());
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<Paintable>()
+                as *const ffi::GdkPaintableInterface;
+            let func = (*parent_iface)
+                .get_flags
+                .expect("no parent \"get_flags\" implementation");
 
-            let ret = ((*iface).get_flags.as_ref().unwrap())(
+            from_glib(func(
                 paintable.unsafe_cast_ref::<Paintable>().to_glib_none().0,
-            );
-
-            glib::gobject_ffi::g_type_default_interface_unref(iface as glib::ffi::gpointer);
-
-            from_glib(ret)
+            ))
         }
     }
-    fn get_intrinsic_width(&self, paintable: &Self::Type) -> i32 {
+
+    fn parent_get_intrinsic_width(&self, paintable: &Self::Type) -> i32 {
         unsafe {
-            let type_ = ffi::gdk_paintable_get_type();
-            let iface = glib::gobject_ffi::g_type_default_interface_ref(type_)
-                as *mut ffi::GdkPaintableInterface;
-            assert!(!iface.is_null());
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<Paintable>()
+                as *const ffi::GdkPaintableInterface;
+            let func = (*parent_iface)
+                .get_intrinsic_width
+                .expect("no parent \"get_intrinsic_width\" implementation");
 
-            let ret = ((*iface).get_intrinsic_width.as_ref().unwrap())(
-                paintable.unsafe_cast_ref::<Paintable>().to_glib_none().0,
-            );
-
-            glib::gobject_ffi::g_type_default_interface_unref(iface as glib::ffi::gpointer);
-
-            ret
+            func(paintable.unsafe_cast_ref::<Paintable>().to_glib_none().0)
         }
     }
-    fn get_intrinsic_height(&self, paintable: &Self::Type) -> i32 {
+
+    fn parent_get_intrinsic_height(&self, paintable: &Self::Type) -> i32 {
         unsafe {
-            let type_ = ffi::gdk_paintable_get_type();
-            let iface = glib::gobject_ffi::g_type_default_interface_ref(type_)
-                as *mut ffi::GdkPaintableInterface;
-            assert!(!iface.is_null());
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<Paintable>()
+                as *const ffi::GdkPaintableInterface;
+            let func = (*parent_iface)
+                .get_intrinsic_height
+                .expect("no parent \"get_intrinsic_height\" implementation");
 
-            let ret = ((*iface).get_intrinsic_height.as_ref().unwrap())(
+            func(paintable.unsafe_cast_ref::<Paintable>().to_glib_none().0)
+        }
+    }
+
+    fn parent_get_intrinsic_aspect_ratio(&self, paintable: &Self::Type) -> f64 {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<Paintable>()
+                as *const ffi::GdkPaintableInterface;
+            let func = (*parent_iface)
+                .get_intrinsic_aspect_ratio
+                .expect("no parent \"get_intrinsic_aspect_ratio\" implementation");
+
+            func(paintable.unsafe_cast_ref::<Paintable>().to_glib_none().0)
+        }
+    }
+
+    fn parent_snapshot(
+        &self,
+        paintable: &Self::Type,
+        snapshot: &Snapshot,
+        width: f64,
+        height: f64,
+    ) {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<Paintable>()
+                as *const ffi::GdkPaintableInterface;
+            let func = (*parent_iface)
+                .snapshot
+                .expect("no parent \"snapshot\" implementation");
+
+            func(
                 paintable.unsafe_cast_ref::<Paintable>().to_glib_none().0,
-            );
-
-            glib::gobject_ffi::g_type_default_interface_unref(iface as glib::ffi::gpointer);
-
-            ret
+                snapshot.to_glib_none().0,
+                width,
+                height,
+            )
         }
     }
-    fn get_intrinsic_aspect_ratio(&self, paintable: &Self::Type) -> f64 {
-        {
-            unsafe {
-                let type_ = ffi::gdk_paintable_get_type();
-                let iface = glib::gobject_ffi::g_type_default_interface_ref(type_)
-                    as *mut ffi::GdkPaintableInterface;
-                assert!(!iface.is_null());
-
-                let ret = ((*iface).get_intrinsic_aspect_ratio.as_ref().unwrap())(
-                    paintable.unsafe_cast_ref::<Paintable>().to_glib_none().0,
-                );
-
-                glib::gobject_ffi::g_type_default_interface_unref(iface as glib::ffi::gpointer);
-
-                ret
-            }
-        }
-    }
-    fn snapshot(&self, paintable: &Self::Type, snapshot: &Snapshot, width: f64, height: f64);
 }
 
 unsafe impl<T: PaintableImpl> IsImplementable<T> for Paintable {
