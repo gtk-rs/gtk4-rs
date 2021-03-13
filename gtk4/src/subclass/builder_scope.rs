@@ -71,7 +71,7 @@ pub trait BuilderScopeImpl: ObjectImpl {
 }
 
 unsafe impl<T: BuilderScopeImpl> IsImplementable<T> for BuilderScope {
-    fn interface_init(iface: &mut glib::Class<Self>) {
+    fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
         iface.get_type_from_name = Some(builder_scope_get_type_from_name::<T>);

@@ -16,7 +16,7 @@ pub trait TreeDragSourceImpl: ObjectImpl {
 }
 
 unsafe impl<T: TreeDragSourceImpl> IsImplementable<T> for TreeDragSource {
-    fn interface_init(iface: &mut glib::Class<Self>) {
+    fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
         iface.row_draggable = Some(tree_drag_source_row_draggable::<T>);

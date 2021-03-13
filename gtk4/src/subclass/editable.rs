@@ -19,7 +19,7 @@ pub trait EditableImpl: WidgetImpl {
 }
 
 unsafe impl<T: EditableImpl> IsImplementable<T> for Editable {
-    fn interface_init(iface: &mut glib::Class<Self>) {
+    fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
         iface.insert_text = Some(editable_insert_text::<T>);

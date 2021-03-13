@@ -11,7 +11,7 @@ pub trait ShortcutManagerImpl: ObjectImpl {
 }
 
 unsafe impl<T: ShortcutManagerImpl> IsImplementable<T> for ShortcutManager {
-    fn interface_init(iface: &mut glib::Class<Self>) {
+    fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
         iface.add_controller = Some(shortcut_manager_add_controller::<T>);

@@ -20,7 +20,7 @@ pub trait ColorChooserImpl: ObjectImpl {
 }
 
 unsafe impl<T: ColorChooserImpl> IsImplementable<T> for ColorChooser {
-    fn interface_init(iface: &mut glib::Class<Self>) {
+    fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
         iface.add_palette = Some(color_chooser_add_palette::<T>);

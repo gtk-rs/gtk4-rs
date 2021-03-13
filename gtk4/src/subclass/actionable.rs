@@ -14,7 +14,7 @@ pub trait ActionableImpl: WidgetImpl {
 }
 
 unsafe impl<T: ActionableImpl> IsImplementable<T> for Actionable {
-    fn interface_init(iface: &mut glib::Class<Self>) {
+    fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
         iface.get_action_name = Some(actionable_get_action_name::<T>);
