@@ -8,5 +8,5 @@ pub mod prelude {
     #[doc(hidden)]
     pub use glib::subclass::prelude::*;
 
-    pub use super::paintable::PaintableImpl;
+    pub use super::paintable::{PaintableImpl, PaintableImplExt};
 }
