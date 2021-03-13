@@ -37,7 +37,6 @@ fn on_activate(application: &Application) {
     button.connect_clicked(move |button| {
         let button = button.clone();
         let main_context = MainContext::default();
-
         // The main loop executes the asynchronous block
         main_context.spawn_local(async move {
             // Deactivate the button until the operation is done

@@ -14,7 +14,8 @@ since it is not supposed to be used directly.
 {{#rustdoc_include ../listings/gobject_subclassing_1/src/main.rs:impl}}
 ```
 The description of the subclassing is in `ObjectSubclass`.
-- `NAME` can be chosen arbitrarily as long as it is unique within the project
+- `NAME` must be at least three characters long and start with ‘a–z’, ‘A–Z’ or ‘_’.
+   We recommend to use crate-name + "_" + object-name in order to avoid name collisions.
 - `Type` refers to the actual GObject that will be created afterwards
 - `ParentType` is the GObject we inherit of
 

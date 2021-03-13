@@ -107,6 +107,8 @@ But why didn't we do the same thing with our multi-threaded example?
 #         .margin_end(12)
 #         .build();
 # 
+    // DOES NOT COMPILE
+    
     // Connect callback
     button.connect_clicked(move |button| {
         button.clone();
