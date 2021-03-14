@@ -3,7 +3,6 @@
 pub mod accessible;
 pub mod actionable;
 pub mod adjustment;
-pub mod app_chooser;
 pub mod application;
 pub mod application_window;
 pub mod box_;
@@ -20,7 +19,6 @@ pub mod drawing_area;
 pub mod editable;
 pub mod entry;
 pub mod entry_buffer;
-pub mod file_chooser;
 pub mod filter;
 pub mod flow_box_child;
 pub mod frame;
@@ -66,7 +64,6 @@ pub mod prelude {
     pub use super::accessible::AccessibleImpl;
     pub use super::actionable::{ActionableImpl, ActionableImplExt};
     pub use super::adjustment::{AdjustmentImpl, AdjustmentImplExt};
-    pub use super::app_chooser::AppChooserImpl;
     pub use super::application::{GtkApplicationImpl, GtkApplicationImplExt};
     pub use super::application_window::ApplicationWindowImpl;
     pub use super::box_::BoxImpl;
@@ -83,7 +80,6 @@ pub mod prelude {
     pub use super::editable::{EditableImpl, EditableImplExt};
     pub use super::entry::{EntryImpl, EntryImplExt};
     pub use super::entry_buffer::{EntryBufferImpl, EntryBufferImplExt};
-    pub use super::file_chooser::FileChooserImpl;
     pub use super::filter::{FilterImpl, FilterImplExt};
     pub use super::flow_box_child::{FlowBoxChildImpl, FlowBoxChildImplExt};
     pub use super::frame::{FrameImpl, FrameImplExt};
