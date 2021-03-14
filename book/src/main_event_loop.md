@@ -137,9 +137,9 @@ error[E0277]: `NonNull<GObject>` cannot be shared between threads safely
 help: within `gtk4::Button`, the trait `Sync` is not implemented for `NonNull<GObject>`
 ```
 
-After reference cycles we found the second disadvantage of reference counted GObjects: they are not thread safe.
+After reference cycles we found the second disadvantage of GTK GObjects: they are not thread safe.
 
-What does that mean for us in practice?
-If we work on the main thread, we continue to pass GObjects to our closures.
-Calling `clone` on GObjects only increments a reference-counter, so this operation is very cheap.
-If we spawn another thread, we just send our message through a channel and receive it on the main thread.
+So when should you spawn an `async` block and when should you spawn a thread?
+- If you have `async` functions for your IO-bound operations at your disposal, feel free to spawn them on the main loop.
+- If your operation is computation-bound or there is no `async` function available, you have to spawn threads.
+
