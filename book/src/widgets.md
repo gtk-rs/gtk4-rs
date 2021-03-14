@@ -1,7 +1,7 @@
 # Widgets
 
 Widgets are the components that make up a GTK application.
-GTK offers many-preexisting ones and if those do not fit you can even create custom ones (see Section 5.2).
+GTK offers many-preexisting ones and if those do not fit you can even create custom ones.
 There are display widgets, buttons, containers and windows.
 One kind of widget might be able to contain other widgets, it might present information and it might react to interaction.
 

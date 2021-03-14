@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <schemalist>
-  <schema path="/org/gtk/example/" id="org.gtk.example">
-    <key name="is-switch-activated" type="b">
+  <schema id="org.gtk.example" path="/org/gtk/example/">
+    <key name="is-switch-enabled" type="b">
       <default>false</default>
       <summary>Default switch state</summary>
-      <description></description>
     </key>
   </schema>
 </schemalist>

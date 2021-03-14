@@ -20,3 +20,4 @@ async
 gtk-rs
 subclassing
 GtkButton
+xml

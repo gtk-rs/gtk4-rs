@@ -1,11 +1,14 @@
+use gio::Settings;
 use gtk::gio;
 use gtk::{glib::signal::Inhibit, prelude::*};
 use gtk::{Align, Application, ApplicationWindowBuilder, SwitchBuilder};
 
 fn main() {
+    // ANCHOR: application
     // Create a new application
     let app = Application::new(Some("org.gtk.example"), Default::default())
         .expect("Initialization failed...");
+    // ANCHOR_END: application
     app.connect_activate(|app| on_activate(app));
 
     // Get command-line arguments
@@ -22,7 +25,15 @@ fn on_activate(application: &Application) {
         .title("My GTK App")
         .build();
 
+    // ANCHOR: settings
+    // Initialize settings
+    let settings = Settings::new("org.gtk.example");
+    // ANCHOR_END: settings
+
     // ANCHOR: switch
+    // Get the last switch state from the settings
+    let is_switch_enabled = settings.get_boolean("is-switch-enabled");
+
     // Create a switch
     let switch = SwitchBuilder::new()
         .margin_top(48)
@@ -31,13 +42,18 @@ fn on_activate(application: &Application) {
         .margin_end(48)
         .valign(Align::Center)
         .halign(Align::Center)
+        .state(is_switch_enabled)
         .build();
     // ANCHOR_END: switch
-    let settings = gio::Settings::new("org.gtk.example");
-    switch.connect_state_set(|_, is_enabled| {
-        // We don't want to inhibit the signal from being propagated to the default handler
+
+    // ANCHOR: connect_state_set
+    switch.connect_state_set(move |_, is_enabled| {
+        // Save changed switch state in the settings
+        settings.set_boolean("is-switch-enabled", is_enabled);
+        // We do not want to inhibit the the default handler
         Inhibit(false)
     });
+    // ANCHOR_END: connect_state_set
 
     // Add button
     window.set_child(Some(&switch));
