@@ -13,10 +13,118 @@ pub trait ColorChooserImpl: ObjectImpl {
         orientation: Orientation,
         colors_per_line: i32,
         colors: &[RGBA],
-    );
-    fn color_activated(&self, color_chooser: &Self::Type, rgba: RGBA);
+    ) {
+        self.parent_add_palette(color_chooser, orientation, colors_per_line, colors);
+    }
+
+    fn color_activated(&self, color_chooser: &Self::Type, rgba: RGBA) {
+        self.parent_color_activated(color_chooser, rgba);
+    }
+
     fn get_rgba(&self, color_chooser: &Self::Type) -> RGBA;
     fn set_rgba(&self, color_chooser: &Self::Type, rgba: RGBA);
+}
+
+pub trait ColorChooserImplExt: ObjectSubclass {
+    fn parent_add_palette(
+        &self,
+        color_chooser: &Self::Type,
+        orientation: Orientation,
+        colors_per_line: i32,
+        colors: &[RGBA],
+    );
+    fn parent_color_activated(&self, color_chooser: &Self::Type, rgba: RGBA);
+    fn parent_get_rgba(&self, color_chooser: &Self::Type) -> RGBA;
+    fn parent_set_rgba(&self, color_chooser: &Self::Type, rgba: RGBA);
+}
+
+impl<T: ColorChooserImpl> ColorChooserImplExt for T {
+    fn parent_add_palette(
+        &self,
+        color_chooser: &Self::Type,
+        orientation: Orientation,
+        colors_per_line: i32,
+        colors: &[RGBA],
+    ) {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<ColorChooser>()
+                as *const ffi::GtkColorChooserInterface;
+
+            if let Some(func) = (*parent_iface).add_palette {
+                let colors_ptr: Vec<gdk::ffi::GdkRGBA> =
+                    colors.iter().map(|c| *c.to_glib_none().0).collect();
+
+                func(
+                    color_chooser
+                        .unsafe_cast_ref::<ColorChooser>()
+                        .to_glib_none()
+                        .0,
+                    orientation.to_glib(),
+                    colors_per_line,
+                    colors.len() as i32,
+                    mut_override(colors_ptr.as_ptr()),
+                )
+            }
+        }
+    }
+
+    fn parent_color_activated(&self, color_chooser: &Self::Type, rgba: RGBA) {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<ColorChooser>()
+                as *const ffi::GtkColorChooserInterface;
+
+            if let Some(func) = (*parent_iface).color_activated {
+                func(
+                    color_chooser
+                        .unsafe_cast_ref::<ColorChooser>()
+                        .to_glib_none()
+                        .0,
+                    rgba.to_glib_none().0,
+                )
+            }
+        }
+    }
+
+    fn parent_get_rgba(&self, color_chooser: &Self::Type) -> RGBA {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<ColorChooser>()
+                as *const ffi::GtkColorChooserInterface;
+
+            let func = (*parent_iface)
+                .get_rgba
+                .expect("no parent \"get_rgba\" implementation");
+            let rgba = std::ptr::null_mut();
+            func(
+                color_chooser
+                    .unsafe_cast_ref::<ColorChooser>()
+                    .to_glib_none()
+                    .0,
+                rgba,
+            );
+            from_glib_none(rgba)
+        }
+    }
+
+    fn parent_set_rgba(&self, color_chooser: &Self::Type, rgba: RGBA) {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<ColorChooser>()
+                as *const ffi::GtkColorChooserInterface;
+
+            if let Some(func) = (*parent_iface).set_rgba {
+                func(
+                    color_chooser
+                        .unsafe_cast_ref::<ColorChooser>()
+                        .to_glib_none()
+                        .0,
+                    rgba.to_glib_none().0,
+                )
+            }
+        }
+    }
 }
 
 unsafe impl<T: ColorChooserImpl> IsImplementable<T> for ColorChooser {

@@ -7,76 +7,19 @@ use glib::Cast;
 
 pub trait SelectionModelImpl: ListModelImpl {
     fn get_selection_in_range(&self, model: &Self::Type, position: u32, n_items: u32) -> Bitset {
-        unsafe {
-            let type_ = ffi::gtk_selection_model_get_type();
-            let iface = glib::gobject_ffi::g_type_default_interface_ref(type_)
-                as *mut ffi::GtkSelectionModelInterface;
-            assert!(!iface.is_null());
-
-            let ret = ((*iface).get_selection_in_range.as_ref().unwrap())(
-                model.unsafe_cast_ref::<SelectionModel>().to_glib_none().0,
-                position,
-                n_items,
-            );
-
-            glib::gobject_ffi::g_type_default_interface_unref(iface as glib::ffi::gpointer);
-
-            from_glib_full(ret)
-        }
+        self.parent_get_selection_in_range(model, position, n_items)
     }
 
     fn is_selected(&self, model: &Self::Type, position: u32) -> bool {
-        unsafe {
-            let type_ = ffi::gtk_selection_model_get_type();
-            let iface = glib::gobject_ffi::g_type_default_interface_ref(type_)
-                as *mut ffi::GtkSelectionModelInterface;
-            assert!(!iface.is_null());
-
-            let ret = ((*iface).is_selected.as_ref().unwrap())(
-                model.unsafe_cast_ref::<SelectionModel>().to_glib_none().0,
-                position,
-            );
-
-            glib::gobject_ffi::g_type_default_interface_unref(iface as glib::ffi::gpointer);
-
-            from_glib(ret)
-        }
+        self.parent_is_selected(model, position)
     }
 
     fn select_all(&self, model: &Self::Type) -> bool {
-        unsafe {
-            let type_ = ffi::gtk_selection_model_get_type();
-            let iface = glib::gobject_ffi::g_type_default_interface_ref(type_)
-                as *mut ffi::GtkSelectionModelInterface;
-            assert!(!iface.is_null());
-
-            let ret = ((*iface).select_all.as_ref().unwrap())(
-                model.unsafe_cast_ref::<SelectionModel>().to_glib_none().0,
-            );
-
-            glib::gobject_ffi::g_type_default_interface_unref(iface as glib::ffi::gpointer);
-
-            from_glib(ret)
-        }
+        self.parent_select_all(model)
     }
 
     fn select_item(&self, model: &Self::Type, position: u32, unselect_rest: bool) -> bool {
-        unsafe {
-            let type_ = ffi::gtk_selection_model_get_type();
-            let iface = glib::gobject_ffi::g_type_default_interface_ref(type_)
-                as *mut ffi::GtkSelectionModelInterface;
-            assert!(!iface.is_null());
-
-            let ret = ((*iface).select_item.as_ref().unwrap())(
-                model.unsafe_cast_ref::<SelectionModel>().to_glib_none().0,
-                position,
-                unselect_rest.to_glib(),
-            );
-
-            glib::gobject_ffi::g_type_default_interface_unref(iface as glib::ffi::gpointer);
-
-            from_glib(ret)
-        }
+        self.parent_select_item(model, position, unselect_rest)
     }
 
     fn select_range(
@@ -86,95 +29,215 @@ pub trait SelectionModelImpl: ListModelImpl {
         n_items: u32,
         unselect_rest: bool,
     ) -> bool {
-        unsafe {
-            let type_ = ffi::gtk_selection_model_get_type();
-            let iface = glib::gobject_ffi::g_type_default_interface_ref(type_)
-                as *mut ffi::GtkSelectionModelInterface;
-            assert!(!iface.is_null());
+        self.parent_select_range(model, position, n_items, unselect_rest)
+    }
 
-            let ret = ((*iface).select_range.as_ref().unwrap())(
+    fn set_selection(&self, model: &Self::Type, selected: &Bitset, mask: &Bitset) -> bool {
+        self.parent_set_selection(model, selected, mask)
+    }
+
+    fn unselect_all(&self, model: &Self::Type) -> bool {
+        self.parent_unselect_all(model)
+    }
+
+    fn unselect_item(&self, model: &Self::Type, position: u32) -> bool {
+        self.parent_unselect_item(model, position)
+    }
+
+    fn unselect_range(&self, model: &Self::Type, position: u32, n_items: u32) -> bool {
+        self.parent_unselect_range(model, position, n_items)
+    }
+}
+
+pub trait SelectionModelImplExt: ObjectSubclass {
+    fn parent_get_selection_in_range(
+        &self,
+        model: &Self::Type,
+        position: u32,
+        n_items: u32,
+    ) -> Bitset;
+    fn parent_is_selected(&self, model: &Self::Type, position: u32) -> bool;
+    fn parent_select_all(&self, model: &Self::Type) -> bool;
+    fn parent_select_item(&self, model: &Self::Type, position: u32, unselect_rest: bool) -> bool;
+    fn parent_select_range(
+        &self,
+        model: &Self::Type,
+        position: u32,
+        n_items: u32,
+        unselect_rest: bool,
+    ) -> bool;
+    fn parent_set_selection(&self, model: &Self::Type, selected: &Bitset, mask: &Bitset) -> bool;
+    fn parent_unselect_all(&self, model: &Self::Type) -> bool;
+    fn parent_unselect_item(&self, model: &Self::Type, position: u32) -> bool;
+    fn parent_unselect_range(&self, model: &Self::Type, position: u32, n_items: u32) -> bool;
+}
+
+impl<T: SelectionModelImpl> SelectionModelImplExt for T {
+    fn parent_get_selection_in_range(
+        &self,
+        model: &Self::Type,
+        position: u32,
+        n_items: u32,
+    ) -> Bitset {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<SelectionModel>()
+                as *const ffi::GtkSelectionModelInterface;
+
+            let func = (*parent_iface)
+                .get_selection_in_range
+                .expect("no parent \"get_selection_in_range\" implementation");
+
+            from_glib_full(func(
+                model.unsafe_cast_ref::<SelectionModel>().to_glib_none().0,
+                position,
+                n_items,
+            ))
+        }
+    }
+
+    fn parent_is_selected(&self, model: &Self::Type, position: u32) -> bool {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<SelectionModel>()
+                as *const ffi::GtkSelectionModelInterface;
+
+            let func = (*parent_iface)
+                .is_selected
+                .expect("no parent \"is_selected\" implementation");
+
+            from_glib(func(
+                model.unsafe_cast_ref::<SelectionModel>().to_glib_none().0,
+                position,
+            ))
+        }
+    }
+
+    fn parent_select_all(&self, model: &Self::Type) -> bool {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<SelectionModel>()
+                as *const ffi::GtkSelectionModelInterface;
+
+            let func = (*parent_iface)
+                .select_all
+                .expect("no parent \"select_all\" implementation");
+
+            from_glib(func(
+                model.unsafe_cast_ref::<SelectionModel>().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn parent_select_item(&self, model: &Self::Type, position: u32, unselect_rest: bool) -> bool {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<SelectionModel>()
+                as *const ffi::GtkSelectionModelInterface;
+
+            let func = (*parent_iface)
+                .select_item
+                .expect("no parent \"select_item\" implementation");
+
+            from_glib(func(
+                model.unsafe_cast_ref::<SelectionModel>().to_glib_none().0,
+                position,
+                unselect_rest.to_glib(),
+            ))
+        }
+    }
+
+    fn parent_select_range(
+        &self,
+        model: &Self::Type,
+        position: u32,
+        n_items: u32,
+        unselect_rest: bool,
+    ) -> bool {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<SelectionModel>()
+                as *const ffi::GtkSelectionModelInterface;
+
+            let func = (*parent_iface)
+                .select_range
+                .expect("no parent \"select_range\" implementation");
+
+            from_glib(func(
                 model.unsafe_cast_ref::<SelectionModel>().to_glib_none().0,
                 position,
                 n_items,
                 unselect_rest.to_glib(),
-            );
-
-            glib::gobject_ffi::g_type_default_interface_unref(iface as glib::ffi::gpointer);
-
-            from_glib(ret)
+            ))
         }
     }
 
-    fn set_selection(&self, model: &Self::Type, selected: &Bitset, mask: &Bitset) -> bool {
+    fn parent_set_selection(&self, model: &Self::Type, selected: &Bitset, mask: &Bitset) -> bool {
         unsafe {
-            let type_ = ffi::gtk_selection_model_get_type();
-            let iface = glib::gobject_ffi::g_type_default_interface_ref(type_)
-                as *mut ffi::GtkSelectionModelInterface;
-            assert!(!iface.is_null());
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<SelectionModel>()
+                as *const ffi::GtkSelectionModelInterface;
 
-            let ret = ((*iface).set_selection.as_ref().unwrap())(
+            let func = (*parent_iface)
+                .set_selection
+                .expect("no parent \"set_selection\" implementation");
+
+            from_glib(func(
                 model.unsafe_cast_ref::<SelectionModel>().to_glib_none().0,
                 selected.to_glib_none().0,
                 mask.to_glib_none().0,
-            );
-
-            glib::gobject_ffi::g_type_default_interface_unref(iface as glib::ffi::gpointer);
-
-            from_glib(ret)
+            ))
         }
     }
 
-    fn unselect_all(&self, model: &Self::Type) -> bool {
+    fn parent_unselect_all(&self, model: &Self::Type) -> bool {
         unsafe {
-            let type_ = ffi::gtk_selection_model_get_type();
-            let iface = glib::gobject_ffi::g_type_default_interface_ref(type_)
-                as *mut ffi::GtkSelectionModelInterface;
-            assert!(!iface.is_null());
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<SelectionModel>()
+                as *const ffi::GtkSelectionModelInterface;
 
-            let ret = ((*iface).unselect_all.as_ref().unwrap())(
+            let func = (*parent_iface)
+                .unselect_all
+                .expect("no parent \"unselect_all\" implementation");
+
+            from_glib(func(
                 model.unsafe_cast_ref::<SelectionModel>().to_glib_none().0,
-            );
-
-            glib::gobject_ffi::g_type_default_interface_unref(iface as glib::ffi::gpointer);
-
-            from_glib(ret)
+            ))
         }
     }
 
-    fn unselect_item(&self, model: &Self::Type, position: u32) -> bool {
+    fn parent_unselect_item(&self, model: &Self::Type, position: u32) -> bool {
         unsafe {
-            let type_ = ffi::gtk_selection_model_get_type();
-            let iface = glib::gobject_ffi::g_type_default_interface_ref(type_)
-                as *mut ffi::GtkSelectionModelInterface;
-            assert!(!iface.is_null());
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<SelectionModel>()
+                as *const ffi::GtkSelectionModelInterface;
 
-            let ret = ((*iface).unselect_item.as_ref().unwrap())(
+            let func = (*parent_iface)
+                .unselect_item
+                .expect("no parent \"unselect_item\" implementation");
+
+            from_glib(func(
                 model.unsafe_cast_ref::<SelectionModel>().to_glib_none().0,
                 position,
-            );
-
-            glib::gobject_ffi::g_type_default_interface_unref(iface as glib::ffi::gpointer);
-
-            from_glib(ret)
+            ))
         }
     }
 
-    fn unselect_range(&self, model: &Self::Type, position: u32, n_items: u32) -> bool {
+    fn parent_unselect_range(&self, model: &Self::Type, position: u32, n_items: u32) -> bool {
         unsafe {
-            let type_ = ffi::gtk_selection_model_get_type();
-            let iface = glib::gobject_ffi::g_type_default_interface_ref(type_)
-                as *mut ffi::GtkSelectionModelInterface;
-            assert!(!iface.is_null());
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<SelectionModel>()
+                as *const ffi::GtkSelectionModelInterface;
 
-            let ret = ((*iface).unselect_range.as_ref().unwrap())(
+            let func = (*parent_iface)
+                .unselect_range
+                .expect("no parent \"unselect_range\" implementation");
+
+            from_glib(func(
                 model.unsafe_cast_ref::<SelectionModel>().to_glib_none().0,
                 position,
                 n_items,
-            );
-
-            glib::gobject_ffi::g_type_default_interface_unref(iface as glib::ffi::gpointer);
-
-            from_glib(ret)
+            ))
         }
     }
 }
