@@ -1,8 +1,8 @@
 # Settings
 
-We now learned multiple ways to handle state.
+We have now learned multiple ways to handle state.
 However, every time we close the application all of it is gone.
-Let us see how to use `GSettings` by storing the state of a [`Switch`](https://gtk-rs.org/gtk4-rs/gtk4/struct.Switch.html) with it.
+Let's learn how to use `GSettings` by storing the state of a [`Switch`](https://gtk-rs.org/gtk4-rs/gtk4/struct.Switch.html) in it.
 
 <div style="text-align:center"><img src="img/settings_buttons.png" /></div>
 
@@ -21,7 +21,7 @@ The `id` is the same application id we used when we created our application.
 ```rust,no_run
 {{#rustdoc_include ../listings/settings_1/src/main.rs:application}}
 ```
-The `path` must start with and end with a forward slash character ('/') and must not contain two sequential slash characters.
+The `path` must start and end with a forward slash character ('/') and must not contain two sequential slash characters.
 When creating a `path`, we advise to take the `id`, replace the '.' with '/' and add '/' at the front and end of it.
 
 We only want to store a single key with the `name` “is-switch-enabled”.
@@ -35,8 +35,8 @@ $ sudo install -D org.gtk.example.gschema.xml /usr/share/glib-2.0/schemas/
 $ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 ```
 
-This has to be repeated every time you change the `GSchema`.
-That is why you probably want to use a build system like [meson](https://mesonbuild.com/) to do it for you.
+This has to be repeated every time we change the `GSchema`.
+That is why we probably want to use a build system like [Meson](https://mesonbuild.com/) to do it for us.
 
 We initialize the `Settings` object by specifying the application id.
 
@@ -46,7 +46,7 @@ We initialize the `Settings` object by specifying the application id.
 {{#rustdoc_include ../listings/settings_1/src/main.rs:settings}}
 ```
 
-Then, we settings key and use it when we create our `Switch`.
+Then we get the settings key and use it when we create our `Switch`.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -54,7 +54,7 @@ Then, we settings key and use it when we create our `Switch`.
 {{#rustdoc_include ../listings/settings_1/src/main.rs:switch}}
 ```
 
-Now we only have to store the switch state in the settings, whenever we click on it.
+Finally, we assure that the switch state is stored in the settings whenever we click on it.
 
 <span class="filename">Filename: src/main.rs</span>
 
