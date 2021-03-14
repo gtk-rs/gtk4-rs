@@ -15,7 +15,7 @@ It therefore corresponds to the private part of objects in languages like Java a
 ```
 The description of the subclassing is in `ObjectSubclass`.
 - `NAME` must be at least three characters long and start with ‘a–z’, ‘A–Z’ or ‘_’.
-   We recommend to use crate-name + "_" + object-name in order to avoid name collisions.
+   We recommend to use crate-name + module-path + object-name in order to avoid name collisions. It is idiomatic to use CamelCase here.
 - `Type` refers to the actual GObject that will be created afterwards
 - `ParentType` is the GObject we inherit of
 

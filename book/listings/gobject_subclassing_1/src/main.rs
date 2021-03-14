@@ -17,7 +17,7 @@ mod imp {
     // The central trait for subclassing a GObject
     #[glib::object_subclass]
     impl ObjectSubclass for CustomButton {
-        const NAME: &'static str = "my-gtk-app_CustomButton";
+        const NAME: &'static str = "MyGtkAppCustomButton";
         type Type = super::CustomButton;
         type ParentType = gtk::Button;
     }
