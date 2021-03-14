@@ -13,6 +13,81 @@ pub trait ActionableImpl: WidgetImpl {
     fn set_action_target_value(&self, actionable: &Self::Type, value: Option<&Variant>);
 }
 
+pub trait ActionableImplExt: ObjectSubclass {
+    fn parent_get_action_name(&self, actionable: &Self::Type) -> Option<GString>;
+    fn parent_get_action_target_value(&self, actionable: &Self::Type) -> Option<Variant>;
+    fn parent_set_action_name(&self, actionable: &Self::Type, name: Option<&str>);
+    fn parent_set_action_target_value(&self, actionable: &Self::Type, value: Option<&Variant>);
+}
+
+impl<T: ActionableImpl> ActionableImplExt for T {
+    fn parent_get_action_name(&self, actionable: &Self::Type) -> Option<GString> {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<Actionable>()
+                as *const ffi::GtkActionableInterface;
+
+            let func = (*parent_iface)
+                .get_action_name
+                .expect("no parent \"get_action_name\" implementation");
+
+            from_glib_none(func(
+                actionable.unsafe_cast_ref::<Actionable>().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn parent_get_action_target_value(&self, actionable: &Self::Type) -> Option<Variant> {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<Actionable>()
+                as *const ffi::GtkActionableInterface;
+
+            let func = (*parent_iface)
+                .get_action_target_value
+                .expect("no parent \"get_action_target_value\" implementation");
+
+            from_glib_none(func(
+                actionable.unsafe_cast_ref::<Actionable>().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn parent_set_action_name(&self, actionable: &Self::Type, name: Option<&str>) {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<Actionable>()
+                as *const ffi::GtkActionableInterface;
+
+            let func = (*parent_iface)
+                .set_action_name
+                .expect("no parent \"set_action_name\" implementation");
+
+            func(
+                actionable.unsafe_cast_ref::<Actionable>().to_glib_none().0,
+                name.to_glib_none().0,
+            );
+        }
+    }
+
+    fn parent_set_action_target_value(&self, actionable: &Self::Type, value: Option<&Variant>) {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<Actionable>()
+                as *const ffi::GtkActionableInterface;
+
+            let func = (*parent_iface)
+                .set_action_target_value
+                .expect("no parent \"set_action_target_value\" implementation");
+
+            func(
+                actionable.unsafe_cast_ref::<Actionable>().to_glib_none().0,
+                value.to_glib_none().0,
+            );
+        }
+    }
+}
+
 unsafe impl<T: ActionableImpl> IsImplementable<T> for Actionable {
     fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();

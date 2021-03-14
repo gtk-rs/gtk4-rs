@@ -6,13 +6,89 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait TreeDragSourceImpl: ObjectImpl {
-    fn row_draggable(&self, _tree_drag_source: &Self::Type, _path: &TreePath) -> bool {
-        // Assume the row is draggable by default
-        true
+    fn row_draggable(&self, tree_drag_source: &Self::Type, path: &TreePath) -> bool {
+        self.parent_row_draggable(tree_drag_source, path)
     }
     fn drag_data_get(&self, tree_drag_source: &Self::Type, path: &TreePath)
         -> gdk::ContentProvider;
     fn drag_data_delete(&self, tree_drag_source: &Self::Type, path: &TreePath) -> bool;
+}
+
+pub trait TreeDragSourceImplExt: ObjectSubclass {
+    fn parent_row_draggable(&self, _tree_drag_source: &Self::Type, _path: &TreePath) -> bool;
+    fn parent_drag_data_get(
+        &self,
+        tree_drag_source: &Self::Type,
+        path: &TreePath,
+    ) -> gdk::ContentProvider;
+    fn parent_drag_data_delete(&self, tree_drag_source: &Self::Type, path: &TreePath) -> bool;
+}
+
+impl<T: TreeDragSourceImpl> TreeDragSourceImplExt for T {
+    fn parent_row_draggable(&self, tree_drag_source: &Self::Type, path: &TreePath) -> bool {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<TreeDragSource>()
+                as *const ffi::GtkTreeDragSourceIface;
+
+            if let Some(func) = (*parent_iface).row_draggable {
+                from_glib(func(
+                    tree_drag_source
+                        .unsafe_cast_ref::<TreeDragSource>()
+                        .to_glib_none()
+                        .0,
+                    mut_override(path.to_glib_none().0),
+                ))
+            } else {
+                // Assume the row is draggable by default
+                true
+            }
+        }
+    }
+
+    fn parent_drag_data_get(
+        &self,
+        tree_drag_source: &Self::Type,
+        path: &TreePath,
+    ) -> gdk::ContentProvider {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<TreeDragSource>()
+                as *const ffi::GtkTreeDragSourceIface;
+
+            let func = (*parent_iface)
+                .drag_data_get
+                .expect("no parent \"drag_data_get\" implementation");
+
+            from_glib_full(func(
+                tree_drag_source
+                    .unsafe_cast_ref::<TreeDragSource>()
+                    .to_glib_none()
+                    .0,
+                mut_override(path.to_glib_none().0),
+            ))
+        }
+    }
+
+    fn parent_drag_data_delete(&self, tree_drag_source: &Self::Type, path: &TreePath) -> bool {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<TreeDragSource>()
+                as *const ffi::GtkTreeDragSourceIface;
+
+            let func = (*parent_iface)
+                .drag_data_delete
+                .expect("no parent \"drag_data_delete\" implementation");
+
+            from_glib(func(
+                tree_drag_source
+                    .unsafe_cast_ref::<TreeDragSource>()
+                    .to_glib_none()
+                    .0,
+                mut_override(path.to_glib_none().0),
+            ))
+        }
+    }
 }
 
 unsafe impl<T: TreeDragSourceImpl> IsImplementable<T> for TreeDragSource {

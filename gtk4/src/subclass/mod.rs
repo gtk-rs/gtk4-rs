@@ -70,17 +70,17 @@ pub mod prelude {
     pub use super::application::GtkApplicationImpl;
     pub use super::application_window::ApplicationWindowImpl;
     pub use super::box_::BoxImpl;
-    pub use super::builder_scope::BuilderScopeImpl;
+    pub use super::builder_scope::{BuilderScopeImpl, BuilderScopeImplExt};
     pub use super::button::ButtonImpl;
     pub use super::cell_renderer::CellRendererImpl;
     pub use super::cell_renderer_text::CellRendererTextImpl;
     pub use super::check_button::CheckButtonImpl;
-    pub use super::color_chooser::ColorChooserImpl;
+    pub use super::color_chooser::{ColorChooserImpl, ColorChooserImplExt};
     pub use super::combo_box::ComboBoxImpl;
     pub use super::constraint_target::ConstraintTargetImpl;
     pub use super::dialog::DialogImpl;
     pub use super::drawing_area::DrawingAreaImpl;
-    pub use super::editable::EditableImpl;
+    pub use super::editable::{EditableImpl, EditableImplExt};
     pub use super::entry::EntryImpl;
     pub use super::entry_buffer::EntryBufferImpl;
     pub use super::file_chooser::FileChooserImpl;
@@ -104,16 +104,25 @@ pub mod prelude {
     pub use super::root::RootImpl;
     pub use super::scale::ScaleImpl;
     pub use super::scale_button::ScaleButtonImpl;
-    pub use super::scrollable::ScrollableImpl;
-    pub use super::selection_model::SelectionModelImpl;
-    pub use super::shortcut_manager::ShortcutManagerImpl;
+    pub use super::scrollable::{ScrollableImpl, ScrollableImplExt};
+    pub use super::selection_model::{SelectionModelImpl, SelectionModelImplExt};
+    pub use super::shortcut_manager::{ShortcutManagerImpl, ShortcutManagerImplExt};
+<<<<<<< HEAD
     pub use super::sorter::SorterImpl;
     pub use super::style_context::StyleContextImpl;
     pub use super::text_buffer::TextBufferImpl;
     pub use super::text_view::TextViewImpl;
     pub use super::toggle_button::ToggleButtonImpl;
     pub use super::tree_drag_dest::TreeDragDestImpl;
-    pub use super::tree_drag_source::TreeDragSourceImpl;
+=======
+    pub use super::sorter::{SorterImpl, SorterImplExt};
+    pub use super::style_context::{StyleContextImpl, StyleContextImplExt};
+    pub use super::text_buffer::{TextBufferImpl, TextBufferImplExt};
+    pub use super::text_view::{TextViewImpl, TextViewImplExt};
+    pub use super::toggle_button::{ToggleButtonImpl, ToggleButtonImplExt};
+    pub use super::tree_drag_dest::{TreeDragDestImpl, TreeDragDestImplExt};
+>>>>>>> a33966e05 (gtk fixes)
+    pub use super::tree_drag_source::{TreeDragSourceImpl, TreeDragSourceImplExt};
     pub use super::tree_view::TreeViewImpl;
     pub use super::widget::CompositeTemplate;
     pub use super::widget::TemplateChild;

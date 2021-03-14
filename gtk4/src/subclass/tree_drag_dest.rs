@@ -12,12 +12,77 @@ pub trait TreeDragDestImpl: ObjectImpl {
         dest: &TreePath,
         value: Value,
     ) -> bool;
-    fn row_drop_possible(
+    fn row_drop_possible(&self, tree_drag_dest: &Self::Type, dest: &TreePath, value: Value)
+        -> bool;
+}
+
+pub trait TreeDragDestImplExt: ObjectSubclass {
+    fn parent_drag_data_received(
         &self,
         tree_drag_dest: &Self::Type,
-        dest_path: &TreePath,
+        dest: &TreePath,
         value: Value,
     ) -> bool;
+    fn parent_row_drop_possible(
+        &self,
+        tree_drag_dest: &Self::Type,
+        dest: &TreePath,
+        value: Value,
+    ) -> bool;
+}
+
+impl<T: TreeDragDestImpl> TreeDragDestImplExt for T {
+    fn parent_drag_data_received(
+        &self,
+        tree_drag_dest: &Self::Type,
+        dest: &TreePath,
+        value: Value,
+    ) -> bool {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<TreeDragDest>()
+                as *const ffi::GtkTreeDragDestIface;
+
+            let func = (*parent_iface)
+                .drag_data_received
+                .expect("no parent \"drag_data_received\" implementation");
+
+            from_glib(func(
+                tree_drag_dest
+                    .unsafe_cast_ref::<TreeDragDest>()
+                    .to_glib_none()
+                    .0,
+                mut_override(dest.to_glib_none().0),
+                value.to_glib_none().0,
+            ))
+        }
+    }
+
+    fn parent_row_drop_possible(
+        &self,
+        tree_drag_dest: &Self::Type,
+        dest: &TreePath,
+        value: Value,
+    ) -> bool {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<TreeDragDest>()
+                as *const ffi::GtkTreeDragDestIface;
+
+            let func = (*parent_iface)
+                .drag_data_received
+                .expect("no parent \"drag_data_received\" implementation");
+
+            from_glib(func(
+                tree_drag_dest
+                    .unsafe_cast_ref::<TreeDragDest>()
+                    .to_glib_none()
+                    .0,
+                mut_override(dest.to_glib_none().0),
+                value.to_glib_none().0,
+            ))
+        }
+    }
 }
 
 unsafe impl<T: TreeDragDestImpl> IsImplementable<T> for TreeDragDest {

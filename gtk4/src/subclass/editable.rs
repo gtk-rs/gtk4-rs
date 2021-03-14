@@ -8,14 +8,212 @@ use glib::{Cast, GString};
 use libc::{c_char, c_int};
 
 pub trait EditableImpl: WidgetImpl {
-    fn insert_text(&self, editable: &Self::Type, text: &str, length: i32, position: &mut i32);
-    fn delete_text(&self, editable: &Self::Type, start_position: i32, end_position: i32);
-    fn changed(&self, editable: &Self::Type);
+    fn insert_text(&self, editable: &Self::Type, text: &str, length: i32, position: &mut i32) {
+        self.parent_insert_text(editable, text, length, position);
+    }
+
+    fn delete_text(&self, editable: &Self::Type, start_position: i32, end_position: i32) {
+        self.parent_delete_text(editable, start_position, end_position)
+    }
+
+    fn changed(&self, editable: &Self::Type) {
+        self.parent_changed(editable)
+    }
+
     fn get_text(&self, editable: &Self::Type) -> GString;
-    fn do_insert_text(&self, editable: &Self::Type, text: &str, length: i32, position: &mut i32);
-    fn do_delete_text(&self, editable: &Self::Type, start_position: i32, end_position: i32);
-    fn get_selection_bounds(&self, editable: &Self::Type) -> Option<(i32, i32)>;
-    fn set_selection_bounds(&self, editable: &Self::Type, start_position: i32, end_position: i32);
+
+    fn do_insert_text(&self, editable: &Self::Type, text: &str, length: i32, position: &mut i32) {
+        self.parent_do_insert_text(editable, text, length, position)
+    }
+
+    fn do_delete_text(&self, editable: &Self::Type, start_position: i32, end_position: i32) {
+        self.parent_do_delete_text(editable, start_position, end_position)
+    }
+
+    fn get_selection_bounds(&self, editable: &Self::Type) -> Option<(i32, i32)> {
+        self.parent_get_selection_bounds(editable)
+    }
+
+    fn set_selection_bounds(&self, editable: &Self::Type, start_position: i32, end_position: i32) {
+        self.parent_set_selection_bounds(editable, start_position, end_position)
+    }
+}
+
+pub trait EditableImplExt: ObjectSubclass {
+    fn parent_insert_text(
+        &self,
+        editable: &Self::Type,
+        text: &str,
+        length: i32,
+        position: &mut i32,
+    );
+    fn parent_delete_text(&self, editable: &Self::Type, start_position: i32, end_position: i32);
+    fn parent_changed(&self, editable: &Self::Type);
+    fn parent_do_insert_text(
+        &self,
+        editable: &Self::Type,
+        text: &str,
+        length: i32,
+        position: &mut i32,
+    );
+    fn parent_do_delete_text(&self, editable: &Self::Type, start_position: i32, end_position: i32);
+    fn parent_get_selection_bounds(&self, editable: &Self::Type) -> Option<(i32, i32)>;
+    fn parent_set_selection_bounds(
+        &self,
+        editable: &Self::Type,
+        start_position: i32,
+        end_position: i32,
+    );
+    fn parent_get_text(&self, editable: &Self::Type) -> GString;
+}
+
+impl<T: EditableImpl> EditableImplExt for T {
+    fn parent_insert_text(
+        &self,
+        editable: &Self::Type,
+        text: &str,
+        length: i32,
+        position: &mut i32,
+    ) {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<Editable>()
+                as *const ffi::GtkEditableInterface;
+
+            if let Some(func) = (*parent_iface).insert_text {
+                func(
+                    editable.unsafe_cast_ref::<Editable>().to_glib_none().0,
+                    text.to_glib_none().0,
+                    length,
+                    position,
+                );
+            }
+        }
+    }
+
+    fn parent_delete_text(&self, editable: &Self::Type, start_position: i32, end_position: i32) {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<Editable>()
+                as *const ffi::GtkEditableInterface;
+
+            if let Some(func) = (*parent_iface).delete_text {
+                func(
+                    editable.unsafe_cast_ref::<Editable>().to_glib_none().0,
+                    start_position,
+                    end_position,
+                );
+            }
+        }
+    }
+
+    fn parent_get_text(&self, editable: &Self::Type) -> GString {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<Editable>()
+                as *const ffi::GtkEditableInterface;
+            let func = (*parent_iface)
+                .get_text
+                .expect("no parent \"get_text\" implementation");
+
+            from_glib_none(func(
+                editable.unsafe_cast_ref::<Editable>().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn parent_changed(&self, editable: &Self::Type) {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<Editable>()
+                as *const ffi::GtkEditableInterface;
+
+            if let Some(func) = (*parent_iface).changed {
+                func(editable.unsafe_cast_ref::<Editable>().to_glib_none().0);
+            }
+        }
+    }
+
+    fn parent_do_insert_text(
+        &self,
+        editable: &Self::Type,
+        text: &str,
+        length: i32,
+        position: &mut i32,
+    ) {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<Editable>()
+                as *const ffi::GtkEditableInterface;
+
+            if let Some(func) = (*parent_iface).do_insert_text {
+                func(
+                    editable.unsafe_cast_ref::<Editable>().to_glib_none().0,
+                    text.to_glib_none().0,
+                    length,
+                    position,
+                );
+            }
+        }
+    }
+
+    fn parent_do_delete_text(&self, editable: &Self::Type, start_position: i32, end_position: i32) {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<Editable>()
+                as *const ffi::GtkEditableInterface;
+
+            if let Some(func) = (*parent_iface).do_delete_text {
+                func(
+                    editable.unsafe_cast_ref::<Editable>().to_glib_none().0,
+                    start_position,
+                    end_position,
+                );
+            }
+        }
+    }
+
+    fn parent_get_selection_bounds(&self, editable: &Self::Type) -> Option<(i32, i32)> {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<Editable>()
+                as *const ffi::GtkEditableInterface;
+
+            if let Some(func) = (*parent_iface).get_selection_bounds {
+                let mut start_position = std::mem::MaybeUninit::uninit();
+                let mut end_position = std::mem::MaybeUninit::uninit();
+                if from_glib(func(
+                    editable.unsafe_cast_ref::<Editable>().to_glib_none().0,
+                    start_position.as_mut_ptr(),
+                    end_position.as_mut_ptr(),
+                )) {
+                    return Some((start_position.assume_init(), end_position.assume_init()));
+                }
+            }
+            None
+        }
+    }
+
+    fn parent_set_selection_bounds(
+        &self,
+        editable: &Self::Type,
+        start_position: i32,
+        end_position: i32,
+    ) {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<Editable>()
+                as *const ffi::GtkEditableInterface;
+
+            if let Some(func) = (*parent_iface).set_selection_bounds {
+                func(
+                    editable.unsafe_cast_ref::<Editable>().to_glib_none().0,
+                    start_position,
+                    end_position,
+                );
+            }
+        }
+    }
 }
 
 unsafe impl<T: EditableImpl> IsImplementable<T> for Editable {

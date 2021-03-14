@@ -12,25 +12,7 @@ pub trait BuilderScopeImpl: ObjectImpl {
         builder: &Builder,
         type_name: &str,
     ) -> glib::Type {
-        unsafe {
-            let type_ = ffi::gtk_builder_scope_get_type();
-            let iface = glib::gobject_ffi::g_type_default_interface_ref(type_)
-                as *mut ffi::GtkBuilderScopeInterface;
-            assert!(!iface.is_null());
-
-            let ret = ((*iface).get_type_from_name.as_ref().unwrap())(
-                builder_scope
-                    .unsafe_cast_ref::<BuilderScope>()
-                    .to_glib_none()
-                    .0,
-                builder.to_glib_none().0,
-                type_name.to_glib_none().0,
-            );
-
-            glib::gobject_ffi::g_type_default_interface_unref(iface as glib::ffi::gpointer);
-
-            from_glib(ret)
-        }
+        self.parent_get_type_from_name(builder_scope, builder, type_name)
     }
 
     fn get_type_from_function(
@@ -39,25 +21,7 @@ pub trait BuilderScopeImpl: ObjectImpl {
         builder: &Builder,
         function_name: &str,
     ) -> glib::Type {
-        unsafe {
-            let type_ = ffi::gtk_builder_scope_get_type();
-            let iface = glib::gobject_ffi::g_type_default_interface_ref(type_)
-                as *mut ffi::GtkBuilderScopeInterface;
-            assert!(!iface.is_null());
-
-            let ret = ((*iface).get_type_from_function.as_ref().unwrap())(
-                builder_scope
-                    .unsafe_cast_ref::<BuilderScope>()
-                    .to_glib_none()
-                    .0,
-                builder.to_glib_none().0,
-                function_name.to_glib_none().0,
-            );
-
-            glib::gobject_ffi::g_type_default_interface_unref(iface as glib::ffi::gpointer);
-
-            from_glib(ret)
-        }
+        self.parent_get_type_from_function(builder_scope, builder, function_name)
     }
 
     fn create_closure(
@@ -68,6 +32,122 @@ pub trait BuilderScopeImpl: ObjectImpl {
         flags: BuilderClosureFlags,
         object: Option<&glib::Object>,
     ) -> Result<glib::Closure, glib::Error>;
+}
+
+pub trait BuilderScopeImplExt: ObjectSubclass {
+    fn parent_get_type_from_name(
+        &self,
+        builder_scope: &Self::Type,
+        builder: &Builder,
+        type_name: &str,
+    ) -> glib::Type;
+
+    fn parent_get_type_from_function(
+        &self,
+        builder_scope: &Self::Type,
+        builder: &Builder,
+        function_name: &str,
+    ) -> glib::Type;
+
+    fn parent_create_closure(
+        &self,
+        builder_scope: &Self::Type,
+        builder: &Builder,
+        function_name: &str,
+        flags: BuilderClosureFlags,
+        object: Option<&glib::Object>,
+    ) -> Result<glib::Closure, glib::Error>;
+}
+
+impl<B: BuilderScopeImpl> BuilderScopeImplExt for B {
+    fn parent_get_type_from_name(
+        &self,
+        builder_scope: &Self::Type,
+        builder: &Builder,
+        type_name: &str,
+    ) -> glib::Type {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<BuilderScope>()
+                as *const ffi::GtkBuilderScopeInterface;
+
+            let func = (*parent_iface)
+                .get_type_from_name
+                .expect("no parent \"get_type_from_name\" implementation");
+
+            from_glib(func(
+                builder_scope
+                    .unsafe_cast_ref::<BuilderScope>()
+                    .to_glib_none()
+                    .0,
+                builder.to_glib_none().0,
+                type_name.to_glib_none().0,
+            ))
+        }
+    }
+
+    fn parent_get_type_from_function(
+        &self,
+        builder_scope: &Self::Type,
+        builder: &Builder,
+        function_name: &str,
+    ) -> glib::Type {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<BuilderScope>()
+                as *const ffi::GtkBuilderScopeInterface;
+
+            let func = (*parent_iface)
+                .get_type_from_function
+                .expect("no parent \"get_type_from_function\" implementation");
+
+            from_glib(func(
+                builder_scope
+                    .unsafe_cast_ref::<BuilderScope>()
+                    .to_glib_none()
+                    .0,
+                builder.to_glib_none().0,
+                function_name.to_glib_none().0,
+            ))
+        }
+    }
+
+    fn parent_create_closure(
+        &self,
+        builder_scope: &Self::Type,
+        builder: &Builder,
+        function_name: &str,
+        flags: BuilderClosureFlags,
+        object: Option<&glib::Object>,
+    ) -> Result<glib::Closure, glib::Error> {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<BuilderScope>()
+                as *const ffi::GtkBuilderScopeInterface;
+
+            let func = (*parent_iface)
+                .create_closure
+                .expect("no parent \"create_closure\" implementation");
+
+            let mut error = std::ptr::null_mut();
+            let closure = func(
+                builder_scope
+                    .unsafe_cast_ref::<BuilderScope>()
+                    .to_glib_none()
+                    .0,
+                builder.to_glib_none().0,
+                function_name.to_glib_none().0,
+                flags.to_glib(),
+                object.to_glib_none().0,
+                &mut error,
+            );
+            if error.is_null() {
+                Ok(from_glib_none(closure))
+            } else {
+                Err(from_glib_full(error))
+            }
+        }
+    }
 }
 
 unsafe impl<T: BuilderScopeImpl> IsImplementable<T> for BuilderScope {
