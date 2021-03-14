@@ -5,8 +5,8 @@ Therefore, it makes sense that if we want to create a custom GObject, this is do
 Let's see how this works by replacing the button in our “Hello World!” app with a custom one.
 
 First we need to create an implementation struct that holds the state and overrides the virtual methods.
-It is advised to keep it in a private module,
-since it is not supposed to be used directly.
+It is advised to keep it in a private module, since its state and methods are only meant to be used by the GObject itself.
+It therefore corresponds to the private part of objects in languages like Java and C++.
 
 <span class="filename">Filename: src/main.rs</span>
 
