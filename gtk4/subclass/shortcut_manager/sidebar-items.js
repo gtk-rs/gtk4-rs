@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["ShortcutManagerImpl",""]]});
+initSidebarItems({"trait":[["ShortcutManagerImpl",""],["ShortcutManagerImplExt",""]]});

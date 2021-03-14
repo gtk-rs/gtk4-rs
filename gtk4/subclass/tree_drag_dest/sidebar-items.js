@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["TreeDragDestImpl",""]]});
+initSidebarItems({"trait":[["TreeDragDestImpl",""],["TreeDragDestImplExt",""]]});

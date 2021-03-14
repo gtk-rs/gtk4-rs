@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["ActionableImpl",""]]});
+initSidebarItems({"trait":[["ActionableImpl",""],["ActionableImplExt",""]]});

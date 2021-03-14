@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["TreeDragSourceImpl",""]]});
+initSidebarItems({"trait":[["TreeDragSourceImpl",""],["TreeDragSourceImplExt",""]]});

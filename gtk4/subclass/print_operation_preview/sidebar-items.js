@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["PrintOperationPreviewImpl",""]]});
+initSidebarItems({"trait":[["PrintOperationPreviewImpl",""],["PrintOperationPreviewImplExt",""]]});

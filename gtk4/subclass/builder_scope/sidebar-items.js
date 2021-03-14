@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["BuilderScopeImpl",""]]});
+initSidebarItems({"trait":[["BuilderScopeImpl",""],["BuilderScopeImplExt",""]]});

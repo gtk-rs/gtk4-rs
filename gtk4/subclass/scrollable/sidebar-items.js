@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["ScrollableImpl",""]]});
+initSidebarItems({"trait":[["ScrollableImpl",""],["ScrollableImplExt",""]]});

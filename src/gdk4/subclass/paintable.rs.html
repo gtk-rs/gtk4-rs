@@ -172,6 +172,48 @@
 <span id="169">169</span>
 <span id="170">170</span>
 <span id="171">171</span>
+<span id="172">172</span>
+<span id="173">173</span>
+<span id="174">174</span>
+<span id="175">175</span>
+<span id="176">176</span>
+<span id="177">177</span>
+<span id="178">178</span>
+<span id="179">179</span>
+<span id="180">180</span>
+<span id="181">181</span>
+<span id="182">182</span>
+<span id="183">183</span>
+<span id="184">184</span>
+<span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -182,88 +224,130 @@
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">PaintableImpl</span>: <span class="ident">ObjectImpl</span> {
     <span class="kw">fn</span> <span class="ident">get_current_image</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Paintable</span> {
+        <span class="self">self</span>.<span class="ident">parent_get_current_image</span>(<span class="ident">paintable</span>)
+    }
+
+    <span class="kw">fn</span> <span class="ident">get_flags</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PaintableFlags</span> {
+        <span class="self">self</span>.<span class="ident">parent_get_flags</span>(<span class="ident">paintable</span>)
+    }
+
+    <span class="kw">fn</span> <span class="ident">get_intrinsic_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+        <span class="self">self</span>.<span class="ident">parent_get_intrinsic_width</span>(<span class="ident">paintable</span>)
+    }
+
+    <span class="kw">fn</span> <span class="ident">get_intrinsic_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+        <span class="self">self</span>.<span class="ident">parent_get_intrinsic_height</span>(<span class="ident">paintable</span>)
+    }
+
+    <span class="kw">fn</span> <span class="ident">get_intrinsic_aspect_ratio</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
+        <span class="self">self</span>.<span class="ident">parent_get_intrinsic_aspect_ratio</span>(<span class="ident">paintable</span>)
+    }
+
+    <span class="kw">fn</span> <span class="ident">snapshot</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>, <span class="ident">snapshot</span>: <span class="kw-2">&amp;</span><span class="ident">Snapshot</span>, <span class="ident">width</span>: <span class="ident">f64</span>, <span class="ident">height</span>: <span class="ident">f64</span>);
+}
+
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">PaintableImplExt</span>: <span class="ident">ObjectSubclass</span> {
+    <span class="kw">fn</span> <span class="ident">parent_get_current_image</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Paintable</span>;
+    <span class="kw">fn</span> <span class="ident">parent_get_flags</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PaintableFlags</span>;
+    <span class="kw">fn</span> <span class="ident">parent_get_intrinsic_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
+    <span class="kw">fn</span> <span class="ident">parent_get_intrinsic_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
+    <span class="kw">fn</span> <span class="ident">parent_get_intrinsic_aspect_ratio</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span>;
+    <span class="kw">fn</span> <span class="ident">parent_snapshot</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>, <span class="ident">snapshot</span>: <span class="kw-2">&amp;</span><span class="ident">Snapshot</span>, <span class="ident">width</span>: <span class="ident">f64</span>, <span class="ident">height</span>: <span class="ident">f64</span>);
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">PaintableImpl</span><span class="op">&gt;</span> <span class="ident">PaintableImplExt</span> <span class="kw">for</span> <span class="ident">T</span> {
+    <span class="kw">fn</span> <span class="ident">parent_get_current_image</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Paintable</span> {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">type_</span> <span class="op">=</span> <span class="ident">ffi</span>::<span class="ident">gdk_paintable_get_type</span>();
-            <span class="kw">let</span> <span class="ident">iface</span> <span class="op">=</span> <span class="ident">glib</span>::<span class="ident">gobject_ffi</span>::<span class="ident">g_type_default_interface_ref</span>(<span class="ident">type_</span>)
-                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GdkPaintableInterface</span>;
-            <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">iface</span>.<span class="ident">is_null</span>());
+            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">type_data</span>();
+            <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_interface</span>::<span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span>()
+                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi</span>::<span class="ident">GdkPaintableInterface</span>;
+            <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
+                .<span class="ident">get_current_image</span>
+                .<span class="ident">expect</span>(<span class="string">&quot;no parent \&quot;get_current_image\&quot; implementation&quot;</span>);
 
-            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> ((<span class="kw-2">*</span><span class="ident">iface</span>).<span class="ident">get_current_image</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap</span>())(
-                <span class="ident">paintable</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-            );
-
-            <span class="ident">glib</span>::<span class="ident">gobject_ffi</span>::<span class="ident">g_type_default_interface_unref</span>(<span class="ident">iface</span> <span class="kw">as</span> <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>);
+            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">func</span>(<span class="ident">paintable</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>);
 
             <span class="ident">from_glib_full</span>(<span class="ident">ret</span>)
         }
     }
-    <span class="kw">fn</span> <span class="ident">get_flags</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PaintableFlags</span> {
+
+    <span class="kw">fn</span> <span class="ident">parent_get_flags</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PaintableFlags</span> {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">type_</span> <span class="op">=</span> <span class="ident">ffi</span>::<span class="ident">gdk_paintable_get_type</span>();
-            <span class="kw">let</span> <span class="ident">iface</span> <span class="op">=</span> <span class="ident">glib</span>::<span class="ident">gobject_ffi</span>::<span class="ident">g_type_default_interface_ref</span>(<span class="ident">type_</span>)
-                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GdkPaintableInterface</span>;
-            <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">iface</span>.<span class="ident">is_null</span>());
+            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">type_data</span>();
+            <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_interface</span>::<span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span>()
+                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi</span>::<span class="ident">GdkPaintableInterface</span>;
+            <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
+                .<span class="ident">get_flags</span>
+                .<span class="ident">expect</span>(<span class="string">&quot;no parent \&quot;get_flags\&quot; implementation&quot;</span>);
 
-            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> ((<span class="kw-2">*</span><span class="ident">iface</span>).<span class="ident">get_flags</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap</span>())(
+            <span class="ident">from_glib</span>(<span class="ident">func</span>(
                 <span class="ident">paintable</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-            );
-
-            <span class="ident">glib</span>::<span class="ident">gobject_ffi</span>::<span class="ident">g_type_default_interface_unref</span>(<span class="ident">iface</span> <span class="kw">as</span> <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>);
-
-            <span class="ident">from_glib</span>(<span class="ident">ret</span>)
+            ))
         }
     }
-    <span class="kw">fn</span> <span class="ident">get_intrinsic_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+
+    <span class="kw">fn</span> <span class="ident">parent_get_intrinsic_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">type_</span> <span class="op">=</span> <span class="ident">ffi</span>::<span class="ident">gdk_paintable_get_type</span>();
-            <span class="kw">let</span> <span class="ident">iface</span> <span class="op">=</span> <span class="ident">glib</span>::<span class="ident">gobject_ffi</span>::<span class="ident">g_type_default_interface_ref</span>(<span class="ident">type_</span>)
-                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GdkPaintableInterface</span>;
-            <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">iface</span>.<span class="ident">is_null</span>());
+            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">type_data</span>();
+            <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_interface</span>::<span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span>()
+                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi</span>::<span class="ident">GdkPaintableInterface</span>;
+            <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
+                .<span class="ident">get_intrinsic_width</span>
+                .<span class="ident">expect</span>(<span class="string">&quot;no parent \&quot;get_intrinsic_width\&quot; implementation&quot;</span>);
 
-            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> ((<span class="kw-2">*</span><span class="ident">iface</span>).<span class="ident">get_intrinsic_width</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap</span>())(
-                <span class="ident">paintable</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-            );
-
-            <span class="ident">glib</span>::<span class="ident">gobject_ffi</span>::<span class="ident">g_type_default_interface_unref</span>(<span class="ident">iface</span> <span class="kw">as</span> <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>);
-
-            <span class="ident">ret</span>
+            <span class="ident">func</span>(<span class="ident">paintable</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>)
         }
     }
-    <span class="kw">fn</span> <span class="ident">get_intrinsic_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+
+    <span class="kw">fn</span> <span class="ident">parent_get_intrinsic_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">type_</span> <span class="op">=</span> <span class="ident">ffi</span>::<span class="ident">gdk_paintable_get_type</span>();
-            <span class="kw">let</span> <span class="ident">iface</span> <span class="op">=</span> <span class="ident">glib</span>::<span class="ident">gobject_ffi</span>::<span class="ident">g_type_default_interface_ref</span>(<span class="ident">type_</span>)
-                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GdkPaintableInterface</span>;
-            <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">iface</span>.<span class="ident">is_null</span>());
+            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">type_data</span>();
+            <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_interface</span>::<span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span>()
+                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi</span>::<span class="ident">GdkPaintableInterface</span>;
+            <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
+                .<span class="ident">get_intrinsic_height</span>
+                .<span class="ident">expect</span>(<span class="string">&quot;no parent \&quot;get_intrinsic_height\&quot; implementation&quot;</span>);
 
-            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> ((<span class="kw-2">*</span><span class="ident">iface</span>).<span class="ident">get_intrinsic_height</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap</span>())(
+            <span class="ident">func</span>(<span class="ident">paintable</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>)
+        }
+    }
+
+    <span class="kw">fn</span> <span class="ident">parent_get_intrinsic_aspect_ratio</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">type_data</span>();
+            <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_interface</span>::<span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span>()
+                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi</span>::<span class="ident">GdkPaintableInterface</span>;
+            <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
+                .<span class="ident">get_intrinsic_aspect_ratio</span>
+                .<span class="ident">expect</span>(<span class="string">&quot;no parent \&quot;get_intrinsic_aspect_ratio\&quot; implementation&quot;</span>);
+
+            <span class="ident">func</span>(<span class="ident">paintable</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>)
+        }
+    }
+
+    <span class="kw">fn</span> <span class="ident">parent_snapshot</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>,
+        <span class="ident">snapshot</span>: <span class="kw-2">&amp;</span><span class="ident">Snapshot</span>,
+        <span class="ident">width</span>: <span class="ident">f64</span>,
+        <span class="ident">height</span>: <span class="ident">f64</span>,
+    ) {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">type_data</span>();
+            <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_interface</span>::<span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span>()
+                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi</span>::<span class="ident">GdkPaintableInterface</span>;
+            <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
+                .<span class="ident">snapshot</span>
+                .<span class="ident">expect</span>(<span class="string">&quot;no parent \&quot;snapshot\&quot; implementation&quot;</span>);
+
+            <span class="ident">func</span>(
                 <span class="ident">paintable</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-            );
-
-            <span class="ident">glib</span>::<span class="ident">gobject_ffi</span>::<span class="ident">g_type_default_interface_unref</span>(<span class="ident">iface</span> <span class="kw">as</span> <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>);
-
-            <span class="ident">ret</span>
+                <span class="ident">snapshot</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="ident">width</span>,
+                <span class="ident">height</span>,
+            )
         }
     }
-    <span class="kw">fn</span> <span class="ident">get_intrinsic_aspect_ratio</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
-        {
-            <span class="kw">unsafe</span> {
-                <span class="kw">let</span> <span class="ident">type_</span> <span class="op">=</span> <span class="ident">ffi</span>::<span class="ident">gdk_paintable_get_type</span>();
-                <span class="kw">let</span> <span class="ident">iface</span> <span class="op">=</span> <span class="ident">glib</span>::<span class="ident">gobject_ffi</span>::<span class="ident">g_type_default_interface_ref</span>(<span class="ident">type_</span>)
-                    <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GdkPaintableInterface</span>;
-                <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">iface</span>.<span class="ident">is_null</span>());
-
-                <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> ((<span class="kw-2">*</span><span class="ident">iface</span>).<span class="ident">get_intrinsic_aspect_ratio</span>.<span class="ident">as_ref</span>().<span class="ident">unwrap</span>())(
-                    <span class="ident">paintable</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                );
-
-                <span class="ident">glib</span>::<span class="ident">gobject_ffi</span>::<span class="ident">g_type_default_interface_unref</span>(<span class="ident">iface</span> <span class="kw">as</span> <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>);
-
-                <span class="ident">ret</span>
-            }
-        }
-    }
-    <span class="kw">fn</span> <span class="ident">snapshot</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>, <span class="ident">snapshot</span>: <span class="kw-2">&amp;</span><span class="ident">Snapshot</span>, <span class="ident">width</span>: <span class="ident">f64</span>, <span class="ident">height</span>: <span class="ident">f64</span>);
 }
 
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">PaintableImpl</span><span class="op">&gt;</span> <span class="ident">IsImplementable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Paintable</span> {
