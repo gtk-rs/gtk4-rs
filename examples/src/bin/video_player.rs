@@ -52,6 +52,24 @@ mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             Self::bind_template(klass);
+            klass.install_action(
+                "win.open",
+                None,
+                move |win, _action_name, _action_target| {
+                    let self_ = imp::VideoPlayerWindow::from_instance(&win);
+                    self_.dialog.set_transient_for(Some(win));
+                    self_
+                        .dialog
+                        .connect_response(clone!(@weak win => move |d, response| {
+                            if response == gtk::ResponseType::Accept {
+                                win.set_video(d.get_file().unwrap());
+                            }
+                            d.destroy();
+                        }));
+
+                    self_.dialog.show();
+                },
+            );
         }
 
         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
@@ -59,13 +77,7 @@ mod imp {
         }
     }
 
-    impl ObjectImpl for VideoPlayerWindow {
-        fn constructed(&self, obj: &Self::Type) {
-            obj.init_actions();
-            self.parent_constructed(obj);
-        }
-    }
-
+    impl ObjectImpl for VideoPlayerWindow {}
     impl WidgetImpl for VideoPlayerWindow {}
     impl WindowImpl for VideoPlayerWindow {}
     impl ApplicationWindowImpl for VideoPlayerWindow {}
@@ -79,24 +91,6 @@ glib::wrapper! {
 impl VideoPlayerWindow {
     pub fn new<P: glib::IsA<gtk::Application>>(app: &P) -> Self {
         glib::Object::new(&[("application", app)]).expect("Failed to create VideoPlayerWindow")
-    }
-
-    fn init_actions(&self) {
-        let open = gio::SimpleAction::new("open", None);
-
-        open.connect_activate(clone!(@weak self as win => move |_, _| {
-            let self_ = imp::VideoPlayerWindow::from_instance(&win);
-            self_.dialog.set_transient_for(Some(&win));
-            self_.dialog.connect_response(clone!(@weak win => move |d, response| {
-                if response == gtk::ResponseType::Accept {
-                    win.set_video(d.get_file().unwrap());
-                }
-                d.destroy();
-            }));
-
-            self_.dialog.show();
-        }));
-        self.add_action(&open);
     }
 
     fn set_video(&self, video: gio::File) {
