@@ -10,3 +10,5 @@
 {"rule":"ANYMORE_ADVERB","sentence":"^\\QAfter we have done this, nothing is stopping us anymore from replacing \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q with our \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
 {"rule":"ANYMORE_ADVERB","sentence":"^\\QAfter we these steps, nothing is stopping us anymore from replacing \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q with our \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
 {"rule":"EN_A_VS_AN","sentence":"^\\QWe create an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q instance, with an application id and the default application flags.\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QSo when should you spawn an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q block and when should you spawn a thread?\\E$"}
+{"rule":"PUNCTUATION_PARAGRAPH_END","sentence":"^\\QWidgets\nGObject Concepts\nMemory management\nSubclassing\nSignals\nProperties\nThe Main Event Loop\nSettings\nSave Window State of our App\nWidget Concepts\nModels & Views\nPaintables\nGTK Media Support\nShaders\nBuilding a Simple To-do App\nInterface Builder\nGtkBuilder\nActions\nTemplates\nShortcuts\nAccessibility\nInternationalization\nFinishing up the To-do App\\E$"}

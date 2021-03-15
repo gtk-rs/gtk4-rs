@@ -40,11 +40,11 @@ fn on_activate(application: &Application) {
         // The long running operation runs now in a separate thread
         std::thread::spawn(move || {
             // Deactivate the button until the operation is done
-            sender.send(false);
+            sender.send(false).unwrap();
             let ten_seconds = std::time::Duration::from_secs(10);
             std::thread::sleep(ten_seconds);
             // Activate the button again
-            sender.send(true);
+            sender.send(true).unwrap();
         });
     });
 

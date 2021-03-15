@@ -305,6 +305,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "gobject_signals_1"
+version = "0.1.0"
+dependencies = [
+ "gtk4",
+]
+
+[[package]]
+name = "gobject_signals_2"
+version = "0.1.0"
+dependencies = [
+ "gtk4",
+ "once_cell",
+]
+
+[[package]]
 name = "gobject_subclassing_1"
 version = "0.1.0"
 dependencies = [

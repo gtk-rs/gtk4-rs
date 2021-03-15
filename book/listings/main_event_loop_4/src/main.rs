@@ -41,10 +41,10 @@ fn on_activate(application: &Application) {
         // The main loop executes the asynchronous block
         main_context.spawn_local(async move {
             // Deactivate the button until the operation is done
-            sender.send(false);
+            sender.send(false).unwrap();
             timeout_future_seconds(10).await;
             // Activate the button again
-            sender.send(true);
+            sender.send(true).unwrap();
         });
     });
 

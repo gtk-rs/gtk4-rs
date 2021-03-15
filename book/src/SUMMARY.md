@@ -8,7 +8,7 @@
     - [Memory management](gobject_memory_management.md)
     - [Subclassing](gobject_subclassing.md)
     - [Signals](gobject_signals.md)
-    - [Properties]
+    - [Properties]()
 - [The Main Event Loop](main_event_loop.md)
 - [Settings](settings.md)
 - [Save Window State of our App]()

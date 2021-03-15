@@ -49,7 +49,9 @@ fn on_activate(application: &Application) {
     // ANCHOR: connect_state_set
     switch.connect_state_set(move |_, is_enabled| {
         // Save changed switch state in the settings
-        settings.set_boolean("is-switch-enabled", is_enabled);
+        settings
+            .set_boolean("is-switch-enabled", is_enabled)
+            .unwrap();
         // We do not want to inhibit the the default handler
         Inhibit(false)
     });
