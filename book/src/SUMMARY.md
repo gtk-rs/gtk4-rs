@@ -7,8 +7,8 @@
 - [GObject Concepts](gobject_concepts.md)
     - [Memory management](gobject_memory_management.md)
     - [Subclassing](gobject_subclassing.md)
-    - [Properties & Signals]()
-    - [Actions]()
+    - [Signals](gobject_signals.md)
+    - [Properties]
 - [The Main Event Loop](main_event_loop.md)
 - [Settings](settings.md)
 - [Save Window State of our App]()
@@ -20,6 +20,7 @@
 - [Building a Simple To-do App]()
 - [Interface Builder]()
     - [GtkBuilder]()
+    - [Actions]()
     - [Templates]()
 - [Shortcuts]()
 - [Accessibility]()
