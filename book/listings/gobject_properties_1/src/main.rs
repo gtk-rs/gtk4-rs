@@ -2,21 +2,21 @@ use glib::clone;
 use gtk::{glib, Label, Orientation};
 use gtk::{prelude::*, BoxBuilder};
 use gtk::{Application, ApplicationWindowBuilder};
-use std::cell::RefCell;
+use std::cell::Cell;
 
 // Implementation of our custom GObject
 mod imp {
     // Import parent scope
     use super::*;
     // Import necessary objects and traits for subclassing
-    use glib::subclass::Signal;
+    use glib::{ParamFlags, ParamSpec};
     use gtk::subclass::prelude::*;
     use once_cell::sync::Lazy;
 
     // Object holding the state
     #[derive(Default)]
     pub struct CustomButton {
-        number: RefCell<i32>,
+        number: Cell<i32>,
     }
 
     // The central trait for subclassing a GObject
@@ -31,22 +31,51 @@ mod imp {
     impl ObjectImpl for CustomButton {
         fn constructed(&self, obj: &Self::Type) {
             self.parent_constructed(obj);
-            obj.set_label(&self.number.borrow().to_string());
+            obj.set_label(&self.number.get().to_string());
         }
 
-        fn signals() -> &'static [Signal] {
-            static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
-                vec![Signal::builder(
-                    // Signal name
-                    "number-changed",
-                    // Type of the value which will be sent to the receiver
-                    &[i32::static_type().into()],
-                    // Type of the value the receiver sends back
-                    <()>::static_type().into(),
-                )
-                .build()]
+        fn properties() -> &'static [ParamSpec] {
+            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
+                vec![ParamSpec::int(
+                    // Name
+                    "number",
+                    // Nickname
+                    "number",
+                    // Short description
+                    "number",
+                    // Minimum value
+                    i32::MIN,
+                    // Maximum value
+                    i32::MAX,
+                    // Default value
+                    0,
+                    // Flags
+                    ParamFlags::READWRITE,
+                )]
             });
-            SIGNALS.as_ref()
+            PROPERTIES.as_ref()
+        }
+        fn set_property(
+            &self,
+            _obj: &Self::Type,
+            _id: usize,
+            value: &glib::Value,
+            pspec: &ParamSpec,
+        ) {
+            match pspec.get_name() {
+                "number" => {
+                    let number = value.get().unwrap().unwrap();
+                    self.number.replace(number);
+                }
+                _ => unimplemented!(),
+            }
+        }
+
+        fn get_property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> glib::Value {
+            match pspec.get_name() {
+                "number" => self.number.get().to_value(),
+                _ => unimplemented!(),
+            }
         }
     }
     // ANCHOR_END: object_impl
@@ -58,11 +87,9 @@ mod imp {
     // Trait shared by all buttons
     impl ButtonImpl for CustomButton {
         fn clicked(&self, button: &Self::Type) {
-            *self.number.borrow_mut() += 1;
-            button
-                .emit_by_name("number-changed", &[&*self.number.borrow()])
-                .unwrap();
-            button.set_label(&self.number.borrow().to_string())
+            let incremented_number = self.number.get() + 1;
+            button.set_property("number", &incremented_number).unwrap();
+            button.set_label(&self.number.get().to_string())
         }
     }
     // ANCHOR_END: button_impl
@@ -109,17 +136,13 @@ fn on_activate(application: &Application) {
 
     // ANCHOR: label
     let label = Label::new(Some("0"));
-    button
-        .connect_local(
-            "number-changed",
-            false,
-            clone!(@weak label => move |args| {
-                let number = args.get(1).unwrap().get::<i32>().unwrap().unwrap();
-                label.set_label(&number.to_string());
-                None
-            }),
-        )
-        .unwrap();
+    button.connect_notify_local(
+        Some("number"),
+        clone!(@weak label => move |button, _| {
+            let number = button.get_property("number").unwrap().get::<i32>().unwrap().unwrap();
+            label.set_label(&number.to_string());
+        }),
+    );
     // ANCHOR_END: label
 
     // Set up box
