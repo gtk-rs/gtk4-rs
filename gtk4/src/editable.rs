@@ -11,49 +11,6 @@ use std::mem::transmute;
 use std::slice;
 use std::str;
 
-impl Editable {
-    #[doc(alias = "gtk_editable_delegate_get_property")]
-    pub fn delegate_get_property<P: IsA<Editable> + IsA<glib::Object>>(
-        object: &P,
-        prop_id: usize,
-        pspec: &glib::ParamSpec,
-    ) -> Option<glib::Value> {
-        assert_initialized_main_thread!();
-        unsafe {
-            let mut value = glib::Value::uninitialized();
-
-            if from_glib(ffi::gtk_editable_delegate_get_property(
-                object.upcast_ref::<glib::Object>().to_glib_none().0,
-                prop_id as u32,
-                value.to_glib_none_mut().0,
-                pspec.to_glib_none().0,
-            )) {
-                Some(value)
-            } else {
-                None
-            }
-        }
-    }
-
-    #[doc(alias = "gtk_editable_delegate_set_property")]
-    pub fn delegate_set_property<P: IsA<Editable> + IsA<glib::Object>>(
-        object: &P,
-        prop_id: usize,
-        value: &glib::Value,
-        pspec: &glib::ParamSpec,
-    ) -> bool {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib(ffi::gtk_editable_delegate_set_property(
-                object.upcast_ref::<glib::Object>().to_glib_none().0,
-                prop_id as u32,
-                value.to_glib_none().0,
-                pspec.to_glib_none().0,
-            ))
-        }
-    }
-}
-
 pub trait EditableExtManual: 'static {
     fn connect_insert_text<F>(&self, f: F) -> SignalHandlerId
     where

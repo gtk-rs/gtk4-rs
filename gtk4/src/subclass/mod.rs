@@ -77,7 +77,7 @@ pub mod prelude {
     pub use super::constraint_target::ConstraintTargetImpl;
     pub use super::dialog::{DialogImpl, DialogImplExt};
     pub use super::drawing_area::{DrawingAreaImpl, DrawingAreaImplExt};
-    pub use super::editable::{EditableClassSubclassExt, EditableImpl, EditableImplExt};
+    pub use super::editable::{EditableImpl, EditableImplExt};
     pub use super::entry::{EntryImpl, EntryImplExt};
     pub use super::entry_buffer::{EntryBufferImpl, EntryBufferImplExt};
     pub use super::filter::{FilterImpl, FilterImplExt};

@@ -4,8 +4,9 @@ use super::widget::WidgetImpl;
 use crate::Editable;
 use glib::subclass::prelude::*;
 use glib::translate::*;
-use glib::{Cast, GString};
+use glib::{Cast, GString, ObjectExt, Quark};
 use libc::{c_char, c_int};
+use once_cell::sync::Lazy;
 
 pub trait EditableImpl: WidgetImpl {
     fn insert_text(&self, editable: &Self::Type, text: &str, length: i32, position: &mut i32) {
@@ -20,7 +21,13 @@ pub trait EditableImpl: WidgetImpl {
         self.parent_changed(editable)
     }
 
-    fn get_text(&self, editable: &Self::Type) -> GString;
+    fn get_text(&self, editable: &Self::Type) -> GString {
+        self.parent_get_text(editable)
+    }
+
+    fn get_delegate(&self, editable: &Self::Type) -> Option<Editable> {
+        self.parent_get_delegate(editable)
+    }
 
     fn do_insert_text(&self, editable: &Self::Type, text: &str, length: i32, position: &mut i32) {
         self.parent_do_insert_text(editable, text, length, position)
@@ -40,6 +47,47 @@ pub trait EditableImpl: WidgetImpl {
 }
 
 pub trait EditableImplExt: ObjectSubclass {
+    #[doc(alias = "gtk_editable_delegate_get_property")]
+    fn delegate_get_property(
+        &self,
+        editable: &Self::Type,
+        prop_id: usize,
+        pspec: &glib::ParamSpec,
+    ) -> Option<glib::Value> {
+        unsafe {
+            let mut value = glib::Value::from_type(pspec.get_value_type());
+
+            if from_glib(ffi::gtk_editable_delegate_get_property(
+                editable.unsafe_cast_ref::<glib::Object>().to_glib_none().0,
+                prop_id as u32,
+                value.to_glib_none_mut().0,
+                pspec.to_glib_none().0,
+            )) {
+                Some(value)
+            } else {
+                None
+            }
+        }
+    }
+
+    #[doc(alias = "gtk_editable_delegate_set_property")]
+    fn delegate_set_property(
+        &self,
+        editable: &Self::Type,
+        prop_id: usize,
+        value: &glib::Value,
+        pspec: &glib::ParamSpec,
+    ) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_editable_delegate_set_property(
+                editable.unsafe_cast_ref::<glib::Object>().to_glib_none().0,
+                prop_id as u32,
+                value.to_glib_none().0,
+                pspec.to_glib_none().0,
+            ))
+        }
+    }
+
     fn parent_insert_text(
         &self,
         editable: &Self::Type,
@@ -57,6 +105,7 @@ pub trait EditableImplExt: ObjectSubclass {
         position: &mut i32,
     );
     fn parent_do_delete_text(&self, editable: &Self::Type, start_position: i32, end_position: i32);
+    fn parent_get_delegate(&self, editable: &Self::Type) -> Option<Editable>;
     fn parent_get_selection_bounds(&self, editable: &Self::Type) -> Option<(i32, i32)>;
     fn parent_set_selection_bounds(
         &self,
@@ -116,6 +165,20 @@ impl<T: EditableImpl> EditableImplExt for T {
                 .get_text
                 .expect("no parent \"get_text\" implementation");
 
+            from_glib_none(func(
+                editable.unsafe_cast_ref::<Editable>().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn parent_get_delegate(&self, editable: &Self::Type) -> Option<Editable> {
+        unsafe {
+            let type_data = Self::type_data();
+            let parent_iface = type_data.as_ref().get_parent_interface::<Editable>()
+                as *const ffi::GtkEditableInterface;
+            let func = (*parent_iface)
+                .get_delegate
+                .expect("no parent \"get_delegate\" implementation");
             from_glib_none(func(
                 editable.unsafe_cast_ref::<Editable>().to_glib_none().0,
             ))
@@ -216,18 +279,35 @@ impl<T: EditableImpl> EditableImplExt for T {
     }
 }
 
-unsafe impl<T: EditableImpl> IsImplementable<T> for Editable {
+unsafe impl<T: EditableImpl + ObjectSubclass> IsImplementable<T> for Editable {
     fn interface_init(iface: &mut glib::Interface<Self>) {
+        let instance_type = iface.get_instance_type();
         let iface = iface.as_mut();
 
         iface.insert_text = Some(editable_insert_text::<T>);
         iface.delete_text = Some(editable_delete_text::<T>);
         iface.changed = Some(editable_changed::<T>);
         iface.get_text = Some(editable_get_text::<T>);
+        iface.get_delegate = Some(editable_get_delegate::<T>);
         iface.do_insert_text = Some(editable_do_insert_text::<T>);
         iface.do_delete_text = Some(editable_do_delete_text::<T>);
         iface.get_selection_bounds = Some(editable_get_selection_bounds::<T>);
         iface.set_selection_bounds = Some(editable_set_selection_bounds::<T>);
+
+        unsafe {
+            let class_ref = glib::object::Class::<glib::Object>::from_type(instance_type).unwrap();
+            let object_class =
+                class_ref.as_ref() as *const _ as *mut glib::gobject_ffi::GObjectClass;
+
+            let mut first_prop = std::mem::MaybeUninit::uninit();
+            let properties = glib::gobject_ffi::g_object_class_list_properties(
+                object_class,
+                first_prop.as_mut_ptr(),
+            );
+            glib::ffi::g_free(properties as *mut _);
+            let first_prop = first_prop.assume_init();
+            ffi::gtk_editable_install_properties(object_class, first_prop);
+        }
     }
 
     fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
@@ -280,6 +360,32 @@ unsafe extern "C" fn editable_get_text<T: EditableImpl>(
 
     imp.get_text(from_glib_borrow::<_, Editable>(editable).unsafe_cast_ref())
         .to_glib_full()
+}
+
+static EDITABLE_GET_DELEGATE_QUARK: Lazy<Quark> =
+    Lazy::new(|| Quark::from_string("gtk-rs-subclass-editable-get-delegate"));
+
+unsafe extern "C" fn editable_get_delegate<T: EditableImpl>(
+    editable: *mut ffi::GtkEditable,
+) -> *mut ffi::GtkEditable {
+    let instance = &*(editable as *mut T::Instance);
+    let imp = instance.get_impl();
+
+    let wrap = from_glib_borrow::<_, Editable>(editable);
+
+    let delegate = imp.get_delegate(wrap.unsafe_cast_ref());
+
+    match wrap.get_qdata::<Option<Editable>>(*EDITABLE_GET_DELEGATE_QUARK) {
+        Some(delegate_data) => {
+            if delegate_data.as_ref() != &delegate {
+                panic!("The Editable delegate must not change");
+            }
+        }
+        None => {
+            wrap.set_qdata(*EDITABLE_GET_DELEGATE_QUARK, delegate.clone());
+        }
+    };
+    delegate.to_glib_none().0
 }
 
 unsafe extern "C" fn editable_do_insert_text<T: EditableImpl>(
@@ -354,15 +460,3 @@ unsafe extern "C" fn editable_set_selection_bounds<T: EditableImpl>(
         end_position,
     )
 }
-
-pub unsafe trait EditableClassSubclassExt: ClassStruct {
-    #[doc(alias = "gtk_editable_install_properties")]
-    fn install_properties(&mut self, first_prop: u32) -> u32 {
-        unsafe {
-            let object_class = self as *mut _ as *mut glib::gobject_ffi::GObjectClass;
-            ffi::gtk_editable_install_properties(object_class, first_prop)
-        }
-    }
-}
-
-unsafe impl<T: ClassStruct> EditableClassSubclassExt for T where T::Type: EditableImpl {}
