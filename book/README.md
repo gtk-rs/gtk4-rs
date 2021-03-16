@@ -13,19 +13,30 @@ $ cargo install mdbook
 
 2. Building
 
-To view the book, type:
+To view the book, execute:
 
 ```bash
 $ mdbook serve
 ```
 
-## Tests
+## Listings
 
-To run the tests:
+Go to the listings folder
 
 ```bash
-$ cd tests
-$ cargo test
+$ cd listings
+```
+
+To check if the examples build, execute:
+
+```bash
+$ cargo build
+```
+
+To run a specific listing, execute:
+
+```bash
+$ cargo run --bin listing_name
 ```
 
 ## License
