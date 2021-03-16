@@ -26,7 +26,7 @@ Additionally, the GtkButton implements the interfaces `GtkAccessible` `GtkBuilda
 Now let us compare that with the corresponding `Button` struct in `gtk-rs`.
 The [gtk-rs documentation](https://gtk-rs.org/gtk4-rs/gtk4/struct.Button.html#implements) tells us which methods and traits it implements.
 We find that these traits either have a corresponding base class or interface in the GTK docs.
-Assuming that we want to connect a callback, we are mostly interested in its “button-behavior”.
+Assuming that we want to connect a callback, we are mostly interested in its "button-behavior".
 And indeed, the trait `ButtonExt` includes the method [`connect_clicked`](https://gtk-rs.org/gtk4-rs/gtk4/trait.ButtonExt.html#tymethod.connect_clicked).
 
 <span class="filename">Filename: src/main.rs</span>

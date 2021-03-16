@@ -25,14 +25,14 @@ That's better!
 <div style="text-align:center"><img src="img/hello_world_empty.png" /></div>
 
 Normally we expect to be able to interact with the user interface.
-Also, the name of the chapter suggests that the phrase “Hello World!” will be involved.
+Also, the name of the chapter suggests that the phrase "Hello World!" will be involved.
 
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust ,no_run
 {{#rustdoc_include ../listings/hello_world_3/src/main.rs}}
 ```
-There is now a button and if we click on it, its label becomes “Hello World!”.
+There is now a button and if we click on it, its label becomes "Hello World!".
 
 <div style="text-align:center"><img src="img/hello_world_button.png" /></div>
 

@@ -30,24 +30,13 @@ fn on_activate(application: &Application) {
     button.set_margin_start(12);
     button.set_margin_end(12);
 
-    // ANCHOR: callbacks
+    // ANCHOR: callback
     // Connect callback
     button.connect_clicked(move |button| {
         // Set the label to "Hello World!" after the button has been clicked on
         button.set_label("Hello World!");
     });
-
-    // This method call has the exact same effect as the one above
-    button
-        .connect_local("clicked", false, |args| {
-            // Get the button from the arguments
-            let button = args.get(0).unwrap().get::<Button>().unwrap().unwrap();
-            // Set the label to "Hello World!" after the button has been clicked on
-            button.set_label("Hello World!");
-            None
-        })
-        .unwrap();
-    // ANCHOR_END: callbacks
+    // ANCHOR_END: callback
 
     // Add button
     window.set_child(Some(&button));

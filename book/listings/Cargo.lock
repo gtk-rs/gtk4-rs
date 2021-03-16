@@ -316,6 +316,13 @@ name = "gobject_signals_2"
 version = "0.1.0"
 dependencies = [
  "gtk4",
+]
+
+[[package]]
+name = "gobject_signals_3"
+version = "0.1.0"
+dependencies = [
+ "gtk4",
  "once_cell",
 ]
 

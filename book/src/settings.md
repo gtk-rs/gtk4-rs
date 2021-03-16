@@ -24,8 +24,8 @@ The `id` is the same application id we used when we created our application.
 The `path` must start and end with a forward slash character ('/') and must not contain two sequential slash characters.
 When creating a `path`, we advise to take the `id`, replace the '.' with '/' and add '/' at the front and end of it.
 
-We only want to store a single key with the `name` “is-switch-enabled”.
-This is a boolean value so its `type` is “b” (see [GVariant Format Strings](https://developer.gnome.org/glib/stable/gvariant-format-strings.html) for the other options).
+We only want to store a single key with the `name` "is-switch-enabled".
+This is a boolean value so its `type` is "b" (see [GVariant Format Strings](https://developer.gnome.org/glib/stable/gvariant-format-strings.html) for the other options).
 Finally, we define its default value and add a summary.
 
 Now we have to install the `GSchema` by executing the following commands:

@@ -12,3 +12,7 @@
 {"rule":"EN_A_VS_AN","sentence":"^\\QWe create an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q instance, with an application id and the default application flags.\\E$"}
 {"rule":"EN_A_VS_AN","sentence":"^\\QSo when should you spawn an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q block and when should you spawn a thread?\\E$"}
 {"rule":"PUNCTUATION_PARAGRAPH_END","sentence":"^\\QWidgets\nGObject Concepts\nMemory management\nSubclassing\nSignals\nProperties\nThe Main Event Loop\nSettings\nSave Window State of our App\nWidget Concepts\nModels & Views\nPaintables\nGTK Media Support\nShaders\nBuilding a Simple To-do App\nInterface Builder\nGtkBuilder\nActions\nTemplates\nShortcuts\nAccessibility\nInternationalization\nFinishing up the To-do App\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QWhen emitted, it sends an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q value and expects nothing in return.\\E$"}
+{"rule":"ANYMORE_ADVERB","sentence":"^\\QAfter these steps, nothing is stopping us anymore from replacing \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q with our \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"PUNCTUATION_PARAGRAPH_END","sentence":"^\\Q\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q refers to the actual GObject that will be created afterwards\n\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is the GObject we inherit of\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QWe want to add properties, signals or actions to an object.\\E$"}

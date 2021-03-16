@@ -2,7 +2,7 @@
 
 GObjects rely heavily on inheritance.
 Therefore, it makes sense that if we want to create a custom GObject, this is done via subclassing.
-Let's see how this works by replacing the button in our “Hello World!” app with a custom one.
+Let's see how this works by replacing the button in our "Hello World!" app with a custom one.
 
 First we need to create an implementation struct that holds the state and overrides the virtual methods.
 It is advised to keep it in a private module, since its state and methods are only meant to be used by the GObject itself.
@@ -64,7 +64,7 @@ We also override `clicked` in `ButtonImpl` so that every click increases `number
 ```
 
 In `on_activate` we stop calling `connect_clicked`, and that was it.
-After a rebuild, the app now features our `CustomButton` with the label “0”.
+After a rebuild, the app now features our `CustomButton` with the label "0".
 Every time we click on the button, the number displayed by the label increases by 1.
 
 <div style="text-align:center"><img src="img/gobject_subclassing.png" /></div>

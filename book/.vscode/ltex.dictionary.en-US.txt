@@ -21,3 +21,6 @@ gtk-rs
 subclassing
 GtkButton
 xml
+CamelCase
+gtk
+GVariant
