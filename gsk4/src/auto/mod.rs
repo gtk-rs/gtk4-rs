@@ -19,6 +19,13 @@ mod gl_shader;
 pub use self::gl_shader::GLShader;
 pub use self::gl_shader::GLShaderBuilder;
 
+#[cfg(any(feature = "v4_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+mod ngl_renderer;
+#[cfg(any(feature = "v4_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+pub use self::ngl_renderer::NglRenderer;
+
 mod renderer;
 pub use self::renderer::RendererExt;
 pub use self::renderer::{Renderer, NONE_RENDERER};
