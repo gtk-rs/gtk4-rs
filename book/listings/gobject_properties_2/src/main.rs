@@ -1,5 +1,5 @@
-use glib::clone;
-use gtk::{glib, Label, Orientation};
+use glib::BindingFlags;
+use gtk::{glib, Orientation};
 use gtk::{prelude::*, BoxBuilder};
 use gtk::{Application, ApplicationWindowBuilder};
 use std::cell::Cell;
@@ -125,19 +125,25 @@ fn on_activate(application: &Application) {
         .title("My GTK App")
         .build();
 
-    // Create a button
-    let button = CustomButton::new();
+    // ANCHOR: buttons
+    // Create the buttons
+    let button_1 = CustomButton::new();
+    let button_2 = CustomButton::new();
+    // ANCHOR_END: buttons
 
-    // ANCHOR: label
-    let label = Label::new(Some("0"));
-    button.connect_notify_local(
-        Some("number"),
-        clone!(@weak label => move |button, _| {
-            let number = button.get_property("number").unwrap().get::<i32>().unwrap().unwrap();
-            label.set_label(&number.to_string());
-        }),
-    );
-    // ANCHOR_END: label
+    // ANCHOR: bind_number
+    button_1
+        .bind_property("number", &button_2, "number")
+        .flags(BindingFlags::BIDIRECTIONAL)
+        .build();
+    // ANCHOR_END: bind_number
+
+    // ANCHOR: bind_label
+    button_1
+        .bind_property("label", &button_2, "label")
+        .flags(BindingFlags::BIDIRECTIONAL)
+        .build();
+    // ANCHOR_END: bind_label
 
     // Set up box
     let gtk_box = BoxBuilder::new()
@@ -148,8 +154,8 @@ fn on_activate(application: &Application) {
         .spacing(12)
         .orientation(Orientation::Vertical)
         .build();
-    gtk_box.append(&button);
-    gtk_box.append(&label);
+    gtk_box.append(&button_1);
+    gtk_box.append(&button_2);
     window.set_child(Some(&gtk_box));
     window.present();
 }
