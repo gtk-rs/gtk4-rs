@@ -241,6 +241,7 @@ pub use self::constraint_layout::ConstraintLayout;
 
 mod constraint_layout_child;
 pub use self::constraint_layout_child::ConstraintLayoutChild;
+pub use self::constraint_layout_child::ConstraintLayoutChildBuilder;
 
 mod constraint_target;
 pub use self::constraint_target::ConstraintTargetExt;
@@ -279,6 +280,7 @@ pub use self::drawing_area::{DrawingArea, NONE_DRAWING_AREA};
 
 mod drop_controller_motion;
 pub use self::drop_controller_motion::DropControllerMotion;
+pub use self::drop_controller_motion::DropControllerMotionBuilder;
 
 mod drop_down;
 pub use self::drop_down::DropDown;
@@ -298,9 +300,11 @@ pub use self::editable::{Editable, NONE_EDITABLE};
 
 mod editable_label;
 pub use self::editable_label::EditableLabel;
+pub use self::editable_label::EditableLabelBuilder;
 
 mod emoji_chooser;
 pub use self::emoji_chooser::EmojiChooser;
+pub use self::emoji_chooser::EmojiChooserBuilder;
 
 mod entry;
 pub use self::entry::EntryBuilder;
@@ -322,15 +326,19 @@ pub use self::event_controller::{EventController, NONE_EVENT_CONTROLLER};
 
 mod event_controller_focus;
 pub use self::event_controller_focus::EventControllerFocus;
+pub use self::event_controller_focus::EventControllerFocusBuilder;
 
 mod event_controller_key;
 pub use self::event_controller_key::EventControllerKey;
+pub use self::event_controller_key::EventControllerKeyBuilder;
 
 mod event_controller_legacy;
 pub use self::event_controller_legacy::EventControllerLegacy;
+pub use self::event_controller_legacy::EventControllerLegacyBuilder;
 
 mod event_controller_motion;
 pub use self::event_controller_motion::EventControllerMotion;
+pub use self::event_controller_motion::EventControllerMotionBuilder;
 
 mod event_controller_scroll;
 pub use self::event_controller_scroll::EventControllerScroll;
@@ -428,8 +436,10 @@ pub use self::gesture::{Gesture, NONE_GESTURE};
 
 mod gesture_click;
 pub use self::gesture_click::GestureClick;
+pub use self::gesture_click::GestureClickBuilder;
 
 mod gesture_drag;
+pub use self::gesture_drag::GestureDragBuilder;
 pub use self::gesture_drag::GestureDragExt;
 pub use self::gesture_drag::{GestureDrag, NONE_GESTURE_DRAG};
 
@@ -443,6 +453,7 @@ pub use self::gesture_pan::GesturePanBuilder;
 
 mod gesture_rotate;
 pub use self::gesture_rotate::GestureRotate;
+pub use self::gesture_rotate::GestureRotateBuilder;
 
 mod gesture_single;
 pub use self::gesture_single::GestureSingleBuilder;
@@ -451,12 +462,15 @@ pub use self::gesture_single::{GestureSingle, NONE_GESTURE_SINGLE};
 
 mod gesture_stylus;
 pub use self::gesture_stylus::GestureStylus;
+pub use self::gesture_stylus::GestureStylusBuilder;
 
 mod gesture_swipe;
 pub use self::gesture_swipe::GestureSwipe;
+pub use self::gesture_swipe::GestureSwipeBuilder;
 
 mod gesture_zoom;
 pub use self::gesture_zoom::GestureZoom;
+pub use self::gesture_zoom::GestureZoomBuilder;
 
 mod grid;
 pub use self::grid::GridBuilder;
@@ -484,9 +498,11 @@ pub use self::im_context::IMContextExt;
 pub use self::im_context::{IMContext, NONE_IM_CONTEXT};
 
 mod im_context_simple;
+pub use self::im_context_simple::IMContextSimpleBuilder;
 pub use self::im_context_simple::{IMContextSimple, NONE_IM_CONTEXT_SIMPLE};
 
 mod im_multicontext;
+pub use self::im_multicontext::IMMulticontextBuilder;
 pub use self::im_multicontext::IMMulticontextExt;
 pub use self::im_multicontext::{IMMulticontext, NONE_IM_MULTICONTEXT};
 
@@ -667,6 +683,9 @@ mod page_setup_unix_dialog;
 #[cfg(any(target_os = "linux", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 pub use self::page_setup_unix_dialog::PageSetupUnixDialog;
+#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+pub use self::page_setup_unix_dialog::PageSetupUnixDialogBuilder;
 
 mod paned;
 pub use self::paned::Paned;
@@ -718,6 +737,9 @@ mod print_unix_dialog;
 #[cfg(any(target_os = "linux", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 pub use self::print_unix_dialog::PrintUnixDialog;
+#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+pub use self::print_unix_dialog::PrintUnixDialogBuilder;
 
 mod printer;
 pub use self::printer::Printer;

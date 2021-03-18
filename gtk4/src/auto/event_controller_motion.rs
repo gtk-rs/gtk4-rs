@@ -3,12 +3,15 @@
 // DO NOT EDIT
 
 use crate::EventController;
+use crate::PropagationLimit;
+use crate::PropagationPhase;
 use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
+use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -211,6 +214,49 @@ impl EventControllerMotion {
 impl Default for EventControllerMotion {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct EventControllerMotionBuilder {
+    name: Option<String>,
+    propagation_limit: Option<PropagationLimit>,
+    propagation_phase: Option<PropagationPhase>,
+}
+
+impl EventControllerMotionBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> EventControllerMotion {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref name) = self.name {
+            properties.push(("name", name));
+        }
+        if let Some(ref propagation_limit) = self.propagation_limit {
+            properties.push(("propagation-limit", propagation_limit));
+        }
+        if let Some(ref propagation_phase) = self.propagation_phase {
+            properties.push(("propagation-phase", propagation_phase));
+        }
+        let ret = glib::Object::new::<EventControllerMotion>(&properties).expect("object new");
+        ret
+    }
+
+    pub fn name(mut self, name: &str) -> Self {
+        self.name = Some(name.to_string());
+        self
+    }
+
+    pub fn propagation_limit(mut self, propagation_limit: PropagationLimit) -> Self {
+        self.propagation_limit = Some(propagation_limit);
+        self
+    }
+
+    pub fn propagation_phase(mut self, propagation_phase: PropagationPhase) -> Self {
+        self.propagation_phase = Some(propagation_phase);
+        self
     }
 }
 

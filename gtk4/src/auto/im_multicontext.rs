@@ -3,9 +3,13 @@
 // DO NOT EDIT
 
 use crate::IMContext;
+use crate::InputHints;
+use crate::InputPurpose;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use std::fmt;
 
 glib::wrapper! {
@@ -27,6 +31,40 @@ impl IMMulticontext {
 impl Default for IMMulticontext {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct IMMulticontextBuilder {
+    input_hints: Option<InputHints>,
+    input_purpose: Option<InputPurpose>,
+}
+
+impl IMMulticontextBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> IMMulticontext {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref input_hints) = self.input_hints {
+            properties.push(("input-hints", input_hints));
+        }
+        if let Some(ref input_purpose) = self.input_purpose {
+            properties.push(("input-purpose", input_purpose));
+        }
+        let ret = glib::Object::new::<IMMulticontext>(&properties).expect("object new");
+        ret
+    }
+
+    pub fn input_hints(mut self, input_hints: InputHints) -> Self {
+        self.input_hints = Some(input_hints);
+        self
+    }
+
+    pub fn input_purpose(mut self, input_purpose: InputPurpose) -> Self {
+        self.input_purpose = Some(input_purpose);
+        self
     }
 }
 
