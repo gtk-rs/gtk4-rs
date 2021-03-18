@@ -77,5 +77,5 @@ We also specify [`SettingsBindFlags`](https://gtk-rs.org/docs/gio/struct.Setting
 {{#rustdoc_include ../listings/settings_2/src/main.rs:settings_bind}}
 ```
 
-Whenevery have a property which nicely correspond to a setting, you probably want to bind it to it.
+Whenever have a property which nicely correspond to a setting, you probably want to bind it to it.
 In other cases, interacting with the settings via the getter and setter methods tends to be the right choice.
