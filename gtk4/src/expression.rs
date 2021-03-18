@@ -210,6 +210,13 @@ impl ExpressionWatch {
     }
 }
 
+impl glib::StaticType for ExpressionWatch {
+    #[doc(alias = "gtk_expression_watch_get_type")]
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::gtk_expression_watch_get_type()) }
+    }
+}
+
 macro_rules! define_expression {
     ($rust_type:ident, $ffi_type:path, $get_type:path) => {
         glib::wrapper! {
