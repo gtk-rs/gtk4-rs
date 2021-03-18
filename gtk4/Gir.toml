@@ -9,7 +9,7 @@ generate_safety_asserts = true
 deprecate_by_min_version = true
 single_version_file = true
 generate_builder = true
-always_generate_builder = true
+trust_return_value_nullability = true
 
 generate = [
     # "Gtk.RequestedSize", a record
@@ -132,7 +132,6 @@ generate = [
     "Gtk.IconViewDropPosition",
     "Gtk.Image",
     "Gtk.ImageType",
-    "Gtk.InfoBar",
     "Gtk.InputHints",
     "Gtk.InputPurpose",
     "Gtk.Justification",
@@ -173,8 +172,8 @@ generate = [
     "Gtk.PositionType",
     "Gtk.PrintCapabilities",
     "Gtk.PrintDuplex",
-    "Gtk.PrintError",
     "Gtk.Printer",
+    "Gtk.PrintError",
     "Gtk.PrintOperationAction",
     "Gtk.PrintOperationPreview",
     "Gtk.PrintOperationResult",
@@ -1360,10 +1359,6 @@ trust_return_value_nullability = false
 name = "Gtk.PageSetupUnixDialog"
 status = "generate"
 cfg_condition = "target_os = \"linux\""
-
-[[object]]
-name = "Gtk.Paned"
-status = "generate"
 
 [[object]]
 name = "Gtk.PaperSize"

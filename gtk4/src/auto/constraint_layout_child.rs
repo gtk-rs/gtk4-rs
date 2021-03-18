@@ -3,6 +3,12 @@
 // DO NOT EDIT
 
 use crate::LayoutChild;
+use crate::LayoutManager;
+use crate::Widget;
+use glib::object::Cast;
+use glib::object::IsA;
+use glib::StaticType;
+use glib::ToValue;
 use std::fmt;
 
 glib::wrapper! {
@@ -14,6 +20,40 @@ glib::wrapper! {
 }
 
 impl ConstraintLayoutChild {}
+
+#[derive(Clone, Default)]
+pub struct ConstraintLayoutChildBuilder {
+    child_widget: Option<Widget>,
+    layout_manager: Option<LayoutManager>,
+}
+
+impl ConstraintLayoutChildBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn build(self) -> ConstraintLayoutChild {
+        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
+        if let Some(ref child_widget) = self.child_widget {
+            properties.push(("child-widget", child_widget));
+        }
+        if let Some(ref layout_manager) = self.layout_manager {
+            properties.push(("layout-manager", layout_manager));
+        }
+        let ret = glib::Object::new::<ConstraintLayoutChild>(&properties).expect("object new");
+        ret
+    }
+
+    pub fn child_widget<P: IsA<Widget>>(mut self, child_widget: &P) -> Self {
+        self.child_widget = Some(child_widget.clone().upcast());
+        self
+    }
+
+    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+        self.layout_manager = Some(layout_manager.clone().upcast());
+        self
+    }
+}
 
 impl fmt::Display for ConstraintLayoutChild {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
