@@ -62,4 +62,20 @@ Finally, we assure that the switch state is stored in the settings whenever we c
 {{#rustdoc_include ../listings/settings_1/src/main.rs:connect_state_set}}
 ```
 
-We have now written a small application which retains its switch state even after closing it.
+The `Switch` now retains its state even after closing the application.
+But we can make this even better.
+The `Switch` has a property "state" and `Settings` allows us to bind properties to a specific setting.
+So let us do exactly that.
+
+We can remove the `get_boolean` call before initializing the `Switch`, as well as the `connect_state_set` call.
+Finally, we only have to bind the setting to the property by specifying the key, object and property.
+We also specify [`SettingsBindFlags`](https://gtk-rs.org/docs/gio/struct.SettingsBindFlags.html) to control the direction in which the binding works.
+
+<span class="filename">Filename: src/main.rs</span>
+
+```rust,no_run
+{{#rustdoc_include ../listings/settings_2/src/main.rs:settings_bind}}
+```
+
+If you have a property which correspond to a setting, you probably want to bind it to it.
+In other cases, interacting with the settings via the getter and setter methods is your best bet.

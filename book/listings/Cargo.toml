@@ -21,6 +21,7 @@ members = [
     "main_event_loop_4",
     "main_event_loop_5",
     "settings_1",
+    "settings_2",
     "widgets_1",
     "widgets_2",
 ]
