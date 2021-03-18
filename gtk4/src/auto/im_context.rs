@@ -52,8 +52,12 @@ pub trait IMContextExt: 'static {
     #[doc(alias = "gtk_im_context_get_preedit_string")]
     fn get_preedit_string(&self) -> (glib::GString, pango::AttrList, i32);
 
+    #[cfg_attr(feature = "v4_2", deprecated)]
     #[doc(alias = "gtk_im_context_get_surrounding")]
     fn get_surrounding(&self) -> Option<(glib::GString, i32)>;
+
+    #[doc(alias = "gtk_im_context_get_surrounding_with_selection")]
+    fn get_surrounding_with_selection(&self) -> Option<(glib::GString, i32, i32)>;
 
     #[doc(alias = "gtk_im_context_reset")]
     fn reset(&self);
@@ -64,8 +68,12 @@ pub trait IMContextExt: 'static {
     #[doc(alias = "gtk_im_context_set_cursor_location")]
     fn set_cursor_location(&self, area: &gdk::Rectangle);
 
+    #[cfg_attr(feature = "v4_2", deprecated)]
     #[doc(alias = "gtk_im_context_set_surrounding")]
     fn set_surrounding(&self, text: &str, cursor_index: i32);
+
+    #[doc(alias = "gtk_im_context_set_surrounding_with_selection")]
+    fn set_surrounding_with_selection(&self, text: &str, cursor_index: i32, anchor_index: i32);
 
     #[doc(alias = "gtk_im_context_set_use_preedit")]
     fn set_use_preedit(&self, use_preedit: bool);
@@ -183,6 +191,27 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
+    fn get_surrounding_with_selection(&self) -> Option<(glib::GString, i32, i32)> {
+        unsafe {
+            let mut text = ptr::null_mut();
+            let mut cursor_index = mem::MaybeUninit::uninit();
+            let mut anchor_index = mem::MaybeUninit::uninit();
+            let ret = from_glib(ffi::gtk_im_context_get_surrounding_with_selection(
+                self.as_ref().to_glib_none().0,
+                &mut text,
+                cursor_index.as_mut_ptr(),
+                anchor_index.as_mut_ptr(),
+            ));
+            let cursor_index = cursor_index.assume_init();
+            let anchor_index = anchor_index.assume_init();
+            if ret {
+                Some((from_glib_full(text), cursor_index, anchor_index))
+            } else {
+                None
+            }
+        }
+    }
+
     fn reset(&self) {
         unsafe {
             ffi::gtk_im_context_reset(self.as_ref().to_glib_none().0);
@@ -215,6 +244,19 @@ impl<O: IsA<IMContext>> IMContextExt for O {
                 text.to_glib_none().0,
                 len,
                 cursor_index,
+            );
+        }
+    }
+
+    fn set_surrounding_with_selection(&self, text: &str, cursor_index: i32, anchor_index: i32) {
+        let len = text.len() as i32;
+        unsafe {
+            ffi::gtk_im_context_set_surrounding_with_selection(
+                self.as_ref().to_glib_none().0,
+                text.to_glib_none().0,
+                len,
+                cursor_index,
+                anchor_index,
             );
         }
     }

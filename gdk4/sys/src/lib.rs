@@ -2666,11 +2666,6 @@ pub struct _GdkDragSurfaceInterface(c_void);
 pub type GdkDragSurfaceInterface = *mut _GdkDragSurfaceInterface;
 
 #[repr(C)]
-pub struct _GdkDrawingContext(c_void);
-
-pub type GdkDrawingContext = *mut _GdkDrawingContext;
-
-#[repr(C)]
 pub struct GdkEventSequence(c_void);
 
 impl ::std::fmt::Debug for GdkEventSequence {
@@ -3563,6 +3558,15 @@ extern "C" {
     pub fn gdk_popup_layout_get_anchor_rect(layout: *mut GdkPopupLayout) -> *const GdkRectangle;
     pub fn gdk_popup_layout_get_offset(layout: *mut GdkPopupLayout, dx: *mut c_int, dy: *mut c_int);
     pub fn gdk_popup_layout_get_rect_anchor(layout: *mut GdkPopupLayout) -> GdkGravity;
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    pub fn gdk_popup_layout_get_shadow_width(
+        layout: *mut GdkPopupLayout,
+        left: *mut c_int,
+        right: *mut c_int,
+        top: *mut c_int,
+        bottom: *mut c_int,
+    );
     pub fn gdk_popup_layout_get_surface_anchor(layout: *mut GdkPopupLayout) -> GdkGravity;
     pub fn gdk_popup_layout_ref(layout: *mut GdkPopupLayout) -> *mut GdkPopupLayout;
     pub fn gdk_popup_layout_set_anchor_hints(
@@ -3575,6 +3579,15 @@ extern "C" {
     );
     pub fn gdk_popup_layout_set_offset(layout: *mut GdkPopupLayout, dx: c_int, dy: c_int);
     pub fn gdk_popup_layout_set_rect_anchor(layout: *mut GdkPopupLayout, anchor: GdkGravity);
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    pub fn gdk_popup_layout_set_shadow_width(
+        layout: *mut GdkPopupLayout,
+        left: c_int,
+        right: c_int,
+        top: c_int,
+        bottom: c_int,
+    );
     pub fn gdk_popup_layout_set_surface_anchor(layout: *mut GdkPopupLayout, anchor: GdkGravity);
     pub fn gdk_popup_layout_unref(layout: *mut GdkPopupLayout);
 

@@ -1506,6 +1506,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "GtkPrintCapabilities",
+        Layout {
+            size: size_of::<GtkPrintCapabilities>(),
+            alignment: align_of::<GtkPrintCapabilities>(),
+        },
+    ),
+    (
         "GtkPrintDuplex",
         Layout {
             size: size_of::<GtkPrintDuplex>(),
@@ -1741,13 +1748,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<GtkSensitivityType>(),
             alignment: align_of::<GtkSensitivityType>(),
-        },
-    ),
-    (
-        "GtkSettingsValue",
-        Layout {
-            size: size_of::<GtkSettingsValue>(),
-            alignment: align_of::<GtkSettingsValue>(),
         },
     ),
     (
@@ -2822,6 +2822,16 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) GTK_POS_LEFT", "0"),
     ("(gint) GTK_POS_RIGHT", "1"),
     ("(gint) GTK_POS_TOP", "2"),
+    ("(guint) GTK_PRINT_CAPABILITY_COLLATE", "4"),
+    ("(guint) GTK_PRINT_CAPABILITY_COPIES", "2"),
+    ("(guint) GTK_PRINT_CAPABILITY_GENERATE_PDF", "32"),
+    ("(guint) GTK_PRINT_CAPABILITY_GENERATE_PS", "64"),
+    ("(guint) GTK_PRINT_CAPABILITY_NUMBER_UP", "256"),
+    ("(guint) GTK_PRINT_CAPABILITY_NUMBER_UP_LAYOUT", "512"),
+    ("(guint) GTK_PRINT_CAPABILITY_PAGE_SET", "1"),
+    ("(guint) GTK_PRINT_CAPABILITY_PREVIEW", "128"),
+    ("(guint) GTK_PRINT_CAPABILITY_REVERSE", "8"),
+    ("(guint) GTK_PRINT_CAPABILITY_SCALE", "16"),
     ("(gint) GTK_PRINT_DUPLEX_HORIZONTAL", "1"),
     ("(gint) GTK_PRINT_DUPLEX_SIMPLEX", "0"),
     ("(gint) GTK_PRINT_DUPLEX_VERTICAL", "2"),

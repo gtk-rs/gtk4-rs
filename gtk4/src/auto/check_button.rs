@@ -13,6 +13,9 @@ use crate::Overflow;
 use crate::Widget;
 use glib::object::Cast;
 use glib::object::IsA;
+#[cfg(any(feature = "v4_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+use glib::object::ObjectExt;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -443,6 +446,14 @@ pub trait CheckButtonExt: 'static {
     #[doc(alias = "gtk_check_button_set_use_underline")]
     fn set_use_underline(&self, setting: bool);
 
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    fn emit_activate(&self);
+
     fn connect_toggled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -530,6 +541,41 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
                 setting.to_glib(),
             );
         }
+    }
+
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn activate_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut ffi::GtkCheckButton,
+            f: glib::ffi::gpointer,
+        ) where
+            P: IsA<CheckButton>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&CheckButton::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"activate\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    activate_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    fn emit_activate(&self) {
+        let _ = unsafe {
+            glib::Object::from_glib_borrow(self.as_ptr() as *mut glib::gobject_ffi::GObject)
+                .emit_by_name("activate", &[])
+                .unwrap()
+        };
     }
 
     fn connect_toggled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

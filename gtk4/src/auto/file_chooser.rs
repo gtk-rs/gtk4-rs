@@ -86,7 +86,7 @@ pub trait FileChooserExt: 'static {
     fn set_current_folder<P: IsA<gio::File>>(&self, file: &P) -> Result<(), glib::Error>;
 
     #[doc(alias = "gtk_file_chooser_set_current_name")]
-    fn set_current_name<P: AsRef<std::path::Path>>(&self, name: P);
+    fn set_current_name(&self, name: &str);
 
     #[doc(alias = "gtk_file_chooser_set_file")]
     fn set_file<P: IsA<gio::File>>(&self, file: &P) -> Result<(), glib::Error>;
@@ -309,11 +309,11 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    fn set_current_name<P: AsRef<std::path::Path>>(&self, name: P) {
+    fn set_current_name(&self, name: &str) {
         unsafe {
             ffi::gtk_file_chooser_set_current_name(
                 self.as_ref().to_glib_none().0,
-                name.as_ref().to_glib_none().0,
+                name.to_glib_none().0,
             );
         }
     }
