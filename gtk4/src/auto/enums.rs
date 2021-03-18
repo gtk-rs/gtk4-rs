@@ -4796,6 +4796,14 @@ pub enum Ordering {
     __Unknown(i32),
 }
 
+impl Ordering {
+    #[doc(alias = "gtk_ordering_from_cmpfunc")]
+    pub fn from_cmpfunc(cmpfunc_result: i32) -> Ordering {
+        assert_initialized_main_thread!();
+        unsafe { from_glib(ffi::gtk_ordering_from_cmpfunc(cmpfunc_result)) }
+    }
+}
+
 impl fmt::Display for Ordering {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(

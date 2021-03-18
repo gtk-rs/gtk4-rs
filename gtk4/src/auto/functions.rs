@@ -149,8 +149,13 @@ pub fn disable_setlocale() {
 }
 
 //#[doc(alias = "gtk_distribute_natural_allocation")]
-//pub fn distribute_natural_allocation(extra_space: i32, n_requested_sizes: u32, sizes: /*Ignored*/&mut RequestedSize) -> i32 {
+//pub fn distribute_natural_allocation(extra_space: i32, sizes: /*Ignored*/&[&RequestedSize]) -> i32 {
 //    unsafe { TODO: call ffi:gtk_distribute_natural_allocation() }
+//}
+
+//#[doc(alias = "gtk_enumerate_printers")]
+//pub fn enumerate_printers(func: /*Unimplemented*/Fn(/*Ignored*/Printer) -> bool, data: /*Unimplemented*/Option<Fundamental: Pointer>, wait: bool) {
+//    unsafe { TODO: call ffi:gtk_enumerate_printers() }
 //}
 
 #[doc(alias = "gtk_get_binary_age")]
@@ -213,14 +218,6 @@ pub fn hsv_to_rgb(h: f32, s: f32, v: f32) -> (f32, f32, f32) {
         let g = g.assume_init();
         let b = b.assume_init();
         (r, g, b)
-    }
-}
-
-#[doc(alias = "gtk_im_modules_init")]
-pub fn im_modules_init() {
-    assert_initialized_main_thread!();
-    unsafe {
-        ffi::gtk_im_modules_init();
     }
 }
 

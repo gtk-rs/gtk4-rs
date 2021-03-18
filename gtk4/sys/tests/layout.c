@@ -192,6 +192,7 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkPopoverClass", sizeof(GtkPopoverClass), alignof(GtkPopoverClass));
     printf("%s;%zu;%zu\n", "GtkPopoverMenuFlags", sizeof(GtkPopoverMenuFlags), alignof(GtkPopoverMenuFlags));
     printf("%s;%zu;%zu\n", "GtkPositionType", sizeof(GtkPositionType), alignof(GtkPositionType));
+    printf("%s;%zu;%zu\n", "GtkPrintCapabilities", sizeof(GtkPrintCapabilities), alignof(GtkPrintCapabilities));
     printf("%s;%zu;%zu\n", "GtkPrintDuplex", sizeof(GtkPrintDuplex), alignof(GtkPrintDuplex));
     printf("%s;%zu;%zu\n", "GtkPrintError", sizeof(GtkPrintError), alignof(GtkPrintError));
     printf("%s;%zu;%zu\n", "GtkPrintOperation", sizeof(GtkPrintOperation), alignof(GtkPrintOperation));
@@ -226,7 +227,6 @@ int main() {
     printf("%s;%zu;%zu\n", "GtkSelectionMode", sizeof(GtkSelectionMode), alignof(GtkSelectionMode));
     printf("%s;%zu;%zu\n", "GtkSelectionModelInterface", sizeof(GtkSelectionModelInterface), alignof(GtkSelectionModelInterface));
     printf("%s;%zu;%zu\n", "GtkSensitivityType", sizeof(GtkSensitivityType), alignof(GtkSensitivityType));
-    printf("%s;%zu;%zu\n", "GtkSettingsValue", sizeof(GtkSettingsValue), alignof(GtkSettingsValue));
     printf("%s;%zu;%zu\n", "GtkShortcutActionFlags", sizeof(GtkShortcutActionFlags), alignof(GtkShortcutActionFlags));
     printf("%s;%zu;%zu\n", "GtkShortcutClass", sizeof(GtkShortcutClass), alignof(GtkShortcutClass));
     printf("%s;%zu;%zu\n", "GtkShortcutManagerInterface", sizeof(GtkShortcutManagerInterface), alignof(GtkShortcutManagerInterface));

@@ -423,6 +423,31 @@ impl Surface {
         }
     }
 
+    pub fn connect_property_scale_factor_notify<F: Fn(&Surface) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_scale_factor_trampoline<F: Fn(&Surface) + 'static>(
+            this: *mut ffi::GdkSurface,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(&from_glib_borrow(this))
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::scale-factor\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_scale_factor_trampoline::<F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
     pub fn connect_property_width_notify<F: Fn(&Surface) + 'static>(
         &self,
         f: F,

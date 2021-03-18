@@ -367,6 +367,9 @@ pub struct MessageDialogBuilder {
     focus_visible: Option<bool>,
     focus_widget: Option<Widget>,
     fullscreened: Option<bool>,
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    handle_menubar_accel: Option<bool>,
     hide_on_close: Option<bool>,
     icon_name: Option<String>,
     maximized: Option<bool>,
@@ -471,6 +474,10 @@ impl MessageDialogBuilder {
         }
         if let Some(ref fullscreened) = self.fullscreened {
             properties.push(("fullscreened", fullscreened));
+        }
+        #[cfg(any(feature = "v4_2", feature = "dox"))]
+        if let Some(ref handle_menubar_accel) = self.handle_menubar_accel {
+            properties.push(("handle-menubar-accel", handle_menubar_accel));
         }
         if let Some(ref hide_on_close) = self.hide_on_close {
             properties.push(("hide-on-close", hide_on_close));
@@ -685,6 +692,13 @@ impl MessageDialogBuilder {
 
     pub fn fullscreened(mut self, fullscreened: bool) -> Self {
         self.fullscreened = Some(fullscreened);
+        self
+    }
+
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    pub fn handle_menubar_accel(mut self, handle_menubar_accel: bool) -> Self {
+        self.handle_menubar_accel = Some(handle_menubar_accel);
         self
     }
 

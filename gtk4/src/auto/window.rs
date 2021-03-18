@@ -106,6 +106,9 @@ pub struct WindowBuilder {
     focus_visible: Option<bool>,
     focus_widget: Option<Widget>,
     fullscreened: Option<bool>,
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    handle_menubar_accel: Option<bool>,
     hide_on_close: Option<bool>,
     icon_name: Option<String>,
     maximized: Option<bool>,
@@ -189,6 +192,10 @@ impl WindowBuilder {
         }
         if let Some(ref fullscreened) = self.fullscreened {
             properties.push(("fullscreened", fullscreened));
+        }
+        #[cfg(any(feature = "v4_2", feature = "dox"))]
+        if let Some(ref handle_menubar_accel) = self.handle_menubar_accel {
+            properties.push(("handle-menubar-accel", handle_menubar_accel));
         }
         if let Some(ref hide_on_close) = self.hide_on_close {
             properties.push(("hide-on-close", hide_on_close));
@@ -368,6 +375,13 @@ impl WindowBuilder {
 
     pub fn fullscreened(mut self, fullscreened: bool) -> Self {
         self.fullscreened = Some(fullscreened);
+        self
+    }
+
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    pub fn handle_menubar_accel(mut self, handle_menubar_accel: bool) -> Self {
+        self.handle_menubar_accel = Some(handle_menubar_accel);
         self
     }
 
@@ -609,6 +623,11 @@ pub trait GtkWindowExt: 'static {
     #[doc(alias = "gtk_window_get_group")]
     fn get_group(&self) -> WindowGroup;
 
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[doc(alias = "gtk_window_get_handle_menubar_accel")]
+    fn get_handle_menubar_accel(&self) -> bool;
+
     #[doc(alias = "gtk_window_get_hide_on_close")]
     fn get_hide_on_close(&self) -> bool;
 
@@ -683,6 +702,11 @@ pub trait GtkWindowExt: 'static {
 
     #[doc(alias = "gtk_window_set_focus_visible")]
     fn set_focus_visible(&self, setting: bool);
+
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[doc(alias = "gtk_window_set_handle_menubar_accel")]
+    fn set_handle_menubar_accel(&self, handle_menubar_accel: bool);
 
     #[doc(alias = "gtk_window_set_hide_on_close")]
     fn set_hide_on_close(&self, setting: bool);
@@ -804,6 +828,13 @@ pub trait GtkWindowExt: 'static {
 
     fn connect_property_fullscreened_notify<F: Fn(&Self) + 'static>(&self, f: F)
         -> SignalHandlerId;
+
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    fn connect_property_handle_menubar_accel_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
 
     fn connect_property_hide_on_close_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -932,6 +963,16 @@ impl<O: IsA<Window>> GtkWindowExt for O {
 
     fn get_group(&self) -> WindowGroup {
         unsafe { from_glib_none(ffi::gtk_window_get_group(self.as_ref().to_glib_none().0)) }
+    }
+
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    fn get_handle_menubar_accel(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_window_get_handle_menubar_accel(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
     }
 
     fn get_hide_on_close(&self) -> bool {
@@ -1093,6 +1134,17 @@ impl<O: IsA<Window>> GtkWindowExt for O {
     fn set_focus_visible(&self, setting: bool) {
         unsafe {
             ffi::gtk_window_set_focus_visible(self.as_ref().to_glib_none().0, setting.to_glib());
+        }
+    }
+
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    fn set_handle_menubar_accel(&self, handle_menubar_accel: bool) {
+        unsafe {
+            ffi::gtk_window_set_handle_menubar_accel(
+                self.as_ref().to_glib_none().0,
+                handle_menubar_accel.to_glib(),
+            );
         }
     }
 
@@ -1781,6 +1833,35 @@ impl<O: IsA<Window>> GtkWindowExt for O {
                 b"notify::fullscreened\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_fullscreened_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    fn connect_property_handle_menubar_accel_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_handle_menubar_accel_trampoline<P, F: Fn(&P) + 'static>(
+            this: *mut ffi::GtkWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) where
+            P: IsA<Window>,
+        {
+            let f: &F = &*(f as *const F);
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::handle-menubar-accel\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_handle_menubar_accel_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

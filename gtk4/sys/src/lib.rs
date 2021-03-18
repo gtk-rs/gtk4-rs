@@ -966,6 +966,18 @@ pub const GTK_PICK_NON_TARGETABLE: GtkPickFlags = 2;
 pub type GtkPopoverMenuFlags = c_uint;
 pub const GTK_POPOVER_MENU_NESTED: GtkPopoverMenuFlags = 1;
 
+pub type GtkPrintCapabilities = c_uint;
+pub const GTK_PRINT_CAPABILITY_PAGE_SET: GtkPrintCapabilities = 1;
+pub const GTK_PRINT_CAPABILITY_COPIES: GtkPrintCapabilities = 2;
+pub const GTK_PRINT_CAPABILITY_COLLATE: GtkPrintCapabilities = 4;
+pub const GTK_PRINT_CAPABILITY_REVERSE: GtkPrintCapabilities = 8;
+pub const GTK_PRINT_CAPABILITY_SCALE: GtkPrintCapabilities = 16;
+pub const GTK_PRINT_CAPABILITY_GENERATE_PDF: GtkPrintCapabilities = 32;
+pub const GTK_PRINT_CAPABILITY_GENERATE_PS: GtkPrintCapabilities = 64;
+pub const GTK_PRINT_CAPABILITY_PREVIEW: GtkPrintCapabilities = 128;
+pub const GTK_PRINT_CAPABILITY_NUMBER_UP: GtkPrintCapabilities = 256;
+pub const GTK_PRINT_CAPABILITY_NUMBER_UP_LAYOUT: GtkPrintCapabilities = 512;
+
 pub type GtkShortcutActionFlags = c_uint;
 pub const GTK_SHORTCUT_ACTION_EXCLUSIVE: GtkShortcutActionFlags = 1;
 
@@ -1080,8 +1092,11 @@ pub type GtkMapListModelMapFunc =
     Option<unsafe extern "C" fn(*mut gobject::GObject, gpointer) -> *mut gobject::GObject>;
 pub type GtkMenuButtonCreatePopupFunc = Option<unsafe extern "C" fn(*mut GtkMenuButton, gpointer)>;
 pub type GtkPageSetupDoneFunc = Option<unsafe extern "C" fn(*mut GtkPageSetup, gpointer)>;
+pub type GtkPrintJobCompleteFunc =
+    Option<unsafe extern "C" fn(*mut GtkPrintJob, gpointer, *const glib::GError)>;
 pub type GtkPrintSettingsFunc =
     Option<unsafe extern "C" fn(*const c_char, *const c_char, gpointer)>;
+pub type GtkPrinterFunc = Option<unsafe extern "C" fn(*mut GtkPrinter, gpointer) -> gboolean>;
 pub type GtkScaleFormatValueFunc =
     Option<unsafe extern "C" fn(*mut GtkScale, c_double, gpointer) -> *mut c_char>;
 pub type GtkShortcutFunc =
@@ -2001,7 +2016,8 @@ impl ::std::fmt::Debug for GtkCenterLayoutClass {
 pub struct GtkCheckButtonClass {
     pub parent_class: GtkWidgetClass,
     pub toggled: Option<unsafe extern "C" fn(*mut GtkCheckButton)>,
-    pub padding: [gpointer; 8],
+    pub activate: Option<unsafe extern "C" fn(*mut GtkCheckButton)>,
+    pub padding: [gpointer; 7],
 }
 
 impl ::std::fmt::Debug for GtkCheckButtonClass {
@@ -2009,6 +2025,7 @@ impl ::std::fmt::Debug for GtkCheckButtonClass {
         f.debug_struct(&format!("GtkCheckButtonClass @ {:?}", self as *const _))
             .field("parent_class", &self.parent_class)
             .field("toggled", &self.toggled)
+            .field("activate", &self.activate)
             .finish()
     }
 }
@@ -2037,7 +2054,6 @@ impl ::std::fmt::Debug for GtkColorChooserInterface {
         .field("set_rgba", &self.set_rgba)
         .field("add_palette", &self.add_palette)
         .field("color_activated", &self.color_activated)
-        .field("padding", &self.padding)
         .finish()
     }
 }
@@ -2477,9 +2493,14 @@ pub struct _GtkEveryFilterClass(c_void);
 pub type GtkEveryFilterClass = *mut _GtkEveryFilterClass;
 
 #[repr(C)]
-pub struct _GtkExpressionWatch(c_void);
+pub struct GtkExpressionWatch(c_void);
 
-pub type GtkExpressionWatch = *mut _GtkExpressionWatch;
+impl ::std::fmt::Debug for GtkExpressionWatch {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkExpressionWatch @ {:?}", self as *const _))
+            .finish()
+    }
+}
 
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -2620,9 +2641,7 @@ pub struct GtkFlowBoxChildClass {
 impl ::std::fmt::Debug for GtkFlowBoxChildClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GtkFlowBoxChildClass @ {:?}", self as *const _))
-            .field("parent_class", &self.parent_class)
             .field("activate", &self.activate)
-            .field("padding", &self.padding)
             .finish()
     }
 }
@@ -2661,7 +2680,6 @@ impl ::std::fmt::Debug for GtkFontChooserIface {
             .field("font_activated", &self.font_activated)
             .field("set_font_map", &self.set_font_map)
             .field("get_font_map", &self.get_font_map)
-            .field("padding", &self.padding)
             .finish()
     }
 }
@@ -2833,12 +2851,21 @@ pub struct GtkIMContextClass {
         Option<unsafe extern "C" fn(*mut GtkIMContext, *const c_char, c_int, c_int)>,
     pub get_surrounding:
         Option<unsafe extern "C" fn(*mut GtkIMContext, *mut *mut c_char, *mut c_int) -> gboolean>,
+    pub set_surrounding_with_selection:
+        Option<unsafe extern "C" fn(*mut GtkIMContext, *const c_char, c_int, c_int, c_int)>,
+    pub get_surrounding_with_selection: Option<
+        unsafe extern "C" fn(
+            *mut GtkIMContext,
+            *mut *mut c_char,
+            *mut c_int,
+            *mut c_int,
+        ) -> gboolean,
+    >,
     pub _gtk_reserved1: Option<unsafe extern "C" fn()>,
     pub _gtk_reserved2: Option<unsafe extern "C" fn()>,
     pub _gtk_reserved3: Option<unsafe extern "C" fn()>,
     pub _gtk_reserved4: Option<unsafe extern "C" fn()>,
     pub _gtk_reserved5: Option<unsafe extern "C" fn()>,
-    pub _gtk_reserved6: Option<unsafe extern "C" fn()>,
 }
 
 impl ::std::fmt::Debug for GtkIMContextClass {
@@ -2860,12 +2887,19 @@ impl ::std::fmt::Debug for GtkIMContextClass {
             .field("set_use_preedit", &self.set_use_preedit)
             .field("set_surrounding", &self.set_surrounding)
             .field("get_surrounding", &self.get_surrounding)
+            .field(
+                "set_surrounding_with_selection",
+                &self.set_surrounding_with_selection,
+            )
+            .field(
+                "get_surrounding_with_selection",
+                &self.get_surrounding_with_selection,
+            )
             .field("_gtk_reserved1", &self._gtk_reserved1)
             .field("_gtk_reserved2", &self._gtk_reserved2)
             .field("_gtk_reserved3", &self._gtk_reserved3)
             .field("_gtk_reserved4", &self._gtk_reserved4)
             .field("_gtk_reserved5", &self._gtk_reserved5)
-            .field("_gtk_reserved6", &self._gtk_reserved6)
             .finish()
     }
 }
@@ -3421,6 +3455,11 @@ impl ::std::fmt::Debug for GtkPopoverClass {
 }
 
 #[repr(C)]
+pub struct _GtkPrintBackend(c_void);
+
+pub type GtkPrintBackend = *mut _GtkPrintBackend;
+
+#[repr(C)]
 #[derive(Copy, Clone)]
 pub struct GtkPrintOperationClass {
     pub parent_class: gobject::GObjectClass,
@@ -3772,22 +3811,6 @@ impl ::std::fmt::Debug for GtkSelectionModelInterface {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
-pub struct GtkSettingsValue {
-    pub origin: *mut c_char,
-    pub value: gobject::GValue,
-}
-
-impl ::std::fmt::Debug for GtkSettingsValue {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GtkSettingsValue @ {:?}", self as *const _))
-            .field("origin", &self.origin)
-            .field("value", &self.value)
-            .finish()
-    }
-}
-
-#[repr(C)]
 pub struct _GtkShortcutActionClass(c_void);
 
 pub type GtkShortcutActionClass = *mut _GtkShortcutActionClass;
@@ -4034,11 +4057,6 @@ impl ::std::fmt::Debug for GtkStyleContextClass {
             .finish()
     }
 }
-
-#[repr(C)]
-pub struct _GtkTextBTree(c_void);
-
-pub type GtkTextBTree = *mut _GtkTextBTree;
 
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -5920,7 +5938,6 @@ pub struct GtkFlowBoxChild {
 impl ::std::fmt::Debug for GtkFlowBoxChild {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GtkFlowBoxChild @ {:?}", self as *const _))
-            .field("parent_instance", &self.parent_instance)
             .finish()
     }
 }
@@ -6669,6 +6686,16 @@ impl ::std::fmt::Debug for GtkPageSetup {
 }
 
 #[repr(C)]
+pub struct GtkPageSetupUnixDialog(c_void);
+
+impl ::std::fmt::Debug for GtkPageSetupUnixDialog {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkPageSetupUnixDialog @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
 pub struct GtkPaned(c_void);
 
 impl ::std::fmt::Debug for GtkPaned {
@@ -6756,6 +6783,16 @@ impl ::std::fmt::Debug for GtkPrintContext {
 }
 
 #[repr(C)]
+pub struct GtkPrintJob(c_void);
+
+impl ::std::fmt::Debug for GtkPrintJob {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkPrintJob @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
 #[derive(Copy, Clone)]
 pub struct GtkPrintOperation {
     pub parent_instance: gobject::GObject,
@@ -6776,6 +6813,26 @@ pub struct GtkPrintSettings(c_void);
 impl ::std::fmt::Debug for GtkPrintSettings {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("GtkPrintSettings @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GtkPrintUnixDialog(c_void);
+
+impl ::std::fmt::Debug for GtkPrintUnixDialog {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkPrintUnixDialog @ {:?}", self as *const _))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct GtkPrinter(c_void);
+
+impl ::std::fmt::Debug for GtkPrinter {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("GtkPrinter @ {:?}", self as *const _))
             .finish()
     }
 }
@@ -8055,6 +8112,7 @@ extern "C" {
     // GtkOrdering
     //=========================================================================
     pub fn gtk_ordering_get_type() -> GType;
+    pub fn gtk_ordering_from_cmpfunc(cmpfunc_result: c_int) -> GtkOrdering;
 
     //=========================================================================
     // GtkOrientation
@@ -8349,6 +8407,11 @@ extern "C" {
     pub fn gtk_popover_menu_flags_get_type() -> GType;
 
     //=========================================================================
+    // GtkPrintCapabilities
+    //=========================================================================
+    pub fn gtk_print_capabilities_get_type() -> GType;
+
+    //=========================================================================
     // GtkShortcutActionFlags
     //=========================================================================
     pub fn gtk_shortcut_action_flags_get_type() -> GType;
@@ -8522,6 +8585,7 @@ extern "C" {
     //=========================================================================
     // GtkExpressionWatch
     //=========================================================================
+    pub fn gtk_expression_watch_get_type() -> GType;
     pub fn gtk_expression_watch_evaluate(
         watch: *mut GtkExpressionWatch,
         value: *mut gobject::GValue,
@@ -9656,7 +9720,7 @@ extern "C" {
         callback_func: gobject::GCallback,
         user_data: gpointer,
         user_destroy: gobject::GClosureNotify,
-    ) -> *mut GtkExpression;
+    ) -> *mut GtkCClosureExpression;
 
     //=========================================================================
     // GtkCalendar
@@ -10238,7 +10302,7 @@ extern "C" {
         closure: *mut gobject::GClosure,
         n_params: c_uint,
         params: *mut *mut GtkExpression,
-    ) -> *mut GtkExpression;
+    ) -> *mut GtkClosureExpression;
 
     //=========================================================================
     // GtkColorButton
@@ -10449,10 +10513,10 @@ extern "C" {
     // GtkConstantExpression
     //=========================================================================
     pub fn gtk_constant_expression_get_type() -> GType;
-    pub fn gtk_constant_expression_new(value_type: GType, ...) -> *mut GtkExpression;
+    pub fn gtk_constant_expression_new(value_type: GType, ...) -> *mut GtkConstantExpression;
     pub fn gtk_constant_expression_new_for_value(
         value: *const gobject::GValue,
-    ) -> *mut GtkExpression;
+    ) -> *mut GtkConstantExpression;
     pub fn gtk_constant_expression_get_value(
         expression: *mut GtkConstantExpression,
     ) -> *const gobject::GValue;
@@ -11895,6 +11959,12 @@ extern "C" {
         text: *mut *mut c_char,
         cursor_index: *mut c_int,
     ) -> gboolean;
+    pub fn gtk_im_context_get_surrounding_with_selection(
+        context: *mut GtkIMContext,
+        text: *mut *mut c_char,
+        cursor_index: *mut c_int,
+        anchor_index: *mut c_int,
+    ) -> gboolean;
     pub fn gtk_im_context_reset(context: *mut GtkIMContext);
     pub fn gtk_im_context_set_client_widget(context: *mut GtkIMContext, widget: *mut GtkWidget);
     pub fn gtk_im_context_set_cursor_location(
@@ -11906,6 +11976,13 @@ extern "C" {
         text: *const c_char,
         len: c_int,
         cursor_index: c_int,
+    );
+    pub fn gtk_im_context_set_surrounding_with_selection(
+        context: *mut GtkIMContext,
+        text: *const c_char,
+        len: c_int,
+        cursor_index: c_int,
+        anchor_index: c_int,
     );
     pub fn gtk_im_context_set_use_preedit(context: *mut GtkIMContext, use_preedit: gboolean);
 
@@ -13014,7 +13091,7 @@ extern "C" {
     // GtkObjectExpression
     //=========================================================================
     pub fn gtk_object_expression_get_type() -> GType;
-    pub fn gtk_object_expression_new(object: *mut gobject::GObject) -> *mut GtkExpression;
+    pub fn gtk_object_expression_new(object: *mut gobject::GObject) -> *mut GtkObjectExpression;
     pub fn gtk_object_expression_get_object(
         expression: *mut GtkObjectExpression,
     ) -> *mut gobject::GObject;
@@ -13163,6 +13240,29 @@ extern "C" {
         setup: *mut GtkPageSetup,
         key_file: *mut glib::GKeyFile,
         group_name: *const c_char,
+    );
+
+    //=========================================================================
+    // GtkPageSetupUnixDialog
+    //=========================================================================
+    pub fn gtk_page_setup_unix_dialog_get_type() -> GType;
+    pub fn gtk_page_setup_unix_dialog_new(
+        title: *const c_char,
+        parent: *mut GtkWindow,
+    ) -> *mut GtkWidget;
+    pub fn gtk_page_setup_unix_dialog_get_page_setup(
+        dialog: *mut GtkPageSetupUnixDialog,
+    ) -> *mut GtkPageSetup;
+    pub fn gtk_page_setup_unix_dialog_get_print_settings(
+        dialog: *mut GtkPageSetupUnixDialog,
+    ) -> *mut GtkPrintSettings;
+    pub fn gtk_page_setup_unix_dialog_set_page_setup(
+        dialog: *mut GtkPageSetupUnixDialog,
+        page_setup: *mut GtkPageSetup,
+    );
+    pub fn gtk_page_setup_unix_dialog_set_print_settings(
+        dialog: *mut GtkPageSetupUnixDialog,
+        print_settings: *mut GtkPrintSettings,
     );
 
     //=========================================================================
@@ -13347,6 +13447,70 @@ extern "C" {
         dpi_x: c_double,
         dpi_y: c_double,
     );
+
+    //=========================================================================
+    // GtkPrintJob
+    //=========================================================================
+    pub fn gtk_print_job_get_type() -> GType;
+    pub fn gtk_print_job_new(
+        title: *const c_char,
+        printer: *mut GtkPrinter,
+        settings: *mut GtkPrintSettings,
+        page_setup: *mut GtkPageSetup,
+    ) -> *mut GtkPrintJob;
+    pub fn gtk_print_job_get_collate(job: *mut GtkPrintJob) -> gboolean;
+    pub fn gtk_print_job_get_n_up(job: *mut GtkPrintJob) -> c_uint;
+    pub fn gtk_print_job_get_n_up_layout(job: *mut GtkPrintJob) -> GtkNumberUpLayout;
+    pub fn gtk_print_job_get_num_copies(job: *mut GtkPrintJob) -> c_int;
+    pub fn gtk_print_job_get_page_ranges(
+        job: *mut GtkPrintJob,
+        n_ranges: *mut c_int,
+    ) -> *mut GtkPageRange;
+    pub fn gtk_print_job_get_page_set(job: *mut GtkPrintJob) -> GtkPageSet;
+    pub fn gtk_print_job_get_pages(job: *mut GtkPrintJob) -> GtkPrintPages;
+    pub fn gtk_print_job_get_printer(job: *mut GtkPrintJob) -> *mut GtkPrinter;
+    pub fn gtk_print_job_get_reverse(job: *mut GtkPrintJob) -> gboolean;
+    pub fn gtk_print_job_get_rotate(job: *mut GtkPrintJob) -> gboolean;
+    pub fn gtk_print_job_get_scale(job: *mut GtkPrintJob) -> c_double;
+    pub fn gtk_print_job_get_settings(job: *mut GtkPrintJob) -> *mut GtkPrintSettings;
+    pub fn gtk_print_job_get_status(job: *mut GtkPrintJob) -> GtkPrintStatus;
+    pub fn gtk_print_job_get_surface(
+        job: *mut GtkPrintJob,
+        error: *mut *mut glib::GError,
+    ) -> *mut cairo::cairo_surface_t;
+    pub fn gtk_print_job_get_title(job: *mut GtkPrintJob) -> *const c_char;
+    pub fn gtk_print_job_get_track_print_status(job: *mut GtkPrintJob) -> gboolean;
+    pub fn gtk_print_job_send(
+        job: *mut GtkPrintJob,
+        callback: GtkPrintJobCompleteFunc,
+        user_data: gpointer,
+        dnotify: glib::GDestroyNotify,
+    );
+    pub fn gtk_print_job_set_collate(job: *mut GtkPrintJob, collate: gboolean);
+    pub fn gtk_print_job_set_n_up(job: *mut GtkPrintJob, n_up: c_uint);
+    pub fn gtk_print_job_set_n_up_layout(job: *mut GtkPrintJob, layout: GtkNumberUpLayout);
+    pub fn gtk_print_job_set_num_copies(job: *mut GtkPrintJob, num_copies: c_int);
+    pub fn gtk_print_job_set_page_ranges(
+        job: *mut GtkPrintJob,
+        ranges: *mut GtkPageRange,
+        n_ranges: c_int,
+    );
+    pub fn gtk_print_job_set_page_set(job: *mut GtkPrintJob, page_set: GtkPageSet);
+    pub fn gtk_print_job_set_pages(job: *mut GtkPrintJob, pages: GtkPrintPages);
+    pub fn gtk_print_job_set_reverse(job: *mut GtkPrintJob, reverse: gboolean);
+    pub fn gtk_print_job_set_rotate(job: *mut GtkPrintJob, rotate: gboolean);
+    pub fn gtk_print_job_set_scale(job: *mut GtkPrintJob, scale: c_double);
+    pub fn gtk_print_job_set_source_fd(
+        job: *mut GtkPrintJob,
+        fd: c_int,
+        error: *mut *mut glib::GError,
+    ) -> gboolean;
+    pub fn gtk_print_job_set_source_file(
+        job: *mut GtkPrintJob,
+        filename: *const c_char,
+        error: *mut *mut glib::GError,
+    ) -> gboolean;
+    pub fn gtk_print_job_set_track_print_status(job: *mut GtkPrintJob, track_status: gboolean);
 
     //=========================================================================
     // GtkPrintOperation
@@ -13630,6 +13794,111 @@ extern "C" {
     pub fn gtk_print_settings_unset(settings: *mut GtkPrintSettings, key: *const c_char);
 
     //=========================================================================
+    // GtkPrintUnixDialog
+    //=========================================================================
+    pub fn gtk_print_unix_dialog_get_type() -> GType;
+    pub fn gtk_print_unix_dialog_new(
+        title: *const c_char,
+        parent: *mut GtkWindow,
+    ) -> *mut GtkWidget;
+    pub fn gtk_print_unix_dialog_add_custom_tab(
+        dialog: *mut GtkPrintUnixDialog,
+        child: *mut GtkWidget,
+        tab_label: *mut GtkWidget,
+    );
+    pub fn gtk_print_unix_dialog_get_current_page(dialog: *mut GtkPrintUnixDialog) -> c_int;
+    pub fn gtk_print_unix_dialog_get_embed_page_setup(dialog: *mut GtkPrintUnixDialog) -> gboolean;
+    pub fn gtk_print_unix_dialog_get_has_selection(dialog: *mut GtkPrintUnixDialog) -> gboolean;
+    pub fn gtk_print_unix_dialog_get_manual_capabilities(
+        dialog: *mut GtkPrintUnixDialog,
+    ) -> GtkPrintCapabilities;
+    pub fn gtk_print_unix_dialog_get_page_setup(
+        dialog: *mut GtkPrintUnixDialog,
+    ) -> *mut GtkPageSetup;
+    pub fn gtk_print_unix_dialog_get_page_setup_set(dialog: *mut GtkPrintUnixDialog) -> gboolean;
+    pub fn gtk_print_unix_dialog_get_selected_printer(
+        dialog: *mut GtkPrintUnixDialog,
+    ) -> *mut GtkPrinter;
+    pub fn gtk_print_unix_dialog_get_settings(
+        dialog: *mut GtkPrintUnixDialog,
+    ) -> *mut GtkPrintSettings;
+    pub fn gtk_print_unix_dialog_get_support_selection(dialog: *mut GtkPrintUnixDialog)
+        -> gboolean;
+    pub fn gtk_print_unix_dialog_set_current_page(
+        dialog: *mut GtkPrintUnixDialog,
+        current_page: c_int,
+    );
+    pub fn gtk_print_unix_dialog_set_embed_page_setup(
+        dialog: *mut GtkPrintUnixDialog,
+        embed: gboolean,
+    );
+    pub fn gtk_print_unix_dialog_set_has_selection(
+        dialog: *mut GtkPrintUnixDialog,
+        has_selection: gboolean,
+    );
+    pub fn gtk_print_unix_dialog_set_manual_capabilities(
+        dialog: *mut GtkPrintUnixDialog,
+        capabilities: GtkPrintCapabilities,
+    );
+    pub fn gtk_print_unix_dialog_set_page_setup(
+        dialog: *mut GtkPrintUnixDialog,
+        page_setup: *mut GtkPageSetup,
+    );
+    pub fn gtk_print_unix_dialog_set_settings(
+        dialog: *mut GtkPrintUnixDialog,
+        settings: *mut GtkPrintSettings,
+    );
+    pub fn gtk_print_unix_dialog_set_support_selection(
+        dialog: *mut GtkPrintUnixDialog,
+        support_selection: gboolean,
+    );
+
+    //=========================================================================
+    // GtkPrinter
+    //=========================================================================
+    pub fn gtk_printer_get_type() -> GType;
+    pub fn gtk_printer_new(
+        name: *const c_char,
+        backend: *mut GtkPrintBackend,
+        virtual_: gboolean,
+    ) -> *mut GtkPrinter;
+    pub fn gtk_printer_accepts_pdf(printer: *mut GtkPrinter) -> gboolean;
+    pub fn gtk_printer_accepts_ps(printer: *mut GtkPrinter) -> gboolean;
+    pub fn gtk_printer_compare(a: *mut GtkPrinter, b: *mut GtkPrinter) -> c_int;
+    pub fn gtk_printer_get_backend(printer: *mut GtkPrinter) -> *mut GtkPrintBackend;
+    pub fn gtk_printer_get_capabilities(printer: *mut GtkPrinter) -> GtkPrintCapabilities;
+    pub fn gtk_printer_get_default_page_size(printer: *mut GtkPrinter) -> *mut GtkPageSetup;
+    pub fn gtk_printer_get_description(printer: *mut GtkPrinter) -> *const c_char;
+    pub fn gtk_printer_get_hard_margins(
+        printer: *mut GtkPrinter,
+        top: *mut c_double,
+        bottom: *mut c_double,
+        left: *mut c_double,
+        right: *mut c_double,
+    ) -> gboolean;
+    pub fn gtk_printer_get_hard_margins_for_paper_size(
+        printer: *mut GtkPrinter,
+        paper_size: *mut GtkPaperSize,
+        top: *mut c_double,
+        bottom: *mut c_double,
+        left: *mut c_double,
+        right: *mut c_double,
+    ) -> gboolean;
+    pub fn gtk_printer_get_icon_name(printer: *mut GtkPrinter) -> *const c_char;
+    pub fn gtk_printer_get_job_count(printer: *mut GtkPrinter) -> c_int;
+    pub fn gtk_printer_get_location(printer: *mut GtkPrinter) -> *const c_char;
+    pub fn gtk_printer_get_name(printer: *mut GtkPrinter) -> *const c_char;
+    pub fn gtk_printer_get_state_message(printer: *mut GtkPrinter) -> *const c_char;
+    pub fn gtk_printer_has_details(printer: *mut GtkPrinter) -> gboolean;
+    pub fn gtk_printer_is_accepting_jobs(printer: *mut GtkPrinter) -> gboolean;
+    pub fn gtk_printer_is_active(printer: *mut GtkPrinter) -> gboolean;
+    pub fn gtk_printer_is_default(printer: *mut GtkPrinter) -> gboolean;
+    pub fn gtk_printer_is_paused(printer: *mut GtkPrinter) -> gboolean;
+    pub fn gtk_printer_is_virtual(printer: *mut GtkPrinter) -> gboolean;
+    pub fn gtk_printer_list_papers(printer: *mut GtkPrinter) -> *mut glib::GList;
+    pub fn gtk_printer_request_details(printer: *mut GtkPrinter);
+
+    //=========================================================================
     // GtkProgressBar
     //=========================================================================
     pub fn gtk_progress_bar_get_type() -> GType;
@@ -13659,11 +13928,11 @@ extern "C" {
         this_type: GType,
         expression: *mut GtkExpression,
         property_name: *const c_char,
-    ) -> *mut GtkExpression;
+    ) -> *mut GtkPropertyExpression;
     pub fn gtk_property_expression_new_for_pspec(
         expression: *mut GtkExpression,
         pspec: *mut gobject::GParamSpec,
-    ) -> *mut GtkExpression;
+    ) -> *mut GtkPropertyExpression;
     pub fn gtk_property_expression_get_expression(
         expression: *mut GtkPropertyExpression,
     ) -> *mut GtkExpression;
@@ -14152,7 +14421,9 @@ extern "C" {
     pub fn gtk_single_selection_get_can_unselect(self_: *mut GtkSingleSelection) -> gboolean;
     pub fn gtk_single_selection_get_model(self_: *mut GtkSingleSelection) -> *mut gio::GListModel;
     pub fn gtk_single_selection_get_selected(self_: *mut GtkSingleSelection) -> c_uint;
-    pub fn gtk_single_selection_get_selected_item(self_: *mut GtkSingleSelection) -> gpointer;
+    pub fn gtk_single_selection_get_selected_item(
+        self_: *mut GtkSingleSelection,
+    ) -> *mut gobject::GObject;
     pub fn gtk_single_selection_set_autoselect(
         self_: *mut GtkSingleSelection,
         autoselect: gboolean,
@@ -16461,6 +16732,9 @@ extern "C" {
     pub fn gtk_window_get_focus(window: *mut GtkWindow) -> *mut GtkWidget;
     pub fn gtk_window_get_focus_visible(window: *mut GtkWindow) -> gboolean;
     pub fn gtk_window_get_group(window: *mut GtkWindow) -> *mut GtkWindowGroup;
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    pub fn gtk_window_get_handle_menubar_accel(window: *mut GtkWindow) -> gboolean;
     pub fn gtk_window_get_hide_on_close(window: *mut GtkWindow) -> gboolean;
     pub fn gtk_window_get_icon_name(window: *mut GtkWindow) -> *const c_char;
     pub fn gtk_window_get_mnemonics_visible(window: *mut GtkWindow) -> gboolean;
@@ -16487,6 +16761,12 @@ extern "C" {
     pub fn gtk_window_set_display(window: *mut GtkWindow, display: *mut gdk::GdkDisplay);
     pub fn gtk_window_set_focus(window: *mut GtkWindow, focus: *mut GtkWidget);
     pub fn gtk_window_set_focus_visible(window: *mut GtkWindow, setting: gboolean);
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    pub fn gtk_window_set_handle_menubar_accel(
+        window: *mut GtkWindow,
+        handle_menubar_accel: gboolean,
+    );
     pub fn gtk_window_set_hide_on_close(window: *mut GtkWindow, setting: gboolean);
     pub fn gtk_window_set_icon_name(window: *mut GtkWindow, name: *const c_char);
     pub fn gtk_window_set_mnemonics_visible(window: *mut GtkWindow, setting: gboolean);
@@ -17233,6 +17513,12 @@ extern "C" {
         n_requested_sizes: c_uint,
         sizes: *mut GtkRequestedSize,
     ) -> c_int;
+    pub fn gtk_enumerate_printers(
+        func: GtkPrinterFunc,
+        data: gpointer,
+        destroy: glib::GDestroyNotify,
+        wait: gboolean,
+    );
     pub fn gtk_get_binary_age() -> c_uint;
     pub fn gtk_get_debug_flags() -> GtkDebugFlags;
     pub fn gtk_get_default_language() -> *mut pango::PangoLanguage;
@@ -17249,7 +17535,6 @@ extern "C" {
         g: *mut c_float,
         b: *mut c_float,
     );
-    pub fn gtk_im_modules_init();
     pub fn gtk_init();
     pub fn gtk_init_check() -> gboolean;
     pub fn gtk_is_initialized() -> gboolean;

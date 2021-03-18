@@ -62,10 +62,14 @@ impl SingleSelection {
         unsafe { ffi::gtk_single_selection_get_selected(self.to_glib_none().0) }
     }
 
-    //#[doc(alias = "gtk_single_selection_get_selected_item")]
-    //pub fn get_selected_item(&self) -> /*Unimplemented*/Option<Fundamental: Pointer> {
-    //    unsafe { TODO: call ffi:gtk_single_selection_get_selected_item() }
-    //}
+    #[doc(alias = "gtk_single_selection_get_selected_item")]
+    pub fn get_selected_item(&self) -> Option<glib::Object> {
+        unsafe {
+            from_glib_none(ffi::gtk_single_selection_get_selected_item(
+                self.to_glib_none().0,
+            ))
+        }
+    }
 
     #[doc(alias = "gtk_single_selection_set_autoselect")]
     pub fn set_autoselect(&self, autoselect: bool) {
