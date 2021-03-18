@@ -111,6 +111,7 @@ generate = [
     "Gtk.PolicyType",
     "Gtk.PopoverMenuFlags",
     "Gtk.PositionType",
+    "Gtk.PrintCapabilities",
     "Gtk.PrintDuplex",
     "Gtk.PrintError",
     "Gtk.PrintOperationAction",
@@ -1543,6 +1544,11 @@ trust_return_value_nullability = false
         const = true
 
 [[object]]
+name = "Gtk.PageSetupUnixDialog"
+status = "generate"
+cfg_condition = "target_os = \"linux\""
+
+[[object]]
 name = "Gtk.Paned"
 status = "generate"
 generate_builder = true
@@ -1603,6 +1609,22 @@ trust_return_value_nullability = false
         name = "cr"
         # cairo::Context is reference-counted
         const = true
+    
+[[object]]
+name = "Gtk.Printer"
+status = "generate"
+generate_builder = true
+    
+[[object]]
+name = "Gtk.PrintJob"
+status = "generate"
+generate_builder = true
+    [[object.function]]
+    name = "set_page_ranges"
+    manual = true # use &[&PageRange] instead of &[PageRange]
+    [[object.function]]
+    name = "send"
+    manual = true # mis-generated callback_func
 
 [[object]]
 name = "Gtk.PrintOperation"
@@ -1626,6 +1648,11 @@ trust_return_value_nullability = false
         [[object.function.parameter]]
         name = "paper_size"
         const = true
+
+[[object]]
+name = "Gtk.PrintUnixDialog"
+status = "generate"
+cfg_condition = "target_os = \"linux\""
 
 [[object]]
 name = "Gtk.ProgressBar"

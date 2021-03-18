@@ -661,6 +661,13 @@ pub use self::pad_controller::PadControllerBuilder;
 mod page_setup;
 pub use self::page_setup::PageSetup;
 
+#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+mod page_setup_unix_dialog;
+#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+pub use self::page_setup_unix_dialog::PageSetupUnixDialog;
+
 mod paned;
 pub use self::paned::Paned;
 pub use self::paned::PanedBuilder;
@@ -689,6 +696,10 @@ pub use self::popover_menu_bar::PopoverMenuBarBuilder;
 mod print_context;
 pub use self::print_context::PrintContext;
 
+mod print_job;
+pub use self::print_job::PrintJob;
+pub use self::print_job::PrintJobBuilder;
+
 mod print_operation;
 pub use self::print_operation::PrintOperationBuilder;
 pub use self::print_operation::PrintOperationExt;
@@ -700,6 +711,17 @@ pub use self::print_operation_preview::{PrintOperationPreview, NONE_PRINT_OPERAT
 
 mod print_settings;
 pub use self::print_settings::PrintSettings;
+
+#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+mod print_unix_dialog;
+#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+pub use self::print_unix_dialog::PrintUnixDialog;
+
+mod printer;
+pub use self::printer::Printer;
+pub use self::printer::PrinterBuilder;
 
 mod progress_bar;
 pub use self::progress_bar::ProgressBar;
@@ -1159,6 +1181,7 @@ pub use self::flags::IconLookupFlags;
 pub use self::flags::InputHints;
 pub use self::flags::PickFlags;
 pub use self::flags::PopoverMenuFlags;
+pub use self::flags::PrintCapabilities;
 pub use self::flags::ShortcutActionFlags;
 pub use self::flags::StateFlags;
 pub use self::flags::StyleContextPrintFlags;
