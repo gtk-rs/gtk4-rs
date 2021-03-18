@@ -97,7 +97,6 @@ generate = [
     "Gtk.NativeDialog",
     "Gtk.NotebookTab",
     "Gtk.NumberUpLayout",
-    "Gtk.Ordering",
     "Gtk.Orientable",
     "Gtk.Orientation",
     "Gtk.Overflow",
@@ -1512,6 +1511,13 @@ generate_builder = true
     [[object.function]]
     name = "set_expression"
     manual = true # use AsRef<Expression>
+
+[[object]]
+name = "Gtk.Ordering"
+status = "generate"
+    [[object.function]]
+    name = "from_cmpfunc"
+    ignore = true # not useful for Rust, conversion From/Into cmp::Ordering is possible
 
 [[object]]
 name = "Gtk.Overlay"
