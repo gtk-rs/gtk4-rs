@@ -56,6 +56,8 @@ pub trait IMContextExt: 'static {
     #[doc(alias = "gtk_im_context_get_surrounding")]
     fn get_surrounding(&self) -> Option<(glib::GString, i32)>;
 
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
     #[doc(alias = "gtk_im_context_get_surrounding_with_selection")]
     fn get_surrounding_with_selection(&self) -> Option<(glib::GString, i32, i32)>;
 
@@ -72,6 +74,8 @@ pub trait IMContextExt: 'static {
     #[doc(alias = "gtk_im_context_set_surrounding")]
     fn set_surrounding(&self, text: &str, cursor_index: i32);
 
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
     #[doc(alias = "gtk_im_context_set_surrounding_with_selection")]
     fn set_surrounding_with_selection(&self, text: &str, cursor_index: i32, anchor_index: i32);
 
@@ -191,6 +195,8 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
     fn get_surrounding_with_selection(&self) -> Option<(glib::GString, i32, i32)> {
         unsafe {
             let mut text = ptr::null_mut();
@@ -248,6 +254,8 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
     fn set_surrounding_with_selection(&self, text: &str, cursor_index: i32, anchor_index: i32) {
         let len = text.len() as i32;
         unsafe {
