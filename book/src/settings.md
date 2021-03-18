@@ -68,7 +68,7 @@ The `Switch` has a property "state" and `Settings` allows us to bind properties 
 So let us do exactly that.
 
 We can remove the `get_boolean` call before initializing the `Switch`, as well as the `connect_state_set` call.
-Finally, we only have to bind the setting to the property by specifying the key, object and property.
+We then bind the setting to the property by specifying the key, object and name of the property.
 We also specify [`SettingsBindFlags`](https://gtk-rs.org/docs/gio/struct.SettingsBindFlags.html) to control the direction in which the binding works.
 
 <span class="filename">Filename: src/main.rs</span>
@@ -77,5 +77,5 @@ We also specify [`SettingsBindFlags`](https://gtk-rs.org/docs/gio/struct.Setting
 {{#rustdoc_include ../listings/settings_2/src/main.rs:settings_bind}}
 ```
 
-If you have a property which correspond to a setting, you probably want to bind it to it.
-In other cases, interacting with the settings via the getter and setter methods is your best bet.
+Whenevery have a property which nicely correspond to a setting, you probably want to bind it to it.
+In other cases, interacting with the settings via the getter and setter methods tends to be the right choice.

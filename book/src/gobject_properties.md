@@ -1,17 +1,19 @@
 # Properties
 
-Signals are very useful, but when it comes to dealing with GObject state, properties are preferred over raw signals.
+As soon as you want to access state of your GObjects, properties are the way to go.
 With properties you get:
 - setters and getters
-- emitted "notify" signal whenever it gets set
-- ability to bind properties of different GObjects
+- emitted "notify" signal whenever the property gets set
+- ability to bind properties to each other
 
 Typically, a property corresponds to a single member of your GObject struct.
-You will like also want to use `Cell` instead of `RefCell` for your property member.
-Unlike `RefCell`, `Cell` has no overhead but only allows you to swap the value — not modify it.
+You will likely also want to use `Cell` instead of `RefCell` for your property member.
+Unlike `RefCell`, `Cell` has no overhead but only allows you to swap the value — not directly modify it.
+Since, you only ought to modify your property through the provided setter method, this is not a problem
 
+Let us see, if properties can help us, to connect the `number` and label of our `CustomButton` more effectively than we did in the signal section.
 Since properties already provide a "notify" signal, we can drop our "number-changed" signal and create a property "number" instead.
-
+The properties are defined in the `ObjectImpl` implementation.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -20,9 +22,9 @@ Since properties already provide a "notify" signal, we can drop our "number-chan
 ```
 
 The `properties` method describes our set of properties.
-We only want a single one, so we give it a name ("number"), describe its type, range and default value. We also declare that the property can be read and be written to.
-With `set_property` the underlying value can be changed. It also emits the corresponding "notify" signal.
-With `get_property` the underlying value will be returned.
+We only want a single one, so we give it a name, describe its type, range and default value. We also declare that the property can be read and be written to.
+`set_property` describes how the underlying values can be changed. It also emits the corresponding "notify" signals.
+`get_property` takes care of returning the underlying value when requested.
 
 Now, we have to make sure to modify `number` via `set_property` to assure that the "notify" signal gets emitted.
 
@@ -41,9 +43,9 @@ We only exchange `connect_local` with `connect_notify_local` and specify the pro
 {{#rustdoc_include ../listings/gobject_properties_1/src/main.rs:label}}
 ```
 
-This is already much nicer than emitting the signals ourselves, but that was mostly accounted to the fact that the number was only held by the single `CustomButton` instance.
-
-Let us see how we could synchronize two `CustomButton` instances.
+This is already much nicer than emitting the signals ourselves.
+However, this only worked nicely because the `number` was only held by one instance.
+Let us see how we could synchronize two `CustomButton` instances, both with their own `number`.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -61,8 +63,8 @@ We also want the binding to be bidirectional, so we specify this with the [`Bind
 {{#rustdoc_include ../listings/gobject_properties_2/src/main.rs:bind_number}}
 ```
 
-This nearly enough, but if we now press on one button, the label of the other one gets not changed.
-Luckily, "label" is a built-in property of `Button`, the class we inherited `CustomButton` from.
+This is nearly enough, but if we now press on one button, the label of the other one gets not updated.
+Luckily, "label" is a built-in property of `Button`, the class from which `CustomButton` inherits of.
 All we have to do is to bind the "label" property of `button_1` to the "label" property of `button_2`.
 
 <span class="filename">Filename: src/main.rs</span>
