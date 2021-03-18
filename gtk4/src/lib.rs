@@ -126,6 +126,7 @@ mod overlay;
 mod pad_action_entry;
 mod pad_controller;
 mod page_range;
+mod print_job;
 mod recent_data;
 mod requisition;
 mod response_type;

@@ -10,6 +10,7 @@ use crate::AccessibleState;
 use crate::DebugFlags;
 use crate::PageSetup;
 use crate::PrintSettings;
+use crate::Printer;
 use crate::StyleContext;
 use crate::TextDirection;
 use crate::TreeModel;
@@ -153,10 +154,36 @@ pub fn disable_setlocale() {
 //    unsafe { TODO: call ffi:gtk_distribute_natural_allocation() }
 //}
 
-//#[doc(alias = "gtk_enumerate_printers")]
-//pub fn enumerate_printers(func: /*Unimplemented*/Fn(/*Ignored*/Printer) -> bool, data: /*Unimplemented*/Option<Fundamental: Pointer>, wait: bool) {
-//    unsafe { TODO: call ffi:gtk_enumerate_printers() }
-//}
+#[doc(alias = "gtk_enumerate_printers")]
+pub fn enumerate_printers<P: Fn(&Printer) -> bool + Send + Sync + 'static>(func: P, wait: bool) {
+    assert_initialized_main_thread!();
+    let func_data: Box_<P> = Box_::new(func);
+    unsafe extern "C" fn func_func<P: Fn(&Printer) -> bool + Send + Sync + 'static>(
+        printer: *mut ffi::GtkPrinter,
+        data: glib::ffi::gpointer,
+    ) -> glib::ffi::gboolean {
+        let printer = from_glib_borrow(printer);
+        let callback: &P = &*(data as *mut _);
+        let res = (*callback)(&printer);
+        res.to_glib()
+    }
+    let func = Some(func_func::<P> as _);
+    unsafe extern "C" fn destroy_func<P: Fn(&Printer) -> bool + Send + Sync + 'static>(
+        data: glib::ffi::gpointer,
+    ) {
+        let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+    }
+    let destroy_call2 = Some(destroy_func::<P> as _);
+    let super_callback0: Box_<P> = func_data;
+    unsafe {
+        ffi::gtk_enumerate_printers(
+            func,
+            Box_::into_raw(super_callback0) as *mut _,
+            destroy_call2,
+            wait.to_glib(),
+        );
+    }
+}
 
 #[doc(alias = "gtk_get_binary_age")]
 pub fn get_binary_age() -> u32 {

@@ -42,6 +42,36 @@ impl<'a> ToGlibPtr<'a, *const ffi::GtkPageRange> for PageRange {
 }
 
 #[doc(hidden)]
+impl<'a> ToGlibContainerFromSlice<'a, *const ffi::GtkPageRange> for PageRange {
+    type Storage = &'a [Self];
+
+    fn to_glib_none_from_slice(t: &'a [Self]) -> (*const ffi::GtkPageRange, &'a [Self]) {
+        assert_initialized_main_thread!();
+        (t.as_ptr() as *const _, t)
+    }
+
+    fn to_glib_container_from_slice(t: &'a [Self]) -> (*const ffi::GtkPageRange, &'a [Self]) {
+        assert_initialized_main_thread!();
+        (ToGlibContainerFromSlice::to_glib_full_from_slice(t), t)
+    }
+
+    fn to_glib_full_from_slice(t: &[Self]) -> *const ffi::GtkPageRange {
+        assert_initialized_main_thread!();
+
+        if t.is_empty() {
+            return ptr::null_mut();
+        }
+
+        unsafe {
+            let res = glib::ffi::g_malloc(std::mem::size_of::<ffi::GtkPageRange>() * t.len())
+                as *mut ffi::GtkPageRange;
+            ptr::copy_nonoverlapping(t.as_ptr() as *const _, res, t.len());
+            res
+        }
+    }
+}
+
+#[doc(hidden)]
 impl FromGlibContainerAsVec<ffi::GtkPageRange, *mut ffi::GtkPageRange> for PageRange {
     unsafe fn from_glib_none_num_as_vec(ptr: *mut ffi::GtkPageRange, num: usize) -> Vec<Self> {
         if num == 0 || ptr.is_null() {
