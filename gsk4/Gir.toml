@@ -15,6 +15,7 @@ generate = [
     "Gsk.Corner",
     "Gsk.GLRenderer",
     "Gsk.GLUniformType",
+    "Gsk.NglRenderer",
     "Gsk.RenderNodeType",
     "Gsk.ScalingFilter",
     "Gsk.SerializationError",
