@@ -8112,6 +8112,8 @@ extern "C" {
     // GtkOrdering
     //=========================================================================
     pub fn gtk_ordering_get_type() -> GType;
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
     pub fn gtk_ordering_from_cmpfunc(cmpfunc_result: c_int) -> GtkOrdering;
 
     //=========================================================================
@@ -8585,6 +8587,8 @@ extern "C" {
     //=========================================================================
     // GtkExpressionWatch
     //=========================================================================
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
     pub fn gtk_expression_watch_get_type() -> GType;
     pub fn gtk_expression_watch_evaluate(
         watch: *mut GtkExpressionWatch,
