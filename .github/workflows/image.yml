@@ -2,6 +2,8 @@ name: github packages
 
 on:
   push:
+    branches:
+      - "master"
     paths:
       - "Dockerfile"
 
