@@ -210,6 +210,7 @@ impl ExpressionWatch {
     }
 }
 
+#[cfg(any(feature = "v4_2", feature = "dox"))]
 impl glib::StaticType for ExpressionWatch {
     #[doc(alias = "gtk_expression_watch_get_type")]
     fn static_type() -> Type {
