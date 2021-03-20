@@ -23,7 +23,7 @@ The properties are defined in the `ObjectImpl` implementation.
 
 The `properties` method describes our set of properties.
 We only want a single one, so we give it a name, describe its type, range and default value. We also declare that the property can be read and be written to.
-`set_property` describes how the underlying values can be changed. It also emits the corresponding "notify" signals.
+`set_property` describes how the underlying values can be changed. It also emits the corresponding "notify" signals[^1]. 
 `get_property` takes care of returning the underlying value when requested.
 
 Now, we have to make sure to modify `number` via `set_property` to assure that the "notify" signal gets emitted.
@@ -76,3 +76,5 @@ All we have to do is to bind the "label" property of `button_1` to the "label" p
 If we now click on one button, the "number" and the "label" property of the other button changes as well.
 
 <div style="text-align:center"><img src="img/gobject_properties.png" /></div>
+
+[^1]: This behavior can be disabled by passing [`EXPLICIT_NOTIFY`](http://gtk-rs.org/docs/glib/struct.ParamFlags.html#associatedconstant.EXPLICIT_NOTIFY) flag during creation of the property. In this case, the only way to emit the signal is to call [`notify`](http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.notify) directly.

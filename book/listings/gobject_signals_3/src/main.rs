@@ -114,6 +114,8 @@ fn on_activate(application: &Application) {
             "number-changed",
             false,
             clone!(@weak label => move |args| {
+                // Get the number from the arguments
+                // args.get(0) would return the `CustomButton` instance
                 let number = args.get(1).unwrap().get::<i32>().unwrap().unwrap();
                 label.set_label(&number.to_string());
                 None
