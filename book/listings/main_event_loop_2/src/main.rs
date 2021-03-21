@@ -37,8 +37,8 @@ fn on_activate(application: &Application) {
     button.connect_clicked(move |_| {
         // The long running operation runs now in a separate thread
         thread::spawn(move || {
-            let ten_seconds = Duration::from_secs(10);
-            thread::sleep(ten_seconds);
+            let five_seconds = Duration::from_secs(5);
+            thread::sleep(five_seconds);
         });
     });
     // ANCHOR_END: callback

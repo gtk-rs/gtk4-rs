@@ -1,6 +1,6 @@
 use std::env::args;
 
-use glib::{timeout_future_seconds, MainContext};
+use glib::{clone, timeout_future_seconds, MainContext};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindowBuilder, ButtonBuilder};
@@ -37,16 +37,15 @@ fn on_activate(application: &Application) {
     // ANCHOR: callback
     // Connect callback
     button.connect_clicked(move |button| {
-        let button = button.clone();
         let main_context = MainContext::default();
         // The main loop executes the asynchronous block
-        main_context.spawn_local(async move {
+        main_context.spawn_local(clone!(@weak button => async move {
             // Deactivate the button until the operation is done
             button.set_sensitive(false);
-            timeout_future_seconds(10).await;
+            timeout_future_seconds(5).await;
             // Activate the button again
             button.set_sensitive(true);
-        });
+        }));
     });
     // ANCHOR_END: callback
 

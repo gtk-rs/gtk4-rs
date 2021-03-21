@@ -38,16 +38,15 @@ fn on_activate(application: &Application) {
     let (sender, receiver) = MainContext::channel(PRIORITY_DEFAULT);
     // Connect callback
     button.connect_clicked(move |_| {
-        let sender = sender.clone();
         let main_context = MainContext::default();
         // The main loop executes the asynchronous block
-        main_context.spawn_local(async move {
+        main_context.spawn_local(clone!(@strong sender => async move {
             // Deactivate the button until the operation is done
             sender.send(false).unwrap();
-            timeout_future_seconds(10).await;
+            timeout_future_seconds(5).await;
             // Activate the button again
             sender.send(true).unwrap();
-        });
+        }));
     });
 
     // The main loop executes the closure as soon as it receives the message

@@ -22,7 +22,7 @@ Let us look at one example.
 {{#rustdoc_include ../listings/main_event_loop_1/src/main.rs}}
 ```
 
-After we press the button, the GUI is completely frozen for 10 seconds.
+After we press the button, the GUI is completely frozen for five seconds.
 We can't even move the window.
 The `sleep` call is an artificial example,
 but it is not unusual wanting to run a slightly longer operation in one go.
@@ -118,8 +118,8 @@ But why did we not do the same thing with our multi-threaded example?
         thread::spawn(move || {
             // Deactivate the button until the operation is done
             button.set_sensitive(false);
-            let ten_seconds = Duration::from_secs(10);
-            thread::sleep(ten_seconds);
+            let five_seconds = Duration::from_secs(5);
+            thread::sleep(five_seconds);
             // Activate the button again
             button.set_sensitive(true);
         });

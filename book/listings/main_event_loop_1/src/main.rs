@@ -34,9 +34,9 @@ fn on_activate(application: &Application) {
 
     // Connect callback
     button.connect_clicked(move |_| {
-        // GUI is blocked for 10 seconds after the button is pressed
-        let ten_seconds = Duration::from_secs(10);
-        std::thread::sleep(ten_seconds);
+        // GUI is blocked for 5 seconds after the button is pressed
+        let five_seconds = Duration::from_secs(5);
+        std::thread::sleep(five_seconds);
     });
 
     // Add button
