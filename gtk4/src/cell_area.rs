@@ -63,7 +63,16 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
 
     fn cell_get<P: IsA<CellRenderer>>(&self, renderer: &P, property_name: &str) -> glib::Value {
         unsafe {
-            let mut value = glib::Value::uninitialized();
+            let cell_class = glib::Class::<CellArea>::from_type(O::static_type()).unwrap();
+            let pspec: Option<glib::ParamSpec> =
+                from_glib_none(ffi::gtk_cell_area_class_find_cell_property(
+                    cell_class.as_ref() as *const _ as *mut ffi::GtkCellAreaClass,
+                    property_name.to_glib_none().0,
+                ));
+            let pspec = pspec.unwrap_or_else(|| {
+                panic!("The CellArea property {} doesn't exists", property_name)
+            });
+            let mut value = glib::Value::from_type(pspec.get_value_type());
             ffi::gtk_cell_area_cell_get_property(
                 self.as_ref().to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
@@ -81,6 +90,23 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
         value: &dyn ToValue,
     ) {
         unsafe {
+            let cell_class = glib::Class::<CellArea>::from_type(O::static_type()).unwrap();
+            let pspec: Option<glib::ParamSpec> =
+                from_glib_none(ffi::gtk_cell_area_class_find_cell_property(
+                    cell_class.as_ref() as *const _ as *mut ffi::GtkCellAreaClass,
+                    property_name.to_glib_none().0,
+                ));
+            let pspec = pspec.unwrap_or_else(|| {
+                panic!("The CellArea property {} doesn't exists", property_name)
+            });
+            if !pspec.get_value_type().is_a(value.to_value_type()) {
+                panic!(
+                    "The CellArea property's value is of wrong type. Expected '{}' but got '{}'",
+                    pspec.get_value_type(),
+                    value.to_value_type()
+                )
+            }
+
             ffi::gtk_cell_area_cell_set_property(
                 self.as_ref().to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
