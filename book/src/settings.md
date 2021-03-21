@@ -1,8 +1,8 @@
 # Settings
 
-We have now learned multiple ways to handle state.
+We have now learned multiple ways to handle states.
 However, every time we close the application all of it is gone.
-Let's learn how to use `GSettings` by storing the state of a [`Switch`](https://gtk-rs.org/gtk4-rs/gtk4/struct.Switch.html) in it.
+Let us learn how to use `GSettings` by storing the state of a [`Switch`](https://gtk-rs.org/gtk4-rs/gtk4/struct.Switch.html) in it.
 
 <div style="text-align:center"><img src="img/settings_buttons.png" /></div>
 
@@ -13,7 +13,7 @@ At the very beginning we have to create a `GSchema` xml file in order to describ
 ```xml
 {{#rustdoc_include ../listings/settings_1/org.gtk.example.gschema.xml}}
 ```
-Let's get through it step by step.
+Let us get through it step by step.
 The `id` is the same application id we used when we created our application.
 
 <span class="filename">Filename: src/main.rs</span>
@@ -67,7 +67,7 @@ But we can make this even better.
 The `Switch` has a property "state" and `Settings` allows us to bind properties to a specific setting.
 So let us do exactly that.
 
-We can remove the `get_boolean` call before initializing the `Switch`, as well as the `connect_state_set` call.
+We can remove the `get_boolean` call before initializing the `Switch` as well as the `connect_state_set` call.
 We then bind the setting to the property by specifying the key, object and name of the property.
 We also specify [`SettingsBindFlags`](https://gtk-rs.org/docs/gio/struct.SettingsBindFlags.html) to control the direction in which the binding works.
 
@@ -77,5 +77,5 @@ We also specify [`SettingsBindFlags`](https://gtk-rs.org/docs/gio/struct.Setting
 {{#rustdoc_include ../listings/settings_2/src/main.rs:settings_bind}}
 ```
 
-Whenever have a property which nicely correspond to a setting, you probably want to bind it to it.
+Whenever you have a property which nicely correspond to a setting, you probably want to bind it to it.
 In other cases, interacting with the settings via the getter and setter methods tends to be the right choice.

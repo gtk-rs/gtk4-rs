@@ -3,12 +3,12 @@
 Welcome to *GUI development with Rust and GTK 4*.
 
 GTK 4 is the newest version of a popular cross-platform widget toolkit written in C.
-However, thanks to GObject-Introspection GTK's API can be easily target by various programming languages.
+However, thanks to GObject-Introspection GTK's API can be easily targeted by various programming languages.
 The API even describes the ownership of its parameters!
 
-Managing ownership without giving up speed is one of Rust's greatest strengths, which makes it an excellent choice to develop GTK apps with it.
-With this combination you don't have to worry about hitting bottlenecks mid-project anymore.
-Additionally, with Rust you'll have nice things like:
+Managing ownership without giving up speed is one of Rust's greatest strengths, which makes it an excellent choice to develop GTK apps with.
+With this combination you do not have to worry about hitting bottlenecks mid-project anymore.
+Additionally, with Rust you will have nice things like:
  - Thread safety
  - Memory safety
  - Sensible dependency management
@@ -24,7 +24,7 @@ If this is not already the case, reading [The Rust Programming Language](https:/
 If you have experience with another low-level language such as C or C++ you
 might find that reading [A half hour to learn Rust](https://fasterthanli.me/articles/a-half-hour-to-learn-rust) gives you sufficient information as well.
 
-Luckily, this, together with the wish to develop graphical applications, is all that is necessary to benefit from this book. 
+Luckily, this — together with the wish to develop graphical applications — is all that is necessary to benefit from this book. 
 
 
 ## How to use this book
@@ -34,9 +34,9 @@ back. However, if you are using it as a reference for a certain topic,
 you might find it useful to just jump into it.
 
 There are two kinds of chapters in this book: concept chapters and project
-chapters. In concept chapters, you’ll learn about an aspect of GTK development. In project
-chapters, we’ll build small programs together, applying what you’ve learned so
-far. 
+chapters.
+In concept chapters, you will learn about an aspect of GTK development.
+In project chapters, we will build small programs together, applying what you have learned so far. 
 
 ## License
 

@@ -2,11 +2,11 @@
 
 GObjects rely heavily on inheritance.
 Therefore, it makes sense that if we want to create a custom GObject, this is done via subclassing.
-Let's see how this works by replacing the button in our "Hello World!" app with a custom one.
+Let us see how this works by replacing the button in our "Hello World!" app with a custom one.
 
-First we need to create an implementation struct that holds the state and overrides the virtual methods.
+First, we need to create an implementation struct that holds the state and overrides the virtual methods.
 It is advised to keep it in a private module, since its state and methods are only meant to be used by the GObject itself.
-It therefore corresponds to the private part of objects in languages like Java and C++.
+It therefore corresponds to the private section of objects in languages like Java and C++.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -16,8 +16,8 @@ It therefore corresponds to the private part of objects in languages like Java a
 The description of the subclassing is in `ObjectSubclass`.
 - `NAME` must be at least three characters long and start with ‘a–z’, ‘A–Z’ or ‘_’.
    We recommend to use crate-name + module-path + object-name in order to avoid name collisions. It is idiomatic to use CamelCase here.
-- `Type` refers to the actual GObject that will be created afterwards
-- `ParentType` is the GObject we inherit of
+- `Type` refers to the actual GObject that will be created afterwards.
+- `ParentType` is the GObject we inherit of.
 
 After that, we would have the option to override the virtual methods of our ancestors.
 Since we only want to have a plain button for now, we override nothing.
@@ -46,7 +46,7 @@ We are able to use `CustomButton` as a drop-in replacement for `gtk::Button`.
 This is cool, but also not very tempting to do in a real application.
 For the gain of zero benefits, it did involve quite a bit of boilerplate after all.
 
-So let's make it a bit more interesting!
+So let us make it a bit more interesting!
 `gtk::Button` does not hold much state, but we can let `CustomButton` hold a number.
 
 <span class="filename">Filename: src/main.rs</span>

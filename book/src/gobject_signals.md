@@ -24,8 +24,8 @@ For pre-existing widgets, we obviously do not want to do that.
 However, if we have custom objects, we might also add custom signals to it.
 So let us see how to do that.
 
-First, we `once_cell` to our dependencies.
-With it, we can [lazily evaluate](https://en.wikipedia.org/wiki/Lazy_evaluation) expressions, which we often need for creating custom GObjects.
+First, we add `once_cell` to our dependencies.
+With this, we can [lazily evaluate](https://en.wikipedia.org/wiki/Lazy_evaluation) expressions, which we often need for creating custom GObjects.
 
 ```toml
 [dependencies]

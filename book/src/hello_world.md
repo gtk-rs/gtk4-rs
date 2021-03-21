@@ -11,7 +11,7 @@ We create an `Application` instance, with an application id and the default appl
 [This guide](https://wiki.gnome.org/HowDoI/ChooseApplicationID) helps you find a suitable application id for your app.
 
 We execute `cargo run` in order to build and run it.
-It builds fine, but nothing appears on ours screen.
+It builds fine, but nothing appears on our screen.
 GTK warns us though, that it would have expected that something would be called in its `activate` step.
 So let us create a window there.
 
@@ -20,7 +20,7 @@ So let us create a window there.
 ```rust ,no_run
 {{#rustdoc_include ../listings/hello_world_2/src/main.rs}}
 ```
-That's better!
+That is better!
 
 <div style="text-align:center"><img src="img/hello_world_empty.png" /></div>
 

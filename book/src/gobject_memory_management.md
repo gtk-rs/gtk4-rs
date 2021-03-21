@@ -7,23 +7,25 @@ Let us see in a set of real life examples why this is something we want to have.
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust ,no_run,compile_fail
+use std::env::args;
+
 use gtk::prelude::*;
-use gtk::{self, Application, ApplicationWindow, Box, Button, Orientation};
+use gtk::{self, Application, ApplicationWindow, Button, Orientation};
 
 fn main() {
     // Create a new application
     let app = Application::new(Some("org.gtk.example"), Default::default())
         .expect("Initialization failed...");
-    app.connect_activate(|app| on_activate(app));
+    app.connect_activate(on_activate);
     
     // Get command-line arguments
-    let args: Vec<String> = std::env::args().collect();
+    let args: Vec<String> = args().collect();
     // Run the application
     app.run(&args);
 }
 
 // When the application is launched…
-fn on_activate(application: &gtk::Application) {
+fn on_activate(application: &Application) {
     // … create a new window …
     let window = ApplicationWindow::new(application);
 
@@ -40,7 +42,7 @@ fn on_activate(application: &gtk::Application) {
     button_decrease.connect_clicked(|_| number -= 1);
 
     // Add buttons
-    let gtk_box = Box::new(Orientation::Vertical, 0);
+    let gtk_box = gtk::Box::new(Orientation::Vertical, 0);
     window.set_child(Some(&gtk_box));
     gtk_box.append(&button_increase);
     gtk_box.append(&button_decrease);
@@ -48,7 +50,7 @@ fn on_activate(application: &gtk::Application) {
 }
 ```
 The idea of this code is that we have a simple app with two buttons.
-If we click on one button, an integer number gets increased, if we press the other one, it gets decreased.
+If we click on one button, an integer number gets increased. If we press the other one, it gets decreased.
 The Rust compiler refuses to compile it though.
 For once the borrow checker kicked in:
 ```console
@@ -104,7 +106,7 @@ For that we can use the [RefCell](https://doc.rust-lang.org/std/cell/struct.RefC
 
 ```
 
-It not very nice though to fill the scope with temporary variables like `number_copy_1`.
+It is not very nice though to fill the scope with temporary variables like `number_copy_1`.
 We can improve that by using the `glib::clone!` macro.
 
 <span class="filename">Filename: src/main.rs</span>
@@ -113,7 +115,7 @@ We can improve that by using the `glib::clone!` macro.
 {{#rustdoc_include ../listings/gobject_memory_management_2/src/main.rs:callback}}
 ```
 
-Since GObjects are reference-counted and mutable as well, so we can pass the buttons the same way as we did with `number`.
+Since GObjects are reference-counted and mutable as well, we can pass the buttons the same way as we did with `number`.
 If we now click on one button, the other button's label gets changed.
 
 <span class="filename">Filename: src/main.rs</span>
@@ -125,7 +127,7 @@ Expand the code, copy and try it on your own machine.
 It will work fine.
 
 But whoops!
-Didn't we forget about one annoyance of reference-counted systems?
+Did we forget about one annoyance of reference-counted systems?
 Of course we did: reference cycles.
 `button_increase` holds a strong reference to `button_decrease` and vice-versa.
 A strong reference keeps the referenced object from being deallocated.

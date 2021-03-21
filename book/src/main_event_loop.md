@@ -35,7 +35,7 @@ For that we just need to spawn a new thread and let the operation run there.
 ```
 
 If you come from another language than Rust, you might be uncomfortable with the thought of spawning new threads before even looking at other options.
-Luckily, Rust's safety guarantees allow you to stop worrying about the nasty bugs, concurrency tends to bring.
+Luckily, Rust's safety guarantees allow you to stop worrying about the nasty bugs that concurrency tends to bring.
 
 Normally we want to keep track of the work in the thread.
 In our case, we don't want the user to spawn additional threads while an existing one is still running.
@@ -68,11 +68,13 @@ Since we are single-threaded again, we could even get rid of the channels while 
 {{#rustdoc_include ../listings/main_event_loop_5/src/main.rs:callback}}
 ```
 
-But why didn't we do the same thing with our multi-threaded example?
+But why did we not do the same thing with our multi-threaded example?
 
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust ,no_run,compile_fail
+# use std::{env::args, thread, time::Duration};
+# 
 # use glib::{clone, MainContext, PRIORITY_DEFAULT};
 # use gtk::glib;
 # use gtk::prelude::*;
@@ -82,10 +84,10 @@ But why didn't we do the same thing with our multi-threaded example?
 #     // Create a new application
 #     let app = Application::new(Some("org.gtk.example"), Default::default())
 #         .expect("Initialization failed...");
-#     app.connect_activate(|app| on_activate(app));
+#     app.connect_activate(on_activate);
 # 
 #     // Get command-line arguments
-#     let args: Vec<String> = std::env::args().collect();
+#     let args: Vec<String> = args().collect();
 #     // Run the application
 #     app.run(&args);
 # }
@@ -113,11 +115,11 @@ But why didn't we do the same thing with our multi-threaded example?
     button.connect_clicked(move |button| {
         button.clone();
         // The long running operation runs now in a separate thread
-        std::thread::spawn(move || {
+        thread::spawn(move || {
             // Deactivate the button until the operation is done
             button.set_sensitive(false);
-            let ten_seconds = std::time::Duration::from_secs(10);
-            std::thread::sleep(ten_seconds);
+            let ten_seconds = Duration::from_secs(10);
+            thread::sleep(ten_seconds);
             // Activate the button again
             button.set_sensitive(true);
         });
@@ -137,7 +139,7 @@ error[E0277]: `NonNull<GObject>` cannot be shared between threads safely
 help: within `gtk4::Button`, the trait `Sync` is not implemented for `NonNull<GObject>`
 ```
 
-After reference cycles we found the second disadvantage of GTK GObjects: they are not thread safe.
+After reference cycles we found the second disadvantage of GTK GObjects: They are not thread safe.
 
 So when should you spawn an `async` block and when should you spawn a thread?
 - If you have `async` functions for your IO-bound operations at your disposal, feel free to spawn them on the main loop.
