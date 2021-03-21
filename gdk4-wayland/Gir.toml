@@ -31,7 +31,6 @@ manual = [
 [[object]]
 name = "GdkWayland.WaylandDevice"
 status = "generate"
-manual_traits = ["WaylandDeviceManualExt"]
     [[object.function]]
     name = "get_wl_keyboard"
     manual = true
@@ -45,7 +44,6 @@ manual_traits = ["WaylandDeviceManualExt"]
 [[object]]
 name = "GdkWayland.WaylandDisplay"
 status = "generate"
-manual_traits = ["WaylandDisplayManualExt"]
     [[object.function]]
     name = "get_wl_compositor"
     manual = true
@@ -56,7 +54,6 @@ manual_traits = ["WaylandDisplayManualExt"]
 [[object]]
 name = "GdkWayland.WaylandMonitor"
 status = "generate"
-manual_traits = ["WaylandMonitorManualExt"]
     [[object.function]]
     name = "get_wl_output"
     manual = true
@@ -64,7 +61,6 @@ manual_traits = ["WaylandMonitorManualExt"]
 [[object]]
 name = "GdkWayland.WaylandSeat"
 status = "generate"
-manual_traits = ["WaylandSeatManualExt"]
     [[object.function]]
     name = "get_wl_seat"
     manual = true
@@ -72,7 +68,6 @@ manual_traits = ["WaylandSeatManualExt"]
 [[object]]
 name = "GdkWayland.WaylandSurface"
 status = "generate"
-manual_traits = ["WaylandSurfaceManualExt"]
     [[object.function]]
     name = "get_wl_surface"
     manual = true
