@@ -1,3 +1,5 @@
+use std::env::args;
+
 // ANCHOR: prelude
 use gtk::prelude::*;
 // ANCHOR_END: prelude
@@ -7,10 +9,10 @@ fn main() {
     // Create a new application
     let app = Application::new(Some("org.gtk.example"), Default::default())
         .expect("Initialization failed...");
-    app.connect_activate(|app| on_activate(app));
+    app.connect_activate(on_activate);
 
     // Get command-line arguments
-    let args: Vec<String> = std::env::args().collect();
+    let args: Vec<String> = args().collect();
     // Run the application
     app.run(&args);
 }

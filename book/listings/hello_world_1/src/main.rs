@@ -1,3 +1,5 @@
+use std::env::args;
+
 use gtk::prelude::*;
 use gtk::Application;
 
@@ -7,7 +9,7 @@ fn main() {
         .expect("Initialization failed...");
 
     // Get command-line arguments
-    let args: Vec<String> = std::env::args().collect();
+    let args: Vec<String> = args().collect();
     // Run the application
     app.run(&args);
 }

@@ -1,3 +1,5 @@
+use std::{env::args, thread, time::Duration};
+
 use glib::{clone, MainContext, PRIORITY_DEFAULT};
 use gtk::glib;
 use gtk::prelude::*;
@@ -7,10 +9,10 @@ fn main() {
     // Create a new application
     let app = Application::new(Some("org.gtk.example"), Default::default())
         .expect("Initialization failed...");
-    app.connect_activate(|app| on_activate(app));
+    app.connect_activate(on_activate);
 
     // Get command-line arguments
-    let args: Vec<String> = std::env::args().collect();
+    let args: Vec<String> = args().collect();
     // Run the application
     app.run(&args);
 }
@@ -38,11 +40,11 @@ fn on_activate(application: &Application) {
     button.connect_clicked(move |_| {
         let sender = sender.clone();
         // The long running operation runs now in a separate thread
-        std::thread::spawn(move || {
+        thread::spawn(move || {
             // Deactivate the button until the operation is done
             sender.send(false).unwrap();
-            let ten_seconds = std::time::Duration::from_secs(10);
-            std::thread::sleep(ten_seconds);
+            let ten_seconds = Duration::from_secs(10);
+            thread::sleep(ten_seconds);
             // Activate the button again
             sender.send(true).unwrap();
         });

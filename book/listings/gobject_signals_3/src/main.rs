@@ -2,7 +2,7 @@ use glib::clone;
 use gtk::{glib, Label, Orientation};
 use gtk::{prelude::*, BoxBuilder};
 use gtk::{Application, ApplicationWindowBuilder};
-use std::cell::RefCell;
+use std::{cell::RefCell, env::args};
 
 // Implementation of our custom GObject
 mod imp {
@@ -88,10 +88,10 @@ fn main() {
     // Create a new application
     let app = Application::new(Some("org.gtk.example"), Default::default())
         .expect("Initialization failed...");
-    app.connect_activate(|app| on_activate(app));
+    app.connect_activate(on_activate);
 
     // Get command-line arguments
-    let args: Vec<String> = std::env::args().collect();
+    let args: Vec<String> = args().collect();
     // Run the application
     app.run(&args);
 }

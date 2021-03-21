@@ -1,3 +1,5 @@
+use std::{env::args, time::Duration};
+
 use gtk::prelude::*;
 use gtk::{self, Application, ApplicationWindowBuilder, ButtonBuilder};
 
@@ -5,10 +7,10 @@ fn main() {
     // Create a new application
     let app = Application::new(Some("org.gtk.example"), Default::default())
         .expect("Initialization failed...");
-    app.connect_activate(|app| on_activate(app));
+    app.connect_activate(on_activate);
 
     // Get command-line arguments
-    let args: Vec<String> = std::env::args().collect();
+    let args: Vec<String> = args().collect();
     // Run the application
     app.run(&args);
 }
@@ -33,7 +35,7 @@ fn on_activate(application: &Application) {
     // Connect callback
     button.connect_clicked(move |_| {
         // GUI is blocked for 10 seconds after the button is pressed
-        let ten_seconds = std::time::Duration::from_secs(10);
+        let ten_seconds = Duration::from_secs(10);
         std::thread::sleep(ten_seconds);
     });
 
