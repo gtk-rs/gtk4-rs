@@ -27,6 +27,7 @@ pub use crate::overlay::OverlayExtManual;
 pub use crate::spin_button::SpinButtonExtManual;
 pub use crate::text_buffer::TextBufferExtManual;
 pub use crate::text_view::TextViewExtManual;
+pub use crate::tree_model::TreeModelExtManual;
 pub use crate::tree_model_filter::TreeModelFilterExtManual;
 pub use crate::tree_sortable::TreeSortableExtManual;
 pub use crate::tree_store::TreeStoreExtManual;

@@ -2160,6 +2160,7 @@ generate_builder = true
 [[object]]
 name = "Gtk.TreeModel"
 status = "generate"
+manual_traits = ["TreeModelExtManual"]
     [[object.function]]
     pattern = ".+"
         [[object.function.parameter]]
@@ -2207,14 +2208,8 @@ status = "generate"
     name = 'unref_node'
     ignore = true # unsafe
     [[object.function]]
-    name = "get_valist"
-    ignore = true # not useful for bindings
-    [[object.function]]
-    name = "get_value"
-    rename = "get"
-    [[object.function]]
-    name = "get"
-    ignore = true # we use get_value
+    pattern = "(get|get_value|get_valist)"
+    ignore = true # generated manually to check for column 
 
 [[object]]
 name = "Gtk.TreeModelFilter"
