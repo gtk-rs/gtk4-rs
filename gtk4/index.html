@@ -213,7 +213,7 @@ flexible space.</p>
 widget attributes, expressed via <code>Constraint</code> instances, to measure
 and allocate widgets.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.ConstraintLayoutChild.html" title="gtk4::ConstraintLayoutChild struct">ConstraintLayoutChild</a></td><td class="docblock-short"><p>A <code>LayoutChild</code> in a <code>ConstraintLayout</code>.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.ConstraintTarget.html" title="gtk4::ConstraintTarget struct">ConstraintTarget</a></td><td class="docblock-short"><p>The <code>ConstraintTarget</code> interface is implemented by objects that
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.ConstraintLayoutChildBuilder.html" title="gtk4::ConstraintLayoutChildBuilder struct">ConstraintLayoutChildBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.ConstraintTarget.html" title="gtk4::ConstraintTarget struct">ConstraintTarget</a></td><td class="docblock-short"><p>The <code>ConstraintTarget</code> interface is implemented by objects that
 can be used as source or target in <code>GtkConstraints</code>. Besides
 <code>Widget</code>, it is also implemented by <code>ConstraintGuide</code>.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.CssLocation.html" title="gtk4::CssLocation struct">CssLocation</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.CssProvider.html" title="gtk4::CssProvider struct">CssProvider</a></td><td class="docblock-short"><p><code>CssProvider</code> is an object implementing the <code>StyleProvider</code> interface.
@@ -249,7 +249,7 @@ elements. It’s essentially a blank widget; you can draw on it. After
 creating a drawing area, the application may want to connect to:</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.DrawingAreaBuilder.html" title="gtk4::DrawingAreaBuilder struct">DrawingAreaBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.DropControllerMotion.html" title="gtk4::DropControllerMotion struct">DropControllerMotion</a></td><td class="docblock-short"><p><code>DropControllerMotion</code> is an event controller meant for tracking
 the pointer hovering over a widget during a drag and drop operation.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.DropDown.html" title="gtk4::DropDown struct">DropDown</a></td><td class="docblock-short"><p><code>DropDown</code> is a widget that allows the user to choose an item
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.DropControllerMotionBuilder.html" title="gtk4::DropControllerMotionBuilder struct">DropControllerMotionBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.DropDown.html" title="gtk4::DropDown struct">DropDown</a></td><td class="docblock-short"><p><code>DropDown</code> is a widget that allows the user to choose an item
 from a list of options. The <code>DropDown</code> displays the selected
 choice.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.DropDownBuilder.html" title="gtk4::DropDownBuilder struct">DropDownBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.DropTarget.html" title="gtk4::DropTarget struct">DropTarget</a></td><td class="docblock-short"><p><code>DropTarget</code> is an event controller implementing a simple way to
@@ -266,9 +266,9 @@ signals used for key bindings, and several signals that an application can
 connect to modify the behavior of a widget.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.EditableLabel.html" title="gtk4::EditableLabel struct">EditableLabel</a></td><td class="docblock-short"><p>A <code>EditableLabel</code> is a <code>Label</code> that allows users to
 edit the text by switching the widget to an “edit mode”.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.EmojiChooser.html" title="gtk4::EmojiChooser struct">EmojiChooser</a></td><td class="docblock-short"><p>The <code>EmojiChooser</code> popover is used by text widgets such as <code>Entry</code> or
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.EditableLabelBuilder.html" title="gtk4::EditableLabelBuilder struct">EditableLabelBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.EmojiChooser.html" title="gtk4::EmojiChooser struct">EmojiChooser</a></td><td class="docblock-short"><p>The <code>EmojiChooser</code> popover is used by text widgets such as <code>Entry</code> or
 <code>TextView</code> to offer users a convenient way to insert Emoji characters.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.Entry.html" title="gtk4::Entry struct">Entry</a></td><td class="docblock-short"><p>The <code>Entry</code> widget is a single line text entry
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.EmojiChooserBuilder.html" title="gtk4::EmojiChooserBuilder struct">EmojiChooserBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.Entry.html" title="gtk4::Entry struct">Entry</a></td><td class="docblock-short"><p>The <code>Entry</code> widget is a single line text entry
 widget. A fairly large set of key bindings are supported
 by default. If the entered text is longer than the allocation
 of the widget, the widget will scroll so that the cursor
@@ -284,15 +284,15 @@ controllers. Those react to a series of <code>GdkEvents</code>, and possibly tri
 actions as a consequence of those.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.EventControllerFocus.html" title="gtk4::EventControllerFocus struct">EventControllerFocus</a></td><td class="docblock-short"><p><code>EventControllerFocus</code> is an event controller meant for situations
 where you need to know where the focus is.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.EventControllerKey.html" title="gtk4::EventControllerKey struct">EventControllerKey</a></td><td class="docblock-short"><p><code>EventControllerKey</code> is an event controller meant for situations
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.EventControllerFocusBuilder.html" title="gtk4::EventControllerFocusBuilder struct">EventControllerFocusBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.EventControllerKey.html" title="gtk4::EventControllerKey struct">EventControllerKey</a></td><td class="docblock-short"><p><code>EventControllerKey</code> is an event controller meant for situations
 where you need access to key events.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.EventControllerLegacy.html" title="gtk4::EventControllerLegacy struct">EventControllerLegacy</a></td><td class="docblock-short"><p><code>EventControllerLegacy</code> is an event controller that gives you
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.EventControllerKeyBuilder.html" title="gtk4::EventControllerKeyBuilder struct">EventControllerKeyBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.EventControllerLegacy.html" title="gtk4::EventControllerLegacy struct">EventControllerLegacy</a></td><td class="docblock-short"><p><code>EventControllerLegacy</code> is an event controller that gives you
 direct access to the event stream. It should only be used as a
 last resort if none of the other event controllers or gestures
 do the job.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.EventControllerMotion.html" title="gtk4::EventControllerMotion struct">EventControllerMotion</a></td><td class="docblock-short"><p><code>EventControllerMotion</code> is an event controller meant for situations
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.EventControllerLegacyBuilder.html" title="gtk4::EventControllerLegacyBuilder struct">EventControllerLegacyBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.EventControllerMotion.html" title="gtk4::EventControllerMotion struct">EventControllerMotion</a></td><td class="docblock-short"><p><code>EventControllerMotion</code> is an event controller meant for situations
 where you need to track the position of the pointer.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.EventControllerScroll.html" title="gtk4::EventControllerScroll struct">EventControllerScroll</a></td><td class="docblock-short"><p><code>EventControllerScroll</code> is an event controller meant to handle
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.EventControllerMotionBuilder.html" title="gtk4::EventControllerMotionBuilder struct">EventControllerMotionBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.EventControllerScroll.html" title="gtk4::EventControllerScroll struct">EventControllerScroll</a></td><td class="docblock-short"><p><code>EventControllerScroll</code> is an event controller meant to handle
 scroll events from mice and touchpads. It is capable of handling
 both discrete and continuous scroll events, abstracting them both
 on the <code>EventControllerScroll::scroll</code> signal (deltas in the
@@ -375,13 +375,13 @@ multiple clicks on a nearby zone, which can be listened for through
 the <code>GestureClick::pressed</code> signal. Whenever time or distance
 between clicks exceed the GTK defaults, <code>GestureClick::stopped</code>
 is emitted, and the click counter is reset.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.GestureDrag.html" title="gtk4::GestureDrag struct">GestureDrag</a></td><td class="docblock-short"><p><code>GestureDrag</code> is a <code>Gesture</code> implementation that recognizes drag
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.GestureClickBuilder.html" title="gtk4::GestureClickBuilder struct">GestureClickBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.GestureDrag.html" title="gtk4::GestureDrag struct">GestureDrag</a></td><td class="docblock-short"><p><code>GestureDrag</code> is a <code>Gesture</code> implementation that recognizes drag
 operations. The drag operation itself can be tracked throughout the
 <code>GestureDrag::drag-begin</code>, <code>GestureDrag::drag-update</code> and
 <code>GestureDrag::drag-end</code> signals, or the relevant coordinates be
 extracted through <code>GestureDragExt::get_offset</code> and
 <code>GestureDragExt::get_start_point</code>.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.GestureLongPress.html" title="gtk4::GestureLongPress struct">GestureLongPress</a></td><td class="docblock-short"><p><code>GestureLongPress</code> is a <code>Gesture</code> implementation able to recognize
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.GestureDragBuilder.html" title="gtk4::GestureDragBuilder struct">GestureDragBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.GestureLongPress.html" title="gtk4::GestureLongPress struct">GestureLongPress</a></td><td class="docblock-short"><p><code>GestureLongPress</code> is a <code>Gesture</code> implementation able to recognize
 long presses, triggering the <code>GestureLongPress::pressed</code> after the
 timeout is exceeded.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.GestureLongPressBuilder.html" title="gtk4::GestureLongPressBuilder struct">GestureLongPressBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.GesturePan.html" title="gtk4::GesturePan struct">GesturePan</a></td><td class="docblock-short"><p><code>GesturePan</code> is a <code>Gesture</code> implementation able to recognize
@@ -392,7 +392,7 @@ construct time, and can be changed through
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.GesturePanBuilder.html" title="gtk4::GesturePanBuilder struct">GesturePanBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.GestureRotate.html" title="gtk4::GestureRotate struct">GestureRotate</a></td><td class="docblock-short"><p><code>GestureRotate</code> is a <code>Gesture</code> implementation able to recognize
 2-finger rotations, whenever the angle between both handled sequences
 changes, the <code>GestureRotate::angle-changed</code> signal is emitted.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.GestureSingle.html" title="gtk4::GestureSingle struct">GestureSingle</a></td><td class="docblock-short"><p><code>GestureSingle</code> is a subclass of <code>Gesture</code>, optimized (although
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.GestureRotateBuilder.html" title="gtk4::GestureRotateBuilder struct">GestureRotateBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.GestureSingle.html" title="gtk4::GestureSingle struct">GestureSingle</a></td><td class="docblock-short"><p><code>GestureSingle</code> is a subclass of <code>Gesture</code>, optimized (although
 not restricted) for dealing with mouse and single-touch gestures. Under
 interaction, these gestures stick to the first interacting sequence, which
 is accessible through <code>GestureSingleExt::get_current_sequence</code> while the
@@ -400,15 +400,15 @@ gesture is being interacted with.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.GestureSingleBuilder.html" title="gtk4::GestureSingleBuilder struct">GestureSingleBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.GestureStylus.html" title="gtk4::GestureStylus struct">GestureStylus</a></td><td class="docblock-short"><p><code>GestureStylus</code> is a <code>Gesture</code> implementation specific to stylus
 input. The provided signals just relay the basic information of the
 stylus events.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.GestureSwipe.html" title="gtk4::GestureSwipe struct">GestureSwipe</a></td><td class="docblock-short"><p><code>GestureSwipe</code> is a <code>Gesture</code> implementation able to recognize
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.GestureStylusBuilder.html" title="gtk4::GestureStylusBuilder struct">GestureStylusBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.GestureSwipe.html" title="gtk4::GestureSwipe struct">GestureSwipe</a></td><td class="docblock-short"><p><code>GestureSwipe</code> is a <code>Gesture</code> implementation able to recognize
 swipes, after a press/move/…/move/release sequence happens, the
 <code>GestureSwipe::swipe</code> signal will be emitted, providing the velocity
 and directionality of the sequence at the time it was lifted.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.GestureZoom.html" title="gtk4::GestureZoom struct">GestureZoom</a></td><td class="docblock-short"><p><code>GestureZoom</code> is a <code>Gesture</code> implementation able to recognize
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.GestureSwipeBuilder.html" title="gtk4::GestureSwipeBuilder struct">GestureSwipeBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.GestureZoom.html" title="gtk4::GestureZoom struct">GestureZoom</a></td><td class="docblock-short"><p><code>GestureZoom</code> is a <code>Gesture</code> implementation able to recognize
 pinch/zoom gestures, whenever the distance between both tracked
 sequences changes, the <code>GestureZoom::scale-changed</code> signal is
 emitted to report the scale factor.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.Grid.html" title="gtk4::Grid struct">Grid</a></td><td class="docblock-short"><p><code>Grid</code> is a container which arranges its child widgets in
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.GestureZoomBuilder.html" title="gtk4::GestureZoomBuilder struct">GestureZoomBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.Grid.html" title="gtk4::Grid struct">Grid</a></td><td class="docblock-short"><p><code>Grid</code> is a container which arranges its child widgets in
 rows and columns, with arbitrary positions and horizontal/vertical spans.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.GridBuilder.html" title="gtk4::GridBuilder struct">GridBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.GridLayout.html" title="gtk4::GridLayout struct">GridLayout</a></td><td class="docblock-short"><p><code>GridLayout</code> is a layout manager which arranges child widgets in
 rows and columns, with arbitrary positions and horizontal/vertical
@@ -426,8 +426,8 @@ Unicode character strings.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.IMContextSimple.html" title="gtk4::IMContextSimple struct">IMContextSimple</a></td><td class="docblock-short"><p><code>IMContextSimple</code> is a simple input method context supporting table-based
 input methods. It has a built-in table of compose sequences that is derived
 from the X11 Compose files.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.IMMulticontext.html" title="gtk4::IMMulticontext struct">IMMulticontext</a></td><td class="docblock-short"><p>Implements</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.IconLookupFlags.html" title="gtk4::IconLookupFlags struct">IconLookupFlags</a></td><td class="docblock-short"><p>Used to specify options for <code>IconTheme::lookup_icon</code></p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.IMContextSimpleBuilder.html" title="gtk4::IMContextSimpleBuilder struct">IMContextSimpleBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.IMMulticontext.html" title="gtk4::IMMulticontext struct">IMMulticontext</a></td><td class="docblock-short"><p>Implements</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.IMMulticontextBuilder.html" title="gtk4::IMMulticontextBuilder struct">IMMulticontextBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.IconLookupFlags.html" title="gtk4::IconLookupFlags struct">IconLookupFlags</a></td><td class="docblock-short"><p>Used to specify options for <code>IconTheme::lookup_icon</code></p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.IconPaintable.html" title="gtk4::IconPaintable struct">IconPaintable</a></td><td class="docblock-short"><p>Contains information found when looking up an icon in
 an icon theme and supports painting it as a <code>gdk::Paintable</code>.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.IconPaintableBuilder.html" title="gtk4::IconPaintableBuilder struct">IconPaintableBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.IconTheme.html" title="gtk4::IconTheme struct">IconTheme</a></td><td class="docblock-short"><p><code>IconTheme</code> provides a facility for looking up icons by name
@@ -562,7 +562,7 @@ and then pass it to the <code>PrintOperation</code> when printing.
 The benefit of splitting this out of the <code>PrintSettings</code> is that
 these affect the actual layout of the page, and thus need to be set
 long before user prints.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.PageSetupUnixDialog.html" title="gtk4::PageSetupUnixDialog struct">PageSetupUnixDialog</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.Paned.html" title="gtk4::Paned struct">Paned</a></td><td class="docblock-short"><p><code>Paned</code> has two panes, arranged either
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.PageSetupUnixDialog.html" title="gtk4::PageSetupUnixDialog struct">PageSetupUnixDialog</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.PageSetupUnixDialogBuilder.html" title="gtk4::PageSetupUnixDialogBuilder struct">PageSetupUnixDialogBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.Paned.html" title="gtk4::Paned struct">Paned</a></td><td class="docblock-short"><p><code>Paned</code> has two panes, arranged either
 horizontally or vertically. The division between
 the two panes is adjustable by the user by dragging
 a handle.</p>
@@ -613,7 +613,7 @@ a system-independent way. The main use for this object is that once
 you’ve printed you can get a settings object that represents the settings
 the user chose, and the next time you print you can pass that object in so
 that the user doesn’t have to re-set all his settings.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.PrintUnixDialog.html" title="gtk4::PrintUnixDialog struct">PrintUnixDialog</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.Printer.html" title="gtk4::Printer struct">Printer</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.PrinterBuilder.html" title="gtk4::PrinterBuilder struct">PrinterBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.ProgressBar.html" title="gtk4::ProgressBar struct">ProgressBar</a></td><td class="docblock-short"><p>The <code>ProgressBar</code> is typically used to display the progress of a long
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.PrintUnixDialog.html" title="gtk4::PrintUnixDialog struct">PrintUnixDialog</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.PrintUnixDialogBuilder.html" title="gtk4::PrintUnixDialogBuilder struct">PrintUnixDialogBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.Printer.html" title="gtk4::Printer struct">Printer</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.PrinterBuilder.html" title="gtk4::PrinterBuilder struct">PrinterBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.ProgressBar.html" title="gtk4::ProgressBar struct">ProgressBar</a></td><td class="docblock-short"><p>The <code>ProgressBar</code> is typically used to display the progress of a long
 running operation. It provides a visual clue that processing is underway.
 The <code>ProgressBar</code> can be used in two different modes: percentage mode
 and activity mode.</p>
