@@ -79,7 +79,9 @@ def regen_crates(path, conf):
     elif path.match("Gir*.toml"):
         print('==> Regenerating "{}"...'.format(path))
 
-        args = [conf.gir_path, "-c", path, "-o", path.parent, "-d", conf.gir_files_path]
+        args = [conf.gir_path, "-c", path, "-o", path.parent]
+        if len(conf.gir_files_paths) > 0:
+            args += ["-d", conf.gir_files_paths]
         if path.parent.name.endswith("sys"):
             args.extend(["-m", "sys"])
         error = False
@@ -134,8 +136,9 @@ def parse_args():
     )
     parser.add_argument(
         "--gir-files-directory",
-        dest="gir_files_path",
-        default=DEFAULT_GIR_FILES_DIRECTORY,
+        nargs="+", # If the option is used, we expect at least one folder!
+        dest="gir_files_paths",
+        default=[],
         type=directory_path,
         help="Path of the gir-files folder",
     )
@@ -162,8 +165,8 @@ def parse_args():
 def main():
     conf = parse_args()
 
-    if conf.gir_files_path == DEFAULT_GIR_FILES_DIRECTORY:
-        if def_check_submodule(conf.gir_files_path, conf) == FAILURE:
+    if len(conf.gir_files_paths) == 0:
+        if def_check_submodule(DEFAULT_GIR_FILES_DIRECTORY, conf) == FAILURE:
             return 1
 
     if conf.gir_path == DEFAULT_GIR_PATH:
