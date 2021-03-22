@@ -357,6 +357,112 @@
 <span id="354">354</span>
 <span id="355">355</span>
 <span id="356">356</span>
+<span id="357">357</span>
+<span id="358">358</span>
+<span id="359">359</span>
+<span id="360">360</span>
+<span id="361">361</span>
+<span id="362">362</span>
+<span id="363">363</span>
+<span id="364">364</span>
+<span id="365">365</span>
+<span id="366">366</span>
+<span id="367">367</span>
+<span id="368">368</span>
+<span id="369">369</span>
+<span id="370">370</span>
+<span id="371">371</span>
+<span id="372">372</span>
+<span id="373">373</span>
+<span id="374">374</span>
+<span id="375">375</span>
+<span id="376">376</span>
+<span id="377">377</span>
+<span id="378">378</span>
+<span id="379">379</span>
+<span id="380">380</span>
+<span id="381">381</span>
+<span id="382">382</span>
+<span id="383">383</span>
+<span id="384">384</span>
+<span id="385">385</span>
+<span id="386">386</span>
+<span id="387">387</span>
+<span id="388">388</span>
+<span id="389">389</span>
+<span id="390">390</span>
+<span id="391">391</span>
+<span id="392">392</span>
+<span id="393">393</span>
+<span id="394">394</span>
+<span id="395">395</span>
+<span id="396">396</span>
+<span id="397">397</span>
+<span id="398">398</span>
+<span id="399">399</span>
+<span id="400">400</span>
+<span id="401">401</span>
+<span id="402">402</span>
+<span id="403">403</span>
+<span id="404">404</span>
+<span id="405">405</span>
+<span id="406">406</span>
+<span id="407">407</span>
+<span id="408">408</span>
+<span id="409">409</span>
+<span id="410">410</span>
+<span id="411">411</span>
+<span id="412">412</span>
+<span id="413">413</span>
+<span id="414">414</span>
+<span id="415">415</span>
+<span id="416">416</span>
+<span id="417">417</span>
+<span id="418">418</span>
+<span id="419">419</span>
+<span id="420">420</span>
+<span id="421">421</span>
+<span id="422">422</span>
+<span id="423">423</span>
+<span id="424">424</span>
+<span id="425">425</span>
+<span id="426">426</span>
+<span id="427">427</span>
+<span id="428">428</span>
+<span id="429">429</span>
+<span id="430">430</span>
+<span id="431">431</span>
+<span id="432">432</span>
+<span id="433">433</span>
+<span id="434">434</span>
+<span id="435">435</span>
+<span id="436">436</span>
+<span id="437">437</span>
+<span id="438">438</span>
+<span id="439">439</span>
+<span id="440">440</span>
+<span id="441">441</span>
+<span id="442">442</span>
+<span id="443">443</span>
+<span id="444">444</span>
+<span id="445">445</span>
+<span id="446">446</span>
+<span id="447">447</span>
+<span id="448">448</span>
+<span id="449">449</span>
+<span id="450">450</span>
+<span id="451">451</span>
+<span id="452">452</span>
+<span id="453">453</span>
+<span id="454">454</span>
+<span id="455">455</span>
+<span id="456">456</span>
+<span id="457">457</span>
+<span id="458">458</span>
+<span id="459">459</span>
+<span id="460">460</span>
+<span id="461">461</span>
+<span id="462">462</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -364,8 +470,9 @@
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">Editable</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">subclass</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">Cast</span>, <span class="ident">GString</span>};
+<span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">Cast</span>, <span class="ident">GString</span>, <span class="ident">ObjectExt</span>, <span class="ident">Quark</span>};
 <span class="kw">use</span> <span class="ident">libc</span>::{<span class="ident">c_char</span>, <span class="ident">c_int</span>};
+<span class="kw">use</span> <span class="ident">once_cell</span>::<span class="ident">sync</span>::<span class="ident">Lazy</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">EditableImpl</span>: <span class="ident">WidgetImpl</span> {
     <span class="kw">fn</span> <span class="ident">insert_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">length</span>: <span class="ident">i32</span>, <span class="ident">position</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">i32</span>) {
@@ -380,7 +487,13 @@
         <span class="self">self</span>.<span class="ident">parent_changed</span>(<span class="ident">editable</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">get_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GString</span>;
+    <span class="kw">fn</span> <span class="ident">get_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GString</span> {
+        <span class="self">self</span>.<span class="ident">parent_get_text</span>(<span class="ident">editable</span>)
+    }
+
+    <span class="kw">fn</span> <span class="ident">get_delegate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Editable</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">parent_get_delegate</span>(<span class="ident">editable</span>)
+    }
 
     <span class="kw">fn</span> <span class="ident">do_insert_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">length</span>: <span class="ident">i32</span>, <span class="ident">position</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">i32</span>) {
         <span class="self">self</span>.<span class="ident">parent_do_insert_text</span>(<span class="ident">editable</span>, <span class="ident">text</span>, <span class="ident">length</span>, <span class="ident">position</span>)
@@ -400,6 +513,47 @@
 }
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">EditableImplExt</span>: <span class="ident">ObjectSubclass</span> {
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_editable_delegate_get_property&quot;</span>)]</span>
+    <span class="kw">fn</span> <span class="ident">delegate_get_property</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>,
+        <span class="ident">prop_id</span>: <span class="ident">usize</span>,
+        <span class="ident">pspec</span>: <span class="kw-2">&amp;</span><span class="ident">glib</span>::<span class="ident">ParamSpec</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">Value</span><span class="op">&gt;</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib</span>::<span class="ident">Value</span>::<span class="ident">from_type</span>(<span class="ident">pspec</span>.<span class="ident">get_value_type</span>());
+
+            <span class="kw">if</span> <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gtk_editable_delegate_get_property</span>(
+                <span class="ident">editable</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">Object</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="ident">prop_id</span> <span class="kw">as</span> <span class="ident">u32</span>,
+                <span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>,
+                <span class="ident">pspec</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+            )) {
+                <span class="prelude-val">Some</span>(<span class="ident">value</span>)
+            } <span class="kw">else</span> {
+                <span class="prelude-val">None</span>
+            }
+        }
+    }
+
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_editable_delegate_set_property&quot;</span>)]</span>
+    <span class="kw">fn</span> <span class="ident">delegate_set_property</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>,
+        <span class="ident">prop_id</span>: <span class="ident">usize</span>,
+        <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">glib</span>::<span class="ident">Value</span>,
+        <span class="ident">pspec</span>: <span class="kw-2">&amp;</span><span class="ident">glib</span>::<span class="ident">ParamSpec</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="kw">unsafe</span> {
+            <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gtk_editable_delegate_set_property</span>(
+                <span class="ident">editable</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">Object</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="ident">prop_id</span> <span class="kw">as</span> <span class="ident">u32</span>,
+                <span class="ident">value</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="ident">pspec</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+            ))
+        }
+    }
+
     <span class="kw">fn</span> <span class="ident">parent_insert_text</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>,
@@ -417,6 +571,7 @@
         <span class="ident">position</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">i32</span>,
     );
     <span class="kw">fn</span> <span class="ident">parent_do_delete_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>, <span class="ident">start_position</span>: <span class="ident">i32</span>, <span class="ident">end_position</span>: <span class="ident">i32</span>);
+    <span class="kw">fn</span> <span class="ident">parent_get_delegate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Editable</span><span class="op">&gt;</span>;
     <span class="kw">fn</span> <span class="ident">parent_get_selection_bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">i32</span>, <span class="ident">i32</span>)<span class="op">&gt;</span>;
     <span class="kw">fn</span> <span class="ident">parent_set_selection_bounds</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -476,6 +631,20 @@
                 .<span class="ident">get_text</span>
                 .<span class="ident">expect</span>(<span class="string">&quot;no parent \&quot;get_text\&quot; implementation&quot;</span>);
 
+            <span class="ident">from_glib_none</span>(<span class="ident">func</span>(
+                <span class="ident">editable</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Editable</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+            ))
+        }
+    }
+
+    <span class="kw">fn</span> <span class="ident">parent_get_delegate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Editable</span><span class="op">&gt;</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="self">Self</span>::<span class="ident">type_data</span>();
+            <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_interface</span>::<span class="op">&lt;</span><span class="ident">Editable</span><span class="op">&gt;</span>()
+                <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi</span>::<span class="ident">GtkEditableInterface</span>;
+            <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
+                .<span class="ident">get_delegate</span>
+                .<span class="ident">expect</span>(<span class="string">&quot;no parent \&quot;get_delegate\&quot; implementation&quot;</span>);
             <span class="ident">from_glib_none</span>(<span class="ident">func</span>(
                 <span class="ident">editable</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Editable</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             ))
@@ -576,18 +745,35 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">EditableImpl</span><span class="op">&gt;</span> <span class="ident">IsImplementable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Editable</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">EditableImpl</span> <span class="op">+</span> <span class="ident">ObjectSubclass</span><span class="op">&gt;</span> <span class="ident">IsImplementable</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Editable</span> {
     <span class="kw">fn</span> <span class="ident">interface_init</span>(<span class="ident">iface</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib</span>::<span class="ident">Interface</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>) {
+        <span class="kw">let</span> <span class="ident">instance_type</span> <span class="op">=</span> <span class="ident">iface</span>.<span class="ident">get_instance_type</span>();
         <span class="kw">let</span> <span class="ident">iface</span> <span class="op">=</span> <span class="ident">iface</span>.<span class="ident">as_mut</span>();
 
         <span class="ident">iface</span>.<span class="ident">insert_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">editable_insert_text</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
         <span class="ident">iface</span>.<span class="ident">delete_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">editable_delete_text</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
         <span class="ident">iface</span>.<span class="ident">changed</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">editable_changed</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
         <span class="ident">iface</span>.<span class="ident">get_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">editable_get_text</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
+        <span class="ident">iface</span>.<span class="ident">get_delegate</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">editable_get_delegate</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
         <span class="ident">iface</span>.<span class="ident">do_insert_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">editable_do_insert_text</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
         <span class="ident">iface</span>.<span class="ident">do_delete_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">editable_do_delete_text</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
         <span class="ident">iface</span>.<span class="ident">get_selection_bounds</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">editable_get_selection_bounds</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
         <span class="ident">iface</span>.<span class="ident">set_selection_bounds</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">editable_set_selection_bounds</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>);
+
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="ident">class_ref</span> <span class="op">=</span> <span class="ident">glib</span>::<span class="ident">object</span>::<span class="ident">Class</span>::<span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">Object</span><span class="op">&gt;</span>::<span class="ident">from_type</span>(<span class="ident">instance_type</span>).<span class="ident">unwrap</span>();
+            <span class="kw">let</span> <span class="ident">object_class</span> <span class="op">=</span>
+                <span class="ident">class_ref</span>.<span class="ident">as_ref</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib</span>::<span class="ident">gobject_ffi</span>::<span class="ident">GObjectClass</span>;
+
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">first_prop</span> <span class="op">=</span> <span class="ident">std</span>::<span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
+            <span class="kw">let</span> <span class="ident">properties</span> <span class="op">=</span> <span class="ident">glib</span>::<span class="ident">gobject_ffi</span>::<span class="ident">g_object_class_list_properties</span>(
+                <span class="ident">object_class</span>,
+                <span class="ident">first_prop</span>.<span class="ident">as_mut_ptr</span>(),
+            );
+            <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">g_free</span>(<span class="ident">properties</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+            <span class="kw">let</span> <span class="ident">first_prop</span> <span class="op">=</span> <span class="ident">first_prop</span>.<span class="ident">assume_init</span>();
+            <span class="ident">ffi</span>::<span class="ident">gtk_editable_install_properties</span>(<span class="ident">object_class</span>, <span class="ident">first_prop</span>);
+        }
     }
 
     <span class="kw">fn</span> <span class="ident">instance_init</span>(<span class="ident">_instance</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib</span>::<span class="ident">subclass</span>::<span class="ident">InitializingObject</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {}
@@ -640,6 +826,32 @@
 
     <span class="ident">imp</span>.<span class="ident">get_text</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Editable</span><span class="op">&gt;</span>(<span class="ident">editable</span>).<span class="ident">unsafe_cast_ref</span>())
         .<span class="ident">to_glib_full</span>()
+}
+
+<span class="kw">static</span> <span class="ident">EDITABLE_GET_DELEGATE_QUARK</span>: <span class="ident">Lazy</span><span class="op">&lt;</span><span class="ident">Quark</span><span class="op">&gt;</span> <span class="op">=</span>
+    <span class="ident">Lazy</span>::<span class="ident">new</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">Quark</span>::<span class="ident">from_string</span>(<span class="string">&quot;gtk-rs-subclass-editable-get-delegate&quot;</span>));
+
+<span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">editable_get_delegate</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">EditableImpl</span><span class="op">&gt;</span>(
+    <span class="ident">editable</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GtkEditable</span>,
+) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GtkEditable</span> {
+    <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">editable</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T</span>::<span class="ident">Instance</span>);
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+
+    <span class="kw">let</span> <span class="ident">wrap</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Editable</span><span class="op">&gt;</span>(<span class="ident">editable</span>);
+
+    <span class="kw">let</span> <span class="ident">delegate</span> <span class="op">=</span> <span class="ident">imp</span>.<span class="ident">get_delegate</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>());
+
+    <span class="kw">match</span> <span class="ident">wrap</span>.<span class="ident">get_qdata</span>::<span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Editable</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">EDITABLE_GET_DELEGATE_QUARK</span>) {
+        <span class="prelude-val">Some</span>(<span class="ident">delegate_data</span>) <span class="op">=</span><span class="op">&gt;</span> {
+            <span class="kw">if</span> <span class="ident">delegate_data</span>.<span class="ident">as_ref</span>() <span class="op">!</span><span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">delegate</span> {
+                <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;The Editable delegate must not change&quot;</span>);
+            }
+        }
+        <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> {
+            <span class="ident">wrap</span>.<span class="ident">set_qdata</span>(<span class="kw-2">*</span><span class="ident">EDITABLE_GET_DELEGATE_QUARK</span>, <span class="ident">delegate</span>.<span class="ident">clone</span>());
+        }
+    };
+    <span class="ident">delegate</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">editable_do_insert_text</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">EditableImpl</span><span class="op">&gt;</span>(
