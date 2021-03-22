@@ -26,6 +26,7 @@ pub mod frame;
 pub mod gl_area;
 pub mod grid;
 pub mod im_context;
+pub mod layout_child;
 pub mod layout_manager;
 pub mod list_box_row;
 pub mod media_file;
@@ -93,6 +94,7 @@ pub mod prelude {
     pub use super::gl_area::{GLAreaImpl, GLAreaImplExt};
     pub use super::grid::GridImpl;
     pub use super::im_context::{IMContextImpl, IMContextImplExt};
+    pub use super::layout_child::LayoutChildImpl;
     pub use super::layout_manager::{LayoutManagerImpl, LayoutManagerImplExt};
     pub use super::list_box_row::{ListBoxRowImpl, ListBoxRowImplExt};
     pub use super::media_file::{MediaFileImpl, MediaFileImplExt};
