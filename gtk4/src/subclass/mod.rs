@@ -52,6 +52,7 @@ pub mod tree_drag_source;
 pub mod tree_view;
 pub mod widget;
 pub mod window;
+pub mod window_group;
 
 pub mod prelude {
     #[doc(hidden)]
@@ -116,4 +117,5 @@ pub mod prelude {
     pub use super::widget::WidgetClassSubclassExt;
     pub use super::widget::{WidgetImpl, WidgetImplExt};
     pub use super::window::{WindowImpl, WindowImplExt};
+    pub use super::window_group::WindowGroupImpl;
 }
