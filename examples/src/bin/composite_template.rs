@@ -13,7 +13,7 @@ mod imp {
 
     /// The private struct, which can hold widgets and other data.
     #[derive(Debug, Default, CompositeTemplate)]
-    #[template(file = "composite_template.ui")]
+    #[template(file = "ui/composite_template.ui")]
     pub struct ExApplicationWindow {
         // The #[template_child] attribute tells the CompositeTemplate macro
         // that a field is meant to be a child within the template.
@@ -60,7 +60,7 @@ mod imp {
     impl ApplicationWindowImpl for ExApplicationWindow {}
 
     #[derive(Debug, Default, CompositeTemplate)]
-    #[template(file = "composite_template_child.ui")]
+    #[template(file = "ui/composite_template_child.ui")]
     pub struct ExMenuButton {
         #[template_child]
         pub toggle: TemplateChild<gtk::ToggleButton>,
