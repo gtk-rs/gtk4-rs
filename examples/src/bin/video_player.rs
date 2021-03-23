@@ -95,7 +95,7 @@ impl VideoPlayerWindow {
 
     fn set_video(&self, video: gio::File) {
         let self_ = imp::VideoPlayerWindow::from_instance(self);
-        self_.video.get().set_file(Some(&video));
+        self_.video.set_file(Some(&video));
     }
 }
 
