@@ -58,12 +58,6 @@ impl EntryBufferBuilder {
 pub const NONE_ENTRY_BUFFER: Option<&EntryBuffer> = None;
 
 pub trait EntryBufferExt: 'static {
-    #[doc(alias = "gtk_entry_buffer_emit_deleted_text")]
-    fn emit_deleted_text(&self, position: u32, n_chars: u32);
-
-    #[doc(alias = "gtk_entry_buffer_emit_inserted_text")]
-    fn emit_inserted_text(&self, position: u32, chars: &str, n_chars: u32);
-
     #[doc(alias = "length")]
     fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -75,27 +69,6 @@ pub trait EntryBufferExt: 'static {
 }
 
 impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
-    fn emit_deleted_text(&self, position: u32, n_chars: u32) {
-        unsafe {
-            ffi::gtk_entry_buffer_emit_deleted_text(
-                self.as_ref().to_glib_none().0,
-                position,
-                n_chars,
-            );
-        }
-    }
-
-    fn emit_inserted_text(&self, position: u32, chars: &str, n_chars: u32) {
-        unsafe {
-            ffi::gtk_entry_buffer_emit_inserted_text(
-                self.as_ref().to_glib_none().0,
-                position,
-                chars.to_glib_none().0,
-                n_chars,
-            );
-        }
-    }
-
     #[doc(alias = "length")]
     fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_length_trampoline<P, F: Fn(&P) + 'static>(

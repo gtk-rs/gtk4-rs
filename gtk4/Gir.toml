@@ -960,12 +960,20 @@ manual_traits = ["EntryBufferExtManual"]
     name = "set_text"
     manual = true
     doc_trait_name = "EntryBufferExtManual"
+    [[object.function]]
+    name = "emit_deleted_text"
+    manual = true
+    doc_trait_name = "EntryBufferExtManual"
+    [[object.function]]
+    name = "emit_inserted_text"
+    manual = true
+    doc_trait_name = "EntryBufferExtManual"
     [[object.signal]]
     name = "deleted-text"
-    ignore = true # TODO: implement me
+    ignore = true
     [[object.signal]]
     name = "inserted-text"
-    ignore = true # TODO: implement me
+    ignore = true
 
 [[object]]
 name = "Gtk.EntryCompletion"
