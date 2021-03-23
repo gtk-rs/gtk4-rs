@@ -80,8 +80,8 @@ where
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.get_impl();
     let wrap: Borrowed<gio::Application> = from_glib_borrow(ptr);
+    imp.startup(wrap.unsafe_cast_ref());
     crate::rt::set_initialized();
-    imp.startup(wrap.unsafe_cast_ref())
 }
 
 unsafe extern "C" fn application_window_added<T: GtkApplicationImpl>(
