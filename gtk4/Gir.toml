@@ -1630,7 +1630,7 @@ trust_return_value_nullability = false
         nullable = false
     [[object.function]]
     name = "set_page_ranges"
-    ignore = true # TODO: implement me
+    manual = true # use &[&PageRange] instead of &[PageRange]
     [[object.function]]
     name = "set_paper_size"
         [[object.function.parameter]]

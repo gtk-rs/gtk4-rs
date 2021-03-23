@@ -297,6 +297,7 @@ mod page_range;
 #[cfg(any(target_os = "linux", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 mod print_job;
+mod print_settings;
 mod property_expression;
 mod recent_data;
 mod requisition;
