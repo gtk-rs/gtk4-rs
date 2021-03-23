@@ -269,7 +269,6 @@ ignore = [
 ]
 
 manual = [
-    # "GObject.ObjectClass",
     # TODO "GLib.Scanner",
     "cairo.Context",
     "cairo.FontOptions",
@@ -1044,9 +1043,10 @@ final_type = true
 name = "Gtk.FileChooser"
 status = "generate"
 trust_return_value_nullability = false
+manual_traits = ["FileChooserExtManual"]
     [[object.function]]
     name = "add_choice"
-    ignore = true # TODO: strange type of options and option_labels
+    manual = true # handle options_id & options_labels
 
 [[object]]
 name = "Gtk.FileChooserDialog"
