@@ -75,6 +75,6 @@ All we have to do is to bind the "label" property of `button_1` to the "label" p
 
 If we now click on one button, the "number" and "label" properties of the other button change as well.
 
-<div style="text-align:center"><img src="img/gobject_properties.png" /></div>
+<div style="text-align:center"><img src="img/gobject_properties.png"/></div>
 
 [^1]: This behavior can be disabled by passing [`EXPLICIT_NOTIFY`](http://gtk-rs.org/docs/glib/struct.ParamFlags.html#associatedconstant.EXPLICIT_NOTIFY) flag during creation of the property. In this case, the only way to emit the signal is to call [`notify`](http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.notify) directly.

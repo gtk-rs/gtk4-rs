@@ -9,7 +9,7 @@ mod imp {
     // Import parent scope
     use super::*;
     // Import necessary objects and traits for subclassing
-    use glib::subclass::Signal;
+    use glib::{ParamFlags, ParamSpec, Value};
     use gtk::subclass::prelude::*;
     use once_cell::sync::Lazy;
 
@@ -34,19 +34,42 @@ mod imp {
             obj.set_label(&self.number.borrow().to_string());
         }
 
-        fn signals() -> &'static [Signal] {
-            static SIGNALS: Lazy<Vec<Signal>> = Lazy::new(|| {
-                vec![Signal::builder(
-                    // Signal name
-                    "max-number-reached",
-                    // Type of the value which will be sent to the receiver
-                    &[i32::static_type().into()],
-                    // Type of the value the receiver sends back
-                    <()>::static_type().into(),
-                )
-                .build()]
+        fn properties() -> &'static [ParamSpec] {
+            static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
+                vec![ParamSpec::int(
+                    // Name
+                    "number",
+                    // Nickname
+                    "number",
+                    // Short description
+                    "number",
+                    // Minimum value
+                    i32::MIN,
+                    // Maximum value
+                    i32::MAX,
+                    // Default value
+                    0,
+                    // The property can be read and written to
+                    ParamFlags::READWRITE,
+                )]
             });
-            SIGNALS.as_ref()
+            PROPERTIES.as_ref()
+        }
+        fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
+            match pspec.get_name() {
+                "number" => {
+                    let input_number = value.get().unwrap().unwrap();
+                    self.number.replace(input_number);
+                }
+                _ => unimplemented!(),
+            }
+        }
+
+        fn get_property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+            match pspec.get_name() {
+                "number" => self.number.borrow().to_value(),
+                _ => unimplemented!(),
+            }
         }
     }
     // ANCHOR_END: object_impl
@@ -55,14 +78,11 @@ mod imp {
     impl WidgetImpl for CustomButton {}
 
     // ANCHOR: button_impl
-    static MAX_NUMBER: i32 = 8;
     // Trait shared by all buttons
     impl ButtonImpl for CustomButton {
         fn clicked(&self, button: &Self::Type) {
-            *self.number.borrow_mut() += 1;
-            button
-                .emit_by_name("max-number-reached", &[&*self.number.borrow()])
-                .unwrap();
+            let incremented_number = self.number.borrow().clone() + 1;
+            button.set_property("number", &incremented_number).unwrap();
             button.set_label(&self.number.borrow().to_string())
         }
     }
@@ -107,24 +127,32 @@ fn on_activate(application: &Application) {
 
     // Create a button
     let button = CustomButton::new();
-    button.set_margin_top(12);
-    button.set_margin_bottom(12);
-    button.set_margin_start(12);
-    button.set_margin_end(12);
 
-    // ANCHOR: signal_handling
-    button
-        .connect_local("max-number-reached", false, move |args| {
-            // Get the number from the arguments
-            // args.get(0) would return the `CustomButton` instance
-            let number = args.get(1).unwrap().get::<i32>().unwrap().unwrap();
-            println!("The maximum number {} has been reached", number);
-            None
-        })
-        .unwrap();
-    // ANCHOR_END: signal_handling
+    // ANCHOR: label
+    let label = Label::new(Some("0"));
+    button.connect_notify_local(
+        Some("number"),
+        clone!(@weak label => move |button, _| {
+            let number = button.get_property("number").unwrap().get::<i32>().unwrap().unwrap();
+            label.set_label(&number.to_string());
+        }),
+    );
+    // ANCHOR_END: label
 
-    window.set_child(Some(&button));
+    // Set up box
+    let gtk_box = BoxBuilder::new()
+        .margin_top(12)
+        .margin_bottom(12)
+        .margin_start(12)
+        .margin_end(12)
+        .valign(gtk::Align::Center)
+        .halign(gtk::Align::Center)
+        .spacing(12)
+        .orientation(Orientation::Vertical)
+        .build();
+    gtk_box.append(&button);
+    gtk_box.append(&label);
+    window.set_child(Some(&gtk_box));
     window.present();
 }
 // ANCHOR_END: activate

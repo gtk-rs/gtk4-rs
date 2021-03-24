@@ -10,6 +10,7 @@ members = [
     "gobject_signals_1",
     "gobject_signals_2",
     "gobject_signals_3",
+    "gobject_signals_4",
     "gobject_subclassing_1",
     "gobject_subclassing_2",
     "hello_world_1",

@@ -1,8 +1,8 @@
 use glib::BindingFlags;
-use gtk::{glib, Orientation};
+use gtk::{glib, Align, Orientation};
 use gtk::{prelude::*, BoxBuilder};
 use gtk::{Application, ApplicationWindowBuilder};
-use std::{cell::Cell, env::args};
+use std::{cell::RefCell, env::args};
 
 // Implementation of our custom GObject
 mod imp {
@@ -16,7 +16,7 @@ mod imp {
     // Object holding the state
     #[derive(Default)]
     pub struct CustomButton {
-        number: Cell<i32>,
+        number: RefCell<i32>,
     }
 
     // The central trait for subclassing a GObject
@@ -31,7 +31,7 @@ mod imp {
     impl ObjectImpl for CustomButton {
         fn constructed(&self, obj: &Self::Type) {
             self.parent_constructed(obj);
-            obj.set_label(&self.number.get().to_string());
+            obj.set_label(&self.number.borrow().to_string());
         }
 
         fn properties() -> &'static [ParamSpec] {
@@ -67,7 +67,7 @@ mod imp {
 
         fn get_property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
             match pspec.get_name() {
-                "number" => self.number.get().to_value(),
+                "number" => self.number.borrow().to_value(),
                 _ => unimplemented!(),
             }
         }
@@ -81,9 +81,9 @@ mod imp {
     // Trait shared by all buttons
     impl ButtonImpl for CustomButton {
         fn clicked(&self, button: &Self::Type) {
-            let incremented_number = self.number.get() + 1;
+            let incremented_number = self.number.borrow().clone() + 1;
             button.set_property("number", &incremented_number).unwrap();
-            button.set_label(&self.number.get().to_string())
+            button.set_label(&self.number.borrow().to_string())
         }
     }
     // ANCHOR_END: button_impl
@@ -151,6 +151,8 @@ fn on_activate(application: &Application) {
         .margin_bottom(12)
         .margin_start(12)
         .margin_end(12)
+        .valign(Align::Center)
+        .halign(Align::Center)
         .spacing(12)
         .orientation(Orientation::Vertical)
         .build();

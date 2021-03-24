@@ -1,7 +1,7 @@
 use std::env::args;
 
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow, Button};
+use gtk::{Application, ApplicationWindow, Button, ButtonBuilder};
 
 fn main() {
     // Create a new application
@@ -24,13 +24,13 @@ fn on_activate(application: &Application) {
     window.set_title(Some("My GTK App"));
 
     // Create a button
-    let button = Button::with_label("Press me!");
-
-    // Set the button margins
-    button.set_margin_top(12);
-    button.set_margin_bottom(12);
-    button.set_margin_start(12);
-    button.set_margin_end(12);
+    let button = ButtonBuilder::new()
+        .label("Press me!")
+        .margin_top(12)
+        .margin_bottom(12)
+        .margin_start(12)
+        .margin_end(12)
+        .build();
 
     // ANCHOR: callback
     // Connect callback
