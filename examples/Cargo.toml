@@ -11,3 +11,66 @@ once_cell = "1.5"
 [dependencies.gtk]
 path = "../gtk4"
 package = "gtk4"
+
+[[bin]]
+name = "basics"
+path = "basics/main.rs"
+
+[[bin]]
+name = "gtk_builder"
+path = "gtk_builder/main.rs"
+
+[[bin]]
+name = "builder_pattern"
+path = "builder_pattern/main.rs"
+
+[[bin]]
+name = "clock"
+path = "clock/main.rs"
+
+[[bin]]
+name = "composite_template"
+path = "composite_template/main.rs"
+
+[[bin]]
+name = "css"
+path = "css/main.rs"
+
+[[bin]]
+name = "custom_editable"
+path = "custom_editable/main.rs"
+
+[[bin]]
+name = "custom_paintable"
+path = "custom_paintable/main.rs"
+
+[[bin]]
+name = "custom_orientable"
+path = "custom_orientable/main.rs"
+
+[[bin]]
+name = "custom_widget"
+path = "custom_widget/main.rs"
+
+[[bin]]
+name = "dialog"
+path = "dialog/main.rs"
+
+[[bin]]
+name = "entry_completion"
+path = "entry_completion/main.rs"
+
+[[bin]]
+name = "entry_undo"
+path = "entry_undo/main.rs"
+
+[[bin]]
+name = "text_viewer"
+path = "text_viewer/main.rs"
+
+
+[[bin]]
+name = "video_player"
+path = "video_player/main.rs"
+
+
