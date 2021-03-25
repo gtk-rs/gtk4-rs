@@ -170,9 +170,7 @@ generate = [
     "Gtk.Popover",
     "Gtk.PopoverMenuFlags",
     "Gtk.PositionType",
-    "Gtk.PrintCapabilities",
     "Gtk.PrintDuplex",
-    "Gtk.Printer",
     "Gtk.PrintError",
     "Gtk.PrintOperationAction",
     "Gtk.PrintOperationPreview",
@@ -448,6 +446,10 @@ trust_return_value_nullability = false
     [[object.function]]
     pattern = "value_(dup|get|take|set)_expression"
     ignore = true
+    [[object.function]]
+    name = "enumerate_printers"
+    cfg_condition = "target_os = \"linux\""
+
 
 [[object]]
 name = "Gtk.AboutDialog"
@@ -1396,6 +1398,10 @@ status = "generate"
 trust_return_value_nullability = false
 
 [[object]]
+name = "Gtk.PrintCapabilities"
+status = "manual" # to cfg_condition on linux see gtk-rs.com/gir/issues1081
+
+[[object]]
 name = "Gtk.PrintContext"
 status = "generate"
 trust_return_value_nullability = false
@@ -1405,10 +1411,16 @@ trust_return_value_nullability = false
         name = "cr"
         # cairo::Context is reference-counted
         const = true
-    
+
+[[object]]
+name = "Gtk.Printer"
+status = "generate"
+cfg_condition = "target_os = \"linux\""
+
 [[object]]
 name = "Gtk.PrintJob"
 status = "generate"
+cfg_condition = "target_os = \"linux\""
     [[object.function]]
     name = "set_page_ranges"
     manual = true # use &[&PageRange] instead of &[PageRange]
