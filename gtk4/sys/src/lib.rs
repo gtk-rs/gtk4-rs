@@ -6,7 +6,8 @@
 #![allow(
     clippy::approx_constant,
     clippy::type_complexity,
-    clippy::unreadable_literal
+    clippy::unreadable_literal,
+    clippy::upper_case_acronyms
 )]
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
 
