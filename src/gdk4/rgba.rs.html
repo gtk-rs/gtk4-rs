@@ -246,6 +246,7 @@
 <span id="243">243</span>
 <span id="244">244</span>
 <span id="245">245</span>
+<span id="246">246</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -263,6 +264,7 @@
 <span class="doccomment">/// color, in a way that is compatible with cairo’s notion of color.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">upper_case_acronyms</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RGBA</span> {
     <span class="kw">pub</span> <span class="ident">red</span>: <span class="ident">f32</span>,
     <span class="kw">pub</span> <span class="ident">green</span>: <span class="ident">f32</span>,
