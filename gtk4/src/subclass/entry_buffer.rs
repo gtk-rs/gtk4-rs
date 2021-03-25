@@ -290,7 +290,7 @@ fn get_text_n_chars(text: &str, n_chars: u32) -> &str {
         // Avoid doing skipping to -1 char
         ""
     } else {
-        &text[..]
+        text
     }
 }
 

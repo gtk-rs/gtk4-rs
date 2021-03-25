@@ -4,6 +4,7 @@ use crate::IMContext;
 use glib::translate::*;
 use glib::IsA;
 
+#[allow(clippy::upper_case_acronyms)]
 pub trait IMContextExtManual {
     #[doc(alias = "gtk_im_context_filter_keypress")]
     fn filter_keypress<R: AsRef<gdk::Event>>(&self, event: &R) -> bool;

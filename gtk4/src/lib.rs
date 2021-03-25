@@ -67,6 +67,7 @@ mod rt;
 #[allow(clippy::clone_on_copy)]
 #[allow(clippy::many_single_char_names)]
 #[allow(clippy::cast_ptr_alignment)]
+#[allow(clippy::upper_case_acronyms)]
 #[allow(unused_imports)]
 mod auto;
 

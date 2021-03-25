@@ -5,6 +5,7 @@ use glib::translate::*;
 use glib::IsA;
 use std::path::Path;
 
+#[allow(clippy::upper_case_acronyms)]
 pub trait IMContextSimpleExtManual: 'static {
     #[doc(alias = "gtk_im_context_simple_add_compose_file")]
     fn add_compose_file<P: AsRef<Path>>(&self, compose_file: P);

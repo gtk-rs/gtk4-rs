@@ -8,6 +8,7 @@ use super::widget::WidgetImpl;
 use crate::{GLArea, Widget};
 use gdk::GLContext;
 
+#[allow(clippy::upper_case_acronyms)]
 pub trait GLAreaImpl: GLAreaImplExt + WidgetImpl {
     fn create_context(&self, gl_area: &Self::Type) -> Option<GLContext> {
         self.parent_create_context(gl_area)
@@ -22,6 +23,7 @@ pub trait GLAreaImpl: GLAreaImplExt + WidgetImpl {
     }
 }
 
+#[allow(clippy::upper_case_acronyms)]
 pub trait GLAreaImplExt: ObjectSubclass {
     fn parent_create_context(&self, gl_area: &Self::Type) -> Option<GLContext>;
     fn parent_render(&self, gl_area: &Self::Type, context: &GLContext) -> bool;
