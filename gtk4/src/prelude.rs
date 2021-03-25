@@ -24,6 +24,7 @@ pub use crate::list_store::GtkListStoreExtManual;
 pub use crate::media_stream::MediaStreamExtManual;
 pub use crate::notebook::NotebookExtManual;
 pub use crate::overlay::OverlayExtManual;
+pub use crate::shortcut_trigger::ShortcutTriggerExtManual;
 pub use crate::spin_button::SpinButtonExtManual;
 pub use crate::text_buffer::TextBufferExtManual;
 pub use crate::text_view::TextViewExtManual;
