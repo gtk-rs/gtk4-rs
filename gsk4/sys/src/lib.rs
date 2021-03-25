@@ -1307,6 +1307,8 @@ extern "C" {
     ) -> *const pango::PangoGlyphInfo;
     pub fn gsk_text_node_get_num_glyphs(node: *const GskTextNode) -> c_uint;
     pub fn gsk_text_node_get_offset(node: *const GskTextNode) -> *const graphene::graphene_point_t;
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
     pub fn gsk_text_node_has_color_glyphs(node: *const GskTextNode) -> gboolean;
 
     //=========================================================================
