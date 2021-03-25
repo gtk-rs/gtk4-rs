@@ -7,6 +7,7 @@ use glib::translate::*;
 use glib::{Cast, GString, IsA, Object};
 use pango::AttrList;
 
+#[allow(clippy::upper_case_acronyms)]
 pub trait IMContextImpl: IMContextImplExt + ObjectImpl {
     fn commit(&self, im_context: &Self::Type, string: &str) {
         self.parent_commit(im_context, string)
@@ -58,6 +59,7 @@ pub trait IMContextImpl: IMContextImplExt + ObjectImpl {
     }
 }
 
+#[allow(clippy::upper_case_acronyms)]
 pub trait IMContextImplExt: ObjectSubclass {
     fn parent_commit(&self, im_context: &Self::Type, string: &str);
     fn parent_delete_surrounding(&self, im_context: &Self::Type, offset: i32, n_chars: i32)

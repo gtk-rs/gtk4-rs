@@ -33,6 +33,7 @@ macro_rules! skip_assert_initialized {
 #[allow(clippy::cognitive_complexity)]
 #[allow(clippy::clone_on_copy)]
 #[allow(clippy::cast_ptr_alignment)]
+#[allow(clippy::upper_case_acronyms)]
 #[allow(unused_imports)]
 mod auto;
 

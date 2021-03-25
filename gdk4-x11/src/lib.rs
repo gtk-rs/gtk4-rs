@@ -13,6 +13,7 @@ mod rt;
 
 #[allow(unused_imports)]
 #[allow(clippy::let_and_return)]
+#[allow(clippy::upper_case_acronyms)]
 mod auto;
 
 pub use auto::*;
