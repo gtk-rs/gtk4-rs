@@ -64,6 +64,12 @@ impl TextNode {
     }
 
     #[doc(alias = "gsk_text_node_has_color_glyphs")]
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    // rustdoc-stripper-ignore-next
+    //
+    // Due to https://gitlab.gnome.org/GNOME/gtk/-/issues/3675 this function wasn't properly
+    // exported in 4.0.0 and so requires 4.1.2 at least for it to work properly.
     pub fn has_color_glyphs(&self) -> bool {
         unsafe { from_glib(ffi::gsk_text_node_has_color_glyphs(self.to_glib_none().0)) }
     }
