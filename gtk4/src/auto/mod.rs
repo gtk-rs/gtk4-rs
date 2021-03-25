@@ -715,8 +715,14 @@ pub use self::popover_menu_bar::PopoverMenuBarBuilder;
 mod print_context;
 pub use self::print_context::PrintContext;
 
+#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 mod print_job;
+#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 pub use self::print_job::PrintJob;
+#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 pub use self::print_job::PrintJobBuilder;
 
 mod print_operation;
@@ -741,8 +747,14 @@ pub use self::print_unix_dialog::PrintUnixDialog;
 #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 pub use self::print_unix_dialog::PrintUnixDialogBuilder;
 
+#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 mod printer;
+#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 pub use self::printer::Printer;
+#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 pub use self::printer::PrinterBuilder;
 
 mod progress_bar;
@@ -1203,7 +1215,6 @@ pub use self::flags::IconLookupFlags;
 pub use self::flags::InputHints;
 pub use self::flags::PickFlags;
 pub use self::flags::PopoverMenuFlags;
-pub use self::flags::PrintCapabilities;
 pub use self::flags::ShortcutActionFlags;
 pub use self::flags::StateFlags;
 pub use self::flags::StyleContextPrintFlags;

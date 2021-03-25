@@ -108,6 +108,7 @@ mod enums;
 mod event_controller_key;
 mod expression;
 mod file_chooser_dialog;
+mod flags;
 mod flow_box;
 mod functions;
 mod gesture_stylus;
@@ -128,6 +129,8 @@ mod overlay;
 mod pad_action_entry;
 mod pad_controller;
 mod page_range;
+#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 mod print_job;
 mod recent_data;
 mod requisition;
@@ -157,6 +160,9 @@ pub use expression::{
     ClosureExpression, ConstantExpression, Expression, ExpressionWatch, ObjectExpression,
     PropertyExpression, NONE_EXPRESSION,
 };
+#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+pub use flags::PrintCapabilities;
 pub use functions::*;
 pub use pad_action_entry::PadActionEntry;
 pub use page_range::PageRange;
