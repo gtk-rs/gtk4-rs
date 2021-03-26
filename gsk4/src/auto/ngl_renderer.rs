@@ -3,11 +3,7 @@
 // DO NOT EDIT
 
 use crate::Renderer;
-#[cfg(any(feature = "v4_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
 use glib::object::Cast;
-#[cfg(any(feature = "v4_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
 use glib::translate::*;
 use std::fmt;
 
@@ -20,8 +16,6 @@ glib::wrapper! {
 }
 
 impl NglRenderer {
-    #[cfg(any(feature = "v4_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
     #[doc(alias = "gsk_ngl_renderer_new")]
     pub fn new() -> NglRenderer {
         assert_initialized_main_thread!();
