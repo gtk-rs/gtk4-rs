@@ -1,7 +1,3 @@
-//! # CSS example
-//!
-//! This example demonstrates how to use CSS with gtk4-rs.
-
 use gtk::prelude::*;
 
 use std::env::args;

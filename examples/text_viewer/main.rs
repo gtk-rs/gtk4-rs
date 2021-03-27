@@ -1,7 +1,3 @@
-//! # GtkBox, Scrollable Text View and File Chooser
-//!
-//! A simple text file viewer
-
 use gtk::glib;
 use gtk::prelude::*;
 

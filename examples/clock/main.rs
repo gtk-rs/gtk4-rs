@@ -1,8 +1,3 @@
-//! # Clock example
-//!
-//! This example demonstrates how to use `gtk::timeout_add_seconds` to run
-//! a periodic task, implementing a clock in this example.
-
 use chrono::Local;
 use gtk::glib;
 use gtk::prelude::*;

@@ -1,5 +1,3 @@
-//! This example shows how to add an `Entry` with enabled undo support.
-
 use gtk::prelude::*;
 use std::env::args;
 

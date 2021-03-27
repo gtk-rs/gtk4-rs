@@ -1,7 +1,3 @@
-//! # Composite Template Example
-//!
-//! This example demonstrates how to create a widget using GTK's composite templates.
-
 use glib::subclass::prelude::*;
 use gtk::prelude::*;
 use gtk::subclass::widget::WidgetImplExt;

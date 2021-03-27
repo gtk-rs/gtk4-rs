@@ -4,4 +4,4 @@ This example demonstrates how to create a top-level `window`, set its title, siz
 position, how to add a `button` to this `window` and how to connect signals with
 actions.
 
-![Screenshot](app.png)
+![Screenshot](screenshot.png)

@@ -2,4 +2,4 @@
 
 This example demonstrates how to use the builder with an imported UI file
 
-![Screenshot](app.png)
+![Screenshot](screenshot.png)

@@ -2,4 +2,4 @@
 
 This example demonstrates how to create a widget using GTK's composite templates.
 
-![Screenshot](app.png)
+![Screenshot](screenshot.png)

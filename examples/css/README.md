@@ -2,4 +2,4 @@
 
 This example demonstrates how to use CSS with gtk4-rs.
 
-![Screenshot](app.png)
+![Screenshot](screenshot.png)

@@ -1,7 +1,3 @@
-//! # Video Player
-//!
-//! This example demonstrates how to use `gtk::Video` to play videos.
-
 use glib::clone;
 use glib::subclass::prelude::*;
 use gtk::{gio, glib, prelude::*, CompositeTemplate};
