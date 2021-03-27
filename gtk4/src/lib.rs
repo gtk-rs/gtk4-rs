@@ -16,6 +16,10 @@ pub use ffi;
 pub use cairo;
 pub use gdk;
 pub use gdk_pixbuf;
+#[cfg(any(feature = "wayland", feature = "dox"))]
+pub use gdk_wayland;
+#[cfg(any(feature = "x11", feature = "dox"))]
+pub use gdk_x11;
 pub use gio;
 pub use glib;
 pub use graphene;

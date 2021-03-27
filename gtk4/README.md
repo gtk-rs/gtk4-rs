@@ -35,6 +35,13 @@ gdk = {version = "0.1", package = "gdk4"}
 gtk = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gtk4" }
 ```
 
+### Features
+
+| Feature | Description |
+| ---     | ----------- |
+| `x11` | Re-export `gdk4-x11` |
+| `wayland` | Re-export `gdk4-wayland` |
+
 ### See Also
 
 - [glib](https://crates.io/crates/glib)

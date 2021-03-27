@@ -23,6 +23,8 @@ name = "gtk4"
 purge-lgpl-docs = ["gtk-rs-lgpl-docs", "gdk/purge-lgpl-docs", "gsk/purge-lgpl-docs"]
 embed-lgpl-docs = ["gtk-rs-lgpl-docs", "gdk/embed-lgpl-docs", "gsk/embed-lgpl-docs"]
 dox = ["gdk/dox", "gsk/dox", "ffi/dox"]
+x11 = ["gdk-x11"]
+wayland = ["gdk-wayland"]
 
 [package.metadata.docs.rs]
 features = ["dox", "embed-lgpl-docs"]
@@ -48,6 +50,8 @@ graphene = { package = "graphene-rs", git = "https://github.com/gtk-rs/gtk-rs" }
 gsk = { package = "gsk4", path = "../gsk4" }
 gdk-pixbuf = { git = "https://github.com/gtk-rs/gtk-rs" }
 pango = { git = "https://github.com/gtk-rs/gtk-rs", features = ["v1_46"] }
+gdk-x11 = { package = "gdk4-x11", path = "../gdk4-x11", optional = true}
+gdk-wayland = { package = "gdk4-wayland", path = "../gdk4-wayland", optional = true}
 
 [dev-dependencies]
 gir-format-check = "^0.1"
