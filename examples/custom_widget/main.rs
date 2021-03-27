@@ -1,5 +1,3 @@
-//! This example shows how to create a custom widget that behaves like `gtk::Button`.
-
 use std::cell::RefCell;
 use std::env;
 

@@ -1,5 +1,3 @@
-//! This example demonstrates how to create a custom orientable.
-
 use std::cell::RefCell;
 use std::env;
 

@@ -1,5 +1,3 @@
-//! This example demonstrates how to use the builder with an imported UI file
-
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Builder, Button, MessageDialog, ResponseType};
 

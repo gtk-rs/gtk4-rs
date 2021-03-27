@@ -1,7 +1,3 @@
-//! # Dialog Example
-//!
-//! Example of how to obtain the response to a dialog as a future
-
 use gtk::glib::clone;
 use gtk::glib::signal::Inhibit;
 use gtk::prelude::*;

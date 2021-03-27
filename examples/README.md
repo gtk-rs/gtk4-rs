@@ -7,6 +7,7 @@ Consists of various examples to get familiar with writing GTK applications using
 - [Clock example](./clock/)
 - [Composite Template](./composite_template/)
 - [CSS](./css/)
+- [Custom Application](./custom_application/)
 - [Custom Editable](./custom_editable/)
 - [Custom Orientable](./custom_orientable/)
 - [Custom Paintable](./custom_paintable/)
