@@ -1,5 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+#![cfg_attr(feature = "dox", feature(doc_cfg))]
 #![allow(clippy::let_unit_value)]
 #![allow(clippy::new_without_default)]
 #![allow(clippy::type_complexity)]
