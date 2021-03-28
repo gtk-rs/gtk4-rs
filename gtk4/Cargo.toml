@@ -22,7 +22,7 @@ name = "gtk4"
 [features]
 purge-lgpl-docs = ["gtk-rs-lgpl-docs", "gdk/purge-lgpl-docs", "gsk/purge-lgpl-docs"]
 embed-lgpl-docs = ["gtk-rs-lgpl-docs", "gdk/embed-lgpl-docs", "gsk/embed-lgpl-docs"]
-dox = ["gdk/dox", "gsk/dox", "ffi/dox"]
+dox = ["gdk/dox", "gsk/dox", "ffi/dox", "x11", "wayland"]
 x11 = ["gdk-x11"]
 wayland = ["gdk-wayland"]
 v4_2 = ["ffi/v4_2", "gdk/v4_2", "gsk/v4_2"]

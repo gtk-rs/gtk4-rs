@@ -2,6 +2,7 @@
 
 // TODO: Introduction
 
+#![cfg_attr(feature = "dox", feature(doc_cfg))]
 #![allow(clippy::let_unit_value)]
 #![allow(clippy::new_without_default)]
 #![allow(clippy::type_complexity)]
@@ -16,9 +17,11 @@ pub use ffi;
 pub use cairo;
 pub use gdk;
 pub use gdk_pixbuf;
-#[cfg(any(feature = "wayland", feature = "dox"))]
+#[cfg(any(all(feature = "wayland", target_os = "linux"), feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "wayland", target_os = "linux")))]
 pub use gdk_wayland;
-#[cfg(any(feature = "x11", feature = "dox"))]
+#[cfg(any(all(feature = "x11", target_os = "linux"), feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "x11", target_os = "linux")))]
 pub use gdk_x11;
 pub use gio;
 pub use glib;
