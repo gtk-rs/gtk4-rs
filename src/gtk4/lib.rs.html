@@ -175,6 +175,10 @@
 <span id="172">172</span>
 <span id="173">173</span>
 <span id="174">174</span>
+<span id="175">175</span>
+<span id="176">176</span>
+<span id="177">177</span>
+<span id="178">178</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -194,6 +198,10 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">cairo</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gdk</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gdk_pixbuf</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;wayland&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gdk_wayland</span>;
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;x11&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gdk_x11</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gio</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">glib</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">graphene</span>;
