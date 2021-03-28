@@ -24,6 +24,7 @@ purge-lgpl-docs = ["gtk-rs-lgpl-docs", "gdk/purge-lgpl-docs", "graphene/purge-lg
 embed-lgpl-docs = ["gtk-rs-lgpl-docs", "gdk/embed-lgpl-docs", "graphene/embed-lgpl-docs", "cairo-rs/embed-lgpl-docs"]
 vulkan = []
 broadway = []
+v4_2 = ["ffi/v4_2", "gdk/v4_2"]
 
 [package.metadata.docs.rs]
 features = ["dox", "embed-lgpl-docs"]

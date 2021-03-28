@@ -41,6 +41,7 @@ gtk = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gtk4" }
 | ---     | ----------- |
 | `x11` | Re-export `gdk4-x11` |
 | `wayland` | Re-export `gdk4-wayland` |
+| `v4_2` | Enable the new APIs part of GTK 4.2 |
 
 ### See Also
 
