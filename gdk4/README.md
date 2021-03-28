@@ -35,6 +35,12 @@ gtk = {version = "0.1", package = "gtk4"}
 gdk = { git = "https://github.com/gtk-rs/gtk4-rs.git", package = "gdk4" }
 ```
 
+### Features
+
+| Feature | Description |
+| ---     | ----------- |
+| `v4_2` | Enable the new APIs part of GTK 4.2 |
+
 ### See Also
 
 - [glib](https://crates.io/crates/glib)

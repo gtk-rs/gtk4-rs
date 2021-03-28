@@ -22,6 +22,7 @@ name = "gdk4"
 dox = ["ffi/dox", "glib/dox", "gio/dox", "gdk-pixbuf/dox", "cairo-rs/dox", "pango/dox"]
 purge-lgpl-docs = ["gtk-rs-lgpl-docs", "cairo-rs/purge-lgpl-docs", "gdk-pixbuf/purge-lgpl-docs", "gio/purge-lgpl-docs"]
 embed-lgpl-docs = ["gtk-rs-lgpl-docs", "cairo-rs/embed-lgpl-docs", "gdk-pixbuf/embed-lgpl-docs", "gio/embed-lgpl-docs"]
+v4_2 = ["ffi/v4_2"]
 
 [package.metadata.docs.rs]
 features = ["dox", "embed-lgpl-docs"]
