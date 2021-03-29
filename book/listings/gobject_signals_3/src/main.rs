@@ -1,6 +1,5 @@
-use glib::clone;
-use gtk::{glib, Label, Orientation};
-use gtk::{prelude::*, BoxBuilder};
+use gtk::glib;
+use gtk::prelude::*;
 use gtk::{Application, ApplicationWindowBuilder};
 use std::{cell::RefCell, env::args};
 
@@ -39,7 +38,7 @@ mod imp {
                 vec![Signal::builder(
                     // Signal name
                     "max-number-reached",
-                    // Type of the value which will be sent to the receiver
+                    // Types of the values which will be sent to the receiver
                     &[i32::static_type().into()],
                     // Type of the value the receiver sends back
                     <()>::static_type().into(),
@@ -59,10 +58,17 @@ mod imp {
     // Trait shared by all buttons
     impl ButtonImpl for CustomButton {
         fn clicked(&self, button: &Self::Type) {
+            // Increase `number` by 1
             *self.number.borrow_mut() += 1;
-            button
-                .emit_by_name("max-number-reached", &[&*self.number.borrow()])
-                .unwrap();
+            // If `number` reached `MAX_NUMBER`,
+            // emit "max-number-reached" signal and set `number` back to 0
+            if *self.number.borrow() == MAX_NUMBER {
+                button
+                    .emit_by_name("max-number-reached", &[&*self.number.borrow()])
+                    .unwrap();
+                self.number.replace(0);
+            }
+            // Set label of `button`
             button.set_label(&self.number.borrow().to_string())
         }
     }

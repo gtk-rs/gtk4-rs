@@ -1,9 +1,9 @@
 # Signals
 
-Whenever an event occurs, the appropriate signal will be emitted by the affected widget.
+GObject signals are a system for registering callbacks for specific events.
 For example, if we press on a button, the "clicked" signal will be emitted.
-We then connect a function to the signal, which will be called whenever the signal will be emitted.
-`gtk-rs` provides convenience methods for all widgets to do that.
+We only need to connect a callback to the "clicked" signal and it will be called whenever the button has be clicked on.
+`gtk-rs` provides convenience methods for all widgets to do exactly that.
 In our "Hello World" example we connected the "clicked" signal to a closure which sets the label of the button to "Hello World" as soon as it gets called.
 
 <span class="filename">Filename: src/main.rs</span>
@@ -20,12 +20,12 @@ If we wanted to, we could have connected to it with the general (but much more v
 {{#rustdoc_include ../listings/gobject_signals_2/src/main.rs:callback}}
 ```
 
-For pre-existing widgets, we obviously do not want to do that.
+For pre-existing GObjects, we do not want to do that.
 However, if we have custom objects, we might also add custom signals to it.
 So let us see how to do that.
 
 First, we add `once_cell` to our dependencies.
-With this, we can [lazily evaluate](https://en.wikipedia.org/wiki/Lazy_evaluation) expressions, which we often need for creating custom GObjects.
+With this, we can [lazily evaluate](https://en.wikipedia.org/wiki/Lazy_evaluation) expressions, which we often need when working with custom GObjects.
 
 ```toml
 [dependencies]
@@ -42,8 +42,8 @@ First we override the necessary methods in `ObjectImpl`.
 ```
 
 The `signal` method is responsible for defining a set of signals.
-We only create a single signal named "number-changed".
-When emitted, it sends an `i32` value and expects nothing in return.
+We only create a single signal named "max-number-reached".
+When emitted, it sends a single `i32` value and expects nothing in return.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -51,20 +51,9 @@ When emitted, it sends an `i32` value and expects nothing in return.
 {{#rustdoc_include ../listings/gobject_signals_3/src/main.rs:button_impl}}
 ```
 
-We want the signal to be emitted, whenever `number` gets changed.
-Luckily that only happens when the button has been clicked on.
+We want the signal to be emitted, whenever `number` reached `MAX_NUMBER`.
 Together with the signal we send the value `number` currently holds.
+After we did that, we set `number` back to 0.
 
 
-<span class="filename">Filename: src/main.rs</span>
-
-```rust ,no_run
-{{#rustdoc_include ../listings/gobject_signals_3/src/main.rs:label}}
-```
-
-By adding a label, we can update it whenever the "number-changed" signal gets emitted.
-
-<div style="text-align:center"><img src="img/gobject_signals.png" /></div>
-
-
-Signals are especially useful, if you want to notify users of your GObject that a certain event occurred.
+Signals are especially useful, if you want to notify consumers of your GObject that a certain event occurred.

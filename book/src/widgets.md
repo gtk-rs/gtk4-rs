@@ -5,15 +5,15 @@ GTK offers many-preexisting ones and if those do not fit, you can even create cu
 There are display widgets, buttons, containers and windows.
 One kind of widget might be able to contain other widgets, it might present information and it might react to interaction.
 
-The [Widget Gallery](https://developer.gnome.org/gtk4/stable/ch08.html) is useful to find out which widget fits your needs.
+The [Widget Gallery](https://docs.gtk.org/gtk4/visual_index.html) is useful to find out which widget fits your needs.
 Let us say we want to add a button to our app.
 We have quite a bit of choice here, but let us take the simplest one.
 Its name can be found out by clicking on the image ⇒ it is a `GtkButton`.
 
 <div style="text-align:center"><img src="img/widgets_button.png" /></div>
 
-
-The [GTK documentation](https://developer.gnome.org/gtk4/stable/GtkButton.html) tells us also that the (simplified) inheritance tree of a `GtkButton` looks like this:
+GTK is an object-oriented framework, so all widgets derive are part of an inheritance tree with `GObject` at the top.
+The [GTK documentation](https://docs.gtk.org/gtk4/class.Button.html) tells us also that the (simplified) inheritance tree of a `GtkButton` looks like this:
 
 ```console
 GObject
@@ -21,7 +21,7 @@ GObject
     ╰── GtkButton
 ```
 
-Additionally, the GtkButton implements the interfaces `GtkAccessible` `GtkBuildable`, `GtkConstraintTarget`, `GtkActionable`.
+Additionally, the GtkButton implements the interfaces `GtkAccessible`, `GtkActionable`, `GtkBuildable`, `GtkConstraintTarget`.
 
 Now let us compare that with the corresponding `Button` struct in `gtk-rs`.
 The [gtk-rs documentation](https://gtk-rs.org/gtk4-rs/gtk4/struct.Button.html#implements) tells us which methods and traits it implements.

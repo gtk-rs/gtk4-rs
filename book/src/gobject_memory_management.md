@@ -132,7 +132,7 @@ Of course we did: reference cycles.
 `button_increase` holds a strong reference to `button_decrease` and vice-versa.
 A strong reference keeps the referenced object from being deallocated.
 If this chain leads to a circle, none of the objects in this cycle ever get deallocated.
-We obviously do not want our apps to keep allocating memory, so let us use weak references for the buttons instead[^1].
+We do not want our apps to keep allocating memory, so let us use weak references for the buttons instead[^1].
 
 <span class="filename">Filename: src/main.rs</span>
 
