@@ -1,6 +1,6 @@
 use std::env::args;
 
-use glib::{clone, timeout_future_seconds, MainContext, PRIORITY_DEFAULT};
+use glib::{clone, timeout_future_seconds, Continue, MainContext, PRIORITY_DEFAULT};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindowBuilder, ButtonBuilder};
@@ -52,10 +52,12 @@ fn on_activate(application: &Application) {
     // The main loop executes the closure as soon as it receives the message
     receiver.attach(
         None,
-        clone!(@weak button => move |enable_button|{
-            button.set_sensitive(enable_button);
-            glib::Continue(true)
-    } ),
+        clone!(@weak button => @default-return Continue(false),
+                    move |enable_button| {
+                        button.set_sensitive(enable_button);
+                        Continue(true)
+                    }
+        ),
     );
     // ANCHOR_END: callback
 
