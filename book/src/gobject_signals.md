@@ -2,7 +2,7 @@
 
 GObject signals are a system for registering callbacks for specific events.
 For example, if we press on a button, the "clicked" signal will be emitted.
-We only need to connect a callback to the "clicked" signal and it will be called whenever the button has be clicked on.
+We only need to connect a callback to the "clicked" signal, which will be called whenever the button has be clicked on.
 `gtk-rs` provides convenience methods for all widgets to do exactly that.
 In our "Hello World" example we connected the "clicked" signal to a closure which sets the label of the button to "Hello World" as soon as it gets called.
 
@@ -56,4 +56,12 @@ Together with the signal we send the value `number` currently holds.
 After we did that, we set `number` back to 0.
 
 
+# PROPERTIES PART
+
+`set_property` emits the corresponding "notify" signals[^1]. 
+
+
 Signals are especially useful, if you want to notify consumers of your GObject that a certain event occurred.
+
+
+[^1]: This behavior can be disabled by passing [`EXPLICIT_NOTIFY`](http://gtk-rs.org/docs/glib/struct.ParamFlags.html#associatedconstant.EXPLICIT_NOTIFY) flag during creation of the property. In this case, the only way to emit the signal is to call [`notify`](http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.notify) directly.

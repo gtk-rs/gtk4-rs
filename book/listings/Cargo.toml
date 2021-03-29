@@ -7,6 +7,7 @@ members = [
     "gobject_memory_management_4",
     "gobject_properties_1",
     "gobject_properties_2",
+    "gobject_properties_3",
     "gobject_signals_1",
     "gobject_signals_2",
     "gobject_signals_3",

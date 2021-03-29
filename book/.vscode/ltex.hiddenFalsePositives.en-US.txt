@@ -16,3 +16,5 @@
 {"rule":"ANYMORE_ADVERB","sentence":"^\\QAfter these steps, nothing is stopping us anymore from replacing \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q with our \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
 {"rule":"PUNCTUATION_PARAGRAPH_END","sentence":"^\\Q\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q refers to the actual GObject that will be created afterwards\n\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is the GObject we inherit of\\E$"}
 {"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QWe want to add properties, signals or actions to an object.\\E$"}
+{"rule":"MISSING_COMMA_AFTER_INTRODUCTORY_PHRASE","sentence":"^\\QWith properties you get:\nsetters and getters,\nan emitted \"notify\" signal whenever the property gets set and\nthe ability to bind properties to each other.\\E$"}
+{"rule":"SINGULAR_VERB_AFTER_THESE_OR_THOSE","sentence":"^\\QDo not worry if the difference between those two is not obvious to you, it is not important for understanding this section.\\E$"}
