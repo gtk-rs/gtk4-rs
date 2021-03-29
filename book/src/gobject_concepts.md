@@ -1,7 +1,7 @@
 # GObject Concepts
 
 GTK is an object-oriented framework.
-It is written in C, which does not include object-orientation.
+It is written in C, which does not support object-orientation out of the box.
 That is why, GTK relies on the GObject library to provide the object system.
 
 We already learned, that `gtk-rs` maps GObject concepts like inheritance and interfaces to Rust traits.

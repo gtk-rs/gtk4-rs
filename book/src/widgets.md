@@ -7,27 +7,27 @@ One kind of widget might be able to contain other widgets, it might present info
 
 The [Widget Gallery](https://docs.gtk.org/gtk4/visual_index.html) is useful to find out which widget fits your needs.
 Let us say we want to add a button to our app.
-We have quite a bit of choice here, but let us take the simplest one.
-Its name can be found out by clicking on the image ⇒ it is a `GtkButton`.
+We have quite a bit of choice here, but let us take the simplest one — a `Button`.
 
 <div style="text-align:center"><img src="img/widgets_button.png" /></div>
 
-GTK is an object-oriented framework, so all widgets derive are part of an inheritance tree with `GObject` at the top.
-The [GTK documentation](https://docs.gtk.org/gtk4/class.Button.html) tells us also that the (simplified) inheritance tree of a `GtkButton` looks like this:
+GTK is an object-oriented framework, so all widgets are part of an inheritance tree with `GObject` at the top.
+The inheritance tree of a `Button` looks like this:
 
 ```console
 GObject
-╰── GtkWidget
-    ╰── GtkButton
+╰── Widget
+    ╰── Button
 ```
 
-Additionally, the GtkButton implements the interfaces `GtkAccessible`, `GtkActionable`, `GtkBuildable`, `GtkConstraintTarget`.
+The [GTK documentation](https://docs.gtk.org/gtk4/class.Button.html) also tells us that `Button` implements the interfaces `GtkAccessible`, `GtkActionable`, `GtkBuildable`, `GtkConstraintTarget`.
 
 Now let us compare that with the corresponding `Button` struct in `gtk-rs`.
 The [gtk-rs documentation](https://gtk-rs.org/gtk4-rs/gtk4/struct.Button.html#implements) tells us which methods and traits it implements.
 We find that these traits either have a corresponding base class or interface in the GTK docs.
-Assuming that we want to connect a callback, we are mostly interested in its "button-behavior".
-And indeed, the trait `ButtonExt` includes the method [`connect_clicked`](https://gtk-rs.org/gtk4-rs/gtk4/trait.ButtonExt.html#tymethod.connect_clicked).
+In the "Hello World" app we wanted to react to a button click.
+This behavior is specific to a button, so we expect to find a suitable method in the `ButtonExt` trait.
+And indeed, `ButtonExt` includes the method [`connect_clicked`](https://gtk-rs.org/gtk4-rs/gtk4/trait.ButtonExt.html#tymethod.connect_clicked).
 
 <span class="filename">Filename: src/main.rs</span>
 

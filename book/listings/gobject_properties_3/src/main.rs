@@ -145,6 +145,20 @@ fn on_activate(application: &Application) {
         .build();
     // ANCHOR_END: bind_label
 
+    // ANCHOR: connect_notify
+
+    // The closure will be called whenever the property "number" of `button_1` gets changed
+    button_1.connect_notify_local(Some("number"), move |button, _| {
+        let number = button
+            .get_property("number")
+            .unwrap()
+            .get::<i32>()
+            .unwrap()
+            .unwrap();
+        println!("The current number is {}", number);
+    });
+    // ANCHOR_END: connect_notify
+
     // Set up box
     let gtk_box = BoxBuilder::new()
         .margin_top(12)

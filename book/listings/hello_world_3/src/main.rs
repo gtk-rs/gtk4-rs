@@ -15,6 +15,7 @@ fn main() {
     app.run(&args);
 }
 
+// ANCHOR: on_activate
 // When the application is launched…
 fn on_activate(application: &Application) {
     // … create a new window …
@@ -42,3 +43,4 @@ fn on_activate(application: &Application) {
     window.set_child(Some(&button));
     window.present();
 }
+//ANCHOR_END: on_activate

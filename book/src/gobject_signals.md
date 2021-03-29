@@ -2,8 +2,9 @@
 
 GObject signals are a system for registering callbacks for specific events.
 For example, if we press on a button, the "clicked" signal will be emitted.
-We only need to connect a callback to the "clicked" signal, which will be called whenever the button has be clicked on.
-`gtk-rs` provides convenience methods for all widgets to do exactly that.
+The signal then takes care that all the registered callbacks will be executed.
+
+`gtk-rs` provides convenience methods for registering callbacks.
 In our "Hello World" example we connected the "clicked" signal to a closure which sets the label of the button to "Hello World" as soon as it gets called.
 
 <span class="filename">Filename: src/main.rs</span>
@@ -12,7 +13,7 @@ In our "Hello World" example we connected the "clicked" signal to a closure whic
 {{#rustdoc_include ../listings/gobject_signals_1/src/main.rs:callback}}
 ```
 
-If we wanted to, we could have connected to it with the general (but much more verbose) method.
+If we wanted to, we could have connected to it with the general (but much more verbose) `connect_local` method.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -20,19 +21,10 @@ If we wanted to, we could have connected to it with the general (but much more v
 {{#rustdoc_include ../listings/gobject_signals_2/src/main.rs:callback}}
 ```
 
-For pre-existing GObjects, we do not want to do that.
-However, if we have custom objects, we might also add custom signals to it.
-So let us see how to do that.
+The advantage of `connect_local` is, that it also works with custom signals.
 
-First, we add `once_cell` to our dependencies.
-With this, we can [lazily evaluate](https://en.wikipedia.org/wiki/Lazy_evaluation) expressions, which we often need when working with custom GObjects.
-
-```toml
-[dependencies]
-once_cell = "1"
-```
-
-Let us revive the `CustomButton` of the last section and teach it a few new tricks.
+Let us see how we can create our own signals.
+Again, we do that by extending our `CustomButton`.
 First we override the necessary methods in `ObjectImpl`.
 
 <span class="filename">Filename: src/main.rs</span>
@@ -42,8 +34,12 @@ First we override the necessary methods in `ObjectImpl`.
 ```
 
 The `signal` method is responsible for defining a set of signals.
-We only create a single signal named "max-number-reached".
+In our case, we only create a single signal named "max-number-reached".
 When emitted, it sends a single `i32` value and expects nothing in return.
+
+We want the signal to be emitted, whenever `number` reaches `MAX_NUMBER`.
+Together with the signal we send the value `number` currently holds.
+After we did that, we set `number` back to 0.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -51,17 +47,7 @@ When emitted, it sends a single `i32` value and expects nothing in return.
 {{#rustdoc_include ../listings/gobject_signals_3/src/main.rs:button_impl}}
 ```
 
-We want the signal to be emitted, whenever `number` reached `MAX_NUMBER`.
-Together with the signal we send the value `number` currently holds.
-After we did that, we set `number` back to 0.
+If we now press on the button, the number of its label increases until it reaches `MAX_NUMBER`.
+Then it starts from 0 again and so on.
 
-
-# PROPERTIES PART
-
-`set_property` emits the corresponding "notify" signals[^1]. 
-
-
-Signals are especially useful, if you want to notify consumers of your GObject that a certain event occurred.
-
-
-[^1]: This behavior can be disabled by passing [`EXPLICIT_NOTIFY`](http://gtk-rs.org/docs/glib/struct.ParamFlags.html#associatedconstant.EXPLICIT_NOTIFY) flag during creation of the property. In this case, the only way to emit the signal is to call [`notify`](http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.notify) directly.
+Custom signals are especially useful, if you want to notify consumers of your GObject that a certain event occurred.

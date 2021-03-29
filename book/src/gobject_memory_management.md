@@ -1,8 +1,7 @@
 # Memory management of GObjects
 
-We start by learning about the memory management of GObjects.
 GObjects are reference-counted, mutable objects, so they behave very similar to `Rc<RefCell<T>>`.
-Let us see in a set of real life examples why this is something we want to have.
+Let us see in a set of real life examples which consequences this has.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -49,9 +48,10 @@ fn on_activate(application: &Application) {
     window.present();
 }
 ```
-The idea of this code is that we have a simple app with two buttons.
-If we click on one button, an integer number gets increased. If we press the other one, it gets decreased.
+Here we would like to create a simple app with two buttons.
+If we click on one button, an integer number should be increased. If we press the other one, it should be decreased.
 The Rust compiler refuses to compile it though.
+
 For once the borrow checker kicked in:
 ```console
 error[E0499]: cannot borrow `number` as mutable more than once at a time
@@ -92,18 +92,18 @@ help: to force the closure to take ownership of `number` (and any other referenc
 Thinking about the second error message, it makes sense that the closure requires the lifetimes of references to be `'static`.
 The compiler cannot know when the user presses a button, so references must live forever.
 And our `number` gets immediately deallocated after it reaches the end of its scope.
-The error message is also suggesting that we could take ownership of `number`... But is there actually a way that both closures could take ownership of the same object?
+The error message is also suggesting that we could take ownership of `number`.
+But is there actually a way that both closures could take ownership of the same object?
 
 Yes! That is exactly what the [Rc](https://doc.rust-lang.org/std/rc/struct.Rc.html) type is there for.
-With multiple owners we have to move the borrow check from compile time to run time, 
-and we also want to be able to update the content of our [Rc](https://doc.rust-lang.org/std/rc/struct.Rc.html).
-For that we can use the [RefCell](https://doc.rust-lang.org/std/cell/struct.RefCell.html) type.
+With multiple owners we have to move the borrow check from compile time to run time. 
+If we then want to modify the content of our [Rc](https://doc.rust-lang.org/std/rc/struct.Rc.html),
+we can use the [RefCell](https://doc.rust-lang.org/std/cell/struct.RefCell.html) type.
 
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust,no_run
 {{#rustdoc_include ../listings/gobject_memory_management_1/src/main.rs:callback}}
-
 ```
 
 It is not very nice though to fill the scope with temporary variables like `number_copy_1`.
@@ -115,16 +115,15 @@ We can improve that by using the `glib::clone!` macro.
 {{#rustdoc_include ../listings/gobject_memory_management_2/src/main.rs:callback}}
 ```
 
-Since GObjects are reference-counted and mutable as well, we can pass the buttons the same way as we did with `number`.
-If we now click on one button, the other button's label gets changed.
+Just like `Rc<RefCell<T>>`, GObjects are reference-counted and mutable.
+Therefore, we can pass the buttons the same way to the closure as we did with `number`.
 
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust,no_run
 {{#rustdoc_include ../listings/gobject_memory_management_3/src/main.rs:callback}}
 ```
-Expand the code, copy and try it on your own machine.
-It will work fine.
+If we now click on one button, the other button's label gets changed.
 
 But whoops!
 Did we forget about one annoyance of reference-counted systems?
