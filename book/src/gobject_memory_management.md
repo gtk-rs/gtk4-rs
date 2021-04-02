@@ -136,7 +136,7 @@ Yes we did: reference cycles.
 A strong reference keeps the referenced object from being deallocated.
 If this chain leads to a circle, none of the objects in this cycle ever get deallocated.
 With weak references we can break this cycle, because they do not keep their object alive.
-Since wee do not want our apps to keep allocating memory, we should use weak references for the buttons instead[^1].
+Since we do not want our apps to keep allocating memory, we should use weak references for the buttons instead[^1].
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -147,7 +147,7 @@ Since wee do not want our apps to keep allocating memory, we should use weak ref
 The reference cycle is broken.
 If we now click on one button and the other button is not there anymore, the closure will simply not be called.
 Notice however that we kept the *strong* reference to `number`.
-If we had a *weak* reference, noone would have kept `number` alive and the closure would have never been called.
+If we had a *weak* reference, no one would have kept `number` alive and the closure would have never been called.
 
 Thinking about this, `button_increase` and `button_decrease` are also dropped at the end of the scope of `on_activate`.
 Who then keeps the buttons alive?
@@ -174,9 +174,9 @@ When we set `gtk_box` as child of `window`, `window` keeps a strong reference to
 {{#rustdoc_include ../listings/gobject_memory_management_4/src/main.rs:window}}
 ```
 
-During the creation of our `window`, we pass the `application` to it.
+During the creation of our `window`, we pass `application` to it.
 Because of that, `application` holds a strong reference to `window`.
-The `application` lives for the whole lifetime of our program, which explains why weak references within our closures are sufficient.
+`application` lives for the whole lifetime of our program, which explains why weak references within our closures are sufficient.
 
 As long as you use weak references whenever possible you will find it perfectly doable to avoid memory cycles within your application.
 Then, you can fully rely on GTK to properly manage the memory of GObjects you pass to it.

@@ -12,16 +12,19 @@
 - [The Main Event Loop](main_event_loop.md)
 - [Settings](settings.md)
 - [Save Window State of our App]()
-- [Models & Views]()
-- [Building a Simple To-do App]()
 - [Interface Builder]()
     - [GtkBuilder]()
     - [Templates]()
 - [Actions]()
 - [Shortcuts]()
+- [Media Support]()
+    - [Images]()
+    - [Videos]()
+- [App with Persistent Image Selection]()
 - [Accessibility]()
 - [Internationalization]()
-- [Finishing up the To-do App]()
+- [Models & Views]()
+- [Building a simple To-do App]()
 
 # Useful Libraries
 
