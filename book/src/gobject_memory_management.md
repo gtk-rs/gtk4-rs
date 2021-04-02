@@ -96,7 +96,10 @@ The error message is also suggesting that we could take ownership of `number`.
 But is there actually a way that both closures could take ownership of the same object?
 
 Yes! That is exactly what the [Rc](https://doc.rust-lang.org/std/rc/struct.Rc.html) type is there for.
-With multiple owners we have to move the borrow check from compile time to run time. 
+With `Rc` your object becomes reference counted.
+The runtime counts the number of strong references to the object and only deallocates it when the number drops to zero.
+It therefore allows us to have multiple owners for the same object.
+Having multiple owners we have to move the borrow check from compile time to run time. 
 If we then want to modify the content of our [Rc](https://doc.rust-lang.org/std/rc/struct.Rc.html),
 we can use the [RefCell](https://doc.rust-lang.org/std/cell/struct.RefCell.html) type.
 
@@ -127,7 +130,7 @@ If we now click on one button, the other button's label gets changed.
 
 But whoops!
 Did we forget about one annoyance of reference-counted systems?
-Of course we did: reference cycles.
+Yes we did: reference cycles.
 `button_increase` holds a strong reference to `button_decrease` and vice-versa.
 A strong reference keeps the referenced object from being deallocated.
 If this chain leads to a circle, none of the objects in this cycle ever get deallocated.
@@ -140,12 +143,42 @@ We do not want our apps to keep allocating memory, so let us use weak references
 ```
 
 The reference cycle is broken.
-If we now click on one button and the other button is not there anymore, the closure will simply not be get called.
-Most of the time, this is the behavior you will want.
+If we now click on one button and the other button is not there anymore, the closure will simply not be called.
 Notice however that we kept the strong reference to `number`.
 If we had only used weak references, `number` would have been dropped and the closure would have never been called.
-Unlike with tricky-to-debug reference cycles, you would have immediately noticed that after testing your app.
-That is why we recommend to default to weak references.
+
+Thinking about this, `button_increase` and `button_decrease` are also dropped at the end of the scope of `on_activate`.
+Who the maintains the ownership of the buttons?
+
+<span class="filename">Filename: src/main.rs</span>
+
+```rust,no_run
+{{#rustdoc_include ../listings/gobject_memory_management_4/src/main.rs:box_append}}
+```
+
+When we appended the buttons to the `gtk_box`, `gtk_box` kept a strong reference to them.
+
+<span class="filename">Filename: src/main.rs</span>
+
+```rust,no_run
+{{#rustdoc_include ../listings/gobject_memory_management_4/src/main.rs:set_child}}
+```
+
+When we then set the `gtk_box` to the `window`, `window` kept a strong reference to it.
+
+<span class="filename">Filename: src/main.rs</span>
+
+```rust,no_run
+{{#rustdoc_include ../listings/gobject_memory_management_4/src/main.rs:window}}
+```
+
+During the creation of our `window`, we passed the `application` to it.
+Because of that, `application` holds a strong reference to `window`.
+The `application` lives for the whole lifetime of our program, which explains why weak references within our closures are sufficient.
+
+As long as you use weak references wherever possible you will find it perfectly doable to avoid memory cycles within your application.
+Then, you can fully rely on GTK to properly manage the memory of GObjects you pass to it.
+
 
 [^1]: In this simple example, GTK actually resolves the reference cycle on its own once you close the window.
 However, the general point to avoid strong references whenever possible remains valid.

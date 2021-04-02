@@ -20,10 +20,12 @@ fn main() {
 // When the application is launched…
 fn on_activate(application: &Application) {
     // … create a new window …
+    // ANCHOR: window
     let window = ApplicationWindowBuilder::new()
         .application(application)
         .title("My GTK App")
         .build();
+    // ANCHOR_END: window
 
     // Create two buttons
     let button_increase = ButtonBuilder::new()
@@ -61,8 +63,12 @@ fn on_activate(application: &Application) {
 
     // Add buttons
     let gtk_box = gtk::Box::new(Orientation::Vertical, 0);
+    // ANCHOR: set_child
     window.set_child(Some(&gtk_box));
+    // ANCHOR_END: set_child
+    // ANCHOR: box_append
     gtk_box.append(&button_increase);
     gtk_box.append(&button_decrease);
+    // ANCHOR_END: box_append
     window.present();
 }
