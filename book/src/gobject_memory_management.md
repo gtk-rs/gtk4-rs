@@ -93,16 +93,15 @@ Thinking about the second error message, it makes sense that the closure require
 The compiler cannot know when the user presses a button, so references must live forever.
 And our `number` gets immediately deallocated after it reaches the end of its scope.
 The error message is also suggesting that we could take ownership of `number`.
-But is there actually a way that both closures could take ownership of the same object?
+But is there actually a way that both closures could take ownership of the same value?
 
-Yes! That is exactly what the [Rc](https://doc.rust-lang.org/std/rc/struct.Rc.html) type is there for.
-With `Rc` your object becomes reference counted.
-The runtime counts the number of strong references to the object and only deallocates it when this number drops to zero.
-We call every object containing a strong reference a shared owner of the object.
-With multiple owners we have to move the borrow check from compile time to run time. 
-If we then want to modify the content of our [Rc](https://doc.rust-lang.org/std/rc/struct.Rc.html),
-we can use the [RefCell](https://doc.rust-lang.org/std/cell/struct.RefCell.html) type.
-`RefCell` then checks Rust's borrow rules during runtime, namely that there can only be one mutable borrow at a time or multiple immutable borrows. `RefCell` panics if these rules are violated.
+Yes! That is exactly what the [`Rc`](https://doc.rust-lang.org/std/rc/struct.Rc.html) type is there for.
+The `Rc` counts the number of strong references created via `Clone::clone` and released via `Drop::drop`, and only deallocates it when this number drops to zero.
+We call every object containing a strong reference a shared owner of the value.
+If we want to modify the content of our [`Rc`](https://doc.rust-lang.org/std/rc/struct.Rc.html),
+we can use the [`RefCell`](https://doc.rust-lang.org/std/cell/struct.RefCell.html) type.
+`RefCell` then checks Rust's borrow rules during run time, namely that there can only be one mutable borrow at a time or multiple immutable borrows.
+`RefCell` panics if these rules are violated.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -131,11 +130,11 @@ If we now click on one button, the other button's label gets changed.
 
 But whoops!
 Did we forget about one annoyance of reference-counted systems?
-Yes we did: reference cycles.
+Yes we did: [reference cycles](https://doc.rust-lang.org/book/ch15-06-reference-cycles.html).
 `button_increase` holds a strong reference to `button_decrease` and vice-versa.
-A strong reference keeps the referenced object from being deallocated.
-If this chain leads to a circle, none of the objects in this cycle ever get deallocated.
-With weak references we can break this cycle, because they do not keep their object alive but instead provide a way to retrieve a strong reference if the object is still alive.
+A strong reference keeps the referenced value from being deallocated.
+If this chain leads to a circle, none of the values in this cycle ever get deallocated.
+With weak references we can break this cycle, because they do not keep their value alive but instead provide a way to retrieve a strong reference if the value is still alive.
 Since we want our apps to free unneeded memory, we should use weak references for the buttons instead[^1].
 
 <span class="filename">Filename: src/main.rs</span>
@@ -145,10 +144,14 @@ Since we want our apps to free unneeded memory, we should use weak references fo
 ```
 
 The reference cycle is broken.
-If we now click on one button and the other button is not there anymore, the closure will simply not be called.
-Notice however that we kept the *strong* reference to `number`.
-If we had a *weak* reference, no one would have kept `number` alive and the closure would have never been called.
+Every time the button is clicked, `glib::clone` tries to upgrade the weak reference.
+If we now for example click on one button and the other button is not there anymore, `upgrade` will return `None`.
+Per default, it immediately returns from the closure with `()` as return value.
+In case the closure expects a different return value or a panic is preferred `@default-return` or `@default-panic`.
+For more information about `glib::clone`, please have a look at the [docs](https://docs.rs/glib/latest/glib/macro.clone.html).
 
+Notice that we kept the *strong* reference to `number`.
+If we had a *weak* reference, no one would have kept `number` alive and the closure would have never been called.
 Thinking about this, `button_increase` and `button_decrease` are also dropped at the end of the scope of `on_activate`.
 Who then keeps the buttons alive?
 
