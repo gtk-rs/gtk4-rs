@@ -1,0 +1,20 @@
+{"rule":"PUNCTUATION_PARAGRAPH_END","sentence":"^\\QIntroduction to GObject\nReference Counting\nSubclassing\nProperties & signals\nActions\nModels\nUse Subclassing in our App\nBasic Widgets\nAdd Widgets to our App\nAdvanced Widgets\nViews\nPaintables\nGTK media support\nShaders\nBuilding a Simple To-do App\nInterface Builder\nGtkBuilder\nTemplates\nInternationalization\nAccessibility\nFinishing up the To-do App\\E$"}
+{"rule":"GITHUB","sentence":"^\\QMeson\nFlatpak\nfenv\nGitlab CI\nGithub Actions\\E$"}
+{"rule":"PUNCTUATION_PARAGRAPH_END","sentence":"^\\QGetting Started\nWidgets\nThe main loop\nGObject\nExtend our App\nIntroduction to GObject\nReference Counting\nSubclassing\nProperties & signals\nActions\nModels\nUse Subclassing in our App\nAdvanced Widgets\nViews\nPaintables\nGTK media support\nShaders\nBuilding a Simple To-do App\nInterface Builder\nGtkBuilder\nTemplates\nInternationalization\nAccessibility\nFinishing up the To-do App\\E$"}
+{"rule":"MISSING_COMMA_AFTER_INTRODUCTORY_PHRASE","sentence":"^\\QOf course we did: reference cycles.\\E$"}
+{"rule":"POSSESSIVE_APOSTROPHE","sentence":"^\\QLuckily Rust's safety guarantees allow you to stop worrying about the nasty bugs concurrency tends to bring.\\E$"}
+{"rule":"COMMA_COMPOUND_SENTENCE","sentence":"^\\QOne kind of widget might be able to contain other widgets, it might present information and it might react to interaction.\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QIn \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q we create an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q instance, with\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QIn \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q we create an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q instance, with an application id and the default application flags.\\E$"}
+{"rule":"COMMA_COMPOUND_SENTENCE","sentence":"^\\QWe run it with \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q and it blocks the terminal, but seemingly nothing happens.\\E$"}
+{"rule":"ANYMORE_ADVERB","sentence":"^\\QAfter we have done this, nothing is stopping us anymore from replacing \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q with our \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"ANYMORE_ADVERB","sentence":"^\\QAfter we these steps, nothing is stopping us anymore from replacing \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q with our \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QWe create an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q instance, with an application id and the default application flags.\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QSo when should you spawn an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q block and when should you spawn a thread?\\E$"}
+{"rule":"PUNCTUATION_PARAGRAPH_END","sentence":"^\\QWidgets\nGObject Concepts\nMemory management\nSubclassing\nSignals\nProperties\nThe Main Event Loop\nSettings\nSave Window State of our App\nWidget Concepts\nModels & Views\nPaintables\nGTK Media Support\nShaders\nBuilding a Simple To-do App\nInterface Builder\nGtkBuilder\nActions\nTemplates\nShortcuts\nAccessibility\nInternationalization\nFinishing up the To-do App\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QWhen emitted, it sends an \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q value and expects nothing in return.\\E$"}
+{"rule":"ANYMORE_ADVERB","sentence":"^\\QAfter these steps, nothing is stopping us anymore from replacing \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q with our \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"PUNCTUATION_PARAGRAPH_END","sentence":"^\\Q\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q refers to the actual GObject that will be created afterwards\n\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is the GObject we inherit of\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QWe want to add properties, signals or actions to an object.\\E$"}
+{"rule":"MISSING_COMMA_AFTER_INTRODUCTORY_PHRASE","sentence":"^\\QWith properties you get:\nsetters and getters,\nan emitted \"notify\" signal whenever the property gets set and\nthe ability to bind properties to each other.\\E$"}
+{"rule":"SINGULAR_VERB_AFTER_THESE_OR_THOSE","sentence":"^\\QDo not worry if the difference between those two is not obvious to you, it is not important for understanding this section.\\E$"}
