@@ -98,7 +98,7 @@ But is there actually a way that both closures could take ownership of the same 
 Yes! That is exactly what the [Rc](https://doc.rust-lang.org/std/rc/struct.Rc.html) type is there for.
 With `Rc` your object becomes reference counted.
 The runtime counts the number of strong references to the object and only deallocates it when this number drops to zero.
-We call every object containing a strong reference an owner of the object.
+We call every object containing a strong reference a shared owner of the object.
 With multiple owners we have to move the borrow check from compile time to run time. 
 If we then want to modify the content of our [Rc](https://doc.rust-lang.org/std/rc/struct.Rc.html),
 we can use the [RefCell](https://doc.rust-lang.org/std/cell/struct.RefCell.html) type.
