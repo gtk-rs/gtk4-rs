@@ -102,7 +102,7 @@ We call every object containing a strong reference an owner of the object.
 With multiple owners we have to move the borrow check from compile time to run time. 
 If we then want to modify the content of our [Rc](https://doc.rust-lang.org/std/rc/struct.Rc.html),
 we can use the [RefCell](https://doc.rust-lang.org/std/cell/struct.RefCell.html) type.
-`RefCell` then checks Rust's borrow rules during run time.
+`RefCell` then checks Rust's borrow rules during runtime, namely that there can only be one mutable borrow at a time or multiple immutable borrows. `RefCell` panics if these rules are violated.
 
 <span class="filename">Filename: src/main.rs</span>
 
@@ -135,8 +135,8 @@ Yes we did: reference cycles.
 `button_increase` holds a strong reference to `button_decrease` and vice-versa.
 A strong reference keeps the referenced object from being deallocated.
 If this chain leads to a circle, none of the objects in this cycle ever get deallocated.
-With weak references we can break this cycle, because they do not keep their object alive.
-Since we do not want our apps to keep allocating memory, we should use weak references for the buttons instead[^1].
+With weak references we can break this cycle, because they do not keep their object alive but instead provide a way to retrieve a strong reference if the object is still alive.
+Since we want our apps to free unneeded memory, we should use weak references for the buttons instead[^1].
 
 <span class="filename">Filename: src/main.rs</span>
 
