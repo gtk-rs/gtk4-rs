@@ -11,4 +11,4 @@ once_cell = "1"
 
 [dependencies.gtk]
 package = "gtk4"
-git = "https://github.com/gtk-rs/gtk4-rs"
+path = "../../../gtk4"

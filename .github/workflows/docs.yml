@@ -40,9 +40,10 @@ jobs:
           command: doc
           args: -p gdk4 -p gdk4-sys -p gdk4-wayland -p gdk4-wayland-sys -p gdk4-x11 -p gdk4-x11-sys -p gsk4 -p gsk4-sys -p gtk4 -p gtk4-sys -p gtk4-macros --features "embed-lgpl-docs,dox,v4_2" --no-deps
       - name: deploy
+        uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
-        uses: peaceiris/actions-gh-pages@v2
-        env:
-          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ./target/doc/
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/doc/
+          keep_files: true
+          destination_dir: docs/git
