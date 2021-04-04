@@ -1,0 +1,36 @@
+name: book
+
+on:
+  pull_request:
+  push:
+    paths:
+      - "book"
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-20.04
+    name: build
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: nightly
+          override: true
+
+      - name: Setup mdBook
+        uses: peaceiris/actions-mdbook@v1
+
+      - run: mdbook build
+        working-directory: book
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./book
+          keep_files: true
+          destination_dir: book/git
