@@ -26,6 +26,7 @@ __Required Rust version__: 1.48+
 
 ### Development Branch
 
+- [Book](https://gtk-rs.org/gtk4-rs/book/git/index.html)
 - [GTK](https://gtk-rs.org/gtk4-rs/docs/git/gtk4/)
 - [GDK](https://gtk-rs.org/gtk4-rs/docs/git/gdk4/)
 - [GSK](https://gtk-rs.org/gtk4-rs/docs/git/gsk4/)
@@ -53,9 +54,9 @@ All the crates except `gtk4-macros` follow this structure
    ├── Gir.toml
    ├── README.md
    ├── src
-   │   ├── auto
+   │   ╰── auto
    ├── sys
-   └── tests
+   ╰── tests
 ```
 
 - `README.md`: Explanations about the crate itself and eventually some details.
