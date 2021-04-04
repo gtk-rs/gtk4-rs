@@ -34,3 +34,12 @@ jobs:
           publish_dir: ./book
           keep_files: true
           destination_dir: book/git
+
+  codespell:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: codespell-project/actions-codespell@master
+        with:
+          check_filenames: true
+          path: book
