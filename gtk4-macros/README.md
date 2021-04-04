@@ -9,7 +9,7 @@ __Required Rust version__: 1.48+.
 ## Documentation
 
 - [Stable Version] TODO
-- [Development Version](https://gtk-rs.org/gtk4-rs/gtk4_macros/)
+- [Development Version](https://gtk-rs.org/gtk4-rs/docs/git/gtk4_macros/)
 
 ## Available Macros
 

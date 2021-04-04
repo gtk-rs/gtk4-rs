@@ -9,7 +9,7 @@ __Required Rust version__: 1.48+.
 ## Documentation
 
 - [Stable Version] TODO
-- [Development Version](https://gtk-rs.org/gtk4-rs/gdk4_x11/)
+- [Development Version](https://gtk-rs.org/gtk4-rs/docs/git/gdk4_x11/)
 - [The C API](hhttps://docs.gtk.org/gdk4-x11/)
 - [GTK Installation instructions](https://www.gtk.org/docs/installations/)
 
