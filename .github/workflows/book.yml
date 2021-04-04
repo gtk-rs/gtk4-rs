@@ -7,17 +7,31 @@ on:
       - "book"
 
 jobs:
+  test:
+    runs-on: ubuntu-20.04
+    name: listings build
+    container:
+      image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+
+      - run: cargo build
+        working-directory: book/listings
+
   build-deploy:
     runs-on: ubuntu-20.04
     name: build
     steps:
       - uses: actions/checkout@v2
-        with:
-          submodules: "recursive"
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
-          toolchain: nightly
+          toolchain: stable
           override: true
 
       - name: Setup mdBook
