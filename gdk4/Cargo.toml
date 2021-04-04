@@ -36,11 +36,11 @@ git = "https://github.com/gtk-rs/lgpl-docs"
 libc = "0.2"
 bitflags = "1.0"
 ffi = { package = "gdk4-sys", path = "./sys" }
-cairo-rs = { git = "https://github.com/gtk-rs/gtk-rs" }
+cairo-rs = { git = "https://github.com/gtk-rs/gtk-rs", features = ["v1_14"] }
 gdk-pixbuf = { git = "https://github.com/gtk-rs/gtk-rs" }
-gio = { git = "https://github.com/gtk-rs/gtk-rs", features = ["v2_46"]  }
-glib = { git = "https://github.com/gtk-rs/gtk-rs" }
-pango = { git = "https://github.com/gtk-rs/gtk-rs" }
+gio = { git = "https://github.com/gtk-rs/gtk-rs", features = ["v2_66"] }
+glib = { git = "https://github.com/gtk-rs/gtk-rs", features = ["v2_66"] }
+pango = { git = "https://github.com/gtk-rs/gtk-rs", features = ["v1_46"] }
 
 [dev-dependencies]
 gir-format-check = "^0.1"

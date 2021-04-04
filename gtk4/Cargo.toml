@@ -43,9 +43,9 @@ futures-channel = "0.3"
 once_cell = "1.0"
 ffi =  { package = "gtk4-sys", path = "./sys" }
 gtk4-macros =  { path = "../gtk4-macros" }
-cairo-rs = { git = "https://github.com/gtk-rs/gtk-rs" }
-gio = { git = "https://github.com/gtk-rs/gtk-rs", features = ["v2_46"] }
-glib = { git = "https://github.com/gtk-rs/gtk-rs" }
+cairo-rs = { git = "https://github.com/gtk-rs/gtk-rs", features = ["v1_14"] }
+gio = { git = "https://github.com/gtk-rs/gtk-rs", features = ["v2_66"] }
+glib = { git = "https://github.com/gtk-rs/gtk-rs", features = ["v2_66"] }
 gdk = { package = "gdk4", path = "../gdk4" }
 graphene = { package = "graphene-rs", git = "https://github.com/gtk-rs/gtk-rs" }
 gsk = { package = "gsk4", path = "../gsk4" }
