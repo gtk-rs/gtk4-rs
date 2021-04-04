@@ -8,10 +8,12 @@ __Required Rust version__: 1.48+.
 
 ## Documentation
 
-- [Stable Version] TODO
-- [Development Version](https://gtk-rs.org/gtk4-rs/docs/git/gtk4/)
-- [The C API](https://docs.gtk.org/gtk4/)
-- [GTK Installation instructions](https://www.gtk.org/docs/installations/)
+- [Rust API - Stable] TODO
+- [Rust API - Development](https://gtk-rs.org/gtk4-rs/docs/git/gtk4/)
+- [Book - Stable] TODO
+- [Book - Development](https://gtk-rs.org/gtk4-rs/book/git/index.html)
+- [C API](https://docs.gtk.org/gtk4/)
+- [GTK Installation Instructions](https://www.gtk.org/docs/installations/)
 
 
 ## Using
