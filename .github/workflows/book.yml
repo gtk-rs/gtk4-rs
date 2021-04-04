@@ -39,7 +39,7 @@ jobs:
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@v1
 
-      - run: mdbook build
+      - run: mdbook build -d public
         working-directory: book
 
       - name: Deploy
@@ -47,7 +47,7 @@ jobs:
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./book
+          publish_dir: ./book/public
           keep_files: true
           destination_dir: book/git
 
