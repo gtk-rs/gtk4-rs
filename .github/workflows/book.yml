@@ -5,8 +5,8 @@ on:
   push:
     branches:
       - "master"
-    #paths:
-    #  - "book"
+    paths:
+      - "book"
 
 jobs:
   test:
