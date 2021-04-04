@@ -6,7 +6,7 @@ use glib::IsA;
 
 pub trait ShortcutTriggerExtManual {
     #[doc(alias = "gtk_shortcut_trigger_compare")]
-    fn compare<P: IsA<ShortcutTrigger>>(&self, trigger2: &P) -> i32;
+    fn compare<P: IsA<ShortcutTrigger>>(&self, trigger2: &P) -> std::cmp::Ordering;
 
     #[doc(alias = "gtk_shortcut_trigger_equal")]
     fn equal<P: IsA<ShortcutTrigger>>(&self, trigger2: &P) -> bool;
@@ -19,14 +19,14 @@ pub trait ShortcutTriggerExtManual {
 }
 
 impl ShortcutTriggerExtManual for ShortcutTrigger {
-    fn compare<P: IsA<ShortcutTrigger>>(&self, trigger2: &P) -> i32 {
+    fn compare<P: IsA<ShortcutTrigger>>(&self, trigger2: &P) -> std::cmp::Ordering {
         unsafe {
-            ffi::gtk_shortcut_trigger_compare(
+            from_glib(ffi::gtk_shortcut_trigger_compare(
                 ToGlibPtr::<*mut ffi::GtkShortcutTrigger>::to_glib_none(self).0
                     as glib::ffi::gconstpointer,
                 ToGlibPtr::<*mut ffi::GtkShortcutTrigger>::to_glib_none(trigger2.as_ref()).0
                     as glib::ffi::gconstpointer,
-            )
+            ))
         }
     }
 
