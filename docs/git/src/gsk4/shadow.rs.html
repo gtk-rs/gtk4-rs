@@ -140,7 +140,7 @@
 
 <span class="kw">impl</span> <span class="ident">Shadow</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">color</span>: <span class="ident">RGBA</span>, <span class="ident">dx</span>: <span class="ident">f32</span>, <span class="ident">dy</span>: <span class="ident">f32</span>, <span class="ident">radius</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Shadow</span> {
-        <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
+        <span class="macro">assert_initialized_main_thread!</span>();
         <span class="ident">Shadow</span>(<span class="ident">ffi</span>::<span class="ident">GskShadow</span> {
             <span class="ident">color</span>: <span class="kw">unsafe</span> { <span class="kw-2">*</span><span class="ident">color</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> },
             <span class="ident">dx</span>,
@@ -199,17 +199,17 @@
     <span class="kw">type</span> <span class="ident">Storage</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>];
 
     <span class="kw">fn</span> <span class="ident">to_glib_none_from_slice</span>(<span class="ident">t</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) <span class="op">-</span><span class="op">&gt;</span> (<span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) {
-        <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
+        <span class="macro">assert_initialized_main_thread!</span>();
         (<span class="ident">t</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>, <span class="ident">t</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">to_glib_container_from_slice</span>(<span class="ident">t</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) <span class="op">-</span><span class="op">&gt;</span> (<span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) {
-        <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
+        <span class="macro">assert_initialized_main_thread!</span>();
         (<span class="ident">ToGlibContainerFromSlice</span>::<span class="ident">to_glib_full_from_slice</span>(<span class="ident">t</span>), <span class="ident">t</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">to_glib_full_from_slice</span>(<span class="ident">t</span>: <span class="kw-2">&amp;</span>[<span class="self">Self</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span> {
-        <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
+        <span class="macro">assert_initialized_main_thread!</span>();
 
         <span class="kw">if</span> <span class="ident">t</span>.<span class="ident">is_empty</span>() {
             <span class="kw">return</span> <span class="ident">ptr</span>::<span class="ident">null_mut</span>();
@@ -229,17 +229,17 @@
     <span class="kw">type</span> <span class="ident">Storage</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>];
 
     <span class="kw">fn</span> <span class="ident">to_glib_none_from_slice</span>(<span class="ident">t</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) <span class="op">-</span><span class="op">&gt;</span> (<span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) {
-        <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
+        <span class="macro">assert_initialized_main_thread!</span>();
         (<span class="ident">t</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span>, <span class="ident">t</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">to_glib_container_from_slice</span>(<span class="ident">t</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) <span class="op">-</span><span class="op">&gt;</span> (<span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="self">Self</span>]) {
-        <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
+        <span class="macro">assert_initialized_main_thread!</span>();
         (<span class="ident">ToGlibContainerFromSlice</span>::<span class="ident">to_glib_full_from_slice</span>(<span class="ident">t</span>), <span class="ident">t</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">to_glib_full_from_slice</span>(<span class="ident">t</span>: <span class="kw-2">&amp;</span>[<span class="self">Self</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GskShadow</span> {
-        <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
+        <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">if</span> <span class="ident">t</span>.<span class="ident">is_empty</span>() {
             <span class="kw">return</span> <span class="ident">ptr</span>::<span class="ident">null_mut</span>();
         }

@@ -36,7 +36,7 @@
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">cmp</span>::<span class="ident">Ordering</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Ordering</span> {
     <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">o</span>: <span class="ident">cmp</span>::<span class="ident">Ordering</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
+        <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">o</span> {
             <span class="ident">cmp</span>::<span class="ident">Ordering</span>::<span class="ident">Equal</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Ordering</span>::<span class="ident">Equal</span>,
             <span class="ident">cmp</span>::<span class="ident">Ordering</span>::<span class="ident">Greater</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Ordering</span>::<span class="ident">Larger</span>,
@@ -47,12 +47,12 @@
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Ordering</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">cmp</span>::<span class="ident">Ordering</span> {
     <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">o</span>: <span class="ident">Ordering</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
+        <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">o</span> {
             <span class="ident">Ordering</span>::<span class="ident">Equal</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">cmp</span>::<span class="ident">Ordering</span>::<span class="ident">Equal</span>,
             <span class="ident">Ordering</span>::<span class="ident">Larger</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">cmp</span>::<span class="ident">Ordering</span>::<span class="ident">Greater</span>,
             <span class="ident">Ordering</span>::<span class="ident">Smaller</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">cmp</span>::<span class="ident">Ordering</span>::<span class="ident">Less</span>,
-            <span class="ident">Ordering</span>::<span class="ident">__Unknown</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable</span><span class="macro">!</span>(),
+            <span class="ident">Ordering</span>::<span class="ident">__Unknown</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable!</span>(),
         }
     }
 }

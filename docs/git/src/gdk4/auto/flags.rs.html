@@ -638,7 +638,7 @@
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">Type</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>;
 
-<span class="macro">bitflags</span><span class="macro">!</span> {
+<span class="macro">bitflags!</span> {
     <span class="doccomment">/// Positioning hints for aligning a surface relative to a rectangle.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// These hints determine how the surface should be positioned in the case that</span>
@@ -694,7 +694,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GdkAnchorHints</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">AnchorHints</span> {
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GdkAnchorHints</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">AnchorHints</span> {
-        <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
+        <span class="macro">skip_assert_initialized!</span>();
         <span class="ident">AnchorHints</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
 }
@@ -723,7 +723,7 @@
     }
 }
 
-<span class="macro">bitflags</span><span class="macro">!</span> {
+<span class="macro">bitflags!</span> {
     <span class="doccomment">/// Flags describing the current capabilities of a device/tool.</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AxisFlags</span>: <span class="ident">u32</span> {
         <span class="doccomment">/// X axis is present</span>
@@ -769,7 +769,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GdkAxisFlags</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">AxisFlags</span> {
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GdkAxisFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">AxisFlags</span> {
-        <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
+        <span class="macro">skip_assert_initialized!</span>();
         <span class="ident">AxisFlags</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
 }
@@ -798,7 +798,7 @@
     }
 }
 
-<span class="macro">bitflags</span><span class="macro">!</span> {
+<span class="macro">bitflags!</span> {
     <span class="doccomment">/// Used in `Drop` and `Drag` to indicate the actions that the</span>
     <span class="doccomment">/// destination can and should do with the dropped data.</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DragAction</span>: <span class="ident">u32</span> {
@@ -819,7 +819,7 @@
 <span class="kw">impl</span> <span class="ident">DragAction</span> {
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_drag_action_is_unique&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_unique</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
+        <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_drag_action_is_unique</span>(<span class="self">self</span>.<span class="ident">to_glib</span>())) }
     }
 }
@@ -842,7 +842,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GdkDragAction</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">DragAction</span> {
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GdkDragAction</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DragAction</span> {
-        <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
+        <span class="macro">skip_assert_initialized!</span>();
         <span class="ident">DragAction</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
 }
@@ -871,7 +871,7 @@
     }
 }
 
-<span class="macro">bitflags</span><span class="macro">!</span> {
+<span class="macro">bitflags!</span> {
     <span class="doccomment">/// `FrameClockPhase` is used to represent the different paint clock</span>
     <span class="doccomment">/// phases that can be requested. The elements of the enumeration</span>
     <span class="doccomment">/// correspond to the signals of `FrameClock`.</span>
@@ -913,7 +913,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GdkFrameClockPhase</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">FrameClockPhase</span> {
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GdkFrameClockPhase</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FrameClockPhase</span> {
-        <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
+        <span class="macro">skip_assert_initialized!</span>();
         <span class="ident">FrameClockPhase</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
 }
@@ -942,7 +942,7 @@
     }
 }
 
-<span class="macro">bitflags</span><span class="macro">!</span> {
+<span class="macro">bitflags!</span> {
     <span class="doccomment">/// A set of bit-flags to indicate the state of modifier keys and mouse buttons</span>
     <span class="doccomment">/// in various event types. Typical modifier keys are Shift, Control, Meta,</span>
     <span class="doccomment">/// Super, Hyper, Alt, Compose, Apple, CapsLock or ShiftLock.</span>
@@ -999,7 +999,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GdkModifierType</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ModifierType</span> {
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GdkModifierType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ModifierType</span> {
-        <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
+        <span class="macro">skip_assert_initialized!</span>();
         <span class="ident">ModifierType</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
 }
@@ -1028,7 +1028,7 @@
     }
 }
 
-<span class="macro">bitflags</span><span class="macro">!</span> {
+<span class="macro">bitflags!</span> {
     <span class="doccomment">/// Flags about this object. Implementations use these for optimizations</span>
     <span class="doccomment">/// such as caching.</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PaintableFlags</span>: <span class="ident">u32</span> {
@@ -1061,7 +1061,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GdkPaintableFlags</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">PaintableFlags</span> {
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GdkPaintableFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PaintableFlags</span> {
-        <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
+        <span class="macro">skip_assert_initialized!</span>();
         <span class="ident">PaintableFlags</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
 }
@@ -1090,7 +1090,7 @@
     }
 }
 
-<span class="macro">bitflags</span><span class="macro">!</span> {
+<span class="macro">bitflags!</span> {
     <span class="doccomment">/// Flags describing the seat capabilities.</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SeatCapabilities</span>: <span class="ident">u32</span> {
         <span class="doccomment">/// No input capabilities</span>
@@ -1130,7 +1130,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GdkSeatCapabilities</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">SeatCapabilities</span> {
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GdkSeatCapabilities</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SeatCapabilities</span> {
-        <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
+        <span class="macro">skip_assert_initialized!</span>();
         <span class="ident">SeatCapabilities</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
 }
@@ -1159,7 +1159,7 @@
     }
 }
 
-<span class="macro">bitflags</span><span class="macro">!</span> {
+<span class="macro">bitflags!</span> {
     <span class="doccomment">/// Specifies the state of a toplevel surface.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// On platforms that support information about individual edges, the `ToplevelState::Tiled`</span>
@@ -1220,7 +1220,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GdkToplevelState</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">ToplevelState</span> {
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi</span>::<span class="ident">GdkToplevelState</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ToplevelState</span> {
-        <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
+        <span class="macro">skip_assert_initialized!</span>();
         <span class="ident">ToplevelState</span>::<span class="ident">from_bits_truncate</span>(<span class="ident">value</span>)
     }
 }

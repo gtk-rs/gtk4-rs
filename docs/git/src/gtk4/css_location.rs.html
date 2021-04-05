@@ -80,7 +80,7 @@
         <span class="ident">line_bytes</span>: <span class="ident">usize</span>,
         <span class="ident">line_chars</span>: <span class="ident">usize</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CssLocation</span> {
-        <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
+        <span class="macro">assert_initialized_main_thread!</span>();
         <span class="ident">CssLocation</span>(<span class="ident">ffi</span>::<span class="ident">GtkCssLocation</span> {
             <span class="ident">bytes</span>,
             <span class="ident">chars</span>,

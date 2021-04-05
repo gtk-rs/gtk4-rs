@@ -761,7 +761,7 @@
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ptr</span>;
 
-<span class="ident">glib</span>::<span class="macro">wrapper</span><span class="macro">!</span> {
+<span class="ident">glib</span>::<span class="macro">wrapper!</span> {
     <span class="doccomment">/// A `Surface` is a (usually) rectangular region on the screen.</span>
     <span class="doccomment">/// It’s a low-level object, used to implement high-level objects</span>
     <span class="doccomment">/// such as ``GtkWindow`` or ``GtkDialog`` in GTK.</span>
@@ -799,7 +799,7 @@
     <span class="doccomment">/// a new `Surface`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_new_popup&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_popup</span>(<span class="ident">parent</span>: <span class="kw-2">&amp;</span><span class="ident">Surface</span>, <span class="ident">autohide</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Surface</span> {
-        <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
+        <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gdk_surface_new_popup</span>(
                 <span class="ident">parent</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -817,7 +817,7 @@
     <span class="doccomment">/// the new `Surface`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_new_toplevel&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_toplevel</span>(<span class="ident">display</span>: <span class="kw-2">&amp;</span><span class="ident">Display</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Surface</span> {
-        <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
+        <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gdk_surface_new_toplevel</span>(<span class="ident">display</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 

@@ -885,7 +885,7 @@
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">mem</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>;
 
-<span class="ident">glib</span>::<span class="macro">wrapper</span><span class="macro">!</span> {
+<span class="ident">glib</span>::<span class="macro">wrapper!</span> {
     <span class="doccomment">/// The `LevelBar` is a bar widget that can be used</span>
     <span class="doccomment">/// as a level indicator. Typical use cases are displaying the strength</span>
     <span class="doccomment">/// of a password, or showing the charge level of a battery.</span>
@@ -1002,7 +1002,7 @@
     <span class="doccomment">/// a `LevelBar`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_level_bar_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LevelBar</span> {
-        <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
+        <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> { <span class="ident">Widget</span>::<span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gtk_level_bar_new</span>()).<span class="ident">unsafe_cast</span>() }
     }
 
@@ -1018,7 +1018,7 @@
     <span class="doccomment">/// a `LevelBar`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_level_bar_new_for_interval&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_for_interval</span>(<span class="ident">min_value</span>: <span class="ident">f64</span>, <span class="ident">max_value</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LevelBar</span> {
-        <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
+        <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
             <span class="ident">Widget</span>::<span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gtk_level_bar_new_for_interval</span>(<span class="ident">min_value</span>, <span class="ident">max_value</span>))
                 .<span class="ident">unsafe_cast</span>()
@@ -1220,7 +1220,7 @@
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_</span>::<span class="ident">new</span>(<span class="ident">f</span>);
-            <span class="kw">let</span> <span class="ident">detailed_signal_name</span> <span class="op">=</span> <span class="ident">detail</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">name</span><span class="op">|</span> <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;offset-changed::{}\0&quot;</span>, <span class="ident">name</span>));
+            <span class="kw">let</span> <span class="ident">detailed_signal_name</span> <span class="op">=</span> <span class="ident">detail</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">name</span><span class="op">|</span> <span class="macro">format!</span>(<span class="string">&quot;offset-changed::{}\0&quot;</span>, <span class="ident">name</span>));
             <span class="kw">let</span> <span class="ident">signal_name</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] <span class="op">=</span> <span class="ident">detailed_signal_name</span>
                 .<span class="ident">as_ref</span>()
                 .<span class="ident">map_or</span>(<span class="kw-2">&amp;</span><span class="string">b&quot;offset-changed\0&quot;</span>[..], <span class="op">|</span><span class="ident">n</span><span class="op">|</span> <span class="ident">n</span>.<span class="ident">as_bytes</span>());
@@ -1413,7 +1413,7 @@
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LevelBar</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[];
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">inverted</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">inverted</span> {
             <span class="ident">properties</span>.<span class="ident">push</span>((<span class="string">&quot;inverted&quot;</span>, <span class="ident">inverted</span>));
         }

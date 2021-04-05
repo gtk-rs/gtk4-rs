@@ -692,7 +692,7 @@
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>;
 
-<span class="ident">glib</span>::<span class="macro">wrapper</span><span class="macro">!</span> {
+<span class="ident">glib</span>::<span class="macro">wrapper!</span> {
     <span class="doccomment">/// `FontChooser` is an interface that can be implemented by widgets</span>
     <span class="doccomment">/// displaying the list of fonts. In GTK, the main objects</span>
     <span class="doccomment">/// that implement this interface are `FontChooserWidget`,</span>
@@ -1056,7 +1056,7 @@
             <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">callback</span>) <span class="op">=</span> <span class="kw-2">*</span><span class="ident">callback</span> {
                 <span class="ident">callback</span>(<span class="kw-2">&amp;</span><span class="ident">family</span>, <span class="kw-2">&amp;</span><span class="ident">face</span>)
             } <span class="kw">else</span> {
-                <span class="macro">panic</span><span class="macro">!</span>(<span class="string">&quot;cannot get closure...&quot;</span>)
+                <span class="macro">panic!</span>(<span class="string">&quot;cannot get closure...&quot;</span>)
             };
             <span class="ident">res</span>.<span class="ident">to_glib</span>()
         }

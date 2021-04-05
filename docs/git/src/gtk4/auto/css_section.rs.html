@@ -143,7 +143,7 @@
 <span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>;
 
-<span class="ident">glib</span>::<span class="macro">wrapper</span><span class="macro">!</span> {
+<span class="ident">glib</span>::<span class="macro">wrapper!</span> {
     <span class="doccomment">/// Defines a part of a CSS document. Because sections are nested into</span>
     <span class="doccomment">/// one another, you can use `CssSection::get_parent` to get the</span>
     <span class="doccomment">/// containing region.</span>
@@ -177,7 +177,7 @@
         <span class="ident">start</span>: <span class="kw-2">&amp;</span><span class="ident">CssLocation</span>,
         <span class="ident">end</span>: <span class="kw-2">&amp;</span><span class="ident">CssLocation</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CssSection</span> {
-        <span class="macro">assert_initialized_main_thread</span><span class="macro">!</span>();
+        <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_css_section_new</span>(
                 <span class="ident">file</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,

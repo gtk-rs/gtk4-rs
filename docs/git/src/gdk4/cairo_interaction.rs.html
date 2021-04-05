@@ -162,7 +162,7 @@
         <span class="ident">width</span>: <span class="ident">i32</span>,
         <span class="ident">height</span>: <span class="ident">i32</span>,
     ) {
-        <span class="macro">skip_assert_initialized</span><span class="macro">!</span>();
+        <span class="macro">skip_assert_initialized!</span>();
         <span class="ident">ffi</span>::<span class="ident">gdk_cairo_draw_from_gl</span>(
             <span class="ident">mut_override</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
             <span class="ident">surface</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,

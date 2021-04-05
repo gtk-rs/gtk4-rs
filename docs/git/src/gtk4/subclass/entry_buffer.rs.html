@@ -639,8 +639,8 @@
     <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">get_text_n_chars</span>;
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">n_chars_max_length_ascii</span>() {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">get_text_n_chars</span>(<span class="string">&quot;gtk-rs bindings&quot;</span>, <span class="number">6</span>), <span class="string">&quot;gtk-rs&quot;</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(
+        <span class="macro">assert_eq!</span>(<span class="ident">get_text_n_chars</span>(<span class="string">&quot;gtk-rs bindings&quot;</span>, <span class="number">6</span>), <span class="string">&quot;gtk-rs&quot;</span>);
+        <span class="macro">assert_eq!</span>(
             <span class="ident">get_text_n_chars</span>(<span class="string">&quot;gtk-rs bindings&quot;</span>, <span class="ident">u32</span>::<span class="ident">MAX</span>),
             <span class="string">&quot;gtk-rs bindings&quot;</span>
         );
@@ -649,29 +649,29 @@
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="attribute">#[<span class="ident">should_panic</span>]</span>
     <span class="kw">fn</span> <span class="ident">n_chars_max_length_ascii_panic</span>() {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">get_text_n_chars</span>(<span class="string">&quot;gtk-rs&quot;</span>, <span class="number">7</span>), <span class="string">&quot;gtk-rs&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">get_text_n_chars</span>(<span class="string">&quot;gtk-rs&quot;</span>, <span class="number">7</span>), <span class="string">&quot;gtk-rs&quot;</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">n_chars_max_length_utf8</span>() {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">get_text_n_chars</span>(<span class="string">&quot;👨👩👧👦&quot;</span>, <span class="number">2</span>), <span class="string">&quot;👨👩&quot;</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">get_text_n_chars</span>(<span class="string">&quot;👨👩👧👦&quot;</span>, <span class="number">0</span>), <span class="string">&quot;&quot;</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">get_text_n_chars</span>(<span class="string">&quot;👨👩👧👦&quot;</span>, <span class="number">4</span>), <span class="string">&quot;👨👩👧👦&quot;</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">get_text_n_chars</span>(<span class="string">&quot;👨👩👧👦&quot;</span>, <span class="ident">u32</span>::<span class="ident">MAX</span>), <span class="string">&quot;👨👩👧👦&quot;</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">get_text_n_chars</span>(<span class="string">&quot;كتاب&quot;</span>, <span class="number">2</span>), <span class="string">&quot;كت&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">get_text_n_chars</span>(<span class="string">&quot;👨👩👧👦&quot;</span>, <span class="number">2</span>), <span class="string">&quot;👨👩&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">get_text_n_chars</span>(<span class="string">&quot;👨👩👧👦&quot;</span>, <span class="number">0</span>), <span class="string">&quot;&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">get_text_n_chars</span>(<span class="string">&quot;👨👩👧👦&quot;</span>, <span class="number">4</span>), <span class="string">&quot;👨👩👧👦&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">get_text_n_chars</span>(<span class="string">&quot;👨👩👧👦&quot;</span>, <span class="ident">u32</span>::<span class="ident">MAX</span>), <span class="string">&quot;👨👩👧👦&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">get_text_n_chars</span>(<span class="string">&quot;كتاب&quot;</span>, <span class="number">2</span>), <span class="string">&quot;كت&quot;</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">n_chars_max_length_utf8_ascii</span>() {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">get_text_n_chars</span>(<span class="string">&quot;👨g👩t👧k👦&quot;</span>, <span class="number">2</span>), <span class="string">&quot;👨g&quot;</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">get_text_n_chars</span>(<span class="string">&quot;👨g👩t👧k👦&quot;</span>, <span class="number">5</span>), <span class="string">&quot;👨g👩t👧&quot;</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">get_text_n_chars</span>(<span class="string">&quot;كaتاب&quot;</span>, <span class="number">3</span>), <span class="string">&quot;كaت&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">get_text_n_chars</span>(<span class="string">&quot;👨g👩t👧k👦&quot;</span>, <span class="number">2</span>), <span class="string">&quot;👨g&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">get_text_n_chars</span>(<span class="string">&quot;👨g👩t👧k👦&quot;</span>, <span class="number">5</span>), <span class="string">&quot;👨g👩t👧&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">get_text_n_chars</span>(<span class="string">&quot;كaتاب&quot;</span>, <span class="number">3</span>), <span class="string">&quot;كaت&quot;</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="attribute">#[<span class="ident">should_panic</span>]</span>
     <span class="kw">fn</span> <span class="ident">n_chars_max_length_utf8_panic</span>() {
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">get_text_n_chars</span>(<span class="string">&quot;👨👩👧👦&quot;</span>, <span class="number">5</span>), <span class="string">&quot;👨👩&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">get_text_n_chars</span>(<span class="string">&quot;👨👩👧👦&quot;</span>, <span class="number">5</span>), <span class="string">&quot;👨👩&quot;</span>);
     }
 }
 </pre></div>
