@@ -37,6 +37,12 @@ glib::wrapper! {
     pub struct ExampleApp(ObjectSubclass<imp::ExampleApp>) @extends gio::Application, gtk::Application, @implements gio::ActionGroup, gio::ActionMap;
 }
 
+impl Default for ExampleApp {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl ExampleApp {
     pub fn new() -> Self {
         glib::Object::new(&[

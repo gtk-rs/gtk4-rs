@@ -131,6 +131,12 @@ glib::wrapper! {
     pub struct CustomEditable(ObjectSubclass<imp::CustomEditable>) @extends gtk::Widget, @implements gtk::Editable;
 }
 
+impl Default for CustomEditable {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl CustomEditable {
     pub fn new() -> Self {
         glib::Object::new(&[]).expect("Failed to create a CustomEditable")
@@ -159,10 +165,8 @@ impl CustomEditable {
 
             spinner.set_parent(self);
             self_.spinner.replace(Some(spinner));
-        } else {
-            if let Some(spinner) = self_.spinner.borrow_mut().take() {
-                spinner.unparent();
-            }
+        } else if let Some(spinner) = self_.spinner.borrow_mut().take() {
+            spinner.unparent();
         }
         self_.show_spinner.set(show_spinner);
     }

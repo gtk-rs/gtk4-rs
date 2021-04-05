@@ -76,6 +76,12 @@ glib::wrapper! {
         @extends gtk::Widget;
 }
 
+impl Default for Button {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Button {
     pub fn new() -> Self {
         glib::Object::new(&[]).expect("Failed to create Button")

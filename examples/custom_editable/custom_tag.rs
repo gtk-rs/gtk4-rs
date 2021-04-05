@@ -175,10 +175,8 @@ impl CustomTag {
 
             self_.container.append(&button);
             self_.button.replace(Some(button));
-        } else {
-            if let Some(button) = self_.button.borrow_mut().take() {
-                self_.container.remove(&button);
-            }
+        } else if let Some(button) = self_.button.borrow_mut().take() {
+            self_.container.remove(&button);
         }
         self_.has_close_button.set(has_close_button);
     }
