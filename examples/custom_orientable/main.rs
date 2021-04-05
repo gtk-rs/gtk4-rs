@@ -136,6 +136,12 @@ glib::wrapper! {
         @extends gtk::Widget, @implements gtk::Orientable;
 }
 
+impl Default for CustomOrientable {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl CustomOrientable {
     pub fn new() -> Self {
         glib::Object::new(&[]).expect("Failed to create CustomOrientable")
