@@ -36,8 +36,8 @@ That is why we recommend to use [Meson](https://mesonbuild.com/) on top of it.
 It is cross-platform and its syntax is very readable.
 Meson takes care of
 - translations
-- building and installing GResources
-- installing auxiliary files such as icons and schemas
+- building and installing [resources](resources.html)
+- installing auxiliary files such as icons and [settings schemas](settings.html)
 
 Here as well, you first follow the instructions on the [GTK website](https://www.gtk.org/docs/installations/) in order to install GTK 4.
 Then install Rust with [rustup](https://rustup.rs/).
