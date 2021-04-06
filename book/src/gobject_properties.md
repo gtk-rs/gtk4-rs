@@ -57,7 +57,8 @@ Then we have to define the property within the `ObjectImpl` implementation.
 ```
 
 The `properties` method describes our set of properties.
-We only want create a single one and we give it a name and describe its type, range and default value.
+When naming our property, we make sure to do that in [kebab-case](https://wiki.c2.com/?KebabCase).
+Then, we describe its type, range and default value.
 We also declare that the property can be read and be written to.
 `set_property` describes how the underlying values can be changed.
 `get_property` takes care of returning the underlying value.

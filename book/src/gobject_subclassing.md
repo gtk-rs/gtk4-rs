@@ -14,8 +14,7 @@ It therefore corresponds to the private section of objects in languages like Jav
 {{#rustdoc_include ../listings/gobject_subclassing_1/src/main.rs:impl}}
 ```
 The description of the subclassing is in `ObjectSubclass`.
-- `NAME` must be at least three characters long and start with ‘a–z’, ‘A–Z’ or ‘_’.
-   We recommend to use crate-name + module-path + object-name in order to avoid name collisions. It is idiomatic to use CamelCase here.
+- `NAME` should consist of crate-name, module-path and object-name in order to avoid name collisions. Use [PascalCase](https://wiki.c2.com/?PascalCase) here.
 - `Type` refers to the actual GObject that will be created afterwards.
 - `ParentType` is the GObject we inherit of.
 
