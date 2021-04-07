@@ -8,28 +8,28 @@ It can be read and be written to.
 We do that by calling the `get_property` and `set_property` methods.
 Since all of this is highly dynamic, checks occur at runtime and the code involves a bit of boilerplate.
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Filename: main.rs</span>
 
 ```rust ,no_run
-{{#rustdoc_include ../listings/gobject_properties_1/src/main.rs:switch}}
+{{#rustdoc_include ../listings/gobject_properties/1/main.rs:switch}}
 ```
 
 Properties can also be bound to each other.
 Let us see how would bind the properties of two `Switch` instances.
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Filename: main.rs</span>
 
 ```rust ,no_run
-{{#rustdoc_include ../listings/gobject_properties_2/src/main.rs:switches}}
+{{#rustdoc_include ../listings/gobject_properties/2/main.rs:switches}}
 ```
 
 In our case, we want to bind the "state" property of `switch_1` to the "state" property of `switch_2`.
 We also want the binding to be bidirectional, so we specify this with the [`BindingFlags`](http://gtk-rs.org/docs/glib/struct.BindingFlags.html).
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Filename: main.rs</span>
 
 ```rust ,no_run
-{{#rustdoc_include ../listings/gobject_properties_2/src/main.rs:bind_state}}
+{{#rustdoc_include ../listings/gobject_properties/2/main.rs:bind_state}}
 ```
 
 Whenever we now click on one of the two switches, the other one gets toggled as well.
@@ -50,10 +50,10 @@ once_cell = "1"
 
 Then we have to define the property within the `ObjectImpl` implementation.
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Filename: main.rs</span>
 
 ```rust ,no_run
-{{#rustdoc_include ../listings/gobject_properties_3/src/main.rs:object_impl}}
+{{#rustdoc_include ../listings/gobject_properties/3/main.rs:object_impl}}
 ```
 
 The `properties` method describes our set of properties.
@@ -66,28 +66,28 @@ The formerly private `number` is now accessible via the `get_property` and `set_
 
 Let us see what we can do with this by creating two custom buttons.
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Filename: main.rs</span>
 
 ```rust ,no_run
-{{#rustdoc_include ../listings/gobject_properties_3/src/main.rs:buttons}}
+{{#rustdoc_include ../listings/gobject_properties/3/main.rs:buttons}}
 ```
 
 The numbers of the two buttons can now be bound to each other.
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Filename: main.rs</span>
 
 ```rust ,no_run
-{{#rustdoc_include ../listings/gobject_properties_3/src/main.rs:bind_number}}
+{{#rustdoc_include ../listings/gobject_properties/3/main.rs:bind_number}}
 ```
 
 The numbers are bound to each other, but if we now press on one button, the label of the other one does not get updated.
 Luckily, "label" is a built-in property of `Button`, the class from which `CustomButton` inherits of.
 All we have to do is to bind the "label" property of `button_1` to the "label" property of `button_2`.
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Filename: main.rs</span>
 
 ```rust ,no_run
-{{#rustdoc_include ../listings/gobject_properties_3/src/main.rs:bind_label}}
+{{#rustdoc_include ../listings/gobject_properties/3/main.rs:bind_label}}
 ```
 
 If we now click on one button, the "number" and "label" properties of the other button change as well.
@@ -98,7 +98,7 @@ The final nice feature of properties is, that you can connect a callback to the 
 We can do this like this:
 
 ```rust ,no_run
-{{#rustdoc_include ../listings/gobject_properties_3/src/main.rs:connect_notify}}
+{{#rustdoc_include ../listings/gobject_properties/3/main.rs:connect_notify}}
 ```
 
 Now, whenever the "number" property gets changed, the closure gets executed and prints the current value of "number".

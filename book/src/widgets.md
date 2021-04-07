@@ -29,19 +29,19 @@ In the "Hello World" app we wanted to react to a button click.
 This behavior is specific to a button, so we expect to find a suitable method in the `ButtonExt` trait.
 And indeed, `ButtonExt` includes the method [`connect_clicked`](https://gtk-rs.org/gtk4-rs/gtk4/trait.ButtonExt.html#tymethod.connect_clicked).
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Filename: main.rs</span>
 
 ```rust,no_run
-{{#rustdoc_include ../listings/widgets_1/src/main.rs:button}}
+{{#rustdoc_include ../listings/widgets/1/main.rs:button}}
 ```
 
 Please note that Rust requires bringing traits into scope, before using one of its methods.
 In our example we did that by adding the following line:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Filename: main.rs</span>
 
 ```rust,no_run
-{{#rustdoc_include ../listings/widgets_1/src/main.rs:prelude}}
+{{#rustdoc_include ../listings/widgets/1/main.rs:prelude}}
 ```
 With it, we import all necessary traits for dealing with widgets.
 You probably want to bring the prelude into scope in most of your source files.
@@ -50,8 +50,8 @@ This is also a good moment to mention that all `gtk-rs` widgets support [the bui
 This is especially nice for creating widgets where multiple widget characteristics are already known during its creation.
 We can make our button creation neater, by replacing `gtk::Button` with [`gtk::ButtonBuilder`](https://gtk-rs.org/gtk4-rs/gtk4/struct.ButtonBuilder.html).
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Filename: main.rs</span>
 
 ```rust,no_run
-{{#rustdoc_include ../listings/widgets_2/src/main.rs:button}}
+{{#rustdoc_include ../listings/widgets/2/main.rs:button}}
 ```

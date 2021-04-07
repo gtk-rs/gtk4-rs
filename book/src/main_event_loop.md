@@ -16,10 +16,10 @@ However, you surely saw GUIs that became unresponsive, at least for a few second
 That happens when a single task takes too long.
 Let us look at one example.
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Filename: main.rs</span>
 
 ```rust ,no_run
-{{#rustdoc_include ../listings/main_event_loop_1/src/main.rs}}
+{{#rustdoc_include ../listings/main_event_loop/1/main.rs}}
 ```
 
 After we press the button, the GUI is completely frozen for five seconds.
@@ -28,10 +28,10 @@ The `sleep` call is an artificial example,
 but it is not unusual wanting to run a slightly longer operation in one go.
 For that we just need to spawn a new thread and let the operation run there.
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Filename: main.rs</span>
 
 ```rust ,no_run
-{{#rustdoc_include ../listings/main_event_loop_2/src/main.rs:callback}}
+{{#rustdoc_include ../listings/main_event_loop/2/main.rs:callback}}
 ```
 
 If you come from another language than Rust, you might be uncomfortable with the thought of spawning new threads before even looking at other options.
@@ -43,10 +43,10 @@ In order to achieve that we can create a channel.
 The main loop allows us to send a message from multiple places to a single receiver at the main thread.
 We want to send a `bool` to inform, whether we want the button to react to clicks or not.
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Filename: main.rs</span>
 
 ```rust ,no_run
-{{#rustdoc_include ../listings/main_event_loop_3/src/main.rs:callback}}
+{{#rustdoc_include ../listings/main_event_loop/3/main.rs:callback}}
 ```
 
 Spawning threads is not the only way to run operations asynchronously.
@@ -54,23 +54,23 @@ You can also let the main loop take care of running `async` functions.
 If you do that from the main thread use [`spawn_local`](http://gtk-rs.org/docs/glib/struct.MainContext.html#method.spawn_local), from other threads [`spawn`](http://gtk-rs.org/docs/glib/struct.MainContext.html#method.spawn) has to be used.
 The converted code looks and behaves very similar to the multi-threaded code.
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Filename: main.rs</span>
 
 ```rust ,no_run
-{{#rustdoc_include ../listings/main_event_loop_4/src/main.rs:callback}}
+{{#rustdoc_include ../listings/main_event_loop/4/main.rs:callback}}
 ```
 
 Since we are single-threaded again, we could even get rid of the channels while achieving the same result.
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Filename: main.rs</span>
 
 ```rust ,no_run
-{{#rustdoc_include ../listings/main_event_loop_5/src/main.rs:callback}}
+{{#rustdoc_include ../listings/main_event_loop/5/main.rs:callback}}
 ```
 
 But why did we not do the same thing with our multi-threaded example?
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Filename: main.rs</span>
 
 ```rust ,no_run,compile_fail
 # use std::{thread, time::Duration};

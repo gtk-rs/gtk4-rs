@@ -1,5 +1,6 @@
 [workspace]
 members = [
+  "book/listings",
   "examples",
   "gdk4",
   "gdk4/sys",
