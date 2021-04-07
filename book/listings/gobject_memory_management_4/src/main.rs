@@ -1,4 +1,4 @@
-use std::{cell::RefCell, env::args, rc::Rc};
+use std::{cell::RefCell, rc::Rc};
 
 use glib::clone;
 use gtk::prelude::*;
@@ -11,10 +11,8 @@ fn main() {
         .expect("Initialization failed...");
     app.connect_activate(on_activate);
 
-    // Get command-line arguments
-    let args: Vec<String> = args().collect();
     // Run the application
-    app.run(&args);
+    app.run();
 }
 
 // When the application is launched…

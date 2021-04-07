@@ -1,18 +1,14 @@
 use gtk::prelude::*;
 use gtk::{Align, BoxBuilder, Orientation, Switch};
 use gtk::{Application, ApplicationWindowBuilder};
-use std::env::args;
-
 fn main() {
     // Create a new application
     let app = Application::new(Some("org.gtk.example"), Default::default())
         .expect("Initialization failed...");
     app.connect_activate(on_activate);
 
-    // Get command-line arguments
-    let args: Vec<String> = args().collect();
     // Run the application
-    app.run(&args);
+    app.run();
 }
 // ANCHOR: activate
 // When the application is launched…

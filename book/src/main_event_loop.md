@@ -73,7 +73,7 @@ But why did we not do the same thing with our multi-threaded example?
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust ,no_run,compile_fail
-# use std::{env::args, thread, time::Duration};
+# use std::{thread, time::Duration};
 # 
 # use glib::{clone, MainContext, PRIORITY_DEFAULT};
 # use gtk::glib;
