@@ -6,8 +6,6 @@ Let us see in a set of real life examples which consequences this has.
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust ,no_run,compile_fail
-use std::env::args;
-
 use gtk::prelude::*;
 use gtk::{self, Application, ApplicationWindow, Button, Orientation};
 
@@ -17,10 +15,8 @@ fn main() {
         .expect("Initialization failed...");
     app.connect_activate(on_activate);
     
-    // Get command-line arguments
-    let args: Vec<String> = args().collect();
     // Run the application
-    app.run(&args);
+    app.run();
 }
 
 // When the application is launched…

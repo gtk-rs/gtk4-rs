@@ -1,5 +1,3 @@
-use std::env::args;
-
 use gio::{Settings, SettingsBindFlags};
 use gtk::gio;
 use gtk::prelude::*;
@@ -13,10 +11,8 @@ fn main() {
     // ANCHOR_END: application
     app.connect_activate(on_activate);
 
-    // Get command-line arguments
-    let args: Vec<String> = args().collect();
     // Run the application
-    app.run(&args);
+    app.run();
 }
 
 // When the application is launched…

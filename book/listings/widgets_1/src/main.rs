@@ -1,5 +1,3 @@
-use std::env::args;
-
 // ANCHOR: prelude
 use gtk::prelude::*;
 // ANCHOR_END: prelude
@@ -11,10 +9,8 @@ fn main() {
         .expect("Initialization failed...");
     app.connect_activate(on_activate);
 
-    // Get command-line arguments
-    let args: Vec<String> = args().collect();
     // Run the application
-    app.run(&args);
+    app.run();
 }
 
 // When the application is launched…

@@ -2,17 +2,15 @@ use glib::clone;
 use gtk::prelude::*;
 use gtk::{self, ApplicationWindowBuilder, ButtonBuilder, Orientation};
 use gtk::{glib, Application};
-use std::{cell::RefCell, env::args, rc::Rc};
+use std::{cell::RefCell, rc::Rc};
 fn main() {
     // Create a new application
     let app = Application::new(Some("org.gtk.example"), Default::default())
         .expect("Initialization failed...");
     app.connect_activate(on_activate);
 
-    // Get command-line arguments
-    let args: Vec<String> = args().collect();
     // Run the application
-    app.run(&args);
+    app.run();
 }
 // When the application is launched…
 fn on_activate(application: &Application) {

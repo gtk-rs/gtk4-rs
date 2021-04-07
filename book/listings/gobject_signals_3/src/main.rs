@@ -1,7 +1,7 @@
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindowBuilder};
-use std::{cell::RefCell, env::args};
+use std::cell::RefCell;
 
 // Implementation of our custom GObject
 mod imp {
@@ -97,10 +97,8 @@ fn main() {
         .expect("Initialization failed...");
     app.connect_activate(on_activate);
 
-    // Get command-line arguments
-    let args: Vec<String> = args().collect();
     // Run the application
-    app.run(&args);
+    app.run();
 }
 // ANCHOR: activate
 // When the application is launched…
