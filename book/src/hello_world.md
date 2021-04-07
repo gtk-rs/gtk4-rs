@@ -11,7 +11,6 @@ At the very least, we need to create an `Application` instance, with an applicat
 {{#rustdoc_include ../listings/hello_world_1/src/main.rs}}
 ```
 
-We execute `cargo run` in order to build and run it.
 It builds fine, but nothing appears on our screen.
 GTK warns us, that it would have expected that something would be called in its `activate` step.
 So let us create a window there.
