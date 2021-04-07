@@ -55,6 +55,5 @@ impl ExampleApp {
 
 fn main() {
     let app = ExampleApp::new();
-    let argv = std::env::args().collect::<Vec<_>>();
-    std::process::exit(app.run(&argv));
+    std::process::exit(app.run());
 }

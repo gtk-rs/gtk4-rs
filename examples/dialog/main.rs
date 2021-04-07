@@ -2,7 +2,6 @@ use gtk::glib::clone;
 use gtk::glib::signal::Inhibit;
 use gtk::prelude::*;
 
-use std::env::args;
 use std::rc::Rc;
 
 async fn dialog<W: IsA<gtk::Window>>(window: Rc<W>) {
@@ -66,8 +65,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .build()?;
 
     application.connect_activate(build_ui);
-
-    application.run(&args().collect::<Vec<_>>());
+    application.run();
 
     Ok(())
 }

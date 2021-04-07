@@ -1,5 +1,4 @@
 use std::cell::RefCell;
-use std::env;
 
 use gtk::glib;
 use gtk::prelude::*;
@@ -106,5 +105,5 @@ fn main() {
         window.show();
     });
 
-    application.run(&env::args().collect::<Vec<_>>());
+    application.run();
 }

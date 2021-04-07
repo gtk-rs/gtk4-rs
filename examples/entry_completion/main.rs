@@ -1,8 +1,6 @@
 use gtk::glib;
 use gtk::prelude::*;
 
-use std::env::args;
-
 use glib::Type;
 use gtk::gio::SimpleAction;
 use gtk::{
@@ -99,5 +97,5 @@ fn main() {
     application.add_action(&quit);
 
     // Run the application
-    application.run(&args().collect::<Vec<_>>());
+    application.run();
 }
