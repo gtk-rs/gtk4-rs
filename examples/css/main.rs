@@ -1,7 +1,5 @@
 use gtk::prelude::*;
 
-use std::env::args;
-
 use gtk::gdk::Display;
 use gtk::{
     Application, ApplicationWindow, Box as Box_, Button, ComboBoxText, CssProvider, Entry,
@@ -87,6 +85,5 @@ fn main() {
         // We build the application UI.
         build_ui(app);
     });
-
-    application.run(&args().collect::<Vec<_>>());
+    application.run();
 }

@@ -1,8 +1,6 @@
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Builder, Button, MessageDialog, ResponseType};
 
-use std::env::args;
-
 fn build_ui(application: &Application) {
     let ui_src = include_str!("gtk_builder.ui");
     let builder = Builder::from_string(ui_src);
@@ -33,6 +31,5 @@ fn main() {
     .expect("Initialization failed...");
 
     application.connect_activate(build_ui);
-
-    application.run(&args().collect::<Vec<_>>());
+    application.run();
 }

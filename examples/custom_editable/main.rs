@@ -7,7 +7,6 @@ use glib::clone;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gdk, glib};
-use std::env::args;
 
 static CSS: &str = "
 tag {
@@ -98,6 +97,5 @@ fn main() {
     );
 
     application.connect_activate(build_ui);
-
-    application.run(&args().collect::<Vec<_>>());
+    application.run();
 }

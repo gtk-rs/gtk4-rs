@@ -3,8 +3,6 @@ use gtk::glib;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Label};
 
-use std::env::args;
-
 fn current_time() -> String {
     return format!("{}", Local::now().format("%Y-%m-%d %H:%M:%S"));
 }
@@ -41,6 +39,5 @@ fn main() {
             .expect("Initialization failed...");
 
     application.connect_activate(build_ui);
-
-    application.run(&args().collect::<Vec<_>>());
+    application.run();
 }

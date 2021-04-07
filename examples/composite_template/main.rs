@@ -151,6 +151,5 @@ fn main() {
         let win = ExApplicationWindow::new(app);
         win.show();
     });
-
-    application.run(&std::env::args().collect::<Vec<_>>());
+    application.run();
 }

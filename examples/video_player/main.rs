@@ -107,5 +107,5 @@ fn main() {
         win.show();
     });
 
-    application.run(&std::env::args().collect::<Vec<_>>());
+    application.run();
 }

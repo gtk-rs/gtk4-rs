@@ -1,7 +1,6 @@
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gdk, glib, graphene, gsk};
-use std::env::args;
 
 mod imp {
     use super::*;
@@ -131,6 +130,5 @@ fn main() {
     .expect("Initialization failed...");
 
     application.connect_activate(build_ui);
-
-    application.run(&args().collect::<Vec<_>>());
+    application.run();
 }

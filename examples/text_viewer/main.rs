@@ -1,7 +1,6 @@
 use gtk::glib;
 use gtk::prelude::*;
 
-use std::env::args;
 use std::fs::File;
 use std::io::prelude::*;
 use std::io::BufReader;
@@ -67,6 +66,5 @@ fn main() {
     .expect("Initialization failed...");
 
     application.connect_activate(build_ui);
-
-    application.run(&args().collect::<Vec<_>>());
+    application.run();
 }
