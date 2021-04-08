@@ -171,7 +171,7 @@
 <p>Now that we have got a working installation, let us get right into it!</p>
 <p>At the very least, we need to create an <code>Application</code> instance, with an application id and the default application flags.
 <a href="https://wiki.gnome.org/HowDoI/ChooseApplicationID">This guide</a> helps you find a suitable application id for your app.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run">use gtk::prelude::*;
 use gtk::Application;
 
@@ -187,7 +187,7 @@ fn main() {
 <p>It builds fine, but nothing appears on our screen.
 GTK warns us, that it would have expected that something would be called in its <code>activate</code> step.
 So let us create a window there.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run">use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow};
 
@@ -216,7 +216,7 @@ fn on_activate(application: &amp;Application) {
 <div style="text-align:center"><img src="img/hello_world_empty.png" /></div>
 <p>Normally we expect to be able to interact with the user interface.
 Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; will be involved.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">

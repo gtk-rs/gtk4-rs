@@ -174,7 +174,7 @@ Let us see how this works by replacing the button in our &quot;Hello World!&quot
 <p>First, we need to create an implementation struct that holds the state and overrides the virtual methods.
 It is advised to keep it in a private module, since its state and methods are only meant to be used by the GObject itself.
 It therefore corresponds to the private section of objects in languages like Java and C++.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
@@ -268,7 +268,7 @@ mod imp {
 Since we only want to have a plain button for now, we override nothing.
 We still have to add the empty <code>impl</code> though.
 Next, we describe our custom GObject.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
@@ -357,7 +357,7 @@ We only have to point to the implementation struct and which ancestor GObjects w
 Please note that the list of ancestor GObjects does not mention <code>glib::Object</code>.
 This is because <code>glib::Object</code> is <em>always</em> the base class in the object hierarchy and therefore already implied.</p>
 <p>After these steps, nothing is stopping us anymore from replacing <code>gtk::Button</code> with our <code>CustomButton</code>.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
@@ -446,7 +446,7 @@ This is cool, but also not very tempting to do in a real application.
 For the gain of zero benefits, it did involve quite a bit of boilerplate after all.</p>
 <p>So let us make it a bit more interesting!
 <code>gtk::Button</code> does not hold much state, but we can let <code>CustomButton</code> hold a number.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
@@ -539,7 +539,7 @@ mod imp {
 </span></code></pre></pre>
 <p>We override <code>constructed</code> in <code>ObjectImpl</code> so that the label of the button initializes with <code>number</code>.
 We also override <code>clicked</code> in <code>ButtonImpl</code> so that every click increases <code>number</code> and updates the label.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};

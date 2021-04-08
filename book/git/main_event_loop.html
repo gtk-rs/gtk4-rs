@@ -179,7 +179,7 @@ That is why you can move the window at the same time as a progress bar is growin
 <p>However, you surely saw GUIs that became unresponsive, at least for a few seconds.
 That happens when a single task takes too long.
 Let us look at one example.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run">use std::time::Duration;
 
 use gtk::prelude::*;
@@ -229,7 +229,7 @@ We can't even move the window.
 The <code>sleep</code> call is an artificial example,
 but it is not unusual wanting to run a slightly longer operation in one go.
 For that we just need to spawn a new thread and let the operation run there.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use std::{thread, time::Duration};
 </span><span class="boring">
 </span><span class="boring">use gtk::prelude::*;
@@ -283,7 +283,7 @@ In our case, we don't want the user to spawn additional threads while an existin
 In order to achieve that we can create a channel.
 The main loop allows us to send a message from multiple places to a single receiver at the main thread.
 We want to send a <code>bool</code> to inform, whether we want the button to react to clicks or not.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use std::{thread, time::Duration};
 </span><span class="boring">
 </span><span class="boring">use glib::{clone, Continue, MainContext, PRIORITY_DEFAULT};
@@ -353,7 +353,7 @@ We want to send a <code>bool</code> to inform, whether we want the button to rea
 You can also let the main loop take care of running <code>async</code> functions.
 If you do that from the main thread use <a href="http://gtk-rs.org/docs/glib/struct.MainContext.html#method.spawn_local"><code>spawn_local</code></a>, from other threads <a href="http://gtk-rs.org/docs/glib/struct.MainContext.html#method.spawn"><code>spawn</code></a> has to be used.
 The converted code looks and behaves very similar to the multi-threaded code.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::{clone, timeout_future_seconds, Continue, MainContext, PRIORITY_DEFAULT};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
@@ -417,7 +417,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">}
 </span></code></pre></pre>
 <p>Since we are single-threaded again, we could even get rid of the channels while achieving the same result.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::{clone, timeout_future_seconds, MainContext};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
@@ -469,7 +469,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">}
 </span></code></pre></pre>
 <p>But why did we not do the same thing with our multi-threaded example?</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run compile_fail"><span class="boring">use std::{thread, time::Duration};
 </span><span class="boring">
 </span><span class="boring">use glib::{clone, MainContext, PRIORITY_DEFAULT};

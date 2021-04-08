@@ -174,7 +174,7 @@ One of its properties is the <a href="https://docs.gtk.org/gtk4/property.Switch.
 It can be read and be written to.
 We do that by calling the <code>get_property</code> and <code>set_property</code> methods.
 Since all of this is highly dynamic, checks occur at runtime and the code involves a bit of boilerplate.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Align, BoxBuilder, Orientation, Switch};
 </span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
@@ -227,7 +227,7 @@ Since all of this is highly dynamic, checks occur at runtime and the code involv
 </span></code></pre></pre>
 <p>Properties can also be bound to each other.
 Let us see how would bind the properties of two <code>Switch</code> instances.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::{glib, Align, Orientation, Switch};
 </span><span class="boring">use gtk::{prelude::*, BoxBuilder};
@@ -277,7 +277,7 @@ Let us see how would bind the properties of two <code>Switch</code> instances.</
 </span></code></pre></pre>
 <p>In our case, we want to bind the &quot;state&quot; property of <code>switch_1</code> to the &quot;state&quot; property of <code>switch_2</code>.
 We also want the binding to be bidirectional, so we specify this with the <a href="http://gtk-rs.org/docs/glib/struct.BindingFlags.html"><code>BindingFlags</code></a>.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::{glib, Align, Orientation, Switch};
 </span><span class="boring">use gtk::{prelude::*, BoxBuilder};
@@ -335,7 +335,7 @@ With this, we can <a href="https://en.wikipedia.org/wiki/Lazy_evaluation">lazily
 once_cell = &quot;1&quot;
 </code></pre>
 <p>Then we have to define the property within the <code>ObjectImpl</code> implementation.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::{BindingFlags, Object};
 </span><span class="boring">use gtk::{glib, Align, Orientation};
 </span><span class="boring">use gtk::{prelude::*, BoxBuilder};
@@ -507,7 +507,7 @@ We also declare that the property can be read and be written to.
 <code>get_property</code> takes care of returning the underlying value.
 The formerly private <code>number</code> is now accessible via the <code>get_property</code> and <code>set_property</code> methods.</p>
 <p>Let us see what we can do with this by creating two custom buttons.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::{BindingFlags, Object};
 </span><span class="boring">use gtk::{glib, Align, Orientation};
 </span><span class="boring">use gtk::{prelude::*, BoxBuilder};
@@ -672,7 +672,7 @@ The formerly private <code>number</code> is now accessible via the <code>get_pro
 </span><span class="boring">}
 </span></code></pre></pre>
 <p>The numbers of the two buttons can now be bound to each other.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::{BindingFlags, Object};
 </span><span class="boring">use gtk::{glib, Align, Orientation};
 </span><span class="boring">use gtk::{prelude::*, BoxBuilder};
@@ -839,7 +839,7 @@ The formerly private <code>number</code> is now accessible via the <code>get_pro
 <p>The numbers are bound to each other, but if we now press on one button, the label of the other one does not get updated.
 Luckily, &quot;label&quot; is a built-in property of <code>Button</code>, the class from which <code>CustomButton</code> inherits of.
 All we have to do is to bind the &quot;label&quot; property of <code>button_1</code> to the &quot;label&quot; property of <code>button_2</code>.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::{BindingFlags, Object};
 </span><span class="boring">use gtk::{glib, Align, Orientation};
 </span><span class="boring">use gtk::{prelude::*, BoxBuilder};

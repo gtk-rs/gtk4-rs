@@ -170,7 +170,7 @@
                         <h1 id="memory-management-of-gobjects"><a class="header" href="#memory-management-of-gobjects">Memory management of GObjects</a></h1>
 <p>GObjects are reference-counted, mutable objects, so they behave very similar to <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>.
 Let us see in a set of real life examples which consequences this has.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run compile_fail">use gtk::prelude::*;
 use gtk::{self, Application, ApplicationWindow, Button, Orientation};
 
@@ -214,7 +214,7 @@ If we click on one button, an integer number should be increased. If we press th
 The Rust compiler refuses to compile it though.</p>
 <p>For once the borrow checker kicked in:</p>
 <pre><code class="language-console">error[E0499]: cannot borrow `number` as mutable more than once at a time
-  --&gt; src/main.rs:27:37
+  --&gt; main.rs:27:37
    |
 26 |     button_increase.connect_clicked(|_| number += 1);
    |     ------------------------------------------------
@@ -230,7 +230,7 @@ The Rust compiler refuses to compile it though.</p>
 <p>Also, the compiler tells us that our closures may outlive <code>number</code>:</p>
 <pre><code class="language-console">
 error[E0373]: closure may outlive the current function, but it borrows `number`, which is owned by the current function
-  --&gt; src/main.rs:26:37
+  --&gt; main.rs:26:37
    |
 26 |     button_increase.connect_clicked(|_| number += 1);
    |                                     ^^^ ------ `number` is borrowed here
@@ -238,7 +238,7 @@ error[E0373]: closure may outlive the current function, but it borrows `number`,
    |                                     may outlive borrowed value `number`
    |
 note: function requires argument type to outlive `'static`
-  --&gt; src/main.rs:26:5
+  --&gt; main.rs:26:5
    |
 26 |     button_increase.connect_clicked(|_| number += 1);
    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -259,7 +259,7 @@ If we want to modify the content of our <a href="https://doc.rust-lang.org/std/r
 we can use the <a href="https://doc.rust-lang.org/std/cell/struct.RefCell.html"><code>RefCell</code></a> type.
 <code>RefCell</code> then checks Rust's borrow rules during run time, namely that there can only be one mutable borrow at a time or multiple immutable borrows.
 <code>RefCell</code> panics if these rules are violated.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::Application;
 </span><span class="boring">use gtk::{self, ApplicationWindowBuilder, ButtonBuilder, Orientation};
@@ -315,7 +315,7 @@ we can use the <a href="https://doc.rust-lang.org/std/cell/struct.RefCell.html">
 </span></code></pre></pre>
 <p>It is not very nice though to fill the scope with temporary variables like <code>number_copy_1</code>.
 We can improve that by using the <code>glib::clone!</code> macro.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{self, ApplicationWindowBuilder, ButtonBuilder, Orientation};
@@ -375,7 +375,7 @@ We can improve that by using the <code>glib::clone!</code> macro.</p>
 </span></code></pre></pre>
 <p>Just like <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>, GObjects are reference-counted and mutable.
 Therefore, we can pass the buttons the same way to the closure as we did with <code>number</code>.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use std::{cell::RefCell, rc::Rc};
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
@@ -448,7 +448,7 @@ A strong reference keeps the referenced value from being deallocated.
 If this chain leads to a circle, none of the values in this cycle ever get deallocated.
 With weak references we can break this cycle, because they do not keep their value alive but instead provide a way to retrieve a strong reference if the value is still alive.
 Since we want our apps to free unneeded memory, we should use weak references for the buttons instead<sup class="footnote-reference"><a href="#1">1</a></sup>.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use std::{cell::RefCell, rc::Rc};
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
@@ -524,7 +524,7 @@ For more information about <code>glib::clone</code>, please have a look at the <
 If we had a <em>weak</em> reference, no one would have kept <code>number</code> alive and the closure would have never been called.
 Thinking about this, <code>button_increase</code> and <code>button_decrease</code> are also dropped at the end of the scope of <code>on_activate</code>.
 Who then keeps the buttons alive?</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use std::{cell::RefCell, rc::Rc};
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
@@ -591,7 +591,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">}
 </span></code></pre></pre>
 <p>When we append the buttons to the <code>gtk_box</code>, <code>gtk_box</code> keeps a strong reference to them.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use std::{cell::RefCell, rc::Rc};
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
@@ -658,7 +658,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">}
 </span></code></pre></pre>
 <p>When we set <code>gtk_box</code> as child of <code>window</code>, <code>window</code> keeps a strong reference to it.</p>
-<p><span class="filename">Filename: src/main.rs</span></p>
+<p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use std::{cell::RefCell, rc::Rc};
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
