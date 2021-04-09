@@ -7,7 +7,7 @@ The signal then takes care that all the registered callbacks will be executed.
 `gtk-rs` provides convenience methods for registering callbacks.
 In our "Hello World" example we [connected](../docs//trait.ButtonExt.html#tymethod.connect_clicked) the "clicked" signal to a closure which sets the label of the button to "Hello World" as soon as it gets called.
 
-<span class="filename">Filename: main.rs</span>
+<span class="filename">Filename: listings/gobject_signals/1/main.rs</span>
 
 ```rust ,no_run
 {{#rustdoc_include ../listings/gobject_signals/1/main.rs:callback}}
@@ -15,9 +15,9 @@ In our "Hello World" example we [connected](../docs//trait.ButtonExt.html#tymeth
 
 If we wanted to, we could have connected to it with the general (but much more verbose) `connect_local` method.
 
-<span class="filename">Filename: main.rs</span>
+<span class="filename">Filename: listings/gobject_signals/2/main.rs</span>
 
-```rust ,no_run
+```rust,no_run
 {{#rustdoc_include ../listings/gobject_signals/2/main.rs:callback}}
 ```
 
@@ -27,10 +27,10 @@ Let us see how we can create our own signals.
 Again, we do that by extending our `CustomButton`.
 First we override the necessary methods in `ObjectImpl`.
 
-<span class="filename">Filename: main.rs</span>
+<span class="filename">Filename: listings/gobject_signals/3/custom_button/imp.rs</span>
 
-```rust ,no_run
-{{#rustdoc_include ../listings/gobject_signals/3/main.rs:object_impl}}
+```rust,no_run
+{{#rustdoc_include ../listings/gobject_signals/3/custom_button/imp.rs:object_impl}}
 ```
 
 The `signal` method is responsible for defining a set of signals.
@@ -42,10 +42,10 @@ We want the signal to be emitted, whenever `number` reaches `MAX_NUMBER`.
 Together with the signal we send the value `number` currently holds.
 After we did that, we set `number` back to 0.
 
-<span class="filename">Filename: main.rs</span>
+<span class="filename">Filename: listings/gobject_signals/3/custom_button/imp.rs</span>
 
-```rust ,no_run
-{{#rustdoc_include ../listings/gobject_signals/3/main.rs:button_impl}}
+```rust,no_run
+{{#rustdoc_include ../listings/gobject_signals/3/custom_button/imp.rs:button_impl}}
 ```
 
 If we now press on the button, the number of its label increases until it reaches `MAX_NUMBER`.

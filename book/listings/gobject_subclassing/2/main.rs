@@ -1,65 +1,8 @@
-use gtk::glib;
+mod custom_button;
+
+use custom_button::CustomButton;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindowBuilder};
-use std::cell::RefCell;
-
-// ANCHOR: impl
-// Implementation of our custom GObject
-mod imp {
-    // Import parent scope
-    use super::*;
-    // Import necessary traits for subclassing
-    use gtk::subclass::prelude::*;
-
-    // Object holding the state
-    #[derive(Default)]
-    pub struct CustomButton {
-        number: RefCell<i32>,
-    }
-
-    // The central trait for subclassing a GObject
-    #[glib::object_subclass]
-    impl ObjectSubclass for CustomButton {
-        const NAME: &'static str = "MyGtkAppCustomButton";
-        type Type = super::CustomButton;
-        type ParentType = gtk::Button;
-    }
-
-    // Trait shared by all GObjects
-    impl ObjectImpl for CustomButton {
-        fn constructed(&self, obj: &Self::Type) {
-            self.parent_constructed(obj);
-            obj.set_label(&self.number.borrow().to_string());
-        }
-    }
-
-    // Trait shared by all widgets
-    impl WidgetImpl for CustomButton {}
-
-    // Trait shared by all buttons
-    impl ButtonImpl for CustomButton {
-        fn clicked(&self, button: &Self::Type) {
-            *self.number.borrow_mut() += 1;
-            button.set_label(&self.number.borrow().to_string())
-        }
-    }
-}
-// ANCHOR_END: impl
-glib::wrapper! {
-    pub struct CustomButton(ObjectSubclass<imp::CustomButton>)
-        @extends gtk::Button, gtk::Widget;
-}
-
-impl CustomButton {
-    pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create Button")
-    }
-    pub fn with_label(label: &str) -> Self {
-        let button = Self::new();
-        button.set_label(label);
-        button
-    }
-}
 
 fn main() {
     // Create a new application

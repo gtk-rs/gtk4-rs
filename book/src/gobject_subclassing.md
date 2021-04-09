@@ -8,10 +8,10 @@ First, we need to create an implementation struct that holds the state and overr
 It is advised to keep it in a private module, since its state and methods are only meant to be used by the GObject itself.
 It therefore corresponds to the private section of objects in languages like Java and C++.
 
-<span class="filename">Filename: main.rs</span>
+<span class="filename">Filename: listings/gobject_subclassing/1/custom_button/imp.rs</span>
 
 ```rust,no_run
-{{#rustdoc_include ../listings/gobject_subclassing/1/main.rs:impl}}
+{{#rustdoc_include ../listings/gobject_subclassing/1/custom_button/imp.rs}}
 ```
 The description of the subclassing is in `ObjectSubclass`.
 - `NAME` should consist of crate-name, module-path and object-name in order to avoid name collisions. Use [PascalCase](https://wiki.c2.com/?PascalCase) here.
@@ -23,10 +23,10 @@ Since we only want to have a plain button for now, we override nothing.
 We still have to add the empty `impl` though.
 Next, we describe our custom GObject.
 
-<span class="filename">Filename: main.rs</span>
+<span class="filename">Filename: listings/gobject_subclassing/1/custom_button/mod.rs</span>
 
 ```rust,no_run
-{{#rustdoc_include ../listings/gobject_subclassing/1/main.rs:gobject}}
+{{#rustdoc_include ../listings/gobject_subclassing/1/custom_button/mod.rs}}
 ```
 
 `glib::wrapper!` does the most of the work of subclassing for us.
@@ -36,10 +36,10 @@ This is because `glib::Object` is *always* the base class in the object hierarch
 
 After these steps, nothing is stopping us anymore from replacing `gtk::Button` with our `CustomButton`.
 
-<span class="filename">Filename: main.rs</span>
+<span class="filename">Filename: listings/gobject_subclassing/1/main.rs</span>
 
 ```rust,no_run
-{{#rustdoc_include ../listings/gobject_subclassing/1/main.rs:call}}
+{{#rustdoc_include ../listings/gobject_subclassing/1/main.rs}}
 ```
 We are able to use `CustomButton` as a drop-in replacement for `gtk::Button`.
 This is cool, but also not very tempting to do in a real application.
@@ -48,15 +48,15 @@ For the gain of zero benefits, it did involve quite a bit of boilerplate after a
 So let us make it a bit more interesting!
 `gtk::Button` does not hold much state, but we can let `CustomButton` hold a number.
 
-<span class="filename">Filename: main.rs</span>
+<span class="filename">Filename: listings/gobject_subclassing/2/custom_button/imp.rs</span>
 
 ```rust,no_run
-{{#rustdoc_include ../listings/gobject_subclassing/2/main.rs:impl}}
+{{#rustdoc_include ../listings/gobject_subclassing/2/custom_button/imp.rs}}
 ```
 We override `constructed` in `ObjectImpl` so that the label of the button initializes with `number`.
 We also override `clicked` in `ButtonImpl` so that every click increases `number` and updates the label.
 
-<span class="filename">Filename: main.rs</span>
+<span class="filename">Filename: listings/gobject_subclassing/2/main.rs</span>
 
 ```rust,no_run
 {{#rustdoc_include ../listings/gobject_subclassing/2/main.rs:activate}}

@@ -1,55 +1,9 @@
-use gtk::glib;
+mod custom_button;
+
+use custom_button::CustomButton;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindowBuilder};
 
-// ANCHOR: impl
-// Implementation of our custom GObject
-mod imp {
-    // Import parent scope
-    use super::*;
-    // Import necessary traits for subclassing
-    use gtk::subclass::prelude::*;
-
-    // Object holding the state
-    #[derive(Default)]
-    pub struct CustomButton;
-
-    // The central trait for subclassing a GObject
-    #[glib::object_subclass]
-    impl ObjectSubclass for CustomButton {
-        const NAME: &'static str = "MyGtkAppCustomButton";
-        type Type = super::CustomButton;
-        type ParentType = gtk::Button;
-    }
-
-    // Trait shared by all GObjects
-    impl ObjectImpl for CustomButton {}
-
-    // Trait shared by all widgets
-    impl WidgetImpl for CustomButton {}
-
-    // Trait shared by all buttons
-    impl ButtonImpl for CustomButton {}
-}
-// ANCHOR_END: impl
-// ANCHOR: gobject
-glib::wrapper! {
-    pub struct CustomButton(ObjectSubclass<imp::CustomButton>)
-        @extends gtk::Button, gtk::Widget;
-}
-
-impl CustomButton {
-    pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create Button")
-    }
-    pub fn with_label(label: &str) -> Self {
-        let button = Self::new();
-        button.set_label(label);
-        button
-    }
-}
-// ANCHOR_END: gobject
-// ANCHOR: call
 fn main() {
     // Create a new application
     let app = Application::new(Some("org.gtk.example"), Default::default())
@@ -85,4 +39,3 @@ fn on_activate(application: &Application) {
     window.set_child(Some(&button));
     window.present();
 }
-// ANCHOR_END: call

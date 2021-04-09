@@ -2,6 +2,7 @@ use glib::BindingFlags;
 use gtk::{glib, Align, Orientation, Switch};
 use gtk::{prelude::*, BoxBuilder};
 use gtk::{Application, ApplicationWindowBuilder};
+
 fn main() {
     // Create a new application
     let app = Application::new(Some("org.gtk.example"), Default::default())
@@ -11,6 +12,7 @@ fn main() {
     // Run the application
     app.run();
 }
+
 // ANCHOR: activate
 // When the application is launched…
 fn on_activate(application: &Application) {
