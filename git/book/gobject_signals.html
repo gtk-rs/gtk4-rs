@@ -173,7 +173,7 @@ For example, if we press on a button, the &quot;clicked&quot; signal will be emi
 The signal then takes care that all the registered callbacks will be executed.</p>
 <p><code>gtk-rs</code> provides convenience methods for registering callbacks.
 In our &quot;Hello World&quot; example we <a href="../docs/gtk4/trait.ButtonExt.html#tymethod.connect_clicked">connected</a> the &quot;clicked&quot; signal to a closure which sets the label of the button to &quot;Hello World&quot; as soon as it gets called.</p>
-<p><span class="filename">Filename: main.rs</span></p>
+<p><span class="filename">Filename: listings/gobject_signals/1/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, ButtonBuilder};
 </span><span class="boring">
@@ -216,7 +216,7 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/trait.ButtonExt.
 </span><span class="boring">}
 </span></code></pre></pre>
 <p>If we wanted to, we could have connected to it with the general (but much more verbose) <code>connect_local</code> method.</p>
-<p><span class="filename">Filename: main.rs</span></p>
+<p><span class="filename">Filename: listings/gobject_signals/2/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button, ButtonBuilder};
 </span><span class="boring">
@@ -267,132 +267,76 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/trait.ButtonExt.
 <p>Let us see how we can create our own signals.
 Again, we do that by extending our <code>CustomButton</code>.
 First we override the necessary methods in <code>ObjectImpl</code>.</p>
-<p><span class="filename">Filename: main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::glib;
+<p><span class="filename">Filename: listings/gobject_signals/3/custom_button/imp.rs</span></p>
+<pre><pre class="playground"><code class="language-rust no_run">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use glib::subclass::Signal;
+</span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
+</span><span class="boring">use gtk::subclass::prelude::*;
+</span><span class="boring">
+</span><span class="boring">use once_cell::sync::Lazy;
 </span><span class="boring">use std::cell::RefCell;
 </span><span class="boring">
-</span><span class="boring">// Implementation of our custom GObject
-</span><span class="boring">mod imp {
-</span><span class="boring">    // Import parent scope
-</span><span class="boring">    use super::*;
-</span><span class="boring">    // Import necessary objects and traits for subclassing
-</span><span class="boring">    use glib::subclass::Signal;
-</span><span class="boring">    use gtk::subclass::prelude::*;
-</span><span class="boring">    use once_cell::sync::Lazy;
+</span><span class="boring">// Object holding the state
+</span><span class="boring">#[derive(Default)]
+</span><span class="boring">pub struct CustomButton {
+</span><span class="boring">    number: RefCell&lt;i32&gt;,
+</span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">    // Object holding the state
-</span><span class="boring">    #[derive(Default)]
-</span><span class="boring">    pub struct CustomButton {
-</span><span class="boring">        number: RefCell&lt;i32&gt;,
-</span><span class="boring">    }
+</span><span class="boring">// The central trait for subclassing a GObject
+</span><span class="boring">#[glib::object_subclass]
+</span><span class="boring">impl ObjectSubclass for CustomButton {
+</span><span class="boring">    const NAME: &amp;'static str = &quot;MyGtkAppCustomButton&quot;;
+</span><span class="boring">    type Type = super::CustomButton;
+</span><span class="boring">    type ParentType = gtk::Button;
+</span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">    // The central trait for subclassing a GObject
-</span><span class="boring">    #[glib::object_subclass]
-</span><span class="boring">    impl ObjectSubclass for CustomButton {
-</span><span class="boring">        const NAME: &amp;'static str = &quot;MyGtkAppCustomButton&quot;;
-</span><span class="boring">        type Type = super::CustomButton;
-</span><span class="boring">        type ParentType = gtk::Button;
-</span><span class="boring">    }
-</span>    // Trait shared by all GObjects
-    impl ObjectImpl for CustomButton {
-        fn constructed(&amp;self, obj: &amp;Self::Type) {
-            self.parent_constructed(obj);
-            obj.set_label(&amp;self.number.borrow().to_string());
-        }
-
-        fn signals() -&gt; &amp;'static [Signal] {
-            static SIGNALS: Lazy&lt;Vec&lt;Signal&gt;&gt; = Lazy::new(|| {
-                vec![Signal::builder(
-                    // Signal name
-                    &quot;max-number-reached&quot;,
-                    // Types of the values which will be sent to the receiver
-                    &amp;[i32::static_type().into()],
-                    // Type of the value the receiver sends back
-                    &lt;()&gt;::static_type().into(),
-                )
-                .build()]
-            });
-            SIGNALS.as_ref()
-        }
+</span>// Trait shared by all GObjects
+impl ObjectImpl for CustomButton {
+    fn constructed(&amp;self, obj: &amp;Self::Type) {
+        self.parent_constructed(obj);
+        obj.set_label(&amp;self.number.borrow().to_string());
     }
+
+    fn signals() -&gt; &amp;'static [Signal] {
+        static SIGNALS: Lazy&lt;Vec&lt;Signal&gt;&gt; = Lazy::new(|| {
+            vec![Signal::builder(
+                // Signal name
+                &quot;max-number-reached&quot;,
+                // Types of the values which will be sent to the receiver
+                &amp;[i32::static_type().into()],
+                // Type of the value the receiver sends back
+                &lt;()&gt;::static_type().into(),
+            )
+            .build()]
+        });
+        SIGNALS.as_ref()
+    }
+}
 <span class="boring">
-</span><span class="boring">    // Trait shared by all widgets
-</span><span class="boring">    impl WidgetImpl for CustomButton {}
+</span><span class="boring">// Trait shared by all widgets
+</span><span class="boring">impl WidgetImpl for CustomButton {}
 </span><span class="boring">
-</span><span class="boring">    static MAX_NUMBER: i32 = 8;
-</span><span class="boring">    // Trait shared by all buttons
-</span><span class="boring">    impl ButtonImpl for CustomButton {
-</span><span class="boring">        fn clicked(&amp;self, button: &amp;Self::Type) {
-</span><span class="boring">            // Increase `number` by 1
-</span><span class="boring">            *self.number.borrow_mut() += 1;
-</span><span class="boring">            // If `number` reached `MAX_NUMBER`,
-</span><span class="boring">            // emit &quot;max-number-reached&quot; signal and set `number` back to 0
-</span><span class="boring">            if *self.number.borrow() == MAX_NUMBER {
-</span><span class="boring">                button
-</span><span class="boring">                    .emit_by_name(&quot;max-number-reached&quot;, &amp;[&amp;*self.number.borrow()])
-</span><span class="boring">                    .unwrap();
-</span><span class="boring">                self.number.replace(0);
-</span><span class="boring">            }
-</span><span class="boring">            // Set label of `button`
-</span><span class="boring">            button.set_label(&amp;self.number.borrow().to_string())
+</span><span class="boring">static MAX_NUMBER: i32 = 8;
+</span><span class="boring">// Trait shared by all buttons
+</span><span class="boring">impl ButtonImpl for CustomButton {
+</span><span class="boring">    fn clicked(&amp;self, button: &amp;Self::Type) {
+</span><span class="boring">        // Increase `number` by 1
+</span><span class="boring">        *self.number.borrow_mut() += 1;
+</span><span class="boring">        // If `number` reached `MAX_NUMBER`,
+</span><span class="boring">        // emit &quot;max-number-reached&quot; signal and set `number` back to 0
+</span><span class="boring">        if *self.number.borrow() == MAX_NUMBER {
+</span><span class="boring">            button
+</span><span class="boring">                .emit_by_name(&quot;max-number-reached&quot;, &amp;[&amp;*self.number.borrow()])
+</span><span class="boring">                .unwrap();
+</span><span class="boring">            self.number.replace(0);
 </span><span class="boring">        }
+</span><span class="boring">        // Set label of `button`
+</span><span class="boring">        button.set_label(&amp;self.number.borrow().to_string())
 </span><span class="boring">    }
 </span><span class="boring">}
-</span><span class="boring">
-</span><span class="boring">glib::wrapper! {
-</span><span class="boring">    pub struct CustomButton(ObjectSubclass&lt;imp::CustomButton&gt;)
-</span><span class="boring">        @extends gtk::Button, gtk::Widget;
-</span><span class="boring">}
-</span><span class="boring">
-</span><span class="boring">impl CustomButton {
-</span><span class="boring">    pub fn new() -&gt; Self {
-</span><span class="boring">        glib::Object::new(&amp;[]).expect(&quot;Failed to create Button&quot;)
-</span><span class="boring">    }
-</span><span class="boring">    pub fn with_label(label: &amp;str) -&gt; Self {
-</span><span class="boring">        let button = Self::new();
-</span><span class="boring">        button.set_label(label);
-</span><span class="boring">        button
-</span><span class="boring">    }
-</span><span class="boring">}
-</span><span class="boring">
-</span><span class="boring">fn main() {
-</span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
-</span><span class="boring">    app.connect_activate(on_activate);
-</span><span class="boring">
-</span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
-</span><span class="boring">}
-</span><span class="boring">// When the application is launched…
-</span><span class="boring">fn on_activate(application: &amp;Application) {
-</span><span class="boring">    // … create a new window …
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
-</span><span class="boring">        .application(application)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
-</span><span class="boring">    // Create a button
-</span><span class="boring">    let button = CustomButton::new();
-</span><span class="boring">    button.set_margin_top(12);
-</span><span class="boring">    button.set_margin_bottom(12);
-</span><span class="boring">    button.set_margin_start(12);
-</span><span class="boring">    button.set_margin_end(12);
-</span><span class="boring">
-</span><span class="boring">    button
-</span><span class="boring">        .connect_local(&quot;max-number-reached&quot;, false, move |args| {
-</span><span class="boring">            // Get the number from the arguments
-</span><span class="boring">            // args.get(0) would return the `CustomButton` instance
-</span><span class="boring">            let number = args.get(1).unwrap().get::&lt;i32&gt;().unwrap().unwrap();
-</span><span class="boring">            println!(&quot;The maximum number {} has been reached&quot;, number);
-</span><span class="boring">            None
-</span><span class="boring">        })
-</span><span class="boring">        .unwrap();
-</span><span class="boring">
-</span><span class="boring">    window.set_child(Some(&amp;button));
-</span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre></pre>
 <p>The <code>signal</code> method is responsible for defining a set of signals.
@@ -402,133 +346,77 @@ When emitted, it sends a single <code>i32</code> value and expects nothing in re
 <p>We want the signal to be emitted, whenever <code>number</code> reaches <code>MAX_NUMBER</code>.
 Together with the signal we send the value <code>number</code> currently holds.
 After we did that, we set <code>number</code> back to 0.</p>
-<p><span class="filename">Filename: main.rs</span></p>
-<pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::glib;
+<p><span class="filename">Filename: listings/gobject_signals/3/custom_button/imp.rs</span></p>
+<pre><pre class="playground"><code class="language-rust no_run">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">use glib::subclass::Signal;
+</span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
+</span><span class="boring">use gtk::subclass::prelude::*;
+</span><span class="boring">
+</span><span class="boring">use once_cell::sync::Lazy;
 </span><span class="boring">use std::cell::RefCell;
 </span><span class="boring">
-</span><span class="boring">// Implementation of our custom GObject
-</span><span class="boring">mod imp {
-</span><span class="boring">    // Import parent scope
-</span><span class="boring">    use super::*;
-</span><span class="boring">    // Import necessary objects and traits for subclassing
-</span><span class="boring">    use glib::subclass::Signal;
-</span><span class="boring">    use gtk::subclass::prelude::*;
-</span><span class="boring">    use once_cell::sync::Lazy;
+</span><span class="boring">// Object holding the state
+</span><span class="boring">#[derive(Default)]
+</span><span class="boring">pub struct CustomButton {
+</span><span class="boring">    number: RefCell&lt;i32&gt;,
+</span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">    // Object holding the state
-</span><span class="boring">    #[derive(Default)]
-</span><span class="boring">    pub struct CustomButton {
-</span><span class="boring">        number: RefCell&lt;i32&gt;,
+</span><span class="boring">// The central trait for subclassing a GObject
+</span><span class="boring">#[glib::object_subclass]
+</span><span class="boring">impl ObjectSubclass for CustomButton {
+</span><span class="boring">    const NAME: &amp;'static str = &quot;MyGtkAppCustomButton&quot;;
+</span><span class="boring">    type Type = super::CustomButton;
+</span><span class="boring">    type ParentType = gtk::Button;
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">// Trait shared by all GObjects
+</span><span class="boring">impl ObjectImpl for CustomButton {
+</span><span class="boring">    fn constructed(&amp;self, obj: &amp;Self::Type) {
+</span><span class="boring">        self.parent_constructed(obj);
+</span><span class="boring">        obj.set_label(&amp;self.number.borrow().to_string());
 </span><span class="boring">    }
 </span><span class="boring">
-</span><span class="boring">    // The central trait for subclassing a GObject
-</span><span class="boring">    #[glib::object_subclass]
-</span><span class="boring">    impl ObjectSubclass for CustomButton {
-</span><span class="boring">        const NAME: &amp;'static str = &quot;MyGtkAppCustomButton&quot;;
-</span><span class="boring">        type Type = super::CustomButton;
-</span><span class="boring">        type ParentType = gtk::Button;
+</span><span class="boring">    fn signals() -&gt; &amp;'static [Signal] {
+</span><span class="boring">        static SIGNALS: Lazy&lt;Vec&lt;Signal&gt;&gt; = Lazy::new(|| {
+</span><span class="boring">            vec![Signal::builder(
+</span><span class="boring">                // Signal name
+</span><span class="boring">                &quot;max-number-reached&quot;,
+</span><span class="boring">                // Types of the values which will be sent to the receiver
+</span><span class="boring">                &amp;[i32::static_type().into()],
+</span><span class="boring">                // Type of the value the receiver sends back
+</span><span class="boring">                &lt;()&gt;::static_type().into(),
+</span><span class="boring">            )
+</span><span class="boring">            .build()]
+</span><span class="boring">        });
+</span><span class="boring">        SIGNALS.as_ref()
 </span><span class="boring">    }
-</span><span class="boring">    // Trait shared by all GObjects
-</span><span class="boring">    impl ObjectImpl for CustomButton {
-</span><span class="boring">        fn constructed(&amp;self, obj: &amp;Self::Type) {
-</span><span class="boring">            self.parent_constructed(obj);
-</span><span class="boring">            obj.set_label(&amp;self.number.borrow().to_string());
-</span><span class="boring">        }
+</span><span class="boring">}
 </span><span class="boring">
-</span><span class="boring">        fn signals() -&gt; &amp;'static [Signal] {
-</span><span class="boring">            static SIGNALS: Lazy&lt;Vec&lt;Signal&gt;&gt; = Lazy::new(|| {
-</span><span class="boring">                vec![Signal::builder(
-</span><span class="boring">                    // Signal name
-</span><span class="boring">                    &quot;max-number-reached&quot;,
-</span><span class="boring">                    // Types of the values which will be sent to the receiver
-</span><span class="boring">                    &amp;[i32::static_type().into()],
-</span><span class="boring">                    // Type of the value the receiver sends back
-</span><span class="boring">                    &lt;()&gt;::static_type().into(),
-</span><span class="boring">                )
-</span><span class="boring">                .build()]
-</span><span class="boring">            });
-</span><span class="boring">            SIGNALS.as_ref()
-</span><span class="boring">        }
-</span><span class="boring">    }
+</span><span class="boring">// Trait shared by all widgets
+</span><span class="boring">impl WidgetImpl for CustomButton {}
 </span><span class="boring">
-</span><span class="boring">    // Trait shared by all widgets
-</span><span class="boring">    impl WidgetImpl for CustomButton {}
-</span><span class="boring">
-</span>    static MAX_NUMBER: i32 = 8;
-    // Trait shared by all buttons
-    impl ButtonImpl for CustomButton {
-        fn clicked(&amp;self, button: &amp;Self::Type) {
-            // Increase `number` by 1
-            *self.number.borrow_mut() += 1;
-            // If `number` reached `MAX_NUMBER`,
-            // emit &quot;max-number-reached&quot; signal and set `number` back to 0
-            if *self.number.borrow() == MAX_NUMBER {
-                button
-                    .emit_by_name(&quot;max-number-reached&quot;, &amp;[&amp;*self.number.borrow()])
-                    .unwrap();
-                self.number.replace(0);
-            }
-            // Set label of `button`
-            button.set_label(&amp;self.number.borrow().to_string())
+</span>static MAX_NUMBER: i32 = 8;
+// Trait shared by all buttons
+impl ButtonImpl for CustomButton {
+    fn clicked(&amp;self, button: &amp;Self::Type) {
+        // Increase `number` by 1
+        *self.number.borrow_mut() += 1;
+        // If `number` reached `MAX_NUMBER`,
+        // emit &quot;max-number-reached&quot; signal and set `number` back to 0
+        if *self.number.borrow() == MAX_NUMBER {
+            button
+                .emit_by_name(&quot;max-number-reached&quot;, &amp;[&amp;*self.number.borrow()])
+                .unwrap();
+            self.number.replace(0);
         }
+        // Set label of `button`
+        button.set_label(&amp;self.number.borrow().to_string())
     }
+}
 <span class="boring">}
-</span><span class="boring">
-</span><span class="boring">glib::wrapper! {
-</span><span class="boring">    pub struct CustomButton(ObjectSubclass&lt;imp::CustomButton&gt;)
-</span><span class="boring">        @extends gtk::Button, gtk::Widget;
-</span><span class="boring">}
-</span><span class="boring">
-</span><span class="boring">impl CustomButton {
-</span><span class="boring">    pub fn new() -&gt; Self {
-</span><span class="boring">        glib::Object::new(&amp;[]).expect(&quot;Failed to create Button&quot;)
-</span><span class="boring">    }
-</span><span class="boring">    pub fn with_label(label: &amp;str) -&gt; Self {
-</span><span class="boring">        let button = Self::new();
-</span><span class="boring">        button.set_label(label);
-</span><span class="boring">        button
-</span><span class="boring">    }
-</span><span class="boring">}
-</span><span class="boring">
-</span><span class="boring">fn main() {
-</span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
-</span><span class="boring">    app.connect_activate(on_activate);
-</span><span class="boring">
-</span><span class="boring">    // Run the application
-</span><span class="boring">    app.run();
-</span><span class="boring">}
-</span><span class="boring">// When the application is launched…
-</span><span class="boring">fn on_activate(application: &amp;Application) {
-</span><span class="boring">    // … create a new window …
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
-</span><span class="boring">        .application(application)
-</span><span class="boring">        .title(&quot;My GTK App&quot;)
-</span><span class="boring">        .build();
-</span><span class="boring">
-</span><span class="boring">    // Create a button
-</span><span class="boring">    let button = CustomButton::new();
-</span><span class="boring">    button.set_margin_top(12);
-</span><span class="boring">    button.set_margin_bottom(12);
-</span><span class="boring">    button.set_margin_start(12);
-</span><span class="boring">    button.set_margin_end(12);
-</span><span class="boring">
-</span><span class="boring">    button
-</span><span class="boring">        .connect_local(&quot;max-number-reached&quot;, false, move |args| {
-</span><span class="boring">            // Get the number from the arguments
-</span><span class="boring">            // args.get(0) would return the `CustomButton` instance
-</span><span class="boring">            let number = args.get(1).unwrap().get::&lt;i32&gt;().unwrap().unwrap();
-</span><span class="boring">            println!(&quot;The maximum number {} has been reached&quot;, number);
-</span><span class="boring">            None
-</span><span class="boring">        })
-</span><span class="boring">        .unwrap();
-</span><span class="boring">
-</span><span class="boring">    window.set_child(Some(&amp;button));
-</span><span class="boring">    window.present();
-</span><span class="boring">}
 </span></code></pre></pre>
 <p>If we now press on the button, the number of its label increases until it reaches <code>MAX_NUMBER</code>.
 Then it starts from 0 again and so on.</p>
