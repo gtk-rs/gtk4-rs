@@ -131,12 +131,12 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_get_collate")]
-    pub fn get_collate(&self) -> bool {
+    pub fn is_collate(&self) -> bool {
         unsafe { from_glib(ffi::gtk_print_settings_get_collate(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_settings_get_default_source")]
-    pub fn get_default_source(&self) -> Option<glib::GString> {
+    pub fn default_source(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_print_settings_get_default_source(
                 self.to_glib_none().0,
@@ -145,7 +145,7 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_get_dither")]
-    pub fn get_dither(&self) -> Option<glib::GString> {
+    pub fn dither(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_print_settings_get_dither(self.to_glib_none().0)) }
     }
 
@@ -166,12 +166,12 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_get_duplex")]
-    pub fn get_duplex(&self) -> PrintDuplex {
+    pub fn duplex(&self) -> PrintDuplex {
         unsafe { from_glib(ffi::gtk_print_settings_get_duplex(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_settings_get_finishings")]
-    pub fn get_finishings(&self) -> Option<glib::GString> {
+    pub fn finishings(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_print_settings_get_finishings(
                 self.to_glib_none().0,
@@ -207,7 +207,7 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_get_media_type")]
-    pub fn get_media_type(&self) -> Option<glib::GString> {
+    pub fn media_type(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_print_settings_get_media_type(
                 self.to_glib_none().0,
@@ -216,17 +216,17 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_get_n_copies")]
-    pub fn get_n_copies(&self) -> i32 {
+    pub fn n_copies(&self) -> i32 {
         unsafe { ffi::gtk_print_settings_get_n_copies(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_print_settings_get_number_up")]
-    pub fn get_number_up(&self) -> i32 {
+    pub fn number_up(&self) -> i32 {
         unsafe { ffi::gtk_print_settings_get_number_up(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_print_settings_get_number_up_layout")]
-    pub fn get_number_up_layout(&self) -> NumberUpLayout {
+    pub fn number_up_layout(&self) -> NumberUpLayout {
         unsafe {
             from_glib(ffi::gtk_print_settings_get_number_up_layout(
                 self.to_glib_none().0,
@@ -235,7 +235,7 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_get_orientation")]
-    pub fn get_orientation(&self) -> PageOrientation {
+    pub fn orientation(&self) -> PageOrientation {
         unsafe {
             from_glib(ffi::gtk_print_settings_get_orientation(
                 self.to_glib_none().0,
@@ -244,7 +244,7 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_get_output_bin")]
-    pub fn get_output_bin(&self) -> Option<glib::GString> {
+    pub fn output_bin(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_print_settings_get_output_bin(
                 self.to_glib_none().0,
@@ -253,7 +253,7 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_get_page_ranges")]
-    pub fn get_page_ranges(&self) -> Vec<PageRange> {
+    pub fn page_ranges(&self) -> Vec<PageRange> {
         unsafe {
             let mut num_ranges = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_full_num(
@@ -268,7 +268,7 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_get_page_set")]
-    pub fn get_page_set(&self) -> PageSet {
+    pub fn page_set(&self) -> PageSet {
         unsafe { from_glib(ffi::gtk_print_settings_get_page_set(self.to_glib_none().0)) }
     }
 
@@ -278,7 +278,7 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_get_paper_size")]
-    pub fn get_paper_size(&self) -> PaperSize {
+    pub fn paper_size(&self) -> PaperSize {
         unsafe {
             from_glib_full(ffi::gtk_print_settings_get_paper_size(
                 self.to_glib_none().0,
@@ -292,7 +292,7 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_get_print_pages")]
-    pub fn get_print_pages(&self) -> PrintPages {
+    pub fn print_pages(&self) -> PrintPages {
         unsafe {
             from_glib(ffi::gtk_print_settings_get_print_pages(
                 self.to_glib_none().0,
@@ -301,47 +301,47 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_get_printer")]
-    pub fn get_printer(&self) -> Option<glib::GString> {
+    pub fn printer(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_print_settings_get_printer(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_settings_get_printer_lpi")]
-    pub fn get_printer_lpi(&self) -> f64 {
+    pub fn printer_lpi(&self) -> f64 {
         unsafe { ffi::gtk_print_settings_get_printer_lpi(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_print_settings_get_quality")]
-    pub fn get_quality(&self) -> PrintQuality {
+    pub fn quality(&self) -> PrintQuality {
         unsafe { from_glib(ffi::gtk_print_settings_get_quality(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_settings_get_resolution")]
-    pub fn get_resolution(&self) -> i32 {
+    pub fn resolution(&self) -> i32 {
         unsafe { ffi::gtk_print_settings_get_resolution(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_print_settings_get_resolution_x")]
-    pub fn get_resolution_x(&self) -> i32 {
+    pub fn resolution_x(&self) -> i32 {
         unsafe { ffi::gtk_print_settings_get_resolution_x(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_print_settings_get_resolution_y")]
-    pub fn get_resolution_y(&self) -> i32 {
+    pub fn resolution_y(&self) -> i32 {
         unsafe { ffi::gtk_print_settings_get_resolution_y(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_print_settings_get_reverse")]
-    pub fn get_reverse(&self) -> bool {
+    pub fn is_reverse(&self) -> bool {
         unsafe { from_glib(ffi::gtk_print_settings_get_reverse(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_settings_get_scale")]
-    pub fn get_scale(&self) -> f64 {
+    pub fn scale(&self) -> f64 {
         unsafe { ffi::gtk_print_settings_get_scale(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_print_settings_get_use_color")]
-    pub fn get_use_color(&self) -> bool {
+    pub fn uses_color(&self) -> bool {
         unsafe { from_glib(ffi::gtk_print_settings_get_use_color(self.to_glib_none().0)) }
     }
 

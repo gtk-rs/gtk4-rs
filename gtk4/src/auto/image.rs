@@ -111,32 +111,32 @@ impl Image {
     }
 
     #[doc(alias = "gtk_image_get_gicon")]
-    pub fn get_gicon(&self) -> Option<gio::Icon> {
+    pub fn gicon(&self) -> Option<gio::Icon> {
         unsafe { from_glib_none(ffi::gtk_image_get_gicon(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_image_get_icon_name")]
-    pub fn get_icon_name(&self) -> Option<glib::GString> {
+    pub fn icon_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_image_get_icon_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_image_get_icon_size")]
-    pub fn get_icon_size(&self) -> IconSize {
+    pub fn icon_size(&self) -> IconSize {
         unsafe { from_glib(ffi::gtk_image_get_icon_size(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_image_get_paintable")]
-    pub fn get_paintable(&self) -> Option<gdk::Paintable> {
+    pub fn paintable(&self) -> Option<gdk::Paintable> {
         unsafe { from_glib_none(ffi::gtk_image_get_paintable(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_image_get_pixel_size")]
-    pub fn get_pixel_size(&self) -> i32 {
+    pub fn pixel_size(&self) -> i32 {
         unsafe { ffi::gtk_image_get_pixel_size(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_image_get_storage_type")]
-    pub fn get_storage_type(&self) -> ImageType {
+    pub fn storage_type(&self) -> ImageType {
         unsafe { from_glib(ffi::gtk_image_get_storage_type(self.to_glib_none().0)) }
     }
 
@@ -199,7 +199,8 @@ impl Image {
         }
     }
 
-    pub fn get_property_file(&self) -> Option<glib::GString> {
+    #[doc(alias = "get_property_file")]
+    pub fn file(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -213,7 +214,8 @@ impl Image {
         }
     }
 
-    pub fn set_property_file(&self, file: Option<&str>) {
+    #[doc(alias = "set_property_file")]
+    pub fn set_file(&self, file: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -223,7 +225,8 @@ impl Image {
         }
     }
 
-    pub fn set_property_gicon<P: IsA<gio::Icon>>(&self, gicon: Option<&P>) {
+    #[doc(alias = "set_property_gicon")]
+    pub fn set_gicon<P: IsA<gio::Icon>>(&self, gicon: Option<&P>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -233,7 +236,8 @@ impl Image {
         }
     }
 
-    pub fn set_property_icon_name(&self, icon_name: Option<&str>) {
+    #[doc(alias = "set_property_icon_name")]
+    pub fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -243,7 +247,8 @@ impl Image {
         }
     }
 
-    pub fn set_property_paintable<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>) {
+    #[doc(alias = "set_property_paintable")]
+    pub fn set_paintable<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -253,7 +258,8 @@ impl Image {
         }
     }
 
-    pub fn get_property_resource(&self) -> Option<glib::GString> {
+    #[doc(alias = "get_property_resource")]
+    pub fn resource(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -267,7 +273,8 @@ impl Image {
         }
     }
 
-    pub fn set_property_resource(&self, resource: Option<&str>) {
+    #[doc(alias = "set_property_resource")]
+    pub fn set_resource(&self, resource: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -277,7 +284,8 @@ impl Image {
         }
     }
 
-    pub fn get_property_use_fallback(&self) -> bool {
+    #[doc(alias = "get_property_use_fallback")]
+    pub fn uses_fallback(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -292,7 +300,8 @@ impl Image {
         }
     }
 
-    pub fn set_property_use_fallback(&self, use_fallback: bool) {
+    #[doc(alias = "set_property_use_fallback")]
+    pub fn set_use_fallback(&self, use_fallback: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

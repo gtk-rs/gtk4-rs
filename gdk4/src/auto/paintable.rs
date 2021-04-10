@@ -48,19 +48,19 @@ pub trait PaintableExt: 'static {
     ) -> (f64, f64);
 
     #[doc(alias = "gdk_paintable_get_current_image")]
-    fn get_current_image(&self) -> Option<Paintable>;
+    fn current_image(&self) -> Option<Paintable>;
 
     #[doc(alias = "gdk_paintable_get_flags")]
-    fn get_flags(&self) -> PaintableFlags;
+    fn flags(&self) -> PaintableFlags;
 
     #[doc(alias = "gdk_paintable_get_intrinsic_aspect_ratio")]
-    fn get_intrinsic_aspect_ratio(&self) -> f64;
+    fn intrinsic_aspect_ratio(&self) -> f64;
 
     #[doc(alias = "gdk_paintable_get_intrinsic_height")]
-    fn get_intrinsic_height(&self) -> i32;
+    fn intrinsic_height(&self) -> i32;
 
     #[doc(alias = "gdk_paintable_get_intrinsic_width")]
-    fn get_intrinsic_width(&self) -> i32;
+    fn intrinsic_width(&self) -> i32;
 
     #[doc(alias = "gdk_paintable_invalidate_contents")]
     fn invalidate_contents(&self);
@@ -102,7 +102,7 @@ impl<O: IsA<Paintable>> PaintableExt for O {
         }
     }
 
-    fn get_current_image(&self) -> Option<Paintable> {
+    fn current_image(&self) -> Option<Paintable> {
         unsafe {
             from_glib_full(ffi::gdk_paintable_get_current_image(
                 self.as_ref().to_glib_none().0,
@@ -110,19 +110,19 @@ impl<O: IsA<Paintable>> PaintableExt for O {
         }
     }
 
-    fn get_flags(&self) -> PaintableFlags {
+    fn flags(&self) -> PaintableFlags {
         unsafe { from_glib(ffi::gdk_paintable_get_flags(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_intrinsic_aspect_ratio(&self) -> f64 {
+    fn intrinsic_aspect_ratio(&self) -> f64 {
         unsafe { ffi::gdk_paintable_get_intrinsic_aspect_ratio(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_intrinsic_height(&self) -> i32 {
+    fn intrinsic_height(&self) -> i32 {
         unsafe { ffi::gdk_paintable_get_intrinsic_height(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_intrinsic_width(&self) -> i32 {
+    fn intrinsic_width(&self) -> i32 {
         unsafe { ffi::gdk_paintable_get_intrinsic_width(self.as_ref().to_glib_none().0) }
     }
 

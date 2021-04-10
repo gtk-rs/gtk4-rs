@@ -19,7 +19,8 @@ glib::wrapper! {
 }
 
 impl X11DeviceXI2 {
-    pub fn get_property_device_id(&self) -> i32 {
+    #[doc(alias = "get_property_device_id")]
+    pub fn device_id(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(

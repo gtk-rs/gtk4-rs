@@ -61,7 +61,7 @@ impl Notebook {
     }
 
     #[doc(alias = "gtk_notebook_get_group_name")]
-    pub fn get_group_name(&self) -> Option<glib::GString> {
+    pub fn group_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_notebook_get_group_name(self.to_glib_none().0)) }
     }
 
@@ -96,22 +96,22 @@ impl Notebook {
     }
 
     #[doc(alias = "gtk_notebook_get_pages")]
-    pub fn get_pages(&self) -> Option<gio::ListModel> {
+    pub fn pages(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_full(ffi::gtk_notebook_get_pages(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_notebook_get_scrollable")]
-    pub fn get_scrollable(&self) -> bool {
+    pub fn is_scrollable(&self) -> bool {
         unsafe { from_glib(ffi::gtk_notebook_get_scrollable(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_notebook_get_show_border")]
-    pub fn get_show_border(&self) -> bool {
+    pub fn shows_border(&self) -> bool {
         unsafe { from_glib(ffi::gtk_notebook_get_show_border(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_notebook_get_show_tabs")]
-    pub fn get_show_tabs(&self) -> bool {
+    pub fn shows_tabs(&self) -> bool {
         unsafe { from_glib(ffi::gtk_notebook_get_show_tabs(self.to_glib_none().0)) }
     }
 
@@ -146,7 +146,7 @@ impl Notebook {
     }
 
     #[doc(alias = "gtk_notebook_get_tab_pos")]
-    pub fn get_tab_pos(&self) -> PositionType {
+    pub fn tab_pos(&self) -> PositionType {
         unsafe { from_glib(ffi::gtk_notebook_get_tab_pos(self.to_glib_none().0)) }
     }
 
@@ -304,7 +304,8 @@ impl Notebook {
         }
     }
 
-    pub fn get_property_enable_popup(&self) -> bool {
+    #[doc(alias = "get_property_enable_popup")]
+    pub fn enables_popup(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -319,7 +320,8 @@ impl Notebook {
         }
     }
 
-    pub fn set_property_enable_popup(&self, enable_popup: bool) {
+    #[doc(alias = "set_property_enable_popup")]
+    pub fn set_enable_popup(&self, enable_popup: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -329,7 +331,8 @@ impl Notebook {
         }
     }
 
-    pub fn set_property_page(&self, page: i32) {
+    #[doc(alias = "set_property_page")]
+    pub fn set_page(&self, page: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

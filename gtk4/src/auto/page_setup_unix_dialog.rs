@@ -47,7 +47,7 @@ impl PageSetupUnixDialog {
     }
 
     #[doc(alias = "gtk_page_setup_unix_dialog_get_page_setup")]
-    pub fn get_page_setup(&self) -> PageSetup {
+    pub fn page_setup(&self) -> PageSetup {
         unsafe {
             from_glib_none(ffi::gtk_page_setup_unix_dialog_get_page_setup(
                 self.to_glib_none().0,
@@ -56,7 +56,7 @@ impl PageSetupUnixDialog {
     }
 
     #[doc(alias = "gtk_page_setup_unix_dialog_get_print_settings")]
-    pub fn get_print_settings(&self) -> PrintSettings {
+    pub fn print_settings(&self) -> PrintSettings {
         unsafe {
             from_glib_none(ffi::gtk_page_setup_unix_dialog_get_print_settings(
                 self.to_glib_none().0,

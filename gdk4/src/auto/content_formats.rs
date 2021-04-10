@@ -31,7 +31,7 @@ impl ContentFormats {
     }
 
     #[doc(alias = "gdk_content_formats_new_for_gtype")]
-    pub fn new_for_gtype(type_: glib::types::Type) -> ContentFormats {
+    pub fn for_gtype(type_: glib::types::Type) -> ContentFormats {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gdk_content_formats_new_for_gtype(type_.to_glib())) }
     }
@@ -57,7 +57,7 @@ impl ContentFormats {
     }
 
     #[doc(alias = "gdk_content_formats_get_mime_types")]
-    pub fn get_mime_types(&self) -> (Vec<glib::GString>, usize) {
+    pub fn mime_types(&self) -> (Vec<glib::GString>, usize) {
         unsafe {
             let mut n_mime_types = mem::MaybeUninit::uninit();
             let ret =

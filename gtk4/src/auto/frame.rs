@@ -363,16 +363,16 @@ pub const NONE_FRAME: Option<&Frame> = None;
 
 pub trait FrameExt: 'static {
     #[doc(alias = "gtk_frame_get_child")]
-    fn get_child(&self) -> Option<Widget>;
+    fn child(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_frame_get_label")]
-    fn get_label(&self) -> Option<glib::GString>;
+    fn label(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_frame_get_label_align")]
-    fn get_label_align(&self) -> f32;
+    fn label_align(&self) -> f32;
 
     #[doc(alias = "gtk_frame_get_label_widget")]
-    fn get_label_widget(&self) -> Option<Widget>;
+    fn label_widget(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_frame_set_child")]
     fn set_child<P: IsA<Widget>>(&self, child: Option<&P>);
@@ -386,9 +386,11 @@ pub trait FrameExt: 'static {
     #[doc(alias = "gtk_frame_set_label_widget")]
     fn set_label_widget<P: IsA<Widget>>(&self, label_widget: Option<&P>);
 
-    fn get_property_label_xalign(&self) -> f32;
+    #[doc(alias = "get_property_label_xalign")]
+    fn label_xalign(&self) -> f32;
 
-    fn set_property_label_xalign(&self, label_xalign: f32);
+    #[doc(alias = "set_property_label_xalign")]
+    fn set_label_xalign(&self, label_xalign: f32);
 
     fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -402,19 +404,19 @@ pub trait FrameExt: 'static {
 }
 
 impl<O: IsA<Frame>> FrameExt for O {
-    fn get_child(&self) -> Option<Widget> {
+    fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_frame_get_child(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_label(&self) -> Option<glib::GString> {
+    fn label(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_frame_get_label(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_label_align(&self) -> f32 {
+    fn label_align(&self) -> f32 {
         unsafe { ffi::gtk_frame_get_label_align(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_label_widget(&self) -> Option<Widget> {
+    fn label_widget(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_frame_get_label_widget(
                 self.as_ref().to_glib_none().0,
@@ -452,7 +454,7 @@ impl<O: IsA<Frame>> FrameExt for O {
         }
     }
 
-    fn get_property_label_xalign(&self) -> f32 {
+    fn label_xalign(&self) -> f32 {
         unsafe {
             let mut value = glib::Value::from_type(<f32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -467,7 +469,7 @@ impl<O: IsA<Frame>> FrameExt for O {
         }
     }
 
-    fn set_property_label_xalign(&self, label_xalign: f32) {
+    fn set_label_xalign(&self, label_xalign: f32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,

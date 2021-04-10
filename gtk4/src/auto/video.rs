@@ -39,7 +39,7 @@ impl Video {
     }
 
     #[doc(alias = "gtk_video_new_for_file")]
-    pub fn new_for_file<P: IsA<gio::File>>(file: Option<&P>) -> Video {
+    pub fn for_file<P: IsA<gio::File>>(file: Option<&P>) -> Video {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_video_new_for_file(
@@ -50,7 +50,7 @@ impl Video {
     }
 
     #[doc(alias = "gtk_video_new_for_filename")]
-    pub fn new_for_filename<P: AsRef<std::path::Path>>(filename: P) -> Video {
+    pub fn for_filename<P: AsRef<std::path::Path>>(filename: P) -> Video {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_video_new_for_filename(
@@ -61,7 +61,7 @@ impl Video {
     }
 
     #[doc(alias = "gtk_video_new_for_media_stream")]
-    pub fn new_for_media_stream<P: IsA<MediaStream>>(stream: Option<&P>) -> Video {
+    pub fn for_media_stream<P: IsA<MediaStream>>(stream: Option<&P>) -> Video {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_video_new_for_media_stream(
@@ -72,7 +72,7 @@ impl Video {
     }
 
     #[doc(alias = "gtk_video_new_for_resource")]
-    pub fn new_for_resource(resource_path: Option<&str>) -> Video {
+    pub fn for_resource(resource_path: Option<&str>) -> Video {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_video_new_for_resource(
@@ -83,22 +83,22 @@ impl Video {
     }
 
     #[doc(alias = "gtk_video_get_autoplay")]
-    pub fn get_autoplay(&self) -> bool {
+    pub fn is_autoplay(&self) -> bool {
         unsafe { from_glib(ffi::gtk_video_get_autoplay(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_video_get_file")]
-    pub fn get_file(&self) -> Option<gio::File> {
+    pub fn file(&self) -> Option<gio::File> {
         unsafe { from_glib_none(ffi::gtk_video_get_file(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_video_get_loop")]
-    pub fn get_loop(&self) -> bool {
+    pub fn is_loop(&self) -> bool {
         unsafe { from_glib(ffi::gtk_video_get_loop(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_video_get_media_stream")]
-    pub fn get_media_stream(&self) -> Option<MediaStream> {
+    pub fn media_stream(&self) -> Option<MediaStream> {
         unsafe { from_glib_none(ffi::gtk_video_get_media_stream(self.to_glib_none().0)) }
     }
 

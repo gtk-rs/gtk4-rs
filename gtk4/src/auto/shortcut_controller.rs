@@ -36,7 +36,7 @@ impl ShortcutController {
     }
 
     #[doc(alias = "gtk_shortcut_controller_new_for_model")]
-    pub fn new_for_model<P: IsA<gio::ListModel>>(model: &P) -> ShortcutController {
+    pub fn for_model<P: IsA<gio::ListModel>>(model: &P) -> ShortcutController {
         assert_initialized_main_thread!();
         unsafe {
             EventController::from_glib_full(ffi::gtk_shortcut_controller_new_for_model(
@@ -57,7 +57,7 @@ impl ShortcutController {
     }
 
     #[doc(alias = "gtk_shortcut_controller_get_mnemonics_modifiers")]
-    pub fn get_mnemonics_modifiers(&self) -> gdk::ModifierType {
+    pub fn mnemonics_modifiers(&self) -> gdk::ModifierType {
         unsafe {
             from_glib(ffi::gtk_shortcut_controller_get_mnemonics_modifiers(
                 self.to_glib_none().0,
@@ -66,7 +66,7 @@ impl ShortcutController {
     }
 
     #[doc(alias = "gtk_shortcut_controller_get_scope")]
-    pub fn get_scope(&self) -> ShortcutScope {
+    pub fn scope(&self) -> ShortcutScope {
         unsafe {
             from_glib(ffi::gtk_shortcut_controller_get_scope(
                 self.to_glib_none().0,
@@ -101,7 +101,8 @@ impl ShortcutController {
         }
     }
 
-    pub fn get_property_mnemonic_modifiers(&self) -> gdk::ModifierType {
+    #[doc(alias = "get_property_mnemonic_modifiers")]
+    pub fn mnemonic_modifiers(&self) -> gdk::ModifierType {
         unsafe {
             let mut value =
                 glib::Value::from_type(<gdk::ModifierType as StaticType>::static_type());
@@ -117,7 +118,8 @@ impl ShortcutController {
         }
     }
 
-    pub fn set_property_mnemonic_modifiers(&self, mnemonic_modifiers: gdk::ModifierType) {
+    #[doc(alias = "set_property_mnemonic_modifiers")]
+    pub fn set_mnemonic_modifiers(&self, mnemonic_modifiers: gdk::ModifierType) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

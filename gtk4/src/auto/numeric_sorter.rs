@@ -26,7 +26,7 @@ glib::wrapper! {
 
 impl NumericSorter {
     #[doc(alias = "gtk_numeric_sorter_get_expression")]
-    pub fn get_expression(&self) -> Option<Expression> {
+    pub fn expression(&self) -> Option<Expression> {
         unsafe {
             from_glib_none(ffi::gtk_numeric_sorter_get_expression(
                 self.to_glib_none().0,
@@ -35,7 +35,7 @@ impl NumericSorter {
     }
 
     #[doc(alias = "gtk_numeric_sorter_get_sort_order")]
-    pub fn get_sort_order(&self) -> SortType {
+    pub fn sort_order(&self) -> SortType {
         unsafe {
             from_glib(ffi::gtk_numeric_sorter_get_sort_order(
                 self.to_glib_none().0,

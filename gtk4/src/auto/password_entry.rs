@@ -40,7 +40,7 @@ impl PasswordEntry {
     }
 
     #[doc(alias = "gtk_password_entry_get_extra_menu")]
-    pub fn get_extra_menu(&self) -> Option<gio::MenuModel> {
+    pub fn extra_menu(&self) -> Option<gio::MenuModel> {
         unsafe {
             from_glib_none(ffi::gtk_password_entry_get_extra_menu(
                 self.to_glib_none().0,
@@ -49,7 +49,7 @@ impl PasswordEntry {
     }
 
     #[doc(alias = "gtk_password_entry_get_show_peek_icon")]
-    pub fn get_show_peek_icon(&self) -> bool {
+    pub fn shows_peek_icon(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_password_entry_get_show_peek_icon(
                 self.to_glib_none().0,
@@ -77,7 +77,8 @@ impl PasswordEntry {
         }
     }
 
-    pub fn get_property_activates_default(&self) -> bool {
+    #[doc(alias = "get_property_activates_default")]
+    pub fn activates_default(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -92,7 +93,8 @@ impl PasswordEntry {
         }
     }
 
-    pub fn set_property_activates_default(&self, activates_default: bool) {
+    #[doc(alias = "set_property_activates_default")]
+    pub fn set_activates_default(&self, activates_default: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -102,7 +104,8 @@ impl PasswordEntry {
         }
     }
 
-    pub fn get_property_placeholder_text(&self) -> Option<glib::GString> {
+    #[doc(alias = "get_property_placeholder_text")]
+    pub fn placeholder_text(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -116,7 +119,8 @@ impl PasswordEntry {
         }
     }
 
-    pub fn set_property_placeholder_text(&self, placeholder_text: Option<&str>) {
+    #[doc(alias = "set_property_placeholder_text")]
+    pub fn set_placeholder_text(&self, placeholder_text: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

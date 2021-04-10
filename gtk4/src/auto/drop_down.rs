@@ -45,37 +45,37 @@ impl DropDown {
     }
 
     #[doc(alias = "gtk_drop_down_get_enable_search")]
-    pub fn get_enable_search(&self) -> bool {
+    pub fn enables_search(&self) -> bool {
         unsafe { from_glib(ffi::gtk_drop_down_get_enable_search(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_drop_down_get_expression")]
-    pub fn get_expression(&self) -> Option<Expression> {
+    pub fn expression(&self) -> Option<Expression> {
         unsafe { from_glib_none(ffi::gtk_drop_down_get_expression(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_drop_down_get_factory")]
-    pub fn get_factory(&self) -> Option<ListItemFactory> {
+    pub fn factory(&self) -> Option<ListItemFactory> {
         unsafe { from_glib_none(ffi::gtk_drop_down_get_factory(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_drop_down_get_list_factory")]
-    pub fn get_list_factory(&self) -> Option<ListItemFactory> {
+    pub fn list_factory(&self) -> Option<ListItemFactory> {
         unsafe { from_glib_none(ffi::gtk_drop_down_get_list_factory(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_drop_down_get_model")]
-    pub fn get_model(&self) -> Option<gio::ListModel> {
+    pub fn model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_drop_down_get_model(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_drop_down_get_selected")]
-    pub fn get_selected(&self) -> u32 {
+    pub fn selected(&self) -> u32 {
         unsafe { ffi::gtk_drop_down_get_selected(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_drop_down_get_selected_item")]
-    pub fn get_selected_item(&self) -> Option<glib::Object> {
+    pub fn selected_item(&self) -> Option<glib::Object> {
         unsafe { from_glib_none(ffi::gtk_drop_down_get_selected_item(self.to_glib_none().0)) }
     }
 

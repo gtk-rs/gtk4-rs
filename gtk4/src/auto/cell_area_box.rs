@@ -36,7 +36,7 @@ impl CellAreaBox {
     }
 
     #[doc(alias = "gtk_cell_area_box_get_spacing")]
-    pub fn get_spacing(&self) -> i32 {
+    pub fn spacing(&self) -> i32 {
         unsafe { ffi::gtk_cell_area_box_get_spacing(self.to_glib_none().0) }
     }
 

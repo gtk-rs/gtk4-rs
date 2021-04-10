@@ -62,7 +62,7 @@ impl FileFilter {
     }
 
     #[doc(alias = "gtk_file_filter_get_attributes")]
-    pub fn get_attributes(&self) -> Vec<glib::GString> {
+    pub fn attributes(&self) -> Vec<glib::GString> {
         unsafe {
             FromGlibPtrContainer::from_glib_none(ffi::gtk_file_filter_get_attributes(
                 self.to_glib_none().0,
@@ -71,7 +71,7 @@ impl FileFilter {
     }
 
     #[doc(alias = "gtk_file_filter_get_name")]
-    pub fn get_name(&self) -> Option<glib::GString> {
+    pub fn name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_file_filter_get_name(self.to_glib_none().0)) }
     }
 

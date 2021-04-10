@@ -24,37 +24,37 @@ pub const NONE_FONT_CHOOSER: Option<&FontChooser> = None;
 
 pub trait FontChooserExt: 'static {
     #[doc(alias = "gtk_font_chooser_get_font")]
-    fn get_font(&self) -> Option<glib::GString>;
+    fn font(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_font_chooser_get_font_desc")]
-    fn get_font_desc(&self) -> Option<pango::FontDescription>;
+    fn font_desc(&self) -> Option<pango::FontDescription>;
 
     #[doc(alias = "gtk_font_chooser_get_font_face")]
-    fn get_font_face(&self) -> Option<pango::FontFace>;
+    fn font_face(&self) -> Option<pango::FontFace>;
 
     #[doc(alias = "gtk_font_chooser_get_font_family")]
-    fn get_font_family(&self) -> Option<pango::FontFamily>;
+    fn font_family(&self) -> Option<pango::FontFamily>;
 
     #[doc(alias = "gtk_font_chooser_get_font_features")]
-    fn get_font_features(&self) -> Option<glib::GString>;
+    fn font_features(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_font_chooser_get_font_map")]
-    fn get_font_map(&self) -> Option<pango::FontMap>;
+    fn font_map(&self) -> Option<pango::FontMap>;
 
     #[doc(alias = "gtk_font_chooser_get_font_size")]
-    fn get_font_size(&self) -> i32;
+    fn font_size(&self) -> i32;
 
     #[doc(alias = "gtk_font_chooser_get_language")]
-    fn get_language(&self) -> Option<glib::GString>;
+    fn language(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_font_chooser_get_level")]
-    fn get_level(&self) -> FontChooserLevel;
+    fn level(&self) -> FontChooserLevel;
 
     #[doc(alias = "gtk_font_chooser_get_preview_text")]
-    fn get_preview_text(&self) -> Option<glib::GString>;
+    fn preview_text(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_font_chooser_get_show_preview_entry")]
-    fn get_show_preview_entry(&self) -> bool;
+    fn shows_preview_entry(&self) -> bool;
 
     #[doc(alias = "gtk_font_chooser_set_filter_func")]
     fn set_filter_func(
@@ -108,7 +108,7 @@ pub trait FontChooserExt: 'static {
 }
 
 impl<O: IsA<FontChooser>> FontChooserExt for O {
-    fn get_font(&self) -> Option<glib::GString> {
+    fn font(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_font_chooser_get_font(
                 self.as_ref().to_glib_none().0,
@@ -116,7 +116,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
         }
     }
 
-    fn get_font_desc(&self) -> Option<pango::FontDescription> {
+    fn font_desc(&self) -> Option<pango::FontDescription> {
         unsafe {
             from_glib_full(ffi::gtk_font_chooser_get_font_desc(
                 self.as_ref().to_glib_none().0,
@@ -124,7 +124,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
         }
     }
 
-    fn get_font_face(&self) -> Option<pango::FontFace> {
+    fn font_face(&self) -> Option<pango::FontFace> {
         unsafe {
             from_glib_none(ffi::gtk_font_chooser_get_font_face(
                 self.as_ref().to_glib_none().0,
@@ -132,7 +132,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
         }
     }
 
-    fn get_font_family(&self) -> Option<pango::FontFamily> {
+    fn font_family(&self) -> Option<pango::FontFamily> {
         unsafe {
             from_glib_none(ffi::gtk_font_chooser_get_font_family(
                 self.as_ref().to_glib_none().0,
@@ -140,7 +140,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
         }
     }
 
-    fn get_font_features(&self) -> Option<glib::GString> {
+    fn font_features(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_font_chooser_get_font_features(
                 self.as_ref().to_glib_none().0,
@@ -148,7 +148,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
         }
     }
 
-    fn get_font_map(&self) -> Option<pango::FontMap> {
+    fn font_map(&self) -> Option<pango::FontMap> {
         unsafe {
             from_glib_full(ffi::gtk_font_chooser_get_font_map(
                 self.as_ref().to_glib_none().0,
@@ -156,11 +156,11 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
         }
     }
 
-    fn get_font_size(&self) -> i32 {
+    fn font_size(&self) -> i32 {
         unsafe { ffi::gtk_font_chooser_get_font_size(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_language(&self) -> Option<glib::GString> {
+    fn language(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_font_chooser_get_language(
                 self.as_ref().to_glib_none().0,
@@ -168,7 +168,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
         }
     }
 
-    fn get_level(&self) -> FontChooserLevel {
+    fn level(&self) -> FontChooserLevel {
         unsafe {
             from_glib(ffi::gtk_font_chooser_get_level(
                 self.as_ref().to_glib_none().0,
@@ -176,7 +176,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
         }
     }
 
-    fn get_preview_text(&self) -> Option<glib::GString> {
+    fn preview_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_font_chooser_get_preview_text(
                 self.as_ref().to_glib_none().0,
@@ -184,7 +184,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
         }
     }
 
-    fn get_show_preview_entry(&self) -> bool {
+    fn shows_preview_entry(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_font_chooser_get_show_preview_entry(
                 self.as_ref().to_glib_none().0,

@@ -46,12 +46,12 @@ impl ScrolledWindow {
     }
 
     #[doc(alias = "gtk_scrolled_window_get_child")]
-    pub fn get_child(&self) -> Option<Widget> {
+    pub fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_scrolled_window_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_scrolled_window_get_hadjustment")]
-    pub fn get_hadjustment(&self) -> Option<Adjustment> {
+    pub fn hadjustment(&self) -> Option<Adjustment> {
         unsafe {
             from_glib_none(ffi::gtk_scrolled_window_get_hadjustment(
                 self.to_glib_none().0,
@@ -60,7 +60,7 @@ impl ScrolledWindow {
     }
 
     #[doc(alias = "gtk_scrolled_window_get_has_frame")]
-    pub fn get_has_frame(&self) -> bool {
+    pub fn has_frame(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_scrolled_window_get_has_frame(
                 self.to_glib_none().0,
@@ -69,7 +69,7 @@ impl ScrolledWindow {
     }
 
     #[doc(alias = "gtk_scrolled_window_get_hscrollbar")]
-    pub fn get_hscrollbar(&self) -> Option<Widget> {
+    pub fn hscrollbar(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_scrolled_window_get_hscrollbar(
                 self.to_glib_none().0,
@@ -78,7 +78,7 @@ impl ScrolledWindow {
     }
 
     #[doc(alias = "gtk_scrolled_window_get_kinetic_scrolling")]
-    pub fn get_kinetic_scrolling(&self) -> bool {
+    pub fn is_kinetic_scrolling(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_scrolled_window_get_kinetic_scrolling(
                 self.to_glib_none().0,
@@ -87,27 +87,27 @@ impl ScrolledWindow {
     }
 
     #[doc(alias = "gtk_scrolled_window_get_max_content_height")]
-    pub fn get_max_content_height(&self) -> i32 {
+    pub fn max_content_height(&self) -> i32 {
         unsafe { ffi::gtk_scrolled_window_get_max_content_height(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_scrolled_window_get_max_content_width")]
-    pub fn get_max_content_width(&self) -> i32 {
+    pub fn max_content_width(&self) -> i32 {
         unsafe { ffi::gtk_scrolled_window_get_max_content_width(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_scrolled_window_get_min_content_height")]
-    pub fn get_min_content_height(&self) -> i32 {
+    pub fn min_content_height(&self) -> i32 {
         unsafe { ffi::gtk_scrolled_window_get_min_content_height(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_scrolled_window_get_min_content_width")]
-    pub fn get_min_content_width(&self) -> i32 {
+    pub fn min_content_width(&self) -> i32 {
         unsafe { ffi::gtk_scrolled_window_get_min_content_width(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_scrolled_window_get_overlay_scrolling")]
-    pub fn get_overlay_scrolling(&self) -> bool {
+    pub fn is_overlay_scrolling(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_scrolled_window_get_overlay_scrolling(
                 self.to_glib_none().0,
@@ -116,7 +116,7 @@ impl ScrolledWindow {
     }
 
     #[doc(alias = "gtk_scrolled_window_get_placement")]
-    pub fn get_placement(&self) -> CornerType {
+    pub fn placement(&self) -> CornerType {
         unsafe {
             from_glib(ffi::gtk_scrolled_window_get_placement(
                 self.to_glib_none().0,
@@ -125,7 +125,7 @@ impl ScrolledWindow {
     }
 
     #[doc(alias = "gtk_scrolled_window_get_policy")]
-    pub fn get_policy(&self) -> (PolicyType, PolicyType) {
+    pub fn policy(&self) -> (PolicyType, PolicyType) {
         unsafe {
             let mut hscrollbar_policy = mem::MaybeUninit::uninit();
             let mut vscrollbar_policy = mem::MaybeUninit::uninit();
@@ -141,7 +141,7 @@ impl ScrolledWindow {
     }
 
     #[doc(alias = "gtk_scrolled_window_get_propagate_natural_height")]
-    pub fn get_propagate_natural_height(&self) -> bool {
+    pub fn propagates_natural_height(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_scrolled_window_get_propagate_natural_height(
                 self.to_glib_none().0,
@@ -150,7 +150,7 @@ impl ScrolledWindow {
     }
 
     #[doc(alias = "gtk_scrolled_window_get_propagate_natural_width")]
-    pub fn get_propagate_natural_width(&self) -> bool {
+    pub fn propagates_natural_width(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_scrolled_window_get_propagate_natural_width(
                 self.to_glib_none().0,
@@ -159,7 +159,7 @@ impl ScrolledWindow {
     }
 
     #[doc(alias = "gtk_scrolled_window_get_vadjustment")]
-    pub fn get_vadjustment(&self) -> Option<Adjustment> {
+    pub fn vadjustment(&self) -> Option<Adjustment> {
         unsafe {
             from_glib_none(ffi::gtk_scrolled_window_get_vadjustment(
                 self.to_glib_none().0,
@@ -168,7 +168,7 @@ impl ScrolledWindow {
     }
 
     #[doc(alias = "gtk_scrolled_window_get_vscrollbar")]
-    pub fn get_vscrollbar(&self) -> Option<Widget> {
+    pub fn vscrollbar(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_scrolled_window_get_vscrollbar(
                 self.to_glib_none().0,
@@ -309,7 +309,8 @@ impl ScrolledWindow {
         }
     }
 
-    pub fn get_property_hscrollbar_policy(&self) -> PolicyType {
+    #[doc(alias = "get_property_hscrollbar_policy")]
+    pub fn hscrollbar_policy(&self) -> PolicyType {
         unsafe {
             let mut value = glib::Value::from_type(<PolicyType as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -324,7 +325,8 @@ impl ScrolledWindow {
         }
     }
 
-    pub fn set_property_hscrollbar_policy(&self, hscrollbar_policy: PolicyType) {
+    #[doc(alias = "set_property_hscrollbar_policy")]
+    pub fn set_hscrollbar_policy(&self, hscrollbar_policy: PolicyType) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -334,7 +336,8 @@ impl ScrolledWindow {
         }
     }
 
-    pub fn get_property_vscrollbar_policy(&self) -> PolicyType {
+    #[doc(alias = "get_property_vscrollbar_policy")]
+    pub fn vscrollbar_policy(&self) -> PolicyType {
         unsafe {
             let mut value = glib::Value::from_type(<PolicyType as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -349,7 +352,8 @@ impl ScrolledWindow {
         }
     }
 
-    pub fn set_property_vscrollbar_policy(&self, vscrollbar_policy: PolicyType) {
+    #[doc(alias = "set_property_vscrollbar_policy")]
+    pub fn set_vscrollbar_policy(&self, vscrollbar_policy: PolicyType) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -359,7 +363,8 @@ impl ScrolledWindow {
         }
     }
 
-    pub fn get_property_window_placement(&self) -> CornerType {
+    #[doc(alias = "get_property_window_placement")]
+    pub fn window_placement(&self) -> CornerType {
         unsafe {
             let mut value = glib::Value::from_type(<CornerType as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -374,7 +379,8 @@ impl ScrolledWindow {
         }
     }
 
-    pub fn set_property_window_placement(&self, window_placement: CornerType) {
+    #[doc(alias = "set_property_window_placement")]
+    pub fn set_window_placement(&self, window_placement: CornerType) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

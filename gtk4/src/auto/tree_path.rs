@@ -68,12 +68,12 @@ impl TreePath {
     }
 
     #[doc(alias = "gtk_tree_path_get_depth")]
-    pub fn get_depth(&self) -> i32 {
+    pub fn depth(&self) -> i32 {
         unsafe { ffi::gtk_tree_path_get_depth(mut_override(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_path_get_indices_with_depth")]
-    pub fn get_indices_with_depth(&mut self) -> Vec<i32> {
+    pub fn indices_with_depth(&mut self) -> Vec<i32> {
         unsafe {
             let mut depth = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_none_num(

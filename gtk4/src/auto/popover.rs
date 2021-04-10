@@ -410,28 +410,28 @@ pub const NONE_POPOVER: Option<&Popover> = None;
 
 pub trait PopoverExt: 'static {
     #[doc(alias = "gtk_popover_get_autohide")]
-    fn get_autohide(&self) -> bool;
+    fn is_autohide(&self) -> bool;
 
     #[doc(alias = "gtk_popover_get_cascade_popdown")]
-    fn get_cascade_popdown(&self) -> bool;
+    fn is_cascade_popdown(&self) -> bool;
 
     #[doc(alias = "gtk_popover_get_child")]
-    fn get_child(&self) -> Option<Widget>;
+    fn child(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_popover_get_has_arrow")]
-    fn get_has_arrow(&self) -> bool;
+    fn has_arrow(&self) -> bool;
 
     #[doc(alias = "gtk_popover_get_mnemonics_visible")]
-    fn get_mnemonics_visible(&self) -> bool;
+    fn is_mnemonics_visible(&self) -> bool;
 
     #[doc(alias = "gtk_popover_get_offset")]
-    fn get_offset(&self) -> (i32, i32);
+    fn offset(&self) -> (i32, i32);
 
     #[doc(alias = "gtk_popover_get_pointing_to")]
-    fn get_pointing_to(&self) -> Option<gdk::Rectangle>;
+    fn pointing_to(&self) -> Option<gdk::Rectangle>;
 
     #[doc(alias = "gtk_popover_get_position")]
-    fn get_position(&self) -> PositionType;
+    fn position(&self) -> PositionType;
 
     #[doc(alias = "gtk_popover_popdown")]
     fn popdown(&self);
@@ -469,7 +469,8 @@ pub trait PopoverExt: 'static {
     #[doc(alias = "gtk_popover_set_position")]
     fn set_position(&self, position: PositionType);
 
-    fn get_property_default_widget(&self) -> Option<Widget>;
+    #[doc(alias = "get_property_default_widget")]
+    fn default_widget(&self) -> Option<Widget>;
 
     fn connect_activate_default<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -504,7 +505,7 @@ pub trait PopoverExt: 'static {
 }
 
 impl<O: IsA<Popover>> PopoverExt for O {
-    fn get_autohide(&self) -> bool {
+    fn is_autohide(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_popover_get_autohide(
                 self.as_ref().to_glib_none().0,
@@ -512,7 +513,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn get_cascade_popdown(&self) -> bool {
+    fn is_cascade_popdown(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_popover_get_cascade_popdown(
                 self.as_ref().to_glib_none().0,
@@ -520,11 +521,11 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn get_child(&self) -> Option<Widget> {
+    fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_popover_get_child(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_has_arrow(&self) -> bool {
+    fn has_arrow(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_popover_get_has_arrow(
                 self.as_ref().to_glib_none().0,
@@ -532,7 +533,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn get_mnemonics_visible(&self) -> bool {
+    fn is_mnemonics_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_popover_get_mnemonics_visible(
                 self.as_ref().to_glib_none().0,
@@ -540,7 +541,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn get_offset(&self) -> (i32, i32) {
+    fn offset(&self) -> (i32, i32) {
         unsafe {
             let mut x_offset = mem::MaybeUninit::uninit();
             let mut y_offset = mem::MaybeUninit::uninit();
@@ -555,7 +556,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn get_pointing_to(&self) -> Option<gdk::Rectangle> {
+    fn pointing_to(&self) -> Option<gdk::Rectangle> {
         unsafe {
             let mut rect = gdk::Rectangle::uninitialized();
             let ret = from_glib(ffi::gtk_popover_get_pointing_to(
@@ -570,7 +571,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn get_position(&self) -> PositionType {
+    fn position(&self) -> PositionType {
         unsafe {
             from_glib(ffi::gtk_popover_get_position(
                 self.as_ref().to_glib_none().0,
@@ -662,7 +663,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn get_property_default_widget(&self) -> Option<Widget> {
+    fn default_widget(&self) -> Option<Widget> {
         unsafe {
             let mut value = glib::Value::from_type(<Widget as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(

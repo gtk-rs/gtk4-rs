@@ -41,7 +41,8 @@ impl VolumeButton {
         unsafe { Widget::from_glib_none(ffi::gtk_volume_button_new()).unsafe_cast() }
     }
 
-    pub fn get_property_use_symbolic(&self) -> bool {
+    #[doc(alias = "get_property_use_symbolic")]
+    pub fn uses_symbolic(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -56,7 +57,8 @@ impl VolumeButton {
         }
     }
 
-    pub fn set_property_use_symbolic(&self, use_symbolic: bool) {
+    #[doc(alias = "set_property_use_symbolic")]
+    pub fn set_use_symbolic(&self, use_symbolic: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

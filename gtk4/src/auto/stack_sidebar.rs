@@ -39,7 +39,7 @@ impl StackSidebar {
     }
 
     #[doc(alias = "gtk_stack_sidebar_get_stack")]
-    pub fn get_stack(&self) -> Option<Stack> {
+    pub fn stack(&self) -> Option<Stack> {
         unsafe { from_glib_none(ffi::gtk_stack_sidebar_get_stack(self.to_glib_none().0)) }
     }
 

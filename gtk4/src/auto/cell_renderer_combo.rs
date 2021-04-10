@@ -35,7 +35,8 @@ impl CellRendererCombo {
         unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_combo_new()).unsafe_cast() }
     }
 
-    pub fn get_property_has_entry(&self) -> bool {
+    #[doc(alias = "get_property_has_entry")]
+    pub fn has_entry(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -50,7 +51,8 @@ impl CellRendererCombo {
         }
     }
 
-    pub fn set_property_has_entry(&self, has_entry: bool) {
+    #[doc(alias = "set_property_has_entry")]
+    pub fn set_has_entry(&self, has_entry: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -60,7 +62,8 @@ impl CellRendererCombo {
         }
     }
 
-    pub fn get_property_model(&self) -> Option<TreeModel> {
+    #[doc(alias = "get_property_model")]
+    pub fn model(&self) -> Option<TreeModel> {
         unsafe {
             let mut value = glib::Value::from_type(<TreeModel as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -74,7 +77,8 @@ impl CellRendererCombo {
         }
     }
 
-    pub fn set_property_model<P: IsA<TreeModel>>(&self, model: Option<&P>) {
+    #[doc(alias = "set_property_model")]
+    pub fn set_model<P: IsA<TreeModel>>(&self, model: Option<&P>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -84,7 +88,8 @@ impl CellRendererCombo {
         }
     }
 
-    pub fn get_property_text_column(&self) -> i32 {
+    #[doc(alias = "get_property_text_column")]
+    pub fn text_column(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -99,7 +104,8 @@ impl CellRendererCombo {
         }
     }
 
-    pub fn set_property_text_column(&self, text_column: i32) {
+    #[doc(alias = "set_property_text_column")]
+    pub fn set_text_column(&self, text_column: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

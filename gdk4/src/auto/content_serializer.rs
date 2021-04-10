@@ -15,7 +15,7 @@ glib::wrapper! {
 
 impl ContentSerializer {
     #[doc(alias = "gdk_content_serializer_get_cancellable")]
-    pub fn get_cancellable(&self) -> Option<gio::Cancellable> {
+    pub fn cancellable(&self) -> Option<gio::Cancellable> {
         unsafe {
             from_glib_none(ffi::gdk_content_serializer_get_cancellable(
                 self.to_glib_none().0,
@@ -24,12 +24,12 @@ impl ContentSerializer {
     }
 
     #[doc(alias = "gdk_content_serializer_get_gtype")]
-    pub fn get_gtype(&self) -> glib::types::Type {
+    pub fn gtype(&self) -> glib::types::Type {
         unsafe { from_glib(ffi::gdk_content_serializer_get_gtype(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_content_serializer_get_mime_type")]
-    pub fn get_mime_type(&self) -> glib::GString {
+    pub fn mime_type(&self) -> glib::GString {
         unsafe {
             from_glib_none(ffi::gdk_content_serializer_get_mime_type(
                 self.to_glib_none().0,
@@ -38,7 +38,7 @@ impl ContentSerializer {
     }
 
     #[doc(alias = "gdk_content_serializer_get_output_stream")]
-    pub fn get_output_stream(&self) -> gio::OutputStream {
+    pub fn output_stream(&self) -> gio::OutputStream {
         unsafe {
             from_glib_none(ffi::gdk_content_serializer_get_output_stream(
                 self.to_glib_none().0,
@@ -47,12 +47,12 @@ impl ContentSerializer {
     }
 
     #[doc(alias = "gdk_content_serializer_get_priority")]
-    pub fn get_priority(&self) -> i32 {
+    pub fn priority(&self) -> i32 {
         unsafe { ffi::gdk_content_serializer_get_priority(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_content_serializer_get_value")]
-    pub fn get_value(&self) -> glib::Value {
+    pub fn value(&self) -> glib::Value {
         unsafe { from_glib_none(ffi::gdk_content_serializer_get_value(self.to_glib_none().0)) }
     }
 

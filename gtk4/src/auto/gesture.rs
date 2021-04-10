@@ -27,22 +27,22 @@ pub const NONE_GESTURE: Option<&Gesture> = None;
 
 pub trait GestureExt: 'static {
     #[doc(alias = "gtk_gesture_get_bounding_box")]
-    fn get_bounding_box(&self) -> Option<gdk::Rectangle>;
+    fn bounding_box(&self) -> Option<gdk::Rectangle>;
 
     #[doc(alias = "gtk_gesture_get_bounding_box_center")]
-    fn get_bounding_box_center(&self) -> Option<(f64, f64)>;
+    fn bounding_box_center(&self) -> Option<(f64, f64)>;
 
     #[doc(alias = "gtk_gesture_get_device")]
-    fn get_device(&self) -> Option<gdk::Device>;
+    fn device(&self) -> Option<gdk::Device>;
 
     #[doc(alias = "gtk_gesture_get_group")]
-    fn get_group(&self) -> Vec<Gesture>;
+    fn group(&self) -> Vec<Gesture>;
 
     #[doc(alias = "gtk_gesture_get_last_event")]
     fn get_last_event(&self, sequence: Option<&gdk::EventSequence>) -> Option<gdk::Event>;
 
     #[doc(alias = "gtk_gesture_get_last_updated_sequence")]
-    fn get_last_updated_sequence(&self) -> Option<gdk::EventSequence>;
+    fn last_updated_sequence(&self) -> Option<gdk::EventSequence>;
 
     #[doc(alias = "gtk_gesture_get_point")]
     fn get_point(&self, sequence: Option<&gdk::EventSequence>) -> Option<(f64, f64)>;
@@ -51,7 +51,7 @@ pub trait GestureExt: 'static {
     fn get_sequence_state(&self, sequence: &gdk::EventSequence) -> EventSequenceState;
 
     #[doc(alias = "gtk_gesture_get_sequences")]
-    fn get_sequences(&self) -> Vec<gdk::EventSequence>;
+    fn sequences(&self) -> Vec<gdk::EventSequence>;
 
     #[doc(alias = "gtk_gesture_group")]
     fn group<P: IsA<Gesture>>(&self, gesture: &P);
@@ -77,7 +77,8 @@ pub trait GestureExt: 'static {
     #[doc(alias = "gtk_gesture_ungroup")]
     fn ungroup(&self);
 
-    fn get_property_n_points(&self) -> u32;
+    #[doc(alias = "get_property_n_points")]
+    fn n_points(&self) -> u32;
 
     fn connect_begin<F: Fn(&Self, Option<&gdk::EventSequence>) + 'static>(
         &self,
@@ -108,7 +109,7 @@ pub trait GestureExt: 'static {
 }
 
 impl<O: IsA<Gesture>> GestureExt for O {
-    fn get_bounding_box(&self) -> Option<gdk::Rectangle> {
+    fn bounding_box(&self) -> Option<gdk::Rectangle> {
         unsafe {
             let mut rect = gdk::Rectangle::uninitialized();
             let ret = from_glib(ffi::gtk_gesture_get_bounding_box(
@@ -123,7 +124,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         }
     }
 
-    fn get_bounding_box_center(&self) -> Option<(f64, f64)> {
+    fn bounding_box_center(&self) -> Option<(f64, f64)> {
         unsafe {
             let mut x = mem::MaybeUninit::uninit();
             let mut y = mem::MaybeUninit::uninit();
@@ -142,11 +143,11 @@ impl<O: IsA<Gesture>> GestureExt for O {
         }
     }
 
-    fn get_device(&self) -> Option<gdk::Device> {
+    fn device(&self) -> Option<gdk::Device> {
         unsafe { from_glib_none(ffi::gtk_gesture_get_device(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_group(&self) -> Vec<Gesture> {
+    fn group(&self) -> Vec<Gesture> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_gesture_get_group(
                 self.as_ref().to_glib_none().0,
@@ -163,7 +164,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         }
     }
 
-    fn get_last_updated_sequence(&self) -> Option<gdk::EventSequence> {
+    fn last_updated_sequence(&self) -> Option<gdk::EventSequence> {
         unsafe {
             from_glib_none(ffi::gtk_gesture_get_last_updated_sequence(
                 self.as_ref().to_glib_none().0,
@@ -200,7 +201,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         }
     }
 
-    fn get_sequences(&self) -> Vec<gdk::EventSequence> {
+    fn sequences(&self) -> Vec<gdk::EventSequence> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_gesture_get_sequences(
                 self.as_ref().to_glib_none().0,
@@ -272,7 +273,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         }
     }
 
-    fn get_property_n_points(&self) -> u32 {
+    fn n_points(&self) -> u32 {
         unsafe {
             let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(

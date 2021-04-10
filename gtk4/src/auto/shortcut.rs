@@ -45,17 +45,17 @@ impl Shortcut {
     //}
 
     #[doc(alias = "gtk_shortcut_get_action")]
-    pub fn get_action(&self) -> Option<ShortcutAction> {
+    pub fn action(&self) -> Option<ShortcutAction> {
         unsafe { from_glib_none(ffi::gtk_shortcut_get_action(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_shortcut_get_arguments")]
-    pub fn get_arguments(&self) -> Option<glib::Variant> {
+    pub fn arguments(&self) -> Option<glib::Variant> {
         unsafe { from_glib_none(ffi::gtk_shortcut_get_arguments(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_shortcut_get_trigger")]
-    pub fn get_trigger(&self) -> Option<ShortcutTrigger> {
+    pub fn trigger(&self) -> Option<ShortcutTrigger> {
         unsafe { from_glib_none(ffi::gtk_shortcut_get_trigger(self.to_glib_none().0)) }
     }
 

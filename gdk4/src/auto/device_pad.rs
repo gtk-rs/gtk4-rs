@@ -29,7 +29,7 @@ pub trait DevicePadExt: 'static {
     fn get_n_features(&self, feature: DevicePadFeature) -> i32;
 
     #[doc(alias = "gdk_device_pad_get_n_groups")]
-    fn get_n_groups(&self) -> i32;
+    fn n_groups(&self) -> i32;
 }
 
 impl<O: IsA<DevicePad>> DevicePadExt for O {
@@ -53,7 +53,7 @@ impl<O: IsA<DevicePad>> DevicePadExt for O {
         }
     }
 
-    fn get_n_groups(&self) -> i32 {
+    fn n_groups(&self) -> i32 {
         unsafe { ffi::gdk_device_pad_get_n_groups(self.as_ref().to_glib_none().0) }
     }
 }

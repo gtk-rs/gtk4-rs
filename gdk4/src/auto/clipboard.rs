@@ -30,17 +30,17 @@ glib::wrapper! {
 
 impl Clipboard {
     #[doc(alias = "gdk_clipboard_get_content")]
-    pub fn get_content(&self) -> Option<ContentProvider> {
+    pub fn content(&self) -> Option<ContentProvider> {
         unsafe { from_glib_none(ffi::gdk_clipboard_get_content(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_clipboard_get_display")]
-    pub fn get_display(&self) -> Option<Display> {
+    pub fn display(&self) -> Option<Display> {
         unsafe { from_glib_none(ffi::gdk_clipboard_get_display(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_clipboard_get_formats")]
-    pub fn get_formats(&self) -> Option<ContentFormats> {
+    pub fn formats(&self) -> Option<ContentFormats> {
         unsafe { from_glib_none(ffi::gdk_clipboard_get_formats(self.to_glib_none().0)) }
     }
 
@@ -296,21 +296,6 @@ impl Clipboard {
 
             cancellable
         }))
-    }
-
-    pub fn get_property_local(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"local\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `local` getter")
-                .unwrap()
-        }
     }
 
     pub fn connect_changed<F: Fn(&Clipboard) + 'static>(&self, f: F) -> SignalHandlerId {

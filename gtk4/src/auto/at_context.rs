@@ -40,12 +40,12 @@ impl ATContext {
     }
 
     #[doc(alias = "gtk_at_context_get_accessible")]
-    pub fn get_accessible(&self) -> Option<Accessible> {
+    pub fn accessible(&self) -> Option<Accessible> {
         unsafe { from_glib_none(ffi::gtk_at_context_get_accessible(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_at_context_get_accessible_role")]
-    pub fn get_accessible_role(&self) -> AccessibleRole {
+    pub fn accessible_role(&self) -> AccessibleRole {
         unsafe {
             from_glib(ffi::gtk_at_context_get_accessible_role(
                 self.to_glib_none().0,
@@ -53,7 +53,8 @@ impl ATContext {
         }
     }
 
-    pub fn set_property_accessible_role(&self, accessible_role: AccessibleRole) {
+    #[doc(alias = "set_property_accessible_role")]
+    pub fn set_accessible_role(&self, accessible_role: AccessibleRole) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -63,7 +64,8 @@ impl ATContext {
         }
     }
 
-    pub fn get_property_display(&self) -> Option<gdk::Display> {
+    #[doc(alias = "get_property_display")]
+    pub fn display(&self) -> Option<gdk::Display> {
         unsafe {
             let mut value = glib::Value::from_type(<gdk::Display as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -77,7 +79,8 @@ impl ATContext {
         }
     }
 
-    pub fn set_property_display(&self, display: Option<&gdk::Display>) {
+    #[doc(alias = "set_property_display")]
+    pub fn set_display(&self, display: Option<&gdk::Display>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

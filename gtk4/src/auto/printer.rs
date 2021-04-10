@@ -47,17 +47,17 @@ impl Printer {
     }
 
     //#[doc(alias = "gtk_printer_get_backend")]
-    //pub fn get_backend(&self) -> /*Ignored*/PrintBackend {
+    //pub fn backend(&self) -> /*Ignored*/PrintBackend {
     //    unsafe { TODO: call ffi:gtk_printer_get_backend() }
     //}
 
     #[doc(alias = "gtk_printer_get_capabilities")]
-    pub fn get_capabilities(&self) -> PrintCapabilities {
+    pub fn capabilities(&self) -> PrintCapabilities {
         unsafe { from_glib(ffi::gtk_printer_get_capabilities(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_printer_get_default_page_size")]
-    pub fn get_default_page_size(&self) -> PageSetup {
+    pub fn default_page_size(&self) -> PageSetup {
         unsafe {
             from_glib_full(ffi::gtk_printer_get_default_page_size(
                 self.to_glib_none().0,
@@ -66,12 +66,12 @@ impl Printer {
     }
 
     #[doc(alias = "gtk_printer_get_description")]
-    pub fn get_description(&self) -> glib::GString {
+    pub fn description(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_printer_get_description(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_printer_get_hard_margins")]
-    pub fn get_hard_margins(&self) -> Option<(f64, f64, f64, f64)> {
+    pub fn hard_margins(&self) -> Option<(f64, f64, f64, f64)> {
         unsafe {
             let mut top = mem::MaybeUninit::uninit();
             let mut bottom = mem::MaybeUninit::uninit();
@@ -127,27 +127,27 @@ impl Printer {
     }
 
     #[doc(alias = "gtk_printer_get_icon_name")]
-    pub fn get_icon_name(&self) -> glib::GString {
+    pub fn icon_name(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_printer_get_icon_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_printer_get_job_count")]
-    pub fn get_job_count(&self) -> i32 {
+    pub fn job_count(&self) -> i32 {
         unsafe { ffi::gtk_printer_get_job_count(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_printer_get_location")]
-    pub fn get_location(&self) -> glib::GString {
+    pub fn location(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_printer_get_location(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_printer_get_name")]
-    pub fn get_name(&self) -> glib::GString {
+    pub fn name(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_printer_get_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_printer_get_state_message")]
-    pub fn get_state_message(&self) -> glib::GString {
+    pub fn state_message(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_printer_get_state_message(self.to_glib_none().0)) }
     }
 
@@ -194,81 +194,6 @@ impl Printer {
     pub fn request_details(&self) {
         unsafe {
             ffi::gtk_printer_request_details(self.to_glib_none().0);
-        }
-    }
-
-    pub fn get_property_accepting_jobs(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"accepting-jobs\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `accepting-jobs` getter")
-                .unwrap()
-        }
-    }
-
-    pub fn get_property_accepts_pdf(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"accepts-pdf\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `accepts-pdf` getter")
-                .unwrap()
-        }
-    }
-
-    pub fn get_property_accepts_ps(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"accepts-ps\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `accepts-ps` getter")
-                .unwrap()
-        }
-    }
-
-    pub fn get_property_is_virtual(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"is-virtual\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `is-virtual` getter")
-                .unwrap()
-        }
-    }
-
-    pub fn get_property_paused(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"paused\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `paused` getter")
-                .unwrap()
         }
     }
 
@@ -451,7 +376,7 @@ impl Printer {
 impl fmt::Display for Printer {
     #[inline]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str(&self.get_name())
+        f.write_str(&self.name())
     }
 }
 

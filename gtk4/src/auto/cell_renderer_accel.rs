@@ -33,7 +33,8 @@ impl CellRendererAccel {
         unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_accel_new()).unsafe_cast() }
     }
 
-    pub fn get_property_accel_key(&self) -> u32 {
+    #[doc(alias = "get_property_accel_key")]
+    pub fn accel_key(&self) -> u32 {
         unsafe {
             let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -48,7 +49,8 @@ impl CellRendererAccel {
         }
     }
 
-    pub fn set_property_accel_key(&self, accel_key: u32) {
+    #[doc(alias = "set_property_accel_key")]
+    pub fn set_accel_key(&self, accel_key: u32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -58,7 +60,8 @@ impl CellRendererAccel {
         }
     }
 
-    pub fn get_property_accel_mode(&self) -> CellRendererAccelMode {
+    #[doc(alias = "get_property_accel_mode")]
+    pub fn accel_mode(&self) -> CellRendererAccelMode {
         unsafe {
             let mut value =
                 glib::Value::from_type(<CellRendererAccelMode as StaticType>::static_type());
@@ -74,7 +77,8 @@ impl CellRendererAccel {
         }
     }
 
-    pub fn set_property_accel_mode(&self, accel_mode: CellRendererAccelMode) {
+    #[doc(alias = "set_property_accel_mode")]
+    pub fn set_accel_mode(&self, accel_mode: CellRendererAccelMode) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -84,7 +88,8 @@ impl CellRendererAccel {
         }
     }
 
-    pub fn get_property_accel_mods(&self) -> gdk::ModifierType {
+    #[doc(alias = "get_property_accel_mods")]
+    pub fn accel_mods(&self) -> gdk::ModifierType {
         unsafe {
             let mut value =
                 glib::Value::from_type(<gdk::ModifierType as StaticType>::static_type());
@@ -100,7 +105,8 @@ impl CellRendererAccel {
         }
     }
 
-    pub fn set_property_accel_mods(&self, accel_mods: gdk::ModifierType) {
+    #[doc(alias = "set_property_accel_mods")]
+    pub fn set_accel_mods(&self, accel_mods: gdk::ModifierType) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -110,7 +116,8 @@ impl CellRendererAccel {
         }
     }
 
-    pub fn get_property_keycode(&self) -> u32 {
+    #[doc(alias = "get_property_keycode")]
+    pub fn keycode(&self) -> u32 {
         unsafe {
             let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -125,7 +132,8 @@ impl CellRendererAccel {
         }
     }
 
-    pub fn set_property_keycode(&self, keycode: u32) {
+    #[doc(alias = "set_property_keycode")]
+    pub fn set_keycode(&self, keycode: u32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

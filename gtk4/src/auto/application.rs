@@ -35,19 +35,19 @@ pub trait GtkApplicationExt: 'static {
     fn get_actions_for_accel(&self, accel: &str) -> Vec<glib::GString>;
 
     #[doc(alias = "gtk_application_get_active_window")]
-    fn get_active_window(&self) -> Option<Window>;
+    fn active_window(&self) -> Option<Window>;
 
     #[doc(alias = "gtk_application_get_menu_by_id")]
     fn get_menu_by_id(&self, id: &str) -> Option<gio::Menu>;
 
     #[doc(alias = "gtk_application_get_menubar")]
-    fn get_menubar(&self) -> Option<gio::MenuModel>;
+    fn menubar(&self) -> Option<gio::MenuModel>;
 
     #[doc(alias = "gtk_application_get_window_by_id")]
     fn get_window_by_id(&self, id: u32) -> Option<Window>;
 
     #[doc(alias = "gtk_application_get_windows")]
-    fn get_windows(&self) -> Vec<Window>;
+    fn windows(&self) -> Vec<Window>;
 
     #[doc(alias = "gtk_application_inhibit")]
     fn inhibit<P: IsA<Window>>(
@@ -72,11 +72,14 @@ pub trait GtkApplicationExt: 'static {
     #[doc(alias = "gtk_application_uninhibit")]
     fn uninhibit(&self, cookie: u32);
 
-    fn get_property_register_session(&self) -> bool;
+    #[doc(alias = "get_property_register_session")]
+    fn is_register_session(&self) -> bool;
 
-    fn set_property_register_session(&self, register_session: bool);
+    #[doc(alias = "set_property_register_session")]
+    fn set_register_session(&self, register_session: bool);
 
-    fn get_property_screensaver_active(&self) -> bool;
+    #[doc(alias = "get_property_screensaver_active")]
+    fn is_screensaver_active(&self) -> bool;
 
     fn connect_query_end<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -130,7 +133,7 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
         }
     }
 
-    fn get_active_window(&self) -> Option<Window> {
+    fn active_window(&self) -> Option<Window> {
         unsafe {
             from_glib_none(ffi::gtk_application_get_active_window(
                 self.as_ref().to_glib_none().0,
@@ -147,7 +150,7 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
         }
     }
 
-    fn get_menubar(&self) -> Option<gio::MenuModel> {
+    fn menubar(&self) -> Option<gio::MenuModel> {
         unsafe {
             from_glib_none(ffi::gtk_application_get_menubar(
                 self.as_ref().to_glib_none().0,
@@ -164,7 +167,7 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
         }
     }
 
-    fn get_windows(&self) -> Vec<Window> {
+    fn windows(&self) -> Vec<Window> {
         unsafe {
             FromGlibPtrContainer::from_glib_none(ffi::gtk_application_get_windows(
                 self.as_ref().to_glib_none().0,
@@ -230,7 +233,7 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
         }
     }
 
-    fn get_property_register_session(&self) -> bool {
+    fn is_register_session(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -245,7 +248,7 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
         }
     }
 
-    fn set_property_register_session(&self, register_session: bool) {
+    fn set_register_session(&self, register_session: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -255,7 +258,7 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
         }
     }
 
-    fn get_property_screensaver_active(&self) -> bool {
+    fn is_screensaver_active(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(

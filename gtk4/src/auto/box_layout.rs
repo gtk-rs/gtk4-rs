@@ -36,7 +36,7 @@ impl BoxLayout {
     }
 
     #[doc(alias = "gtk_box_layout_get_baseline_position")]
-    pub fn get_baseline_position(&self) -> BaselinePosition {
+    pub fn baseline_position(&self) -> BaselinePosition {
         unsafe {
             from_glib(ffi::gtk_box_layout_get_baseline_position(
                 self.to_glib_none().0,
@@ -45,12 +45,12 @@ impl BoxLayout {
     }
 
     #[doc(alias = "gtk_box_layout_get_homogeneous")]
-    pub fn get_homogeneous(&self) -> bool {
+    pub fn is_homogeneous(&self) -> bool {
         unsafe { from_glib(ffi::gtk_box_layout_get_homogeneous(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_box_layout_get_spacing")]
-    pub fn get_spacing(&self) -> u32 {
+    pub fn spacing(&self) -> u32 {
         unsafe { ffi::gtk_box_layout_get_spacing(self.to_glib_none().0) }
     }
 

@@ -18,7 +18,7 @@ glib::wrapper! {
 
 impl Texture {
     #[doc(alias = "gdk_texture_new_for_pixbuf")]
-    pub fn new_for_pixbuf(pixbuf: &gdk_pixbuf::Pixbuf) -> Texture {
+    pub fn for_pixbuf(pixbuf: &gdk_pixbuf::Pixbuf) -> Texture {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gdk_texture_new_for_pixbuf(pixbuf.to_glib_none().0)) }
     }
@@ -52,21 +52,21 @@ pub const NONE_TEXTURE: Option<&Texture> = None;
 
 pub trait TextureExt: 'static {
     #[doc(alias = "gdk_texture_get_height")]
-    fn get_height(&self) -> i32;
+    fn height(&self) -> i32;
 
     #[doc(alias = "gdk_texture_get_width")]
-    fn get_width(&self) -> i32;
+    fn width(&self) -> i32;
 
     #[doc(alias = "gdk_texture_save_to_png")]
     fn save_to_png(&self, filename: &str) -> bool;
 }
 
 impl<O: IsA<Texture>> TextureExt for O {
-    fn get_height(&self) -> i32 {
+    fn height(&self) -> i32 {
         unsafe { ffi::gdk_texture_get_height(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_width(&self) -> i32 {
+    fn width(&self) -> i32 {
         unsafe { ffi::gdk_texture_get_width(self.as_ref().to_glib_none().0) }
     }
 

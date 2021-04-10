@@ -45,7 +45,7 @@ impl Overlay {
     }
 
     #[doc(alias = "gtk_overlay_get_child")]
-    pub fn get_child(&self) -> Option<Widget> {
+    pub fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_overlay_get_child(self.to_glib_none().0)) }
     }
 

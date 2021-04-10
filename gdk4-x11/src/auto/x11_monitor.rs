@@ -16,12 +16,12 @@ glib::wrapper! {
 
 impl X11Monitor {
     #[doc(alias = "gdk_x11_monitor_get_output")]
-    pub fn get_output(&self) -> xlib::XID {
+    pub fn output(&self) -> xlib::XID {
         unsafe { ffi::gdk_x11_monitor_get_output(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_x11_monitor_get_workarea")]
-    pub fn get_workarea(&self) -> gdk::Rectangle {
+    pub fn workarea(&self) -> gdk::Rectangle {
         unsafe {
             let mut workarea = gdk::Rectangle::uninitialized();
             ffi::gdk_x11_monitor_get_workarea(self.to_glib_none().0, workarea.to_glib_none_mut().0);

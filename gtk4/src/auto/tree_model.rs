@@ -32,19 +32,19 @@ pub trait TreeModelExt: 'static {
     fn get_column_type(&self, index_: i32) -> glib::types::Type;
 
     #[doc(alias = "gtk_tree_model_get_flags")]
-    fn get_flags(&self) -> TreeModelFlags;
+    fn flags(&self) -> TreeModelFlags;
 
     #[doc(alias = "gtk_tree_model_get_iter")]
     fn get_iter(&self, path: &TreePath) -> Option<TreeIter>;
 
     #[doc(alias = "gtk_tree_model_get_iter_first")]
-    fn get_iter_first(&self) -> Option<TreeIter>;
+    fn iter_first(&self) -> Option<TreeIter>;
 
     #[doc(alias = "gtk_tree_model_get_iter_from_string")]
     fn get_iter_from_string(&self, path_string: &str) -> Option<TreeIter>;
 
     #[doc(alias = "gtk_tree_model_get_n_columns")]
-    fn get_n_columns(&self) -> i32;
+    fn n_columns(&self) -> i32;
 
     #[doc(alias = "gtk_tree_model_get_path")]
     fn get_path(&self, iter: &TreeIter) -> TreePath;
@@ -141,7 +141,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
-    fn get_flags(&self) -> TreeModelFlags {
+    fn flags(&self) -> TreeModelFlags {
         unsafe {
             from_glib(ffi::gtk_tree_model_get_flags(
                 self.as_ref().to_glib_none().0,
@@ -165,7 +165,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
-    fn get_iter_first(&self) -> Option<TreeIter> {
+    fn iter_first(&self) -> Option<TreeIter> {
         unsafe {
             let mut iter = TreeIter::uninitialized();
             let ret = from_glib(ffi::gtk_tree_model_get_iter_first(
@@ -196,7 +196,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
-    fn get_n_columns(&self) -> i32 {
+    fn n_columns(&self) -> i32 {
         unsafe { ffi::gtk_tree_model_get_n_columns(self.as_ref().to_glib_none().0) }
     }
 

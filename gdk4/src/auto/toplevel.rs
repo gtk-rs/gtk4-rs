@@ -48,7 +48,7 @@ pub trait ToplevelExt: 'static {
     fn focus(&self, timestamp: u32);
 
     #[doc(alias = "gdk_toplevel_get_state")]
-    fn get_state(&self) -> ToplevelState;
+    fn state(&self) -> ToplevelState;
 
     #[doc(alias = "gdk_toplevel_lower")]
     fn lower(&self) -> bool;
@@ -86,25 +86,35 @@ pub trait ToplevelExt: 'static {
     #[doc(alias = "gdk_toplevel_supports_edge_constraints")]
     fn supports_edge_constraints(&self) -> bool;
 
-    fn get_property_decorated(&self) -> bool;
+    #[doc(alias = "get_property_decorated")]
+    fn is_decorated(&self) -> bool;
 
-    fn get_property_deletable(&self) -> bool;
+    #[doc(alias = "get_property_deletable")]
+    fn is_deletable(&self) -> bool;
 
-    fn get_property_fullscreen_mode(&self) -> FullscreenMode;
+    #[doc(alias = "get_property_fullscreen_mode")]
+    fn fullscreen_mode(&self) -> FullscreenMode;
 
-    fn set_property_fullscreen_mode(&self, fullscreen_mode: FullscreenMode);
+    #[doc(alias = "set_property_fullscreen_mode")]
+    fn set_fullscreen_mode(&self, fullscreen_mode: FullscreenMode);
 
-    //fn get_property_icon_list(&self) -> /*Unimplemented*/Fundamental: Pointer;
+    //#[doc(alias = "get_property_icon_list")]
+    //fn icon_list(&self) -> /*Unimplemented*/Fundamental: Pointer;
 
-    fn get_property_modal(&self) -> bool;
+    #[doc(alias = "get_property_modal")]
+    fn is_modal(&self) -> bool;
 
-    fn get_property_shortcuts_inhibited(&self) -> bool;
+    #[doc(alias = "get_property_shortcuts_inhibited")]
+    fn is_shortcuts_inhibited(&self) -> bool;
 
-    fn get_property_startup_id(&self) -> Option<glib::GString>;
+    #[doc(alias = "get_property_startup_id")]
+    fn startup_id(&self) -> Option<glib::GString>;
 
-    fn get_property_title(&self) -> Option<glib::GString>;
+    #[doc(alias = "get_property_title")]
+    fn title(&self) -> Option<glib::GString>;
 
-    fn get_property_transient_for(&self) -> Option<Surface>;
+    #[doc(alias = "get_property_transient_for")]
+    fn transient_for(&self) -> Option<Surface>;
 
     fn connect_property_decorated_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -178,7 +188,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn get_state(&self) -> ToplevelState {
+    fn state(&self) -> ToplevelState {
         unsafe { from_glib(ffi::gdk_toplevel_get_state(self.as_ref().to_glib_none().0)) }
     }
 
@@ -261,7 +271,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn get_property_decorated(&self) -> bool {
+    fn is_decorated(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -276,7 +286,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn get_property_deletable(&self) -> bool {
+    fn is_deletable(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -291,7 +301,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn get_property_fullscreen_mode(&self) -> FullscreenMode {
+    fn fullscreen_mode(&self) -> FullscreenMode {
         unsafe {
             let mut value = glib::Value::from_type(<FullscreenMode as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -306,7 +316,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn set_property_fullscreen_mode(&self, fullscreen_mode: FullscreenMode) {
+    fn set_fullscreen_mode(&self, fullscreen_mode: FullscreenMode) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -316,7 +326,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    //fn get_property_icon_list(&self) -> /*Unimplemented*/Fundamental: Pointer {
+    //fn icon_list(&self) -> /*Unimplemented*/Fundamental: Pointer {
     //    unsafe {
     //        let mut value = glib::Value::from_type(</*Unknown type*/ as StaticType>::static_type());
     //        glib::gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut glib::gobject_ffi::GObject, b"icon-list\0".as_ptr() as *const _, value.to_glib_none_mut().0);
@@ -324,7 +334,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
     //    }
     //}
 
-    fn get_property_modal(&self) -> bool {
+    fn is_modal(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -339,7 +349,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn get_property_shortcuts_inhibited(&self) -> bool {
+    fn is_shortcuts_inhibited(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -354,7 +364,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn get_property_startup_id(&self) -> Option<glib::GString> {
+    fn startup_id(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -368,7 +378,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn get_property_title(&self) -> Option<glib::GString> {
+    fn title(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -382,7 +392,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn get_property_transient_for(&self) -> Option<Surface> {
+    fn transient_for(&self) -> Option<Surface> {
         unsafe {
             let mut value = glib::Value::from_type(<Surface as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(

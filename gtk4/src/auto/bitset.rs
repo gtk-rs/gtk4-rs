@@ -82,12 +82,12 @@ impl Bitset {
     }
 
     #[doc(alias = "gtk_bitset_get_maximum")]
-    pub fn get_maximum(&self) -> u32 {
+    pub fn maximum(&self) -> u32 {
         unsafe { ffi::gtk_bitset_get_maximum(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_bitset_get_minimum")]
-    pub fn get_minimum(&self) -> u32 {
+    pub fn minimum(&self) -> u32 {
         unsafe { ffi::gtk_bitset_get_minimum(self.to_glib_none().0) }
     }
 
@@ -97,7 +97,7 @@ impl Bitset {
     }
 
     #[doc(alias = "gtk_bitset_get_size")]
-    pub fn get_size(&self) -> u64 {
+    pub fn size(&self) -> u64 {
         unsafe { ffi::gtk_bitset_get_size(self.to_glib_none().0) }
     }
 

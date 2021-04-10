@@ -346,10 +346,10 @@ pub trait FlowBoxChildExt: 'static {
     fn changed(&self);
 
     #[doc(alias = "gtk_flow_box_child_get_child")]
-    fn get_child(&self) -> Option<Widget>;
+    fn child(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_flow_box_child_get_index")]
-    fn get_index(&self) -> i32;
+    fn index(&self) -> i32;
 
     #[doc(alias = "gtk_flow_box_child_is_selected")]
     fn is_selected(&self) -> bool;
@@ -371,7 +371,7 @@ impl<O: IsA<FlowBoxChild>> FlowBoxChildExt for O {
         }
     }
 
-    fn get_child(&self) -> Option<Widget> {
+    fn child(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_flow_box_child_get_child(
                 self.as_ref().to_glib_none().0,
@@ -379,7 +379,7 @@ impl<O: IsA<FlowBoxChild>> FlowBoxChildExt for O {
         }
     }
 
-    fn get_index(&self) -> i32 {
+    fn index(&self) -> i32 {
         unsafe { ffi::gtk_flow_box_child_get_index(self.as_ref().to_glib_none().0) }
     }
 

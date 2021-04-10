@@ -37,7 +37,7 @@ impl FrameClock {
     }
 
     #[doc(alias = "gdk_frame_clock_get_current_timings")]
-    pub fn get_current_timings(&self) -> Option<FrameTimings> {
+    pub fn current_timings(&self) -> Option<FrameTimings> {
         unsafe {
             from_glib_none(ffi::gdk_frame_clock_get_current_timings(
                 self.to_glib_none().0,
@@ -46,22 +46,22 @@ impl FrameClock {
     }
 
     #[doc(alias = "gdk_frame_clock_get_fps")]
-    pub fn get_fps(&self) -> f64 {
+    pub fn fps(&self) -> f64 {
         unsafe { ffi::gdk_frame_clock_get_fps(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_frame_clock_get_frame_counter")]
-    pub fn get_frame_counter(&self) -> i64 {
+    pub fn frame_counter(&self) -> i64 {
         unsafe { ffi::gdk_frame_clock_get_frame_counter(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_frame_clock_get_frame_time")]
-    pub fn get_frame_time(&self) -> i64 {
+    pub fn frame_time(&self) -> i64 {
         unsafe { ffi::gdk_frame_clock_get_frame_time(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_frame_clock_get_history_start")]
-    pub fn get_history_start(&self) -> i64 {
+    pub fn history_start(&self) -> i64 {
         unsafe { ffi::gdk_frame_clock_get_history_start(self.to_glib_none().0) }
     }
 

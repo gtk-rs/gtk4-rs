@@ -34,17 +34,17 @@ impl BookmarkList {
     }
 
     #[doc(alias = "gtk_bookmark_list_get_attributes")]
-    pub fn get_attributes(&self) -> Option<glib::GString> {
+    pub fn attributes(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_bookmark_list_get_attributes(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_bookmark_list_get_filename")]
-    pub fn get_filename(&self) -> Option<glib::GString> {
+    pub fn filename(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_bookmark_list_get_filename(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_bookmark_list_get_io_priority")]
-    pub fn get_io_priority(&self) -> i32 {
+    pub fn io_priority(&self) -> i32 {
         unsafe { ffi::gtk_bookmark_list_get_io_priority(self.to_glib_none().0) }
     }
 
@@ -67,21 +67,6 @@ impl BookmarkList {
     pub fn set_io_priority(&self, io_priority: i32) {
         unsafe {
             ffi::gtk_bookmark_list_set_io_priority(self.to_glib_none().0, io_priority);
-        }
-    }
-
-    pub fn get_property_loading(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"loading\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `loading` getter")
-                .unwrap()
         }
     }
 

@@ -35,7 +35,7 @@ impl SingleSelection {
     }
 
     #[doc(alias = "gtk_single_selection_get_autoselect")]
-    pub fn get_autoselect(&self) -> bool {
+    pub fn is_autoselect(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_single_selection_get_autoselect(
                 self.to_glib_none().0,
@@ -44,7 +44,7 @@ impl SingleSelection {
     }
 
     #[doc(alias = "gtk_single_selection_get_can_unselect")]
-    pub fn get_can_unselect(&self) -> bool {
+    pub fn can_unselect(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_single_selection_get_can_unselect(
                 self.to_glib_none().0,
@@ -53,17 +53,17 @@ impl SingleSelection {
     }
 
     #[doc(alias = "gtk_single_selection_get_model")]
-    pub fn get_model(&self) -> gio::ListModel {
+    pub fn model(&self) -> gio::ListModel {
         unsafe { from_glib_none(ffi::gtk_single_selection_get_model(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_single_selection_get_selected")]
-    pub fn get_selected(&self) -> u32 {
+    pub fn selected(&self) -> u32 {
         unsafe { ffi::gtk_single_selection_get_selected(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_single_selection_get_selected_item")]
-    pub fn get_selected_item(&self) -> Option<glib::Object> {
+    pub fn selected_item(&self) -> Option<glib::Object> {
         unsafe {
             from_glib_none(ffi::gtk_single_selection_get_selected_item(
                 self.to_glib_none().0,

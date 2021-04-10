@@ -49,12 +49,12 @@ impl SearchBar {
     }
 
     #[doc(alias = "gtk_search_bar_get_child")]
-    pub fn get_child(&self) -> Option<Widget> {
+    pub fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_search_bar_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_search_bar_get_key_capture_widget")]
-    pub fn get_key_capture_widget(&self) -> Widget {
+    pub fn key_capture_widget(&self) -> Widget {
         unsafe {
             from_glib_none(ffi::gtk_search_bar_get_key_capture_widget(
                 self.to_glib_none().0,
@@ -63,12 +63,12 @@ impl SearchBar {
     }
 
     #[doc(alias = "gtk_search_bar_get_search_mode")]
-    pub fn get_search_mode(&self) -> bool {
+    pub fn is_search_mode(&self) -> bool {
         unsafe { from_glib(ffi::gtk_search_bar_get_search_mode(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_search_bar_get_show_close_button")]
-    pub fn get_show_close_button(&self) -> bool {
+    pub fn shows_close_button(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_search_bar_get_show_close_button(
                 self.to_glib_none().0,
@@ -110,7 +110,8 @@ impl SearchBar {
         }
     }
 
-    pub fn get_property_search_mode_enabled(&self) -> bool {
+    #[doc(alias = "get_property_search_mode_enabled")]
+    pub fn is_search_mode_enabled(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -125,7 +126,8 @@ impl SearchBar {
         }
     }
 
-    pub fn set_property_search_mode_enabled(&self, search_mode_enabled: bool) {
+    #[doc(alias = "set_property_search_mode_enabled")]
+    pub fn set_search_mode_enabled(&self, search_mode_enabled: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

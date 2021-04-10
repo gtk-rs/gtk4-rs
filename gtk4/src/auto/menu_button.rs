@@ -40,37 +40,37 @@ impl MenuButton {
     }
 
     #[doc(alias = "gtk_menu_button_get_direction")]
-    pub fn get_direction(&self) -> ArrowType {
+    pub fn direction(&self) -> ArrowType {
         unsafe { from_glib(ffi::gtk_menu_button_get_direction(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_menu_button_get_has_frame")]
-    pub fn get_has_frame(&self) -> bool {
+    pub fn has_frame(&self) -> bool {
         unsafe { from_glib(ffi::gtk_menu_button_get_has_frame(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_menu_button_get_icon_name")]
-    pub fn get_icon_name(&self) -> Option<glib::GString> {
+    pub fn icon_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_menu_button_get_icon_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_menu_button_get_label")]
-    pub fn get_label(&self) -> Option<glib::GString> {
+    pub fn label(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_menu_button_get_label(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_menu_button_get_menu_model")]
-    pub fn get_menu_model(&self) -> Option<gio::MenuModel> {
+    pub fn menu_model(&self) -> Option<gio::MenuModel> {
         unsafe { from_glib_none(ffi::gtk_menu_button_get_menu_model(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_menu_button_get_popover")]
-    pub fn get_popover(&self) -> Option<Popover> {
+    pub fn popover(&self) -> Option<Popover> {
         unsafe { from_glib_none(ffi::gtk_menu_button_get_popover(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_menu_button_get_use_underline")]
-    pub fn get_use_underline(&self) -> bool {
+    pub fn uses_underline(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_menu_button_get_use_underline(
                 self.to_glib_none().0,

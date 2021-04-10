@@ -198,12 +198,12 @@ impl Builder {
     }
 
     #[doc(alias = "gtk_builder_get_current_object")]
-    pub fn get_current_object(&self) -> Option<glib::Object> {
+    pub fn current_object(&self) -> Option<glib::Object> {
         unsafe { from_glib_none(ffi::gtk_builder_get_current_object(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_builder_get_objects")]
-    pub fn get_objects(&self) -> Vec<glib::Object> {
+    pub fn objects(&self) -> Vec<glib::Object> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_builder_get_objects(
                 self.to_glib_none().0,
@@ -212,12 +212,12 @@ impl Builder {
     }
 
     #[doc(alias = "gtk_builder_get_scope")]
-    pub fn get_scope(&self) -> BuilderScope {
+    pub fn scope(&self) -> BuilderScope {
         unsafe { from_glib_none(ffi::gtk_builder_get_scope(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_builder_get_translation_domain")]
-    pub fn get_translation_domain(&self) -> Option<glib::GString> {
+    pub fn translation_domain(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_builder_get_translation_domain(
                 self.to_glib_none().0,

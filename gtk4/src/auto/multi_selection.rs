@@ -35,7 +35,7 @@ impl MultiSelection {
     }
 
     #[doc(alias = "gtk_multi_selection_get_model")]
-    pub fn get_model(&self) -> Option<gio::ListModel> {
+    pub fn model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_multi_selection_get_model(self.to_glib_none().0)) }
     }
 

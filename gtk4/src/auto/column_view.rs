@@ -57,12 +57,12 @@ impl ColumnView {
     }
 
     #[doc(alias = "gtk_column_view_get_columns")]
-    pub fn get_columns(&self) -> gio::ListModel {
+    pub fn columns(&self) -> gio::ListModel {
         unsafe { from_glib_none(ffi::gtk_column_view_get_columns(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_column_view_get_enable_rubberband")]
-    pub fn get_enable_rubberband(&self) -> bool {
+    pub fn enables_rubberband(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_get_enable_rubberband(
                 self.to_glib_none().0,
@@ -71,17 +71,17 @@ impl ColumnView {
     }
 
     #[doc(alias = "gtk_column_view_get_model")]
-    pub fn get_model(&self) -> Option<SelectionModel> {
+    pub fn model(&self) -> Option<SelectionModel> {
         unsafe { from_glib_none(ffi::gtk_column_view_get_model(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_column_view_get_reorderable")]
-    pub fn get_reorderable(&self) -> bool {
+    pub fn is_reorderable(&self) -> bool {
         unsafe { from_glib(ffi::gtk_column_view_get_reorderable(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_column_view_get_show_column_separators")]
-    pub fn get_show_column_separators(&self) -> bool {
+    pub fn shows_column_separators(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_get_show_column_separators(
                 self.to_glib_none().0,
@@ -90,7 +90,7 @@ impl ColumnView {
     }
 
     #[doc(alias = "gtk_column_view_get_show_row_separators")]
-    pub fn get_show_row_separators(&self) -> bool {
+    pub fn shows_row_separators(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_get_show_row_separators(
                 self.to_glib_none().0,
@@ -99,7 +99,7 @@ impl ColumnView {
     }
 
     #[doc(alias = "gtk_column_view_get_single_click_activate")]
-    pub fn get_single_click_activate(&self) -> bool {
+    pub fn is_single_click_activate(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_get_single_click_activate(
                 self.to_glib_none().0,
@@ -108,7 +108,7 @@ impl ColumnView {
     }
 
     #[doc(alias = "gtk_column_view_get_sorter")]
-    pub fn get_sorter(&self) -> Option<Sorter> {
+    pub fn sorter(&self) -> Option<Sorter> {
         unsafe { from_glib_none(ffi::gtk_column_view_get_sorter(self.to_glib_none().0)) }
     }
 

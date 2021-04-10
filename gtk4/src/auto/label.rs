@@ -51,42 +51,42 @@ impl Label {
     }
 
     #[doc(alias = "gtk_label_get_attributes")]
-    pub fn get_attributes(&self) -> Option<pango::AttrList> {
+    pub fn attributes(&self) -> Option<pango::AttrList> {
         unsafe { from_glib_none(ffi::gtk_label_get_attributes(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_label_get_current_uri")]
-    pub fn get_current_uri(&self) -> Option<glib::GString> {
+    pub fn current_uri(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_label_get_current_uri(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_label_get_ellipsize")]
-    pub fn get_ellipsize(&self) -> pango::EllipsizeMode {
+    pub fn ellipsize(&self) -> pango::EllipsizeMode {
         unsafe { from_glib(ffi::gtk_label_get_ellipsize(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_label_get_extra_menu")]
-    pub fn get_extra_menu(&self) -> Option<gio::MenuModel> {
+    pub fn extra_menu(&self) -> Option<gio::MenuModel> {
         unsafe { from_glib_none(ffi::gtk_label_get_extra_menu(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_label_get_justify")]
-    pub fn get_justify(&self) -> Justification {
+    pub fn justify(&self) -> Justification {
         unsafe { from_glib(ffi::gtk_label_get_justify(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_label_get_label")]
-    pub fn get_label(&self) -> glib::GString {
+    pub fn label(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_label_get_label(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_label_get_layout")]
-    pub fn get_layout(&self) -> pango::Layout {
+    pub fn layout(&self) -> pango::Layout {
         unsafe { from_glib_none(ffi::gtk_label_get_layout(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_label_get_layout_offsets")]
-    pub fn get_layout_offsets(&self) -> (i32, i32) {
+    pub fn layout_offsets(&self) -> (i32, i32) {
         unsafe {
             let mut x = mem::MaybeUninit::uninit();
             let mut y = mem::MaybeUninit::uninit();
@@ -102,27 +102,27 @@ impl Label {
     }
 
     #[doc(alias = "gtk_label_get_lines")]
-    pub fn get_lines(&self) -> i32 {
+    pub fn lines(&self) -> i32 {
         unsafe { ffi::gtk_label_get_lines(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_label_get_max_width_chars")]
-    pub fn get_max_width_chars(&self) -> i32 {
+    pub fn max_width_chars(&self) -> i32 {
         unsafe { ffi::gtk_label_get_max_width_chars(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_label_get_mnemonic_widget")]
-    pub fn get_mnemonic_widget(&self) -> Option<Widget> {
+    pub fn mnemonic_widget(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_label_get_mnemonic_widget(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_label_get_selectable")]
-    pub fn get_selectable(&self) -> bool {
+    pub fn is_selectable(&self) -> bool {
         unsafe { from_glib(ffi::gtk_label_get_selectable(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_label_get_selection_bounds")]
-    pub fn get_selection_bounds(&self) -> Option<(i32, i32)> {
+    pub fn selection_bounds(&self) -> Option<(i32, i32)> {
         unsafe {
             let mut start = mem::MaybeUninit::uninit();
             let mut end = mem::MaybeUninit::uninit();
@@ -142,47 +142,47 @@ impl Label {
     }
 
     #[doc(alias = "gtk_label_get_single_line_mode")]
-    pub fn get_single_line_mode(&self) -> bool {
+    pub fn is_single_line_mode(&self) -> bool {
         unsafe { from_glib(ffi::gtk_label_get_single_line_mode(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_label_get_text")]
-    pub fn get_text(&self) -> glib::GString {
+    pub fn text(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_label_get_text(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_label_get_use_markup")]
-    pub fn get_use_markup(&self) -> bool {
+    pub fn uses_markup(&self) -> bool {
         unsafe { from_glib(ffi::gtk_label_get_use_markup(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_label_get_use_underline")]
-    pub fn get_use_underline(&self) -> bool {
+    pub fn uses_underline(&self) -> bool {
         unsafe { from_glib(ffi::gtk_label_get_use_underline(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_label_get_width_chars")]
-    pub fn get_width_chars(&self) -> i32 {
+    pub fn width_chars(&self) -> i32 {
         unsafe { ffi::gtk_label_get_width_chars(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_label_get_wrap")]
-    pub fn get_wrap(&self) -> bool {
+    pub fn wraps(&self) -> bool {
         unsafe { from_glib(ffi::gtk_label_get_wrap(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_label_get_wrap_mode")]
-    pub fn get_wrap_mode(&self) -> pango::WrapMode {
+    pub fn wrap_mode(&self) -> pango::WrapMode {
         unsafe { from_glib(ffi::gtk_label_get_wrap_mode(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_label_get_xalign")]
-    pub fn get_xalign(&self) -> f32 {
+    pub fn xalign(&self) -> f32 {
         unsafe { ffi::gtk_label_get_xalign(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_label_get_yalign")]
-    pub fn get_yalign(&self) -> f32 {
+    pub fn yalign(&self) -> f32 {
         unsafe { ffi::gtk_label_get_yalign(self.to_glib_none().0) }
     }
 

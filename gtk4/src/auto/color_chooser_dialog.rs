@@ -50,7 +50,8 @@ impl ColorChooserDialog {
         }
     }
 
-    pub fn get_property_show_editor(&self) -> bool {
+    #[doc(alias = "get_property_show_editor")]
+    pub fn shows_editor(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -65,7 +66,8 @@ impl ColorChooserDialog {
         }
     }
 
-    pub fn set_property_show_editor(&self, show_editor: bool) {
+    #[doc(alias = "set_property_show_editor")]
+    pub fn set_show_editor(&self, show_editor: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

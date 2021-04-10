@@ -50,37 +50,37 @@ impl Expander {
     }
 
     #[doc(alias = "gtk_expander_get_child")]
-    pub fn get_child(&self) -> Option<Widget> {
+    pub fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_expander_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_expander_get_expanded")]
-    pub fn get_expanded(&self) -> bool {
+    pub fn is_expanded(&self) -> bool {
         unsafe { from_glib(ffi::gtk_expander_get_expanded(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_expander_get_label")]
-    pub fn get_label(&self) -> Option<glib::GString> {
+    pub fn label(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_expander_get_label(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_expander_get_label_widget")]
-    pub fn get_label_widget(&self) -> Option<Widget> {
+    pub fn label_widget(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_expander_get_label_widget(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_expander_get_resize_toplevel")]
-    pub fn get_resize_toplevel(&self) -> bool {
+    pub fn resizes_toplevel(&self) -> bool {
         unsafe { from_glib(ffi::gtk_expander_get_resize_toplevel(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_expander_get_use_markup")]
-    pub fn get_use_markup(&self) -> bool {
+    pub fn uses_markup(&self) -> bool {
         unsafe { from_glib(ffi::gtk_expander_get_use_markup(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_expander_get_use_underline")]
-    pub fn get_use_underline(&self) -> bool {
+    pub fn uses_underline(&self) -> bool {
         unsafe { from_glib(ffi::gtk_expander_get_use_underline(self.to_glib_none().0)) }
     }
 

@@ -26,11 +26,12 @@ glib::wrapper! {
 
 impl AssistantPage {
     #[doc(alias = "gtk_assistant_page_get_child")]
-    pub fn get_child(&self) -> Option<Widget> {
+    pub fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_assistant_page_get_child(self.to_glib_none().0)) }
     }
 
-    pub fn get_property_complete(&self) -> bool {
+    #[doc(alias = "get_property_complete")]
+    pub fn is_complete(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -45,7 +46,8 @@ impl AssistantPage {
         }
     }
 
-    pub fn set_property_complete(&self, complete: bool) {
+    #[doc(alias = "set_property_complete")]
+    pub fn set_complete(&self, complete: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -55,7 +57,8 @@ impl AssistantPage {
         }
     }
 
-    pub fn get_property_page_type(&self) -> AssistantPageType {
+    #[doc(alias = "get_property_page_type")]
+    pub fn page_type(&self) -> AssistantPageType {
         unsafe {
             let mut value =
                 glib::Value::from_type(<AssistantPageType as StaticType>::static_type());
@@ -71,7 +74,8 @@ impl AssistantPage {
         }
     }
 
-    pub fn set_property_page_type(&self, page_type: AssistantPageType) {
+    #[doc(alias = "set_property_page_type")]
+    pub fn set_page_type(&self, page_type: AssistantPageType) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -81,7 +85,8 @@ impl AssistantPage {
         }
     }
 
-    pub fn get_property_title(&self) -> Option<glib::GString> {
+    #[doc(alias = "get_property_title")]
+    pub fn title(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -95,7 +100,8 @@ impl AssistantPage {
         }
     }
 
-    pub fn set_property_title(&self, title: Option<&str>) {
+    #[doc(alias = "set_property_title")]
+    pub fn set_title(&self, title: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

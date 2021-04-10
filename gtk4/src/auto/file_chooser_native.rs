@@ -49,7 +49,7 @@ impl FileChooserNative {
     }
 
     #[doc(alias = "gtk_file_chooser_native_get_accept_label")]
-    pub fn get_accept_label(&self) -> Option<glib::GString> {
+    pub fn accept_label(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_file_chooser_native_get_accept_label(
                 self.to_glib_none().0,
@@ -58,7 +58,7 @@ impl FileChooserNative {
     }
 
     #[doc(alias = "gtk_file_chooser_native_get_cancel_label")]
-    pub fn get_cancel_label(&self) -> Option<glib::GString> {
+    pub fn cancel_label(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_file_chooser_native_get_cancel_label(
                 self.to_glib_none().0,

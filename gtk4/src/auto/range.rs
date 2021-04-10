@@ -388,37 +388,37 @@ pub const NONE_RANGE: Option<&Range> = None;
 
 pub trait RangeExt: 'static {
     #[doc(alias = "gtk_range_get_adjustment")]
-    fn get_adjustment(&self) -> Adjustment;
+    fn adjustment(&self) -> Adjustment;
 
     #[doc(alias = "gtk_range_get_fill_level")]
-    fn get_fill_level(&self) -> f64;
+    fn fill_level(&self) -> f64;
 
     #[doc(alias = "gtk_range_get_flippable")]
-    fn get_flippable(&self) -> bool;
+    fn is_flippable(&self) -> bool;
 
     #[doc(alias = "gtk_range_get_inverted")]
-    fn get_inverted(&self) -> bool;
+    fn is_inverted(&self) -> bool;
 
     #[doc(alias = "gtk_range_get_range_rect")]
-    fn get_range_rect(&self) -> gdk::Rectangle;
+    fn range_rect(&self) -> gdk::Rectangle;
 
     #[doc(alias = "gtk_range_get_restrict_to_fill_level")]
-    fn get_restrict_to_fill_level(&self) -> bool;
+    fn restricts_to_fill_level(&self) -> bool;
 
     #[doc(alias = "gtk_range_get_round_digits")]
-    fn get_round_digits(&self) -> i32;
+    fn round_digits(&self) -> i32;
 
     #[doc(alias = "gtk_range_get_show_fill_level")]
-    fn get_show_fill_level(&self) -> bool;
+    fn shows_fill_level(&self) -> bool;
 
     #[doc(alias = "gtk_range_get_slider_range")]
-    fn get_slider_range(&self) -> (i32, i32);
+    fn slider_range(&self) -> (i32, i32);
 
     #[doc(alias = "gtk_range_get_slider_size_fixed")]
-    fn get_slider_size_fixed(&self) -> bool;
+    fn is_slider_size_fixed(&self) -> bool;
 
     #[doc(alias = "gtk_range_get_value")]
-    fn get_value(&self) -> f64;
+    fn value(&self) -> f64;
 
     #[doc(alias = "gtk_range_set_adjustment")]
     fn set_adjustment<P: IsA<Adjustment>>(&self, adjustment: &P);
@@ -487,7 +487,7 @@ pub trait RangeExt: 'static {
 }
 
 impl<O: IsA<Range>> RangeExt for O {
-    fn get_adjustment(&self) -> Adjustment {
+    fn adjustment(&self) -> Adjustment {
         unsafe {
             from_glib_none(ffi::gtk_range_get_adjustment(
                 self.as_ref().to_glib_none().0,
@@ -495,19 +495,19 @@ impl<O: IsA<Range>> RangeExt for O {
         }
     }
 
-    fn get_fill_level(&self) -> f64 {
+    fn fill_level(&self) -> f64 {
         unsafe { ffi::gtk_range_get_fill_level(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_flippable(&self) -> bool {
+    fn is_flippable(&self) -> bool {
         unsafe { from_glib(ffi::gtk_range_get_flippable(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_inverted(&self) -> bool {
+    fn is_inverted(&self) -> bool {
         unsafe { from_glib(ffi::gtk_range_get_inverted(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_range_rect(&self) -> gdk::Rectangle {
+    fn range_rect(&self) -> gdk::Rectangle {
         unsafe {
             let mut range_rect = gdk::Rectangle::uninitialized();
             ffi::gtk_range_get_range_rect(
@@ -518,7 +518,7 @@ impl<O: IsA<Range>> RangeExt for O {
         }
     }
 
-    fn get_restrict_to_fill_level(&self) -> bool {
+    fn restricts_to_fill_level(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_range_get_restrict_to_fill_level(
                 self.as_ref().to_glib_none().0,
@@ -526,11 +526,11 @@ impl<O: IsA<Range>> RangeExt for O {
         }
     }
 
-    fn get_round_digits(&self) -> i32 {
+    fn round_digits(&self) -> i32 {
         unsafe { ffi::gtk_range_get_round_digits(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_show_fill_level(&self) -> bool {
+    fn shows_fill_level(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_range_get_show_fill_level(
                 self.as_ref().to_glib_none().0,
@@ -538,7 +538,7 @@ impl<O: IsA<Range>> RangeExt for O {
         }
     }
 
-    fn get_slider_range(&self) -> (i32, i32) {
+    fn slider_range(&self) -> (i32, i32) {
         unsafe {
             let mut slider_start = mem::MaybeUninit::uninit();
             let mut slider_end = mem::MaybeUninit::uninit();
@@ -553,7 +553,7 @@ impl<O: IsA<Range>> RangeExt for O {
         }
     }
 
-    fn get_slider_size_fixed(&self) -> bool {
+    fn is_slider_size_fixed(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_range_get_slider_size_fixed(
                 self.as_ref().to_glib_none().0,
@@ -561,7 +561,7 @@ impl<O: IsA<Range>> RangeExt for O {
         }
     }
 
-    fn get_value(&self) -> f64 {
+    fn value(&self) -> f64 {
         unsafe { ffi::gtk_range_get_value(self.as_ref().to_glib_none().0) }
     }
 

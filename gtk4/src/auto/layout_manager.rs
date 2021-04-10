@@ -29,10 +29,10 @@ pub trait LayoutManagerExt: 'static {
     fn get_layout_child<P: IsA<Widget>>(&self, child: &P) -> Option<LayoutChild>;
 
     #[doc(alias = "gtk_layout_manager_get_request_mode")]
-    fn get_request_mode(&self) -> SizeRequestMode;
+    fn request_mode(&self) -> SizeRequestMode;
 
     #[doc(alias = "gtk_layout_manager_get_widget")]
-    fn get_widget(&self) -> Option<Widget>;
+    fn widget(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_layout_manager_layout_changed")]
     fn layout_changed(&self);
@@ -68,7 +68,7 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
         }
     }
 
-    fn get_request_mode(&self) -> SizeRequestMode {
+    fn request_mode(&self) -> SizeRequestMode {
         unsafe {
             from_glib(ffi::gtk_layout_manager_get_request_mode(
                 self.as_ref().to_glib_none().0,
@@ -76,7 +76,7 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
         }
     }
 
-    fn get_widget(&self) -> Option<Widget> {
+    fn widget(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_layout_manager_get_widget(
                 self.as_ref().to_glib_none().0,

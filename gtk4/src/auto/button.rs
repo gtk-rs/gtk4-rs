@@ -427,19 +427,19 @@ pub const NONE_BUTTON: Option<&Button> = None;
 
 pub trait ButtonExt: 'static {
     #[doc(alias = "gtk_button_get_child")]
-    fn get_child(&self) -> Option<Widget>;
+    fn child(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_button_get_has_frame")]
-    fn get_has_frame(&self) -> bool;
+    fn has_frame(&self) -> bool;
 
     #[doc(alias = "gtk_button_get_icon_name")]
-    fn get_icon_name(&self) -> Option<glib::GString>;
+    fn icon_name(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_button_get_label")]
-    fn get_label(&self) -> Option<glib::GString>;
+    fn label(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_button_get_use_underline")]
-    fn get_use_underline(&self) -> bool;
+    fn uses_underline(&self) -> bool;
 
     #[doc(alias = "gtk_button_set_child")]
     fn set_child<P: IsA<Widget>>(&self, child: Option<&P>);
@@ -479,11 +479,11 @@ pub trait ButtonExt: 'static {
 }
 
 impl<O: IsA<Button>> ButtonExt for O {
-    fn get_child(&self) -> Option<Widget> {
+    fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_button_get_child(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_has_frame(&self) -> bool {
+    fn has_frame(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_button_get_has_frame(
                 self.as_ref().to_glib_none().0,
@@ -491,7 +491,7 @@ impl<O: IsA<Button>> ButtonExt for O {
         }
     }
 
-    fn get_icon_name(&self) -> Option<glib::GString> {
+    fn icon_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_button_get_icon_name(
                 self.as_ref().to_glib_none().0,
@@ -499,11 +499,11 @@ impl<O: IsA<Button>> ButtonExt for O {
         }
     }
 
-    fn get_label(&self) -> Option<glib::GString> {
+    fn label(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_button_get_label(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_use_underline(&self) -> bool {
+    fn uses_underline(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_button_get_use_underline(
                 self.as_ref().to_glib_none().0,
