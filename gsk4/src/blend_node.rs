@@ -28,17 +28,17 @@ impl BlendNode {
     }
 
     #[doc(alias = "gsk_blend_node_get_blend_mode")]
-    pub fn get_blend_mode(&self) -> BlendMode {
+    pub fn blend_mode(&self) -> BlendMode {
         unsafe { from_glib(ffi::gsk_blend_node_get_blend_mode(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_blend_node_get_bottom_child")]
-    pub fn get_bottom_child(&self) -> Option<RenderNode> {
+    pub fn bottom_child(&self) -> Option<RenderNode> {
         unsafe { from_glib_none(ffi::gsk_blend_node_get_bottom_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_blend_node_get_top_child")]
-    pub fn get_top_child(&self) -> Option<RenderNode> {
+    pub fn top_child(&self) -> Option<RenderNode> {
         unsafe { from_glib_none(ffi::gsk_blend_node_get_top_child(self.to_glib_none().0)) }
     }
 }

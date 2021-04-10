@@ -18,11 +18,11 @@ impl ColorStop {
         })
     }
 
-    pub fn get_offset(&self) -> f32 {
+    pub fn offset(&self) -> f32 {
         self.0.offset
     }
 
-    pub fn get_color(&self) -> RGBA {
+    pub fn color(&self) -> RGBA {
         unsafe { from_glib_none(&self.0.color as *const _) }
     }
 }

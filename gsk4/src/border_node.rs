@@ -27,19 +27,19 @@ impl BorderNode {
     }
 
     #[doc(alias = "gsk_border_node_get_colors")]
-    pub fn get_colors(&self) -> &[gdk::RGBA; 4] {
+    pub fn colors(&self) -> &[gdk::RGBA; 4] {
         unsafe {
             &*(ffi::gsk_border_node_get_colors(self.to_glib_none().0) as *const [gdk::RGBA; 4])
         }
     }
 
     #[doc(alias = "gsk_border_node_get_outline")]
-    pub fn get_outline(&self) -> RoundedRect {
+    pub fn outline(&self) -> RoundedRect {
         unsafe { from_glib_none(ffi::gsk_border_node_get_outline(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_border_node_get_widths")]
-    pub fn get_widths(&self) -> &[f32; 4] {
+    pub fn widths(&self) -> &[f32; 4] {
         unsafe { &*ffi::gsk_border_node_get_widths(self.to_glib_none().0) }
     }
 }

@@ -33,12 +33,12 @@ impl GLShaderNode {
     }
 
     #[doc(alias = "gsk_gl_shader_node_get_args")]
-    pub fn get_args(&self) -> Option<glib::Bytes> {
+    pub fn args(&self) -> Option<glib::Bytes> {
         unsafe { from_glib_none(ffi::gsk_gl_shader_node_get_args(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_gl_shader_node_get_child")]
-    pub fn get_child(&self, idx: u32) -> Option<RenderNode> {
+    pub fn child(&self, idx: u32) -> Option<RenderNode> {
         unsafe {
             from_glib_none(ffi::gsk_gl_shader_node_get_child(
                 self.to_glib_none().0,
@@ -48,12 +48,12 @@ impl GLShaderNode {
     }
 
     #[doc(alias = "gsk_gl_shader_node_get_n_children")]
-    pub fn get_n_children(&self) -> u32 {
+    pub fn n_children(&self) -> u32 {
         unsafe { ffi::gsk_gl_shader_node_get_n_children(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gsk_gl_shader_node_get_shader")]
-    pub fn get_shader(&self) -> Option<GLShader> {
+    pub fn shader(&self) -> Option<GLShader> {
         unsafe { from_glib_none(ffi::gsk_gl_shader_node_get_shader(self.to_glib_none().0)) }
     }
 }

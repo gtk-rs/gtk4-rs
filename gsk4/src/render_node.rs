@@ -96,7 +96,7 @@ impl RenderNode {
         }
     }
 
-    pub fn get_bounds(&self) -> graphene::Rect {
+    pub fn bounds(&self) -> graphene::Rect {
         unsafe {
             let mut bounds = graphene::Rect::uninitialized();
             ffi::gsk_render_node_get_bounds(self.to_glib_none().0, bounds.to_glib_none_mut().0);
@@ -104,7 +104,7 @@ impl RenderNode {
         }
     }
 
-    pub fn get_node_type(&self) -> RenderNodeType {
+    pub fn node_type(&self) -> RenderNodeType {
         unsafe { from_glib(ffi::gsk_render_node_get_node_type(self.to_glib_none().0)) }
     }
 

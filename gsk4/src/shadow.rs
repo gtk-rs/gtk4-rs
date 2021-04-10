@@ -20,19 +20,19 @@ impl Shadow {
         })
     }
 
-    pub fn get_color(&self) -> RGBA {
+    pub fn color(&self) -> RGBA {
         unsafe { from_glib_none(&self.0.color as *const _) }
     }
 
-    pub fn get_dx(&self) -> f32 {
+    pub fn dx(&self) -> f32 {
         self.0.dx
     }
 
-    pub fn get_dy(&self) -> f32 {
+    pub fn dy(&self) -> f32 {
         self.0.dy
     }
 
-    pub fn get_radius(&self) -> f32 {
+    pub fn radius(&self) -> f32 {
         self.0.radius
     }
 }
