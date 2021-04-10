@@ -6,7 +6,7 @@ Let us learn how to use `GSettings` by storing the state of a [`Switch`](../docs
 
 At the very beginning we have to create a `GSchema` xml file in order to describe the kind of data our application plans to store in the settings.
 
-<span class="filename">Filename: org.gtk.example.gschema.xml</span>
+<span class="filename">Filename: listings/settings/1/org.gtk.example.gschema.xml</span>
 
 ```xml
 {{#rustdoc_include ../listings/settings/1/org.gtk.example.gschema.xml}}
@@ -14,7 +14,7 @@ At the very beginning we have to create a `GSchema` xml file in order to describ
 Let us get through it step by step.
 The `id` is the same application id we used when we created our application.
 
-<span class="filename">Filename: main.rs</span>
+<span class="filename">Filename: listings/settings/1/main.rs</span>
 
 ```rust,no_run
 {{#rustdoc_include ../listings/settings/1/main.rs:application}}
@@ -38,7 +38,7 @@ That is why we probably want to use a build system like [Meson](https://mesonbui
 
 We initialize the `Settings` object by specifying the application id.
 
-<span class="filename">Filename: main.rs</span>
+<span class="filename">Filename: listings/settings/1/main.rs</span>
 
 ```rust,no_run
 {{#rustdoc_include ../listings/settings/1/main.rs:settings}}
@@ -46,7 +46,7 @@ We initialize the `Settings` object by specifying the application id.
 
 Then we get the settings key and use it when we create our `Switch`.
 
-<span class="filename">Filename: main.rs</span>
+<span class="filename">Filename: listings/settings/1/main.rs</span>
 
 ```rust,no_run
 {{#rustdoc_include ../listings/settings/1/main.rs:switch}}
@@ -54,7 +54,7 @@ Then we get the settings key and use it when we create our `Switch`.
 
 Finally, we assure that the switch state is stored in the settings whenever we click on it.
 
-<span class="filename">Filename: main.rs</span>
+<span class="filename">Filename: listings/settings/1/main.rs</span>
 
 ```rust,no_run
 {{#rustdoc_include ../listings/settings/1/main.rs:connect_state_set}}
@@ -69,7 +69,7 @@ We can remove the `get_boolean` call before initializing the `Switch` as well as
 We then bind the setting to the property by specifying the key, object and name of the property.
 We also specify [`SettingsBindFlags`](https://gtk-rs.org/docs/gio/struct.SettingsBindFlags.html) to control the direction in which the binding works.
 
-<span class="filename">Filename: main.rs</span>
+<span class="filename">Filename: listings/settings/2/main.rs</span>
 
 ```rust,no_run
 {{#rustdoc_include ../listings/settings/2/main.rs:settings_bind}}

@@ -1,6 +1,7 @@
 use gtk::prelude::*;
 use gtk::{Align, BoxBuilder, Orientation, Switch};
 use gtk::{Application, ApplicationWindowBuilder};
+
 fn main() {
     // Create a new application
     let app = Application::new(Some("org.gtk.example"), Default::default())
@@ -10,6 +11,7 @@ fn main() {
     // Run the application
     app.run();
 }
+
 // ANCHOR: activate
 // When the application is launched…
 fn on_activate(application: &Application) {

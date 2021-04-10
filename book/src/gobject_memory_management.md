@@ -3,8 +3,6 @@
 GObjects are reference-counted, mutable objects, so they behave very similar to `Rc<RefCell<T>>`.
 Let us see in a set of real life examples which consequences this has.
 
-<span class="filename">Filename: main.rs</span>
-
 ```rust ,no_run,compile_fail
 use gtk::prelude::*;
 use gtk::{self, Application, ApplicationWindow, Button, Orientation};
@@ -99,7 +97,7 @@ we can use the [`RefCell`](https://doc.rust-lang.org/std/cell/struct.RefCell.htm
 `RefCell` then checks Rust's borrow rules during run time, namely that there can only be one mutable borrow at a time or multiple immutable borrows.
 `RefCell` panics if these rules are violated.
 
-<span class="filename">Filename: main.rs</span>
+<span class="filename">Filename: listings/gobject_memory_management/1/main.rs</span>
 
 ```rust,no_run
 {{#rustdoc_include ../listings/gobject_memory_management/1/main.rs:callback}}
@@ -108,7 +106,7 @@ we can use the [`RefCell`](https://doc.rust-lang.org/std/cell/struct.RefCell.htm
 It is not very nice though to fill the scope with temporary variables like `number_copy_1`.
 We can improve that by using the `glib::clone!` macro.
 
-<span class="filename">Filename: main.rs</span>
+<span class="filename">Filename: listings/gobject_memory_management/2/main.rs</span>
 
 ```rust,no_run
 {{#rustdoc_include ../listings/gobject_memory_management/2/main.rs:callback}}
@@ -117,7 +115,7 @@ We can improve that by using the `glib::clone!` macro.
 Just like `Rc<RefCell<T>>`, GObjects are reference-counted and mutable.
 Therefore, we can pass the buttons the same way to the closure as we did with `number`.
 
-<span class="filename">Filename: main.rs</span>
+<span class="filename">Filename: listings/gobject_memory_management/3/main.rs</span>
 
 ```rust,no_run
 {{#rustdoc_include ../listings/gobject_memory_management/3/main.rs:callback}}
@@ -133,7 +131,7 @@ If this chain leads to a circle, none of the values in this cycle ever get deall
 With weak references we can break this cycle, because they do not keep their value alive but instead provide a way to retrieve a strong reference if the value is still alive.
 Since we want our apps to free unneeded memory, we should use weak references for the buttons instead[^1].
 
-<span class="filename">Filename: main.rs</span>
+<span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span>
 
 ```rust,no_run
 {{#rustdoc_include ../listings/gobject_memory_management/4/main.rs:callback}}
@@ -151,7 +149,7 @@ If we had a *weak* reference, no one would have kept `number` alive and the clos
 Thinking about this, `button_increase` and `button_decrease` are also dropped at the end of the scope of `on_activate`.
 Who then keeps the buttons alive?
 
-<span class="filename">Filename: main.rs</span>
+<span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span>
 
 ```rust,no_run
 {{#rustdoc_include ../listings/gobject_memory_management/4/main.rs:box_append}}
@@ -159,7 +157,7 @@ Who then keeps the buttons alive?
 
 When we append the buttons to the `gtk_box`, `gtk_box` keeps a strong reference to them.
 
-<span class="filename">Filename: main.rs</span>
+<span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span>
 
 ```rust,no_run
 {{#rustdoc_include ../listings/gobject_memory_management/4/main.rs:set_child}}
@@ -167,7 +165,7 @@ When we append the buttons to the `gtk_box`, `gtk_box` keeps a strong reference 
 
 When we set `gtk_box` as child of `window`, `window` keeps a strong reference to it.
 
-<span class="filename">Filename: main.rs</span>
+<span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span>
 
 ```rust,no_run
 {{#rustdoc_include ../listings/gobject_memory_management/4/main.rs:window}}
