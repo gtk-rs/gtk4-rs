@@ -1,7 +1,6 @@
 mod imp;
 
 use gtk::glib;
-use gtk::prelude::*;
 
 glib::wrapper! {
     pub struct CustomButton(ObjectSubclass<imp::CustomButton>)
@@ -14,8 +13,6 @@ impl CustomButton {
     }
 
     pub fn with_label(label: &str) -> Self {
-        let button = Self::new();
-        button.set_label(label);
-        button
+        glib::Object::new(&[("label", &label)]).expect("Failed to create Button")
     }
 }
