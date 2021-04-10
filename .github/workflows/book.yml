@@ -47,7 +47,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./book/public
           keep_files: false
-          destination_dir: book/git
+          destination_dir: git/book
 
   codespell:
     runs-on: ubuntu-20.04

@@ -26,13 +26,13 @@ __Required Rust version__: 1.48+
 
 ### Development Branch
 
-- [Book](https://gtk-rs.org/gtk4-rs/book/git/index.html)
-- [GTK](https://gtk-rs.org/gtk4-rs/docs/git/gtk4/)
-- [GDK](https://gtk-rs.org/gtk4-rs/docs/git/gdk4/)
-- [GSK](https://gtk-rs.org/gtk4-rs/docs/git/gsk4/)
-- [GDK Wayland](https://gtk-rs.org/gtk4-rs/docs/git/gdk4_wayland/)
-- [GDK X11](https://gtk-rs.org/gtk4-rs/docs/git/gdk4_x11/)
-- [GTK Macros](https://gtk-rs.org/gtk4-rs/docs/git/gtk4_macros/)
+- [Book](https://gtk-rs.org/gtk4-rs/git/book)
+- [GTK](https://gtk-rs.org/gtk4-rs/git/docs/gtk4/)
+- [GDK](https://gtk-rs.org/gtk4-rs/git/docs/gdk4/)
+- [GSK](https://gtk-rs.org/gtk4-rs/git/docs/gsk4/)
+- [GDK Wayland](https://gtk-rs.org/gtk4-rs/git/docs/gdk4_wayland/)
+- [GDK X11](https://gtk-rs.org/gtk4-rs/git/docs/gdk4_x11/)
+- [GTK Macros](https://gtk-rs.org/gtk4-rs/git/docs/gtk4_macros/)
 
 ## Contributing
 
