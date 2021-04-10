@@ -252,10 +252,10 @@
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">Snapshot</span>;
-<span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Snapshot</span>;
+<span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">graphene</span>::{<span class="ident">Point</span>, <span class="ident">Rect</span>};
-<span class="kw">use</span> <span class="ident">gsk</span>::<span class="ident">ColorStop</span>;
+<span class="kw">use</span> <span class="ident">gsk::ColorStop</span>;
 
 <span class="kw">impl</span> <span class="ident">Snapshot</span> {
     <span class="doccomment">/// Appends a stroked border rectangle inside the given `outline`. The</span>
@@ -271,14 +271,14 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_border&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_border</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">outline</span>: <span class="kw-2">&amp;</span><span class="ident">gsk</span>::<span class="ident">RoundedRect</span>,
+        <span class="ident">outline</span>: <span class="kw-2">&amp;</span><span class="ident">gsk::RoundedRect</span>,
         <span class="ident">border_width</span>: <span class="kw-2">&amp;</span>[<span class="ident">f32</span>; <span class="number">4</span>],
-        <span class="ident">border_color</span>: <span class="kw-2">&amp;</span>[<span class="ident">gdk</span>::<span class="ident">RGBA</span>; <span class="number">4</span>],
+        <span class="ident">border_color</span>: <span class="kw-2">&amp;</span>[<span class="ident">gdk::RGBA</span>; <span class="number">4</span>],
     ) {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">border_color_ptr</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">gdk</span>::<span class="ident">ffi</span>::<span class="ident">GdkRGBA</span><span class="op">&gt;</span> <span class="op">=</span>
+            <span class="kw">let</span> <span class="ident">border_color_ptr</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">gdk::ffi::GdkRGBA</span><span class="op">&gt;</span> <span class="op">=</span>
                 <span class="ident">border_color</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">c</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>).<span class="ident">collect</span>();
-            <span class="ident">ffi</span>::<span class="ident">gtk_snapshot_append_border</span>(
+            <span class="ident">ffi::gtk_snapshot_append_border</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">outline</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">border_width</span>,
@@ -308,7 +308,7 @@
     ) {
         <span class="kw">let</span> <span class="ident">n_stops</span> <span class="op">=</span> <span class="ident">stops</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">usize</span>;
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gtk_snapshot_append_linear_gradient</span>(
+            <span class="ident">ffi::gtk_snapshot_append_linear_gradient</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">bounds</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">start_point</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -339,17 +339,17 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_radial_gradient&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_radial_gradient</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">bounds</span>: <span class="kw-2">&amp;</span><span class="ident">graphene</span>::<span class="ident">Rect</span>,
-        <span class="ident">center</span>: <span class="kw-2">&amp;</span><span class="ident">graphene</span>::<span class="ident">Point</span>,
+        <span class="ident">bounds</span>: <span class="kw-2">&amp;</span><span class="ident">graphene::Rect</span>,
+        <span class="ident">center</span>: <span class="kw-2">&amp;</span><span class="ident">graphene::Point</span>,
         <span class="ident">hradius</span>: <span class="ident">f32</span>,
         <span class="ident">vradius</span>: <span class="ident">f32</span>,
         <span class="ident">start</span>: <span class="ident">f32</span>,
         <span class="ident">end</span>: <span class="ident">f32</span>,
-        <span class="ident">stops</span>: <span class="kw-2">&amp;</span>[<span class="ident">gsk</span>::<span class="ident">ColorStop</span>],
+        <span class="ident">stops</span>: <span class="kw-2">&amp;</span>[<span class="ident">gsk::ColorStop</span>],
     ) {
         <span class="kw">let</span> <span class="ident">n_stops</span> <span class="op">=</span> <span class="ident">stops</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">usize</span>;
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gtk_snapshot_append_radial_gradient</span>(
+            <span class="ident">ffi::gtk_snapshot_append_radial_gradient</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">bounds</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">center</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -378,14 +378,14 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_conic_gradient&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_conic_gradient</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">bounds</span>: <span class="kw-2">&amp;</span><span class="ident">graphene</span>::<span class="ident">Rect</span>,
-        <span class="ident">center</span>: <span class="kw-2">&amp;</span><span class="ident">graphene</span>::<span class="ident">Point</span>,
+        <span class="ident">bounds</span>: <span class="kw-2">&amp;</span><span class="ident">graphene::Rect</span>,
+        <span class="ident">center</span>: <span class="kw-2">&amp;</span><span class="ident">graphene::Point</span>,
         <span class="ident">rotation</span>: <span class="ident">f32</span>,
-        <span class="ident">stops</span>: <span class="kw-2">&amp;</span>[<span class="ident">gsk</span>::<span class="ident">ColorStop</span>],
+        <span class="ident">stops</span>: <span class="kw-2">&amp;</span>[<span class="ident">gsk::ColorStop</span>],
     ) {
         <span class="kw">let</span> <span class="ident">n_stops</span> <span class="op">=</span> <span class="ident">stops</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">usize</span>;
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gtk_snapshot_append_conic_gradient</span>(
+            <span class="ident">ffi::gtk_snapshot_append_conic_gradient</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">bounds</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">center</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -416,17 +416,17 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_repeating_radial_gradient&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_repeating_radial_gradient</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        <span class="ident">bounds</span>: <span class="kw-2">&amp;</span><span class="ident">graphene</span>::<span class="ident">Rect</span>,
-        <span class="ident">center</span>: <span class="kw-2">&amp;</span><span class="ident">graphene</span>::<span class="ident">Point</span>,
+        <span class="ident">bounds</span>: <span class="kw-2">&amp;</span><span class="ident">graphene::Rect</span>,
+        <span class="ident">center</span>: <span class="kw-2">&amp;</span><span class="ident">graphene::Point</span>,
         <span class="ident">hradius</span>: <span class="ident">f32</span>,
         <span class="ident">vradius</span>: <span class="ident">f32</span>,
         <span class="ident">start</span>: <span class="ident">f32</span>,
         <span class="ident">end</span>: <span class="ident">f32</span>,
-        <span class="ident">stops</span>: <span class="kw-2">&amp;</span>[<span class="ident">gsk</span>::<span class="ident">ColorStop</span>],
+        <span class="ident">stops</span>: <span class="kw-2">&amp;</span>[<span class="ident">gsk::ColorStop</span>],
     ) {
         <span class="kw">let</span> <span class="ident">n_stops</span> <span class="op">=</span> <span class="ident">stops</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">usize</span>;
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gtk_snapshot_append_repeating_radial_gradient</span>(
+            <span class="ident">ffi::gtk_snapshot_append_repeating_radial_gradient</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">bounds</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">center</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -461,7 +461,7 @@
     ) {
         <span class="kw">let</span> <span class="ident">n_stops</span> <span class="op">=</span> <span class="ident">stops</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">usize</span>;
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gtk_snapshot_append_repeating_linear_gradient</span>(
+            <span class="ident">ffi::gtk_snapshot_append_repeating_linear_gradient</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">bounds</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">start_point</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -479,7 +479,7 @@
     <span class="doccomment">/// a printf-style format string</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_push_debug&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_debug</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">message</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
-        <span class="kw">unsafe</span> { <span class="ident">ffi</span>::<span class="ident">gtk_snapshot_push_debug</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">message</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
+        <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_snapshot_push_debug</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">message</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
     <span class="doccomment">/// Appends `node` to the current render node of `self`,</span>
@@ -489,9 +489,9 @@
     <span class="doccomment">/// ## `node`</span>
     <span class="doccomment">/// a `gsk::RenderNode`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_node&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_node</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">gsk</span>::<span class="ident">IsRenderNode</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">node</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">append_node</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">gsk::IsRenderNode</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">node</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gtk_snapshot_append_node</span>(
+            <span class="ident">ffi::gtk_snapshot_append_node</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">node</span>.<span class="ident">upcast_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             );

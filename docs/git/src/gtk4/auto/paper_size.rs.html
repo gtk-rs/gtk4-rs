@@ -415,11 +415,11 @@
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
 <span class="comment">// DO NOT EDIT</span>
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">Unit</span>;
-<span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ptr</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Unit</span>;
+<span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">std::ptr</span>;
 
-<span class="ident">glib</span>::<span class="macro">wrapper!</span> {
+<span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// `PaperSize` handles paper sizes. It uses the standard called</span>
     <span class="doccomment">/// [PWG 5101.1-2002 PWG: Standard for Media Standardized Names](http://www.pwg.org/standards.html)</span>
     <span class="doccomment">/// to name the paper sizes (and to get the data for the page sizes).</span>
@@ -430,12 +430,12 @@
     <span class="doccomment">/// and height) of a paper size and its name, it also provides</span>
     <span class="doccomment">/// default [print margins][print-margins].</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PaperSize</span>(<span class="ident">Boxed</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkPaperSize</span><span class="op">&gt;</span>);
+    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PaperSize</span>(<span class="ident">Boxed</span><span class="op">&lt;</span><span class="ident">ffi::GtkPaperSize</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
-        <span class="ident">copy</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gtk_paper_size_copy</span>(<span class="ident">mut_override</span>(<span class="ident">ptr</span>)),
-        <span class="ident">free</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gtk_paper_size_free</span>(<span class="ident">ptr</span>),
-        <span class="ident">get_type</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gtk_paper_size_get_type</span>(),
+        <span class="ident">copy</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi::gtk_paper_size_copy</span>(<span class="ident">mut_override</span>(<span class="ident">ptr</span>)),
+        <span class="ident">free</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi::gtk_paper_size_free</span>(<span class="ident">ptr</span>),
+        <span class="ident">get_type</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ffi::gtk_paper_size_get_type</span>(),
     }
 }
 
@@ -456,7 +456,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paper_size_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PaperSize</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
-        <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_paper_size_new</span>(<span class="ident">name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_paper_size_new</span>(<span class="ident">name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
     <span class="doccomment">/// Creates a new `PaperSize` object with the</span>
@@ -486,7 +486,7 @@
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PaperSize</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_paper_size_new_custom</span>(
+            <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_paper_size_new_custom</span>(
                 <span class="ident">name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">display_name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">width</span>,
@@ -497,10 +497,10 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paper_size_new_from_gvariant&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_gvariant</span>(<span class="ident">variant</span>: <span class="kw-2">&amp;</span><span class="ident">glib</span>::<span class="ident">Variant</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PaperSize</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_gvariant</span>(<span class="ident">variant</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Variant</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PaperSize</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_paper_size_new_from_gvariant</span>(
+            <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_paper_size_new_from_gvariant</span>(
                 <span class="ident">variant</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             ))
         }
@@ -510,7 +510,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_ipp</span>(<span class="ident">ipp_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">width</span>: <span class="ident">f64</span>, <span class="ident">height</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PaperSize</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_paper_size_new_from_ipp</span>(
+            <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_paper_size_new_from_ipp</span>(
                 <span class="ident">ipp_name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">width</span>,
                 <span class="ident">height</span>,
@@ -520,13 +520,13 @@
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paper_size_new_from_key_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_key_file</span>(
-        <span class="ident">key_file</span>: <span class="kw-2">&amp;</span><span class="ident">glib</span>::<span class="ident">KeyFile</span>,
+        <span class="ident">key_file</span>: <span class="kw-2">&amp;</span><span class="ident">glib::KeyFile</span>,
         <span class="ident">group_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">PaperSize</span>, <span class="ident">glib</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">PaperSize</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">error</span> <span class="op">=</span> <span class="ident">ptr</span>::<span class="ident">null_mut</span>();
-            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">ffi</span>::<span class="ident">gtk_paper_size_new_from_key_file</span>(
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">error</span> <span class="op">=</span> <span class="ident">ptr::null_mut</span>();
+            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">ffi::gtk_paper_size_new_from_key_file</span>(
                 <span class="ident">key_file</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">group_name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">error</span>,
@@ -543,7 +543,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_ppd</span>(<span class="ident">ppd_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">ppd_display_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">width</span>: <span class="ident">f64</span>, <span class="ident">height</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PaperSize</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_paper_size_new_from_ppd</span>(
+            <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_paper_size_new_from_ppd</span>(
                 <span class="ident">ppd_name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">ppd_display_name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">width</span>,
@@ -562,7 +562,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paper_size_get_default_bottom_margin&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_default_bottom_margin</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">unit</span>: <span class="ident">Unit</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gtk_paper_size_get_default_bottom_margin</span>(
+            <span class="ident">ffi::gtk_paper_size_get_default_bottom_margin</span>(
                 <span class="ident">mut_override</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
                 <span class="ident">unit</span>.<span class="ident">to_glib</span>(),
             )
@@ -579,7 +579,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paper_size_get_default_left_margin&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_default_left_margin</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">unit</span>: <span class="ident">Unit</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gtk_paper_size_get_default_left_margin</span>(
+            <span class="ident">ffi::gtk_paper_size_get_default_left_margin</span>(
                 <span class="ident">mut_override</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
                 <span class="ident">unit</span>.<span class="ident">to_glib</span>(),
             )
@@ -596,7 +596,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paper_size_get_default_right_margin&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_default_right_margin</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">unit</span>: <span class="ident">Unit</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gtk_paper_size_get_default_right_margin</span>(
+            <span class="ident">ffi::gtk_paper_size_get_default_right_margin</span>(
                 <span class="ident">mut_override</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
                 <span class="ident">unit</span>.<span class="ident">to_glib</span>(),
             )
@@ -613,7 +613,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paper_size_get_default_top_margin&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_default_top_margin</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">unit</span>: <span class="ident">Unit</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gtk_paper_size_get_default_top_margin</span>(
+            <span class="ident">ffi::gtk_paper_size_get_default_top_margin</span>(
                 <span class="ident">mut_override</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
                 <span class="ident">unit</span>.<span class="ident">to_glib</span>(),
             )
@@ -626,9 +626,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// the human-readable name of `self`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paper_size_get_display_name&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_display_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">GString</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_display_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gtk_paper_size_get_display_name</span>(<span class="ident">mut_override</span>(
+            <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_paper_size_get_display_name</span>(<span class="ident">mut_override</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             )))
         }
@@ -645,7 +645,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paper_size_get_height&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">unit</span>: <span class="ident">Unit</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gtk_paper_size_get_height</span>(<span class="ident">mut_override</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>), <span class="ident">unit</span>.<span class="ident">to_glib</span>())
+            <span class="ident">ffi::gtk_paper_size_get_height</span>(<span class="ident">mut_override</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>), <span class="ident">unit</span>.<span class="ident">to_glib</span>())
         }
     }
 
@@ -655,9 +655,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// the name of `self`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paper_size_get_name&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">GString</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gtk_paper_size_get_name</span>(<span class="ident">mut_override</span>(
+            <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_paper_size_get_name</span>(<span class="ident">mut_override</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             )))
         }
@@ -670,9 +670,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// the PPD name of `self`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paper_size_get_ppd_name&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_ppd_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">GString</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_ppd_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gtk_paper_size_get_ppd_name</span>(<span class="ident">mut_override</span>(
+            <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_paper_size_get_ppd_name</span>(<span class="ident">mut_override</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             )))
         }
@@ -689,7 +689,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paper_size_get_width&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">unit</span>: <span class="ident">Unit</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gtk_paper_size_get_width</span>(<span class="ident">mut_override</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>), <span class="ident">unit</span>.<span class="ident">to_glib</span>())
+            <span class="ident">ffi::gtk_paper_size_get_width</span>(<span class="ident">mut_override</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>), <span class="ident">unit</span>.<span class="ident">to_glib</span>())
         }
     }
 
@@ -701,7 +701,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paper_size_is_custom&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_custom</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gtk_paper_size_is_custom</span>(<span class="ident">mut_override</span>(
+            <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_paper_size_is_custom</span>(<span class="ident">mut_override</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             )))
         }
@@ -718,7 +718,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paper_size_is_equal&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_equal</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">size2</span>: <span class="kw-2">&amp;</span><span class="ident">PaperSize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gtk_paper_size_is_equal</span>(
+            <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_paper_size_is_equal</span>(
                 <span class="ident">mut_override</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
                 <span class="ident">mut_override</span>(<span class="ident">size2</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
             ))
@@ -733,7 +733,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paper_size_is_ipp&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_ipp</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gtk_paper_size_is_ipp</span>(<span class="ident">mut_override</span>(
+            <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_paper_size_is_ipp</span>(<span class="ident">mut_override</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             )))
         }
@@ -749,7 +749,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paper_size_set_size&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_size</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">width</span>: <span class="ident">f64</span>, <span class="ident">height</span>: <span class="ident">f64</span>, <span class="ident">unit</span>: <span class="ident">Unit</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gtk_paper_size_set_size</span>(<span class="self">self</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="ident">width</span>, <span class="ident">height</span>, <span class="ident">unit</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_paper_size_set_size</span>(<span class="self">self</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="ident">width</span>, <span class="ident">height</span>, <span class="ident">unit</span>.<span class="ident">to_glib</span>());
         }
     }
 
@@ -759,8 +759,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// a new, floating, `glib::Variant`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paper_size_to_gvariant&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_gvariant</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">Variant</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gtk_paper_size_to_gvariant</span>(<span class="self">self</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>)) }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_gvariant</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::Variant</span><span class="op">&gt;</span> {
+        <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_paper_size_to_gvariant</span>(<span class="self">self</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>)) }
     }
 
     <span class="doccomment">/// This function adds the paper size from `self` to `key_file`.</span>
@@ -769,9 +769,9 @@
     <span class="doccomment">/// ## `group_name`</span>
     <span class="doccomment">/// the group to add the settings to in `key_file`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paper_size_to_key_file&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_key_file</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">key_file</span>: <span class="kw-2">&amp;</span><span class="ident">glib</span>::<span class="ident">KeyFile</span>, <span class="ident">group_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_key_file</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">key_file</span>: <span class="kw-2">&amp;</span><span class="ident">glib::KeyFile</span>, <span class="ident">group_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gtk_paper_size_to_key_file</span>(
+            <span class="ident">ffi::gtk_paper_size_to_key_file</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>,
                 <span class="ident">key_file</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">group_name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -787,9 +787,9 @@
     <span class="doccomment">/// the name of the default paper size. The string</span>
     <span class="doccomment">/// is owned by GTK and should not be modified.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paper_size_get_default&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">GString</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
-        <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gtk_paper_size_get_default</span>()) }
+        <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_paper_size_get_default</span>()) }
     }
 
     <span class="doccomment">/// Creates a list of known paper sizes.</span>
@@ -805,7 +805,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_paper_sizes</span>(<span class="ident">include_custom</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">PaperSize</span><span class="op">&gt;</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">FromGlibPtrContainer</span>::<span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_paper_size_get_paper_sizes</span>(
+            <span class="ident">FromGlibPtrContainer::from_glib_full</span>(<span class="ident">ffi::gtk_paper_size_get_paper_sizes</span>(
                 <span class="ident">include_custom</span>.<span class="ident">to_glib</span>(),
             ))
         }

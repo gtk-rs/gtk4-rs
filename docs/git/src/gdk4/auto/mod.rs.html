@@ -173,166 +173,166 @@
 <span class="comment">// DO NOT EDIT</span>
 
 <span class="kw">mod</span> <span class="ident">app_launch_context</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">app_launch_context</span>::<span class="ident">AppLaunchContext</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">app_launch_context</span>::<span class="ident">AppLaunchContextBuilder</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::app_launch_context::AppLaunchContext</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::app_launch_context::AppLaunchContextBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">cairo_context</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">cairo_context</span>::<span class="ident">CairoContext</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::cairo_context::CairoContext</span>;
 
 <span class="kw">mod</span> <span class="ident">clipboard</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">clipboard</span>::<span class="ident">Clipboard</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">clipboard</span>::<span class="ident">ClipboardBuilder</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::clipboard::Clipboard</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::clipboard::ClipboardBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">content_deserializer</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">content_deserializer</span>::<span class="ident">ContentDeserializer</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::content_deserializer::ContentDeserializer</span>;
 
 <span class="kw">mod</span> <span class="ident">content_provider</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">content_provider</span>::<span class="ident">ContentProviderExt</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">content_provider</span>::{<span class="ident">ContentProvider</span>, <span class="ident">NONE_CONTENT_PROVIDER</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::content_provider::ContentProviderExt</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::content_provider</span>::{<span class="ident">ContentProvider</span>, <span class="ident">NONE_CONTENT_PROVIDER</span>};
 
 <span class="kw">mod</span> <span class="ident">content_serializer</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">content_serializer</span>::<span class="ident">ContentSerializer</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::content_serializer::ContentSerializer</span>;
 
 <span class="kw">mod</span> <span class="ident">cursor</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">cursor</span>::<span class="ident">Cursor</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">cursor</span>::<span class="ident">CursorBuilder</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::cursor::Cursor</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::cursor::CursorBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">device</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">device</span>::<span class="ident">Device</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::device::Device</span>;
 
 <span class="kw">mod</span> <span class="ident">device_pad</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">device_pad</span>::<span class="ident">DevicePadExt</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">device_pad</span>::{<span class="ident">DevicePad</span>, <span class="ident">NONE_DEVICE_PAD</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::device_pad::DevicePadExt</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::device_pad</span>::{<span class="ident">DevicePad</span>, <span class="ident">NONE_DEVICE_PAD</span>};
 
 <span class="kw">mod</span> <span class="ident">device_tool</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">device_tool</span>::<span class="ident">DeviceTool</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">device_tool</span>::<span class="ident">DeviceToolBuilder</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::device_tool::DeviceTool</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::device_tool::DeviceToolBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">display</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">display</span>::<span class="ident">Display</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::display::Display</span>;
 
 <span class="kw">mod</span> <span class="ident">display_manager</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">display_manager</span>::<span class="ident">DisplayManager</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">display_manager</span>::<span class="ident">DisplayManagerBuilder</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::display_manager::DisplayManager</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::display_manager::DisplayManagerBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">drag</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">drag</span>::<span class="ident">Drag</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::drag::Drag</span>;
 
 <span class="kw">mod</span> <span class="ident">drag_surface</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">drag_surface</span>::<span class="ident">DragSurfaceExt</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">drag_surface</span>::{<span class="ident">DragSurface</span>, <span class="ident">NONE_DRAG_SURFACE</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::drag_surface::DragSurfaceExt</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::drag_surface</span>::{<span class="ident">DragSurface</span>, <span class="ident">NONE_DRAG_SURFACE</span>};
 
 <span class="kw">mod</span> <span class="ident">draw_context</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">draw_context</span>::<span class="ident">DrawContextExt</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">draw_context</span>::{<span class="ident">DrawContext</span>, <span class="ident">NONE_DRAW_CONTEXT</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::draw_context::DrawContextExt</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::draw_context</span>::{<span class="ident">DrawContext</span>, <span class="ident">NONE_DRAW_CONTEXT</span>};
 
 <span class="kw">mod</span> <span class="ident">drop</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">drop</span>::<span class="ident">Drop</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::drop::Drop</span>;
 
 <span class="kw">mod</span> <span class="ident">frame_clock</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">frame_clock</span>::<span class="ident">FrameClock</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::frame_clock::FrameClock</span>;
 
 <span class="kw">mod</span> <span class="ident">gl_context</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">gl_context</span>::<span class="ident">GLContext</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::gl_context::GLContext</span>;
 
 <span class="kw">mod</span> <span class="ident">gl_texture</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">gl_texture</span>::<span class="ident">GLTexture</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::gl_texture::GLTexture</span>;
 
 <span class="kw">mod</span> <span class="ident">memory_texture</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">memory_texture</span>::<span class="ident">MemoryTexture</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::memory_texture::MemoryTexture</span>;
 
 <span class="kw">mod</span> <span class="ident">monitor</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">monitor</span>::<span class="ident">Monitor</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">monitor</span>::<span class="ident">MonitorBuilder</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::monitor::Monitor</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::monitor::MonitorBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">paintable</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">paintable</span>::<span class="ident">PaintableExt</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">paintable</span>::{<span class="ident">Paintable</span>, <span class="ident">NONE_PAINTABLE</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::paintable::PaintableExt</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::paintable</span>::{<span class="ident">Paintable</span>, <span class="ident">NONE_PAINTABLE</span>};
 
 <span class="kw">mod</span> <span class="ident">popup</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">popup</span>::<span class="ident">PopupExt</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">popup</span>::{<span class="ident">Popup</span>, <span class="ident">NONE_POPUP</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::popup::PopupExt</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::popup</span>::{<span class="ident">Popup</span>, <span class="ident">NONE_POPUP</span>};
 
 <span class="kw">mod</span> <span class="ident">seat</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">seat</span>::<span class="ident">Seat</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::seat::Seat</span>;
 
 <span class="kw">mod</span> <span class="ident">snapshot</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">snapshot</span>::<span class="ident">Snapshot</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::snapshot::Snapshot</span>;
 
 <span class="kw">mod</span> <span class="ident">surface</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">surface</span>::<span class="ident">Surface</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::surface::Surface</span>;
 
 <span class="kw">mod</span> <span class="ident">texture</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">texture</span>::<span class="ident">TextureExt</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">texture</span>::{<span class="ident">Texture</span>, <span class="ident">NONE_TEXTURE</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::texture::TextureExt</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::texture</span>::{<span class="ident">Texture</span>, <span class="ident">NONE_TEXTURE</span>};
 
 <span class="kw">mod</span> <span class="ident">toplevel</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">toplevel</span>::<span class="ident">ToplevelExt</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">toplevel</span>::{<span class="ident">Toplevel</span>, <span class="ident">NONE_TOPLEVEL</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::toplevel::ToplevelExt</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::toplevel</span>::{<span class="ident">Toplevel</span>, <span class="ident">NONE_TOPLEVEL</span>};
 
 <span class="kw">mod</span> <span class="ident">vulkan_context</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">vulkan_context</span>::<span class="ident">VulkanContext</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::vulkan_context::VulkanContext</span>;
 
 <span class="kw">mod</span> <span class="ident">content_formats</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">content_formats</span>::<span class="ident">ContentFormats</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::content_formats::ContentFormats</span>;
 
 <span class="kw">mod</span> <span class="ident">content_formats_builder</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">content_formats_builder</span>::<span class="ident">ContentFormatsBuilder</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::content_formats_builder::ContentFormatsBuilder</span>;
 
 <span class="kw">mod</span> <span class="ident">event_sequence</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">event_sequence</span>::<span class="ident">EventSequence</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::event_sequence::EventSequence</span>;
 
 <span class="kw">mod</span> <span class="ident">frame_timings</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">frame_timings</span>::<span class="ident">FrameTimings</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::frame_timings::FrameTimings</span>;
 
 <span class="kw">mod</span> <span class="ident">popup_layout</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">popup_layout</span>::<span class="ident">PopupLayout</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::popup_layout::PopupLayout</span>;
 
 <span class="kw">mod</span> <span class="ident">toplevel_layout</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">toplevel_layout</span>::<span class="ident">ToplevelLayout</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::toplevel_layout::ToplevelLayout</span>;
 
 <span class="kw">mod</span> <span class="ident">enums</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">enums</span>::<span class="ident">AxisUse</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">enums</span>::<span class="ident">CrossingMode</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">enums</span>::<span class="ident">DevicePadFeature</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">enums</span>::<span class="ident">DeviceToolType</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">enums</span>::<span class="ident">DragCancelReason</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">enums</span>::<span class="ident">EventType</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">enums</span>::<span class="ident">FullscreenMode</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">enums</span>::<span class="ident">GLError</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">enums</span>::<span class="ident">Gravity</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">enums</span>::<span class="ident">InputSource</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">enums</span>::<span class="ident">KeyMatch</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">enums</span>::<span class="ident">MemoryFormat</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">enums</span>::<span class="ident">NotifyType</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">enums</span>::<span class="ident">ScrollDirection</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">enums</span>::<span class="ident">SubpixelLayout</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">enums</span>::<span class="ident">SurfaceEdge</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">enums</span>::<span class="ident">TouchpadGesturePhase</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">enums</span>::<span class="ident">VulkanError</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::enums::AxisUse</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::enums::CrossingMode</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::enums::DevicePadFeature</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::enums::DeviceToolType</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::enums::DragCancelReason</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::enums::EventType</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::enums::FullscreenMode</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::enums::GLError</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::enums::Gravity</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::enums::InputSource</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::enums::KeyMatch</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::enums::MemoryFormat</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::enums::NotifyType</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::enums::ScrollDirection</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::enums::SubpixelLayout</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::enums::SurfaceEdge</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::enums::TouchpadGesturePhase</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::enums::VulkanError</span>;
 
 <span class="kw">mod</span> <span class="ident">flags</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">flags</span>::<span class="ident">AnchorHints</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">flags</span>::<span class="ident">AxisFlags</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">flags</span>::<span class="ident">DragAction</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">flags</span>::<span class="ident">FrameClockPhase</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">flags</span>::<span class="ident">ModifierType</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">flags</span>::<span class="ident">PaintableFlags</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">flags</span>::<span class="ident">SeatCapabilities</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">flags</span>::<span class="ident">ToplevelState</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::flags::AnchorHints</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::flags::AxisFlags</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::flags::DragAction</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::flags::FrameClockPhase</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::flags::ModifierType</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::flags::PaintableFlags</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::flags::SeatCapabilities</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span><span class="ident">::flags::ToplevelState</span>;
 
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">functions</span>;
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">traits</span> {
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">ContentProviderExt</span>;
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">DevicePadExt</span>;
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">DragSurfaceExt</span>;
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">DrawContextExt</span>;
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">PaintableExt</span>;
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">PopupExt</span>;
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">TextureExt</span>;
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">ToplevelExt</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::ContentProviderExt</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::DevicePadExt</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::DragSurfaceExt</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::DrawContextExt</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::PaintableExt</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::PopupExt</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::TextureExt</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::ToplevelExt</span>;
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gdk4" data-search-js="../../../search-index.js"></div>

@@ -31,28 +31,28 @@
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">Ordering</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">cmp</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Ordering</span>;
+<span class="kw">use</span> <span class="ident">std::cmp</span>;
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">cmp</span>::<span class="ident">Ordering</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Ordering</span> {
-    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">o</span>: <span class="ident">cmp</span>::<span class="ident">Ordering</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">cmp::Ordering</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Ordering</span> {
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">o</span>: <span class="ident">cmp::Ordering</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">o</span> {
-            <span class="ident">cmp</span>::<span class="ident">Ordering</span>::<span class="ident">Equal</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Ordering</span>::<span class="ident">Equal</span>,
-            <span class="ident">cmp</span>::<span class="ident">Ordering</span>::<span class="ident">Greater</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Ordering</span>::<span class="ident">Larger</span>,
-            <span class="ident">cmp</span>::<span class="ident">Ordering</span>::<span class="ident">Less</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Ordering</span>::<span class="ident">Smaller</span>,
+            <span class="ident">cmp::Ordering::Equal</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Ordering::Equal</span>,
+            <span class="ident">cmp::Ordering::Greater</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Ordering::Larger</span>,
+            <span class="ident">cmp::Ordering::Less</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Ordering::Smaller</span>,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Ordering</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">cmp</span>::<span class="ident">Ordering</span> {
+<span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">Ordering</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">cmp::Ordering</span> {
     <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">o</span>: <span class="ident">Ordering</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">o</span> {
-            <span class="ident">Ordering</span>::<span class="ident">Equal</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">cmp</span>::<span class="ident">Ordering</span>::<span class="ident">Equal</span>,
-            <span class="ident">Ordering</span>::<span class="ident">Larger</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">cmp</span>::<span class="ident">Ordering</span>::<span class="ident">Greater</span>,
-            <span class="ident">Ordering</span>::<span class="ident">Smaller</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">cmp</span>::<span class="ident">Ordering</span>::<span class="ident">Less</span>,
-            <span class="ident">Ordering</span>::<span class="ident">__Unknown</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable!</span>(),
+            <span class="ident">Ordering::Equal</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">cmp::Ordering::Equal</span>,
+            <span class="ident">Ordering::Larger</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">cmp::Ordering::Greater</span>,
+            <span class="ident">Ordering::Smaller</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">cmp::Ordering::Less</span>,
+            <span class="ident">Ordering::__Unknown</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable!</span>(),
         }
     }
 }

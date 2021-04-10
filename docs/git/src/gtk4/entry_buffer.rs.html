@@ -143,9 +143,9 @@
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">EntryBuffer</span>;
-<span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">object</span>::<span class="ident">IsA</span>;
-<span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::EntryBuffer</span>;
+<span class="kw">use</span> <span class="ident">glib::object::IsA</span>;
+<span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">libc</span>::{<span class="ident">c_int</span>, <span class="ident">c_uint</span>};
 
 <span class="kw">impl</span> <span class="ident">EntryBuffer</span> {
@@ -164,7 +164,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">initial_chars</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EntryBuffer</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_entry_buffer_new</span>(
+            <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_entry_buffer_new</span>(
                 <span class="ident">initial_chars</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="op">-</span><span class="number">1</span>,
             ))
@@ -202,7 +202,7 @@
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">e</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> (
         {
             <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">e</span>;
-            <span class="macro">assert!</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">u16</span>::<span class="ident">max_value</span>() <span class="kw">as</span> <span class="ident">usize</span>,
+            <span class="macro">assert!</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">u16::max_value</span>() <span class="kw">as</span> <span class="ident">usize</span>,
                 <span class="string">&quot;Unexpected value exceeding `u16` range&quot;</span>);
             <span class="ident">x</span> <span class="kw">as</span> <span class="ident">u16</span>
         }
@@ -212,7 +212,7 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">EntryBuffer</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">EntryBufferExtManual</span> <span class="kw">for</span> <span class="ident">O</span> {
     <span class="kw">fn</span> <span class="ident">delete_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">position</span>: <span class="ident">u16</span>, <span class="ident">n_chars</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u16</span> {
         <span class="kw">unsafe</span> {
-            <span class="macro">to_u16!</span>(<span class="ident">ffi</span>::<span class="ident">gtk_entry_buffer_delete_text</span>(
+            <span class="macro">to_u16!</span>(<span class="ident">ffi::gtk_entry_buffer_delete_text</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">position</span> <span class="kw">as</span> <span class="ident">c_uint</span>,
                 <span class="ident">n_chars</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">n</span><span class="op">|</span> <span class="ident">n</span> <span class="kw">as</span> <span class="ident">c_int</span>).<span class="ident">unwrap_or</span>(<span class="op">-</span><span class="number">1</span>)
@@ -221,12 +221,12 @@
     }
 
     <span class="kw">fn</span> <span class="ident">get_bytes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
-        <span class="kw">unsafe</span> { <span class="ident">ffi</span>::<span class="ident">gtk_entry_buffer_get_bytes</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>) <span class="kw">as</span> <span class="ident">usize</span> }
+        <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_entry_buffer_get_bytes</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>) <span class="kw">as</span> <span class="ident">usize</span> }
     }
 
     <span class="kw">fn</span> <span class="ident">get_length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u16</span> {
         <span class="kw">unsafe</span> {
-            <span class="macro">to_u16!</span>(<span class="ident">ffi</span>::<span class="ident">gtk_entry_buffer_get_length</span>(
+            <span class="macro">to_u16!</span>(<span class="ident">ffi::gtk_entry_buffer_get_length</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>
             ))
         }
@@ -234,7 +234,7 @@
 
     <span class="kw">fn</span> <span class="ident">get_max_length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
-            <span class="kw">match</span> <span class="ident">ffi</span>::<span class="ident">gtk_entry_buffer_get_max_length</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>) {
+            <span class="kw">match</span> <span class="ident">ffi::gtk_entry_buffer_get_max_length</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>) {
                 <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
                 <span class="ident">x</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="macro">to_u16!</span>(<span class="ident">x</span>)),
             }
@@ -243,7 +243,7 @@
 
     <span class="kw">fn</span> <span class="ident">get_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gtk_entry_buffer_get_text</span>(
+            <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_entry_buffer_get_text</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             ))
         }
@@ -251,7 +251,7 @@
 
     <span class="kw">fn</span> <span class="ident">insert_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">position</span>: <span class="ident">u16</span>, <span class="ident">chars</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u16</span> {
         <span class="kw">unsafe</span> {
-            <span class="macro">to_u16!</span>(<span class="ident">ffi</span>::<span class="ident">gtk_entry_buffer_insert_text</span>(
+            <span class="macro">to_u16!</span>(<span class="ident">ffi::gtk_entry_buffer_insert_text</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">position</span> <span class="kw">as</span> <span class="ident">c_uint</span>,
                 <span class="ident">chars</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -263,7 +263,7 @@
     <span class="kw">fn</span> <span class="ident">set_max_length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">max_length</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
             <span class="macro">assert_ne!</span>(<span class="ident">max_length</span>, <span class="prelude-val">Some</span>(<span class="number">0</span>), <span class="string">&quot;Zero maximum length not supported&quot;</span>);
-            <span class="ident">ffi</span>::<span class="ident">gtk_entry_buffer_set_max_length</span>(
+            <span class="ident">ffi::gtk_entry_buffer_set_max_length</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">max_length</span>.<span class="ident">unwrap_or</span>(<span class="number">0</span>) <span class="kw">as</span> <span class="ident">c_int</span>,
             );
@@ -272,7 +272,7 @@
 
     <span class="kw">fn</span> <span class="ident">set_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">chars</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gtk_entry_buffer_set_text</span>(
+            <span class="ident">ffi::gtk_entry_buffer_set_text</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">chars</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="op">-</span><span class="number">1</span>,

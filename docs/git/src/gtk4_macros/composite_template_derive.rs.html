@@ -95,32 +95,32 @@
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="ident">proc_macro2</span>::<span class="ident">TokenStream</span>;
+<span class="kw">use</span> <span class="ident">proc_macro2::TokenStream</span>;
 <span class="kw">use</span> <span class="ident">proc_macro_error</span>::{<span class="ident">abort</span>, <span class="ident">abort_call_site</span>};
-<span class="kw">use</span> <span class="ident">quote</span>::<span class="ident">quote</span>;
-<span class="kw">use</span> <span class="ident">syn</span>::<span class="ident">Data</span>;
+<span class="kw">use</span> <span class="ident">quote::quote</span>;
+<span class="kw">use</span> <span class="ident">syn::Data</span>;
 
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">string</span>::<span class="ident">ToString</span>;
+<span class="kw">use</span> <span class="ident">std::string::ToString</span>;
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">attribute_parser</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">util</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::attribute_parser</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::util</span>::<span class="kw-2">*</span>;
 
 <span class="kw">fn</span> <span class="ident">gen_set_template</span>(<span class="ident">source</span>: <span class="ident">TemplateSource</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TokenStream</span> {
     <span class="kw">match</span> <span class="ident">source</span> {
-        <span class="ident">TemplateSource</span>::<span class="ident">File</span>(<span class="ident">file</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">quote!</span> {
+        <span class="ident">TemplateSource::File</span>(<span class="ident">file</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">quote!</span> {
             <span class="kw">let</span> <span class="ident">t</span> <span class="op">=</span> <span class="macro">include_bytes!</span>(#<span class="ident">file</span>);
             <span class="ident">klass</span>.<span class="ident">set_template</span>(<span class="ident">t</span>);
         },
-        <span class="ident">TemplateSource</span>::<span class="ident">Resource</span>(<span class="ident">resource</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">quote!</span> {
+        <span class="ident">TemplateSource::Resource</span>(<span class="ident">resource</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">quote!</span> {
             <span class="ident">klass</span>.<span class="ident">set_template_from_resource</span>(<span class="kw-2">&amp;</span>#<span class="ident">resource</span>);
         },
-        <span class="ident">TemplateSource</span>::<span class="ident">String</span>(<span class="ident">template</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">quote!</span> {
+        <span class="ident">TemplateSource::String</span>(<span class="ident">template</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">quote!</span> {
             <span class="ident">klass</span>.<span class="ident">set_template</span>(<span class="kw-2">&amp;</span>#<span class="ident">template</span>);
         },
     }
 }
 
-<span class="kw">fn</span> <span class="ident">gen_template_child_bindings</span>(<span class="ident">fields</span>: <span class="kw-2">&amp;</span><span class="ident">syn</span>::<span class="ident">Fields</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TokenStream</span> {
+<span class="kw">fn</span> <span class="ident">gen_template_child_bindings</span>(<span class="ident">fields</span>: <span class="kw-2">&amp;</span><span class="ident">syn::Fields</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TokenStream</span> {
     <span class="kw">let</span> <span class="ident">crate_ident</span> <span class="op">=</span> <span class="ident">crate_ident_new</span>();
     <span class="kw">let</span> <span class="ident">attributed_fields</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">parse_fields</span>(<span class="kw-2">&amp;</span><span class="ident">fields</span>) {
         <span class="prelude-val">Ok</span>(<span class="ident">fields</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">fields</span>,
@@ -128,11 +128,11 @@
     };
 
     <span class="kw">let</span> <span class="ident">recurse</span> <span class="op">=</span> <span class="ident">attributed_fields</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">field</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">field</span>.<span class="ident">attr</span>.<span class="ident">ty</span> {
-        <span class="ident">FieldAttributeType</span>::<span class="ident">TemplateChild</span> <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="ident">FieldAttributeType::TemplateChild</span> <span class="op">=</span><span class="op">&gt;</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value_id</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">field</span>.<span class="ident">ident</span>.<span class="ident">to_string</span>();
             <span class="kw">let</span> <span class="ident">ident</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">field</span>.<span class="ident">ident</span>;
             <span class="ident">field</span>.<span class="ident">attr</span>.<span class="ident">args</span>.<span class="ident">iter</span>().<span class="ident">for_each</span>(<span class="op">|</span><span class="ident">arg</span><span class="op">|</span> <span class="kw">match</span> <span class="ident">arg</span> {
-                <span class="ident">FieldAttributeArg</span>::<span class="ident">Id</span>(<span class="ident">value</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="ident">FieldAttributeArg::Id</span>(<span class="ident">value</span>) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">value_id</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">value</span>;
                 }
             });
@@ -140,7 +140,7 @@
             <span class="macro">quote!</span> {
                 <span class="ident">klass</span>.<span class="ident">bind_template_child_with_offset</span>(
                     <span class="kw-2">&amp;</span>#<span class="ident">value_id</span>,
-                    #<span class="ident">crate_ident</span>::<span class="macro">offset_of!</span>(<span class="self">Self</span> <span class="op">=</span><span class="op">&gt;</span> #<span class="ident">ident</span>),
+                    #<span class="macro">crate_ident::offset_of!</span>(<span class="self">Self</span> <span class="op">=</span><span class="op">&gt;</span> #<span class="ident">ident</span>),
                 );
             }
         }
@@ -151,7 +151,7 @@
     }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">impl_composite_template</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">syn</span>::<span class="ident">DeriveInput</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TokenStream</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">impl_composite_template</span>(<span class="ident">input</span>: <span class="kw-2">&amp;</span><span class="ident">syn::DeriveInput</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TokenStream</span> {
     <span class="kw">let</span> <span class="ident">name</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">input</span>.<span class="ident">ident</span>;
     <span class="kw">let</span> <span class="ident">crate_ident</span> <span class="op">=</span> <span class="ident">crate_ident_new</span>();
 
@@ -166,15 +166,15 @@
     <span class="kw">let</span> <span class="ident">set_template</span> <span class="op">=</span> <span class="ident">gen_set_template</span>(<span class="ident">source</span>);
 
     <span class="kw">let</span> <span class="ident">fields</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">input</span>.<span class="ident">data</span> {
-        <span class="ident">Data</span>::<span class="ident">Struct</span>(<span class="kw-2">ref</span> <span class="ident">s</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">s</span>.<span class="ident">fields</span>,
+        <span class="ident">Data::Struct</span>(<span class="kw-2">ref</span> <span class="ident">s</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">s</span>.<span class="ident">fields</span>,
         <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">abort_call_site!</span>(<span class="string">&quot;derive(CompositeTemplate) only supports structs&quot;</span>),
     };
 
     <span class="kw">let</span> <span class="ident">template_children</span> <span class="op">=</span> <span class="ident">gen_template_child_bindings</span>(<span class="kw-2">&amp;</span><span class="ident">fields</span>);
 
     <span class="macro">quote!</span> {
-        <span class="kw">impl</span> #<span class="ident">crate_ident</span>::<span class="ident">subclass</span>::<span class="ident">widget</span>::<span class="ident">CompositeTemplate</span> <span class="kw">for</span> #<span class="ident">name</span> {
-            <span class="kw">fn</span> <span class="ident">bind_template</span>(<span class="ident">klass</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span>::<span class="ident">Class</span>) {
+        <span class="kw">impl</span> #<span class="ident">crate_ident::subclass::widget::CompositeTemplate</span> <span class="kw">for</span> #<span class="ident">name</span> {
+            <span class="kw">fn</span> <span class="ident">bind_template</span>(<span class="ident">klass</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span><span class="ident">::Class</span>) {
                 #<span class="ident">set_template</span>
 
                 <span class="kw">unsafe</span> {

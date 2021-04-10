@@ -304,11 +304,11 @@
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
 <span class="comment">// DO NOT EDIT</span>
 
-<span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">mem</span>;
+<span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">std::fmt</span>;
+<span class="kw">use</span> <span class="ident">std::mem</span>;
 
-<span class="ident">glib</span>::<span class="macro">wrapper!</span> {
+<span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// This section describes the `ContentFormats` structure that is used to</span>
     <span class="doccomment">/// advertise and negotiate the format of content passed between different</span>
     <span class="doccomment">/// widgets, windows or applications using for example the clipboard or</span>
@@ -337,12 +337,12 @@
     <span class="doccomment">/// the types it represents. Instead, new `ContentFormats` have to be created.</span>
     <span class="doccomment">/// The `ContentFormatsBuilder` structure is meant to help in this endeavor.</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ContentFormats</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GdkContentFormats</span><span class="op">&gt;</span>);
+    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ContentFormats</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GdkContentFormats</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
-        <span class="kw-2">ref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gdk_content_formats_ref</span>(<span class="ident">ptr</span>),
-        <span class="ident">unref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gdk_content_formats_unref</span>(<span class="ident">ptr</span>),
-        <span class="ident">get_type</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gdk_content_formats_get_type</span>(),
+        <span class="kw-2">ref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi::gdk_content_formats_ref</span>(<span class="ident">ptr</span>),
+        <span class="ident">unref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi::gdk_content_formats_unref</span>(<span class="ident">ptr</span>),
+        <span class="ident">get_type</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ffi::gdk_content_formats_get_type</span>(),
     }
 }
 
@@ -366,7 +366,7 @@
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">let</span> <span class="ident">n_mime_types</span> <span class="op">=</span> <span class="ident">mime_types</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gdk_content_formats_new</span>(
+            <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_content_formats_new</span>(
                 <span class="ident">mime_types</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">n_mime_types</span>,
             ))
@@ -381,9 +381,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// a new `ContentFormats`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_new_for_gtype&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_for_gtype</span>(<span class="ident">type_</span>: <span class="ident">glib</span>::<span class="ident">types</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentFormats</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_for_gtype</span>(<span class="ident">type_</span>: <span class="ident">glib::types::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentFormats</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
-        <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gdk_content_formats_new_for_gtype</span>(<span class="ident">type_</span>.<span class="ident">to_glib</span>())) }
+        <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_content_formats_new_for_gtype</span>(<span class="ident">type_</span>.<span class="ident">to_glib</span>())) }
     }
 
     <span class="doccomment">/// Checks if a given `glib::Type` is part of the given `self`.</span>
@@ -394,9 +394,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// `true` if the `glib::Type` was found</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_contain_gtype&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">contain_gtype</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">type_</span>: <span class="ident">glib</span>::<span class="ident">types</span>::<span class="ident">Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">contain_gtype</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">type_</span>: <span class="ident">glib::types::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_content_formats_contain_gtype</span>(
+            <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_content_formats_contain_gtype</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">type_</span>.<span class="ident">to_glib</span>(),
             ))
@@ -413,7 +413,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_contain_mime_type&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">contain_mime_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">mime_type</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_content_formats_contain_mime_type</span>(
+            <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_content_formats_contain_mime_type</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">mime_type</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             ))
@@ -433,11 +433,11 @@
     <span class="doccomment">///  interned strings of mime types included in `self` or `None`</span>
     <span class="doccomment">///  if none.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_get_mime_types&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_mime_types</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">GString</span><span class="op">&gt;</span>, <span class="ident">usize</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_mime_types</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>, <span class="ident">usize</span>) {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">n_mime_types</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">n_mime_types</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
             <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span>
-                <span class="ident">FromGlibPtrContainer</span>::<span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gdk_content_formats_get_mime_types</span>(
+                <span class="ident">FromGlibPtrContainer::from_glib_none</span>(<span class="ident">ffi::gdk_content_formats_get_mime_types</span>(
                     <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                     <span class="ident">n_mime_types</span>.<span class="ident">as_mut_ptr</span>(),
                 ));
@@ -449,7 +449,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_match&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">match_</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">second</span>: <span class="kw-2">&amp;</span><span class="ident">ContentFormats</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_content_formats_match</span>(
+            <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_content_formats_match</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">second</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             ))
@@ -466,9 +466,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The first common `glib::Type` or `G_TYPE_INVALID` if none.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_match_gtype&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">match_gtype</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">second</span>: <span class="kw-2">&amp;</span><span class="ident">ContentFormats</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib</span>::<span class="ident">types</span>::<span class="ident">Type</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">match_gtype</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">second</span>: <span class="kw-2">&amp;</span><span class="ident">ContentFormats</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::types::Type</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_content_formats_match_gtype</span>(
+            <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_content_formats_match_gtype</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">second</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             ))
@@ -485,9 +485,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The first common mime type or `None` if none.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_match_mime_type&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">match_mime_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">second</span>: <span class="kw-2">&amp;</span><span class="ident">ContentFormats</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">GString</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">match_mime_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">second</span>: <span class="kw-2">&amp;</span><span class="ident">ContentFormats</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gdk_content_formats_match_mime_type</span>(
+            <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_content_formats_match_mime_type</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">second</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             ))
@@ -502,15 +502,15 @@
     <span class="doccomment">/// ## `string`</span>
     <span class="doccomment">/// a `glib::String` to print into</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_print&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">print</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib</span>::<span class="ident">String</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">print</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::String</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gdk_content_formats_print</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">string</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>);
+            <span class="ident">ffi::gdk_content_formats_print</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">string</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>);
         }
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_to_string&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_str</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib</span>::<span class="ident">GString</span> {
-        <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gdk_content_formats_to_string</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_str</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::GString</span> {
+        <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_content_formats_to_string</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
     <span class="doccomment">/// Append all missing types from `second` to `self`, in the order</span>
@@ -524,7 +524,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_union&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">union</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">second</span>: <span class="kw-2">&amp;</span><span class="ident">ContentFormats</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ContentFormats</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gdk_content_formats_union</span>(
+            <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_content_formats_union</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_full</span>(),
                 <span class="ident">second</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             ))
@@ -540,7 +540,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_union_deserialize_gtypes&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">union_deserialize_gtypes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ContentFormats</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gdk_content_formats_union_deserialize_gtypes</span>(
+            <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_content_formats_union_deserialize_gtypes</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_full</span>(),
             ))
         }
@@ -555,7 +555,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_union_deserialize_mime_types&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">union_deserialize_mime_types</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ContentFormats</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gdk_content_formats_union_deserialize_mime_types</span>(
+            <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_content_formats_union_deserialize_mime_types</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_full</span>(),
             ))
         }
@@ -570,7 +570,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_union_serialize_gtypes&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">union_serialize_gtypes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ContentFormats</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gdk_content_formats_union_serialize_gtypes</span>(
+            <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_content_formats_union_serialize_gtypes</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_full</span>(),
             ))
         }
@@ -585,16 +585,16 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_union_serialize_mime_types&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">union_serialize_mime_types</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ContentFormats</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gdk_content_formats_union_serialize_mime_types</span>(
+            <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_content_formats_union_serialize_mime_types</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_full</span>(),
             ))
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">ContentFormats</span> {
+<span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">ContentFormats</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">to_str</span>())
     }
 }

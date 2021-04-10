@@ -761,43 +761,43 @@
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
 <span class="comment">// DO NOT EDIT</span>
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">Accessible</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">AccessibleProperty</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">AccessibleRelation</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">AccessibleRole</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">AccessibleState</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">DebugFlags</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">PageSetup</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">PrintSettings</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Accessible</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::AccessibleProperty</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::AccessibleRelation</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::AccessibleRole</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::AccessibleState</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::DebugFlags</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::PageSetup</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::PrintSettings</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;linux&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;linux&quot;</span>)))]</span>
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">Printer</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">StyleContext</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">TextDirection</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">TreeModel</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">TreePath</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">Widget</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">Window</span>;
-<span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">object</span>::<span class="ident">IsA</span>;
-<span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">boxed</span>::<span class="ident">Box</span> <span class="kw">as</span> <span class="ident">Box_</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">mem</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ptr</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Printer</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::StyleContext</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TextDirection</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TreeModel</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::TreePath</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Widget</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Window</span>;
+<span class="kw">use</span> <span class="ident">glib::object::IsA</span>;
+<span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">std::boxed::Box</span> <span class="kw">as</span> <span class="ident">Box_</span>;
+<span class="kw">use</span> <span class="ident">std::mem</span>;
+<span class="kw">use</span> <span class="ident">std::ptr</span>;
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_accelerator_get_default_mod_mask&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accelerator_get_default_mod_mask</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gdk</span>::<span class="ident">ModifierType</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accelerator_get_default_mod_mask</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gdk::ModifierType</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
-    <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gtk_accelerator_get_default_mod_mask</span>()) }
+    <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_accelerator_get_default_mod_mask</span>()) }
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_accelerator_get_label&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accelerator_get_label</span>(
     <span class="ident">accelerator_key</span>: <span class="ident">u32</span>,
-    <span class="ident">accelerator_mods</span>: <span class="ident">gdk</span>::<span class="ident">ModifierType</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">GString</span><span class="op">&gt;</span> {
+    <span class="ident">accelerator_mods</span>: <span class="ident">gdk::ModifierType</span>,
+) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_accelerator_get_label</span>(
+        <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_accelerator_get_label</span>(
             <span class="ident">accelerator_key</span>,
             <span class="ident">accelerator_mods</span>.<span class="ident">to_glib</span>(),
         ))
@@ -806,14 +806,14 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_accelerator_get_label_with_keycode&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accelerator_get_label_with_keycode</span>(
-    <span class="ident">display</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Display</span><span class="op">&gt;</span>,
+    <span class="ident">display</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk::Display</span><span class="op">&gt;</span>,
     <span class="ident">accelerator_key</span>: <span class="ident">u32</span>,
     <span class="ident">keycode</span>: <span class="ident">u32</span>,
-    <span class="ident">accelerator_mods</span>: <span class="ident">gdk</span>::<span class="ident">ModifierType</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">GString</span><span class="op">&gt;</span> {
+    <span class="ident">accelerator_mods</span>: <span class="ident">gdk::ModifierType</span>,
+) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_accelerator_get_label_with_keycode</span>(
+        <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_accelerator_get_label_with_keycode</span>(
             <span class="ident">display</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">accelerator_key</span>,
             <span class="ident">keycode</span>,
@@ -825,11 +825,11 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_accelerator_name&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accelerator_name</span>(
     <span class="ident">accelerator_key</span>: <span class="ident">u32</span>,
-    <span class="ident">accelerator_mods</span>: <span class="ident">gdk</span>::<span class="ident">ModifierType</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">GString</span><span class="op">&gt;</span> {
+    <span class="ident">accelerator_mods</span>: <span class="ident">gdk::ModifierType</span>,
+) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_accelerator_name</span>(
+        <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_accelerator_name</span>(
             <span class="ident">accelerator_key</span>,
             <span class="ident">accelerator_mods</span>.<span class="ident">to_glib</span>(),
         ))
@@ -838,14 +838,14 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_accelerator_name_with_keycode&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accelerator_name_with_keycode</span>(
-    <span class="ident">display</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk</span>::<span class="ident">Display</span><span class="op">&gt;</span>,
+    <span class="ident">display</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk::Display</span><span class="op">&gt;</span>,
     <span class="ident">accelerator_key</span>: <span class="ident">u32</span>,
     <span class="ident">keycode</span>: <span class="ident">u32</span>,
-    <span class="ident">accelerator_mods</span>: <span class="ident">gdk</span>::<span class="ident">ModifierType</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">GString</span><span class="op">&gt;</span> {
+    <span class="ident">accelerator_mods</span>: <span class="ident">gdk::ModifierType</span>,
+) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_accelerator_name_with_keycode</span>(
+        <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_accelerator_name_with_keycode</span>(
             <span class="ident">display</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">accelerator_key</span>,
             <span class="ident">keycode</span>,
@@ -855,12 +855,12 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_accelerator_parse&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accelerator_parse</span>(<span class="ident">accelerator</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">u32</span>, <span class="ident">gdk</span>::<span class="ident">ModifierType</span>)<span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accelerator_parse</span>(<span class="ident">accelerator</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">u32</span>, <span class="ident">gdk::ModifierType</span>)<span class="op">&gt;</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">accelerator_key</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">accelerator_mods</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-        <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gtk_accelerator_parse</span>(
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">accelerator_key</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">accelerator_mods</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+        <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_accelerator_parse</span>(
             <span class="ident">accelerator</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">accelerator_key</span>.<span class="ident">as_mut_ptr</span>(),
             <span class="ident">accelerator_mods</span>.<span class="ident">as_mut_ptr</span>(),
@@ -885,10 +885,10 @@
     <span class="ident">required_major</span>: <span class="ident">u32</span>,
     <span class="ident">required_minor</span>: <span class="ident">u32</span>,
     <span class="ident">required_micro</span>: <span class="ident">u32</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">GString</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gtk_check_version</span>(
+        <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_check_version</span>(
             <span class="ident">required_major</span>,
             <span class="ident">required_minor</span>,
             <span class="ident">required_micro</span>,
@@ -897,16 +897,16 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_css_parser_warning_quark&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">css_parser_warning_quark</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib</span>::<span class="ident">Quark</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">css_parser_warning_quark</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Quark</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
-    <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gtk_css_parser_warning_quark</span>()) }
+    <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_css_parser_warning_quark</span>()) }
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_disable_setlocale&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">disable_setlocale</span>() {
     <span class="macro">assert_not_initialized!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gtk_disable_setlocale</span>();
+        <span class="ident">ffi::gtk_disable_setlocale</span>();
     }
 }
 
@@ -920,11 +920,11 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_enumerate_printers&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enumerate_printers</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Printer</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="ident">func</span>: <span class="ident">P</span>, <span class="ident">wait</span>: <span class="ident">bool</span>) {
     <span class="macro">assert_initialized_main_thread!</span>();
-    <span class="kw">let</span> <span class="ident">func_data</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_</span>::<span class="ident">new</span>(<span class="ident">func</span>);
+    <span class="kw">let</span> <span class="ident">func_data</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">func</span>);
     <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">func_func</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Printer</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
-        <span class="ident">printer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GtkPrinter</span>,
-        <span class="ident">data</span>: <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gboolean</span> {
+        <span class="ident">printer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrinter</span>,
+        <span class="ident">data</span>: <span class="ident">glib::ffi::gpointer</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
         <span class="kw">let</span> <span class="ident">printer</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">printer</span>);
         <span class="kw">let</span> <span class="ident">callback</span>: <span class="kw-2">&amp;</span><span class="ident">P</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
         <span class="kw">let</span> <span class="ident">res</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">callback</span>)(<span class="kw-2">&amp;</span><span class="ident">printer</span>);
@@ -932,16 +932,16 @@
     }
     <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">func_func</span>::<span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> <span class="kw">as</span> <span class="kw">_</span>);
     <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">destroy_func</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Printer</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
-        <span class="ident">data</span>: <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>,
+        <span class="ident">data</span>: <span class="ident">glib::ffi::gpointer</span>,
     ) {
-        <span class="kw">let</span> <span class="ident">_callback</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_</span>::<span class="ident">from_raw</span>(<span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+        <span class="kw">let</span> <span class="ident">_callback</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::from_raw</span>(<span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
     }
     <span class="kw">let</span> <span class="ident">destroy_call2</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">destroy_func</span>::<span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> <span class="kw">as</span> <span class="kw">_</span>);
     <span class="kw">let</span> <span class="ident">super_callback0</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">func_data</span>;
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gtk_enumerate_printers</span>(
+        <span class="ident">ffi::gtk_enumerate_printers</span>(
             <span class="ident">func</span>,
-            <span class="ident">Box_</span>::<span class="ident">into_raw</span>(<span class="ident">super_callback0</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
+            <span class="ident">Box_::into_raw</span>(<span class="ident">super_callback0</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
             <span class="ident">destroy_call2</span>,
             <span class="ident">wait</span>.<span class="ident">to_glib</span>(),
         );
@@ -951,59 +951,59 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_get_binary_age&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_binary_age</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
     <span class="macro">skip_assert_initialized!</span>();
-    <span class="kw">unsafe</span> { <span class="ident">ffi</span>::<span class="ident">gtk_get_binary_age</span>() }
+    <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_get_binary_age</span>() }
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_get_debug_flags&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_debug_flags</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DebugFlags</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
-    <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gtk_get_debug_flags</span>()) }
+    <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_get_debug_flags</span>()) }
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_get_default_language&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_default_language</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango</span>::<span class="ident">Language</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_default_language</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango::Language</span><span class="op">&gt;</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
-    <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gtk_get_default_language</span>()) }
+    <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_get_default_language</span>()) }
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_get_interface_age&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_interface_age</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
     <span class="macro">skip_assert_initialized!</span>();
-    <span class="kw">unsafe</span> { <span class="ident">ffi</span>::<span class="ident">gtk_get_interface_age</span>() }
+    <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_get_interface_age</span>() }
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_get_locale_direction&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_locale_direction</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextDirection</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
-    <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gtk_get_locale_direction</span>()) }
+    <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_get_locale_direction</span>()) }
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_get_major_version&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_major_version</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
     <span class="macro">skip_assert_initialized!</span>();
-    <span class="kw">unsafe</span> { <span class="ident">ffi</span>::<span class="ident">gtk_get_major_version</span>() }
+    <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_get_major_version</span>() }
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_get_micro_version&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_micro_version</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
     <span class="macro">skip_assert_initialized!</span>();
-    <span class="kw">unsafe</span> { <span class="ident">ffi</span>::<span class="ident">gtk_get_micro_version</span>() }
+    <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_get_micro_version</span>() }
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_get_minor_version&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_minor_version</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
     <span class="macro">skip_assert_initialized!</span>();
-    <span class="kw">unsafe</span> { <span class="ident">ffi</span>::<span class="ident">gtk_get_minor_version</span>() }
+    <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_get_minor_version</span>() }
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_hsv_to_rgb&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hsv_to_rgb</span>(<span class="ident">h</span>: <span class="ident">f32</span>, <span class="ident">s</span>: <span class="ident">f32</span>, <span class="ident">v</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">f32</span>, <span class="ident">f32</span>, <span class="ident">f32</span>) {
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">r</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">g</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">b</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-        <span class="ident">ffi</span>::<span class="ident">gtk_hsv_to_rgb</span>(<span class="ident">h</span>, <span class="ident">s</span>, <span class="ident">v</span>, <span class="ident">r</span>.<span class="ident">as_mut_ptr</span>(), <span class="ident">g</span>.<span class="ident">as_mut_ptr</span>(), <span class="ident">b</span>.<span class="ident">as_mut_ptr</span>());
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">r</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">g</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">b</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+        <span class="ident">ffi::gtk_hsv_to_rgb</span>(<span class="ident">h</span>, <span class="ident">s</span>, <span class="ident">v</span>, <span class="ident">r</span>.<span class="ident">as_mut_ptr</span>(), <span class="ident">g</span>.<span class="ident">as_mut_ptr</span>(), <span class="ident">b</span>.<span class="ident">as_mut_ptr</span>());
         <span class="kw">let</span> <span class="ident">r</span> <span class="op">=</span> <span class="ident">r</span>.<span class="ident">assume_init</span>();
         <span class="kw">let</span> <span class="ident">g</span> <span class="op">=</span> <span class="ident">g</span>.<span class="ident">assume_init</span>();
         <span class="kw">let</span> <span class="ident">b</span> <span class="op">=</span> <span class="ident">b</span>.<span class="ident">assume_init</span>();
@@ -1019,7 +1019,7 @@
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">PageSetup</span><span class="op">&gt;</span> {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_print_run_page_setup_dialog</span>(
+        <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_print_run_page_setup_dialog</span>(
             <span class="ident">parent</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">page_setup</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">settings</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -1038,27 +1038,27 @@
     <span class="ident">done_cb</span>: <span class="ident">Q</span>,
 ) {
     <span class="macro">skip_assert_initialized!</span>();
-    <span class="kw">let</span> <span class="ident">done_cb_data</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">Q</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_</span>::<span class="ident">new</span>(<span class="ident">done_cb</span>);
+    <span class="kw">let</span> <span class="ident">done_cb_data</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">Q</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">done_cb</span>);
     <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">done_cb_func</span><span class="op">&lt;</span>
         <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span>,
         <span class="ident">Q</span>: <span class="ident">FnOnce</span>(<span class="kw-2">&amp;</span><span class="ident">PageSetup</span>) <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
     <span class="op">&gt;</span>(
-        <span class="ident">page_setup</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GtkPageSetup</span>,
-        <span class="ident">data</span>: <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>,
+        <span class="ident">page_setup</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPageSetup</span>,
+        <span class="ident">data</span>: <span class="ident">glib::ffi::gpointer</span>,
     ) {
         <span class="kw">let</span> <span class="ident">page_setup</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">page_setup</span>);
-        <span class="kw">let</span> <span class="ident">callback</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">Q</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_</span>::<span class="ident">from_raw</span>(<span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+        <span class="kw">let</span> <span class="ident">callback</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">Q</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::from_raw</span>(<span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
         (<span class="kw-2">*</span><span class="ident">callback</span>)(<span class="kw-2">&amp;</span><span class="ident">page_setup</span>);
     }
     <span class="kw">let</span> <span class="ident">done_cb</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">done_cb_func</span>::<span class="op">&lt;</span><span class="ident">P</span>, <span class="ident">Q</span><span class="op">&gt;</span> <span class="kw">as</span> <span class="kw">_</span>);
     <span class="kw">let</span> <span class="ident">super_callback0</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">Q</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">done_cb_data</span>;
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gtk_print_run_page_setup_dialog_async</span>(
+        <span class="ident">ffi::gtk_print_run_page_setup_dialog_async</span>(
             <span class="ident">parent</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">page_setup</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">settings</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">done_cb</span>,
-            <span class="ident">Box_</span>::<span class="ident">into_raw</span>(<span class="ident">super_callback0</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
+            <span class="ident">Box_::into_raw</span>(<span class="ident">super_callback0</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
         );
     }
 }
@@ -1066,7 +1066,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_render_activity&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_activity</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
-    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo</span>::<span class="ident">Context</span>,
+    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo::Context</span>,
     <span class="ident">x</span>: <span class="ident">f64</span>,
     <span class="ident">y</span>: <span class="ident">f64</span>,
     <span class="ident">width</span>: <span class="ident">f64</span>,
@@ -1074,7 +1074,7 @@
 ) {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gtk_render_activity</span>(
+        <span class="ident">ffi::gtk_render_activity</span>(
             <span class="ident">context</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">mut_override</span>(<span class="ident">cr</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
             <span class="ident">x</span>,
@@ -1088,7 +1088,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_render_arrow&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_arrow</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
-    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo</span>::<span class="ident">Context</span>,
+    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo::Context</span>,
     <span class="ident">angle</span>: <span class="ident">f64</span>,
     <span class="ident">x</span>: <span class="ident">f64</span>,
     <span class="ident">y</span>: <span class="ident">f64</span>,
@@ -1096,7 +1096,7 @@
 ) {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gtk_render_arrow</span>(
+        <span class="ident">ffi::gtk_render_arrow</span>(
             <span class="ident">context</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">mut_override</span>(<span class="ident">cr</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
             <span class="ident">angle</span>,
@@ -1110,7 +1110,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_render_background&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_background</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
-    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo</span>::<span class="ident">Context</span>,
+    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo::Context</span>,
     <span class="ident">x</span>: <span class="ident">f64</span>,
     <span class="ident">y</span>: <span class="ident">f64</span>,
     <span class="ident">width</span>: <span class="ident">f64</span>,
@@ -1118,7 +1118,7 @@
 ) {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gtk_render_background</span>(
+        <span class="ident">ffi::gtk_render_background</span>(
             <span class="ident">context</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">mut_override</span>(<span class="ident">cr</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
             <span class="ident">x</span>,
@@ -1132,7 +1132,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_render_check&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_check</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
-    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo</span>::<span class="ident">Context</span>,
+    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo::Context</span>,
     <span class="ident">x</span>: <span class="ident">f64</span>,
     <span class="ident">y</span>: <span class="ident">f64</span>,
     <span class="ident">width</span>: <span class="ident">f64</span>,
@@ -1140,7 +1140,7 @@
 ) {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gtk_render_check</span>(
+        <span class="ident">ffi::gtk_render_check</span>(
             <span class="ident">context</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">mut_override</span>(<span class="ident">cr</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
             <span class="ident">x</span>,
@@ -1154,7 +1154,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_render_expander&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_expander</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
-    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo</span>::<span class="ident">Context</span>,
+    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo::Context</span>,
     <span class="ident">x</span>: <span class="ident">f64</span>,
     <span class="ident">y</span>: <span class="ident">f64</span>,
     <span class="ident">width</span>: <span class="ident">f64</span>,
@@ -1162,7 +1162,7 @@
 ) {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gtk_render_expander</span>(
+        <span class="ident">ffi::gtk_render_expander</span>(
             <span class="ident">context</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">mut_override</span>(<span class="ident">cr</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
             <span class="ident">x</span>,
@@ -1176,7 +1176,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_render_focus&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_focus</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
-    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo</span>::<span class="ident">Context</span>,
+    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo::Context</span>,
     <span class="ident">x</span>: <span class="ident">f64</span>,
     <span class="ident">y</span>: <span class="ident">f64</span>,
     <span class="ident">width</span>: <span class="ident">f64</span>,
@@ -1184,7 +1184,7 @@
 ) {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gtk_render_focus</span>(
+        <span class="ident">ffi::gtk_render_focus</span>(
             <span class="ident">context</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">mut_override</span>(<span class="ident">cr</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
             <span class="ident">x</span>,
@@ -1198,7 +1198,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_render_frame&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_frame</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
-    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo</span>::<span class="ident">Context</span>,
+    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo::Context</span>,
     <span class="ident">x</span>: <span class="ident">f64</span>,
     <span class="ident">y</span>: <span class="ident">f64</span>,
     <span class="ident">width</span>: <span class="ident">f64</span>,
@@ -1206,7 +1206,7 @@
 ) {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gtk_render_frame</span>(
+        <span class="ident">ffi::gtk_render_frame</span>(
             <span class="ident">context</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">mut_override</span>(<span class="ident">cr</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
             <span class="ident">x</span>,
@@ -1220,7 +1220,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_render_handle&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_handle</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
-    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo</span>::<span class="ident">Context</span>,
+    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo::Context</span>,
     <span class="ident">x</span>: <span class="ident">f64</span>,
     <span class="ident">y</span>: <span class="ident">f64</span>,
     <span class="ident">width</span>: <span class="ident">f64</span>,
@@ -1228,7 +1228,7 @@
 ) {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gtk_render_handle</span>(
+        <span class="ident">ffi::gtk_render_handle</span>(
             <span class="ident">context</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">mut_override</span>(<span class="ident">cr</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
             <span class="ident">x</span>,
@@ -1240,16 +1240,16 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_render_icon&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_icon</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk</span>::<span class="ident">Texture</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_icon</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Texture</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
-    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo</span>::<span class="ident">Context</span>,
+    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo::Context</span>,
     <span class="ident">texture</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>,
     <span class="ident">x</span>: <span class="ident">f64</span>,
     <span class="ident">y</span>: <span class="ident">f64</span>,
 ) {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gtk_render_icon</span>(
+        <span class="ident">ffi::gtk_render_icon</span>(
             <span class="ident">context</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">mut_override</span>(<span class="ident">cr</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
             <span class="ident">texture</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -1262,14 +1262,14 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_render_layout&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_layout</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
-    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo</span>::<span class="ident">Context</span>,
+    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo::Context</span>,
     <span class="ident">x</span>: <span class="ident">f64</span>,
     <span class="ident">y</span>: <span class="ident">f64</span>,
-    <span class="ident">layout</span>: <span class="kw-2">&amp;</span><span class="ident">pango</span>::<span class="ident">Layout</span>,
+    <span class="ident">layout</span>: <span class="kw-2">&amp;</span><span class="ident">pango::Layout</span>,
 ) {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gtk_render_layout</span>(
+        <span class="ident">ffi::gtk_render_layout</span>(
             <span class="ident">context</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">mut_override</span>(<span class="ident">cr</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
             <span class="ident">x</span>,
@@ -1282,7 +1282,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_render_line&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_line</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
-    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo</span>::<span class="ident">Context</span>,
+    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo::Context</span>,
     <span class="ident">x0</span>: <span class="ident">f64</span>,
     <span class="ident">y0</span>: <span class="ident">f64</span>,
     <span class="ident">x1</span>: <span class="ident">f64</span>,
@@ -1290,7 +1290,7 @@
 ) {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gtk_render_line</span>(
+        <span class="ident">ffi::gtk_render_line</span>(
             <span class="ident">context</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">mut_override</span>(<span class="ident">cr</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
             <span class="ident">x0</span>,
@@ -1304,7 +1304,7 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_render_option&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_option</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
-    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo</span>::<span class="ident">Context</span>,
+    <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo::Context</span>,
     <span class="ident">x</span>: <span class="ident">f64</span>,
     <span class="ident">y</span>: <span class="ident">f64</span>,
     <span class="ident">width</span>: <span class="ident">f64</span>,
@@ -1312,7 +1312,7 @@
 ) {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gtk_render_option</span>(
+        <span class="ident">ffi::gtk_render_option</span>(
             <span class="ident">context</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">mut_override</span>(<span class="ident">cr</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
             <span class="ident">x</span>,
@@ -1327,10 +1327,10 @@
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">rgb_to_hsv</span>(<span class="ident">r</span>: <span class="ident">f32</span>, <span class="ident">g</span>: <span class="ident">f32</span>, <span class="ident">b</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">f32</span>, <span class="ident">f32</span>, <span class="ident">f32</span>) {
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">h</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">v</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-        <span class="ident">ffi</span>::<span class="ident">gtk_rgb_to_hsv</span>(<span class="ident">r</span>, <span class="ident">g</span>, <span class="ident">b</span>, <span class="ident">h</span>.<span class="ident">as_mut_ptr</span>(), <span class="ident">s</span>.<span class="ident">as_mut_ptr</span>(), <span class="ident">v</span>.<span class="ident">as_mut_ptr</span>());
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">h</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">v</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+        <span class="ident">ffi::gtk_rgb_to_hsv</span>(<span class="ident">r</span>, <span class="ident">g</span>, <span class="ident">b</span>, <span class="ident">h</span>.<span class="ident">as_mut_ptr</span>(), <span class="ident">s</span>.<span class="ident">as_mut_ptr</span>(), <span class="ident">v</span>.<span class="ident">as_mut_ptr</span>());
         <span class="kw">let</span> <span class="ident">h</span> <span class="op">=</span> <span class="ident">h</span>.<span class="ident">assume_init</span>();
         <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">s</span>.<span class="ident">assume_init</span>();
         <span class="kw">let</span> <span class="ident">v</span> <span class="op">=</span> <span class="ident">v</span>.<span class="ident">assume_init</span>();
@@ -1342,7 +1342,7 @@
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_debug_flags</span>(<span class="ident">flags</span>: <span class="ident">DebugFlags</span>) {
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gtk_set_debug_flags</span>(<span class="ident">flags</span>.<span class="ident">to_glib</span>());
+        <span class="ident">ffi::gtk_set_debug_flags</span>(<span class="ident">flags</span>.<span class="ident">to_glib</span>());
     }
 }
 
@@ -1350,7 +1350,7 @@
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_uri</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">parent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>, <span class="ident">uri</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">timestamp</span>: <span class="ident">u32</span>) {
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gtk_show_uri</span>(
+        <span class="ident">ffi::gtk_show_uri</span>(
             <span class="ident">parent</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">uri</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">timestamp</span>,
@@ -1371,7 +1371,7 @@
 ) {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gtk_test_accessible_assertion_message_role</span>(
+        <span class="ident">ffi::gtk_test_accessible_assertion_message_role</span>(
             <span class="ident">domain</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">file</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">line</span>,
@@ -1406,7 +1406,7 @@
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gtk_test_accessible_has_property</span>(
+        <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_test_accessible_has_property</span>(
             <span class="ident">accessible</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">property</span>.<span class="ident">to_glib</span>(),
         ))
@@ -1420,7 +1420,7 @@
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gtk_test_accessible_has_relation</span>(
+        <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_test_accessible_has_relation</span>(
             <span class="ident">accessible</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">relation</span>.<span class="ident">to_glib</span>(),
         ))
@@ -1431,7 +1431,7 @@
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">test_accessible_has_role</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Accessible</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">accessible</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">role</span>: <span class="ident">AccessibleRole</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gtk_test_accessible_has_role</span>(
+        <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_test_accessible_has_role</span>(
             <span class="ident">accessible</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">role</span>.<span class="ident">to_glib</span>(),
         ))
@@ -1445,7 +1445,7 @@
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gtk_test_accessible_has_state</span>(
+        <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_test_accessible_has_state</span>(
             <span class="ident">accessible</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">state</span>.<span class="ident">to_glib</span>(),
         ))
@@ -1466,7 +1466,7 @@
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">test_register_all_types</span>() {
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gtk_test_register_all_types</span>();
+        <span class="ident">ffi::gtk_test_register_all_types</span>();
     }
 }
 
@@ -1474,7 +1474,7 @@
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">test_widget_wait_for_draw</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gtk_test_widget_wait_for_draw</span>(<span class="ident">widget</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>);
+        <span class="ident">ffi::gtk_test_widget_wait_for_draw</span>(<span class="ident">widget</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>);
     }
 }
 
@@ -1482,10 +1482,10 @@
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tree_create_row_drag_content</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">tree_model</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
     <span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TreePath</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk</span>::<span class="ident">ContentProvider</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::ContentProvider</span><span class="op">&gt;</span> {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">unsafe</span> {
-        <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_tree_create_row_drag_content</span>(
+        <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_tree_create_row_drag_content</span>(
             <span class="ident">tree_model</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">path</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>,
         ))
@@ -1494,13 +1494,13 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_get_row_drag_data&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tree_get_row_drag_data</span>(
-    <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">glib</span>::<span class="ident">Value</span>,
+    <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Value</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreeModel</span><span class="op">&gt;</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span>)<span class="op">&gt;</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">tree_model</span> <span class="op">=</span> <span class="ident">ptr</span>::<span class="ident">null_mut</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">ptr</span>::<span class="ident">null_mut</span>();
-        <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gtk_tree_get_row_drag_data</span>(
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">tree_model</span> <span class="op">=</span> <span class="ident">ptr::null_mut</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">path</span> <span class="op">=</span> <span class="ident">ptr::null_mut</span>();
+        <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_tree_get_row_drag_data</span>(
             <span class="ident">value</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">tree_model</span>,
             <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">path</span>,

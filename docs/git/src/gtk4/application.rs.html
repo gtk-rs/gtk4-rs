@@ -139,28 +139,28 @@
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">rt</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">Application</span>;
-<span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::rt</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Application</span>;
+<span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">Cast</span>, <span class="ident">IsA</span>, <span class="ident">ToValue</span>};
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Default</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ApplicationBuilder</span> {
-    <span class="ident">menubar</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio</span>::<span class="ident">MenuModel</span><span class="op">&gt;</span>,
+    <span class="ident">menubar</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::MenuModel</span><span class="op">&gt;</span>,
     <span class="ident">register_session</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>,
-    <span class="ident">action_group</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio</span>::<span class="ident">ActionGroup</span><span class="op">&gt;</span>,
+    <span class="ident">action_group</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::ActionGroup</span><span class="op">&gt;</span>,
     <span class="ident">application_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    <span class="ident">flags</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio</span>::<span class="ident">ApplicationFlags</span><span class="op">&gt;</span>,
+    <span class="ident">flags</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::ApplicationFlags</span><span class="op">&gt;</span>,
     <span class="ident">inactivity_timeout</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>,
     <span class="ident">resource_base_path</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">ApplicationBuilder</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span>::<span class="ident">default</span>()
+        <span class="self">Self</span><span class="ident">::default</span>()
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Application</span>, <span class="ident">glib</span>::<span class="ident">BoolError</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Application</span>, <span class="ident">glib::BoolError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">properties</span>: <span class="ident">Vec</span><span class="op">&lt;</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)<span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">menubar</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">menubar</span> {
             <span class="ident">properties</span>.<span class="ident">push</span>((<span class="string">&quot;menubar&quot;</span>, <span class="ident">menubar</span>));
@@ -183,12 +183,12 @@
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">resource_base_path</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">resource_base_path</span> {
             <span class="ident">properties</span>.<span class="ident">push</span>((<span class="string">&quot;resource-base-path&quot;</span>, <span class="ident">resource_base_path</span>));
         }
-        <span class="ident">rt</span>::<span class="ident">init</span>()<span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">app</span> <span class="op">=</span> <span class="ident">glib</span>::<span class="ident">Object</span>::<span class="ident">new</span>::<span class="op">&lt;</span><span class="ident">Application</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">properties</span>)<span class="question-mark">?</span>;
+        <span class="ident">rt::init</span>()<span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">app</span> <span class="op">=</span> <span class="ident">glib::Object::new</span>::<span class="op">&lt;</span><span class="ident">Application</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">properties</span>)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(<span class="ident">app</span>)
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">menubar</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio</span>::<span class="ident">MenuModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">menubar</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">menubar</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::MenuModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">menubar</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">menubar</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">menubar</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
@@ -198,7 +198,7 @@
         <span class="self">self</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">action_group</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio</span>::<span class="ident">ActionGroup</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">action_group</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">action_group</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::ActionGroup</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">action_group</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">action_group</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">action_group</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
@@ -208,7 +208,7 @@
         <span class="self">self</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">flags</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">flags</span>: <span class="ident">gio</span>::<span class="ident">ApplicationFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">flags</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">flags</span>: <span class="ident">gio::ApplicationFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">flags</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">flags</span>);
         <span class="self">self</span>
     }
@@ -259,16 +259,16 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_application_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
         <span class="ident">application_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>,
-        <span class="ident">flags</span>: <span class="ident">gio</span>::<span class="ident">ApplicationFlags</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Application</span>, <span class="ident">glib</span>::<span class="ident">BoolError</span><span class="op">&gt;</span> {
+        <span class="ident">flags</span>: <span class="ident">gio::ApplicationFlags</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Application</span>, <span class="ident">glib::BoolError</span><span class="op">&gt;</span> {
         <span class="macro">skip_assert_initialized!</span>();
-        <span class="ident">rt</span>::<span class="ident">init</span>()<span class="question-mark">?</span>;
+        <span class="ident">rt::init</span>()<span class="question-mark">?</span>;
         <span class="kw">unsafe</span> {
-            <span class="prelude-ty">Option</span>::<span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_application_new</span>(
+            <span class="ident">Option::from_glib_full</span>(<span class="ident">ffi::gtk_application_new</span>(
                 <span class="ident">application_id</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">flags</span>.<span class="ident">to_glib</span>(),
             ))
-            .<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="ident">glib</span>::<span class="macro">bool_error!</span>(<span class="string">&quot;Failed to create application&quot;</span>))
+            .<span class="ident">ok_or_else</span>(<span class="op">|</span><span class="op">|</span> <span class="macro">glib::bool_error!</span>(<span class="string">&quot;Failed to create application&quot;</span>))
         }
     }
 }

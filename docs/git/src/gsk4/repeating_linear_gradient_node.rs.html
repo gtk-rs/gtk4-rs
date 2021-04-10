@@ -58,14 +58,14 @@
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">ColorStop</span>, <span class="ident">RenderNodeType</span>};
-<span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">graphene</span>::{<span class="ident">Point</span>, <span class="ident">Rect</span>};
 
 <span class="macro">define_render_node!</span>(
     <span class="ident">RepeatingLinearGradientNode</span>,
-    <span class="ident">ffi</span>::<span class="ident">GskRepeatingLinearGradientNode</span>,
-    <span class="ident">ffi</span>::<span class="ident">gsk_repeating_linear_gradient_node_get_type</span>,
-    <span class="ident">RenderNodeType</span>::<span class="ident">RepeatingLinearGradientNode</span>
+    <span class="ident">ffi::GskRepeatingLinearGradientNode</span>,
+    <span class="ident">ffi::gsk_repeating_linear_gradient_node_get_type</span>,
+    <span class="ident">RenderNodeType::RepeatingLinearGradientNode</span>
 );
 
 <span class="kw">impl</span> <span class="ident">RepeatingLinearGradientNode</span> {
@@ -98,7 +98,7 @@
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">let</span> <span class="ident">n_color_stops</span> <span class="op">=</span> <span class="ident">color_stops</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">usize</span>;
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gsk_repeating_linear_gradient_node_new</span>(
+            <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_repeating_linear_gradient_node_new</span>(
                 <span class="ident">bounds</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">start</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">end</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,

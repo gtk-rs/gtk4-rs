@@ -57,10 +57,10 @@
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">ColorChooser</span>, <span class="ident">Orientation</span>};
-<span class="kw">use</span> <span class="ident">gdk</span>::<span class="ident">RGBA</span>;
-<span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">object</span>::<span class="ident">IsA</span>;
-<span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">libc</span>::<span class="ident">c_int</span>;
+<span class="kw">use</span> <span class="ident">gdk::RGBA</span>;
+<span class="kw">use</span> <span class="ident">glib::object::IsA</span>;
+<span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">libc::c_int</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ColorChooserExtManual</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Adds a palette to the color chooser. If `orientation` is horizontal,</span>
@@ -96,12 +96,12 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ColorChooser</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">ColorChooserExtManual</span> <span class="kw">for</span> <span class="ident">O</span> {
     <span class="kw">fn</span> <span class="ident">add_palette</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">orientation</span>: <span class="ident">Orientation</span>, <span class="ident">colors_per_line</span>: <span class="ident">i32</span>, <span class="ident">colors</span>: <span class="kw-2">&amp;</span>[<span class="ident">RGBA</span>]) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gtk_color_chooser_add_palette</span>(
+            <span class="ident">ffi::gtk_color_chooser_add_palette</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">orientation</span>.<span class="ident">to_glib</span>(),
                 <span class="ident">colors_per_line</span>,
                 <span class="ident">colors</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">c_int</span>,
-                <span class="ident">colors</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gdk</span>::<span class="ident">ffi</span>::<span class="ident">GdkRGBA</span>,
+                <span class="ident">colors</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gdk::ffi::GdkRGBA</span>,
             )
         }
     }

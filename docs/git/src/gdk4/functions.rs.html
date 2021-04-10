@@ -325,27 +325,27 @@
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">ContentDeserializer</span>, <span class="ident">ContentSerializer</span>};
-<span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">object</span>::<span class="ident">IsA</span>;
-<span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">future</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">pin</span>::<span class="ident">Pin</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ptr</span>;
+<span class="kw">use</span> <span class="ident">glib::object::IsA</span>;
+<span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">std::future</span>;
+<span class="kw">use</span> <span class="ident">std::pin::Pin</span>;
+<span class="kw">use</span> <span class="ident">std::ptr</span>;
 
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">packed</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GRange</span>(<span class="kw">pub</span> <span class="ident">i32</span>, <span class="kw">pub</span> <span class="ident">i32</span>);
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_pango_layout_line_get_clip_region&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pango_layout_line_get_clip_region</span>(
-    <span class="ident">line</span>: <span class="kw-2">&amp;</span><span class="ident">pango</span>::<span class="ident">LayoutLine</span>,
+    <span class="ident">line</span>: <span class="kw-2">&amp;</span><span class="ident">pango::LayoutLine</span>,
     <span class="ident">x_origin</span>: <span class="ident">i32</span>,
     <span class="ident">y_origin</span>: <span class="ident">i32</span>,
     <span class="ident">index_ranges</span>: <span class="kw-2">&amp;</span>[<span class="ident">GRange</span>],
-) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">cairo</span>::<span class="ident">Region</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">cairo::Region</span><span class="op">&gt;</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
 
     <span class="kw">let</span> <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">i32</span> <span class="op">=</span> <span class="ident">index_ranges</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw">_</span>;
     <span class="kw">unsafe</span> {
-        <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gdk_pango_layout_line_get_clip_region</span>(
+        <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_pango_layout_line_get_clip_region</span>(
             <span class="ident">line</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">x_origin</span>,
             <span class="ident">y_origin</span>,
@@ -357,16 +357,16 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_pango_layout_get_clip_region&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pango_layout_get_clip_region</span>(
-    <span class="ident">layout</span>: <span class="kw-2">&amp;</span><span class="ident">pango</span>::<span class="ident">Layout</span>,
+    <span class="ident">layout</span>: <span class="kw-2">&amp;</span><span class="ident">pango::Layout</span>,
     <span class="ident">x_origin</span>: <span class="ident">i32</span>,
     <span class="ident">y_origin</span>: <span class="ident">i32</span>,
     <span class="ident">index_ranges</span>: <span class="kw-2">&amp;</span>[<span class="ident">GRange</span>],
-) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">cairo</span>::<span class="ident">Region</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">cairo::Region</span><span class="op">&gt;</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
 
     <span class="kw">let</span> <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">i32</span> <span class="op">=</span> <span class="ident">index_ranges</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw">_</span>;
     <span class="kw">unsafe</span> {
-        <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gdk_pango_layout_get_clip_region</span>(
+        <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_pango_layout_get_clip_region</span>(
             <span class="ident">layout</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">x_origin</span>,
             <span class="ident">y_origin</span>,
@@ -378,63 +378,63 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_deserialize_async&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">content_deserialize_async</span><span class="op">&lt;</span>
-    <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio</span>::<span class="ident">InputStream</span><span class="op">&gt;</span>,
-    <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio</span>::<span class="ident">Cancellable</span><span class="op">&gt;</span>,
-    <span class="ident">R</span>: <span class="ident">FnOnce</span>(<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">Value</span>, <span class="ident">glib</span>::<span class="ident">Error</span><span class="op">&gt;</span>) <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+    <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::InputStream</span><span class="op">&gt;</span>,
+    <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::Cancellable</span><span class="op">&gt;</span>,
+    <span class="ident">R</span>: <span class="ident">FnOnce</span>(<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">glib::Value</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span>) <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
 <span class="op">&gt;</span>(
     <span class="ident">stream</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
     <span class="ident">mime_type</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-    <span class="ident">type_</span>: <span class="ident">glib</span>::<span class="ident">types</span>::<span class="ident">Type</span>,
+    <span class="ident">type_</span>: <span class="ident">glib::types::Type</span>,
     <span class="ident">io_priority</span>: <span class="ident">i32</span>,
     <span class="ident">cancellable</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Q</span><span class="op">&gt;</span>,
     <span class="ident">callback</span>: <span class="ident">R</span>,
 ) {
     <span class="macro">assert_initialized_main_thread!</span>();
-    <span class="kw">let</span> <span class="ident">user_data</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">callback</span>);
+    <span class="kw">let</span> <span class="ident">user_data</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box::new</span>(<span class="ident">callback</span>);
     <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">content_deserialize_async_trampoline</span><span class="op">&lt;</span>
-        <span class="ident">R</span>: <span class="ident">FnOnce</span>(<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">Value</span>, <span class="ident">glib</span>::<span class="ident">Error</span><span class="op">&gt;</span>) <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="ident">R</span>: <span class="ident">FnOnce</span>(<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">glib::Value</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span>) <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
     <span class="op">&gt;</span>(
-        <span class="ident">_source_object</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib</span>::<span class="ident">gobject_ffi</span>::<span class="ident">GObject</span>,
-        <span class="ident">res</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gio</span>::<span class="ident">ffi</span>::<span class="ident">GAsyncResult</span>,
-        <span class="ident">user_data</span>: <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>,
+        <span class="ident">_source_object</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::gobject_ffi::GObject</span>,
+        <span class="ident">res</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gio::ffi::GAsyncResult</span>,
+        <span class="ident">user_data</span>: <span class="ident">glib::ffi::gpointer</span>,
     ) {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">error</span> <span class="op">=</span> <span class="ident">ptr</span>::<span class="ident">null_mut</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib</span>::<span class="ident">Value</span>::<span class="ident">uninitialized</span>();
-        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">ffi</span>::<span class="ident">gdk_content_deserialize_finish</span>(<span class="ident">res</span>, <span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">error</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">error</span> <span class="op">=</span> <span class="ident">ptr::null_mut</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::uninitialized</span>();
+        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">ffi::gdk_content_deserialize_finish</span>(<span class="ident">res</span>, <span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">error</span>);
         <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">error</span>.<span class="ident">is_null</span>() {
             <span class="prelude-val">Ok</span>(<span class="ident">value</span>)
         } <span class="kw">else</span> {
             <span class="prelude-val">Err</span>(<span class="ident">from_glib_full</span>(<span class="ident">error</span>))
         };
-        <span class="kw">let</span> <span class="ident">callback</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box</span>::<span class="ident">from_raw</span>(<span class="ident">user_data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+        <span class="kw">let</span> <span class="ident">callback</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box::from_raw</span>(<span class="ident">user_data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
         <span class="ident">callback</span>(<span class="ident">result</span>);
     }
     <span class="kw">let</span> <span class="ident">callback</span> <span class="op">=</span> <span class="ident">content_deserialize_async_trampoline</span>::<span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>;
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gdk_content_deserialize_async</span>(
+        <span class="ident">ffi::gdk_content_deserialize_async</span>(
             <span class="ident">stream</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">mime_type</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">type_</span>.<span class="ident">to_glib</span>(),
             <span class="ident">io_priority</span>,
             <span class="ident">cancellable</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="prelude-val">Some</span>(<span class="ident">callback</span>),
-            <span class="ident">Box</span>::<span class="ident">into_raw</span>(<span class="ident">user_data</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
+            <span class="ident">Box::into_raw</span>(<span class="ident">user_data</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
         );
     }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">content_deserialize_async_future</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio</span>::<span class="ident">InputStream</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Clone</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">content_deserialize_async_future</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::InputStream</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Clone</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
     <span class="ident">stream</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
     <span class="ident">mime_type</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-    <span class="ident">type_</span>: <span class="ident">glib</span>::<span class="ident">types</span>::<span class="ident">Type</span>,
+    <span class="ident">type_</span>: <span class="ident">glib::types::Type</span>,
     <span class="ident">io_priority</span>: <span class="ident">i32</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Pin</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">future</span>::<span class="ident">Future</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">Value</span>, <span class="ident">glib</span>::<span class="ident">Error</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Pin</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">future::Future</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">glib::Value</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span><span class="op">&gt;</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
 
     <span class="kw">let</span> <span class="ident">stream</span> <span class="op">=</span> <span class="ident">stream</span>.<span class="ident">clone</span>();
-    <span class="kw">let</span> <span class="ident">mime_type</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">from</span>(<span class="ident">mime_type</span>);
-    <span class="ident">Box</span>::<span class="ident">pin</span>(<span class="ident">gio</span>::<span class="ident">GioFuture</span>::<span class="ident">new</span>(<span class="kw-2">&amp;</span>(), <span class="kw">move</span> <span class="op">|</span><span class="ident">_obj</span>, <span class="ident">send</span><span class="op">|</span> {
-        <span class="kw">let</span> <span class="ident">cancellable</span> <span class="op">=</span> <span class="ident">gio</span>::<span class="ident">Cancellable</span>::<span class="ident">new</span>();
+    <span class="kw">let</span> <span class="ident">mime_type</span> <span class="op">=</span> <span class="ident">String::from</span>(<span class="ident">mime_type</span>);
+    <span class="ident">Box::pin</span>(<span class="ident">gio::GioFuture::new</span>(<span class="kw-2">&amp;</span>(), <span class="kw">move</span> <span class="op">|</span><span class="ident">_obj</span>, <span class="ident">send</span><span class="op">|</span> {
+        <span class="kw">let</span> <span class="ident">cancellable</span> <span class="op">=</span> <span class="ident">gio::Cancellable::new</span>();
         <span class="ident">content_deserialize_async</span>(
             <span class="kw-2">&amp;</span><span class="ident">stream</span>,
             <span class="kw-2">&amp;</span><span class="ident">mime_type</span>,
@@ -456,30 +456,30 @@
     <span class="ident">P</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">ContentDeserializer</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
 <span class="op">&gt;</span>(
     <span class="ident">mime_type</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-    <span class="ident">type_</span>: <span class="ident">glib</span>::<span class="ident">types</span>::<span class="ident">Type</span>,
+    <span class="ident">type_</span>: <span class="ident">glib::types::Type</span>,
     <span class="ident">deserialize</span>: <span class="ident">P</span>,
 ) {
     <span class="macro">assert_initialized_main_thread!</span>();
-    <span class="kw">let</span> <span class="ident">deserialize_data</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">deserialize</span>);
+    <span class="kw">let</span> <span class="ident">deserialize_data</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box::new</span>(<span class="ident">deserialize</span>);
     <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">deserialize_func</span><span class="op">&lt;</span>
         <span class="ident">T</span>: <span class="lifetime">&#39;static</span>,
         <span class="ident">P</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">ContentDeserializer</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
     <span class="op">&gt;</span>(
-        <span class="ident">deserializer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GdkContentDeserializer</span>,
+        <span class="ident">deserializer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkContentDeserializer</span>,
     ) {
         <span class="kw">let</span> <span class="ident">deserializer</span>: <span class="ident">ContentDeserializer</span> <span class="op">=</span> <span class="ident">from_glib_full</span>(<span class="ident">deserializer</span>);
         <span class="kw">let</span> <span class="ident">callback</span>: <span class="kw-2">&amp;</span><span class="ident">P</span> <span class="op">=</span>
-            <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ffi</span>::<span class="ident">gdk_content_deserializer_get_user_data</span>(<span class="ident">deserializer</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)
+            <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ffi::gdk_content_deserializer_get_user_data</span>(<span class="ident">deserializer</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)
                 <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">task_data</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="op">=</span>
-            <span class="ident">ffi</span>::<span class="ident">gdk_content_deserializer_get_task_data</span>(<span class="ident">deserializer</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
+            <span class="ident">ffi::gdk_content_deserializer_get_task_data</span>(<span class="ident">deserializer</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
         <span class="kw">if</span> <span class="ident">task_data</span>.<span class="ident">is_null</span>() {
-            <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_func</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="ident">data</span>: <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>) {
-                <span class="kw">let</span> <span class="ident">_task_data</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box</span>::<span class="ident">from_raw</span>(<span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+            <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_func</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="ident">data</span>: <span class="ident">glib::ffi::gpointer</span>) {
+                <span class="kw">let</span> <span class="ident">_task_data</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box::from_raw</span>(<span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
             }
-            <span class="ident">task_data</span> <span class="op">=</span> <span class="ident">Box</span>::<span class="ident">into_raw</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="prelude-val">None</span>));
-            <span class="ident">ffi</span>::<span class="ident">gdk_content_deserializer_set_task_data</span>(
+            <span class="ident">task_data</span> <span class="op">=</span> <span class="ident">Box::into_raw</span>(<span class="ident">Box::new</span>(<span class="prelude-val">None</span>));
+            <span class="ident">ffi::gdk_content_deserializer_set_task_data</span>(
                 <span class="ident">deserializer</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">task_data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
                 <span class="prelude-val">Some</span>(<span class="ident">notify_func</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>),
@@ -493,18 +493,18 @@
         <span class="ident">T</span>: <span class="lifetime">&#39;static</span>,
         <span class="ident">P</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">ContentDeserializer</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
     <span class="op">&gt;</span>(
-        <span class="ident">data</span>: <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>,
+        <span class="ident">data</span>: <span class="ident">glib::ffi::gpointer</span>,
     ) {
-        <span class="kw">let</span> <span class="ident">_callback</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box</span>::<span class="ident">from_raw</span>(<span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+        <span class="kw">let</span> <span class="ident">_callback</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box::from_raw</span>(<span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
     }
     <span class="kw">let</span> <span class="ident">destroy_call4</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">notify_func</span>::<span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">P</span><span class="op">&gt;</span> <span class="kw">as</span> <span class="kw">_</span>);
     <span class="kw">let</span> <span class="ident">super_callback0</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">deserialize_data</span>;
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gdk_content_register_deserializer</span>(
+        <span class="ident">ffi::gdk_content_register_deserializer</span>(
             <span class="ident">mime_type</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">type_</span>.<span class="ident">to_glib</span>(),
             <span class="ident">deserialize</span>,
-            <span class="ident">Box</span>::<span class="ident">into_raw</span>(<span class="ident">super_callback0</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
+            <span class="ident">Box::into_raw</span>(<span class="ident">super_callback0</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
             <span class="ident">destroy_call4</span>,
         );
     }
@@ -515,30 +515,30 @@
     <span class="ident">T</span>: <span class="lifetime">&#39;static</span>,
     <span class="ident">P</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">ContentSerializer</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
 <span class="op">&gt;</span>(
-    <span class="ident">type_</span>: <span class="ident">glib</span>::<span class="ident">types</span>::<span class="ident">Type</span>,
+    <span class="ident">type_</span>: <span class="ident">glib::types::Type</span>,
     <span class="ident">mime_type</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
     <span class="ident">serialize</span>: <span class="ident">P</span>,
 ) {
     <span class="macro">assert_initialized_main_thread!</span>();
-    <span class="kw">let</span> <span class="ident">serialize_data</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">serialize</span>);
+    <span class="kw">let</span> <span class="ident">serialize_data</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box::new</span>(<span class="ident">serialize</span>);
     <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">serialize_func</span><span class="op">&lt;</span>
         <span class="ident">T</span>: <span class="lifetime">&#39;static</span>,
         <span class="ident">P</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">ContentSerializer</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
     <span class="op">&gt;</span>(
-        <span class="ident">serializer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GdkContentSerializer</span>,
+        <span class="ident">serializer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkContentSerializer</span>,
     ) {
         <span class="kw">let</span> <span class="ident">serializer</span>: <span class="ident">ContentSerializer</span> <span class="op">=</span> <span class="ident">from_glib_full</span>(<span class="ident">serializer</span>);
         <span class="kw">let</span> <span class="ident">callback</span>: <span class="kw-2">&amp;</span><span class="ident">P</span> <span class="op">=</span>
-            <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ffi</span>::<span class="ident">gdk_content_serializer_get_user_data</span>(<span class="ident">serializer</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+            <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ffi::gdk_content_serializer_get_user_data</span>(<span class="ident">serializer</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">task_data</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="op">=</span>
-            <span class="ident">ffi</span>::<span class="ident">gdk_content_serializer_get_task_data</span>(<span class="ident">serializer</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
+            <span class="ident">ffi::gdk_content_serializer_get_task_data</span>(<span class="ident">serializer</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
         <span class="kw">if</span> <span class="ident">task_data</span>.<span class="ident">is_null</span>() {
-            <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_func</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="ident">data</span>: <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>) {
-                <span class="kw">let</span> <span class="ident">_task_data</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box</span>::<span class="ident">from_raw</span>(<span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+            <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">notify_func</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="ident">data</span>: <span class="ident">glib::ffi::gpointer</span>) {
+                <span class="kw">let</span> <span class="ident">_task_data</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box::from_raw</span>(<span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
             }
-            <span class="ident">task_data</span> <span class="op">=</span> <span class="ident">Box</span>::<span class="ident">into_raw</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="prelude-val">None</span>));
-            <span class="ident">ffi</span>::<span class="ident">gdk_content_serializer_set_task_data</span>(
+            <span class="ident">task_data</span> <span class="op">=</span> <span class="ident">Box::into_raw</span>(<span class="ident">Box::new</span>(<span class="prelude-val">None</span>));
+            <span class="ident">ffi::gdk_content_serializer_set_task_data</span>(
                 <span class="ident">serializer</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">task_data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
                 <span class="prelude-val">Some</span>(<span class="ident">notify_func</span>::<span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>),
@@ -552,18 +552,18 @@
         <span class="ident">T</span>: <span class="lifetime">&#39;static</span>,
         <span class="ident">P</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">ContentSerializer</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span>,
     <span class="op">&gt;</span>(
-        <span class="ident">data</span>: <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>,
+        <span class="ident">data</span>: <span class="ident">glib::ffi::gpointer</span>,
     ) {
-        <span class="kw">let</span> <span class="ident">_callback</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box</span>::<span class="ident">from_raw</span>(<span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+        <span class="kw">let</span> <span class="ident">_callback</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box::from_raw</span>(<span class="ident">data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
     }
     <span class="kw">let</span> <span class="ident">destroy_call4</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">notify_func</span>::<span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">P</span><span class="op">&gt;</span> <span class="kw">as</span> <span class="kw">_</span>);
     <span class="kw">let</span> <span class="ident">super_callback0</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">serialize_data</span>;
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gdk_content_register_serializer</span>(
+        <span class="ident">ffi::gdk_content_register_serializer</span>(
             <span class="ident">type_</span>.<span class="ident">to_glib</span>(),
             <span class="ident">mime_type</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">serialize</span>,
-            <span class="ident">Box</span>::<span class="ident">into_raw</span>(<span class="ident">super_callback0</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
+            <span class="ident">Box::into_raw</span>(<span class="ident">super_callback0</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
             <span class="ident">destroy_call4</span>,
         );
     }
@@ -571,63 +571,63 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_serialize_async&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">content_serialize_async</span><span class="op">&lt;</span>
-    <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio</span>::<span class="ident">OutputStream</span><span class="op">&gt;</span>,
-    <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio</span>::<span class="ident">Cancellable</span><span class="op">&gt;</span>,
-    <span class="ident">R</span>: <span class="ident">FnOnce</span>(<span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib</span>::<span class="ident">Error</span><span class="op">&gt;</span>) <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+    <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::OutputStream</span><span class="op">&gt;</span>,
+    <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::Cancellable</span><span class="op">&gt;</span>,
+    <span class="ident">R</span>: <span class="ident">FnOnce</span>(<span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span>) <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
 <span class="op">&gt;</span>(
     <span class="ident">stream</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
     <span class="ident">mime_type</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-    <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">glib</span>::<span class="ident">Value</span>,
+    <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Value</span>,
     <span class="ident">io_priority</span>: <span class="ident">i32</span>,
     <span class="ident">cancellable</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Q</span><span class="op">&gt;</span>,
     <span class="ident">callback</span>: <span class="ident">R</span>,
 ) {
     <span class="macro">assert_initialized_main_thread!</span>();
-    <span class="kw">let</span> <span class="ident">user_data</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">callback</span>);
+    <span class="kw">let</span> <span class="ident">user_data</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box::new</span>(<span class="ident">callback</span>);
     <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">content_serialize_async_trampoline</span><span class="op">&lt;</span>
-        <span class="ident">R</span>: <span class="ident">FnOnce</span>(<span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib</span>::<span class="ident">Error</span><span class="op">&gt;</span>) <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
+        <span class="ident">R</span>: <span class="ident">FnOnce</span>(<span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span>) <span class="op">+</span> <span class="ident">Send</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
     <span class="op">&gt;</span>(
-        <span class="ident">_source_object</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib</span>::<span class="ident">gobject_ffi</span>::<span class="ident">GObject</span>,
-        <span class="ident">res</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gio</span>::<span class="ident">ffi</span>::<span class="ident">GAsyncResult</span>,
-        <span class="ident">user_data</span>: <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>,
+        <span class="ident">_source_object</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::gobject_ffi::GObject</span>,
+        <span class="ident">res</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gio::ffi::GAsyncResult</span>,
+        <span class="ident">user_data</span>: <span class="ident">glib::ffi::gpointer</span>,
     ) {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">error</span> <span class="op">=</span> <span class="ident">ptr</span>::<span class="ident">null_mut</span>();
-        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">ffi</span>::<span class="ident">gdk_content_serialize_finish</span>(<span class="ident">res</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">error</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">error</span> <span class="op">=</span> <span class="ident">ptr::null_mut</span>();
+        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">ffi::gdk_content_serialize_finish</span>(<span class="ident">res</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">error</span>);
         <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">error</span>.<span class="ident">is_null</span>() {
             <span class="prelude-val">Ok</span>(())
         } <span class="kw">else</span> {
             <span class="prelude-val">Err</span>(<span class="ident">from_glib_full</span>(<span class="ident">error</span>))
         };
-        <span class="kw">let</span> <span class="ident">callback</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box</span>::<span class="ident">from_raw</span>(<span class="ident">user_data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+        <span class="kw">let</span> <span class="ident">callback</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box::from_raw</span>(<span class="ident">user_data</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
         <span class="ident">callback</span>(<span class="ident">result</span>);
     }
     <span class="kw">let</span> <span class="ident">callback</span> <span class="op">=</span> <span class="ident">content_serialize_async_trampoline</span>::<span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>;
     <span class="kw">unsafe</span> {
-        <span class="ident">ffi</span>::<span class="ident">gdk_content_serialize_async</span>(
+        <span class="ident">ffi::gdk_content_serialize_async</span>(
             <span class="ident">stream</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">mime_type</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">value</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">io_priority</span>,
             <span class="ident">cancellable</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="prelude-val">Some</span>(<span class="ident">callback</span>),
-            <span class="ident">Box</span>::<span class="ident">into_raw</span>(<span class="ident">user_data</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
+            <span class="ident">Box::into_raw</span>(<span class="ident">user_data</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
         );
     }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">content_serialize_async_future</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio</span>::<span class="ident">OutputStream</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Clone</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">content_serialize_async_future</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::OutputStream</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">Clone</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
     <span class="ident">stream</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
     <span class="ident">mime_type</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-    <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">glib</span>::<span class="ident">Value</span>,
+    <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Value</span>,
     <span class="ident">io_priority</span>: <span class="ident">i32</span>,
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Pin</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">future</span>::<span class="ident">Future</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib</span>::<span class="ident">Error</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Pin</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">future::Future</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span><span class="op">&gt;</span> {
     <span class="macro">assert_initialized_main_thread!</span>();
 
     <span class="kw">let</span> <span class="ident">stream</span> <span class="op">=</span> <span class="ident">stream</span>.<span class="ident">clone</span>();
-    <span class="kw">let</span> <span class="ident">mime_type</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">from</span>(<span class="ident">mime_type</span>);
+    <span class="kw">let</span> <span class="ident">mime_type</span> <span class="op">=</span> <span class="ident">String::from</span>(<span class="ident">mime_type</span>);
     <span class="kw">let</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">value</span>.<span class="ident">clone</span>();
-    <span class="ident">Box</span>::<span class="ident">pin</span>(<span class="ident">gio</span>::<span class="ident">GioFuture</span>::<span class="ident">new</span>(<span class="kw-2">&amp;</span>(), <span class="kw">move</span> <span class="op">|</span><span class="ident">_obj</span>, <span class="ident">send</span><span class="op">|</span> {
-        <span class="kw">let</span> <span class="ident">cancellable</span> <span class="op">=</span> <span class="ident">gio</span>::<span class="ident">Cancellable</span>::<span class="ident">new</span>();
+    <span class="ident">Box::pin</span>(<span class="ident">gio::GioFuture::new</span>(<span class="kw-2">&amp;</span>(), <span class="kw">move</span> <span class="op">|</span><span class="ident">_obj</span>, <span class="ident">send</span><span class="op">|</span> {
+        <span class="kw">let</span> <span class="ident">cancellable</span> <span class="op">=</span> <span class="ident">gio::Cancellable::new</span>();
         <span class="ident">content_serialize_async</span>(
             <span class="kw-2">&amp;</span><span class="ident">stream</span>,
             <span class="kw-2">&amp;</span><span class="ident">mime_type</span>,

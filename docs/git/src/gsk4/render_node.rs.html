@@ -236,14 +236,14 @@
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">ParseLocation</span>, <span class="ident">RenderNodeType</span>};
-<span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">StaticType</span>, <span class="ident">Type</span>};
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">path</span>::<span class="ident">Path</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ptr</span>;
+<span class="kw">use</span> <span class="ident">std::fmt</span>;
+<span class="kw">use</span> <span class="ident">std::path::Path</span>;
+<span class="kw">use</span> <span class="ident">std::ptr</span>;
 
 <span class="comment">// Can&#39;t use get_type here as this is not a boxed type but another fundamental type</span>
-<span class="ident">glib</span>::<span class="macro">wrapper!</span> {
+<span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// A node in the render tree.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is an Abstract Base Class, you cannot instantiate it.</span>
@@ -252,18 +252,18 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`RenderNodeExt`](trait.RenderNodeExt.html)</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RenderNode</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GskRenderNode</span><span class="op">&gt;</span>);
+    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RenderNode</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GskRenderNode</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
-        <span class="kw-2">ref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gsk_render_node_ref</span>(<span class="ident">ptr</span>),
-        <span class="ident">unref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gsk_render_node_unref</span>(<span class="ident">ptr</span>),
+        <span class="kw-2">ref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi::gsk_render_node_ref</span>(<span class="ident">ptr</span>),
+        <span class="ident">unref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi::gsk_render_node_unref</span>(<span class="ident">ptr</span>),
     }
 }
 
 <span class="kw">impl</span> <span class="ident">StaticType</span> <span class="kw">for</span> <span class="ident">RenderNode</span> {
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_render_node_type_get_type&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">static_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Type</span> {
-        <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gsk_render_node_type_get_type</span>()) }
+        <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gsk_render_node_type_get_type</span>()) }
     }
 }
 
@@ -282,31 +282,31 @@
     <span class="doccomment">/// a new `RenderNode` or `None` on</span>
     <span class="doccomment">///  error.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_render_node_deserialize&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">deserialize</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="ident">glib</span>::<span class="ident">Bytes</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">RenderNode</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">deserialize</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Bytes</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">RenderNode</span><span class="op">&gt;</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gsk_render_node_deserialize</span>(
+            <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_render_node_deserialize</span>(
                 <span class="ident">bytes</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="prelude-val">None</span>,
-                <span class="ident">std</span>::<span class="ident">ptr</span>::<span class="ident">null_mut</span>(),
+                <span class="ident">std::ptr::null_mut</span>(),
             ))
         }
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_render_node_deserialize&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">deserialize_with_error_func</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">ParseLocation</span>, <span class="kw-2">&amp;</span><span class="ident">ParseLocation</span>, <span class="kw-2">&amp;</span><span class="ident">glib</span>::<span class="ident">Error</span>)<span class="op">&gt;</span>(
-        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="ident">glib</span>::<span class="ident">Bytes</span>,
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">deserialize_with_error_func</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">ParseLocation</span>, <span class="kw-2">&amp;</span><span class="ident">ParseLocation</span>, <span class="kw-2">&amp;</span><span class="ident">glib::Error</span>)<span class="op">&gt;</span>(
+        <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Bytes</span>,
         <span class="ident">error_func</span>: <span class="ident">P</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">RenderNode</span><span class="op">&gt;</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">let</span> <span class="ident">error_func_data</span>: <span class="ident">P</span> <span class="op">=</span> <span class="ident">error_func</span>;
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">error_func_func</span><span class="op">&lt;</span>
-            <span class="ident">P</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">ParseLocation</span>, <span class="kw-2">&amp;</span><span class="ident">ParseLocation</span>, <span class="kw-2">&amp;</span><span class="ident">glib</span>::<span class="ident">Error</span>),
+            <span class="ident">P</span>: <span class="ident">FnMut</span>(<span class="kw-2">&amp;</span><span class="ident">ParseLocation</span>, <span class="kw-2">&amp;</span><span class="ident">ParseLocation</span>, <span class="kw-2">&amp;</span><span class="ident">glib::Error</span>),
         <span class="op">&gt;</span>(
-            <span class="ident">start</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi</span>::<span class="ident">GskParseLocation</span>,
-            <span class="ident">end</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi</span>::<span class="ident">GskParseLocation</span>,
-            <span class="ident">error</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">GError</span>,
-            <span class="ident">user_data</span>: <span class="ident">glib</span>::<span class="ident">ffi</span>::<span class="ident">gpointer</span>,
+            <span class="ident">start</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GskParseLocation</span>,
+            <span class="ident">end</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GskParseLocation</span>,
+            <span class="ident">error</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">glib::ffi::GError</span>,
+            <span class="ident">user_data</span>: <span class="ident">glib::ffi::gpointer</span>,
         ) {
             <span class="kw">let</span> <span class="ident">start</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">start</span>);
             <span class="kw">let</span> <span class="ident">end</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">end</span>);
@@ -317,7 +317,7 @@
         <span class="kw">let</span> <span class="ident">error_func</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">error_func_func</span>::<span class="op">&lt;</span><span class="ident">P</span><span class="op">&gt;</span> <span class="kw">as</span> <span class="kw">_</span>);
         <span class="kw">let</span> <span class="ident">super_callback0</span>: <span class="kw-2">&amp;</span><span class="ident">P</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">error_func_data</span>;
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gsk_render_node_deserialize</span>(
+            <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_render_node_deserialize</span>(
                 <span class="ident">bytes</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">error_func</span>,
                 <span class="ident">super_callback0</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span> <span class="kw">as</span> <span class="ident">usize</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
@@ -327,7 +327,7 @@
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">downcast</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IsRenderNode</span><span class="op">&gt;</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">RenderNode</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
-            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">get_node_type</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">T</span>::<span class="ident">NODE_TYPE</span> {
+            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">get_node_type</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">T::NODE_TYPE</span> {
                 <span class="prelude-val">Ok</span>(<span class="ident">from_glib_full</span>(<span class="self">self</span>.<span class="ident">to_glib_full</span>()))
             } <span class="kw">else</span> {
                 <span class="prelude-val">Err</span>(<span class="self">self</span>)
@@ -337,7 +337,7 @@
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">downcast_ref</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IsRenderNode</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
-            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">get_node_type</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">T</span>::<span class="ident">NODE_TYPE</span> {
+            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">get_node_type</span>() <span class="op">=</span><span class="op">=</span> <span class="ident">T::NODE_TYPE</span> {
                 <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">RenderNode</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span>))
             } <span class="kw">else</span> {
                 <span class="prelude-val">None</span>
@@ -345,32 +345,32 @@
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">draw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo</span>::<span class="ident">Context</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">draw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cr</span>: <span class="kw-2">&amp;</span><span class="ident">cairo::Context</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gsk_render_node_draw</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">mut_override</span>(<span class="ident">cr</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>));
+            <span class="ident">ffi::gsk_render_node_draw</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">mut_override</span>(<span class="ident">cr</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>));
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">graphene</span>::<span class="ident">Rect</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">graphene::Rect</span> {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bounds</span> <span class="op">=</span> <span class="ident">graphene</span>::<span class="ident">Rect</span>::<span class="ident">uninitialized</span>();
-            <span class="ident">ffi</span>::<span class="ident">gsk_render_node_get_bounds</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">bounds</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>);
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bounds</span> <span class="op">=</span> <span class="ident">graphene::Rect::uninitialized</span>();
+            <span class="ident">ffi::gsk_render_node_get_bounds</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">bounds</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>);
             <span class="ident">bounds</span>
         }
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_node_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RenderNodeType</span> {
-        <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gsk_render_node_get_node_type</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gsk_render_node_get_node_type</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib</span>::<span class="ident">Bytes</span> {
-        <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gsk_render_node_serialize</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Bytes</span> {
+        <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_render_node_serialize</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">write_to_file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">filename</span>: <span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib</span>::<span class="ident">Error</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">write_to_file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">filename</span>: <span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">error</span> <span class="op">=</span> <span class="ident">ptr</span>::<span class="ident">null_mut</span>();
-            <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">ffi</span>::<span class="ident">gsk_render_node_write_to_file</span>(
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">error</span> <span class="op">=</span> <span class="ident">ptr::null_mut</span>();
+            <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">ffi::gsk_render_node_write_to_file</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">filename</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">error</span>,
@@ -386,8 +386,8 @@
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">IsRenderNode</span>:
     <span class="ident">StaticType</span>
-    <span class="op">+</span> <span class="ident">FromGlibPtrFull</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GskRenderNode</span><span class="op">&gt;</span>
-    <span class="op">+</span> <span class="ident">std</span>::<span class="ident">convert</span>::<span class="ident">AsRef</span><span class="op">&lt;</span><span class="kw">crate</span>::<span class="ident">RenderNode</span><span class="op">&gt;</span>
+    <span class="op">+</span> <span class="ident">FromGlibPtrFull</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GskRenderNode</span><span class="op">&gt;</span>
+    <span class="op">+</span> <span class="ident">std::convert::AsRef</span><span class="op">&lt;</span><span class="kw">crate</span><span class="ident">::RenderNode</span><span class="op">&gt;</span>
     <span class="op">+</span> <span class="lifetime">&#39;static</span>
 {
     <span class="kw">const</span> <span class="ident">NODE_TYPE</span>: <span class="ident">RenderNodeType</span>;
@@ -397,8 +397,8 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NONE_RENDER_NODE</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">RenderNode</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-<span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">RenderNode</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+<span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">RenderNode</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;RenderNode&quot;</span>)
     }
 }
@@ -406,60 +406,60 @@
 <span class="macro">macro_rules!</span> <span class="ident">define_render_node</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ffi_type</span>:<span class="ident">path</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">get_type</span>:<span class="ident">path</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">node_type</span>:<span class="ident">path</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="comment">// Can&#39;t use get_type here as this is not a boxed type but another fundamental type</span>
-        <span class="ident">glib</span>::<span class="macro">wrapper!</span> {
+        <span class="macro">glib::wrapper!</span> {
             <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
             <span class="kw">pub</span> <span class="kw">struct</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">ffi_type</span><span class="op">&gt;</span>);
 
             <span class="kw">match</span> <span class="kw">fn</span> {
-                <span class="kw-2">ref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gsk_render_node_ref</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GskRenderNode</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ffi_type</span>,
-                <span class="ident">unref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gsk_render_node_unref</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GskRenderNode</span>),
+                <span class="kw-2">ref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi::gsk_render_node_ref</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GskRenderNode</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ffi_type</span>,
+                <span class="ident">unref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi::gsk_render_node_unref</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GskRenderNode</span>),
             }
         }
 
-        <span class="kw">impl</span> ::<span class="ident">glib</span>::<span class="ident">StaticType</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
-            <span class="kw">fn</span> <span class="ident">static_type</span>() <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">glib</span>::<span class="ident">Type</span> {
+        <span class="kw">impl</span> <span class="ident">::glib::StaticType</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
+            <span class="kw">fn</span> <span class="ident">static_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::glib::Type</span> {
                 <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">get_type</span>()) }
             }
         }
 
-        <span class="kw">impl</span> <span class="ident">std</span>::<span class="ident">convert</span>::<span class="ident">AsRef</span><span class="op">&lt;</span><span class="kw">crate</span>::<span class="ident">RenderNode</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
-            <span class="kw">fn</span> <span class="ident">as_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">crate</span>::<span class="ident">RenderNode</span> {
+        <span class="kw">impl</span> <span class="ident">std::convert::AsRef</span><span class="op">&lt;</span><span class="kw">crate</span><span class="ident">::RenderNode</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
+            <span class="kw">fn</span> <span class="ident">as_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">crate</span><span class="ident">::RenderNode</span> {
                 <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="self">self</span>
             }
         }
 
-        <span class="kw">impl</span> <span class="ident">std</span>::<span class="ident">ops</span>::<span class="ident">Deref</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
-            <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="kw">crate</span>::<span class="ident">RenderNode</span>;
+        <span class="kw">impl</span> <span class="ident">std::ops::Deref</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
+            <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="kw">crate</span><span class="ident">::RenderNode</span>;
 
-            <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Target</span> {
+            <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Target</span> {
                 <span class="kw">unsafe</span> {
-                    <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">crate</span>::<span class="ident">RenderNode</span>)
+                    <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">crate</span><span class="ident">::RenderNode</span>)
                 }
             }
         }
 
-        <span class="kw">impl</span> <span class="kw">crate</span>::<span class="ident">render_node</span>::<span class="ident">IsRenderNode</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
+        <span class="kw">impl</span> <span class="kw">crate</span><span class="ident">::render_node::IsRenderNode</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
             <span class="kw">const</span> <span class="ident">NODE_TYPE</span>: <span class="ident">RenderNodeType</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">node_type</span>;
 
-            <span class="kw">fn</span> <span class="ident">upcast</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">crate</span>::<span class="ident">RenderNode</span> {
-                <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="self">self</span>.<span class="ident">to_glib_full</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GskRenderNode</span>) }
+            <span class="kw">fn</span> <span class="ident">upcast</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">crate</span><span class="ident">::RenderNode</span> {
+                <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="self">self</span>.<span class="ident">to_glib_full</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GskRenderNode</span>) }
             }
 
-            <span class="kw">fn</span> <span class="ident">upcast_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">crate</span>::<span class="ident">RenderNode</span> {
+            <span class="kw">fn</span> <span class="ident">upcast_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw">crate</span><span class="ident">::RenderNode</span> {
                 <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="self">self</span>
             }
         }
 
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-        <span class="kw">impl</span> <span class="ident">FromGlibPtrFull</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GskRenderNode</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
-            <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib_full</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GskRenderNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="kw">impl</span> <span class="ident">FromGlibPtrFull</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GskRenderNode</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
+            <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib_full</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GskRenderNode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
                 <span class="ident">from_glib_full</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ffi_type</span>)
             }
         }
 
-        <span class="kw">impl</span> ::<span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
-            <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
-                <span class="ident">f</span>.<span class="ident">write_str</span>(::<span class="ident">std</span>::<span class="macro">stringify!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span>))
+        <span class="kw">impl</span> <span class="ident">::std::fmt::Display</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
+            <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">::std::fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::fmt::Result</span> {
+                <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="macro">::std::stringify!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span>))
             }
         }
     };

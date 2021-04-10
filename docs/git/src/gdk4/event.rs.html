@@ -811,21 +811,21 @@
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::{
-    <span class="ident">button</span>::<span class="ident">ButtonEvent</span>, <span class="ident">crossing</span>::<span class="ident">CrossingEvent</span>, <span class="ident">delete</span>::<span class="ident">DeleteEvent</span>, <span class="ident">dnd</span>::<span class="ident">DNDEvent</span>,
-    <span class="ident">focus</span>::<span class="ident">FocusEvent</span>, <span class="ident">grab_broken</span>::<span class="ident">GrabBrokenEvent</span>, <span class="ident">key</span>::<span class="ident">KeyEvent</span>, <span class="ident">motion</span>::<span class="ident">MotionEvent</span>,
-    <span class="ident">pad</span>::<span class="ident">PadEvent</span>, <span class="ident">proximity</span>::<span class="ident">ProximityEvent</span>, <span class="ident">scroll</span>::<span class="ident">ScrollEvent</span>, <span class="ident">touch</span>::<span class="ident">TouchEvent</span>,
-    <span class="ident">touchpad</span>::<span class="ident">TouchpadEvent</span>,
+    <span class="ident">button::ButtonEvent</span>, <span class="ident">crossing::CrossingEvent</span>, <span class="ident">delete::DeleteEvent</span>, <span class="ident">dnd::DNDEvent</span>,
+    <span class="ident">focus::FocusEvent</span>, <span class="ident">grab_broken::GrabBrokenEvent</span>, <span class="ident">key::KeyEvent</span>, <span class="ident">motion::MotionEvent</span>,
+    <span class="ident">pad::PadEvent</span>, <span class="ident">proximity::ProximityEvent</span>, <span class="ident">scroll::ScrollEvent</span>, <span class="ident">touch::TouchEvent</span>,
+    <span class="ident">touchpad::TouchpadEvent</span>,
 };
 <span class="kw">use</span> <span class="kw">crate</span>::{
-    <span class="ident">keys</span>::<span class="ident">Key</span>, <span class="ident">AxisUse</span>, <span class="ident">CrossingMode</span>, <span class="ident">Device</span>, <span class="ident">Display</span>, <span class="ident">Drop</span>, <span class="ident">EventType</span>, <span class="ident">KeyMatch</span>, <span class="ident">ModifierType</span>,
+    <span class="ident">keys::Key</span>, <span class="ident">AxisUse</span>, <span class="ident">CrossingMode</span>, <span class="ident">Device</span>, <span class="ident">Display</span>, <span class="ident">Drop</span>, <span class="ident">EventType</span>, <span class="ident">KeyMatch</span>, <span class="ident">ModifierType</span>,
     <span class="ident">NotifyType</span>, <span class="ident">ScrollDirection</span>, <span class="ident">Seat</span>, <span class="ident">Surface</span>, <span class="ident">TimeCoord</span>, <span class="ident">TouchpadGesturePhase</span>,
 };
-<span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">StaticType</span>, <span class="ident">Type</span>};
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">mem</span>;
+<span class="kw">use</span> <span class="ident">std::fmt</span>;
+<span class="kw">use</span> <span class="ident">std::mem</span>;
 
-<span class="ident">glib</span>::<span class="macro">wrapper!</span> {
+<span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// The `Event` struct contains only private fields and</span>
     <span class="doccomment">/// should not be accessed directly.</span>
     <span class="doccomment">///</span>
@@ -834,11 +834,11 @@
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`EventExt`](trait.EventExt.html)</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Event</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GdkEvent</span><span class="op">&gt;</span>);
+    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Event</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GdkEvent</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
-        <span class="kw-2">ref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gdk_event_ref</span>(<span class="ident">ptr</span>),
-        <span class="ident">unref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gdk_event_unref</span>(<span class="ident">ptr</span>),
+        <span class="kw-2">ref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi::gdk_event_ref</span>(<span class="ident">ptr</span>),
+        <span class="ident">unref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi::gdk_event_unref</span>(<span class="ident">ptr</span>),
     }
 }
 
@@ -847,14 +847,14 @@
 <span class="kw">impl</span> <span class="ident">StaticType</span> <span class="kw">for</span> <span class="ident">Event</span> {
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_event_get_type&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">static_type</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Type</span> {
-        <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_event_get_type</span>()) }
+        <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_event_get_type</span>()) }
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Event</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">downcast</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">EventKind</span><span class="op">&gt;</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">Event</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
-            <span class="kw">if</span> <span class="ident">T</span>::<span class="ident">event_types</span>().<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">get_event_type</span>()) {
+            <span class="kw">if</span> <span class="ident">T::event_types</span>().<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">get_event_type</span>()) {
                 <span class="prelude-val">Ok</span>(<span class="ident">from_glib_full</span>(<span class="self">self</span>.<span class="ident">to_glib_full</span>()))
             } <span class="kw">else</span> {
                 <span class="prelude-val">Err</span>(<span class="self">self</span>)
@@ -864,7 +864,7 @@
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">downcast_ref</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">EventKind</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">T</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
-            <span class="kw">if</span> <span class="ident">T</span>::<span class="ident">event_types</span>().<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">get_event_type</span>()) {
+            <span class="kw">if</span> <span class="ident">T::event_types</span>().<span class="ident">contains</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">get_event_type</span>()) {
                 <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">Event</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">T</span>))
             } <span class="kw">else</span> {
                 <span class="prelude-val">None</span>
@@ -876,8 +876,8 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_angle</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">event</span>: <span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">angle</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_events_get_angle</span>(
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">angle</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_events_get_angle</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">event</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">angle</span>.<span class="ident">as_mut_ptr</span>(),
@@ -895,9 +895,9 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_center</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">event</span>: <span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">f64</span>, <span class="ident">f64</span>)<span class="op">&gt;</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">y</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_events_get_center</span>(
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">y</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_events_get_center</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">event</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">x</span>.<span class="ident">as_mut_ptr</span>(),
@@ -917,8 +917,8 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_distance</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">event</span>: <span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">distance</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_events_get_distance</span>(
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">distance</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_events_get_distance</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">event</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">distance</span>.<span class="ident">as_mut_ptr</span>(),
@@ -935,8 +935,8 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_event_get_axis&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_axis</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">axis_use</span>: <span class="ident">AxisUse</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_event_get_axis</span>(
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_event_get_axis</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">axis_use</span>.<span class="ident">to_glib</span>(),
                 <span class="ident">value</span>.<span class="ident">as_mut_ptr</span>(),
@@ -952,25 +952,25 @@
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_event_get_device&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_device</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Device</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gdk_event_get_device</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_event_get_device</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_event_get_display&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_display</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Display</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gdk_event_get_display</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_event_get_display</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_event_get_event_type&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_event_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EventType</span> {
-        <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_event_get_event_type</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_event_get_event_type</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_event_get_history&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_history</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">TimeCoord</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">out_n_coords</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">FromGlibContainer</span>::<span class="ident">from_glib_container_num</span>(
-                <span class="ident">ffi</span>::<span class="ident">gdk_event_get_history</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">out_n_coords</span>.<span class="ident">as_mut_ptr</span>()),
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">out_n_coords</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">FromGlibContainer::from_glib_container_num</span>(
+                <span class="ident">ffi::gdk_event_get_history</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">out_n_coords</span>.<span class="ident">as_mut_ptr</span>()),
                 <span class="ident">out_n_coords</span>.<span class="ident">assume_init</span>() <span class="kw">as</span> <span class="ident">usize</span>,
             );
             <span class="ident">ret</span>
@@ -979,20 +979,20 @@
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_event_get_modifier_state&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_modifier_state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ModifierType</span> {
-        <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_event_get_modifier_state</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_event_get_modifier_state</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_event_get_pointer_emulated&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_pointer_emulated</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_event_get_pointer_emulated</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_event_get_pointer_emulated</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_event_get_position&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">f64</span>, <span class="ident">f64</span>)<span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">y</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_event_get_position</span>(
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">x</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">y</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+            <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_event_get_position</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">x</span>.<span class="ident">as_mut_ptr</span>(),
                 <span class="ident">y</span>.<span class="ident">as_mut_ptr</span>(),
@@ -1009,27 +1009,27 @@
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_event_get_seat&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_seat</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Seat</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gdk_event_get_seat</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_event_get_seat</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_event_get_surface&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_surface</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gdk_event_get_surface</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_event_get_surface</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_event_get_time&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_time</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
-        <span class="kw">unsafe</span> { <span class="ident">ffi</span>::<span class="ident">gdk_event_get_time</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
+        <span class="kw">unsafe</span> { <span class="ident">ffi::gdk_event_get_time</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_event_triggers_context_menu&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">triggers_context_menu</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_event_triggers_context_menu</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_event_triggers_context_menu</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">Event</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+<span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">Event</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;Event&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;event_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">get_event_type</span>())
             .<span class="ident">field</span>(<span class="string">&quot;history&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">get_history</span>())
@@ -1042,25 +1042,25 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">Event</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+<span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">Event</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">write_fmt</span>(<span class="macro">format_args!</span>(<span class="string">&quot;{}&quot;</span>, <span class="self">self</span>))
     }
 }
 
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">EventKind</span>: <span class="ident">StaticType</span> <span class="op">+</span> <span class="ident">FromGlibPtrFull</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GdkEvent</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span> {
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">EventKind</span>: <span class="ident">StaticType</span> <span class="op">+</span> <span class="ident">FromGlibPtrFull</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkEvent</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span> {
     <span class="kw">fn</span> <span class="ident">event_types</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> [<span class="ident">EventType</span>];
 }
 
 <span class="macro">macro_rules!</span> <span class="ident">define_event</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span>:<span class="ident">ident</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ffi_type</span>:<span class="ident">path</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ffi_type_path</span>:<span class="ident">path</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">event_event_types</span>:<span class="ident">expr</span>) <span class="op">=</span><span class="op">&gt;</span> {
         <span class="comment">// Can&#39;t use get_type here as this is not a boxed type but another fundamental type</span>
-        <span class="ident">glib</span>::<span class="macro">wrapper!</span> {
+        <span class="macro">glib::wrapper!</span> {
             <span class="kw">pub</span> <span class="kw">struct</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">ffi_type</span><span class="op">&gt;</span>);
 
             <span class="kw">match</span> <span class="kw">fn</span> {
-                <span class="kw-2">ref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gdk_event_ref</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GdkEvent</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ffi_type</span>,
-                <span class="ident">unref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gdk_event_unref</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GdkEvent</span>),
+                <span class="kw-2">ref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi::gdk_event_ref</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkEvent</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ffi_type</span>,
+                <span class="ident">unref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi::gdk_event_unref</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkEvent</span>),
             }
         }
 
@@ -1076,10 +1076,10 @@
             }
         }
 
-        <span class="kw">impl</span> <span class="ident">std</span>::<span class="ident">ops</span>::<span class="ident">Deref</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
+        <span class="kw">impl</span> <span class="ident">std::ops::Deref</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
             <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">Event</span>;
 
-            <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="self">Self</span>::<span class="ident">Target</span> {
+            <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Target</span> {
                 <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">Event</span>) }
             }
         }
@@ -1091,15 +1091,15 @@
         }
 
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-        <span class="kw">impl</span> <span class="ident">FromGlibPtrFull</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GdkEvent</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
-            <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib_full</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi</span>::<span class="ident">GdkEvent</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="kw">impl</span> <span class="ident">FromGlibPtrFull</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkEvent</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
+            <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib_full</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkEvent</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
                 <span class="ident">from_glib_full</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">ffi_type</span>)
             }
         }
 
         <span class="kw">impl</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
             <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">upcast</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Event</span> {
-                <span class="kw">unsafe</span> { <span class="ident">mem</span>::<span class="ident">transmute</span>(<span class="self">self</span>) }
+                <span class="kw">unsafe</span> { <span class="ident">mem::transmute</span>(<span class="self">self</span>) }
             }
 
             <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">upcast_ref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">Event</span> {
@@ -1107,8 +1107,8 @@
             }
         }
 
-        <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
-            <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+        <span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
+            <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
                 <span class="ident">f</span>.<span class="ident">write_fmt</span>(<span class="macro">format_args!</span>(<span class="string">&quot;{}&quot;</span>, <span class="self">self</span>))
             }
         }
@@ -1119,30 +1119,30 @@
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
     <span class="macro">define_event!</span> {
         <span class="ident">CrossingEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">GdkCrossingEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">gdk_crossing_event_get_type</span>,
-        <span class="kw-2">&amp;</span>[<span class="ident">EventType</span>::<span class="ident">EnterNotify</span>, <span class="ident">EventType</span>::<span class="ident">LeaveNotify</span>]
+        <span class="ident">ffi::GdkCrossingEvent</span>,
+        <span class="ident">ffi::gdk_crossing_event_get_type</span>,
+        <span class="kw-2">&amp;</span>[<span class="ident">EventType::EnterNotify</span>, <span class="ident">EventType::LeaveNotify</span>]
     }
 
     <span class="kw">impl</span> <span class="ident">CrossingEvent</span> {
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_crossing_event_get_detail&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_detail</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">NotifyType</span> {
-            <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_crossing_event_get_detail</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+            <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_crossing_event_get_detail</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
         }
 
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_crossing_event_get_focus&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-            <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_crossing_event_get_focus</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+            <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_crossing_event_get_focus</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
         }
 
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_crossing_event_get_mode&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CrossingMode</span> {
-            <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_crossing_event_get_mode</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+            <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_crossing_event_get_mode</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">CrossingEvent</span> {
-        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">CrossingEvent</span> {
+        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
             <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;PadEvent&quot;</span>)
                 .<span class="ident">field</span>(<span class="string">&quot;detail&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">get_detail</span>())
                 .<span class="ident">field</span>(<span class="string">&quot;focus&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">get_focus</span>())
@@ -1157,20 +1157,20 @@
 
     <span class="macro">define_event!</span> {
         <span class="ident">ButtonEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">GdkButtonEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">gdk_button_event_get_type</span>,
-        <span class="kw-2">&amp;</span>[<span class="ident">EventType</span>::<span class="ident">ButtonPress</span>, <span class="ident">EventType</span>::<span class="ident">ButtonRelease</span>]
+        <span class="ident">ffi::GdkButtonEvent</span>,
+        <span class="ident">ffi::gdk_button_event_get_type</span>,
+        <span class="kw-2">&amp;</span>[<span class="ident">EventType::ButtonPress</span>, <span class="ident">EventType::ButtonRelease</span>]
     }
 
     <span class="kw">impl</span> <span class="ident">ButtonEvent</span> {
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_button_event_get_button&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_button</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
-            <span class="kw">unsafe</span> { <span class="ident">ffi</span>::<span class="ident">gdk_button_event_get_button</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
+            <span class="kw">unsafe</span> { <span class="ident">ffi::gdk_button_event_get_button</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">ButtonEvent</span> {
-        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">ButtonEvent</span> {
+        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
             <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;ButtonEvent&quot;</span>)
                 .<span class="ident">field</span>(<span class="string">&quot;button&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">get_button</span>())
                 .<span class="ident">finish</span>()
@@ -1183,13 +1183,13 @@
 
     <span class="macro">define_event!</span> {
         <span class="ident">DeleteEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">GdkDeleteEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">gdk_delete_event_get_type</span>,
-        <span class="kw-2">&amp;</span>[<span class="ident">EventType</span>::<span class="ident">Delete</span>]
+        <span class="ident">ffi::GdkDeleteEvent</span>,
+        <span class="ident">ffi::gdk_delete_event_get_type</span>,
+        <span class="kw-2">&amp;</span>[<span class="ident">EventType::Delete</span>]
     }
 
-    <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">DeleteEvent</span> {
-        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">DeleteEvent</span> {
+        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
             <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;DeleteEvent&quot;</span>)
         }
     }
@@ -1200,20 +1200,20 @@
 
     <span class="macro">define_event!</span> {
         <span class="ident">DNDEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">GdkDNDEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">gdk_dnd_event_get_type</span>,
-        <span class="kw-2">&amp;</span>[<span class="ident">EventType</span>::<span class="ident">DragEnter</span>, <span class="ident">EventType</span>::<span class="ident">DragLeave</span>, <span class="ident">EventType</span>::<span class="ident">DragMotion</span>, <span class="ident">EventType</span>::<span class="ident">DropStart</span>]
+        <span class="ident">ffi::GdkDNDEvent</span>,
+        <span class="ident">ffi::gdk_dnd_event_get_type</span>,
+        <span class="kw-2">&amp;</span>[<span class="ident">EventType::DragEnter</span>, <span class="ident">EventType::DragLeave</span>, <span class="ident">EventType::DragMotion</span>, <span class="ident">EventType::DropStart</span>]
     }
 
     <span class="kw">impl</span> <span class="ident">DNDEvent</span> {
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_dnd_event_get_drop&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_drop</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Drop</span><span class="op">&gt;</span> {
-            <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gdk_dnd_event_get_drop</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+            <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_dnd_event_get_drop</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">DNDEvent</span> {
-        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">DNDEvent</span> {
+        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
             <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;DNDEvent&quot;</span>)
                 .<span class="ident">field</span>(<span class="string">&quot;drop&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">get_drop</span>())
                 .<span class="ident">finish</span>()
@@ -1226,20 +1226,20 @@
 
     <span class="macro">define_event!</span> {
         <span class="ident">FocusEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">GdkFocusEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">gdk_focus_event_get_type</span>,
-        <span class="kw-2">&amp;</span>[<span class="ident">EventType</span>::<span class="ident">FocusChange</span>]
+        <span class="ident">ffi::GdkFocusEvent</span>,
+        <span class="ident">ffi::gdk_focus_event_get_type</span>,
+        <span class="kw-2">&amp;</span>[<span class="ident">EventType::FocusChange</span>]
     }
 
     <span class="kw">impl</span> <span class="ident">FocusEvent</span> {
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_focus_event_get_in&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_in</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-            <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_focus_event_get_in</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+            <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_focus_event_get_in</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">FocusEvent</span> {
-        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">FocusEvent</span> {
+        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
             <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;FocusEvent&quot;</span>)
                 .<span class="ident">field</span>(<span class="string">&quot;in&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">get_in</span>())
                 .<span class="ident">finish</span>()
@@ -1252,16 +1252,16 @@
 
     <span class="macro">define_event!</span> {
         <span class="ident">GrabBrokenEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">GdkGrabBrokenEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">gdk_grab_broken_event_get_type</span>,
-        <span class="kw-2">&amp;</span>[<span class="ident">EventType</span>::<span class="ident">GrabBroken</span>]
+        <span class="ident">ffi::GdkGrabBrokenEvent</span>,
+        <span class="ident">ffi::gdk_grab_broken_event_get_type</span>,
+        <span class="kw-2">&amp;</span>[<span class="ident">EventType::GrabBroken</span>]
     }
 
     <span class="kw">impl</span> <span class="ident">GrabBrokenEvent</span> {
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_grab_broken_event_get_grab_surface&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_grab_surface</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&gt;</span> {
             <span class="kw">unsafe</span> {
-                <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gdk_grab_broken_event_get_grab_surface</span>(
+                <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_grab_broken_event_get_grab_surface</span>(
                     <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 ))
             }
@@ -1270,15 +1270,15 @@
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_grab_broken_event_get_implicit&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_implicit</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
             <span class="kw">unsafe</span> {
-                <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_grab_broken_event_get_implicit</span>(
+                <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_grab_broken_event_get_implicit</span>(
                     <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 ))
             }
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">GrabBrokenEvent</span> {
-        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">GrabBrokenEvent</span> {
+        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
             <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GrabBrokenEvent&quot;</span>)
                 .<span class="ident">field</span>(<span class="string">&quot;grab_surface&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">get_grab_surface</span>())
                 .<span class="ident">field</span>(<span class="string">&quot;implicit&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">get_implicit</span>())
@@ -1291,16 +1291,16 @@
 
     <span class="macro">define_event!</span> {
         <span class="ident">KeyEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">GdkKeyEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">gdk_key_event_get_type</span>,
-        <span class="kw-2">&amp;</span>[<span class="ident">EventType</span>::<span class="ident">KeyPress</span>, <span class="ident">EventType</span>::<span class="ident">KeyRelease</span>]
+        <span class="ident">ffi::GdkKeyEvent</span>,
+        <span class="ident">ffi::gdk_key_event_get_type</span>,
+        <span class="kw-2">&amp;</span>[<span class="ident">EventType::KeyPress</span>, <span class="ident">EventType::KeyRelease</span>]
     }
 
     <span class="kw">impl</span> <span class="ident">KeyEvent</span> {
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_key_event_get_consumed_modifiers&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_consumed_modifiers</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ModifierType</span> {
             <span class="kw">unsafe</span> {
-                <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_key_event_get_consumed_modifiers</span>(
+                <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_key_event_get_consumed_modifiers</span>(
                     <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 ))
             }
@@ -1308,29 +1308,29 @@
 
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_key_event_get_keycode&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_keycode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
-            <span class="kw">unsafe</span> { <span class="ident">ffi</span>::<span class="ident">gdk_key_event_get_keycode</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
+            <span class="kw">unsafe</span> { <span class="ident">ffi::gdk_key_event_get_keycode</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
         }
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_key_event_get_keyval&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_keyval</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Key</span> {
-            <span class="kw">unsafe</span> { <span class="ident">ffi</span>::<span class="ident">gdk_key_event_get_keyval</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>).<span class="ident">into</span>() }
+            <span class="kw">unsafe</span> { <span class="ident">ffi::gdk_key_event_get_keyval</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>).<span class="ident">into</span>() }
         }
 
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_key_event_get_layout&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_layout</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
-            <span class="kw">unsafe</span> { <span class="ident">ffi</span>::<span class="ident">gdk_key_event_get_layout</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
+            <span class="kw">unsafe</span> { <span class="ident">ffi::gdk_key_event_get_layout</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
         }
 
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_key_event_get_level&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_level</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
-            <span class="kw">unsafe</span> { <span class="ident">ffi</span>::<span class="ident">gdk_key_event_get_level</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
+            <span class="kw">unsafe</span> { <span class="ident">ffi::gdk_key_event_get_level</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
         }
 
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_key_event_get_match&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_match</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">Key</span>, <span class="ident">ModifierType</span>)<span class="op">&gt;</span> {
             <span class="kw">unsafe</span> {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">keyval</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">modifiers</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-                <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_key_event_get_match</span>(
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">keyval</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">modifiers</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+                <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_key_event_get_match</span>(
                     <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                     <span class="ident">keyval</span>.<span class="ident">as_mut_ptr</span>(),
                     <span class="ident">modifiers</span>.<span class="ident">as_mut_ptr</span>(),
@@ -1347,13 +1347,13 @@
 
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_key_event_is_modifier&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_modifier</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-            <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_key_event_is_modifier</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+            <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_key_event_is_modifier</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
         }
 
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_key_event_matches&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">matches</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">keyval</span>: <span class="ident">Key</span>, <span class="ident">modifiers</span>: <span class="ident">ModifierType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">KeyMatch</span> {
             <span class="kw">unsafe</span> {
-                <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_key_event_matches</span>(
+                <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_key_event_matches</span>(
                     <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                     <span class="ident">keyval</span>.<span class="ident">to_glib</span>(),
                     <span class="ident">modifiers</span>.<span class="ident">to_glib</span>(),
@@ -1362,8 +1362,8 @@
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">KeyEvent</span> {
-        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">KeyEvent</span> {
+        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
             <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;KeyEvent&quot;</span>)
                 .<span class="ident">field</span>(<span class="string">&quot;consumed_modifiers&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">get_consumed_modifiers</span>())
                 .<span class="ident">field</span>(<span class="string">&quot;keycode&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">get_keycode</span>())
@@ -1382,13 +1382,13 @@
 
     <span class="macro">define_event!</span> {
         <span class="ident">MotionEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">GdkMotionEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">gdk_motion_event_get_type</span>,
-        <span class="kw-2">&amp;</span>[<span class="ident">EventType</span>::<span class="ident">MotionNotify</span>]
+        <span class="ident">ffi::GdkMotionEvent</span>,
+        <span class="ident">ffi::gdk_motion_event_get_type</span>,
+        <span class="kw-2">&amp;</span>[<span class="ident">EventType::MotionNotify</span>]
     }
 
-    <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">MotionEvent</span> {
-        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">MotionEvent</span> {
+        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
             <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;MotionEvent&quot;</span>)
         }
     }
@@ -1399,18 +1399,18 @@
 
     <span class="macro">define_event!</span> {
         <span class="ident">PadEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">GdkPadEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">gdk_pad_event_get_type</span>,
-        <span class="kw-2">&amp;</span>[<span class="ident">EventType</span>::<span class="ident">PadButtonPress</span>, <span class="ident">EventType</span>::<span class="ident">PadButtonRelease</span>, <span class="ident">EventType</span>::<span class="ident">PadRing</span>, <span class="ident">EventType</span>::<span class="ident">PadStrip</span>, <span class="ident">EventType</span>::<span class="ident">PadGroupMode</span>]
+        <span class="ident">ffi::GdkPadEvent</span>,
+        <span class="ident">ffi::gdk_pad_event_get_type</span>,
+        <span class="kw-2">&amp;</span>[<span class="ident">EventType::PadButtonPress</span>, <span class="ident">EventType::PadButtonRelease</span>, <span class="ident">EventType::PadRing</span>, <span class="ident">EventType::PadStrip</span>, <span class="ident">EventType::PadGroupMode</span>]
     }
 
     <span class="kw">impl</span> <span class="ident">PadEvent</span> {
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_pad_event_get_axis_value&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_axis_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">u32</span>, <span class="ident">f64</span>) {
             <span class="kw">unsafe</span> {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-                <span class="ident">ffi</span>::<span class="ident">gdk_pad_event_get_axis_value</span>(
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">index</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+                <span class="ident">ffi::gdk_pad_event_get_axis_value</span>(
                     <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                     <span class="ident">index</span>.<span class="ident">as_mut_ptr</span>(),
                     <span class="ident">value</span>.<span class="ident">as_mut_ptr</span>(),
@@ -1423,15 +1423,15 @@
 
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_pad_event_get_button&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_button</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
-            <span class="kw">unsafe</span> { <span class="ident">ffi</span>::<span class="ident">gdk_pad_event_get_button</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
+            <span class="kw">unsafe</span> { <span class="ident">ffi::gdk_pad_event_get_button</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
         }
 
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_pad_event_get_group_mode&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_group_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">u32</span>, <span class="ident">u32</span>) {
             <span class="kw">unsafe</span> {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">group</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">mode</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-                <span class="ident">ffi</span>::<span class="ident">gdk_pad_event_get_group_mode</span>(
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">group</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">mode</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+                <span class="ident">ffi::gdk_pad_event_get_group_mode</span>(
                     <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                     <span class="ident">group</span>.<span class="ident">as_mut_ptr</span>(),
                     <span class="ident">mode</span>.<span class="ident">as_mut_ptr</span>(),
@@ -1443,8 +1443,8 @@
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">PadEvent</span> {
-        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">PadEvent</span> {
+        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
             <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;PadEvent&quot;</span>)
                 .<span class="ident">field</span>(<span class="string">&quot;axis_value&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">get_axis_value</span>())
                 .<span class="ident">field</span>(<span class="string">&quot;button&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">get_button</span>())
@@ -1459,13 +1459,13 @@
 
     <span class="macro">define_event!</span> {
         <span class="ident">ProximityEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">GdkProximityEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">gdk_proximity_event_get_type</span>,
-        <span class="kw-2">&amp;</span>[<span class="ident">EventType</span>::<span class="ident">ProximityIn</span>, <span class="ident">EventType</span>::<span class="ident">ProximityOut</span>]
+        <span class="ident">ffi::GdkProximityEvent</span>,
+        <span class="ident">ffi::gdk_proximity_event_get_type</span>,
+        <span class="kw-2">&amp;</span>[<span class="ident">EventType::ProximityIn</span>, <span class="ident">EventType::ProximityOut</span>]
     }
 
-    <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">ProximityEvent</span> {
-        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">ProximityEvent</span> {
+        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
             <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;ProximityEvent&quot;</span>)
         }
     }
@@ -1476,18 +1476,18 @@
 
     <span class="macro">define_event!</span> {
         <span class="ident">ScrollEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">GdkScrollEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">gdk_scroll_event_get_type</span>,
-        <span class="kw-2">&amp;</span>[<span class="ident">EventType</span>::<span class="ident">Scroll</span>]
+        <span class="ident">ffi::GdkScrollEvent</span>,
+        <span class="ident">ffi::gdk_scroll_event_get_type</span>,
+        <span class="kw-2">&amp;</span>[<span class="ident">EventType::Scroll</span>]
     }
 
     <span class="kw">impl</span> <span class="ident">ScrollEvent</span> {
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_scroll_event_get_deltas&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_deltas</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">f64</span>, <span class="ident">f64</span>) {
             <span class="kw">unsafe</span> {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">delta_x</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">delta_y</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-                <span class="ident">ffi</span>::<span class="ident">gdk_scroll_event_get_deltas</span>(
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">delta_x</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">delta_y</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+                <span class="ident">ffi::gdk_scroll_event_get_deltas</span>(
                     <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                     <span class="ident">delta_x</span>.<span class="ident">as_mut_ptr</span>(),
                     <span class="ident">delta_y</span>.<span class="ident">as_mut_ptr</span>(),
@@ -1500,17 +1500,17 @@
 
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_scroll_event_get_direction&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_direction</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ScrollDirection</span> {
-            <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_scroll_event_get_direction</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+            <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_scroll_event_get_direction</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
         }
 
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_scroll_event_is_stop&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_stop</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-            <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_scroll_event_is_stop</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+            <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_scroll_event_is_stop</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">ScrollEvent</span> {
-        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">ScrollEvent</span> {
+        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
             <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;ScrollEvent&quot;</span>)
                 .<span class="ident">field</span>(<span class="string">&quot;deltas&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">get_deltas</span>())
                 .<span class="ident">field</span>(<span class="string">&quot;direction&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">get_direction</span>())
@@ -1525,24 +1525,24 @@
 
     <span class="macro">define_event!</span> {
         <span class="ident">TouchEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">GdkTouchEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">gdk_touch_event_get_type</span>,
-        <span class="kw-2">&amp;</span>[<span class="ident">EventType</span>::<span class="ident">TouchBegin</span>, <span class="ident">EventType</span>::<span class="ident">TouchUpdate</span>, <span class="ident">EventType</span>::<span class="ident">TouchEnd</span>, <span class="ident">EventType</span>::<span class="ident">TouchCancel</span>]
+        <span class="ident">ffi::GdkTouchEvent</span>,
+        <span class="ident">ffi::gdk_touch_event_get_type</span>,
+        <span class="kw-2">&amp;</span>[<span class="ident">EventType::TouchBegin</span>, <span class="ident">EventType::TouchUpdate</span>, <span class="ident">EventType::TouchEnd</span>, <span class="ident">EventType::TouchCancel</span>]
     }
 
     <span class="kw">impl</span> <span class="ident">TouchEvent</span> {
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_touch_event_get_emulating_pointer&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_emulating_pointer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
             <span class="kw">unsafe</span> {
-                <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_touch_event_get_emulating_pointer</span>(
+                <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_touch_event_get_emulating_pointer</span>(
                     <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 ))
             }
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">TouchEvent</span> {
-        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">TouchEvent</span> {
+        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
             <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;TouchEvent&quot;</span>)
                 .<span class="ident">field</span>(<span class="string">&quot;emulating_pointer&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">get_emulating_pointer</span>())
                 .<span class="ident">finish</span>()
@@ -1555,18 +1555,18 @@
 
     <span class="macro">define_event!</span> {
         <span class="ident">TouchpadEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">GdkTouchpadEvent</span>,
-        <span class="ident">ffi</span>::<span class="ident">gdk_touchpad_event_get_type</span>,
-        <span class="kw-2">&amp;</span>[<span class="ident">EventType</span>::<span class="ident">TouchpadSwipe</span>, <span class="ident">EventType</span>::<span class="ident">TouchpadPinch</span>]
+        <span class="ident">ffi::GdkTouchpadEvent</span>,
+        <span class="ident">ffi::gdk_touchpad_event_get_type</span>,
+        <span class="kw-2">&amp;</span>[<span class="ident">EventType::TouchpadSwipe</span>, <span class="ident">EventType::TouchpadPinch</span>]
     }
 
     <span class="kw">impl</span> <span class="ident">TouchpadEvent</span> {
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_touchpad_event_get_deltas&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_deltas</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">f64</span>, <span class="ident">f64</span>) {
             <span class="kw">unsafe</span> {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dx</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dy</span> <span class="op">=</span> <span class="ident">mem</span>::<span class="ident">MaybeUninit</span>::<span class="ident">uninit</span>();
-                <span class="ident">ffi</span>::<span class="ident">gdk_touchpad_event_get_deltas</span>(
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dx</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">dy</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+                <span class="ident">ffi::gdk_touchpad_event_get_deltas</span>(
                     <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                     <span class="ident">dx</span>.<span class="ident">as_mut_ptr</span>(),
                     <span class="ident">dy</span>.<span class="ident">as_mut_ptr</span>(),
@@ -1580,7 +1580,7 @@
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_touchpad_event_get_gesture_phase&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_gesture_phase</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TouchpadGesturePhase</span> {
             <span class="kw">unsafe</span> {
-                <span class="ident">from_glib</span>(<span class="ident">ffi</span>::<span class="ident">gdk_touchpad_event_get_gesture_phase</span>(
+                <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_touchpad_event_get_gesture_phase</span>(
                     <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 ))
             }
@@ -1588,22 +1588,22 @@
 
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_touchpad_event_get_n_fingers&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_n_fingers</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span> {
-            <span class="kw">unsafe</span> { <span class="ident">ffi</span>::<span class="ident">gdk_touchpad_event_get_n_fingers</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
+            <span class="kw">unsafe</span> { <span class="ident">ffi::gdk_touchpad_event_get_n_fingers</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
         }
 
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_touchpad_event_get_pinch_angle_delta&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_pinch_angle_delta</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
-            <span class="kw">unsafe</span> { <span class="ident">ffi</span>::<span class="ident">gdk_touchpad_event_get_pinch_angle_delta</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
+            <span class="kw">unsafe</span> { <span class="ident">ffi::gdk_touchpad_event_get_pinch_angle_delta</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
         }
 
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_touchpad_event_get_pinch_scale&quot;</span>)]</span>
         <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_pinch_scale</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
-            <span class="kw">unsafe</span> { <span class="ident">ffi</span>::<span class="ident">gdk_touchpad_event_get_pinch_scale</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
+            <span class="kw">unsafe</span> { <span class="ident">ffi::gdk_touchpad_event_get_pinch_scale</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
         }
     }
 
-    <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">TouchpadEvent</span> {
-        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+    <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">TouchpadEvent</span> {
+        <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
             <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;TouchpadEvent&quot;</span>)
                 .<span class="ident">field</span>(<span class="string">&quot;deltas&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">get_deltas</span>())
                 .<span class="ident">field</span>(<span class="string">&quot;gesture_phase&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">get_gesture_phase</span>())

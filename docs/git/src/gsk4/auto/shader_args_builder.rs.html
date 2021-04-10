@@ -188,18 +188,18 @@
 <span class="comment">// from gir-files (https://github.com/gtk-rs/gir-files.git)</span>
 <span class="comment">// DO NOT EDIT</span>
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">GLShader</span>;
-<span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::GLShader</span>;
+<span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 
-<span class="ident">glib</span>::<span class="macro">wrapper!</span> {
+<span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// An object to build the uniforms data for a `GLShader`.</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ShaderArgsBuilder</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GskShaderArgsBuilder</span><span class="op">&gt;</span>);
+    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ShaderArgsBuilder</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GskShaderArgsBuilder</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
-        <span class="kw-2">ref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gsk_shader_args_builder_ref</span>(<span class="ident">ptr</span>),
-        <span class="ident">unref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gsk_shader_args_builder_unref</span>(<span class="ident">ptr</span>),
-        <span class="ident">get_type</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gsk_shader_args_builder_get_type</span>(),
+        <span class="kw-2">ref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi::gsk_shader_args_builder_ref</span>(<span class="ident">ptr</span>),
+        <span class="ident">unref</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="ident">ptr</span><span class="op">|</span> <span class="ident">ffi::gsk_shader_args_builder_unref</span>(<span class="ident">ptr</span>),
+        <span class="ident">get_type</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ffi::gsk_shader_args_builder_get_type</span>(),
     }
 }
 
@@ -216,10 +216,10 @@
     <span class="doccomment">/// The newly allocated builder, free with</span>
     <span class="doccomment">///  `ShaderArgsBuilder::unref`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_shader_args_builder_new&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">shader</span>: <span class="kw-2">&amp;</span><span class="ident">GLShader</span>, <span class="ident">initial_values</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">glib</span>::<span class="ident">Bytes</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShaderArgsBuilder</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">shader</span>: <span class="kw-2">&amp;</span><span class="ident">GLShader</span>, <span class="ident">initial_values</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">glib::Bytes</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShaderArgsBuilder</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gsk_shader_args_builder_new</span>(
+            <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_shader_args_builder_new</span>(
                 <span class="ident">shader</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">initial_values</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             ))
@@ -236,9 +236,9 @@
     <span class="doccomment">/// the newly created `glib::Bytes`</span>
     <span class="doccomment">///  with all the args added to `self`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_shader_args_builder_free_to_args&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">free_to_args</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">Bytes</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">free_to_args</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::Bytes</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gsk_shader_args_builder_free_to_args</span>(
+            <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_shader_args_builder_free_to_args</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             ))
         }
@@ -253,7 +253,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_shader_args_builder_set_bool&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_bool</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">idx</span>: <span class="ident">i32</span>, <span class="ident">value</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gsk_shader_args_builder_set_bool</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">idx</span>, <span class="ident">value</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gsk_shader_args_builder_set_bool</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">idx</span>, <span class="ident">value</span>.<span class="ident">to_glib</span>());
         }
     }
 
@@ -266,7 +266,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_shader_args_builder_set_float&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_float</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">idx</span>: <span class="ident">i32</span>, <span class="ident">value</span>: <span class="ident">f32</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gsk_shader_args_builder_set_float</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">idx</span>, <span class="ident">value</span>);
+            <span class="ident">ffi::gsk_shader_args_builder_set_float</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">idx</span>, <span class="ident">value</span>);
         }
     }
 
@@ -279,7 +279,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_shader_args_builder_set_int&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_int</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">idx</span>: <span class="ident">i32</span>, <span class="ident">value</span>: <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gsk_shader_args_builder_set_int</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">idx</span>, <span class="ident">value</span>);
+            <span class="ident">ffi::gsk_shader_args_builder_set_int</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">idx</span>, <span class="ident">value</span>);
         }
     }
 
@@ -292,7 +292,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_shader_args_builder_set_uint&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_uint</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">idx</span>: <span class="ident">i32</span>, <span class="ident">value</span>: <span class="ident">u32</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gsk_shader_args_builder_set_uint</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">idx</span>, <span class="ident">value</span>);
+            <span class="ident">ffi::gsk_shader_args_builder_set_uint</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">idx</span>, <span class="ident">value</span>);
         }
     }
 
@@ -303,9 +303,9 @@
     <span class="doccomment">/// ## `value`</span>
     <span class="doccomment">/// value to set the uniform too</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_shader_args_builder_set_vec2&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_vec2</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">idx</span>: <span class="ident">i32</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">graphene</span>::<span class="ident">Vec2</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_vec2</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">idx</span>: <span class="ident">i32</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">graphene::Vec2</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gsk_shader_args_builder_set_vec2</span>(
+            <span class="ident">ffi::gsk_shader_args_builder_set_vec2</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">idx</span>,
                 <span class="ident">value</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -320,9 +320,9 @@
     <span class="doccomment">/// ## `value`</span>
     <span class="doccomment">/// value to set the uniform too</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_shader_args_builder_set_vec3&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_vec3</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">idx</span>: <span class="ident">i32</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">graphene</span>::<span class="ident">Vec3</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_vec3</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">idx</span>: <span class="ident">i32</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">graphene::Vec3</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gsk_shader_args_builder_set_vec3</span>(
+            <span class="ident">ffi::gsk_shader_args_builder_set_vec3</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">idx</span>,
                 <span class="ident">value</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -337,9 +337,9 @@
     <span class="doccomment">/// ## `value`</span>
     <span class="doccomment">/// value to set the uniform too</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_shader_args_builder_set_vec4&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_vec4</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">idx</span>: <span class="ident">i32</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">graphene</span>::<span class="ident">Vec4</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_vec4</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">idx</span>: <span class="ident">i32</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">graphene::Vec4</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi</span>::<span class="ident">gsk_shader_args_builder_set_vec4</span>(
+            <span class="ident">ffi::gsk_shader_args_builder_set_vec4</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">idx</span>,
                 <span class="ident">value</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -362,8 +362,8 @@
     <span class="doccomment">/// the newly allocated builder, free with</span>
     <span class="doccomment">///  `gsk_shader_args_builder_free`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_shader_args_builder_to_args&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_args</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib</span>::<span class="ident">Bytes</span><span class="op">&gt;</span> {
-        <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gsk_shader_args_builder_to_args</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_args</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::Bytes</span><span class="op">&gt;</span> {
+        <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_shader_args_builder_to_args</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 }
 </pre></div>

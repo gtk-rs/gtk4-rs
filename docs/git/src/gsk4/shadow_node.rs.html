@@ -76,13 +76,13 @@
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">IsRenderNode</span>, <span class="ident">RenderNode</span>, <span class="ident">RenderNodeType</span>, <span class="ident">Shadow</span>};
-<span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 
 <span class="macro">define_render_node!</span>(
     <span class="ident">ShadowNode</span>,
-    <span class="ident">ffi</span>::<span class="ident">GskShadowNode</span>,
-    <span class="ident">ffi</span>::<span class="ident">gsk_shadow_node_get_type</span>,
-    <span class="ident">RenderNodeType</span>::<span class="ident">ShadowNode</span>
+    <span class="ident">ffi::GskShadowNode</span>,
+    <span class="ident">ffi::gsk_shadow_node_get_type</span>,
+    <span class="ident">RenderNodeType::ShadowNode</span>
 );
 
 <span class="kw">impl</span> <span class="ident">ShadowNode</span> {
@@ -103,7 +103,7 @@
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">let</span> <span class="ident">n_shadows</span> <span class="op">=</span> <span class="ident">shadows</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">usize</span>;
         <span class="kw">unsafe</span> {
-            <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gsk_shadow_node_new</span>(
+            <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_shadow_node_new</span>(
                 <span class="ident">child</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">shadows</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">n_shadows</span>,
@@ -121,7 +121,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_shadow_node_get_shadow&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_shadow</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">i</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Shadow</span><span class="op">&gt;</span> {
         <span class="macro">assert!</span>(<span class="ident">i</span> <span class="op">&lt;</span> <span class="self">self</span>.<span class="ident">get_n_shadows</span>());
-        <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gsk_shadow_node_get_shadow</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">i</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gsk_shadow_node_get_shadow</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">i</span>)) }
     }
 
     <span class="doccomment">/// Retrieves the child `RenderNode` of the shadow `self`.</span>
@@ -131,7 +131,7 @@
     <span class="doccomment">/// the child render node</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_shadow_node_get_child&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RenderNode</span> {
-        <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi</span>::<span class="ident">gsk_shadow_node_get_child</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gsk_shadow_node_get_child</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
     <span class="doccomment">/// Retrieves the number of shadows in the `self`.</span>
@@ -141,7 +141,7 @@
     <span class="doccomment">/// the number of shadows.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_shadow_node_get_n_shadows&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_n_shadows</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
-        <span class="kw">unsafe</span> { <span class="ident">ffi</span>::<span class="ident">gsk_shadow_node_get_n_shadows</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
+        <span class="kw">unsafe</span> { <span class="ident">ffi::gsk_shadow_node_get_n_shadows</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 }
 </pre></div>

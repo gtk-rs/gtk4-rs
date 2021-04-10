@@ -59,22 +59,22 @@
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">ShortcutTrigger</span>;
-<span class="kw">use</span> <span class="ident">gdk</span>::<span class="ident">keys</span>::<span class="ident">Key</span>;
-<span class="kw">use</span> <span class="ident">glib</span>::<span class="ident">translate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::ShortcutTrigger</span>;
+<span class="kw">use</span> <span class="ident">gdk::keys::Key</span>;
+<span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">std::fmt</span>;
 
-<span class="ident">glib</span>::<span class="macro">wrapper!</span> {
+<span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// A `ShortcutTrigger` that triggers when a specific mnemonic</span>
     <span class="doccomment">/// is pressed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`ShortcutTriggerExt`](trait.ShortcutTriggerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`ShortcutTriggerExtManual`](prelude/trait.ShortcutTriggerExtManual.html)</span>
-    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MnemonicTrigger</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi</span>::<span class="ident">GtkMnemonicTrigger</span>, <span class="ident">ffi</span>::<span class="ident">GtkMnemonicTriggerClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">ShortcutTrigger</span>;
+    <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MnemonicTrigger</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkMnemonicTrigger</span>, <span class="ident">ffi::GtkMnemonicTriggerClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">ShortcutTrigger</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
-        <span class="ident">get_type</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ffi</span>::<span class="ident">gtk_mnemonic_trigger_get_type</span>(),
+        <span class="ident">get_type</span> <span class="op">=</span><span class="op">&gt;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">ffi::gtk_mnemonic_trigger_get_type</span>(),
     }
 }
 
@@ -93,7 +93,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_mnemonic_trigger_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">keyval</span>: <span class="ident">Key</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">MnemonicTrigger</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
-        <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi</span>::<span class="ident">gtk_mnemonic_trigger_new</span>(<span class="ident">keyval</span>.<span class="ident">to_glib</span>())) }
+        <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_mnemonic_trigger_new</span>(<span class="ident">keyval</span>.<span class="ident">to_glib</span>())) }
     }
 
     <span class="doccomment">/// Gets the keyval that must be pressed to succeed triggering `self`.</span>
@@ -103,12 +103,12 @@
     <span class="doccomment">/// the keyval</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_mnemonic_trigger_get_keyval&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_keyval</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Key</span> {
-        <span class="kw">unsafe</span> { <span class="ident">ffi</span>::<span class="ident">gtk_mnemonic_trigger_get_keyval</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>).<span class="ident">into</span>() }
+        <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_mnemonic_trigger_get_keyval</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>).<span class="ident">into</span>() }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">MnemonicTrigger</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+<span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">MnemonicTrigger</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
         <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="string">&quot;MnemonicTrigger&quot;</span>)
     }
 }
