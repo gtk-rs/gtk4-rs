@@ -118,7 +118,9 @@ pass <code>None</code> to get an empty label widget.</p>
 <p>The text of the label</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
 <p>the new <code>Label</code></p>
-</div><h4 id="method.with_mnemonic" class="method"><code>pub fn <a href="#method.with_mnemonic" class="fnname">with_mnemonic</a>(str: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;) -&gt; <a class="struct" href="../gtk4/struct.Label.html" title="struct gtk4::Label">Label</a></code><a class="srclink" href="../src/gtk4/auto/label.rs.html#209-215" title="goto source code">[src]</a></h4><h4 id="method.get_attributes" class="method"><code>pub fn <a href="#method.get_attributes" class="fnname">get_attributes</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/pango/auto/attr_list/struct.AttrList.html" title="struct pango::auto::attr_list::AttrList">AttrList</a>&gt;</code><a class="srclink" href="../src/gtk4/auto/label.rs.html#229-231" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the attribute list that was set on the label using
+</div><h4 id="method.with_mnemonic" class="method"><code>pub fn <a href="#method.with_mnemonic" class="fnname">with_mnemonic</a>(str: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;) -&gt; <a class="struct" href="../gtk4/struct.Label.html" title="struct gtk4::Label">Label</a></code><a class="srclink" href="../src/gtk4/auto/label.rs.html#209-215" title="goto source code">[src]</a></h4><h4 id="method.get_attributes" class="method"><code>pub fn <a href="#method.get_attributes" class="fnname">get_attributes</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/
+--extern-html-root-url=wayland_client=https://smithay.github.io/wayland-rs/wayland_client/
+--extern-html-root-url=x11=https://docs.rs/x11/latest/x11/pango/auto/attr_list/struct.AttrList.html" title="struct pango::auto::attr_list::AttrList">AttrList</a>&gt;</code><a class="srclink" href="../src/gtk4/auto/label.rs.html#229-231" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the attribute list that was set on the label using
 <code>Label::set_attributes</code>, if any. This function does
 not reflect attributes that come from the labels markup
 (see <code>Label::set_markup</code>). If you want to get the
@@ -136,7 +138,9 @@ or for use in a <code>Widget::query-tooltip</code> handler.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
 <p>the currently active URI or <code>None</code> if there is none.
 The string is owned by GTK and must not be freed or modified.</p>
-</div><h4 id="method.get_ellipsize" class="method"><code>pub fn <a href="#method.get_ellipsize" class="fnname">get_ellipsize</a>(&amp;self) -&gt; <a class="enum" href="https://gtk-rs.org/gtk-rs/pango/auto/enums/enum.EllipsizeMode.html" title="enum pango::auto::enums::EllipsizeMode">EllipsizeMode</a></code><a class="srclink" href="../src/gtk4/auto/label.rs.html#256-258" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the ellipsizing position of the label. See <code>Label::set_ellipsize</code>.</p>
+</div><h4 id="method.get_ellipsize" class="method"><code>pub fn <a href="#method.get_ellipsize" class="fnname">get_ellipsize</a>(&amp;self) -&gt; <a class="enum" href="https://gtk-rs.org/gtk-rs/
+--extern-html-root-url=wayland_client=https://smithay.github.io/wayland-rs/wayland_client/
+--extern-html-root-url=x11=https://docs.rs/x11/latest/x11/pango/auto/enums/enum.EllipsizeMode.html" title="enum pango::auto::enums::EllipsizeMode">EllipsizeMode</a></code><a class="srclink" href="../src/gtk4/auto/label.rs.html#256-258" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the ellipsizing position of the label. See <code>Label::set_ellipsize</code>.</p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
 <p><code>pango::EllipsizeMode</code></p>
 </div><h4 id="method.get_extra_menu" class="method"><code>pub fn <a href="#method.get_extra_menu" class="fnname">get_extra_menu</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/gio/auto/menu_model/struct.MenuModel.html" title="struct gio::auto::menu_model::MenuModel">MenuModel</a>&gt;</code><a class="srclink" href="../src/gtk4/auto/label.rs.html#266-268" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the menu model set with <code>Label::set_extra_menu</code>.</p>
@@ -151,7 +155,9 @@ underlines indicating mnemonics and Pango markup. (See
 <h1 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h1>
 <p>the text of the label widget. This string is
 owned by the widget and must not be modified or freed.</p>
-</div><h4 id="method.get_layout" class="method"><code>pub fn <a href="#method.get_layout" class="fnname">get_layout</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/pango/auto/layout/struct.Layout.html" title="struct pango::auto::layout::Layout">Layout</a></code><a class="srclink" href="../src/gtk4/auto/label.rs.html#304-306" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the <code>pango::Layout</code> used to display the label.
+</div><h4 id="method.get_layout" class="method"><code>pub fn <a href="#method.get_layout" class="fnname">get_layout</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/
+--extern-html-root-url=wayland_client=https://smithay.github.io/wayland-rs/wayland_client/
+--extern-html-root-url=x11=https://docs.rs/x11/latest/x11/pango/auto/layout/struct.Layout.html" title="struct pango::auto::layout::Layout">Layout</a></code><a class="srclink" href="../src/gtk4/auto/label.rs.html#304-306" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the <code>pango::Layout</code> used to display the label.
 The layout is useful to e.g. convert text positions to
 pixel positions, in combination with <code>Label::get_layout_offsets</code>.
 The returned layout is owned by the <code>label</code> so need not be
@@ -220,7 +226,9 @@ the mnemonic accelerator keys.</p>
 See <code>Label::set_wrap</code>.</p>
 <h1 id="returns-18" class="section-header"><a href="#returns-18">Returns</a></h1>
 <p><code>true</code> if the lines of the label are automatically wrapped.</p>
-</div><h4 id="method.get_wrap_mode" class="method"><code>pub fn <a href="#method.get_wrap_mode" class="fnname">get_wrap_mode</a>(&amp;self) -&gt; <a class="enum" href="https://gtk-rs.org/gtk-rs/pango/auto/enums/enum.WrapMode.html" title="enum pango::auto::enums::WrapMode">WrapMode</a></code><a class="srclink" href="../src/gtk4/auto/label.rs.html#483-485" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns line wrap mode used by the label. See <code>Label::set_wrap_mode</code>.</p>
+</div><h4 id="method.get_wrap_mode" class="method"><code>pub fn <a href="#method.get_wrap_mode" class="fnname">get_wrap_mode</a>(&amp;self) -&gt; <a class="enum" href="https://gtk-rs.org/gtk-rs/
+--extern-html-root-url=wayland_client=https://smithay.github.io/wayland-rs/wayland_client/
+--extern-html-root-url=x11=https://docs.rs/x11/latest/x11/pango/auto/enums/enum.WrapMode.html" title="enum pango::auto::enums::WrapMode">WrapMode</a></code><a class="srclink" href="../src/gtk4/auto/label.rs.html#483-485" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns line wrap mode used by the label. See <code>Label::set_wrap_mode</code>.</p>
 <h1 id="returns-19" class="section-header"><a href="#returns-19">Returns</a></h1>
 <p><code>true</code> if the lines of the label are automatically wrapped.</p>
 </div><h4 id="method.get_xalign" class="method"><code>pub fn <a href="#method.get_xalign" class="fnname">get_xalign</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a></code><a class="srclink" href="../src/gtk4/auto/label.rs.html#493-495" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the <code>Label:xalign</code> property for <code>label</code>.</p>
@@ -237,7 +245,9 @@ this function has no effect. If <code>start_offset</code> or
 <p>start offset (in characters not bytes)</p>
 <h2 id="end_offset" class="section-header"><a href="#end_offset"><code>end_offset</code></a></h2>
 <p>end offset (in characters not bytes)</p>
-</div><h4 id="method.set_attributes" class="method"><code>pub fn <a href="#method.set_attributes" class="fnname">set_attributes</a>(&amp;self, attrs: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs/pango/auto/attr_list/struct.AttrList.html" title="struct pango::auto::attr_list::AttrList">AttrList</a>&gt;)</code><a class="srclink" href="../src/gtk4/auto/label.rs.html#534-538" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets a <code>pango::AttrList</code>; the attributes in the list are applied to the
+</div><h4 id="method.set_attributes" class="method"><code>pub fn <a href="#method.set_attributes" class="fnname">set_attributes</a>(&amp;self, attrs: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs/
+--extern-html-root-url=wayland_client=https://smithay.github.io/wayland-rs/wayland_client/
+--extern-html-root-url=x11=https://docs.rs/x11/latest/x11/pango/auto/attr_list/struct.AttrList.html" title="struct pango::auto::attr_list::AttrList">AttrList</a>&gt;)</code><a class="srclink" href="../src/gtk4/auto/label.rs.html#534-538" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets a <code>pango::AttrList</code>; the attributes in the list are applied to the
 label text.</p>
 <p>The attributes set with this function will be applied
 and merged with any other attributes previously effected by way
@@ -247,7 +257,9 @@ attributes, if you must; know that the attributes will be applied
 to the label after the markup string is parsed.</p>
 <h2 id="attrs" class="section-header"><a href="#attrs"><code>attrs</code></a></h2>
 <p>a <code>pango::AttrList</code>, or <code>None</code></p>
-</div><h4 id="method.set_ellipsize" class="method"><code>pub fn <a href="#method.set_ellipsize" class="fnname">set_ellipsize</a>(&amp;self, mode: <a class="enum" href="https://gtk-rs.org/gtk-rs/pango/auto/enums/enum.EllipsizeMode.html" title="enum pango::auto::enums::EllipsizeMode">EllipsizeMode</a>)</code><a class="srclink" href="../src/gtk4/auto/label.rs.html#545-549" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the mode used to ellipsize (add an ellipsis: “…”) to the text
+</div><h4 id="method.set_ellipsize" class="method"><code>pub fn <a href="#method.set_ellipsize" class="fnname">set_ellipsize</a>(&amp;self, mode: <a class="enum" href="https://gtk-rs.org/gtk-rs/
+--extern-html-root-url=wayland_client=https://smithay.github.io/wayland-rs/wayland_client/
+--extern-html-root-url=x11=https://docs.rs/x11/latest/x11/pango/auto/enums/enum.EllipsizeMode.html" title="enum pango::auto::enums::EllipsizeMode">EllipsizeMode</a>)</code><a class="srclink" href="../src/gtk4/auto/label.rs.html#545-549" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the mode used to ellipsize (add an ellipsis: “…”) to the text
 if there is not enough space to render the entire string.</p>
 <h2 id="mode" class="section-header"><a href="#mode"><code>mode</code></a></h2>
 <p>a <code>pango::EllipsizeMode</code></p>
@@ -370,7 +382,9 @@ container’s size. For a label that wraps at a specific position,
 set the label’s width using <code>WidgetExt::set_size_request</code>.</p>
 <h2 id="wrap" class="section-header"><a href="#wrap"><code>wrap</code></a></h2>
 <p>the setting</p>
-</div><h4 id="method.set_wrap_mode" class="method"><code>pub fn <a href="#method.set_wrap_mode" class="fnname">set_wrap_mode</a>(&amp;self, wrap_mode: <a class="enum" href="https://gtk-rs.org/gtk-rs/pango/auto/enums/enum.WrapMode.html" title="enum pango::auto::enums::WrapMode">WrapMode</a>)</code><a class="srclink" href="../src/gtk4/auto/label.rs.html#807-811" title="goto source code">[src]</a></h4><div class="docblock"><p>If line wrapping is on (see <code>Label::set_wrap</code>) this controls how
+</div><h4 id="method.set_wrap_mode" class="method"><code>pub fn <a href="#method.set_wrap_mode" class="fnname">set_wrap_mode</a>(&amp;self, wrap_mode: <a class="enum" href="https://gtk-rs.org/gtk-rs/
+--extern-html-root-url=wayland_client=https://smithay.github.io/wayland-rs/wayland_client/
+--extern-html-root-url=x11=https://docs.rs/x11/latest/x11/pango/auto/enums/enum.WrapMode.html" title="enum pango::auto::enums::WrapMode">WrapMode</a>)</code><a class="srclink" href="../src/gtk4/auto/label.rs.html#807-811" title="goto source code">[src]</a></h4><div class="docblock"><p>If line wrapping is on (see <code>Label::set_wrap</code>) this controls how
 the line wrapping is done. The default is <code>pango::WrapMode::Word</code> which means
 wrap on word boundaries.</p>
 <h2 id="wrap_mode" class="section-header"><a href="#wrap_mode"><code>wrap_mode</code></a></h2>
