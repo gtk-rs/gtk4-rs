@@ -20,15 +20,15 @@ impl KeymapKey {
         }
     }
 
-    pub fn get_keycode(&self) -> u32 {
+    pub fn keycode(&self) -> u32 {
         self.keycode
     }
 
-    pub fn get_group(&self) -> i32 {
+    pub fn group(&self) -> i32 {
         self.group
     }
 
-    pub fn get_level(&self) -> i32 {
+    pub fn level(&self) -> i32 {
         self.level
     }
 }

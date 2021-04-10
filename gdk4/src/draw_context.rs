@@ -6,11 +6,11 @@ use glib::IsA;
 
 pub trait DrawContextExtManual: 'static {
     #[doc(alias = "gdk_draw_context_get_frame_region")]
-    fn get_frame_region(&self) -> Option<cairo::Region>;
+    fn frame_region(&self) -> Option<cairo::Region>;
 }
 
 impl<O: IsA<DrawContext>> DrawContextExtManual for O {
-    fn get_frame_region(&self) -> Option<cairo::Region> {
+    fn frame_region(&self) -> Option<cairo::Region> {
         unsafe {
             from_glib_none(
                 ffi::gdk_draw_context_get_frame_region(self.as_ref().to_glib_none().0)
