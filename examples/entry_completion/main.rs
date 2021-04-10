@@ -30,10 +30,8 @@ fn create_list_model() -> ListStore {
         },
     ];
     let store = ListStore::new(&col_types);
-    let col_indices: [u32; 1] = [0];
     for d in data.iter() {
-        let values: [&dyn ToValue; 1] = [&d.description];
-        store.set(&store.append(), &col_indices, &values);
+        store.set(&store.append(), &[(0, &d.description)]);
     }
     store
 }
