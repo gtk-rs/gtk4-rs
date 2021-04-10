@@ -7,8 +7,8 @@ use glib::translate::*;
 use glib::{Cast, Object};
 
 pub trait FilterImpl: FilterImplExt + ObjectImpl {
-    fn get_strictness(&self, filter: &Self::Type) -> FilterMatch {
-        self.parent_get_strictness(filter)
+    fn strictness(&self, filter: &Self::Type) -> FilterMatch {
+        self.parent_strictness(filter)
     }
     fn match_(&self, filter: &Self::Type, item: &Object) -> bool {
         self.parent_match_(filter, item)
@@ -16,12 +16,12 @@ pub trait FilterImpl: FilterImplExt + ObjectImpl {
 }
 
 pub trait FilterImplExt: ObjectSubclass {
-    fn parent_get_strictness(&self, filter: &Self::Type) -> FilterMatch;
+    fn parent_strictness(&self, filter: &Self::Type) -> FilterMatch;
     fn parent_match_(&self, filter: &Self::Type, item: &Object) -> bool;
 }
 
 impl<T: FilterImpl> FilterImplExt for T {
-    fn parent_get_strictness(&self, filter: &Self::Type) -> FilterMatch {
+    fn parent_strictness(&self, filter: &Self::Type) -> FilterMatch {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkFilterClass;
@@ -68,7 +68,7 @@ unsafe extern "C" fn filter_get_strictness<T: FilterImpl>(
     let imp = instance.get_impl();
     let wrap: Borrowed<Filter> = from_glib_borrow(ptr);
 
-    imp.get_strictness(wrap.unsafe_cast_ref()).to_glib()
+    imp.strictness(wrap.unsafe_cast_ref()).to_glib()
 }
 
 unsafe extern "C" fn filter_match<T: FilterImpl>(

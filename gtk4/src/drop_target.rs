@@ -21,7 +21,7 @@ impl DropTarget {
     }
 
     #[doc(alias = "gtk_drop_target_get_gtypes")]
-    pub fn get_gtypes(&self) -> Vec<Type> {
+    pub fn types(&self) -> Vec<Type> {
         unsafe {
             let mut n_types = std::mem::MaybeUninit::uninit();
             let types =

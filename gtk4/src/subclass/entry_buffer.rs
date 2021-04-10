@@ -16,12 +16,12 @@ pub trait EntryBufferImpl: EntryBufferImplExt + ObjectImpl {
         self.parent_deleted_text(entry_buffer, position, n_chars)
     }
 
-    fn get_length(&self, entry_buffer: &Self::Type) -> u32 {
-        self.parent_get_length(entry_buffer)
+    fn length(&self, entry_buffer: &Self::Type) -> u32 {
+        self.parent_length(entry_buffer)
     }
 
-    fn get_text(&self, entry_buffer: &Self::Type) -> GString {
-        self.parent_get_text(entry_buffer)
+    fn text(&self, entry_buffer: &Self::Type) -> GString {
+        self.parent_text(entry_buffer)
     }
     fn insert_text(&self, entry_buffer: &Self::Type, position: u32, chars: &str) -> u32 {
         self.parent_insert_text(entry_buffer, position, chars)
@@ -40,8 +40,8 @@ pub trait EntryBufferImplExt: ObjectSubclass {
         n_chars: Option<u32>,
     ) -> u32;
     fn parent_deleted_text(&self, entry_buffer: &Self::Type, position: u32, n_chars: Option<u32>);
-    fn parent_get_length(&self, entry_buffer: &Self::Type) -> u32;
-    fn parent_get_text(&self, entry_buffer: &Self::Type) -> GString;
+    fn parent_length(&self, entry_buffer: &Self::Type) -> u32;
+    fn parent_text(&self, entry_buffer: &Self::Type) -> GString;
     fn parent_insert_text(&self, entry_buffer: &Self::Type, position: u32, chars: &str) -> u32;
     fn parent_inserted_text(&self, entry_buffer: &Self::Type, position: u32, chars: &str);
 }
@@ -87,7 +87,7 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
         }
     }
 
-    fn parent_get_length(&self, entry_buffer: &Self::Type) -> u32 {
+    fn parent_length(&self, entry_buffer: &Self::Type) -> u32 {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkEntryBufferClass;
@@ -101,7 +101,7 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
         }
     }
 
-    fn parent_get_text(&self, entry_buffer: &Self::Type) -> GString {
+    fn parent_text(&self, entry_buffer: &Self::Type) -> GString {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkEntryBufferClass;
@@ -224,7 +224,7 @@ unsafe extern "C" fn entry_buffer_get_text<T: EntryBufferImpl>(
     let imp = instance.get_impl();
     let wrap: Borrowed<EntryBuffer> = from_glib_borrow(ptr);
 
-    let ret = imp.get_text(wrap.unsafe_cast_ref());
+    let ret = imp.text(wrap.unsafe_cast_ref());
     *n_bytes = ret.len();
     // Ensures that the returned text stays alive for as long as
     // the entry buffer instance
@@ -240,7 +240,7 @@ unsafe extern "C" fn entry_buffer_get_length<T: EntryBufferImpl>(
     let imp = instance.get_impl();
     let wrap: Borrowed<EntryBuffer> = from_glib_borrow(ptr);
 
-    imp.get_length(wrap.unsafe_cast_ref())
+    imp.length(wrap.unsafe_cast_ref())
 }
 
 unsafe extern "C" fn entry_buffer_insert_text<T: EntryBufferImpl>(

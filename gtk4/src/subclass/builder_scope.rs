@@ -6,22 +6,22 @@ use glib::translate::*;
 use glib::{Cast, GString};
 
 pub trait BuilderScopeImpl: ObjectImpl {
-    fn get_type_from_name(
+    fn type_from_name(
         &self,
         builder_scope: &Self::Type,
         builder: &Builder,
         type_name: &str,
     ) -> glib::Type {
-        self.parent_get_type_from_name(builder_scope, builder, type_name)
+        self.parent_type_from_name(builder_scope, builder, type_name)
     }
 
-    fn get_type_from_function(
+    fn type_from_function(
         &self,
         builder_scope: &Self::Type,
         builder: &Builder,
         function_name: &str,
     ) -> glib::Type {
-        self.parent_get_type_from_function(builder_scope, builder, function_name)
+        self.parent_type_from_function(builder_scope, builder, function_name)
     }
 
     fn create_closure(
@@ -35,14 +35,14 @@ pub trait BuilderScopeImpl: ObjectImpl {
 }
 
 pub trait BuilderScopeImplExt: ObjectSubclass {
-    fn parent_get_type_from_name(
+    fn parent_type_from_name(
         &self,
         builder_scope: &Self::Type,
         builder: &Builder,
         type_name: &str,
     ) -> glib::Type;
 
-    fn parent_get_type_from_function(
+    fn parent_type_from_function(
         &self,
         builder_scope: &Self::Type,
         builder: &Builder,
@@ -60,7 +60,7 @@ pub trait BuilderScopeImplExt: ObjectSubclass {
 }
 
 impl<B: BuilderScopeImpl> BuilderScopeImplExt for B {
-    fn parent_get_type_from_name(
+    fn parent_type_from_name(
         &self,
         builder_scope: &Self::Type,
         builder: &Builder,
@@ -86,7 +86,7 @@ impl<B: BuilderScopeImpl> BuilderScopeImplExt for B {
         }
     }
 
-    fn parent_get_type_from_function(
+    fn parent_type_from_function(
         &self,
         builder_scope: &Self::Type,
         builder: &Builder,
@@ -172,7 +172,7 @@ unsafe extern "C" fn builder_scope_get_type_from_name<T: BuilderScopeImpl>(
     let builder: Borrowed<Builder> = from_glib_borrow(builderptr);
     let type_name: Borrowed<GString> = from_glib_borrow(type_nameptr);
 
-    imp.get_type_from_name(
+    imp.type_from_name(
         from_glib_borrow::<_, BuilderScope>(builder_scope).unsafe_cast_ref(),
         &builder,
         &type_name,
@@ -190,7 +190,7 @@ unsafe extern "C" fn builder_scope_get_type_from_function<T: BuilderScopeImpl>(
     let builder: Borrowed<Builder> = from_glib_borrow(builderptr);
     let func_name: Borrowed<GString> = from_glib_borrow(func_nameptr);
 
-    imp.get_type_from_function(
+    imp.type_from_function(
         from_glib_borrow::<_, BuilderScope>(builder_scope).unsafe_cast_ref(),
         &builder,
         &func_name,

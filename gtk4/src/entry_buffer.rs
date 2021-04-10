@@ -23,16 +23,16 @@ pub trait EntryBufferExtManual: 'static {
     fn delete_text(&self, position: u16, n_chars: Option<u16>) -> u16;
 
     #[doc(alias = "gtk_entry_buffer_get_bytes")]
-    fn get_bytes(&self) -> usize;
+    fn bytes(&self) -> usize;
 
     #[doc(alias = "gtk_entry_buffer_get_length")]
-    fn get_length(&self) -> u16;
+    fn length(&self) -> u16;
 
     #[doc(alias = "gtk_entry_buffer_get_max_length")]
-    fn get_max_length(&self) -> Option<u16>;
+    fn max_length(&self) -> Option<u16>;
 
     #[doc(alias = "gtk_entry_buffer_get_text")]
-    fn get_text(&self) -> String;
+    fn text(&self) -> String;
 
     #[doc(alias = "gtk_entry_buffer_insert_text")]
     fn insert_text(&self, position: u16, chars: &str) -> u16;
@@ -66,11 +66,11 @@ impl<O: IsA<EntryBuffer>> EntryBufferExtManual for O {
         }
     }
 
-    fn get_bytes(&self) -> usize {
+    fn bytes(&self) -> usize {
         unsafe { ffi::gtk_entry_buffer_get_bytes(self.as_ref().to_glib_none().0) as usize }
     }
 
-    fn get_length(&self) -> u16 {
+    fn length(&self) -> u16 {
         unsafe {
             to_u16!(ffi::gtk_entry_buffer_get_length(
                 self.as_ref().to_glib_none().0
@@ -78,7 +78,7 @@ impl<O: IsA<EntryBuffer>> EntryBufferExtManual for O {
         }
     }
 
-    fn get_max_length(&self) -> Option<u16> {
+    fn max_length(&self) -> Option<u16> {
         unsafe {
             match ffi::gtk_entry_buffer_get_max_length(self.as_ref().to_glib_none().0) {
                 0 => None,
@@ -87,7 +87,7 @@ impl<O: IsA<EntryBuffer>> EntryBufferExtManual for O {
         }
     }
 
-    fn get_text(&self) -> String {
+    fn text(&self) -> String {
         unsafe {
             from_glib_none(ffi::gtk_entry_buffer_get_text(
                 self.as_ref().to_glib_none().0,

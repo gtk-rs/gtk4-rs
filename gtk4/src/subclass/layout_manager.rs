@@ -31,8 +31,8 @@ pub trait LayoutManagerImpl: LayoutManagerImplExt + ObjectImpl {
 
     fn layout_child_type() -> glib::Type;
 
-    fn get_request_mode(&self, layout_manager: &Self::Type, widget: &Widget) -> SizeRequestMode {
-        self.parent_get_request_mode(layout_manager, widget)
+    fn request_mode(&self, layout_manager: &Self::Type, widget: &Widget) -> SizeRequestMode {
+        self.parent_request_mode(layout_manager, widget)
     }
 
     fn measure(
@@ -84,7 +84,7 @@ pub trait LayoutManagerImplExt: ObjectSubclass {
         for_child: &Widget,
     ) -> LayoutChild;
 
-    fn parent_get_request_mode(
+    fn parent_request_mode(
         &self,
         layout_manager: &Self::Type,
         widget: &Widget,
@@ -157,7 +157,7 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
         }
     }
 
-    fn parent_get_request_mode(
+    fn parent_request_mode(
         &self,
         layout_manager: &Self::Type,
         widget: &Widget,
@@ -297,7 +297,7 @@ unsafe extern "C" fn layout_manager_get_request_mode<T: LayoutManagerImpl>(
     let wrap: Borrowed<LayoutManager> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(widgetptr);
 
-    imp.get_request_mode(wrap.unsafe_cast_ref(), &widget)
+    imp.request_mode(wrap.unsafe_cast_ref(), &widget)
         .to_glib()
 }
 

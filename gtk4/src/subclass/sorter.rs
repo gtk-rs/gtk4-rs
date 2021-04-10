@@ -10,14 +10,14 @@ pub trait SorterImpl: SorterImplExt + ObjectImpl {
     fn compare(&self, sorter: &Self::Type, item1: &Object, item2: &Object) -> Ordering {
         self.parent_compare(sorter, item1, item2)
     }
-    fn get_order(&self, sorter: &Self::Type) -> SorterOrder {
-        self.parent_get_order(sorter)
+    fn order(&self, sorter: &Self::Type) -> SorterOrder {
+        self.parent_order(sorter)
     }
 }
 
 pub trait SorterImplExt: ObjectSubclass {
     fn parent_compare(&self, sorter: &Self::Type, item1: &Object, item2: &Object) -> Ordering;
-    fn parent_get_order(&self, sorter: &Self::Type) -> SorterOrder;
+    fn parent_order(&self, sorter: &Self::Type) -> SorterOrder;
 }
 
 impl<T: SorterImpl> SorterImplExt for T {
@@ -36,7 +36,7 @@ impl<T: SorterImpl> SorterImplExt for T {
         }
     }
 
-    fn parent_get_order(&self, sorter: &Self::Type) -> SorterOrder {
+    fn parent_order(&self, sorter: &Self::Type) -> SorterOrder {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkSorterClass;
@@ -86,5 +86,5 @@ unsafe extern "C" fn sorter_get_order<T: SorterImpl>(
     let imp = instance.get_impl();
     let wrap: Borrowed<Sorter> = from_glib_borrow(ptr);
 
-    imp.get_order(wrap.unsafe_cast_ref()).to_glib()
+    imp.order(wrap.unsafe_cast_ref()).to_glib()
 }

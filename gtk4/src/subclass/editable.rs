@@ -21,12 +21,12 @@ pub trait EditableImpl: WidgetImpl {
         self.parent_changed(editable)
     }
 
-    fn get_text(&self, editable: &Self::Type) -> GString {
-        self.parent_get_text(editable)
+    fn text(&self, editable: &Self::Type) -> GString {
+        self.parent_text(editable)
     }
 
-    fn get_delegate(&self, editable: &Self::Type) -> Option<Editable> {
-        self.parent_get_delegate(editable)
+    fn delegate(&self, editable: &Self::Type) -> Option<Editable> {
+        self.parent_delegate(editable)
     }
 
     fn do_insert_text(&self, editable: &Self::Type, text: &str, length: i32, position: &mut i32) {
@@ -37,8 +37,8 @@ pub trait EditableImpl: WidgetImpl {
         self.parent_do_delete_text(editable, start_position, end_position)
     }
 
-    fn get_selection_bounds(&self, editable: &Self::Type) -> Option<(i32, i32)> {
-        self.parent_get_selection_bounds(editable)
+    fn selection_bounds(&self, editable: &Self::Type) -> Option<(i32, i32)> {
+        self.parent_selection_bounds(editable)
     }
 
     fn set_selection_bounds(&self, editable: &Self::Type, start_position: i32, end_position: i32) {
@@ -47,8 +47,8 @@ pub trait EditableImpl: WidgetImpl {
 }
 
 pub trait EditableImplExt: ObjectSubclass {
-    #[doc(alias = "gtk_editable_delegate_get_property")]
-    fn delegate_get_property(
+    #[doc(alias = "gtk_editable_delegate_property")]
+    fn delegate_property(
         &self,
         editable: &Self::Type,
         prop_id: usize,
@@ -105,15 +105,15 @@ pub trait EditableImplExt: ObjectSubclass {
         position: &mut i32,
     );
     fn parent_do_delete_text(&self, editable: &Self::Type, start_position: i32, end_position: i32);
-    fn parent_get_delegate(&self, editable: &Self::Type) -> Option<Editable>;
-    fn parent_get_selection_bounds(&self, editable: &Self::Type) -> Option<(i32, i32)>;
+    fn parent_delegate(&self, editable: &Self::Type) -> Option<Editable>;
+    fn parent_selection_bounds(&self, editable: &Self::Type) -> Option<(i32, i32)>;
     fn parent_set_selection_bounds(
         &self,
         editable: &Self::Type,
         start_position: i32,
         end_position: i32,
     );
-    fn parent_get_text(&self, editable: &Self::Type) -> GString;
+    fn parent_text(&self, editable: &Self::Type) -> GString;
 }
 
 impl<T: EditableImpl> EditableImplExt for T {
@@ -156,7 +156,7 @@ impl<T: EditableImpl> EditableImplExt for T {
         }
     }
 
-    fn parent_get_text(&self, editable: &Self::Type) -> GString {
+    fn parent_text(&self, editable: &Self::Type) -> GString {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().get_parent_interface::<Editable>()
@@ -171,7 +171,7 @@ impl<T: EditableImpl> EditableImplExt for T {
         }
     }
 
-    fn parent_get_delegate(&self, editable: &Self::Type) -> Option<Editable> {
+    fn parent_delegate(&self, editable: &Self::Type) -> Option<Editable> {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().get_parent_interface::<Editable>()
@@ -236,7 +236,7 @@ impl<T: EditableImpl> EditableImplExt for T {
         }
     }
 
-    fn parent_get_selection_bounds(&self, editable: &Self::Type) -> Option<(i32, i32)> {
+    fn parent_selection_bounds(&self, editable: &Self::Type) -> Option<(i32, i32)> {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().get_parent_interface::<Editable>()
@@ -358,7 +358,7 @@ unsafe extern "C" fn editable_get_text<T: EditableImpl>(
     let instance = &*(editable as *mut T::Instance);
     let imp = instance.get_impl();
 
-    imp.get_text(from_glib_borrow::<_, Editable>(editable).unsafe_cast_ref())
+    imp.text(from_glib_borrow::<_, Editable>(editable).unsafe_cast_ref())
         .to_glib_full()
 }
 
@@ -373,7 +373,7 @@ unsafe extern "C" fn editable_get_delegate<T: EditableImpl>(
 
     let wrap = from_glib_borrow::<_, Editable>(editable);
 
-    let delegate = imp.get_delegate(wrap.unsafe_cast_ref());
+    let delegate = imp.delegate(wrap.unsafe_cast_ref());
 
     match wrap.get_qdata::<Option<Editable>>(*EDITABLE_GET_DELEGATE_QUARK) {
         Some(delegate_data) => {
@@ -429,7 +429,7 @@ unsafe extern "C" fn editable_get_selection_bounds<T: EditableImpl>(
     let imp = instance.get_impl();
 
     if let Some((start_pos, end_pos)) =
-        imp.get_selection_bounds(from_glib_borrow::<_, Editable>(editable).unsafe_cast_ref())
+        imp.selection_bounds(from_glib_borrow::<_, Editable>(editable).unsafe_cast_ref())
     {
         if !start_position.is_null() {
             *start_position = start_pos;

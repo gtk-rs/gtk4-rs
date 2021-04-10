@@ -6,8 +6,8 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait SelectionModelImpl: ListModelImpl {
-    fn get_selection_in_range(&self, model: &Self::Type, position: u32, n_items: u32) -> Bitset {
-        self.parent_get_selection_in_range(model, position, n_items)
+    fn selection_in_range(&self, model: &Self::Type, position: u32, n_items: u32) -> Bitset {
+        self.parent_selection_in_range(model, position, n_items)
     }
 
     fn is_selected(&self, model: &Self::Type, position: u32) -> bool {
@@ -50,12 +50,7 @@ pub trait SelectionModelImpl: ListModelImpl {
 }
 
 pub trait SelectionModelImplExt: ObjectSubclass {
-    fn parent_get_selection_in_range(
-        &self,
-        model: &Self::Type,
-        position: u32,
-        n_items: u32,
-    ) -> Bitset;
+    fn parent_selection_in_range(&self, model: &Self::Type, position: u32, n_items: u32) -> Bitset;
     fn parent_is_selected(&self, model: &Self::Type, position: u32) -> bool;
     fn parent_select_all(&self, model: &Self::Type) -> bool;
     fn parent_select_item(&self, model: &Self::Type, position: u32, unselect_rest: bool) -> bool;
@@ -73,12 +68,7 @@ pub trait SelectionModelImplExt: ObjectSubclass {
 }
 
 impl<T: SelectionModelImpl> SelectionModelImplExt for T {
-    fn parent_get_selection_in_range(
-        &self,
-        model: &Self::Type,
-        position: u32,
-        n_items: u32,
-    ) -> Bitset {
+    fn parent_selection_in_range(&self, model: &Self::Type, position: u32, n_items: u32) -> Bitset {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().get_parent_interface::<SelectionModel>()
@@ -268,7 +258,7 @@ unsafe extern "C" fn model_get_selection_in_range<T: SelectionModelImpl>(
     let instance = &*(model as *mut T::Instance);
     let imp = instance.get_impl();
 
-    imp.get_selection_in_range(
+    imp.selection_in_range(
         from_glib_borrow::<_, SelectionModel>(model).unsafe_cast_ref(),
         position,
         n_items,

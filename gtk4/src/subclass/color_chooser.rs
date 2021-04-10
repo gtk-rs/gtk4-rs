@@ -21,7 +21,7 @@ pub trait ColorChooserImpl: ObjectImpl {
         self.parent_color_activated(color_chooser, rgba);
     }
 
-    fn get_rgba(&self, color_chooser: &Self::Type) -> RGBA;
+    fn rgba(&self, color_chooser: &Self::Type) -> RGBA;
     fn set_rgba(&self, color_chooser: &Self::Type, rgba: RGBA);
 }
 
@@ -34,7 +34,7 @@ pub trait ColorChooserImplExt: ObjectSubclass {
         colors: &[RGBA],
     );
     fn parent_color_activated(&self, color_chooser: &Self::Type, rgba: RGBA);
-    fn parent_get_rgba(&self, color_chooser: &Self::Type) -> RGBA;
+    fn parent_rgba(&self, color_chooser: &Self::Type) -> RGBA;
     fn parent_set_rgba(&self, color_chooser: &Self::Type, rgba: RGBA);
 }
 
@@ -87,7 +87,7 @@ impl<T: ColorChooserImpl> ColorChooserImplExt for T {
         }
     }
 
-    fn parent_get_rgba(&self, color_chooser: &Self::Type) -> RGBA {
+    fn parent_rgba(&self, color_chooser: &Self::Type) -> RGBA {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().get_parent_interface::<ColorChooser>()
@@ -172,7 +172,7 @@ unsafe extern "C" fn color_chooser_color_activated<T: ColorChooserImpl>(
     )
 }
 
-unsafe extern "C" fn color_chooser_get_rgba<T: ColorChooserImpl>(
+unsafe extern "C" fn color_chooser_rgba<T: ColorChooserImpl>(
     color_chooser: *mut ffi::GtkColorChooser,
     rgbaptr: *const gdk::ffi::GdkRGBA,
 ) {

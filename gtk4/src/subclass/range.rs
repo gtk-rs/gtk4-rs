@@ -16,8 +16,8 @@ pub trait RangeImpl: RangeImplExt + WidgetImpl {
         self.parent_change_value(range, scroll_type, new_value)
     }
 
-    fn get_range_border(&self, range: &Self::Type) -> Border {
-        self.parent_get_range_border(range)
+    fn range_border(&self, range: &Self::Type) -> Border {
+        self.parent_range_border(range)
     }
 
     fn move_slider(&self, range: &Self::Type, scroll_type: ScrollType) {
@@ -37,7 +37,7 @@ pub trait RangeImplExt: ObjectSubclass {
         scroll_type: ScrollType,
         new_value: f64,
     ) -> bool;
-    fn parent_get_range_border(&self, range: &Self::Type) -> Border;
+    fn parent_range_border(&self, range: &Self::Type) -> Border;
     fn parent_move_slider(&self, range: &Self::Type, scroll_type: ScrollType);
     fn parent_value_changed(&self, range: &Self::Type);
 }
@@ -73,7 +73,7 @@ impl<T: RangeImpl> RangeImplExt for T {
         }
     }
 
-    fn parent_get_range_border(&self, range: &Self::Type) -> Border {
+    fn parent_range_border(&self, range: &Self::Type) -> Border {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkRangeClass;
@@ -158,7 +158,7 @@ unsafe extern "C" fn range_get_range_border<T: RangeImpl>(
     let imp = instance.get_impl();
     let wrap: Borrowed<Range> = from_glib_borrow(ptr);
 
-    let border = imp.get_range_border(wrap.unsafe_cast_ref());
+    let border = imp.range_border(wrap.unsafe_cast_ref());
     *borderptr = *border.to_glib_none().0;
 }
 

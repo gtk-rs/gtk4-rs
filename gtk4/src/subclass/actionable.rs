@@ -7,21 +7,21 @@ use glib::translate::*;
 use glib::{Cast, GString, Variant};
 
 pub trait ActionableImpl: WidgetImpl {
-    fn get_action_name(&self, actionable: &Self::Type) -> Option<GString>;
-    fn get_action_target_value(&self, actionable: &Self::Type) -> Option<Variant>;
+    fn action_name(&self, actionable: &Self::Type) -> Option<GString>;
+    fn action_target_value(&self, actionable: &Self::Type) -> Option<Variant>;
     fn set_action_name(&self, actionable: &Self::Type, name: Option<&str>);
     fn set_action_target_value(&self, actionable: &Self::Type, value: Option<&Variant>);
 }
 
 pub trait ActionableImplExt: ObjectSubclass {
-    fn parent_get_action_name(&self, actionable: &Self::Type) -> Option<GString>;
-    fn parent_get_action_target_value(&self, actionable: &Self::Type) -> Option<Variant>;
+    fn parent_action_name(&self, actionable: &Self::Type) -> Option<GString>;
+    fn parent_action_target_value(&self, actionable: &Self::Type) -> Option<Variant>;
     fn parent_set_action_name(&self, actionable: &Self::Type, name: Option<&str>);
     fn parent_set_action_target_value(&self, actionable: &Self::Type, value: Option<&Variant>);
 }
 
 impl<T: ActionableImpl> ActionableImplExt for T {
-    fn parent_get_action_name(&self, actionable: &Self::Type) -> Option<GString> {
+    fn parent_action_name(&self, actionable: &Self::Type) -> Option<GString> {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().get_parent_interface::<Actionable>()
@@ -37,7 +37,7 @@ impl<T: ActionableImpl> ActionableImplExt for T {
         }
     }
 
-    fn parent_get_action_target_value(&self, actionable: &Self::Type) -> Option<Variant> {
+    fn parent_action_target_value(&self, actionable: &Self::Type) -> Option<Variant> {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().get_parent_interface::<Actionable>()
@@ -107,7 +107,7 @@ unsafe extern "C" fn actionable_get_action_name<T: ActionableImpl>(
     let instance = &*(actionable as *mut T::Instance);
     let imp = instance.get_impl();
 
-    imp.get_action_name(from_glib_borrow::<_, Actionable>(actionable).unsafe_cast_ref())
+    imp.action_name(from_glib_borrow::<_, Actionable>(actionable).unsafe_cast_ref())
         .to_glib_full()
 }
 
@@ -117,7 +117,7 @@ unsafe extern "C" fn actionable_get_action_target_value<T: ActionableImpl>(
     let instance = &*(actionable as *mut T::Instance);
     let imp = instance.get_impl();
 
-    imp.get_action_target_value(from_glib_borrow::<_, Actionable>(actionable).unsafe_cast_ref())
+    imp.action_target_value(from_glib_borrow::<_, Actionable>(actionable).unsafe_cast_ref())
         .to_glib_full()
 }
 

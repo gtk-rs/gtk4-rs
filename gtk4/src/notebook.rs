@@ -22,13 +22,13 @@ pub trait NotebookExtManual: 'static {
         V: IsA<Widget>;
 
     #[doc(alias = "gtk_notebook_get_current_page")]
-    fn get_current_page(&self) -> Option<u32>;
+    fn current_page(&self) -> Option<u32>;
 
     #[doc(alias = "gtk_notebook_get_n_pages")]
-    fn get_n_pages(&self) -> u32;
+    fn n_pages(&self) -> u32;
 
     #[doc(alias = "gtk_notebook_get_nth_page")]
-    fn get_nth_page(&self, page_num: Option<u32>) -> Option<Widget>;
+    fn nth_page(&self, page_num: Option<u32>) -> Option<Widget>;
 
     #[doc(alias = "gtk_notebook_insert_page")]
     fn insert_page<T, U>(&self, child: &T, tab_label: Option<&U>, position: Option<u32>) -> u32
@@ -116,7 +116,7 @@ impl<O: IsA<Notebook>> NotebookExtManual for O {
         }
     }
 
-    fn get_current_page(&self) -> Option<u32> {
+    fn current_page(&self) -> Option<u32> {
         unsafe {
             let ret = ffi::gtk_notebook_get_current_page(self.as_ref().to_glib_none().0);
             if ret >= 0 {
@@ -127,7 +127,7 @@ impl<O: IsA<Notebook>> NotebookExtManual for O {
         }
     }
 
-    fn get_n_pages(&self) -> u32 {
+    fn n_pages(&self) -> u32 {
         unsafe {
             let ret = ffi::gtk_notebook_get_n_pages(self.as_ref().to_glib_none().0);
             assert!(ret >= 0);
@@ -135,7 +135,7 @@ impl<O: IsA<Notebook>> NotebookExtManual for O {
         }
     }
 
-    fn get_nth_page(&self, page_num: Option<u32>) -> Option<Widget> {
+    fn nth_page(&self, page_num: Option<u32>) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_notebook_get_nth_page(
                 self.as_ref().to_glib_none().0,

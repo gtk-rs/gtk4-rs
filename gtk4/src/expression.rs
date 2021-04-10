@@ -38,7 +38,7 @@ pub trait IsExpression:
 impl Expression {
     pub fn downcast<E: IsExpression>(self) -> Result<E, Expression> {
         unsafe {
-            if self.get_type() == E::static_type() {
+            if self.type_() == E::static_type() {
                 Ok(from_glib_full(self.to_glib_full()))
             } else {
                 Err(self)
@@ -48,14 +48,14 @@ impl Expression {
 
     pub fn downcast_ref<E: IsExpression>(&self) -> Option<&E> {
         unsafe {
-            if self.get_type() == E::static_type() {
+            if self.type_() == E::static_type() {
                 Some(&*(self as *const Expression as *const E))
             } else {
                 None
             }
         }
     }
-    pub fn get_type(&self) -> Type {
+    pub fn type_(&self) -> Type {
         unsafe {
             let ptr = self.to_glib_none().0;
 
@@ -64,7 +64,7 @@ impl Expression {
     }
 
     #[doc(alias = "gtk_expression_get_value_type")]
-    pub fn get_value_type(&self) -> Type {
+    pub fn value_type(&self) -> Type {
         assert_initialized_main_thread!();
         unsafe { from_glib(ffi::gtk_expression_get_value_type(self.to_glib_none().0)) }
     }
@@ -327,7 +327,7 @@ impl PropertyExpression {
     }
 
     #[doc(alias = "gtk_property_expression_get_expression")]
-    pub fn get_expression(&self) -> Option<Expression> {
+    pub fn expression(&self) -> Option<Expression> {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(ffi::gtk_property_expression_get_expression(
@@ -337,7 +337,7 @@ impl PropertyExpression {
     }
 
     #[doc(alias = "gtk_property_expression_get_pspec")]
-    pub fn get_pspec(&self) -> glib::ParamSpec {
+    pub fn pspec(&self) -> glib::ParamSpec {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(ffi::gtk_property_expression_get_pspec(
@@ -365,7 +365,7 @@ impl ObjectExpression {
     }
 
     #[doc(alias = "gtk_object_expression_get_object")]
-    pub fn get_object(&self) -> Option<Object> {
+    pub fn object(&self) -> Option<Object> {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_object_expression_get_object(self.to_glib_none().0)) }
     }
@@ -437,7 +437,7 @@ impl ConstantExpression {
     }
 
     #[doc(alias = "gtk_constant_expression_get_value")]
-    pub fn get_value(&self) -> Value {
+    pub fn value(&self) -> Value {
         unsafe {
             from_glib_none(ffi::gtk_constant_expression_get_value(
                 self.to_glib_none().0,
