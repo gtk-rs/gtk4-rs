@@ -222,9 +222,8 @@ unsafe extern "C" fn builder_scope_create_closure<T: BuilderScopeImpl>(
 
     match ret {
         Ok(closure) => closure.to_glib_full(),
-        Err(err) => {
-            let mut err = std::mem::ManuallyDrop::new(err);
-            *errorptr = err.to_glib_none_mut().0;
+        Err(e) => {
+            *errorptr = e.into_raw();
             std::ptr::null_mut()
         }
     }
