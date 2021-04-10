@@ -16,4 +16,6 @@ mod rt;
 #[allow(clippy::upper_case_acronyms)]
 mod auto;
 
+mod x11_display;
+
 pub use auto::*;
