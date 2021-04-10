@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["NONE_WAYLAND_SURFACE",""]],"struct":[["WaylandDevice","Implements"],["WaylandDisplay","Implements"],["WaylandGLContext","Implements"],["WaylandMonitor","Implements"],["WaylandPopup","Implements"],["WaylandSeat","Implements"],["WaylandSurface","Implements"],["WaylandToplevel","Implements"]]});
