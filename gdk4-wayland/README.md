@@ -8,9 +8,9 @@ __Required Rust version__: 1.48+
 
 ## Documentation
 
-- [Stable Version] TODO
-- [Development Version](https://gtk-rs.org/gtk4-rs/docs/git/gdk4_wayland/)
-- [The C API](https://docs.gtk.org/gdk4-wayland/)
+- [Rust API - Stable] TODO
+- [Rust API - Development](https://gtk-rs.org/gtk4-rs/git/docs/gdk4_wayland/)
+- [C API](https://docs.gtk.org/gdk4-wayland/)
 - [GTK Installation instructions](https://www.gtk.org/docs/installations/)
 
 

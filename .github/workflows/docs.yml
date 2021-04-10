@@ -46,4 +46,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./target/doc/
           keep_files: false
-          destination_dir: docs/git
+          destination_dir: git/docs

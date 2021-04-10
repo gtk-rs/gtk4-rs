@@ -1,7 +1,7 @@
 # The GTK-Rust Book
 
 - [Stable] TODO
-- [Development](https://gtk-rs.org/gtk4-rs/book/git/index.html)
+- [Development](https://gtk-rs.org/gtk4-rs/git/book)
 
 ## Build instructions
 
