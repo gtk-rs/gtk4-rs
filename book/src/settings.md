@@ -2,7 +2,7 @@
 
 We have now learned multiple ways to handle states.
 However, every time we close the application all of it is gone.
-Let us learn how to use `GSettings` by storing the state of a [`Switch`](https://gtk-rs.org/gtk4-rs/gtk4/struct.Switch.html) in it.
+Let us learn how to use `GSettings` by storing the state of a [`Switch`](../docs/gtk4/struct.Switch.html) in it.
 
 At the very beginning we have to create a `GSchema` xml file in order to describe the kind of data our application plans to store in the settings.
 

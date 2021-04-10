@@ -39,7 +39,7 @@ In project chapters, we will build small programs together, applying what you ha
 
 The book strives to explain essential GTK concepts paired with practical examples.
 However, if a concept can be better conveyed with a less practical example, we took this path most of the time.
-If you are interested in contained and useful examples, we refer you to the corresponding [section](https://github.com/gtk-rs/gtk4-rs/tree/master/examples) of gtk4-rs.
+If you are interested in contained and useful examples, we refer you to the corresponding [section](https://github.com/gtk-rs/gtk4-rs/tree/master/examples) of `gtk4-rs`' repository.
 
 ## License
 
