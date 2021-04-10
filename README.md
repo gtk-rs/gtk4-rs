@@ -20,7 +20,9 @@ Those are common with the GTK 3 and GStreamer bindings and are part of the [gtk-
 
 For more information about each crate, please refer to their `README.md` file in their directory.
 
-__Required Rust version__: 1.48+
+## Minimum supported Rust version
+
+Currently, the minimum supported Rust version is `1.48.0`.
 
 ## Documentation
 

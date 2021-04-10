@@ -4,7 +4,9 @@
 
 Rust bindings of __GSK 4__, part of [gtk4-rs](https://github.com/gtk-rs/gtk4-rs/).
 
-__Required Rust version__: 1.48+.
+## Minimum supported Rust version
+
+Currently, the minimum supported Rust version is `1.48.0`.
 
 ## Documentation
 
