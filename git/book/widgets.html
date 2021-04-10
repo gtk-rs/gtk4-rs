@@ -184,11 +184,11 @@ The inheritance tree of a <code>Button</code> looks like this:</p>
 </code></pre>
 <p>The <a href="https://docs.gtk.org/gtk4/class.Button.html">GTK documentation</a> also tells us that <code>Button</code> implements the interfaces <code>GtkAccessible</code>, <code>GtkActionable</code>, <code>GtkBuildable</code>, <code>GtkConstraintTarget</code>.</p>
 <p>Now let us compare that with the corresponding <code>Button</code> struct in <code>gtk-rs</code>.
-The <a href="https://gtk-rs.org/gtk4-rs/gtk4/struct.Button.html#implements">gtk-rs documentation</a> tells us which methods and traits it implements.
+The <a href="../docs/gtk4/struct.Button.html#implements">gtk-rs documentation</a> tells us which methods and traits it implements.
 We find that these traits either have a corresponding base class or interface in the GTK docs.
 In the &quot;Hello World&quot; app we wanted to react to a button click.
 This behavior is specific to a button, so we expect to find a suitable method in the <code>ButtonExt</code> trait.
-And indeed, <code>ButtonExt</code> includes the method <a href="https://gtk-rs.org/gtk4-rs/gtk4/trait.ButtonExt.html#tymethod.connect_clicked"><code>connect_clicked</code></a>.</p>
+And indeed, <code>ButtonExt</code> includes the method <a href="../docs/gtk4/trait.ButtonExt.html#tymethod.connect_clicked"><code>connect_clicked</code></a>.</p>
 <p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
@@ -277,7 +277,7 @@ In our example we did that by adding the following line:</p>
 You probably want to bring the prelude into scope in most of your source files.</p>
 <p>This is also a good moment to mention that all <code>gtk-rs</code> widgets support <a href="https://doc.rust-lang.org/1.0.0/style/ownership/builders.html">the builder pattern</a>.
 This is especially nice for creating widgets where multiple widget characteristics are already known during its creation.
-We can make our button creation neater, by replacing <code>gtk::Button</code> with <a href="https://gtk-rs.org/gtk4-rs/gtk4/struct.ButtonBuilder.html"><code>gtk::ButtonBuilder</code></a>.</p>
+We can make our button creation neater, by replacing <code>gtk::Button</code> with <a href="../docs/gtk4/struct.ButtonBuilder.html"><code>gtk::ButtonBuilder</code></a>.</p>
 <p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindowBuilder, ButtonBuilder};

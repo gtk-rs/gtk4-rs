@@ -200,7 +200,7 @@ In concept chapters, you will learn about an aspect of GTK development.
 In project chapters, we will build small programs together, applying what you have learned so far.</p>
 <p>The book strives to explain essential GTK concepts paired with practical examples.
 However, if a concept can be better conveyed with a less practical example, we took this path most of the time.
-If you are interested in contained and useful examples, we refer you to the corresponding <a href="https://github.com/gtk-rs/gtk4-rs/tree/master/examples">section</a> of gtk4-rs.</p>
+If you are interested in contained and useful examples, we refer you to the corresponding <a href="https://github.com/gtk-rs/gtk4-rs/tree/master/examples">section</a> of <code>gtk4-rs</code>' repository.</p>
 <h2 id="license"><a class="header" href="#license">License</a></h2>
 <p>The book itself is licensed under the <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported license</a>.
 The only exception are the code snippets which are licensed under the <a href="https://gitlab.gnome.org/Hofer-Julian/gtk-rs-book/-/blob/main/LICENSE">MIT license</a>.</p>
@@ -373,11 +373,11 @@ The inheritance tree of a <code>Button</code> looks like this:</p>
 </code></pre>
 <p>The <a href="https://docs.gtk.org/gtk4/class.Button.html">GTK documentation</a> also tells us that <code>Button</code> implements the interfaces <code>GtkAccessible</code>, <code>GtkActionable</code>, <code>GtkBuildable</code>, <code>GtkConstraintTarget</code>.</p>
 <p>Now let us compare that with the corresponding <code>Button</code> struct in <code>gtk-rs</code>.
-The <a href="https://gtk-rs.org/gtk4-rs/gtk4/struct.Button.html#implements">gtk-rs documentation</a> tells us which methods and traits it implements.
+The <a href="../docs/gtk4/struct.Button.html#implements">gtk-rs documentation</a> tells us which methods and traits it implements.
 We find that these traits either have a corresponding base class or interface in the GTK docs.
 In the &quot;Hello World&quot; app we wanted to react to a button click.
 This behavior is specific to a button, so we expect to find a suitable method in the <code>ButtonExt</code> trait.
-And indeed, <code>ButtonExt</code> includes the method <a href="https://gtk-rs.org/gtk4-rs/gtk4/trait.ButtonExt.html#tymethod.connect_clicked"><code>connect_clicked</code></a>.</p>
+And indeed, <code>ButtonExt</code> includes the method <a href="../docs/gtk4/trait.ButtonExt.html#tymethod.connect_clicked"><code>connect_clicked</code></a>.</p>
 <p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
@@ -466,7 +466,7 @@ In our example we did that by adding the following line:</p>
 You probably want to bring the prelude into scope in most of your source files.</p>
 <p>This is also a good moment to mention that all <code>gtk-rs</code> widgets support <a href="https://doc.rust-lang.org/1.0.0/style/ownership/builders.html">the builder pattern</a>.
 This is especially nice for creating widgets where multiple widget characteristics are already known during its creation.
-We can make our button creation neater, by replacing <code>gtk::Button</code> with <a href="https://gtk-rs.org/gtk4-rs/gtk4/struct.ButtonBuilder.html"><code>gtk::ButtonBuilder</code></a>.</p>
+We can make our button creation neater, by replacing <code>gtk::Button</code> with <a href="../docs/gtk4/struct.ButtonBuilder.html"><code>gtk::ButtonBuilder</code></a>.</p>
 <p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindowBuilder, ButtonBuilder};
@@ -2575,7 +2575,7 @@ We can do this like this:</p>
 For example, if we press on a button, the &quot;clicked&quot; signal will be emitted.
 The signal then takes care that all the registered callbacks will be executed.</p>
 <p><code>gtk-rs</code> provides convenience methods for registering callbacks.
-In our &quot;Hello World&quot; example we <a href="../docs//trait.ButtonExt.html#tymethod.connect_clicked">connected</a> the &quot;clicked&quot; signal to a closure which sets the label of the button to &quot;Hello World&quot; as soon as it gets called.</p>
+In our &quot;Hello World&quot; example we <a href="../docs/gtk4/trait.ButtonExt.html#tymethod.connect_clicked">connected</a> the &quot;clicked&quot; signal to a closure which sets the label of the button to &quot;Hello World&quot; as soon as it gets called.</p>
 <p><span class="filename">Filename: main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, ButtonBuilder};
@@ -3310,7 +3310,7 @@ help: within `gtk4::Button`, the trait `Sync` is not implemented for `NonNull&lt
 <h1 id="settings"><a class="header" href="#settings">Settings</a></h1>
 <p>We have now learned multiple ways to handle states.
 However, every time we close the application all of it is gone.
-Let us learn how to use <code>GSettings</code> by storing the state of a <a href="https://gtk-rs.org/gtk4-rs/gtk4/struct.Switch.html"><code>Switch</code></a> in it.</p>
+Let us learn how to use <code>GSettings</code> by storing the state of a <a href="../docs/gtk4/struct.Switch.html"><code>Switch</code></a> in it.</p>
 <p>At the very beginning we have to create a <code>GSchema</code> xml file in order to describe the kind of data our application plans to store in the settings.</p>
 <p><span class="filename">Filename: org.gtk.example.gschema.xml</span></p>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
