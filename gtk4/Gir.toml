@@ -2100,9 +2100,6 @@ manual_traits = ["WidgetExtManual"]
     [[object.function]]
     name = "get_name"
     rename = "get_widget_name"
-        # remove after https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3124
-        [object.function.return]
-        nullable = false
     [[object.function]]
     name = "set_name"
     rename = "set_widget_name"
