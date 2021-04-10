@@ -121,7 +121,7 @@ mod imp {
         }
     }
     impl EditableImpl for CustomEditable {
-        fn get_delegate(&self, _editable: &Self::Type) -> Option<gtk::Editable> {
+        fn delegate(&self, _editable: &Self::Type) -> Option<gtk::Editable> {
             Some(self.text.clone().upcast())
         }
     }

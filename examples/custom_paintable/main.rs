@@ -18,16 +18,16 @@ mod imp {
     impl ObjectImpl for CustomPaintable {}
 
     impl PaintableImpl for CustomPaintable {
-        fn get_flags(&self, _paintable: &Self::Type) -> gdk::PaintableFlags {
+        fn flags(&self, _paintable: &Self::Type) -> gdk::PaintableFlags {
             // Fixed size
             gdk::PaintableFlags::SIZE
         }
 
-        fn get_intrinsic_width(&self, _paintable: &Self::Type) -> i32 {
+        fn intrinsic_width(&self, _paintable: &Self::Type) -> i32 {
             200
         }
 
-        fn get_intrinsic_height(&self, _paintable: &Self::Type) -> i32 {
+        fn intrinsic_height(&self, _paintable: &Self::Type) -> i32 {
             200
         }
 
