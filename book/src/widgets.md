@@ -23,11 +23,11 @@ GObject
 The [GTK documentation](https://docs.gtk.org/gtk4/class.Button.html) also tells us that `Button` implements the interfaces `GtkAccessible`, `GtkActionable`, `GtkBuildable`, `GtkConstraintTarget`.
 
 Now let us compare that with the corresponding `Button` struct in `gtk-rs`.
-The [gtk-rs documentation](https://gtk-rs.org/gtk4-rs/gtk4/struct.Button.html#implements) tells us which methods and traits it implements.
+The [gtk-rs documentation](../docs/gtk4/struct.Button.html#implements) tells us which methods and traits it implements.
 We find that these traits either have a corresponding base class or interface in the GTK docs.
 In the "Hello World" app we wanted to react to a button click.
 This behavior is specific to a button, so we expect to find a suitable method in the `ButtonExt` trait.
-And indeed, `ButtonExt` includes the method [`connect_clicked`](https://gtk-rs.org/gtk4-rs/gtk4/trait.ButtonExt.html#tymethod.connect_clicked).
+And indeed, `ButtonExt` includes the method [`connect_clicked`](../docs/gtk4/trait.ButtonExt.html#tymethod.connect_clicked).
 
 <span class="filename">Filename: main.rs</span>
 
@@ -48,7 +48,7 @@ You probably want to bring the prelude into scope in most of your source files.
 
 This is also a good moment to mention that all `gtk-rs` widgets support [the builder pattern](https://doc.rust-lang.org/1.0.0/style/ownership/builders.html).
 This is especially nice for creating widgets where multiple widget characteristics are already known during its creation.
-We can make our button creation neater, by replacing `gtk::Button` with [`gtk::ButtonBuilder`](https://gtk-rs.org/gtk4-rs/gtk4/struct.ButtonBuilder.html).
+We can make our button creation neater, by replacing `gtk::Button` with [`gtk::ButtonBuilder`](../docs/gtk4/struct.ButtonBuilder.html).
 
 <span class="filename">Filename: main.rs</span>
 
