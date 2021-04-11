@@ -1,7 +1,144 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `gtk4` crate."><meta name="keywords" content="rust, rustlang, rust-lang, gtk4"><title>gtk4 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings"></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Rust GTK 4 bindings"><meta name="keywords" content="rust, rustlang, rust-lang, gtk4"><title>gtk4 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings"></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../favicon-16x16.png">
 <link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../gtk4/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><p class="location">Crate gtk4</p><div class="block version"><p>Version 0.1.0</p></div><div class="sidebar-elems"><a id="all-types" href="all.html"><p>See all gtk4's items</p></a><div class="block items"><ul><li><a href="#reexports">Re-exports</a></li><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li><li><a href="#statics">Statics</a></li><li><a href="#traits">Traits</a></li><li><a href="#functions">Functions</a></li><li><a href="#types">Type Definitions</a></li></ul></div><p class="location"></p><div id="sidebar-vars" data-name="gtk4" data-ty="mod" data-relpath="../"></div></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
-                <a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Crate <a class="mod" href="">gtk4</a><button id="copy-path" onclick="copy_path(this)">⎘</button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/gtk4/lib.rs.html#5-181" title="goto source code">[src]</a></span></h1><h2 id="reexports" class="section-header"><a href="#reexports">Re-exports</a></h2>
+                <a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Crate <a class="mod" href="">gtk4</a><button id="copy-path" onclick="copy_path(this)">⎘</button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/gtk4/lib.rs.html#3-339" title="goto source code">[src]</a></span></h1><div class="docblock"><h1 id="rust-gtk-4-bindings" class="section-header"><a href="#rust-gtk-4-bindings">Rust GTK 4 bindings</a></h1>
+<p>This library contains safe Rust bindings for <a href="http://www.gtk.org">GTK 4</a>, a
+multi-platform GUI toolkit. It is a part of <a href="http://gtk-rs.org/">Gtk-rs</a>.</p>
+<p>The library is a work in progress. Expect breaking changes between releases.
+Most of this documentation is generated from the C API.
+Until all parts of the documentation have been reviewed there will be incongruities
+with the actual Rust API.</p>
+<p>For a gentle introduction to Gtk-rs we recommend the online book
+<a href="../../book/"><em>GUI development with Rust and GTK 4</em></a>.</p>
+<p>See also</p>
+<ul>
+<li>
+<p><a href="https://gtk-rs.org/docs-src/">Gtk-rs documentation overview</a></p>
+</li>
+<li>
+<p><a href="https://gtk-rs.org/gtk-rs/glib/index.html">General <code>GLib</code> family types and object system overview</a></p>
+</li>
+<li>
+<p><a href="https://www.gtk.org/docs/">GTK documentation</a></p>
+</li>
+</ul>
+<h1 id="hello-world-example-program" class="section-header"><a href="#hello-world-example-program">“Hello, World!” example program</a></h1>
+<p>GTK needs to be initialized before use by calling <a href="../gtk4/fn.init.html" title="init()"><code>init()</code></a>. Creating an
+<a href="../gtk4/struct.Application.html" title="Application"><code>Application</code></a> will call <a href="../gtk4/fn.init.html" title="init()"><code>init()</code></a> for you.</p>
+<p>The <a href="../gtk4/index.html"><code>gtk4</code></a> crate is usually renamed to <code>gtk</code>. You can find an example in
+the <a href="#features">features</a> section for how to do this globally in your <code>Cargo.toml</code>.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">gtk::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">gtk</span>::{<span class="ident">ApplicationBuilder</span>, <span class="ident">ApplicationWindowBuilder</span>};
+
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">app</span> <span class="op">=</span> <span class="ident">ApplicationBuilder::new</span>()
+        .<span class="ident">application_id</span>(<span class="string">&quot;org.example.HelloWorld&quot;</span>)
+        .<span class="ident">build</span>();
+
+    <span class="ident">app</span>.<span class="ident">connect_activate</span>(<span class="op">|</span><span class="ident">app</span><span class="op">|</span> {
+        <span class="comment">// We create the main window.</span>
+        <span class="kw">let</span> <span class="ident">win</span> <span class="op">=</span> <span class="ident">ApplicationWindowBuilder::new</span>()
+            .<span class="ident">application</span>(<span class="ident">app</span>)
+            .<span class="ident">default_width</span>(<span class="number">320</span>)
+            .<span class="ident">default_height</span>(<span class="number">200</span>)
+            .<span class="ident">title</span>(<span class="string">&quot;Hello, World!&quot;</span>)
+            .<span class="ident">build</span>();
+
+        <span class="comment">// Show the window.</span>
+        <span class="ident">win</span>.<span class="ident">show</span>();
+    });
+
+    <span class="ident">app</span>.<span class="ident">run</span>();
+}</pre></div>
+<h1 id="the-main-loop" class="section-header"><a href="#the-main-loop">The main loop</a></h1>
+<p>In a typical GTK application you set up the UI, assign signal handlers
+and run the main event loop.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">gtk::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">gtk</span>::{<span class="ident">ApplicationBuilder</span>, <span class="ident">ApplicationWindowBuilder</span>, <span class="ident">Button</span>};
+
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">application</span> <span class="op">=</span> <span class="ident">ApplicationBuilder::new</span>()
+        .<span class="ident">application_id</span>(<span class="string">&quot;com.example.FirstGtkApp&quot;</span>)
+        .<span class="ident">build</span>();
+
+    <span class="ident">application</span>.<span class="ident">connect_activate</span>(<span class="op">|</span><span class="ident">app</span><span class="op">|</span> {
+        <span class="kw">let</span> <span class="ident">window</span> <span class="op">=</span> <span class="ident">ApplicationWindowBuilder::new</span>()
+            .<span class="ident">application</span>(<span class="ident">app</span>)
+            .<span class="ident">title</span>(<span class="string">&quot;First GTK Program&quot;</span>)
+            .<span class="ident">default_width</span>(<span class="number">350</span>)
+            .<span class="ident">default_height</span>(<span class="number">70</span>)
+            .<span class="ident">build</span>();
+
+        <span class="kw">let</span> <span class="ident">button</span> <span class="op">=</span> <span class="ident">Button::with_label</span>(<span class="string">&quot;Click me!&quot;</span>);
+        <span class="ident">button</span>.<span class="ident">connect_clicked</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
+            <span class="macro">eprintln!</span>(<span class="string">&quot;Clicked!&quot;</span>);
+        });
+        <span class="ident">window</span>.<span class="ident">set_child</span>(<span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident">button</span>));
+
+        <span class="ident">window</span>.<span class="ident">show</span>();
+    });
+
+    <span class="ident">application</span>.<span class="ident">run</span>();
+}</pre></div>
+<h1 id="threads" class="section-header"><a href="#threads">Threads</a></h1>
+<p>GTK is not thread-safe. Accordingly, none of this crate’s structs implement
+<a href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="Send"><code>Send</code></a> or <a href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="Sync"><code>Sync</code></a>.</p>
+<p>The thread where <a href="../gtk4/fn.init.html" title="init()"><code>init()</code></a> was called is considered the main thread. OS X has
+its own notion of the main thread and <a href="../gtk4/fn.init.html" title="init()"><code>init()</code></a> must be called on that thread.
+After successful initialization, calling any <a href="../gtk4/index.html"><code>gtk</code></a> or <a href="../gdk4/index.html" title="gdk"><code>gdk</code></a> functions
+(including <a href="../gtk4/fn.init.html" title="init()"><code>init()</code></a>) from other threads will <code>panic</code>.</p>
+<p>Any thread can schedule a closure to be run by the main loop on the main
+thread via <a href="https://gtk-rs.org/gtk-rs/glib/source/fn.idle_add.html" title="glib::idle_add()"><code>glib::idle_add()</code></a> or <a href="https://gtk-rs.org/gtk-rs/glib/source/fn.timeout_add.html" title="glib::timeout_add()"><code>glib::timeout_add()</code></a>. While
+working with GTK you might need the <a href="https://gtk-rs.org/gtk-rs/glib/source/fn.idle_add_local.html" title="glib::idle_add_local()"><code>glib::idle_add_local()</code></a>
+or <a href="https://gtk-rs.org/gtk-rs/glib/source/fn.timeout_add_local.html" title="glib::timeout_add_local()"><code>glib::timeout_add_local()</code></a> version without the
+<a href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="Send"><code>Send</code></a> bound. Those may only be called from the main thread.</p>
+<h1 id="panics" class="section-header"><a href="#panics">Panics</a></h1>
+<p>The <a href="../gtk4/index.html"><code>gtk</code></a> and <a href="../gdk4/index.html" title="gdk"><code>gdk</code></a> crates have some run-time safety and contract checks.</p>
+<ul>
+<li>
+<p>Any constructor or free function will panic if called before <a href="../gtk4/fn.init.html" title="init()"><code>init()</code></a> or on
+a non-main thread.</p>
+</li>
+<li>
+<p>Any <a href="https://doc.rust-lang.org/nightly/std/primitive.str.html" title="&amp;str"><code>&amp;str</code></a> or <a href="https://doc.rust-lang.org/nightly/std/path/struct.Path.html"><code>&amp;Path</code></a> parameter with an interior null (<code>\0</code>) character will
+cause a panic.</p>
+</li>
+<li>
+<p>Some functions will panic if supplied out-of-range integer parameters. All
+such cases will be documented individually but they are not yet.</p>
+</li>
+<li>
+<p>A panic in a closure that handles signals or in any other closure passed
+to a <a href="../gtk4/index.html"><code>gtk</code></a> function will abort the process.</p>
+</li>
+</ul>
+<h1 id="features" class="section-header"><a href="#features">Features</a></h1><h2 id="library-versions" class="section-header"><a href="#library-versions">Library versions</a></h2>
+<p>By default this crate provides only GTK 4.0 APIs. You can access additional
+functionality by selecting one of the <code>v4_2</code>, <code>v4_4</code>, etc. features.</p>
+<p><code>Cargo.toml</code> example:</p>
+<pre><code class="language-toml">[dependencies.gtk]
+package = &quot;gtk4&quot;
+version = &quot;0.x.y&quot;
+features = [&quot;v4_2&quot;]
+</code></pre>
+<p>Take care when choosing the version to target: some of your users might
+not have easy access to the latest ones. The higher the version, the fewer
+users will have it installed.</p>
+<h2 id="lgpl-docs" class="section-header"><a href="#lgpl-docs">LGPL-docs</a></h2>
+<p>The Gtk-rs crates come with API docs missing because of licensing
+incompatibilty. You can embed those docs locally via the <code>embed-lgpl-docs</code>
+feature, e.g.</p>
+<pre><code class="language-shell">&gt; cargo doc --features embed-lgpl-docs
+</code></pre>
+<p>Its counterpart <code>purge-lgpl-docs</code> removes those docs regardless of edits.</p>
+<p>These features rewrite the crate sources so it is sufficient to enable
+them once. Omitting them in the following cargo invocations will not undo
+their effects!</p>
+</div><h2 id="reexports" class="section-header"><a href="#reexports">Re-exports</a></h2>
 <table><tr><td><code>pub use <a class="mod" href="../gtk4_sys/index.html" title="mod gtk4_sys">ffi</a>;</code></td></tr><tr><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs/cairo/index.html" title="mod cairo">cairo</a>;</code></td></tr><tr><td><code>pub use <a class="mod" href="../gdk4/index.html" title="mod gdk4">gdk</a>;</code></td></tr><tr><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs/gdk_pixbuf/index.html" title="mod gdk_pixbuf">gdk_pixbuf</a>;</code></td></tr><tr><td><code>pub use <a class="mod" href="../gdk4_wayland/index.html" title="mod gdk4_wayland">gdk_wayland</a>;</code></td></tr><tr><td><code>pub use <a class="mod" href="../gdk4_x11/index.html" title="mod gdk4_x11">gdk_x11</a>;</code></td></tr><tr><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs/gio/index.html" title="mod gio">gio</a>;</code></td></tr><tr><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs/glib/index.html" title="mod glib">glib</a>;</code></td></tr><tr><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs/graphene/index.html" title="mod graphene">graphene</a>;</code></td></tr><tr><td><code>pub use <a class="mod" href="../gsk4/index.html" title="mod gsk4">gsk</a>;</code></td></tr><tr><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs/
 --extern-html-root-url=wayland_client=https://smithay.github.io/wayland-rs/wayland_client/
 --extern-html-root-url=x11=https://docs.rs/x11/latest/x11/pango/index.html" title="mod pango">pango</a>;</code></td></tr></table><h2 id="modules" class="section-header"><a href="#modules">Modules</a></h2>
