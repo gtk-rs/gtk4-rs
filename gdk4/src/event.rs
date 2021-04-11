@@ -230,7 +230,9 @@ impl fmt::Debug for Event {
     }
 }
 
-pub trait EventKind: StaticType + FromGlibPtrFull<*mut ffi::GdkEvent> + 'static {
+pub unsafe trait EventKind:
+    StaticType + FromGlibPtrFull<*mut ffi::GdkEvent> + 'static
+{
     fn event_types() -> &'static [EventType];
 }
 
@@ -252,7 +254,7 @@ macro_rules! define_event {
             }
         }
 
-        impl EventKind for $rust_type {
+        unsafe impl EventKind for $rust_type {
             fn event_types() -> &'static [EventType] {
                 $event_event_types
             }

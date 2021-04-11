@@ -30,7 +30,7 @@ impl AsRef<Expression> for Expression {
 
 pub const NONE_EXPRESSION: Option<&Expression> = None;
 
-pub trait IsExpression:
+pub unsafe trait IsExpression:
     glib::StaticType + FromGlibPtrFull<*mut ffi::GtkExpression> + 'static
 {
 }
@@ -269,7 +269,7 @@ macro_rules! define_expression {
             }
         }
 
-        impl IsExpression for $rust_type {}
+        unsafe impl IsExpression for $rust_type {}
 
         impl<'a> glib::value::FromValueOptional<'a> for $rust_type {
             unsafe fn from_value_optional(value: &'a Value) -> Option<Self> {
