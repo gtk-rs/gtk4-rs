@@ -493,11 +493,12 @@ trust_return_value_nullability = false
 [[object]]
 name = "Gtk.Application"
 status = "generate"
-generate_builder = false # generated manually
+generate_builder = true
+builder_postprocess = "Application::register_startup_hook(&ret);"
 trait_name = "GtkApplicationExt"
     [[object.function]]
     name = "new"
-    manual = true
+    ignore = true
 
 [[object]]
 name = "Gtk.Assistant"

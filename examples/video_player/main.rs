@@ -99,8 +99,7 @@ fn main() {
     let application = gtk::Application::new(
         Some("com.github.gtk-rs.examples.video_player"),
         Default::default(),
-    )
-    .expect("Failed to initialize application");
+    );
 
     application.connect_activate(|app| {
         let win = VideoPlayerWindow::new(app);

@@ -53,6 +53,7 @@ pub use self::app_chooser_widget::AppChooserWidget;
 pub use self::app_chooser_widget::AppChooserWidgetBuilder;
 
 mod application;
+pub use self::application::ApplicationBuilder;
 pub use self::application::GtkApplicationExt;
 pub use self::application::{Application, NONE_APPLICATION};
 

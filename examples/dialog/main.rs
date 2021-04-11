@@ -59,13 +59,11 @@ fn build_ui(application: &gtk::Application) {
     });
 }
 
-fn main() -> Result<(), Box<dyn std::error::Error>> {
+fn main() {
     let application = gtk::ApplicationBuilder::new()
         .application_id("com.github.gtk-rs.examples.dialog")
-        .build()?;
+        .build();
 
     application.connect_activate(build_ui);
     application.run();
-
-    Ok(())
 }

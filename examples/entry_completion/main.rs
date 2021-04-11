@@ -80,8 +80,7 @@ fn main() {
     let application = Application::new(
         Some("com.github.gtk-rs.examples.entry-completion"),
         Default::default(),
-    )
-    .expect("Initialization failed...");
+    );
     application.connect_activate(build_ui);
 
     // When activated, shuts down the application
