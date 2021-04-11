@@ -42,7 +42,7 @@ impl LinkButton {
     }
 
     #[doc(alias = "gtk_link_button_new_with_label")]
-    pub fn with_label(uri: &str, label: Option<&str>) -> LinkButton {
+    pub fn with_label(uri: &str, label: &str) -> LinkButton {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_link_button_new_with_label(
