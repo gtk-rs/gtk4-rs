@@ -67,9 +67,7 @@ fn build_ui(application: &Application) {
 }
 
 fn main() {
-    let application = Application::new(Some("com.github.css"), Default::default())
-        .expect("Initialization failed...");
-
+    let application = Application::new(Some("com.github.css"), Default::default());
     application.connect_startup(|app| {
         // The CSS "magic" happens here.
         let provider = CssProvider::new();

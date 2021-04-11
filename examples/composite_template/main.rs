@@ -144,8 +144,7 @@ fn main() {
     let application = gtk::Application::new(
         Some("com.github.gtk-rs.examples.composite_template"),
         Default::default(),
-    )
-    .expect("Failed to initialize application");
+    );
 
     application.connect_activate(|app| {
         let win = ExApplicationWindow::new(app);

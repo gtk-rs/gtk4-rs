@@ -151,9 +151,7 @@ fn main() {
     let application = gtk::Application::new(
         Some("com.github.gtk-rs.examples.orientable_subclass"),
         Default::default(),
-    )
-    .expect("Initialization failed...");
-
+    );
     application.connect_activate(|app| {
         let window = gtk::ApplicationWindow::new(app);
         let bx = gtk::Box::new(gtk::Orientation::Vertical, 6);

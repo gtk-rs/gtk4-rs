@@ -85,9 +85,7 @@ fn main() {
     let application = gtk::Application::new(
         Some("com.github.gtk-rs.examples.editable"),
         Default::default(),
-    )
-    .expect("Initialization failed...");
-
+    );
     let provider = gtk::CssProvider::new();
     provider.load_from_data(CSS.as_bytes());
     gtk::StyleContext::add_provider_for_display(

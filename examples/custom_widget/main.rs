@@ -91,9 +91,7 @@ fn main() {
     let application = gtk::Application::new(
         Some("com.github.gtk-rs.examples.widget_subclass"),
         Default::default(),
-    )
-    .expect("Initialization failed...");
-
+    );
     application.connect_activate(|app| {
         let window = gtk::ApplicationWindow::new(app);
         let button = Button::new();

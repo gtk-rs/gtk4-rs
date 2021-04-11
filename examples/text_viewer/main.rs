@@ -62,9 +62,7 @@ fn main() {
     let application = Application::new(
         Some("com.github.gtk-rs.examples.text_viewer"),
         Default::default(),
-    )
-    .expect("Initialization failed...");
-
+    );
     application.connect_activate(build_ui);
     application.run();
 }
