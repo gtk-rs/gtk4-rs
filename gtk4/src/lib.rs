@@ -1,6 +1,164 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-// TODO: Introduction
+//! # Rust GTK 4 bindings
+//!
+//! This library contains safe Rust bindings for [GTK 4](http://www.gtk.org), a
+//! multi-platform GUI toolkit. It is a part of [Gtk-rs](http://gtk-rs.org/).
+//!
+//! The library is a work in progress. Expect breaking changes between releases.
+//! Most of this documentation is generated from the C API.
+//! Until all parts of the documentation have been reviewed there will be incongruities
+//! with the actual Rust API.
+//!
+//! For a gentle introduction to Gtk-rs we recommend the online book
+//! [*GUI development with Rust and GTK 4*](../../book/).
+//!
+//! See also
+//!
+//! - [Gtk-rs documentation overview](https://gtk-rs.org/docs-src/)
+//!
+//! - [General `GLib` family types and object system overview](mod@glib)
+//!
+//! - [GTK documentation](https://www.gtk.org/docs/)
+//!
+//! # "Hello, World!" example program
+//!
+//! GTK needs to be initialized before use by calling [`fn@init`]. Creating an
+//! [`struct@Application`] will call [`fn@init`] for you.
+//!
+//! The [`gtk4`](mod@crate) crate is usually renamed to `gtk`. You can find an example in
+//! the [features](#features) section for how to do this globally in your `Cargo.toml`.
+//!
+//! ```no_run
+//! # use gtk4 as gtk;
+//! use gtk::prelude::*;
+//! use gtk::{ApplicationBuilder, ApplicationWindowBuilder};
+//!
+//! fn main() {
+//!     let app = ApplicationBuilder::new()
+//!         .application_id("org.example.HelloWorld")
+//!         .build();
+//!
+//!     app.connect_activate(|app| {
+//!         // We create the main window.
+//!         let win = ApplicationWindowBuilder::new()
+//!             .application(app)
+//!             .default_width(320)
+//!             .default_height(200)
+//!             .title("Hello, World!")
+//!             .build();
+//!
+//!         // Show the window.
+//!         win.show();
+//!     });
+//!
+//!     app.run();
+//! }
+//! ```
+//!
+//! # The main loop
+//!
+//! In a typical GTK application you set up the UI, assign signal handlers
+//! and run the main event loop.
+//!
+//! ```no_run
+//! # use gtk4 as gtk;
+//! use gtk::prelude::*;
+//! use gtk::{ApplicationBuilder, ApplicationWindowBuilder, Button};
+//!
+//! fn main() {
+//!     let application = ApplicationBuilder::new()
+//!         .application_id("com.example.FirstGtkApp")
+//!         .build();
+//!
+//!     application.connect_activate(|app| {
+//!         let window = ApplicationWindowBuilder::new()
+//!             .application(app)
+//!             .title("First GTK Program")
+//!             .default_width(350)
+//!             .default_height(70)
+//!             .build();
+//!
+//!         let button = Button::with_label("Click me!");
+//!         button.connect_clicked(|_| {
+//!             eprintln!("Clicked!");
+//!         });
+//!         window.set_child(Some(&button));
+//!
+//!         window.show();
+//!     });
+//!
+//!     application.run();
+//! }
+//! ```
+//!
+//! # Threads
+//!
+//! GTK is not thread-safe. Accordingly, none of this crate's structs implement
+//! [`Send`] or [`Sync`].
+//!
+//! The thread where [`fn@init`] was called is considered the main thread. OS X has
+//! its own notion of the main thread and [`fn@init`] must be called on that thread.
+//! After successful initialization, calling any [`gtk`](mod@crate) or [`mod@gdk`] functions
+//! (including [`fn@init`]) from other threads will `panic`.
+//!
+//! Any thread can schedule a closure to be run by the main loop on the main
+//! thread via [`fn@glib::idle_add`] or [`fn@glib::timeout_add`]. While
+//! working with GTK you might need the [`fn@glib::idle_add_local`]
+//! or [`fn@glib::timeout_add_local`] version without the
+//! [`Send`] bound. Those may only be called from the main thread.
+//!
+//! # Panics
+//!
+//! The [`gtk`](mod@crate) and [`mod@gdk`] crates have some run-time safety and contract checks.
+//!
+//! - Any constructor or free function will panic if called before [`fn@init`] or on
+//! a non-main thread.
+//!
+//! - Any [`&str`] or [`&Path`](std::path::Path) parameter with an interior null (`\0`) character will
+//! cause a panic.
+//!
+//! - Some functions will panic if supplied out-of-range integer parameters. All
+//! such cases will be documented individually but they are not yet.
+//!
+//! - A panic in a closure that handles signals or in any other closure passed
+//! to a [`gtk`](mod@crate) function will abort the process.
+//!
+//! # Features
+//!
+//! ## Library versions
+//!
+//! By default this crate provides only GTK 4.0 APIs. You can access additional
+//! functionality by selecting one of the `v4_2`, `v4_4`, etc. features.
+//!
+//! `Cargo.toml` example:
+//!
+//! ```toml
+//! [dependencies.gtk]
+//! package = "gtk4"
+//! version = "0.x.y"
+//! features = ["v4_2"]
+//! ```
+//!
+//! Take care when choosing the version to target: some of your users might
+//! not have easy access to the latest ones. The higher the version, the fewer
+//! users will have it installed.
+//!
+//! ## LGPL-docs
+//!
+//! The Gtk-rs crates come with API docs missing because of licensing
+//! incompatibilty. You can embed those docs locally via the `embed-lgpl-docs`
+//! feature, e.g.
+//!
+//! ```shell
+//! > cargo doc --features embed-lgpl-docs
+//! ```
+//!
+//! Its counterpart `purge-lgpl-docs` removes those docs regardless of edits.
+//!
+//! These features rewrite the crate sources so it is sufficient to enable
+//! them once. Omitting them in the following cargo invocations will not undo
+//! their effects!
 
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
 #![allow(clippy::let_unit_value)]
