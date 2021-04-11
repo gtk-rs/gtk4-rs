@@ -1,6 +1,7 @@
 # Memory management of GObjects
 
-GObjects are reference-counted, mutable objects, so they behave very similar to `Rc<RefCell<T>>`.
+A GObject (or `glib::Object` in Rust terms) is a reference-counted, mutable object.
+It therefore behaves very similar to `Rc<RefCell<T>>`.
 Let us see in a set of real life examples which consequences this has.
 
 ```rust ,no_run,compile_fail

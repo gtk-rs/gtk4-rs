@@ -1,4 +1,4 @@
-use glib::{ParamFlags, ParamSpec, Value};
+use glib::{BindingFlags, ParamFlags, ParamSpec, Value};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
@@ -25,7 +25,12 @@ impl ObjectSubclass for CustomButton {
 impl ObjectImpl for CustomButton {
     fn constructed(&self, obj: &Self::Type) {
         self.parent_constructed(obj);
-        obj.set_label(&self.number.borrow().to_string());
+
+        // Bind label to number
+        // `SYNC_CREATE` ensures that the label will be immediately set
+        obj.bind_property("number", obj, "label")
+            .flags(BindingFlags::SYNC_CREATE)
+            .build();
     }
 
     fn properties() -> &'static [ParamSpec] {

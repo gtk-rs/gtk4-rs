@@ -13,7 +13,8 @@ In our "Hello World" example we [connected](../docs/gtk4/trait.ButtonExt.html#ty
 {{#rustdoc_include ../listings/gobject_signals/1/main.rs:callback}}
 ```
 
-If we wanted to, we could have connected to it with the general (but much more verbose) `connect_local` method.
+If we wanted to, we could have 
+connected to it with the generic `connect_local` method.
 
 <span class="filename">Filename: listings/gobject_signals/2/main.rs</span>
 
@@ -21,7 +22,7 @@ If we wanted to, we could have connected to it with the general (but much more v
 {{#rustdoc_include ../listings/gobject_signals/2/main.rs:callback}}
 ```
 
-The advantage of `connect_local` is, that it also works with custom signals.
+Similar to the generic way of accessing properties, the advantage of `connect_local` is that it also works with custom signals.
 
 Let us see how we can create our own signals.
 Again, we do that by extending our `CustomButton`.

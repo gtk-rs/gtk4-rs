@@ -29,7 +29,7 @@ Next, we describe our custom GObject.
 {{#rustdoc_include ../listings/gobject_subclassing/1/custom_button/mod.rs}}
 ```
 
-`glib::wrapper!` does the most of the work of subclassing for us.
+[`glib::wrapper!`](http://gtk-rs.org/docs/glib/macro.glib_wrapper.html) does the most of the work of subclassing for us.
 We only have to point to the implementation struct and which ancestor GObjects we extend.
 Please note that the list of ancestor GObjects does not mention `glib::Object`.
 This is because `glib::Object` is *always* the base class in the object hierarchy and therefore already implied.
