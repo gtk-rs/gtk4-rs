@@ -384,7 +384,7 @@
     }
 }
 
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">IsRenderNode</span>:
+<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">trait</span> <span class="ident">IsRenderNode</span>:
     <span class="ident">StaticType</span>
     <span class="op">+</span> <span class="ident">FromGlibPtrFull</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GskRenderNode</span><span class="op">&gt;</span>
     <span class="op">+</span> <span class="ident">std::convert::AsRef</span><span class="op">&lt;</span><span class="kw">crate</span><span class="ident">::RenderNode</span><span class="op">&gt;</span>
@@ -438,7 +438,7 @@
             }
         }
 
-        <span class="kw">impl</span> <span class="kw">crate</span><span class="ident">::render_node::IsRenderNode</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
+        <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="kw">crate</span><span class="ident">::render_node::IsRenderNode</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
             <span class="kw">const</span> <span class="ident">NODE_TYPE</span>: <span class="ident">RenderNodeType</span> <span class="op">=</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">node_type</span>;
 
             <span class="kw">fn</span> <span class="ident">upcast</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">crate</span><span class="ident">::RenderNode</span> {
