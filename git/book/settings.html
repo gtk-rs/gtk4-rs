@@ -193,8 +193,6 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span>    // Create a new application
-    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-        .expect(&quot;Initialization failed...&quot;);
 <span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -260,8 +258,6 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -316,8 +312,6 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -372,8 +366,6 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -434,8 +426,6 @@ We also specify <a href="https://gtk-rs.org/docs/gio/struct.SettingsBindFlags.ht
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application

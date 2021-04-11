@@ -195,8 +195,7 @@ And indeed, <code>ButtonExt</code> includes the method <a href="../docs/gtk4/tra
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -238,8 +237,7 @@ In our example we did that by adding the following line:</p>
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -284,8 +282,7 @@ We can make our button creation neater, by replacing <code>gtk::Button</code> wi
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application

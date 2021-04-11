@@ -177,8 +177,7 @@ use gtk::Application;
 
 fn main() {
     // Create a new application
-    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-        .expect(&quot;Initialization failed...&quot;);
+    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 
     // Run the application
     app.run();
@@ -193,8 +192,7 @@ use gtk::{Application, ApplicationWindow};
 
 fn main() {
     // Create a new application
-    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-        .expect(&quot;Initialization failed...&quot;);
+    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
     app.connect_activate(on_activate);
 
     // Run the application
@@ -222,8 +220,7 @@ Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; 
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application

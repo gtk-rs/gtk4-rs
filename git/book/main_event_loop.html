@@ -187,8 +187,7 @@ use gtk::{self, Application, ApplicationWindowBuilder, ButtonBuilder};
 
 fn main() {
     // Create a new application
-    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-        .expect(&quot;Initialization failed...&quot;);
+    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
     app.connect_activate(on_activate);
 
     // Run the application
@@ -237,8 +236,7 @@ For that we just need to spawn a new thread and let the operation run there.</p>
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -293,8 +291,7 @@ We want to send a <code>bool</code> to inform, whether we want the button to rea
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -361,8 +358,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -425,8 +421,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -478,8 +473,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Get command-line arguments

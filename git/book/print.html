@@ -271,8 +271,7 @@ use gtk::Application;
 
 fn main() {
     // Create a new application
-    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-        .expect(&quot;Initialization failed...&quot;);
+    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 
     // Run the application
     app.run();
@@ -287,8 +286,7 @@ use gtk::{Application, ApplicationWindow};
 
 fn main() {
     // Create a new application
-    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-        .expect(&quot;Initialization failed...&quot;);
+    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
     app.connect_activate(on_activate);
 
     // Run the application
@@ -316,8 +314,7 @@ Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; 
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -384,8 +381,7 @@ And indeed, <code>ButtonExt</code> includes the method <a href="../docs/gtk4/tra
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -427,8 +423,7 @@ In our example we did that by adding the following line:</p>
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -473,8 +468,7 @@ We can make our button creation neater, by replacing <code>gtk::Button</code> wi
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -529,8 +523,7 @@ use gtk::{self, Application, ApplicationWindow, Button, Orientation};
 
 fn main() {
     // Create a new application
-    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-        .expect(&quot;Initialization failed...&quot;);
+    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
     app.connect_activate(on_activate);
     
     // Run the application
@@ -619,8 +612,7 @@ we can use the <a href="https://doc.rust-lang.org/std/cell/struct.RefCell.html">
 </span><span class="boring">use std::{cell::RefCell, rc::Rc};
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -676,8 +668,7 @@ We can improve that by using the <code>glib::clone!</code> macro.</p>
 </span><span class="boring">use std::{cell::RefCell, rc::Rc};
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -784,8 +775,7 @@ Therefore, we can pass the buttons the same way to the closure as we did with <c
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -811,8 +801,7 @@ Since we want our apps to free unneeded memory, we should use weak references fo
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -887,8 +876,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -954,8 +942,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1021,8 +1008,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1170,8 +1156,7 @@ use gtk::{Application, ApplicationWindowBuilder};
 
 fn main() {
     // Create a new application
-    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-        .expect(&quot;Initialization failed...&quot;);
+    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
     app.connect_activate(on_activate);
 
     // Run the application
@@ -1263,8 +1248,7 @@ We also override <code>clicked</code> in <code>ButtonImpl</code> so that every c
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1314,8 +1298,7 @@ Since all of this is highly dynamic, checks occur at runtime and the code involv
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1370,8 +1353,7 @@ Let us see how would bind the properties of two <code>Switch</code> instances.</
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1422,8 +1404,7 @@ We also want the binding to be bidirectional, so we specify this with the <a hre
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1579,8 +1560,7 @@ The formerly private <code>number</code> is now accessible via the <code>get_pro
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1649,8 +1629,7 @@ The formerly private <code>number</code> is now accessible via the <code>get_pro
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1721,8 +1700,7 @@ All we have to do is to bind the &quot;label&quot; property of <code>button_1</c
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1794,8 +1772,7 @@ We can do this like this:</p>
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1871,8 +1848,7 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/trait.ButtonExt.
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -1914,8 +1890,7 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/trait.ButtonExt.
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -2133,8 +2108,7 @@ use gtk::{self, Application, ApplicationWindowBuilder, ButtonBuilder};
 
 fn main() {
     // Create a new application
-    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-        .expect(&quot;Initialization failed...&quot;);
+    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
     app.connect_activate(on_activate);
 
     // Run the application
@@ -2183,8 +2157,7 @@ For that we just need to spawn a new thread and let the operation run there.</p>
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -2239,8 +2212,7 @@ We want to send a <code>bool</code> to inform, whether we want the button to rea
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -2307,8 +2279,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -2371,8 +2342,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -2424,8 +2394,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
+</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default());
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Get command-line arguments
@@ -2509,8 +2478,6 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span>    // Create a new application
-    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-        .expect(&quot;Initialization failed...&quot;);
 <span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -2576,8 +2543,6 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -2632,8 +2597,6 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -2688,8 +2651,6 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
@@ -2750,8 +2711,6 @@ We also specify <a href="https://gtk-rs.org/docs/gio/struct.SettingsBindFlags.ht
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
-</span><span class="boring">    let app = Application::new(Some(&quot;org.gtk.example&quot;), Default::default())
-</span><span class="boring">        .expect(&quot;Initialization failed...&quot;);
 </span><span class="boring">    app.connect_activate(on_activate);
 </span><span class="boring">
 </span><span class="boring">    // Run the application
