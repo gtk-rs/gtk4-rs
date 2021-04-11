@@ -60,7 +60,6 @@ generate = [
     "Gtk.CellRendererState",
     "Gtk.CenterBox",
     "Gtk.CenterLayout",
-    "Gtk.CheckButton",
     "Gtk.ColorButton",
     "Gtk.ColorChooserDialog",
     "Gtk.ColorChooserWidget",
@@ -95,7 +94,6 @@ generate = [
     "Gtk.EventControllerScrollFlags",
     "Gtk.EventSequenceState",
     "Gtk.EveryFilter",
-    "Gtk.Expander",
     "Gtk.FileChooserAction",
     "Gtk.FileChooserError",
     "Gtk.FileChooserNative",
@@ -681,6 +679,21 @@ status = "generate"
         nullable = false
 
 [[object]]
+name = "Gtk.CheckButton"
+status = "generate"
+generate_builder = true
+    [[object.function]]
+    name = "new_with_label"
+        [[object.function.parameter]]
+        name = "label"
+        nullable = false
+    [[object.function]]
+    name = "new_with_mnemonic"
+        [[object.function.parameter]]
+        name = "label"
+        nullable = false
+
+[[object]]
 name = "Gtk.ColorChooser"
 status = "generate"
 manual_traits = ["ColorChooserExtManual"]
@@ -934,6 +947,21 @@ status = "generate"
     inhibit = true
 
 [[object]]
+name = "Gtk.Expander"
+status = "generate"
+generate_builder = true
+    [[object.function]]
+    name = "new"
+        [[object.function.parameter]]
+        name = "label"
+        nullable = true
+    [[object.function]]
+    name = "new_with_mnemonic"
+        [[object.function.parameter]]
+        name = "label"
+        nullable = false
+
+[[object]]
 name = "Gtk.Expression"
 status = "manual"
 # Workaround IsA<Expression> in the generated builders to not rewrite them manually
@@ -1081,6 +1109,11 @@ generate_builder = false
 [[object]]
 name = "Gtk.Label"
 status = "generate"
+    [[object.function]]
+    name = "new_with_mnemonic"
+        [[object.function.parameter]]
+        name = "str"
+        nullable = false
     [[object.signal]]
     name = "activate-link"
     inhibit = true
@@ -1102,6 +1135,11 @@ trust_return_value_nullability = false
 name = "Gtk.LinkButton"
 status = "generate"
 trust_return_value_nullability = false
+    [[object.function]]
+    name = "new_with_label"
+        [[object.function.parameter]]
+        name = "label"
+        nullable = false
     [[object.signal]]
     name = "activate-link"
     inhibit = true

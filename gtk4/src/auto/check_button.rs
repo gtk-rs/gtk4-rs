@@ -41,7 +41,7 @@ impl CheckButton {
     }
 
     #[doc(alias = "gtk_check_button_new_with_label")]
-    pub fn with_label(label: Option<&str>) -> CheckButton {
+    pub fn with_label(label: &str) -> CheckButton {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_check_button_new_with_label(label.to_glib_none().0))
@@ -50,7 +50,7 @@ impl CheckButton {
     }
 
     #[doc(alias = "gtk_check_button_new_with_mnemonic")]
-    pub fn with_mnemonic(label: Option<&str>) -> CheckButton {
+    pub fn with_mnemonic(label: &str) -> CheckButton {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_check_button_new_with_mnemonic(

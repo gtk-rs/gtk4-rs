@@ -41,7 +41,7 @@ impl Expander {
     }
 
     #[doc(alias = "gtk_expander_new_with_mnemonic")]
-    pub fn with_mnemonic(label: Option<&str>) -> Expander {
+    pub fn with_mnemonic(label: &str) -> Expander {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_expander_new_with_mnemonic(label.to_glib_none().0))

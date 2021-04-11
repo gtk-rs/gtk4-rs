@@ -42,7 +42,7 @@ impl Label {
     }
 
     #[doc(alias = "gtk_label_new_with_mnemonic")]
-    pub fn with_mnemonic(str: Option<&str>) -> Label {
+    pub fn with_mnemonic(str: &str) -> Label {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_label_new_with_mnemonic(str.to_glib_none().0))
