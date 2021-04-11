@@ -6,7 +6,8 @@ use gtk::{Align, Application, ApplicationWindowBuilder, SwitchBuilder};
 fn main() {
     // ANCHOR: application
     // Create a new application
-    let app = Application::new(Some("org.gtk.example"), Default::default()); // ANCHOR_END: application
+    let app = Application::new(Some("org.gtk.example"), Default::default());
+    // ANCHOR_END: application
     app.connect_activate(on_activate);
 
     // Run the application
