@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - "master"
+  release:
+    types: [published]
 
 jobs:
   test:
@@ -39,6 +41,7 @@ jobs:
 
       - run: mdbook build -d public
         working-directory: book
+      - run: echo "DEST=$(if [ "$GITHUB_EVENT_NAME" == "release" ]; then echo 'stable'; else echo 'git'; fi)" >> ${GITHUB_ENV}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
@@ -47,7 +50,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./book/public
           keep_files: false
-          destination_dir: git/book
+          destination_dir: ${{ env.DEST }}/book
 
   codespell:
     runs-on: ubuntu-20.04
