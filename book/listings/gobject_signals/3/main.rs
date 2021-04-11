@@ -33,7 +33,11 @@ fn on_activate(application: &Application) {
         .connect_local("max-number-reached", false, move |args| {
             // Get the number from the arguments
             // args.get(0) would return the `CustomButton` instance
-            let number = args.get(1).unwrap().get::<i32>().unwrap().unwrap();
+            let number = args
+                .get(1)
+                .expect("There needs to be a second argument.")
+                .get_some::<i32>()
+                .expect("The value needs to be of type `i32`.");
             println!("The maximum number {} has been reached", number);
             None
         })

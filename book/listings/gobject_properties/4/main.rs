@@ -37,18 +37,16 @@ fn on_activate(application: &Application) {
         // How to transform "number" from `button_1` to "number" of `button_2`
         .transform_to(|_, value| {
             let number = value
-                .get::<i32>()
-                .expect("The property needs to be of type `i32`.")
-                .expect("The property needs to be `Some`.");
+                .get_some::<i32>()
+                .expect("The property needs to be of type `i32`.");
             let incremented_number = number + 1;
             Some(incremented_number.to_value())
         })
         // How to transform "number" from `button_2` to "number" of `button_1`
         .transform_from(|_, value| {
             let number = value
-                .get::<i32>()
-                .expect("The property needs to be of type `i32`.")
-                .expect("The property needs to be `Some`.");
+                .get_some::<i32>()
+                .expect("The property needs to be of type `i32`.");
             let decremented_number = number - 1;
             Some(decremented_number.to_value())
         })
@@ -62,9 +60,8 @@ fn on_activate(application: &Application) {
         let number = button
             .get_property("number")
             .expect("The property needs to exist and be readable.")
-            .get::<i32>()
-            .expect("The property needs to be of type `i32`.")
-            .expect("The property needs to be `Some`.");
+            .get_some::<i32>()
+            .expect("The property needs to be of type `i32`.");
         println!("The current number of `button_1` is {}.", number);
     });
     // ANCHOR_END: connect_notify

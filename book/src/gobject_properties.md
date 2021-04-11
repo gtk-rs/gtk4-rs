@@ -13,10 +13,7 @@ That is why, `gtk-rs` provides corresponding [`get_state`](../docs/gtk4/struct.S
 {{#rustdoc_include ../listings/gobject_properties/1/main.rs:switch}}
 ```
 Alternatively, we can use the general [`get_property`](http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.get_property) and [`set_property`](http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.set_property) methods.
-Because they can be used for properties of different types, they operate with the polymorphic [`glib::Value`](http://gtk-rs.org/docs/glib/value/struct.Value.html).
-The underlying type of `glib::Value` can be a boolean, integer, float or a GObject.
-It can even be optional and corresponds then to `Option<T>`.
-All of that, can be determined at runtime, which is why the checks have to happen at runtime as well.
+Because they can be used for properties of different types, they operate with `glib::Value`.
 
 <span class="filename">Filename: listings/gobject_properties/2/main.rs</span>
 
@@ -25,10 +22,10 @@ All of that, can be determined at runtime, which is why the checks have to happe
 ```
 
 Dealing with a `glib::Value` is quite verbose
-This is why you will only want to use the generic methods to access properties you have added to custom GObjects.
+This is why you will only want to use the generic methods for accessing properties you have added to your custom GObjects.
 
-Properties can also be bound to each other.
-Let us see how would bind the properties of two `Switch` instances.
+Properties can not only be accessed via getters & setters, they can also be bound to each other.
+Let us see how that would look like for two `Switch` instances.
 
 <span class="filename">Filename: listings/gobject_properties/3/main.rs</span>
 
@@ -49,12 +46,12 @@ Whenever we now click on one of the two switches, the other one gets toggled as 
 
 <div style="text-align:center"><img src="img/gobject_properties_switches.png" /></div>
 
-
 We can also add properties to custom GObjects.
 We can demonstrate that, by binding the `number` of our `CustomButton` to a property.
 For that, we need to be able to [lazily evaluate](https://en.wikipedia.org/wiki/Lazy_evaluation) expressions.
-`once_cell` does that for us and is already part of `std` of Rust nightly.
-Until it hits stable, we have to add it as external dependency.
+The crate `once_cell` provides the `Lazy` type which allows us to do that.
+`once_cell` is already part of Rust nightly.
+Until it hits stable, we will add it as external dependency.
 
 <span class="filename">Filename: listings/Cargo.toml</span>
 
@@ -65,7 +62,7 @@ once_cell = "1"
 
 Now we define the "number" property within the `ObjectImpl` implementation.
 We can immediately take advantage of this new property by binding the "label" property to it.
-It even converts the integer value of "number" to the string if "label".
+It even converts the integer value of "number" to the string of "label".
 Now we do not have to adapt the label in the "clicked" callback anymore.
 
 <span class="filename">Filename: listings/gobject_properties/4/custom_button/imp.rs</span>
