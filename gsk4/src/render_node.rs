@@ -129,7 +129,7 @@ impl RenderNode {
     }
 }
 
-pub trait IsRenderNode:
+pub unsafe trait IsRenderNode:
     StaticType
     + FromGlibPtrFull<*mut ffi::GskRenderNode>
     + std::convert::AsRef<crate::RenderNode>
@@ -183,7 +183,7 @@ macro_rules! define_render_node {
             }
         }
 
-        impl crate::render_node::IsRenderNode for $rust_type {
+        unsafe impl crate::render_node::IsRenderNode for $rust_type {
             const NODE_TYPE: RenderNodeType = $node_type;
 
             fn upcast(self) -> crate::RenderNode {
