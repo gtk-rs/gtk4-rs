@@ -14,7 +14,7 @@ In our "Hello World" example we [connected](../docs/gtk4/trait.ButtonExt.html#ty
 ```
 
 If we wanted to, we could have 
-connected to it with the generic `connect_local` method.
+connected to it with the generic [`connect_local`](http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.connect_local) method.
 
 <span class="filename">Filename: listings/gobject_signals/2/main.rs</span>
 

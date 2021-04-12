@@ -1,7 +1,7 @@
 # Generic Values
 
 Some GObject-related functions rely on generic values for their arguments or return parameters.
-Enumerators in C are not as powerful as the one in Rust, which is why [`glib::Value`](http://gtk-rs.org/docs/glib/value/struct.Value.html) is used for this.
+Enums in C are not as powerful as the one in Rust, which is why [`glib::Value`](http://gtk-rs.org/docs/glib/value/struct.Value.html) is used for this.
 Conceptually though, there are similar to a Rust enum defined like this:
 
 ```rust
