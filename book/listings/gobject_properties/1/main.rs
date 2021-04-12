@@ -24,15 +24,11 @@ fn on_activate(application: &Application) {
     // Create the switch
     let switch = Switch::new();
 
-    switch.set_property("state", &true).unwrap();
+    // Set and then immediately obtain state
+    switch.set_state(true);
+    let current_state = switch.get_state();
 
-    let current_state = switch
-        .get_property("state")
-        .unwrap()
-        .get::<bool>()
-        .unwrap()
-        .unwrap();
-    // This current state will be true
+    // This prints: "The current state is true"
     println!("The current state is {}", current_state);
     // ANCHOR_END: switch
 

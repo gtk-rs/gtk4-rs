@@ -8,5 +8,6 @@ We already learned, that `gtk-rs` maps GObject concepts like inheritance and int
 In this chapter we will additionally find out:
 - How to manage the memory of GObjects.
 - How to create our own GObjects via subclassing.
+- How to deal with generic values.
 - How to use properties.
-- How to use signals.
+- How to emit and receive signals.

@@ -32,7 +32,12 @@ fn on_activate(application: &Application) {
     button
         .connect_local("clicked", false, move |args| {
             // Get the button from the arguments
-            let button = args.get(0).unwrap().get::<Button>().unwrap().unwrap();
+            let button = args
+                .get(0)
+                .expect("There needs to be a first argument.")
+                .get::<Button>()
+                .expect("The value needs to be of type `Button`.")
+                .expect("The value needs to be `Some`.");
             // Set the label to "Hello World!" after the button has been clicked on
             button.set_label("Hello World!");
             None

@@ -1,6 +1,5 @@
-use glib::BindingFlags;
-use gtk::{glib, Align, Orientation, Switch};
-use gtk::{prelude::*, BoxBuilder};
+use gtk::prelude::*;
+use gtk::{Align, BoxBuilder, Orientation, Switch};
 use gtk::{Application, ApplicationWindowBuilder};
 
 fn main() {
@@ -21,18 +20,21 @@ fn on_activate(application: &Application) {
         .title("My GTK App")
         .build();
 
-    // ANCHOR: switches
-    // Create the switches
-    let switch_1 = Switch::new();
-    let switch_2 = Switch::new();
-    // ANCHOR_END: switches
+    // ANCHOR: switch
+    // Create the switch
+    let switch = Switch::new();
 
-    // ANCHOR: bind_state
-    switch_1
-        .bind_property("state", &switch_2, "state")
-        .flags(BindingFlags::BIDIRECTIONAL)
-        .build();
-    // ANCHOR_END: bind_state
+    // Set and then immediately obtain state
+    switch.set_property("state", &true).unwrap();
+    let current_state = switch
+        .get_property("state")
+        .expect("The property needs to exist and be readable.")
+        .get_some::<bool>()
+        .expect("The property needs to be of type `bool`.");
+
+    // This prints: "The current state is true"
+    println!("The current state is {}", current_state);
+    // ANCHOR_END: switch
 
     // Set up box
     let gtk_box = BoxBuilder::new()
@@ -45,8 +47,7 @@ fn on_activate(application: &Application) {
         .spacing(12)
         .orientation(Orientation::Vertical)
         .build();
-    gtk_box.append(&switch_1);
-    gtk_box.append(&switch_2);
+    gtk_box.append(&switch);
     window.set_child(Some(&gtk_box));
     window.present();
 }

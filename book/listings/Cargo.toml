@@ -40,6 +40,10 @@ path = "gobject_properties/2/main.rs"
 name = "gobject_properties_3"
 path = "gobject_properties/3/main.rs"
 
+[[bin]]
+name = "gobject_properties_4"
+path = "gobject_properties/4/main.rs"
+
 # gobject_signals
 [[bin]]
 name = "gobject_signals_1"
@@ -61,6 +65,11 @@ path = "gobject_subclassing/1/main.rs"
 [[bin]]
 name = "gobject_subclassing_2"
 path = "gobject_subclassing/2/main.rs"
+
+# gobject_values
+[[bin]]
+name = "gobject_values_1"
+path = "gobject_values/1/main.rs"
 
 # hello_world
 [[bin]]

@@ -1,8 +1,5 @@
-mod custom_button;
-
-use custom_button::CustomButton;
 use glib::BindingFlags;
-use gtk::{glib, Align, Orientation};
+use gtk::{glib, Align, Orientation, Switch};
 use gtk::{prelude::*, BoxBuilder};
 use gtk::{Application, ApplicationWindowBuilder};
 
@@ -14,6 +11,7 @@ fn main() {
     // Run the application
     app.run();
 }
+
 // ANCHOR: activate
 // When the application is launched…
 fn on_activate(application: &Application) {
@@ -23,39 +21,18 @@ fn on_activate(application: &Application) {
         .title("My GTK App")
         .build();
 
-    // ANCHOR: buttons
-    // Create the buttons
-    let button_1 = CustomButton::new();
-    let button_2 = CustomButton::new();
-    // ANCHOR_END: buttons
+    // ANCHOR: switches
+    // Create the switches
+    let switch_1 = Switch::new();
+    let switch_2 = Switch::new();
+    // ANCHOR_END: switches
 
-    // ANCHOR: bind_number
-    button_1
-        .bind_property("number", &button_2, "number")
+    // ANCHOR: bind_state
+    switch_1
+        .bind_property("state", &switch_2, "state")
         .flags(BindingFlags::BIDIRECTIONAL)
         .build();
-    // ANCHOR_END: bind_number
-
-    // ANCHOR: bind_label
-    button_1
-        .bind_property("label", &button_2, "label")
-        .flags(BindingFlags::BIDIRECTIONAL)
-        .build();
-    // ANCHOR_END: bind_label
-
-    // ANCHOR: connect_notify
-
-    // The closure will be called whenever the property "number" of `button_1` gets changed
-    button_1.connect_notify_local(Some("number"), move |button, _| {
-        let number = button
-            .get_property("number")
-            .unwrap()
-            .get::<i32>()
-            .unwrap()
-            .unwrap();
-        println!("The current number is {}", number);
-    });
-    // ANCHOR_END: connect_notify
+    // ANCHOR_END: bind_state
 
     // Set up box
     let gtk_box = BoxBuilder::new()
@@ -68,8 +45,8 @@ fn on_activate(application: &Application) {
         .spacing(12)
         .orientation(Orientation::Vertical)
         .build();
-    gtk_box.append(&button_1);
-    gtk_box.append(&button_2);
+    gtk_box.append(&switch_1);
+    gtk_box.append(&switch_2);
     window.set_child(Some(&gtk_box));
     window.present();
 }
