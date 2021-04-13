@@ -5,7 +5,7 @@ use glib::translate::*;
 
 impl ContentDeserializer {
     pub fn set_value(&self, value: glib::Value) {
-        assert!(value.type_() == self.gtype(), "Type mismatch");
+        assert!(value.type_() == self.type_(), "Type mismatch");
 
         let src_value = value.to_glib_none();
         unsafe {

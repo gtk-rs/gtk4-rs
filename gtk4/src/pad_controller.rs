@@ -9,12 +9,7 @@ impl PadController {
         let n_entries = entries.len() as i32;
         let entry_strings = entries
             .iter()
-            .map(|e| {
-                (
-                    e.label().to_glib_none(),
-                    e.action_name().to_glib_none(),
-                )
-            })
+            .map(|e| (e.label().to_glib_none(), e.action_name().to_glib_none()))
             .collect::<Vec<_>>();
         let entries = entries
             .iter()

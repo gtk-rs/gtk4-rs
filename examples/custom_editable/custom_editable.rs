@@ -43,7 +43,7 @@ mod imp {
     impl ObjectImpl for CustomEditable {
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-                vec![ParamSpec::boolean(
+                vec![ParamSpec::new_boolean(
                     "show-spinner",
                     "Spinner shown",
                     "Whether the editable has a visible spinner",

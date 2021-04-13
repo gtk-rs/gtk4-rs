@@ -86,7 +86,7 @@ mod imp {
             let popover = &*self.popover;
             self.toggle
                 .connect_toggled(glib::clone!(@weak popover => move |toggle| {
-                    if toggle.active() {
+                    if toggle.is_active() {
                         popover.popup();
                     }
                 }));

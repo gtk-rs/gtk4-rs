@@ -44,14 +44,14 @@ pub mod imp {
         fn properties() -> &'static [ParamSpec] {
             static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
                 vec![
-                    ParamSpec::string(
+                    ParamSpec::new_string(
                         "label",
                         "Label",
                         "Label",
                         Some(""),
                         glib::ParamFlags::READWRITE,
                     ),
-                    ParamSpec::boolean(
+                    ParamSpec::new_boolean(
                         "has-close-button",
                         "Has close button",
                         "Whether this tag has a close button",

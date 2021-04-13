@@ -35,7 +35,7 @@ impl ObjectImpl for CustomButton {
 
     fn properties() -> &'static [ParamSpec] {
         static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
-            vec![ParamSpec::int(
+            vec![ParamSpec::new_int(
                 // Name
                 "number",
                 // Nickname

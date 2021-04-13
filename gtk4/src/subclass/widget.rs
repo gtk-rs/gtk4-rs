@@ -556,13 +556,13 @@ unsafe extern "C" fn widget_compute_expand<T: WidgetImpl>(
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
     let widget = wrap.unsafe_cast_ref::<Widget>();
-    let mut hexpand: bool = if widget.hexpand_set() {
-        widget.hexpand()
+    let mut hexpand: bool = if widget.is_hexpand_set() {
+        widget.hexpands()
     } else {
         from_glib(*hexpand_ptr)
     };
-    let mut vexpand: bool = if widget.vexpand_set() {
-        widget.vexpand()
+    let mut vexpand: bool = if widget.is_vexpand_set() {
+        widget.vexpands()
     } else {
         from_glib(*vexpand_ptr)
     };
@@ -1100,7 +1100,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
             widget_class,
             name.to_glib_none().0,
             false as glib::ffi::gboolean,
-            private_offset + (offset.byte_offset() as isize),
+            private_offset + (offset.get_byte_offset() as isize),
         )
     }
 }
