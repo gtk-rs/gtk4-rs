@@ -80,7 +80,7 @@ impl WidgetImpl for CustomButton {}
 // Trait shared by all buttons
 impl ButtonImpl for CustomButton {
     fn clicked(&self, button: &Self::Type) {
-        let incremented_number = self.number.borrow().clone() + 1;
+        let incremented_number = *self.number.borrow() + 1;
         button.set_property("number", &incremented_number).unwrap();
         button.set_label(&self.number.borrow().to_string())
     }
