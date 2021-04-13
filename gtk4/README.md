@@ -10,10 +10,10 @@ Currently, the minimum supported Rust version is `1.48.0`.
 
 ## Documentation
 
-- Rust API [Stable]/[Development](https://gtk-rs.org/gtk4-rs/git/docs/gtk4/)
+- The Rust API [Stable]/[Development](https://gtk-rs.org/gtk4-rs/git/docs/gtk4/)
 - Book [Stable]/[Development](https://gtk-rs.org/gtk4-rs/git/book)
 - [Examples](https://github.com/gtk-rs/gtk4-rs/tree/master/examples)
-- [C API](https://docs.gtk.org/gtk4/)
+- [The C API](https://docs.gtk.org/gtk4/)
 - [GTK Installation Instructions](https://www.gtk.org/docs/installations/)
 
 
