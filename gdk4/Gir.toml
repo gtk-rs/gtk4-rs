@@ -14,9 +14,7 @@ generate = [
     "Gdk.AxisFlags",
     "Gdk.AxisUse",
     "Gdk.CairoContext",
-    "Gdk.ContentFormatsBuilder",
     "Gdk.CrossingMode",
-    "Gdk.Device",
     "Gdk.DevicePad",
     "Gdk.DevicePadFeature",
     "Gdk.DeviceToolType",
@@ -200,6 +198,9 @@ status = "generate"
         [object.function.return]
         nullable = false
     [[object.function]]
+    name = "get_gtype"
+    rename = "type_"
+    [[object.function]]
     name = "get_task_data"
     ignore = true # unsafe
     [[object.function]]
@@ -217,8 +218,30 @@ status = "generate"
 name = "Gdk.ContentFormats"
 status = "generate"
     [[object.function]]
+    name = "new_for_gtype"
+    rename = "for_type"
+    [[object.function]]
+    name = "contain_gtype"
+    rename = "contains_type"
+    [[object.function]]
+    name = "match_gtype"
+    rename = "match_type"
+    [[object.function]]
+    name = "union_deserialize_gtypes"
+    rename = "union_deserialize_types"
+    [[object.function]]
+    name = "union_serialize_gtypes"
+    rename = "union_serialize_types"
+    [[object.function]]
     name = "get_gtypes"
     manual = true
+
+[[object]]
+name = "Gdk.ContentFormatsBuilder"
+status = "generate"
+    [[object.function]]
+    name = "add_gtype"
+    rename = "add_type"
 
 [[object]]
 name = "Gdk.ContentProvider"
@@ -239,6 +262,9 @@ status = "generate"
         [object.function.return]
         nullable = false
     [[object.function]]
+    name = "get_gtype"
+    rename = "type_"
+    [[object.function]]
     name = "get_task_data"
     ignore = true # unsafe
     [[object.function]]
@@ -256,6 +282,19 @@ status = "generate"
 name = "Gdk.Cursor"
 status = "generate"
 generate_builder = true
+
+[[object]]
+name = "Gdk.Device"
+status = "generate"
+    [[object.function]]
+    name = "get_caps_lock_state"
+    rename = "is_caps_locked"
+    [[object.function]]
+    name = "get_num_lock_state"
+    rename = "is_num_locked"
+    [[object.function]]
+    name = "get_scroll_lock_state"
+    rename = "is_scroll_locked"
 
 [[object]]
 name = "Gdk.DeviceTool"
