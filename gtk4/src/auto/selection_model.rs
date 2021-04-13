@@ -24,7 +24,7 @@ pub const NONE_SELECTION_MODEL: Option<&SelectionModel> = None;
 
 pub trait SelectionModelExt: 'static {
     #[doc(alias = "gtk_selection_model_get_selection")]
-    fn get_selection(&self) -> Bitset;
+    fn selection(&self) -> Bitset;
 
     #[doc(alias = "gtk_selection_model_get_selection_in_range")]
     fn get_selection_in_range(&self, position: u32, n_items: u32) -> Bitset;
@@ -60,7 +60,7 @@ pub trait SelectionModelExt: 'static {
 }
 
 impl<O: IsA<SelectionModel>> SelectionModelExt for O {
-    fn get_selection(&self) -> Bitset {
+    fn selection(&self) -> Bitset {
         unsafe {
             from_glib_full(ffi::gtk_selection_model_get_selection(
                 self.as_ref().to_glib_none().0,

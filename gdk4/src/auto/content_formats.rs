@@ -31,13 +31,13 @@ impl ContentFormats {
     }
 
     #[doc(alias = "gdk_content_formats_new_for_gtype")]
-    pub fn new_for_gtype(type_: glib::types::Type) -> ContentFormats {
+    pub fn for_type(type_: glib::types::Type) -> ContentFormats {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gdk_content_formats_new_for_gtype(type_.to_glib())) }
     }
 
     #[doc(alias = "gdk_content_formats_contain_gtype")]
-    pub fn contain_gtype(&self, type_: glib::types::Type) -> bool {
+    pub fn contains_type(&self, type_: glib::types::Type) -> bool {
         unsafe {
             from_glib(ffi::gdk_content_formats_contain_gtype(
                 self.to_glib_none().0,
@@ -57,7 +57,7 @@ impl ContentFormats {
     }
 
     #[doc(alias = "gdk_content_formats_get_mime_types")]
-    pub fn get_mime_types(&self) -> (Vec<glib::GString>, usize) {
+    pub fn mime_types(&self) -> (Vec<glib::GString>, usize) {
         unsafe {
             let mut n_mime_types = mem::MaybeUninit::uninit();
             let ret =
@@ -81,7 +81,7 @@ impl ContentFormats {
     }
 
     #[doc(alias = "gdk_content_formats_match_gtype")]
-    pub fn match_gtype(&self, second: &ContentFormats) -> glib::types::Type {
+    pub fn match_type(&self, second: &ContentFormats) -> glib::types::Type {
         unsafe {
             from_glib(ffi::gdk_content_formats_match_gtype(
                 self.to_glib_none().0,
@@ -123,7 +123,7 @@ impl ContentFormats {
     }
 
     #[doc(alias = "gdk_content_formats_union_deserialize_gtypes")]
-    pub fn union_deserialize_gtypes(&self) -> Option<ContentFormats> {
+    pub fn union_deserialize_types(&self) -> Option<ContentFormats> {
         unsafe {
             from_glib_full(ffi::gdk_content_formats_union_deserialize_gtypes(
                 self.to_glib_full(),
@@ -141,7 +141,7 @@ impl ContentFormats {
     }
 
     #[doc(alias = "gdk_content_formats_union_serialize_gtypes")]
-    pub fn union_serialize_gtypes(&self) -> Option<ContentFormats> {
+    pub fn union_serialize_types(&self) -> Option<ContentFormats> {
         unsafe {
             from_glib_full(ffi::gdk_content_formats_union_serialize_gtypes(
                 self.to_glib_full(),

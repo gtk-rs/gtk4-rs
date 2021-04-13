@@ -35,7 +35,7 @@ impl DirectoryList {
     }
 
     #[doc(alias = "gtk_directory_list_get_attributes")]
-    pub fn get_attributes(&self) -> Option<glib::GString> {
+    pub fn attributes(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_directory_list_get_attributes(
                 self.to_glib_none().0,
@@ -44,22 +44,22 @@ impl DirectoryList {
     }
 
     #[doc(alias = "gtk_directory_list_get_error")]
-    pub fn get_error(&self) -> Option<glib::Error> {
+    pub fn error(&self) -> Option<glib::Error> {
         unsafe { from_glib_none(ffi::gtk_directory_list_get_error(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_directory_list_get_file")]
-    pub fn get_file(&self) -> Option<gio::File> {
+    pub fn file(&self) -> Option<gio::File> {
         unsafe { from_glib_none(ffi::gtk_directory_list_get_file(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_directory_list_get_io_priority")]
-    pub fn get_io_priority(&self) -> i32 {
+    pub fn io_priority(&self) -> i32 {
         unsafe { ffi::gtk_directory_list_get_io_priority(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_directory_list_get_monitored")]
-    pub fn get_monitored(&self) -> bool {
+    pub fn is_monitored(&self) -> bool {
         unsafe { from_glib(ffi::gtk_directory_list_get_monitored(self.to_glib_none().0)) }
     }
 
@@ -99,21 +99,6 @@ impl DirectoryList {
     pub fn set_monitored(&self, monitored: bool) {
         unsafe {
             ffi::gtk_directory_list_set_monitored(self.to_glib_none().0, monitored.to_glib());
-        }
-    }
-
-    pub fn get_property_loading(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"loading\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `loading` getter")
-                .unwrap()
         }
     }
 

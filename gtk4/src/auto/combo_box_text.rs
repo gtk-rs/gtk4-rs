@@ -62,7 +62,7 @@ impl ComboBoxText {
     }
 
     #[doc(alias = "gtk_combo_box_text_get_active_text")]
-    pub fn get_active_text(&self) -> Option<glib::GString> {
+    pub fn active_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_combo_box_text_get_active_text(
                 self.to_glib_none().0,

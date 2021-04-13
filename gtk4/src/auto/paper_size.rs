@@ -141,7 +141,7 @@ impl PaperSize {
     }
 
     #[doc(alias = "gtk_paper_size_get_display_name")]
-    pub fn get_display_name(&self) -> Option<glib::GString> {
+    pub fn display_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_paper_size_get_display_name(mut_override(
                 self.to_glib_none().0,
@@ -157,7 +157,7 @@ impl PaperSize {
     }
 
     #[doc(alias = "gtk_paper_size_get_name")]
-    pub fn get_name(&self) -> Option<glib::GString> {
+    pub fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_paper_size_get_name(mut_override(
                 self.to_glib_none().0,
@@ -166,7 +166,7 @@ impl PaperSize {
     }
 
     #[doc(alias = "gtk_paper_size_get_ppd_name")]
-    pub fn get_ppd_name(&self) -> Option<glib::GString> {
+    pub fn ppd_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_paper_size_get_ppd_name(mut_override(
                 self.to_glib_none().0,

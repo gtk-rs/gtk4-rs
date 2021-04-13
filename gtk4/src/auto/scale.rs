@@ -458,22 +458,22 @@ pub trait ScaleExt: 'static {
     fn clear_marks(&self);
 
     #[doc(alias = "gtk_scale_get_digits")]
-    fn get_digits(&self) -> i32;
+    fn digits(&self) -> i32;
 
     #[doc(alias = "gtk_scale_get_draw_value")]
-    fn get_draw_value(&self) -> bool;
+    fn draws_value(&self) -> bool;
 
     #[doc(alias = "gtk_scale_get_has_origin")]
-    fn get_has_origin(&self) -> bool;
+    fn has_origin(&self) -> bool;
 
     #[doc(alias = "gtk_scale_get_layout")]
-    fn get_layout(&self) -> Option<pango::Layout>;
+    fn layout(&self) -> Option<pango::Layout>;
 
     #[doc(alias = "gtk_scale_get_layout_offsets")]
-    fn get_layout_offsets(&self) -> (i32, i32);
+    fn layout_offsets(&self) -> (i32, i32);
 
     #[doc(alias = "gtk_scale_get_value_pos")]
-    fn get_value_pos(&self) -> PositionType;
+    fn value_pos(&self) -> PositionType;
 
     #[doc(alias = "gtk_scale_set_digits")]
     fn set_digits(&self, digits: i32);
@@ -517,11 +517,11 @@ impl<O: IsA<Scale>> ScaleExt for O {
         }
     }
 
-    fn get_digits(&self) -> i32 {
+    fn digits(&self) -> i32 {
         unsafe { ffi::gtk_scale_get_digits(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_draw_value(&self) -> bool {
+    fn draws_value(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_scale_get_draw_value(
                 self.as_ref().to_glib_none().0,
@@ -529,7 +529,7 @@ impl<O: IsA<Scale>> ScaleExt for O {
         }
     }
 
-    fn get_has_origin(&self) -> bool {
+    fn has_origin(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_scale_get_has_origin(
                 self.as_ref().to_glib_none().0,
@@ -537,11 +537,11 @@ impl<O: IsA<Scale>> ScaleExt for O {
         }
     }
 
-    fn get_layout(&self) -> Option<pango::Layout> {
+    fn layout(&self) -> Option<pango::Layout> {
         unsafe { from_glib_none(ffi::gtk_scale_get_layout(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_layout_offsets(&self) -> (i32, i32) {
+    fn layout_offsets(&self) -> (i32, i32) {
         unsafe {
             let mut x = mem::MaybeUninit::uninit();
             let mut y = mem::MaybeUninit::uninit();
@@ -556,7 +556,7 @@ impl<O: IsA<Scale>> ScaleExt for O {
         }
     }
 
-    fn get_value_pos(&self) -> PositionType {
+    fn value_pos(&self) -> PositionType {
         unsafe { from_glib(ffi::gtk_scale_get_value_pos(self.as_ref().to_glib_none().0)) }
     }
 

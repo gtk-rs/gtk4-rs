@@ -207,31 +207,31 @@ pub trait PrintOperationExt: 'static {
     fn draw_page_finish(&self);
 
     #[doc(alias = "gtk_print_operation_get_default_page_setup")]
-    fn get_default_page_setup(&self) -> Option<PageSetup>;
+    fn default_page_setup(&self) -> Option<PageSetup>;
 
     #[doc(alias = "gtk_print_operation_get_embed_page_setup")]
-    fn get_embed_page_setup(&self) -> bool;
+    fn embeds_page_setup(&self) -> bool;
 
     #[doc(alias = "gtk_print_operation_get_error")]
-    fn get_error(&self) -> Result<(), glib::Error>;
+    fn error(&self) -> Result<(), glib::Error>;
 
     #[doc(alias = "gtk_print_operation_get_has_selection")]
-    fn get_has_selection(&self) -> bool;
+    fn has_selection(&self) -> bool;
 
     #[doc(alias = "gtk_print_operation_get_n_pages_to_print")]
-    fn get_n_pages_to_print(&self) -> i32;
+    fn n_pages_to_print(&self) -> i32;
 
     #[doc(alias = "gtk_print_operation_get_print_settings")]
-    fn get_print_settings(&self) -> Option<PrintSettings>;
+    fn print_settings(&self) -> Option<PrintSettings>;
 
     #[doc(alias = "gtk_print_operation_get_status")]
-    fn get_status(&self) -> PrintStatus;
+    fn status(&self) -> PrintStatus;
 
     #[doc(alias = "gtk_print_operation_get_status_string")]
-    fn get_status_string(&self) -> Option<glib::GString>;
+    fn status_string(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_print_operation_get_support_selection")]
-    fn get_support_selection(&self) -> bool;
+    fn supports_selection(&self) -> bool;
 
     #[doc(alias = "gtk_print_operation_is_finished")]
     fn is_finished(&self) -> bool;
@@ -291,25 +291,35 @@ pub trait PrintOperationExt: 'static {
     #[doc(alias = "gtk_print_operation_set_use_full_page")]
     fn set_use_full_page(&self, full_page: bool);
 
-    fn get_property_allow_async(&self) -> bool;
+    #[doc(alias = "get_property_allow_async")]
+    fn allows_async(&self) -> bool;
 
-    fn get_property_current_page(&self) -> i32;
+    #[doc(alias = "get_property_current_page")]
+    fn current_page(&self) -> i32;
 
-    fn get_property_custom_tab_label(&self) -> Option<glib::GString>;
+    #[doc(alias = "get_property_custom_tab_label")]
+    fn custom_tab_label(&self) -> Option<glib::GString>;
 
-    fn get_property_export_filename(&self) -> Option<glib::GString>;
+    #[doc(alias = "get_property_export_filename")]
+    fn export_filename(&self) -> Option<glib::GString>;
 
-    fn get_property_job_name(&self) -> Option<glib::GString>;
+    #[doc(alias = "get_property_job_name")]
+    fn job_name(&self) -> Option<glib::GString>;
 
-    fn get_property_n_pages(&self) -> i32;
+    #[doc(alias = "get_property_n_pages")]
+    fn n_pages(&self) -> i32;
 
-    fn get_property_show_progress(&self) -> bool;
+    #[doc(alias = "get_property_show_progress")]
+    fn shows_progress(&self) -> bool;
 
-    fn get_property_track_print_status(&self) -> bool;
+    #[doc(alias = "get_property_track_print_status")]
+    fn tracks_print_status(&self) -> bool;
 
-    fn get_property_unit(&self) -> Unit;
+    #[doc(alias = "get_property_unit")]
+    fn unit(&self) -> Unit;
 
-    fn get_property_use_full_page(&self) -> bool;
+    #[doc(alias = "get_property_use_full_page")]
+    fn uses_full_page(&self) -> bool;
 
     fn connect_begin_print<F: Fn(&Self, &PrintContext) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -441,7 +451,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn get_default_page_setup(&self) -> Option<PageSetup> {
+    fn default_page_setup(&self) -> Option<PageSetup> {
         unsafe {
             from_glib_none(ffi::gtk_print_operation_get_default_page_setup(
                 self.as_ref().to_glib_none().0,
@@ -449,7 +459,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn get_embed_page_setup(&self) -> bool {
+    fn embeds_page_setup(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_print_operation_get_embed_page_setup(
                 self.as_ref().to_glib_none().0,
@@ -457,7 +467,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn get_error(&self) -> Result<(), glib::Error> {
+    fn error(&self) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let _ = ffi::gtk_print_operation_get_error(self.as_ref().to_glib_none().0, &mut error);
@@ -469,7 +479,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn get_has_selection(&self) -> bool {
+    fn has_selection(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_print_operation_get_has_selection(
                 self.as_ref().to_glib_none().0,
@@ -477,11 +487,11 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn get_n_pages_to_print(&self) -> i32 {
+    fn n_pages_to_print(&self) -> i32 {
         unsafe { ffi::gtk_print_operation_get_n_pages_to_print(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_print_settings(&self) -> Option<PrintSettings> {
+    fn print_settings(&self) -> Option<PrintSettings> {
         unsafe {
             from_glib_none(ffi::gtk_print_operation_get_print_settings(
                 self.as_ref().to_glib_none().0,
@@ -489,7 +499,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn get_status(&self) -> PrintStatus {
+    fn status(&self) -> PrintStatus {
         unsafe {
             from_glib(ffi::gtk_print_operation_get_status(
                 self.as_ref().to_glib_none().0,
@@ -497,7 +507,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn get_status_string(&self) -> Option<glib::GString> {
+    fn status_string(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_print_operation_get_status_string(
                 self.as_ref().to_glib_none().0,
@@ -505,7 +515,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn get_support_selection(&self) -> bool {
+    fn supports_selection(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_print_operation_get_support_selection(
                 self.as_ref().to_glib_none().0,
@@ -674,7 +684,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn get_property_allow_async(&self) -> bool {
+    fn allows_async(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -689,7 +699,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn get_property_current_page(&self) -> i32 {
+    fn current_page(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -704,7 +714,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn get_property_custom_tab_label(&self) -> Option<glib::GString> {
+    fn custom_tab_label(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -718,7 +728,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn get_property_export_filename(&self) -> Option<glib::GString> {
+    fn export_filename(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -732,7 +742,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn get_property_job_name(&self) -> Option<glib::GString> {
+    fn job_name(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -746,7 +756,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn get_property_n_pages(&self) -> i32 {
+    fn n_pages(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -761,7 +771,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn get_property_show_progress(&self) -> bool {
+    fn shows_progress(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -776,7 +786,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn get_property_track_print_status(&self) -> bool {
+    fn tracks_print_status(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -791,7 +801,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn get_property_unit(&self) -> Unit {
+    fn unit(&self) -> Unit {
         unsafe {
             let mut value = glib::Value::from_type(<Unit as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -806,7 +816,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn get_property_use_full_page(&self) -> bool {
+    fn uses_full_page(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(

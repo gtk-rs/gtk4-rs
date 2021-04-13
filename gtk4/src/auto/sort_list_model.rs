@@ -39,7 +39,7 @@ impl SortListModel {
     }
 
     #[doc(alias = "gtk_sort_list_model_get_incremental")]
-    pub fn get_incremental(&self) -> bool {
+    pub fn is_incremental(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_sort_list_model_get_incremental(
                 self.to_glib_none().0,
@@ -48,17 +48,17 @@ impl SortListModel {
     }
 
     #[doc(alias = "gtk_sort_list_model_get_model")]
-    pub fn get_model(&self) -> Option<gio::ListModel> {
+    pub fn model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_sort_list_model_get_model(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_sort_list_model_get_pending")]
-    pub fn get_pending(&self) -> u32 {
+    pub fn pending(&self) -> u32 {
         unsafe { ffi::gtk_sort_list_model_get_pending(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_sort_list_model_get_sorter")]
-    pub fn get_sorter(&self) -> Option<Sorter> {
+    pub fn sorter(&self) -> Option<Sorter> {
         unsafe { from_glib_none(ffi::gtk_sort_list_model_get_sorter(self.to_glib_none().0)) }
     }
 

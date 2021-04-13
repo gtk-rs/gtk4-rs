@@ -18,11 +18,11 @@ pub const NONE_BUILDABLE: Option<&Buildable> = None;
 
 pub trait BuildableExt: 'static {
     #[doc(alias = "gtk_buildable_get_buildable_id")]
-    fn get_buildable_id(&self) -> Option<glib::GString>;
+    fn buildable_id(&self) -> Option<glib::GString>;
 }
 
 impl<O: IsA<Buildable>> BuildableExt for O {
-    fn get_buildable_id(&self) -> Option<glib::GString> {
+    fn buildable_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_buildable_get_buildable_id(
                 self.as_ref().to_glib_none().0,

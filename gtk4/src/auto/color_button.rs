@@ -48,12 +48,12 @@ impl ColorButton {
     }
 
     #[doc(alias = "gtk_color_button_get_modal")]
-    pub fn get_modal(&self) -> bool {
+    pub fn is_modal(&self) -> bool {
         unsafe { from_glib(ffi::gtk_color_button_get_modal(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_color_button_get_title")]
-    pub fn get_title(&self) -> glib::GString {
+    pub fn title(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_color_button_get_title(self.to_glib_none().0)) }
     }
 
@@ -71,7 +71,8 @@ impl ColorButton {
         }
     }
 
-    pub fn get_property_show_editor(&self) -> bool {
+    #[doc(alias = "get_property_show_editor")]
+    pub fn shows_editor(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -86,7 +87,8 @@ impl ColorButton {
         }
     }
 
-    pub fn set_property_show_editor(&self, show_editor: bool) {
+    #[doc(alias = "set_property_show_editor")]
+    pub fn set_show_editor(&self, show_editor: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

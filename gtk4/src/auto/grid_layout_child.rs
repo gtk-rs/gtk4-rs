@@ -27,22 +27,22 @@ glib::wrapper! {
 
 impl GridLayoutChild {
     #[doc(alias = "gtk_grid_layout_child_get_column")]
-    pub fn get_column(&self) -> i32 {
+    pub fn column(&self) -> i32 {
         unsafe { ffi::gtk_grid_layout_child_get_column(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_grid_layout_child_get_column_span")]
-    pub fn get_column_span(&self) -> i32 {
+    pub fn column_span(&self) -> i32 {
         unsafe { ffi::gtk_grid_layout_child_get_column_span(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_grid_layout_child_get_row")]
-    pub fn get_row(&self) -> i32 {
+    pub fn row(&self) -> i32 {
         unsafe { ffi::gtk_grid_layout_child_get_row(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_grid_layout_child_get_row_span")]
-    pub fn get_row_span(&self) -> i32 {
+    pub fn row_span(&self) -> i32 {
         unsafe { ffi::gtk_grid_layout_child_get_row_span(self.to_glib_none().0) }
     }
 

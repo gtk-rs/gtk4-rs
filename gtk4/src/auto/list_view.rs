@@ -55,7 +55,7 @@ impl ListView {
     }
 
     #[doc(alias = "gtk_list_view_get_enable_rubberband")]
-    pub fn get_enable_rubberband(&self) -> bool {
+    pub fn enables_rubberband(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_view_get_enable_rubberband(
                 self.to_glib_none().0,
@@ -64,17 +64,17 @@ impl ListView {
     }
 
     #[doc(alias = "gtk_list_view_get_factory")]
-    pub fn get_factory(&self) -> Option<ListItemFactory> {
+    pub fn factory(&self) -> Option<ListItemFactory> {
         unsafe { from_glib_none(ffi::gtk_list_view_get_factory(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_list_view_get_model")]
-    pub fn get_model(&self) -> Option<SelectionModel> {
+    pub fn model(&self) -> Option<SelectionModel> {
         unsafe { from_glib_none(ffi::gtk_list_view_get_model(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_list_view_get_show_separators")]
-    pub fn get_show_separators(&self) -> bool {
+    pub fn shows_separators(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_view_get_show_separators(
                 self.to_glib_none().0,
@@ -83,7 +83,7 @@ impl ListView {
     }
 
     #[doc(alias = "gtk_list_view_get_single_click_activate")]
-    pub fn get_single_click_activate(&self) -> bool {
+    pub fn is_single_click_activate(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_view_get_single_click_activate(
                 self.to_glib_none().0,

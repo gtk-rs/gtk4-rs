@@ -54,7 +54,7 @@ impl GestureStylus {
     }
 
     #[doc(alias = "gtk_gesture_stylus_get_backlog")]
-    pub fn get_backlog(&self) -> Option<Vec<gdk::TimeCoord>> {
+    pub fn backlog(&self) -> Option<Vec<gdk::TimeCoord>> {
         unsafe {
             let mut backlog = ptr::null_mut();
             let mut n_elems = mem::MaybeUninit::uninit();
@@ -75,7 +75,7 @@ impl GestureStylus {
     }
 
     #[doc(alias = "gtk_gesture_stylus_get_device_tool")]
-    pub fn get_device_tool(&self) -> Option<gdk::DeviceTool> {
+    pub fn device_tool(&self) -> Option<gdk::DeviceTool> {
         unsafe {
             from_glib_none(ffi::gtk_gesture_stylus_get_device_tool(
                 self.to_glib_none().0,

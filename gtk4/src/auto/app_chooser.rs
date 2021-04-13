@@ -22,17 +22,17 @@ pub const NONE_APP_CHOOSER: Option<&AppChooser> = None;
 
 pub trait AppChooserExt: 'static {
     #[doc(alias = "gtk_app_chooser_get_app_info")]
-    fn get_app_info(&self) -> Option<gio::AppInfo>;
+    fn app_info(&self) -> Option<gio::AppInfo>;
 
     #[doc(alias = "gtk_app_chooser_get_content_type")]
-    fn get_content_type(&self) -> Option<glib::GString>;
+    fn content_type(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_app_chooser_refresh")]
     fn refresh(&self);
 }
 
 impl<O: IsA<AppChooser>> AppChooserExt for O {
-    fn get_app_info(&self) -> Option<gio::AppInfo> {
+    fn app_info(&self) -> Option<gio::AppInfo> {
         unsafe {
             from_glib_full(ffi::gtk_app_chooser_get_app_info(
                 self.as_ref().to_glib_none().0,
@@ -40,7 +40,7 @@ impl<O: IsA<AppChooser>> AppChooserExt for O {
         }
     }
 
-    fn get_content_type(&self) -> Option<glib::GString> {
+    fn content_type(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_app_chooser_get_content_type(
                 self.as_ref().to_glib_none().0,

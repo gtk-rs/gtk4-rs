@@ -32,7 +32,7 @@ impl CellRendererToggle {
     }
 
     #[doc(alias = "gtk_cell_renderer_toggle_get_activatable")]
-    pub fn get_activatable(&self) -> bool {
+    pub fn is_activatable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_cell_renderer_toggle_get_activatable(
                 self.to_glib_none().0,
@@ -41,7 +41,7 @@ impl CellRendererToggle {
     }
 
     #[doc(alias = "gtk_cell_renderer_toggle_get_active")]
-    pub fn get_active(&self) -> bool {
+    pub fn is_active(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_cell_renderer_toggle_get_active(
                 self.to_glib_none().0,
@@ -50,7 +50,7 @@ impl CellRendererToggle {
     }
 
     #[doc(alias = "gtk_cell_renderer_toggle_get_radio")]
-    pub fn get_radio(&self) -> bool {
+    pub fn is_radio(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_cell_renderer_toggle_get_radio(
                 self.to_glib_none().0,
@@ -79,7 +79,8 @@ impl CellRendererToggle {
         }
     }
 
-    pub fn get_property_inconsistent(&self) -> bool {
+    #[doc(alias = "get_property_inconsistent")]
+    pub fn is_inconsistent(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -94,7 +95,8 @@ impl CellRendererToggle {
         }
     }
 
-    pub fn set_property_inconsistent(&self, inconsistent: bool) {
+    #[doc(alias = "set_property_inconsistent")]
+    pub fn set_inconsistent(&self, inconsistent: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

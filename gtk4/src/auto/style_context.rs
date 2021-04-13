@@ -92,25 +92,25 @@ pub trait StyleContextExt: 'static {
     fn add_provider<P: IsA<StyleProvider>>(&self, provider: &P, priority: u32);
 
     #[doc(alias = "gtk_style_context_get_border")]
-    fn get_border(&self) -> Border;
+    fn border(&self) -> Border;
 
     #[doc(alias = "gtk_style_context_get_color")]
-    fn get_color(&self) -> gdk::RGBA;
+    fn color(&self) -> gdk::RGBA;
 
     #[doc(alias = "gtk_style_context_get_display")]
-    fn get_display(&self) -> gdk::Display;
+    fn display(&self) -> gdk::Display;
 
     #[doc(alias = "gtk_style_context_get_margin")]
-    fn get_margin(&self) -> Border;
+    fn margin(&self) -> Border;
 
     #[doc(alias = "gtk_style_context_get_padding")]
-    fn get_padding(&self) -> Border;
+    fn padding(&self) -> Border;
 
     #[doc(alias = "gtk_style_context_get_scale")]
-    fn get_scale(&self) -> i32;
+    fn scale(&self) -> i32;
 
     #[doc(alias = "gtk_style_context_get_state")]
-    fn get_state(&self) -> StateFlags;
+    fn state(&self) -> StateFlags;
 
     #[doc(alias = "gtk_style_context_has_class")]
     fn has_class(&self, class_name: &str) -> bool;
@@ -165,7 +165,7 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
         }
     }
 
-    fn get_border(&self) -> Border {
+    fn border(&self) -> Border {
         unsafe {
             let mut border = Border::uninitialized();
             ffi::gtk_style_context_get_border(
@@ -176,7 +176,7 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
         }
     }
 
-    fn get_color(&self) -> gdk::RGBA {
+    fn color(&self) -> gdk::RGBA {
         unsafe {
             let mut color = gdk::RGBA::uninitialized();
             ffi::gtk_style_context_get_color(
@@ -187,7 +187,7 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
         }
     }
 
-    fn get_display(&self) -> gdk::Display {
+    fn display(&self) -> gdk::Display {
         unsafe {
             from_glib_none(ffi::gtk_style_context_get_display(
                 self.as_ref().to_glib_none().0,
@@ -195,7 +195,7 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
         }
     }
 
-    fn get_margin(&self) -> Border {
+    fn margin(&self) -> Border {
         unsafe {
             let mut margin = Border::uninitialized();
             ffi::gtk_style_context_get_margin(
@@ -206,7 +206,7 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
         }
     }
 
-    fn get_padding(&self) -> Border {
+    fn padding(&self) -> Border {
         unsafe {
             let mut padding = Border::uninitialized();
             ffi::gtk_style_context_get_padding(
@@ -217,11 +217,11 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
         }
     }
 
-    fn get_scale(&self) -> i32 {
+    fn scale(&self) -> i32 {
         unsafe { ffi::gtk_style_context_get_scale(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_state(&self) -> StateFlags {
+    fn state(&self) -> StateFlags {
         unsafe {
             from_glib(ffi::gtk_style_context_get_state(
                 self.as_ref().to_glib_none().0,

@@ -41,7 +41,7 @@ impl EditableLabel {
     }
 
     #[doc(alias = "gtk_editable_label_get_editing")]
-    pub fn get_editing(&self) -> bool {
+    pub fn is_editing(&self) -> bool {
         unsafe { from_glib(ffi::gtk_editable_label_get_editing(self.to_glib_none().0)) }
     }
 

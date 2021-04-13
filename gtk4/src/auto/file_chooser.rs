@@ -32,37 +32,37 @@ pub trait FileChooserExt: 'static {
     fn add_shortcut_folder<P: IsA<gio::File>>(&self, folder: &P) -> Result<(), glib::Error>;
 
     #[doc(alias = "gtk_file_chooser_get_action")]
-    fn get_action(&self) -> FileChooserAction;
+    fn action(&self) -> FileChooserAction;
 
     #[doc(alias = "gtk_file_chooser_get_choice")]
     fn get_choice(&self, id: &str) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_file_chooser_get_create_folders")]
-    fn get_create_folders(&self) -> bool;
+    fn creates_folders(&self) -> bool;
 
     #[doc(alias = "gtk_file_chooser_get_current_folder")]
-    fn get_current_folder(&self) -> Option<gio::File>;
+    fn current_folder(&self) -> Option<gio::File>;
 
     #[doc(alias = "gtk_file_chooser_get_current_name")]
-    fn get_current_name(&self) -> Option<glib::GString>;
+    fn current_name(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_file_chooser_get_file")]
-    fn get_file(&self) -> Option<gio::File>;
+    fn file(&self) -> Option<gio::File>;
 
     #[doc(alias = "gtk_file_chooser_get_files")]
-    fn get_files(&self) -> Option<gio::ListModel>;
+    fn files(&self) -> Option<gio::ListModel>;
 
     #[doc(alias = "gtk_file_chooser_get_filter")]
-    fn get_filter(&self) -> Option<FileFilter>;
+    fn filter(&self) -> Option<FileFilter>;
 
     #[doc(alias = "gtk_file_chooser_get_filters")]
-    fn get_filters(&self) -> Option<gio::ListModel>;
+    fn filters(&self) -> Option<gio::ListModel>;
 
     #[doc(alias = "gtk_file_chooser_get_select_multiple")]
-    fn get_select_multiple(&self) -> bool;
+    fn selects_multiple(&self) -> bool;
 
     #[doc(alias = "gtk_file_chooser_get_shortcut_folders")]
-    fn get_shortcut_folders(&self) -> Option<gio::ListModel>;
+    fn shortcut_folders(&self) -> Option<gio::ListModel>;
 
     #[doc(alias = "gtk_file_chooser_remove_choice")]
     fn remove_choice(&self, id: &str);
@@ -145,7 +145,7 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    fn get_action(&self) -> FileChooserAction {
+    fn action(&self) -> FileChooserAction {
         unsafe {
             from_glib(ffi::gtk_file_chooser_get_action(
                 self.as_ref().to_glib_none().0,
@@ -162,7 +162,7 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    fn get_create_folders(&self) -> bool {
+    fn creates_folders(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_file_chooser_get_create_folders(
                 self.as_ref().to_glib_none().0,
@@ -170,7 +170,7 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    fn get_current_folder(&self) -> Option<gio::File> {
+    fn current_folder(&self) -> Option<gio::File> {
         unsafe {
             from_glib_full(ffi::gtk_file_chooser_get_current_folder(
                 self.as_ref().to_glib_none().0,
@@ -178,7 +178,7 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    fn get_current_name(&self) -> Option<glib::GString> {
+    fn current_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_file_chooser_get_current_name(
                 self.as_ref().to_glib_none().0,
@@ -186,7 +186,7 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    fn get_file(&self) -> Option<gio::File> {
+    fn file(&self) -> Option<gio::File> {
         unsafe {
             from_glib_full(ffi::gtk_file_chooser_get_file(
                 self.as_ref().to_glib_none().0,
@@ -194,7 +194,7 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    fn get_files(&self) -> Option<gio::ListModel> {
+    fn files(&self) -> Option<gio::ListModel> {
         unsafe {
             from_glib_full(ffi::gtk_file_chooser_get_files(
                 self.as_ref().to_glib_none().0,
@@ -202,7 +202,7 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    fn get_filter(&self) -> Option<FileFilter> {
+    fn filter(&self) -> Option<FileFilter> {
         unsafe {
             from_glib_none(ffi::gtk_file_chooser_get_filter(
                 self.as_ref().to_glib_none().0,
@@ -210,7 +210,7 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    fn get_filters(&self) -> Option<gio::ListModel> {
+    fn filters(&self) -> Option<gio::ListModel> {
         unsafe {
             from_glib_full(ffi::gtk_file_chooser_get_filters(
                 self.as_ref().to_glib_none().0,
@@ -218,7 +218,7 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    fn get_select_multiple(&self) -> bool {
+    fn selects_multiple(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_file_chooser_get_select_multiple(
                 self.as_ref().to_glib_none().0,
@@ -226,7 +226,7 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    fn get_shortcut_folders(&self) -> Option<gio::ListModel> {
+    fn shortcut_folders(&self) -> Option<gio::ListModel> {
         unsafe {
             from_glib_full(ffi::gtk_file_chooser_get_shortcut_folders(
                 self.as_ref().to_glib_none().0,

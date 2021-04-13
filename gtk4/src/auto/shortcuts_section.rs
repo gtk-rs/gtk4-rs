@@ -35,7 +35,8 @@ glib::wrapper! {
 }
 
 impl ShortcutsSection {
-    pub fn get_property_max_height(&self) -> u32 {
+    #[doc(alias = "get_property_max_height")]
+    pub fn max_height(&self) -> u32 {
         unsafe {
             let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -50,7 +51,8 @@ impl ShortcutsSection {
         }
     }
 
-    pub fn set_property_max_height(&self, max_height: u32) {
+    #[doc(alias = "set_property_max_height")]
+    pub fn set_max_height(&self, max_height: u32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -60,7 +62,8 @@ impl ShortcutsSection {
         }
     }
 
-    pub fn get_property_section_name(&self) -> Option<glib::GString> {
+    #[doc(alias = "get_property_section_name")]
+    pub fn section_name(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -74,7 +77,8 @@ impl ShortcutsSection {
         }
     }
 
-    pub fn set_property_section_name(&self, section_name: Option<&str>) {
+    #[doc(alias = "set_property_section_name")]
+    pub fn set_section_name(&self, section_name: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -84,7 +88,8 @@ impl ShortcutsSection {
         }
     }
 
-    pub fn get_property_title(&self) -> Option<glib::GString> {
+    #[doc(alias = "get_property_title")]
+    pub fn title(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -98,7 +103,8 @@ impl ShortcutsSection {
         }
     }
 
-    pub fn set_property_title(&self, title: Option<&str>) {
+    #[doc(alias = "set_property_title")]
+    pub fn set_title(&self, title: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -108,7 +114,8 @@ impl ShortcutsSection {
         }
     }
 
-    pub fn get_property_view_name(&self) -> Option<glib::GString> {
+    #[doc(alias = "get_property_view_name")]
+    pub fn view_name(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -122,7 +129,8 @@ impl ShortcutsSection {
         }
     }
 
-    pub fn set_property_view_name(&self, view_name: Option<&str>) {
+    #[doc(alias = "set_property_view_name")]
+    pub fn set_view_name(&self, view_name: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

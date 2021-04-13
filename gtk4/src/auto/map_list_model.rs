@@ -68,7 +68,7 @@ impl MapListModel {
     }
 
     #[doc(alias = "gtk_map_list_model_get_model")]
-    pub fn get_model(&self) -> Option<gio::ListModel> {
+    pub fn model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_map_list_model_get_model(self.to_glib_none().0)) }
     }
 
@@ -127,21 +127,6 @@ impl MapListModel {
                 self.to_glib_none().0,
                 model.map(|p| p.as_ref()).to_glib_none().0,
             );
-        }
-    }
-
-    pub fn get_property_has_map(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"has-map\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `has-map` getter")
-                .unwrap()
         }
     }
 

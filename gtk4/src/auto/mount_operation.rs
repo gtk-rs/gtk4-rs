@@ -146,10 +146,10 @@ pub const NONE_MOUNT_OPERATION: Option<&MountOperation> = None;
 
 pub trait MountOperationExt: 'static {
     #[doc(alias = "gtk_mount_operation_get_display")]
-    fn get_display(&self) -> Option<gdk::Display>;
+    fn display(&self) -> Option<gdk::Display>;
 
     #[doc(alias = "gtk_mount_operation_get_parent")]
-    fn get_parent(&self) -> Option<Window>;
+    fn parent(&self) -> Option<Window>;
 
     #[doc(alias = "gtk_mount_operation_is_showing")]
     fn is_showing(&self) -> bool;
@@ -160,8 +160,6 @@ pub trait MountOperationExt: 'static {
     #[doc(alias = "gtk_mount_operation_set_parent")]
     fn set_parent<P: IsA<Window>>(&self, parent: Option<&P>);
 
-    fn get_property_is_showing(&self) -> bool;
-
     fn connect_property_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_is_showing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -170,7 +168,7 @@ pub trait MountOperationExt: 'static {
 }
 
 impl<O: IsA<MountOperation>> MountOperationExt for O {
-    fn get_display(&self) -> Option<gdk::Display> {
+    fn display(&self) -> Option<gdk::Display> {
         unsafe {
             from_glib_none(ffi::gtk_mount_operation_get_display(
                 self.as_ref().to_glib_none().0,
@@ -178,7 +176,7 @@ impl<O: IsA<MountOperation>> MountOperationExt for O {
         }
     }
 
-    fn get_parent(&self) -> Option<Window> {
+    fn parent(&self) -> Option<Window> {
         unsafe {
             from_glib_none(ffi::gtk_mount_operation_get_parent(
                 self.as_ref().to_glib_none().0,
@@ -209,21 +207,6 @@ impl<O: IsA<MountOperation>> MountOperationExt for O {
                 self.as_ref().to_glib_none().0,
                 parent.map(|p| p.as_ref()).to_glib_none().0,
             );
-        }
-    }
-
-    fn get_property_is_showing(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"is-showing\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `is-showing` getter")
-                .unwrap()
         }
     }
 

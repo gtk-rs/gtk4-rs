@@ -50,16 +50,16 @@ pub trait IMContextExt: 'static {
     fn focus_out(&self);
 
     #[doc(alias = "gtk_im_context_get_preedit_string")]
-    fn get_preedit_string(&self) -> (glib::GString, pango::AttrList, i32);
+    fn preedit_string(&self) -> (glib::GString, pango::AttrList, i32);
 
     #[cfg_attr(feature = "v4_2", deprecated)]
     #[doc(alias = "gtk_im_context_get_surrounding")]
-    fn get_surrounding(&self) -> Option<(glib::GString, i32)>;
+    fn surrounding(&self) -> Option<(glib::GString, i32)>;
 
     #[cfg(any(feature = "v4_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
     #[doc(alias = "gtk_im_context_get_surrounding_with_selection")]
-    fn get_surrounding_with_selection(&self) -> Option<(glib::GString, i32, i32)>;
+    fn surrounding_with_selection(&self) -> Option<(glib::GString, i32, i32)>;
 
     #[doc(alias = "gtk_im_context_reset")]
     fn reset(&self);
@@ -82,13 +82,17 @@ pub trait IMContextExt: 'static {
     #[doc(alias = "gtk_im_context_set_use_preedit")]
     fn set_use_preedit(&self, use_preedit: bool);
 
-    fn get_property_input_hints(&self) -> InputHints;
+    #[doc(alias = "get_property_input_hints")]
+    fn input_hints(&self) -> InputHints;
 
-    fn set_property_input_hints(&self, input_hints: InputHints);
+    #[doc(alias = "set_property_input_hints")]
+    fn set_input_hints(&self, input_hints: InputHints);
 
-    fn get_property_input_purpose(&self) -> InputPurpose;
+    #[doc(alias = "get_property_input_purpose")]
+    fn input_purpose(&self) -> InputPurpose;
 
-    fn set_property_input_purpose(&self, input_purpose: InputPurpose);
+    #[doc(alias = "set_property_input_purpose")]
+    fn set_input_purpose(&self, input_purpose: InputPurpose);
 
     fn connect_commit<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -161,7 +165,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    fn get_preedit_string(&self) -> (glib::GString, pango::AttrList, i32) {
+    fn preedit_string(&self) -> (glib::GString, pango::AttrList, i32) {
         unsafe {
             let mut str = ptr::null_mut();
             let mut attrs = ptr::null_mut();
@@ -177,7 +181,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    fn get_surrounding(&self) -> Option<(glib::GString, i32)> {
+    fn surrounding(&self) -> Option<(glib::GString, i32)> {
         unsafe {
             let mut text = ptr::null_mut();
             let mut cursor_index = mem::MaybeUninit::uninit();
@@ -197,7 +201,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
 
     #[cfg(any(feature = "v4_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
-    fn get_surrounding_with_selection(&self) -> Option<(glib::GString, i32, i32)> {
+    fn surrounding_with_selection(&self) -> Option<(glib::GString, i32, i32)> {
         unsafe {
             let mut text = ptr::null_mut();
             let mut cursor_index = mem::MaybeUninit::uninit();
@@ -278,7 +282,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    fn get_property_input_hints(&self) -> InputHints {
+    fn input_hints(&self) -> InputHints {
         unsafe {
             let mut value = glib::Value::from_type(<InputHints as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -293,7 +297,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    fn set_property_input_hints(&self, input_hints: InputHints) {
+    fn set_input_hints(&self, input_hints: InputHints) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -303,7 +307,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    fn get_property_input_purpose(&self) -> InputPurpose {
+    fn input_purpose(&self) -> InputPurpose {
         unsafe {
             let mut value = glib::Value::from_type(<InputPurpose as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -318,7 +322,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    fn set_property_input_purpose(&self, input_purpose: InputPurpose) {
+    fn set_input_purpose(&self, input_purpose: InputPurpose) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,

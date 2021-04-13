@@ -7,7 +7,6 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -23,7 +22,7 @@ glib::wrapper! {
 
 impl Renderer {
     #[doc(alias = "gsk_renderer_new_for_surface")]
-    pub fn new_for_surface(surface: &gdk::Surface) -> Option<Renderer> {
+    pub fn for_surface(surface: &gdk::Surface) -> Option<Renderer> {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gsk_renderer_new_for_surface(surface.to_glib_none().0)) }
     }
@@ -33,7 +32,7 @@ pub const NONE_RENDERER: Option<&Renderer> = None;
 
 pub trait RendererExt: 'static {
     #[doc(alias = "gsk_renderer_get_surface")]
-    fn get_surface(&self) -> Option<gdk::Surface>;
+    fn surface(&self) -> Option<gdk::Surface>;
 
     #[doc(alias = "gsk_renderer_is_realized")]
     fn is_realized(&self) -> bool;
@@ -44,15 +43,13 @@ pub trait RendererExt: 'static {
     #[doc(alias = "gsk_renderer_unrealize")]
     fn unrealize(&self);
 
-    fn get_property_realized(&self) -> bool;
-
     fn connect_property_realized_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_surface_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<Renderer>> RendererExt for O {
-    fn get_surface(&self) -> Option<gdk::Surface> {
+    fn surface(&self) -> Option<gdk::Surface> {
         unsafe {
             from_glib_none(ffi::gsk_renderer_get_surface(
                 self.as_ref().to_glib_none().0,
@@ -87,21 +84,6 @@ impl<O: IsA<Renderer>> RendererExt for O {
     fn unrealize(&self) {
         unsafe {
             ffi::gsk_renderer_unrealize(self.as_ref().to_glib_none().0);
-        }
-    }
-
-    fn get_property_realized(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"realized\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `realized` getter")
-                .unwrap()
         }
     }
 

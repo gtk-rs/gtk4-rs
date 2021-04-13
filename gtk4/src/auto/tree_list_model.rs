@@ -69,7 +69,7 @@ impl TreeListModel {
     }
 
     #[doc(alias = "gtk_tree_list_model_get_autoexpand")]
-    pub fn get_autoexpand(&self) -> bool {
+    pub fn is_autoexpand(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_list_model_get_autoexpand(
                 self.to_glib_none().0,
@@ -88,12 +88,12 @@ impl TreeListModel {
     }
 
     #[doc(alias = "gtk_tree_list_model_get_model")]
-    pub fn get_model(&self) -> Option<gio::ListModel> {
+    pub fn model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_tree_list_model_get_model(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_list_model_get_passthrough")]
-    pub fn get_passthrough(&self) -> bool {
+    pub fn is_passthrough(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_list_model_get_passthrough(
                 self.to_glib_none().0,

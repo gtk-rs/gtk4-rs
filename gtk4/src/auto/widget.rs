@@ -62,7 +62,7 @@ impl Widget {
 impl fmt::Display for Widget {
     #[inline]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str(&WidgetExt::get_widget_name(self))
+        f.write_str(&WidgetExt::widget_name(self))
     }
 }
 
@@ -134,166 +134,166 @@ pub trait WidgetExt: 'static {
     fn error_bell(&self);
 
     #[doc(alias = "gtk_widget_get_allocated_baseline")]
-    fn get_allocated_baseline(&self) -> i32;
+    fn allocated_baseline(&self) -> i32;
 
     #[doc(alias = "gtk_widget_get_allocated_height")]
-    fn get_allocated_height(&self) -> i32;
+    fn allocated_height(&self) -> i32;
 
     #[doc(alias = "gtk_widget_get_allocated_width")]
-    fn get_allocated_width(&self) -> i32;
+    fn allocated_width(&self) -> i32;
 
     #[doc(alias = "gtk_widget_get_allocation")]
-    fn get_allocation(&self) -> Allocation;
+    fn allocation(&self) -> Allocation;
 
     #[doc(alias = "gtk_widget_get_ancestor")]
     fn get_ancestor(&self, widget_type: glib::types::Type) -> Option<Widget>;
 
     #[doc(alias = "gtk_widget_get_can_focus")]
-    fn get_can_focus(&self) -> bool;
+    fn can_focus(&self) -> bool;
 
     #[doc(alias = "gtk_widget_get_can_target")]
-    fn get_can_target(&self) -> bool;
+    fn can_target(&self) -> bool;
 
     #[doc(alias = "gtk_widget_get_child_visible")]
-    fn get_child_visible(&self) -> bool;
+    fn is_child_visible(&self) -> bool;
 
     #[doc(alias = "gtk_widget_get_clipboard")]
-    fn get_clipboard(&self) -> gdk::Clipboard;
+    fn clipboard(&self) -> gdk::Clipboard;
 
     #[doc(alias = "gtk_widget_get_css_classes")]
-    fn get_css_classes(&self) -> Vec<glib::GString>;
+    fn css_classes(&self) -> Vec<glib::GString>;
 
     #[doc(alias = "gtk_widget_get_css_name")]
-    fn get_css_name(&self) -> glib::GString;
+    fn css_name(&self) -> glib::GString;
 
     #[doc(alias = "gtk_widget_get_cursor")]
-    fn get_cursor(&self) -> Option<gdk::Cursor>;
+    fn cursor(&self) -> Option<gdk::Cursor>;
 
     #[doc(alias = "gtk_widget_get_direction")]
-    fn get_direction(&self) -> TextDirection;
+    fn direction(&self) -> TextDirection;
 
     #[doc(alias = "gtk_widget_get_display")]
-    fn get_display(&self) -> gdk::Display;
+    fn display(&self) -> gdk::Display;
 
     #[doc(alias = "gtk_widget_get_first_child")]
-    fn get_first_child(&self) -> Option<Widget>;
+    fn first_child(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_widget_get_focus_child")]
-    fn get_focus_child(&self) -> Option<Widget>;
+    fn focus_child(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_widget_get_focus_on_click")]
-    fn get_focus_on_click(&self) -> bool;
+    fn gets_focus_on_click(&self) -> bool;
 
     #[doc(alias = "gtk_widget_get_focusable")]
-    fn get_focusable(&self) -> bool;
+    fn is_focusable(&self) -> bool;
 
     #[doc(alias = "gtk_widget_get_font_map")]
-    fn get_font_map(&self) -> Option<pango::FontMap>;
+    fn font_map(&self) -> Option<pango::FontMap>;
 
     #[doc(alias = "gtk_widget_get_font_options")]
-    fn get_font_options(&self) -> Option<cairo::FontOptions>;
+    fn font_options(&self) -> Option<cairo::FontOptions>;
 
     #[doc(alias = "gtk_widget_get_frame_clock")]
-    fn get_frame_clock(&self) -> Option<gdk::FrameClock>;
+    fn frame_clock(&self) -> Option<gdk::FrameClock>;
 
     #[doc(alias = "gtk_widget_get_halign")]
-    fn get_halign(&self) -> Align;
+    fn halign(&self) -> Align;
 
     #[doc(alias = "gtk_widget_get_has_tooltip")]
-    fn get_has_tooltip(&self) -> bool;
+    fn has_tooltip(&self) -> bool;
 
     #[doc(alias = "gtk_widget_get_height")]
-    fn get_height(&self) -> i32;
+    fn height(&self) -> i32;
 
     #[doc(alias = "gtk_widget_get_hexpand")]
-    fn get_hexpand(&self) -> bool;
+    fn hexpands(&self) -> bool;
 
     #[doc(alias = "gtk_widget_get_hexpand_set")]
-    fn get_hexpand_set(&self) -> bool;
+    fn is_hexpand_set(&self) -> bool;
 
     #[doc(alias = "gtk_widget_get_last_child")]
-    fn get_last_child(&self) -> Option<Widget>;
+    fn last_child(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_widget_get_layout_manager")]
-    fn get_layout_manager(&self) -> Option<LayoutManager>;
+    fn layout_manager(&self) -> Option<LayoutManager>;
 
     #[doc(alias = "gtk_widget_get_mapped")]
-    fn get_mapped(&self) -> bool;
+    fn is_mapped(&self) -> bool;
 
     #[doc(alias = "gtk_widget_get_margin_bottom")]
-    fn get_margin_bottom(&self) -> i32;
+    fn margin_bottom(&self) -> i32;
 
     #[doc(alias = "gtk_widget_get_margin_end")]
-    fn get_margin_end(&self) -> i32;
+    fn margin_end(&self) -> i32;
 
     #[doc(alias = "gtk_widget_get_margin_start")]
-    fn get_margin_start(&self) -> i32;
+    fn margin_start(&self) -> i32;
 
     #[doc(alias = "gtk_widget_get_margin_top")]
-    fn get_margin_top(&self) -> i32;
+    fn margin_top(&self) -> i32;
 
     #[doc(alias = "gtk_widget_get_name")]
-    fn get_widget_name(&self) -> glib::GString;
+    fn widget_name(&self) -> glib::GString;
 
     #[doc(alias = "gtk_widget_get_native")]
-    fn get_native(&self) -> Option<Native>;
+    fn native(&self) -> Option<Native>;
 
     #[doc(alias = "gtk_widget_get_next_sibling")]
-    fn get_next_sibling(&self) -> Option<Widget>;
+    fn next_sibling(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_widget_get_opacity")]
-    fn get_opacity(&self) -> f64;
+    fn opacity(&self) -> f64;
 
     #[doc(alias = "gtk_widget_get_overflow")]
-    fn get_overflow(&self) -> Overflow;
+    fn overflow(&self) -> Overflow;
 
     #[doc(alias = "gtk_widget_get_pango_context")]
-    fn get_pango_context(&self) -> pango::Context;
+    fn pango_context(&self) -> pango::Context;
 
     #[doc(alias = "gtk_widget_get_parent")]
-    fn get_parent(&self) -> Option<Widget>;
+    fn parent(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_widget_get_preferred_size")]
-    fn get_preferred_size(&self) -> (Requisition, Requisition);
+    fn preferred_size(&self) -> (Requisition, Requisition);
 
     #[doc(alias = "gtk_widget_get_prev_sibling")]
-    fn get_prev_sibling(&self) -> Option<Widget>;
+    fn prev_sibling(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_widget_get_primary_clipboard")]
-    fn get_primary_clipboard(&self) -> gdk::Clipboard;
+    fn primary_clipboard(&self) -> gdk::Clipboard;
 
     #[doc(alias = "gtk_widget_get_realized")]
-    fn get_realized(&self) -> bool;
+    fn is_realized(&self) -> bool;
 
     #[doc(alias = "gtk_widget_get_receives_default")]
-    fn get_receives_default(&self) -> bool;
+    fn receives_default(&self) -> bool;
 
     #[doc(alias = "gtk_widget_get_request_mode")]
-    fn get_request_mode(&self) -> SizeRequestMode;
+    fn request_mode(&self) -> SizeRequestMode;
 
     #[doc(alias = "gtk_widget_get_root")]
-    fn get_root(&self) -> Option<Root>;
+    fn root(&self) -> Option<Root>;
 
     #[doc(alias = "gtk_widget_get_scale_factor")]
-    fn get_scale_factor(&self) -> i32;
+    fn scale_factor(&self) -> i32;
 
     #[doc(alias = "gtk_widget_get_sensitive")]
     fn get_sensitive(&self) -> bool;
 
     #[doc(alias = "gtk_widget_get_settings")]
-    fn get_settings(&self) -> Settings;
+    fn settings(&self) -> Settings;
 
     #[doc(alias = "gtk_widget_get_size")]
     fn get_size(&self, orientation: Orientation) -> i32;
 
     #[doc(alias = "gtk_widget_get_size_request")]
-    fn get_size_request(&self) -> (i32, i32);
+    fn size_request(&self) -> (i32, i32);
 
     #[doc(alias = "gtk_widget_get_state_flags")]
-    fn get_state_flags(&self) -> StateFlags;
+    fn state_flags(&self) -> StateFlags;
 
     #[doc(alias = "gtk_widget_get_style_context")]
-    fn get_style_context(&self) -> StyleContext;
+    fn style_context(&self) -> StyleContext;
 
     #[doc(alias = "gtk_widget_get_template_child")]
     fn get_template_child(
@@ -303,25 +303,25 @@ pub trait WidgetExt: 'static {
     ) -> Option<glib::Object>;
 
     #[doc(alias = "gtk_widget_get_tooltip_markup")]
-    fn get_tooltip_markup(&self) -> Option<glib::GString>;
+    fn tooltip_markup(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_widget_get_tooltip_text")]
-    fn get_tooltip_text(&self) -> Option<glib::GString>;
+    fn tooltip_text(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_widget_get_valign")]
-    fn get_valign(&self) -> Align;
+    fn valign(&self) -> Align;
 
     #[doc(alias = "gtk_widget_get_vexpand")]
-    fn get_vexpand(&self) -> bool;
+    fn vexpands(&self) -> bool;
 
     #[doc(alias = "gtk_widget_get_vexpand_set")]
-    fn get_vexpand_set(&self) -> bool;
+    fn is_vexpand_set(&self) -> bool;
 
     #[doc(alias = "gtk_widget_get_visible")]
     fn get_visible(&self) -> bool;
 
     #[doc(alias = "gtk_widget_get_width")]
-    fn get_width(&self) -> i32;
+    fn width(&self) -> i32;
 
     #[doc(alias = "gtk_widget_grab_focus")]
     fn grab_focus(&self) -> bool;
@@ -560,17 +560,17 @@ pub trait WidgetExt: 'static {
     #[doc(alias = "gtk_widget_unset_state_flags")]
     fn unset_state_flags(&self, flags: StateFlags);
 
-    fn get_property_has_default(&self) -> bool;
+    #[doc(alias = "get_property_height_request")]
+    fn height_request(&self) -> i32;
 
-    fn get_property_has_focus(&self) -> bool;
+    #[doc(alias = "set_property_height_request")]
+    fn set_height_request(&self, height_request: i32);
 
-    fn get_property_height_request(&self) -> i32;
+    #[doc(alias = "get_property_width_request")]
+    fn width_request(&self) -> i32;
 
-    fn set_property_height_request(&self, height_request: i32);
-
-    fn get_property_width_request(&self) -> i32;
-
-    fn set_property_width_request(&self, width_request: i32);
+    #[doc(alias = "set_property_width_request")]
+    fn set_width_request(&self, width_request: i32);
 
     fn connect_destroy<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -898,19 +898,19 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_allocated_baseline(&self) -> i32 {
+    fn allocated_baseline(&self) -> i32 {
         unsafe { ffi::gtk_widget_get_allocated_baseline(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_allocated_height(&self) -> i32 {
+    fn allocated_height(&self) -> i32 {
         unsafe { ffi::gtk_widget_get_allocated_height(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_allocated_width(&self) -> i32 {
+    fn allocated_width(&self) -> i32 {
         unsafe { ffi::gtk_widget_get_allocated_width(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_allocation(&self) -> Allocation {
+    fn allocation(&self) -> Allocation {
         unsafe {
             let mut allocation = Allocation::uninitialized();
             ffi::gtk_widget_get_allocation(
@@ -930,7 +930,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_can_focus(&self) -> bool {
+    fn can_focus(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_widget_get_can_focus(
                 self.as_ref().to_glib_none().0,
@@ -938,7 +938,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_can_target(&self) -> bool {
+    fn can_target(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_widget_get_can_target(
                 self.as_ref().to_glib_none().0,
@@ -946,7 +946,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_child_visible(&self) -> bool {
+    fn is_child_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_widget_get_child_visible(
                 self.as_ref().to_glib_none().0,
@@ -954,7 +954,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_clipboard(&self) -> gdk::Clipboard {
+    fn clipboard(&self) -> gdk::Clipboard {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_clipboard(
                 self.as_ref().to_glib_none().0,
@@ -962,7 +962,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_css_classes(&self) -> Vec<glib::GString> {
+    fn css_classes(&self) -> Vec<glib::GString> {
         unsafe {
             FromGlibPtrContainer::from_glib_full(ffi::gtk_widget_get_css_classes(
                 self.as_ref().to_glib_none().0,
@@ -970,15 +970,15 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_css_name(&self) -> glib::GString {
+    fn css_name(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_widget_get_css_name(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_cursor(&self) -> Option<gdk::Cursor> {
+    fn cursor(&self) -> Option<gdk::Cursor> {
         unsafe { from_glib_none(ffi::gtk_widget_get_cursor(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_direction(&self) -> TextDirection {
+    fn direction(&self) -> TextDirection {
         unsafe {
             from_glib(ffi::gtk_widget_get_direction(
                 self.as_ref().to_glib_none().0,
@@ -986,11 +986,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_display(&self) -> gdk::Display {
+    fn display(&self) -> gdk::Display {
         unsafe { from_glib_none(ffi::gtk_widget_get_display(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_first_child(&self) -> Option<Widget> {
+    fn first_child(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_first_child(
                 self.as_ref().to_glib_none().0,
@@ -998,7 +998,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_focus_child(&self) -> Option<Widget> {
+    fn focus_child(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_focus_child(
                 self.as_ref().to_glib_none().0,
@@ -1006,7 +1006,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_focus_on_click(&self) -> bool {
+    fn gets_focus_on_click(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_widget_get_focus_on_click(
                 self.as_ref().to_glib_none().0,
@@ -1014,7 +1014,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_focusable(&self) -> bool {
+    fn is_focusable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_widget_get_focusable(
                 self.as_ref().to_glib_none().0,
@@ -1022,11 +1022,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_font_map(&self) -> Option<pango::FontMap> {
+    fn font_map(&self) -> Option<pango::FontMap> {
         unsafe { from_glib_none(ffi::gtk_widget_get_font_map(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_font_options(&self) -> Option<cairo::FontOptions> {
+    fn font_options(&self) -> Option<cairo::FontOptions> {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_font_options(
                 self.as_ref().to_glib_none().0,
@@ -1034,7 +1034,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_frame_clock(&self) -> Option<gdk::FrameClock> {
+    fn frame_clock(&self) -> Option<gdk::FrameClock> {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_frame_clock(
                 self.as_ref().to_glib_none().0,
@@ -1042,11 +1042,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_halign(&self) -> Align {
+    fn halign(&self) -> Align {
         unsafe { from_glib(ffi::gtk_widget_get_halign(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_has_tooltip(&self) -> bool {
+    fn has_tooltip(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_widget_get_has_tooltip(
                 self.as_ref().to_glib_none().0,
@@ -1054,15 +1054,15 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_height(&self) -> i32 {
+    fn height(&self) -> i32 {
         unsafe { ffi::gtk_widget_get_height(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_hexpand(&self) -> bool {
+    fn hexpands(&self) -> bool {
         unsafe { from_glib(ffi::gtk_widget_get_hexpand(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_hexpand_set(&self) -> bool {
+    fn is_hexpand_set(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_widget_get_hexpand_set(
                 self.as_ref().to_glib_none().0,
@@ -1070,7 +1070,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_last_child(&self) -> Option<Widget> {
+    fn last_child(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_last_child(
                 self.as_ref().to_glib_none().0,
@@ -1078,7 +1078,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_layout_manager(&self) -> Option<LayoutManager> {
+    fn layout_manager(&self) -> Option<LayoutManager> {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_layout_manager(
                 self.as_ref().to_glib_none().0,
@@ -1086,35 +1086,35 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_mapped(&self) -> bool {
+    fn is_mapped(&self) -> bool {
         unsafe { from_glib(ffi::gtk_widget_get_mapped(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_margin_bottom(&self) -> i32 {
+    fn margin_bottom(&self) -> i32 {
         unsafe { ffi::gtk_widget_get_margin_bottom(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_margin_end(&self) -> i32 {
+    fn margin_end(&self) -> i32 {
         unsafe { ffi::gtk_widget_get_margin_end(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_margin_start(&self) -> i32 {
+    fn margin_start(&self) -> i32 {
         unsafe { ffi::gtk_widget_get_margin_start(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_margin_top(&self) -> i32 {
+    fn margin_top(&self) -> i32 {
         unsafe { ffi::gtk_widget_get_margin_top(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_widget_name(&self) -> glib::GString {
+    fn widget_name(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_widget_get_name(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_native(&self) -> Option<Native> {
+    fn native(&self) -> Option<Native> {
         unsafe { from_glib_none(ffi::gtk_widget_get_native(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_next_sibling(&self) -> Option<Widget> {
+    fn next_sibling(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_next_sibling(
                 self.as_ref().to_glib_none().0,
@@ -1122,15 +1122,15 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_opacity(&self) -> f64 {
+    fn opacity(&self) -> f64 {
         unsafe { ffi::gtk_widget_get_opacity(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_overflow(&self) -> Overflow {
+    fn overflow(&self) -> Overflow {
         unsafe { from_glib(ffi::gtk_widget_get_overflow(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_pango_context(&self) -> pango::Context {
+    fn pango_context(&self) -> pango::Context {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_pango_context(
                 self.as_ref().to_glib_none().0,
@@ -1138,11 +1138,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_parent(&self) -> Option<Widget> {
+    fn parent(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_widget_get_parent(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_preferred_size(&self) -> (Requisition, Requisition) {
+    fn preferred_size(&self) -> (Requisition, Requisition) {
         unsafe {
             let mut minimum_size = Requisition::uninitialized();
             let mut natural_size = Requisition::uninitialized();
@@ -1155,7 +1155,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_prev_sibling(&self) -> Option<Widget> {
+    fn prev_sibling(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_prev_sibling(
                 self.as_ref().to_glib_none().0,
@@ -1163,7 +1163,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_primary_clipboard(&self) -> gdk::Clipboard {
+    fn primary_clipboard(&self) -> gdk::Clipboard {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_primary_clipboard(
                 self.as_ref().to_glib_none().0,
@@ -1171,11 +1171,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_realized(&self) -> bool {
+    fn is_realized(&self) -> bool {
         unsafe { from_glib(ffi::gtk_widget_get_realized(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_receives_default(&self) -> bool {
+    fn receives_default(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_widget_get_receives_default(
                 self.as_ref().to_glib_none().0,
@@ -1183,7 +1183,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_request_mode(&self) -> SizeRequestMode {
+    fn request_mode(&self) -> SizeRequestMode {
         unsafe {
             from_glib(ffi::gtk_widget_get_request_mode(
                 self.as_ref().to_glib_none().0,
@@ -1191,11 +1191,11 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_root(&self) -> Option<Root> {
+    fn root(&self) -> Option<Root> {
         unsafe { from_glib_none(ffi::gtk_widget_get_root(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_scale_factor(&self) -> i32 {
+    fn scale_factor(&self) -> i32 {
         unsafe { ffi::gtk_widget_get_scale_factor(self.as_ref().to_glib_none().0) }
     }
 
@@ -1207,7 +1207,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_settings(&self) -> Settings {
+    fn settings(&self) -> Settings {
         unsafe { from_glib_none(ffi::gtk_widget_get_settings(self.as_ref().to_glib_none().0)) }
     }
 
@@ -1215,7 +1215,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         unsafe { ffi::gtk_widget_get_size(self.as_ref().to_glib_none().0, orientation.to_glib()) }
     }
 
-    fn get_size_request(&self) -> (i32, i32) {
+    fn size_request(&self) -> (i32, i32) {
         unsafe {
             let mut width = mem::MaybeUninit::uninit();
             let mut height = mem::MaybeUninit::uninit();
@@ -1230,7 +1230,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_state_flags(&self) -> StateFlags {
+    fn state_flags(&self) -> StateFlags {
         unsafe {
             from_glib(ffi::gtk_widget_get_state_flags(
                 self.as_ref().to_glib_none().0,
@@ -1238,7 +1238,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_style_context(&self) -> StyleContext {
+    fn style_context(&self) -> StyleContext {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_style_context(
                 self.as_ref().to_glib_none().0,
@@ -1260,7 +1260,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_tooltip_markup(&self) -> Option<glib::GString> {
+    fn tooltip_markup(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_tooltip_markup(
                 self.as_ref().to_glib_none().0,
@@ -1268,7 +1268,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_tooltip_text(&self) -> Option<glib::GString> {
+    fn tooltip_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_tooltip_text(
                 self.as_ref().to_glib_none().0,
@@ -1276,15 +1276,15 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_valign(&self) -> Align {
+    fn valign(&self) -> Align {
         unsafe { from_glib(ffi::gtk_widget_get_valign(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_vexpand(&self) -> bool {
+    fn vexpands(&self) -> bool {
         unsafe { from_glib(ffi::gtk_widget_get_vexpand(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_vexpand_set(&self) -> bool {
+    fn is_vexpand_set(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_widget_get_vexpand_set(
                 self.as_ref().to_glib_none().0,
@@ -1296,7 +1296,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         unsafe { from_glib(ffi::gtk_widget_get_visible(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_width(&self) -> i32 {
+    fn width(&self) -> i32 {
         unsafe { ffi::gtk_widget_get_width(self.as_ref().to_glib_none().0) }
     }
 
@@ -1879,37 +1879,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_property_has_default(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"has-default\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `has-default` getter")
-                .unwrap()
-        }
-    }
-
-    fn get_property_has_focus(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"has-focus\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `has-focus` getter")
-                .unwrap()
-        }
-    }
-
-    fn get_property_height_request(&self) -> i32 {
+    fn height_request(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1924,7 +1894,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn set_property_height_request(&self, height_request: i32) {
+    fn set_height_request(&self, height_request: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1934,7 +1904,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_property_width_request(&self) -> i32 {
+    fn width_request(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1949,7 +1919,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn set_property_width_request(&self, width_request: i32) {
+    fn set_width_request(&self, width_request: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,

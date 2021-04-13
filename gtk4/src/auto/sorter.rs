@@ -33,7 +33,7 @@ pub trait SorterExt: 'static {
         -> Ordering;
 
     #[doc(alias = "gtk_sorter_get_order")]
-    fn get_order(&self) -> SorterOrder;
+    fn order(&self) -> SorterOrder;
 
     fn connect_changed<F: Fn(&Self, SorterChange) + 'static>(&self, f: F) -> SignalHandlerId;
 }
@@ -59,7 +59,7 @@ impl<O: IsA<Sorter>> SorterExt for O {
         }
     }
 
-    fn get_order(&self) -> SorterOrder {
+    fn order(&self) -> SorterOrder {
         unsafe { from_glib(ffi::gtk_sorter_get_order(self.as_ref().to_glib_none().0)) }
     }
 

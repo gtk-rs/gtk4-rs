@@ -35,7 +35,7 @@ impl WidgetPaintable {
     }
 
     #[doc(alias = "gtk_widget_paintable_get_widget")]
-    pub fn get_widget(&self) -> Option<Widget> {
+    pub fn widget(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_widget_paintable_get_widget(self.to_glib_none().0)) }
     }
 

@@ -31,25 +31,25 @@ pub const NONE_NATIVE: Option<&Native> = None;
 
 pub trait NativeExt: 'static {
     #[doc(alias = "gtk_native_get_renderer")]
-    fn get_renderer(&self) -> Option<gsk::Renderer>;
+    fn renderer(&self) -> Option<gsk::Renderer>;
 
     #[doc(alias = "gtk_native_get_surface")]
-    fn get_surface(&self) -> Option<gdk::Surface>;
+    fn surface(&self) -> Option<gdk::Surface>;
 
     #[doc(alias = "gtk_native_get_surface_transform")]
-    fn get_surface_transform(&self) -> (f64, f64);
+    fn surface_transform(&self) -> (f64, f64);
 }
 
 impl<O: IsA<Native>> NativeExt for O {
-    fn get_renderer(&self) -> Option<gsk::Renderer> {
+    fn renderer(&self) -> Option<gsk::Renderer> {
         unsafe { from_glib_none(ffi::gtk_native_get_renderer(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_surface(&self) -> Option<gdk::Surface> {
+    fn surface(&self) -> Option<gdk::Surface> {
         unsafe { from_glib_none(ffi::gtk_native_get_surface(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_surface_transform(&self) -> (f64, f64) {
+    fn surface_transform(&self) -> (f64, f64) {
         unsafe {
             let mut x = mem::MaybeUninit::uninit();
             let mut y = mem::MaybeUninit::uninit();

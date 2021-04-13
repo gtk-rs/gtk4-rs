@@ -94,7 +94,7 @@ impl Surface {
     }
 
     #[doc(alias = "gdk_surface_get_cursor")]
-    pub fn get_cursor(&self) -> Option<Cursor> {
+    pub fn cursor(&self) -> Option<Cursor> {
         unsafe { from_glib_none(ffi::gdk_surface_get_cursor(self.to_glib_none().0)) }
     }
 
@@ -133,32 +133,32 @@ impl Surface {
     }
 
     #[doc(alias = "gdk_surface_get_display")]
-    pub fn get_display(&self) -> Option<Display> {
+    pub fn display(&self) -> Option<Display> {
         unsafe { from_glib_none(ffi::gdk_surface_get_display(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_surface_get_frame_clock")]
-    pub fn get_frame_clock(&self) -> Option<FrameClock> {
+    pub fn frame_clock(&self) -> Option<FrameClock> {
         unsafe { from_glib_none(ffi::gdk_surface_get_frame_clock(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_surface_get_height")]
-    pub fn get_height(&self) -> i32 {
+    pub fn height(&self) -> i32 {
         unsafe { ffi::gdk_surface_get_height(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_surface_get_mapped")]
-    pub fn get_mapped(&self) -> bool {
+    pub fn is_mapped(&self) -> bool {
         unsafe { from_glib(ffi::gdk_surface_get_mapped(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_surface_get_scale_factor")]
-    pub fn get_scale_factor(&self) -> i32 {
+    pub fn scale_factor(&self) -> i32 {
         unsafe { ffi::gdk_surface_get_scale_factor(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_surface_get_width")]
-    pub fn get_width(&self) -> i32 {
+    pub fn width(&self) -> i32 {
         unsafe { ffi::gdk_surface_get_width(self.to_glib_none().0) }
     }
 

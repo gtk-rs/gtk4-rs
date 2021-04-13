@@ -25,7 +25,7 @@ glib::wrapper! {
 
 impl ContentProvider {
     #[doc(alias = "gdk_content_provider_new_for_bytes")]
-    pub fn new_for_bytes(mime_type: &str, bytes: &glib::Bytes) -> ContentProvider {
+    pub fn for_bytes(mime_type: &str, bytes: &glib::Bytes) -> ContentProvider {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gdk_content_provider_new_for_bytes(
@@ -36,7 +36,7 @@ impl ContentProvider {
     }
 
     #[doc(alias = "gdk_content_provider_new_for_value")]
-    pub fn new_for_value(value: &glib::Value) -> ContentProvider {
+    pub fn for_value(value: &glib::Value) -> ContentProvider {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gdk_content_provider_new_for_value(
@@ -94,9 +94,11 @@ pub trait ContentProviderExt: 'static {
         io_priority: glib::Priority,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
 
-    fn get_property_formats(&self) -> Option<ContentFormats>;
+    #[doc(alias = "get_property_formats")]
+    fn formats(&self) -> Option<ContentFormats>;
 
-    fn get_property_storable_formats(&self) -> Option<ContentFormats>;
+    #[doc(alias = "get_property_storable_formats")]
+    fn storable_formats(&self) -> Option<ContentFormats>;
 
     fn connect_content_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -219,7 +221,7 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
         }))
     }
 
-    fn get_property_formats(&self) -> Option<ContentFormats> {
+    fn formats(&self) -> Option<ContentFormats> {
         unsafe {
             let mut value = glib::Value::from_type(<ContentFormats as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -233,7 +235,7 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
         }
     }
 
-    fn get_property_storable_formats(&self) -> Option<ContentFormats> {
+    fn storable_formats(&self) -> Option<ContentFormats> {
         unsafe {
             let mut value = glib::Value::from_type(<ContentFormats as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(

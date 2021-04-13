@@ -86,7 +86,7 @@ impl PageSetup {
     }
 
     #[doc(alias = "gtk_page_setup_get_orientation")]
-    pub fn get_orientation(&self) -> PageOrientation {
+    pub fn orientation(&self) -> PageOrientation {
         unsafe { from_glib(ffi::gtk_page_setup_get_orientation(self.to_glib_none().0)) }
     }
 
@@ -106,7 +106,7 @@ impl PageSetup {
     }
 
     #[doc(alias = "gtk_page_setup_get_paper_size")]
-    pub fn get_paper_size(&self) -> PaperSize {
+    pub fn paper_size(&self) -> PaperSize {
         unsafe { from_glib_none(ffi::gtk_page_setup_get_paper_size(self.to_glib_none().0)) }
     }
 

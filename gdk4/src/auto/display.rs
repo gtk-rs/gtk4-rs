@@ -58,7 +58,7 @@ impl Display {
     }
 
     #[doc(alias = "gdk_display_get_app_launch_context")]
-    pub fn get_app_launch_context(&self) -> AppLaunchContext {
+    pub fn app_launch_context(&self) -> AppLaunchContext {
         unsafe {
             from_glib_full(ffi::gdk_display_get_app_launch_context(
                 self.to_glib_none().0,
@@ -67,12 +67,12 @@ impl Display {
     }
 
     #[doc(alias = "gdk_display_get_clipboard")]
-    pub fn get_clipboard(&self) -> Clipboard {
+    pub fn clipboard(&self) -> Clipboard {
         unsafe { from_glib_none(ffi::gdk_display_get_clipboard(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_display_get_default_seat")]
-    pub fn get_default_seat(&self) -> Seat {
+    pub fn default_seat(&self) -> Seat {
         unsafe { from_glib_none(ffi::gdk_display_get_default_seat(self.to_glib_none().0)) }
     }
 
@@ -87,17 +87,17 @@ impl Display {
     }
 
     #[doc(alias = "gdk_display_get_monitors")]
-    pub fn get_monitors(&self) -> Option<gio::ListModel> {
+    pub fn monitors(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gdk_display_get_monitors(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_display_get_name")]
-    pub fn get_name(&self) -> glib::GString {
+    pub fn name(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gdk_display_get_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_display_get_primary_clipboard")]
-    pub fn get_primary_clipboard(&self) -> Clipboard {
+    pub fn primary_clipboard(&self) -> Clipboard {
         unsafe {
             from_glib_none(ffi::gdk_display_get_primary_clipboard(
                 self.to_glib_none().0,
@@ -117,7 +117,7 @@ impl Display {
     }
 
     #[doc(alias = "gdk_display_get_startup_notification_id")]
-    pub fn get_startup_notification_id(&self) -> Option<glib::GString> {
+    pub fn startup_notification_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gdk_display_get_startup_notification_id(
                 self.to_glib_none().0,
@@ -175,22 +175,8 @@ impl Display {
         }
     }
 
-    pub fn get_property_composited(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"composited\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `composited` getter")
-                .unwrap()
-        }
-    }
-
-    pub fn get_property_input_shapes(&self) -> bool {
+    #[doc(alias = "get_property_input_shapes")]
+    pub fn is_input_shapes(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -201,21 +187,6 @@ impl Display {
             value
                 .get()
                 .expect("Return Value for property `input-shapes` getter")
-                .unwrap()
-        }
-    }
-
-    pub fn get_property_rgba(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"rgba\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `rgba` getter")
                 .unwrap()
         }
     }
@@ -423,6 +394,6 @@ impl Display {
 impl fmt::Display for Display {
     #[inline]
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str(&self.get_name())
+        f.write_str(&self.name())
     }
 }

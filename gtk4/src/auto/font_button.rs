@@ -51,22 +51,22 @@ impl FontButton {
     }
 
     #[doc(alias = "gtk_font_button_get_modal")]
-    pub fn get_modal(&self) -> bool {
+    pub fn is_modal(&self) -> bool {
         unsafe { from_glib(ffi::gtk_font_button_get_modal(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_font_button_get_title")]
-    pub fn get_title(&self) -> Option<glib::GString> {
+    pub fn title(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_font_button_get_title(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_font_button_get_use_font")]
-    pub fn get_use_font(&self) -> bool {
+    pub fn uses_font(&self) -> bool {
         unsafe { from_glib(ffi::gtk_font_button_get_use_font(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_font_button_get_use_size")]
-    pub fn get_use_size(&self) -> bool {
+    pub fn uses_size(&self) -> bool {
         unsafe { from_glib(ffi::gtk_font_button_get_use_size(self.to_glib_none().0)) }
     }
 

@@ -51,7 +51,7 @@ impl BuilderListItemFactory {
     }
 
     #[doc(alias = "gtk_builder_list_item_factory_get_bytes")]
-    pub fn get_bytes(&self) -> Option<glib::Bytes> {
+    pub fn bytes(&self) -> Option<glib::Bytes> {
         unsafe {
             from_glib_none(ffi::gtk_builder_list_item_factory_get_bytes(
                 self.to_glib_none().0,
@@ -60,7 +60,7 @@ impl BuilderListItemFactory {
     }
 
     #[doc(alias = "gtk_builder_list_item_factory_get_resource")]
-    pub fn get_resource(&self) -> Option<glib::GString> {
+    pub fn resource(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_builder_list_item_factory_get_resource(
                 self.to_glib_none().0,
@@ -69,7 +69,7 @@ impl BuilderListItemFactory {
     }
 
     #[doc(alias = "gtk_builder_list_item_factory_get_scope")]
-    pub fn get_scope(&self) -> Option<BuilderScope> {
+    pub fn scope(&self) -> Option<BuilderScope> {
         unsafe {
             from_glib_none(ffi::gtk_builder_list_item_factory_get_scope(
                 self.to_glib_none().0,

@@ -21,45 +21,45 @@ pub const NONE_POPUP: Option<&Popup> = None;
 
 pub trait PopupExt: 'static {
     #[doc(alias = "gdk_popup_get_autohide")]
-    fn get_autohide(&self) -> bool;
+    fn is_autohide(&self) -> bool;
 
     #[doc(alias = "gdk_popup_get_parent")]
-    fn get_parent(&self) -> Option<Surface>;
+    fn parent(&self) -> Option<Surface>;
 
     #[doc(alias = "gdk_popup_get_position_x")]
-    fn get_position_x(&self) -> i32;
+    fn position_x(&self) -> i32;
 
     #[doc(alias = "gdk_popup_get_position_y")]
-    fn get_position_y(&self) -> i32;
+    fn position_y(&self) -> i32;
 
     #[doc(alias = "gdk_popup_get_rect_anchor")]
-    fn get_rect_anchor(&self) -> Gravity;
+    fn rect_anchor(&self) -> Gravity;
 
     #[doc(alias = "gdk_popup_get_surface_anchor")]
-    fn get_surface_anchor(&self) -> Gravity;
+    fn surface_anchor(&self) -> Gravity;
 
     #[doc(alias = "gdk_popup_present")]
     fn present(&self, width: i32, height: i32, layout: &PopupLayout) -> bool;
 }
 
 impl<O: IsA<Popup>> PopupExt for O {
-    fn get_autohide(&self) -> bool {
+    fn is_autohide(&self) -> bool {
         unsafe { from_glib(ffi::gdk_popup_get_autohide(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_parent(&self) -> Option<Surface> {
+    fn parent(&self) -> Option<Surface> {
         unsafe { from_glib_none(ffi::gdk_popup_get_parent(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_position_x(&self) -> i32 {
+    fn position_x(&self) -> i32 {
         unsafe { ffi::gdk_popup_get_position_x(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_position_y(&self) -> i32 {
+    fn position_y(&self) -> i32 {
         unsafe { ffi::gdk_popup_get_position_y(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_rect_anchor(&self) -> Gravity {
+    fn rect_anchor(&self) -> Gravity {
         unsafe {
             from_glib(ffi::gdk_popup_get_rect_anchor(
                 self.as_ref().to_glib_none().0,
@@ -67,7 +67,7 @@ impl<O: IsA<Popup>> PopupExt for O {
         }
     }
 
-    fn get_surface_anchor(&self) -> Gravity {
+    fn surface_anchor(&self) -> Gravity {
         unsafe {
             from_glib(ffi::gdk_popup_get_surface_anchor(
                 self.as_ref().to_glib_none().0,

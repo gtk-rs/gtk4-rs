@@ -35,7 +35,7 @@ impl GestureSwipe {
     }
 
     #[doc(alias = "gtk_gesture_swipe_get_velocity")]
-    pub fn get_velocity(&self) -> Option<(f64, f64)> {
+    pub fn velocity(&self) -> Option<(f64, f64)> {
         unsafe {
             let mut velocity_x = mem::MaybeUninit::uninit();
             let mut velocity_y = mem::MaybeUninit::uninit();

@@ -51,36 +51,6 @@ impl EventControllerMotion {
         }
     }
 
-    pub fn get_property_contains_pointer(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"contains-pointer\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `contains-pointer` getter")
-                .unwrap()
-        }
-    }
-
-    pub fn get_property_is_pointer(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"is-pointer\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `is-pointer` getter")
-                .unwrap()
-        }
-    }
-
     pub fn connect_enter<F: Fn(&EventControllerMotion, f64, f64) + 'static>(
         &self,
         f: F,

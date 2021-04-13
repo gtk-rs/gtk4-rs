@@ -40,12 +40,12 @@ impl Switch {
     }
 
     #[doc(alias = "gtk_switch_get_active")]
-    pub fn get_active(&self) -> bool {
+    pub fn is_active(&self) -> bool {
         unsafe { from_glib(ffi::gtk_switch_get_active(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_switch_get_state")]
-    pub fn get_state(&self) -> bool {
+    pub fn state(&self) -> bool {
         unsafe { from_glib(ffi::gtk_switch_get_state(self.to_glib_none().0)) }
     }
 

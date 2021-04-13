@@ -148,25 +148,25 @@ pub trait TextBufferExt: 'static {
     fn end_user_action(&self);
 
     #[doc(alias = "gtk_text_buffer_get_bounds")]
-    fn get_bounds(&self) -> (TextIter, TextIter);
+    fn bounds(&self) -> (TextIter, TextIter);
 
     #[doc(alias = "gtk_text_buffer_get_can_redo")]
-    fn get_can_redo(&self) -> bool;
+    fn can_redo(&self) -> bool;
 
     #[doc(alias = "gtk_text_buffer_get_can_undo")]
-    fn get_can_undo(&self) -> bool;
+    fn can_undo(&self) -> bool;
 
     #[doc(alias = "gtk_text_buffer_get_char_count")]
-    fn get_char_count(&self) -> i32;
+    fn char_count(&self) -> i32;
 
     #[doc(alias = "gtk_text_buffer_get_enable_undo")]
-    fn get_enable_undo(&self) -> bool;
+    fn enables_undo(&self) -> bool;
 
     #[doc(alias = "gtk_text_buffer_get_end_iter")]
-    fn get_end_iter(&self) -> TextIter;
+    fn end_iter(&self) -> TextIter;
 
     #[doc(alias = "gtk_text_buffer_get_has_selection")]
-    fn get_has_selection(&self) -> bool;
+    fn has_selection(&self) -> bool;
 
     #[doc(alias = "gtk_text_buffer_get_insert")]
     fn get_insert(&self) -> TextMark;
@@ -190,25 +190,25 @@ pub trait TextBufferExt: 'static {
     fn get_iter_at_offset(&self, char_offset: i32) -> TextIter;
 
     #[doc(alias = "gtk_text_buffer_get_line_count")]
-    fn get_line_count(&self) -> i32;
+    fn line_count(&self) -> i32;
 
     #[doc(alias = "gtk_text_buffer_get_mark")]
     fn get_mark(&self, name: &str) -> Option<TextMark>;
 
     #[doc(alias = "gtk_text_buffer_get_max_undo_levels")]
-    fn get_max_undo_levels(&self) -> u32;
+    fn max_undo_levels(&self) -> u32;
 
     #[doc(alias = "gtk_text_buffer_get_modified")]
-    fn get_modified(&self) -> bool;
+    fn is_modified(&self) -> bool;
 
     #[doc(alias = "gtk_text_buffer_get_selection_bound")]
-    fn get_selection_bound(&self) -> TextMark;
+    fn selection_bound(&self) -> TextMark;
 
     #[doc(alias = "gtk_text_buffer_get_selection_bounds")]
-    fn get_selection_bounds(&self) -> Option<(TextIter, TextIter)>;
+    fn selection_bounds(&self) -> Option<(TextIter, TextIter)>;
 
     #[doc(alias = "gtk_text_buffer_get_selection_content")]
-    fn get_selection_content(&self) -> gdk::ContentProvider;
+    fn selection_content(&self) -> gdk::ContentProvider;
 
     #[doc(alias = "gtk_text_buffer_get_slice")]
     fn get_slice(
@@ -219,10 +219,10 @@ pub trait TextBufferExt: 'static {
     ) -> glib::GString;
 
     #[doc(alias = "gtk_text_buffer_get_start_iter")]
-    fn get_start_iter(&self) -> TextIter;
+    fn start_iter(&self) -> TextIter;
 
     #[doc(alias = "gtk_text_buffer_get_tag_table")]
-    fn get_tag_table(&self) -> TextTagTable;
+    fn tag_table(&self) -> TextTagTable;
 
     #[doc(alias = "gtk_text_buffer_get_text")]
     fn get_text(
@@ -321,7 +321,8 @@ pub trait TextBufferExt: 'static {
     #[doc(alias = "gtk_text_buffer_undo")]
     fn undo(&self);
 
-    fn get_property_cursor_position(&self) -> i32;
+    #[doc(alias = "get_property_cursor_position")]
+    fn cursor_position(&self) -> i32;
 
     fn connect_apply_tag<F: Fn(&Self, &TextTag, &TextIter, &TextIter) + 'static>(
         &self,
@@ -567,7 +568,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_bounds(&self) -> (TextIter, TextIter) {
+    fn bounds(&self) -> (TextIter, TextIter) {
         unsafe {
             let mut start = TextIter::uninitialized();
             let mut end = TextIter::uninitialized();
@@ -580,7 +581,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_can_redo(&self) -> bool {
+    fn can_redo(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_buffer_get_can_redo(
                 self.as_ref().to_glib_none().0,
@@ -588,7 +589,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_can_undo(&self) -> bool {
+    fn can_undo(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_buffer_get_can_undo(
                 self.as_ref().to_glib_none().0,
@@ -596,11 +597,11 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_char_count(&self) -> i32 {
+    fn char_count(&self) -> i32 {
         unsafe { ffi::gtk_text_buffer_get_char_count(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_enable_undo(&self) -> bool {
+    fn enables_undo(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_buffer_get_enable_undo(
                 self.as_ref().to_glib_none().0,
@@ -608,7 +609,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_end_iter(&self) -> TextIter {
+    fn end_iter(&self) -> TextIter {
         unsafe {
             let mut iter = TextIter::uninitialized();
             ffi::gtk_text_buffer_get_end_iter(
@@ -619,7 +620,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_has_selection(&self) -> bool {
+    fn has_selection(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_buffer_get_has_selection(
                 self.as_ref().to_glib_none().0,
@@ -721,7 +722,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_line_count(&self) -> i32 {
+    fn line_count(&self) -> i32 {
         unsafe { ffi::gtk_text_buffer_get_line_count(self.as_ref().to_glib_none().0) }
     }
 
@@ -734,11 +735,11 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_max_undo_levels(&self) -> u32 {
+    fn max_undo_levels(&self) -> u32 {
         unsafe { ffi::gtk_text_buffer_get_max_undo_levels(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_modified(&self) -> bool {
+    fn is_modified(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_buffer_get_modified(
                 self.as_ref().to_glib_none().0,
@@ -746,7 +747,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_selection_bound(&self) -> TextMark {
+    fn selection_bound(&self) -> TextMark {
         unsafe {
             from_glib_none(ffi::gtk_text_buffer_get_selection_bound(
                 self.as_ref().to_glib_none().0,
@@ -754,7 +755,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_selection_bounds(&self) -> Option<(TextIter, TextIter)> {
+    fn selection_bounds(&self) -> Option<(TextIter, TextIter)> {
         unsafe {
             let mut start = TextIter::uninitialized();
             let mut end = TextIter::uninitialized();
@@ -771,7 +772,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_selection_content(&self) -> gdk::ContentProvider {
+    fn selection_content(&self) -> gdk::ContentProvider {
         unsafe {
             from_glib_full(ffi::gtk_text_buffer_get_selection_content(
                 self.as_ref().to_glib_none().0,
@@ -795,7 +796,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_start_iter(&self) -> TextIter {
+    fn start_iter(&self) -> TextIter {
         unsafe {
             let mut iter = TextIter::uninitialized();
             ffi::gtk_text_buffer_get_start_iter(
@@ -806,7 +807,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_tag_table(&self) -> TextTagTable {
+    fn tag_table(&self) -> TextTagTable {
         unsafe {
             from_glib_none(ffi::gtk_text_buffer_get_tag_table(
                 self.as_ref().to_glib_none().0,
@@ -1090,7 +1091,7 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
         }
     }
 
-    fn get_property_cursor_position(&self) -> i32 {
+    fn cursor_position(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(

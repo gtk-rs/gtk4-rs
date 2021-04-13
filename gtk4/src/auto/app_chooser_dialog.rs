@@ -57,7 +57,7 @@ impl AppChooserDialog {
     }
 
     #[doc(alias = "gtk_app_chooser_dialog_new_for_content_type")]
-    pub fn new_for_content_type<P: IsA<Window>>(
+    pub fn for_content_type<P: IsA<Window>>(
         parent: Option<&P>,
         flags: DialogFlags,
         content_type: &str,
@@ -74,7 +74,7 @@ impl AppChooserDialog {
     }
 
     #[doc(alias = "gtk_app_chooser_dialog_get_heading")]
-    pub fn get_heading(&self) -> Option<glib::GString> {
+    pub fn heading(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_app_chooser_dialog_get_heading(
                 self.to_glib_none().0,
@@ -83,7 +83,7 @@ impl AppChooserDialog {
     }
 
     #[doc(alias = "gtk_app_chooser_dialog_get_widget")]
-    pub fn get_widget(&self) -> Widget {
+    pub fn widget(&self) -> Widget {
         unsafe {
             from_glib_none(ffi::gtk_app_chooser_dialog_get_widget(
                 self.to_glib_none().0,
@@ -101,7 +101,8 @@ impl AppChooserDialog {
         }
     }
 
-    pub fn get_property_gfile(&self) -> Option<gio::File> {
+    #[doc(alias = "get_property_gfile")]
+    pub fn gfile(&self) -> Option<gio::File> {
         unsafe {
             let mut value = glib::Value::from_type(<gio::File as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(

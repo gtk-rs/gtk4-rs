@@ -34,7 +34,7 @@ impl FlattenListModel {
     }
 
     #[doc(alias = "gtk_flatten_list_model_get_model")]
-    pub fn get_model(&self) -> Option<gio::ListModel> {
+    pub fn model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_flatten_list_model_get_model(self.to_glib_none().0)) }
     }
 

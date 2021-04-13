@@ -31,10 +31,10 @@ pub trait DrawContextExt: 'static {
     fn end_frame(&self);
 
     #[doc(alias = "gdk_draw_context_get_display")]
-    fn get_display(&self) -> Option<Display>;
+    fn display(&self) -> Option<Display>;
 
     #[doc(alias = "gdk_draw_context_get_surface")]
-    fn get_surface(&self) -> Option<Surface>;
+    fn surface(&self) -> Option<Surface>;
 
     #[doc(alias = "gdk_draw_context_is_in_frame")]
     fn is_in_frame(&self) -> bool;
@@ -58,7 +58,7 @@ impl<O: IsA<DrawContext>> DrawContextExt for O {
         }
     }
 
-    fn get_display(&self) -> Option<Display> {
+    fn display(&self) -> Option<Display> {
         unsafe {
             from_glib_none(ffi::gdk_draw_context_get_display(
                 self.as_ref().to_glib_none().0,
@@ -66,7 +66,7 @@ impl<O: IsA<DrawContext>> DrawContextExt for O {
         }
     }
 
-    fn get_surface(&self) -> Option<Surface> {
+    fn surface(&self) -> Option<Surface> {
         unsafe {
             from_glib_none(ffi::gdk_draw_context_get_surface(
                 self.as_ref().to_glib_none().0,

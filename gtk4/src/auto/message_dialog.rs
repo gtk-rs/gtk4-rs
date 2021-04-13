@@ -40,7 +40,7 @@ glib::wrapper! {
 
 impl MessageDialog {
     #[doc(alias = "gtk_message_dialog_get_message_area")]
-    pub fn get_message_area(&self) -> Widget {
+    pub fn message_area(&self) -> Widget {
         unsafe {
             from_glib_none(ffi::gtk_message_dialog_get_message_area(
                 self.to_glib_none().0,
@@ -55,7 +55,8 @@ impl MessageDialog {
         }
     }
 
-    pub fn get_property_message_type(&self) -> MessageType {
+    #[doc(alias = "get_property_message_type")]
+    pub fn message_type(&self) -> MessageType {
         unsafe {
             let mut value = glib::Value::from_type(<MessageType as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -70,7 +71,8 @@ impl MessageDialog {
         }
     }
 
-    pub fn set_property_message_type(&self, message_type: MessageType) {
+    #[doc(alias = "set_property_message_type")]
+    pub fn set_message_type(&self, message_type: MessageType) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -80,7 +82,8 @@ impl MessageDialog {
         }
     }
 
-    pub fn get_property_secondary_text(&self) -> Option<glib::GString> {
+    #[doc(alias = "get_property_secondary_text")]
+    pub fn secondary_text(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -94,7 +97,8 @@ impl MessageDialog {
         }
     }
 
-    pub fn set_property_secondary_text(&self, secondary_text: Option<&str>) {
+    #[doc(alias = "set_property_secondary_text")]
+    pub fn set_secondary_text(&self, secondary_text: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -104,7 +108,8 @@ impl MessageDialog {
         }
     }
 
-    pub fn get_property_secondary_use_markup(&self) -> bool {
+    #[doc(alias = "get_property_secondary_use_markup")]
+    pub fn is_secondary_use_markup(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -119,7 +124,8 @@ impl MessageDialog {
         }
     }
 
-    pub fn set_property_secondary_use_markup(&self, secondary_use_markup: bool) {
+    #[doc(alias = "set_property_secondary_use_markup")]
+    pub fn set_secondary_use_markup(&self, secondary_use_markup: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -129,7 +135,8 @@ impl MessageDialog {
         }
     }
 
-    pub fn get_property_text(&self) -> Option<glib::GString> {
+    #[doc(alias = "get_property_text")]
+    pub fn text(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -143,7 +150,8 @@ impl MessageDialog {
         }
     }
 
-    pub fn set_property_text(&self, text: Option<&str>) {
+    #[doc(alias = "set_property_text")]
+    pub fn set_text(&self, text: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -153,7 +161,8 @@ impl MessageDialog {
         }
     }
 
-    pub fn get_property_use_markup(&self) -> bool {
+    #[doc(alias = "get_property_use_markup")]
+    pub fn uses_markup(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -168,7 +177,8 @@ impl MessageDialog {
         }
     }
 
-    pub fn set_property_use_markup(&self, use_markup: bool) {
+    #[doc(alias = "set_property_use_markup")]
+    pub fn set_use_markup(&self, use_markup: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

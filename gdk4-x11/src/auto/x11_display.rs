@@ -44,7 +44,7 @@ impl X11Display {
     }
 
     #[doc(alias = "gdk_x11_display_get_default_group")]
-    pub fn get_default_group(&self) -> Option<gdk::Surface> {
+    pub fn default_group(&self) -> Option<gdk::Surface> {
         unsafe {
             from_glib_none(ffi::gdk_x11_display_get_default_group(
                 self.to_glib_none().0,
@@ -53,7 +53,7 @@ impl X11Display {
     }
 
     #[doc(alias = "gdk_x11_display_get_glx_version")]
-    pub fn get_glx_version(&self) -> Option<(i32, i32)> {
+    pub fn glx_version(&self) -> Option<(i32, i32)> {
         unsafe {
             let mut major = mem::MaybeUninit::uninit();
             let mut minor = mem::MaybeUninit::uninit();
@@ -73,7 +73,7 @@ impl X11Display {
     }
 
     #[doc(alias = "gdk_x11_display_get_primary_monitor")]
-    pub fn get_primary_monitor(&self) -> Option<gdk::Monitor> {
+    pub fn primary_monitor(&self) -> Option<gdk::Monitor> {
         unsafe {
             from_glib_none(ffi::gdk_x11_display_get_primary_monitor(
                 self.to_glib_none().0,
@@ -82,12 +82,12 @@ impl X11Display {
     }
 
     #[doc(alias = "gdk_x11_display_get_screen")]
-    pub fn get_screen(&self) -> Option<X11Screen> {
+    pub fn screen(&self) -> Option<X11Screen> {
         unsafe { from_glib_none(ffi::gdk_x11_display_get_screen(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_x11_display_get_startup_notification_id")]
-    pub fn get_startup_notification_id(&self) -> Option<glib::GString> {
+    pub fn startup_notification_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gdk_x11_display_get_startup_notification_id(
                 self.to_glib_none().0,
@@ -96,7 +96,7 @@ impl X11Display {
     }
 
     #[doc(alias = "gdk_x11_display_get_user_time")]
-    pub fn get_user_time(&self) -> u32 {
+    pub fn user_time(&self) -> u32 {
         unsafe { ffi::gdk_x11_display_get_user_time(self.to_glib_none().0) }
     }
 
@@ -106,7 +106,7 @@ impl X11Display {
     }
 
     #[doc(alias = "gdk_x11_display_get_xrootwindow")]
-    pub fn get_xrootwindow(&self) -> xlib::Window {
+    pub fn xrootwindow(&self) -> xlib::Window {
         unsafe { ffi::gdk_x11_display_get_xrootwindow(self.to_glib_none().0) }
     }
 

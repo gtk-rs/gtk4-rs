@@ -50,12 +50,12 @@ impl Viewport {
     }
 
     #[doc(alias = "gtk_viewport_get_child")]
-    pub fn get_child(&self) -> Option<Widget> {
+    pub fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_viewport_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_viewport_get_scroll_to_focus")]
-    pub fn get_scroll_to_focus(&self) -> bool {
+    pub fn is_scroll_to_focus(&self) -> bool {
         unsafe { from_glib(ffi::gtk_viewport_get_scroll_to_focus(self.to_glib_none().0)) }
     }
 

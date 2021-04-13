@@ -28,7 +28,7 @@ impl MediaFile {
     }
 
     #[doc(alias = "gtk_media_file_new_for_file")]
-    pub fn new_for_file<P: IsA<gio::File>>(file: &P) -> MediaFile {
+    pub fn for_file<P: IsA<gio::File>>(file: &P) -> MediaFile {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_media_file_new_for_file(
@@ -38,7 +38,7 @@ impl MediaFile {
     }
 
     #[doc(alias = "gtk_media_file_new_for_filename")]
-    pub fn new_for_filename(filename: &str) -> MediaFile {
+    pub fn for_filename(filename: &str) -> MediaFile {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_media_file_new_for_filename(
@@ -48,7 +48,7 @@ impl MediaFile {
     }
 
     #[doc(alias = "gtk_media_file_new_for_input_stream")]
-    pub fn new_for_input_stream<P: IsA<gio::InputStream>>(stream: &P) -> MediaFile {
+    pub fn for_input_stream<P: IsA<gio::InputStream>>(stream: &P) -> MediaFile {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_media_file_new_for_input_stream(
@@ -58,7 +58,7 @@ impl MediaFile {
     }
 
     #[doc(alias = "gtk_media_file_new_for_resource")]
-    pub fn new_for_resource(resource_path: &str) -> MediaFile {
+    pub fn for_resource(resource_path: &str) -> MediaFile {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_media_file_new_for_resource(
@@ -81,10 +81,10 @@ pub trait MediaFileExt: 'static {
     fn clear(&self);
 
     #[doc(alias = "gtk_media_file_get_file")]
-    fn get_file(&self) -> Option<gio::File>;
+    fn file(&self) -> Option<gio::File>;
 
     #[doc(alias = "gtk_media_file_get_input_stream")]
-    fn get_input_stream(&self) -> Option<gio::InputStream>;
+    fn input_stream(&self) -> Option<gio::InputStream>;
 
     #[doc(alias = "gtk_media_file_set_file")]
     fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>);
@@ -111,11 +111,11 @@ impl<O: IsA<MediaFile>> MediaFileExt for O {
         }
     }
 
-    fn get_file(&self) -> Option<gio::File> {
+    fn file(&self) -> Option<gio::File> {
         unsafe { from_glib_none(ffi::gtk_media_file_get_file(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_input_stream(&self) -> Option<gio::InputStream> {
+    fn input_stream(&self) -> Option<gio::InputStream> {
         unsafe {
             from_glib_none(ffi::gtk_media_file_get_input_stream(
                 self.as_ref().to_glib_none().0,

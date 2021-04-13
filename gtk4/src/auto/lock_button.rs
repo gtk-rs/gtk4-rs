@@ -45,7 +45,7 @@ impl LockButton {
     }
 
     #[doc(alias = "gtk_lock_button_get_permission")]
-    pub fn get_permission(&self) -> Option<gio::Permission> {
+    pub fn permission(&self) -> Option<gio::Permission> {
         unsafe { from_glib_none(ffi::gtk_lock_button_get_permission(self.to_glib_none().0)) }
     }
 
@@ -59,7 +59,8 @@ impl LockButton {
         }
     }
 
-    pub fn get_property_text_lock(&self) -> Option<glib::GString> {
+    #[doc(alias = "get_property_text_lock")]
+    pub fn text_lock(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -73,7 +74,8 @@ impl LockButton {
         }
     }
 
-    pub fn set_property_text_lock(&self, text_lock: Option<&str>) {
+    #[doc(alias = "set_property_text_lock")]
+    pub fn set_text_lock(&self, text_lock: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -83,7 +85,8 @@ impl LockButton {
         }
     }
 
-    pub fn get_property_text_unlock(&self) -> Option<glib::GString> {
+    #[doc(alias = "get_property_text_unlock")]
+    pub fn text_unlock(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -97,7 +100,8 @@ impl LockButton {
         }
     }
 
-    pub fn set_property_text_unlock(&self, text_unlock: Option<&str>) {
+    #[doc(alias = "set_property_text_unlock")]
+    pub fn set_text_unlock(&self, text_unlock: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -107,7 +111,8 @@ impl LockButton {
         }
     }
 
-    pub fn get_property_tooltip_lock(&self) -> Option<glib::GString> {
+    #[doc(alias = "get_property_tooltip_lock")]
+    pub fn tooltip_lock(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -121,7 +126,8 @@ impl LockButton {
         }
     }
 
-    pub fn set_property_tooltip_lock(&self, tooltip_lock: Option<&str>) {
+    #[doc(alias = "set_property_tooltip_lock")]
+    pub fn set_tooltip_lock(&self, tooltip_lock: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -131,7 +137,8 @@ impl LockButton {
         }
     }
 
-    pub fn get_property_tooltip_not_authorized(&self) -> Option<glib::GString> {
+    #[doc(alias = "get_property_tooltip_not_authorized")]
+    pub fn tooltip_not_authorized(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -145,7 +152,8 @@ impl LockButton {
         }
     }
 
-    pub fn set_property_tooltip_not_authorized(&self, tooltip_not_authorized: Option<&str>) {
+    #[doc(alias = "set_property_tooltip_not_authorized")]
+    pub fn set_tooltip_not_authorized(&self, tooltip_not_authorized: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -155,7 +163,8 @@ impl LockButton {
         }
     }
 
-    pub fn get_property_tooltip_unlock(&self) -> Option<glib::GString> {
+    #[doc(alias = "get_property_tooltip_unlock")]
+    pub fn tooltip_unlock(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -169,7 +178,8 @@ impl LockButton {
         }
     }
 
-    pub fn set_property_tooltip_unlock(&self, tooltip_unlock: Option<&str>) {
+    #[doc(alias = "set_property_tooltip_unlock")]
+    pub fn set_tooltip_unlock(&self, tooltip_unlock: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

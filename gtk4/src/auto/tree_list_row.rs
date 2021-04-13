@@ -33,32 +33,32 @@ impl TreeListRow {
     }
 
     #[doc(alias = "gtk_tree_list_row_get_children")]
-    pub fn get_children(&self) -> Option<gio::ListModel> {
+    pub fn children(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_tree_list_row_get_children(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_list_row_get_depth")]
-    pub fn get_depth(&self) -> u32 {
+    pub fn depth(&self) -> u32 {
         unsafe { ffi::gtk_tree_list_row_get_depth(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_tree_list_row_get_expanded")]
-    pub fn get_expanded(&self) -> bool {
+    pub fn is_expanded(&self) -> bool {
         unsafe { from_glib(ffi::gtk_tree_list_row_get_expanded(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_list_row_get_item")]
-    pub fn get_item(&self) -> Option<glib::Object> {
+    pub fn item(&self) -> Option<glib::Object> {
         unsafe { from_glib_full(ffi::gtk_tree_list_row_get_item(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_list_row_get_parent")]
-    pub fn get_parent(&self) -> Option<TreeListRow> {
+    pub fn parent(&self) -> Option<TreeListRow> {
         unsafe { from_glib_full(ffi::gtk_tree_list_row_get_parent(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_list_row_get_position")]
-    pub fn get_position(&self) -> u32 {
+    pub fn position(&self) -> u32 {
         unsafe { ffi::gtk_tree_list_row_get_position(self.to_glib_none().0) }
     }
 
@@ -71,21 +71,6 @@ impl TreeListRow {
     pub fn set_expanded(&self, expanded: bool) {
         unsafe {
             ffi::gtk_tree_list_row_set_expanded(self.to_glib_none().0, expanded.to_glib());
-        }
-    }
-
-    pub fn get_property_expandable(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"expandable\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `expandable` getter")
-                .unwrap()
         }
     }
 

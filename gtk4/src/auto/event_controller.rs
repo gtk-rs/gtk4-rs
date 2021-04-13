@@ -26,28 +26,28 @@ pub const NONE_EVENT_CONTROLLER: Option<&EventController> = None;
 
 pub trait EventControllerExt: 'static {
     #[doc(alias = "gtk_event_controller_get_current_event")]
-    fn get_current_event(&self) -> Option<gdk::Event>;
+    fn current_event(&self) -> Option<gdk::Event>;
 
     #[doc(alias = "gtk_event_controller_get_current_event_device")]
-    fn get_current_event_device(&self) -> Option<gdk::Device>;
+    fn current_event_device(&self) -> Option<gdk::Device>;
 
     #[doc(alias = "gtk_event_controller_get_current_event_state")]
-    fn get_current_event_state(&self) -> gdk::ModifierType;
+    fn current_event_state(&self) -> gdk::ModifierType;
 
     #[doc(alias = "gtk_event_controller_get_current_event_time")]
-    fn get_current_event_time(&self) -> u32;
+    fn current_event_time(&self) -> u32;
 
     #[doc(alias = "gtk_event_controller_get_name")]
-    fn get_name(&self) -> Option<glib::GString>;
+    fn name(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_event_controller_get_propagation_limit")]
-    fn get_propagation_limit(&self) -> PropagationLimit;
+    fn propagation_limit(&self) -> PropagationLimit;
 
     #[doc(alias = "gtk_event_controller_get_propagation_phase")]
-    fn get_propagation_phase(&self) -> PropagationPhase;
+    fn propagation_phase(&self) -> PropagationPhase;
 
     #[doc(alias = "gtk_event_controller_get_widget")]
-    fn get_widget(&self) -> Option<Widget>;
+    fn widget(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_event_controller_reset")]
     fn reset(&self);
@@ -77,7 +77,7 @@ pub trait EventControllerExt: 'static {
 }
 
 impl<O: IsA<EventController>> EventControllerExt for O {
-    fn get_current_event(&self) -> Option<gdk::Event> {
+    fn current_event(&self) -> Option<gdk::Event> {
         unsafe {
             from_glib_none(ffi::gtk_event_controller_get_current_event(
                 self.as_ref().to_glib_none().0,
@@ -85,7 +85,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
-    fn get_current_event_device(&self) -> Option<gdk::Device> {
+    fn current_event_device(&self) -> Option<gdk::Device> {
         unsafe {
             from_glib_none(ffi::gtk_event_controller_get_current_event_device(
                 self.as_ref().to_glib_none().0,
@@ -93,7 +93,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
-    fn get_current_event_state(&self) -> gdk::ModifierType {
+    fn current_event_state(&self) -> gdk::ModifierType {
         unsafe {
             from_glib(ffi::gtk_event_controller_get_current_event_state(
                 self.as_ref().to_glib_none().0,
@@ -101,11 +101,11 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
-    fn get_current_event_time(&self) -> u32 {
+    fn current_event_time(&self) -> u32 {
         unsafe { ffi::gtk_event_controller_get_current_event_time(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_name(&self) -> Option<glib::GString> {
+    fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_event_controller_get_name(
                 self.as_ref().to_glib_none().0,
@@ -113,7 +113,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
-    fn get_propagation_limit(&self) -> PropagationLimit {
+    fn propagation_limit(&self) -> PropagationLimit {
         unsafe {
             from_glib(ffi::gtk_event_controller_get_propagation_limit(
                 self.as_ref().to_glib_none().0,
@@ -121,7 +121,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
-    fn get_propagation_phase(&self) -> PropagationPhase {
+    fn propagation_phase(&self) -> PropagationPhase {
         unsafe {
             from_glib(ffi::gtk_event_controller_get_propagation_phase(
                 self.as_ref().to_glib_none().0,
@@ -129,7 +129,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
-    fn get_widget(&self) -> Option<Widget> {
+    fn widget(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_event_controller_get_widget(
                 self.as_ref().to_glib_none().0,

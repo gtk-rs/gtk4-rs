@@ -784,326 +784,484 @@ pub trait TextTagExt: 'static {
     fn changed(&self, size_changed: bool);
 
     #[doc(alias = "gtk_text_tag_get_priority")]
-    fn get_priority(&self) -> i32;
+    fn priority(&self) -> i32;
 
     #[doc(alias = "gtk_text_tag_set_priority")]
     fn set_priority(&self, priority: i32);
 
-    fn get_property_accumulative_margin(&self) -> bool;
+    #[doc(alias = "get_property_accumulative_margin")]
+    fn is_accumulative_margin(&self) -> bool;
 
-    fn set_property_accumulative_margin(&self, accumulative_margin: bool);
+    #[doc(alias = "set_property_accumulative_margin")]
+    fn set_accumulative_margin(&self, accumulative_margin: bool);
 
-    fn get_property_allow_breaks(&self) -> bool;
+    #[doc(alias = "get_property_allow_breaks")]
+    fn allows_breaks(&self) -> bool;
 
-    fn set_property_allow_breaks(&self, allow_breaks: bool);
+    #[doc(alias = "set_property_allow_breaks")]
+    fn set_allow_breaks(&self, allow_breaks: bool);
 
-    fn get_property_allow_breaks_set(&self) -> bool;
+    #[doc(alias = "get_property_allow_breaks_set")]
+    fn allows_breaks_set(&self) -> bool;
 
-    fn set_property_allow_breaks_set(&self, allow_breaks_set: bool);
+    #[doc(alias = "set_property_allow_breaks_set")]
+    fn set_allow_breaks_set(&self, allow_breaks_set: bool);
 
-    fn set_property_background(&self, background: Option<&str>);
+    #[doc(alias = "set_property_background")]
+    fn set_background(&self, background: Option<&str>);
 
-    fn get_property_background_full_height(&self) -> bool;
+    #[doc(alias = "get_property_background_full_height")]
+    fn is_background_full_height(&self) -> bool;
 
-    fn set_property_background_full_height(&self, background_full_height: bool);
+    #[doc(alias = "set_property_background_full_height")]
+    fn set_background_full_height(&self, background_full_height: bool);
 
-    fn get_property_background_full_height_set(&self) -> bool;
+    #[doc(alias = "get_property_background_full_height_set")]
+    fn is_background_full_height_set(&self) -> bool;
 
-    fn set_property_background_full_height_set(&self, background_full_height_set: bool);
+    #[doc(alias = "set_property_background_full_height_set")]
+    fn set_background_full_height_set(&self, background_full_height_set: bool);
 
-    fn get_property_background_rgba(&self) -> Option<gdk::RGBA>;
+    #[doc(alias = "get_property_background_rgba")]
+    fn background_rgba(&self) -> Option<gdk::RGBA>;
 
-    fn set_property_background_rgba(&self, background_rgba: Option<&gdk::RGBA>);
+    #[doc(alias = "set_property_background_rgba")]
+    fn set_background_rgba(&self, background_rgba: Option<&gdk::RGBA>);
 
-    fn get_property_background_set(&self) -> bool;
+    #[doc(alias = "get_property_background_set")]
+    fn is_background_set(&self) -> bool;
 
-    fn set_property_background_set(&self, background_set: bool);
+    #[doc(alias = "set_property_background_set")]
+    fn set_background_set(&self, background_set: bool);
 
-    fn get_property_direction(&self) -> TextDirection;
+    #[doc(alias = "get_property_direction")]
+    fn direction(&self) -> TextDirection;
 
-    fn set_property_direction(&self, direction: TextDirection);
+    #[doc(alias = "set_property_direction")]
+    fn set_direction(&self, direction: TextDirection);
 
-    fn get_property_editable(&self) -> bool;
+    #[doc(alias = "get_property_editable")]
+    fn is_editable(&self) -> bool;
 
-    fn set_property_editable(&self, editable: bool);
+    #[doc(alias = "set_property_editable")]
+    fn set_editable(&self, editable: bool);
 
-    fn get_property_editable_set(&self) -> bool;
+    #[doc(alias = "get_property_editable_set")]
+    fn is_editable_set(&self) -> bool;
 
-    fn set_property_editable_set(&self, editable_set: bool);
+    #[doc(alias = "set_property_editable_set")]
+    fn set_editable_set(&self, editable_set: bool);
 
-    fn get_property_fallback(&self) -> bool;
+    #[doc(alias = "get_property_fallback")]
+    fn is_fallback(&self) -> bool;
 
-    fn set_property_fallback(&self, fallback: bool);
+    #[doc(alias = "set_property_fallback")]
+    fn set_fallback(&self, fallback: bool);
 
-    fn get_property_fallback_set(&self) -> bool;
+    #[doc(alias = "get_property_fallback_set")]
+    fn is_fallback_set(&self) -> bool;
 
-    fn set_property_fallback_set(&self, fallback_set: bool);
+    #[doc(alias = "set_property_fallback_set")]
+    fn set_fallback_set(&self, fallback_set: bool);
 
-    fn get_property_family(&self) -> Option<glib::GString>;
+    #[doc(alias = "get_property_family")]
+    fn family(&self) -> Option<glib::GString>;
 
-    fn set_property_family(&self, family: Option<&str>);
+    #[doc(alias = "set_property_family")]
+    fn set_family(&self, family: Option<&str>);
 
-    fn get_property_family_set(&self) -> bool;
+    #[doc(alias = "get_property_family_set")]
+    fn is_family_set(&self) -> bool;
 
-    fn set_property_family_set(&self, family_set: bool);
+    #[doc(alias = "set_property_family_set")]
+    fn set_family_set(&self, family_set: bool);
 
-    fn get_property_font(&self) -> Option<glib::GString>;
+    #[doc(alias = "get_property_font")]
+    fn font(&self) -> Option<glib::GString>;
 
-    fn set_property_font(&self, font: Option<&str>);
+    #[doc(alias = "set_property_font")]
+    fn set_font(&self, font: Option<&str>);
 
-    fn get_property_font_desc(&self) -> Option<pango::FontDescription>;
+    #[doc(alias = "get_property_font_desc")]
+    fn font_desc(&self) -> Option<pango::FontDescription>;
 
-    fn set_property_font_desc(&self, font_desc: Option<&pango::FontDescription>);
+    #[doc(alias = "set_property_font_desc")]
+    fn set_font_desc(&self, font_desc: Option<&pango::FontDescription>);
 
-    fn get_property_font_features(&self) -> Option<glib::GString>;
+    #[doc(alias = "get_property_font_features")]
+    fn font_features(&self) -> Option<glib::GString>;
 
-    fn set_property_font_features(&self, font_features: Option<&str>);
+    #[doc(alias = "set_property_font_features")]
+    fn set_font_features(&self, font_features: Option<&str>);
 
-    fn get_property_font_features_set(&self) -> bool;
+    #[doc(alias = "get_property_font_features_set")]
+    fn is_font_features_set(&self) -> bool;
 
-    fn set_property_font_features_set(&self, font_features_set: bool);
+    #[doc(alias = "set_property_font_features_set")]
+    fn set_font_features_set(&self, font_features_set: bool);
 
-    fn set_property_foreground(&self, foreground: Option<&str>);
+    #[doc(alias = "set_property_foreground")]
+    fn set_foreground(&self, foreground: Option<&str>);
 
-    fn get_property_foreground_rgba(&self) -> Option<gdk::RGBA>;
+    #[doc(alias = "get_property_foreground_rgba")]
+    fn foreground_rgba(&self) -> Option<gdk::RGBA>;
 
-    fn set_property_foreground_rgba(&self, foreground_rgba: Option<&gdk::RGBA>);
+    #[doc(alias = "set_property_foreground_rgba")]
+    fn set_foreground_rgba(&self, foreground_rgba: Option<&gdk::RGBA>);
 
-    fn get_property_foreground_set(&self) -> bool;
+    #[doc(alias = "get_property_foreground_set")]
+    fn is_foreground_set(&self) -> bool;
 
-    fn set_property_foreground_set(&self, foreground_set: bool);
+    #[doc(alias = "set_property_foreground_set")]
+    fn set_foreground_set(&self, foreground_set: bool);
 
-    fn get_property_indent(&self) -> i32;
+    #[doc(alias = "get_property_indent")]
+    fn indent(&self) -> i32;
 
-    fn set_property_indent(&self, indent: i32);
+    #[doc(alias = "set_property_indent")]
+    fn set_indent(&self, indent: i32);
 
-    fn get_property_indent_set(&self) -> bool;
+    #[doc(alias = "get_property_indent_set")]
+    fn is_indent_set(&self) -> bool;
 
-    fn set_property_indent_set(&self, indent_set: bool);
+    #[doc(alias = "set_property_indent_set")]
+    fn set_indent_set(&self, indent_set: bool);
 
-    fn get_property_insert_hyphens(&self) -> bool;
+    #[doc(alias = "get_property_insert_hyphens")]
+    fn is_insert_hyphens(&self) -> bool;
 
-    fn set_property_insert_hyphens(&self, insert_hyphens: bool);
+    #[doc(alias = "set_property_insert_hyphens")]
+    fn set_insert_hyphens(&self, insert_hyphens: bool);
 
-    fn get_property_insert_hyphens_set(&self) -> bool;
+    #[doc(alias = "get_property_insert_hyphens_set")]
+    fn is_insert_hyphens_set(&self) -> bool;
 
-    fn set_property_insert_hyphens_set(&self, insert_hyphens_set: bool);
+    #[doc(alias = "set_property_insert_hyphens_set")]
+    fn set_insert_hyphens_set(&self, insert_hyphens_set: bool);
 
-    fn get_property_invisible(&self) -> bool;
+    #[doc(alias = "get_property_invisible")]
+    fn is_invisible(&self) -> bool;
 
-    fn set_property_invisible(&self, invisible: bool);
+    #[doc(alias = "set_property_invisible")]
+    fn set_invisible(&self, invisible: bool);
 
-    fn get_property_invisible_set(&self) -> bool;
+    #[doc(alias = "get_property_invisible_set")]
+    fn is_invisible_set(&self) -> bool;
 
-    fn set_property_invisible_set(&self, invisible_set: bool);
+    #[doc(alias = "set_property_invisible_set")]
+    fn set_invisible_set(&self, invisible_set: bool);
 
-    fn get_property_justification(&self) -> Justification;
+    #[doc(alias = "get_property_justification")]
+    fn justification(&self) -> Justification;
 
-    fn set_property_justification(&self, justification: Justification);
+    #[doc(alias = "set_property_justification")]
+    fn set_justification(&self, justification: Justification);
 
-    fn get_property_justification_set(&self) -> bool;
+    #[doc(alias = "get_property_justification_set")]
+    fn is_justification_set(&self) -> bool;
 
-    fn set_property_justification_set(&self, justification_set: bool);
+    #[doc(alias = "set_property_justification_set")]
+    fn set_justification_set(&self, justification_set: bool);
 
-    fn get_property_language(&self) -> Option<glib::GString>;
+    #[doc(alias = "get_property_language")]
+    fn language(&self) -> Option<glib::GString>;
 
-    fn set_property_language(&self, language: Option<&str>);
+    #[doc(alias = "set_property_language")]
+    fn set_language(&self, language: Option<&str>);
 
-    fn get_property_language_set(&self) -> bool;
+    #[doc(alias = "get_property_language_set")]
+    fn is_language_set(&self) -> bool;
 
-    fn set_property_language_set(&self, language_set: bool);
+    #[doc(alias = "set_property_language_set")]
+    fn set_language_set(&self, language_set: bool);
 
-    fn get_property_left_margin(&self) -> i32;
+    #[doc(alias = "get_property_left_margin")]
+    fn left_margin(&self) -> i32;
 
-    fn set_property_left_margin(&self, left_margin: i32);
+    #[doc(alias = "set_property_left_margin")]
+    fn set_left_margin(&self, left_margin: i32);
 
-    fn get_property_left_margin_set(&self) -> bool;
+    #[doc(alias = "get_property_left_margin_set")]
+    fn is_left_margin_set(&self) -> bool;
 
-    fn set_property_left_margin_set(&self, left_margin_set: bool);
+    #[doc(alias = "set_property_left_margin_set")]
+    fn set_left_margin_set(&self, left_margin_set: bool);
 
-    fn get_property_letter_spacing(&self) -> i32;
+    #[doc(alias = "get_property_letter_spacing")]
+    fn letter_spacing(&self) -> i32;
 
-    fn set_property_letter_spacing(&self, letter_spacing: i32);
+    #[doc(alias = "set_property_letter_spacing")]
+    fn set_letter_spacing(&self, letter_spacing: i32);
 
-    fn get_property_letter_spacing_set(&self) -> bool;
+    #[doc(alias = "get_property_letter_spacing_set")]
+    fn is_letter_spacing_set(&self) -> bool;
 
-    fn set_property_letter_spacing_set(&self, letter_spacing_set: bool);
+    #[doc(alias = "set_property_letter_spacing_set")]
+    fn set_letter_spacing_set(&self, letter_spacing_set: bool);
 
-    fn get_property_name(&self) -> Option<glib::GString>;
+    #[doc(alias = "get_property_name")]
+    fn name(&self) -> Option<glib::GString>;
 
-    fn get_property_overline(&self) -> pango::Overline;
+    #[doc(alias = "get_property_overline")]
+    fn overline(&self) -> pango::Overline;
 
-    fn set_property_overline(&self, overline: pango::Overline);
+    #[doc(alias = "set_property_overline")]
+    fn set_overline(&self, overline: pango::Overline);
 
-    fn get_property_overline_rgba(&self) -> Option<gdk::RGBA>;
+    #[doc(alias = "get_property_overline_rgba")]
+    fn overline_rgba(&self) -> Option<gdk::RGBA>;
 
-    fn set_property_overline_rgba(&self, overline_rgba: Option<&gdk::RGBA>);
+    #[doc(alias = "set_property_overline_rgba")]
+    fn set_overline_rgba(&self, overline_rgba: Option<&gdk::RGBA>);
 
-    fn get_property_overline_rgba_set(&self) -> bool;
+    #[doc(alias = "get_property_overline_rgba_set")]
+    fn is_overline_rgba_set(&self) -> bool;
 
-    fn set_property_overline_rgba_set(&self, overline_rgba_set: bool);
+    #[doc(alias = "set_property_overline_rgba_set")]
+    fn set_overline_rgba_set(&self, overline_rgba_set: bool);
 
-    fn get_property_overline_set(&self) -> bool;
+    #[doc(alias = "get_property_overline_set")]
+    fn is_overline_set(&self) -> bool;
 
-    fn set_property_overline_set(&self, overline_set: bool);
+    #[doc(alias = "set_property_overline_set")]
+    fn set_overline_set(&self, overline_set: bool);
 
-    fn set_property_paragraph_background(&self, paragraph_background: Option<&str>);
+    #[doc(alias = "set_property_paragraph_background")]
+    fn set_paragraph_background(&self, paragraph_background: Option<&str>);
 
-    fn get_property_paragraph_background_rgba(&self) -> Option<gdk::RGBA>;
+    #[doc(alias = "get_property_paragraph_background_rgba")]
+    fn paragraph_background_rgba(&self) -> Option<gdk::RGBA>;
 
-    fn set_property_paragraph_background_rgba(&self, paragraph_background_rgba: Option<&gdk::RGBA>);
+    #[doc(alias = "set_property_paragraph_background_rgba")]
+    fn set_paragraph_background_rgba(&self, paragraph_background_rgba: Option<&gdk::RGBA>);
 
-    fn get_property_paragraph_background_set(&self) -> bool;
+    #[doc(alias = "get_property_paragraph_background_set")]
+    fn is_paragraph_background_set(&self) -> bool;
 
-    fn set_property_paragraph_background_set(&self, paragraph_background_set: bool);
+    #[doc(alias = "set_property_paragraph_background_set")]
+    fn set_paragraph_background_set(&self, paragraph_background_set: bool);
 
-    fn get_property_pixels_above_lines(&self) -> i32;
+    #[doc(alias = "get_property_pixels_above_lines")]
+    fn pixels_above_lines(&self) -> i32;
 
-    fn set_property_pixels_above_lines(&self, pixels_above_lines: i32);
+    #[doc(alias = "set_property_pixels_above_lines")]
+    fn set_pixels_above_lines(&self, pixels_above_lines: i32);
 
-    fn get_property_pixels_above_lines_set(&self) -> bool;
+    #[doc(alias = "get_property_pixels_above_lines_set")]
+    fn is_pixels_above_lines_set(&self) -> bool;
 
-    fn set_property_pixels_above_lines_set(&self, pixels_above_lines_set: bool);
+    #[doc(alias = "set_property_pixels_above_lines_set")]
+    fn set_pixels_above_lines_set(&self, pixels_above_lines_set: bool);
 
-    fn get_property_pixels_below_lines(&self) -> i32;
+    #[doc(alias = "get_property_pixels_below_lines")]
+    fn pixels_below_lines(&self) -> i32;
 
-    fn set_property_pixels_below_lines(&self, pixels_below_lines: i32);
+    #[doc(alias = "set_property_pixels_below_lines")]
+    fn set_pixels_below_lines(&self, pixels_below_lines: i32);
 
-    fn get_property_pixels_below_lines_set(&self) -> bool;
+    #[doc(alias = "get_property_pixels_below_lines_set")]
+    fn is_pixels_below_lines_set(&self) -> bool;
 
-    fn set_property_pixels_below_lines_set(&self, pixels_below_lines_set: bool);
+    #[doc(alias = "set_property_pixels_below_lines_set")]
+    fn set_pixels_below_lines_set(&self, pixels_below_lines_set: bool);
 
-    fn get_property_pixels_inside_wrap(&self) -> i32;
+    #[doc(alias = "get_property_pixels_inside_wrap")]
+    fn pixels_inside_wrap(&self) -> i32;
 
-    fn set_property_pixels_inside_wrap(&self, pixels_inside_wrap: i32);
+    #[doc(alias = "set_property_pixels_inside_wrap")]
+    fn set_pixels_inside_wrap(&self, pixels_inside_wrap: i32);
 
-    fn get_property_pixels_inside_wrap_set(&self) -> bool;
+    #[doc(alias = "get_property_pixels_inside_wrap_set")]
+    fn is_pixels_inside_wrap_set(&self) -> bool;
 
-    fn set_property_pixels_inside_wrap_set(&self, pixels_inside_wrap_set: bool);
+    #[doc(alias = "set_property_pixels_inside_wrap_set")]
+    fn set_pixels_inside_wrap_set(&self, pixels_inside_wrap_set: bool);
 
-    fn get_property_right_margin(&self) -> i32;
+    #[doc(alias = "get_property_right_margin")]
+    fn right_margin(&self) -> i32;
 
-    fn set_property_right_margin(&self, right_margin: i32);
+    #[doc(alias = "set_property_right_margin")]
+    fn set_right_margin(&self, right_margin: i32);
 
-    fn get_property_right_margin_set(&self) -> bool;
+    #[doc(alias = "get_property_right_margin_set")]
+    fn is_right_margin_set(&self) -> bool;
 
-    fn set_property_right_margin_set(&self, right_margin_set: bool);
+    #[doc(alias = "set_property_right_margin_set")]
+    fn set_right_margin_set(&self, right_margin_set: bool);
 
-    fn get_property_rise(&self) -> i32;
+    #[doc(alias = "get_property_rise")]
+    fn rise(&self) -> i32;
 
-    fn set_property_rise(&self, rise: i32);
+    #[doc(alias = "set_property_rise")]
+    fn set_rise(&self, rise: i32);
 
-    fn get_property_rise_set(&self) -> bool;
+    #[doc(alias = "get_property_rise_set")]
+    fn is_rise_set(&self) -> bool;
 
-    fn set_property_rise_set(&self, rise_set: bool);
+    #[doc(alias = "set_property_rise_set")]
+    fn set_rise_set(&self, rise_set: bool);
 
-    fn get_property_scale(&self) -> f64;
+    #[doc(alias = "get_property_scale")]
+    fn scale(&self) -> f64;
 
-    fn set_property_scale(&self, scale: f64);
+    #[doc(alias = "set_property_scale")]
+    fn set_scale(&self, scale: f64);
 
-    fn get_property_scale_set(&self) -> bool;
+    #[doc(alias = "get_property_scale_set")]
+    fn is_scale_set(&self) -> bool;
 
-    fn set_property_scale_set(&self, scale_set: bool);
+    #[doc(alias = "set_property_scale_set")]
+    fn set_scale_set(&self, scale_set: bool);
 
-    fn get_property_show_spaces(&self) -> pango::ShowFlags;
+    #[doc(alias = "get_property_show_spaces")]
+    fn show_spaces(&self) -> pango::ShowFlags;
 
-    fn set_property_show_spaces(&self, show_spaces: pango::ShowFlags);
+    #[doc(alias = "set_property_show_spaces")]
+    fn set_show_spaces(&self, show_spaces: pango::ShowFlags);
 
-    fn get_property_show_spaces_set(&self) -> bool;
+    #[doc(alias = "get_property_show_spaces_set")]
+    fn shows_spaces_set(&self) -> bool;
 
-    fn set_property_show_spaces_set(&self, show_spaces_set: bool);
+    #[doc(alias = "set_property_show_spaces_set")]
+    fn set_show_spaces_set(&self, show_spaces_set: bool);
 
-    fn get_property_size(&self) -> i32;
+    #[doc(alias = "get_property_size")]
+    fn size(&self) -> i32;
 
-    fn set_property_size(&self, size: i32);
+    #[doc(alias = "set_property_size")]
+    fn set_size(&self, size: i32);
 
-    fn get_property_size_points(&self) -> f64;
+    #[doc(alias = "get_property_size_points")]
+    fn size_points(&self) -> f64;
 
-    fn set_property_size_points(&self, size_points: f64);
+    #[doc(alias = "set_property_size_points")]
+    fn set_size_points(&self, size_points: f64);
 
-    fn get_property_size_set(&self) -> bool;
+    #[doc(alias = "get_property_size_set")]
+    fn is_size_set(&self) -> bool;
 
-    fn set_property_size_set(&self, size_set: bool);
+    #[doc(alias = "set_property_size_set")]
+    fn set_size_set(&self, size_set: bool);
 
-    fn get_property_stretch(&self) -> pango::Stretch;
+    #[doc(alias = "get_property_stretch")]
+    fn stretch(&self) -> pango::Stretch;
 
-    fn set_property_stretch(&self, stretch: pango::Stretch);
+    #[doc(alias = "set_property_stretch")]
+    fn set_stretch(&self, stretch: pango::Stretch);
 
-    fn get_property_stretch_set(&self) -> bool;
+    #[doc(alias = "get_property_stretch_set")]
+    fn is_stretch_set(&self) -> bool;
 
-    fn set_property_stretch_set(&self, stretch_set: bool);
+    #[doc(alias = "set_property_stretch_set")]
+    fn set_stretch_set(&self, stretch_set: bool);
 
-    fn get_property_strikethrough(&self) -> bool;
+    #[doc(alias = "get_property_strikethrough")]
+    fn is_strikethrough(&self) -> bool;
 
-    fn set_property_strikethrough(&self, strikethrough: bool);
+    #[doc(alias = "set_property_strikethrough")]
+    fn set_strikethrough(&self, strikethrough: bool);
 
-    fn get_property_strikethrough_rgba(&self) -> Option<gdk::RGBA>;
+    #[doc(alias = "get_property_strikethrough_rgba")]
+    fn strikethrough_rgba(&self) -> Option<gdk::RGBA>;
 
-    fn set_property_strikethrough_rgba(&self, strikethrough_rgba: Option<&gdk::RGBA>);
+    #[doc(alias = "set_property_strikethrough_rgba")]
+    fn set_strikethrough_rgba(&self, strikethrough_rgba: Option<&gdk::RGBA>);
 
-    fn get_property_strikethrough_rgba_set(&self) -> bool;
+    #[doc(alias = "get_property_strikethrough_rgba_set")]
+    fn is_strikethrough_rgba_set(&self) -> bool;
 
-    fn set_property_strikethrough_rgba_set(&self, strikethrough_rgba_set: bool);
+    #[doc(alias = "set_property_strikethrough_rgba_set")]
+    fn set_strikethrough_rgba_set(&self, strikethrough_rgba_set: bool);
 
-    fn get_property_strikethrough_set(&self) -> bool;
+    #[doc(alias = "get_property_strikethrough_set")]
+    fn is_strikethrough_set(&self) -> bool;
 
-    fn set_property_strikethrough_set(&self, strikethrough_set: bool);
+    #[doc(alias = "set_property_strikethrough_set")]
+    fn set_strikethrough_set(&self, strikethrough_set: bool);
 
-    fn get_property_style(&self) -> pango::Style;
+    #[doc(alias = "get_property_style")]
+    fn style(&self) -> pango::Style;
 
-    fn set_property_style(&self, style: pango::Style);
+    #[doc(alias = "set_property_style")]
+    fn set_style(&self, style: pango::Style);
 
-    fn get_property_style_set(&self) -> bool;
+    #[doc(alias = "get_property_style_set")]
+    fn is_style_set(&self) -> bool;
 
-    fn set_property_style_set(&self, style_set: bool);
+    #[doc(alias = "set_property_style_set")]
+    fn set_style_set(&self, style_set: bool);
 
-    fn get_property_tabs(&self) -> Option<pango::TabArray>;
+    #[doc(alias = "get_property_tabs")]
+    fn tabs(&self) -> Option<pango::TabArray>;
 
-    fn set_property_tabs(&self, tabs: Option<&pango::TabArray>);
+    #[doc(alias = "set_property_tabs")]
+    fn set_tabs(&self, tabs: Option<&pango::TabArray>);
 
-    fn get_property_tabs_set(&self) -> bool;
+    #[doc(alias = "get_property_tabs_set")]
+    fn is_tabs_set(&self) -> bool;
 
-    fn set_property_tabs_set(&self, tabs_set: bool);
+    #[doc(alias = "set_property_tabs_set")]
+    fn set_tabs_set(&self, tabs_set: bool);
 
-    fn get_property_underline(&self) -> pango::Underline;
+    #[doc(alias = "get_property_underline")]
+    fn underline(&self) -> pango::Underline;
 
-    fn set_property_underline(&self, underline: pango::Underline);
+    #[doc(alias = "set_property_underline")]
+    fn set_underline(&self, underline: pango::Underline);
 
-    fn get_property_underline_rgba(&self) -> Option<gdk::RGBA>;
+    #[doc(alias = "get_property_underline_rgba")]
+    fn underline_rgba(&self) -> Option<gdk::RGBA>;
 
-    fn set_property_underline_rgba(&self, underline_rgba: Option<&gdk::RGBA>);
+    #[doc(alias = "set_property_underline_rgba")]
+    fn set_underline_rgba(&self, underline_rgba: Option<&gdk::RGBA>);
 
-    fn get_property_underline_rgba_set(&self) -> bool;
+    #[doc(alias = "get_property_underline_rgba_set")]
+    fn is_underline_rgba_set(&self) -> bool;
 
-    fn set_property_underline_rgba_set(&self, underline_rgba_set: bool);
+    #[doc(alias = "set_property_underline_rgba_set")]
+    fn set_underline_rgba_set(&self, underline_rgba_set: bool);
 
-    fn get_property_underline_set(&self) -> bool;
+    #[doc(alias = "get_property_underline_set")]
+    fn is_underline_set(&self) -> bool;
 
-    fn set_property_underline_set(&self, underline_set: bool);
+    #[doc(alias = "set_property_underline_set")]
+    fn set_underline_set(&self, underline_set: bool);
 
-    fn get_property_variant(&self) -> pango::Variant;
+    #[doc(alias = "get_property_variant")]
+    fn variant(&self) -> pango::Variant;
 
-    fn set_property_variant(&self, variant: pango::Variant);
+    #[doc(alias = "set_property_variant")]
+    fn set_variant(&self, variant: pango::Variant);
 
-    fn get_property_variant_set(&self) -> bool;
+    #[doc(alias = "get_property_variant_set")]
+    fn is_variant_set(&self) -> bool;
 
-    fn set_property_variant_set(&self, variant_set: bool);
+    #[doc(alias = "set_property_variant_set")]
+    fn set_variant_set(&self, variant_set: bool);
 
-    fn get_property_weight(&self) -> i32;
+    #[doc(alias = "get_property_weight")]
+    fn weight(&self) -> i32;
 
-    fn set_property_weight(&self, weight: i32);
+    #[doc(alias = "set_property_weight")]
+    fn set_weight(&self, weight: i32);
 
-    fn get_property_weight_set(&self) -> bool;
+    #[doc(alias = "get_property_weight_set")]
+    fn is_weight_set(&self) -> bool;
 
-    fn set_property_weight_set(&self, weight_set: bool);
+    #[doc(alias = "set_property_weight_set")]
+    fn set_weight_set(&self, weight_set: bool);
 
-    fn get_property_wrap_mode(&self) -> WrapMode;
+    #[doc(alias = "get_property_wrap_mode")]
+    fn wrap_mode(&self) -> WrapMode;
 
-    fn set_property_wrap_mode(&self, wrap_mode: WrapMode);
+    #[doc(alias = "set_property_wrap_mode")]
+    fn set_wrap_mode(&self, wrap_mode: WrapMode);
 
-    fn get_property_wrap_mode_set(&self) -> bool;
+    #[doc(alias = "get_property_wrap_mode_set")]
+    fn wraps_mode_set(&self) -> bool;
 
-    fn set_property_wrap_mode_set(&self, wrap_mode_set: bool);
+    #[doc(alias = "set_property_wrap_mode_set")]
+    fn set_wrap_mode_set(&self, wrap_mode_set: bool);
 
     fn connect_property_accumulative_margin_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -1396,7 +1554,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_priority(&self) -> i32 {
+    fn priority(&self) -> i32 {
         unsafe { ffi::gtk_text_tag_get_priority(self.as_ref().to_glib_none().0) }
     }
 
@@ -1406,7 +1564,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_accumulative_margin(&self) -> bool {
+    fn is_accumulative_margin(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1421,7 +1579,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_accumulative_margin(&self, accumulative_margin: bool) {
+    fn set_accumulative_margin(&self, accumulative_margin: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1431,7 +1589,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_allow_breaks(&self) -> bool {
+    fn allows_breaks(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1446,7 +1604,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_allow_breaks(&self, allow_breaks: bool) {
+    fn set_allow_breaks(&self, allow_breaks: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1456,7 +1614,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_allow_breaks_set(&self) -> bool {
+    fn allows_breaks_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1471,7 +1629,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_allow_breaks_set(&self, allow_breaks_set: bool) {
+    fn set_allow_breaks_set(&self, allow_breaks_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1481,7 +1639,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_background(&self, background: Option<&str>) {
+    fn set_background(&self, background: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1491,7 +1649,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_background_full_height(&self) -> bool {
+    fn is_background_full_height(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1506,7 +1664,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_background_full_height(&self, background_full_height: bool) {
+    fn set_background_full_height(&self, background_full_height: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1516,7 +1674,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_background_full_height_set(&self) -> bool {
+    fn is_background_full_height_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1531,7 +1689,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_background_full_height_set(&self, background_full_height_set: bool) {
+    fn set_background_full_height_set(&self, background_full_height_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1543,7 +1701,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_background_rgba(&self) -> Option<gdk::RGBA> {
+    fn background_rgba(&self) -> Option<gdk::RGBA> {
         unsafe {
             let mut value = glib::Value::from_type(<gdk::RGBA as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1557,7 +1715,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_background_rgba(&self, background_rgba: Option<&gdk::RGBA>) {
+    fn set_background_rgba(&self, background_rgba: Option<&gdk::RGBA>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1567,7 +1725,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_background_set(&self) -> bool {
+    fn is_background_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1582,7 +1740,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_background_set(&self, background_set: bool) {
+    fn set_background_set(&self, background_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1592,7 +1750,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_direction(&self) -> TextDirection {
+    fn direction(&self) -> TextDirection {
         unsafe {
             let mut value = glib::Value::from_type(<TextDirection as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1607,7 +1765,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_direction(&self, direction: TextDirection) {
+    fn set_direction(&self, direction: TextDirection) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1617,7 +1775,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_editable(&self) -> bool {
+    fn is_editable(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1632,7 +1790,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_editable(&self, editable: bool) {
+    fn set_editable(&self, editable: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1642,7 +1800,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_editable_set(&self) -> bool {
+    fn is_editable_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1657,7 +1815,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_editable_set(&self, editable_set: bool) {
+    fn set_editable_set(&self, editable_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1667,7 +1825,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_fallback(&self) -> bool {
+    fn is_fallback(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1682,7 +1840,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_fallback(&self, fallback: bool) {
+    fn set_fallback(&self, fallback: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1692,7 +1850,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_fallback_set(&self) -> bool {
+    fn is_fallback_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1707,7 +1865,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_fallback_set(&self, fallback_set: bool) {
+    fn set_fallback_set(&self, fallback_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1717,7 +1875,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_family(&self) -> Option<glib::GString> {
+    fn family(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1731,7 +1889,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_family(&self, family: Option<&str>) {
+    fn set_family(&self, family: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1741,7 +1899,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_family_set(&self) -> bool {
+    fn is_family_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1756,7 +1914,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_family_set(&self, family_set: bool) {
+    fn set_family_set(&self, family_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1766,7 +1924,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_font(&self) -> Option<glib::GString> {
+    fn font(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1780,7 +1938,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_font(&self, font: Option<&str>) {
+    fn set_font(&self, font: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1790,7 +1948,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_font_desc(&self) -> Option<pango::FontDescription> {
+    fn font_desc(&self) -> Option<pango::FontDescription> {
         unsafe {
             let mut value =
                 glib::Value::from_type(<pango::FontDescription as StaticType>::static_type());
@@ -1805,7 +1963,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_font_desc(&self, font_desc: Option<&pango::FontDescription>) {
+    fn set_font_desc(&self, font_desc: Option<&pango::FontDescription>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1815,7 +1973,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_font_features(&self) -> Option<glib::GString> {
+    fn font_features(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1829,7 +1987,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_font_features(&self, font_features: Option<&str>) {
+    fn set_font_features(&self, font_features: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1839,7 +1997,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_font_features_set(&self) -> bool {
+    fn is_font_features_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1854,7 +2012,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_font_features_set(&self, font_features_set: bool) {
+    fn set_font_features_set(&self, font_features_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1864,7 +2022,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_foreground(&self, foreground: Option<&str>) {
+    fn set_foreground(&self, foreground: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1874,7 +2032,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_foreground_rgba(&self) -> Option<gdk::RGBA> {
+    fn foreground_rgba(&self) -> Option<gdk::RGBA> {
         unsafe {
             let mut value = glib::Value::from_type(<gdk::RGBA as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1888,7 +2046,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_foreground_rgba(&self, foreground_rgba: Option<&gdk::RGBA>) {
+    fn set_foreground_rgba(&self, foreground_rgba: Option<&gdk::RGBA>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1898,7 +2056,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_foreground_set(&self) -> bool {
+    fn is_foreground_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1913,7 +2071,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_foreground_set(&self, foreground_set: bool) {
+    fn set_foreground_set(&self, foreground_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1923,7 +2081,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_indent(&self) -> i32 {
+    fn indent(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1938,7 +2096,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_indent(&self, indent: i32) {
+    fn set_indent(&self, indent: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1948,7 +2106,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_indent_set(&self) -> bool {
+    fn is_indent_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1963,7 +2121,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_indent_set(&self, indent_set: bool) {
+    fn set_indent_set(&self, indent_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1973,7 +2131,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_insert_hyphens(&self) -> bool {
+    fn is_insert_hyphens(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1988,7 +2146,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_insert_hyphens(&self, insert_hyphens: bool) {
+    fn set_insert_hyphens(&self, insert_hyphens: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1998,7 +2156,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_insert_hyphens_set(&self) -> bool {
+    fn is_insert_hyphens_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2013,7 +2171,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_insert_hyphens_set(&self, insert_hyphens_set: bool) {
+    fn set_insert_hyphens_set(&self, insert_hyphens_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2023,7 +2181,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_invisible(&self) -> bool {
+    fn is_invisible(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2038,7 +2196,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_invisible(&self, invisible: bool) {
+    fn set_invisible(&self, invisible: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2048,7 +2206,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_invisible_set(&self) -> bool {
+    fn is_invisible_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2063,7 +2221,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_invisible_set(&self, invisible_set: bool) {
+    fn set_invisible_set(&self, invisible_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2073,7 +2231,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_justification(&self) -> Justification {
+    fn justification(&self) -> Justification {
         unsafe {
             let mut value = glib::Value::from_type(<Justification as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2088,7 +2246,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_justification(&self, justification: Justification) {
+    fn set_justification(&self, justification: Justification) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2098,7 +2256,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_justification_set(&self) -> bool {
+    fn is_justification_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2113,7 +2271,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_justification_set(&self, justification_set: bool) {
+    fn set_justification_set(&self, justification_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2123,7 +2281,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_language(&self) -> Option<glib::GString> {
+    fn language(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2137,7 +2295,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_language(&self, language: Option<&str>) {
+    fn set_language(&self, language: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2147,7 +2305,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_language_set(&self) -> bool {
+    fn is_language_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2162,7 +2320,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_language_set(&self, language_set: bool) {
+    fn set_language_set(&self, language_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2172,7 +2330,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_left_margin(&self) -> i32 {
+    fn left_margin(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2187,7 +2345,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_left_margin(&self, left_margin: i32) {
+    fn set_left_margin(&self, left_margin: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2197,7 +2355,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_left_margin_set(&self) -> bool {
+    fn is_left_margin_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2212,7 +2370,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_left_margin_set(&self, left_margin_set: bool) {
+    fn set_left_margin_set(&self, left_margin_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2222,7 +2380,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_letter_spacing(&self) -> i32 {
+    fn letter_spacing(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2237,7 +2395,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_letter_spacing(&self, letter_spacing: i32) {
+    fn set_letter_spacing(&self, letter_spacing: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2247,7 +2405,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_letter_spacing_set(&self) -> bool {
+    fn is_letter_spacing_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2262,7 +2420,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_letter_spacing_set(&self, letter_spacing_set: bool) {
+    fn set_letter_spacing_set(&self, letter_spacing_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2272,7 +2430,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_name(&self) -> Option<glib::GString> {
+    fn name(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2286,7 +2444,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_overline(&self) -> pango::Overline {
+    fn overline(&self) -> pango::Overline {
         unsafe {
             let mut value = glib::Value::from_type(<pango::Overline as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2301,7 +2459,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_overline(&self, overline: pango::Overline) {
+    fn set_overline(&self, overline: pango::Overline) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2311,7 +2469,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_overline_rgba(&self) -> Option<gdk::RGBA> {
+    fn overline_rgba(&self) -> Option<gdk::RGBA> {
         unsafe {
             let mut value = glib::Value::from_type(<gdk::RGBA as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2325,7 +2483,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_overline_rgba(&self, overline_rgba: Option<&gdk::RGBA>) {
+    fn set_overline_rgba(&self, overline_rgba: Option<&gdk::RGBA>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2335,7 +2493,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_overline_rgba_set(&self) -> bool {
+    fn is_overline_rgba_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2350,7 +2508,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_overline_rgba_set(&self, overline_rgba_set: bool) {
+    fn set_overline_rgba_set(&self, overline_rgba_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2360,7 +2518,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_overline_set(&self) -> bool {
+    fn is_overline_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2375,7 +2533,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_overline_set(&self, overline_set: bool) {
+    fn set_overline_set(&self, overline_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2385,7 +2543,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_paragraph_background(&self, paragraph_background: Option<&str>) {
+    fn set_paragraph_background(&self, paragraph_background: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2395,7 +2553,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_paragraph_background_rgba(&self) -> Option<gdk::RGBA> {
+    fn paragraph_background_rgba(&self) -> Option<gdk::RGBA> {
         unsafe {
             let mut value = glib::Value::from_type(<gdk::RGBA as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2409,10 +2567,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_paragraph_background_rgba(
-        &self,
-        paragraph_background_rgba: Option<&gdk::RGBA>,
-    ) {
+    fn set_paragraph_background_rgba(&self, paragraph_background_rgba: Option<&gdk::RGBA>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2424,7 +2579,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_paragraph_background_set(&self) -> bool {
+    fn is_paragraph_background_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2439,7 +2594,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_paragraph_background_set(&self, paragraph_background_set: bool) {
+    fn set_paragraph_background_set(&self, paragraph_background_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2451,7 +2606,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_pixels_above_lines(&self) -> i32 {
+    fn pixels_above_lines(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2466,7 +2621,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_pixels_above_lines(&self, pixels_above_lines: i32) {
+    fn set_pixels_above_lines(&self, pixels_above_lines: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2476,7 +2631,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_pixels_above_lines_set(&self) -> bool {
+    fn is_pixels_above_lines_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2491,7 +2646,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_pixels_above_lines_set(&self, pixels_above_lines_set: bool) {
+    fn set_pixels_above_lines_set(&self, pixels_above_lines_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2501,7 +2656,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_pixels_below_lines(&self) -> i32 {
+    fn pixels_below_lines(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2516,7 +2671,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_pixels_below_lines(&self, pixels_below_lines: i32) {
+    fn set_pixels_below_lines(&self, pixels_below_lines: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2526,7 +2681,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_pixels_below_lines_set(&self) -> bool {
+    fn is_pixels_below_lines_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2541,7 +2696,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_pixels_below_lines_set(&self, pixels_below_lines_set: bool) {
+    fn set_pixels_below_lines_set(&self, pixels_below_lines_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2551,7 +2706,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_pixels_inside_wrap(&self) -> i32 {
+    fn pixels_inside_wrap(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2566,7 +2721,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_pixels_inside_wrap(&self, pixels_inside_wrap: i32) {
+    fn set_pixels_inside_wrap(&self, pixels_inside_wrap: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2576,7 +2731,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_pixels_inside_wrap_set(&self) -> bool {
+    fn is_pixels_inside_wrap_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2591,7 +2746,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_pixels_inside_wrap_set(&self, pixels_inside_wrap_set: bool) {
+    fn set_pixels_inside_wrap_set(&self, pixels_inside_wrap_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2601,7 +2756,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_right_margin(&self) -> i32 {
+    fn right_margin(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2616,7 +2771,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_right_margin(&self, right_margin: i32) {
+    fn set_right_margin(&self, right_margin: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2626,7 +2781,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_right_margin_set(&self) -> bool {
+    fn is_right_margin_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2641,7 +2796,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_right_margin_set(&self, right_margin_set: bool) {
+    fn set_right_margin_set(&self, right_margin_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2651,7 +2806,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_rise(&self) -> i32 {
+    fn rise(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2666,7 +2821,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_rise(&self, rise: i32) {
+    fn set_rise(&self, rise: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2676,7 +2831,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_rise_set(&self) -> bool {
+    fn is_rise_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2691,7 +2846,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_rise_set(&self, rise_set: bool) {
+    fn set_rise_set(&self, rise_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2701,7 +2856,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_scale(&self) -> f64 {
+    fn scale(&self) -> f64 {
         unsafe {
             let mut value = glib::Value::from_type(<f64 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2716,7 +2871,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_scale(&self, scale: f64) {
+    fn set_scale(&self, scale: f64) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2726,7 +2881,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_scale_set(&self) -> bool {
+    fn is_scale_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2741,7 +2896,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_scale_set(&self, scale_set: bool) {
+    fn set_scale_set(&self, scale_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2751,7 +2906,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_show_spaces(&self) -> pango::ShowFlags {
+    fn show_spaces(&self) -> pango::ShowFlags {
         unsafe {
             let mut value = glib::Value::from_type(<pango::ShowFlags as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2766,7 +2921,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_show_spaces(&self, show_spaces: pango::ShowFlags) {
+    fn set_show_spaces(&self, show_spaces: pango::ShowFlags) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2776,7 +2931,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_show_spaces_set(&self) -> bool {
+    fn shows_spaces_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2791,7 +2946,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_show_spaces_set(&self, show_spaces_set: bool) {
+    fn set_show_spaces_set(&self, show_spaces_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2801,7 +2956,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_size(&self) -> i32 {
+    fn size(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2816,7 +2971,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_size(&self, size: i32) {
+    fn set_size(&self, size: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2826,7 +2981,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_size_points(&self) -> f64 {
+    fn size_points(&self) -> f64 {
         unsafe {
             let mut value = glib::Value::from_type(<f64 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2841,7 +2996,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_size_points(&self, size_points: f64) {
+    fn set_size_points(&self, size_points: f64) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2851,7 +3006,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_size_set(&self) -> bool {
+    fn is_size_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2866,7 +3021,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_size_set(&self, size_set: bool) {
+    fn set_size_set(&self, size_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2876,7 +3031,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_stretch(&self) -> pango::Stretch {
+    fn stretch(&self) -> pango::Stretch {
         unsafe {
             let mut value = glib::Value::from_type(<pango::Stretch as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2891,7 +3046,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_stretch(&self, stretch: pango::Stretch) {
+    fn set_stretch(&self, stretch: pango::Stretch) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2901,7 +3056,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_stretch_set(&self) -> bool {
+    fn is_stretch_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2916,7 +3071,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_stretch_set(&self, stretch_set: bool) {
+    fn set_stretch_set(&self, stretch_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2926,7 +3081,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_strikethrough(&self) -> bool {
+    fn is_strikethrough(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2941,7 +3096,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_strikethrough(&self, strikethrough: bool) {
+    fn set_strikethrough(&self, strikethrough: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2951,7 +3106,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_strikethrough_rgba(&self) -> Option<gdk::RGBA> {
+    fn strikethrough_rgba(&self) -> Option<gdk::RGBA> {
         unsafe {
             let mut value = glib::Value::from_type(<gdk::RGBA as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2965,7 +3120,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_strikethrough_rgba(&self, strikethrough_rgba: Option<&gdk::RGBA>) {
+    fn set_strikethrough_rgba(&self, strikethrough_rgba: Option<&gdk::RGBA>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2975,7 +3130,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_strikethrough_rgba_set(&self) -> bool {
+    fn is_strikethrough_rgba_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2990,7 +3145,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_strikethrough_rgba_set(&self, strikethrough_rgba_set: bool) {
+    fn set_strikethrough_rgba_set(&self, strikethrough_rgba_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -3000,7 +3155,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_strikethrough_set(&self) -> bool {
+    fn is_strikethrough_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -3015,7 +3170,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_strikethrough_set(&self, strikethrough_set: bool) {
+    fn set_strikethrough_set(&self, strikethrough_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -3025,7 +3180,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_style(&self) -> pango::Style {
+    fn style(&self) -> pango::Style {
         unsafe {
             let mut value = glib::Value::from_type(<pango::Style as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -3040,7 +3195,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_style(&self, style: pango::Style) {
+    fn set_style(&self, style: pango::Style) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -3050,7 +3205,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_style_set(&self) -> bool {
+    fn is_style_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -3065,7 +3220,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_style_set(&self, style_set: bool) {
+    fn set_style_set(&self, style_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -3075,7 +3230,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_tabs(&self) -> Option<pango::TabArray> {
+    fn tabs(&self) -> Option<pango::TabArray> {
         unsafe {
             let mut value = glib::Value::from_type(<pango::TabArray as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -3089,7 +3244,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_tabs(&self, tabs: Option<&pango::TabArray>) {
+    fn set_tabs(&self, tabs: Option<&pango::TabArray>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -3099,7 +3254,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_tabs_set(&self) -> bool {
+    fn is_tabs_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -3114,7 +3269,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_tabs_set(&self, tabs_set: bool) {
+    fn set_tabs_set(&self, tabs_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -3124,7 +3279,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_underline(&self) -> pango::Underline {
+    fn underline(&self) -> pango::Underline {
         unsafe {
             let mut value = glib::Value::from_type(<pango::Underline as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -3139,7 +3294,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_underline(&self, underline: pango::Underline) {
+    fn set_underline(&self, underline: pango::Underline) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -3149,7 +3304,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_underline_rgba(&self) -> Option<gdk::RGBA> {
+    fn underline_rgba(&self) -> Option<gdk::RGBA> {
         unsafe {
             let mut value = glib::Value::from_type(<gdk::RGBA as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -3163,7 +3318,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_underline_rgba(&self, underline_rgba: Option<&gdk::RGBA>) {
+    fn set_underline_rgba(&self, underline_rgba: Option<&gdk::RGBA>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -3173,7 +3328,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_underline_rgba_set(&self) -> bool {
+    fn is_underline_rgba_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -3188,7 +3343,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_underline_rgba_set(&self, underline_rgba_set: bool) {
+    fn set_underline_rgba_set(&self, underline_rgba_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -3198,7 +3353,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_underline_set(&self) -> bool {
+    fn is_underline_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -3213,7 +3368,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_underline_set(&self, underline_set: bool) {
+    fn set_underline_set(&self, underline_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -3223,7 +3378,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_variant(&self) -> pango::Variant {
+    fn variant(&self) -> pango::Variant {
         unsafe {
             let mut value = glib::Value::from_type(<pango::Variant as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -3238,7 +3393,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_variant(&self, variant: pango::Variant) {
+    fn set_variant(&self, variant: pango::Variant) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -3248,7 +3403,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_variant_set(&self) -> bool {
+    fn is_variant_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -3263,7 +3418,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_variant_set(&self, variant_set: bool) {
+    fn set_variant_set(&self, variant_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -3273,7 +3428,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_weight(&self) -> i32 {
+    fn weight(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -3288,7 +3443,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_weight(&self, weight: i32) {
+    fn set_weight(&self, weight: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -3298,7 +3453,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_weight_set(&self) -> bool {
+    fn is_weight_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -3313,7 +3468,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_weight_set(&self, weight_set: bool) {
+    fn set_weight_set(&self, weight_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -3323,7 +3478,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_wrap_mode(&self) -> WrapMode {
+    fn wrap_mode(&self) -> WrapMode {
         unsafe {
             let mut value = glib::Value::from_type(<WrapMode as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -3338,7 +3493,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_wrap_mode(&self, wrap_mode: WrapMode) {
+    fn set_wrap_mode(&self, wrap_mode: WrapMode) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -3348,7 +3503,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn get_property_wrap_mode_set(&self) -> bool {
+    fn wraps_mode_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -3363,7 +3518,7 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn set_property_wrap_mode_set(&self, wrap_mode_set: bool) {
+    fn set_wrap_mode_set(&self, wrap_mode_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,

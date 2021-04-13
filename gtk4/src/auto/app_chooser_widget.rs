@@ -44,7 +44,7 @@ impl AppChooserWidget {
     }
 
     #[doc(alias = "gtk_app_chooser_widget_get_default_text")]
-    pub fn get_default_text(&self) -> Option<glib::GString> {
+    pub fn default_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_app_chooser_widget_get_default_text(
                 self.to_glib_none().0,
@@ -53,7 +53,7 @@ impl AppChooserWidget {
     }
 
     #[doc(alias = "gtk_app_chooser_widget_get_show_all")]
-    pub fn get_show_all(&self) -> bool {
+    pub fn shows_all(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_widget_get_show_all(
                 self.to_glib_none().0,
@@ -62,7 +62,7 @@ impl AppChooserWidget {
     }
 
     #[doc(alias = "gtk_app_chooser_widget_get_show_default")]
-    pub fn get_show_default(&self) -> bool {
+    pub fn shows_default(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_widget_get_show_default(
                 self.to_glib_none().0,
@@ -71,7 +71,7 @@ impl AppChooserWidget {
     }
 
     #[doc(alias = "gtk_app_chooser_widget_get_show_fallback")]
-    pub fn get_show_fallback(&self) -> bool {
+    pub fn shows_fallback(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_widget_get_show_fallback(
                 self.to_glib_none().0,
@@ -80,7 +80,7 @@ impl AppChooserWidget {
     }
 
     #[doc(alias = "gtk_app_chooser_widget_get_show_other")]
-    pub fn get_show_other(&self) -> bool {
+    pub fn shows_other(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_widget_get_show_other(
                 self.to_glib_none().0,
@@ -89,7 +89,7 @@ impl AppChooserWidget {
     }
 
     #[doc(alias = "gtk_app_chooser_widget_get_show_recommended")]
-    pub fn get_show_recommended(&self) -> bool {
+    pub fn shows_recommended(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_widget_get_show_recommended(
                 self.to_glib_none().0,

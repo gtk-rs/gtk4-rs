@@ -43,7 +43,8 @@ impl FileChooserWidget {
         }
     }
 
-    pub fn get_property_search_mode(&self) -> bool {
+    #[doc(alias = "get_property_search_mode")]
+    pub fn is_search_mode(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -58,7 +59,8 @@ impl FileChooserWidget {
         }
     }
 
-    pub fn set_property_search_mode(&self, search_mode: bool) {
+    #[doc(alias = "set_property_search_mode")]
+    pub fn set_search_mode(&self, search_mode: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -68,7 +70,8 @@ impl FileChooserWidget {
         }
     }
 
-    pub fn get_property_subtitle(&self) -> Option<glib::GString> {
+    #[doc(alias = "get_property_subtitle")]
+    pub fn subtitle(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(

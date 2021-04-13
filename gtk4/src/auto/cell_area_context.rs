@@ -55,19 +55,19 @@ pub trait CellAreaContextExt: 'static {
     fn allocate(&self, width: i32, height: i32);
 
     #[doc(alias = "gtk_cell_area_context_get_allocation")]
-    fn get_allocation(&self) -> (i32, i32);
+    fn allocation(&self) -> (i32, i32);
 
     #[doc(alias = "gtk_cell_area_context_get_area")]
-    fn get_area(&self) -> Option<CellArea>;
+    fn area(&self) -> Option<CellArea>;
 
     #[doc(alias = "gtk_cell_area_context_get_preferred_height")]
-    fn get_preferred_height(&self) -> (i32, i32);
+    fn preferred_height(&self) -> (i32, i32);
 
     #[doc(alias = "gtk_cell_area_context_get_preferred_height_for_width")]
     fn get_preferred_height_for_width(&self, width: i32) -> (i32, i32);
 
     #[doc(alias = "gtk_cell_area_context_get_preferred_width")]
-    fn get_preferred_width(&self) -> (i32, i32);
+    fn preferred_width(&self) -> (i32, i32);
 
     #[doc(alias = "gtk_cell_area_context_get_preferred_width_for_height")]
     fn get_preferred_width_for_height(&self, height: i32) -> (i32, i32);
@@ -81,13 +81,17 @@ pub trait CellAreaContextExt: 'static {
     #[doc(alias = "gtk_cell_area_context_reset")]
     fn reset(&self);
 
-    fn get_property_minimum_height(&self) -> i32;
+    #[doc(alias = "get_property_minimum_height")]
+    fn minimum_height(&self) -> i32;
 
-    fn get_property_minimum_width(&self) -> i32;
+    #[doc(alias = "get_property_minimum_width")]
+    fn minimum_width(&self) -> i32;
 
-    fn get_property_natural_height(&self) -> i32;
+    #[doc(alias = "get_property_natural_height")]
+    fn natural_height(&self) -> i32;
 
-    fn get_property_natural_width(&self) -> i32;
+    #[doc(alias = "get_property_natural_width")]
+    fn natural_width(&self) -> i32;
 
     fn connect_property_minimum_height_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -117,7 +121,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
-    fn get_allocation(&self) -> (i32, i32) {
+    fn allocation(&self) -> (i32, i32) {
         unsafe {
             let mut width = mem::MaybeUninit::uninit();
             let mut height = mem::MaybeUninit::uninit();
@@ -132,7 +136,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
-    fn get_area(&self) -> Option<CellArea> {
+    fn area(&self) -> Option<CellArea> {
         unsafe {
             from_glib_none(ffi::gtk_cell_area_context_get_area(
                 self.as_ref().to_glib_none().0,
@@ -140,7 +144,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
-    fn get_preferred_height(&self) -> (i32, i32) {
+    fn preferred_height(&self) -> (i32, i32) {
         unsafe {
             let mut minimum_height = mem::MaybeUninit::uninit();
             let mut natural_height = mem::MaybeUninit::uninit();
@@ -171,7 +175,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
-    fn get_preferred_width(&self) -> (i32, i32) {
+    fn preferred_width(&self) -> (i32, i32) {
         unsafe {
             let mut minimum_width = mem::MaybeUninit::uninit();
             let mut natural_width = mem::MaybeUninit::uninit();
@@ -228,7 +232,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
-    fn get_property_minimum_height(&self) -> i32 {
+    fn minimum_height(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -243,7 +247,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
-    fn get_property_minimum_width(&self) -> i32 {
+    fn minimum_width(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -258,7 +262,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
-    fn get_property_natural_height(&self) -> i32 {
+    fn natural_height(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -273,7 +277,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
-    fn get_property_natural_width(&self) -> i32 {
+    fn natural_width(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(

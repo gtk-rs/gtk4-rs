@@ -34,7 +34,7 @@ glib::wrapper! {
 
 impl DragIcon {
     #[doc(alias = "gtk_drag_icon_get_child")]
-    pub fn get_child(&self) -> Option<Widget> {
+    pub fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_drag_icon_get_child(self.to_glib_none().0)) }
     }
 

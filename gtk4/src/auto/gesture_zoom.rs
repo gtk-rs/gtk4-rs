@@ -33,7 +33,7 @@ impl GestureZoom {
     }
 
     #[doc(alias = "gtk_gesture_zoom_get_scale_delta")]
-    pub fn get_scale_delta(&self) -> f64 {
+    pub fn scale_delta(&self) -> f64 {
         unsafe { ffi::gtk_gesture_zoom_get_scale_delta(self.to_glib_none().0) }
     }
 

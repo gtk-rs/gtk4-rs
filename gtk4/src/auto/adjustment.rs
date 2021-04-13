@@ -133,25 +133,25 @@ pub trait AdjustmentExt: 'static {
     );
 
     #[doc(alias = "gtk_adjustment_get_lower")]
-    fn get_lower(&self) -> f64;
+    fn lower(&self) -> f64;
 
     #[doc(alias = "gtk_adjustment_get_minimum_increment")]
-    fn get_minimum_increment(&self) -> f64;
+    fn minimum_increment(&self) -> f64;
 
     #[doc(alias = "gtk_adjustment_get_page_increment")]
-    fn get_page_increment(&self) -> f64;
+    fn page_increment(&self) -> f64;
 
     #[doc(alias = "gtk_adjustment_get_page_size")]
-    fn get_page_size(&self) -> f64;
+    fn page_size(&self) -> f64;
 
     #[doc(alias = "gtk_adjustment_get_step_increment")]
-    fn get_step_increment(&self) -> f64;
+    fn step_increment(&self) -> f64;
 
     #[doc(alias = "gtk_adjustment_get_upper")]
-    fn get_upper(&self) -> f64;
+    fn upper(&self) -> f64;
 
     #[doc(alias = "gtk_adjustment_get_value")]
-    fn get_value(&self) -> f64;
+    fn value(&self) -> f64;
 
     #[doc(alias = "gtk_adjustment_set_lower")]
     fn set_lower(&self, lower: f64);
@@ -223,31 +223,31 @@ impl<O: IsA<Adjustment>> AdjustmentExt for O {
         }
     }
 
-    fn get_lower(&self) -> f64 {
+    fn lower(&self) -> f64 {
         unsafe { ffi::gtk_adjustment_get_lower(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_minimum_increment(&self) -> f64 {
+    fn minimum_increment(&self) -> f64 {
         unsafe { ffi::gtk_adjustment_get_minimum_increment(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_page_increment(&self) -> f64 {
+    fn page_increment(&self) -> f64 {
         unsafe { ffi::gtk_adjustment_get_page_increment(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_page_size(&self) -> f64 {
+    fn page_size(&self) -> f64 {
         unsafe { ffi::gtk_adjustment_get_page_size(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_step_increment(&self) -> f64 {
+    fn step_increment(&self) -> f64 {
         unsafe { ffi::gtk_adjustment_get_step_increment(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_upper(&self) -> f64 {
+    fn upper(&self) -> f64 {
         unsafe { ffi::gtk_adjustment_get_upper(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_value(&self) -> f64 {
+    fn value(&self) -> f64 {
         unsafe { ffi::gtk_adjustment_get_value(self.as_ref().to_glib_none().0) }
     }
 

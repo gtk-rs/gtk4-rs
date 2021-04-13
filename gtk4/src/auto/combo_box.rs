@@ -467,34 +467,34 @@ pub const NONE_COMBO_BOX: Option<&ComboBox> = None;
 
 pub trait ComboBoxExt: 'static {
     #[doc(alias = "gtk_combo_box_get_active_id")]
-    fn get_active_id(&self) -> Option<glib::GString>;
+    fn active_id(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_combo_box_get_active_iter")]
-    fn get_active_iter(&self) -> Option<TreeIter>;
+    fn active_iter(&self) -> Option<TreeIter>;
 
     #[doc(alias = "gtk_combo_box_get_button_sensitivity")]
-    fn get_button_sensitivity(&self) -> SensitivityType;
+    fn button_sensitivity(&self) -> SensitivityType;
 
     #[doc(alias = "gtk_combo_box_get_child")]
-    fn get_child(&self) -> Option<Widget>;
+    fn child(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_combo_box_get_entry_text_column")]
-    fn get_entry_text_column(&self) -> i32;
+    fn entry_text_column(&self) -> i32;
 
     #[doc(alias = "gtk_combo_box_get_has_entry")]
-    fn get_has_entry(&self) -> bool;
+    fn has_entry(&self) -> bool;
 
     #[doc(alias = "gtk_combo_box_get_id_column")]
-    fn get_id_column(&self) -> i32;
+    fn id_column(&self) -> i32;
 
     #[doc(alias = "gtk_combo_box_get_model")]
-    fn get_model(&self) -> Option<TreeModel>;
+    fn model(&self) -> Option<TreeModel>;
 
     #[doc(alias = "gtk_combo_box_get_popup_fixed_width")]
-    fn get_popup_fixed_width(&self) -> bool;
+    fn is_popup_fixed_width(&self) -> bool;
 
     //#[doc(alias = "gtk_combo_box_get_row_separator_func")]
-    //fn get_row_separator_func(&self) -> Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>>;
+    //fn row_separator_func(&self) -> Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>>;
 
     #[doc(alias = "gtk_combo_box_popdown")]
     fn popdown(&self);
@@ -535,11 +535,14 @@ pub trait ComboBoxExt: 'static {
         func: Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>>,
     );
 
-    fn get_property_has_frame(&self) -> bool;
+    #[doc(alias = "get_property_has_frame")]
+    fn has_frame(&self) -> bool;
 
-    fn set_property_has_frame(&self, has_frame: bool);
+    #[doc(alias = "set_property_has_frame")]
+    fn set_has_frame(&self, has_frame: bool);
 
-    fn get_property_popup_shown(&self) -> bool;
+    #[doc(alias = "get_property_popup_shown")]
+    fn is_popup_shown(&self) -> bool;
 
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -591,7 +594,7 @@ pub trait ComboBoxExt: 'static {
 }
 
 impl<O: IsA<ComboBox>> ComboBoxExt for O {
-    fn get_active_id(&self) -> Option<glib::GString> {
+    fn active_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_combo_box_get_active_id(
                 self.as_ref().to_glib_none().0,
@@ -599,7 +602,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    fn get_active_iter(&self) -> Option<TreeIter> {
+    fn active_iter(&self) -> Option<TreeIter> {
         unsafe {
             let mut iter = TreeIter::uninitialized();
             let ret = from_glib(ffi::gtk_combo_box_get_active_iter(
@@ -614,7 +617,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    fn get_button_sensitivity(&self) -> SensitivityType {
+    fn button_sensitivity(&self) -> SensitivityType {
         unsafe {
             from_glib(ffi::gtk_combo_box_get_button_sensitivity(
                 self.as_ref().to_glib_none().0,
@@ -622,15 +625,15 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    fn get_child(&self) -> Option<Widget> {
+    fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_combo_box_get_child(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_entry_text_column(&self) -> i32 {
+    fn entry_text_column(&self) -> i32 {
         unsafe { ffi::gtk_combo_box_get_entry_text_column(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_has_entry(&self) -> bool {
+    fn has_entry(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_combo_box_get_has_entry(
                 self.as_ref().to_glib_none().0,
@@ -638,15 +641,15 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    fn get_id_column(&self) -> i32 {
+    fn id_column(&self) -> i32 {
         unsafe { ffi::gtk_combo_box_get_id_column(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_model(&self) -> Option<TreeModel> {
+    fn model(&self) -> Option<TreeModel> {
         unsafe { from_glib_none(ffi::gtk_combo_box_get_model(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_popup_fixed_width(&self) -> bool {
+    fn is_popup_fixed_width(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_combo_box_get_popup_fixed_width(
                 self.as_ref().to_glib_none().0,
@@ -654,7 +657,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    //fn get_row_separator_func(&self) -> Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>> {
+    //fn row_separator_func(&self) -> Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>> {
     //    unsafe { TODO: call ffi:gtk_combo_box_get_row_separator_func() }
     //}
 
@@ -789,7 +792,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    fn get_property_has_frame(&self) -> bool {
+    fn has_frame(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -804,7 +807,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    fn set_property_has_frame(&self, has_frame: bool) {
+    fn set_has_frame(&self, has_frame: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -814,7 +817,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    fn get_property_popup_shown(&self) -> bool {
+    fn is_popup_shown(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(

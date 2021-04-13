@@ -32,27 +32,27 @@ impl DropTarget {
     }
 
     #[doc(alias = "gtk_drop_target_get_actions")]
-    pub fn get_actions(&self) -> gdk::DragAction {
+    pub fn actions(&self) -> gdk::DragAction {
         unsafe { from_glib(ffi::gtk_drop_target_get_actions(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_drop_target_get_drop")]
-    pub fn get_drop(&self) -> Option<gdk::Drop> {
+    pub fn drop(&self) -> Option<gdk::Drop> {
         unsafe { from_glib_none(ffi::gtk_drop_target_get_drop(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_drop_target_get_formats")]
-    pub fn get_formats(&self) -> Option<gdk::ContentFormats> {
+    pub fn formats(&self) -> Option<gdk::ContentFormats> {
         unsafe { from_glib_full(ffi::gtk_drop_target_get_formats(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_drop_target_get_preload")]
-    pub fn get_preload(&self) -> bool {
+    pub fn is_preload(&self) -> bool {
         unsafe { from_glib(ffi::gtk_drop_target_get_preload(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_drop_target_get_value")]
-    pub fn get_value(&self) -> Option<glib::Value> {
+    pub fn value(&self) -> Option<glib::Value> {
         unsafe { from_glib_none(ffi::gtk_drop_target_get_value(self.to_glib_none().0)) }
     }
 

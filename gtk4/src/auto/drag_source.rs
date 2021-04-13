@@ -42,17 +42,17 @@ impl DragSource {
     }
 
     #[doc(alias = "gtk_drag_source_get_actions")]
-    pub fn get_actions(&self) -> gdk::DragAction {
+    pub fn actions(&self) -> gdk::DragAction {
         unsafe { from_glib(ffi::gtk_drag_source_get_actions(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_drag_source_get_content")]
-    pub fn get_content(&self) -> Option<gdk::ContentProvider> {
+    pub fn content(&self) -> Option<gdk::ContentProvider> {
         unsafe { from_glib_none(ffi::gtk_drag_source_get_content(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_drag_source_get_drag")]
-    pub fn get_drag(&self) -> Option<gdk::Drag> {
+    pub fn drag(&self) -> Option<gdk::Drag> {
         unsafe { from_glib_none(ffi::gtk_drag_source_get_drag(self.to_glib_none().0)) }
     }
 

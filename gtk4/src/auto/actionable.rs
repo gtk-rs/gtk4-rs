@@ -27,10 +27,10 @@ pub const NONE_ACTIONABLE: Option<&Actionable> = None;
 
 pub trait ActionableExt: 'static {
     #[doc(alias = "gtk_actionable_get_action_name")]
-    fn get_action_name(&self) -> Option<glib::GString>;
+    fn action_name(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_actionable_get_action_target_value")]
-    fn get_action_target_value(&self) -> Option<glib::Variant>;
+    fn action_target_value(&self) -> Option<glib::Variant>;
 
     #[doc(alias = "gtk_actionable_set_action_name")]
     fn set_action_name(&self, action_name: Option<&str>);
@@ -50,7 +50,7 @@ pub trait ActionableExt: 'static {
 }
 
 impl<O: IsA<Actionable>> ActionableExt for O {
-    fn get_action_name(&self) -> Option<glib::GString> {
+    fn action_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_actionable_get_action_name(
                 self.as_ref().to_glib_none().0,
@@ -58,7 +58,7 @@ impl<O: IsA<Actionable>> ActionableExt for O {
         }
     }
 
-    fn get_action_target_value(&self) -> Option<glib::Variant> {
+    fn action_target_value(&self) -> Option<glib::Variant> {
         unsafe {
             from_glib_none(ffi::gtk_actionable_get_action_target_value(
                 self.as_ref().to_glib_none().0,

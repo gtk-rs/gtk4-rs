@@ -527,17 +527,17 @@ impl TextIter {
     }
 
     #[doc(alias = "gtk_text_iter_get_buffer")]
-    pub fn get_buffer(&self) -> Option<TextBuffer> {
+    pub fn buffer(&self) -> Option<TextBuffer> {
         unsafe { from_glib_none(ffi::gtk_text_iter_get_buffer(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_iter_get_bytes_in_line")]
-    pub fn get_bytes_in_line(&self) -> i32 {
+    pub fn bytes_in_line(&self) -> i32 {
         unsafe { ffi::gtk_text_iter_get_bytes_in_line(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_text_iter_get_char")]
-    pub fn get_char(&self) -> char {
+    pub fn char(&self) -> char {
         unsafe {
             std::convert::TryFrom::try_from(ffi::gtk_text_iter_get_char(self.to_glib_none().0))
                 .expect("conversion from an invalid Unicode value attempted")
@@ -545,37 +545,37 @@ impl TextIter {
     }
 
     #[doc(alias = "gtk_text_iter_get_chars_in_line")]
-    pub fn get_chars_in_line(&self) -> i32 {
+    pub fn chars_in_line(&self) -> i32 {
         unsafe { ffi::gtk_text_iter_get_chars_in_line(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_text_iter_get_child_anchor")]
-    pub fn get_child_anchor(&self) -> Option<TextChildAnchor> {
+    pub fn child_anchor(&self) -> Option<TextChildAnchor> {
         unsafe { from_glib_none(ffi::gtk_text_iter_get_child_anchor(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_iter_get_language")]
-    pub fn get_language(&self) -> pango::Language {
+    pub fn language(&self) -> pango::Language {
         unsafe { from_glib_full(ffi::gtk_text_iter_get_language(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_iter_get_line")]
-    pub fn get_line(&self) -> i32 {
+    pub fn line(&self) -> i32 {
         unsafe { ffi::gtk_text_iter_get_line(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_text_iter_get_line_index")]
-    pub fn get_line_index(&self) -> i32 {
+    pub fn line_index(&self) -> i32 {
         unsafe { ffi::gtk_text_iter_get_line_index(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_text_iter_get_line_offset")]
-    pub fn get_line_offset(&self) -> i32 {
+    pub fn line_offset(&self) -> i32 {
         unsafe { ffi::gtk_text_iter_get_line_offset(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_text_iter_get_marks")]
-    pub fn get_marks(&self) -> Vec<TextMark> {
+    pub fn marks(&self) -> Vec<TextMark> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_text_iter_get_marks(
                 self.to_glib_none().0,
@@ -584,12 +584,12 @@ impl TextIter {
     }
 
     #[doc(alias = "gtk_text_iter_get_offset")]
-    pub fn get_offset(&self) -> i32 {
+    pub fn offset(&self) -> i32 {
         unsafe { ffi::gtk_text_iter_get_offset(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_text_iter_get_paintable")]
-    pub fn get_paintable(&self) -> Option<gdk::Paintable> {
+    pub fn paintable(&self) -> Option<gdk::Paintable> {
         unsafe { from_glib_none(ffi::gtk_text_iter_get_paintable(self.to_glib_none().0)) }
     }
 
@@ -604,7 +604,7 @@ impl TextIter {
     }
 
     #[doc(alias = "gtk_text_iter_get_tags")]
-    pub fn get_tags(&self) -> Vec<TextTag> {
+    pub fn tags(&self) -> Vec<TextTag> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_text_iter_get_tags(
                 self.to_glib_none().0,
@@ -633,12 +633,12 @@ impl TextIter {
     }
 
     #[doc(alias = "gtk_text_iter_get_visible_line_index")]
-    pub fn get_visible_line_index(&self) -> i32 {
+    pub fn visible_line_index(&self) -> i32 {
         unsafe { ffi::gtk_text_iter_get_visible_line_index(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_text_iter_get_visible_line_offset")]
-    pub fn get_visible_line_offset(&self) -> i32 {
+    pub fn visible_line_offset(&self) -> i32 {
         unsafe { ffi::gtk_text_iter_get_visible_line_offset(self.to_glib_none().0) }
     }
 

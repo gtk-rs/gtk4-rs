@@ -40,32 +40,32 @@ impl ProgressBar {
     }
 
     #[doc(alias = "gtk_progress_bar_get_ellipsize")]
-    pub fn get_ellipsize(&self) -> pango::EllipsizeMode {
+    pub fn ellipsize(&self) -> pango::EllipsizeMode {
         unsafe { from_glib(ffi::gtk_progress_bar_get_ellipsize(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_progress_bar_get_fraction")]
-    pub fn get_fraction(&self) -> f64 {
+    pub fn fraction(&self) -> f64 {
         unsafe { ffi::gtk_progress_bar_get_fraction(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_progress_bar_get_inverted")]
-    pub fn get_inverted(&self) -> bool {
+    pub fn is_inverted(&self) -> bool {
         unsafe { from_glib(ffi::gtk_progress_bar_get_inverted(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_progress_bar_get_pulse_step")]
-    pub fn get_pulse_step(&self) -> f64 {
+    pub fn pulse_step(&self) -> f64 {
         unsafe { ffi::gtk_progress_bar_get_pulse_step(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_progress_bar_get_show_text")]
-    pub fn get_show_text(&self) -> bool {
+    pub fn shows_text(&self) -> bool {
         unsafe { from_glib(ffi::gtk_progress_bar_get_show_text(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_progress_bar_get_text")]
-    pub fn get_text(&self) -> Option<glib::GString> {
+    pub fn text(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_progress_bar_get_text(self.to_glib_none().0)) }
     }
 

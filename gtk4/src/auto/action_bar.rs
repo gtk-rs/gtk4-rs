@@ -38,12 +38,12 @@ impl ActionBar {
     }
 
     #[doc(alias = "gtk_action_bar_get_center_widget")]
-    pub fn get_center_widget(&self) -> Option<Widget> {
+    pub fn center_widget(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_action_bar_get_center_widget(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_action_bar_get_revealed")]
-    pub fn get_revealed(&self) -> bool {
+    pub fn is_revealed(&self) -> bool {
         unsafe { from_glib(ffi::gtk_action_bar_get_revealed(self.to_glib_none().0)) }
     }
 
