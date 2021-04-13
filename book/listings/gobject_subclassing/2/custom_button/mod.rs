@@ -12,3 +12,9 @@ impl CustomButton {
         glib::Object::new(&[]).expect("Failed to create Button")
     }
 }
+
+impl Default for CustomButton {
+    fn default() -> Self {
+        CustomButton::new()
+    }
+}
