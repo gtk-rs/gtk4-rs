@@ -45,7 +45,7 @@ mod imp {
             let first_label = gtk::Label::new(Some("Hello"));
             let second_label = gtk::Label::new(Some("World!"));
             let layout_manager = obj
-                .get_layout_manager()
+                .layout_manager()
                 .unwrap()
                 .downcast::<gtk::BoxLayout>()
                 .unwrap();
@@ -97,13 +97,13 @@ mod imp {
             value: &glib::Value,
             pspec: &glib::ParamSpec,
         ) {
-            match pspec.get_name() {
+            match pspec.name() {
                 "orientation" => {
                     let orientation = value.get().unwrap().unwrap();
                     self.orientation.replace(orientation);
                     // We have to set the value in our layout manager as well.
                     let layout_manager = obj
-                        .get_layout_manager()
+                        .layout_manager()
                         .unwrap()
                         .downcast::<gtk::BoxLayout>()
                         .unwrap();
@@ -119,7 +119,7 @@ mod imp {
             _id: usize,
             pspec: &glib::ParamSpec,
         ) -> glib::Value {
-            match pspec.get_name() {
+            match pspec.name() {
                 "orientation" => self.orientation.borrow().to_value(),
                 _ => unimplemented!(),
             }
@@ -159,7 +159,7 @@ fn main() {
         let button = gtk::Button::with_label("Switch orientation");
 
         button.connect_clicked(glib::clone!(@weak orientable => move |_| {
-            match orientable.get_orientation() {
+            match orientable.orientation() {
                 gtk::Orientation::Horizontal => orientable.set_orientation(gtk::Orientation::Vertical),
                 gtk::Orientation::Vertical => orientable.set_orientation(gtk::Orientation::Horizontal),
                 _ => unreachable!(),

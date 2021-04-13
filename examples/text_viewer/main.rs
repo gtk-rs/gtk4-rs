@@ -37,16 +37,16 @@ pub fn build_ui(application: &Application) {
 
         file_chooser.connect_response(move |d: &FileChooserDialog, response: ResponseType| {
             if response == ResponseType::Ok {
-                let file = d.get_file().expect("Couldn't get file");
+                let file = d.file().expect("Couldn't get file");
 
-                let filename = file.get_path().expect("Couldn't get file path");
+                let filename = file.path().expect("Couldn't get file path");
                 let file = File::open(&filename.as_path()).expect("Couldn't open file");
 
                 let mut reader = BufReader::new(file);
                 let mut contents = String::new();
                 let _ = reader.read_to_string(&mut contents);
 
-                text_view.get_buffer().set_text(&contents);
+                text_view.buffer().set_text(&contents);
             }
 
             d.close();

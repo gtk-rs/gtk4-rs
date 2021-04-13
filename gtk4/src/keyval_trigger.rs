@@ -28,12 +28,12 @@ impl KeyvalTrigger {
     }
 
     #[doc(alias = "gtk_keyval_trigger_get_keyval")]
-    pub fn get_keyval(&self) -> Key {
+    pub fn keyval(&self) -> Key {
         unsafe { ffi::gtk_keyval_trigger_get_keyval(self.to_glib_none().0).into() }
     }
 
     #[doc(alias = "gtk_keyval_trigger_get_modifiers")]
-    pub fn get_modifiers(&self) -> gdk::ModifierType {
+    pub fn modifiers(&self) -> gdk::ModifierType {
         unsafe { from_glib(ffi::gtk_keyval_trigger_get_modifiers(self.to_glib_none().0)) }
     }
 }

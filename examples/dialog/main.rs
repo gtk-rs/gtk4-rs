@@ -52,7 +52,7 @@ fn build_ui(application: &gtk::Application) {
     ));
 
     window.connect_close_request(move |window| {
-        if let Some(application) = window.get_application() {
+        if let Some(application) = window.application() {
             application.remove_window(window);
         }
         Inhibit(false)

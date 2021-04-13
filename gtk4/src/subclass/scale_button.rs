@@ -21,7 +21,7 @@ impl<T: ScaleButtonImpl> ScaleButtonImplExt for T {
     fn parent_value_changed(&self, scale_button: &Self::Type, new_value: f64) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkScaleButtonClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkScaleButtonClass;
             if let Some(f) = (*parent_class).value_changed {
                 f(
                     scale_button
@@ -53,7 +53,7 @@ unsafe extern "C" fn scale_button_value_changed<T: ScaleButtonImpl>(
     new_value: f64,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<ScaleButton> = from_glib_borrow(ptr);
 
     imp.value_changed(wrap.unsafe_cast_ref(), new_value)

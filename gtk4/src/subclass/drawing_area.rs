@@ -21,7 +21,7 @@ impl<T: DrawingAreaImpl> DrawingAreaImplExt for T {
     fn parent_resize(&self, drawing_area: &Self::Type, width: i32, height: i32) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkDrawingAreaClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkDrawingAreaClass;
             if let Some(f) = (*parent_class).resize {
                 f(
                     drawing_area
@@ -55,7 +55,7 @@ unsafe extern "C" fn drawing_area_resize<T: DrawingAreaImpl>(
     height: i32,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<DrawingArea> = from_glib_borrow(ptr);
 
     imp.resize(wrap.unsafe_cast_ref(), width, height)

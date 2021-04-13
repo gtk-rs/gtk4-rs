@@ -58,7 +58,7 @@ mod imp {
                         .dialog
                         .connect_response(clone!(@weak win => move |d, response| {
                             if response == gtk::ResponseType::Accept {
-                                win.set_video(d.get_file().unwrap());
+                                win.set_video(d.file().unwrap());
                             }
                             d.destroy();
                         }));

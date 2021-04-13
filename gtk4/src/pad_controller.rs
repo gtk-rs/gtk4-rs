@@ -11,8 +11,8 @@ impl PadController {
             .iter()
             .map(|e| {
                 (
-                    e.get_label().to_glib_none(),
-                    e.get_action_name().to_glib_none(),
+                    e.label().to_glib_none(),
+                    e.action_name().to_glib_none(),
                 )
             })
             .collect::<Vec<_>>();
@@ -20,9 +20,9 @@ impl PadController {
             .iter()
             .zip(entry_strings.iter())
             .map(|(e, (label, action_name))| ffi::GtkPadActionEntry {
-                type_: e.get_type().to_glib(),
-                index: e.get_index(),
-                mode: e.get_mode(),
+                type_: e.type_().to_glib(),
+                index: e.index(),
+                mode: e.mode(),
                 label: label.0,
                 action_name: action_name.0,
             })

@@ -72,7 +72,7 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
             let pspec = pspec.unwrap_or_else(|| {
                 panic!("The CellArea property {} doesn't exists", property_name)
             });
-            let mut value = glib::Value::from_type(pspec.get_value_type());
+            let mut value = glib::Value::from_type(pspec.value_type());
             ffi::gtk_cell_area_cell_get_property(
                 self.as_ref().to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
@@ -99,10 +99,10 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
             let pspec = pspec.unwrap_or_else(|| {
                 panic!("The CellArea property {} doesn't exists", property_name)
             });
-            if !pspec.get_value_type().is_a(value.to_value_type()) {
+            if !pspec.value_type().is_a(value.to_value_type()) {
                 panic!(
                     "The CellArea property's value is of wrong type. Expected '{}' but got '{}'",
-                    pspec.get_value_type(),
+                    pspec.value_type(),
                     value.to_value_type()
                 )
             }

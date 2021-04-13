@@ -26,7 +26,7 @@ impl<T: ButtonImpl> ButtonImplExt for T {
     fn parent_activate(&self, button: &Self::Type) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkButtonClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkButtonClass;
             if let Some(f) = (*parent_class).activate {
                 f(button.unsafe_cast_ref::<Button>().to_glib_none().0)
             }
@@ -36,7 +36,7 @@ impl<T: ButtonImpl> ButtonImplExt for T {
     fn parent_clicked(&self, button: &Self::Type) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkButtonClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkButtonClass;
             if let Some(f) = (*parent_class).clicked {
                 f(button.unsafe_cast_ref::<Button>().to_glib_none().0)
             }
@@ -60,7 +60,7 @@ unsafe impl<T: ButtonImpl> IsSubclassable<T> for Button {
 
 unsafe extern "C" fn button_activate<T: ButtonImpl>(ptr: *mut ffi::GtkButton) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<Button> = from_glib_borrow(ptr);
 
     imp.activate(wrap.unsafe_cast_ref())
@@ -68,7 +68,7 @@ unsafe extern "C" fn button_activate<T: ButtonImpl>(ptr: *mut ffi::GtkButton) {
 
 unsafe extern "C" fn button_clicked<T: ButtonImpl>(ptr: *mut ffi::GtkButton) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<Button> = from_glib_borrow(ptr);
 
     imp.clicked(wrap.unsafe_cast_ref())

@@ -34,7 +34,7 @@ impl ContainerNode {
     }
 
     #[doc(alias = "gsk_container_node_get_n_children")]
-    pub fn get_n_children(&self) -> u32 {
+    pub fn n_children(&self) -> u32 {
         unsafe { ffi::gsk_container_node_get_n_children(self.to_glib_none().0) }
     }
 }

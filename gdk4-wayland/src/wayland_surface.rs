@@ -8,7 +8,7 @@ use wayland_client::Proxy;
 
 impl WaylandSurface {
     #[doc(alias = "gdk_wayland_surface_get_wl_surface")]
-    pub fn get_wl_surface(&self) -> WlSurface {
+    pub fn wl_surface(&self) -> WlSurface {
         unsafe {
             let ptr = ffi::gdk_wayland_surface_get_wl_surface(self.to_glib_none().0);
             Proxy::from_c_ptr(ptr as *mut wl_proxy).into()

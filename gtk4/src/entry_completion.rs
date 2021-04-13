@@ -7,11 +7,11 @@ use glib::Cast;
 
 pub trait EntryCompletionExtManual: 'static {
     #[doc(alias = "gtk_entry_completion_get_entry")]
-    fn get_entry(&self) -> Option<Entry>;
+    fn entry(&self) -> Option<Entry>;
 }
 
 impl<O: IsA<EntryCompletion>> EntryCompletionExtManual for O {
-    fn get_entry(&self) -> Option<Entry> {
+    fn entry(&self) -> Option<Entry> {
         unsafe {
             Option::<Widget>::from_glib_none(ffi::gtk_entry_completion_get_entry(
                 self.as_ref().to_glib_none().0,

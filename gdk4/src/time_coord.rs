@@ -17,15 +17,15 @@ impl TimeCoord {
         })
     }
 
-    pub fn get_time(&self) -> u32 {
+    pub fn time(&self) -> u32 {
         self.0.time
     }
 
-    pub fn get_axes(&self) -> &[f64; 12] {
+    pub fn axes(&self) -> &[f64; 12] {
         &self.0.axes
     }
 
-    pub fn get_flags(&self) -> AxisFlags {
+    pub fn flags(&self) -> AxisFlags {
         unsafe { from_glib(self.0.flags) }
     }
 }
@@ -33,9 +33,9 @@ impl TimeCoord {
 impl fmt::Display for TimeCoord {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.debug_struct("TimeCoord")
-            .field("time", &self.get_time())
-            .field("axes", &self.get_axes())
-            .field("flags", &self.get_flags())
+            .field("time", &self.time())
+            .field("axes", &self.axes())
+            .field("flags", &self.flags())
             .finish()
     }
 }

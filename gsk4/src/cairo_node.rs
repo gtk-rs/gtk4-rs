@@ -18,12 +18,12 @@ impl CairoNode {
     }
 
     #[doc(alias = "gsk_cairo_node_get_draw_context")]
-    pub fn get_draw_context(&self) -> Option<cairo::Context> {
+    pub fn draw_context(&self) -> Option<cairo::Context> {
         unsafe { from_glib_full(ffi::gsk_cairo_node_get_draw_context(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_cairo_node_get_surface")]
-    pub fn get_surface(&self) -> Option<cairo::Surface> {
+    pub fn surface(&self) -> Option<cairo::Surface> {
         unsafe { from_glib_none(ffi::gsk_cairo_node_get_surface(self.to_glib_none().0)) }
     }
 }

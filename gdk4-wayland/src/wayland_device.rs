@@ -8,7 +8,7 @@ use wayland_client::Proxy;
 
 impl WaylandDevice {
     #[doc(alias = "gdk_wayland_device_get_wl_keyboard")]
-    pub fn get_wl_keyboard(&self) -> WlKeyboard {
+    pub fn wl_keyboard(&self) -> WlKeyboard {
         unsafe {
             let ptr = ffi::gdk_wayland_device_get_wl_keyboard(self.to_glib_none().0);
             Proxy::from_c_ptr(ptr as *mut wl_proxy).into()
@@ -16,7 +16,7 @@ impl WaylandDevice {
     }
 
     #[doc(alias = "gdk_wayland_device_get_wl_pointer")]
-    pub fn get_wl_pointer(&self) -> WlPointer {
+    pub fn wl_pointer(&self) -> WlPointer {
         unsafe {
             let ptr = ffi::gdk_wayland_device_get_wl_pointer(self.to_glib_none().0);
             Proxy::from_c_ptr(ptr as *mut wl_proxy).into()
@@ -24,7 +24,7 @@ impl WaylandDevice {
     }
 
     #[doc(alias = "gdk_wayland_device_get_wl_seat")]
-    pub fn get_wl_seat(&self) -> WlSeat {
+    pub fn wl_seat(&self) -> WlSeat {
         unsafe {
             let ptr = ffi::gdk_wayland_device_get_wl_seat(self.to_glib_none().0);
             Proxy::from_c_ptr(ptr as *mut wl_proxy).into()

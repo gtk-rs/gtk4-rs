@@ -33,7 +33,7 @@ impl ConicGradientNode {
     }
 
     #[doc(alias = "gsk_conic_gradient_node_get_center")]
-    pub fn get_center(&self) -> graphene::Point {
+    pub fn center(&self) -> graphene::Point {
         unsafe {
             from_glib_none(ffi::gsk_conic_gradient_node_get_center(
                 self.to_glib_none().0,
@@ -42,7 +42,7 @@ impl ConicGradientNode {
     }
 
     #[doc(alias = "gsk_conic_gradient_node_get_color_stops")]
-    pub fn get_color_stops(&self) -> Vec<ColorStop> {
+    pub fn color_stops(&self) -> Vec<ColorStop> {
         unsafe {
             let mut n_stops = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_none_num(
@@ -57,12 +57,12 @@ impl ConicGradientNode {
     }
 
     #[doc(alias = "gsk_conic_gradient_node_get_n_color_stops")]
-    pub fn get_n_color_stops(&self) -> usize {
+    pub fn n_color_stops(&self) -> usize {
         unsafe { ffi::gsk_conic_gradient_node_get_n_color_stops(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gsk_conic_gradient_node_get_rotation")]
-    pub fn get_rotation(&self) -> f32 {
+    pub fn rotation(&self) -> f32 {
         unsafe { ffi::gsk_conic_gradient_node_get_rotation(self.to_glib_none().0) }
     }
 }

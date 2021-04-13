@@ -23,12 +23,12 @@ impl ClipNode {
     }
 
     #[doc(alias = "gsk_clip_node_get_child")]
-    pub fn get_child(&self) -> Option<RenderNode> {
+    pub fn child(&self) -> Option<RenderNode> {
         unsafe { from_glib_none(ffi::gsk_clip_node_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_clip_node_get_clip")]
-    pub fn get_clip(&self) -> Option<graphene::Rect> {
+    pub fn clip(&self) -> Option<graphene::Rect> {
         unsafe { from_glib_none(ffi::gsk_clip_node_get_clip(self.to_glib_none().0)) }
     }
 }

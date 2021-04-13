@@ -14,7 +14,7 @@ pub trait TreeModelExtManual: 'static {
 
 impl<O: IsA<TreeModel>> TreeModelExtManual for O {
     fn get(&self, iter: &TreeIter, column: i32) -> glib::Value {
-        let total_columns = self.as_ref().get_n_columns();
+        let total_columns = self.as_ref().n_columns();
         assert!(
             column < total_columns,
             "TreeModel has {} columns but TreeModelExt::get got {} passed as a column number",

@@ -21,7 +21,7 @@ impl<T: ScaleImpl> ScaleImplExt for T {
     fn parent_get_layout_offsets(&self, scale: &Self::Type) -> (i32, i32) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkScaleClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkScaleClass;
             let mut x = 0;
             let mut y = 0;
             if let Some(f) = (*parent_class).get_layout_offsets {
@@ -55,7 +55,7 @@ unsafe extern "C" fn scale_get_layout_offsets<T: ScaleImpl>(
     y_ptr: *mut libc::c_int,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<Scale> = from_glib_borrow(ptr);
 
     let (x, y) = imp.get_layout_offsets(wrap.unsafe_cast_ref());

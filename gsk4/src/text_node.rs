@@ -32,17 +32,17 @@ impl TextNode {
     }
 
     #[doc(alias = "gsk_text_node_get_color")]
-    pub fn get_color(&self) -> Option<gdk::RGBA> {
+    pub fn color(&self) -> Option<gdk::RGBA> {
         unsafe { from_glib_none(ffi::gsk_text_node_get_color(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_text_node_get_font")]
-    pub fn get_font(&self) -> Option<pango::Font> {
+    pub fn font(&self) -> Option<pango::Font> {
         unsafe { from_glib_none(ffi::gsk_text_node_get_font(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_text_node_get_glyphs")]
-    pub fn get_glyphs(&self) -> Vec<pango::GlyphInfo> {
+    pub fn glyphs(&self) -> Vec<pango::GlyphInfo> {
         unsafe {
             let mut n_glyphs = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_none_num(
@@ -54,12 +54,12 @@ impl TextNode {
     }
 
     #[doc(alias = "gsk_text_node_get_num_glyphs")]
-    pub fn get_num_glyphs(&self) -> u32 {
+    pub fn num_glyphs(&self) -> u32 {
         unsafe { ffi::gsk_text_node_get_num_glyphs(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gsk_text_node_get_offset")]
-    pub fn get_offset(&self) -> Option<graphene::Point> {
+    pub fn offset(&self) -> Option<graphene::Point> {
         unsafe { from_glib_none(ffi::gsk_text_node_get_offset(self.to_glib_none().0)) }
     }
 

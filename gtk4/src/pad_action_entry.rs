@@ -29,23 +29,23 @@ impl PadActionEntry {
         }
     }
 
-    pub fn get_type(&self) -> PadActionType {
+    pub fn type_(&self) -> PadActionType {
         self.type_
     }
 
-    pub fn get_index(&self) -> i32 {
+    pub fn index(&self) -> i32 {
         self.index
     }
 
-    pub fn get_mode(&self) -> i32 {
+    pub fn mode(&self) -> i32 {
         self.mode
     }
 
-    pub fn get_label(&self) -> &str {
+    pub fn label(&self) -> &str {
         &self.label
     }
 
-    pub fn get_action_name(&self) -> &str {
+    pub fn action_name(&self) -> &str {
         &self.action_name
     }
 }

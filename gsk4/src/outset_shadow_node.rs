@@ -34,27 +34,27 @@ impl OutsetShadowNode {
     }
 
     #[doc(alias = "gsk_outset_shadow_node_get_blur_radius")]
-    pub fn get_blur_radius(&self) -> f32 {
+    pub fn blur_radius(&self) -> f32 {
         unsafe { ffi::gsk_outset_shadow_node_get_blur_radius(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gsk_outset_shadow_node_get_color")]
-    pub fn get_color(&self) -> Option<gdk::RGBA> {
+    pub fn color(&self) -> Option<gdk::RGBA> {
         unsafe { from_glib_none(ffi::gsk_outset_shadow_node_get_color(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_outset_shadow_node_get_dx")]
-    pub fn get_dx(&self) -> f32 {
+    pub fn dx(&self) -> f32 {
         unsafe { ffi::gsk_outset_shadow_node_get_dx(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gsk_outset_shadow_node_get_dy")]
-    pub fn get_dy(&self) -> f32 {
+    pub fn dy(&self) -> f32 {
         unsafe { ffi::gsk_outset_shadow_node_get_dy(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gsk_outset_shadow_node_get_outline")]
-    pub fn get_outline(&self) -> Option<RoundedRect> {
+    pub fn outline(&self) -> Option<RoundedRect> {
         unsafe {
             from_glib_none(ffi::gsk_outset_shadow_node_get_outline(
                 self.to_glib_none().0,
@@ -63,7 +63,7 @@ impl OutsetShadowNode {
     }
 
     #[doc(alias = "gsk_outset_shadow_node_get_spread")]
-    pub fn get_spread(&self) -> f32 {
+    pub fn spread(&self) -> f32 {
         unsafe { ffi::gsk_outset_shadow_node_get_spread(self.to_glib_none().0) }
     }
 }

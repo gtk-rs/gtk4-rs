@@ -26,7 +26,7 @@ fn on_activate(application: &Application) {
 
     // Set and then immediately obtain state
     switch.set_state(true);
-    let current_state = switch.get_state();
+    let current_state = switch.state();
 
     // This prints: "The current state is true"
     println!("The current state is {}", current_state);

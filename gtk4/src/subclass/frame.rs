@@ -21,7 +21,7 @@ impl<T: FrameImpl> FrameImplExt for T {
     fn parent_compute_child_allocation(&self, frame: &Self::Type) -> Allocation {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkFrameClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkFrameClass;
             let f = (*parent_class)
                 .compute_child_allocation
                 .expect("No parent class impl for \"compute_child_allocation\"");
@@ -53,7 +53,7 @@ unsafe extern "C" fn frame_compute_child_allocation<T: FrameImpl>(
     allocationptr: *mut ffi::GtkAllocation,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<Frame> = from_glib_borrow(ptr);
 
     let allocation = imp.compute_child_allocation(wrap.unsafe_cast_ref());

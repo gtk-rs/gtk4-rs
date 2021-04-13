@@ -56,7 +56,7 @@ impl ObjectImpl for CustomButton {
     }
 
     fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
-        match pspec.get_name() {
+        match pspec.name() {
             "number" => {
                 let input_number = value.get().unwrap().unwrap();
                 self.number.replace(input_number);
@@ -66,7 +66,7 @@ impl ObjectImpl for CustomButton {
     }
 
     fn get_property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
-        match pspec.get_name() {
+        match pspec.name() {
             "number" => self.number.borrow().to_value(),
             _ => unimplemented!(),
         }

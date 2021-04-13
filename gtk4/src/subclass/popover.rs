@@ -26,7 +26,7 @@ impl<T: PopoverImpl> PopoverImplExt for T {
     fn parent_activate_default(&self, button: &Self::Type) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkPopoverClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPopoverClass;
             if let Some(f) = (*parent_class).activate_default {
                 f(button.unsafe_cast_ref::<Popover>().to_glib_none().0)
             }
@@ -36,7 +36,7 @@ impl<T: PopoverImpl> PopoverImplExt for T {
     fn parent_closed(&self, button: &Self::Type) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkPopoverClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkPopoverClass;
             if let Some(f) = (*parent_class).closed {
                 f(button.unsafe_cast_ref::<Popover>().to_glib_none().0)
             }
@@ -60,7 +60,7 @@ unsafe impl<T: PopoverImpl> IsSubclassable<T> for Popover {
 
 unsafe extern "C" fn popover_activate_default<T: PopoverImpl>(ptr: *mut ffi::GtkPopover) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<Popover> = from_glib_borrow(ptr);
 
     imp.activate_default(wrap.unsafe_cast_ref())
@@ -68,7 +68,7 @@ unsafe extern "C" fn popover_activate_default<T: PopoverImpl>(ptr: *mut ffi::Gtk
 
 unsafe extern "C" fn popover_closed<T: PopoverImpl>(ptr: *mut ffi::GtkPopover) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<Popover> = from_glib_borrow(ptr);
 
     imp.closed(wrap.unsafe_cast_ref())

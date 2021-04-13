@@ -23,12 +23,12 @@ impl DebugNode {
     }
 
     #[doc(alias = "gsk_debug_node_get_child")]
-    pub fn get_child(&self) -> Option<RenderNode> {
+    pub fn child(&self) -> Option<RenderNode> {
         unsafe { from_glib_none(ffi::gsk_debug_node_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_debug_node_get_message")]
-    pub fn get_message(&self) -> Option<glib::GString> {
+    pub fn message(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gsk_debug_node_get_message(self.to_glib_none().0)) }
     }
 }

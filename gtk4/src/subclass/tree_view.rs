@@ -132,7 +132,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
     fn parent_columns_changed(&self, tree_view: &Self::Type) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkTreeViewClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             if let Some(f) = (*parent_class).columns_changed {
                 f(tree_view.unsafe_cast_ref::<TreeView>().to_glib_none().0)
             }
@@ -142,7 +142,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
     fn parent_cursor_changed(&self, tree_view: &Self::Type) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkTreeViewClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             if let Some(f) = (*parent_class).cursor_changed {
                 f(tree_view.unsafe_cast_ref::<TreeView>().to_glib_none().0)
             }
@@ -158,7 +158,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
     ) -> bool {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkTreeViewClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
 
             let f = (*parent_class)
                 .expand_collapse_cursor_row
@@ -183,7 +183,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
     ) -> bool {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkTreeViewClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             let f = (*parent_class)
                 .move_cursor
                 .expect("No parent class impl for \"move_cursor\"");
@@ -206,7 +206,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
     ) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkTreeViewClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             if let Some(f) = (*parent_class).row_activated {
                 f(
                     tree_view.unsafe_cast_ref::<TreeView>().to_glib_none().0,
@@ -220,7 +220,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
     fn parent_row_collapsed(&self, tree_view: &Self::Type, iter: &TreeIter, path: &TreePath) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkTreeViewClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             if let Some(f) = (*parent_class).row_collapsed {
                 f(
                     tree_view.unsafe_cast_ref::<TreeView>().to_glib_none().0,
@@ -234,7 +234,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
     fn parent_row_expanded(&self, tree_view: &Self::Type, iter: &TreeIter, path: &TreePath) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkTreeViewClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             if let Some(f) = (*parent_class).row_expanded {
                 f(
                     tree_view.unsafe_cast_ref::<TreeView>().to_glib_none().0,
@@ -248,7 +248,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
     fn parent_select_all(&self, tree_view: &Self::Type) -> bool {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkTreeViewClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             let f = (*parent_class)
                 .select_all
                 .expect("No parent class impl for \"select_all\"");
@@ -260,7 +260,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
     fn parent_select_cursor_parent(&self, tree_view: &Self::Type) -> bool {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkTreeViewClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             let f = (*parent_class)
                 .select_cursor_parent
                 .expect("No parent class impl for \"select_cursor_parent\"");
@@ -272,7 +272,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
     fn parent_select_cursor_row(&self, tree_view: &Self::Type, start_editing: bool) -> bool {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkTreeViewClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             let f = (*parent_class)
                 .select_cursor_row
                 .expect("No parent class impl for \"select_cursor_row\"");
@@ -287,7 +287,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
     fn parent_start_interactive_search(&self, tree_view: &Self::Type) -> bool {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkTreeViewClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             let f = (*parent_class)
                 .start_interactive_search
                 .expect("No parent class impl for \"start_interactive_search\"");
@@ -304,7 +304,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
     ) -> bool {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkTreeViewClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             let f = (*parent_class)
                 .test_collapse_row
                 .expect("No parent class impl for \"test_collapse_row\"");
@@ -325,7 +325,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
     ) -> bool {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkTreeViewClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             let f = (*parent_class)
                 .test_expand_row
                 .expect("No parent class impl for \"test_expand_row\"");
@@ -341,7 +341,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
     fn parent_toggle_cursor_row(&self, tree_view: &Self::Type) -> bool {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkTreeViewClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             let f = (*parent_class)
                 .toggle_cursor_row
                 .expect("No parent class impl for \"toggle_cursor_row\"");
@@ -353,7 +353,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
     fn parent_unselect_all(&self, tree_view: &Self::Type) -> bool {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkTreeViewClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkTreeViewClass;
             let f = (*parent_class)
                 .unselect_all
                 .expect("No parent class impl for \"unselect_all\"");
@@ -392,7 +392,7 @@ unsafe impl<T: TreeViewImpl> IsSubclassable<T> for TreeView {
 
 unsafe extern "C" fn tree_view_columns_changed<T: TreeViewImpl>(ptr: *mut ffi::GtkTreeView) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<TreeView> = from_glib_borrow(ptr);
 
     imp.columns_changed(wrap.unsafe_cast_ref())
@@ -400,7 +400,7 @@ unsafe extern "C" fn tree_view_columns_changed<T: TreeViewImpl>(ptr: *mut ffi::G
 
 unsafe extern "C" fn tree_view_cursor_changed<T: TreeViewImpl>(ptr: *mut ffi::GtkTreeView) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<TreeView> = from_glib_borrow(ptr);
 
     imp.cursor_changed(wrap.unsafe_cast_ref())
@@ -413,7 +413,7 @@ unsafe extern "C" fn tree_view_expand_collapse_cursor_row<T: TreeViewImpl>(
     open_all: glib::ffi::gboolean,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<TreeView> = from_glib_borrow(ptr);
 
     imp.expand_collapse_cursor_row(
@@ -433,7 +433,7 @@ unsafe extern "C" fn tree_view_move_cursor<T: TreeViewImpl>(
     modify: glib::ffi::gboolean,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<TreeView> = from_glib_borrow(ptr);
 
     imp.move_cursor(
@@ -452,7 +452,7 @@ unsafe extern "C" fn tree_view_row_activated<T: TreeViewImpl>(
     columnptr: *mut ffi::GtkTreeViewColumn,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<TreeView> = from_glib_borrow(ptr);
     let path: Borrowed<TreePath> = from_glib_borrow(pathptr);
     let column: Borrowed<TreeViewColumn> = from_glib_borrow(columnptr);
@@ -466,7 +466,7 @@ unsafe extern "C" fn tree_view_row_collapsed<T: TreeViewImpl>(
     pathptr: *mut ffi::GtkTreePath,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<TreeView> = from_glib_borrow(ptr);
     let path: Borrowed<TreePath> = from_glib_borrow(pathptr);
     let iter: Borrowed<TreeIter> = from_glib_borrow(iterptr);
@@ -480,7 +480,7 @@ unsafe extern "C" fn tree_view_row_expanded<T: TreeViewImpl>(
     pathptr: *mut ffi::GtkTreePath,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<TreeView> = from_glib_borrow(ptr);
     let path: Borrowed<TreePath> = from_glib_borrow(pathptr);
     let iter: Borrowed<TreeIter> = from_glib_borrow(iterptr);
@@ -492,7 +492,7 @@ unsafe extern "C" fn tree_view_select_all<T: TreeViewImpl>(
     ptr: *mut ffi::GtkTreeView,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<TreeView> = from_glib_borrow(ptr);
 
     imp.select_all(wrap.unsafe_cast_ref()).to_glib()
@@ -502,7 +502,7 @@ unsafe extern "C" fn tree_view_select_cursor_parent<T: TreeViewImpl>(
     ptr: *mut ffi::GtkTreeView,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<TreeView> = from_glib_borrow(ptr);
 
     imp.select_cursor_parent(wrap.unsafe_cast_ref()).to_glib()
@@ -513,7 +513,7 @@ unsafe extern "C" fn tree_view_select_cursor_row<T: TreeViewImpl>(
     start_editing: glib::ffi::gboolean,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<TreeView> = from_glib_borrow(ptr);
 
     imp.select_cursor_row(wrap.unsafe_cast_ref(), from_glib(start_editing))
@@ -524,7 +524,7 @@ unsafe extern "C" fn tree_view_start_interactive_search<T: TreeViewImpl>(
     ptr: *mut ffi::GtkTreeView,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<TreeView> = from_glib_borrow(ptr);
 
     imp.start_interactive_search(wrap.unsafe_cast_ref())
@@ -537,7 +537,7 @@ unsafe extern "C" fn tree_view_test_collapse_row<T: TreeViewImpl>(
     pathptr: *mut ffi::GtkTreePath,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<TreeView> = from_glib_borrow(ptr);
     let path: Borrowed<TreePath> = from_glib_borrow(pathptr);
     let iter: Borrowed<TreeIter> = from_glib_borrow(iterptr);
@@ -552,7 +552,7 @@ unsafe extern "C" fn tree_view_test_expand_row<T: TreeViewImpl>(
     pathptr: *mut ffi::GtkTreePath,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<TreeView> = from_glib_borrow(ptr);
     let path: Borrowed<TreePath> = from_glib_borrow(pathptr);
     let iter: Borrowed<TreeIter> = from_glib_borrow(iterptr);
@@ -565,7 +565,7 @@ unsafe extern "C" fn tree_view_toggle_cursor_row<T: TreeViewImpl>(
     ptr: *mut ffi::GtkTreeView,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<TreeView> = from_glib_borrow(ptr);
 
     imp.toggle_cursor_row(wrap.unsafe_cast_ref()).to_glib()
@@ -575,7 +575,7 @@ unsafe extern "C" fn tree_view_unselect_all<T: TreeViewImpl>(
     ptr: *mut ffi::GtkTreeView,
 ) -> glib::ffi::gboolean {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<TreeView> = from_glib_borrow(ptr);
 
     imp.unselect_all(wrap.unsafe_cast_ref()).to_glib()

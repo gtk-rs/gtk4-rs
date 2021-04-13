@@ -8,7 +8,7 @@ use wayland_client::Proxy;
 
 impl WaylandDisplay {
     #[doc(alias = "gdk_wayland_display_get_wl_compositor")]
-    pub fn get_wl_compositor(&self) -> WlCompositor {
+    pub fn wl_compositor(&self) -> WlCompositor {
         unsafe {
             let ptr = ffi::gdk_wayland_display_get_wl_compositor(self.to_glib_none().0);
             Proxy::from_c_ptr(ptr as *mut wl_proxy).into()
@@ -16,7 +16,7 @@ impl WaylandDisplay {
     }
 
     #[doc(alias = "gdk_wayland_display_get_wl_display")]
-    pub fn get_wl_display(&self) -> WlDisplay {
+    pub fn wl_display(&self) -> WlDisplay {
         unsafe {
             let ptr = ffi::gdk_wayland_display_get_wl_display(self.to_glib_none().0);
             Proxy::from_c_ptr(ptr as *mut wl_proxy).into()

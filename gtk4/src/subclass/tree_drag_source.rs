@@ -108,7 +108,7 @@ unsafe extern "C" fn tree_drag_source_row_draggable<T: TreeDragSourceImpl>(
     pathptr: *mut ffi::GtkTreePath,
 ) -> glib::ffi::gboolean {
     let instance = &*(tree_drag_source as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
 
     let path: Borrowed<TreePath> = from_glib_borrow(pathptr);
 
@@ -124,7 +124,7 @@ unsafe extern "C" fn tree_drag_source_drag_data_get<T: TreeDragSourceImpl>(
     pathptr: *mut ffi::GtkTreePath,
 ) -> *mut gdk::ffi::GdkContentProvider {
     let instance = &*(tree_drag_source as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let path: Borrowed<TreePath> = from_glib_borrow(pathptr);
 
     imp.drag_data_get(
@@ -139,7 +139,7 @@ unsafe extern "C" fn tree_drag_source_drag_data_delete<T: TreeDragSourceImpl>(
     pathptr: *mut ffi::GtkTreePath,
 ) -> glib::ffi::gboolean {
     let instance = &*(tree_drag_source as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let path: Borrowed<TreePath> = from_glib_borrow(pathptr);
     imp.drag_data_delete(
         from_glib_borrow::<_, TreeDragSource>(tree_drag_source).unsafe_cast_ref(),

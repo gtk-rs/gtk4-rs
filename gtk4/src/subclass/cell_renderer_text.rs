@@ -22,7 +22,7 @@ impl<T: CellRendererTextImpl> CellRendererTextImplExt for T {
         unsafe {
             let data = T::type_data();
             let parent_class =
-                data.as_ref().get_parent_class() as *mut ffi::GtkCellRendererTextClass;
+                data.as_ref().parent_class() as *mut ffi::GtkCellRendererTextClass;
             if let Some(f) = (*parent_class).edited {
                 f(
                     renderer
@@ -56,7 +56,7 @@ unsafe extern "C" fn cell_renderer_text_edited<T: CellRendererTextImpl>(
     new_text: *const libc::c_char,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<CellRendererText> = from_glib_borrow(ptr);
 
     imp.edited(

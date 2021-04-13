@@ -26,7 +26,7 @@ impl<T: ComboBoxImpl> ComboBoxImplExt for T {
     fn parent_changed(&self, combo_box: &Self::Type) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkComboBoxClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkComboBoxClass;
             if let Some(f) = (*parent_class).changed {
                 f(combo_box.unsafe_cast_ref::<ComboBox>().to_glib_none().0)
             }
@@ -35,7 +35,7 @@ impl<T: ComboBoxImpl> ComboBoxImplExt for T {
     fn parent_format_entry_text(&self, combo_box: &Self::Type, path: &str) -> Option<GString> {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkComboBoxClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkComboBoxClass;
             if let Some(f) = (*parent_class).format_entry_text {
                 return Some(from_glib_full(f(
                     combo_box.unsafe_cast_ref::<ComboBox>().to_glib_none().0,
@@ -63,7 +63,7 @@ unsafe impl<T: ComboBoxImpl> IsSubclassable<T> for ComboBox {
 
 unsafe extern "C" fn combo_box_changed<T: ComboBoxImpl>(ptr: *mut ffi::GtkComboBox) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<ComboBox> = from_glib_borrow(ptr);
 
     imp.changed(wrap.unsafe_cast_ref())
@@ -74,7 +74,7 @@ unsafe extern "C" fn combo_box_format_entry_text<T: ComboBoxImpl>(
     pathptr: *const libc::c_char,
 ) -> *mut libc::c_char {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<ComboBox> = from_glib_borrow(ptr);
 
     let path: Borrowed<GString> = from_glib_borrow(pathptr);

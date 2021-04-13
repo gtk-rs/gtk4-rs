@@ -9,7 +9,7 @@ pub trait ComboBoxExtManual: 'static {
     fn set_active(&self, index_: Option<u32>);
 
     #[doc(alias = "gtk_combo_box_get_active")]
-    fn get_active(&self) -> Option<u32>;
+    fn active(&self) -> Option<u32>;
 }
 
 impl<O: IsA<ComboBox>> ComboBoxExtManual for O {
@@ -23,7 +23,7 @@ impl<O: IsA<ComboBox>> ComboBoxExtManual for O {
         }
     }
 
-    fn get_active(&self) -> Option<u32> {
+    fn active(&self) -> Option<u32> {
         match unsafe { ffi::gtk_combo_box_get_active(self.as_ref().to_glib_none().0) } {
             -1 => None,
             x => Some(x as _),

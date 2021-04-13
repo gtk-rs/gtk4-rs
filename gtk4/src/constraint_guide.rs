@@ -7,17 +7,17 @@ use std::mem::MaybeUninit;
 
 pub trait ConstraintGuideExtManual {
     #[doc(alias = "gtk_constraint_guide_get_max_size")]
-    fn get_max_size(&self) -> (i32, i32);
+    fn max_size(&self) -> (i32, i32);
 
     #[doc(alias = "gtk_constraint_guide_get_min_size")]
-    fn get_min_size(&self) -> (i32, i32);
+    fn min_size(&self) -> (i32, i32);
 
     #[doc(alias = "gtk_constraint_guide_get_nat_size")]
-    fn get_nat_size(&self) -> (i32, i32);
+    fn nat_size(&self) -> (i32, i32);
 }
 
 impl<O: IsA<ConstraintGuide>> ConstraintGuideExtManual for O {
-    fn get_max_size(&self) -> (i32, i32) {
+    fn max_size(&self) -> (i32, i32) {
         unsafe {
             let mut width = MaybeUninit::uninit();
             let mut height = MaybeUninit::uninit();
@@ -30,7 +30,7 @@ impl<O: IsA<ConstraintGuide>> ConstraintGuideExtManual for O {
         }
     }
 
-    fn get_min_size(&self) -> (i32, i32) {
+    fn min_size(&self) -> (i32, i32) {
         unsafe {
             let mut width = MaybeUninit::uninit();
             let mut height = MaybeUninit::uninit();
@@ -43,7 +43,7 @@ impl<O: IsA<ConstraintGuide>> ConstraintGuideExtManual for O {
         }
     }
 
-    fn get_nat_size(&self) -> (i32, i32) {
+    fn nat_size(&self) -> (i32, i32) {
         unsafe {
             let mut width = MaybeUninit::uninit();
             let mut height = MaybeUninit::uninit();

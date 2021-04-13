@@ -28,7 +28,7 @@ impl CrossFadeNode {
     }
 
     #[doc(alias = "gsk_cross_fade_node_get_end_child")]
-    pub fn get_end_child(&self) -> Option<RenderNode> {
+    pub fn end_child(&self) -> Option<RenderNode> {
         unsafe {
             from_glib_none(ffi::gsk_cross_fade_node_get_end_child(
                 self.to_glib_none().0,
@@ -37,12 +37,12 @@ impl CrossFadeNode {
     }
 
     #[doc(alias = "gsk_cross_fade_node_get_progress")]
-    pub fn get_progress(&self) -> f32 {
+    pub fn progress(&self) -> f32 {
         unsafe { ffi::gsk_cross_fade_node_get_progress(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gsk_cross_fade_node_get_start_child")]
-    pub fn get_start_child(&self) -> Option<RenderNode> {
+    pub fn start_child(&self) -> Option<RenderNode> {
         unsafe {
             from_glib_none(ffi::gsk_cross_fade_node_get_start_child(
                 self.to_glib_none().0,

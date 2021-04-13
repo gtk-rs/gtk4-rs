@@ -20,7 +20,7 @@ impl<T: RecentManagerImpl> RecentManagerImplExt for T {
     fn parent_changed(&self, recent_manager: &Self::Type) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkRecentManagerClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkRecentManagerClass;
             if let Some(f) = (*parent_class).changed {
                 f(recent_manager
                     .unsafe_cast_ref::<RecentManager>()
@@ -46,7 +46,7 @@ unsafe impl<T: RecentManagerImpl> IsSubclassable<T> for RecentManager {
 
 unsafe extern "C" fn recent_manager_changed<T: RecentManagerImpl>(ptr: *mut ffi::GtkRecentManager) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<RecentManager> = from_glib_borrow(ptr);
 
     imp.changed(wrap.unsafe_cast_ref())
