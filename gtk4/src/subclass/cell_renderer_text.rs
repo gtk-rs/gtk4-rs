@@ -21,8 +21,7 @@ impl<T: CellRendererTextImpl> CellRendererTextImplExt for T {
     fn parent_edited(&self, renderer: &Self::Type, path: &str, new_text: &str) {
         unsafe {
             let data = T::type_data();
-            let parent_class =
-                data.as_ref().parent_class() as *mut ffi::GtkCellRendererTextClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellRendererTextClass;
             if let Some(f) = (*parent_class).edited {
                 f(
                     renderer

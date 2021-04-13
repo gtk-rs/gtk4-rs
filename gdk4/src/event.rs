@@ -216,7 +216,7 @@ impl fmt::Display for Event {
             .field("event_type", &self.event_type())
             .field("history", &self.history())
             .field("modifier_state", &self.modifier_state())
-            .field("pointer_emulated", &self.pointer_emulated())
+            .field("pointer_emulated", &self.is_pointer_emulated())
             .field("position", &self.position())
             .field("time", &self.time())
             .field("triggers_context_menu", &self.triggers_context_menu())
@@ -425,7 +425,7 @@ mod focus {
     impl fmt::Display for FocusEvent {
         fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             f.debug_struct("FocusEvent")
-                .field("in", &self.get_in())
+                .field("in", &self.is_in())
                 .finish()
         }
     }
@@ -465,7 +465,7 @@ mod grab_broken {
         fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             f.debug_struct("GrabBrokenEvent")
                 .field("grab_surface", &self.grab_surface())
-                .field("implicit", &self.implicit())
+                .field("implicit", &self.is_implicit())
                 .finish()
         }
     }
@@ -716,7 +716,7 @@ mod touch {
 
     impl TouchEvent {
         #[doc(alias = "gdk_touch_event_get_emulating_pointer")]
-        pub fn is_emulating_pointer(&self) -> bool {
+        pub fn emulates_pointer(&self) -> bool {
             unsafe {
                 from_glib(ffi::gdk_touch_event_get_emulating_pointer(
                     self.to_glib_none().0,
@@ -728,7 +728,7 @@ mod touch {
     impl fmt::Display for TouchEvent {
         fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
             f.debug_struct("TouchEvent")
-                .field("emulating_pointer", &self.emulating_pointer())
+                .field("emulating_pointer", &self.emulates_pointer())
                 .finish()
         }
     }

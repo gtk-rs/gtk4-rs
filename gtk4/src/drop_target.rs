@@ -9,7 +9,7 @@ use std::mem::transmute;
 
 impl DropTarget {
     #[doc(alias = "gtk_drop_target_set_gtypes")]
-    pub fn set_gtypes(&self, types: &[Type]) {
+    pub fn set_types(&self, types: &[Type]) {
         let types: Vec<glib::ffi::GType> = types.iter().map(|t| t.to_glib()).collect();
         unsafe {
             ffi::gtk_drop_target_set_gtypes(
@@ -21,7 +21,7 @@ impl DropTarget {
     }
 
     #[doc(alias = "gtk_drop_target_get_gtypes")]
-    pub fn gtypes(&self) -> Vec<Type> {
+    pub fn types(&self) -> Vec<Type> {
         unsafe {
             let mut n_types = std::mem::MaybeUninit::uninit();
             let types =
