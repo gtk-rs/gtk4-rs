@@ -1017,6 +1017,10 @@ trust_return_value_nullability = false
 name = "Gtk.Gesture"
 status = "generate"
     [[object.function]]
+    name = "group"
+    # Precise the purpose and avoid clash with `get_group`.
+    rename = "group_with"
+    [[object.function]]
     pattern = ".+"
         [[object.function.parameter]]
         name = "sequence"
@@ -1625,6 +1629,9 @@ status = "generate"
     name = "get_page"
         [object.function.return]
         nullable = true
+    [[object.function]]
+    name = "get_interpolate_size"
+    rename = "interpolates_size"
 
 [[object]]
 name = "Gtk.StringFilter"
@@ -1680,6 +1687,11 @@ manual_traits = ["TextBufferExtManual"]
         [[object.function.parameter]]
         name = "override_location"
         const = true
+    [[object.function]]
+    name = "get_insert"
+    # Avoid clash with the `insert` operation.
+    # This one retrieves the insert mark.
+    bypass_auto_rename = true
     [[object.signal]]
     name = "insert-text"
     ignore = true # manual
@@ -2138,10 +2150,30 @@ manual_traits = ["WidgetExtManual"]
         const = true
     [[object.function]]
     name = "get_name"
-    rename = "get_widget_name"
+    rename = "widget_name"
     [[object.function]]
     name = "set_name"
     rename = "set_widget_name"
+    [[object.function]]
+    name = "get_sensitive"
+    # Avoid clash with `is_sensitive`. Differences:
+    # - `get_sensitive`: returns the widget `sensitive` property.
+    # - `is_sensitive`: returns whether the widget’s is effectively sensitivity.
+    #   meaning that the widget and all its parents are `sensitive`.
+    bypass_auto_rename = true
+    [[object.function]]
+    name = "get_visible"
+    # Avoid clash with `is_visible`. Differences:
+    # - `get_visible`: returns the widget `visible` property.
+    # - `is_visible`: returns whether the widget’s is effectively visibility.
+    #   meaning that the widget and all its parents are `visible`.
+    bypass_auto_rename = true
+    [[object.function]]
+    name = "get_hexpand"
+    rename = "hexpands"
+    [[object.function]]
+    name = "get_vexpand"
+    rename = "vexpands"
     [[object.signal]]
     name = "drag-data-get"
         [[object.signal.parameter]]
