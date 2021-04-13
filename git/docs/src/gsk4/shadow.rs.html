@@ -149,19 +149,19 @@
         })
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_color</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RGBA</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">color</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">RGBA</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="number">0</span>.<span class="ident">color</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>) }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_dx</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dx</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
         <span class="self">self</span>.<span class="number">0</span>.<span class="ident">dx</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_dy</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">dy</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
         <span class="self">self</span>.<span class="number">0</span>.<span class="ident">dy</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_radius</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">radius</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
         <span class="self">self</span>.<span class="number">0</span>.<span class="ident">radius</span>
     }
 }

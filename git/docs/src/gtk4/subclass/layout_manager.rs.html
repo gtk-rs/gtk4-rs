@@ -495,7 +495,7 @@
     ) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkLayoutManagerClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkLayoutManagerClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">allocate</span> {
                 <span class="ident">f</span>(
                     <span class="ident">layout_manager</span>
@@ -519,7 +519,7 @@
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LayoutChild</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkLayoutManagerClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkLayoutManagerClass</span>;
             <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>)
                 .<span class="ident">create_layout_child</span>
                 .<span class="ident">expect</span>(<span class="string">&quot;No parent class impl for \&quot;create_layout_child\&quot;&quot;</span>);
@@ -541,7 +541,7 @@
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SizeRequestMode</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkLayoutManagerClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkLayoutManagerClass</span>;
             <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>)
                 .<span class="ident">get_request_mode</span>
                 .<span class="ident">expect</span>(<span class="string">&quot;No parent class impl for \&quot;get_request_mode\&quot;&quot;</span>);
@@ -568,7 +568,7 @@
     ) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkLayoutManagerClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkLayoutManagerClass</span>;
             <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>)
                 .<span class="ident">measure</span>
                 .<span class="ident">expect</span>(<span class="string">&quot;No parent class impl for \&quot;measure\&quot;&quot;</span>);
@@ -591,7 +591,7 @@
     <span class="kw">fn</span> <span class="ident">parent_root</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">layout_manager</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkLayoutManagerClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkLayoutManagerClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">root</span> {
                 <span class="ident">f</span>(<span class="ident">layout_manager</span>
                     .<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">LayoutManager</span><span class="op">&gt;</span>()
@@ -604,7 +604,7 @@
     <span class="kw">fn</span> <span class="ident">parent_unroot</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">layout_manager</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkLayoutManagerClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkLayoutManagerClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">unroot</span> {
                 <span class="ident">f</span>(<span class="ident">layout_manager</span>
                     .<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">LayoutManager</span><span class="op">&gt;</span>()
@@ -642,7 +642,7 @@
     <span class="ident">baseline</span>: <span class="ident">i32</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">LayoutManager</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="kw">let</span> <span class="ident">widget</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">widgetptr</span>);
@@ -656,7 +656,7 @@
     <span class="ident">for_childptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidget</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkLayoutChild</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">LayoutManager</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">widget</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">widgetptr</span>);
     <span class="kw">let</span> <span class="ident">for_child</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">for_childptr</span>);
@@ -670,7 +670,7 @@
     <span class="ident">widgetptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidget</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GtkSizeRequestMode</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">LayoutManager</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">widget</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">widgetptr</span>);
 
@@ -689,7 +689,7 @@
     <span class="ident">natural_baseline_ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_int</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">LayoutManager</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">widget</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">widgetptr</span>);
 
@@ -735,7 +735,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">layout_manager_root</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">LayoutManagerImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkLayoutManager</span>) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">LayoutManager</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">root</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>())
@@ -743,7 +743,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">layout_manager_unroot</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">LayoutManagerImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkLayoutManager</span>) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">LayoutManager</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">unroot</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>())

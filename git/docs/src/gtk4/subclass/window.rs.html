@@ -210,7 +210,7 @@
     <span class="kw">fn</span> <span class="ident">parent_activate_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">window</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWindowClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWindowClass</span>;
             <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>)
                 .<span class="ident">activate_focus</span>
                 .<span class="ident">expect</span>(<span class="string">&quot;No parent class impl for \&quot;activate_focus\&quot;&quot;</span>);
@@ -221,7 +221,7 @@
     <span class="kw">fn</span> <span class="ident">parent_activate_default</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">window</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWindowClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWindowClass</span>;
             <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>)
                 .<span class="ident">activate_default</span>
                 .<span class="ident">expect</span>(<span class="string">&quot;No parent class impl for \&quot;activate_default\&quot;&quot;</span>);
@@ -232,7 +232,7 @@
     <span class="kw">fn</span> <span class="ident">parent_keys_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">window</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWindowClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWindowClass</span>;
             <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>)
                 .<span class="ident">keys_changed</span>
                 .<span class="ident">expect</span>(<span class="string">&quot;No parent class impl for \&quot;keys_changed\&quot;&quot;</span>);
@@ -243,7 +243,7 @@
     <span class="kw">fn</span> <span class="ident">parent_enable_debugging</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">window</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">toggle</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWindowClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWindowClass</span>;
             <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>)
                 .<span class="ident">enable_debugging</span>
                 .<span class="ident">expect</span>(<span class="string">&quot;No parent class impl for \&quot;enable_debugging\&quot;&quot;</span>);
@@ -257,7 +257,7 @@
     <span class="kw">fn</span> <span class="ident">parent_close_request</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">window</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::signal::Inhibit</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWindowClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWindowClass</span>;
             <span class="kw">let</span> <span class="ident">f</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>)
                 .<span class="ident">close_request</span>
                 .<span class="ident">expect</span>(<span class="string">&quot;No parent class impl for \&quot;close_request\&quot;&quot;</span>);
@@ -288,7 +288,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">window_activate_focus</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">WindowImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWindow</span>) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">activate_focus</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>())
@@ -296,7 +296,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">window_activate_default</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">WindowImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWindow</span>) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">activate_default</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>())
@@ -304,7 +304,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">window_keys_changed</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">WindowImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWindow</span>) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">keys_changed</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>())
@@ -315,7 +315,7 @@
     <span class="ident">toggleptr</span>: <span class="ident">glib::ffi::gboolean</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">toggle</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">toggleptr</span>);
 
@@ -327,7 +327,7 @@
     <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWindow</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">close_request</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">to_glib</span>()

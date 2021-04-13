@@ -261,7 +261,7 @@
     <span class="ident">pathptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTreePath</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">tree_drag_source</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="kw">let</span> <span class="ident">path</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">pathptr</span>);
 
@@ -277,7 +277,7 @@
     <span class="ident">pathptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTreePath</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gdk::ffi::GdkContentProvider</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">tree_drag_source</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">path</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">pathptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">drag_data_get</span>(
@@ -292,7 +292,7 @@
     <span class="ident">pathptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkTreePath</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">tree_drag_source</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">path</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">pathptr</span>);
     <span class="ident">imp</span>.<span class="ident">drag_data_delete</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">TreeDragSource</span><span class="op">&gt;</span>(<span class="ident">tree_drag_source</span>).<span class="ident">unsafe_cast_ref</span>(),

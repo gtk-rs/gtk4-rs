@@ -111,11 +111,11 @@
         <span class="ident">PageRange</span>(<span class="ident">ffi::GtkPageRange</span> { <span class="ident">start</span>, <span class="ident">end</span> })
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_start</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">start</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
         <span class="self">self</span>.<span class="number">0</span>.<span class="ident">start</span>
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_end</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">end</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
         <span class="self">self</span>.<span class="number">0</span>.<span class="ident">end</span>
     }
 }

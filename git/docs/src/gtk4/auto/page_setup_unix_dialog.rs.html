@@ -641,7 +641,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_unix_dialog_get_page_setup&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_page_setup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PageSetup</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">page_setup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PageSetup</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_page_setup_unix_dialog_get_page_setup</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
@@ -650,7 +650,7 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_unix_dialog_get_print_settings&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_print_settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PrintSettings</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">print_settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PrintSettings</span> {
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_page_setup_unix_dialog_get_print_settings</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,

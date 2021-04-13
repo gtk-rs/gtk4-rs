@@ -558,7 +558,7 @@
     <span class="kw">fn</span> <span class="ident">parent_begin_print</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">begin_print</span> {
                 <span class="ident">f</span>(
                     <span class="ident">print_operation</span>
@@ -574,7 +574,7 @@
     <span class="kw">fn</span> <span class="ident">parent_create_custom_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">create_custom_widget</span> {
                 <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">f</span>(<span class="ident">print_operation</span>
                     .<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>()
@@ -590,7 +590,7 @@
     <span class="kw">fn</span> <span class="ident">parent_custom_widget_apply</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">Widget</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">custom_widget_apply</span> {
                 <span class="ident">f</span>(
                     <span class="ident">print_operation</span>
@@ -606,7 +606,7 @@
     <span class="kw">fn</span> <span class="ident">parent_done</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">result</span>: <span class="ident">PrintOperationResult</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">done</span> {
                 <span class="ident">f</span>(
                     <span class="ident">print_operation</span>
@@ -622,7 +622,7 @@
     <span class="kw">fn</span> <span class="ident">parent_draw_page</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>, <span class="ident">page_nr</span>: <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">draw_page</span> {
                 <span class="ident">f</span>(
                     <span class="ident">print_operation</span>
@@ -639,7 +639,7 @@
     <span class="kw">fn</span> <span class="ident">parent_end_print</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">end_print</span> {
                 <span class="ident">f</span>(
                     <span class="ident">print_operation</span>
@@ -655,7 +655,7 @@
     <span class="kw">fn</span> <span class="ident">parent_paginate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">paginate</span> {
                 <span class="ident">from_glib</span>(<span class="ident">f</span>(
                     <span class="ident">print_operation</span>
@@ -680,7 +680,7 @@
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">preview</span> {
                 <span class="ident">from_glib</span>(<span class="ident">f</span>(
                     <span class="ident">print_operation</span>
@@ -707,7 +707,7 @@
     ) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">request_page_setup</span> {
                 <span class="ident">f</span>(
                     <span class="ident">print_operation</span>
@@ -725,7 +725,7 @@
     <span class="kw">fn</span> <span class="ident">parent_status_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_operation</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">status_changed</span> {
                 <span class="ident">f</span>(<span class="ident">print_operation</span>
                     .<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span>()
@@ -744,7 +744,7 @@
     ) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperationClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">update_custom_widget</span> {
                 <span class="ident">f</span>(
                     <span class="ident">print_operation</span>
@@ -786,7 +786,7 @@
     <span class="ident">contextptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintContext</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">context</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">PrintContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">contextptr</span>);
 
@@ -797,7 +797,7 @@
     <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidget</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">create_custom_widget</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>())
@@ -809,7 +809,7 @@
     <span class="ident">widgetptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidget</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">widget</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">widgetptr</span>);
 
@@ -821,7 +821,7 @@
     <span class="ident">resultptr</span>: <span class="ident">ffi::GtkPrintOperationResult</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">done</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="ident">from_glib</span>(<span class="ident">resultptr</span>))
@@ -833,7 +833,7 @@
     <span class="ident">page_nr</span>: <span class="ident">i32</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">context</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">PrintContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">contextptr</span>);
 
@@ -845,7 +845,7 @@
     <span class="ident">contextptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintContext</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">context</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">PrintContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">contextptr</span>);
 
@@ -859,7 +859,7 @@
     <span class="ident">setupptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPageSetup</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">context</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">PrintContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">contextptr</span>);
     <span class="kw">let</span> <span class="ident">setup</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">PageSetup</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">setupptr</span>);
@@ -871,7 +871,7 @@
     <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintOperation</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">status_changed</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>())
@@ -884,7 +884,7 @@
     <span class="ident">settingsptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkPrintSettings</span>,
 ) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">PrintOperation</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">widget</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">widgetptr</span>);
     <span class="kw">let</span> <span class="ident">setup</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">PageSetup</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">setupptr</span>);

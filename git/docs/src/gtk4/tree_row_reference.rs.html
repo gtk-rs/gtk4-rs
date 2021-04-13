@@ -74,7 +74,7 @@
     ) {
         <span class="macro">assert_eq!</span>(
             <span class="ident">new_order</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">i32</span>,
-            <span class="self">self</span>.<span class="ident">get_model</span>().<span class="ident">iter_n_children</span>(<span class="prelude-val">Some</span>(<span class="ident">iter</span>)),
+            <span class="self">self</span>.<span class="ident">model</span>().<span class="ident">iter_n_children</span>(<span class="prelude-val">Some</span>(<span class="ident">iter</span>)),
             <span class="string">&quot;TreeRowReference got passed a `new_order` bigger than the total childrens in the model for the passed iter&quot;</span>
         );
         <span class="macro">assert_initialized_main_thread!</span>();

@@ -37,16 +37,6 @@
 <span id="34">34</span>
 <span id="35">35</span>
 <span id="36">36</span>
-<span id="37">37</span>
-<span id="38">38</span>
-<span id="39">39</span>
-<span id="40">40</span>
-<span id="41">41</span>
-<span id="42">42</span>
-<span id="43">43</span>
-<span id="44">44</span>
-<span id="45">45</span>
-<span id="46">46</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -62,18 +52,8 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_combo_box_set_active&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_active</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index_</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Returns the index of the currently active item, or -1 if there’s no</span>
-    <span class="doccomment">/// active item. If the model is a non-flat treemodel, and the active item</span>
-    <span class="doccomment">/// is not an immediate child of the root of the tree, this function returns</span>
-    <span class="doccomment">/// `gtk_tree_path_get_indices (path)[0]`, where</span>
-    <span class="doccomment">/// `path` is the `TreePath` of the active item.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Returns</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// An integer which is the index of the currently active item,</span>
-    <span class="doccomment">///  or -1 if there’s no active item.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_combo_box_get_active&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">get_active</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">active</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>;
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ComboBox</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">ComboBoxExtManual</span> <span class="kw">for</span> <span class="ident">O</span> {
@@ -87,7 +67,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">get_active</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">active</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> {
         <span class="kw">match</span> <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_combo_box_get_active</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>) } {
             <span class="op">-</span><span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
             <span class="ident">x</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">x</span> <span class="kw">as</span> <span class="kw">_</span>),

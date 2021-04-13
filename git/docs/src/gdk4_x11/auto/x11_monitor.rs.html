@@ -57,12 +57,12 @@
 
 <span class="kw">impl</span> <span class="ident">X11Monitor</span> {
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_x11_monitor_get_output&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_output</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">xlib::XID</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">output</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">xlib::XID</span> {
         <span class="kw">unsafe</span> { <span class="ident">ffi::gdk_x11_monitor_get_output</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_x11_monitor_get_workarea&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_workarea</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gdk::Rectangle</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">workarea</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">gdk::Rectangle</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">workarea</span> <span class="op">=</span> <span class="ident">gdk::Rectangle::uninitialized</span>();
             <span class="ident">ffi::gdk_x11_monitor_get_workarea</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">workarea</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>);

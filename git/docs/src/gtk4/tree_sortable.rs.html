@@ -220,19 +220,6 @@
 <span id="217">217</span>
 <span id="218">218</span>
 <span id="219">219</span>
-<span id="220">220</span>
-<span id="221">221</span>
-<span id="222">222</span>
-<span id="223">223</span>
-<span id="224">224</span>
-<span id="225">225</span>
-<span id="226">226</span>
-<span id="227">227</span>
-<span id="228">228</span>
-<span id="229">229</span>
-<span id="230">230</span>
-<span id="231">231</span>
-<span id="232">232</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -330,21 +317,8 @@
     <span class="kw">fn</span> <span class="ident">set_sort_func</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sort_column_id</span>: <span class="ident">SortColumn</span>, <span class="ident">sort_func</span>: <span class="ident">F</span>)
     <span class="kw">where</span>
         <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ordering</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>;
-    <span class="doccomment">/// Fills in `sort_column_id` and `order` with the current sort column and the</span>
-    <span class="doccomment">/// order. It returns `true` unless the `sort_column_id` is</span>
-    <span class="doccomment">/// `GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID` or</span>
-    <span class="doccomment">/// `GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID`.</span>
-    <span class="doccomment">/// ## `sort_column_id`</span>
-    <span class="doccomment">/// The sort column id to be filled in</span>
-    <span class="doccomment">/// ## `order`</span>
-    <span class="doccomment">/// The `SortType` to be filled in</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Returns</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the sort column is not one of the special sort</span>
-    <span class="doccomment">///  column ids.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_sortable_get_sort_column_id&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">get_sort_column_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">SortColumn</span>, <span class="ident">SortType</span>)<span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">sort_column_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">SortColumn</span>, <span class="ident">SortType</span>)<span class="op">&gt;</span>;
     <span class="doccomment">/// Sets the current sort column to be `sort_column_id`. The `self` will</span>
     <span class="doccomment">/// resort itself to reflect this change, after emitting a</span>
     <span class="doccomment">/// `TreeSortable::sort-column-changed` signal. `sort_column_id` may either be</span>
@@ -399,7 +373,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeSortable</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">TreeSortableExtManual</span> <span class="kw">for</span> <span class="ident">O</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">get_sort_column_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">SortColumn</span>, <span class="ident">SortType</span>)<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">sort_column_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">SortColumn</span>, <span class="ident">SortType</span>)<span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sort_column_id</span> <span class="op">=</span> <span class="ident">mem::uninitialized</span>();
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">order</span> <span class="op">=</span> <span class="ident">mem::uninitialized</span>();

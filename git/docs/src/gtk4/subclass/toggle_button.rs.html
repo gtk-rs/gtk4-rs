@@ -79,7 +79,7 @@
     <span class="kw">fn</span> <span class="ident">parent_toggled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">toggle_button</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkToggleButtonClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkToggleButtonClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">toggled</span> {
                 <span class="ident">f</span>(<span class="ident">toggle_button</span>
                     .<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">ToggleButton</span><span class="op">&gt;</span>()
@@ -105,7 +105,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">toggle_button_toggled</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">ToggleButtonImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkToggleButton</span>) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">ToggleButton</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">toggled</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>())

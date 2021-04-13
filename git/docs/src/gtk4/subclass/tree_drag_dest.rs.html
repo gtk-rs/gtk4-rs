@@ -240,7 +240,7 @@
     <span class="ident">valueptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">glib::gobject_ffi::GValue</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">tree_drag_dest</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="kw">let</span> <span class="ident">dest</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">destptr</span>);
     <span class="kw">let</span> <span class="ident">value</span>: <span class="ident">Value</span> <span class="op">=</span> <span class="ident">from_glib_none</span>(<span class="ident">valueptr</span>);
@@ -259,7 +259,7 @@
     <span class="ident">valueptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">glib::gobject_ffi::GValue</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">tree_drag_dest</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">dest</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">destptr</span>);
     <span class="kw">let</span> <span class="ident">value</span>: <span class="ident">Value</span> <span class="op">=</span> <span class="ident">from_glib_none</span>(<span class="ident">valueptr</span>);
 

@@ -661,7 +661,7 @@
     <span class="ident">n_items</span>: <span class="ident">u32</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkBitset</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">model</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="ident">imp</span>.<span class="ident">get_selection_in_range</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">SelectionModel</span><span class="op">&gt;</span>(<span class="ident">model</span>).<span class="ident">unsafe_cast_ref</span>(),
@@ -676,7 +676,7 @@
     <span class="ident">position</span>: <span class="ident">u32</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">model</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="ident">imp</span>.<span class="ident">is_selected</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">SelectionModel</span><span class="op">&gt;</span>(<span class="ident">model</span>).<span class="ident">unsafe_cast_ref</span>(),
@@ -689,7 +689,7 @@
     <span class="ident">model</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkSelectionModel</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">model</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="ident">imp</span>.<span class="ident">select_all</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">SelectionModel</span><span class="op">&gt;</span>(<span class="ident">model</span>).<span class="ident">unsafe_cast_ref</span>())
         .<span class="ident">to_glib</span>()
@@ -701,7 +701,7 @@
     <span class="ident">unselect_rest</span>: <span class="ident">glib::ffi::gboolean</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">model</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="ident">imp</span>.<span class="ident">select_item</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">SelectionModel</span><span class="op">&gt;</span>(<span class="ident">model</span>).<span class="ident">unsafe_cast_ref</span>(),
@@ -718,7 +718,7 @@
     <span class="ident">unselect_rest</span>: <span class="ident">glib::ffi::gboolean</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">model</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="ident">imp</span>.<span class="ident">select_range</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">SelectionModel</span><span class="op">&gt;</span>(<span class="ident">model</span>).<span class="ident">unsafe_cast_ref</span>(),
@@ -735,7 +735,7 @@
     <span class="ident">mask_ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkBitset</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">model</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">SelectionModel</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">model</span>);
     <span class="kw">let</span> <span class="ident">selected</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">selected_ptr</span>);
@@ -749,7 +749,7 @@
     <span class="ident">model</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkSelectionModel</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">model</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="ident">imp</span>.<span class="ident">unselect_all</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">SelectionModel</span><span class="op">&gt;</span>(<span class="ident">model</span>).<span class="ident">unsafe_cast_ref</span>())
         .<span class="ident">to_glib</span>()
@@ -760,7 +760,7 @@
     <span class="ident">position</span>: <span class="ident">u32</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">model</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="ident">imp</span>.<span class="ident">unselect_item</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">SelectionModel</span><span class="op">&gt;</span>(<span class="ident">model</span>).<span class="ident">unsafe_cast_ref</span>(),
@@ -775,7 +775,7 @@
     <span class="ident">n_items</span>: <span class="ident">u32</span>,
 ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">model</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="ident">imp</span>.<span class="ident">unselect_range</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">SelectionModel</span><span class="op">&gt;</span>(<span class="ident">model</span>).<span class="ident">unsafe_cast_ref</span>(),

@@ -101,7 +101,7 @@
     <span class="kw">fn</span> <span class="ident">parent_close</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">media_file</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkMediaFileClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkMediaFileClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">close</span> {
                 <span class="ident">f</span>(<span class="ident">media_file</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">MediaFile</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>)
             }
@@ -111,7 +111,7 @@
     <span class="kw">fn</span> <span class="ident">parent_open</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">media_file</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkMediaFileClass</span>;
+            <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkMediaFileClass</span>;
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">open</span> {
                 <span class="ident">f</span>(<span class="ident">media_file</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">MediaFile</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>)
             }
@@ -135,7 +135,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">media_file_close</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">MediaFileImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkMediaFile</span>) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">MediaFile</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">close</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>())
@@ -143,7 +143,7 @@
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">media_file_open</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">MediaFileImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkMediaFile</span>) {
     <span class="kw">let</span> <span class="ident">instance</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">T::Instance</span>);
-    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">get_impl</span>();
+    <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">MediaFile</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">open</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>())
