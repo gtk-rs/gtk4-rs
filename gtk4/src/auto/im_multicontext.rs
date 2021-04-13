@@ -72,14 +72,14 @@ pub const NONE_IM_MULTICONTEXT: Option<&IMMulticontext> = None;
 
 pub trait IMMulticontextExt: 'static {
     #[doc(alias = "gtk_im_multicontext_get_context_id")]
-    fn get_context_id(&self) -> Option<glib::GString>;
+    fn context_id(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_im_multicontext_set_context_id")]
     fn set_context_id(&self, context_id: &str);
 }
 
 impl<O: IsA<IMMulticontext>> IMMulticontextExt for O {
-    fn get_context_id(&self) -> Option<glib::GString> {
+    fn context_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_im_multicontext_get_context_id(
                 self.as_ref().to_glib_none().0,

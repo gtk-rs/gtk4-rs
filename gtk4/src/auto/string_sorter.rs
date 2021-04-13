@@ -25,12 +25,12 @@ glib::wrapper! {
 
 impl StringSorter {
     #[doc(alias = "gtk_string_sorter_get_expression")]
-    pub fn get_expression(&self) -> Option<Expression> {
+    pub fn expression(&self) -> Option<Expression> {
         unsafe { from_glib_none(ffi::gtk_string_sorter_get_expression(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_string_sorter_get_ignore_case")]
-    pub fn get_ignore_case(&self) -> bool {
+    pub fn ignores_case(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_string_sorter_get_ignore_case(
                 self.to_glib_none().0,

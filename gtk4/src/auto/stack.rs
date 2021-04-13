@@ -89,12 +89,12 @@ impl Stack {
     }
 
     #[doc(alias = "gtk_stack_get_hhomogeneous")]
-    pub fn get_hhomogeneous(&self) -> bool {
+    pub fn is_hhomogeneous(&self) -> bool {
         unsafe { from_glib(ffi::gtk_stack_get_hhomogeneous(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_stack_get_interpolate_size")]
-    pub fn get_interpolate_size(&self) -> bool {
+    pub fn interpolates_size(&self) -> bool {
         unsafe { from_glib(ffi::gtk_stack_get_interpolate_size(self.to_glib_none().0)) }
     }
 
@@ -109,37 +109,37 @@ impl Stack {
     }
 
     #[doc(alias = "gtk_stack_get_pages")]
-    pub fn get_pages(&self) -> SelectionModel {
+    pub fn pages(&self) -> SelectionModel {
         unsafe { from_glib_full(ffi::gtk_stack_get_pages(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_stack_get_transition_duration")]
-    pub fn get_transition_duration(&self) -> u32 {
+    pub fn transition_duration(&self) -> u32 {
         unsafe { ffi::gtk_stack_get_transition_duration(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_stack_get_transition_running")]
-    pub fn get_transition_running(&self) -> bool {
+    pub fn is_transition_running(&self) -> bool {
         unsafe { from_glib(ffi::gtk_stack_get_transition_running(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_stack_get_transition_type")]
-    pub fn get_transition_type(&self) -> StackTransitionType {
+    pub fn transition_type(&self) -> StackTransitionType {
         unsafe { from_glib(ffi::gtk_stack_get_transition_type(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_stack_get_vhomogeneous")]
-    pub fn get_vhomogeneous(&self) -> bool {
+    pub fn is_vhomogeneous(&self) -> bool {
         unsafe { from_glib(ffi::gtk_stack_get_vhomogeneous(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_stack_get_visible_child")]
-    pub fn get_visible_child(&self) -> Option<Widget> {
+    pub fn visible_child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_stack_get_visible_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_stack_get_visible_child_name")]
-    pub fn get_visible_child_name(&self) -> Option<glib::GString> {
+    pub fn visible_child_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_stack_get_visible_child_name(self.to_glib_none().0)) }
     }
 

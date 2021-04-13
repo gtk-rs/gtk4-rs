@@ -36,32 +36,32 @@ impl Drop {
     }
 
     #[doc(alias = "gdk_drop_get_actions")]
-    pub fn get_actions(&self) -> DragAction {
+    pub fn actions(&self) -> DragAction {
         unsafe { from_glib(ffi::gdk_drop_get_actions(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drop_get_device")]
-    pub fn get_device(&self) -> Option<Device> {
+    pub fn device(&self) -> Option<Device> {
         unsafe { from_glib_none(ffi::gdk_drop_get_device(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drop_get_display")]
-    pub fn get_display(&self) -> Option<Display> {
+    pub fn display(&self) -> Option<Display> {
         unsafe { from_glib_none(ffi::gdk_drop_get_display(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drop_get_drag")]
-    pub fn get_drag(&self) -> Option<Drag> {
+    pub fn drag(&self) -> Option<Drag> {
         unsafe { from_glib_none(ffi::gdk_drop_get_drag(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drop_get_formats")]
-    pub fn get_formats(&self) -> Option<ContentFormats> {
+    pub fn formats(&self) -> Option<ContentFormats> {
         unsafe { from_glib_none(ffi::gdk_drop_get_formats(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drop_get_surface")]
-    pub fn get_surface(&self) -> Option<Surface> {
+    pub fn surface(&self) -> Option<Surface> {
         unsafe { from_glib_none(ffi::gdk_drop_get_surface(self.to_glib_none().0)) }
     }
 

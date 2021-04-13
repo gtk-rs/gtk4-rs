@@ -35,42 +35,42 @@ impl Drag {
     }
 
     #[doc(alias = "gdk_drag_get_actions")]
-    pub fn get_actions(&self) -> DragAction {
+    pub fn actions(&self) -> DragAction {
         unsafe { from_glib(ffi::gdk_drag_get_actions(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drag_get_content")]
-    pub fn get_content(&self) -> Option<ContentProvider> {
+    pub fn content(&self) -> Option<ContentProvider> {
         unsafe { from_glib_none(ffi::gdk_drag_get_content(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drag_get_device")]
-    pub fn get_device(&self) -> Option<Device> {
+    pub fn device(&self) -> Option<Device> {
         unsafe { from_glib_none(ffi::gdk_drag_get_device(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drag_get_display")]
-    pub fn get_display(&self) -> Option<Display> {
+    pub fn display(&self) -> Option<Display> {
         unsafe { from_glib_none(ffi::gdk_drag_get_display(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drag_get_drag_surface")]
-    pub fn get_drag_surface(&self) -> Option<Surface> {
+    pub fn drag_surface(&self) -> Option<Surface> {
         unsafe { from_glib_none(ffi::gdk_drag_get_drag_surface(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drag_get_formats")]
-    pub fn get_formats(&self) -> Option<ContentFormats> {
+    pub fn formats(&self) -> Option<ContentFormats> {
         unsafe { from_glib_none(ffi::gdk_drag_get_formats(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drag_get_selected_action")]
-    pub fn get_selected_action(&self) -> DragAction {
+    pub fn selected_action(&self) -> DragAction {
         unsafe { from_glib(ffi::gdk_drag_get_selected_action(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drag_get_surface")]
-    pub fn get_surface(&self) -> Option<Surface> {
+    pub fn surface(&self) -> Option<Surface> {
         unsafe { from_glib_none(ffi::gdk_drag_get_surface(self.to_glib_none().0)) }
     }
 
@@ -81,7 +81,8 @@ impl Drag {
         }
     }
 
-    pub fn set_property_actions(&self, actions: DragAction) {
+    #[doc(alias = "set_property_actions")]
+    pub fn set_actions(&self, actions: DragAction) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -91,7 +92,8 @@ impl Drag {
         }
     }
 
-    pub fn set_property_selected_action(&self, selected_action: DragAction) {
+    #[doc(alias = "set_property_selected_action")]
+    pub fn set_selected_action(&self, selected_action: DragAction) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

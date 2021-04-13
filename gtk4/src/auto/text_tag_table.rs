@@ -61,7 +61,7 @@ impl TextTagTable {
     }
 
     #[doc(alias = "gtk_text_tag_table_get_size")]
-    pub fn get_size(&self) -> i32 {
+    pub fn size(&self) -> i32 {
         unsafe { ffi::gtk_text_tag_table_get_size(self.to_glib_none().0) }
     }
 

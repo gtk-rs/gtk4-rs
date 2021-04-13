@@ -50,12 +50,12 @@ impl IconTheme {
     }
 
     #[doc(alias = "gtk_icon_theme_get_display")]
-    pub fn get_display(&self) -> Option<gdk::Display> {
+    pub fn display(&self) -> Option<gdk::Display> {
         unsafe { from_glib_none(ffi::gtk_icon_theme_get_display(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_icon_theme_get_icon_names")]
-    pub fn get_icon_names(&self) -> Vec<glib::GString> {
+    pub fn icon_names(&self) -> Vec<glib::GString> {
         unsafe {
             FromGlibPtrContainer::from_glib_full(ffi::gtk_icon_theme_get_icon_names(
                 self.to_glib_none().0,
@@ -64,7 +64,7 @@ impl IconTheme {
     }
 
     #[doc(alias = "gtk_icon_theme_get_resource_path")]
-    pub fn get_resource_path(&self) -> Vec<glib::GString> {
+    pub fn resource_path(&self) -> Vec<glib::GString> {
         unsafe {
             FromGlibPtrContainer::from_glib_full(ffi::gtk_icon_theme_get_resource_path(
                 self.to_glib_none().0,
@@ -73,7 +73,7 @@ impl IconTheme {
     }
 
     #[doc(alias = "gtk_icon_theme_get_search_path")]
-    pub fn get_search_path(&self) -> Vec<std::path::PathBuf> {
+    pub fn search_path(&self) -> Vec<std::path::PathBuf> {
         unsafe {
             FromGlibPtrContainer::from_glib_full(ffi::gtk_icon_theme_get_search_path(
                 self.to_glib_none().0,
@@ -82,7 +82,7 @@ impl IconTheme {
     }
 
     #[doc(alias = "gtk_icon_theme_get_theme_name")]
-    pub fn get_theme_name(&self) -> Option<glib::GString> {
+    pub fn theme_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_full(ffi::gtk_icon_theme_get_theme_name(self.to_glib_none().0)) }
     }
 
@@ -154,7 +154,8 @@ impl IconTheme {
         }
     }
 
-    pub fn set_property_display(&self, display: Option<&gdk::Display>) {
+    #[doc(alias = "set_property_display")]
+    pub fn set_display(&self, display: Option<&gdk::Display>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

@@ -34,7 +34,7 @@ impl ContentFormatsBuilder {
     }
 
     #[doc(alias = "gdk_content_formats_builder_add_gtype")]
-    pub fn add_gtype(&self, type_: glib::types::Type) {
+    pub fn add_type(&self, type_: glib::types::Type) {
         unsafe {
             ffi::gdk_content_formats_builder_add_gtype(self.to_glib_none().0, type_.to_glib());
         }

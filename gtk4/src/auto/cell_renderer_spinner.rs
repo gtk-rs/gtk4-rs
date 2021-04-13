@@ -31,7 +31,8 @@ impl CellRendererSpinner {
         unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_spinner_new()).unsafe_cast() }
     }
 
-    pub fn get_property_active(&self) -> bool {
+    #[doc(alias = "get_property_active")]
+    pub fn is_active(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -46,7 +47,8 @@ impl CellRendererSpinner {
         }
     }
 
-    pub fn set_property_active(&self, active: bool) {
+    #[doc(alias = "set_property_active")]
+    pub fn set_active(&self, active: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -56,7 +58,8 @@ impl CellRendererSpinner {
         }
     }
 
-    pub fn get_property_pulse(&self) -> u32 {
+    #[doc(alias = "get_property_pulse")]
+    pub fn pulse(&self) -> u32 {
         unsafe {
             let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -71,7 +74,8 @@ impl CellRendererSpinner {
         }
     }
 
-    pub fn set_property_pulse(&self, pulse: u32) {
+    #[doc(alias = "set_property_pulse")]
+    pub fn set_pulse(&self, pulse: u32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -81,7 +85,8 @@ impl CellRendererSpinner {
         }
     }
 
-    pub fn get_property_size(&self) -> IconSize {
+    #[doc(alias = "get_property_size")]
+    pub fn size(&self) -> IconSize {
         unsafe {
             let mut value = glib::Value::from_type(<IconSize as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -96,7 +101,8 @@ impl CellRendererSpinner {
         }
     }
 
-    pub fn set_property_size(&self, size: IconSize) {
+    #[doc(alias = "set_property_size")]
+    pub fn set_size(&self, size: IconSize) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

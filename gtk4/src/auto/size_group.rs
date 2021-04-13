@@ -40,12 +40,12 @@ impl SizeGroup {
     }
 
     #[doc(alias = "gtk_size_group_get_mode")]
-    pub fn get_mode(&self) -> SizeGroupMode {
+    pub fn mode(&self) -> SizeGroupMode {
         unsafe { from_glib(ffi::gtk_size_group_get_mode(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_size_group_get_widgets")]
-    pub fn get_widgets(&self) -> Vec<Widget> {
+    pub fn widgets(&self) -> Vec<Widget> {
         unsafe {
             FromGlibPtrContainer::from_glib_none(ffi::gtk_size_group_get_widgets(
                 self.to_glib_none().0,

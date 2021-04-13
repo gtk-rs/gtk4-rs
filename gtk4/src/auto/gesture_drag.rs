@@ -124,10 +124,10 @@ pub const NONE_GESTURE_DRAG: Option<&GestureDrag> = None;
 
 pub trait GestureDragExt: 'static {
     #[doc(alias = "gtk_gesture_drag_get_offset")]
-    fn get_offset(&self) -> Option<(f64, f64)>;
+    fn offset(&self) -> Option<(f64, f64)>;
 
     #[doc(alias = "gtk_gesture_drag_get_start_point")]
-    fn get_start_point(&self) -> Option<(f64, f64)>;
+    fn start_point(&self) -> Option<(f64, f64)>;
 
     fn connect_drag_begin<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -137,7 +137,7 @@ pub trait GestureDragExt: 'static {
 }
 
 impl<O: IsA<GestureDrag>> GestureDragExt for O {
-    fn get_offset(&self) -> Option<(f64, f64)> {
+    fn offset(&self) -> Option<(f64, f64)> {
         unsafe {
             let mut x = mem::MaybeUninit::uninit();
             let mut y = mem::MaybeUninit::uninit();
@@ -156,7 +156,7 @@ impl<O: IsA<GestureDrag>> GestureDragExt for O {
         }
     }
 
-    fn get_start_point(&self) -> Option<(f64, f64)> {
+    fn start_point(&self) -> Option<(f64, f64)> {
         unsafe {
             let mut x = mem::MaybeUninit::uninit();
             let mut y = mem::MaybeUninit::uninit();

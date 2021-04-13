@@ -32,7 +32,8 @@ impl CellRendererProgress {
         unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_progress_new()).unsafe_cast() }
     }
 
-    pub fn get_property_inverted(&self) -> bool {
+    #[doc(alias = "get_property_inverted")]
+    pub fn is_inverted(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -47,7 +48,8 @@ impl CellRendererProgress {
         }
     }
 
-    pub fn set_property_inverted(&self, inverted: bool) {
+    #[doc(alias = "set_property_inverted")]
+    pub fn set_inverted(&self, inverted: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -57,7 +59,8 @@ impl CellRendererProgress {
         }
     }
 
-    pub fn get_property_pulse(&self) -> i32 {
+    #[doc(alias = "get_property_pulse")]
+    pub fn pulse(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -72,7 +75,8 @@ impl CellRendererProgress {
         }
     }
 
-    pub fn set_property_pulse(&self, pulse: i32) {
+    #[doc(alias = "set_property_pulse")]
+    pub fn set_pulse(&self, pulse: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -82,7 +86,8 @@ impl CellRendererProgress {
         }
     }
 
-    pub fn get_property_text(&self) -> Option<glib::GString> {
+    #[doc(alias = "get_property_text")]
+    pub fn text(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -96,7 +101,8 @@ impl CellRendererProgress {
         }
     }
 
-    pub fn set_property_text(&self, text: Option<&str>) {
+    #[doc(alias = "set_property_text")]
+    pub fn set_text(&self, text: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -106,7 +112,8 @@ impl CellRendererProgress {
         }
     }
 
-    pub fn get_property_text_xalign(&self) -> f32 {
+    #[doc(alias = "get_property_text_xalign")]
+    pub fn text_xalign(&self) -> f32 {
         unsafe {
             let mut value = glib::Value::from_type(<f32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -121,7 +128,8 @@ impl CellRendererProgress {
         }
     }
 
-    pub fn set_property_text_xalign(&self, text_xalign: f32) {
+    #[doc(alias = "set_property_text_xalign")]
+    pub fn set_text_xalign(&self, text_xalign: f32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -131,7 +139,8 @@ impl CellRendererProgress {
         }
     }
 
-    pub fn get_property_text_yalign(&self) -> f32 {
+    #[doc(alias = "get_property_text_yalign")]
+    pub fn text_yalign(&self) -> f32 {
         unsafe {
             let mut value = glib::Value::from_type(<f32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -146,7 +155,8 @@ impl CellRendererProgress {
         }
     }
 
-    pub fn set_property_text_yalign(&self, text_yalign: f32) {
+    #[doc(alias = "set_property_text_yalign")]
+    pub fn set_text_yalign(&self, text_yalign: f32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -156,7 +166,8 @@ impl CellRendererProgress {
         }
     }
 
-    pub fn get_property_value(&self) -> i32 {
+    #[doc(alias = "get_property_value")]
+    pub fn value(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -171,7 +182,8 @@ impl CellRendererProgress {
         }
     }
 
-    pub fn set_property_value(&self, value: i32) {
+    #[doc(alias = "set_property_value")]
+    pub fn set_value(&self, value: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

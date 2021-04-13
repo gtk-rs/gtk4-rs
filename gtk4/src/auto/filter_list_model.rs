@@ -39,12 +39,12 @@ impl FilterListModel {
     }
 
     #[doc(alias = "gtk_filter_list_model_get_filter")]
-    pub fn get_filter(&self) -> Option<Filter> {
+    pub fn filter(&self) -> Option<Filter> {
         unsafe { from_glib_none(ffi::gtk_filter_list_model_get_filter(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_filter_list_model_get_incremental")]
-    pub fn get_incremental(&self) -> bool {
+    pub fn is_incremental(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_filter_list_model_get_incremental(
                 self.to_glib_none().0,
@@ -53,12 +53,12 @@ impl FilterListModel {
     }
 
     #[doc(alias = "gtk_filter_list_model_get_model")]
-    pub fn get_model(&self) -> Option<gio::ListModel> {
+    pub fn model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_filter_list_model_get_model(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_filter_list_model_get_pending")]
-    pub fn get_pending(&self) -> u32 {
+    pub fn pending(&self) -> u32 {
         unsafe { ffi::gtk_filter_list_model_get_pending(self.to_glib_none().0) }
     }
 

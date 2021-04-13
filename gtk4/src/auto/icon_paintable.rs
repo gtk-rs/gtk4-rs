@@ -4,7 +4,6 @@
 
 use glib::object::Cast;
 use glib::object::IsA;
-use glib::object::ObjectType as ObjectType_;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
@@ -20,7 +19,7 @@ glib::wrapper! {
 
 impl IconPaintable {
     #[doc(alias = "gtk_icon_paintable_new_for_file")]
-    pub fn new_for_file<P: IsA<gio::File>>(file: &P, size: i32, scale: i32) -> IconPaintable {
+    pub fn for_file<P: IsA<gio::File>>(file: &P, size: i32, scale: i32) -> IconPaintable {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_icon_paintable_new_for_file(
@@ -32,33 +31,18 @@ impl IconPaintable {
     }
 
     #[doc(alias = "gtk_icon_paintable_get_file")]
-    pub fn get_file(&self) -> Option<gio::File> {
+    pub fn file(&self) -> Option<gio::File> {
         unsafe { from_glib_full(ffi::gtk_icon_paintable_get_file(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_icon_paintable_get_icon_name")]
-    pub fn get_icon_name(&self) -> Option<std::path::PathBuf> {
+    pub fn icon_name(&self) -> Option<std::path::PathBuf> {
         unsafe { from_glib_none(ffi::gtk_icon_paintable_get_icon_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_icon_paintable_is_symbolic")]
     pub fn is_symbolic(&self) -> bool {
         unsafe { from_glib(ffi::gtk_icon_paintable_is_symbolic(self.to_glib_none().0)) }
-    }
-
-    pub fn get_property_is_symbolic(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"is-symbolic\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `is-symbolic` getter")
-                .unwrap()
-        }
     }
 }
 

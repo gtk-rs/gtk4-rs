@@ -23,14 +23,14 @@ pub const NONE_ROOT: Option<&Root> = None;
 
 pub trait RootExt: 'static {
     #[doc(alias = "gtk_root_get_focus")]
-    fn get_focus(&self) -> Option<Widget>;
+    fn focus(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_root_set_focus")]
     fn set_focus<P: IsA<Widget>>(&self, focus: Option<&P>);
 }
 
 impl<O: IsA<Root>> RootExt for O {
-    fn get_focus(&self) -> Option<Widget> {
+    fn focus(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_root_get_focus(self.as_ref().to_glib_none().0)) }
     }
 

@@ -49,27 +49,27 @@ impl Cursor {
     }
 
     #[doc(alias = "gdk_cursor_get_fallback")]
-    pub fn get_fallback(&self) -> Option<Cursor> {
+    pub fn fallback(&self) -> Option<Cursor> {
         unsafe { from_glib_none(ffi::gdk_cursor_get_fallback(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_cursor_get_hotspot_x")]
-    pub fn get_hotspot_x(&self) -> i32 {
+    pub fn hotspot_x(&self) -> i32 {
         unsafe { ffi::gdk_cursor_get_hotspot_x(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_cursor_get_hotspot_y")]
-    pub fn get_hotspot_y(&self) -> i32 {
+    pub fn hotspot_y(&self) -> i32 {
         unsafe { ffi::gdk_cursor_get_hotspot_y(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_cursor_get_name")]
-    pub fn get_name(&self) -> Option<glib::GString> {
+    pub fn name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gdk_cursor_get_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_cursor_get_texture")]
-    pub fn get_texture(&self) -> Option<Texture> {
+    pub fn texture(&self) -> Option<Texture> {
         unsafe { from_glib_none(ffi::gdk_cursor_get_texture(self.to_glib_none().0)) }
     }
 }

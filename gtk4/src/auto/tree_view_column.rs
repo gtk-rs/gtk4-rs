@@ -143,17 +143,17 @@ impl TreeViewColumn {
     }
 
     #[doc(alias = "gtk_tree_view_column_get_alignment")]
-    pub fn get_alignment(&self) -> f32 {
+    pub fn alignment(&self) -> f32 {
         unsafe { ffi::gtk_tree_view_column_get_alignment(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_button")]
-    pub fn get_button(&self) -> Option<Widget> {
+    pub fn button(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_tree_view_column_get_button(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_clickable")]
-    pub fn get_clickable(&self) -> bool {
+    pub fn is_clickable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_column_get_clickable(
                 self.to_glib_none().0,
@@ -162,27 +162,27 @@ impl TreeViewColumn {
     }
 
     #[doc(alias = "gtk_tree_view_column_get_expand")]
-    pub fn get_expand(&self) -> bool {
+    pub fn expands(&self) -> bool {
         unsafe { from_glib(ffi::gtk_tree_view_column_get_expand(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_fixed_width")]
-    pub fn get_fixed_width(&self) -> i32 {
+    pub fn fixed_width(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_column_get_fixed_width(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_max_width")]
-    pub fn get_max_width(&self) -> i32 {
+    pub fn max_width(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_column_get_max_width(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_min_width")]
-    pub fn get_min_width(&self) -> i32 {
+    pub fn min_width(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_column_get_min_width(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_reorderable")]
-    pub fn get_reorderable(&self) -> bool {
+    pub fn is_reorderable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_column_get_reorderable(
                 self.to_glib_none().0,
@@ -191,7 +191,7 @@ impl TreeViewColumn {
     }
 
     #[doc(alias = "gtk_tree_view_column_get_resizable")]
-    pub fn get_resizable(&self) -> bool {
+    pub fn is_resizable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_column_get_resizable(
                 self.to_glib_none().0,
@@ -200,17 +200,17 @@ impl TreeViewColumn {
     }
 
     #[doc(alias = "gtk_tree_view_column_get_sizing")]
-    pub fn get_sizing(&self) -> TreeViewColumnSizing {
+    pub fn sizing(&self) -> TreeViewColumnSizing {
         unsafe { from_glib(ffi::gtk_tree_view_column_get_sizing(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_sort_column_id")]
-    pub fn get_sort_column_id(&self) -> i32 {
+    pub fn sort_column_id(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_column_get_sort_column_id(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_sort_indicator")]
-    pub fn get_sort_indicator(&self) -> bool {
+    pub fn is_sort_indicator(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_column_get_sort_indicator(
                 self.to_glib_none().0,
@@ -219,7 +219,7 @@ impl TreeViewColumn {
     }
 
     #[doc(alias = "gtk_tree_view_column_get_sort_order")]
-    pub fn get_sort_order(&self) -> SortType {
+    pub fn sort_order(&self) -> SortType {
         unsafe {
             from_glib(ffi::gtk_tree_view_column_get_sort_order(
                 self.to_glib_none().0,
@@ -228,17 +228,17 @@ impl TreeViewColumn {
     }
 
     #[doc(alias = "gtk_tree_view_column_get_spacing")]
-    pub fn get_spacing(&self) -> i32 {
+    pub fn spacing(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_column_get_spacing(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_title")]
-    pub fn get_title(&self) -> Option<glib::GString> {
+    pub fn title(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_tree_view_column_get_title(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_tree_view")]
-    pub fn get_tree_view(&self) -> Option<Widget> {
+    pub fn tree_view(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_tree_view_column_get_tree_view(
                 self.to_glib_none().0,
@@ -247,22 +247,22 @@ impl TreeViewColumn {
     }
 
     #[doc(alias = "gtk_tree_view_column_get_visible")]
-    pub fn get_visible(&self) -> bool {
+    pub fn is_visible(&self) -> bool {
         unsafe { from_glib(ffi::gtk_tree_view_column_get_visible(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_widget")]
-    pub fn get_widget(&self) -> Option<Widget> {
+    pub fn widget(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_tree_view_column_get_widget(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_width")]
-    pub fn get_width(&self) -> i32 {
+    pub fn width(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_column_get_width(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_x_offset")]
-    pub fn get_x_offset(&self) -> i32 {
+    pub fn x_offset(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_column_get_x_offset(self.to_glib_none().0) }
     }
 
@@ -444,7 +444,8 @@ impl TreeViewColumn {
         }
     }
 
-    pub fn get_property_cell_area(&self) -> Option<CellArea> {
+    #[doc(alias = "get_property_cell_area")]
+    pub fn cell_area(&self) -> Option<CellArea> {
         unsafe {
             let mut value = glib::Value::from_type(<CellArea as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(

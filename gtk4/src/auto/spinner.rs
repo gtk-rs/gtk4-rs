@@ -38,7 +38,7 @@ impl Spinner {
     }
 
     #[doc(alias = "gtk_spinner_get_spinning")]
-    pub fn get_spinning(&self) -> bool {
+    pub fn is_spinning(&self) -> bool {
         unsafe { from_glib(ffi::gtk_spinner_get_spinning(self.to_glib_none().0)) }
     }
 

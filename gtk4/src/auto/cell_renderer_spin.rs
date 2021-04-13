@@ -33,7 +33,8 @@ impl CellRendererSpin {
         unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_spin_new()).unsafe_cast() }
     }
 
-    pub fn get_property_adjustment(&self) -> Option<Adjustment> {
+    #[doc(alias = "get_property_adjustment")]
+    pub fn adjustment(&self) -> Option<Adjustment> {
         unsafe {
             let mut value = glib::Value::from_type(<Adjustment as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -47,7 +48,8 @@ impl CellRendererSpin {
         }
     }
 
-    pub fn set_property_adjustment<P: IsA<Adjustment>>(&self, adjustment: Option<&P>) {
+    #[doc(alias = "set_property_adjustment")]
+    pub fn set_adjustment<P: IsA<Adjustment>>(&self, adjustment: Option<&P>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -57,7 +59,8 @@ impl CellRendererSpin {
         }
     }
 
-    pub fn get_property_climb_rate(&self) -> f64 {
+    #[doc(alias = "get_property_climb_rate")]
+    pub fn climb_rate(&self) -> f64 {
         unsafe {
             let mut value = glib::Value::from_type(<f64 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -72,7 +75,8 @@ impl CellRendererSpin {
         }
     }
 
-    pub fn set_property_climb_rate(&self, climb_rate: f64) {
+    #[doc(alias = "set_property_climb_rate")]
+    pub fn set_climb_rate(&self, climb_rate: f64) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -82,7 +86,8 @@ impl CellRendererSpin {
         }
     }
 
-    pub fn get_property_digits(&self) -> u32 {
+    #[doc(alias = "get_property_digits")]
+    pub fn digits(&self) -> u32 {
         unsafe {
             let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -97,7 +102,8 @@ impl CellRendererSpin {
         }
     }
 
-    pub fn set_property_digits(&self, digits: u32) {
+    #[doc(alias = "set_property_digits")]
+    pub fn set_digits(&self, digits: u32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

@@ -26,12 +26,12 @@ glib::wrapper! {
 
 impl StringFilter {
     #[doc(alias = "gtk_string_filter_get_expression")]
-    pub fn get_expression(&self) -> Expression {
+    pub fn expression(&self) -> Expression {
         unsafe { from_glib_none(ffi::gtk_string_filter_get_expression(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_string_filter_get_ignore_case")]
-    pub fn get_ignore_case(&self) -> bool {
+    pub fn ignores_case(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_string_filter_get_ignore_case(
                 self.to_glib_none().0,
@@ -40,12 +40,12 @@ impl StringFilter {
     }
 
     #[doc(alias = "gtk_string_filter_get_match_mode")]
-    pub fn get_match_mode(&self) -> StringFilterMatchMode {
+    pub fn match_mode(&self) -> StringFilterMatchMode {
         unsafe { from_glib(ffi::gtk_string_filter_get_match_mode(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_string_filter_get_search")]
-    pub fn get_search(&self) -> Option<glib::GString> {
+    pub fn search(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_string_filter_get_search(self.to_glib_none().0)) }
     }
 

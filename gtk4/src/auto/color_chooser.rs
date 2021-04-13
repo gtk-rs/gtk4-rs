@@ -23,10 +23,10 @@ pub const NONE_COLOR_CHOOSER: Option<&ColorChooser> = None;
 
 pub trait ColorChooserExt: 'static {
     #[doc(alias = "gtk_color_chooser_get_rgba")]
-    fn get_rgba(&self) -> gdk::RGBA;
+    fn rgba(&self) -> gdk::RGBA;
 
     #[doc(alias = "gtk_color_chooser_get_use_alpha")]
-    fn get_use_alpha(&self) -> bool;
+    fn uses_alpha(&self) -> bool;
 
     #[doc(alias = "gtk_color_chooser_set_rgba")]
     fn set_rgba(&self, color: &gdk::RGBA);
@@ -42,7 +42,7 @@ pub trait ColorChooserExt: 'static {
 }
 
 impl<O: IsA<ColorChooser>> ColorChooserExt for O {
-    fn get_rgba(&self) -> gdk::RGBA {
+    fn rgba(&self) -> gdk::RGBA {
         unsafe {
             let mut color = gdk::RGBA::uninitialized();
             ffi::gtk_color_chooser_get_rgba(
@@ -53,7 +53,7 @@ impl<O: IsA<ColorChooser>> ColorChooserExt for O {
         }
     }
 
-    fn get_use_alpha(&self) -> bool {
+    fn uses_alpha(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_color_chooser_get_use_alpha(
                 self.as_ref().to_glib_none().0,

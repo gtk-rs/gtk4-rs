@@ -25,12 +25,12 @@ glib::wrapper! {
 
 impl BoolFilter {
     #[doc(alias = "gtk_bool_filter_get_expression")]
-    pub fn get_expression(&self) -> Option<Expression> {
+    pub fn expression(&self) -> Option<Expression> {
         unsafe { from_glib_none(ffi::gtk_bool_filter_get_expression(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_bool_filter_get_invert")]
-    pub fn get_invert(&self) -> bool {
+    pub fn inverts(&self) -> bool {
         unsafe { from_glib(ffi::gtk_bool_filter_get_invert(self.to_glib_none().0)) }
     }
 

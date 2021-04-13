@@ -86,7 +86,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "gtk_flow_box_get_activate_on_single_click")]
-    pub fn get_activate_on_single_click(&self) -> bool {
+    pub fn activates_on_single_click(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_flow_box_get_activate_on_single_click(
                 self.to_glib_none().0,
@@ -116,32 +116,32 @@ impl FlowBox {
     }
 
     #[doc(alias = "gtk_flow_box_get_column_spacing")]
-    pub fn get_column_spacing(&self) -> u32 {
+    pub fn column_spacing(&self) -> u32 {
         unsafe { ffi::gtk_flow_box_get_column_spacing(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_flow_box_get_homogeneous")]
-    pub fn get_homogeneous(&self) -> bool {
+    pub fn is_homogeneous(&self) -> bool {
         unsafe { from_glib(ffi::gtk_flow_box_get_homogeneous(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_flow_box_get_max_children_per_line")]
-    pub fn get_max_children_per_line(&self) -> u32 {
+    pub fn max_children_per_line(&self) -> u32 {
         unsafe { ffi::gtk_flow_box_get_max_children_per_line(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_flow_box_get_min_children_per_line")]
-    pub fn get_min_children_per_line(&self) -> u32 {
+    pub fn min_children_per_line(&self) -> u32 {
         unsafe { ffi::gtk_flow_box_get_min_children_per_line(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_flow_box_get_row_spacing")]
-    pub fn get_row_spacing(&self) -> u32 {
+    pub fn row_spacing(&self) -> u32 {
         unsafe { ffi::gtk_flow_box_get_row_spacing(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_flow_box_get_selected_children")]
-    pub fn get_selected_children(&self) -> Vec<FlowBoxChild> {
+    pub fn selected_children(&self) -> Vec<FlowBoxChild> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_flow_box_get_selected_children(
                 self.to_glib_none().0,
@@ -150,7 +150,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "gtk_flow_box_get_selection_mode")]
-    pub fn get_selection_mode(&self) -> SelectionMode {
+    pub fn selection_mode(&self) -> SelectionMode {
         unsafe { from_glib(ffi::gtk_flow_box_get_selection_mode(self.to_glib_none().0)) }
     }
 
@@ -401,7 +401,8 @@ impl FlowBox {
         }
     }
 
-    pub fn get_property_accept_unpaired_release(&self) -> bool {
+    #[doc(alias = "get_property_accept_unpaired_release")]
+    pub fn accepts_unpaired_release(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -416,7 +417,8 @@ impl FlowBox {
         }
     }
 
-    pub fn set_property_accept_unpaired_release(&self, accept_unpaired_release: bool) {
+    #[doc(alias = "set_property_accept_unpaired_release")]
+    pub fn set_accept_unpaired_release(&self, accept_unpaired_release: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

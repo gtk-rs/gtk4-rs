@@ -78,7 +78,7 @@ pub trait TreeModelSortExt: 'static {
     fn convert_path_to_child_path(&self, sorted_path: &TreePath) -> Option<TreePath>;
 
     #[doc(alias = "gtk_tree_model_sort_get_model")]
-    fn get_model(&self) -> TreeModel;
+    fn model(&self) -> TreeModel;
 
     #[doc(alias = "gtk_tree_model_sort_iter_is_valid")]
     fn iter_is_valid(&self, iter: &TreeIter) -> bool;
@@ -140,7 +140,7 @@ impl<O: IsA<TreeModelSort>> TreeModelSortExt for O {
         }
     }
 
-    fn get_model(&self) -> TreeModel {
+    fn model(&self) -> TreeModel {
         unsafe {
             from_glib_none(ffi::gtk_tree_model_sort_get_model(
                 self.as_ref().to_glib_none().0,

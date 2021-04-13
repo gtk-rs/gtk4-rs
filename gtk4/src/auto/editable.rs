@@ -38,34 +38,34 @@ pub trait EditableExt: 'static {
     fn finish_delegate(&self);
 
     #[doc(alias = "gtk_editable_get_alignment")]
-    fn get_alignment(&self) -> f32;
+    fn alignment(&self) -> f32;
 
     #[doc(alias = "gtk_editable_get_chars")]
     fn get_chars(&self, start_pos: i32, end_pos: i32) -> glib::GString;
 
     #[doc(alias = "gtk_editable_get_delegate")]
-    fn get_delegate(&self) -> Option<Editable>;
+    fn delegate(&self) -> Option<Editable>;
 
     #[doc(alias = "gtk_editable_get_editable")]
-    fn get_editable(&self) -> bool;
+    fn is_editable(&self) -> bool;
 
     #[doc(alias = "gtk_editable_get_enable_undo")]
-    fn get_enable_undo(&self) -> bool;
+    fn enables_undo(&self) -> bool;
 
     #[doc(alias = "gtk_editable_get_max_width_chars")]
-    fn get_max_width_chars(&self) -> i32;
+    fn max_width_chars(&self) -> i32;
 
     #[doc(alias = "gtk_editable_get_position")]
-    fn get_position(&self) -> i32;
+    fn position(&self) -> i32;
 
     #[doc(alias = "gtk_editable_get_selection_bounds")]
-    fn get_selection_bounds(&self) -> Option<(i32, i32)>;
+    fn selection_bounds(&self) -> Option<(i32, i32)>;
 
     #[doc(alias = "gtk_editable_get_text")]
-    fn get_text(&self) -> glib::GString;
+    fn text(&self) -> glib::GString;
 
     #[doc(alias = "gtk_editable_get_width_chars")]
-    fn get_width_chars(&self) -> i32;
+    fn width_chars(&self) -> i32;
 
     #[doc(alias = "gtk_editable_init_delegate")]
     fn init_delegate(&self);
@@ -97,13 +97,17 @@ pub trait EditableExt: 'static {
     #[doc(alias = "gtk_editable_set_width_chars")]
     fn set_width_chars(&self, n_chars: i32);
 
-    fn get_property_cursor_position(&self) -> i32;
+    #[doc(alias = "get_property_cursor_position")]
+    fn cursor_position(&self) -> i32;
 
-    fn get_property_selection_bound(&self) -> i32;
+    #[doc(alias = "get_property_selection_bound")]
+    fn selection_bound(&self) -> i32;
 
-    fn get_property_xalign(&self) -> f32;
+    #[doc(alias = "get_property_xalign")]
+    fn xalign(&self) -> f32;
 
-    fn set_property_xalign(&self, xalign: f32);
+    #[doc(alias = "set_property_xalign")]
+    fn set_xalign(&self, xalign: f32);
 
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -154,7 +158,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
-    fn get_alignment(&self) -> f32 {
+    fn alignment(&self) -> f32 {
         unsafe { ffi::gtk_editable_get_alignment(self.as_ref().to_glib_none().0) }
     }
 
@@ -168,7 +172,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
-    fn get_delegate(&self) -> Option<Editable> {
+    fn delegate(&self) -> Option<Editable> {
         unsafe {
             from_glib_none(ffi::gtk_editable_get_delegate(
                 self.as_ref().to_glib_none().0,
@@ -176,7 +180,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
-    fn get_editable(&self) -> bool {
+    fn is_editable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_editable_get_editable(
                 self.as_ref().to_glib_none().0,
@@ -184,7 +188,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
-    fn get_enable_undo(&self) -> bool {
+    fn enables_undo(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_editable_get_enable_undo(
                 self.as_ref().to_glib_none().0,
@@ -192,15 +196,15 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
-    fn get_max_width_chars(&self) -> i32 {
+    fn max_width_chars(&self) -> i32 {
         unsafe { ffi::gtk_editable_get_max_width_chars(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_position(&self) -> i32 {
+    fn position(&self) -> i32 {
         unsafe { ffi::gtk_editable_get_position(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_selection_bounds(&self) -> Option<(i32, i32)> {
+    fn selection_bounds(&self) -> Option<(i32, i32)> {
         unsafe {
             let mut start_pos = mem::MaybeUninit::uninit();
             let mut end_pos = mem::MaybeUninit::uninit();
@@ -219,11 +223,11 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
-    fn get_text(&self) -> glib::GString {
+    fn text(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_editable_get_text(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_width_chars(&self) -> i32 {
+    fn width_chars(&self) -> i32 {
         unsafe { ffi::gtk_editable_get_width_chars(self.as_ref().to_glib_none().0) }
     }
 
@@ -296,7 +300,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
-    fn get_property_cursor_position(&self) -> i32 {
+    fn cursor_position(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -311,7 +315,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
-    fn get_property_selection_bound(&self) -> i32 {
+    fn selection_bound(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -326,7 +330,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
-    fn get_property_xalign(&self) -> f32 {
+    fn xalign(&self) -> f32 {
         unsafe {
             let mut value = glib::Value::from_type(<f32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -341,7 +345,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
-    fn set_property_xalign(&self, xalign: f32) {
+    fn set_xalign(&self, xalign: f32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,

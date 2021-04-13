@@ -35,7 +35,7 @@ impl PrintContext {
     }
 
     #[doc(alias = "gtk_print_context_get_cairo_context")]
-    pub fn get_cairo_context(&self) -> Option<cairo::Context> {
+    pub fn cairo_context(&self) -> Option<cairo::Context> {
         unsafe {
             from_glib_none(ffi::gtk_print_context_get_cairo_context(
                 self.to_glib_none().0,
@@ -44,17 +44,17 @@ impl PrintContext {
     }
 
     #[doc(alias = "gtk_print_context_get_dpi_x")]
-    pub fn get_dpi_x(&self) -> f64 {
+    pub fn dpi_x(&self) -> f64 {
         unsafe { ffi::gtk_print_context_get_dpi_x(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_print_context_get_dpi_y")]
-    pub fn get_dpi_y(&self) -> f64 {
+    pub fn dpi_y(&self) -> f64 {
         unsafe { ffi::gtk_print_context_get_dpi_y(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_print_context_get_hard_margins")]
-    pub fn get_hard_margins(&self) -> Option<(f64, f64, f64, f64)> {
+    pub fn hard_margins(&self) -> Option<(f64, f64, f64, f64)> {
         unsafe {
             let mut top = mem::MaybeUninit::uninit();
             let mut bottom = mem::MaybeUninit::uninit();
@@ -80,17 +80,17 @@ impl PrintContext {
     }
 
     #[doc(alias = "gtk_print_context_get_height")]
-    pub fn get_height(&self) -> f64 {
+    pub fn height(&self) -> f64 {
         unsafe { ffi::gtk_print_context_get_height(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_print_context_get_page_setup")]
-    pub fn get_page_setup(&self) -> Option<PageSetup> {
+    pub fn page_setup(&self) -> Option<PageSetup> {
         unsafe { from_glib_none(ffi::gtk_print_context_get_page_setup(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_context_get_pango_fontmap")]
-    pub fn get_pango_fontmap(&self) -> Option<pango::FontMap> {
+    pub fn pango_fontmap(&self) -> Option<pango::FontMap> {
         unsafe {
             from_glib_none(ffi::gtk_print_context_get_pango_fontmap(
                 self.to_glib_none().0,
@@ -99,7 +99,7 @@ impl PrintContext {
     }
 
     #[doc(alias = "gtk_print_context_get_width")]
-    pub fn get_width(&self) -> f64 {
+    pub fn width(&self) -> f64 {
         unsafe { ffi::gtk_print_context_get_width(self.to_glib_none().0) }
     }
 

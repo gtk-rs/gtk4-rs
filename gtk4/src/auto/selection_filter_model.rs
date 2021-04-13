@@ -35,7 +35,7 @@ impl SelectionFilterModel {
     }
 
     #[doc(alias = "gtk_selection_filter_model_get_model")]
-    pub fn get_model(&self) -> Option<SelectionModel> {
+    pub fn model(&self) -> Option<SelectionModel> {
         unsafe {
             from_glib_none(ffi::gtk_selection_filter_model_get_model(
                 self.to_glib_none().0,

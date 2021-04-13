@@ -54,12 +54,12 @@ impl LinkButton {
     }
 
     #[doc(alias = "gtk_link_button_get_uri")]
-    pub fn get_uri(&self) -> Option<glib::GString> {
+    pub fn uri(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_link_button_get_uri(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_link_button_get_visited")]
-    pub fn get_visited(&self) -> bool {
+    pub fn is_visited(&self) -> bool {
         unsafe { from_glib(ffi::gtk_link_button_get_visited(self.to_glib_none().0)) }
     }
 

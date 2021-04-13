@@ -33,9 +33,11 @@ pub trait CellEditableExt: 'static {
     #[doc(alias = "gtk_cell_editable_remove_widget")]
     fn remove_widget(&self);
 
-    fn get_property_editing_canceled(&self) -> bool;
+    #[doc(alias = "get_property_editing_canceled")]
+    fn is_editing_canceled(&self) -> bool;
 
-    fn set_property_editing_canceled(&self, editing_canceled: bool);
+    #[doc(alias = "set_property_editing_canceled")]
+    fn set_editing_canceled(&self, editing_canceled: bool);
 
     fn connect_editing_done<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -60,7 +62,7 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
         }
     }
 
-    fn get_property_editing_canceled(&self) -> bool {
+    fn is_editing_canceled(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -75,7 +77,7 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
         }
     }
 
-    fn set_property_editing_canceled(&self, editing_canceled: bool) {
+    fn set_editing_canceled(&self, editing_canceled: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,

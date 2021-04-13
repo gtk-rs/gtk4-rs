@@ -108,19 +108,19 @@ pub const NONE_GESTURE_SINGLE: Option<&GestureSingle> = None;
 
 pub trait GestureSingleExt: 'static {
     #[doc(alias = "gtk_gesture_single_get_button")]
-    fn get_button(&self) -> u32;
+    fn button(&self) -> u32;
 
     #[doc(alias = "gtk_gesture_single_get_current_button")]
-    fn get_current_button(&self) -> u32;
+    fn current_button(&self) -> u32;
 
     #[doc(alias = "gtk_gesture_single_get_current_sequence")]
-    fn get_current_sequence(&self) -> Option<gdk::EventSequence>;
+    fn current_sequence(&self) -> Option<gdk::EventSequence>;
 
     #[doc(alias = "gtk_gesture_single_get_exclusive")]
-    fn get_exclusive(&self) -> bool;
+    fn is_exclusive(&self) -> bool;
 
     #[doc(alias = "gtk_gesture_single_get_touch_only")]
-    fn get_touch_only(&self) -> bool;
+    fn is_touch_only(&self) -> bool;
 
     #[doc(alias = "gtk_gesture_single_set_button")]
     fn set_button(&self, button: u32);
@@ -139,15 +139,15 @@ pub trait GestureSingleExt: 'static {
 }
 
 impl<O: IsA<GestureSingle>> GestureSingleExt for O {
-    fn get_button(&self) -> u32 {
+    fn button(&self) -> u32 {
         unsafe { ffi::gtk_gesture_single_get_button(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_current_button(&self) -> u32 {
+    fn current_button(&self) -> u32 {
         unsafe { ffi::gtk_gesture_single_get_current_button(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_current_sequence(&self) -> Option<gdk::EventSequence> {
+    fn current_sequence(&self) -> Option<gdk::EventSequence> {
         unsafe {
             from_glib_full(ffi::gtk_gesture_single_get_current_sequence(
                 self.as_ref().to_glib_none().0,
@@ -155,7 +155,7 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
         }
     }
 
-    fn get_exclusive(&self) -> bool {
+    fn is_exclusive(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_gesture_single_get_exclusive(
                 self.as_ref().to_glib_none().0,
@@ -163,7 +163,7 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
         }
     }
 
-    fn get_touch_only(&self) -> bool {
+    fn is_touch_only(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_gesture_single_get_touch_only(
                 self.as_ref().to_glib_none().0,

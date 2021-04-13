@@ -28,7 +28,7 @@ pub trait FilterExt: 'static {
     fn changed(&self, change: FilterChange);
 
     #[doc(alias = "gtk_filter_get_strictness")]
-    fn get_strictness(&self) -> FilterMatch;
+    fn strictness(&self) -> FilterMatch;
 
     #[doc(alias = "gtk_filter_match")]
     fn match_<P: IsA<glib::Object>>(&self, item: &P) -> bool;
@@ -43,7 +43,7 @@ impl<O: IsA<Filter>> FilterExt for O {
         }
     }
 
-    fn get_strictness(&self) -> FilterMatch {
+    fn strictness(&self) -> FilterMatch {
         unsafe {
             from_glib(ffi::gtk_filter_get_strictness(
                 self.as_ref().to_glib_none().0,

@@ -35,7 +35,7 @@ impl TreeListRowSorter {
     }
 
     #[doc(alias = "gtk_tree_list_row_sorter_get_sorter")]
-    pub fn get_sorter(&self) -> Option<Sorter> {
+    pub fn sorter(&self) -> Option<Sorter> {
         unsafe {
             from_glib_none(ffi::gtk_tree_list_row_sorter_get_sorter(
                 self.to_glib_none().0,

@@ -45,7 +45,7 @@ impl Calendar {
     }
 
     #[doc(alias = "gtk_calendar_get_date")]
-    pub fn get_date(&self) -> glib::DateTime {
+    pub fn date(&self) -> glib::DateTime {
         unsafe { from_glib_full(ffi::gtk_calendar_get_date(self.to_glib_none().0)) }
     }
 
@@ -60,17 +60,17 @@ impl Calendar {
     }
 
     #[doc(alias = "gtk_calendar_get_show_day_names")]
-    pub fn get_show_day_names(&self) -> bool {
+    pub fn shows_day_names(&self) -> bool {
         unsafe { from_glib(ffi::gtk_calendar_get_show_day_names(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_calendar_get_show_heading")]
-    pub fn get_show_heading(&self) -> bool {
+    pub fn shows_heading(&self) -> bool {
         unsafe { from_glib(ffi::gtk_calendar_get_show_heading(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_calendar_get_show_week_numbers")]
-    pub fn get_show_week_numbers(&self) -> bool {
+    pub fn shows_week_numbers(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_calendar_get_show_week_numbers(
                 self.to_glib_none().0,
@@ -120,7 +120,8 @@ impl Calendar {
         }
     }
 
-    pub fn get_property_day(&self) -> i32 {
+    #[doc(alias = "get_property_day")]
+    pub fn day(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -135,7 +136,8 @@ impl Calendar {
         }
     }
 
-    pub fn set_property_day(&self, day: i32) {
+    #[doc(alias = "set_property_day")]
+    pub fn set_day(&self, day: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -145,7 +147,8 @@ impl Calendar {
         }
     }
 
-    pub fn get_property_month(&self) -> i32 {
+    #[doc(alias = "get_property_month")]
+    pub fn month(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -160,7 +163,8 @@ impl Calendar {
         }
     }
 
-    pub fn set_property_month(&self, month: i32) {
+    #[doc(alias = "set_property_month")]
+    pub fn set_month(&self, month: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -170,7 +174,8 @@ impl Calendar {
         }
     }
 
-    pub fn get_property_year(&self) -> i32 {
+    #[doc(alias = "get_property_year")]
+    pub fn year(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -185,7 +190,8 @@ impl Calendar {
         }
     }
 
-    pub fn set_property_year(&self, year: i32) {
+    #[doc(alias = "set_property_year")]
+    pub fn set_year(&self, year: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

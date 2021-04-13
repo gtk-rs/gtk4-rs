@@ -137,27 +137,27 @@ impl GLShader {
     }
 
     #[doc(alias = "gsk_gl_shader_get_args_size")]
-    pub fn get_args_size(&self) -> usize {
+    pub fn args_size(&self) -> usize {
         unsafe { ffi::gsk_gl_shader_get_args_size(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gsk_gl_shader_get_n_textures")]
-    pub fn get_n_textures(&self) -> i32 {
+    pub fn n_textures(&self) -> i32 {
         unsafe { ffi::gsk_gl_shader_get_n_textures(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gsk_gl_shader_get_n_uniforms")]
-    pub fn get_n_uniforms(&self) -> i32 {
+    pub fn n_uniforms(&self) -> i32 {
         unsafe { ffi::gsk_gl_shader_get_n_uniforms(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gsk_gl_shader_get_resource")]
-    pub fn get_resource(&self) -> Option<glib::GString> {
+    pub fn resource(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gsk_gl_shader_get_resource(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_gl_shader_get_source")]
-    pub fn get_source(&self) -> Option<glib::Bytes> {
+    pub fn source(&self) -> Option<glib::Bytes> {
         unsafe { from_glib_none(ffi::gsk_gl_shader_get_source(self.to_glib_none().0)) }
     }
 

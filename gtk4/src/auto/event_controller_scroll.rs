@@ -36,7 +36,7 @@ impl EventControllerScroll {
     }
 
     #[doc(alias = "gtk_event_controller_scroll_get_flags")]
-    pub fn get_flags(&self) -> EventControllerScrollFlags {
+    pub fn flags(&self) -> EventControllerScrollFlags {
         unsafe {
             from_glib(ffi::gtk_event_controller_scroll_get_flags(
                 self.to_glib_none().0,

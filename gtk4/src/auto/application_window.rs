@@ -550,13 +550,13 @@ pub const NONE_APPLICATION_WINDOW: Option<&ApplicationWindow> = None;
 
 pub trait ApplicationWindowExt: 'static {
     #[doc(alias = "gtk_application_window_get_help_overlay")]
-    fn get_help_overlay(&self) -> Option<ShortcutsWindow>;
+    fn help_overlay(&self) -> Option<ShortcutsWindow>;
 
     #[doc(alias = "gtk_application_window_get_id")]
-    fn get_id(&self) -> u32;
+    fn id(&self) -> u32;
 
     #[doc(alias = "gtk_application_window_get_show_menubar")]
-    fn get_show_menubar(&self) -> bool;
+    fn shows_menubar(&self) -> bool;
 
     #[doc(alias = "gtk_application_window_set_help_overlay")]
     fn set_help_overlay(&self, help_overlay: Option<&ShortcutsWindow>);
@@ -569,7 +569,7 @@ pub trait ApplicationWindowExt: 'static {
 }
 
 impl<O: IsA<ApplicationWindow>> ApplicationWindowExt for O {
-    fn get_help_overlay(&self) -> Option<ShortcutsWindow> {
+    fn help_overlay(&self) -> Option<ShortcutsWindow> {
         unsafe {
             from_glib_none(ffi::gtk_application_window_get_help_overlay(
                 self.as_ref().to_glib_none().0,
@@ -577,11 +577,11 @@ impl<O: IsA<ApplicationWindow>> ApplicationWindowExt for O {
         }
     }
 
-    fn get_id(&self) -> u32 {
+    fn id(&self) -> u32 {
         unsafe { ffi::gtk_application_window_get_id(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_show_menubar(&self) -> bool {
+    fn shows_menubar(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_application_window_get_show_menubar(
                 self.as_ref().to_glib_none().0,

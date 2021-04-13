@@ -79,7 +79,7 @@ pub trait RecentManagerExt: 'static {
     fn add_item(&self, uri: &str) -> bool;
 
     #[doc(alias = "gtk_recent_manager_get_items")]
-    fn get_items(&self) -> Vec<RecentInfo>;
+    fn items(&self) -> Vec<RecentInfo>;
 
     #[doc(alias = "gtk_recent_manager_has_item")]
     fn has_item(&self, uri: &str) -> bool;
@@ -96,9 +96,11 @@ pub trait RecentManagerExt: 'static {
     #[doc(alias = "gtk_recent_manager_remove_item")]
     fn remove_item(&self, uri: &str) -> Result<(), glib::Error>;
 
-    fn get_property_filename(&self) -> Option<glib::GString>;
+    #[doc(alias = "get_property_filename")]
+    fn filename(&self) -> Option<glib::GString>;
 
-    fn get_property_size(&self) -> i32;
+    #[doc(alias = "get_property_size")]
+    fn size(&self) -> i32;
 
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -125,7 +127,7 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
         }
     }
 
-    fn get_items(&self) -> Vec<RecentInfo> {
+    fn items(&self) -> Vec<RecentInfo> {
         unsafe {
             FromGlibPtrContainer::from_glib_full(ffi::gtk_recent_manager_get_items(
                 self.as_ref().to_glib_none().0,
@@ -204,7 +206,7 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
         }
     }
 
-    fn get_property_filename(&self) -> Option<glib::GString> {
+    fn filename(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -218,7 +220,7 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
         }
     }
 
-    fn get_property_size(&self) -> i32 {
+    fn size(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(

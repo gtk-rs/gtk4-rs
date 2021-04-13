@@ -31,12 +31,12 @@ impl GridLayout {
     }
 
     #[doc(alias = "gtk_grid_layout_get_baseline_row")]
-    pub fn get_baseline_row(&self) -> i32 {
+    pub fn baseline_row(&self) -> i32 {
         unsafe { ffi::gtk_grid_layout_get_baseline_row(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_grid_layout_get_column_homogeneous")]
-    pub fn get_column_homogeneous(&self) -> bool {
+    pub fn is_column_homogeneous(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_grid_layout_get_column_homogeneous(
                 self.to_glib_none().0,
@@ -45,7 +45,7 @@ impl GridLayout {
     }
 
     #[doc(alias = "gtk_grid_layout_get_column_spacing")]
-    pub fn get_column_spacing(&self) -> u32 {
+    pub fn column_spacing(&self) -> u32 {
         unsafe { ffi::gtk_grid_layout_get_column_spacing(self.to_glib_none().0) }
     }
 
@@ -60,7 +60,7 @@ impl GridLayout {
     }
 
     #[doc(alias = "gtk_grid_layout_get_row_homogeneous")]
-    pub fn get_row_homogeneous(&self) -> bool {
+    pub fn is_row_homogeneous(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_grid_layout_get_row_homogeneous(
                 self.to_glib_none().0,
@@ -69,7 +69,7 @@ impl GridLayout {
     }
 
     #[doc(alias = "gtk_grid_layout_get_row_spacing")]
-    pub fn get_row_spacing(&self) -> u32 {
+    pub fn row_spacing(&self) -> u32 {
         unsafe { ffi::gtk_grid_layout_get_row_spacing(self.to_glib_none().0) }
     }
 

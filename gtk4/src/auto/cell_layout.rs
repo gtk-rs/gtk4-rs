@@ -32,10 +32,10 @@ pub trait CellLayoutExt: 'static {
     fn clear_attributes<P: IsA<CellRenderer>>(&self, cell: &P);
 
     #[doc(alias = "gtk_cell_layout_get_area")]
-    fn get_area(&self) -> Option<CellArea>;
+    fn area(&self) -> Option<CellArea>;
 
     #[doc(alias = "gtk_cell_layout_get_cells")]
-    fn get_cells(&self) -> Vec<CellRenderer>;
+    fn cells(&self) -> Vec<CellRenderer>;
 
     #[doc(alias = "gtk_cell_layout_pack_end")]
     fn pack_end<P: IsA<CellRenderer>>(&self, cell: &P, expand: bool);
@@ -84,7 +84,7 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
         }
     }
 
-    fn get_area(&self) -> Option<CellArea> {
+    fn area(&self) -> Option<CellArea> {
         unsafe {
             from_glib_none(ffi::gtk_cell_layout_get_area(
                 self.as_ref().to_glib_none().0,
@@ -92,7 +92,7 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
         }
     }
 
-    fn get_cells(&self) -> Vec<CellRenderer> {
+    fn cells(&self) -> Vec<CellRenderer> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_cell_layout_get_cells(
                 self.as_ref().to_glib_none().0,

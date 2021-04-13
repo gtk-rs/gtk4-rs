@@ -39,27 +39,27 @@ impl Revealer {
     }
 
     #[doc(alias = "gtk_revealer_get_child")]
-    pub fn get_child(&self) -> Option<Widget> {
+    pub fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_revealer_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_revealer_get_child_revealed")]
-    pub fn get_child_revealed(&self) -> bool {
+    pub fn is_child_revealed(&self) -> bool {
         unsafe { from_glib(ffi::gtk_revealer_get_child_revealed(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_revealer_get_reveal_child")]
-    pub fn get_reveal_child(&self) -> bool {
+    pub fn reveals_child(&self) -> bool {
         unsafe { from_glib(ffi::gtk_revealer_get_reveal_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_revealer_get_transition_duration")]
-    pub fn get_transition_duration(&self) -> u32 {
+    pub fn transition_duration(&self) -> u32 {
         unsafe { ffi::gtk_revealer_get_transition_duration(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_revealer_get_transition_type")]
-    pub fn get_transition_type(&self) -> RevealerTransitionType {
+    pub fn transition_type(&self) -> RevealerTransitionType {
         unsafe { from_glib(ffi::gtk_revealer_get_transition_type(self.to_glib_none().0)) }
     }
 

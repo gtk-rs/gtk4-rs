@@ -53,22 +53,22 @@ impl Text {
     }
 
     #[doc(alias = "gtk_text_get_activates_default")]
-    pub fn get_activates_default(&self) -> bool {
+    pub fn activates_default(&self) -> bool {
         unsafe { from_glib(ffi::gtk_text_get_activates_default(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_get_attributes")]
-    pub fn get_attributes(&self) -> Option<pango::AttrList> {
+    pub fn attributes(&self) -> Option<pango::AttrList> {
         unsafe { from_glib_none(ffi::gtk_text_get_attributes(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_get_buffer")]
-    pub fn get_buffer(&self) -> Option<EntryBuffer> {
+    pub fn buffer(&self) -> Option<EntryBuffer> {
         unsafe { from_glib_none(ffi::gtk_text_get_buffer(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_get_enable_emoji_completion")]
-    pub fn get_enable_emoji_completion(&self) -> bool {
+    pub fn enables_emoji_completion(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_get_enable_emoji_completion(
                 self.to_glib_none().0,
@@ -77,22 +77,22 @@ impl Text {
     }
 
     #[doc(alias = "gtk_text_get_extra_menu")]
-    pub fn get_extra_menu(&self) -> Option<gio::MenuModel> {
+    pub fn extra_menu(&self) -> Option<gio::MenuModel> {
         unsafe { from_glib_none(ffi::gtk_text_get_extra_menu(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_get_input_hints")]
-    pub fn get_input_hints(&self) -> InputHints {
+    pub fn input_hints(&self) -> InputHints {
         unsafe { from_glib(ffi::gtk_text_get_input_hints(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_get_input_purpose")]
-    pub fn get_input_purpose(&self) -> InputPurpose {
+    pub fn input_purpose(&self) -> InputPurpose {
         unsafe { from_glib(ffi::gtk_text_get_input_purpose(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_get_invisible_char")]
-    pub fn get_invisible_char(&self) -> char {
+    pub fn invisible_char(&self) -> char {
         unsafe {
             std::convert::TryFrom::try_from(ffi::gtk_text_get_invisible_char(self.to_glib_none().0))
                 .expect("conversion from an invalid Unicode value attempted")
@@ -100,22 +100,22 @@ impl Text {
     }
 
     #[doc(alias = "gtk_text_get_max_length")]
-    pub fn get_max_length(&self) -> i32 {
+    pub fn max_length(&self) -> i32 {
         unsafe { ffi::gtk_text_get_max_length(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_text_get_overwrite_mode")]
-    pub fn get_overwrite_mode(&self) -> bool {
+    pub fn is_overwrite_mode(&self) -> bool {
         unsafe { from_glib(ffi::gtk_text_get_overwrite_mode(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_get_placeholder_text")]
-    pub fn get_placeholder_text(&self) -> Option<glib::GString> {
+    pub fn placeholder_text(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_text_get_placeholder_text(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_get_propagate_text_width")]
-    pub fn get_propagate_text_width(&self) -> bool {
+    pub fn propagates_text_width(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_get_propagate_text_width(
                 self.to_glib_none().0,
@@ -124,22 +124,22 @@ impl Text {
     }
 
     #[doc(alias = "gtk_text_get_tabs")]
-    pub fn get_tabs(&self) -> Option<pango::TabArray> {
+    pub fn tabs(&self) -> Option<pango::TabArray> {
         unsafe { from_glib_none(ffi::gtk_text_get_tabs(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_get_text_length")]
-    pub fn get_text_length(&self) -> u16 {
+    pub fn text_length(&self) -> u16 {
         unsafe { ffi::gtk_text_get_text_length(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_text_get_truncate_multiline")]
-    pub fn get_truncate_multiline(&self) -> bool {
+    pub fn must_truncate_multiline(&self) -> bool {
         unsafe { from_glib(ffi::gtk_text_get_truncate_multiline(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_get_visibility")]
-    pub fn get_visibility(&self) -> bool {
+    pub fn is_visible(&self) -> bool {
         unsafe { from_glib(ffi::gtk_text_get_visibility(self.to_glib_none().0)) }
     }
 
@@ -276,7 +276,8 @@ impl Text {
         }
     }
 
-    pub fn get_property_im_module(&self) -> Option<glib::GString> {
+    #[doc(alias = "get_property_im_module")]
+    pub fn im_module(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -290,7 +291,8 @@ impl Text {
         }
     }
 
-    pub fn set_property_im_module(&self, im_module: Option<&str>) {
+    #[doc(alias = "set_property_im_module")]
+    pub fn set_im_module(&self, im_module: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -300,7 +302,8 @@ impl Text {
         }
     }
 
-    pub fn get_property_invisible_char_set(&self) -> bool {
+    #[doc(alias = "get_property_invisible_char_set")]
+    pub fn is_invisible_char_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -315,7 +318,8 @@ impl Text {
         }
     }
 
-    pub fn set_property_invisible_char_set(&self, invisible_char_set: bool) {
+    #[doc(alias = "set_property_invisible_char_set")]
+    pub fn set_invisible_char_set(&self, invisible_char_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -325,7 +329,8 @@ impl Text {
         }
     }
 
-    pub fn get_property_scroll_offset(&self) -> i32 {
+    #[doc(alias = "get_property_scroll_offset")]
+    pub fn scroll_offset(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(

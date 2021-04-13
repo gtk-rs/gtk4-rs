@@ -66,7 +66,7 @@ pub trait TreeModelFilterExt: 'static {
     fn convert_path_to_child_path(&self, filter_path: &TreePath) -> Option<TreePath>;
 
     #[doc(alias = "gtk_tree_model_filter_get_model")]
-    fn get_model(&self) -> Option<TreeModel>;
+    fn model(&self) -> Option<TreeModel>;
 
     #[doc(alias = "gtk_tree_model_filter_refilter")]
     fn refilter(&self);
@@ -77,7 +77,8 @@ pub trait TreeModelFilterExt: 'static {
     #[doc(alias = "gtk_tree_model_filter_set_visible_func")]
     fn set_visible_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(&self, func: P);
 
-    fn get_property_child_model(&self) -> Option<TreeModel>;
+    #[doc(alias = "get_property_child_model")]
+    fn child_model(&self) -> Option<TreeModel>;
 }
 
 impl<O: IsA<TreeModelFilter>> TreeModelFilterExt for O {
@@ -133,7 +134,7 @@ impl<O: IsA<TreeModelFilter>> TreeModelFilterExt for O {
         }
     }
 
-    fn get_model(&self) -> Option<TreeModel> {
+    fn model(&self) -> Option<TreeModel> {
         unsafe {
             from_glib_none(ffi::gtk_tree_model_filter_get_model(
                 self.as_ref().to_glib_none().0,
@@ -184,7 +185,7 @@ impl<O: IsA<TreeModelFilter>> TreeModelFilterExt for O {
         }
     }
 
-    fn get_property_child_model(&self) -> Option<TreeModel> {
+    fn child_model(&self) -> Option<TreeModel> {
         unsafe {
             let mut value = glib::Value::from_type(<TreeModel as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(

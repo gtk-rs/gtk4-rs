@@ -31,12 +31,12 @@ impl ConstraintGuide {
     }
 
     #[doc(alias = "gtk_constraint_guide_get_name")]
-    pub fn get_name(&self) -> Option<glib::GString> {
+    pub fn name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_constraint_guide_get_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_constraint_guide_get_strength")]
-    pub fn get_strength(&self) -> ConstraintStrength {
+    pub fn strength(&self) -> ConstraintStrength {
         unsafe {
             from_glib(ffi::gtk_constraint_guide_get_strength(
                 self.to_glib_none().0,
@@ -79,7 +79,8 @@ impl ConstraintGuide {
         }
     }
 
-    pub fn get_property_max_height(&self) -> i32 {
+    #[doc(alias = "get_property_max_height")]
+    pub fn max_height(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -94,7 +95,8 @@ impl ConstraintGuide {
         }
     }
 
-    pub fn set_property_max_height(&self, max_height: i32) {
+    #[doc(alias = "set_property_max_height")]
+    pub fn set_max_height(&self, max_height: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -104,7 +106,8 @@ impl ConstraintGuide {
         }
     }
 
-    pub fn get_property_max_width(&self) -> i32 {
+    #[doc(alias = "get_property_max_width")]
+    pub fn max_width(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -119,7 +122,8 @@ impl ConstraintGuide {
         }
     }
 
-    pub fn set_property_max_width(&self, max_width: i32) {
+    #[doc(alias = "set_property_max_width")]
+    pub fn set_max_width(&self, max_width: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -129,7 +133,8 @@ impl ConstraintGuide {
         }
     }
 
-    pub fn get_property_min_height(&self) -> i32 {
+    #[doc(alias = "get_property_min_height")]
+    pub fn min_height(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -144,7 +149,8 @@ impl ConstraintGuide {
         }
     }
 
-    pub fn set_property_min_height(&self, min_height: i32) {
+    #[doc(alias = "set_property_min_height")]
+    pub fn set_min_height(&self, min_height: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -154,7 +160,8 @@ impl ConstraintGuide {
         }
     }
 
-    pub fn get_property_min_width(&self) -> i32 {
+    #[doc(alias = "get_property_min_width")]
+    pub fn min_width(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -169,7 +176,8 @@ impl ConstraintGuide {
         }
     }
 
-    pub fn set_property_min_width(&self, min_width: i32) {
+    #[doc(alias = "set_property_min_width")]
+    pub fn set_min_width(&self, min_width: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -179,7 +187,8 @@ impl ConstraintGuide {
         }
     }
 
-    pub fn get_property_nat_height(&self) -> i32 {
+    #[doc(alias = "get_property_nat_height")]
+    pub fn nat_height(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -194,7 +203,8 @@ impl ConstraintGuide {
         }
     }
 
-    pub fn set_property_nat_height(&self, nat_height: i32) {
+    #[doc(alias = "set_property_nat_height")]
+    pub fn set_nat_height(&self, nat_height: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -204,7 +214,8 @@ impl ConstraintGuide {
         }
     }
 
-    pub fn get_property_nat_width(&self) -> i32 {
+    #[doc(alias = "get_property_nat_width")]
+    pub fn nat_width(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -219,7 +230,8 @@ impl ConstraintGuide {
         }
     }
 
-    pub fn set_property_nat_width(&self, nat_width: i32) {
+    #[doc(alias = "set_property_nat_width")]
+    pub fn set_nat_width(&self, nat_width: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

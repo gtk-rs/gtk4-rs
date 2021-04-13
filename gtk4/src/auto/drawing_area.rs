@@ -351,10 +351,10 @@ pub const NONE_DRAWING_AREA: Option<&DrawingArea> = None;
 
 pub trait DrawingAreaExt: 'static {
     #[doc(alias = "gtk_drawing_area_get_content_height")]
-    fn get_content_height(&self) -> i32;
+    fn content_height(&self) -> i32;
 
     #[doc(alias = "gtk_drawing_area_get_content_width")]
-    fn get_content_width(&self) -> i32;
+    fn content_width(&self) -> i32;
 
     #[doc(alias = "gtk_drawing_area_set_content_height")]
     fn set_content_height(&self, height: i32);
@@ -379,11 +379,11 @@ pub trait DrawingAreaExt: 'static {
 }
 
 impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
-    fn get_content_height(&self) -> i32 {
+    fn content_height(&self) -> i32 {
         unsafe { ffi::gtk_drawing_area_get_content_height(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_content_width(&self) -> i32 {
+    fn content_width(&self) -> i32 {
         unsafe { ffi::gtk_drawing_area_get_content_width(self.as_ref().to_glib_none().0) }
     }
 

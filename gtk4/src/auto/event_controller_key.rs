@@ -47,12 +47,12 @@ impl EventControllerKey {
     }
 
     #[doc(alias = "gtk_event_controller_key_get_group")]
-    pub fn get_group(&self) -> u32 {
+    pub fn group(&self) -> u32 {
         unsafe { ffi::gtk_event_controller_key_get_group(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_event_controller_key_get_im_context")]
-    pub fn get_im_context(&self) -> Option<IMContext> {
+    pub fn im_context(&self) -> Option<IMContext> {
         unsafe {
             from_glib_none(ffi::gtk_event_controller_key_get_im_context(
                 self.to_glib_none().0,

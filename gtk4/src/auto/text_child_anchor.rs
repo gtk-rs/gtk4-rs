@@ -34,14 +34,14 @@ pub const NONE_TEXT_CHILD_ANCHOR: Option<&TextChildAnchor> = None;
 
 pub trait TextChildAnchorExt: 'static {
     #[doc(alias = "gtk_text_child_anchor_get_deleted")]
-    fn get_deleted(&self) -> bool;
+    fn is_deleted(&self) -> bool;
 
     #[doc(alias = "gtk_text_child_anchor_get_widgets")]
-    fn get_widgets(&self) -> Vec<Widget>;
+    fn widgets(&self) -> Vec<Widget>;
 }
 
 impl<O: IsA<TextChildAnchor>> TextChildAnchorExt for O {
-    fn get_deleted(&self) -> bool {
+    fn is_deleted(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_child_anchor_get_deleted(
                 self.as_ref().to_glib_none().0,
@@ -49,7 +49,7 @@ impl<O: IsA<TextChildAnchor>> TextChildAnchorExt for O {
         }
     }
 
-    fn get_widgets(&self) -> Vec<Widget> {
+    fn widgets(&self) -> Vec<Widget> {
         unsafe {
             let mut out_len = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_container_num(

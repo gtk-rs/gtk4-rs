@@ -28,72 +28,72 @@ glib::wrapper! {
 
 impl Device {
     #[doc(alias = "gdk_device_get_caps_lock_state")]
-    pub fn get_caps_lock_state(&self) -> bool {
+    pub fn is_caps_locked(&self) -> bool {
         unsafe { from_glib(ffi::gdk_device_get_caps_lock_state(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_device_tool")]
-    pub fn get_device_tool(&self) -> Option<DeviceTool> {
+    pub fn device_tool(&self) -> Option<DeviceTool> {
         unsafe { from_glib_none(ffi::gdk_device_get_device_tool(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_direction")]
-    pub fn get_direction(&self) -> pango::Direction {
+    pub fn direction(&self) -> pango::Direction {
         unsafe { from_glib(ffi::gdk_device_get_direction(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_display")]
-    pub fn get_display(&self) -> Option<Display> {
+    pub fn display(&self) -> Option<Display> {
         unsafe { from_glib_none(ffi::gdk_device_get_display(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_has_cursor")]
-    pub fn get_has_cursor(&self) -> bool {
+    pub fn has_cursor(&self) -> bool {
         unsafe { from_glib(ffi::gdk_device_get_has_cursor(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_modifier_state")]
-    pub fn get_modifier_state(&self) -> ModifierType {
+    pub fn modifier_state(&self) -> ModifierType {
         unsafe { from_glib(ffi::gdk_device_get_modifier_state(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_name")]
-    pub fn get_name(&self) -> Option<glib::GString> {
+    pub fn name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gdk_device_get_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_num_lock_state")]
-    pub fn get_num_lock_state(&self) -> bool {
+    pub fn is_num_locked(&self) -> bool {
         unsafe { from_glib(ffi::gdk_device_get_num_lock_state(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_num_touches")]
-    pub fn get_num_touches(&self) -> u32 {
+    pub fn num_touches(&self) -> u32 {
         unsafe { ffi::gdk_device_get_num_touches(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_device_get_product_id")]
-    pub fn get_product_id(&self) -> Option<glib::GString> {
+    pub fn product_id(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gdk_device_get_product_id(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_scroll_lock_state")]
-    pub fn get_scroll_lock_state(&self) -> bool {
+    pub fn is_scroll_locked(&self) -> bool {
         unsafe { from_glib(ffi::gdk_device_get_scroll_lock_state(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_seat")]
-    pub fn get_seat(&self) -> Option<Seat> {
+    pub fn seat(&self) -> Option<Seat> {
         unsafe { from_glib_none(ffi::gdk_device_get_seat(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_source")]
-    pub fn get_source(&self) -> InputSource {
+    pub fn source(&self) -> InputSource {
         unsafe { from_glib(ffi::gdk_device_get_source(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_surface_at_position")]
-    pub fn get_surface_at_position(&self) -> (Option<Surface>, f64, f64) {
+    pub fn surface_at_position(&self) -> (Option<Surface>, f64, f64) {
         unsafe {
             let mut win_x = mem::MaybeUninit::uninit();
             let mut win_y = mem::MaybeUninit::uninit();
@@ -109,7 +109,7 @@ impl Device {
     }
 
     #[doc(alias = "gdk_device_get_vendor_id")]
-    pub fn get_vendor_id(&self) -> Option<glib::GString> {
+    pub fn vendor_id(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gdk_device_get_vendor_id(self.to_glib_none().0)) }
     }
 
@@ -118,22 +118,8 @@ impl Device {
         unsafe { from_glib(ffi::gdk_device_has_bidi_layouts(self.to_glib_none().0)) }
     }
 
-    pub fn get_property_has_bidi_layouts(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"has-bidi-layouts\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `has-bidi-layouts` getter")
-                .unwrap()
-        }
-    }
-
-    pub fn get_property_n_axes(&self) -> u32 {
+    #[doc(alias = "get_property_n_axes")]
+    pub fn n_axes(&self) -> u32 {
         unsafe {
             let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -148,7 +134,8 @@ impl Device {
         }
     }
 
-    pub fn set_property_seat(&self, seat: Option<&Seat>) {
+    #[doc(alias = "set_property_seat")]
+    pub fn set_seat(&self, seat: Option<&Seat>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -158,7 +145,8 @@ impl Device {
         }
     }
 
-    pub fn get_property_tool(&self) -> Option<DeviceTool> {
+    #[doc(alias = "get_property_tool")]
+    pub fn tool(&self) -> Option<DeviceTool> {
         unsafe {
             let mut value = glib::Value::from_type(<DeviceTool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(

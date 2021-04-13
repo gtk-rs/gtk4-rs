@@ -27,22 +27,22 @@ glib::wrapper! {
 
 impl StackPage {
     #[doc(alias = "gtk_stack_page_get_child")]
-    pub fn get_child(&self) -> Widget {
+    pub fn child(&self) -> Widget {
         unsafe { from_glib_none(ffi::gtk_stack_page_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_stack_page_get_icon_name")]
-    pub fn get_icon_name(&self) -> Option<glib::GString> {
+    pub fn icon_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_stack_page_get_icon_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_stack_page_get_name")]
-    pub fn get_name(&self) -> Option<glib::GString> {
+    pub fn name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_stack_page_get_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_stack_page_get_needs_attention")]
-    pub fn get_needs_attention(&self) -> bool {
+    pub fn is_needs_attention(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_stack_page_get_needs_attention(
                 self.to_glib_none().0,
@@ -51,17 +51,17 @@ impl StackPage {
     }
 
     #[doc(alias = "gtk_stack_page_get_title")]
-    pub fn get_title(&self) -> Option<glib::GString> {
+    pub fn title(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_stack_page_get_title(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_stack_page_get_use_underline")]
-    pub fn get_use_underline(&self) -> bool {
+    pub fn uses_underline(&self) -> bool {
         unsafe { from_glib(ffi::gtk_stack_page_get_use_underline(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_stack_page_get_visible")]
-    pub fn get_visible(&self) -> bool {
+    pub fn is_visible(&self) -> bool {
         unsafe { from_glib(ffi::gtk_stack_page_get_visible(self.to_glib_none().0)) }
     }
 

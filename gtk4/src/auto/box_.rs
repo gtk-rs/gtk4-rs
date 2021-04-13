@@ -371,13 +371,13 @@ pub trait BoxExt: 'static {
     fn append<P: IsA<Widget>>(&self, child: &P);
 
     #[doc(alias = "gtk_box_get_baseline_position")]
-    fn get_baseline_position(&self) -> BaselinePosition;
+    fn baseline_position(&self) -> BaselinePosition;
 
     #[doc(alias = "gtk_box_get_homogeneous")]
-    fn get_homogeneous(&self) -> bool;
+    fn is_homogeneous(&self) -> bool;
 
     #[doc(alias = "gtk_box_get_spacing")]
-    fn get_spacing(&self) -> i32;
+    fn spacing(&self) -> i32;
 
     #[doc(alias = "gtk_box_insert_child_after")]
     fn insert_child_after<P: IsA<Widget>, Q: IsA<Widget>>(&self, child: &P, sibling: Option<&Q>);
@@ -420,7 +420,7 @@ impl<O: IsA<Box>> BoxExt for O {
         }
     }
 
-    fn get_baseline_position(&self) -> BaselinePosition {
+    fn baseline_position(&self) -> BaselinePosition {
         unsafe {
             from_glib(ffi::gtk_box_get_baseline_position(
                 self.as_ref().to_glib_none().0,
@@ -428,11 +428,11 @@ impl<O: IsA<Box>> BoxExt for O {
         }
     }
 
-    fn get_homogeneous(&self) -> bool {
+    fn is_homogeneous(&self) -> bool {
         unsafe { from_glib(ffi::gtk_box_get_homogeneous(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_spacing(&self) -> i32 {
+    fn spacing(&self) -> i32 {
         unsafe { ffi::gtk_box_get_spacing(self.as_ref().to_glib_none().0) }
     }
 

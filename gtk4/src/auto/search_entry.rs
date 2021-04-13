@@ -40,7 +40,7 @@ impl SearchEntry {
     }
 
     #[doc(alias = "gtk_search_entry_get_key_capture_widget")]
-    pub fn get_key_capture_widget(&self) -> Widget {
+    pub fn key_capture_widget(&self) -> Widget {
         unsafe {
             from_glib_none(ffi::gtk_search_entry_get_key_capture_widget(
                 self.to_glib_none().0,
@@ -58,7 +58,8 @@ impl SearchEntry {
         }
     }
 
-    pub fn get_property_activates_default(&self) -> bool {
+    #[doc(alias = "get_property_activates_default")]
+    pub fn activates_default(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -73,7 +74,8 @@ impl SearchEntry {
         }
     }
 
-    pub fn set_property_activates_default(&self, activates_default: bool) {
+    #[doc(alias = "set_property_activates_default")]
+    pub fn set_activates_default(&self, activates_default: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -83,7 +85,8 @@ impl SearchEntry {
         }
     }
 
-    pub fn get_property_placeholder_text(&self) -> Option<glib::GString> {
+    #[doc(alias = "get_property_placeholder_text")]
+    pub fn placeholder_text(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -97,7 +100,8 @@ impl SearchEntry {
         }
     }
 
-    pub fn set_property_placeholder_text(&self, placeholder_text: Option<&str>) {
+    #[doc(alias = "set_property_placeholder_text")]
+    pub fn set_placeholder_text(&self, placeholder_text: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

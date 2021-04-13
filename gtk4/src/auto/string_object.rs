@@ -26,7 +26,7 @@ impl StringObject {
     }
 
     #[doc(alias = "gtk_string_object_get_string")]
-    pub fn get_string(&self) -> glib::GString {
+    pub fn string(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_string_object_get_string(self.to_glib_none().0)) }
     }
 

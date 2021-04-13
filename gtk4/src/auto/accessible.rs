@@ -27,7 +27,7 @@ pub const NONE_ACCESSIBLE: Option<&Accessible> = None;
 
 pub trait AccessibleExt: 'static {
     #[doc(alias = "gtk_accessible_get_accessible_role")]
-    fn get_accessible_role(&self) -> AccessibleRole;
+    fn accessible_role(&self) -> AccessibleRole;
 
     #[doc(alias = "gtk_accessible_reset_property")]
     fn reset_property(&self, property: AccessibleProperty);
@@ -38,7 +38,8 @@ pub trait AccessibleExt: 'static {
     #[doc(alias = "gtk_accessible_reset_state")]
     fn reset_state(&self, state: AccessibleState);
 
-    fn set_property_accessible_role(&self, accessible_role: AccessibleRole);
+    #[doc(alias = "set_property_accessible_role")]
+    fn set_accessible_role(&self, accessible_role: AccessibleRole);
 
     fn connect_property_accessible_role_notify<F: Fn(&Self) + 'static>(
         &self,
@@ -47,7 +48,7 @@ pub trait AccessibleExt: 'static {
 }
 
 impl<O: IsA<Accessible>> AccessibleExt for O {
-    fn get_accessible_role(&self) -> AccessibleRole {
+    fn accessible_role(&self) -> AccessibleRole {
         unsafe {
             from_glib(ffi::gtk_accessible_get_accessible_role(
                 self.as_ref().to_glib_none().0,
@@ -73,7 +74,7 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
         }
     }
 
-    fn set_property_accessible_role(&self, accessible_role: AccessibleRole) {
+    fn set_accessible_role(&self, accessible_role: AccessibleRole) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,

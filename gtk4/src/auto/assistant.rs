@@ -70,12 +70,12 @@ impl Assistant {
     }
 
     #[doc(alias = "gtk_assistant_get_current_page")]
-    pub fn get_current_page(&self) -> i32 {
+    pub fn current_page(&self) -> i32 {
         unsafe { ffi::gtk_assistant_get_current_page(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_assistant_get_n_pages")]
-    pub fn get_n_pages(&self) -> i32 {
+    pub fn n_pages(&self) -> i32 {
         unsafe { ffi::gtk_assistant_get_n_pages(self.to_glib_none().0) }
     }
 
@@ -130,7 +130,7 @@ impl Assistant {
     }
 
     #[doc(alias = "gtk_assistant_get_pages")]
-    pub fn get_pages(&self) -> Option<gio::ListModel> {
+    pub fn pages(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_full(ffi::gtk_assistant_get_pages(self.to_glib_none().0)) }
     }
 
@@ -266,7 +266,8 @@ impl Assistant {
         }
     }
 
-    pub fn get_property_use_header_bar(&self) -> i32 {
+    #[doc(alias = "get_property_use_header_bar")]
+    pub fn use_header_bar(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(

@@ -40,17 +40,17 @@ impl SliceListModel {
     }
 
     #[doc(alias = "gtk_slice_list_model_get_model")]
-    pub fn get_model(&self) -> Option<gio::ListModel> {
+    pub fn model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_slice_list_model_get_model(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_slice_list_model_get_offset")]
-    pub fn get_offset(&self) -> u32 {
+    pub fn offset(&self) -> u32 {
         unsafe { ffi::gtk_slice_list_model_get_offset(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_slice_list_model_get_size")]
-    pub fn get_size(&self) -> u32 {
+    pub fn size(&self) -> u32 {
         unsafe { ffi::gtk_slice_list_model_get_size(self.to_glib_none().0) }
     }
 

@@ -71,17 +71,17 @@ impl InfoBar {
     }
 
     #[doc(alias = "gtk_info_bar_get_message_type")]
-    pub fn get_message_type(&self) -> MessageType {
+    pub fn message_type(&self) -> MessageType {
         unsafe { from_glib(ffi::gtk_info_bar_get_message_type(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_info_bar_get_revealed")]
-    pub fn get_revealed(&self) -> bool {
+    pub fn is_revealed(&self) -> bool {
         unsafe { from_glib(ffi::gtk_info_bar_get_revealed(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_info_bar_get_show_close_button")]
-    pub fn get_show_close_button(&self) -> bool {
+    pub fn shows_close_button(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_info_bar_get_show_close_button(
                 self.to_glib_none().0,

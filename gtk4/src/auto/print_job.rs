@@ -51,27 +51,27 @@ impl PrintJob {
     }
 
     #[doc(alias = "gtk_print_job_get_collate")]
-    pub fn get_collate(&self) -> bool {
+    pub fn is_collate(&self) -> bool {
         unsafe { from_glib(ffi::gtk_print_job_get_collate(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_job_get_n_up")]
-    pub fn get_n_up(&self) -> u32 {
+    pub fn n_up(&self) -> u32 {
         unsafe { ffi::gtk_print_job_get_n_up(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_print_job_get_n_up_layout")]
-    pub fn get_n_up_layout(&self) -> NumberUpLayout {
+    pub fn n_up_layout(&self) -> NumberUpLayout {
         unsafe { from_glib(ffi::gtk_print_job_get_n_up_layout(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_job_get_num_copies")]
-    pub fn get_num_copies(&self) -> i32 {
+    pub fn num_copies(&self) -> i32 {
         unsafe { ffi::gtk_print_job_get_num_copies(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_print_job_get_page_ranges")]
-    pub fn get_page_ranges(&self) -> Vec<PageRange> {
+    pub fn page_ranges(&self) -> Vec<PageRange> {
         unsafe {
             let mut n_ranges = mem::MaybeUninit::uninit();
             let ret = FromGlibContainer::from_glib_none_num(
@@ -83,47 +83,47 @@ impl PrintJob {
     }
 
     #[doc(alias = "gtk_print_job_get_page_set")]
-    pub fn get_page_set(&self) -> PageSet {
+    pub fn page_set(&self) -> PageSet {
         unsafe { from_glib(ffi::gtk_print_job_get_page_set(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_job_get_pages")]
-    pub fn get_pages(&self) -> PrintPages {
+    pub fn pages(&self) -> PrintPages {
         unsafe { from_glib(ffi::gtk_print_job_get_pages(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_job_get_printer")]
-    pub fn get_printer(&self) -> Printer {
+    pub fn printer(&self) -> Printer {
         unsafe { from_glib_none(ffi::gtk_print_job_get_printer(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_job_get_reverse")]
-    pub fn get_reverse(&self) -> bool {
+    pub fn is_reverse(&self) -> bool {
         unsafe { from_glib(ffi::gtk_print_job_get_reverse(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_job_get_rotate")]
-    pub fn get_rotate(&self) -> bool {
+    pub fn is_rotate(&self) -> bool {
         unsafe { from_glib(ffi::gtk_print_job_get_rotate(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_job_get_scale")]
-    pub fn get_scale(&self) -> f64 {
+    pub fn scale(&self) -> f64 {
         unsafe { ffi::gtk_print_job_get_scale(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_print_job_get_settings")]
-    pub fn get_settings(&self) -> PrintSettings {
+    pub fn settings(&self) -> PrintSettings {
         unsafe { from_glib_none(ffi::gtk_print_job_get_settings(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_job_get_status")]
-    pub fn get_status(&self) -> PrintStatus {
+    pub fn status(&self) -> PrintStatus {
         unsafe { from_glib(ffi::gtk_print_job_get_status(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_job_get_surface")]
-    pub fn get_surface(&self) -> Result<cairo::Surface, glib::Error> {
+    pub fn surface(&self) -> Result<cairo::Surface, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let ret = ffi::gtk_print_job_get_surface(self.to_glib_none().0, &mut error);
@@ -136,12 +136,12 @@ impl PrintJob {
     }
 
     #[doc(alias = "gtk_print_job_get_title")]
-    pub fn get_title(&self) -> glib::GString {
+    pub fn title(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_print_job_get_title(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_job_get_track_print_status")]
-    pub fn get_track_print_status(&self) -> bool {
+    pub fn tracks_print_status(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_print_job_get_track_print_status(
                 self.to_glib_none().0,
@@ -255,7 +255,8 @@ impl PrintJob {
         }
     }
 
-    pub fn get_property_page_setup(&self) -> Option<PageSetup> {
+    #[doc(alias = "get_property_page_setup")]
+    pub fn page_setup(&self) -> Option<PageSetup> {
         unsafe {
             let mut value = glib::Value::from_type(<PageSetup as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(

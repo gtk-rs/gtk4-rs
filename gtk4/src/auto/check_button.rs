@@ -420,16 +420,16 @@ pub const NONE_CHECK_BUTTON: Option<&CheckButton> = None;
 
 pub trait CheckButtonExt: 'static {
     #[doc(alias = "gtk_check_button_get_active")]
-    fn get_active(&self) -> bool;
+    fn is_active(&self) -> bool;
 
     #[doc(alias = "gtk_check_button_get_inconsistent")]
-    fn get_inconsistent(&self) -> bool;
+    fn is_inconsistent(&self) -> bool;
 
     #[doc(alias = "gtk_check_button_get_label")]
-    fn get_label(&self) -> Option<glib::GString>;
+    fn label(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_check_button_get_use_underline")]
-    fn get_use_underline(&self) -> bool;
+    fn uses_underline(&self) -> bool;
 
     #[doc(alias = "gtk_check_button_set_active")]
     fn set_active(&self, setting: bool);
@@ -472,7 +472,7 @@ pub trait CheckButtonExt: 'static {
 }
 
 impl<O: IsA<CheckButton>> CheckButtonExt for O {
-    fn get_active(&self) -> bool {
+    fn is_active(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_check_button_get_active(
                 self.as_ref().to_glib_none().0,
@@ -480,7 +480,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
-    fn get_inconsistent(&self) -> bool {
+    fn is_inconsistent(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_check_button_get_inconsistent(
                 self.as_ref().to_glib_none().0,
@@ -488,7 +488,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
-    fn get_label(&self) -> Option<glib::GString> {
+    fn label(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_check_button_get_label(
                 self.as_ref().to_glib_none().0,
@@ -496,7 +496,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
-    fn get_use_underline(&self) -> bool {
+    fn uses_underline(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_check_button_get_use_underline(
                 self.as_ref().to_glib_none().0,

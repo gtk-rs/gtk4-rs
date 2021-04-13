@@ -69,26 +69,26 @@ pub const NONE_TEXT_MARK: Option<&TextMark> = None;
 
 pub trait TextMarkExt: 'static {
     #[doc(alias = "gtk_text_mark_get_buffer")]
-    fn get_buffer(&self) -> Option<TextBuffer>;
+    fn buffer(&self) -> Option<TextBuffer>;
 
     #[doc(alias = "gtk_text_mark_get_deleted")]
-    fn get_deleted(&self) -> bool;
+    fn is_deleted(&self) -> bool;
 
     #[doc(alias = "gtk_text_mark_get_left_gravity")]
-    fn get_left_gravity(&self) -> bool;
+    fn is_left_gravity(&self) -> bool;
 
     #[doc(alias = "gtk_text_mark_get_name")]
-    fn get_name(&self) -> Option<glib::GString>;
+    fn name(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_text_mark_get_visible")]
-    fn get_visible(&self) -> bool;
+    fn is_visible(&self) -> bool;
 
     #[doc(alias = "gtk_text_mark_set_visible")]
     fn set_visible(&self, setting: bool);
 }
 
 impl<O: IsA<TextMark>> TextMarkExt for O {
-    fn get_buffer(&self) -> Option<TextBuffer> {
+    fn buffer(&self) -> Option<TextBuffer> {
         unsafe {
             from_glib_none(ffi::gtk_text_mark_get_buffer(
                 self.as_ref().to_glib_none().0,
@@ -96,7 +96,7 @@ impl<O: IsA<TextMark>> TextMarkExt for O {
         }
     }
 
-    fn get_deleted(&self) -> bool {
+    fn is_deleted(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_mark_get_deleted(
                 self.as_ref().to_glib_none().0,
@@ -104,7 +104,7 @@ impl<O: IsA<TextMark>> TextMarkExt for O {
         }
     }
 
-    fn get_left_gravity(&self) -> bool {
+    fn is_left_gravity(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_mark_get_left_gravity(
                 self.as_ref().to_glib_none().0,
@@ -112,11 +112,11 @@ impl<O: IsA<TextMark>> TextMarkExt for O {
         }
     }
 
-    fn get_name(&self) -> Option<glib::GString> {
+    fn name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_text_mark_get_name(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_visible(&self) -> bool {
+    fn is_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_mark_get_visible(
                 self.as_ref().to_glib_none().0,

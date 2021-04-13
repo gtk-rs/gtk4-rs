@@ -68,27 +68,27 @@ impl Constraint {
     }
 
     #[doc(alias = "gtk_constraint_get_constant")]
-    pub fn get_constant(&self) -> f64 {
+    pub fn constant(&self) -> f64 {
         unsafe { ffi::gtk_constraint_get_constant(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_constraint_get_multiplier")]
-    pub fn get_multiplier(&self) -> f64 {
+    pub fn multiplier(&self) -> f64 {
         unsafe { ffi::gtk_constraint_get_multiplier(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_constraint_get_relation")]
-    pub fn get_relation(&self) -> ConstraintRelation {
+    pub fn relation(&self) -> ConstraintRelation {
         unsafe { from_glib(ffi::gtk_constraint_get_relation(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_constraint_get_source")]
-    pub fn get_source(&self) -> Option<ConstraintTarget> {
+    pub fn source(&self) -> Option<ConstraintTarget> {
         unsafe { from_glib_none(ffi::gtk_constraint_get_source(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_constraint_get_source_attribute")]
-    pub fn get_source_attribute(&self) -> ConstraintAttribute {
+    pub fn source_attribute(&self) -> ConstraintAttribute {
         unsafe {
             from_glib(ffi::gtk_constraint_get_source_attribute(
                 self.to_glib_none().0,
@@ -97,17 +97,17 @@ impl Constraint {
     }
 
     #[doc(alias = "gtk_constraint_get_strength")]
-    pub fn get_strength(&self) -> i32 {
+    pub fn strength(&self) -> i32 {
         unsafe { ffi::gtk_constraint_get_strength(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_constraint_get_target")]
-    pub fn get_target(&self) -> Option<ConstraintTarget> {
+    pub fn target(&self) -> Option<ConstraintTarget> {
         unsafe { from_glib_none(ffi::gtk_constraint_get_target(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_constraint_get_target_attribute")]
-    pub fn get_target_attribute(&self) -> ConstraintAttribute {
+    pub fn target_attribute(&self) -> ConstraintAttribute {
         unsafe {
             from_glib(ffi::gtk_constraint_get_target_attribute(
                 self.to_glib_none().0,

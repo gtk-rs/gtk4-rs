@@ -24,7 +24,7 @@ pub const NONE_ORIENTABLE: Option<&Orientable> = None;
 
 pub trait OrientableExt: 'static {
     #[doc(alias = "gtk_orientable_get_orientation")]
-    fn get_orientation(&self) -> Orientation;
+    fn orientation(&self) -> Orientation;
 
     #[doc(alias = "gtk_orientable_set_orientation")]
     fn set_orientation(&self, orientation: Orientation);
@@ -33,7 +33,7 @@ pub trait OrientableExt: 'static {
 }
 
 impl<O: IsA<Orientable>> OrientableExt for O {
-    fn get_orientation(&self) -> Orientation {
+    fn orientation(&self) -> Orientation {
         unsafe {
             from_glib(ffi::gtk_orientable_get_orientation(
                 self.as_ref().to_glib_none().0,

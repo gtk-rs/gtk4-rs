@@ -26,17 +26,17 @@ glib::wrapper! {
 
 impl Monitor {
     #[doc(alias = "gdk_monitor_get_connector")]
-    pub fn get_connector(&self) -> Option<glib::GString> {
+    pub fn connector(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gdk_monitor_get_connector(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_monitor_get_display")]
-    pub fn get_display(&self) -> Option<Display> {
+    pub fn display(&self) -> Option<Display> {
         unsafe { from_glib_none(ffi::gdk_monitor_get_display(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_monitor_get_geometry")]
-    pub fn get_geometry(&self) -> Rectangle {
+    pub fn geometry(&self) -> Rectangle {
         unsafe {
             let mut geometry = Rectangle::uninitialized();
             ffi::gdk_monitor_get_geometry(self.to_glib_none().0, geometry.to_glib_none_mut().0);
@@ -45,58 +45,43 @@ impl Monitor {
     }
 
     #[doc(alias = "gdk_monitor_get_height_mm")]
-    pub fn get_height_mm(&self) -> i32 {
+    pub fn height_mm(&self) -> i32 {
         unsafe { ffi::gdk_monitor_get_height_mm(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_monitor_get_manufacturer")]
-    pub fn get_manufacturer(&self) -> Option<glib::GString> {
+    pub fn manufacturer(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gdk_monitor_get_manufacturer(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_monitor_get_model")]
-    pub fn get_model(&self) -> Option<glib::GString> {
+    pub fn model(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gdk_monitor_get_model(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_monitor_get_refresh_rate")]
-    pub fn get_refresh_rate(&self) -> i32 {
+    pub fn refresh_rate(&self) -> i32 {
         unsafe { ffi::gdk_monitor_get_refresh_rate(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_monitor_get_scale_factor")]
-    pub fn get_scale_factor(&self) -> i32 {
+    pub fn scale_factor(&self) -> i32 {
         unsafe { ffi::gdk_monitor_get_scale_factor(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_monitor_get_subpixel_layout")]
-    pub fn get_subpixel_layout(&self) -> SubpixelLayout {
+    pub fn subpixel_layout(&self) -> SubpixelLayout {
         unsafe { from_glib(ffi::gdk_monitor_get_subpixel_layout(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_monitor_get_width_mm")]
-    pub fn get_width_mm(&self) -> i32 {
+    pub fn width_mm(&self) -> i32 {
         unsafe { ffi::gdk_monitor_get_width_mm(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_monitor_is_valid")]
     pub fn is_valid(&self) -> bool {
         unsafe { from_glib(ffi::gdk_monitor_is_valid(self.to_glib_none().0)) }
-    }
-
-    pub fn get_property_valid(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"valid\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `valid` getter")
-                .unwrap()
-        }
     }
 
     pub fn connect_invalidate<F: Fn(&Monitor) + 'static>(&self, f: F) -> SignalHandlerId {

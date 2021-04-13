@@ -740,25 +740,25 @@ pub const NONE_ENTRY: Option<&Entry> = None;
 
 pub trait EntryExt: 'static {
     #[doc(alias = "gtk_entry_get_activates_default")]
-    fn get_activates_default(&self) -> bool;
+    fn activates_default(&self) -> bool;
 
     #[doc(alias = "gtk_entry_get_attributes")]
-    fn get_attributes(&self) -> Option<pango::AttrList>;
+    fn attributes(&self) -> Option<pango::AttrList>;
 
     #[doc(alias = "gtk_entry_get_buffer")]
-    fn get_buffer(&self) -> EntryBuffer;
+    fn buffer(&self) -> EntryBuffer;
 
     #[doc(alias = "gtk_entry_get_completion")]
-    fn get_completion(&self) -> Option<EntryCompletion>;
+    fn completion(&self) -> Option<EntryCompletion>;
 
     #[doc(alias = "gtk_entry_get_current_icon_drag_source")]
-    fn get_current_icon_drag_source(&self) -> i32;
+    fn current_icon_drag_source(&self) -> i32;
 
     #[doc(alias = "gtk_entry_get_extra_menu")]
-    fn get_extra_menu(&self) -> Option<gio::MenuModel>;
+    fn extra_menu(&self) -> Option<gio::MenuModel>;
 
     #[doc(alias = "gtk_entry_get_has_frame")]
-    fn get_has_frame(&self) -> bool;
+    fn has_frame(&self) -> bool;
 
     #[doc(alias = "gtk_entry_get_icon_activatable")]
     fn get_icon_activatable(&self, icon_pos: EntryIconPosition) -> bool;
@@ -791,34 +791,34 @@ pub trait EntryExt: 'static {
     fn get_icon_tooltip_text(&self, icon_pos: EntryIconPosition) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_entry_get_input_hints")]
-    fn get_input_hints(&self) -> InputHints;
+    fn input_hints(&self) -> InputHints;
 
     #[doc(alias = "gtk_entry_get_input_purpose")]
-    fn get_input_purpose(&self) -> InputPurpose;
+    fn input_purpose(&self) -> InputPurpose;
 
     #[doc(alias = "gtk_entry_get_max_length")]
-    fn get_max_length(&self) -> i32;
+    fn max_length(&self) -> i32;
 
     #[doc(alias = "gtk_entry_get_overwrite_mode")]
-    fn get_overwrite_mode(&self) -> bool;
+    fn is_overwrite_mode(&self) -> bool;
 
     #[doc(alias = "gtk_entry_get_placeholder_text")]
-    fn get_placeholder_text(&self) -> Option<glib::GString>;
+    fn placeholder_text(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_entry_get_progress_fraction")]
-    fn get_progress_fraction(&self) -> f64;
+    fn progress_fraction(&self) -> f64;
 
     #[doc(alias = "gtk_entry_get_progress_pulse_step")]
-    fn get_progress_pulse_step(&self) -> f64;
+    fn progress_pulse_step(&self) -> f64;
 
     #[doc(alias = "gtk_entry_get_tabs")]
-    fn get_tabs(&self) -> Option<pango::TabArray>;
+    fn tabs(&self) -> Option<pango::TabArray>;
 
     #[doc(alias = "gtk_entry_get_text_length")]
-    fn get_text_length(&self) -> u16;
+    fn text_length(&self) -> u16;
 
     #[doc(alias = "gtk_entry_get_visibility")]
-    fn get_visibility(&self) -> bool;
+    fn is_visible(&self) -> bool;
 
     #[doc(alias = "gtk_entry_grab_focus_without_selecting")]
     fn grab_focus_without_selecting(&self) -> bool;
@@ -913,99 +913,134 @@ pub trait EntryExt: 'static {
     #[doc(alias = "gtk_entry_unset_invisible_char")]
     fn unset_invisible_char(&self);
 
-    fn get_property_enable_emoji_completion(&self) -> bool;
+    #[doc(alias = "get_property_enable_emoji_completion")]
+    fn enables_emoji_completion(&self) -> bool;
 
-    fn set_property_enable_emoji_completion(&self, enable_emoji_completion: bool);
+    #[doc(alias = "set_property_enable_emoji_completion")]
+    fn set_enable_emoji_completion(&self, enable_emoji_completion: bool);
 
-    fn get_property_im_module(&self) -> Option<glib::GString>;
+    #[doc(alias = "get_property_im_module")]
+    fn im_module(&self) -> Option<glib::GString>;
 
-    fn set_property_im_module(&self, im_module: Option<&str>);
+    #[doc(alias = "set_property_im_module")]
+    fn set_im_module(&self, im_module: Option<&str>);
 
-    fn get_property_invisible_char_set(&self) -> bool;
+    #[doc(alias = "get_property_invisible_char_set")]
+    fn is_invisible_char_set(&self) -> bool;
 
-    fn set_property_invisible_char_set(&self, invisible_char_set: bool);
+    #[doc(alias = "set_property_invisible_char_set")]
+    fn set_invisible_char_set(&self, invisible_char_set: bool);
 
-    fn get_property_primary_icon_activatable(&self) -> bool;
+    #[doc(alias = "get_property_primary_icon_activatable")]
+    fn is_primary_icon_activatable(&self) -> bool;
 
-    fn set_property_primary_icon_activatable(&self, primary_icon_activatable: bool);
+    #[doc(alias = "set_property_primary_icon_activatable")]
+    fn set_primary_icon_activatable(&self, primary_icon_activatable: bool);
 
-    fn get_property_primary_icon_gicon(&self) -> Option<gio::Icon>;
+    #[doc(alias = "get_property_primary_icon_gicon")]
+    fn primary_icon_gicon(&self) -> Option<gio::Icon>;
 
-    fn set_property_primary_icon_gicon<P: IsA<gio::Icon>>(&self, primary_icon_gicon: Option<&P>);
+    #[doc(alias = "set_property_primary_icon_gicon")]
+    fn set_primary_icon_gicon<P: IsA<gio::Icon>>(&self, primary_icon_gicon: Option<&P>);
 
-    fn get_property_primary_icon_name(&self) -> Option<glib::GString>;
+    #[doc(alias = "get_property_primary_icon_name")]
+    fn primary_icon_name(&self) -> Option<glib::GString>;
 
-    fn set_property_primary_icon_name(&self, primary_icon_name: Option<&str>);
+    #[doc(alias = "set_property_primary_icon_name")]
+    fn set_primary_icon_name(&self, primary_icon_name: Option<&str>);
 
-    fn get_property_primary_icon_paintable(&self) -> Option<gdk::Paintable>;
+    #[doc(alias = "get_property_primary_icon_paintable")]
+    fn primary_icon_paintable(&self) -> Option<gdk::Paintable>;
 
-    fn set_property_primary_icon_paintable<P: IsA<gdk::Paintable>>(
+    #[doc(alias = "set_property_primary_icon_paintable")]
+    fn set_primary_icon_paintable<P: IsA<gdk::Paintable>>(
         &self,
         primary_icon_paintable: Option<&P>,
     );
 
-    fn get_property_primary_icon_sensitive(&self) -> bool;
+    #[doc(alias = "get_property_primary_icon_sensitive")]
+    fn is_primary_icon_sensitive(&self) -> bool;
 
-    fn set_property_primary_icon_sensitive(&self, primary_icon_sensitive: bool);
+    #[doc(alias = "set_property_primary_icon_sensitive")]
+    fn set_primary_icon_sensitive(&self, primary_icon_sensitive: bool);
 
-    fn get_property_primary_icon_storage_type(&self) -> ImageType;
+    #[doc(alias = "get_property_primary_icon_storage_type")]
+    fn primary_icon_storage_type(&self) -> ImageType;
 
-    fn get_property_primary_icon_tooltip_markup(&self) -> Option<glib::GString>;
+    #[doc(alias = "get_property_primary_icon_tooltip_markup")]
+    fn primary_icon_tooltip_markup(&self) -> Option<glib::GString>;
 
-    fn set_property_primary_icon_tooltip_markup(&self, primary_icon_tooltip_markup: Option<&str>);
+    #[doc(alias = "set_property_primary_icon_tooltip_markup")]
+    fn set_primary_icon_tooltip_markup(&self, primary_icon_tooltip_markup: Option<&str>);
 
-    fn get_property_primary_icon_tooltip_text(&self) -> Option<glib::GString>;
+    #[doc(alias = "get_property_primary_icon_tooltip_text")]
+    fn primary_icon_tooltip_text(&self) -> Option<glib::GString>;
 
-    fn set_property_primary_icon_tooltip_text(&self, primary_icon_tooltip_text: Option<&str>);
+    #[doc(alias = "set_property_primary_icon_tooltip_text")]
+    fn set_primary_icon_tooltip_text(&self, primary_icon_tooltip_text: Option<&str>);
 
-    fn get_property_scroll_offset(&self) -> i32;
+    #[doc(alias = "get_property_scroll_offset")]
+    fn scroll_offset(&self) -> i32;
 
-    fn get_property_secondary_icon_activatable(&self) -> bool;
+    #[doc(alias = "get_property_secondary_icon_activatable")]
+    fn is_secondary_icon_activatable(&self) -> bool;
 
-    fn set_property_secondary_icon_activatable(&self, secondary_icon_activatable: bool);
+    #[doc(alias = "set_property_secondary_icon_activatable")]
+    fn set_secondary_icon_activatable(&self, secondary_icon_activatable: bool);
 
-    fn get_property_secondary_icon_gicon(&self) -> Option<gio::Icon>;
+    #[doc(alias = "get_property_secondary_icon_gicon")]
+    fn secondary_icon_gicon(&self) -> Option<gio::Icon>;
 
-    fn set_property_secondary_icon_gicon<P: IsA<gio::Icon>>(
-        &self,
-        secondary_icon_gicon: Option<&P>,
-    );
+    #[doc(alias = "set_property_secondary_icon_gicon")]
+    fn set_secondary_icon_gicon<P: IsA<gio::Icon>>(&self, secondary_icon_gicon: Option<&P>);
 
-    fn get_property_secondary_icon_name(&self) -> Option<glib::GString>;
+    #[doc(alias = "get_property_secondary_icon_name")]
+    fn secondary_icon_name(&self) -> Option<glib::GString>;
 
-    fn set_property_secondary_icon_name(&self, secondary_icon_name: Option<&str>);
+    #[doc(alias = "set_property_secondary_icon_name")]
+    fn set_secondary_icon_name(&self, secondary_icon_name: Option<&str>);
 
-    fn get_property_secondary_icon_paintable(&self) -> Option<gdk::Paintable>;
+    #[doc(alias = "get_property_secondary_icon_paintable")]
+    fn secondary_icon_paintable(&self) -> Option<gdk::Paintable>;
 
-    fn set_property_secondary_icon_paintable<P: IsA<gdk::Paintable>>(
+    #[doc(alias = "set_property_secondary_icon_paintable")]
+    fn set_secondary_icon_paintable<P: IsA<gdk::Paintable>>(
         &self,
         secondary_icon_paintable: Option<&P>,
     );
 
-    fn get_property_secondary_icon_sensitive(&self) -> bool;
+    #[doc(alias = "get_property_secondary_icon_sensitive")]
+    fn is_secondary_icon_sensitive(&self) -> bool;
 
-    fn set_property_secondary_icon_sensitive(&self, secondary_icon_sensitive: bool);
+    #[doc(alias = "set_property_secondary_icon_sensitive")]
+    fn set_secondary_icon_sensitive(&self, secondary_icon_sensitive: bool);
 
-    fn get_property_secondary_icon_storage_type(&self) -> ImageType;
+    #[doc(alias = "get_property_secondary_icon_storage_type")]
+    fn secondary_icon_storage_type(&self) -> ImageType;
 
-    fn get_property_secondary_icon_tooltip_markup(&self) -> Option<glib::GString>;
+    #[doc(alias = "get_property_secondary_icon_tooltip_markup")]
+    fn secondary_icon_tooltip_markup(&self) -> Option<glib::GString>;
 
-    fn set_property_secondary_icon_tooltip_markup(
-        &self,
-        secondary_icon_tooltip_markup: Option<&str>,
-    );
+    #[doc(alias = "set_property_secondary_icon_tooltip_markup")]
+    fn set_secondary_icon_tooltip_markup(&self, secondary_icon_tooltip_markup: Option<&str>);
 
-    fn get_property_secondary_icon_tooltip_text(&self) -> Option<glib::GString>;
+    #[doc(alias = "get_property_secondary_icon_tooltip_text")]
+    fn secondary_icon_tooltip_text(&self) -> Option<glib::GString>;
 
-    fn set_property_secondary_icon_tooltip_text(&self, secondary_icon_tooltip_text: Option<&str>);
+    #[doc(alias = "set_property_secondary_icon_tooltip_text")]
+    fn set_secondary_icon_tooltip_text(&self, secondary_icon_tooltip_text: Option<&str>);
 
-    fn get_property_show_emoji_icon(&self) -> bool;
+    #[doc(alias = "get_property_show_emoji_icon")]
+    fn shows_emoji_icon(&self) -> bool;
 
-    fn set_property_show_emoji_icon(&self, show_emoji_icon: bool);
+    #[doc(alias = "set_property_show_emoji_icon")]
+    fn set_show_emoji_icon(&self, show_emoji_icon: bool);
 
-    fn get_property_truncate_multiline(&self) -> bool;
+    #[doc(alias = "get_property_truncate_multiline")]
+    fn must_truncate_multiline(&self) -> bool;
 
-    fn set_property_truncate_multiline(&self, truncate_multiline: bool);
+    #[doc(alias = "set_property_truncate_multiline")]
+    fn set_truncate_multiline(&self, truncate_multiline: bool);
 
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -1185,7 +1220,7 @@ pub trait EntryExt: 'static {
 }
 
 impl<O: IsA<Entry>> EntryExt for O {
-    fn get_activates_default(&self) -> bool {
+    fn activates_default(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_entry_get_activates_default(
                 self.as_ref().to_glib_none().0,
@@ -1193,7 +1228,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_attributes(&self) -> Option<pango::AttrList> {
+    fn attributes(&self) -> Option<pango::AttrList> {
         unsafe {
             from_glib_none(ffi::gtk_entry_get_attributes(
                 self.as_ref().to_glib_none().0,
@@ -1201,11 +1236,11 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_buffer(&self) -> EntryBuffer {
+    fn buffer(&self) -> EntryBuffer {
         unsafe { from_glib_none(ffi::gtk_entry_get_buffer(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_completion(&self) -> Option<EntryCompletion> {
+    fn completion(&self) -> Option<EntryCompletion> {
         unsafe {
             from_glib_none(ffi::gtk_entry_get_completion(
                 self.as_ref().to_glib_none().0,
@@ -1213,11 +1248,11 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_current_icon_drag_source(&self) -> i32 {
+    fn current_icon_drag_source(&self) -> i32 {
         unsafe { ffi::gtk_entry_get_current_icon_drag_source(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_extra_menu(&self) -> Option<gio::MenuModel> {
+    fn extra_menu(&self) -> Option<gio::MenuModel> {
         unsafe {
             from_glib_none(ffi::gtk_entry_get_extra_menu(
                 self.as_ref().to_glib_none().0,
@@ -1225,7 +1260,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_has_frame(&self) -> bool {
+    fn has_frame(&self) -> bool {
         unsafe { from_glib(ffi::gtk_entry_get_has_frame(self.as_ref().to_glib_none().0)) }
     }
 
@@ -1317,7 +1352,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_input_hints(&self) -> InputHints {
+    fn input_hints(&self) -> InputHints {
         unsafe {
             from_glib(ffi::gtk_entry_get_input_hints(
                 self.as_ref().to_glib_none().0,
@@ -1325,7 +1360,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_input_purpose(&self) -> InputPurpose {
+    fn input_purpose(&self) -> InputPurpose {
         unsafe {
             from_glib(ffi::gtk_entry_get_input_purpose(
                 self.as_ref().to_glib_none().0,
@@ -1333,11 +1368,11 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_max_length(&self) -> i32 {
+    fn max_length(&self) -> i32 {
         unsafe { ffi::gtk_entry_get_max_length(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_overwrite_mode(&self) -> bool {
+    fn is_overwrite_mode(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_entry_get_overwrite_mode(
                 self.as_ref().to_glib_none().0,
@@ -1345,7 +1380,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_placeholder_text(&self) -> Option<glib::GString> {
+    fn placeholder_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_entry_get_placeholder_text(
                 self.as_ref().to_glib_none().0,
@@ -1353,23 +1388,23 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_progress_fraction(&self) -> f64 {
+    fn progress_fraction(&self) -> f64 {
         unsafe { ffi::gtk_entry_get_progress_fraction(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_progress_pulse_step(&self) -> f64 {
+    fn progress_pulse_step(&self) -> f64 {
         unsafe { ffi::gtk_entry_get_progress_pulse_step(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_tabs(&self) -> Option<pango::TabArray> {
+    fn tabs(&self) -> Option<pango::TabArray> {
         unsafe { from_glib_none(ffi::gtk_entry_get_tabs(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_text_length(&self) -> u16 {
+    fn text_length(&self) -> u16 {
         unsafe { ffi::gtk_entry_get_text_length(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_visibility(&self) -> bool {
+    fn is_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_entry_get_visibility(
                 self.as_ref().to_glib_none().0,
@@ -1608,7 +1643,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_enable_emoji_completion(&self) -> bool {
+    fn enables_emoji_completion(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1623,7 +1658,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_enable_emoji_completion(&self, enable_emoji_completion: bool) {
+    fn set_enable_emoji_completion(&self, enable_emoji_completion: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1633,7 +1668,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_im_module(&self) -> Option<glib::GString> {
+    fn im_module(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1647,7 +1682,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_im_module(&self, im_module: Option<&str>) {
+    fn set_im_module(&self, im_module: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1657,7 +1692,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_invisible_char_set(&self) -> bool {
+    fn is_invisible_char_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1672,7 +1707,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_invisible_char_set(&self, invisible_char_set: bool) {
+    fn set_invisible_char_set(&self, invisible_char_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1682,7 +1717,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_primary_icon_activatable(&self) -> bool {
+    fn is_primary_icon_activatable(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1697,7 +1732,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_primary_icon_activatable(&self, primary_icon_activatable: bool) {
+    fn set_primary_icon_activatable(&self, primary_icon_activatable: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1709,7 +1744,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_primary_icon_gicon(&self) -> Option<gio::Icon> {
+    fn primary_icon_gicon(&self) -> Option<gio::Icon> {
         unsafe {
             let mut value = glib::Value::from_type(<gio::Icon as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1723,7 +1758,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_primary_icon_gicon<P: IsA<gio::Icon>>(&self, primary_icon_gicon: Option<&P>) {
+    fn set_primary_icon_gicon<P: IsA<gio::Icon>>(&self, primary_icon_gicon: Option<&P>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1733,7 +1768,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_primary_icon_name(&self) -> Option<glib::GString> {
+    fn primary_icon_name(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1747,7 +1782,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_primary_icon_name(&self, primary_icon_name: Option<&str>) {
+    fn set_primary_icon_name(&self, primary_icon_name: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1757,7 +1792,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_primary_icon_paintable(&self) -> Option<gdk::Paintable> {
+    fn primary_icon_paintable(&self) -> Option<gdk::Paintable> {
         unsafe {
             let mut value = glib::Value::from_type(<gdk::Paintable as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1771,7 +1806,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_primary_icon_paintable<P: IsA<gdk::Paintable>>(
+    fn set_primary_icon_paintable<P: IsA<gdk::Paintable>>(
         &self,
         primary_icon_paintable: Option<&P>,
     ) {
@@ -1784,7 +1819,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_primary_icon_sensitive(&self) -> bool {
+    fn is_primary_icon_sensitive(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1799,7 +1834,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_primary_icon_sensitive(&self, primary_icon_sensitive: bool) {
+    fn set_primary_icon_sensitive(&self, primary_icon_sensitive: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1809,7 +1844,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_primary_icon_storage_type(&self) -> ImageType {
+    fn primary_icon_storage_type(&self) -> ImageType {
         unsafe {
             let mut value = glib::Value::from_type(<ImageType as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1824,7 +1859,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_primary_icon_tooltip_markup(&self) -> Option<glib::GString> {
+    fn primary_icon_tooltip_markup(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1838,7 +1873,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_primary_icon_tooltip_markup(&self, primary_icon_tooltip_markup: Option<&str>) {
+    fn set_primary_icon_tooltip_markup(&self, primary_icon_tooltip_markup: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1850,7 +1885,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_primary_icon_tooltip_text(&self) -> Option<glib::GString> {
+    fn primary_icon_tooltip_text(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1864,7 +1899,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_primary_icon_tooltip_text(&self, primary_icon_tooltip_text: Option<&str>) {
+    fn set_primary_icon_tooltip_text(&self, primary_icon_tooltip_text: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1876,7 +1911,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_scroll_offset(&self) -> i32 {
+    fn scroll_offset(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1891,7 +1926,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_secondary_icon_activatable(&self) -> bool {
+    fn is_secondary_icon_activatable(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1906,7 +1941,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_secondary_icon_activatable(&self, secondary_icon_activatable: bool) {
+    fn set_secondary_icon_activatable(&self, secondary_icon_activatable: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1918,7 +1953,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_secondary_icon_gicon(&self) -> Option<gio::Icon> {
+    fn secondary_icon_gicon(&self) -> Option<gio::Icon> {
         unsafe {
             let mut value = glib::Value::from_type(<gio::Icon as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1932,10 +1967,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_secondary_icon_gicon<P: IsA<gio::Icon>>(
-        &self,
-        secondary_icon_gicon: Option<&P>,
-    ) {
+    fn set_secondary_icon_gicon<P: IsA<gio::Icon>>(&self, secondary_icon_gicon: Option<&P>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1945,7 +1977,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_secondary_icon_name(&self) -> Option<glib::GString> {
+    fn secondary_icon_name(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1959,7 +1991,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_secondary_icon_name(&self, secondary_icon_name: Option<&str>) {
+    fn set_secondary_icon_name(&self, secondary_icon_name: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -1969,7 +2001,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_secondary_icon_paintable(&self) -> Option<gdk::Paintable> {
+    fn secondary_icon_paintable(&self) -> Option<gdk::Paintable> {
         unsafe {
             let mut value = glib::Value::from_type(<gdk::Paintable as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -1983,7 +2015,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_secondary_icon_paintable<P: IsA<gdk::Paintable>>(
+    fn set_secondary_icon_paintable<P: IsA<gdk::Paintable>>(
         &self,
         secondary_icon_paintable: Option<&P>,
     ) {
@@ -1996,7 +2028,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_secondary_icon_sensitive(&self) -> bool {
+    fn is_secondary_icon_sensitive(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2011,7 +2043,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_secondary_icon_sensitive(&self, secondary_icon_sensitive: bool) {
+    fn set_secondary_icon_sensitive(&self, secondary_icon_sensitive: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2023,7 +2055,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_secondary_icon_storage_type(&self) -> ImageType {
+    fn secondary_icon_storage_type(&self) -> ImageType {
         unsafe {
             let mut value = glib::Value::from_type(<ImageType as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2038,7 +2070,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_secondary_icon_tooltip_markup(&self) -> Option<glib::GString> {
+    fn secondary_icon_tooltip_markup(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2052,10 +2084,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_secondary_icon_tooltip_markup(
-        &self,
-        secondary_icon_tooltip_markup: Option<&str>,
-    ) {
+    fn set_secondary_icon_tooltip_markup(&self, secondary_icon_tooltip_markup: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2067,7 +2096,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_secondary_icon_tooltip_text(&self) -> Option<glib::GString> {
+    fn secondary_icon_tooltip_text(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2081,7 +2110,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_secondary_icon_tooltip_text(&self, secondary_icon_tooltip_text: Option<&str>) {
+    fn set_secondary_icon_tooltip_text(&self, secondary_icon_tooltip_text: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2093,7 +2122,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_show_emoji_icon(&self) -> bool {
+    fn shows_emoji_icon(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2108,7 +2137,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_show_emoji_icon(&self, show_emoji_icon: bool) {
+    fn set_show_emoji_icon(&self, show_emoji_icon: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
@@ -2118,7 +2147,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_property_truncate_multiline(&self) -> bool {
+    fn must_truncate_multiline(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -2133,7 +2162,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn set_property_truncate_multiline(&self, truncate_multiline: bool) {
+    fn set_truncate_multiline(&self, truncate_multiline: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,

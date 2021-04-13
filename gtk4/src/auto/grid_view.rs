@@ -55,7 +55,7 @@ impl GridView {
     }
 
     #[doc(alias = "gtk_grid_view_get_enable_rubberband")]
-    pub fn get_enable_rubberband(&self) -> bool {
+    pub fn enables_rubberband(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_grid_view_get_enable_rubberband(
                 self.to_glib_none().0,
@@ -64,27 +64,27 @@ impl GridView {
     }
 
     #[doc(alias = "gtk_grid_view_get_factory")]
-    pub fn get_factory(&self) -> Option<ListItemFactory> {
+    pub fn factory(&self) -> Option<ListItemFactory> {
         unsafe { from_glib_none(ffi::gtk_grid_view_get_factory(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_grid_view_get_max_columns")]
-    pub fn get_max_columns(&self) -> u32 {
+    pub fn max_columns(&self) -> u32 {
         unsafe { ffi::gtk_grid_view_get_max_columns(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_grid_view_get_min_columns")]
-    pub fn get_min_columns(&self) -> u32 {
+    pub fn min_columns(&self) -> u32 {
         unsafe { ffi::gtk_grid_view_get_min_columns(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_grid_view_get_model")]
-    pub fn get_model(&self) -> Option<SelectionModel> {
+    pub fn model(&self) -> Option<SelectionModel> {
         unsafe { from_glib_none(ffi::gtk_grid_view_get_model(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_grid_view_get_single_click_activate")]
-    pub fn get_single_click_activate(&self) -> bool {
+    pub fn is_single_click_activate(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_grid_view_get_single_click_activate(
                 self.to_glib_none().0,

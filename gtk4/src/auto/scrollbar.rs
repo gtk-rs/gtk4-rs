@@ -47,7 +47,7 @@ impl Scrollbar {
     }
 
     #[doc(alias = "gtk_scrollbar_get_adjustment")]
-    pub fn get_adjustment(&self) -> Option<Adjustment> {
+    pub fn adjustment(&self) -> Option<Adjustment> {
         unsafe { from_glib_none(ffi::gtk_scrollbar_get_adjustment(self.to_glib_none().0)) }
     }
 

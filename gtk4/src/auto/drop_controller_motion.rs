@@ -43,7 +43,7 @@ impl DropControllerMotion {
     }
 
     #[doc(alias = "gtk_drop_controller_motion_get_drop")]
-    pub fn get_drop(&self) -> Option<gdk::Drop> {
+    pub fn drop(&self) -> Option<gdk::Drop> {
         unsafe {
             from_glib_none(ffi::gtk_drop_controller_motion_get_drop(
                 self.to_glib_none().0,
@@ -57,36 +57,6 @@ impl DropControllerMotion {
             from_glib(ffi::gtk_drop_controller_motion_is_pointer(
                 self.to_glib_none().0,
             ))
-        }
-    }
-
-    pub fn get_property_contains_pointer(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"contains-pointer\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `contains-pointer` getter")
-                .unwrap()
-        }
-    }
-
-    pub fn get_property_is_pointer(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"is-pointer\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `is-pointer` getter")
-                .unwrap()
         }
     }
 

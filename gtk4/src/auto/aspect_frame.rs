@@ -46,27 +46,27 @@ impl AspectFrame {
     }
 
     #[doc(alias = "gtk_aspect_frame_get_child")]
-    pub fn get_child(&self) -> Option<Widget> {
+    pub fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_aspect_frame_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_aspect_frame_get_obey_child")]
-    pub fn get_obey_child(&self) -> bool {
+    pub fn is_obey_child(&self) -> bool {
         unsafe { from_glib(ffi::gtk_aspect_frame_get_obey_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_aspect_frame_get_ratio")]
-    pub fn get_ratio(&self) -> f32 {
+    pub fn ratio(&self) -> f32 {
         unsafe { ffi::gtk_aspect_frame_get_ratio(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_aspect_frame_get_xalign")]
-    pub fn get_xalign(&self) -> f32 {
+    pub fn xalign(&self) -> f32 {
         unsafe { ffi::gtk_aspect_frame_get_xalign(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_aspect_frame_get_yalign")]
-    pub fn get_yalign(&self) -> f32 {
+    pub fn yalign(&self) -> f32 {
         unsafe { ffi::gtk_aspect_frame_get_yalign(self.to_glib_none().0) }
     }
 

@@ -7,7 +7,6 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -27,28 +26,28 @@ pub trait MediaStreamExt: 'static {
     fn ended(&self);
 
     #[doc(alias = "gtk_media_stream_get_duration")]
-    fn get_duration(&self) -> i64;
+    fn duration(&self) -> i64;
 
     #[doc(alias = "gtk_media_stream_get_ended")]
-    fn get_ended(&self) -> bool;
+    fn is_ended(&self) -> bool;
 
     #[doc(alias = "gtk_media_stream_get_error")]
-    fn get_error(&self) -> Option<glib::Error>;
+    fn error(&self) -> Option<glib::Error>;
 
     #[doc(alias = "gtk_media_stream_get_loop")]
-    fn get_loop(&self) -> bool;
+    fn is_loop(&self) -> bool;
 
     #[doc(alias = "gtk_media_stream_get_muted")]
-    fn get_muted(&self) -> bool;
+    fn is_muted(&self) -> bool;
 
     #[doc(alias = "gtk_media_stream_get_playing")]
-    fn get_playing(&self) -> bool;
+    fn is_playing(&self) -> bool;
 
     #[doc(alias = "gtk_media_stream_get_timestamp")]
-    fn get_timestamp(&self) -> i64;
+    fn timestamp(&self) -> i64;
 
     #[doc(alias = "gtk_media_stream_get_volume")]
-    fn get_volume(&self) -> f64;
+    fn volume(&self) -> f64;
 
     #[doc(alias = "gtk_media_stream_has_audio")]
     fn has_audio(&self) -> bool;
@@ -107,17 +106,8 @@ pub trait MediaStreamExt: 'static {
     #[doc(alias = "gtk_media_stream_update")]
     fn update(&self, timestamp: i64);
 
-    fn get_property_has_audio(&self) -> bool;
-
-    fn get_property_has_video(&self) -> bool;
-
-    fn get_property_prepared(&self) -> bool;
-
-    fn set_property_prepared(&self, prepared: bool);
-
-    fn get_property_seekable(&self) -> bool;
-
-    fn get_property_seeking(&self) -> bool;
+    #[doc(alias = "set_property_prepared")]
+    fn set_prepared(&self, prepared: bool);
 
     fn connect_property_duration_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -153,11 +143,11 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn get_duration(&self) -> i64 {
+    fn duration(&self) -> i64 {
         unsafe { ffi::gtk_media_stream_get_duration(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_ended(&self) -> bool {
+    fn is_ended(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_media_stream_get_ended(
                 self.as_ref().to_glib_none().0,
@@ -165,7 +155,7 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn get_error(&self) -> Option<glib::Error> {
+    fn error(&self) -> Option<glib::Error> {
         unsafe {
             from_glib_none(ffi::gtk_media_stream_get_error(
                 self.as_ref().to_glib_none().0,
@@ -173,7 +163,7 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn get_loop(&self) -> bool {
+    fn is_loop(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_media_stream_get_loop(
                 self.as_ref().to_glib_none().0,
@@ -181,7 +171,7 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn get_muted(&self) -> bool {
+    fn is_muted(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_media_stream_get_muted(
                 self.as_ref().to_glib_none().0,
@@ -189,7 +179,7 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn get_playing(&self) -> bool {
+    fn is_playing(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_media_stream_get_playing(
                 self.as_ref().to_glib_none().0,
@@ -197,11 +187,11 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn get_timestamp(&self) -> i64 {
+    fn timestamp(&self) -> i64 {
         unsafe { ffi::gtk_media_stream_get_timestamp(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_volume(&self) -> f64 {
+    fn volume(&self) -> f64 {
         unsafe { ffi::gtk_media_stream_get_volume(self.as_ref().to_glib_none().0) }
     }
 
@@ -338,88 +328,13 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn get_property_has_audio(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"has-audio\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `has-audio` getter")
-                .unwrap()
-        }
-    }
-
-    fn get_property_has_video(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"has-video\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `has-video` getter")
-                .unwrap()
-        }
-    }
-
-    fn get_property_prepared(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"prepared\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `prepared` getter")
-                .unwrap()
-        }
-    }
-
-    fn set_property_prepared(&self, prepared: bool) {
+    fn set_prepared(&self, prepared: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"prepared\0".as_ptr() as *const _,
                 glib::Value::from(&prepared).to_glib_none().0,
             );
-        }
-    }
-
-    fn get_property_seekable(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"seekable\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `seekable` getter")
-                .unwrap()
-        }
-    }
-
-    fn get_property_seeking(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"seeking\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `seeking` getter")
-                .unwrap()
         }
     }
 

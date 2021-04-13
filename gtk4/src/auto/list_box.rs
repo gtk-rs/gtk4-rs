@@ -108,7 +108,7 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_get_activate_on_single_click")]
-    pub fn get_activate_on_single_click(&self) -> bool {
+    pub fn activates_on_single_click(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_box_get_activate_on_single_click(
                 self.to_glib_none().0,
@@ -117,7 +117,7 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_get_adjustment")]
-    pub fn get_adjustment(&self) -> Option<Adjustment> {
+    pub fn adjustment(&self) -> Option<Adjustment> {
         unsafe { from_glib_none(ffi::gtk_list_box_get_adjustment(self.to_glib_none().0)) }
     }
 
@@ -137,12 +137,12 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_get_selected_row")]
-    pub fn get_selected_row(&self) -> Option<ListBoxRow> {
+    pub fn selected_row(&self) -> Option<ListBoxRow> {
         unsafe { from_glib_none(ffi::gtk_list_box_get_selected_row(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_list_box_get_selected_rows")]
-    pub fn get_selected_rows(&self) -> Vec<ListBoxRow> {
+    pub fn selected_rows(&self) -> Vec<ListBoxRow> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_list_box_get_selected_rows(
                 self.to_glib_none().0,
@@ -151,12 +151,12 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_get_selection_mode")]
-    pub fn get_selection_mode(&self) -> SelectionMode {
+    pub fn selection_mode(&self) -> SelectionMode {
         unsafe { from_glib(ffi::gtk_list_box_get_selection_mode(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_list_box_get_show_separators")]
-    pub fn get_show_separators(&self) -> bool {
+    pub fn shows_separators(&self) -> bool {
         unsafe { from_glib(ffi::gtk_list_box_get_show_separators(self.to_glib_none().0)) }
     }
 
@@ -436,7 +436,8 @@ impl ListBox {
         }
     }
 
-    pub fn get_property_accept_unpaired_release(&self) -> bool {
+    #[doc(alias = "get_property_accept_unpaired_release")]
+    pub fn accepts_unpaired_release(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
             glib::gobject_ffi::g_object_get_property(
@@ -451,7 +452,8 @@ impl ListBox {
         }
     }
 
-    pub fn set_property_accept_unpaired_release(&self, accept_unpaired_release: bool) {
+    #[doc(alias = "set_property_accept_unpaired_release")]
+    pub fn set_accept_unpaired_release(&self, accept_unpaired_release: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
