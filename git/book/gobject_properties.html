@@ -200,7 +200,7 @@ That is why, <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/st
 
     // Set and then immediately obtain state
     switch.set_state(true);
-    let current_state = switch.get_state();
+    let current_state = switch.state();
 
     // This prints: &quot;The current state is true&quot;
     println!(&quot;The current state is {}&quot;, current_state);
@@ -435,7 +435,7 @@ impl ObjectImpl for CustomButton {
 
     fn properties() -&gt; &amp;'static [ParamSpec] {
         static PROPERTIES: Lazy&lt;Vec&lt;ParamSpec&gt;&gt; = Lazy::new(|| {
-            vec![ParamSpec::int(
+            vec![ParamSpec::new_int(
                 // Name
                 &quot;number&quot;,
                 // Nickname
@@ -456,7 +456,7 @@ impl ObjectImpl for CustomButton {
     }
 
     fn set_property(&amp;self, _obj: &amp;Self::Type, _id: usize, value: &amp;Value, pspec: &amp;ParamSpec) {
-        match pspec.get_name() {
+        match pspec.name() {
             &quot;number&quot; =&gt; {
                 let input_number = value.get().unwrap().unwrap();
                 self.number.replace(input_number);
@@ -466,7 +466,7 @@ impl ObjectImpl for CustomButton {
     }
 
     fn get_property(&amp;self, _obj: &amp;Self::Type, _id: usize, pspec: &amp;ParamSpec) -&gt; Value {
-        match pspec.get_name() {
+        match pspec.name() {
             &quot;number&quot; =&gt; self.number.borrow().to_value(),
             _ =&gt; unimplemented!(),
         }
@@ -479,7 +479,7 @@ impl ObjectImpl for CustomButton {
 </span><span class="boring">// Trait shared by all buttons
 </span><span class="boring">impl ButtonImpl for CustomButton {
 </span><span class="boring">    fn clicked(&amp;self, button: &amp;Self::Type) {
-</span><span class="boring">        let incremented_number = self.number.borrow().clone() + 1;
+</span><span class="boring">        let incremented_number = *self.number.borrow() + 1;
 </span><span class="boring">        button.set_property(&quot;number&quot;, &amp;incremented_number).unwrap();
 </span><span class="boring">        button.set_label(&amp;self.number.borrow().to_string())
 </span><span class="boring">    }

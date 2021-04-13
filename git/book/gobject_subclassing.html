@@ -235,6 +235,12 @@ impl CustomButton {
         glib::Object::new(&amp;[(&quot;label&quot;, &amp;label)]).expect(&quot;Failed to create Button&quot;)
     }
 }
+
+impl Default for CustomButton {
+    fn default() -&gt; Self {
+        CustomButton::new()
+    }
+}
 <span class="boring">}
 </span></code></pre></pre>
 <p><a href="http://gtk-rs.org/docs/glib/macro.glib_wrapper.html"><code>glib::wrapper!</code></a> does the most of the work of subclassing for us.
