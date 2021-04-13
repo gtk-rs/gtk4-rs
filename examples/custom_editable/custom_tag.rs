@@ -64,8 +64,8 @@ pub mod imp {
         }
 
         fn get_property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> glib::Value {
-            match pspec.get_name() {
-                "label" => self.label.get_text().to_value(),
+            match pspec.name() {
+                "label" => self.label.text().to_value(),
                 "has-close-button" => self.has_close_button.get().to_value(),
                 _ => unimplemented!(),
             }
@@ -78,7 +78,7 @@ pub mod imp {
             value: &glib::Value,
             pspec: &ParamSpec,
         ) {
-            match pspec.get_name() {
+            match pspec.name() {
                 "label" => self.label.set_text(value.get().unwrap().unwrap()),
                 "has-close-button" => {
                     tag.set_has_close_button(value.get_some().unwrap());

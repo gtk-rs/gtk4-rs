@@ -21,7 +21,7 @@ impl<T: EntryImpl> EntryImplExt for T {
     fn parent_activate(&self, entry: &Self::Type) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkEntryClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkEntryClass;
             if let Some(f) = (*parent_class).activate {
                 f(entry.unsafe_cast_ref::<Entry>().to_glib_none().0)
             }
@@ -44,7 +44,7 @@ unsafe impl<T: EntryImpl> IsSubclassable<T> for Entry {
 
 unsafe extern "C" fn entry_activate<T: EntryImpl>(ptr: *mut ffi::GtkEntry) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<Entry> = from_glib_borrow(ptr);
 
     imp.activate(wrap.unsafe_cast_ref())

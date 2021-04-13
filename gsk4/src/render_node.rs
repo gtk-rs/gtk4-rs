@@ -72,7 +72,7 @@ impl RenderNode {
 
     pub fn downcast<T: IsRenderNode>(self) -> Result<T, RenderNode> {
         unsafe {
-            if self.get_node_type() == T::NODE_TYPE {
+            if self.node_type() == T::NODE_TYPE {
                 Ok(from_glib_full(self.to_glib_full()))
             } else {
                 Err(self)
@@ -82,7 +82,7 @@ impl RenderNode {
 
     pub fn downcast_ref<T: IsRenderNode>(&self) -> Option<&T> {
         unsafe {
-            if self.get_node_type() == T::NODE_TYPE {
+            if self.node_type() == T::NODE_TYPE {
                 Some(&*(self as *const RenderNode as *const T))
             } else {
                 None
@@ -96,7 +96,7 @@ impl RenderNode {
         }
     }
 
-    pub fn get_bounds(&self) -> graphene::Rect {
+    pub fn bounds(&self) -> graphene::Rect {
         unsafe {
             let mut bounds = graphene::Rect::uninitialized();
             ffi::gsk_render_node_get_bounds(self.to_glib_none().0, bounds.to_glib_none_mut().0);
@@ -104,7 +104,7 @@ impl RenderNode {
         }
     }
 
-    pub fn get_node_type(&self) -> RenderNodeType {
+    pub fn node_type(&self) -> RenderNodeType {
         unsafe { from_glib(ffi::gsk_render_node_get_node_type(self.to_glib_none().0)) }
     }
 

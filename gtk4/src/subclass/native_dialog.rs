@@ -31,7 +31,7 @@ impl<T: NativeDialogImpl> NativeDialogImplExt for T {
     fn parent_response(&self, dialog: &Self::Type, response: ResponseType) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkNativeDialogClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkNativeDialogClass;
             if let Some(f) = (*parent_class).response {
                 f(
                     dialog.unsafe_cast_ref::<NativeDialog>().to_glib_none().0,
@@ -44,7 +44,7 @@ impl<T: NativeDialogImpl> NativeDialogImplExt for T {
     fn parent_show(&self, dialog: &Self::Type) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkNativeDialogClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkNativeDialogClass;
             let f = (*parent_class)
                 .show
                 .expect("No parent class impl for \"show\"");
@@ -55,7 +55,7 @@ impl<T: NativeDialogImpl> NativeDialogImplExt for T {
     fn parent_hide(&self, dialog: &Self::Type) {
         unsafe {
             let data = T::type_data();
-            let parent_class = data.as_ref().get_parent_class() as *mut ffi::GtkNativeDialogClass;
+            let parent_class = data.as_ref().parent_class() as *mut ffi::GtkNativeDialogClass;
             let f = (*parent_class)
                 .hide
                 .expect("No parent class impl for \"hide\"");
@@ -84,7 +84,7 @@ unsafe extern "C" fn dialog_response<T: NativeDialogImpl>(
     responseptr: i32,
 ) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<NativeDialog> = from_glib_borrow(ptr);
     let res: ResponseType = from_glib(responseptr);
 
@@ -93,7 +93,7 @@ unsafe extern "C" fn dialog_response<T: NativeDialogImpl>(
 
 unsafe extern "C" fn dialog_show<T: NativeDialogImpl>(ptr: *mut ffi::GtkNativeDialog) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<NativeDialog> = from_glib_borrow(ptr);
 
     imp.show(wrap.unsafe_cast_ref())
@@ -101,7 +101,7 @@ unsafe extern "C" fn dialog_show<T: NativeDialogImpl>(ptr: *mut ffi::GtkNativeDi
 
 unsafe extern "C" fn dialog_hide<T: NativeDialogImpl>(ptr: *mut ffi::GtkNativeDialog) {
     let instance = &*(ptr as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let wrap: Borrowed<NativeDialog> = from_glib_borrow(ptr);
 
     imp.hide(wrap.unsafe_cast_ref())

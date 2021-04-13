@@ -12,11 +12,11 @@ impl PageRange {
         PageRange(ffi::GtkPageRange { start, end })
     }
 
-    pub fn get_start(&self) -> i32 {
+    pub fn start(&self) -> i32 {
         self.0.start
     }
 
-    pub fn get_end(&self) -> i32 {
+    pub fn end(&self) -> i32 {
         self.0.end
     }
 }

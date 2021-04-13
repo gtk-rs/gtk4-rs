@@ -8,7 +8,7 @@ use wayland_client::Proxy;
 
 impl WaylandSeat {
     #[doc(alias = "gdk_wayland_seat_get_wl_seat")]
-    pub fn get_wl_seat(&self) -> WlSeat {
+    pub fn wl_seat(&self) -> WlSeat {
         unsafe {
             let ptr = ffi::gdk_wayland_seat_get_wl_seat(self.to_glib_none().0);
             Proxy::from_c_ptr(ptr as *mut wl_proxy).into()

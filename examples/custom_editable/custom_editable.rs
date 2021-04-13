@@ -63,7 +63,7 @@ mod imp {
         ) {
             // In case this is a property that's automatically added for Editable implementations.
             if !self.delegate_set_property(editable, id, value, pspec) {
-                match pspec.get_name() {
+                match pspec.name() {
                     "show-spinner" => {
                         editable.set_show_spinner(value.get_some().unwrap());
                     }
@@ -82,7 +82,7 @@ mod imp {
             if let Some(value) = self.delegate_get_property(editable, id, pspec) {
                 value
             } else {
-                match pspec.get_name() {
+                match pspec.name() {
                     "show-spinner" => self.show_spinner.get().to_value(),
                     _ => unimplemented!(),
                 }
@@ -110,7 +110,7 @@ mod imp {
             // Wire down the delegate signals machinery
             editable.finish_delegate();
             self.text.unparent();
-            while let Some(child) = editable.get_first_child() {
+            while let Some(child) = editable.first_child() {
                 child.unparent();
             }
         }

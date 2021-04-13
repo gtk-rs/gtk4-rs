@@ -86,7 +86,7 @@ mod imp {
             let popover = &*self.popover;
             self.toggle
                 .connect_toggled(glib::clone!(@weak popover => move |toggle| {
-                    if toggle.get_active() {
+                    if toggle.active() {
                         popover.popup();
                     }
                 }));
@@ -102,7 +102,7 @@ mod imp {
         // Here you need to unparent all direct children
         // of your template.
         fn dispose(&self, obj: &Self::Type) {
-            while let Some(child) = obj.get_first_child() {
+            while let Some(child) = obj.first_child() {
                 child.unparent();
             }
         }

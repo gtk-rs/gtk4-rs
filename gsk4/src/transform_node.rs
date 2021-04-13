@@ -23,12 +23,12 @@ impl TransformNode {
     }
 
     #[doc(alias = "gsk_transform_node_get_child")]
-    pub fn get_child(&self) -> Option<RenderNode> {
+    pub fn child(&self) -> Option<RenderNode> {
         unsafe { from_glib_none(ffi::gsk_transform_node_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_transform_node_get_transform")]
-    pub fn get_transform(&self) -> Option<Transform> {
+    pub fn transform(&self) -> Option<Transform> {
         unsafe { from_glib_none(ffi::gsk_transform_node_get_transform(self.to_glib_none().0)) }
     }
 }

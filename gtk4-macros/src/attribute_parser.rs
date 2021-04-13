@@ -69,7 +69,7 @@ fn parse_attribute(meta: &NestedMeta) -> Result<(String, String)> {
         _ => bail!("wrong meta type"),
     };
 
-    let ident = match meta.path.get_ident() {
+    let ident = match meta.path.ident() {
         None => bail!("missing ident"),
         Some(ident) => ident,
     };
@@ -131,7 +131,7 @@ fn parse_field_attr_meta(
             ))
         }
     };
-    let ident = match name_value.path.get_ident() {
+    let ident = match name_value.path.ident() {
         None => {
             return Err(Error::new(
                 name_value.path.span(),

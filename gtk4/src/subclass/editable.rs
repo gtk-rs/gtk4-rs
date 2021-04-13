@@ -55,7 +55,7 @@ pub trait EditableImplExt: ObjectSubclass {
         pspec: &glib::ParamSpec,
     ) -> Option<glib::Value> {
         unsafe {
-            let mut value = glib::Value::from_type(pspec.get_value_type());
+            let mut value = glib::Value::from_type(pspec.value_type());
 
             if from_glib(ffi::gtk_editable_delegate_get_property(
                 editable.unsafe_cast_ref::<glib::Object>().to_glib_none().0,
@@ -281,7 +281,7 @@ impl<T: EditableImpl> EditableImplExt for T {
 
 unsafe impl<T: EditableImpl + ObjectSubclass> IsImplementable<T> for Editable {
     fn interface_init(iface: &mut glib::Interface<Self>) {
-        let instance_type = iface.get_instance_type();
+        let instance_type = iface.instance_type();
         let iface = iface.as_mut();
 
         iface.insert_text = Some(editable_insert_text::<T>);
@@ -320,7 +320,7 @@ unsafe extern "C" fn editable_insert_text<T: EditableImpl>(
     position: *mut c_int,
 ) {
     let instance = &*(editable as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
 
     imp.insert_text(
         from_glib_borrow::<_, Editable>(editable).unsafe_cast_ref(),
@@ -336,7 +336,7 @@ unsafe extern "C" fn editable_delete_text<T: EditableImpl>(
     end_position: c_int,
 ) {
     let instance = &*(editable as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
 
     imp.delete_text(
         from_glib_borrow::<_, Editable>(editable).unsafe_cast_ref(),
@@ -347,7 +347,7 @@ unsafe extern "C" fn editable_delete_text<T: EditableImpl>(
 
 unsafe extern "C" fn editable_changed<T: EditableImpl>(editable: *mut ffi::GtkEditable) {
     let instance = &*(editable as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
 
     imp.changed(from_glib_borrow::<_, Editable>(editable).unsafe_cast_ref())
 }
@@ -356,7 +356,7 @@ unsafe extern "C" fn editable_get_text<T: EditableImpl>(
     editable: *mut ffi::GtkEditable,
 ) -> *const c_char {
     let instance = &*(editable as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
 
     imp.get_text(from_glib_borrow::<_, Editable>(editable).unsafe_cast_ref())
         .to_glib_full()
@@ -369,7 +369,7 @@ unsafe extern "C" fn editable_get_delegate<T: EditableImpl>(
     editable: *mut ffi::GtkEditable,
 ) -> *mut ffi::GtkEditable {
     let instance = &*(editable as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
 
     let wrap = from_glib_borrow::<_, Editable>(editable);
 
@@ -395,7 +395,7 @@ unsafe extern "C" fn editable_do_insert_text<T: EditableImpl>(
     position: *mut i32,
 ) {
     let instance = &*(editable as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
 
     imp.do_insert_text(
         from_glib_borrow::<_, Editable>(editable).unsafe_cast_ref(),
@@ -411,7 +411,7 @@ unsafe extern "C" fn editable_do_delete_text<T: EditableImpl>(
     end_position: i32,
 ) {
     let instance = &*(editable as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
 
     imp.do_delete_text(
         from_glib_borrow::<_, Editable>(editable).unsafe_cast_ref(),
@@ -426,7 +426,7 @@ unsafe extern "C" fn editable_get_selection_bounds<T: EditableImpl>(
     end_position: *mut i32,
 ) -> glib::ffi::gboolean {
     let instance = &*(editable as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
 
     if let Some((start_pos, end_pos)) =
         imp.get_selection_bounds(from_glib_borrow::<_, Editable>(editable).unsafe_cast_ref())
@@ -452,7 +452,7 @@ unsafe extern "C" fn editable_set_selection_bounds<T: EditableImpl>(
     end_position: i32,
 ) {
     let instance = &*(editable as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
 
     imp.set_selection_bounds(
         from_glib_borrow::<_, Editable>(editable).unsafe_cast_ref(),

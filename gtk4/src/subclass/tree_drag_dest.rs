@@ -102,7 +102,7 @@ unsafe extern "C" fn tree_drag_dest_drag_data_received<T: TreeDragDestImpl>(
     valueptr: *const glib::gobject_ffi::GValue,
 ) -> glib::ffi::gboolean {
     let instance = &*(tree_drag_dest as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
 
     let dest: Borrowed<TreePath> = from_glib_borrow(destptr);
     let value: Value = from_glib_none(valueptr);
@@ -121,7 +121,7 @@ unsafe extern "C" fn tree_drag_dest_row_drop_possible<T: TreeDragDestImpl>(
     valueptr: *const glib::gobject_ffi::GValue,
 ) -> glib::ffi::gboolean {
     let instance = &*(tree_drag_dest as *mut T::Instance);
-    let imp = instance.get_impl();
+    let imp = instance.impl_();
     let dest: Borrowed<TreePath> = from_glib_borrow(destptr);
     let value: Value = from_glib_none(valueptr);
 

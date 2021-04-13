@@ -7,23 +7,23 @@ use glib::translate::*;
 pub struct ParseLocation(ffi::GskParseLocation);
 
 impl ParseLocation {
-    pub fn get_bytes(&self) -> usize {
+    pub fn bytes(&self) -> usize {
         self.0.bytes
     }
 
-    pub fn get_chars(&self) -> usize {
+    pub fn chars(&self) -> usize {
         self.0.chars
     }
 
-    pub fn get_lines(&self) -> usize {
+    pub fn lines(&self) -> usize {
         self.0.lines
     }
 
-    pub fn get_line_bytes(&self) -> usize {
+    pub fn line_bytes(&self) -> usize {
         self.0.line_bytes
     }
 
-    pub fn get_line_chars(&self) -> usize {
+    pub fn line_chars(&self) -> usize {
         self.0.line_chars
     }
 }
