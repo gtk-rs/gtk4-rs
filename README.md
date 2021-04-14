@@ -26,16 +26,9 @@ Currently, the minimum supported Rust version is `1.48.0`.
 
 ## Documentation
 
-### Development Branch
-
-- [Book](https://gtk-rs.org/gtk4-rs/git/book)
-- [GTK](https://gtk-rs.org/gtk4-rs/git/docs/gtk4/)
-- [GDK](https://gtk-rs.org/gtk4-rs/git/docs/gdk4/)
-- [GSK](https://gtk-rs.org/gtk4-rs/git/docs/gsk4/)
-- [GDK Wayland](https://gtk-rs.org/gtk4-rs/git/docs/gdk4_wayland/)
-- [GDK X11](https://gtk-rs.org/gtk4-rs/git/docs/gdk4_x11/)
-- [GTK Macros](https://gtk-rs.org/gtk4-rs/git/docs/gtk4_macros/)
-
+- [Examples](https://github.com/gtk-rs/gtk4-rs/tree/master/examples)
+- Book [Stable]/[Development](https://gtk-rs.org/gtk4-rs/book/git/index.html)
+- The Rust API [Stable]/[Development](https://gtk-rs.org/gtk4-rs/git/docs/)
 ## Contributing
 
 The bindings are composed of two parts:
