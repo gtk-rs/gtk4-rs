@@ -530,10 +530,7 @@ pub trait ComboBoxExt: 'static {
     fn set_popup_fixed_width(&self, fixed: bool);
 
     #[doc(alias = "gtk_combo_box_set_row_separator_func")]
-    fn set_row_separator_func(
-        &self,
-        func: Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>>,
-    );
+    fn set_row_separator_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(&self, func: P);
 
     #[doc(alias = "get_property_has_frame")]
     fn has_frame(&self) -> bool;
@@ -748,40 +745,27 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    fn set_row_separator_func(
-        &self,
-        func: Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>>,
-    ) {
-        let func_data: Box_<Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>>> =
-            Box_::new(func);
-        unsafe extern "C" fn func_func(
+    fn set_row_separator_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(&self, func: P) {
+        let func_data: Box_<P> = Box_::new(func);
+        unsafe extern "C" fn func_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(
             model: *mut ffi::GtkTreeModel,
             iter: *mut ffi::GtkTreeIter,
             data: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let model = from_glib_borrow(model);
             let iter = from_glib_borrow(iter);
-            let callback: &Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>> =
-                &*(data as *mut _);
-            let res = if let Some(ref callback) = *callback {
-                callback(&model, &iter)
-            } else {
-                panic!("cannot get closure...")
-            };
+            let callback: &P = &*(data as *mut _);
+            let res = (*callback)(&model, &iter);
             res.to_glib()
         }
-        let func = if func_data.is_some() {
-            Some(func_func as _)
-        } else {
-            None
-        };
-        unsafe extern "C" fn destroy_func(data: glib::ffi::gpointer) {
-            let _callback: Box_<Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>>> =
-                Box_::from_raw(data as *mut _);
+        let func = Some(func_func::<P> as _);
+        unsafe extern "C" fn destroy_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(
+            data: glib::ffi::gpointer,
+        ) {
+            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
         }
-        let destroy_call3 = Some(destroy_func as _);
-        let super_callback0: Box_<Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>>> =
-            func_data;
+        let destroy_call3 = Some(destroy_func::<P> as _);
+        let super_callback0: Box_<P> = func_data;
         unsafe {
             ffi::gtk_combo_box_set_row_separator_func(
                 self.as_ref().to_glib_none().0,
