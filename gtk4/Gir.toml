@@ -1039,6 +1039,12 @@ trust_return_value_nullability = false
 name = "Gtk.FontChooser"
 status = "generate"
 trust_return_value_nullability = false
+manual_traits = ["FontChooserExtManual"]
+    [[object.function]]
+    name = "set_filter_func"
+        [[object.function.parameter]]
+        name = "filter"
+        nullable = false # use a separate unset_filter_func
 
 [[object]]
 name = "Gtk.Gesture"
