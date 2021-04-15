@@ -278,6 +278,7 @@ mod expression;
 mod file_chooser_dialog;
 mod flags;
 mod flow_box;
+mod font_chooser;
 mod functions;
 mod gesture_stylus;
 mod icon_theme;

@@ -19,6 +19,7 @@ pub use crate::editable::EditableExtManual;
 pub use crate::entry::EntryExtManual;
 pub use crate::entry_buffer::EntryBufferExtManual;
 pub use crate::entry_completion::EntryCompletionExtManual;
+pub use crate::font_chooser::FontChooserExtManual;
 pub use crate::im_context::IMContextExtManual;
 pub use crate::im_context_simple::IMContextSimpleExtManual;
 pub use crate::list_store::GtkListStoreExtManual;
