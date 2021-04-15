@@ -139,7 +139,6 @@ generate = [
     "Gtk.ListItem",
     "Gtk.ListItemFactory",
     "Gtk.ListView",
-    "Gtk.MapListModel",
     "Gtk.MediaControls",
     "Gtk.MediaFile",
     "Gtk.MessageType",
@@ -1275,6 +1274,20 @@ manual_traits = ["GtkListStoreExtManual"]
 name = "Gtk.LockButton"
 status = "generate"
 trust_return_value_nullability = false
+
+[[object]]
+name = "Gtk.MapListModel"
+status = "generate"
+    [[object.function]]
+    name = "new"
+        [[object.function.parameter]]
+        name = "map_func"
+        nullable = false
+    [[object.function]]
+    name = "set_map_func"
+        [[object.function.parameter]]
+        name = "map_func"
+        nullable = false    
 
 [[object]]
 name = "Gtk.MediaStream"
