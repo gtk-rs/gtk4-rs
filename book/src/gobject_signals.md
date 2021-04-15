@@ -22,7 +22,7 @@ connected to it with the generic [`connect_local`](http://gtk-rs.org/docs/glib/o
 {{#rustdoc_include ../listings/gobject_signals/2/main.rs:callback}}
 ```
 
-Similar to the generic way of accessing properties, the advantage of `connect_local` is that it also works with custom signals.
+Similar to the generic way of accessing properties, the advantage of `connect_local` is that it also works with custom signals[^1].
 
 Let us see how we can create our own signals.
 Again, we do that by extending our `CustomButton`.
@@ -50,6 +50,16 @@ After we did that, we set `number` back to 0.
 ```
 
 If we now press on the button, the number of its label increases until it reaches `MAX_NUMBER`.
-Then it starts from 0 again and so on.
+Then it emits the "max-number-reached" signal which we can nicely connect to.
+Whenever we now receive the "max-number-reached" signal, the accompanying number is printed to standard output.
+
+<span class="filename">Filename: listings/gobject_signals/3/main.rs</span>
+
+```rust,no_run
+{{#rustdoc_include ../listings/gobject_signals/3/main.rs:signal_handling}}
+```
 
 Custom signals are especially useful, if you want to notify consumers of your GObject that a certain event occurred.
+
+
+[^1]: If you want to connect from a different thread than the main thread, make sure to use [`connect`](http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.connect) instead of `connect_local`. However, that also means that your connected closure has to implement [`Send`](https://doc.rust-lang.org/stable/core/marker/trait.Send.html) + [`Sync`](https://doc.rust-lang.org/stable/core/marker/trait.Sync.html).

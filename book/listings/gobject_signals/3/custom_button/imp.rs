@@ -33,9 +33,9 @@ impl ObjectImpl for CustomButton {
             vec![Signal::builder(
                 // Signal name
                 "max-number-reached",
-                // Types of the values which will be sent to the receiver
+                // Types of the values which will be sent to the signal handler
                 &[i32::static_type().into()],
-                // Type of the value the receiver sends back
+                // Type of the value the signal handler sends back
                 <()>::static_type().into(),
             )
             .build()]
