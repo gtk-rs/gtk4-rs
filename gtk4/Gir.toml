@@ -49,7 +49,6 @@ generate = [
     "Gtk.ButtonsType",
     "Gtk.Calendar",
     "Gtk.CellAreaBox",
-    "Gtk.CellLayout",
     "Gtk.CellRendererAccelMode",
     "Gtk.CellRendererMode",
     "Gtk.CellRendererPixbuf",
@@ -622,6 +621,16 @@ manual_traits = ["CellEditableExtManual"]
     [[object.function]]
     name = "start_editing"
     manual = true # to handle gdk::Event
+
+[[object]]
+name = "Gtk.CellLayout"
+status = "generate"
+manual_traits = ["CellLayoutExtManual"]
+    [[object.function]]
+    name = "set_cell_data_func"
+        [[object.function.parameter]]
+        name = "func"
+        nullable = false
 
 [[object]]
 name = "Gtk.CellRenderer"
