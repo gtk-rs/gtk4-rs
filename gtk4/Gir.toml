@@ -183,7 +183,6 @@ generate = [
     "Gtk.Revealer",
     "Gtk.RevealerTransitionType",
     "Gtk.Root",
-    "Gtk.Scale",
     "Gtk.ScrollablePolicy",
     "Gtk.ScrollStep",
     "Gtk.ScrollType",
@@ -1564,6 +1563,16 @@ status = "generate"
     [[object.signal]]
     name = "change-value"
     inhibit = true
+
+[[object]]
+name = "Gtk.Scale"
+status = "generate"
+manual_traits = ["ScaleExtManual"]
+    [[object.function]]
+    name = "set_format_value_func"
+        [[object.function.parameter]]
+        name = "func"
+        nullable = false
 
 [[object]]
 name = "Gtk.ScaleButton"

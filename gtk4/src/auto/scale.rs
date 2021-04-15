@@ -482,7 +482,7 @@ pub trait ScaleExt: 'static {
     fn set_draw_value(&self, draw_value: bool);
 
     #[doc(alias = "gtk_scale_set_format_value_func")]
-    fn set_format_value_func(&self, func: Option<Box_<dyn Fn(&Scale, f64) -> String + 'static>>);
+    fn set_format_value_func<P: Fn(&Scale, f64) -> String + 'static>(&self, func: P);
 
     #[doc(alias = "gtk_scale_set_has_origin")]
     fn set_has_origin(&self, has_origin: bool);
@@ -572,36 +572,26 @@ impl<O: IsA<Scale>> ScaleExt for O {
         }
     }
 
-    fn set_format_value_func(&self, func: Option<Box_<dyn Fn(&Scale, f64) -> String + 'static>>) {
-        let func_data: Box_<Option<Box_<dyn Fn(&Scale, f64) -> String + 'static>>> =
-            Box_::new(func);
-        unsafe extern "C" fn func_func(
+    fn set_format_value_func<P: Fn(&Scale, f64) -> String + 'static>(&self, func: P) {
+        let func_data: Box_<P> = Box_::new(func);
+        unsafe extern "C" fn func_func<P: Fn(&Scale, f64) -> String + 'static>(
             scale: *mut ffi::GtkScale,
             value: libc::c_double,
             user_data: glib::ffi::gpointer,
         ) -> *mut libc::c_char {
             let scale = from_glib_borrow(scale);
-            let callback: &Option<Box_<dyn Fn(&Scale, f64) -> String + 'static>> =
-                &*(user_data as *mut _);
-            let res = if let Some(ref callback) = *callback {
-                callback(&scale, value)
-            } else {
-                panic!("cannot get closure...")
-            };
+            let callback: &P = &*(user_data as *mut _);
+            let res = (*callback)(&scale, value);
             res.to_glib_full()
         }
-        let func = if func_data.is_some() {
-            Some(func_func as _)
-        } else {
-            None
-        };
-        unsafe extern "C" fn destroy_notify_func(data: glib::ffi::gpointer) {
-            let _callback: Box_<Option<Box_<dyn Fn(&Scale, f64) -> String + 'static>>> =
-                Box_::from_raw(data as *mut _);
+        let func = Some(func_func::<P> as _);
+        unsafe extern "C" fn destroy_notify_func<P: Fn(&Scale, f64) -> String + 'static>(
+            data: glib::ffi::gpointer,
+        ) {
+            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
         }
-        let destroy_call3 = Some(destroy_notify_func as _);
-        let super_callback0: Box_<Option<Box_<dyn Fn(&Scale, f64) -> String + 'static>>> =
-            func_data;
+        let destroy_call3 = Some(destroy_notify_func::<P> as _);
+        let super_callback0: Box_<P> = func_data;
         unsafe {
             ffi::gtk_scale_set_format_value_func(
                 self.as_ref().to_glib_none().0,
