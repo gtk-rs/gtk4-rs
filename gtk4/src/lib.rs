@@ -304,6 +304,7 @@ mod print_job;
 mod recent_data;
 mod requisition;
 mod response_type;
+mod scale;
 mod shortcut_trigger;
 mod shortcuts_section;
 mod snapshot;
