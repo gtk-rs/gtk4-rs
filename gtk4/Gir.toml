@@ -2181,6 +2181,11 @@ trust_return_value_nullability = false
         [[object.function.parameter]]
         name = "iter"
         const = true
+    [[object.function]]
+    name = "set_cell_data_func"
+        [[object.function.parameter]]
+        name = "func"
+        nullable = false
 
 [[object]]
 name = "Gtk.Widget"
