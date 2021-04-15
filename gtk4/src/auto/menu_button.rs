@@ -93,31 +93,24 @@ impl MenuButton {
     }
 
     #[doc(alias = "gtk_menu_button_set_create_popup_func")]
-    pub fn set_create_popup_func(&self, func: Option<Box_<dyn Fn(&MenuButton) + 'static>>) {
-        let func_data: Box_<Option<Box_<dyn Fn(&MenuButton) + 'static>>> = Box_::new(func);
-        unsafe extern "C" fn func_func(
+    pub fn set_create_popup_func<P: Fn(&MenuButton) + 'static>(&self, func: P) {
+        let func_data: Box_<P> = Box_::new(func);
+        unsafe extern "C" fn func_func<P: Fn(&MenuButton) + 'static>(
             menu_button: *mut ffi::GtkMenuButton,
             user_data: glib::ffi::gpointer,
         ) {
             let menu_button = from_glib_borrow(menu_button);
-            let callback: &Option<Box_<dyn Fn(&MenuButton) + 'static>> = &*(user_data as *mut _);
-            if let Some(ref callback) = *callback {
-                callback(&menu_button)
-            } else {
-                panic!("cannot get closure...")
-            };
+            let callback: &P = &*(user_data as *mut _);
+            (*callback)(&menu_button);
         }
-        let func = if func_data.is_some() {
-            Some(func_func as _)
-        } else {
-            None
-        };
-        unsafe extern "C" fn destroy_notify_func(data: glib::ffi::gpointer) {
-            let _callback: Box_<Option<Box_<dyn Fn(&MenuButton) + 'static>>> =
-                Box_::from_raw(data as *mut _);
+        let func = Some(func_func::<P> as _);
+        unsafe extern "C" fn destroy_notify_func<P: Fn(&MenuButton) + 'static>(
+            data: glib::ffi::gpointer,
+        ) {
+            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
         }
-        let destroy_call3 = Some(destroy_notify_func as _);
-        let super_callback0: Box_<Option<Box_<dyn Fn(&MenuButton) + 'static>>> = func_data;
+        let destroy_call3 = Some(destroy_notify_func::<P> as _);
+        let super_callback0: Box_<P> = func_data;
         unsafe {
             ffi::gtk_menu_button_set_create_popup_func(
                 self.to_glib_none().0,

@@ -290,6 +290,7 @@ mod label;
 mod list_box;
 mod list_store;
 mod media_stream;
+mod menu_button;
 mod message_dialog;
 mod mnemonic_trigger;
 mod notebook;

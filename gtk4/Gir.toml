@@ -1294,6 +1294,11 @@ manual_traits = ["MediaStreamExtManual"]
 name = "Gtk.MenuButton"
 status = "generate"
 trust_return_value_nullability = false
+    [[object.function]]
+    name = "set_create_popup_func"
+        [[object.function.parameter]]
+        name = "func"
+        nullable = false
 
 [[object]]
 name = "Gtk.MessageDialog"
