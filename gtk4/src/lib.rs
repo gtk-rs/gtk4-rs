@@ -289,6 +289,7 @@ mod keyval_trigger;
 mod label;
 mod list_box;
 mod list_store;
+mod map_list_model;
 mod media_stream;
 mod menu_button;
 mod message_dialog;
