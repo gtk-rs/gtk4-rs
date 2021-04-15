@@ -320,6 +320,7 @@ mod tree_path;
 mod tree_row_reference;
 mod tree_sortable;
 mod tree_store;
+mod tree_view;
 mod widget;
 
 pub use border::Border;
