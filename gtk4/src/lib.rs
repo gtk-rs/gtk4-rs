@@ -256,6 +256,7 @@ mod border;
 mod builder;
 mod cell_area;
 mod cell_editable;
+mod cell_layout;
 mod cell_renderer;
 mod color_chooser;
 mod combo_box;
