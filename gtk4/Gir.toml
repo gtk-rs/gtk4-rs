@@ -501,6 +501,11 @@ trait_name = "GtkApplicationExt"
 name = "Gtk.Assistant"
 status = "generate"
 trust_return_value_nullability = false
+    [[object.function]]
+    name = "set_forward_page_func"
+        [[object.function.parameter]]
+        name = "page_func"
+        nullable = false # we define a manual unset_forward_page_func
 
 [[object]]
 name = "Gtk.AssistantPage"

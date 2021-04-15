@@ -250,6 +250,7 @@ pub use rt::*;
 mod accessible;
 mod actionable;
 mod application;
+mod assistant;
 mod bool_filter;
 mod border;
 mod builder;

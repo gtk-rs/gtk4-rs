@@ -191,31 +191,22 @@ impl Assistant {
     }
 
     #[doc(alias = "gtk_assistant_set_forward_page_func")]
-    pub fn set_forward_page_func(&self, page_func: Option<Box_<dyn Fn(i32) -> i32 + 'static>>) {
-        let page_func_data: Box_<Option<Box_<dyn Fn(i32) -> i32 + 'static>>> = Box_::new(page_func);
-        unsafe extern "C" fn page_func_func(
+    pub fn set_forward_page_func<P: Fn(i32) -> i32 + 'static>(&self, page_func: P) {
+        let page_func_data: Box_<P> = Box_::new(page_func);
+        unsafe extern "C" fn page_func_func<P: Fn(i32) -> i32 + 'static>(
             current_page: libc::c_int,
             data: glib::ffi::gpointer,
         ) -> libc::c_int {
-            let callback: &Option<Box_<dyn Fn(i32) -> i32 + 'static>> = &*(data as *mut _);
-            let res = if let Some(ref callback) = *callback {
-                callback(current_page)
-            } else {
-                panic!("cannot get closure...")
-            };
+            let callback: &P = &*(data as *mut _);
+            let res = (*callback)(current_page);
             res
         }
-        let page_func = if page_func_data.is_some() {
-            Some(page_func_func as _)
-        } else {
-            None
-        };
-        unsafe extern "C" fn destroy_func(data: glib::ffi::gpointer) {
-            let _callback: Box_<Option<Box_<dyn Fn(i32) -> i32 + 'static>>> =
-                Box_::from_raw(data as *mut _);
+        let page_func = Some(page_func_func::<P> as _);
+        unsafe extern "C" fn destroy_func<P: Fn(i32) -> i32 + 'static>(data: glib::ffi::gpointer) {
+            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
         }
-        let destroy_call3 = Some(destroy_func as _);
-        let super_callback0: Box_<Option<Box_<dyn Fn(i32) -> i32 + 'static>>> = page_func_data;
+        let destroy_call3 = Some(destroy_func::<P> as _);
+        let super_callback0: Box_<P> = page_func_data;
         unsafe {
             ffi::gtk_assistant_set_forward_page_func(
                 self.to_glib_none().0,
