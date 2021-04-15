@@ -32,9 +32,7 @@ fn on_activate(application: &Application) {
     button
         .connect_local("clicked", false, move |args| {
             // Get the button from the arguments
-            let button = args
-                .get(0)
-                .expect("There needs to be a first argument.")
+            let button = args[0]
                 .get::<Button>()
                 .expect("The value needs to be of type `Button`.")
                 .expect("The value needs to be `Some`.");
