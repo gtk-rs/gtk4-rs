@@ -321,6 +321,7 @@ mod tree_row_reference;
 mod tree_sortable;
 mod tree_store;
 mod tree_view;
+mod tree_view_column;
 mod widget;
 
 pub use border::Border;

@@ -281,15 +281,19 @@ impl TreeViewColumn {
     }
 
     #[doc(alias = "gtk_tree_view_column_set_cell_data_func")]
-    pub fn set_cell_data_func<P: IsA<CellRenderer>>(
+    pub fn set_cell_data_func<
+        P: IsA<CellRenderer>,
+        Q: Fn(&TreeViewColumn, &CellRenderer, &TreeModel, &TreeIter) + 'static,
+    >(
         &self,
         cell_renderer: &P,
-        func: Option<Box_<dyn Fn(&TreeViewColumn, &CellRenderer, &TreeModel, &TreeIter) + 'static>>,
+        func: Q,
     ) {
-        let func_data: Box_<
-            Option<Box_<dyn Fn(&TreeViewColumn, &CellRenderer, &TreeModel, &TreeIter) + 'static>>,
-        > = Box_::new(func);
-        unsafe extern "C" fn func_func<P: IsA<CellRenderer>>(
+        let func_data: Box_<Q> = Box_::new(func);
+        unsafe extern "C" fn func_func<
+            P: IsA<CellRenderer>,
+            Q: Fn(&TreeViewColumn, &CellRenderer, &TreeModel, &TreeIter) + 'static,
+        >(
             tree_column: *mut ffi::GtkTreeViewColumn,
             cell: *mut ffi::GtkCellRenderer,
             tree_model: *mut ffi::GtkTreeModel,
@@ -300,31 +304,20 @@ impl TreeViewColumn {
             let cell = from_glib_borrow(cell);
             let tree_model = from_glib_borrow(tree_model);
             let iter = from_glib_borrow(iter);
-            let callback: &Option<
-                Box_<dyn Fn(&TreeViewColumn, &CellRenderer, &TreeModel, &TreeIter) + 'static>,
-            > = &*(data as *mut _);
-            if let Some(ref callback) = *callback {
-                callback(&tree_column, &cell, &tree_model, &iter)
-            } else {
-                panic!("cannot get closure...")
-            };
+            let callback: &Q = &*(data as *mut _);
+            (*callback)(&tree_column, &cell, &tree_model, &iter);
         }
-        let func = if func_data.is_some() {
-            Some(func_func::<P> as _)
-        } else {
-            None
-        };
-        unsafe extern "C" fn destroy_func<P: IsA<CellRenderer>>(data: glib::ffi::gpointer) {
-            let _callback: Box_<
-                Option<
-                    Box_<dyn Fn(&TreeViewColumn, &CellRenderer, &TreeModel, &TreeIter) + 'static>,
-                >,
-            > = Box_::from_raw(data as *mut _);
+        let func = Some(func_func::<P, Q> as _);
+        unsafe extern "C" fn destroy_func<
+            P: IsA<CellRenderer>,
+            Q: Fn(&TreeViewColumn, &CellRenderer, &TreeModel, &TreeIter) + 'static,
+        >(
+            data: glib::ffi::gpointer,
+        ) {
+            let _callback: Box_<Q> = Box_::from_raw(data as *mut _);
         }
-        let destroy_call4 = Some(destroy_func::<P> as _);
-        let super_callback0: Box_<
-            Option<Box_<dyn Fn(&TreeViewColumn, &CellRenderer, &TreeModel, &TreeIter) + 'static>>,
-        > = func_data;
+        let destroy_call4 = Some(destroy_func::<P, Q> as _);
+        let super_callback0: Box_<Q> = func_data;
         unsafe {
             ffi::gtk_tree_view_column_set_cell_data_func(
                 self.to_glib_none().0,
