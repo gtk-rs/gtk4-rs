@@ -742,6 +742,11 @@ manual_traits = ["ComboBoxExtManual"]
     name = "get_active"
     manual = true # use Option<u32>
     doc_trait_name = "ComboBoxExtManual"
+    [[object.function]]
+    name = "set_row_separator_func"
+        [[object.function.parameter]]
+        name = "func"
+        nullable = false # use a separate unset_row_separator_func
 
 [[object]]
 name = "Gtk.ConstraintGuide"

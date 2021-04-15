@@ -5,6 +5,9 @@ use glib::object::IsA;
 use glib::translate::*;
 
 pub trait ComboBoxExtManual: 'static {
+    #[doc(alias = "gtk_combo_box_set_row_separator_func")]
+    fn unset_row_separator_func(&self);
+
     #[doc(alias = "gtk_combo_box_set_active")]
     fn set_active(&self, index_: Option<u32>);
 
@@ -13,6 +16,17 @@ pub trait ComboBoxExtManual: 'static {
 }
 
 impl<O: IsA<ComboBox>> ComboBoxExtManual for O {
+    fn unset_row_separator_func(&self) {
+        unsafe {
+            ffi::gtk_combo_box_set_row_separator_func(
+                self.as_ref().to_glib_none().0,
+                None,
+                std::ptr::null_mut(),
+                None,
+            );
+        }
+    }
+
     fn set_active(&self, index_: Option<u32>) {
         let index_ = match index_ {
             Some(i) => i as _,
