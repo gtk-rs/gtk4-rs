@@ -169,14 +169,16 @@ impl TreeSelection {
     }
 
     #[doc(alias = "gtk_tree_selection_set_select_function")]
-    pub fn set_select_function(
+    pub fn set_select_function<
+        P: Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static,
+    >(
         &self,
-        func: Option<Box_<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>>,
+        func: P,
     ) {
-        let func_data: Box_<
-            Option<Box_<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>>,
-        > = Box_::new(func);
-        unsafe extern "C" fn func_func(
+        let func_data: Box_<P> = Box_::new(func);
+        unsafe extern "C" fn func_func<
+            P: Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static,
+        >(
             selection: *mut ffi::GtkTreeSelection,
             model: *mut ffi::GtkTreeModel,
             path: *mut ffi::GtkTreePath,
@@ -187,30 +189,20 @@ impl TreeSelection {
             let model = from_glib_borrow(model);
             let path = from_glib_borrow(path);
             let path_currently_selected = from_glib(path_currently_selected);
-            let callback: &Option<
-                Box_<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>,
-            > = &*(data as *mut _);
-            let res = if let Some(ref callback) = *callback {
-                callback(&selection, &model, &path, path_currently_selected)
-            } else {
-                panic!("cannot get closure...")
-            };
+            let callback: &P = &*(data as *mut _);
+            let res = (*callback)(&selection, &model, &path, path_currently_selected);
             res.to_glib()
         }
-        let func = if func_data.is_some() {
-            Some(func_func as _)
-        } else {
-            None
-        };
-        unsafe extern "C" fn destroy_func(data: glib::ffi::gpointer) {
-            let _callback: Box_<
-                Option<Box_<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>>,
-            > = Box_::from_raw(data as *mut _);
+        let func = Some(func_func::<P> as _);
+        unsafe extern "C" fn destroy_func<
+            P: Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static,
+        >(
+            data: glib::ffi::gpointer,
+        ) {
+            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
         }
-        let destroy_call3 = Some(destroy_func as _);
-        let super_callback0: Box_<
-            Option<Box_<dyn Fn(&TreeSelection, &TreeModel, &TreePath, bool) -> bool + 'static>>,
-        > = func_data;
+        let destroy_call3 = Some(destroy_func::<P> as _);
+        let super_callback0: Box_<P> = func_data;
         unsafe {
             ffi::gtk_tree_selection_set_select_function(
                 self.to_glib_none().0,

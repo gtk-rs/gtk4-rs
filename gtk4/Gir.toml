@@ -2052,6 +2052,11 @@ trust_return_value_nullability = false
         name = "end_path"
         const = true
     [[object.function]]
+    name = "set_select_function"
+        [[object.function.parameter]]
+        name = "func"
+        nullable = false # use unset_select_function
+    [[object.function]]
     name = "get_user_data"
     ignore = true # unsafe 
 
