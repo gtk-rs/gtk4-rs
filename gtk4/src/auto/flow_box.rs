@@ -239,38 +239,25 @@ impl FlowBox {
     }
 
     #[doc(alias = "gtk_flow_box_set_filter_func")]
-    pub fn set_filter_func(
-        &self,
-        filter_func: Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>>,
-    ) {
-        let filter_func_data: Box_<Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>>> =
-            Box_::new(filter_func);
-        unsafe extern "C" fn filter_func_func(
+    pub fn set_filter_func<P: Fn(&FlowBoxChild) -> bool + 'static>(&self, filter_func: P) {
+        let filter_func_data: Box_<P> = Box_::new(filter_func);
+        unsafe extern "C" fn filter_func_func<P: Fn(&FlowBoxChild) -> bool + 'static>(
             child: *mut ffi::GtkFlowBoxChild,
             user_data: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let child = from_glib_borrow(child);
-            let callback: &Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>> =
-                &*(user_data as *mut _);
-            let res = if let Some(ref callback) = *callback {
-                callback(&child)
-            } else {
-                panic!("cannot get closure...")
-            };
+            let callback: &P = &*(user_data as *mut _);
+            let res = (*callback)(&child);
             res.to_glib()
         }
-        let filter_func = if filter_func_data.is_some() {
-            Some(filter_func_func as _)
-        } else {
-            None
-        };
-        unsafe extern "C" fn destroy_func(data: glib::ffi::gpointer) {
-            let _callback: Box_<Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>>> =
-                Box_::from_raw(data as *mut _);
+        let filter_func = Some(filter_func_func::<P> as _);
+        unsafe extern "C" fn destroy_func<P: Fn(&FlowBoxChild) -> bool + 'static>(
+            data: glib::ffi::gpointer,
+        ) {
+            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
         }
-        let destroy_call3 = Some(destroy_func as _);
-        let super_callback0: Box_<Option<Box_<dyn Fn(&FlowBoxChild) -> bool + 'static>>> =
-            filter_func_data;
+        let destroy_call3 = Some(destroy_func::<P> as _);
+        let super_callback0: Box_<P> = filter_func_data;
         unsafe {
             ffi::gtk_flow_box_set_filter_func(
                 self.to_glib_none().0,
@@ -327,43 +314,32 @@ impl FlowBox {
     }
 
     #[doc(alias = "gtk_flow_box_set_sort_func")]
-    pub fn set_sort_func(
+    pub fn set_sort_func<P: Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>(
         &self,
-        sort_func: Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
+        sort_func: P,
     ) {
-        let sort_func_data: Box_<
-            Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
-        > = Box_::new(sort_func);
-        unsafe extern "C" fn sort_func_func(
+        let sort_func_data: Box_<P> = Box_::new(sort_func);
+        unsafe extern "C" fn sort_func_func<
+            P: Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static,
+        >(
             child1: *mut ffi::GtkFlowBoxChild,
             child2: *mut ffi::GtkFlowBoxChild,
             user_data: glib::ffi::gpointer,
         ) -> libc::c_int {
             let child1 = from_glib_borrow(child1);
             let child2 = from_glib_borrow(child2);
-            let callback: &Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>> =
-                &*(user_data as *mut _);
-            let res = if let Some(ref callback) = *callback {
-                callback(&child1, &child2)
-            } else {
-                panic!("cannot get closure...")
-            };
+            let callback: &P = &*(user_data as *mut _);
+            let res = (*callback)(&child1, &child2);
             res
         }
-        let sort_func = if sort_func_data.is_some() {
-            Some(sort_func_func as _)
-        } else {
-            None
-        };
-        unsafe extern "C" fn destroy_func(data: glib::ffi::gpointer) {
-            let _callback: Box_<
-                Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
-            > = Box_::from_raw(data as *mut _);
+        let sort_func = Some(sort_func_func::<P> as _);
+        unsafe extern "C" fn destroy_func<P: Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>(
+            data: glib::ffi::gpointer,
+        ) {
+            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
         }
-        let destroy_call3 = Some(destroy_func as _);
-        let super_callback0: Box_<
-            Option<Box_<dyn Fn(&FlowBoxChild, &FlowBoxChild) -> i32 + 'static>>,
-        > = sort_func_data;
+        let destroy_call3 = Some(destroy_func::<P> as _);
+        let super_callback0: Box_<P> = sort_func_data;
         unsafe {
             ffi::gtk_flow_box_set_sort_func(
                 self.to_glib_none().0,
