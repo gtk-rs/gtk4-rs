@@ -1199,8 +1199,22 @@ trust_return_value_nullability = false
     name = "bind_model"
         [[object.function.parameter]]
         name = "create_widget_func"
-        # we add a manual unbind() function instead
-        nullable = false
+        nullable = false # we add a manual unbind() function instead
+    [[object.function]]
+    name = "set_filter_func"
+        [[object.function.parameter]]
+        name = "filter_func"
+        nullable = false # we add a manual unset_filter_func
+    [[object.function]]
+    name = "set_header_func"
+        [[object.function.parameter]]
+        name = "update_header"
+        nullable = false # we add a manual unset_header_func
+    [[object.function]]
+    name = "set_sort_func"
+        [[object.function.parameter]]
+        name = "sort_func"
+        nullable = false # we add a manual unset_sort_func
 
 [[object]]
 name = "Gtk.ListStore"

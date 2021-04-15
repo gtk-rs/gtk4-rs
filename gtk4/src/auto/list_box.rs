@@ -265,38 +265,25 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_set_filter_func")]
-    pub fn set_filter_func(
-        &self,
-        filter_func: Option<Box_<dyn Fn(&ListBoxRow) -> bool + 'static>>,
-    ) {
-        let filter_func_data: Box_<Option<Box_<dyn Fn(&ListBoxRow) -> bool + 'static>>> =
-            Box_::new(filter_func);
-        unsafe extern "C" fn filter_func_func(
+    pub fn set_filter_func<P: Fn(&ListBoxRow) -> bool + 'static>(&self, filter_func: P) {
+        let filter_func_data: Box_<P> = Box_::new(filter_func);
+        unsafe extern "C" fn filter_func_func<P: Fn(&ListBoxRow) -> bool + 'static>(
             row: *mut ffi::GtkListBoxRow,
             user_data: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let row = from_glib_borrow(row);
-            let callback: &Option<Box_<dyn Fn(&ListBoxRow) -> bool + 'static>> =
-                &*(user_data as *mut _);
-            let res = if let Some(ref callback) = *callback {
-                callback(&row)
-            } else {
-                panic!("cannot get closure...")
-            };
+            let callback: &P = &*(user_data as *mut _);
+            let res = (*callback)(&row);
             res.to_glib()
         }
-        let filter_func = if filter_func_data.is_some() {
-            Some(filter_func_func as _)
-        } else {
-            None
-        };
-        unsafe extern "C" fn destroy_func(data: glib::ffi::gpointer) {
-            let _callback: Box_<Option<Box_<dyn Fn(&ListBoxRow) -> bool + 'static>>> =
-                Box_::from_raw(data as *mut _);
+        let filter_func = Some(filter_func_func::<P> as _);
+        unsafe extern "C" fn destroy_func<P: Fn(&ListBoxRow) -> bool + 'static>(
+            data: glib::ffi::gpointer,
+        ) {
+            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
         }
-        let destroy_call3 = Some(destroy_func as _);
-        let super_callback0: Box_<Option<Box_<dyn Fn(&ListBoxRow) -> bool + 'static>>> =
-            filter_func_data;
+        let destroy_call3 = Some(destroy_func::<P> as _);
+        let super_callback0: Box_<P> = filter_func_data;
         unsafe {
             ffi::gtk_list_box_set_filter_func(
                 self.to_glib_none().0,
@@ -308,41 +295,31 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_set_header_func")]
-    pub fn set_header_func(
+    pub fn set_header_func<P: Fn(&ListBoxRow, Option<&ListBoxRow>) + 'static>(
         &self,
-        update_header: Option<Box_<dyn Fn(&ListBoxRow, Option<&ListBoxRow>) + 'static>>,
+        update_header: P,
     ) {
-        let update_header_data: Box_<
-            Option<Box_<dyn Fn(&ListBoxRow, Option<&ListBoxRow>) + 'static>>,
-        > = Box_::new(update_header);
-        unsafe extern "C" fn update_header_func(
+        let update_header_data: Box_<P> = Box_::new(update_header);
+        unsafe extern "C" fn update_header_func<
+            P: Fn(&ListBoxRow, Option<&ListBoxRow>) + 'static,
+        >(
             row: *mut ffi::GtkListBoxRow,
             before: *mut ffi::GtkListBoxRow,
             user_data: glib::ffi::gpointer,
         ) {
             let row = from_glib_borrow(row);
             let before: Borrowed<Option<ListBoxRow>> = from_glib_borrow(before);
-            let callback: &Option<Box_<dyn Fn(&ListBoxRow, Option<&ListBoxRow>) + 'static>> =
-                &*(user_data as *mut _);
-            if let Some(ref callback) = *callback {
-                callback(&row, before.as_ref().as_ref())
-            } else {
-                panic!("cannot get closure...")
-            };
+            let callback: &P = &*(user_data as *mut _);
+            (*callback)(&row, before.as_ref().as_ref());
         }
-        let update_header = if update_header_data.is_some() {
-            Some(update_header_func as _)
-        } else {
-            None
-        };
-        unsafe extern "C" fn destroy_func(data: glib::ffi::gpointer) {
-            let _callback: Box_<Option<Box_<dyn Fn(&ListBoxRow, Option<&ListBoxRow>) + 'static>>> =
-                Box_::from_raw(data as *mut _);
+        let update_header = Some(update_header_func::<P> as _);
+        unsafe extern "C" fn destroy_func<P: Fn(&ListBoxRow, Option<&ListBoxRow>) + 'static>(
+            data: glib::ffi::gpointer,
+        ) {
+            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
         }
-        let destroy_call3 = Some(destroy_func as _);
-        let super_callback0: Box_<
-            Option<Box_<dyn Fn(&ListBoxRow, Option<&ListBoxRow>) + 'static>>,
-        > = update_header_data;
+        let destroy_call3 = Some(destroy_func::<P> as _);
+        let super_callback0: Box_<P> = update_header_data;
         unsafe {
             ffi::gtk_list_box_set_header_func(
                 self.to_glib_none().0,
@@ -378,40 +355,27 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_set_sort_func")]
-    pub fn set_sort_func(
-        &self,
-        sort_func: Option<Box_<dyn Fn(&ListBoxRow, &ListBoxRow) -> i32 + 'static>>,
-    ) {
-        let sort_func_data: Box_<Option<Box_<dyn Fn(&ListBoxRow, &ListBoxRow) -> i32 + 'static>>> =
-            Box_::new(sort_func);
-        unsafe extern "C" fn sort_func_func(
+    pub fn set_sort_func<P: Fn(&ListBoxRow, &ListBoxRow) -> i32 + 'static>(&self, sort_func: P) {
+        let sort_func_data: Box_<P> = Box_::new(sort_func);
+        unsafe extern "C" fn sort_func_func<P: Fn(&ListBoxRow, &ListBoxRow) -> i32 + 'static>(
             row1: *mut ffi::GtkListBoxRow,
             row2: *mut ffi::GtkListBoxRow,
             user_data: glib::ffi::gpointer,
         ) -> libc::c_int {
             let row1 = from_glib_borrow(row1);
             let row2 = from_glib_borrow(row2);
-            let callback: &Option<Box_<dyn Fn(&ListBoxRow, &ListBoxRow) -> i32 + 'static>> =
-                &*(user_data as *mut _);
-            let res = if let Some(ref callback) = *callback {
-                callback(&row1, &row2)
-            } else {
-                panic!("cannot get closure...")
-            };
+            let callback: &P = &*(user_data as *mut _);
+            let res = (*callback)(&row1, &row2);
             res
         }
-        let sort_func = if sort_func_data.is_some() {
-            Some(sort_func_func as _)
-        } else {
-            None
-        };
-        unsafe extern "C" fn destroy_func(data: glib::ffi::gpointer) {
-            let _callback: Box_<Option<Box_<dyn Fn(&ListBoxRow, &ListBoxRow) -> i32 + 'static>>> =
-                Box_::from_raw(data as *mut _);
+        let sort_func = Some(sort_func_func::<P> as _);
+        unsafe extern "C" fn destroy_func<P: Fn(&ListBoxRow, &ListBoxRow) -> i32 + 'static>(
+            data: glib::ffi::gpointer,
+        ) {
+            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
         }
-        let destroy_call3 = Some(destroy_func as _);
-        let super_callback0: Box_<Option<Box_<dyn Fn(&ListBoxRow, &ListBoxRow) -> i32 + 'static>>> =
-            sort_func_data;
+        let destroy_call3 = Some(destroy_func::<P> as _);
+        let super_callback0: Box_<P> = sort_func_data;
         unsafe {
             ffi::gtk_list_box_set_sort_func(
                 self.to_glib_none().0,
