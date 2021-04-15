@@ -48,7 +48,6 @@ generate = [
     "Gtk.Button",
     "Gtk.ButtonsType",
     "Gtk.Calendar",
-    "Gtk.CallbackAction",
     "Gtk.CellAreaBox",
     "Gtk.CellLayout",
     "Gtk.CellRendererAccelMode",
@@ -559,6 +558,15 @@ manual_traits = ["BuilderExtManual"]
 name = "Gtk.BuilderListItemFactory"
 status = "generate"
 trust_return_value_nullability = false
+
+[[object]]
+name = "Gtk.CallbackAction"
+status = "generate"
+    [[object.function]]
+    name = "new"
+        [[object.function.parameter]]
+        name = "callback"
+        nullable = false
 
 [[object]]
 name = "Gtk.CellArea"
