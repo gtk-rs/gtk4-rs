@@ -2149,11 +2149,17 @@ manual_traits = ["TreeStoreExtManual"]
 [[object]]
 name = "Gtk.TreeView"
 status = "generate"
+manual_traits = ["TreeViewExtManual"]
     [[object.function]]
     pattern = ".+"
         [[object.function.parameter]]
         name = "path"
         const = true
+    [[object.function]]
+    name = "set_row_separator_func"
+        [[object.function.parameter]]
+        name = "func"
+        nullable = false # use a separate unset_row_separtor_func
     [[object.signal]]
     pattern = ".+"
         [[object.signal.parameter]]
