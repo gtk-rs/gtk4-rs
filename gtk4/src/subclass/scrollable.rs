@@ -7,16 +7,16 @@ use glib::Cast;
 
 pub trait ScrollableImpl: ObjectImpl {
     fn border(&self, scrollable: &Self::Type) -> Option<Border> {
-        self.parent_get_border(scrollable)
+        self.parent_border(scrollable)
     }
 }
 
 pub trait ScrollableImplExt: ObjectSubclass {
-    fn parent_get_border(&self, scrollable: &Self::Type) -> Option<Border>;
+    fn parent_border(&self, scrollable: &Self::Type) -> Option<Border>;
 }
 
 impl<T: ScrollableImpl> ScrollableImplExt for T {
-    fn parent_get_border(&self, scrollable: &Self::Type) -> Option<Border> {
+    fn parent_border(&self, scrollable: &Self::Type) -> Option<Border> {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Scrollable>()
