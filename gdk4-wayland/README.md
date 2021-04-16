@@ -6,7 +6,7 @@ Rust bindings of __GDK 4's Wayland backend__, part of [gtk4-rs](https://github.c
 
 ## Minimum supported Rust version
 
-Currently, the minimum supported Rust version is `1.48.0`.
+Currently, the minimum supported Rust version is `1.51.0`.
 
 ## Documentation
 
