@@ -12,3 +12,4 @@ config.status
 Cargo.lock
 book/book
 .vscode
+*.log
