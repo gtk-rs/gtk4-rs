@@ -17,11 +17,11 @@ pub trait EntryBufferImpl: EntryBufferImplExt + ObjectImpl {
     }
 
     fn length(&self, entry_buffer: &Self::Type) -> u32 {
-        self.parent_get_length(entry_buffer)
+        self.parent_length(entry_buffer)
     }
 
     fn text(&self, entry_buffer: &Self::Type) -> GString {
-        self.parent_get_text(entry_buffer)
+        self.parent_text(entry_buffer)
     }
     fn insert_text(&self, entry_buffer: &Self::Type, position: u32, chars: &str) -> u32 {
         self.parent_insert_text(entry_buffer, position, chars)
@@ -40,8 +40,8 @@ pub trait EntryBufferImplExt: ObjectSubclass {
         n_chars: Option<u32>,
     ) -> u32;
     fn parent_deleted_text(&self, entry_buffer: &Self::Type, position: u32, n_chars: Option<u32>);
-    fn parent_get_length(&self, entry_buffer: &Self::Type) -> u32;
-    fn parent_get_text(&self, entry_buffer: &Self::Type) -> GString;
+    fn parent_length(&self, entry_buffer: &Self::Type) -> u32;
+    fn parent_text(&self, entry_buffer: &Self::Type) -> GString;
     fn parent_insert_text(&self, entry_buffer: &Self::Type, position: u32, chars: &str) -> u32;
     fn parent_inserted_text(&self, entry_buffer: &Self::Type, position: u32, chars: &str);
 }
@@ -87,7 +87,7 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
         }
     }
 
-    fn parent_get_length(&self, entry_buffer: &Self::Type) -> u32 {
+    fn parent_length(&self, entry_buffer: &Self::Type) -> u32 {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkEntryBufferClass;
@@ -101,7 +101,7 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
         }
     }
 
-    fn parent_get_text(&self, entry_buffer: &Self::Type) -> GString {
+    fn parent_text(&self, entry_buffer: &Self::Type) -> GString {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkEntryBufferClass;

@@ -22,11 +22,11 @@ pub trait EditableImpl: WidgetImpl {
     }
 
     fn text(&self, editable: &Self::Type) -> GString {
-        self.parent_get_text(editable)
+        self.parent_text(editable)
     }
 
     fn delegate(&self, editable: &Self::Type) -> Option<Editable> {
-        self.parent_get_delegate(editable)
+        self.parent_delegate(editable)
     }
 
     fn do_insert_text(&self, editable: &Self::Type, text: &str, length: i32, position: &mut i32) {
@@ -38,7 +38,7 @@ pub trait EditableImpl: WidgetImpl {
     }
 
     fn selection_bounds(&self, editable: &Self::Type) -> Option<(i32, i32)> {
-        self.parent_get_selection_bounds(editable)
+        self.parent_selection_bounds(editable)
     }
 
     fn set_selection_bounds(&self, editable: &Self::Type, start_position: i32, end_position: i32) {
@@ -105,15 +105,15 @@ pub trait EditableImplExt: ObjectSubclass {
         position: &mut i32,
     );
     fn parent_do_delete_text(&self, editable: &Self::Type, start_position: i32, end_position: i32);
-    fn parent_get_delegate(&self, editable: &Self::Type) -> Option<Editable>;
-    fn parent_get_selection_bounds(&self, editable: &Self::Type) -> Option<(i32, i32)>;
+    fn parent_delegate(&self, editable: &Self::Type) -> Option<Editable>;
+    fn parent_selection_bounds(&self, editable: &Self::Type) -> Option<(i32, i32)>;
     fn parent_set_selection_bounds(
         &self,
         editable: &Self::Type,
         start_position: i32,
         end_position: i32,
     );
-    fn parent_get_text(&self, editable: &Self::Type) -> GString;
+    fn parent_text(&self, editable: &Self::Type) -> GString;
 }
 
 impl<T: EditableImpl> EditableImplExt for T {
@@ -156,7 +156,7 @@ impl<T: EditableImpl> EditableImplExt for T {
         }
     }
 
-    fn parent_get_text(&self, editable: &Self::Type) -> GString {
+    fn parent_text(&self, editable: &Self::Type) -> GString {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Editable>()
@@ -171,7 +171,7 @@ impl<T: EditableImpl> EditableImplExt for T {
         }
     }
 
-    fn parent_get_delegate(&self, editable: &Self::Type) -> Option<Editable> {
+    fn parent_delegate(&self, editable: &Self::Type) -> Option<Editable> {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Editable>()
@@ -236,7 +236,7 @@ impl<T: EditableImpl> EditableImplExt for T {
         }
     }
 
-    fn parent_get_selection_bounds(&self, editable: &Self::Type) -> Option<(i32, i32)> {
+    fn parent_selection_bounds(&self, editable: &Self::Type) -> Option<(i32, i32)> {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Editable>()

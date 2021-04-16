@@ -7,39 +7,39 @@ use glib::Cast;
 
 pub trait PaintableImpl: ObjectImpl {
     fn current_image(&self, paintable: &Self::Type) -> Paintable {
-        self.parent_get_current_image(paintable)
+        self.parent_current_image(paintable)
     }
 
     fn flags(&self, paintable: &Self::Type) -> PaintableFlags {
-        self.parent_get_flags(paintable)
+        self.parent_flags(paintable)
     }
 
     fn intrinsic_width(&self, paintable: &Self::Type) -> i32 {
-        self.parent_get_intrinsic_width(paintable)
+        self.parent_intrinsic_width(paintable)
     }
 
     fn intrinsic_height(&self, paintable: &Self::Type) -> i32 {
-        self.parent_get_intrinsic_height(paintable)
+        self.parent_intrinsic_height(paintable)
     }
 
     fn intrinsic_aspect_ratio(&self, paintable: &Self::Type) -> f64 {
-        self.parent_get_intrinsic_aspect_ratio(paintable)
+        self.parent_intrinsic_aspect_ratio(paintable)
     }
 
     fn snapshot(&self, paintable: &Self::Type, snapshot: &Snapshot, width: f64, height: f64);
 }
 
 pub trait PaintableImplExt: ObjectSubclass {
-    fn parent_get_current_image(&self, paintable: &Self::Type) -> Paintable;
-    fn parent_get_flags(&self, paintable: &Self::Type) -> PaintableFlags;
-    fn parent_get_intrinsic_width(&self, paintable: &Self::Type) -> i32;
-    fn parent_get_intrinsic_height(&self, paintable: &Self::Type) -> i32;
-    fn parent_get_intrinsic_aspect_ratio(&self, paintable: &Self::Type) -> f64;
+    fn parent_current_image(&self, paintable: &Self::Type) -> Paintable;
+    fn parent_flags(&self, paintable: &Self::Type) -> PaintableFlags;
+    fn parent_intrinsic_width(&self, paintable: &Self::Type) -> i32;
+    fn parent_intrinsic_height(&self, paintable: &Self::Type) -> i32;
+    fn parent_intrinsic_aspect_ratio(&self, paintable: &Self::Type) -> f64;
     fn parent_snapshot(&self, paintable: &Self::Type, snapshot: &Snapshot, width: f64, height: f64);
 }
 
 impl<T: PaintableImpl> PaintableImplExt for T {
-    fn parent_get_current_image(&self, paintable: &Self::Type) -> Paintable {
+    fn parent_current_image(&self, paintable: &Self::Type) -> Paintable {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Paintable>()
@@ -54,7 +54,7 @@ impl<T: PaintableImpl> PaintableImplExt for T {
         }
     }
 
-    fn parent_get_flags(&self, paintable: &Self::Type) -> PaintableFlags {
+    fn parent_flags(&self, paintable: &Self::Type) -> PaintableFlags {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Paintable>()
@@ -69,7 +69,7 @@ impl<T: PaintableImpl> PaintableImplExt for T {
         }
     }
 
-    fn parent_get_intrinsic_width(&self, paintable: &Self::Type) -> i32 {
+    fn parent_intrinsic_width(&self, paintable: &Self::Type) -> i32 {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Paintable>()
@@ -82,7 +82,7 @@ impl<T: PaintableImpl> PaintableImplExt for T {
         }
     }
 
-    fn parent_get_intrinsic_height(&self, paintable: &Self::Type) -> i32 {
+    fn parent_intrinsic_height(&self, paintable: &Self::Type) -> i32 {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Paintable>()
@@ -95,7 +95,7 @@ impl<T: PaintableImpl> PaintableImplExt for T {
         }
     }
 
-    fn parent_get_intrinsic_aspect_ratio(&self, paintable: &Self::Type) -> f64 {
+    fn parent_intrinsic_aspect_ratio(&self, paintable: &Self::Type) -> f64 {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<Paintable>()

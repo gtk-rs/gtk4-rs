@@ -13,7 +13,7 @@ glib::wrapper! {
         free => |ptr| ffi::gtk_border_free(ptr),
         init => |_ptr| (),
         clear => |_ptr| (),
-        get_type => || ffi::gtk_border_get_type(),
+        type_ => || ffi::gtk_border_get_type(),
     }
 }
 

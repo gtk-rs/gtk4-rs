@@ -11,13 +11,13 @@ pub trait SorterImpl: SorterImplExt + ObjectImpl {
         self.parent_compare(sorter, item1, item2)
     }
     fn order(&self, sorter: &Self::Type) -> SorterOrder {
-        self.parent_get_order(sorter)
+        self.parent_order(sorter)
     }
 }
 
 pub trait SorterImplExt: ObjectSubclass {
     fn parent_compare(&self, sorter: &Self::Type, item1: &Object, item2: &Object) -> Ordering;
-    fn parent_get_order(&self, sorter: &Self::Type) -> SorterOrder;
+    fn parent_order(&self, sorter: &Self::Type) -> SorterOrder;
 }
 
 impl<T: SorterImpl> SorterImplExt for T {
@@ -36,7 +36,7 @@ impl<T: SorterImpl> SorterImplExt for T {
         }
     }
 
-    fn parent_get_order(&self, sorter: &Self::Type) -> SorterOrder {
+    fn parent_order(&self, sorter: &Self::Type) -> SorterOrder {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkSorterClass;

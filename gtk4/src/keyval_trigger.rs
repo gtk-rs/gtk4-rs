@@ -10,7 +10,7 @@ glib::wrapper! {
     pub struct KeyvalTrigger(Object<ffi::GtkKeyvalTrigger, ffi::GtkKeyvalTriggerClass>) @extends ShortcutTrigger;
 
     match fn {
-        get_type => || ffi::gtk_keyval_trigger_get_type(),
+        type_ => || ffi::gtk_keyval_trigger_get_type(),
     }
 }
 

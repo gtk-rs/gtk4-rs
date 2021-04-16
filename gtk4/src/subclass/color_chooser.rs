@@ -34,7 +34,7 @@ pub trait ColorChooserImplExt: ObjectSubclass {
         colors: &[RGBA],
     );
     fn parent_color_activated(&self, color_chooser: &Self::Type, rgba: RGBA);
-    fn parent_get_rgba(&self, color_chooser: &Self::Type) -> RGBA;
+    fn parent_rgba(&self, color_chooser: &Self::Type) -> RGBA;
     fn parent_set_rgba(&self, color_chooser: &Self::Type, rgba: RGBA);
 }
 
@@ -87,7 +87,7 @@ impl<T: ColorChooserImpl> ColorChooserImplExt for T {
         }
     }
 
-    fn parent_get_rgba(&self, color_chooser: &Self::Type) -> RGBA {
+    fn parent_rgba(&self, color_chooser: &Self::Type) -> RGBA {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface = type_data.as_ref().parent_interface::<ColorChooser>()

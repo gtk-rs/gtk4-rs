@@ -25,10 +25,10 @@ pub trait IMContextImpl: IMContextImplExt + ObjectImpl {
         self.parent_focus_out(im_context)
     }
     fn preedit_string(&self, im_context: &Self::Type) -> (GString, AttrList, i32) {
-        self.parent_get_preedit_string(im_context)
+        self.parent_preedit_string(im_context)
     }
     fn surrounding(&self, im_context: &Self::Type) -> Option<(GString, i32)> {
-        self.parent_get_surrounding(im_context)
+        self.parent_surrounding(im_context)
     }
     fn preedit_changed(&self, im_context: &Self::Type) {
         self.parent_preedit_changed(im_context)
@@ -67,8 +67,8 @@ pub trait IMContextImplExt: ObjectSubclass {
     fn parent_filter_keypress(&self, im_context: &Self::Type, event: &gdk::Event) -> bool;
     fn parent_focus_in(&self, im_context: &Self::Type);
     fn parent_focus_out(&self, im_context: &Self::Type);
-    fn parent_get_preedit_string(&self, im_context: &Self::Type) -> (GString, AttrList, i32);
-    fn parent_get_surrounding(&self, im_context: &Self::Type) -> Option<(GString, i32)>;
+    fn parent_preedit_string(&self, im_context: &Self::Type) -> (GString, AttrList, i32);
+    fn parent_surrounding(&self, im_context: &Self::Type) -> Option<(GString, i32)>;
     fn parent_preedit_changed(&self, im_context: &Self::Type);
     fn parent_preedit_end(&self, im_context: &Self::Type);
     fn parent_preedit_start(&self, im_context: &Self::Type);
@@ -152,7 +152,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
         }
     }
 
-    fn parent_get_surrounding(&self, im_context: &Self::Type) -> Option<(GString, i32)> {
+    fn parent_surrounding(&self, im_context: &Self::Type) -> Option<(GString, i32)> {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;
@@ -172,7 +172,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
         }
     }
 
-    fn parent_get_preedit_string(&self, im_context: &Self::Type) -> (GString, AttrList, i32) {
+    fn parent_preedit_string(&self, im_context: &Self::Type) -> (GString, AttrList, i32) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkIMContextClass;

@@ -46,7 +46,7 @@ pub trait CellRendererImpl: CellRendererImplExt + ObjectImpl {
         flags: CellRendererState,
         cell_area: &gdk::Rectangle,
     ) -> gdk::Rectangle {
-        self.parent_get_aligned_area(renderer, widget, flags, cell_area)
+        self.parent_aligned_area(renderer, widget, flags, cell_area)
     }
 
     fn preferred_height_for_width<P: IsA<Widget>>(
@@ -55,11 +55,11 @@ pub trait CellRendererImpl: CellRendererImplExt + ObjectImpl {
         widget: &P,
         width: i32,
     ) -> (i32, i32) {
-        self.parent_get_preferred_height_for_width(renderer, widget, width)
+        self.parent_preferred_height_for_width(renderer, widget, width)
     }
 
     fn preferred_height<P: IsA<Widget>>(&self, renderer: &Self::Type, widget: &P) -> (i32, i32) {
-        self.parent_get_preferred_height(renderer, widget)
+        self.parent_preferred_height(renderer, widget)
     }
 
     fn preferred_width_for_height<P: IsA<Widget>>(
@@ -68,15 +68,15 @@ pub trait CellRendererImpl: CellRendererImplExt + ObjectImpl {
         widget: &P,
         height: i32,
     ) -> (i32, i32) {
-        self.parent_get_preferred_width_for_height(renderer, widget, height)
+        self.parent_preferred_width_for_height(renderer, widget, height)
     }
 
     fn preferred_width<P: IsA<Widget>>(&self, renderer: &Self::Type, widget: &P) -> (i32, i32) {
-        self.parent_get_preferred_width(renderer, widget)
+        self.parent_preferred_width(renderer, widget)
     }
 
     fn request_mode(&self, renderer: &Self::Type) -> SizeRequestMode {
-        self.parent_get_request_mode(renderer)
+        self.parent_request_mode(renderer)
     }
 
     fn snapshot<P: IsA<Widget>>(
@@ -133,36 +133,36 @@ pub trait CellRendererImplExt: ObjectSubclass {
     ) -> bool;
     fn parent_editing_canceled(&self, renderer: &Self::Type);
     fn parent_editing_started(&self, renderer: &Self::Type, editable: &CellEditable, path: &str);
-    fn parent_get_aligned_area<P: IsA<Widget>>(
+    fn parent_aligned_area<P: IsA<Widget>>(
         &self,
         renderer: &Self::Type,
         widget: &P,
         flags: CellRendererState,
         cell_area: &gdk::Rectangle,
     ) -> gdk::Rectangle;
-    fn parent_get_preferred_height_for_width<P: IsA<Widget>>(
+    fn parent_preferred_height_for_width<P: IsA<Widget>>(
         &self,
         renderer: &Self::Type,
         widget: &P,
         width: i32,
     ) -> (i32, i32);
-    fn parent_get_preferred_height<P: IsA<Widget>>(
+    fn parent_preferred_height<P: IsA<Widget>>(
         &self,
         renderer: &Self::Type,
         widget: &P,
     ) -> (i32, i32);
-    fn parent_get_preferred_width_for_height<P: IsA<Widget>>(
+    fn parent_preferred_width_for_height<P: IsA<Widget>>(
         &self,
         renderer: &Self::Type,
         widget: &P,
         height: i32,
     ) -> (i32, i32);
-    fn parent_get_preferred_width<P: IsA<Widget>>(
+    fn parent_preferred_width<P: IsA<Widget>>(
         &self,
         renderer: &Self::Type,
         widget: &P,
     ) -> (i32, i32);
-    fn parent_get_request_mode(&self, renderer: &Self::Type) -> SizeRequestMode;
+    fn parent_request_mode(&self, renderer: &Self::Type) -> SizeRequestMode;
     fn parent_snapshot<P: IsA<Widget>>(
         &self,
         renderer: &Self::Type,
@@ -185,7 +185,7 @@ pub trait CellRendererImplExt: ObjectSubclass {
 }
 
 impl<T: CellRendererImpl> CellRendererImplExt for T {
-    fn parent_get_request_mode(&self, renderer: &Self::Type) -> SizeRequestMode {
+    fn parent_request_mode(&self, renderer: &Self::Type) -> SizeRequestMode {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkCellRendererClass;
@@ -197,7 +197,7 @@ impl<T: CellRendererImpl> CellRendererImplExt for T {
         }
     }
 
-    fn parent_get_preferred_width<P: IsA<Widget>>(
+    fn parent_preferred_width<P: IsA<Widget>>(
         &self,
         renderer: &Self::Type,
         widget: &P,
@@ -219,7 +219,7 @@ impl<T: CellRendererImpl> CellRendererImplExt for T {
         }
     }
 
-    fn parent_get_preferred_width_for_height<P: IsA<Widget>>(
+    fn parent_preferred_width_for_height<P: IsA<Widget>>(
         &self,
         renderer: &Self::Type,
         widget: &P,
@@ -242,7 +242,7 @@ impl<T: CellRendererImpl> CellRendererImplExt for T {
             (minimum_size.assume_init(), natural_size.assume_init())
         }
     }
-    fn parent_get_preferred_height<P: IsA<Widget>>(
+    fn parent_preferred_height<P: IsA<Widget>>(
         &self,
         renderer: &Self::Type,
         widget: &P,
@@ -262,7 +262,7 @@ impl<T: CellRendererImpl> CellRendererImplExt for T {
             (minimum_size.assume_init(), natural_size.assume_init())
         }
     }
-    fn parent_get_preferred_height_for_width<P: IsA<Widget>>(
+    fn parent_preferred_height_for_width<P: IsA<Widget>>(
         &self,
         renderer: &Self::Type,
         widget: &P,
@@ -285,7 +285,7 @@ impl<T: CellRendererImpl> CellRendererImplExt for T {
         }
     }
 
-    fn parent_get_aligned_area<P: IsA<Widget>>(
+    fn parent_aligned_area<P: IsA<Widget>>(
         &self,
         renderer: &Self::Type,
         widget: &P,

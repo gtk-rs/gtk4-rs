@@ -35,7 +35,7 @@ pub trait WidgetImpl: WidgetImplExt + ObjectImpl {
     }
 
     fn request_mode(&self, widget: &Self::Type) -> SizeRequestMode {
-        self.parent_get_request_mode(widget)
+        self.parent_request_mode(widget)
     }
 
     fn grab_focus(&self, widget: &Self::Type) -> bool {
@@ -136,7 +136,7 @@ pub trait WidgetImplExt: ObjectSubclass {
     fn parent_contains(&self, widget: &Self::Type, x: f64, y: f64) -> bool;
     fn parent_direction_changed(&self, widget: &Self::Type, previous_direction: TextDirection);
     fn parent_focus(&self, widget: &Self::Type, direction_type: DirectionType) -> bool;
-    fn parent_get_request_mode(&self, widget: &Self::Type) -> SizeRequestMode;
+    fn parent_request_mode(&self, widget: &Self::Type) -> SizeRequestMode;
     fn parent_grab_focus(&self, widget: &Self::Type) -> bool;
     fn parent_hide(&self, widget: &Self::Type);
     fn parent_keynav_failed(&self, widget: &Self::Type, direction_type: DirectionType) -> bool;
@@ -234,7 +234,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
         }
     }
 
-    fn parent_get_request_mode(&self, widget: &Self::Type) -> SizeRequestMode {
+    fn parent_request_mode(&self, widget: &Self::Type) -> SizeRequestMode {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;

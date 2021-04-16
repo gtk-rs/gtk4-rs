@@ -8,7 +8,7 @@ use glib::{Cast, Object};
 
 pub trait FilterImpl: FilterImplExt + ObjectImpl {
     fn strictness(&self, filter: &Self::Type) -> FilterMatch {
-        self.parent_get_strictness(filter)
+        self.parent_strictness(filter)
     }
     fn match_(&self, filter: &Self::Type, item: &Object) -> bool {
         self.parent_match_(filter, item)
@@ -16,12 +16,12 @@ pub trait FilterImpl: FilterImplExt + ObjectImpl {
 }
 
 pub trait FilterImplExt: ObjectSubclass {
-    fn parent_get_strictness(&self, filter: &Self::Type) -> FilterMatch;
+    fn parent_strictness(&self, filter: &Self::Type) -> FilterMatch;
     fn parent_match_(&self, filter: &Self::Type, item: &Object) -> bool;
 }
 
 impl<T: FilterImpl> FilterImplExt for T {
-    fn parent_get_strictness(&self, filter: &Self::Type) -> FilterMatch {
+    fn parent_strictness(&self, filter: &Self::Type) -> FilterMatch {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkFilterClass;

@@ -12,7 +12,7 @@ pub trait BuilderScopeImpl: ObjectImpl {
         builder: &Builder,
         type_name: &str,
     ) -> glib::Type {
-        self.parent_get_type_from_name(builder_scope, builder, type_name)
+        self.parent_type_from_name(builder_scope, builder, type_name)
     }
 
     fn type_from_function(
@@ -21,7 +21,7 @@ pub trait BuilderScopeImpl: ObjectImpl {
         builder: &Builder,
         function_name: &str,
     ) -> glib::Type {
-        self.parent_get_type_from_function(builder_scope, builder, function_name)
+        self.parent_type_from_function(builder_scope, builder, function_name)
     }
 
     fn create_closure(
@@ -35,14 +35,14 @@ pub trait BuilderScopeImpl: ObjectImpl {
 }
 
 pub trait BuilderScopeImplExt: ObjectSubclass {
-    fn parent_get_type_from_name(
+    fn parent_type_from_name(
         &self,
         builder_scope: &Self::Type,
         builder: &Builder,
         type_name: &str,
     ) -> glib::Type;
 
-    fn parent_get_type_from_function(
+    fn parent_type_from_function(
         &self,
         builder_scope: &Self::Type,
         builder: &Builder,
@@ -60,7 +60,7 @@ pub trait BuilderScopeImplExt: ObjectSubclass {
 }
 
 impl<B: BuilderScopeImpl> BuilderScopeImplExt for B {
-    fn parent_get_type_from_name(
+    fn parent_type_from_name(
         &self,
         builder_scope: &Self::Type,
         builder: &Builder,
@@ -86,7 +86,7 @@ impl<B: BuilderScopeImpl> BuilderScopeImplExt for B {
         }
     }
 
-    fn parent_get_type_from_function(
+    fn parent_type_from_function(
         &self,
         builder_scope: &Self::Type,
         builder: &Builder,
