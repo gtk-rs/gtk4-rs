@@ -16,7 +16,7 @@ glib::wrapper! {
     pub struct Renderer(Object<ffi::GskRenderer, ffi::GskRendererClass>);
 
     match fn {
-        get_type => || ffi::gsk_renderer_get_type(),
+        type_ => || ffi::gsk_renderer_get_type(),
     }
 }
 

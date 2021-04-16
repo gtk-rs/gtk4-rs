@@ -23,7 +23,7 @@ glib::wrapper! {
     pub struct GestureSwipe(Object<ffi::GtkGestureSwipe, ffi::GtkGestureSwipeClass>) @extends GestureSingle, Gesture, EventController;
 
     match fn {
-        get_type => || ffi::gtk_gesture_swipe_get_type(),
+        type_ => || ffi::gtk_gesture_swipe_get_type(),
     }
 }
 

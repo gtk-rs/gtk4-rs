@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct ContentProvider(Object<ffi::GdkContentProvider, ffi::GdkContentProviderClass>);
 
     match fn {
-        get_type => || ffi::gdk_content_provider_get_type(),
+        type_ => || ffi::gdk_content_provider_get_type(),
     }
 }
 
@@ -65,7 +65,7 @@ pub trait ContentProviderExt: 'static {
     fn content_changed(&self);
 
     #[doc(alias = "gdk_content_provider_get_value")]
-    fn get_value(&self, value: &mut glib::Value) -> Result<(), glib::Error>;
+    fn value(&self, value: &mut glib::Value) -> Result<(), glib::Error>;
 
     #[doc(alias = "gdk_content_provider_ref_formats")]
     fn ref_formats(&self) -> Option<ContentFormats>;
@@ -117,7 +117,7 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
         }
     }
 
-    fn get_value(&self, value: &mut glib::Value) -> Result<(), glib::Error> {
+    fn value(&self, value: &mut glib::Value) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let _ = ffi::gdk_content_provider_get_value(

@@ -31,7 +31,7 @@ glib::wrapper! {
     pub struct ListBox(Object<ffi::GtkListBox>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_list_box_get_type(),
+        type_ => || ffi::gtk_list_box_get_type(),
     }
 }
 
@@ -122,7 +122,7 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_get_row_at_index")]
-    pub fn get_row_at_index(&self, index_: i32) -> Option<ListBoxRow> {
+    pub fn row_at_index(&self, index_: i32) -> Option<ListBoxRow> {
         unsafe {
             from_glib_none(ffi::gtk_list_box_get_row_at_index(
                 self.to_glib_none().0,
@@ -132,7 +132,7 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_get_row_at_y")]
-    pub fn get_row_at_y(&self, y: i32) -> Option<ListBoxRow> {
+    pub fn row_at_y(&self, y: i32) -> Option<ListBoxRow> {
         unsafe { from_glib_none(ffi::gtk_list_box_get_row_at_y(self.to_glib_none().0, y)) }
     }
 

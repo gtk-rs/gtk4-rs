@@ -12,7 +12,7 @@ glib::wrapper! {
     pub struct X11Surface(Object<ffi::GdkX11Surface, ffi::GdkX11SurfaceClass>) @extends gdk::Surface;
 
     match fn {
-        get_type => || ffi::gdk_x11_surface_get_type(),
+        type_ => || ffi::gdk_x11_surface_get_type(),
     }
 }
 

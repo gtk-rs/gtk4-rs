@@ -32,7 +32,7 @@ glib::wrapper! {
     pub struct AboutDialog(Object<ffi::GtkAboutDialog>) @extends Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
 
     match fn {
-        get_type => || ffi::gtk_about_dialog_get_type(),
+        type_ => || ffi::gtk_about_dialog_get_type(),
     }
 }
 

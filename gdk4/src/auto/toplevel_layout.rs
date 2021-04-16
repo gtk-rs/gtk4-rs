@@ -13,7 +13,7 @@ glib::wrapper! {
     match fn {
         ref => |ptr| ffi::gdk_toplevel_layout_ref(ptr),
         unref => |ptr| ffi::gdk_toplevel_layout_unref(ptr),
-        get_type => || ffi::gdk_toplevel_layout_get_type(),
+        type_ => || ffi::gdk_toplevel_layout_get_type(),
     }
 }
 

@@ -10,7 +10,7 @@ glib::wrapper! {
     pub struct Buildable(Interface<ffi::GtkBuildable, ffi::GtkBuildableIface>);
 
     match fn {
-        get_type => || ffi::gtk_buildable_get_type(),
+        type_ => || ffi::gtk_buildable_get_type(),
     }
 }
 

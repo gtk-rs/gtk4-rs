@@ -24,7 +24,7 @@ glib::wrapper! {
     pub struct Clipboard(Object<ffi::GdkClipboard>);
 
     match fn {
-        get_type => || ffi::gdk_clipboard_get_type(),
+        type_ => || ffi::gdk_clipboard_get_type(),
     }
 }
 

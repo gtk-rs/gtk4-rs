@@ -12,7 +12,7 @@ glib::wrapper! {
     match fn {
         ref => |ptr| ffi::gdk_content_formats_builder_ref(ptr),
         unref => |ptr| ffi::gdk_content_formats_builder_unref(ptr),
-        get_type => || ffi::gdk_content_formats_builder_get_type(),
+        type_ => || ffi::gdk_content_formats_builder_get_type(),
     }
 }
 

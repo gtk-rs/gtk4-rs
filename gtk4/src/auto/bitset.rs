@@ -11,7 +11,7 @@ glib::wrapper! {
     match fn {
         ref => |ptr| ffi::gtk_bitset_ref(ptr),
         unref => |ptr| ffi::gtk_bitset_unref(ptr),
-        get_type => || ffi::gtk_bitset_get_type(),
+        type_ => || ffi::gtk_bitset_get_type(),
     }
 }
 
@@ -92,7 +92,7 @@ impl Bitset {
     }
 
     #[doc(alias = "gtk_bitset_get_nth")]
-    pub fn get_nth(&self, nth: u32) -> u32 {
+    pub fn nth(&self, nth: u32) -> u32 {
         unsafe { ffi::gtk_bitset_get_nth(self.to_glib_none().0, nth) }
     }
 
@@ -102,7 +102,7 @@ impl Bitset {
     }
 
     #[doc(alias = "gtk_bitset_get_size_in_range")]
-    pub fn get_size_in_range(&self, first: u32, last: u32) -> u64 {
+    pub fn size_in_range(&self, first: u32, last: u32) -> u64 {
         unsafe { ffi::gtk_bitset_get_size_in_range(self.to_glib_none().0, first, last) }
     }
 

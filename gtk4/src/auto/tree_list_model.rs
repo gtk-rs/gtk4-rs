@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct TreeListModel(Object<ffi::GtkTreeListModel, ffi::GtkTreeListModelClass>) @implements gio::ListModel;
 
     match fn {
-        get_type => || ffi::gtk_tree_list_model_get_type(),
+        type_ => || ffi::gtk_tree_list_model_get_type(),
     }
 }
 
@@ -78,7 +78,7 @@ impl TreeListModel {
     }
 
     #[doc(alias = "gtk_tree_list_model_get_child_row")]
-    pub fn get_child_row(&self, position: u32) -> Option<TreeListRow> {
+    pub fn child_row(&self, position: u32) -> Option<TreeListRow> {
         unsafe {
             from_glib_full(ffi::gtk_tree_list_model_get_child_row(
                 self.to_glib_none().0,
@@ -102,7 +102,7 @@ impl TreeListModel {
     }
 
     #[doc(alias = "gtk_tree_list_model_get_row")]
-    pub fn get_row(&self, position: u32) -> Option<TreeListRow> {
+    pub fn row(&self, position: u32) -> Option<TreeListRow> {
         unsafe {
             from_glib_full(ffi::gtk_tree_list_model_get_row(
                 self.to_glib_none().0,

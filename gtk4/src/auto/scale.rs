@@ -31,7 +31,7 @@ glib::wrapper! {
     pub struct Scale(Object<ffi::GtkScale, ffi::GtkScaleClass>) @extends Range, Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
-        get_type => || ffi::gtk_scale_get_type(),
+        type_ => || ffi::gtk_scale_get_type(),
     }
 }
 

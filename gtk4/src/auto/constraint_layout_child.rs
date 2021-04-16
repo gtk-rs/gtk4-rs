@@ -15,7 +15,7 @@ glib::wrapper! {
     pub struct ConstraintLayoutChild(Object<ffi::GtkConstraintLayoutChild, ffi::GtkConstraintLayoutChildClass>) @extends LayoutChild;
 
     match fn {
-        get_type => || ffi::gtk_constraint_layout_child_get_type(),
+        type_ => || ffi::gtk_constraint_layout_child_get_type(),
     }
 }
 

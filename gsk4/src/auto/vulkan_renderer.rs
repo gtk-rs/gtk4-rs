@@ -11,7 +11,7 @@ glib::wrapper! {
     pub struct VulkanRenderer(Object<ffi::GskVulkanRenderer, ffi::GskVulkanRendererClass>) @extends Renderer;
 
     match fn {
-        get_type => || ffi::gsk_vulkan_renderer_get_type(),
+        type_ => || ffi::gsk_vulkan_renderer_get_type(),
     }
 }
 

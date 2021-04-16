@@ -20,7 +20,7 @@ glib::wrapper! {
     pub struct NumericSorter(Object<ffi::GtkNumericSorter, ffi::GtkNumericSorterClass>) @extends Sorter;
 
     match fn {
-        get_type => || ffi::gtk_numeric_sorter_get_type(),
+        type_ => || ffi::gtk_numeric_sorter_get_type(),
     }
 }
 

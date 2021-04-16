@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct Seat(Object<ffi::GdkSeat>);
 
     match fn {
-        get_type => || ffi::gdk_seat_get_type(),
+        type_ => || ffi::gdk_seat_get_type(),
     }
 }
 
@@ -29,7 +29,7 @@ impl Seat {
     }
 
     #[doc(alias = "gdk_seat_get_devices")]
-    pub fn get_devices(&self, capabilities: SeatCapabilities) -> Vec<Device> {
+    pub fn devices(&self, capabilities: SeatCapabilities) -> Vec<Device> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gdk_seat_get_devices(
                 self.to_glib_none().0,

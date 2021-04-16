@@ -23,7 +23,7 @@ glib::wrapper! {
     pub struct Drop(Object<ffi::GdkDrop>);
 
     match fn {
-        get_type => || ffi::gdk_drop_get_type(),
+        type_ => || ffi::gdk_drop_get_type(),
     }
 }
 

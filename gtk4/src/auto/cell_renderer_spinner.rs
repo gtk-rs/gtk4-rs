@@ -20,7 +20,7 @@ glib::wrapper! {
     pub struct CellRendererSpinner(Object<ffi::GtkCellRendererSpinner>) @extends CellRenderer;
 
     match fn {
-        get_type => || ffi::gtk_cell_renderer_spinner_get_type(),
+        type_ => || ffi::gtk_cell_renderer_spinner_get_type(),
     }
 }
 

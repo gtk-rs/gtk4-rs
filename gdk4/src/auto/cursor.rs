@@ -14,7 +14,7 @@ glib::wrapper! {
     pub struct Cursor(Object<ffi::GdkCursor>);
 
     match fn {
-        get_type => || ffi::gdk_cursor_get_type(),
+        type_ => || ffi::gdk_cursor_get_type(),
     }
 }
 

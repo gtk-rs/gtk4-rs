@@ -33,7 +33,7 @@ glib::wrapper! {
     pub struct FlowBox(Object<ffi::GtkFlowBox>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
-        get_type => || ffi::gtk_flow_box_get_type(),
+        type_ => || ffi::gtk_flow_box_get_type(),
     }
 }
 
@@ -95,7 +95,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "gtk_flow_box_get_child_at_index")]
-    pub fn get_child_at_index(&self, idx: i32) -> Option<FlowBoxChild> {
+    pub fn child_at_index(&self, idx: i32) -> Option<FlowBoxChild> {
         unsafe {
             from_glib_none(ffi::gtk_flow_box_get_child_at_index(
                 self.to_glib_none().0,
@@ -105,7 +105,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "gtk_flow_box_get_child_at_pos")]
-    pub fn get_child_at_pos(&self, x: i32, y: i32) -> Option<FlowBoxChild> {
+    pub fn child_at_pos(&self, x: i32, y: i32) -> Option<FlowBoxChild> {
         unsafe {
             from_glib_none(ffi::gtk_flow_box_get_child_at_pos(
                 self.to_glib_none().0,

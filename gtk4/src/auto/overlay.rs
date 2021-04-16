@@ -26,7 +26,7 @@ glib::wrapper! {
     pub struct Overlay(Object<ffi::GtkOverlay>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_overlay_get_type(),
+        type_ => || ffi::gtk_overlay_get_type(),
     }
 }
 
@@ -50,7 +50,7 @@ impl Overlay {
     }
 
     #[doc(alias = "gtk_overlay_get_clip_overlay")]
-    pub fn get_clip_overlay<P: IsA<Widget>>(&self, widget: &P) -> bool {
+    pub fn is_clip_overlay<P: IsA<Widget>>(&self, widget: &P) -> bool {
         unsafe {
             from_glib(ffi::gtk_overlay_get_clip_overlay(
                 self.to_glib_none().0,
@@ -60,7 +60,7 @@ impl Overlay {
     }
 
     #[doc(alias = "gtk_overlay_get_measure_overlay")]
-    pub fn get_measure_overlay<P: IsA<Widget>>(&self, widget: &P) -> bool {
+    pub fn is_measure_overlay<P: IsA<Widget>>(&self, widget: &P) -> bool {
         unsafe {
             from_glib(ffi::gtk_overlay_get_measure_overlay(
                 self.to_glib_none().0,

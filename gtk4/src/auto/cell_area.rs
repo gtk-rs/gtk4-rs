@@ -30,7 +30,7 @@ glib::wrapper! {
     pub struct CellArea(Object<ffi::GtkCellArea, ffi::GtkCellAreaClass>) @implements Buildable, CellLayout;
 
     match fn {
-        get_type => || ffi::gtk_cell_area_get_type(),
+        type_ => || ffi::gtk_cell_area_get_type(),
     }
 }
 
@@ -105,7 +105,7 @@ pub trait CellAreaExt: 'static {
     );
 
     #[doc(alias = "gtk_cell_area_get_cell_allocation")]
-    fn get_cell_allocation<P: IsA<CellAreaContext>, Q: IsA<Widget>, R: IsA<CellRenderer>>(
+    fn cell_allocation<P: IsA<CellAreaContext>, Q: IsA<Widget>, R: IsA<CellRenderer>>(
         &self,
         context: &P,
         widget: &Q,
@@ -114,7 +114,7 @@ pub trait CellAreaExt: 'static {
     ) -> gdk::Rectangle;
 
     #[doc(alias = "gtk_cell_area_get_cell_at_position")]
-    fn get_cell_at_position<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
+    fn cell_at_position<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
         &self,
         context: &P,
         widget: &Q,
@@ -136,20 +136,20 @@ pub trait CellAreaExt: 'static {
     fn focus_cell(&self) -> Option<CellRenderer>;
 
     #[doc(alias = "gtk_cell_area_get_focus_from_sibling")]
-    fn get_focus_from_sibling<P: IsA<CellRenderer>>(&self, renderer: &P) -> Option<CellRenderer>;
+    fn focus_from_sibling<P: IsA<CellRenderer>>(&self, renderer: &P) -> Option<CellRenderer>;
 
     #[doc(alias = "gtk_cell_area_get_focus_siblings")]
-    fn get_focus_siblings<P: IsA<CellRenderer>>(&self, renderer: &P) -> Vec<CellRenderer>;
+    fn focus_siblings<P: IsA<CellRenderer>>(&self, renderer: &P) -> Vec<CellRenderer>;
 
     #[doc(alias = "gtk_cell_area_get_preferred_height")]
-    fn get_preferred_height<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
+    fn preferred_height<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
         &self,
         context: &P,
         widget: &Q,
     ) -> (i32, i32);
 
     #[doc(alias = "gtk_cell_area_get_preferred_height_for_width")]
-    fn get_preferred_height_for_width<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
+    fn preferred_height_for_width<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
         &self,
         context: &P,
         widget: &Q,
@@ -157,14 +157,14 @@ pub trait CellAreaExt: 'static {
     ) -> (i32, i32);
 
     #[doc(alias = "gtk_cell_area_get_preferred_width")]
-    fn get_preferred_width<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
+    fn preferred_width<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
         &self,
         context: &P,
         widget: &Q,
     ) -> (i32, i32);
 
     #[doc(alias = "gtk_cell_area_get_preferred_width_for_height")]
-    fn get_preferred_width_for_height<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
+    fn preferred_width_for_height<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
         &self,
         context: &P,
         widget: &Q,
@@ -450,7 +450,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn get_cell_allocation<P: IsA<CellAreaContext>, Q: IsA<Widget>, R: IsA<CellRenderer>>(
+    fn cell_allocation<P: IsA<CellAreaContext>, Q: IsA<Widget>, R: IsA<CellRenderer>>(
         &self,
         context: &P,
         widget: &Q,
@@ -471,7 +471,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn get_cell_at_position<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
+    fn cell_at_position<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
         &self,
         context: &P,
         widget: &Q,
@@ -526,7 +526,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn get_focus_from_sibling<P: IsA<CellRenderer>>(&self, renderer: &P) -> Option<CellRenderer> {
+    fn focus_from_sibling<P: IsA<CellRenderer>>(&self, renderer: &P) -> Option<CellRenderer> {
         unsafe {
             from_glib_none(ffi::gtk_cell_area_get_focus_from_sibling(
                 self.as_ref().to_glib_none().0,
@@ -535,7 +535,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn get_focus_siblings<P: IsA<CellRenderer>>(&self, renderer: &P) -> Vec<CellRenderer> {
+    fn focus_siblings<P: IsA<CellRenderer>>(&self, renderer: &P) -> Vec<CellRenderer> {
         unsafe {
             FromGlibPtrContainer::from_glib_none(ffi::gtk_cell_area_get_focus_siblings(
                 self.as_ref().to_glib_none().0,
@@ -544,7 +544,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn get_preferred_height<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
+    fn preferred_height<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
         &self,
         context: &P,
         widget: &Q,
@@ -565,7 +565,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn get_preferred_height_for_width<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
+    fn preferred_height_for_width<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
         &self,
         context: &P,
         widget: &Q,
@@ -588,7 +588,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn get_preferred_width<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
+    fn preferred_width<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
         &self,
         context: &P,
         widget: &Q,
@@ -609,7 +609,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    fn get_preferred_width_for_height<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
+    fn preferred_width_for_height<P: IsA<CellAreaContext>, Q: IsA<Widget>>(
         &self,
         context: &P,
         widget: &Q,

@@ -9,7 +9,7 @@ glib::wrapper! {
     pub struct CustomSorter(Object<ffi::GtkCustomSorter, ffi::GtkCustomSorterClass>) @extends Sorter;
 
     match fn {
-        get_type => || ffi::gtk_custom_sorter_get_type(),
+        type_ => || ffi::gtk_custom_sorter_get_type(),
     }
 }
 

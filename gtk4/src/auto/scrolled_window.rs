@@ -34,7 +34,7 @@ glib::wrapper! {
     pub struct ScrolledWindow(Object<ffi::GtkScrolledWindow>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_scrolled_window_get_type(),
+        type_ => || ffi::gtk_scrolled_window_get_type(),
     }
 }
 

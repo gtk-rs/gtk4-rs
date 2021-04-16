@@ -8,7 +8,7 @@ glib::wrapper! {
     pub struct Snapshot(Object<ffi::GdkSnapshot, ffi::GdkSnapshotClass>);
 
     match fn {
-        get_type => || ffi::gdk_snapshot_get_type(),
+        type_ => || ffi::gdk_snapshot_get_type(),
     }
 }
 

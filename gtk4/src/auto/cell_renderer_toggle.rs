@@ -20,7 +20,7 @@ glib::wrapper! {
     pub struct CellRendererToggle(Object<ffi::GtkCellRendererToggle>) @extends CellRenderer;
 
     match fn {
-        get_type => || ffi::gtk_cell_renderer_toggle_get_type(),
+        type_ => || ffi::gtk_cell_renderer_toggle_get_type(),
     }
 }
 

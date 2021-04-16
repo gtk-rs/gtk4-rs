@@ -12,7 +12,7 @@ glib::wrapper! {
     pub struct MultiSorter(Object<ffi::GtkMultiSorter, ffi::GtkMultiSorterClass>) @extends Sorter, @implements gio::ListModel, Buildable;
 
     match fn {
-        get_type => || ffi::gtk_multi_sorter_get_type(),
+        type_ => || ffi::gtk_multi_sorter_get_type(),
     }
 }
 

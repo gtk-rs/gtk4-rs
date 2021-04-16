@@ -14,7 +14,7 @@ glib::wrapper! {
     pub struct AppLaunchContext(Object<ffi::GdkAppLaunchContext>) @extends gio::AppLaunchContext;
 
     match fn {
-        get_type => || ffi::gdk_app_launch_context_get_type(),
+        type_ => || ffi::gdk_app_launch_context_get_type(),
     }
 }
 

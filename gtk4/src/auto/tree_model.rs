@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct TreeModel(Interface<ffi::GtkTreeModel, ffi::GtkTreeModelIface>);
 
     match fn {
-        get_type => || ffi::gtk_tree_model_get_type(),
+        type_ => || ffi::gtk_tree_model_get_type(),
     }
 }
 
@@ -29,28 +29,28 @@ pub trait TreeModelExt: 'static {
     fn foreach<P: FnMut(&TreeModel, &TreePath, &TreeIter) -> bool>(&self, func: P);
 
     #[doc(alias = "gtk_tree_model_get_column_type")]
-    fn get_column_type(&self, index_: i32) -> glib::types::Type;
+    fn column_type(&self, index_: i32) -> glib::types::Type;
 
     #[doc(alias = "gtk_tree_model_get_flags")]
     fn flags(&self) -> TreeModelFlags;
 
     #[doc(alias = "gtk_tree_model_get_iter")]
-    fn get_iter(&self, path: &TreePath) -> Option<TreeIter>;
+    fn iter(&self, path: &TreePath) -> Option<TreeIter>;
 
     #[doc(alias = "gtk_tree_model_get_iter_first")]
     fn iter_first(&self) -> Option<TreeIter>;
 
     #[doc(alias = "gtk_tree_model_get_iter_from_string")]
-    fn get_iter_from_string(&self, path_string: &str) -> Option<TreeIter>;
+    fn iter_from_string(&self, path_string: &str) -> Option<TreeIter>;
 
     #[doc(alias = "gtk_tree_model_get_n_columns")]
     fn n_columns(&self) -> i32;
 
     #[doc(alias = "gtk_tree_model_get_path")]
-    fn get_path(&self, iter: &TreeIter) -> TreePath;
+    fn path(&self, iter: &TreeIter) -> TreePath;
 
     #[doc(alias = "gtk_tree_model_get_string_from_iter")]
-    fn get_string_from_iter(&self, iter: &TreeIter) -> Option<glib::GString>;
+    fn string_from_iter(&self, iter: &TreeIter) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_tree_model_iter_children")]
     fn iter_children(&self, parent: Option<&TreeIter>) -> Option<TreeIter>;
@@ -132,7 +132,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
-    fn get_column_type(&self, index_: i32) -> glib::types::Type {
+    fn column_type(&self, index_: i32) -> glib::types::Type {
         unsafe {
             from_glib(ffi::gtk_tree_model_get_column_type(
                 self.as_ref().to_glib_none().0,
@@ -149,7 +149,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
-    fn get_iter(&self, path: &TreePath) -> Option<TreeIter> {
+    fn iter(&self, path: &TreePath) -> Option<TreeIter> {
         unsafe {
             let mut iter = TreeIter::uninitialized();
             let ret = from_glib(ffi::gtk_tree_model_get_iter(
@@ -180,7 +180,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
-    fn get_iter_from_string(&self, path_string: &str) -> Option<TreeIter> {
+    fn iter_from_string(&self, path_string: &str) -> Option<TreeIter> {
         unsafe {
             let mut iter = TreeIter::uninitialized();
             let ret = from_glib(ffi::gtk_tree_model_get_iter_from_string(
@@ -200,7 +200,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         unsafe { ffi::gtk_tree_model_get_n_columns(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_path(&self, iter: &TreeIter) -> TreePath {
+    fn path(&self, iter: &TreeIter) -> TreePath {
         unsafe {
             from_glib_full(ffi::gtk_tree_model_get_path(
                 self.as_ref().to_glib_none().0,
@@ -209,7 +209,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
-    fn get_string_from_iter(&self, iter: &TreeIter) -> Option<glib::GString> {
+    fn string_from_iter(&self, iter: &TreeIter) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_tree_model_get_string_from_iter(
                 self.as_ref().to_glib_none().0,

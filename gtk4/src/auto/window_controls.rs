@@ -27,7 +27,7 @@ glib::wrapper! {
     pub struct WindowControls(Object<ffi::GtkWindowControls, ffi::GtkWindowControlsClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_window_controls_get_type(),
+        type_ => || ffi::gtk_window_controls_get_type(),
     }
 }
 

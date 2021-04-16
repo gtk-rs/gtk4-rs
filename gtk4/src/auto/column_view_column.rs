@@ -21,7 +21,7 @@ glib::wrapper! {
     pub struct ColumnViewColumn(Object<ffi::GtkColumnViewColumn, ffi::GtkColumnViewColumnClass>);
 
     match fn {
-        get_type => || ffi::gtk_column_view_column_get_type(),
+        type_ => || ffi::gtk_column_view_column_get_type(),
     }
 }
 

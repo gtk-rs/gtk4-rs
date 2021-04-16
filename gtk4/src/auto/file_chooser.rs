@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct FileChooser(Interface<ffi::GtkFileChooser>);
 
     match fn {
-        get_type => || ffi::gtk_file_chooser_get_type(),
+        type_ => || ffi::gtk_file_chooser_get_type(),
     }
 }
 
@@ -35,7 +35,7 @@ pub trait FileChooserExt: 'static {
     fn action(&self) -> FileChooserAction;
 
     #[doc(alias = "gtk_file_chooser_get_choice")]
-    fn get_choice(&self, id: &str) -> Option<glib::GString>;
+    fn choice(&self, id: &str) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_file_chooser_get_create_folders")]
     fn creates_folders(&self) -> bool;
@@ -153,7 +153,7 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    fn get_choice(&self, id: &str) -> Option<glib::GString> {
+    fn choice(&self, id: &str) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_file_chooser_get_choice(
                 self.as_ref().to_glib_none().0,

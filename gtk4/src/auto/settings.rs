@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct Settings(Object<ffi::GtkSettings>) @implements StyleProvider;
 
     match fn {
-        get_type => || ffi::gtk_settings_get_type(),
+        type_ => || ffi::gtk_settings_get_type(),
     }
 }
 
@@ -1376,13 +1376,13 @@ impl Settings {
     }
 
     #[doc(alias = "gtk_settings_get_default")]
-    pub fn get_default() -> Option<Settings> {
+    pub fn default() -> Option<Settings> {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_settings_get_default()) }
     }
 
     #[doc(alias = "gtk_settings_get_for_display")]
-    pub fn get_for_display(display: &gdk::Display) -> Settings {
+    pub fn for_display(display: &gdk::Display) -> Settings {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_settings_get_for_display(display.to_glib_none().0)) }
     }

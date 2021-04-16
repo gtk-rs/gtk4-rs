@@ -14,7 +14,7 @@ glib::wrapper! {
     pub struct StringObject(Object<ffi::GtkStringObject, ffi::GtkStringObjectClass>);
 
     match fn {
-        get_type => || ffi::gtk_string_object_get_type(),
+        type_ => || ffi::gtk_string_object_get_type(),
     }
 }
 

@@ -10,7 +10,7 @@ glib::wrapper! {
     pub struct CairoContext(Object<ffi::GdkCairoContext>) @extends DrawContext;
 
     match fn {
-        get_type => || ffi::gdk_cairo_context_get_type(),
+        type_ => || ffi::gdk_cairo_context_get_type(),
     }
 }
 

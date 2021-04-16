@@ -22,7 +22,7 @@ glib::wrapper! {
     pub struct GestureLongPress(Object<ffi::GtkGestureLongPress, ffi::GtkGestureLongPressClass>) @extends GestureSingle, Gesture, EventController;
 
     match fn {
-        get_type => || ffi::gtk_gesture_long_press_get_type(),
+        type_ => || ffi::gtk_gesture_long_press_get_type(),
     }
 }
 

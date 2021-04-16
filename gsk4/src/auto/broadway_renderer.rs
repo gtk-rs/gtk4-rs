@@ -11,7 +11,7 @@ glib::wrapper! {
     pub struct BroadwayRenderer(Object<ffi::GskBroadwayRenderer, ffi::GskBroadwayRendererClass>) @extends Renderer;
 
     match fn {
-        get_type => || ffi::gsk_broadway_renderer_get_type(),
+        type_ => || ffi::gsk_broadway_renderer_get_type(),
     }
 }
 

@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct FlattenListModel(Object<ffi::GtkFlattenListModel, ffi::GtkFlattenListModelClass>) @implements gio::ListModel;
 
     match fn {
-        get_type => || ffi::gtk_flatten_list_model_get_type(),
+        type_ => || ffi::gtk_flatten_list_model_get_type(),
     }
 }
 
@@ -39,7 +39,7 @@ impl FlattenListModel {
     }
 
     #[doc(alias = "gtk_flatten_list_model_get_model_for_item")]
-    pub fn get_model_for_item(&self, position: u32) -> Option<gio::ListModel> {
+    pub fn model_for_item(&self, position: u32) -> Option<gio::ListModel> {
         unsafe {
             from_glib_none(ffi::gtk_flatten_list_model_get_model_for_item(
                 self.to_glib_none().0,

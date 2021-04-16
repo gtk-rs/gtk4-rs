@@ -14,7 +14,7 @@ glib::wrapper! {
     pub struct TextMark(Object<ffi::GtkTextMark, ffi::GtkTextMarkClass>);
 
     match fn {
-        get_type => || ffi::gtk_text_mark_get_type(),
+        type_ => || ffi::gtk_text_mark_get_type(),
     }
 }
 

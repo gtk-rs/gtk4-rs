@@ -28,7 +28,7 @@ glib::wrapper! {
     pub struct ProgressBar(Object<ffi::GtkProgressBar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
-        get_type => || ffi::gtk_progress_bar_get_type(),
+        type_ => || ffi::gtk_progress_bar_get_type(),
     }
 }
 

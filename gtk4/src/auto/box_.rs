@@ -28,7 +28,7 @@ glib::wrapper! {
     pub struct Box(Object<ffi::GtkBox, ffi::GtkBoxClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
-        get_type => || ffi::gtk_box_get_type(),
+        type_ => || ffi::gtk_box_get_type(),
     }
 }
 

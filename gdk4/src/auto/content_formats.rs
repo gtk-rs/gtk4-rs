@@ -13,7 +13,7 @@ glib::wrapper! {
     match fn {
         ref => |ptr| ffi::gdk_content_formats_ref(ptr),
         unref => |ptr| ffi::gdk_content_formats_unref(ptr),
-        get_type => || ffi::gdk_content_formats_get_type(),
+        type_ => || ffi::gdk_content_formats_get_type(),
     }
 }
 

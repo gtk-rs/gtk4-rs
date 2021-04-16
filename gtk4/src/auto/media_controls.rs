@@ -27,7 +27,7 @@ glib::wrapper! {
     pub struct MediaControls(Object<ffi::GtkMediaControls, ffi::GtkMediaControlsClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_media_controls_get_type(),
+        type_ => || ffi::gtk_media_controls_get_type(),
     }
 }
 

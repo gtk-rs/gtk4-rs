@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct MapListModel(Object<ffi::GtkMapListModel, ffi::GtkMapListModelClass>) @implements gio::ListModel;
 
     match fn {
-        get_type => || ffi::gtk_map_list_model_get_type(),
+        type_ => || ffi::gtk_map_list_model_get_type(),
     }
 }
 

@@ -16,7 +16,7 @@ glib::wrapper! {
     pub struct FontChooser(Interface<ffi::GtkFontChooser, ffi::GtkFontChooserIface>);
 
     match fn {
-        get_type => || ffi::gtk_font_chooser_get_type(),
+        type_ => || ffi::gtk_font_chooser_get_type(),
     }
 }
 

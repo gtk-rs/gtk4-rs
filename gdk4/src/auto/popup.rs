@@ -13,7 +13,7 @@ glib::wrapper! {
     pub struct Popup(Interface<ffi::GdkPopup, ffi::GdkPopupInterface>) @requires Surface;
 
     match fn {
-        get_type => || ffi::gdk_popup_get_type(),
+        type_ => || ffi::gdk_popup_get_type(),
     }
 }
 

@@ -11,7 +11,7 @@ glib::wrapper! {
     pub struct GLRenderer(Object<ffi::GskGLRenderer, ffi::GskGLRendererClass>) @extends Renderer;
 
     match fn {
-        get_type => || ffi::gsk_gl_renderer_get_type(),
+        type_ => || ffi::gsk_gl_renderer_get_type(),
     }
 }
 

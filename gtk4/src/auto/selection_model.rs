@@ -16,7 +16,7 @@ glib::wrapper! {
     pub struct SelectionModel(Interface<ffi::GtkSelectionModel, ffi::GtkSelectionModelInterface>) @requires gio::ListModel;
 
     match fn {
-        get_type => || ffi::gtk_selection_model_get_type(),
+        type_ => || ffi::gtk_selection_model_get_type(),
     }
 }
 
@@ -27,7 +27,7 @@ pub trait SelectionModelExt: 'static {
     fn selection(&self) -> Bitset;
 
     #[doc(alias = "gtk_selection_model_get_selection_in_range")]
-    fn get_selection_in_range(&self, position: u32, n_items: u32) -> Bitset;
+    fn selection_in_range(&self, position: u32, n_items: u32) -> Bitset;
 
     #[doc(alias = "gtk_selection_model_is_selected")]
     fn is_selected(&self, position: u32) -> bool;
@@ -68,7 +68,7 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
         }
     }
 
-    fn get_selection_in_range(&self, position: u32, n_items: u32) -> Bitset {
+    fn selection_in_range(&self, position: u32, n_items: u32) -> Bitset {
         unsafe {
             from_glib_full(ffi::gtk_selection_model_get_selection_in_range(
                 self.as_ref().to_glib_none().0,

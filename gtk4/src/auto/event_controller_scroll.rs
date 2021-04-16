@@ -21,7 +21,7 @@ glib::wrapper! {
     pub struct EventControllerScroll(Object<ffi::GtkEventControllerScroll, ffi::GtkEventControllerScrollClass>) @extends EventController;
 
     match fn {
-        get_type => || ffi::gtk_event_controller_scroll_get_type(),
+        type_ => || ffi::gtk_event_controller_scroll_get_type(),
     }
 }
 

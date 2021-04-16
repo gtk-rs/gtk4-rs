@@ -11,7 +11,7 @@ glib::wrapper! {
     pub struct BinLayout(Object<ffi::GtkBinLayout, ffi::GtkBinLayoutClass>) @extends LayoutManager;
 
     match fn {
-        get_type => || ffi::gtk_bin_layout_get_type(),
+        type_ => || ffi::gtk_bin_layout_get_type(),
     }
 }
 

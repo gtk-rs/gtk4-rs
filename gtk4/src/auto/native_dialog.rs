@@ -17,7 +17,7 @@ glib::wrapper! {
     pub struct NativeDialog(Object<ffi::GtkNativeDialog, ffi::GtkNativeDialogClass>);
 
     match fn {
-        get_type => || ffi::gtk_native_dialog_get_type(),
+        type_ => || ffi::gtk_native_dialog_get_type(),
     }
 }
 

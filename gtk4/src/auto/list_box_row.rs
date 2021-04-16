@@ -27,7 +27,7 @@ glib::wrapper! {
     pub struct ListBoxRow(Object<ffi::GtkListBoxRow, ffi::GtkListBoxRowClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
-        get_type => || ffi::gtk_list_box_row_get_type(),
+        type_ => || ffi::gtk_list_box_row_get_type(),
     }
 }
 

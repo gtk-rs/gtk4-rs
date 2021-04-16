@@ -11,7 +11,7 @@ glib::wrapper! {
     pub struct TreeDragDest(Interface<ffi::GtkTreeDragDest, ffi::GtkTreeDragDestIface>);
 
     match fn {
-        get_type => || ffi::gtk_tree_drag_dest_get_type(),
+        type_ => || ffi::gtk_tree_drag_dest_get_type(),
     }
 }
 

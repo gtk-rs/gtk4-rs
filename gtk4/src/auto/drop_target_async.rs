@@ -20,7 +20,7 @@ glib::wrapper! {
     pub struct DropTargetAsync(Object<ffi::GtkDropTargetAsync, ffi::GtkDropTargetAsyncClass>) @extends EventController;
 
     match fn {
-        get_type => || ffi::gtk_drop_target_async_get_type(),
+        type_ => || ffi::gtk_drop_target_async_get_type(),
     }
 }
 

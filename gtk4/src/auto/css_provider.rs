@@ -17,7 +17,7 @@ glib::wrapper! {
     pub struct CssProvider(Object<ffi::GtkCssProvider, ffi::GtkCssProviderClass>) @implements StyleProvider;
 
     match fn {
-        get_type => || ffi::gtk_css_provider_get_type(),
+        type_ => || ffi::gtk_css_provider_get_type(),
     }
 }
 

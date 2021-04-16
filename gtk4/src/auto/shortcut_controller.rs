@@ -24,7 +24,7 @@ glib::wrapper! {
     pub struct ShortcutController(Object<ffi::GtkShortcutController, ffi::GtkShortcutControllerClass>) @extends EventController, @implements gio::ListModel, Buildable;
 
     match fn {
-        get_type => || ffi::gtk_shortcut_controller_get_type(),
+        type_ => || ffi::gtk_shortcut_controller_get_type(),
     }
 }
 

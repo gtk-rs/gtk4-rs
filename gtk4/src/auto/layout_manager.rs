@@ -15,7 +15,7 @@ glib::wrapper! {
     pub struct LayoutManager(Object<ffi::GtkLayoutManager, ffi::GtkLayoutManagerClass>);
 
     match fn {
-        get_type => || ffi::gtk_layout_manager_get_type(),
+        type_ => || ffi::gtk_layout_manager_get_type(),
     }
 }
 
@@ -26,7 +26,7 @@ pub trait LayoutManagerExt: 'static {
     fn allocate<P: IsA<Widget>>(&self, widget: &P, width: i32, height: i32, baseline: i32);
 
     #[doc(alias = "gtk_layout_manager_get_layout_child")]
-    fn get_layout_child<P: IsA<Widget>>(&self, child: &P) -> Option<LayoutChild>;
+    fn layout_child<P: IsA<Widget>>(&self, child: &P) -> Option<LayoutChild>;
 
     #[doc(alias = "gtk_layout_manager_get_request_mode")]
     fn request_mode(&self) -> SizeRequestMode;
@@ -59,7 +59,7 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
         }
     }
 
-    fn get_layout_child<P: IsA<Widget>>(&self, child: &P) -> Option<LayoutChild> {
+    fn layout_child<P: IsA<Widget>>(&self, child: &P) -> Option<LayoutChild> {
         unsafe {
             from_glib_none(ffi::gtk_layout_manager_get_layout_child(
                 self.as_ref().to_glib_none().0,

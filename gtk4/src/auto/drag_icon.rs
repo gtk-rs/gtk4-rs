@@ -28,7 +28,7 @@ glib::wrapper! {
     pub struct DragIcon(Object<ffi::GtkDragIcon, ffi::GtkDragIconClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root;
 
     match fn {
-        get_type => || ffi::gtk_drag_icon_get_type(),
+        type_ => || ffi::gtk_drag_icon_get_type(),
     }
 }
 
@@ -59,7 +59,7 @@ impl DragIcon {
     }
 
     #[doc(alias = "gtk_drag_icon_get_for_drag")]
-    pub fn get_for_drag(drag: &gdk::Drag) -> Option<Widget> {
+    pub fn for_drag(drag: &gdk::Drag) -> Option<Widget> {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_drag_icon_get_for_drag(drag.to_glib_none().0)) }
     }

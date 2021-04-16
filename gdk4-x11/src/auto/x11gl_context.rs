@@ -8,7 +8,7 @@ glib::wrapper! {
     pub struct X11GLContext(Object<ffi::GdkX11GLContext, ffi::GdkX11GLContextClass>) @extends gdk::GLContext, gdk::DrawContext;
 
     match fn {
-        get_type => || ffi::gdk_x11_gl_context_get_type(),
+        type_ => || ffi::gdk_x11_gl_context_get_type(),
     }
 }
 

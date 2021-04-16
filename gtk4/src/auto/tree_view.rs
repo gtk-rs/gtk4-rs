@@ -42,7 +42,7 @@ glib::wrapper! {
     pub struct TreeView(Object<ffi::GtkTreeView, ffi::GtkTreeViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;
 
     match fn {
-        get_type => || ffi::gtk_tree_view_get_type(),
+        type_ => || ffi::gtk_tree_view_get_type(),
     }
 }
 
@@ -606,21 +606,18 @@ pub trait TreeViewExt: 'static {
     fn activates_on_single_click(&self) -> bool;
 
     #[doc(alias = "gtk_tree_view_get_background_area")]
-    fn get_background_area(
+    fn background_area(
         &self,
         path: Option<&TreePath>,
         column: Option<&TreeViewColumn>,
     ) -> gdk::Rectangle;
 
     #[doc(alias = "gtk_tree_view_get_cell_area")]
-    fn get_cell_area(
-        &self,
-        path: Option<&TreePath>,
-        column: Option<&TreeViewColumn>,
-    ) -> gdk::Rectangle;
+    fn cell_area(&self, path: Option<&TreePath>, column: Option<&TreeViewColumn>)
+        -> gdk::Rectangle;
 
     #[doc(alias = "gtk_tree_view_get_column")]
-    fn get_column(&self, n: i32) -> Option<TreeViewColumn>;
+    fn column(&self, n: i32) -> Option<TreeViewColumn>;
 
     #[doc(alias = "gtk_tree_view_get_columns")]
     fn columns(&self) -> Vec<TreeViewColumn>;
@@ -629,7 +626,7 @@ pub trait TreeViewExt: 'static {
     fn cursor(&self) -> (Option<TreePath>, Option<TreeViewColumn>);
 
     #[doc(alias = "gtk_tree_view_get_dest_row_at_pos")]
-    fn get_dest_row_at_pos(
+    fn dest_row_at_pos(
         &self,
         drag_x: i32,
         drag_y: i32,
@@ -660,7 +657,7 @@ pub trait TreeViewExt: 'static {
     fn is_headers_visible(&self) -> bool;
 
     #[doc(alias = "gtk_tree_view_get_hover_expand")]
-    fn is_hover_expand(&self) -> bool;
+    fn hover_expands(&self) -> bool;
 
     #[doc(alias = "gtk_tree_view_get_hover_selection")]
     fn is_hover_selection(&self) -> bool;
@@ -675,7 +672,7 @@ pub trait TreeViewExt: 'static {
     fn n_columns(&self) -> u32;
 
     #[doc(alias = "gtk_tree_view_get_path_at_pos")]
-    fn get_path_at_pos(
+    fn path_at_pos(
         &self,
         x: i32,
         y: i32,
@@ -709,7 +706,7 @@ pub trait TreeViewExt: 'static {
     fn tooltip_column(&self) -> i32;
 
     #[doc(alias = "gtk_tree_view_get_tooltip_context")]
-    fn get_tooltip_context(
+    fn tooltip_context(
         &self,
         x: i32,
         y: i32,
@@ -1261,7 +1258,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn get_background_area(
+    fn background_area(
         &self,
         path: Option<&TreePath>,
         column: Option<&TreeViewColumn>,
@@ -1278,7 +1275,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn get_cell_area(
+    fn cell_area(
         &self,
         path: Option<&TreePath>,
         column: Option<&TreeViewColumn>,
@@ -1295,7 +1292,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn get_column(&self, n: i32) -> Option<TreeViewColumn> {
+    fn column(&self, n: i32) -> Option<TreeViewColumn> {
         unsafe {
             from_glib_none(ffi::gtk_tree_view_get_column(
                 self.as_ref().to_glib_none().0,
@@ -1325,7 +1322,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn get_dest_row_at_pos(
+    fn dest_row_at_pos(
         &self,
         drag_x: i32,
         drag_y: i32,
@@ -1419,7 +1416,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn is_hover_expand(&self) -> bool {
+    fn hover_expands(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_get_hover_expand(
                 self.as_ref().to_glib_none().0,
@@ -1447,7 +1444,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe { ffi::gtk_tree_view_get_n_columns(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_path_at_pos(
+    fn path_at_pos(
         &self,
         x: i32,
         y: i32,
@@ -1532,7 +1529,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe { ffi::gtk_tree_view_get_tooltip_column(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_tooltip_context(
+    fn tooltip_context(
         &self,
         x: i32,
         y: i32,

@@ -14,7 +14,7 @@ glib::wrapper! {
     pub struct ConstraintLayout(Object<ffi::GtkConstraintLayout, ffi::GtkConstraintLayoutClass>) @extends LayoutManager, @implements Buildable;
 
     match fn {
-        get_type => || ffi::gtk_constraint_layout_get_type(),
+        type_ => || ffi::gtk_constraint_layout_get_type(),
     }
 }
 

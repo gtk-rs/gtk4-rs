@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct TreeListRowSorter(Object<ffi::GtkTreeListRowSorter, ffi::GtkTreeListRowSorterClass>) @extends Sorter;
 
     match fn {
-        get_type => || ffi::gtk_tree_list_row_sorter_get_type(),
+        type_ => || ffi::gtk_tree_list_row_sorter_get_type(),
     }
 }
 

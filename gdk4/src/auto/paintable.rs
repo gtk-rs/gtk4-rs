@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct Paintable(Interface<ffi::GdkPaintable, ffi::GdkPaintableInterface>);
 
     match fn {
-        get_type => || ffi::gdk_paintable_get_type(),
+        type_ => || ffi::gdk_paintable_get_type(),
     }
 }
 

@@ -11,7 +11,7 @@ glib::wrapper! {
     pub struct GLTexture(Object<ffi::GdkGLTexture, ffi::GdkGLTextureClass>) @extends Texture, @implements Paintable;
 
     match fn {
-        get_type => || ffi::gdk_gl_texture_get_type(),
+        type_ => || ffi::gdk_gl_texture_get_type(),
     }
 }
 

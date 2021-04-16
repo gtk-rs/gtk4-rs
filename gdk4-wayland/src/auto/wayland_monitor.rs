@@ -8,7 +8,7 @@ glib::wrapper! {
     pub struct WaylandMonitor(Object<ffi::GdkWaylandMonitor, ffi::GdkWaylandMonitorClass>) @extends gdk::Monitor;
 
     match fn {
-        get_type => || ffi::gdk_wayland_monitor_get_type(),
+        type_ => || ffi::gdk_wayland_monitor_get_type(),
     }
 }
 

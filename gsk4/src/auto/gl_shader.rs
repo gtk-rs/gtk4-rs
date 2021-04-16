@@ -16,7 +16,7 @@ glib::wrapper! {
     pub struct GLShader(Object<ffi::GskGLShader, ffi::GskGLShaderClass>);
 
     match fn {
-        get_type => || ffi::gsk_gl_shader_get_type(),
+        type_ => || ffi::gsk_gl_shader_get_type(),
     }
 }
 
@@ -71,7 +71,7 @@ impl GLShader {
     //}
 
     #[doc(alias = "gsk_gl_shader_get_arg_bool")]
-    pub fn get_arg_bool(&self, args: &glib::Bytes, idx: i32) -> bool {
+    pub fn arg_bool(&self, args: &glib::Bytes, idx: i32) -> bool {
         unsafe {
             from_glib(ffi::gsk_gl_shader_get_arg_bool(
                 self.to_glib_none().0,
@@ -82,26 +82,26 @@ impl GLShader {
     }
 
     #[doc(alias = "gsk_gl_shader_get_arg_float")]
-    pub fn get_arg_float(&self, args: &glib::Bytes, idx: i32) -> f32 {
+    pub fn arg_float(&self, args: &glib::Bytes, idx: i32) -> f32 {
         unsafe {
             ffi::gsk_gl_shader_get_arg_float(self.to_glib_none().0, args.to_glib_none().0, idx)
         }
     }
 
     #[doc(alias = "gsk_gl_shader_get_arg_int")]
-    pub fn get_arg_int(&self, args: &glib::Bytes, idx: i32) -> i32 {
+    pub fn arg_int(&self, args: &glib::Bytes, idx: i32) -> i32 {
         unsafe { ffi::gsk_gl_shader_get_arg_int(self.to_glib_none().0, args.to_glib_none().0, idx) }
     }
 
     #[doc(alias = "gsk_gl_shader_get_arg_uint")]
-    pub fn get_arg_uint(&self, args: &glib::Bytes, idx: i32) -> u32 {
+    pub fn arg_uint(&self, args: &glib::Bytes, idx: i32) -> u32 {
         unsafe {
             ffi::gsk_gl_shader_get_arg_uint(self.to_glib_none().0, args.to_glib_none().0, idx)
         }
     }
 
     #[doc(alias = "gsk_gl_shader_get_arg_vec2")]
-    pub fn get_arg_vec2(&self, args: &glib::Bytes, idx: i32, out_value: &mut graphene::Vec2) {
+    pub fn arg_vec2(&self, args: &glib::Bytes, idx: i32, out_value: &mut graphene::Vec2) {
         unsafe {
             ffi::gsk_gl_shader_get_arg_vec2(
                 self.to_glib_none().0,
@@ -113,7 +113,7 @@ impl GLShader {
     }
 
     #[doc(alias = "gsk_gl_shader_get_arg_vec3")]
-    pub fn get_arg_vec3(&self, args: &glib::Bytes, idx: i32, out_value: &mut graphene::Vec3) {
+    pub fn arg_vec3(&self, args: &glib::Bytes, idx: i32, out_value: &mut graphene::Vec3) {
         unsafe {
             ffi::gsk_gl_shader_get_arg_vec3(
                 self.to_glib_none().0,
@@ -125,7 +125,7 @@ impl GLShader {
     }
 
     #[doc(alias = "gsk_gl_shader_get_arg_vec4")]
-    pub fn get_arg_vec4(&self, args: &glib::Bytes, idx: i32, out_value: &mut graphene::Vec4) {
+    pub fn arg_vec4(&self, args: &glib::Bytes, idx: i32, out_value: &mut graphene::Vec4) {
         unsafe {
             ffi::gsk_gl_shader_get_arg_vec4(
                 self.to_glib_none().0,
@@ -162,7 +162,7 @@ impl GLShader {
     }
 
     #[doc(alias = "gsk_gl_shader_get_uniform_name")]
-    pub fn get_uniform_name(&self, idx: i32) -> Option<glib::GString> {
+    pub fn uniform_name(&self, idx: i32) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gsk_gl_shader_get_uniform_name(
                 self.to_glib_none().0,
@@ -172,12 +172,12 @@ impl GLShader {
     }
 
     #[doc(alias = "gsk_gl_shader_get_uniform_offset")]
-    pub fn get_uniform_offset(&self, idx: i32) -> i32 {
+    pub fn uniform_offset(&self, idx: i32) -> i32 {
         unsafe { ffi::gsk_gl_shader_get_uniform_offset(self.to_glib_none().0, idx) }
     }
 
     #[doc(alias = "gsk_gl_shader_get_uniform_type")]
-    pub fn get_uniform_type(&self, idx: i32) -> GLUniformType {
+    pub fn uniform_type(&self, idx: i32) -> GLUniformType {
         unsafe {
             from_glib(ffi::gsk_gl_shader_get_uniform_type(
                 self.to_glib_none().0,

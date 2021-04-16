@@ -31,7 +31,7 @@ glib::wrapper! {
     pub struct PopoverMenu(Object<ffi::GtkPopoverMenu>) @extends Popover, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, ShortcutManager;
 
     match fn {
-        get_type => || ffi::gtk_popover_menu_get_type(),
+        type_ => || ffi::gtk_popover_menu_get_type(),
     }
 }
 

@@ -20,7 +20,7 @@ glib::wrapper! {
     pub struct Monitor(Object<ffi::GdkMonitor, ffi::GdkMonitorClass>);
 
     match fn {
-        get_type => || ffi::gdk_monitor_get_type(),
+        type_ => || ffi::gdk_monitor_get_type(),
     }
 }
 

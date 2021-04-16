@@ -27,7 +27,7 @@ glib::wrapper! {
     pub struct Button(Object<ffi::GtkButton, ffi::GtkButtonClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
-        get_type => || ffi::gtk_button_get_type(),
+        type_ => || ffi::gtk_button_get_type(),
     }
 }
 

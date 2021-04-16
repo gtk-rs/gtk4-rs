@@ -15,7 +15,7 @@ glib::wrapper! {
     pub struct BuilderListItemFactory(Object<ffi::GtkBuilderListItemFactory, ffi::GtkBuilderListItemFactoryClass>) @extends ListItemFactory;
 
     match fn {
-        get_type => || ffi::gtk_builder_list_item_factory_get_type(),
+        type_ => || ffi::gtk_builder_list_item_factory_get_type(),
     }
 }
 

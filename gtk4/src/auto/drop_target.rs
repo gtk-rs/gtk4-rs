@@ -20,7 +20,7 @@ glib::wrapper! {
     pub struct DropTarget(Object<ffi::GtkDropTarget, ffi::GtkDropTargetClass>) @extends EventController;
 
     match fn {
-        get_type => || ffi::gtk_drop_target_get_type(),
+        type_ => || ffi::gtk_drop_target_get_type(),
     }
 }
 

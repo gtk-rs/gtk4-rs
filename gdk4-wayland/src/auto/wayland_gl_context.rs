@@ -8,7 +8,7 @@ glib::wrapper! {
     pub struct WaylandGLContext(Object<ffi::GdkWaylandGLContext, ffi::GdkWaylandGLContextClass>) @extends gdk::GLContext, gdk::DrawContext;
 
     match fn {
-        get_type => || ffi::gdk_wayland_gl_context_get_type(),
+        type_ => || ffi::gdk_wayland_gl_context_get_type(),
     }
 }
 

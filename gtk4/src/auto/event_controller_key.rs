@@ -23,7 +23,7 @@ glib::wrapper! {
     pub struct EventControllerKey(Object<ffi::GtkEventControllerKey, ffi::GtkEventControllerKeyClass>) @extends EventController;
 
     match fn {
-        get_type => || ffi::gtk_event_controller_key_get_type(),
+        type_ => || ffi::gtk_event_controller_key_get_type(),
     }
 }
 

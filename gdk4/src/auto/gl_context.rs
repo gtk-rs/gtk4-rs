@@ -12,7 +12,7 @@ glib::wrapper! {
     pub struct GLContext(Object<ffi::GdkGLContext>) @extends DrawContext;
 
     match fn {
-        get_type => || ffi::gdk_gl_context_get_type(),
+        type_ => || ffi::gdk_gl_context_get_type(),
     }
 }
 
@@ -139,7 +139,7 @@ impl GLContext {
     }
 
     #[doc(alias = "gdk_gl_context_get_current")]
-    pub fn get_current() -> Option<GLContext> {
+    pub fn current() -> Option<GLContext> {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gdk_gl_context_get_current()) }
     }

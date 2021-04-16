@@ -13,7 +13,7 @@ glib::wrapper! {
     pub struct NamedAction(Object<ffi::GtkNamedAction, ffi::GtkNamedActionClass>) @extends ShortcutAction;
 
     match fn {
-        get_type => || ffi::gtk_named_action_get_type(),
+        type_ => || ffi::gtk_named_action_get_type(),
     }
 }
 

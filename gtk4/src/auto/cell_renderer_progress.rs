@@ -21,7 +21,7 @@ glib::wrapper! {
     pub struct CellRendererProgress(Object<ffi::GtkCellRendererProgress>) @extends CellRenderer, @implements Orientable;
 
     match fn {
-        get_type => || ffi::gtk_cell_renderer_progress_get_type(),
+        type_ => || ffi::gtk_cell_renderer_progress_get_type(),
     }
 }
 

@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct GridLayout(Object<ffi::GtkGridLayout, ffi::GtkGridLayoutClass>) @extends LayoutManager;
 
     match fn {
-        get_type => || ffi::gtk_grid_layout_get_type(),
+        type_ => || ffi::gtk_grid_layout_get_type(),
     }
 }
 
@@ -50,7 +50,7 @@ impl GridLayout {
     }
 
     #[doc(alias = "gtk_grid_layout_get_row_baseline_position")]
-    pub fn get_row_baseline_position(&self, row: i32) -> BaselinePosition {
+    pub fn row_baseline_position(&self, row: i32) -> BaselinePosition {
         unsafe {
             from_glib(ffi::gtk_grid_layout_get_row_baseline_position(
                 self.to_glib_none().0,

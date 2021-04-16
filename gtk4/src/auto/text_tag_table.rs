@@ -17,7 +17,7 @@ glib::wrapper! {
     pub struct TextTagTable(Object<ffi::GtkTextTagTable>) @implements Buildable;
 
     match fn {
-        get_type => || ffi::gtk_text_tag_table_get_type(),
+        type_ => || ffi::gtk_text_tag_table_get_type(),
     }
 }
 

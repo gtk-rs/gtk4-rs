@@ -29,7 +29,7 @@ glib::wrapper! {
     pub struct CheckButton(Object<ffi::GtkCheckButton, ffi::GtkCheckButtonClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
-        get_type => || ffi::gtk_check_button_get_type(),
+        type_ => || ffi::gtk_check_button_get_type(),
     }
 }
 

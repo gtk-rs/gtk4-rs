@@ -32,7 +32,7 @@ glib::wrapper! {
     pub struct ComboBox(Object<ffi::GtkComboBox, ffi::GtkComboBoxClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, CellEditable, CellLayout;
 
     match fn {
-        get_type => || ffi::gtk_combo_box_get_type(),
+        type_ => || ffi::gtk_combo_box_get_type(),
     }
 }
 

@@ -8,7 +8,7 @@ glib::wrapper! {
     pub struct WaylandSeat(Object<ffi::GdkWaylandSeat, ffi::GdkWaylandSeatClass>) @extends gdk::Seat;
 
     match fn {
-        get_type => || ffi::gdk_wayland_seat_get_type(),
+        type_ => || ffi::gdk_wayland_seat_get_type(),
     }
 }
 

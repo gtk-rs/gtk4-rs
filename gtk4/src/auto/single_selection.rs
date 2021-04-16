@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct SingleSelection(Object<ffi::GtkSingleSelection, ffi::GtkSingleSelectionClass>) @implements gio::ListModel, SelectionModel;
 
     match fn {
-        get_type => || ffi::gtk_single_selection_get_type(),
+        type_ => || ffi::gtk_single_selection_get_type(),
     }
 }
 

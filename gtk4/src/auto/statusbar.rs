@@ -26,7 +26,7 @@ glib::wrapper! {
     pub struct Statusbar(Object<ffi::GtkStatusbar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_statusbar_get_type(),
+        type_ => || ffi::gtk_statusbar_get_type(),
     }
 }
 
@@ -38,7 +38,7 @@ impl Statusbar {
     }
 
     #[doc(alias = "gtk_statusbar_get_context_id")]
-    pub fn get_context_id(&self, context_description: &str) -> u32 {
+    pub fn context_id(&self, context_description: &str) -> u32 {
         unsafe {
             ffi::gtk_statusbar_get_context_id(
                 self.to_glib_none().0,

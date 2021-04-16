@@ -29,7 +29,7 @@ glib::wrapper! {
     pub struct PageSetupUnixDialog(Object<ffi::GtkPageSetupUnixDialog>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
 
     match fn {
-        get_type => || ffi::gtk_page_setup_unix_dialog_get_type(),
+        type_ => || ffi::gtk_page_setup_unix_dialog_get_type(),
     }
 }
 

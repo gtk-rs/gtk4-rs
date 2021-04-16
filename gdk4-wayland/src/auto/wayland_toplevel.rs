@@ -11,7 +11,7 @@ glib::wrapper! {
     pub struct WaylandToplevel(Object<ffi::GdkWaylandToplevel>) @extends WaylandSurface, gdk::Surface, @implements gdk::Toplevel;
 
     match fn {
-        get_type => || ffi::gdk_wayland_toplevel_get_type(),
+        type_ => || ffi::gdk_wayland_toplevel_get_type(),
     }
 }
 

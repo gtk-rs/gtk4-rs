@@ -33,7 +33,7 @@ glib::wrapper! {
     pub struct ColumnView(Object<ffi::GtkColumnView, ffi::GtkColumnViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;
 
     match fn {
-        get_type => || ffi::gtk_column_view_get_type(),
+        type_ => || ffi::gtk_column_view_get_type(),
     }
 }
 

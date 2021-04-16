@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct CellAreaContext(Object<ffi::GtkCellAreaContext, ffi::GtkCellAreaContextClass>);
 
     match fn {
-        get_type => || ffi::gtk_cell_area_context_get_type(),
+        type_ => || ffi::gtk_cell_area_context_get_type(),
     }
 }
 
@@ -64,13 +64,13 @@ pub trait CellAreaContextExt: 'static {
     fn preferred_height(&self) -> (i32, i32);
 
     #[doc(alias = "gtk_cell_area_context_get_preferred_height_for_width")]
-    fn get_preferred_height_for_width(&self, width: i32) -> (i32, i32);
+    fn preferred_height_for_width(&self, width: i32) -> (i32, i32);
 
     #[doc(alias = "gtk_cell_area_context_get_preferred_width")]
     fn preferred_width(&self) -> (i32, i32);
 
     #[doc(alias = "gtk_cell_area_context_get_preferred_width_for_height")]
-    fn get_preferred_width_for_height(&self, height: i32) -> (i32, i32);
+    fn preferred_width_for_height(&self, height: i32) -> (i32, i32);
 
     #[doc(alias = "gtk_cell_area_context_push_preferred_height")]
     fn push_preferred_height(&self, minimum_height: i32, natural_height: i32);
@@ -159,7 +159,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
-    fn get_preferred_height_for_width(&self, width: i32) -> (i32, i32) {
+    fn preferred_height_for_width(&self, width: i32) -> (i32, i32) {
         unsafe {
             let mut minimum_height = mem::MaybeUninit::uninit();
             let mut natural_height = mem::MaybeUninit::uninit();
@@ -190,7 +190,7 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
-    fn get_preferred_width_for_height(&self, height: i32) -> (i32, i32) {
+    fn preferred_width_for_height(&self, height: i32) -> (i32, i32) {
         unsafe {
             let mut minimum_width = mem::MaybeUninit::uninit();
             let mut natural_width = mem::MaybeUninit::uninit();

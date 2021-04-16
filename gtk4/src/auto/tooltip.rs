@@ -11,7 +11,7 @@ glib::wrapper! {
     pub struct Tooltip(Object<ffi::GtkTooltip>);
 
     match fn {
-        get_type => || ffi::gtk_tooltip_get_type(),
+        type_ => || ffi::gtk_tooltip_get_type(),
     }
 }
 

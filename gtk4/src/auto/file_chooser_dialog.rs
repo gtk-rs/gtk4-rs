@@ -29,7 +29,7 @@ glib::wrapper! {
     pub struct FileChooserDialog(Object<ffi::GtkFileChooserDialog>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager, FileChooser;
 
     match fn {
-        get_type => || ffi::gtk_file_chooser_dialog_get_type(),
+        type_ => || ffi::gtk_file_chooser_dialog_get_type(),
     }
 }
 

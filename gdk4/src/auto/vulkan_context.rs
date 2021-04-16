@@ -15,7 +15,7 @@ glib::wrapper! {
     pub struct VulkanContext(Object<ffi::GdkVulkanContext>) @extends DrawContext;
 
     match fn {
-        get_type => || ffi::gdk_vulkan_context_get_type(),
+        type_ => || ffi::gdk_vulkan_context_get_type(),
     }
 }
 

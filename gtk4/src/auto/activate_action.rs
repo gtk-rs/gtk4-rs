@@ -10,7 +10,7 @@ glib::wrapper! {
     pub struct ActivateAction(Object<ffi::GtkActivateAction, ffi::GtkActivateActionClass>) @extends ShortcutAction;
 
     match fn {
-        get_type => || ffi::gtk_activate_action_get_type(),
+        type_ => || ffi::gtk_activate_action_get_type(),
     }
 }
 

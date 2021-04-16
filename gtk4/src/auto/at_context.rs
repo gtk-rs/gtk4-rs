@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct ATContext(Object<ffi::GtkATContext, ffi::GtkATContextClass>);
 
     match fn {
-        get_type => || ffi::gtk_at_context_get_type(),
+        type_ => || ffi::gtk_at_context_get_type(),
     }
 }
 

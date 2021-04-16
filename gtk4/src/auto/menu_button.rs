@@ -28,7 +28,7 @@ glib::wrapper! {
     pub struct MenuButton(Object<ffi::GtkMenuButton>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_menu_button_get_type(),
+        type_ => || ffi::gtk_menu_button_get_type(),
     }
 }
 

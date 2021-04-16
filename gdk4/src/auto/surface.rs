@@ -26,7 +26,7 @@ glib::wrapper! {
     pub struct Surface(Object<ffi::GdkSurface, ffi::GdkSurfaceClass>);
 
     match fn {
-        get_type => || ffi::gdk_surface_get_type(),
+        type_ => || ffi::gdk_surface_get_type(),
     }
 }
 
@@ -99,7 +99,7 @@ impl Surface {
     }
 
     #[doc(alias = "gdk_surface_get_device_cursor")]
-    pub fn get_device_cursor(&self, device: &Device) -> Option<Cursor> {
+    pub fn device_cursor(&self, device: &Device) -> Option<Cursor> {
         unsafe {
             from_glib_none(ffi::gdk_surface_get_device_cursor(
                 self.to_glib_none().0,
@@ -109,7 +109,7 @@ impl Surface {
     }
 
     #[doc(alias = "gdk_surface_get_device_position")]
-    pub fn get_device_position(&self, device: &Device) -> Option<(f64, f64, ModifierType)> {
+    pub fn device_position(&self, device: &Device) -> Option<(f64, f64, ModifierType)> {
         unsafe {
             let mut x = mem::MaybeUninit::uninit();
             let mut y = mem::MaybeUninit::uninit();

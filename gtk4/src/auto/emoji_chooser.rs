@@ -30,7 +30,7 @@ glib::wrapper! {
     pub struct EmojiChooser(Object<ffi::GtkEmojiChooser, ffi::GtkEmojiChooserClass>) @extends Popover, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, ShortcutManager;
 
     match fn {
-        get_type => || ffi::gtk_emoji_chooser_get_type(),
+        type_ => || ffi::gtk_emoji_chooser_get_type(),
     }
 }
 

@@ -29,7 +29,7 @@ glib::wrapper! {
     pub struct Stack(Object<ffi::GtkStack>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_stack_get_type(),
+        type_ => || ffi::gtk_stack_get_type(),
     }
 }
 
@@ -79,7 +79,7 @@ impl Stack {
     }
 
     #[doc(alias = "gtk_stack_get_child_by_name")]
-    pub fn get_child_by_name(&self, name: &str) -> Option<Widget> {
+    pub fn child_by_name(&self, name: &str) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_stack_get_child_by_name(
                 self.to_glib_none().0,
@@ -99,7 +99,7 @@ impl Stack {
     }
 
     #[doc(alias = "gtk_stack_get_page")]
-    pub fn get_page<P: IsA<Widget>>(&self, child: &P) -> Option<StackPage> {
+    pub fn page<P: IsA<Widget>>(&self, child: &P) -> Option<StackPage> {
         unsafe {
             from_glib_none(ffi::gtk_stack_get_page(
                 self.to_glib_none().0,

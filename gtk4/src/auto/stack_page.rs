@@ -21,7 +21,7 @@ glib::wrapper! {
     pub struct StackPage(Object<ffi::GtkStackPage>) @implements Accessible;
 
     match fn {
-        get_type => || ffi::gtk_stack_page_get_type(),
+        type_ => || ffi::gtk_stack_page_get_type(),
     }
 }
 
@@ -42,7 +42,7 @@ impl StackPage {
     }
 
     #[doc(alias = "gtk_stack_page_get_needs_attention")]
-    pub fn is_needs_attention(&self) -> bool {
+    pub fn needs_attention(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_stack_page_get_needs_attention(
                 self.to_glib_none().0,

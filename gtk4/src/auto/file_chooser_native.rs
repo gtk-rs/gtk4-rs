@@ -23,7 +23,7 @@ glib::wrapper! {
     pub struct FileChooserNative(Object<ffi::GtkFileChooserNative, ffi::GtkFileChooserNativeClass>) @extends NativeDialog, @implements FileChooser;
 
     match fn {
-        get_type => || ffi::gtk_file_chooser_native_get_type(),
+        type_ => || ffi::gtk_file_chooser_native_get_type(),
     }
 }
 

@@ -11,7 +11,7 @@ glib::wrapper! {
     pub struct CairoRenderer(Object<ffi::GskCairoRenderer, ffi::GskCairoRendererClass>) @extends Renderer;
 
     match fn {
-        get_type => || ffi::gsk_cairo_renderer_get_type(),
+        type_ => || ffi::gsk_cairo_renderer_get_type(),
     }
 }
 

@@ -28,7 +28,7 @@ glib::wrapper! {
     pub struct LockButton(Object<ffi::GtkLockButton>) @extends Button, Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
-        get_type => || ffi::gtk_lock_button_get_type(),
+        type_ => || ffi::gtk_lock_button_get_type(),
     }
 }
 

@@ -30,7 +30,7 @@ glib::wrapper! {
     pub struct ScaleButton(Object<ffi::GtkScaleButton, ffi::GtkScaleButtonClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
-        get_type => || ffi::gtk_scale_button_get_type(),
+        type_ => || ffi::gtk_scale_button_get_type(),
     }
 }
 

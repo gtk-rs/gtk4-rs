@@ -17,7 +17,7 @@ glib::wrapper! {
     pub struct Filter(Object<ffi::GtkFilter, ffi::GtkFilterClass>);
 
     match fn {
-        get_type => || ffi::gtk_filter_get_type(),
+        type_ => || ffi::gtk_filter_get_type(),
     }
 }
 

@@ -11,7 +11,7 @@ glib::wrapper! {
     pub struct WindowGroup(Object<ffi::GtkWindowGroup, ffi::GtkWindowGroupClass>);
 
     match fn {
-        get_type => || ffi::gtk_window_group_get_type(),
+        type_ => || ffi::gtk_window_group_get_type(),
     }
 }
 

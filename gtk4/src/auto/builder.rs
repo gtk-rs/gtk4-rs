@@ -21,7 +21,7 @@ glib::wrapper! {
     pub struct Builder(Object<ffi::GtkBuilder, ffi::GtkBuilderClass>);
 
     match fn {
-        get_type => || ffi::gtk_builder_get_type(),
+        type_ => || ffi::gtk_builder_get_type(),
     }
 }
 
@@ -226,7 +226,7 @@ impl Builder {
     }
 
     #[doc(alias = "gtk_builder_get_type_from_name")]
-    pub fn get_type_from_name(&self, type_name: &str) -> glib::types::Type {
+    pub fn type_from_name(&self, type_name: &str) -> glib::types::Type {
         unsafe {
             from_glib(ffi::gtk_builder_get_type_from_name(
                 self.to_glib_none().0,

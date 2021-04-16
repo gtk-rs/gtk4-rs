@@ -34,7 +34,7 @@ glib::wrapper! {
     pub struct GridView(Object<ffi::GtkGridView, ffi::GtkGridViewClass>) @extends ListBase, Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable, Scrollable;
 
     match fn {
-        get_type => || ffi::gtk_grid_view_get_type(),
+        type_ => || ffi::gtk_grid_view_get_type(),
     }
 }
 

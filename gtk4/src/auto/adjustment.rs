@@ -17,7 +17,7 @@ glib::wrapper! {
     pub struct Adjustment(Object<ffi::GtkAdjustment, ffi::GtkAdjustmentClass>);
 
     match fn {
-        get_type => || ffi::gtk_adjustment_get_type(),
+        type_ => || ffi::gtk_adjustment_get_type(),
     }
 }
 

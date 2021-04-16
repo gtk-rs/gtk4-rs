@@ -12,7 +12,7 @@ glib::wrapper! {
     pub struct DevicePad(Interface<ffi::GdkDevicePad, ffi::GdkDevicePadInterface>) @requires Device;
 
     match fn {
-        get_type => || ffi::gdk_device_pad_get_type(),
+        type_ => || ffi::gdk_device_pad_get_type(),
     }
 }
 
@@ -20,20 +20,20 @@ pub const NONE_DEVICE_PAD: Option<&DevicePad> = None;
 
 pub trait DevicePadExt: 'static {
     #[doc(alias = "gdk_device_pad_get_feature_group")]
-    fn get_feature_group(&self, feature: DevicePadFeature, feature_idx: i32) -> i32;
+    fn feature_group(&self, feature: DevicePadFeature, feature_idx: i32) -> i32;
 
     #[doc(alias = "gdk_device_pad_get_group_n_modes")]
-    fn get_group_n_modes(&self, group_idx: i32) -> i32;
+    fn group_n_modes(&self, group_idx: i32) -> i32;
 
     #[doc(alias = "gdk_device_pad_get_n_features")]
-    fn get_n_features(&self, feature: DevicePadFeature) -> i32;
+    fn n_features(&self, feature: DevicePadFeature) -> i32;
 
     #[doc(alias = "gdk_device_pad_get_n_groups")]
     fn n_groups(&self) -> i32;
 }
 
 impl<O: IsA<DevicePad>> DevicePadExt for O {
-    fn get_feature_group(&self, feature: DevicePadFeature, feature_idx: i32) -> i32 {
+    fn feature_group(&self, feature: DevicePadFeature, feature_idx: i32) -> i32 {
         unsafe {
             ffi::gdk_device_pad_get_feature_group(
                 self.as_ref().to_glib_none().0,
@@ -43,11 +43,11 @@ impl<O: IsA<DevicePad>> DevicePadExt for O {
         }
     }
 
-    fn get_group_n_modes(&self, group_idx: i32) -> i32 {
+    fn group_n_modes(&self, group_idx: i32) -> i32 {
         unsafe { ffi::gdk_device_pad_get_group_n_modes(self.as_ref().to_glib_none().0, group_idx) }
     }
 
-    fn get_n_features(&self, feature: DevicePadFeature) -> i32 {
+    fn n_features(&self, feature: DevicePadFeature) -> i32 {
         unsafe {
             ffi::gdk_device_pad_get_n_features(self.as_ref().to_glib_none().0, feature.to_glib())
         }

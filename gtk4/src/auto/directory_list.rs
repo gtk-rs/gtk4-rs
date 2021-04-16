@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct DirectoryList(Object<ffi::GtkDirectoryList, ffi::GtkDirectoryListClass>) @implements gio::ListModel;
 
     match fn {
-        get_type => || ffi::gtk_directory_list_get_type(),
+        type_ => || ffi::gtk_directory_list_get_type(),
     }
 }
 

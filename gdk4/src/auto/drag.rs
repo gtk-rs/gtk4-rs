@@ -22,7 +22,7 @@ glib::wrapper! {
     pub struct Drag(Object<ffi::GdkDrag>);
 
     match fn {
-        get_type => || ffi::gdk_drag_get_type(),
+        type_ => || ffi::gdk_drag_get_type(),
     }
 }
 

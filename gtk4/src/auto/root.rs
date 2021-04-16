@@ -15,7 +15,7 @@ glib::wrapper! {
     pub struct Root(Interface<ffi::GtkRoot, ffi::GtkRootInterface>) @requires Native, Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_root_get_type(),
+        type_ => || ffi::gtk_root_get_type(),
     }
 }
 

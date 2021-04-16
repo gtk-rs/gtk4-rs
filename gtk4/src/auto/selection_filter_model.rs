@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct SelectionFilterModel(Object<ffi::GtkSelectionFilterModel, ffi::GtkSelectionFilterModelClass>) @implements gio::ListModel;
 
     match fn {
-        get_type => || ffi::gtk_selection_filter_model_get_type(),
+        type_ => || ffi::gtk_selection_filter_model_get_type(),
     }
 }
 

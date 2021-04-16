@@ -21,7 +21,7 @@ glib::wrapper! {
     pub struct IconTheme(Object<ffi::GtkIconTheme>);
 
     match fn {
-        get_type => || ffi::gtk_icon_theme_get_type(),
+        type_ => || ffi::gtk_icon_theme_get_type(),
     }
 }
 
@@ -166,7 +166,7 @@ impl IconTheme {
     }
 
     #[doc(alias = "gtk_icon_theme_get_for_display")]
-    pub fn get_for_display(display: &gdk::Display) -> Option<IconTheme> {
+    pub fn for_display(display: &gdk::Display) -> Option<IconTheme> {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(ffi::gtk_icon_theme_get_for_display(

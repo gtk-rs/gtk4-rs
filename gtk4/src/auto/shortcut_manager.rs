@@ -9,7 +9,7 @@ glib::wrapper! {
     pub struct ShortcutManager(Interface<ffi::GtkShortcutManager, ffi::GtkShortcutManagerInterface>);
 
     match fn {
-        get_type => || ffi::gtk_shortcut_manager_get_type(),
+        type_ => || ffi::gtk_shortcut_manager_get_type(),
     }
 }
 

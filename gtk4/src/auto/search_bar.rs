@@ -27,7 +27,7 @@ glib::wrapper! {
     pub struct SearchBar(Object<ffi::GtkSearchBar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_search_bar_get_type(),
+        type_ => || ffi::gtk_search_bar_get_type(),
     }
 }
 

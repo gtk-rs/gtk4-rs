@@ -21,7 +21,7 @@ glib::wrapper! {
     pub struct GestureRotate(Object<ffi::GtkGestureRotate, ffi::GtkGestureRotateClass>) @extends Gesture, EventController;
 
     match fn {
-        get_type => || ffi::gtk_gesture_rotate_get_type(),
+        type_ => || ffi::gtk_gesture_rotate_get_type(),
     }
 }
 
