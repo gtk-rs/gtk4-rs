@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct BoolFilter(Object<ffi::GtkBoolFilter, ffi::GtkBoolFilterClass>) @extends Filter;
 
     match fn {
-        get_type => || ffi::gtk_bool_filter_get_type(),
+        type_ => || ffi::gtk_bool_filter_get_type(),
     }
 }
 

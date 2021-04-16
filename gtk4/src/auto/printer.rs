@@ -21,7 +21,7 @@ glib::wrapper! {
     pub struct Printer(Object<ffi::GtkPrinter>);
 
     match fn {
-        get_type => || ffi::gtk_printer_get_type(),
+        type_ => || ffi::gtk_printer_get_type(),
     }
 }
 
@@ -97,7 +97,7 @@ impl Printer {
     }
 
     #[doc(alias = "gtk_printer_get_hard_margins_for_paper_size")]
-    pub fn get_hard_margins_for_paper_size(
+    pub fn hard_margins_for_paper_size(
         &self,
         paper_size: &mut PaperSize,
     ) -> Option<(f64, f64, f64, f64)> {

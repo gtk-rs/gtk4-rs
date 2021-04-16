@@ -12,7 +12,7 @@ glib::wrapper! {
     pub struct EveryFilter(Object<ffi::GtkEveryFilter, ffi::GtkEveryFilterClass>) @extends MultiFilter, Filter, @implements gio::ListModel, Buildable;
 
     match fn {
-        get_type => || ffi::gtk_every_filter_get_type(),
+        type_ => || ffi::gtk_every_filter_get_type(),
     }
 }
 

@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct MultiSelection(Object<ffi::GtkMultiSelection, ffi::GtkMultiSelectionClass>) @implements gio::ListModel, SelectionModel;
 
     match fn {
-        get_type => || ffi::gtk_multi_selection_get_type(),
+        type_ => || ffi::gtk_multi_selection_get_type(),
     }
 }
 

@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct PadController(Object<ffi::GtkPadController, ffi::GtkPadControllerClass>) @extends EventController;
 
     match fn {
-        get_type => || ffi::gtk_pad_controller_get_type(),
+        type_ => || ffi::gtk_pad_controller_get_type(),
     }
 }
 

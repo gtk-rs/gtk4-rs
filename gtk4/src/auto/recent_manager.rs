@@ -20,7 +20,7 @@ glib::wrapper! {
     pub struct RecentManager(Object<ffi::GtkRecentManager, ffi::GtkRecentManagerClass>);
 
     match fn {
-        get_type => || ffi::gtk_recent_manager_get_type(),
+        type_ => || ffi::gtk_recent_manager_get_type(),
     }
 }
 
@@ -32,7 +32,7 @@ impl RecentManager {
     }
 
     #[doc(alias = "gtk_recent_manager_get_default")]
-    pub fn get_default() -> RecentManager {
+    pub fn default() -> RecentManager {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_recent_manager_get_default()) }
     }

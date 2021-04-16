@@ -10,7 +10,7 @@ glib::wrapper! {
     pub struct MnemonicAction(Object<ffi::GtkMnemonicAction, ffi::GtkMnemonicActionClass>) @extends ShortcutAction;
 
     match fn {
-        get_type => || ffi::gtk_mnemonic_action_get_type(),
+        type_ => || ffi::gtk_mnemonic_action_get_type(),
     }
 }
 

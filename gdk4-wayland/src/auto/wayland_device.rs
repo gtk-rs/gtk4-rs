@@ -9,7 +9,7 @@ glib::wrapper! {
     pub struct WaylandDevice(Object<ffi::GdkWaylandDevice, ffi::GdkWaylandDeviceClass>) @extends gdk::Device;
 
     match fn {
-        get_type => || ffi::gdk_wayland_device_get_type(),
+        type_ => || ffi::gdk_wayland_device_get_type(),
     }
 }
 

@@ -16,7 +16,7 @@ glib::wrapper! {
     pub struct ListStore(Object<ffi::GtkListStore, ffi::GtkListStoreClass>) @implements Buildable, TreeDragDest, TreeDragSource, TreeModel, TreeSortable;
 
     match fn {
-        get_type => || ffi::gtk_list_store_get_type(),
+        type_ => || ffi::gtk_list_store_get_type(),
     }
 }
 

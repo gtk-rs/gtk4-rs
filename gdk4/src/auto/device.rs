@@ -22,7 +22,7 @@ glib::wrapper! {
     pub struct Device(Object<ffi::GdkDevice>);
 
     match fn {
-        get_type => || ffi::gdk_device_get_type(),
+        type_ => || ffi::gdk_device_get_type(),
     }
 }
 

@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct ListItem(Object<ffi::GtkListItem, ffi::GtkListItemClass>);
 
     match fn {
-        get_type => || ffi::gtk_list_item_get_type(),
+        type_ => || ffi::gtk_list_item_get_type(),
     }
 }
 

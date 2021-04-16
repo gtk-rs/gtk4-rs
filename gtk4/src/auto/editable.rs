@@ -21,7 +21,7 @@ glib::wrapper! {
     pub struct Editable(Interface<ffi::GtkEditable, ffi::GtkEditableInterface>) @requires Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_editable_get_type(),
+        type_ => || ffi::gtk_editable_get_type(),
     }
 }
 
@@ -41,7 +41,7 @@ pub trait EditableExt: 'static {
     fn alignment(&self) -> f32;
 
     #[doc(alias = "gtk_editable_get_chars")]
-    fn get_chars(&self, start_pos: i32, end_pos: i32) -> glib::GString;
+    fn chars(&self, start_pos: i32, end_pos: i32) -> glib::GString;
 
     #[doc(alias = "gtk_editable_get_delegate")]
     fn delegate(&self) -> Option<Editable>;
@@ -162,7 +162,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         unsafe { ffi::gtk_editable_get_alignment(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_chars(&self, start_pos: i32, end_pos: i32) -> glib::GString {
+    fn chars(&self, start_pos: i32, end_pos: i32) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_editable_get_chars(
                 self.as_ref().to_glib_none().0,

@@ -30,7 +30,7 @@ glib::wrapper! {
     pub struct Grid(Object<ffi::GtkGrid, ffi::GtkGridClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
-        get_type => || ffi::gtk_grid_get_type(),
+        type_ => || ffi::gtk_grid_get_type(),
     }
 }
 
@@ -408,7 +408,7 @@ pub trait GridExt: 'static {
     fn baseline_row(&self) -> i32;
 
     #[doc(alias = "gtk_grid_get_child_at")]
-    fn get_child_at(&self, column: i32, row: i32) -> Option<Widget>;
+    fn child_at(&self, column: i32, row: i32) -> Option<Widget>;
 
     #[doc(alias = "gtk_grid_get_column_homogeneous")]
     fn is_column_homogeneous(&self) -> bool;
@@ -417,7 +417,7 @@ pub trait GridExt: 'static {
     fn column_spacing(&self) -> u32;
 
     #[doc(alias = "gtk_grid_get_row_baseline_position")]
-    fn get_row_baseline_position(&self, row: i32) -> BaselinePosition;
+    fn row_baseline_position(&self, row: i32) -> BaselinePosition;
 
     #[doc(alias = "gtk_grid_get_row_homogeneous")]
     fn is_row_homogeneous(&self) -> bool;
@@ -523,7 +523,7 @@ impl<O: IsA<Grid>> GridExt for O {
         unsafe { ffi::gtk_grid_get_baseline_row(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_child_at(&self, column: i32, row: i32) -> Option<Widget> {
+    fn child_at(&self, column: i32, row: i32) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_grid_get_child_at(
                 self.as_ref().to_glib_none().0,
@@ -545,7 +545,7 @@ impl<O: IsA<Grid>> GridExt for O {
         unsafe { ffi::gtk_grid_get_column_spacing(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_row_baseline_position(&self, row: i32) -> BaselinePosition {
+    fn row_baseline_position(&self, row: i32) -> BaselinePosition {
         unsafe {
             from_glib(ffi::gtk_grid_get_row_baseline_position(
                 self.as_ref().to_glib_none().0,

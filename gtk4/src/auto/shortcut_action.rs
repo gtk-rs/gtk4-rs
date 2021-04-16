@@ -12,7 +12,7 @@ glib::wrapper! {
     pub struct ShortcutAction(Object<ffi::GtkShortcutAction, ffi::GtkShortcutActionClass>);
 
     match fn {
-        get_type => || ffi::gtk_shortcut_action_get_type(),
+        type_ => || ffi::gtk_shortcut_action_get_type(),
     }
 }
 

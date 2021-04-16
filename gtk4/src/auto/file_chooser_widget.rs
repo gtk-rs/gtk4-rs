@@ -30,7 +30,7 @@ glib::wrapper! {
     pub struct FileChooserWidget(Object<ffi::GtkFileChooserWidget>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, FileChooser;
 
     match fn {
-        get_type => || ffi::gtk_file_chooser_widget_get_type(),
+        type_ => || ffi::gtk_file_chooser_widget_get_type(),
     }
 }
 

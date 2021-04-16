@@ -10,7 +10,7 @@ glib::wrapper! {
     pub struct StringList(Object<ffi::GtkStringList, ffi::GtkStringListClass>) @implements gio::ListModel, Buildable;
 
     match fn {
-        get_type => || ffi::gtk_string_list_get_type(),
+        type_ => || ffi::gtk_string_list_get_type(),
     }
 }
 
@@ -29,7 +29,7 @@ impl StringList {
     }
 
     #[doc(alias = "gtk_string_list_get_string")]
-    pub fn get_string(&self, position: u32) -> Option<glib::GString> {
+    pub fn string(&self, position: u32) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_string_list_get_string(
                 self.to_glib_none().0,

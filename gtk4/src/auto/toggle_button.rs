@@ -27,7 +27,7 @@ glib::wrapper! {
     pub struct ToggleButton(Object<ffi::GtkToggleButton, ffi::GtkToggleButtonClass>) @extends Button, Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
-        get_type => || ffi::gtk_toggle_button_get_type(),
+        type_ => || ffi::gtk_toggle_button_get_type(),
     }
 }
 

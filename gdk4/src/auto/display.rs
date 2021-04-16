@@ -21,7 +21,7 @@ glib::wrapper! {
     pub struct Display(Object<ffi::GdkDisplay>);
 
     match fn {
-        get_type => || ffi::gdk_display_get_type(),
+        type_ => || ffi::gdk_display_get_type(),
     }
 }
 
@@ -77,7 +77,7 @@ impl Display {
     }
 
     #[doc(alias = "gdk_display_get_monitor_at_surface")]
-    pub fn get_monitor_at_surface(&self, surface: &Surface) -> Option<Monitor> {
+    pub fn monitor_at_surface(&self, surface: &Surface) -> Option<Monitor> {
         unsafe {
             from_glib_none(ffi::gdk_display_get_monitor_at_surface(
                 self.to_glib_none().0,
@@ -192,7 +192,7 @@ impl Display {
     }
 
     #[doc(alias = "gdk_display_get_default")]
-    pub fn get_default() -> Option<Display> {
+    pub fn default() -> Option<Display> {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gdk_display_get_default()) }
     }

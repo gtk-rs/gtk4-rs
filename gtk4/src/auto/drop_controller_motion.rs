@@ -20,7 +20,7 @@ glib::wrapper! {
     pub struct DropControllerMotion(Object<ffi::GtkDropControllerMotion, ffi::GtkDropControllerMotionClass>) @extends EventController;
 
     match fn {
-        get_type => || ffi::gtk_drop_controller_motion_get_type(),
+        type_ => || ffi::gtk_drop_controller_motion_get_type(),
     }
 }
 

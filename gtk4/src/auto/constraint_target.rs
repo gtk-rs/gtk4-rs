@@ -9,7 +9,7 @@ glib::wrapper! {
     pub struct ConstraintTarget(Interface<ffi::GtkConstraintTarget, ffi::GtkConstraintTargetInterface>);
 
     match fn {
-        get_type => || ffi::gtk_constraint_target_get_type(),
+        type_ => || ffi::gtk_constraint_target_get_type(),
     }
 }
 

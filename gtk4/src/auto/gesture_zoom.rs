@@ -21,7 +21,7 @@ glib::wrapper! {
     pub struct GestureZoom(Object<ffi::GtkGestureZoom, ffi::GtkGestureZoomClass>) @extends Gesture, EventController;
 
     match fn {
-        get_type => || ffi::gtk_gesture_zoom_get_type(),
+        type_ => || ffi::gtk_gesture_zoom_get_type(),
     }
 }
 

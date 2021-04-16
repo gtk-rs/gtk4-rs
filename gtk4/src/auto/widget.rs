@@ -39,13 +39,13 @@ glib::wrapper! {
     pub struct Widget(Object<ffi::GtkWidget, ffi::GtkWidgetClass>) @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_widget_get_type(),
+        type_ => || ffi::gtk_widget_get_type(),
     }
 }
 
 impl Widget {
     #[doc(alias = "gtk_widget_get_default_direction")]
-    pub fn get_default_direction() -> TextDirection {
+    pub fn default_direction() -> TextDirection {
         assert_initialized_main_thread!();
         unsafe { from_glib(ffi::gtk_widget_get_default_direction()) }
     }
@@ -146,7 +146,7 @@ pub trait WidgetExt: 'static {
     fn allocation(&self) -> Allocation;
 
     #[doc(alias = "gtk_widget_get_ancestor")]
-    fn get_ancestor(&self, widget_type: glib::types::Type) -> Option<Widget>;
+    fn ancestor(&self, widget_type: glib::types::Type) -> Option<Widget>;
 
     #[doc(alias = "gtk_widget_get_can_focus")]
     fn can_focus(&self) -> bool;
@@ -284,7 +284,7 @@ pub trait WidgetExt: 'static {
     fn settings(&self) -> Settings;
 
     #[doc(alias = "gtk_widget_get_size")]
-    fn get_size(&self, orientation: Orientation) -> i32;
+    fn size(&self, orientation: Orientation) -> i32;
 
     #[doc(alias = "gtk_widget_get_size_request")]
     fn size_request(&self) -> (i32, i32);
@@ -296,11 +296,7 @@ pub trait WidgetExt: 'static {
     fn style_context(&self) -> StyleContext;
 
     #[doc(alias = "gtk_widget_get_template_child")]
-    fn get_template_child(
-        &self,
-        widget_type: glib::types::Type,
-        name: &str,
-    ) -> Option<glib::Object>;
+    fn template_child(&self, widget_type: glib::types::Type, name: &str) -> Option<glib::Object>;
 
     #[doc(alias = "gtk_widget_get_tooltip_markup")]
     fn tooltip_markup(&self) -> Option<glib::GString>;
@@ -921,7 +917,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_ancestor(&self, widget_type: glib::types::Type) -> Option<Widget> {
+    fn ancestor(&self, widget_type: glib::types::Type) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_ancestor(
                 self.as_ref().to_glib_none().0,
@@ -1211,7 +1207,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         unsafe { from_glib_none(ffi::gtk_widget_get_settings(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_size(&self, orientation: Orientation) -> i32 {
+    fn size(&self, orientation: Orientation) -> i32 {
         unsafe { ffi::gtk_widget_get_size(self.as_ref().to_glib_none().0, orientation.to_glib()) }
     }
 
@@ -1246,11 +1242,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn get_template_child(
-        &self,
-        widget_type: glib::types::Type,
-        name: &str,
-    ) -> Option<glib::Object> {
+    fn template_child(&self, widget_type: glib::types::Type, name: &str) -> Option<glib::Object> {
         unsafe {
             from_glib_none(ffi::gtk_widget_get_template_child(
                 self.as_ref().to_glib_none().0,

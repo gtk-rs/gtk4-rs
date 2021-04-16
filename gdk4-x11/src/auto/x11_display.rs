@@ -14,7 +14,7 @@ glib::wrapper! {
     pub struct X11Display(Object<ffi::GdkX11Display, ffi::GdkX11DisplayClass>) @extends gdk::Display;
 
     match fn {
-        get_type => || ffi::gdk_x11_display_get_type(),
+        type_ => || ffi::gdk_x11_display_get_type(),
     }
 }
 
@@ -101,7 +101,7 @@ impl X11Display {
     }
 
     #[doc(alias = "gdk_x11_display_get_xcursor")]
-    pub fn get_xcursor(&self, cursor: &gdk::Cursor) -> xlib::Cursor {
+    pub fn xcursor(&self, cursor: &gdk::Cursor) -> xlib::Cursor {
         unsafe { ffi::gdk_x11_display_get_xcursor(self.to_glib_none().0, cursor.to_glib_none().0) }
     }
 

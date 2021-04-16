@@ -27,7 +27,7 @@ glib::wrapper! {
     pub struct Revealer(Object<ffi::GtkRevealer>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_revealer_get_type(),
+        type_ => || ffi::gtk_revealer_get_type(),
     }
 }
 

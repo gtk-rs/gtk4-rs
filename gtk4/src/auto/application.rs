@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct Application(Object<ffi::GtkApplication, ffi::GtkApplicationClass>) @extends gio::Application, @implements gio::ActionGroup, gio::ActionMap;
 
     match fn {
-        get_type => || ffi::gtk_application_get_type(),
+        type_ => || ffi::gtk_application_get_type(),
     }
 }
 
@@ -112,22 +112,22 @@ pub trait GtkApplicationExt: 'static {
     fn add_window<P: IsA<Window>>(&self, window: &P);
 
     #[doc(alias = "gtk_application_get_accels_for_action")]
-    fn get_accels_for_action(&self, detailed_action_name: &str) -> Vec<glib::GString>;
+    fn accels_for_action(&self, detailed_action_name: &str) -> Vec<glib::GString>;
 
     #[doc(alias = "gtk_application_get_actions_for_accel")]
-    fn get_actions_for_accel(&self, accel: &str) -> Vec<glib::GString>;
+    fn actions_for_accel(&self, accel: &str) -> Vec<glib::GString>;
 
     #[doc(alias = "gtk_application_get_active_window")]
     fn active_window(&self) -> Option<Window>;
 
     #[doc(alias = "gtk_application_get_menu_by_id")]
-    fn get_menu_by_id(&self, id: &str) -> Option<gio::Menu>;
+    fn menu_by_id(&self, id: &str) -> Option<gio::Menu>;
 
     #[doc(alias = "gtk_application_get_menubar")]
     fn menubar(&self) -> Option<gio::MenuModel>;
 
     #[doc(alias = "gtk_application_get_window_by_id")]
-    fn get_window_by_id(&self, id: u32) -> Option<Window>;
+    fn window_by_id(&self, id: u32) -> Option<Window>;
 
     #[doc(alias = "gtk_application_get_windows")]
     fn windows(&self) -> Vec<Window>;
@@ -198,7 +198,7 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
         }
     }
 
-    fn get_accels_for_action(&self, detailed_action_name: &str) -> Vec<glib::GString> {
+    fn accels_for_action(&self, detailed_action_name: &str) -> Vec<glib::GString> {
         unsafe {
             FromGlibPtrContainer::from_glib_full(ffi::gtk_application_get_accels_for_action(
                 self.as_ref().to_glib_none().0,
@@ -207,7 +207,7 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
         }
     }
 
-    fn get_actions_for_accel(&self, accel: &str) -> Vec<glib::GString> {
+    fn actions_for_accel(&self, accel: &str) -> Vec<glib::GString> {
         unsafe {
             FromGlibPtrContainer::from_glib_full(ffi::gtk_application_get_actions_for_accel(
                 self.as_ref().to_glib_none().0,
@@ -224,7 +224,7 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
         }
     }
 
-    fn get_menu_by_id(&self, id: &str) -> Option<gio::Menu> {
+    fn menu_by_id(&self, id: &str) -> Option<gio::Menu> {
         unsafe {
             from_glib_none(ffi::gtk_application_get_menu_by_id(
                 self.as_ref().to_glib_none().0,
@@ -241,7 +241,7 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
         }
     }
 
-    fn get_window_by_id(&self, id: u32) -> Option<Window> {
+    fn window_by_id(&self, id: u32) -> Option<Window> {
         unsafe {
             from_glib_none(ffi::gtk_application_get_window_by_id(
                 self.as_ref().to_glib_none().0,

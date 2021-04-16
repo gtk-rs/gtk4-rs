@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct NoSelection(Object<ffi::GtkNoSelection, ffi::GtkNoSelectionClass>) @implements gio::ListModel, SelectionModel;
 
     match fn {
-        get_type => || ffi::gtk_no_selection_get_type(),
+        type_ => || ffi::gtk_no_selection_get_type(),
     }
 }
 

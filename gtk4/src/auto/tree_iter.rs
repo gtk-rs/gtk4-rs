@@ -13,6 +13,6 @@ glib::wrapper! {
         free => |ptr| ffi::gtk_tree_iter_free(ptr),
         init => |_ptr| (),
         clear => |_ptr| (),
-        get_type => || ffi::gtk_tree_iter_get_type(),
+        type_ => || ffi::gtk_tree_iter_get_type(),
     }
 }

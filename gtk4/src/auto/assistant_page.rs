@@ -20,7 +20,7 @@ glib::wrapper! {
     pub struct AssistantPage(Object<ffi::GtkAssistantPage>);
 
     match fn {
-        get_type => || ffi::gtk_assistant_page_get_type(),
+        type_ => || ffi::gtk_assistant_page_get_type(),
     }
 }
 

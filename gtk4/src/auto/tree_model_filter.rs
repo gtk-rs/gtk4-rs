@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct TreeModelFilter(Object<ffi::GtkTreeModelFilter, ffi::GtkTreeModelFilterClass>) @implements TreeDragSource, TreeModel;
 
     match fn {
-        get_type => || ffi::gtk_tree_model_filter_get_type(),
+        type_ => || ffi::gtk_tree_model_filter_get_type(),
     }
 }
 

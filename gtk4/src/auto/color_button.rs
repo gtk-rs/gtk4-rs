@@ -27,7 +27,7 @@ glib::wrapper! {
     pub struct ColorButton(Object<ffi::GtkColorButton>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, ColorChooser;
 
     match fn {
-        get_type => || ffi::gtk_color_button_get_type(),
+        type_ => || ffi::gtk_color_button_get_type(),
     }
 }
 

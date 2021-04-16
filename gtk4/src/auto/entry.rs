@@ -34,7 +34,7 @@ glib::wrapper! {
     pub struct Entry(Object<ffi::GtkEntry, ffi::GtkEntryClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, CellEditable, Editable;
 
     match fn {
-        get_type => || ffi::gtk_entry_get_type(),
+        type_ => || ffi::gtk_entry_get_type(),
     }
 }
 
@@ -761,34 +761,34 @@ pub trait EntryExt: 'static {
     fn has_frame(&self) -> bool;
 
     #[doc(alias = "gtk_entry_get_icon_activatable")]
-    fn get_icon_activatable(&self, icon_pos: EntryIconPosition) -> bool;
+    fn icon_is_activatable(&self, icon_pos: EntryIconPosition) -> bool;
 
     #[doc(alias = "gtk_entry_get_icon_area")]
-    fn get_icon_area(&self, icon_pos: EntryIconPosition) -> gdk::Rectangle;
+    fn icon_area(&self, icon_pos: EntryIconPosition) -> gdk::Rectangle;
 
     #[doc(alias = "gtk_entry_get_icon_at_pos")]
-    fn get_icon_at_pos(&self, x: i32, y: i32) -> i32;
+    fn icon_at_pos(&self, x: i32, y: i32) -> i32;
 
     #[doc(alias = "gtk_entry_get_icon_gicon")]
-    fn get_icon_gicon(&self, icon_pos: EntryIconPosition) -> Option<gio::Icon>;
+    fn icon_gicon(&self, icon_pos: EntryIconPosition) -> Option<gio::Icon>;
 
     #[doc(alias = "gtk_entry_get_icon_name")]
-    fn get_icon_name(&self, icon_pos: EntryIconPosition) -> Option<glib::GString>;
+    fn icon_name(&self, icon_pos: EntryIconPosition) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_entry_get_icon_paintable")]
-    fn get_icon_paintable(&self, icon_pos: EntryIconPosition) -> Option<gdk::Paintable>;
+    fn icon_paintable(&self, icon_pos: EntryIconPosition) -> Option<gdk::Paintable>;
 
     #[doc(alias = "gtk_entry_get_icon_sensitive")]
-    fn get_icon_sensitive(&self, icon_pos: EntryIconPosition) -> bool;
+    fn icon_is_sensitive(&self, icon_pos: EntryIconPosition) -> bool;
 
     #[doc(alias = "gtk_entry_get_icon_storage_type")]
-    fn get_icon_storage_type(&self, icon_pos: EntryIconPosition) -> ImageType;
+    fn icon_storage_type(&self, icon_pos: EntryIconPosition) -> ImageType;
 
     #[doc(alias = "gtk_entry_get_icon_tooltip_markup")]
-    fn get_icon_tooltip_markup(&self, icon_pos: EntryIconPosition) -> Option<glib::GString>;
+    fn icon_tooltip_markup(&self, icon_pos: EntryIconPosition) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_entry_get_icon_tooltip_text")]
-    fn get_icon_tooltip_text(&self, icon_pos: EntryIconPosition) -> Option<glib::GString>;
+    fn icon_tooltip_text(&self, icon_pos: EntryIconPosition) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_entry_get_input_hints")]
     fn input_hints(&self) -> InputHints;
@@ -1264,7 +1264,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         unsafe { from_glib(ffi::gtk_entry_get_has_frame(self.as_ref().to_glib_none().0)) }
     }
 
-    fn get_icon_activatable(&self, icon_pos: EntryIconPosition) -> bool {
+    fn icon_is_activatable(&self, icon_pos: EntryIconPosition) -> bool {
         unsafe {
             from_glib(ffi::gtk_entry_get_icon_activatable(
                 self.as_ref().to_glib_none().0,
@@ -1273,7 +1273,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_icon_area(&self, icon_pos: EntryIconPosition) -> gdk::Rectangle {
+    fn icon_area(&self, icon_pos: EntryIconPosition) -> gdk::Rectangle {
         unsafe {
             let mut icon_area = gdk::Rectangle::uninitialized();
             ffi::gtk_entry_get_icon_area(
@@ -1285,11 +1285,11 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_icon_at_pos(&self, x: i32, y: i32) -> i32 {
+    fn icon_at_pos(&self, x: i32, y: i32) -> i32 {
         unsafe { ffi::gtk_entry_get_icon_at_pos(self.as_ref().to_glib_none().0, x, y) }
     }
 
-    fn get_icon_gicon(&self, icon_pos: EntryIconPosition) -> Option<gio::Icon> {
+    fn icon_gicon(&self, icon_pos: EntryIconPosition) -> Option<gio::Icon> {
         unsafe {
             from_glib_none(ffi::gtk_entry_get_icon_gicon(
                 self.as_ref().to_glib_none().0,
@@ -1298,7 +1298,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_icon_name(&self, icon_pos: EntryIconPosition) -> Option<glib::GString> {
+    fn icon_name(&self, icon_pos: EntryIconPosition) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_entry_get_icon_name(
                 self.as_ref().to_glib_none().0,
@@ -1307,7 +1307,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_icon_paintable(&self, icon_pos: EntryIconPosition) -> Option<gdk::Paintable> {
+    fn icon_paintable(&self, icon_pos: EntryIconPosition) -> Option<gdk::Paintable> {
         unsafe {
             from_glib_none(ffi::gtk_entry_get_icon_paintable(
                 self.as_ref().to_glib_none().0,
@@ -1316,7 +1316,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_icon_sensitive(&self, icon_pos: EntryIconPosition) -> bool {
+    fn icon_is_sensitive(&self, icon_pos: EntryIconPosition) -> bool {
         unsafe {
             from_glib(ffi::gtk_entry_get_icon_sensitive(
                 self.as_ref().to_glib_none().0,
@@ -1325,7 +1325,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_icon_storage_type(&self, icon_pos: EntryIconPosition) -> ImageType {
+    fn icon_storage_type(&self, icon_pos: EntryIconPosition) -> ImageType {
         unsafe {
             from_glib(ffi::gtk_entry_get_icon_storage_type(
                 self.as_ref().to_glib_none().0,
@@ -1334,7 +1334,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_icon_tooltip_markup(&self, icon_pos: EntryIconPosition) -> Option<glib::GString> {
+    fn icon_tooltip_markup(&self, icon_pos: EntryIconPosition) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_entry_get_icon_tooltip_markup(
                 self.as_ref().to_glib_none().0,
@@ -1343,7 +1343,7 @@ impl<O: IsA<Entry>> EntryExt for O {
         }
     }
 
-    fn get_icon_tooltip_text(&self, icon_pos: EntryIconPosition) -> Option<glib::GString> {
+    fn icon_tooltip_text(&self, icon_pos: EntryIconPosition) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_entry_get_icon_tooltip_text(
                 self.as_ref().to_glib_none().0,

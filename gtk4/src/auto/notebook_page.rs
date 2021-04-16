@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct NotebookPage(Object<ffi::GtkNotebookPage>);
 
     match fn {
-        get_type => || ffi::gtk_notebook_page_get_type(),
+        type_ => || ffi::gtk_notebook_page_get_type(),
     }
 }
 

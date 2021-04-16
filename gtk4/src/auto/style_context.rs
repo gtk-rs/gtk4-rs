@@ -21,7 +21,7 @@ glib::wrapper! {
     pub struct StyleContext(Object<ffi::GtkStyleContext, ffi::GtkStyleContextClass>);
 
     match fn {
-        get_type => || ffi::gtk_style_context_get_type(),
+        type_ => || ffi::gtk_style_context_get_type(),
     }
 }
 

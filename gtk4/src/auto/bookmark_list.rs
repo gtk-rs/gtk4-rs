@@ -17,7 +17,7 @@ glib::wrapper! {
     pub struct BookmarkList(Object<ffi::GtkBookmarkList, ffi::GtkBookmarkListClass>) @implements gio::ListModel;
 
     match fn {
-        get_type => || ffi::gtk_bookmark_list_get_type(),
+        type_ => || ffi::gtk_bookmark_list_get_type(),
     }
 }
 

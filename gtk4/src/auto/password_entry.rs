@@ -28,7 +28,7 @@ glib::wrapper! {
     pub struct PasswordEntry(Object<ffi::GtkPasswordEntry, ffi::GtkPasswordEntryClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
 
     match fn {
-        get_type => || ffi::gtk_password_entry_get_type(),
+        type_ => || ffi::gtk_password_entry_get_type(),
     }
 }
 

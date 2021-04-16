@@ -8,7 +8,7 @@ glib::wrapper! {
     pub struct WaylandSurface(Object<ffi::GdkWaylandSurface>) @extends gdk::Surface;
 
     match fn {
-        get_type => || ffi::gdk_wayland_surface_get_type(),
+        type_ => || ffi::gdk_wayland_surface_get_type(),
     }
 }
 

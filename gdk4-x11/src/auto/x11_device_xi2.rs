@@ -14,7 +14,7 @@ glib::wrapper! {
     pub struct X11DeviceXI2(Object<ffi::GdkX11DeviceXI2, ffi::GdkX11DeviceXI2Class>) @extends gdk::Device;
 
     match fn {
-        get_type => || ffi::gdk_x11_device_xi2_get_type(),
+        type_ => || ffi::gdk_x11_device_xi2_get_type(),
     }
 }
 

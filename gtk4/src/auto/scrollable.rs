@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct Scrollable(Interface<ffi::GtkScrollable, ffi::GtkScrollableInterface>);
 
     match fn {
-        get_type => || ffi::gtk_scrollable_get_type(),
+        type_ => || ffi::gtk_scrollable_get_type(),
     }
 }
 

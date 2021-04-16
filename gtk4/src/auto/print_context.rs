@@ -11,7 +11,7 @@ glib::wrapper! {
     pub struct PrintContext(Object<ffi::GtkPrintContext>);
 
     match fn {
-        get_type => || ffi::gtk_print_context_get_type(),
+        type_ => || ffi::gtk_print_context_get_type(),
     }
 }
 

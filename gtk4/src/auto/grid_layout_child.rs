@@ -21,7 +21,7 @@ glib::wrapper! {
     pub struct GridLayoutChild(Object<ffi::GtkGridLayoutChild, ffi::GtkGridLayoutChildClass>) @extends LayoutChild;
 
     match fn {
-        get_type => || ffi::gtk_grid_layout_child_get_type(),
+        type_ => || ffi::gtk_grid_layout_child_get_type(),
     }
 }
 

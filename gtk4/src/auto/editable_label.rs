@@ -27,7 +27,7 @@ glib::wrapper! {
     pub struct EditableLabel(Object<ffi::GtkEditableLabel, ffi::GtkEditableLabelClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
 
     match fn {
-        get_type => || ffi::gtk_editable_label_get_type(),
+        type_ => || ffi::gtk_editable_label_get_type(),
     }
 }
 

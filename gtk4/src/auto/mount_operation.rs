@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct MountOperation(Object<ffi::GtkMountOperation, ffi::GtkMountOperationClass>) @extends gio::MountOperation;
 
     match fn {
-        get_type => || ffi::gtk_mount_operation_get_type(),
+        type_ => || ffi::gtk_mount_operation_get_type(),
     }
 }
 

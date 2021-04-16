@@ -11,7 +11,7 @@ glib::wrapper! {
     pub struct OverlayLayout(Object<ffi::GtkOverlayLayout, ffi::GtkOverlayLayoutClass>) @extends LayoutManager;
 
     match fn {
-        get_type => || ffi::gtk_overlay_layout_get_type(),
+        type_ => || ffi::gtk_overlay_layout_get_type(),
     }
 }
 

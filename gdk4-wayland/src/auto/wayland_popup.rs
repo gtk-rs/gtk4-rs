@@ -9,7 +9,7 @@ glib::wrapper! {
     pub struct WaylandPopup(Object<ffi::GdkWaylandPopup>) @extends WaylandSurface, gdk::Surface, @implements gdk::Popup;
 
     match fn {
-        get_type => || ffi::gdk_wayland_popup_get_type(),
+        type_ => || ffi::gdk_wayland_popup_get_type(),
     }
 }
 

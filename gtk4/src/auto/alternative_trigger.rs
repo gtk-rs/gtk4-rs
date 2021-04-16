@@ -14,7 +14,7 @@ glib::wrapper! {
     pub struct AlternativeTrigger(Object<ffi::GtkAlternativeTrigger, ffi::GtkAlternativeTriggerClass>) @extends ShortcutTrigger;
 
     match fn {
-        get_type => || ffi::gtk_alternative_trigger_get_type(),
+        type_ => || ffi::gtk_alternative_trigger_get_type(),
     }
 }
 

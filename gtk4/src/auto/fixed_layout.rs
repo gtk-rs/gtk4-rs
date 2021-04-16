@@ -11,7 +11,7 @@ glib::wrapper! {
     pub struct FixedLayout(Object<ffi::GtkFixedLayout, ffi::GtkFixedLayoutClass>) @extends LayoutManager;
 
     match fn {
-        get_type => || ffi::gtk_fixed_layout_get_type(),
+        type_ => || ffi::gtk_fixed_layout_get_type(),
     }
 }
 

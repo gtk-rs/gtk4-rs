@@ -34,7 +34,7 @@ glib::wrapper! {
     pub struct ListView(Object<ffi::GtkListView, ffi::GtkListViewClass>) @extends ListBase, Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable, Scrollable;
 
     match fn {
-        get_type => || ffi::gtk_list_view_get_type(),
+        type_ => || ffi::gtk_list_view_get_type(),
     }
 }
 

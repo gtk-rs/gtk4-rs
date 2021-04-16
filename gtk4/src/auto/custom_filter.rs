@@ -9,7 +9,7 @@ glib::wrapper! {
     pub struct CustomFilter(Object<ffi::GtkCustomFilter, ffi::GtkCustomFilterClass>) @extends Filter;
 
     match fn {
-        get_type => || ffi::gtk_custom_filter_get_type(),
+        type_ => || ffi::gtk_custom_filter_get_type(),
     }
 }
 

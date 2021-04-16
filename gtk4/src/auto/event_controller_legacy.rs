@@ -20,7 +20,7 @@ glib::wrapper! {
     pub struct EventControllerLegacy(Object<ffi::GtkEventControllerLegacy, ffi::GtkEventControllerLegacyClass>) @extends EventController;
 
     match fn {
-        get_type => || ffi::gtk_event_controller_legacy_get_type(),
+        type_ => || ffi::gtk_event_controller_legacy_get_type(),
     }
 }
 

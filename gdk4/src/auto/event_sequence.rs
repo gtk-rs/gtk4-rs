@@ -9,6 +9,6 @@ glib::wrapper! {
     match fn {
         copy => |ptr| glib::gobject_ffi::g_boxed_copy(ffi::gdk_event_sequence_get_type(), ptr as *mut _) as *mut ffi::GdkEventSequence,
         free => |ptr| glib::gobject_ffi::g_boxed_free(ffi::gdk_event_sequence_get_type(), ptr as *mut _),
-        get_type => || ffi::gdk_event_sequence_get_type(),
+        type_ => || ffi::gdk_event_sequence_get_type(),
     }
 }

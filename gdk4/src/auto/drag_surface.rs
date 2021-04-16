@@ -11,7 +11,7 @@ glib::wrapper! {
     pub struct DragSurface(Interface<ffi::GdkDragSurface, ffi::GdkDragSurfaceInterface>) @requires Surface;
 
     match fn {
-        get_type => || ffi::gdk_drag_surface_get_type(),
+        type_ => || ffi::gdk_drag_surface_get_type(),
     }
 }
 

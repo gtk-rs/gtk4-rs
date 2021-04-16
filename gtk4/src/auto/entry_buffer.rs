@@ -17,7 +17,7 @@ glib::wrapper! {
     pub struct EntryBuffer(Object<ffi::GtkEntryBuffer, ffi::GtkEntryBufferClass>);
 
     match fn {
-        get_type => || ffi::gtk_entry_buffer_get_type(),
+        type_ => || ffi::gtk_entry_buffer_get_type(),
     }
 }
 

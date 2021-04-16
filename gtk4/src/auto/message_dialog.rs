@@ -34,7 +34,7 @@ glib::wrapper! {
     pub struct MessageDialog(Object<ffi::GtkMessageDialog, ffi::GtkMessageDialogClass>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
 
     match fn {
-        get_type => || ffi::gtk_message_dialog_get_type(),
+        type_ => || ffi::gtk_message_dialog_get_type(),
     }
 }
 

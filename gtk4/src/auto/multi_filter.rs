@@ -12,7 +12,7 @@ glib::wrapper! {
     pub struct MultiFilter(Object<ffi::GtkMultiFilter, ffi::GtkMultiFilterClass>) @extends Filter, @implements gio::ListModel, Buildable;
 
     match fn {
-        get_type => || ffi::gtk_multi_filter_get_type(),
+        type_ => || ffi::gtk_multi_filter_get_type(),
     }
 }
 

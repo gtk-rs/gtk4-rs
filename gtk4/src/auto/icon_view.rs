@@ -43,7 +43,7 @@ glib::wrapper! {
     pub struct IconView(Object<ffi::GtkIconView>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, CellLayout, Scrollable;
 
     match fn {
-        get_type => || ffi::gtk_icon_view_get_type(),
+        type_ => || ffi::gtk_icon_view_get_type(),
     }
 }
 
@@ -124,7 +124,7 @@ impl IconView {
     }
 
     #[doc(alias = "gtk_icon_view_get_cell_rect")]
-    pub fn get_cell_rect<P: IsA<CellRenderer>>(
+    pub fn cell_rect<P: IsA<CellRenderer>>(
         &self,
         path: &TreePath,
         cell: Option<&P>,
@@ -174,7 +174,7 @@ impl IconView {
     }
 
     #[doc(alias = "gtk_icon_view_get_dest_item_at_pos")]
-    pub fn get_dest_item_at_pos(
+    pub fn dest_item_at_pos(
         &self,
         drag_x: i32,
         drag_y: i32,
@@ -214,7 +214,7 @@ impl IconView {
     }
 
     #[doc(alias = "gtk_icon_view_get_item_at_pos")]
-    pub fn get_item_at_pos(&self, x: i32, y: i32) -> Option<(TreePath, CellRenderer)> {
+    pub fn item_at_pos(&self, x: i32, y: i32) -> Option<(TreePath, CellRenderer)> {
         unsafe {
             let mut path = ptr::null_mut();
             let mut cell = ptr::null_mut();
@@ -234,7 +234,7 @@ impl IconView {
     }
 
     #[doc(alias = "gtk_icon_view_get_item_column")]
-    pub fn get_item_column(&self, path: &TreePath) -> i32 {
+    pub fn item_column(&self, path: &TreePath) -> i32 {
         unsafe {
             ffi::gtk_icon_view_get_item_column(
                 self.to_glib_none().0,
@@ -258,7 +258,7 @@ impl IconView {
     }
 
     #[doc(alias = "gtk_icon_view_get_item_row")]
-    pub fn get_item_row(&self, path: &TreePath) -> i32 {
+    pub fn item_row(&self, path: &TreePath) -> i32 {
         unsafe {
             ffi::gtk_icon_view_get_item_row(
                 self.to_glib_none().0,
@@ -288,7 +288,7 @@ impl IconView {
     }
 
     #[doc(alias = "gtk_icon_view_get_path_at_pos")]
-    pub fn get_path_at_pos(&self, x: i32, y: i32) -> Option<TreePath> {
+    pub fn path_at_pos(&self, x: i32, y: i32) -> Option<TreePath> {
         unsafe {
             from_glib_full(ffi::gtk_icon_view_get_path_at_pos(
                 self.to_glib_none().0,
@@ -343,7 +343,7 @@ impl IconView {
     }
 
     #[doc(alias = "gtk_icon_view_get_tooltip_context")]
-    pub fn get_tooltip_context(
+    pub fn tooltip_context(
         &self,
         x: i32,
         y: i32,

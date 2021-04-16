@@ -16,7 +16,7 @@ glib::wrapper! {
     pub struct Orientable(Interface<ffi::GtkOrientable, ffi::GtkOrientableIface>);
 
     match fn {
-        get_type => || ffi::gtk_orientable_get_type(),
+        type_ => || ffi::gtk_orientable_get_type(),
     }
 }
 

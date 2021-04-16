@@ -26,7 +26,7 @@ glib::wrapper! {
     pub struct FlowBoxChild(Object<ffi::GtkFlowBoxChild, ffi::GtkFlowBoxChildClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_flow_box_child_get_type(),
+        type_ => || ffi::gtk_flow_box_child_get_type(),
     }
 }
 

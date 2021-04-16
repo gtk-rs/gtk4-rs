@@ -13,7 +13,7 @@ glib::wrapper! {
     pub struct MemoryTexture(Object<ffi::GdkMemoryTexture, ffi::GdkMemoryTextureClass>) @extends Texture, @implements Paintable;
 
     match fn {
-        get_type => || ffi::gdk_memory_texture_get_type(),
+        type_ => || ffi::gdk_memory_texture_get_type(),
     }
 }
 

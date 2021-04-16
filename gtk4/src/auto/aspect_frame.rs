@@ -26,7 +26,7 @@ glib::wrapper! {
     pub struct AspectFrame(Object<ffi::GtkAspectFrame>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_aspect_frame_get_type(),
+        type_ => || ffi::gtk_aspect_frame_get_type(),
     }
 }
 

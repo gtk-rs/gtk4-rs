@@ -34,7 +34,7 @@ glib::wrapper! {
     pub struct Dialog(Object<ffi::GtkDialog, ffi::GtkDialogClass>) @extends Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
 
     match fn {
-        get_type => || ffi::gtk_dialog_get_type(),
+        type_ => || ffi::gtk_dialog_get_type(),
     }
 }
 
@@ -566,7 +566,7 @@ pub trait DialogExt: 'static {
     fn header_bar(&self) -> HeaderBar;
 
     #[doc(alias = "gtk_dialog_get_widget_for_response")]
-    fn get_widget_for_response(&self, response_id: ResponseType) -> Option<Widget>;
+    fn widget_for_response(&self, response_id: ResponseType) -> Option<Widget>;
 
     #[doc(alias = "gtk_dialog_response")]
     fn response(&self, response_id: ResponseType);
@@ -624,7 +624,7 @@ impl<O: IsA<Dialog>> DialogExt for O {
         }
     }
 
-    fn get_widget_for_response(&self, response_id: ResponseType) -> Option<Widget> {
+    fn widget_for_response(&self, response_id: ResponseType) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_dialog_get_widget_for_response(
                 self.as_ref().to_glib_none().0,

@@ -13,7 +13,7 @@ glib::wrapper! {
     match fn {
         copy => |ptr| ffi::gtk_tree_path_copy(ptr),
         free => |ptr| ffi::gtk_tree_path_free(ptr),
-        get_type => || ffi::gtk_tree_path_get_type(),
+        type_ => || ffi::gtk_tree_path_get_type(),
     }
 }
 

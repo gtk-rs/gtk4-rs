@@ -17,13 +17,13 @@ glib::wrapper! {
     pub struct TreeListRow(Object<ffi::GtkTreeListRow, ffi::GtkTreeListRowClass>);
 
     match fn {
-        get_type => || ffi::gtk_tree_list_row_get_type(),
+        type_ => || ffi::gtk_tree_list_row_get_type(),
     }
 }
 
 impl TreeListRow {
     #[doc(alias = "gtk_tree_list_row_get_child_row")]
-    pub fn get_child_row(&self, position: u32) -> Option<TreeListRow> {
+    pub fn child_row(&self, position: u32) -> Option<TreeListRow> {
         unsafe {
             from_glib_full(ffi::gtk_tree_list_row_get_child_row(
                 self.to_glib_none().0,

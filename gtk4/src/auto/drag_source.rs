@@ -23,7 +23,7 @@ glib::wrapper! {
     pub struct DragSource(Object<ffi::GtkDragSource, ffi::GtkDragSourceClass>) @extends GestureSingle, Gesture, EventController;
 
     match fn {
-        get_type => || ffi::gtk_drag_source_get_type(),
+        type_ => || ffi::gtk_drag_source_get_type(),
     }
 }
 

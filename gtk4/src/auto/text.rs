@@ -30,7 +30,7 @@ glib::wrapper! {
     pub struct Text(Object<ffi::GtkText>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
 
     match fn {
-        get_type => || ffi::gtk_text_get_type(),
+        type_ => || ffi::gtk_text_get_type(),
     }
 }
 

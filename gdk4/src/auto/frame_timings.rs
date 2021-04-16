@@ -11,7 +11,7 @@ glib::wrapper! {
     match fn {
         ref => |ptr| ffi::gdk_frame_timings_ref(ptr),
         unref => |ptr| ffi::gdk_frame_timings_unref(ptr),
-        get_type => || ffi::gdk_frame_timings_get_type(),
+        type_ => || ffi::gdk_frame_timings_get_type(),
     }
 }
 

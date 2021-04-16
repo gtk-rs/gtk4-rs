@@ -30,7 +30,7 @@ glib::wrapper! {
     pub struct Paned(Object<ffi::GtkPaned>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
-        get_type => || ffi::gtk_paned_get_type(),
+        type_ => || ffi::gtk_paned_get_type(),
     }
 }
 
@@ -62,12 +62,12 @@ impl Paned {
     }
 
     #[doc(alias = "gtk_paned_get_shrink_end_child")]
-    pub fn is_shrink_end_child(&self) -> bool {
+    pub fn shrinks_end_child(&self) -> bool {
         unsafe { from_glib(ffi::gtk_paned_get_shrink_end_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_paned_get_shrink_start_child")]
-    pub fn is_shrink_start_child(&self) -> bool {
+    pub fn shrinks_start_child(&self) -> bool {
         unsafe { from_glib(ffi::gtk_paned_get_shrink_start_child(self.to_glib_none().0)) }
     }
 

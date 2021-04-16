@@ -10,7 +10,7 @@ glib::wrapper! {
     pub struct ShortcutTrigger(Object<ffi::GtkShortcutTrigger, ffi::GtkShortcutTriggerClass>);
 
     match fn {
-        get_type => || ffi::gtk_shortcut_trigger_get_type(),
+        type_ => || ffi::gtk_shortcut_trigger_get_type(),
     }
 }
 

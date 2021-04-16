@@ -8,7 +8,7 @@ glib::wrapper! {
     pub struct ListItemFactory(Object<ffi::GtkListItemFactory, ffi::GtkListItemFactoryClass>);
 
     match fn {
-        get_type => || ffi::gtk_list_item_factory_get_type(),
+        type_ => || ffi::gtk_list_item_factory_get_type(),
     }
 }
 

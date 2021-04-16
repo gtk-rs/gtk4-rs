@@ -13,7 +13,7 @@ glib::wrapper! {
     pub struct IconPaintable(Object<ffi::GtkIconPaintable>) @implements gdk::Paintable;
 
     match fn {
-        get_type => || ffi::gtk_icon_paintable_get_type(),
+        type_ => || ffi::gtk_icon_paintable_get_type(),
     }
 }
 

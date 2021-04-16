@@ -10,7 +10,7 @@ glib::wrapper! {
     pub struct X11Monitor(Object<ffi::GdkX11Monitor, ffi::GdkX11MonitorClass>) @extends gdk::Monitor;
 
     match fn {
-        get_type => || ffi::gdk_x11_monitor_get_type(),
+        type_ => || ffi::gdk_x11_monitor_get_type(),
     }
 }
 

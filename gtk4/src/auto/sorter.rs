@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct Sorter(Object<ffi::GtkSorter, ffi::GtkSorterClass>);
 
     match fn {
-        get_type => || ffi::gtk_sorter_get_type(),
+        type_ => || ffi::gtk_sorter_get_type(),
     }
 }
 

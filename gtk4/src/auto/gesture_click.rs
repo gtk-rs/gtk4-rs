@@ -22,7 +22,7 @@ glib::wrapper! {
     pub struct GestureClick(Object<ffi::GtkGestureClick, ffi::GtkGestureClickClass>) @extends GestureSingle, Gesture, EventController;
 
     match fn {
-        get_type => || ffi::gtk_gesture_click_get_type(),
+        type_ => || ffi::gtk_gesture_click_get_type(),
     }
 }
 

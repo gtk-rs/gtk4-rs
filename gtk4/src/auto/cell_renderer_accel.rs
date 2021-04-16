@@ -22,7 +22,7 @@ glib::wrapper! {
     pub struct CellRendererAccel(Object<ffi::GtkCellRendererAccel>) @extends CellRendererText, CellRenderer;
 
     match fn {
-        get_type => || ffi::gtk_cell_renderer_accel_get_type(),
+        type_ => || ffi::gtk_cell_renderer_accel_get_type(),
     }
 }
 

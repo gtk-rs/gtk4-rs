@@ -27,7 +27,7 @@ glib::wrapper! {
     pub struct Video(Object<ffi::GtkVideo, ffi::GtkVideoClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_video_get_type(),
+        type_ => || ffi::gtk_video_get_type(),
     }
 }
 

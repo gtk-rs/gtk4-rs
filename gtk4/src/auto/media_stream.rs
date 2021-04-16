@@ -15,7 +15,7 @@ glib::wrapper! {
     pub struct MediaStream(Object<ffi::GtkMediaStream, ffi::GtkMediaStreamClass>) @implements gdk::Paintable;
 
     match fn {
-        get_type => || ffi::gtk_media_stream_get_type(),
+        type_ => || ffi::gtk_media_stream_get_type(),
     }
 }
 

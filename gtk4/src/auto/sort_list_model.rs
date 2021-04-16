@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct SortListModel(Object<ffi::GtkSortListModel, ffi::GtkSortListModelClass>) @implements gio::ListModel;
 
     match fn {
-        get_type => || ffi::gtk_sort_list_model_get_type(),
+        type_ => || ffi::gtk_sort_list_model_get_type(),
     }
 }
 

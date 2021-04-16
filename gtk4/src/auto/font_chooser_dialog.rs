@@ -29,7 +29,7 @@ glib::wrapper! {
     pub struct FontChooserDialog(Object<ffi::GtkFontChooserDialog>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager, FontChooser;
 
     match fn {
-        get_type => || ffi::gtk_font_chooser_dialog_get_type(),
+        type_ => || ffi::gtk_font_chooser_dialog_get_type(),
     }
 }
 

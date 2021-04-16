@@ -20,7 +20,7 @@ glib::wrapper! {
     pub struct Shortcut(Object<ffi::GtkShortcut, ffi::GtkShortcutClass>);
 
     match fn {
-        get_type => || ffi::gtk_shortcut_get_type(),
+        type_ => || ffi::gtk_shortcut_get_type(),
     }
 }
 

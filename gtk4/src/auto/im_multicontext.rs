@@ -16,7 +16,7 @@ glib::wrapper! {
     pub struct IMMulticontext(Object<ffi::GtkIMMulticontext, ffi::GtkIMMulticontextClass>) @extends IMContext;
 
     match fn {
-        get_type => || ffi::gtk_im_multicontext_get_type(),
+        type_ => || ffi::gtk_im_multicontext_get_type(),
     }
 }
 

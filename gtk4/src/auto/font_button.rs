@@ -28,7 +28,7 @@ glib::wrapper! {
     pub struct FontButton(Object<ffi::GtkFontButton>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, FontChooser;
 
     match fn {
-        get_type => || ffi::gtk_font_button_get_type(),
+        type_ => || ffi::gtk_font_button_get_type(),
     }
 }
 

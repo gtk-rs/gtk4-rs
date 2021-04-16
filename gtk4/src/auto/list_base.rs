@@ -21,7 +21,7 @@ glib::wrapper! {
     pub struct ListBase(Object<ffi::GtkListBase, ffi::GtkListBaseClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable, Scrollable;
 
     match fn {
-        get_type => || ffi::gtk_list_base_get_type(),
+        type_ => || ffi::gtk_list_base_get_type(),
     }
 }
 

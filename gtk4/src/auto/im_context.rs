@@ -21,7 +21,7 @@ glib::wrapper! {
     pub struct IMContext(Object<ffi::GtkIMContext, ffi::GtkIMContextClass>);
 
     match fn {
-        get_type => || ffi::gtk_im_context_get_type(),
+        type_ => || ffi::gtk_im_context_get_type(),
     }
 }
 

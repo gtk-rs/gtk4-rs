@@ -20,7 +20,7 @@ glib::wrapper! {
     pub struct TextTag(Object<ffi::GtkTextTag, ffi::GtkTextTagClass>);
 
     match fn {
-        get_type => || ffi::gtk_text_tag_get_type(),
+        type_ => || ffi::gtk_text_tag_get_type(),
     }
 }
 

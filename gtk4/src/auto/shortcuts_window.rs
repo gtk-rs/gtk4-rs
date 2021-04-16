@@ -32,7 +32,7 @@ glib::wrapper! {
     pub struct ShortcutsWindow(Object<ffi::GtkShortcutsWindow>) @extends Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
 
     match fn {
-        get_type => || ffi::gtk_shortcuts_window_get_type(),
+        type_ => || ffi::gtk_shortcuts_window_get_type(),
     }
 }
 

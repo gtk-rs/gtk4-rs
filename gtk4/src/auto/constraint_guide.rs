@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct ConstraintGuide(Object<ffi::GtkConstraintGuide, ffi::GtkConstraintGuideClass>) @implements ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_constraint_guide_get_type(),
+        type_ => || ffi::gtk_constraint_guide_get_type(),
     }
 }
 

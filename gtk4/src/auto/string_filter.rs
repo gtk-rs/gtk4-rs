@@ -20,7 +20,7 @@ glib::wrapper! {
     pub struct StringFilter(Object<ffi::GtkStringFilter, ffi::GtkStringFilterClass>) @extends Filter;
 
     match fn {
-        get_type => || ffi::gtk_string_filter_get_type(),
+        type_ => || ffi::gtk_string_filter_get_type(),
     }
 }
 

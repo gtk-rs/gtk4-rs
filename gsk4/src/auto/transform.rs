@@ -15,7 +15,7 @@ glib::wrapper! {
     match fn {
         ref => |ptr| ffi::gsk_transform_ref(ptr),
         unref => |ptr| ffi::gsk_transform_unref(ptr),
-        get_type => || ffi::gsk_transform_get_type(),
+        type_ => || ffi::gsk_transform_get_type(),
     }
 }
 

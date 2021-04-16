@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct StringSorter(Object<ffi::GtkStringSorter, ffi::GtkStringSorterClass>) @extends Sorter;
 
     match fn {
-        get_type => || ffi::gtk_string_sorter_get_type(),
+        type_ => || ffi::gtk_string_sorter_get_type(),
     }
 }
 

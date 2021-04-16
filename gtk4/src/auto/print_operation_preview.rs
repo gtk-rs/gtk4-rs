@@ -17,7 +17,7 @@ glib::wrapper! {
     pub struct PrintOperationPreview(Interface<ffi::GtkPrintOperationPreview, ffi::GtkPrintOperationPreviewIface>);
 
     match fn {
-        get_type => || ffi::gtk_print_operation_preview_get_type(),
+        type_ => || ffi::gtk_print_operation_preview_get_type(),
     }
 }
 

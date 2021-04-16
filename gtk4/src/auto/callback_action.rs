@@ -12,7 +12,7 @@ glib::wrapper! {
     pub struct CallbackAction(Object<ffi::GtkCallbackAction, ffi::GtkCallbackActionClass>) @extends ShortcutAction;
 
     match fn {
-        get_type => || ffi::gtk_callback_action_get_type(),
+        type_ => || ffi::gtk_callback_action_get_type(),
     }
 }
 

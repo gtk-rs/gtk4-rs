@@ -30,7 +30,7 @@ glib::wrapper! {
     pub struct LevelBar(Object<ffi::GtkLevelBar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
-        get_type => || ffi::gtk_level_bar_get_type(),
+        type_ => || ffi::gtk_level_bar_get_type(),
     }
 }
 
@@ -82,7 +82,7 @@ impl LevelBar {
     }
 
     #[doc(alias = "gtk_level_bar_get_offset_value")]
-    pub fn get_offset_value(&self, name: Option<&str>) -> Option<f64> {
+    pub fn offset_value(&self, name: Option<&str>) -> Option<f64> {
         unsafe {
             let mut value = mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gtk_level_bar_get_offset_value(

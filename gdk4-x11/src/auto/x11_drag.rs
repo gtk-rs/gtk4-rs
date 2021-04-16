@@ -8,7 +8,7 @@ glib::wrapper! {
     pub struct X11Drag(Object<ffi::GdkX11Drag, ffi::GdkX11DragClass>) @extends gdk::Drag;
 
     match fn {
-        get_type => || ffi::gdk_x11_drag_get_type(),
+        type_ => || ffi::gdk_x11_drag_get_type(),
     }
 }
 

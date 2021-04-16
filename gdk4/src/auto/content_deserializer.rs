@@ -9,7 +9,7 @@ glib::wrapper! {
     pub struct ContentDeserializer(Object<ffi::GdkContentDeserializer>);
 
     match fn {
-        get_type => || ffi::gdk_content_deserializer_get_type(),
+        type_ => || ffi::gdk_content_deserializer_get_type(),
     }
 }
 

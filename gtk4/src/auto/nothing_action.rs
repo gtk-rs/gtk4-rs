@@ -10,7 +10,7 @@ glib::wrapper! {
     pub struct NothingAction(Object<ffi::GtkNothingAction, ffi::GtkNothingActionClass>) @extends ShortcutAction;
 
     match fn {
-        get_type => || ffi::gtk_nothing_action_get_type(),
+        type_ => || ffi::gtk_nothing_action_get_type(),
     }
 }
 

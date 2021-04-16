@@ -15,7 +15,7 @@ glib::wrapper! {
     pub struct IMContextSimple(Object<ffi::GtkIMContextSimple, ffi::GtkIMContextSimpleClass>) @extends IMContext;
 
     match fn {
-        get_type => || ffi::gtk_im_context_simple_get_type(),
+        type_ => || ffi::gtk_im_context_simple_get_type(),
     }
 }
 

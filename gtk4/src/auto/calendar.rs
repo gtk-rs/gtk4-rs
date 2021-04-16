@@ -26,7 +26,7 @@ glib::wrapper! {
     pub struct Calendar(Object<ffi::GtkCalendar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_calendar_get_type(),
+        type_ => || ffi::gtk_calendar_get_type(),
     }
 }
 
@@ -50,7 +50,7 @@ impl Calendar {
     }
 
     #[doc(alias = "gtk_calendar_get_day_is_marked")]
-    pub fn get_day_is_marked(&self, day: u32) -> bool {
+    pub fn day_is_marked(&self, day: u32) -> bool {
         unsafe {
             from_glib(ffi::gtk_calendar_get_day_is_marked(
                 self.to_glib_none().0,

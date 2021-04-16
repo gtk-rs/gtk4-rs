@@ -20,7 +20,7 @@ glib::wrapper! {
     pub struct CellEditable(Interface<ffi::GtkCellEditable, ffi::GtkCellEditableIface>) @requires Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_cell_editable_get_type(),
+        type_ => || ffi::gtk_cell_editable_get_type(),
     }
 }
 

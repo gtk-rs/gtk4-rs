@@ -14,7 +14,7 @@ glib::wrapper! {
     pub struct X11DeviceManagerXI2(Object<ffi::GdkX11DeviceManagerXI2, ffi::GdkX11DeviceManagerXI2Class>);
 
     match fn {
-        get_type => || ffi::gdk_x11_device_manager_xi2_get_type(),
+        type_ => || ffi::gdk_x11_device_manager_xi2_get_type(),
     }
 }
 

@@ -16,7 +16,7 @@ glib::wrapper! {
     pub struct Constraint(Object<ffi::GtkConstraint, ffi::GtkConstraintClass>);
 
     match fn {
-        get_type => || ffi::gtk_constraint_get_type(),
+        type_ => || ffi::gtk_constraint_get_type(),
     }
 }
 

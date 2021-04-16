@@ -29,7 +29,7 @@ glib::wrapper! {
     pub struct CenterBox(Object<ffi::GtkCenterBox, ffi::GtkCenterBoxClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
-        get_type => || ffi::gtk_center_box_get_type(),
+        type_ => || ffi::gtk_center_box_get_type(),
     }
 }
 

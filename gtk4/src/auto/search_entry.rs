@@ -28,7 +28,7 @@ glib::wrapper! {
     pub struct SearchEntry(Object<ffi::GtkSearchEntry>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
 
     match fn {
-        get_type => || ffi::gtk_search_entry_get_type(),
+        type_ => || ffi::gtk_search_entry_get_type(),
     }
 }
 

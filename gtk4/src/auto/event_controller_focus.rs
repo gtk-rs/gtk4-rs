@@ -20,7 +20,7 @@ glib::wrapper! {
     pub struct EventControllerFocus(Object<ffi::GtkEventControllerFocus, ffi::GtkEventControllerFocusClass>) @extends EventController;
 
     match fn {
-        get_type => || ffi::gtk_event_controller_focus_get_type(),
+        type_ => || ffi::gtk_event_controller_focus_get_type(),
     }
 }
 

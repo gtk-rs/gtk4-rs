@@ -15,13 +15,13 @@ glib::wrapper! {
     pub struct Native(Interface<ffi::GtkNative, ffi::GtkNativeInterface>) @requires Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_native_get_type(),
+        type_ => || ffi::gtk_native_get_type(),
     }
 }
 
 impl Native {
     #[doc(alias = "gtk_native_get_for_surface")]
-    pub fn get_for_surface(surface: &gdk::Surface) -> Option<Native> {
+    pub fn for_surface(surface: &gdk::Surface) -> Option<Native> {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_native_get_for_surface(surface.to_glib_none().0)) }
     }

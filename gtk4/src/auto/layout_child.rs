@@ -12,7 +12,7 @@ glib::wrapper! {
     pub struct LayoutChild(Object<ffi::GtkLayoutChild, ffi::GtkLayoutChildClass>);
 
     match fn {
-        get_type => || ffi::gtk_layout_child_get_type(),
+        type_ => || ffi::gtk_layout_child_get_type(),
     }
 }
 

@@ -21,7 +21,7 @@ glib::wrapper! {
     pub struct FixedLayoutChild(Object<ffi::GtkFixedLayoutChild, ffi::GtkFixedLayoutChildClass>) @extends LayoutChild;
 
     match fn {
-        get_type => || ffi::gtk_fixed_layout_child_get_type(),
+        type_ => || ffi::gtk_fixed_layout_child_get_type(),
     }
 }
 

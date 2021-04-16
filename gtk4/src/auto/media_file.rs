@@ -16,7 +16,7 @@ glib::wrapper! {
     pub struct MediaFile(Object<ffi::GtkMediaFile, ffi::GtkMediaFileClass>) @extends MediaStream, @implements gdk::Paintable;
 
     match fn {
-        get_type => || ffi::gtk_media_file_get_type(),
+        type_ => || ffi::gtk_media_file_get_type(),
     }
 }
 

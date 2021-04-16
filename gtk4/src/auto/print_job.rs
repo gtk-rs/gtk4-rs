@@ -27,7 +27,7 @@ glib::wrapper! {
     pub struct PrintJob(Object<ffi::GtkPrintJob>);
 
     match fn {
-        get_type => || ffi::gtk_print_job_get_type(),
+        type_ => || ffi::gtk_print_job_get_type(),
     }
 }
 

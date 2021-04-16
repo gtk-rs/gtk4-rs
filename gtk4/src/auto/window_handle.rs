@@ -26,7 +26,7 @@ glib::wrapper! {
     pub struct WindowHandle(Object<ffi::GtkWindowHandle, ffi::GtkWindowHandleClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_window_handle_get_type(),
+        type_ => || ffi::gtk_window_handle_get_type(),
     }
 }
 

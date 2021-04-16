@@ -43,7 +43,7 @@ glib::wrapper! {
     pub struct TextView(Object<ffi::GtkTextView, ffi::GtkTextViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;
 
     match fn {
-        get_type => || ffi::gtk_text_view_get_type(),
+        type_ => || ffi::gtk_text_view_get_type(),
     }
 }
 
@@ -622,7 +622,7 @@ pub trait TextViewExt: 'static {
     fn buffer(&self) -> TextBuffer;
 
     #[doc(alias = "gtk_text_view_get_cursor_locations")]
-    fn get_cursor_locations(&self, iter: Option<&TextIter>) -> (gdk::Rectangle, gdk::Rectangle);
+    fn cursor_locations(&self, iter: Option<&TextIter>) -> (gdk::Rectangle, gdk::Rectangle);
 
     #[doc(alias = "gtk_text_view_get_cursor_visible")]
     fn is_cursor_visible(&self) -> bool;
@@ -634,7 +634,7 @@ pub trait TextViewExt: 'static {
     fn extra_menu(&self) -> Option<gio::MenuModel>;
 
     #[doc(alias = "gtk_text_view_get_gutter")]
-    fn get_gutter(&self, win: TextWindowType) -> Option<Widget>;
+    fn gutter(&self, win: TextWindowType) -> Option<Widget>;
 
     #[doc(alias = "gtk_text_view_get_indent")]
     fn indent(&self) -> i32;
@@ -646,13 +646,13 @@ pub trait TextViewExt: 'static {
     fn input_purpose(&self) -> InputPurpose;
 
     #[doc(alias = "gtk_text_view_get_iter_at_location")]
-    fn get_iter_at_location(&self, x: i32, y: i32) -> Option<TextIter>;
+    fn iter_at_location(&self, x: i32, y: i32) -> Option<TextIter>;
 
     #[doc(alias = "gtk_text_view_get_iter_at_position")]
-    fn get_iter_at_position(&self, x: i32, y: i32) -> Option<(TextIter, i32)>;
+    fn iter_at_position(&self, x: i32, y: i32) -> Option<(TextIter, i32)>;
 
     #[doc(alias = "gtk_text_view_get_iter_location")]
-    fn get_iter_location(&self, iter: &TextIter) -> gdk::Rectangle;
+    fn iter_location(&self, iter: &TextIter) -> gdk::Rectangle;
 
     #[doc(alias = "gtk_text_view_get_justification")]
     fn justification(&self) -> Justification;
@@ -661,10 +661,10 @@ pub trait TextViewExt: 'static {
     fn left_margin(&self) -> i32;
 
     #[doc(alias = "gtk_text_view_get_line_at_y")]
-    fn get_line_at_y(&self, y: i32) -> (TextIter, i32);
+    fn line_at_y(&self, y: i32) -> (TextIter, i32);
 
     #[doc(alias = "gtk_text_view_get_line_yrange")]
-    fn get_line_yrange(&self, iter: &TextIter) -> (i32, i32);
+    fn line_yrange(&self, iter: &TextIter) -> (i32, i32);
 
     #[doc(alias = "gtk_text_view_get_monospace")]
     fn is_monospace(&self) -> bool;
@@ -1059,7 +1059,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn get_cursor_locations(&self, iter: Option<&TextIter>) -> (gdk::Rectangle, gdk::Rectangle) {
+    fn cursor_locations(&self, iter: Option<&TextIter>) -> (gdk::Rectangle, gdk::Rectangle) {
         unsafe {
             let mut strong = gdk::Rectangle::uninitialized();
             let mut weak = gdk::Rectangle::uninitialized();
@@ -1097,7 +1097,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn get_gutter(&self, win: TextWindowType) -> Option<Widget> {
+    fn gutter(&self, win: TextWindowType) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_text_view_get_gutter(
                 self.as_ref().to_glib_none().0,
@@ -1126,7 +1126,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn get_iter_at_location(&self, x: i32, y: i32) -> Option<TextIter> {
+    fn iter_at_location(&self, x: i32, y: i32) -> Option<TextIter> {
         unsafe {
             let mut iter = TextIter::uninitialized();
             let ret = from_glib(ffi::gtk_text_view_get_iter_at_location(
@@ -1143,7 +1143,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn get_iter_at_position(&self, x: i32, y: i32) -> Option<(TextIter, i32)> {
+    fn iter_at_position(&self, x: i32, y: i32) -> Option<(TextIter, i32)> {
         unsafe {
             let mut iter = TextIter::uninitialized();
             let mut trailing = mem::MaybeUninit::uninit();
@@ -1163,7 +1163,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn get_iter_location(&self, iter: &TextIter) -> gdk::Rectangle {
+    fn iter_location(&self, iter: &TextIter) -> gdk::Rectangle {
         unsafe {
             let mut location = gdk::Rectangle::uninitialized();
             ffi::gtk_text_view_get_iter_location(
@@ -1187,7 +1187,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         unsafe { ffi::gtk_text_view_get_left_margin(self.as_ref().to_glib_none().0) }
     }
 
-    fn get_line_at_y(&self, y: i32) -> (TextIter, i32) {
+    fn line_at_y(&self, y: i32) -> (TextIter, i32) {
         unsafe {
             let mut target_iter = TextIter::uninitialized();
             let mut line_top = mem::MaybeUninit::uninit();
@@ -1202,7 +1202,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn get_line_yrange(&self, iter: &TextIter) -> (i32, i32) {
+    fn line_yrange(&self, iter: &TextIter) -> (i32, i32) {
         unsafe {
             let mut y = mem::MaybeUninit::uninit();
             let mut height = mem::MaybeUninit::uninit();

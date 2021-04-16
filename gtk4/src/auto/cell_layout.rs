@@ -15,7 +15,7 @@ glib::wrapper! {
     pub struct CellLayout(Interface<ffi::GtkCellLayout, ffi::GtkCellLayoutIface>);
 
     match fn {
-        get_type => || ffi::gtk_cell_layout_get_type(),
+        type_ => || ffi::gtk_cell_layout_get_type(),
     }
 }
 

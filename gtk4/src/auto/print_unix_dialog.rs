@@ -36,7 +36,7 @@ glib::wrapper! {
     pub struct PrintUnixDialog(Object<ffi::GtkPrintUnixDialog>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
 
     match fn {
-        get_type => || ffi::gtk_print_unix_dialog_get_type(),
+        type_ => || ffi::gtk_print_unix_dialog_get_type(),
     }
 }
 

@@ -34,7 +34,7 @@ glib::wrapper! {
     pub struct AppChooserDialog(Object<ffi::GtkAppChooserDialog>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager, AppChooser;
 
     match fn {
-        get_type => || ffi::gtk_app_chooser_dialog_get_type(),
+        type_ => || ffi::gtk_app_chooser_dialog_get_type(),
     }
 }
 

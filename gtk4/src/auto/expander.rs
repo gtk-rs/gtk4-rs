@@ -27,7 +27,7 @@ glib::wrapper! {
     pub struct Expander(Object<ffi::GtkExpander>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_expander_get_type(),
+        type_ => || ffi::gtk_expander_get_type(),
     }
 }
 

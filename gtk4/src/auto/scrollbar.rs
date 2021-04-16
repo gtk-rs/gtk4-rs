@@ -29,7 +29,7 @@ glib::wrapper! {
     pub struct Scrollbar(Object<ffi::GtkScrollbar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
-        get_type => || ffi::gtk_scrollbar_get_type(),
+        type_ => || ffi::gtk_scrollbar_get_type(),
     }
 }
 

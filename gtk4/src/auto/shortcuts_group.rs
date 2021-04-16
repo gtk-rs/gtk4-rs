@@ -31,7 +31,7 @@ glib::wrapper! {
     pub struct ShortcutsGroup(Object<ffi::GtkShortcutsGroup, ffi::GtkShortcutsGroupClass>) @extends Box, Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
-        get_type => || ffi::gtk_shortcuts_group_get_type(),
+        type_ => || ffi::gtk_shortcuts_group_get_type(),
     }
 }
 

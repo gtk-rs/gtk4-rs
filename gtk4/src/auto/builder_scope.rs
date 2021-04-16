@@ -9,7 +9,7 @@ glib::wrapper! {
     pub struct BuilderScope(Interface<ffi::GtkBuilderScope, ffi::GtkBuilderScopeInterface>);
 
     match fn {
-        get_type => || ffi::gtk_builder_scope_get_type(),
+        type_ => || ffi::gtk_builder_scope_get_type(),
     }
 }
 

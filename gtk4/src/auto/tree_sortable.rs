@@ -16,7 +16,7 @@ glib::wrapper! {
     pub struct TreeSortable(Interface<ffi::GtkTreeSortable, ffi::GtkTreeSortableIface>) @requires TreeModel;
 
     match fn {
-        get_type => || ffi::gtk_tree_sortable_get_type(),
+        type_ => || ffi::gtk_tree_sortable_get_type(),
     }
 }
 

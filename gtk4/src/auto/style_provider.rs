@@ -15,7 +15,7 @@ glib::wrapper! {
     pub struct StyleProvider(Interface<ffi::GtkStyleProvider>);
 
     match fn {
-        get_type => || ffi::gtk_style_provider_get_type(),
+        type_ => || ffi::gtk_style_provider_get_type(),
     }
 }
 

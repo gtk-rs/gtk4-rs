@@ -32,7 +32,7 @@ glib::wrapper! {
     pub struct Window(Object<ffi::GtkWindow, ffi::GtkWindowClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
 
     match fn {
-        get_type => || ffi::gtk_window_get_type(),
+        type_ => || ffi::gtk_window_get_type(),
     }
 }
 
@@ -44,13 +44,13 @@ impl Window {
     }
 
     #[doc(alias = "gtk_window_get_default_icon_name")]
-    pub fn get_default_icon_name() -> Option<glib::GString> {
+    pub fn default_icon_name() -> Option<glib::GString> {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_window_get_default_icon_name()) }
     }
 
     #[doc(alias = "gtk_window_get_toplevels")]
-    pub fn get_toplevels() -> gio::ListModel {
+    pub fn toplevels() -> gio::ListModel {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_window_get_toplevels()) }
     }

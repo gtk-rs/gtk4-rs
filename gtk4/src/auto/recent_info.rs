@@ -13,7 +13,7 @@ glib::wrapper! {
     match fn {
         ref => |ptr| ffi::gtk_recent_info_ref(ptr),
         unref => |ptr| ffi::gtk_recent_info_unref(ptr),
-        get_type => || ffi::gtk_recent_info_get_type(),
+        type_ => || ffi::gtk_recent_info_get_type(),
     }
 }
 
@@ -54,10 +54,7 @@ impl RecentInfo {
     }
 
     #[doc(alias = "gtk_recent_info_get_application_info")]
-    pub fn get_application_info(
-        &self,
-        app_name: &str,
-    ) -> Option<(glib::GString, u32, glib::DateTime)> {
+    pub fn application_info(&self, app_name: &str) -> Option<(glib::GString, u32, glib::DateTime)> {
         unsafe {
             let mut app_exec = ptr::null();
             let mut count = mem::MaybeUninit::uninit();

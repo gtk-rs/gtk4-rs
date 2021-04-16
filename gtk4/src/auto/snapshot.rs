@@ -11,7 +11,7 @@ glib::wrapper! {
     pub struct Snapshot(Object<ffi::GtkSnapshot, ffi::GtkSnapshotClass>) @extends gdk::Snapshot;
 
     match fn {
-        get_type => || ffi::gtk_snapshot_get_type(),
+        type_ => || ffi::gtk_snapshot_get_type(),
     }
 }
 

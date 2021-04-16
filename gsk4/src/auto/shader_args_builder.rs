@@ -12,7 +12,7 @@ glib::wrapper! {
     match fn {
         ref => |ptr| ffi::gsk_shader_args_builder_ref(ptr),
         unref => |ptr| ffi::gsk_shader_args_builder_unref(ptr),
-        get_type => || ffi::gsk_shader_args_builder_get_type(),
+        type_ => || ffi::gsk_shader_args_builder_get_type(),
     }
 }
 

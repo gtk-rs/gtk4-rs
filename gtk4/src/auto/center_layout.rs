@@ -15,7 +15,7 @@ glib::wrapper! {
     pub struct CenterLayout(Object<ffi::GtkCenterLayout, ffi::GtkCenterLayoutClass>) @extends LayoutManager;
 
     match fn {
-        get_type => || ffi::gtk_center_layout_get_type(),
+        type_ => || ffi::gtk_center_layout_get_type(),
     }
 }
 

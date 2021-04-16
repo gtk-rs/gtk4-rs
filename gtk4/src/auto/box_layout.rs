@@ -21,7 +21,7 @@ glib::wrapper! {
     pub struct BoxLayout(Object<ffi::GtkBoxLayout, ffi::GtkBoxLayoutClass>) @extends LayoutManager, @implements Orientable;
 
     match fn {
-        get_type => || ffi::gtk_box_layout_get_type(),
+        type_ => || ffi::gtk_box_layout_get_type(),
     }
 }
 

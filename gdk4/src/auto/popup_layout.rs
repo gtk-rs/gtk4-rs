@@ -17,7 +17,7 @@ glib::wrapper! {
     match fn {
         ref => |ptr| ffi::gdk_popup_layout_ref(ptr),
         unref => |ptr| ffi::gdk_popup_layout_unref(ptr),
-        get_type => || ffi::gdk_popup_layout_get_type(),
+        type_ => || ffi::gdk_popup_layout_get_type(),
     }
 }
 

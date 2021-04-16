@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct SliceListModel(Object<ffi::GtkSliceListModel, ffi::GtkSliceListModelClass>) @implements gio::ListModel;
 
     match fn {
-        get_type => || ffi::gtk_slice_list_model_get_type(),
+        type_ => || ffi::gtk_slice_list_model_get_type(),
     }
 }
 

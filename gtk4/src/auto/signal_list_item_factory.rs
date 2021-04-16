@@ -17,7 +17,7 @@ glib::wrapper! {
     pub struct SignalListItemFactory(Object<ffi::GtkSignalListItemFactory, ffi::GtkSignalListItemFactoryClass>) @extends ListItemFactory;
 
     match fn {
-        get_type => || ffi::gtk_signal_list_item_factory_get_type(),
+        type_ => || ffi::gtk_signal_list_item_factory_get_type(),
     }
 }
 

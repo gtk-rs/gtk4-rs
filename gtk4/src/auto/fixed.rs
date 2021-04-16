@@ -22,7 +22,7 @@ glib::wrapper! {
     pub struct Fixed(Object<ffi::GtkFixed, ffi::GtkFixedClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
-        get_type => || ffi::gtk_fixed_get_type(),
+        type_ => || ffi::gtk_fixed_get_type(),
     }
 }
 
@@ -330,10 +330,10 @@ pub const NONE_FIXED: Option<&Fixed> = None;
 
 pub trait FixedExt: 'static {
     #[doc(alias = "gtk_fixed_get_child_position")]
-    fn get_child_position<P: IsA<Widget>>(&self, widget: &P) -> (f64, f64);
+    fn child_position<P: IsA<Widget>>(&self, widget: &P) -> (f64, f64);
 
     #[doc(alias = "gtk_fixed_get_child_transform")]
-    fn get_child_transform<P: IsA<Widget>>(&self, widget: &P) -> Option<gsk::Transform>;
+    fn child_transform<P: IsA<Widget>>(&self, widget: &P) -> Option<gsk::Transform>;
 
     #[doc(alias = "gtk_fixed_move")]
     fn move_<P: IsA<Widget>>(&self, widget: &P, x: f64, y: f64);
@@ -349,7 +349,7 @@ pub trait FixedExt: 'static {
 }
 
 impl<O: IsA<Fixed>> FixedExt for O {
-    fn get_child_position<P: IsA<Widget>>(&self, widget: &P) -> (f64, f64) {
+    fn child_position<P: IsA<Widget>>(&self, widget: &P) -> (f64, f64) {
         unsafe {
             let mut x = mem::MaybeUninit::uninit();
             let mut y = mem::MaybeUninit::uninit();
@@ -365,7 +365,7 @@ impl<O: IsA<Fixed>> FixedExt for O {
         }
     }
 
-    fn get_child_transform<P: IsA<Widget>>(&self, widget: &P) -> Option<gsk::Transform> {
+    fn child_transform<P: IsA<Widget>>(&self, widget: &P) -> Option<gsk::Transform> {
         unsafe {
             from_glib_none(ffi::gtk_fixed_get_child_transform(
                 self.as_ref().to_glib_none().0,

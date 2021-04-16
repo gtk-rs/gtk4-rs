@@ -12,7 +12,7 @@ glib::wrapper! {
     pub struct Texture(Object<ffi::GdkTexture, ffi::GdkTextureClass>) @implements Paintable;
 
     match fn {
-        get_type => || ffi::gdk_texture_get_type(),
+        type_ => || ffi::gdk_texture_get_type(),
     }
 }
 

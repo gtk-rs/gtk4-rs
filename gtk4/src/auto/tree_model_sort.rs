@@ -18,7 +18,7 @@ glib::wrapper! {
     pub struct TreeModelSort(Object<ffi::GtkTreeModelSort, ffi::GtkTreeModelSortClass>) @implements TreeDragSource, TreeModel, TreeSortable;
 
     match fn {
-        get_type => || ffi::gtk_tree_model_sort_get_type(),
+        type_ => || ffi::gtk_tree_model_sort_get_type(),
     }
 }
 

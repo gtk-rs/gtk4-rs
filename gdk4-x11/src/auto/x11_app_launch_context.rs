@@ -8,7 +8,7 @@ glib::wrapper! {
     pub struct X11AppLaunchContext(Object<ffi::GdkX11AppLaunchContext, ffi::GdkX11AppLaunchContextClass>) @extends gdk::AppLaunchContext, gio::AppLaunchContext;
 
     match fn {
-        get_type => || ffi::gdk_x11_app_launch_context_get_type(),
+        type_ => || ffi::gdk_x11_app_launch_context_get_type(),
     }
 }
 

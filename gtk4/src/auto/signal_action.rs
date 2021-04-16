@@ -13,7 +13,7 @@ glib::wrapper! {
     pub struct SignalAction(Object<ffi::GtkSignalAction, ffi::GtkSignalActionClass>) @extends ShortcutAction;
 
     match fn {
-        get_type => || ffi::gtk_signal_action_get_type(),
+        type_ => || ffi::gtk_signal_action_get_type(),
     }
 }
 

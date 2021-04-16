@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct Gesture(Object<ffi::GtkGesture, ffi::GtkGestureClass>) @extends EventController;
 
     match fn {
-        get_type => || ffi::gtk_gesture_get_type(),
+        type_ => || ffi::gtk_gesture_get_type(),
     }
 }
 
@@ -39,16 +39,16 @@ pub trait GestureExt: 'static {
     fn group(&self) -> Vec<Gesture>;
 
     #[doc(alias = "gtk_gesture_get_last_event")]
-    fn get_last_event(&self, sequence: Option<&gdk::EventSequence>) -> Option<gdk::Event>;
+    fn last_event(&self, sequence: Option<&gdk::EventSequence>) -> Option<gdk::Event>;
 
     #[doc(alias = "gtk_gesture_get_last_updated_sequence")]
     fn last_updated_sequence(&self) -> Option<gdk::EventSequence>;
 
     #[doc(alias = "gtk_gesture_get_point")]
-    fn get_point(&self, sequence: Option<&gdk::EventSequence>) -> Option<(f64, f64)>;
+    fn point(&self, sequence: Option<&gdk::EventSequence>) -> Option<(f64, f64)>;
 
     #[doc(alias = "gtk_gesture_get_sequence_state")]
-    fn get_sequence_state(&self, sequence: &gdk::EventSequence) -> EventSequenceState;
+    fn sequence_state(&self, sequence: &gdk::EventSequence) -> EventSequenceState;
 
     #[doc(alias = "gtk_gesture_get_sequences")]
     fn sequences(&self) -> Vec<gdk::EventSequence>;
@@ -155,7 +155,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         }
     }
 
-    fn get_last_event(&self, sequence: Option<&gdk::EventSequence>) -> Option<gdk::Event> {
+    fn last_event(&self, sequence: Option<&gdk::EventSequence>) -> Option<gdk::Event> {
         unsafe {
             from_glib_none(ffi::gtk_gesture_get_last_event(
                 self.as_ref().to_glib_none().0,
@@ -172,7 +172,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         }
     }
 
-    fn get_point(&self, sequence: Option<&gdk::EventSequence>) -> Option<(f64, f64)> {
+    fn point(&self, sequence: Option<&gdk::EventSequence>) -> Option<(f64, f64)> {
         unsafe {
             let mut x = mem::MaybeUninit::uninit();
             let mut y = mem::MaybeUninit::uninit();
@@ -192,7 +192,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         }
     }
 
-    fn get_sequence_state(&self, sequence: &gdk::EventSequence) -> EventSequenceState {
+    fn sequence_state(&self, sequence: &gdk::EventSequence) -> EventSequenceState {
         unsafe {
             from_glib(ffi::gtk_gesture_get_sequence_state(
                 self.as_ref().to_glib_none().0,

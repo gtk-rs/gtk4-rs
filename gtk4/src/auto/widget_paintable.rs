@@ -19,7 +19,7 @@ glib::wrapper! {
     pub struct WidgetPaintable(Object<ffi::GtkWidgetPaintable, ffi::GtkWidgetPaintableClass>) @implements gdk::Paintable;
 
     match fn {
-        get_type => || ffi::gtk_widget_paintable_get_type(),
+        type_ => || ffi::gtk_widget_paintable_get_type(),
     }
 }
 

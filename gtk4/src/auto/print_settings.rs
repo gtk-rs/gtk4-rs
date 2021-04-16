@@ -20,7 +20,7 @@ glib::wrapper! {
     pub struct PrintSettings(Object<ffi::GtkPrintSettings>);
 
     match fn {
-        get_type => || ffi::gtk_print_settings_get_type(),
+        type_ => || ffi::gtk_print_settings_get_type(),
     }
 }
 
@@ -121,7 +121,7 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_get_bool")]
-    pub fn get_bool(&self, key: &str) -> bool {
+    pub fn bool(&self, key: &str) -> bool {
         unsafe {
             from_glib(ffi::gtk_print_settings_get_bool(
                 self.to_glib_none().0,
@@ -150,12 +150,12 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_get_double")]
-    pub fn get_double(&self, key: &str) -> f64 {
+    pub fn double(&self, key: &str) -> f64 {
         unsafe { ffi::gtk_print_settings_get_double(self.to_glib_none().0, key.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_print_settings_get_double_with_default")]
-    pub fn get_double_with_default(&self, key: &str, def: f64) -> f64 {
+    pub fn double_with_default(&self, key: &str, def: f64) -> f64 {
         unsafe {
             ffi::gtk_print_settings_get_double_with_default(
                 self.to_glib_none().0,
@@ -180,12 +180,12 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_get_int")]
-    pub fn get_int(&self, key: &str) -> i32 {
+    pub fn int(&self, key: &str) -> i32 {
         unsafe { ffi::gtk_print_settings_get_int(self.to_glib_none().0, key.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_print_settings_get_int_with_default")]
-    pub fn get_int_with_default(&self, key: &str, def: i32) -> i32 {
+    pub fn int_with_default(&self, key: &str, def: i32) -> i32 {
         unsafe {
             ffi::gtk_print_settings_get_int_with_default(
                 self.to_glib_none().0,
@@ -196,7 +196,7 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_get_length")]
-    pub fn get_length(&self, key: &str, unit: Unit) -> f64 {
+    pub fn length(&self, key: &str, unit: Unit) -> f64 {
         unsafe {
             ffi::gtk_print_settings_get_length(
                 self.to_glib_none().0,
@@ -273,7 +273,7 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_get_paper_height")]
-    pub fn get_paper_height(&self, unit: Unit) -> f64 {
+    pub fn paper_height(&self, unit: Unit) -> f64 {
         unsafe { ffi::gtk_print_settings_get_paper_height(self.to_glib_none().0, unit.to_glib()) }
     }
 
@@ -287,7 +287,7 @@ impl PrintSettings {
     }
 
     #[doc(alias = "gtk_print_settings_get_paper_width")]
-    pub fn get_paper_width(&self, unit: Unit) -> f64 {
+    pub fn paper_width(&self, unit: Unit) -> f64 {
         unsafe { ffi::gtk_print_settings_get_paper_width(self.to_glib_none().0, unit.to_glib()) }
     }
 

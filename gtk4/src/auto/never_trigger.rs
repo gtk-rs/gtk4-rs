@@ -10,7 +10,7 @@ glib::wrapper! {
     pub struct NeverTrigger(Object<ffi::GtkNeverTrigger, ffi::GtkNeverTriggerClass>) @extends ShortcutTrigger;
 
     match fn {
-        get_type => || ffi::gtk_never_trigger_get_type(),
+        type_ => || ffi::gtk_never_trigger_get_type(),
     }
 }
 
