@@ -45,7 +45,6 @@ generate = [
     "Gtk.BuilderScope",
     "Gtk.Button",
     "Gtk.ButtonsType",
-    "Gtk.Calendar",
     "Gtk.CellAreaBox",
     "Gtk.CellRendererAccelMode",
     "Gtk.CellRendererMode",
@@ -497,6 +496,9 @@ name = "Gtk.Assistant"
 status = "generate"
 trust_return_value_nullability = false
     [[object.function]]
+    name = "get_page_complete"
+    rename = "page_is_complete"
+    [[object.function]]
     name = "set_forward_page_func"
         [[object.function.parameter]]
         name = "page_func"
@@ -558,6 +560,13 @@ manual_traits = ["BuilderExtManual"]
 name = "Gtk.BuilderListItemFactory"
 status = "generate"
 trust_return_value_nullability = false
+
+[[object]]
+name = "Gtk.Calendar"
+status = "generate"
+    [[object.function]]
+    name = "get_day_is_marked"
+    rename = "day_is_marked"
 
 [[object]]
 name = "Gtk.CallbackAction"
@@ -867,6 +876,12 @@ manual_traits = ["EditableExtManual"]
 name = "Gtk.Entry"
 status = "generate"
 manual_traits = ["EntryExtManual"]
+    [[object.function]]
+    name = "get_icon_activatable"
+    rename = "icon_is_activatable"
+    [[object.function]]
+    name = "get_icon_sensitive"
+    rename = "icon_is_sensitive"
     [[object.function]]
     name = "get_invisible_char"
     manual = true
@@ -1388,6 +1403,18 @@ manual_traits = ["NotebookExtManual"]
     manual = true
     doc_trait_name = "NotebookExtManual"
     [[object.function]]
+    name = "get_property_tab_expand"
+    rename = "tab_expands"
+    [[object.function]]
+    name = "get_property_tab_fill"
+    rename = "tab_fills"
+    [[object.function]]
+    name = "get_tab_detachable"
+    rename = "tab_is_detachable"
+    [[object.function]]
+    name = "get_tab_reorderable"
+    rename = "tab_is_reorderable"
+    [[object.function]]
     name = "insert_page"
     manual = true
     doc_trait_name = "NotebookExtManual"
@@ -1551,6 +1578,10 @@ trust_return_value_nullability = false
 name = "Gtk.PrintSettings"
 status = "generate"
 trust_return_value_nullability = false
+    [[object.function]]
+    name = "get_bool"
+    # Retrieves the bool value of a setting
+    rename = "bool"
     [[object.function]]
     name = "get_paper_size"
         [object.function.return]
@@ -2201,6 +2232,9 @@ manual_traits = ["TreeViewExtManual"]
     [[object.signal]]
     pattern = "test-.+"
     inhibit = true
+    [[object.function]]
+    name = "get_hover_expand"
+    rename = "hover_expands"
 
 [[object]]
 name = "Gtk.TreeViewColumn"
