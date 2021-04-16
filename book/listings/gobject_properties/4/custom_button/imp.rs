@@ -23,16 +23,6 @@ impl ObjectSubclass for CustomButton {
 // ANCHOR: object_impl
 // Trait shared by all GObjects
 impl ObjectImpl for CustomButton {
-    fn constructed(&self, obj: &Self::Type) {
-        self.parent_constructed(obj);
-
-        // Bind label to number
-        // `SYNC_CREATE` ensures that the label will be immediately set
-        obj.bind_property("number", obj, "label")
-            .flags(BindingFlags::SYNC_CREATE)
-            .build();
-    }
-
     fn properties() -> &'static [ParamSpec] {
         static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
             vec![ParamSpec::new_int(
@@ -71,6 +61,16 @@ impl ObjectImpl for CustomButton {
             _ => unimplemented!(),
         }
     }
+
+    fn constructed(&self, obj: &Self::Type) {
+        self.parent_constructed(obj);
+
+        // Bind label to number
+        // `SYNC_CREATE` ensures that the label will be immediately set
+        obj.bind_property("number", obj, "label")
+            .flags(BindingFlags::SYNC_CREATE)
+            .build();
+    }
 }
 // ANCHOR_END: object_impl
 
@@ -82,6 +82,5 @@ impl ButtonImpl for CustomButton {
     fn clicked(&self, button: &Self::Type) {
         let incremented_number = *self.number.borrow() + 1;
         button.set_property("number", &incremented_number).unwrap();
-        button.set_label(&self.number.borrow().to_string())
     }
 }

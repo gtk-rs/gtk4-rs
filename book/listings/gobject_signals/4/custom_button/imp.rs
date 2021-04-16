@@ -102,10 +102,11 @@ impl ButtonImpl for CustomButton {
         // If `number` reached `MAX_NUMBER`,
         // emit "max-number-reached" signal and set `number` back to 0
         if incremented_number == MAX_NUMBER {
+            let borrowed_number = self.number.borrow();
             button
-                .emit_by_name("max-number-reached", &[&incremented_number])
+                .emit_by_name("max-number-reached", &[&(*borrowed_number + 1)])
                 .unwrap();
-            button.set_property("number", &0).unwrap();
+            // Only here `borrowed_number` gets dropped
         } else {
             button.set_property("number", &incremented_number).unwrap();
         }

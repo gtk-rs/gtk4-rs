@@ -61,16 +61,6 @@ once_cell = "1"
 ```
 
 Now we define the "number" property within the `ObjectImpl` implementation.
-We can immediately take advantage of this new property by binding the "label" property to it.
-It even converts the integer value of "number" to the string of "label".
-Now we do not have to adapt the label in the "clicked" callback anymore.
-
-<span class="filename">Filename: listings/gobject_properties/4/custom_button/imp.rs</span>
-
-```rust
-{{#rustdoc_include ../listings/gobject_properties/4/custom_button/imp.rs:object_impl}}
-```
-
 The `properties` method describes our set of properties.
 When naming our property, we make sure to do that in [kebab-case](https://wiki.c2.com/?KebabCase).
 Then, we describe its type, range and default value.
@@ -78,6 +68,16 @@ We also declare that the property can be read and be written to.
 `set_property` describes how the underlying values can be changed.
 `get_property` takes care of returning the underlying value.
 The formerly private `number` is now accessible via the `get_property` and `set_property` methods.
+
+<span class="filename">Filename: listings/gobject_properties/4/custom_button/imp.rs</span>
+
+```rust
+{{#rustdoc_include ../listings/gobject_properties/4/custom_button/imp.rs:object_impl}}
+```
+
+We can immediately take advantage of this new property by binding the "label" property to it.
+It even converts the integer value of "number" to the string of "label".
+Now we do not have to adapt the label in the "clicked" callback anymore.
 
 Let us see what we can do with this by creating two custom buttons.
 
