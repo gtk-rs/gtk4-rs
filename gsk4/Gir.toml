@@ -91,6 +91,10 @@ name = "Gsk.GLShader"
 status = "generate"
 generate_builder = true
     [[object.function]]
+    name = "get_arg_bool"
+    # Retrieves the boolean value of an arg
+    rename = "arg_bool"
+    [[object.function]]
     name = "format_args_va"
     ignore = true # not useful for bindings
 

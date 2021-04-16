@@ -305,6 +305,10 @@ generate_builder = true
 name = "Gdk.Display"
 status = "generate"
     [[object.function]]
+    name = "get_setting"
+    # Actually retrieves the setting in the provided argument
+    bypass_auto_rename = true
+    [[object.function]]
     name = "get_app_launch_context"
         [object.function.return]
         nullable = false
