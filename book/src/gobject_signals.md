@@ -80,8 +80,8 @@ At `clicked` we can now stop setting the property after we emitted "max-number-r
 ```
 
 Please also note, that we borrowed our number and bound it to `borrowed_number`.
-While it does not make much sense in our case, it is quite usual to bind locks of Mutexes or borrows of RefCells to variables.
-One first glance, everything looks okay.
+While it does not make much sense in our case, it is quite usual to bind mutex guards or borrows of RefCells to variables.
+At first glance, everything looks okay.
 We immutably borrow it, read it once and then immediately drop it.
 However, if we run it and press the button until it reaches `MAX_NUMBER`, our application panics with:
 
