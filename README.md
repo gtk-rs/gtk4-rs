@@ -27,8 +27,27 @@ Currently, the minimum supported Rust version is `1.51.0`.
 ## Documentation
 
 - [Examples](https://github.com/gtk-rs/gtk4-rs/tree/master/examples)
-- Book [Stable]/[Development](https://gtk-rs.org/gtk4-rs/git/book/)
-- The Rust API [Stable]/[Development](https://gtk-rs.org/gtk4-rs/git/docs/)
+- Book [Stable] / [Development](https://gtk-rs.org/gtk4-rs/git/book/)
+- The Rust API [Stable] / [Development](https://gtk-rs.org/gtk4-rs/git/docs/)
+
+
+## Ecosystem
+
+The `gtk4-rs` repository contains Rust crates for GTK 4. However there is a large ecosystem of `GObject` libraries and many of these
+libraries have Rust bindings based on the tooling included in `gtk-rs`.
+Of particular note:
+
+* [gtk-rs](https://github.com/gtk-rs/gtk-rs) - bindings for some of the core libraries such as `glib`, `gio`, `pango`, `graphene`
+* [gstreamer-rs](https://gitlab.freedesktop.org/gstreamer/gstreamer-rs) - bindings for the GStreamer media framework
+
+Additionally, Rust bindings for various libraries are hosted on
+[GNOME's GitLab](https://gitlab.gnome.org) instance and can be found at
+<https://gitlab.gnome.org/World/Rust>.
+
+When using crates that are not part of the `gtk4-rs` repository, you will
+need to be careful and ensure that they do not pull in incompatible versions of core
+crates like `glib-rs`.
+
 ## Contributing
 
 The bindings are composed of two parts:
