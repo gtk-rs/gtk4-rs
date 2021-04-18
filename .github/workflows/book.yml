@@ -23,6 +23,11 @@ jobs:
           override: true
 
       - run: cargo build
+        name: "Build"
+        working-directory: book/listings
+        
+      - run: cargo clippy
+        name: "Clippy"
         working-directory: book/listings
 
   build-deploy:
