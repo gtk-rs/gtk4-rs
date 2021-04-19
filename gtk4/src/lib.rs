@@ -5,7 +5,6 @@
 //! This library contains safe Rust bindings for [GTK 4](http://www.gtk.org), a
 //! multi-platform GUI toolkit. It is a part of [Gtk-rs](http://gtk-rs.org/).
 //!
-//! The library is a work in progress. Expect breaking changes between releases.
 //! Most of this documentation is generated from the C API.
 //! Until all parts of the documentation have been reviewed there will be incongruities
 //! with the actual Rust API.
