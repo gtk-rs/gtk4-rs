@@ -29,7 +29,7 @@ fn on_activate(application: &Application) {
     let current_state = switch
         .property("state")
         .expect("The property needs to exist and be readable.")
-        .get_some::<bool>()
+        .get::<bool>()
         .expect("The property needs to be of type `bool`.");
 
     // This prints: "The current state is true"

@@ -33,7 +33,6 @@ impl ShortcutsSection {
         res.unwrap()
             .get()
             .expect("Return Value for `emit_change_current_page`")
-            .unwrap()
     }
 }
 

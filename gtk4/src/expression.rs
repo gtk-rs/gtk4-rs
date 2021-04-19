@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use glib::{translate::*, ToValue};
-use glib::{IsA, Object, Type, Value};
+use glib::{IsA, Object, StaticType, Type, Value};
 use std::boxed::Box as Box_;
 
 glib::wrapper! {
@@ -138,21 +138,37 @@ impl Expression {
     }
 }
 
-impl<'a> glib::value::FromValueOptional<'a> for Expression {
-    unsafe fn from_value_optional(value: &'a Value) -> Option<Self> {
+impl glib::value::ValueType for Expression {
+    type Type = Self;
+}
+
+unsafe impl<'a> glib::value::FromValue<'a> for Expression {
+    type Checker = glib::value::GenericValueTypeOrNoneChecker<Self>;
+
+    unsafe fn from_value(value: &'a Value) -> Self {
+        skip_assert_initialized!();
         from_glib_full(ffi::gtk_value_dup_expression(value.to_glib_none().0))
     }
 }
 
-impl glib::value::SetValue for Expression {
-    unsafe fn set_value(value: &mut Value, this: &Self) {
-        ffi::gtk_value_set_expression(value.to_glib_none_mut().0, this.to_glib_none().0)
+impl glib::value::ToValue for Expression {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Expression>();
+        unsafe { ffi::gtk_value_set_expression(value.to_glib_none_mut().0, self.to_glib_none().0) }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
 
-impl glib::value::SetValueOptional for Expression {
-    unsafe fn set_value_optional(value: &mut glib::Value, this: Option<&Self>) {
-        ffi::gtk_value_set_expression(value.to_glib_none_mut().0, this.to_glib_none().0)
+impl glib::value::ToValueOptional for Expression {
+    fn to_value_optional(s: Option<&Self>) -> glib::Value {
+        skip_assert_initialized!();
+        let mut value = glib::Value::for_value_type::<Expression>();
+        unsafe { ffi::gtk_value_set_expression(value.to_glib_none_mut().0, s.to_glib_none().0) }
+        value
     }
 }
 
@@ -271,24 +287,43 @@ macro_rules! define_expression {
 
         unsafe impl IsExpression for $rust_type {}
 
-        impl<'a> glib::value::FromValueOptional<'a> for $rust_type {
-            unsafe fn from_value_optional(value: &'a Value) -> Option<Self> {
+        impl glib::value::ValueType for $rust_type {
+            type Type = Self;
+        }
+
+        unsafe impl<'a> glib::value::FromValue<'a> for $rust_type {
+            type Checker = glib::value::GenericValueTypeOrNoneChecker<Self>;
+
+            unsafe fn from_value(value: &'a Value) -> Self {
+                skip_assert_initialized!();
                 from_glib_full(ffi::gtk_value_dup_expression(value.to_glib_none().0))
             }
         }
 
-        impl glib::value::SetValue for $rust_type {
-            unsafe fn set_value(value: &mut Value, this: &Self) {
-                ffi::gtk_value_set_expression(value.to_glib_none_mut().0, this.to_glib_none().0 as *mut _)
+        impl glib::value::ToValue for $rust_type {
+            fn to_value(&self) -> glib::Value {
+                let mut value = glib::Value::for_value_type::<$rust_type>();
+                unsafe {
+                    ffi::gtk_value_set_expression(value.to_glib_none_mut().0, self.to_glib_none().0 as *mut _)
+                }
+                value
+            }
+
+            fn value_type(&self) -> glib::Type {
+                Self::static_type()
             }
         }
 
-        impl glib::value::SetValueOptional for $rust_type {
-            unsafe fn set_value_optional(value: &mut glib::Value, this: Option<&Self>) {
-                ffi::gtk_value_set_expression(value.to_glib_none_mut().0, this.to_glib_none().0 as *mut _)
+        impl glib::value::ToValueOptional for $rust_type {
+            fn to_value_optional(s: Option<&Self>) -> glib::Value {
+                skip_assert_initialized!();
+                let mut value = glib::Value::for_value_type::<$rust_type>();
+                unsafe {
+                    ffi::gtk_value_set_expression(value.to_glib_none_mut().0, s.to_glib_none().0 as *mut _)
+                }
+                value
             }
         }
-
     };
 }
 
@@ -474,12 +509,12 @@ mod tests {
         assert_eq!(expr.object().unwrap(), obj);
 
         let expr1 = ConstantExpression::new(&23);
-        assert_eq!(expr1.value().get_some::<i32>().unwrap(), 23);
+        assert_eq!(expr1.value().get::<i32>().unwrap(), 23);
         let expr2 = ConstantExpression::for_value(&"hello".to_value());
-        assert_eq!(expr2.value().get::<String>().unwrap().unwrap(), "hello");
+        assert_eq!(expr2.value().get::<String>().unwrap(), "hello");
         let expr1 = ConstantExpression::new(&23);
-        assert_eq!(expr1.value().get_some::<i32>().unwrap(), 23);
+        assert_eq!(expr1.value().get::<i32>().unwrap(), 23);
         let expr2 = ConstantExpression::for_value(&"hello".to_value());
-        assert_eq!(expr2.value().get::<String>().unwrap().unwrap(), "hello");
+        assert_eq!(expr2.value().get::<String>().unwrap(), "hello");
     }
 }

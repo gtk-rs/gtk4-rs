@@ -65,7 +65,7 @@ impl ObjectImpl for CustomButton {
     fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
         match pspec.name() {
             "number" => {
-                let input_number = value.get().unwrap().unwrap();
+                let input_number = value.get().unwrap();
                 self.number.replace(input_number);
             }
             _ => unimplemented!(),
