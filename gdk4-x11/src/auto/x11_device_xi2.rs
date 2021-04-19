@@ -31,7 +31,6 @@ impl X11DeviceXI2 {
             value
                 .get()
                 .expect("Return Value for property `device-id` getter")
-                .unwrap()
         }
     }
 }

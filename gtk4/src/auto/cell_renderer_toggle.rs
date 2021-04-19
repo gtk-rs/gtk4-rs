@@ -91,7 +91,6 @@ impl CellRendererToggle {
             value
                 .get()
                 .expect("Return Value for property `inconsistent` getter")
-                .unwrap()
         }
     }
 
@@ -101,7 +100,7 @@ impl CellRendererToggle {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"inconsistent\0".as_ptr() as *const _,
-                glib::Value::from(&inconsistent).to_glib_none().0,
+                inconsistent.to_value().to_glib_none().0,
             );
         }
     }

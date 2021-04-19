@@ -787,7 +787,6 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             value
                 .get()
                 .expect("Return Value for property `has-frame` getter")
-                .unwrap()
         }
     }
 
@@ -796,7 +795,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"has-frame\0".as_ptr() as *const _,
-                glib::Value::from(&has_frame).to_glib_none().0,
+                has_frame.to_value().to_glib_none().0,
             );
         }
     }
@@ -812,7 +811,6 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             value
                 .get()
                 .expect("Return Value for property `popup-shown` getter")
-                .unwrap()
         }
     }
 
@@ -936,10 +934,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
                 .emit_by_name("popdown", &[])
                 .unwrap()
         };
-        res.unwrap()
-            .get()
-            .expect("Return Value for `emit_popdown`")
-            .unwrap()
+        res.unwrap().get().expect("Return Value for `emit_popdown`")
     }
 
     fn connect_popup<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

@@ -12,6 +12,7 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
+use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -73,7 +74,6 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
             value
                 .get()
                 .expect("Return Value for property `editing-canceled` getter")
-                .unwrap()
         }
     }
 
@@ -82,7 +82,7 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"editing-canceled\0".as_ptr() as *const _,
-                glib::Value::from(&editing_canceled).to_glib_none().0,
+                editing_canceled.to_value().to_glib_none().0,
             );
         }
     }

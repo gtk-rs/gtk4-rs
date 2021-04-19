@@ -15,6 +15,7 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
+use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -282,7 +283,6 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
             value
                 .get()
                 .expect("Return Value for property `decorated` getter")
-                .unwrap()
         }
     }
 
@@ -297,7 +297,6 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
             value
                 .get()
                 .expect("Return Value for property `deletable` getter")
-                .unwrap()
         }
     }
 
@@ -312,7 +311,6 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
             value
                 .get()
                 .expect("Return Value for property `fullscreen-mode` getter")
-                .unwrap()
         }
     }
 
@@ -321,7 +319,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"fullscreen-mode\0".as_ptr() as *const _,
-                glib::Value::from(&fullscreen_mode).to_glib_none().0,
+                fullscreen_mode.to_value().to_glib_none().0,
             );
         }
     }
@@ -330,7 +328,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
     //    unsafe {
     //        let mut value = glib::Value::from_type(</*Unknown type*/ as StaticType>::static_type());
     //        glib::gobject_ffi::g_object_get_property(self.to_glib_none().0 as *mut glib::gobject_ffi::GObject, b"icon-list\0".as_ptr() as *const _, value.to_glib_none_mut().0);
-    //        value.get().expect("Return Value for property `icon-list` getter").unwrap()
+    //        value.get().expect("Return Value for property `icon-list` getter")
     //    }
     //}
 
@@ -345,7 +343,6 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
             value
                 .get()
                 .expect("Return Value for property `modal` getter")
-                .unwrap()
         }
     }
 
@@ -360,7 +357,6 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
             value
                 .get()
                 .expect("Return Value for property `shortcuts-inhibited` getter")
-                .unwrap()
         }
     }
 

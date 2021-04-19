@@ -489,7 +489,6 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
             value
                 .get()
                 .expect("Return Value for property `icons` getter")
-                .unwrap()
         }
     }
 

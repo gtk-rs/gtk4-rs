@@ -5,8 +5,7 @@
 use glib::error::ErrorDomain;
 use glib::translate::*;
 use glib::value::FromValue;
-use glib::value::FromValueOptional;
-use glib::value::SetValue;
+use glib::value::ToValue;
 use glib::Quark;
 use glib::StaticType;
 use glib::Type;
@@ -139,21 +138,30 @@ impl StaticType for BlendMode {
     }
 }
 
-impl<'a> FromValueOptional<'a> for BlendMode {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for BlendMode {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for BlendMode {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for BlendMode {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
-impl SetValue for BlendMode {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for BlendMode {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<BlendMode>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
 
@@ -224,21 +232,30 @@ impl StaticType for Corner {
     }
 }
 
-impl<'a> FromValueOptional<'a> for Corner {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for Corner {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for Corner {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for Corner {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
-impl SetValue for Corner {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for Corner {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Corner>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
 
@@ -329,21 +346,30 @@ impl StaticType for GLUniformType {
     }
 }
 
-impl<'a> FromValueOptional<'a> for GLUniformType {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for GLUniformType {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for GLUniformType {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for GLUniformType {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
-impl SetValue for GLUniformType {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for GLUniformType {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<GLUniformType>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
 
@@ -524,21 +550,30 @@ impl StaticType for RenderNodeType {
     }
 }
 
-impl<'a> FromValueOptional<'a> for RenderNodeType {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for RenderNodeType {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for RenderNodeType {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for RenderNodeType {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
-impl SetValue for RenderNodeType {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for RenderNodeType {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<RenderNodeType>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
 
@@ -604,21 +639,30 @@ impl StaticType for ScalingFilter {
     }
 }
 
-impl<'a> FromValueOptional<'a> for ScalingFilter {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for ScalingFilter {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for ScalingFilter {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for ScalingFilter {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
-impl SetValue for ScalingFilter {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for ScalingFilter {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<ScalingFilter>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
 
@@ -706,21 +750,30 @@ impl StaticType for SerializationError {
     }
 }
 
-impl<'a> FromValueOptional<'a> for SerializationError {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for SerializationError {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for SerializationError {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for SerializationError {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
-impl SetValue for SerializationError {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for SerializationError {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<SerializationError>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
 
@@ -806,20 +859,29 @@ impl StaticType for TransformCategory {
     }
 }
 
-impl<'a> FromValueOptional<'a> for TransformCategory {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for TransformCategory {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for TransformCategory {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for TransformCategory {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
     }
 }
 
-impl SetValue for TransformCategory {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for TransformCategory {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<TransformCategory>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }

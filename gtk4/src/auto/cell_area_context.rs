@@ -243,7 +243,6 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
             value
                 .get()
                 .expect("Return Value for property `minimum-height` getter")
-                .unwrap()
         }
     }
 
@@ -258,7 +257,6 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
             value
                 .get()
                 .expect("Return Value for property `minimum-width` getter")
-                .unwrap()
         }
     }
 
@@ -273,7 +271,6 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
             value
                 .get()
                 .expect("Return Value for property `natural-height` getter")
-                .unwrap()
         }
     }
 
@@ -288,7 +285,6 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
             value
                 .get()
                 .expect("Return Value for property `natural-width` getter")
-                .unwrap()
         }
     }
 

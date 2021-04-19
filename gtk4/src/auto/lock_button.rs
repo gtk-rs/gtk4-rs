@@ -80,7 +80,7 @@ impl LockButton {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"text-lock\0".as_ptr() as *const _,
-                glib::Value::from(text_lock).to_glib_none().0,
+                text_lock.to_value().to_glib_none().0,
             );
         }
     }
@@ -106,7 +106,7 @@ impl LockButton {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"text-unlock\0".as_ptr() as *const _,
-                glib::Value::from(text_unlock).to_glib_none().0,
+                text_unlock.to_value().to_glib_none().0,
             );
         }
     }
@@ -132,7 +132,7 @@ impl LockButton {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tooltip-lock\0".as_ptr() as *const _,
-                glib::Value::from(tooltip_lock).to_glib_none().0,
+                tooltip_lock.to_value().to_glib_none().0,
             );
         }
     }
@@ -158,7 +158,7 @@ impl LockButton {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tooltip-not-authorized\0".as_ptr() as *const _,
-                glib::Value::from(tooltip_not_authorized).to_glib_none().0,
+                tooltip_not_authorized.to_value().to_glib_none().0,
             );
         }
     }
@@ -184,7 +184,7 @@ impl LockButton {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tooltip-unlock\0".as_ptr() as *const _,
-                glib::Value::from(tooltip_unlock).to_glib_none().0,
+                tooltip_unlock.to_value().to_glib_none().0,
             );
         }
     }

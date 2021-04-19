@@ -1082,7 +1082,6 @@ impl<O: IsA<TextBuffer>> TextBufferExt for O {
             value
                 .get()
                 .expect("Return Value for property `cursor-position` getter")
-                .unwrap()
         }
     }
 

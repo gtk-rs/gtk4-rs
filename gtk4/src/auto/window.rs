@@ -1248,7 +1248,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             value
                 .get()
                 .expect("Return Value for property `default-height` getter")
-                .unwrap()
         }
     }
 
@@ -1257,7 +1256,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"default-height\0".as_ptr() as *const _,
-                glib::Value::from(&default_height).to_glib_none().0,
+                default_height.to_value().to_glib_none().0,
             );
         }
     }
@@ -1273,7 +1272,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             value
                 .get()
                 .expect("Return Value for property `default-width` getter")
-                .unwrap()
         }
     }
 
@@ -1282,7 +1280,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"default-width\0".as_ptr() as *const _,
-                glib::Value::from(&default_width).to_glib_none().0,
+                default_width.to_value().to_glib_none().0,
             );
         }
     }
@@ -1306,7 +1304,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"focus-widget\0".as_ptr() as *const _,
-                glib::Value::from(focus_widget).to_glib_none().0,
+                focus_widget.to_value().to_glib_none().0,
             );
         }
     }
@@ -1322,7 +1320,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             value
                 .get()
                 .expect("Return Value for property `fullscreened` getter")
-                .unwrap()
         }
     }
 
@@ -1331,7 +1328,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"fullscreened\0".as_ptr() as *const _,
-                glib::Value::from(&fullscreened).to_glib_none().0,
+                fullscreened.to_value().to_glib_none().0,
             );
         }
     }
@@ -1341,7 +1338,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"maximized\0".as_ptr() as *const _,
-                glib::Value::from(&maximized).to_glib_none().0,
+                maximized.to_value().to_glib_none().0,
             );
         }
     }
@@ -1479,7 +1476,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         res.unwrap()
             .get()
             .expect("Return Value for `emit_enable_debugging`")
-            .unwrap()
     }
 
     fn connect_keys_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

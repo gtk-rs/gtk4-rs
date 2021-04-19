@@ -47,7 +47,6 @@ impl CellRendererCombo {
             value
                 .get()
                 .expect("Return Value for property `has-entry` getter")
-                .unwrap()
         }
     }
 
@@ -57,7 +56,7 @@ impl CellRendererCombo {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"has-entry\0".as_ptr() as *const _,
-                glib::Value::from(&has_entry).to_glib_none().0,
+                has_entry.to_value().to_glib_none().0,
             );
         }
     }
@@ -83,7 +82,7 @@ impl CellRendererCombo {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"model\0".as_ptr() as *const _,
-                glib::Value::from(model).to_glib_none().0,
+                model.to_value().to_glib_none().0,
             );
         }
     }
@@ -100,7 +99,6 @@ impl CellRendererCombo {
             value
                 .get()
                 .expect("Return Value for property `text-column` getter")
-                .unwrap()
         }
     }
 
@@ -110,7 +108,7 @@ impl CellRendererCombo {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"text-column\0".as_ptr() as *const _,
-                glib::Value::from(&text_column).to_glib_none().0,
+                text_column.to_value().to_glib_none().0,
             );
         }
     }

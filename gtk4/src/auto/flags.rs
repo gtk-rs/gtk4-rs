@@ -5,8 +5,7 @@
 use bitflags::bitflags;
 use glib::translate::*;
 use glib::value::FromValue;
-use glib::value::FromValueOptional;
-use glib::value::SetValue;
+use glib::value::ToValue;
 use glib::StaticType;
 use glib::Type;
 use std::fmt;
@@ -49,21 +48,30 @@ impl StaticType for ApplicationInhibitFlags {
     }
 }
 
-impl<'a> FromValueOptional<'a> for ApplicationInhibitFlags {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for ApplicationInhibitFlags {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for ApplicationInhibitFlags {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for ApplicationInhibitFlags {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
-impl SetValue for ApplicationInhibitFlags {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for ApplicationInhibitFlags {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<ApplicationInhibitFlags>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
 
@@ -102,21 +110,30 @@ impl StaticType for BuilderClosureFlags {
     }
 }
 
-impl<'a> FromValueOptional<'a> for BuilderClosureFlags {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for BuilderClosureFlags {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for BuilderClosureFlags {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for BuilderClosureFlags {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
-impl SetValue for BuilderClosureFlags {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for BuilderClosureFlags {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<BuilderClosureFlags>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
 
@@ -161,21 +178,30 @@ impl StaticType for CellRendererState {
     }
 }
 
-impl<'a> FromValueOptional<'a> for CellRendererState {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for CellRendererState {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for CellRendererState {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for CellRendererState {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
-impl SetValue for CellRendererState {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for CellRendererState {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<CellRendererState>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
 
@@ -231,21 +257,30 @@ impl StaticType for DebugFlags {
     }
 }
 
-impl<'a> FromValueOptional<'a> for DebugFlags {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for DebugFlags {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for DebugFlags {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for DebugFlags {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
-impl SetValue for DebugFlags {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for DebugFlags {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<DebugFlags>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
 
@@ -286,21 +321,30 @@ impl StaticType for DialogFlags {
     }
 }
 
-impl<'a> FromValueOptional<'a> for DialogFlags {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for DialogFlags {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for DialogFlags {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for DialogFlags {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
-impl SetValue for DialogFlags {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for DialogFlags {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<DialogFlags>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
 
@@ -344,21 +388,30 @@ impl StaticType for EventControllerScrollFlags {
     }
 }
 
-impl<'a> FromValueOptional<'a> for EventControllerScrollFlags {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for EventControllerScrollFlags {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for EventControllerScrollFlags {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for EventControllerScrollFlags {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
-impl SetValue for EventControllerScrollFlags {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for EventControllerScrollFlags {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<EventControllerScrollFlags>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
 
@@ -401,21 +454,30 @@ impl StaticType for FontChooserLevel {
     }
 }
 
-impl<'a> FromValueOptional<'a> for FontChooserLevel {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for FontChooserLevel {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for FontChooserLevel {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for FontChooserLevel {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
-impl SetValue for FontChooserLevel {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for FontChooserLevel {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<FontChooserLevel>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
 
@@ -456,21 +518,30 @@ impl StaticType for IconLookupFlags {
     }
 }
 
-impl<'a> FromValueOptional<'a> for IconLookupFlags {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for IconLookupFlags {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for IconLookupFlags {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for IconLookupFlags {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
-impl SetValue for IconLookupFlags {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for IconLookupFlags {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<IconLookupFlags>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
 
@@ -521,21 +592,30 @@ impl StaticType for InputHints {
     }
 }
 
-impl<'a> FromValueOptional<'a> for InputHints {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for InputHints {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for InputHints {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for InputHints {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
-impl SetValue for InputHints {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for InputHints {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<InputHints>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
 
@@ -576,21 +656,30 @@ impl StaticType for PickFlags {
     }
 }
 
-impl<'a> FromValueOptional<'a> for PickFlags {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for PickFlags {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for PickFlags {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for PickFlags {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
-impl SetValue for PickFlags {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for PickFlags {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<PickFlags>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
 
@@ -629,21 +718,30 @@ impl StaticType for PopoverMenuFlags {
     }
 }
 
-impl<'a> FromValueOptional<'a> for PopoverMenuFlags {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for PopoverMenuFlags {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for PopoverMenuFlags {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for PopoverMenuFlags {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
-impl SetValue for PopoverMenuFlags {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for PopoverMenuFlags {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<PopoverMenuFlags>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
 
@@ -682,21 +780,30 @@ impl StaticType for ShortcutActionFlags {
     }
 }
 
-impl<'a> FromValueOptional<'a> for ShortcutActionFlags {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for ShortcutActionFlags {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for ShortcutActionFlags {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for ShortcutActionFlags {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
-impl SetValue for ShortcutActionFlags {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for ShortcutActionFlags {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<ShortcutActionFlags>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
 
@@ -750,21 +857,30 @@ impl StaticType for StateFlags {
     }
 }
 
-impl<'a> FromValueOptional<'a> for StateFlags {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for StateFlags {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for StateFlags {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for StateFlags {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
-impl SetValue for StateFlags {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for StateFlags {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<StateFlags>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
 
@@ -806,21 +922,30 @@ impl StaticType for StyleContextPrintFlags {
     }
 }
 
-impl<'a> FromValueOptional<'a> for StyleContextPrintFlags {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for StyleContextPrintFlags {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for StyleContextPrintFlags {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for StyleContextPrintFlags {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
-impl SetValue for StyleContextPrintFlags {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for StyleContextPrintFlags {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<StyleContextPrintFlags>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
 
@@ -861,21 +986,30 @@ impl StaticType for TextSearchFlags {
     }
 }
 
-impl<'a> FromValueOptional<'a> for TextSearchFlags {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for TextSearchFlags {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for TextSearchFlags {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for TextSearchFlags {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
-impl SetValue for TextSearchFlags {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for TextSearchFlags {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<TextSearchFlags>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }
 
@@ -915,20 +1049,29 @@ impl StaticType for TreeModelFlags {
     }
 }
 
-impl<'a> FromValueOptional<'a> for TreeModelFlags {
-    unsafe fn from_value_optional(value: &glib::Value) -> Option<Self> {
-        Some(FromValue::from_value(value))
-    }
+impl glib::value::ValueType for TreeModelFlags {
+    type Type = Self;
 }
 
-impl<'a> FromValue<'a> for TreeModelFlags {
-    unsafe fn from_value(value: &glib::Value) -> Self {
+unsafe impl<'a> FromValue<'a> for TreeModelFlags {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
     }
 }
 
-impl SetValue for TreeModelFlags {
-    unsafe fn set_value(value: &mut glib::Value, this: &Self) {
-        glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, this.to_glib())
+impl ToValue for TreeModelFlags {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<TreeModelFlags>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
     }
 }

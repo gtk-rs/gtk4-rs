@@ -41,7 +41,6 @@ impl NotebookPage {
             value
                 .get()
                 .expect("Return Value for property `detachable` getter")
-                .unwrap()
         }
     }
 
@@ -51,7 +50,7 @@ impl NotebookPage {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"detachable\0".as_ptr() as *const _,
-                glib::Value::from(&detachable).to_glib_none().0,
+                detachable.to_value().to_glib_none().0,
             );
         }
     }
@@ -92,7 +91,7 @@ impl NotebookPage {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"menu-label\0".as_ptr() as *const _,
-                glib::Value::from(menu_label).to_glib_none().0,
+                menu_label.to_value().to_glib_none().0,
             );
         }
     }
@@ -109,7 +108,6 @@ impl NotebookPage {
             value
                 .get()
                 .expect("Return Value for property `position` getter")
-                .unwrap()
         }
     }
 
@@ -119,7 +117,7 @@ impl NotebookPage {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"position\0".as_ptr() as *const _,
-                glib::Value::from(&position).to_glib_none().0,
+                position.to_value().to_glib_none().0,
             );
         }
     }
@@ -136,7 +134,6 @@ impl NotebookPage {
             value
                 .get()
                 .expect("Return Value for property `reorderable` getter")
-                .unwrap()
         }
     }
 
@@ -146,7 +143,7 @@ impl NotebookPage {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"reorderable\0".as_ptr() as *const _,
-                glib::Value::from(&reorderable).to_glib_none().0,
+                reorderable.to_value().to_glib_none().0,
             );
         }
     }
@@ -176,7 +173,6 @@ impl NotebookPage {
             value
                 .get()
                 .expect("Return Value for property `tab-expand` getter")
-                .unwrap()
         }
     }
 
@@ -186,7 +182,7 @@ impl NotebookPage {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tab-expand\0".as_ptr() as *const _,
-                glib::Value::from(&tab_expand).to_glib_none().0,
+                tab_expand.to_value().to_glib_none().0,
             );
         }
     }
@@ -203,7 +199,6 @@ impl NotebookPage {
             value
                 .get()
                 .expect("Return Value for property `tab-fill` getter")
-                .unwrap()
         }
     }
 
@@ -213,7 +208,7 @@ impl NotebookPage {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tab-fill\0".as_ptr() as *const _,
-                glib::Value::from(&tab_fill).to_glib_none().0,
+                tab_fill.to_value().to_glib_none().0,
             );
         }
     }
@@ -239,7 +234,7 @@ impl NotebookPage {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"tab-label\0".as_ptr() as *const _,
-                glib::Value::from(tab_label).to_glib_none().0,
+                tab_label.to_value().to_glib_none().0,
             );
         }
     }

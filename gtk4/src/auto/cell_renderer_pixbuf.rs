@@ -53,7 +53,7 @@ impl CellRendererPixbuf {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gicon\0".as_ptr() as *const _,
-                glib::Value::from(gicon).to_glib_none().0,
+                gicon.to_value().to_glib_none().0,
             );
         }
     }
@@ -79,7 +79,7 @@ impl CellRendererPixbuf {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"icon-name\0".as_ptr() as *const _,
-                glib::Value::from(icon_name).to_glib_none().0,
+                icon_name.to_value().to_glib_none().0,
             );
         }
     }
@@ -96,7 +96,6 @@ impl CellRendererPixbuf {
             value
                 .get()
                 .expect("Return Value for property `icon-size` getter")
-                .unwrap()
         }
     }
 
@@ -106,7 +105,7 @@ impl CellRendererPixbuf {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"icon-size\0".as_ptr() as *const _,
-                glib::Value::from(&icon_size).to_glib_none().0,
+                icon_size.to_value().to_glib_none().0,
             );
         }
     }
@@ -117,7 +116,7 @@ impl CellRendererPixbuf {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"pixbuf\0".as_ptr() as *const _,
-                glib::Value::from(pixbuf).to_glib_none().0,
+                pixbuf.to_value().to_glib_none().0,
             );
         }
     }
@@ -144,7 +143,7 @@ impl CellRendererPixbuf {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"pixbuf-expander-closed\0".as_ptr() as *const _,
-                glib::Value::from(pixbuf_expander_closed).to_glib_none().0,
+                pixbuf_expander_closed.to_value().to_glib_none().0,
             );
         }
     }
@@ -171,7 +170,7 @@ impl CellRendererPixbuf {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"pixbuf-expander-open\0".as_ptr() as *const _,
-                glib::Value::from(pixbuf_expander_open).to_glib_none().0,
+                pixbuf_expander_open.to_value().to_glib_none().0,
             );
         }
     }
@@ -197,7 +196,7 @@ impl CellRendererPixbuf {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"texture\0".as_ptr() as *const _,
-                glib::Value::from(texture).to_glib_none().0,
+                texture.to_value().to_glib_none().0,
             );
         }
     }

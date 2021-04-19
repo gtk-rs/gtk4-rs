@@ -55,7 +55,6 @@ impl FileChooserWidget {
             value
                 .get()
                 .expect("Return Value for property `search-mode` getter")
-                .unwrap()
         }
     }
 
@@ -65,7 +64,7 @@ impl FileChooserWidget {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"search-mode\0".as_ptr() as *const _,
-                glib::Value::from(&search_mode).to_glib_none().0,
+                search_mode.to_value().to_glib_none().0,
             );
         }
     }

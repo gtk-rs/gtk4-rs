@@ -89,7 +89,6 @@ impl PasswordEntry {
             value
                 .get()
                 .expect("Return Value for property `activates-default` getter")
-                .unwrap()
         }
     }
 
@@ -99,7 +98,7 @@ impl PasswordEntry {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"activates-default\0".as_ptr() as *const _,
-                glib::Value::from(&activates_default).to_glib_none().0,
+                activates_default.to_value().to_glib_none().0,
             );
         }
     }
@@ -125,7 +124,7 @@ impl PasswordEntry {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"placeholder-text\0".as_ptr() as *const _,
-                glib::Value::from(placeholder_text).to_glib_none().0,
+                placeholder_text.to_value().to_glib_none().0,
             );
         }
     }

@@ -67,7 +67,6 @@ impl MessageDialog {
             value
                 .get()
                 .expect("Return Value for property `message-type` getter")
-                .unwrap()
         }
     }
 
@@ -77,7 +76,7 @@ impl MessageDialog {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"message-type\0".as_ptr() as *const _,
-                glib::Value::from(&message_type).to_glib_none().0,
+                message_type.to_value().to_glib_none().0,
             );
         }
     }
@@ -103,7 +102,7 @@ impl MessageDialog {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"secondary-text\0".as_ptr() as *const _,
-                glib::Value::from(secondary_text).to_glib_none().0,
+                secondary_text.to_value().to_glib_none().0,
             );
         }
     }
@@ -120,7 +119,6 @@ impl MessageDialog {
             value
                 .get()
                 .expect("Return Value for property `secondary-use-markup` getter")
-                .unwrap()
         }
     }
 
@@ -130,7 +128,7 @@ impl MessageDialog {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"secondary-use-markup\0".as_ptr() as *const _,
-                glib::Value::from(&secondary_use_markup).to_glib_none().0,
+                secondary_use_markup.to_value().to_glib_none().0,
             );
         }
     }
@@ -156,7 +154,7 @@ impl MessageDialog {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"text\0".as_ptr() as *const _,
-                glib::Value::from(text).to_glib_none().0,
+                text.to_value().to_glib_none().0,
             );
         }
     }
@@ -173,7 +171,6 @@ impl MessageDialog {
             value
                 .get()
                 .expect("Return Value for property `use-markup` getter")
-                .unwrap()
         }
     }
 
@@ -183,7 +180,7 @@ impl MessageDialog {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"use-markup\0".as_ptr() as *const _,
-                glib::Value::from(&use_markup).to_glib_none().0,
+                use_markup.to_value().to_glib_none().0,
             );
         }
     }

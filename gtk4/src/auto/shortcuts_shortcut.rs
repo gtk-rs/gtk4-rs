@@ -40,7 +40,7 @@ impl ShortcutsShortcut {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"accel-size-group\0".as_ptr() as *const _,
-                glib::Value::from(accel_size_group).to_glib_none().0,
+                accel_size_group.to_value().to_glib_none().0,
             );
         }
     }
@@ -66,7 +66,7 @@ impl ShortcutsShortcut {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"accelerator\0".as_ptr() as *const _,
-                glib::Value::from(accelerator).to_glib_none().0,
+                accelerator.to_value().to_glib_none().0,
             );
         }
     }
@@ -92,7 +92,7 @@ impl ShortcutsShortcut {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"action-name\0".as_ptr() as *const _,
-                glib::Value::from(action_name).to_glib_none().0,
+                action_name.to_value().to_glib_none().0,
             );
         }
     }
@@ -118,7 +118,7 @@ impl ShortcutsShortcut {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"icon\0".as_ptr() as *const _,
-                glib::Value::from(icon).to_glib_none().0,
+                icon.to_value().to_glib_none().0,
             );
         }
     }
@@ -135,7 +135,6 @@ impl ShortcutsShortcut {
             value
                 .get()
                 .expect("Return Value for property `icon-set` getter")
-                .unwrap()
         }
     }
 
@@ -145,7 +144,7 @@ impl ShortcutsShortcut {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"icon-set\0".as_ptr() as *const _,
-                glib::Value::from(&icon_set).to_glib_none().0,
+                icon_set.to_value().to_glib_none().0,
             );
         }
     }
@@ -162,7 +161,6 @@ impl ShortcutsShortcut {
             value
                 .get()
                 .expect("Return Value for property `shortcut-type` getter")
-                .unwrap()
         }
     }
 
@@ -172,7 +170,7 @@ impl ShortcutsShortcut {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"shortcut-type\0".as_ptr() as *const _,
-                glib::Value::from(&shortcut_type).to_glib_none().0,
+                shortcut_type.to_value().to_glib_none().0,
             );
         }
     }
@@ -198,7 +196,7 @@ impl ShortcutsShortcut {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"subtitle\0".as_ptr() as *const _,
-                glib::Value::from(subtitle).to_glib_none().0,
+                subtitle.to_value().to_glib_none().0,
             );
         }
     }
@@ -215,7 +213,6 @@ impl ShortcutsShortcut {
             value
                 .get()
                 .expect("Return Value for property `subtitle-set` getter")
-                .unwrap()
         }
     }
 
@@ -225,7 +222,7 @@ impl ShortcutsShortcut {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"subtitle-set\0".as_ptr() as *const _,
-                glib::Value::from(&subtitle_set).to_glib_none().0,
+                subtitle_set.to_value().to_glib_none().0,
             );
         }
     }
@@ -251,7 +248,7 @@ impl ShortcutsShortcut {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"title\0".as_ptr() as *const _,
-                glib::Value::from(title).to_glib_none().0,
+                title.to_value().to_glib_none().0,
             );
         }
     }
@@ -262,7 +259,7 @@ impl ShortcutsShortcut {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"title-size-group\0".as_ptr() as *const _,
-                glib::Value::from(title_size_group).to_glib_none().0,
+                title_size_group.to_value().to_glib_none().0,
             );
         }
     }

@@ -220,7 +220,7 @@ impl Image {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"file\0".as_ptr() as *const _,
-                glib::Value::from(file).to_glib_none().0,
+                file.to_value().to_glib_none().0,
             );
         }
     }
@@ -231,7 +231,7 @@ impl Image {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gicon\0".as_ptr() as *const _,
-                glib::Value::from(gicon).to_glib_none().0,
+                gicon.to_value().to_glib_none().0,
             );
         }
     }
@@ -242,7 +242,7 @@ impl Image {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"icon-name\0".as_ptr() as *const _,
-                glib::Value::from(icon_name).to_glib_none().0,
+                icon_name.to_value().to_glib_none().0,
             );
         }
     }
@@ -253,7 +253,7 @@ impl Image {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"paintable\0".as_ptr() as *const _,
-                glib::Value::from(paintable).to_glib_none().0,
+                paintable.to_value().to_glib_none().0,
             );
         }
     }
@@ -279,7 +279,7 @@ impl Image {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"resource\0".as_ptr() as *const _,
-                glib::Value::from(resource).to_glib_none().0,
+                resource.to_value().to_glib_none().0,
             );
         }
     }
@@ -296,7 +296,6 @@ impl Image {
             value
                 .get()
                 .expect("Return Value for property `use-fallback` getter")
-                .unwrap()
         }
     }
 
@@ -306,7 +305,7 @@ impl Image {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"use-fallback\0".as_ptr() as *const _,
-                glib::Value::from(&use_fallback).to_glib_none().0,
+                use_fallback.to_value().to_glib_none().0,
             );
         }
     }
