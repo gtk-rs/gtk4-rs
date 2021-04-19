@@ -59,7 +59,12 @@ unsafe extern "C" fn scrollable_get_border<T: ScrollableImpl>(
         *borderptr = *border.to_glib_full();
         true.into_glib()
     } else {
-        *borderptr = *std::ptr::null();
+        *borderptr = ffi::GtkBorder {
+            top: 0,
+            right: 0,
+            left: 0,
+            bottom: 0,
+        };
         false.into_glib()
     }
 }
