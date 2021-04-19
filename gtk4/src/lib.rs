@@ -231,6 +231,7 @@ mod accessible;
 mod actionable;
 mod application;
 mod assistant;
+mod bitset_iter;
 mod bool_filter;
 mod border;
 mod builder;
@@ -308,6 +309,7 @@ mod tree_view;
 mod tree_view_column;
 mod widget;
 
+pub use bitset_iter::BitsetIter;
 pub use border::Border;
 pub use css_location::CssLocation;
 pub use expression::{
