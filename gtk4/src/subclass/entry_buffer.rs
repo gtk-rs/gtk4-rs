@@ -296,7 +296,7 @@ fn text_n_chars(text: &str, n_chars: u32) -> &str {
 
 #[cfg(test)]
 mod test {
-    use super::get_text_n_chars;
+    use super::text_n_chars;
     #[test]
     fn n_chars_max_length_ascii() {
         assert_eq!(text_n_chars("gtk-rs bindings", 6), "gtk-rs");

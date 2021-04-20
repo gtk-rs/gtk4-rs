@@ -163,7 +163,7 @@ macro_rules! define_render_node {
 
         impl ::glib::StaticType for $rust_type {
             fn static_type() -> ::glib::Type {
-                unsafe { from_glib($type_()) }
+                unsafe { from_glib($get_type()) }
             }
         }
 

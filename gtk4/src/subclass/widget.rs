@@ -1100,7 +1100,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
             widget_class,
             name.to_glib_none().0,
             false as glib::ffi::gboolean,
-            private_offset + (offset.byte_offset() as isize),
+            private_offset + (offset.get_byte_offset() as isize),
         )
     }
 }
