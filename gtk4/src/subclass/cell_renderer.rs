@@ -508,7 +508,7 @@ unsafe extern "C" fn cell_renderer_get_aligned_area<T: CellRendererImpl>(
     let wrap: Borrowed<CellRenderer> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(wdgtptr);
 
-    let rectangle = imp.get_aligned_area(
+    let rectangle = imp.aligned_area(
         wrap.unsafe_cast_ref(),
         &*widget,
         from_glib(flags),
@@ -530,7 +530,7 @@ unsafe extern "C" fn cell_renderer_get_preferred_height_for_width<T: CellRendere
     let widget: Borrowed<Widget> = from_glib_borrow(wdgtptr);
 
     let (min_height, nat_height) =
-        imp.get_preferred_height_for_width(wrap.unsafe_cast_ref(), &*widget, width);
+        imp.preferred_height_for_width(wrap.unsafe_cast_ref(), &*widget, width);
     if !min_height_ptr.is_null() {
         *min_height_ptr = min_height;
     }
@@ -550,7 +550,7 @@ unsafe extern "C" fn cell_renderer_get_preferred_height<T: CellRendererImpl>(
     let wrap: Borrowed<CellRenderer> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(wdgtptr);
 
-    let (min_size, nat_size) = imp.get_preferred_height(wrap.unsafe_cast_ref(), &*widget);
+    let (min_size, nat_size) = imp.preferred_height(wrap.unsafe_cast_ref(), &*widget);
     if !minptr.is_null() {
         *minptr = min_size;
     }
@@ -572,7 +572,7 @@ unsafe extern "C" fn cell_renderer_get_preferred_width_for_height<T: CellRendere
     let widget: Borrowed<Widget> = from_glib_borrow(wdgtptr);
 
     let (min_width, nat_width) =
-        imp.get_preferred_width_for_height(wrap.unsafe_cast_ref(), &*widget, height);
+        imp.preferred_width_for_height(wrap.unsafe_cast_ref(), &*widget, height);
     if !min_width_ptr.is_null() {
         *min_width_ptr = min_width;
     }
@@ -592,7 +592,7 @@ unsafe extern "C" fn cell_renderer_get_preferred_width<T: CellRendererImpl>(
     let wrap: Borrowed<CellRenderer> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(wdgtptr);
 
-    let (min_size, nat_size) = imp.get_preferred_width(wrap.unsafe_cast_ref(), &*widget);
+    let (min_size, nat_size) = imp.preferred_width(wrap.unsafe_cast_ref(), &*widget);
     if !minptr.is_null() {
         *minptr = min_size;
     }
@@ -608,7 +608,7 @@ unsafe extern "C" fn cell_renderer_get_request_mode<T: CellRendererImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<CellRenderer> = from_glib_borrow(ptr);
 
-    imp.get_request_mode(wrap.unsafe_cast_ref()).to_glib()
+    imp.request_mode(wrap.unsafe_cast_ref()).to_glib()
 }
 
 unsafe extern "C" fn cell_renderer_snapshot<T: CellRendererImpl>(

@@ -224,7 +224,7 @@ unsafe extern "C" fn entry_buffer_get_text<T: EntryBufferImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<EntryBuffer> = from_glib_borrow(ptr);
 
-    let ret = imp.get_text(wrap.unsafe_cast_ref());
+    let ret = imp.text(wrap.unsafe_cast_ref());
     *n_bytes = ret.len();
     // Ensures that the returned text stays alive for as long as
     // the entry buffer instance
@@ -240,7 +240,7 @@ unsafe extern "C" fn entry_buffer_get_length<T: EntryBufferImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<EntryBuffer> = from_glib_borrow(ptr);
 
-    imp.get_length(wrap.unsafe_cast_ref())
+    imp.length(wrap.unsafe_cast_ref())
 }
 
 unsafe extern "C" fn entry_buffer_insert_text<T: EntryBufferImpl>(
@@ -254,7 +254,7 @@ unsafe extern "C" fn entry_buffer_insert_text<T: EntryBufferImpl>(
     let wrap: Borrowed<EntryBuffer> = from_glib_borrow(ptr);
     let text: Borrowed<GString> = from_glib_borrow(charsptr);
 
-    let chars = get_text_n_chars(&text, n_chars);
+    let chars = text_n_chars(&text, n_chars);
     imp.insert_text(wrap.unsafe_cast_ref(), position, chars)
 }
 
@@ -269,7 +269,7 @@ unsafe extern "C" fn entry_buffer_inserted_text<T: EntryBufferImpl>(
     let wrap: Borrowed<EntryBuffer> = from_glib_borrow(ptr);
     let text: Borrowed<GString> = from_glib_borrow(charsptr);
 
-    let chars = get_text_n_chars(&text, length);
+    let chars = text_n_chars(&text, length);
     imp.inserted_text(wrap.unsafe_cast_ref(), position, &chars)
 }
 
@@ -299,38 +299,35 @@ mod test {
     use super::get_text_n_chars;
     #[test]
     fn n_chars_max_length_ascii() {
-        assert_eq!(get_text_n_chars("gtk-rs bindings", 6), "gtk-rs");
-        assert_eq!(
-            get_text_n_chars("gtk-rs bindings", u32::MAX),
-            "gtk-rs bindings"
-        );
+        assert_eq!(text_n_chars("gtk-rs bindings", 6), "gtk-rs");
+        assert_eq!(text_n_chars("gtk-rs bindings", u32::MAX), "gtk-rs bindings");
     }
 
     #[test]
     #[should_panic]
     fn n_chars_max_length_ascii_panic() {
-        assert_eq!(get_text_n_chars("gtk-rs", 7), "gtk-rs");
+        assert_eq!(text_n_chars("gtk-rs", 7), "gtk-rs");
     }
 
     #[test]
     fn n_chars_max_length_utf8() {
-        assert_eq!(get_text_n_chars("👨👩👧👦", 2), "👨👩");
-        assert_eq!(get_text_n_chars("👨👩👧👦", 0), "");
-        assert_eq!(get_text_n_chars("👨👩👧👦", 4), "👨👩👧👦");
-        assert_eq!(get_text_n_chars("👨👩👧👦", u32::MAX), "👨👩👧👦");
-        assert_eq!(get_text_n_chars("كتاب", 2), "كت");
+        assert_eq!(text_n_chars("👨👩👧👦", 2), "👨👩");
+        assert_eq!(text_n_chars("👨👩👧👦", 0), "");
+        assert_eq!(text_n_chars("👨👩👧👦", 4), "👨👩👧👦");
+        assert_eq!(text_n_chars("👨👩👧👦", u32::MAX), "👨👩👧👦");
+        assert_eq!(text_n_chars("كتاب", 2), "كت");
     }
 
     #[test]
     fn n_chars_max_length_utf8_ascii() {
-        assert_eq!(get_text_n_chars("👨g👩t👧k👦", 2), "👨g");
-        assert_eq!(get_text_n_chars("👨g👩t👧k👦", 5), "👨g👩t👧");
-        assert_eq!(get_text_n_chars("كaتاب", 3), "كaت");
+        assert_eq!(text_n_chars("👨g👩t👧k👦", 2), "👨g");
+        assert_eq!(text_n_chars("👨g👩t👧k👦", 5), "👨g👩t👧");
+        assert_eq!(text_n_chars("كaتاب", 3), "كaت");
     }
 
     #[test]
     #[should_panic]
     fn n_chars_max_length_utf8_panic() {
-        assert_eq!(get_text_n_chars("👨👩👧👦", 5), "👨👩");
+        assert_eq!(text_n_chars("👨👩👧👦", 5), "👨👩");
     }
 }

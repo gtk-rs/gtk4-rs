@@ -158,7 +158,7 @@ unsafe extern "C" fn range_get_range_border<T: RangeImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<Range> = from_glib_borrow(ptr);
 
-    let border = imp.get_range_border(wrap.unsafe_cast_ref());
+    let border = imp.range_border(wrap.unsafe_cast_ref());
     *borderptr = *border.to_glib_none().0;
 }
 

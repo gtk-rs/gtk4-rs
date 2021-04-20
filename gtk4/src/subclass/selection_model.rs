@@ -81,7 +81,7 @@ impl<T: SelectionModelImpl> SelectionModelImplExt for T {
     ) -> Bitset {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<SelectionModel>()
+            let parent_iface = type_data.as_ref().parent_interface::<SelectionModel>()
                 as *const ffi::GtkSelectionModelInterface;
 
             let func = (*parent_iface)
@@ -99,7 +99,7 @@ impl<T: SelectionModelImpl> SelectionModelImplExt for T {
     fn parent_is_selected(&self, model: &Self::Type, position: u32) -> bool {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<SelectionModel>()
+            let parent_iface = type_data.as_ref().parent_interface::<SelectionModel>()
                 as *const ffi::GtkSelectionModelInterface;
 
             let func = (*parent_iface)
@@ -116,7 +116,7 @@ impl<T: SelectionModelImpl> SelectionModelImplExt for T {
     fn parent_select_all(&self, model: &Self::Type) -> bool {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<SelectionModel>()
+            let parent_iface = type_data.as_ref().parent_interface::<SelectionModel>()
                 as *const ffi::GtkSelectionModelInterface;
 
             let func = (*parent_iface)
@@ -132,7 +132,7 @@ impl<T: SelectionModelImpl> SelectionModelImplExt for T {
     fn parent_select_item(&self, model: &Self::Type, position: u32, unselect_rest: bool) -> bool {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<SelectionModel>()
+            let parent_iface = type_data.as_ref().parent_interface::<SelectionModel>()
                 as *const ffi::GtkSelectionModelInterface;
 
             let func = (*parent_iface)
@@ -156,7 +156,7 @@ impl<T: SelectionModelImpl> SelectionModelImplExt for T {
     ) -> bool {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<SelectionModel>()
+            let parent_iface = type_data.as_ref().parent_interface::<SelectionModel>()
                 as *const ffi::GtkSelectionModelInterface;
 
             let func = (*parent_iface)
@@ -175,7 +175,7 @@ impl<T: SelectionModelImpl> SelectionModelImplExt for T {
     fn parent_set_selection(&self, model: &Self::Type, selected: &Bitset, mask: &Bitset) -> bool {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<SelectionModel>()
+            let parent_iface = type_data.as_ref().parent_interface::<SelectionModel>()
                 as *const ffi::GtkSelectionModelInterface;
 
             let func = (*parent_iface)
@@ -193,7 +193,7 @@ impl<T: SelectionModelImpl> SelectionModelImplExt for T {
     fn parent_unselect_all(&self, model: &Self::Type) -> bool {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<SelectionModel>()
+            let parent_iface = type_data.as_ref().parent_interface::<SelectionModel>()
                 as *const ffi::GtkSelectionModelInterface;
 
             let func = (*parent_iface)
@@ -209,7 +209,7 @@ impl<T: SelectionModelImpl> SelectionModelImplExt for T {
     fn parent_unselect_item(&self, model: &Self::Type, position: u32) -> bool {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<SelectionModel>()
+            let parent_iface = type_data.as_ref().parent_interface::<SelectionModel>()
                 as *const ffi::GtkSelectionModelInterface;
 
             let func = (*parent_iface)
@@ -226,7 +226,7 @@ impl<T: SelectionModelImpl> SelectionModelImplExt for T {
     fn parent_unselect_range(&self, model: &Self::Type, position: u32, n_items: u32) -> bool {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<SelectionModel>()
+            let parent_iface = type_data.as_ref().parent_interface::<SelectionModel>()
                 as *const ffi::GtkSelectionModelInterface;
 
             let func = (*parent_iface)
@@ -268,7 +268,7 @@ unsafe extern "C" fn model_get_selection_in_range<T: SelectionModelImpl>(
     let instance = &*(model as *mut T::Instance);
     let imp = instance.impl_();
 
-    imp.get_selection_in_range(
+    imp.selection_in_range(
         from_glib_borrow::<_, SelectionModel>(model).unsafe_cast_ref(),
         position,
         n_items,

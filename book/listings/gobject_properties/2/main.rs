@@ -27,7 +27,7 @@ fn on_activate(application: &Application) {
     // Set and then immediately obtain state
     switch.set_property("state", &true).unwrap();
     let current_state = switch
-        .get_property("state")
+        .property("state")
         .expect("The property needs to exist and be readable.")
         .get_some::<bool>()
         .expect("The property needs to be of type `bool`.");

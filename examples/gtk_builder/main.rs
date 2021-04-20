@@ -5,11 +5,11 @@ fn build_ui(application: &Application) {
     let ui_src = include_str!("gtk_builder.ui");
     let builder = Builder::from_string(ui_src);
 
-    let window: ApplicationWindow = builder.get_object("window").expect("Couldn't get window");
+    let window: ApplicationWindow = builder.object("window").expect("Couldn't get window");
     window.set_application(Some(application));
-    let bigbutton: Button = builder.get_object("button").expect("Couldn't get button");
+    let bigbutton: Button = builder.object("button").expect("Couldn't get button");
     let dialog: MessageDialog = builder
-        .get_object("messagedialog")
+        .object("messagedialog")
         .expect("Couldn't get messagedialog");
 
     dialog.connect_response(move |d: &MessageDialog, _: ResponseType| {

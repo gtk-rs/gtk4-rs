@@ -28,7 +28,7 @@ impl<T: TreeDragSourceImpl> TreeDragSourceImplExt for T {
     fn parent_row_draggable(&self, tree_drag_source: &Self::Type, path: &TreePath) -> bool {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<TreeDragSource>()
+            let parent_iface = type_data.as_ref().parent_interface::<TreeDragSource>()
                 as *const ffi::GtkTreeDragSourceIface;
 
             if let Some(func) = (*parent_iface).row_draggable {
@@ -53,7 +53,7 @@ impl<T: TreeDragSourceImpl> TreeDragSourceImplExt for T {
     ) -> gdk::ContentProvider {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<TreeDragSource>()
+            let parent_iface = type_data.as_ref().parent_interface::<TreeDragSource>()
                 as *const ffi::GtkTreeDragSourceIface;
 
             let func = (*parent_iface)
@@ -73,7 +73,7 @@ impl<T: TreeDragSourceImpl> TreeDragSourceImplExt for T {
     fn parent_drag_data_delete(&self, tree_drag_source: &Self::Type, path: &TreePath) -> bool {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<TreeDragSource>()
+            let parent_iface = type_data.as_ref().parent_interface::<TreeDragSource>()
                 as *const ffi::GtkTreeDragSourceIface;
 
             let func = (*parent_iface)

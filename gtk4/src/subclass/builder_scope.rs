@@ -68,7 +68,7 @@ impl<B: BuilderScopeImpl> BuilderScopeImplExt for B {
     ) -> glib::Type {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<BuilderScope>()
+            let parent_iface = type_data.as_ref().parent_interface::<BuilderScope>()
                 as *const ffi::GtkBuilderScopeInterface;
 
             let func = (*parent_iface)
@@ -94,7 +94,7 @@ impl<B: BuilderScopeImpl> BuilderScopeImplExt for B {
     ) -> glib::Type {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<BuilderScope>()
+            let parent_iface = type_data.as_ref().parent_interface::<BuilderScope>()
                 as *const ffi::GtkBuilderScopeInterface;
 
             let func = (*parent_iface)
@@ -122,7 +122,7 @@ impl<B: BuilderScopeImpl> BuilderScopeImplExt for B {
     ) -> Result<glib::Closure, glib::Error> {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<BuilderScope>()
+            let parent_iface = type_data.as_ref().parent_interface::<BuilderScope>()
                 as *const ffi::GtkBuilderScopeInterface;
 
             let func = (*parent_iface)
@@ -172,7 +172,7 @@ unsafe extern "C" fn builder_scope_get_type_from_name<T: BuilderScopeImpl>(
     let builder: Borrowed<Builder> = from_glib_borrow(builderptr);
     let type_name: Borrowed<GString> = from_glib_borrow(type_nameptr);
 
-    imp.get_type_from_name(
+    imp.type_from_name(
         from_glib_borrow::<_, BuilderScope>(builder_scope).unsafe_cast_ref(),
         &builder,
         &type_name,
@@ -190,7 +190,7 @@ unsafe extern "C" fn builder_scope_get_type_from_function<T: BuilderScopeImpl>(
     let builder: Borrowed<Builder> = from_glib_borrow(builderptr);
     let func_name: Borrowed<GString> = from_glib_borrow(func_nameptr);
 
-    imp.get_type_from_function(
+    imp.type_from_function(
         from_glib_borrow::<_, BuilderScope>(builder_scope).unsafe_cast_ref(),
         &builder,
         &func_name,

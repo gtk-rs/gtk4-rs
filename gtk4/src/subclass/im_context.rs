@@ -402,7 +402,7 @@ unsafe extern "C" fn im_context_get_preedit_string<T: IMContextImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<IMContext> = from_glib_borrow(ptr);
 
-    let (text, attrs, cursor_idx) = imp.get_preedit_string(wrap.unsafe_cast_ref());
+    let (text, attrs, cursor_idx) = imp.preedit_string(wrap.unsafe_cast_ref());
 
     *text_ptr = text.to_glib_full();
     *cursor_index_ptr = cursor_idx;
@@ -418,7 +418,7 @@ unsafe extern "C" fn im_context_get_surrounding<T: IMContextImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<IMContext> = from_glib_borrow(ptr);
 
-    if let Some((text, cursor_idx)) = imp.get_surrounding(wrap.unsafe_cast_ref()) {
+    if let Some((text, cursor_idx)) = imp.surrounding(wrap.unsafe_cast_ref()) {
         *text_ptr = text.to_glib_full();
         *cursor_index_ptr = cursor_idx;
         true.to_glib()

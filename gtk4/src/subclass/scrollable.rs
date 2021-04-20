@@ -19,7 +19,7 @@ impl<T: ScrollableImpl> ScrollableImplExt for T {
     fn parent_get_border(&self, scrollable: &Self::Type) -> Option<Border> {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<Scrollable>()
+            let parent_iface = type_data.as_ref().parent_interface::<Scrollable>()
                 as *const ffi::GtkScrollableInterface;
 
             if let Some(func) = (*parent_iface).get_border {
@@ -54,7 +54,7 @@ unsafe extern "C" fn scrollable_get_border<T: ScrollableImpl>(
     let imp = instance.impl_();
 
     if let Some(border) =
-        imp.get_border(from_glib_borrow::<_, Scrollable>(scrollable).unsafe_cast_ref())
+        imp.border(from_glib_borrow::<_, Scrollable>(scrollable).unsafe_cast_ref())
     {
         *borderptr = *border.to_glib_full();
         true.to_glib()

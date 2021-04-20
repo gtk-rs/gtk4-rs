@@ -297,8 +297,7 @@ unsafe extern "C" fn layout_manager_get_request_mode<T: LayoutManagerImpl>(
     let wrap: Borrowed<LayoutManager> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(widgetptr);
 
-    imp.get_request_mode(wrap.unsafe_cast_ref(), &widget)
-        .to_glib()
+    imp.request_mode(wrap.unsafe_cast_ref(), &widget).to_glib()
 }
 
 unsafe extern "C" fn layout_manager_measure<T: LayoutManagerImpl>(

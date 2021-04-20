@@ -40,7 +40,7 @@ impl<T: TreeDragDestImpl> TreeDragDestImplExt for T {
     ) -> bool {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<TreeDragDest>()
+            let parent_iface = type_data.as_ref().parent_interface::<TreeDragDest>()
                 as *const ffi::GtkTreeDragDestIface;
 
             let func = (*parent_iface)
@@ -66,7 +66,7 @@ impl<T: TreeDragDestImpl> TreeDragDestImplExt for T {
     ) -> bool {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<TreeDragDest>()
+            let parent_iface = type_data.as_ref().parent_interface::<TreeDragDest>()
                 as *const ffi::GtkTreeDragDestIface;
 
             let func = (*parent_iface)

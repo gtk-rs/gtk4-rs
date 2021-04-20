@@ -88,11 +88,7 @@ fn main() {
     );
     let provider = gtk::CssProvider::new();
     provider.load_from_data(CSS.as_bytes());
-    gtk::StyleContext::add_provider_for_display(
-        &gdk::Display::get_default().unwrap(),
-        &provider,
-        800,
-    );
+    gtk::StyleContext::add_provider_for_display(&gdk::Display::default().unwrap(), &provider, 800);
 
     application.connect_activate(build_ui);
     application.run();

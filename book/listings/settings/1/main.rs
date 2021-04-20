@@ -29,7 +29,7 @@ fn on_activate(application: &Application) {
 
     // ANCHOR: switch
     // Get the last switch state from the settings
-    let is_switch_enabled = settings.get_boolean("is-switch-enabled");
+    let is_switch_enabled = settings.boolean("is-switch-enabled");
 
     // Create a switch
     let switch = SwitchBuilder::new()
