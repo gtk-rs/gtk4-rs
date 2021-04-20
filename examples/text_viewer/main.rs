@@ -17,14 +17,10 @@ pub fn build_ui(application: &Application) {
         .add_from_string(ui_src)
         .expect("Couldn't add from string");
 
-    let window: ApplicationWindow = builder.get_object("window").expect("Couldn't get window");
+    let window: ApplicationWindow = builder.object("window").expect("Couldn't get window");
     window.set_application(Some(application));
-    let open_button: Button = builder
-        .get_object("open_button")
-        .expect("Couldn't get builder");
-    let text_view: TextView = builder
-        .get_object("text_view")
-        .expect("Couldn't get text_view");
+    let open_button: Button = builder.object("open_button").expect("Couldn't get builder");
+    let text_view: TextView = builder.object("text_view").expect("Couldn't get text_view");
 
     open_button.connect_clicked(glib::clone!(@weak window, @weak text_view => move |_| {
 

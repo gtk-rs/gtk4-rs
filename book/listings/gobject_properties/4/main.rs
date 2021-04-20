@@ -57,7 +57,7 @@ fn on_activate(application: &Application) {
     // The closure will be called whenever the property "number" of `button_1` gets changed
     button_1.connect_notify_local(Some("number"), move |button, _| {
         let number = button
-            .get_property("number")
+            .property("number")
             .expect("The property needs to exist and be readable.")
             .get_some::<i32>()
             .expect("The property needs to be of type `i32`.");

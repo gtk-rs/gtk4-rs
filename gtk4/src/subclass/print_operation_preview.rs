@@ -43,7 +43,7 @@ impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
             let type_data = Self::type_data();
             let parent_iface = type_data
                 .as_ref()
-                .get_parent_interface::<PrintOperationPreview>()
+                .parent_interface::<PrintOperationPreview>()
                 as *const ffi::GtkPrintOperationPreviewIface;
 
             if let Some(func) = (*parent_iface).ready {
@@ -68,7 +68,7 @@ impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
             let type_data = Self::type_data();
             let parent_iface = type_data
                 .as_ref()
-                .get_parent_interface::<PrintOperationPreview>()
+                .parent_interface::<PrintOperationPreview>()
                 as *const ffi::GtkPrintOperationPreviewIface;
 
             if let Some(func) = (*parent_iface).got_page_size {
@@ -89,7 +89,7 @@ impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
             let type_data = Self::type_data();
             let parent_iface = type_data
                 .as_ref()
-                .get_parent_interface::<PrintOperationPreview>()
+                .parent_interface::<PrintOperationPreview>()
                 as *const ffi::GtkPrintOperationPreviewIface;
 
             if let Some(func) = (*parent_iface).render_page {
@@ -109,7 +109,7 @@ impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
             let type_data = Self::type_data();
             let parent_iface = type_data
                 .as_ref()
-                .get_parent_interface::<PrintOperationPreview>()
+                .parent_interface::<PrintOperationPreview>()
                 as *const ffi::GtkPrintOperationPreviewIface;
             let func = (*parent_iface)
                 .is_selected
@@ -130,7 +130,7 @@ impl<T: PrintOperationPreviewImpl> PrintOperationPreviewImplExt for T {
             let type_data = Self::type_data();
             let parent_iface = type_data
                 .as_ref()
-                .get_parent_interface::<PrintOperationPreview>()
+                .parent_interface::<PrintOperationPreview>()
                 as *const ffi::GtkPrintOperationPreviewIface;
 
             if let Some(func) = (*parent_iface).end_preview {

@@ -616,7 +616,7 @@ unsafe extern "C" fn widget_get_request_mode<T: WidgetImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
-    imp.get_request_mode(wrap.unsafe_cast_ref()).to_glib()
+    imp.request_mode(wrap.unsafe_cast_ref()).to_glib()
 }
 
 unsafe extern "C" fn widget_grab_focus<T: WidgetImpl>(
@@ -913,7 +913,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
             let f: Box_<F> = Box_::new(activate);
 
             let actions = data
-                .get_class_data_mut::<Actions>(Widget::static_type())
+                .class_data_mut::<Actions>(Widget::static_type())
                 .expect("Something bad happened at class_init, the actions class_data is missing");
             let callback_ptr = Box_::into_raw(f) as glib::ffi::gpointer;
             actions.0.insert(action_name.to_string(), callback_ptr);
@@ -933,7 +933,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
                 let data = <S::Type as ObjectSubclassType>::type_data();
                 let actions = data
                     .as_ref()
-                    .get_class_data::<Actions>(Widget::static_type())
+                    .class_data::<Actions>(Widget::static_type())
                     .unwrap();
                 let activate_callback =
                     *actions.0.get(&action_name.to_string()).unwrap_or_else(|| {
@@ -1100,7 +1100,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
             widget_class,
             name.to_glib_none().0,
             false as glib::ffi::gboolean,
-            private_offset + (offset.get_byte_offset() as isize),
+            private_offset + (offset.byte_offset() as isize),
         )
     }
 }

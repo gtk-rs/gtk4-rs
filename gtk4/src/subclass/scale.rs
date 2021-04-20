@@ -58,7 +58,7 @@ unsafe extern "C" fn scale_get_layout_offsets<T: ScaleImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<Scale> = from_glib_borrow(ptr);
 
-    let (x, y) = imp.get_layout_offsets(wrap.unsafe_cast_ref());
+    let (x, y) = imp.layout_offsets(wrap.unsafe_cast_ref());
     *x_ptr = x;
     *y_ptr = y;
 }

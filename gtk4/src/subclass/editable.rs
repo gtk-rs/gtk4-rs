@@ -126,7 +126,7 @@ impl<T: EditableImpl> EditableImplExt for T {
     ) {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<Editable>()
+            let parent_iface = type_data.as_ref().parent_interface::<Editable>()
                 as *const ffi::GtkEditableInterface;
 
             if let Some(func) = (*parent_iface).insert_text {
@@ -143,7 +143,7 @@ impl<T: EditableImpl> EditableImplExt for T {
     fn parent_delete_text(&self, editable: &Self::Type, start_position: i32, end_position: i32) {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<Editable>()
+            let parent_iface = type_data.as_ref().parent_interface::<Editable>()
                 as *const ffi::GtkEditableInterface;
 
             if let Some(func) = (*parent_iface).delete_text {
@@ -159,7 +159,7 @@ impl<T: EditableImpl> EditableImplExt for T {
     fn parent_get_text(&self, editable: &Self::Type) -> GString {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<Editable>()
+            let parent_iface = type_data.as_ref().parent_interface::<Editable>()
                 as *const ffi::GtkEditableInterface;
             let func = (*parent_iface)
                 .get_text
@@ -174,7 +174,7 @@ impl<T: EditableImpl> EditableImplExt for T {
     fn parent_get_delegate(&self, editable: &Self::Type) -> Option<Editable> {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<Editable>()
+            let parent_iface = type_data.as_ref().parent_interface::<Editable>()
                 as *const ffi::GtkEditableInterface;
             let func = (*parent_iface)
                 .get_delegate
@@ -188,7 +188,7 @@ impl<T: EditableImpl> EditableImplExt for T {
     fn parent_changed(&self, editable: &Self::Type) {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<Editable>()
+            let parent_iface = type_data.as_ref().parent_interface::<Editable>()
                 as *const ffi::GtkEditableInterface;
 
             if let Some(func) = (*parent_iface).changed {
@@ -206,7 +206,7 @@ impl<T: EditableImpl> EditableImplExt for T {
     ) {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<Editable>()
+            let parent_iface = type_data.as_ref().parent_interface::<Editable>()
                 as *const ffi::GtkEditableInterface;
 
             if let Some(func) = (*parent_iface).do_insert_text {
@@ -223,7 +223,7 @@ impl<T: EditableImpl> EditableImplExt for T {
     fn parent_do_delete_text(&self, editable: &Self::Type, start_position: i32, end_position: i32) {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<Editable>()
+            let parent_iface = type_data.as_ref().parent_interface::<Editable>()
                 as *const ffi::GtkEditableInterface;
 
             if let Some(func) = (*parent_iface).do_delete_text {
@@ -239,7 +239,7 @@ impl<T: EditableImpl> EditableImplExt for T {
     fn parent_get_selection_bounds(&self, editable: &Self::Type) -> Option<(i32, i32)> {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<Editable>()
+            let parent_iface = type_data.as_ref().parent_interface::<Editable>()
                 as *const ffi::GtkEditableInterface;
 
             if let Some(func) = (*parent_iface).get_selection_bounds {
@@ -265,7 +265,7 @@ impl<T: EditableImpl> EditableImplExt for T {
     ) {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<Editable>()
+            let parent_iface = type_data.as_ref().parent_interface::<Editable>()
                 as *const ffi::GtkEditableInterface;
 
             if let Some(func) = (*parent_iface).set_selection_bounds {
@@ -358,7 +358,7 @@ unsafe extern "C" fn editable_get_text<T: EditableImpl>(
     let instance = &*(editable as *mut T::Instance);
     let imp = instance.impl_();
 
-    imp.get_text(from_glib_borrow::<_, Editable>(editable).unsafe_cast_ref())
+    imp.text(from_glib_borrow::<_, Editable>(editable).unsafe_cast_ref())
         .to_glib_full()
 }
 
@@ -373,9 +373,9 @@ unsafe extern "C" fn editable_get_delegate<T: EditableImpl>(
 
     let wrap = from_glib_borrow::<_, Editable>(editable);
 
-    let delegate = imp.get_delegate(wrap.unsafe_cast_ref());
+    let delegate = imp.delegate(wrap.unsafe_cast_ref());
 
-    match wrap.get_qdata::<Option<Editable>>(*EDITABLE_GET_DELEGATE_QUARK) {
+    match wrap.qdata::<Option<Editable>>(*EDITABLE_GET_DELEGATE_QUARK) {
         Some(delegate_data) => {
             if delegate_data.as_ref() != &delegate {
                 panic!("The Editable delegate must not change");
@@ -429,7 +429,7 @@ unsafe extern "C" fn editable_get_selection_bounds<T: EditableImpl>(
     let imp = instance.impl_();
 
     if let Some((start_pos, end_pos)) =
-        imp.get_selection_bounds(from_glib_borrow::<_, Editable>(editable).unsafe_cast_ref())
+        imp.selection_bounds(from_glib_borrow::<_, Editable>(editable).unsafe_cast_ref())
     {
         if !start_position.is_null() {
             *start_position = start_pos;

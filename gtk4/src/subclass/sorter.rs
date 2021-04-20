@@ -86,5 +86,5 @@ unsafe extern "C" fn sorter_get_order<T: SorterImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<Sorter> = from_glib_borrow(ptr);
 
-    imp.get_order(wrap.unsafe_cast_ref()).to_glib()
+    imp.order(wrap.unsafe_cast_ref()).to_glib()
 }

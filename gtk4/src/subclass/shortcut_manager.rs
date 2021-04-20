@@ -32,7 +32,7 @@ impl<T: ShortcutManagerImpl> ShortcutManagerImplExt for T {
     ) {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<ShortcutManager>()
+            let parent_iface = type_data.as_ref().parent_interface::<ShortcutManager>()
                 as *const ffi::GtkShortcutManagerInterface;
 
             let func = (*parent_iface)
@@ -56,7 +56,7 @@ impl<T: ShortcutManagerImpl> ShortcutManagerImplExt for T {
     ) {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<ShortcutManager>()
+            let parent_iface = type_data.as_ref().parent_interface::<ShortcutManager>()
                 as *const ffi::GtkShortcutManagerInterface;
 
             let func = (*parent_iface)

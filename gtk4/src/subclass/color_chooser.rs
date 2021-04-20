@@ -48,7 +48,7 @@ impl<T: ColorChooserImpl> ColorChooserImplExt for T {
     ) {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<ColorChooser>()
+            let parent_iface = type_data.as_ref().parent_interface::<ColorChooser>()
                 as *const ffi::GtkColorChooserInterface;
 
             if let Some(func) = (*parent_iface).add_palette {
@@ -72,7 +72,7 @@ impl<T: ColorChooserImpl> ColorChooserImplExt for T {
     fn parent_color_activated(&self, color_chooser: &Self::Type, rgba: RGBA) {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<ColorChooser>()
+            let parent_iface = type_data.as_ref().parent_interface::<ColorChooser>()
                 as *const ffi::GtkColorChooserInterface;
 
             if let Some(func) = (*parent_iface).color_activated {
@@ -90,7 +90,7 @@ impl<T: ColorChooserImpl> ColorChooserImplExt for T {
     fn parent_get_rgba(&self, color_chooser: &Self::Type) -> RGBA {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<ColorChooser>()
+            let parent_iface = type_data.as_ref().parent_interface::<ColorChooser>()
                 as *const ffi::GtkColorChooserInterface;
 
             let func = (*parent_iface)
@@ -111,7 +111,7 @@ impl<T: ColorChooserImpl> ColorChooserImplExt for T {
     fn parent_set_rgba(&self, color_chooser: &Self::Type, rgba: RGBA) {
         unsafe {
             let type_data = Self::type_data();
-            let parent_iface = type_data.as_ref().get_parent_interface::<ColorChooser>()
+            let parent_iface = type_data.as_ref().parent_interface::<ColorChooser>()
                 as *const ffi::GtkColorChooserInterface;
 
             if let Some(func) = (*parent_iface).set_rgba {
@@ -179,7 +179,7 @@ unsafe extern "C" fn color_chooser_get_rgba<T: ColorChooserImpl>(
     let instance = &*(color_chooser as *mut T::Instance);
     let imp = instance.impl_();
 
-    let rgba = imp.get_rgba(from_glib_borrow::<_, ColorChooser>(color_chooser).unsafe_cast_ref());
+    let rgba = imp.rgba(from_glib_borrow::<_, ColorChooser>(color_chooser).unsafe_cast_ref());
     *(rgbaptr as *mut gdk::ffi::GdkRGBA) = *rgba.to_glib_none().0;
 }
 
