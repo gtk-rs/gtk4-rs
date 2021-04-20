@@ -6,7 +6,7 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait SelectionModelImpl: ListModelImpl {
-    fn get_selection_in_range(&self, model: &Self::Type, position: u32, n_items: u32) -> Bitset {
+    fn selection_in_range(&self, model: &Self::Type, position: u32, n_items: u32) -> Bitset {
         self.parent_get_selection_in_range(model, position, n_items)
     }
 

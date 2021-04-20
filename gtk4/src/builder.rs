@@ -20,7 +20,7 @@ impl Builder {
 
 pub trait BuilderExtManual: 'static {
     #[doc(alias = "gtk_builder_get_object")]
-    fn get_object<T: IsA<Object>>(&self, name: &str) -> Option<T>;
+    fn object<T: IsA<Object>>(&self, name: &str) -> Option<T>;
 
     #[doc(alias = "gtk_builder_add_from_file")]
     fn add_from_file<T: AsRef<Path>>(&self, file_path: T) -> Result<(), glib::Error>;
@@ -34,7 +34,7 @@ pub trait BuilderExtManual: 'static {
 }
 
 impl<O: IsA<Builder>> BuilderExtManual for O {
-    fn get_object<T: IsA<Object>>(&self, name: &str) -> Option<T> {
+    fn object<T: IsA<Object>>(&self, name: &str) -> Option<T> {
         unsafe {
             Option::<Object>::from_glib_none(ffi::gtk_builder_get_object(
                 self.upcast_ref().to_glib_none().0,

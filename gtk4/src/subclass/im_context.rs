@@ -24,10 +24,10 @@ pub trait IMContextImpl: IMContextImplExt + ObjectImpl {
     fn focus_out(&self, im_context: &Self::Type) {
         self.parent_focus_out(im_context)
     }
-    fn get_preedit_string(&self, im_context: &Self::Type) -> (GString, AttrList, i32) {
+    fn preedit_string(&self, im_context: &Self::Type) -> (GString, AttrList, i32) {
         self.parent_get_preedit_string(im_context)
     }
-    fn get_surrounding(&self, im_context: &Self::Type) -> Option<(GString, i32)> {
+    fn surrounding(&self, im_context: &Self::Type) -> Option<(GString, i32)> {
         self.parent_get_surrounding(im_context)
     }
     fn preedit_changed(&self, im_context: &Self::Type) {

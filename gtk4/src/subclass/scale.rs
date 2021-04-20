@@ -8,7 +8,7 @@ use super::range::RangeImpl;
 use crate::{Range, Scale};
 
 pub trait ScaleImpl: ScaleImplExt + RangeImpl {
-    fn get_layout_offsets(&self, scale: &Self::Type) -> (i32, i32) {
+    fn layout_offsets(&self, scale: &Self::Type) -> (i32, i32) {
         self.parent_get_layout_offsets(scale)
     }
 }

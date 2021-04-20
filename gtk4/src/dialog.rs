@@ -39,7 +39,7 @@ pub trait DialogExtManual: 'static {
     fn add_buttons(&self, buttons: &[(&str, ResponseType)]);
 
     #[doc(alias = "gtk_dialog_get_response_for_widget")]
-    fn get_response_for_widget<P: IsA<Widget>>(&self, widget: &P) -> ResponseType;
+    fn response_for_widget<P: IsA<Widget>>(&self, widget: &P) -> ResponseType;
 
     // rustdoc-stripper-ignore-next
     /// Shows the dialog and returns a `Future` that resolves to the
@@ -89,7 +89,7 @@ impl<O: IsA<Dialog> + IsA<Widget>> DialogExtManual for O {
         }
     }
 
-    fn get_response_for_widget<P: IsA<Widget>>(&self, widget: &P) -> ResponseType {
+    fn response_for_widget<P: IsA<Widget>>(&self, widget: &P) -> ResponseType {
         unsafe {
             from_glib(ffi::gtk_dialog_get_response_for_widget(
                 AsRef::<Dialog>::as_ref(self).to_glib_none().0,

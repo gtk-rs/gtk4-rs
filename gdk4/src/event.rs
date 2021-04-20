@@ -55,7 +55,7 @@ impl Event {
     }
 
     #[doc(alias = "gdk_events_get_angle")]
-    pub fn get_angle<P: AsRef<Event>>(&self, event: P) -> Option<f64> {
+    pub fn angle<P: AsRef<Event>>(&self, event: P) -> Option<f64> {
         skip_assert_initialized!();
         unsafe {
             let mut angle = mem::MaybeUninit::uninit();
@@ -74,7 +74,7 @@ impl Event {
     }
 
     #[doc(alias = "gdk_events_get_center")]
-    pub fn get_center<P: AsRef<Event>>(&self, event: P) -> Option<(f64, f64)> {
+    pub fn center<P: AsRef<Event>>(&self, event: P) -> Option<(f64, f64)> {
         skip_assert_initialized!();
         unsafe {
             let mut x = mem::MaybeUninit::uninit();
@@ -96,7 +96,7 @@ impl Event {
     }
 
     #[doc(alias = "gdk_events_get_distance")]
-    pub fn get_distance<P: AsRef<Event>>(&self, event: P) -> Option<f64> {
+    pub fn distance<P: AsRef<Event>>(&self, event: P) -> Option<f64> {
         skip_assert_initialized!();
         unsafe {
             let mut distance = mem::MaybeUninit::uninit();
@@ -115,7 +115,7 @@ impl Event {
     }
 
     #[doc(alias = "gdk_event_get_axis")]
-    pub fn get_axis(&self, axis_use: AxisUse) -> Option<f64> {
+    pub fn axis(&self, axis_use: AxisUse) -> Option<f64> {
         unsafe {
             let mut value = mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gdk_event_get_axis(

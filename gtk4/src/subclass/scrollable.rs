@@ -6,7 +6,7 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait ScrollableImpl: ObjectImpl {
-    fn get_border(&self, scrollable: &Self::Type) -> Option<Border> {
+    fn border(&self, scrollable: &Self::Type) -> Option<Border> {
         self.parent_get_border(scrollable)
     }
 }

@@ -7,8 +7,8 @@ use glib::translate::*;
 use glib::{Cast, GString, Variant};
 
 pub trait ActionableImpl: WidgetImpl {
-    fn get_action_name(&self, actionable: &Self::Type) -> Option<GString>;
-    fn get_action_target_value(&self, actionable: &Self::Type) -> Option<Variant>;
+    fn action_name(&self, actionable: &Self::Type) -> Option<GString>;
+    fn action_target_value(&self, actionable: &Self::Type) -> Option<Variant>;
     fn set_action_name(&self, actionable: &Self::Type, name: Option<&str>);
     fn set_action_target_value(&self, actionable: &Self::Type, value: Option<&Variant>);
 }

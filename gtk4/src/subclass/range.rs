@@ -16,7 +16,7 @@ pub trait RangeImpl: RangeImplExt + WidgetImpl {
         self.parent_change_value(range, scroll_type, new_value)
     }
 
-    fn get_range_border(&self, range: &Self::Type) -> Border {
+    fn range_border(&self, range: &Self::Type) -> Border {
         self.parent_get_range_border(range)
     }
 

@@ -21,11 +21,11 @@ pub trait EditableImpl: WidgetImpl {
         self.parent_changed(editable)
     }
 
-    fn get_text(&self, editable: &Self::Type) -> GString {
+    fn text(&self, editable: &Self::Type) -> GString {
         self.parent_get_text(editable)
     }
 
-    fn get_delegate(&self, editable: &Self::Type) -> Option<Editable> {
+    fn delegate(&self, editable: &Self::Type) -> Option<Editable> {
         self.parent_get_delegate(editable)
     }
 
@@ -37,7 +37,7 @@ pub trait EditableImpl: WidgetImpl {
         self.parent_do_delete_text(editable, start_position, end_position)
     }
 
-    fn get_selection_bounds(&self, editable: &Self::Type) -> Option<(i32, i32)> {
+    fn selection_bounds(&self, editable: &Self::Type) -> Option<(i32, i32)> {
         self.parent_get_selection_bounds(editable)
     }
 

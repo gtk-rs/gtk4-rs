@@ -38,7 +38,7 @@ impl GLShaderNode {
     }
 
     #[doc(alias = "gsk_gl_shader_node_get_child")]
-    pub fn get_child(&self, idx: u32) -> Option<RenderNode> {
+    pub fn child(&self, idx: u32) -> Option<RenderNode> {
         unsafe {
             from_glib_none(ffi::gsk_gl_shader_node_get_child(
                 self.to_glib_none().0,

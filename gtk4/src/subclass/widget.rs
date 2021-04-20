@@ -34,7 +34,7 @@ pub trait WidgetImpl: WidgetImplExt + ObjectImpl {
         self.parent_focus(widget, direction_type)
     }
 
-    fn get_request_mode(&self, widget: &Self::Type) -> SizeRequestMode {
+    fn request_mode(&self, widget: &Self::Type) -> SizeRequestMode {
         self.parent_get_request_mode(widget)
     }
 
