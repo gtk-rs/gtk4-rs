@@ -7,7 +7,7 @@ use glib::translate::*;
 use glib::{Cast, Object};
 
 pub trait FilterImpl: FilterImplExt + ObjectImpl {
-    fn get_strictness(&self, filter: &Self::Type) -> FilterMatch {
+    fn strictness(&self, filter: &Self::Type) -> FilterMatch {
         self.parent_get_strictness(filter)
     }
     fn match_(&self, filter: &Self::Type, item: &Object) -> bool {

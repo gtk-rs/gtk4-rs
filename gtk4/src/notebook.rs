@@ -28,7 +28,7 @@ pub trait NotebookExtManual: 'static {
     fn n_pages(&self) -> u32;
 
     #[doc(alias = "gtk_notebook_get_nth_page")]
-    fn get_nth_page(&self, page_num: Option<u32>) -> Option<Widget>;
+    fn nth_page(&self, page_num: Option<u32>) -> Option<Widget>;
 
     #[doc(alias = "gtk_notebook_insert_page")]
     fn insert_page<T, U>(&self, child: &T, tab_label: Option<&U>, position: Option<u32>) -> u32
@@ -135,7 +135,7 @@ impl<O: IsA<Notebook>> NotebookExtManual for O {
         }
     }
 
-    fn get_nth_page(&self, page_num: Option<u32>) -> Option<Widget> {
+    fn nth_page(&self, page_num: Option<u32>) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_notebook_get_nth_page(
                 self.as_ref().to_glib_none().0,

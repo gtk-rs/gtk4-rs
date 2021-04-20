@@ -65,7 +65,7 @@ impl ObjectImpl for CustomButton {
         }
     }
 
-    fn get_property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
+    fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
         match pspec.name() {
             "number" => self.number.borrow().to_value(),
             _ => unimplemented!(),

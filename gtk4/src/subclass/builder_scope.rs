@@ -6,7 +6,7 @@ use glib::translate::*;
 use glib::{Cast, GString};
 
 pub trait BuilderScopeImpl: ObjectImpl {
-    fn get_type_from_name(
+    fn type_from_name(
         &self,
         builder_scope: &Self::Type,
         builder: &Builder,
@@ -15,7 +15,7 @@ pub trait BuilderScopeImpl: ObjectImpl {
         self.parent_get_type_from_name(builder_scope, builder, type_name)
     }
 
-    fn get_type_from_function(
+    fn type_from_function(
         &self,
         builder_scope: &Self::Type,
         builder: &Builder,

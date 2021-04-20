@@ -63,7 +63,7 @@ pub mod imp {
             PROPERTIES.as_ref()
         }
 
-        fn get_property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> glib::Value {
+        fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> glib::Value {
             match pspec.name() {
                 "label" => self.label.text().to_value(),
                 "has-close-button" => self.has_close_button.get().to_value(),

@@ -31,7 +31,7 @@ pub trait LayoutManagerImpl: LayoutManagerImplExt + ObjectImpl {
 
     fn layout_child_type() -> glib::Type;
 
-    fn get_request_mode(&self, layout_manager: &Self::Type, widget: &Widget) -> SizeRequestMode {
+    fn request_mode(&self, layout_manager: &Self::Type, widget: &Widget) -> SizeRequestMode {
         self.parent_get_request_mode(layout_manager, widget)
     }
 
