@@ -212,7 +212,7 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">    let settings = Settings::new(&quot;org.gtk.example&quot;);
 </span><span class="boring">
 </span><span class="boring">    // Get the last switch state from the settings
-</span><span class="boring">    let is_switch_enabled = settings.get_boolean(&quot;is-switch-enabled&quot;);
+</span><span class="boring">    let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
 </span><span class="boring">
 </span><span class="boring">    // Create a switch
 </span><span class="boring">    let switch = SwitchBuilder::new()
@@ -278,7 +278,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
     let settings = Settings::new(&quot;org.gtk.example&quot;);
 <span class="boring">
 </span><span class="boring">    // Get the last switch state from the settings
-</span><span class="boring">    let is_switch_enabled = settings.get_boolean(&quot;is-switch-enabled&quot;);
+</span><span class="boring">    let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
 </span><span class="boring">
 </span><span class="boring">    // Create a switch
 </span><span class="boring">    let switch = SwitchBuilder::new()
@@ -333,7 +333,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">    let settings = Settings::new(&quot;org.gtk.example&quot;);
 </span><span class="boring">
 </span>    // Get the last switch state from the settings
-    let is_switch_enabled = settings.get_boolean(&quot;is-switch-enabled&quot;);
+    let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
 
     // Create a switch
     let switch = SwitchBuilder::new()
@@ -388,7 +388,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">    let settings = Settings::new(&quot;org.gtk.example&quot;);
 </span><span class="boring">
 </span><span class="boring">    // Get the last switch state from the settings
-</span><span class="boring">    let is_switch_enabled = settings.get_boolean(&quot;is-switch-enabled&quot;);
+</span><span class="boring">    let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
 </span><span class="boring">
 </span><span class="boring">    // Create a switch
 </span><span class="boring">    let switch = SwitchBuilder::new()

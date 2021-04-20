@@ -251,7 +251,7 @@ Because they can be used for properties of different types, they operate with <c
     // Set and then immediately obtain state
     switch.set_property(&quot;state&quot;, &amp;true).unwrap();
     let current_state = switch
-        .get_property(&quot;state&quot;)
+        .property(&quot;state&quot;)
         .expect(&quot;The property needs to exist and be readable.&quot;)
         .get_some::&lt;bool&gt;()
         .expect(&quot;The property needs to be of type `bool`.&quot;);
@@ -465,7 +465,7 @@ impl ObjectImpl for CustomButton {
         }
     }
 
-    fn get_property(&amp;self, _obj: &amp;Self::Type, _id: usize, pspec: &amp;ParamSpec) -&gt; Value {
+    fn property(&amp;self, _obj: &amp;Self::Type, _id: usize, pspec: &amp;ParamSpec) -&gt; Value {
         match pspec.name() {
             &quot;number&quot; =&gt; self.number.borrow().to_value(),
             _ =&gt; unimplemented!(),
@@ -549,7 +549,7 @@ The formerly private <code>number</code> is now accessible via the <code>get_pro
 </span><span class="boring">    // The closure will be called whenever the property &quot;number&quot; of `button_1` gets changed
 </span><span class="boring">    button_1.connect_notify_local(Some(&quot;number&quot;), move |button, _| {
 </span><span class="boring">        let number = button
-</span><span class="boring">            .get_property(&quot;number&quot;)
+</span><span class="boring">            .property(&quot;number&quot;)
 </span><span class="boring">            .expect(&quot;The property needs to exist and be readable.&quot;)
 </span><span class="boring">            .get_some::&lt;i32&gt;()
 </span><span class="boring">            .expect(&quot;The property needs to be of type `i32`.&quot;);
@@ -630,7 +630,7 @@ By leveraging <a href="http://gtk-rs.org/docs/glib/object/struct.BindingBuilder.
 </span><span class="boring">    // The closure will be called whenever the property &quot;number&quot; of `button_1` gets changed
 </span><span class="boring">    button_1.connect_notify_local(Some(&quot;number&quot;), move |button, _| {
 </span><span class="boring">        let number = button
-</span><span class="boring">            .get_property(&quot;number&quot;)
+</span><span class="boring">            .property(&quot;number&quot;)
 </span><span class="boring">            .expect(&quot;The property needs to exist and be readable.&quot;)
 </span><span class="boring">            .get_some::&lt;i32&gt;()
 </span><span class="boring">            .expect(&quot;The property needs to be of type `i32`.&quot;);
@@ -713,7 +713,7 @@ We can do this like this:</p>
 </span>    // The closure will be called whenever the property &quot;number&quot; of `button_1` gets changed
     button_1.connect_notify_local(Some(&quot;number&quot;), move |button, _| {
         let number = button
-            .get_property(&quot;number&quot;)
+            .property(&quot;number&quot;)
             .expect(&quot;The property needs to exist and be readable.&quot;)
             .get_some::&lt;i32&gt;()
             .expect(&quot;The property needs to be of type `i32`.&quot;);
