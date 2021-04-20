@@ -75,20 +75,20 @@
 <span class="kw">use</span> <span class="ident">glib::Cast</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ScrollableImpl</span>: <span class="ident">ObjectImpl</span> {
-    <span class="kw">fn</span> <span class="ident">get_border</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">scrollable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Border</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">parent_get_border</span>(<span class="ident">scrollable</span>)
+    <span class="kw">fn</span> <span class="ident">border</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">scrollable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Border</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">parent_border</span>(<span class="ident">scrollable</span>)
     }
 }
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ScrollableImplExt</span>: <span class="ident">ObjectSubclass</span> {
-    <span class="kw">fn</span> <span class="ident">parent_get_border</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">scrollable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Border</span><span class="op">&gt;</span>;
+    <span class="kw">fn</span> <span class="ident">parent_border</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">scrollable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Border</span><span class="op">&gt;</span>;
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">ScrollableImpl</span><span class="op">&gt;</span> <span class="ident">ScrollableImplExt</span> <span class="kw">for</span> <span class="ident">T</span> {
-    <span class="kw">fn</span> <span class="ident">parent_get_border</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">scrollable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Border</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">parent_border</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">scrollable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Border</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_interface</span>::<span class="op">&lt;</span><span class="ident">Scrollable</span><span class="op">&gt;</span>()
+            <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">Scrollable</span><span class="op">&gt;</span>()
                 <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkScrollableInterface</span>;
 
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">func</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>).<span class="ident">get_border</span> {
@@ -123,7 +123,7 @@
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">border</span>) <span class="op">=</span>
-        <span class="ident">imp</span>.<span class="ident">get_border</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Scrollable</span><span class="op">&gt;</span>(<span class="ident">scrollable</span>).<span class="ident">unsafe_cast_ref</span>())
+        <span class="ident">imp</span>.<span class="ident">border</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Scrollable</span><span class="op">&gt;</span>(<span class="ident">scrollable</span>).<span class="ident">unsafe_cast_ref</span>())
     {
         <span class="kw-2">*</span><span class="ident">borderptr</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">border</span>.<span class="ident">to_glib_full</span>();
         <span class="bool-val">true</span>.<span class="ident">to_glib</span>()
@@ -133,5 +133,5 @@
     }
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
+</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
     <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>

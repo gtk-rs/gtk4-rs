@@ -202,8 +202,8 @@
         <span class="self">self</span>.<span class="ident">parent_change_value</span>(<span class="ident">range</span>, <span class="ident">scroll_type</span>, <span class="ident">new_value</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">get_range_border</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">range</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Border</span> {
-        <span class="self">self</span>.<span class="ident">parent_get_range_border</span>(<span class="ident">range</span>)
+    <span class="kw">fn</span> <span class="ident">range_border</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">range</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Border</span> {
+        <span class="self">self</span>.<span class="ident">parent_range_border</span>(<span class="ident">range</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">move_slider</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">range</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">scroll_type</span>: <span class="ident">ScrollType</span>) {
@@ -223,7 +223,7 @@
         <span class="ident">scroll_type</span>: <span class="ident">ScrollType</span>,
         <span class="ident">new_value</span>: <span class="ident">f64</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
-    <span class="kw">fn</span> <span class="ident">parent_get_range_border</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">range</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Border</span>;
+    <span class="kw">fn</span> <span class="ident">parent_range_border</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">range</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Border</span>;
     <span class="kw">fn</span> <span class="ident">parent_move_slider</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">range</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">scroll_type</span>: <span class="ident">ScrollType</span>);
     <span class="kw">fn</span> <span class="ident">parent_value_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">range</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>);
 }
@@ -259,7 +259,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_get_range_border</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">range</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Border</span> {
+    <span class="kw">fn</span> <span class="ident">parent_range_border</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">range</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Border</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">T::type_data</span>();
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkRangeClass</span>;
@@ -344,7 +344,7 @@
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Range</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
-    <span class="kw">let</span> <span class="ident">border</span> <span class="op">=</span> <span class="ident">imp</span>.<span class="ident">get_range_border</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>());
+    <span class="kw">let</span> <span class="ident">border</span> <span class="op">=</span> <span class="ident">imp</span>.<span class="ident">range_border</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>());
     <span class="kw-2">*</span><span class="ident">borderptr</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">border</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>;
 }
 
@@ -367,5 +367,5 @@
     <span class="ident">imp</span>.<span class="ident">value_changed</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>())
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
+</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
     <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>

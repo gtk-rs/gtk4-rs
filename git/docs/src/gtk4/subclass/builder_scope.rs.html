@@ -240,22 +240,22 @@
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">Cast</span>, <span class="ident">GString</span>};
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">BuilderScopeImpl</span>: <span class="ident">ObjectImpl</span> {
-    <span class="kw">fn</span> <span class="ident">get_type_from_name</span>(
+    <span class="kw">fn</span> <span class="ident">type_from_name</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
         <span class="ident">builder</span>: <span class="kw-2">&amp;</span><span class="ident">Builder</span>,
         <span class="ident">type_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Type</span> {
-        <span class="self">self</span>.<span class="ident">parent_get_type_from_name</span>(<span class="ident">builder_scope</span>, <span class="ident">builder</span>, <span class="ident">type_name</span>)
+        <span class="self">self</span>.<span class="ident">parent_type_from_name</span>(<span class="ident">builder_scope</span>, <span class="ident">builder</span>, <span class="ident">type_name</span>)
     }
 
-    <span class="kw">fn</span> <span class="ident">get_type_from_function</span>(
+    <span class="kw">fn</span> <span class="ident">type_from_function</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
         <span class="ident">builder</span>: <span class="kw-2">&amp;</span><span class="ident">Builder</span>,
         <span class="ident">function_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Type</span> {
-        <span class="self">self</span>.<span class="ident">parent_get_type_from_function</span>(<span class="ident">builder_scope</span>, <span class="ident">builder</span>, <span class="ident">function_name</span>)
+        <span class="self">self</span>.<span class="ident">parent_type_from_function</span>(<span class="ident">builder_scope</span>, <span class="ident">builder</span>, <span class="ident">function_name</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">create_closure</span>(
@@ -269,14 +269,14 @@
 }
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">BuilderScopeImplExt</span>: <span class="ident">ObjectSubclass</span> {
-    <span class="kw">fn</span> <span class="ident">parent_get_type_from_name</span>(
+    <span class="kw">fn</span> <span class="ident">parent_type_from_name</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
         <span class="ident">builder</span>: <span class="kw-2">&amp;</span><span class="ident">Builder</span>,
         <span class="ident">type_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Type</span>;
 
-    <span class="kw">fn</span> <span class="ident">parent_get_type_from_function</span>(
+    <span class="kw">fn</span> <span class="ident">parent_type_from_function</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
         <span class="ident">builder</span>: <span class="kw-2">&amp;</span><span class="ident">Builder</span>,
@@ -294,7 +294,7 @@
 }
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">B</span>: <span class="ident">BuilderScopeImpl</span><span class="op">&gt;</span> <span class="ident">BuilderScopeImplExt</span> <span class="kw">for</span> <span class="ident">B</span> {
-    <span class="kw">fn</span> <span class="ident">parent_get_type_from_name</span>(
+    <span class="kw">fn</span> <span class="ident">parent_type_from_name</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
         <span class="ident">builder</span>: <span class="kw-2">&amp;</span><span class="ident">Builder</span>,
@@ -302,7 +302,7 @@
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Type</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_interface</span>::<span class="op">&lt;</span><span class="ident">BuilderScope</span><span class="op">&gt;</span>()
+            <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">BuilderScope</span><span class="op">&gt;</span>()
                 <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkBuilderScopeInterface</span>;
 
             <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
@@ -320,7 +320,7 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">parent_get_type_from_function</span>(
+    <span class="kw">fn</span> <span class="ident">parent_type_from_function</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
         <span class="ident">builder</span>: <span class="kw-2">&amp;</span><span class="ident">Builder</span>,
@@ -328,7 +328,7 @@
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Type</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_interface</span>::<span class="op">&lt;</span><span class="ident">BuilderScope</span><span class="op">&gt;</span>()
+            <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">BuilderScope</span><span class="op">&gt;</span>()
                 <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkBuilderScopeInterface</span>;
 
             <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
@@ -356,7 +356,7 @@
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">glib::Closure</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">type_data</span> <span class="op">=</span> <span class="self">Self</span><span class="ident">::type_data</span>();
-            <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">get_parent_interface</span>::<span class="op">&lt;</span><span class="ident">BuilderScope</span><span class="op">&gt;</span>()
+            <span class="kw">let</span> <span class="ident">parent_iface</span> <span class="op">=</span> <span class="ident">type_data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_interface</span>::<span class="op">&lt;</span><span class="ident">BuilderScope</span><span class="op">&gt;</span>()
                 <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ffi::GtkBuilderScopeInterface</span>;
 
             <span class="kw">let</span> <span class="ident">func</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_iface</span>)
@@ -406,7 +406,7 @@
     <span class="kw">let</span> <span class="ident">builder</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Builder</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">builderptr</span>);
     <span class="kw">let</span> <span class="ident">type_name</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">GString</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">type_nameptr</span>);
 
-    <span class="ident">imp</span>.<span class="ident">get_type_from_name</span>(
+    <span class="ident">imp</span>.<span class="ident">type_from_name</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">BuilderScope</span><span class="op">&gt;</span>(<span class="ident">builder_scope</span>).<span class="ident">unsafe_cast_ref</span>(),
         <span class="kw-2">&amp;</span><span class="ident">builder</span>,
         <span class="kw-2">&amp;</span><span class="ident">type_name</span>,
@@ -424,7 +424,7 @@
     <span class="kw">let</span> <span class="ident">builder</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Builder</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">builderptr</span>);
     <span class="kw">let</span> <span class="ident">func_name</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">GString</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">func_nameptr</span>);
 
-    <span class="ident">imp</span>.<span class="ident">get_type_from_function</span>(
+    <span class="ident">imp</span>.<span class="ident">type_from_function</span>(
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">BuilderScope</span><span class="op">&gt;</span>(<span class="ident">builder_scope</span>).<span class="ident">unsafe_cast_ref</span>(),
         <span class="kw-2">&amp;</span><span class="ident">builder</span>,
         <span class="kw-2">&amp;</span><span class="ident">func_name</span>,
@@ -463,5 +463,5 @@
     }
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
+</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
     <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script></body></html>
