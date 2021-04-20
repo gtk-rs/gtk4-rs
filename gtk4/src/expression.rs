@@ -264,7 +264,7 @@ macro_rules! define_expression {
         impl glib::StaticType for $rust_type {
             fn static_type() -> Type {
                 unsafe {
-                    from_glib($type_())
+                    from_glib($get_type())
                 }
             }
         }
