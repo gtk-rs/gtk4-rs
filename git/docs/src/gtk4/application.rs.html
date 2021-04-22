@@ -73,11 +73,6 @@
 <span id="70">70</span>
 <span id="71">71</span>
 <span id="72">72</span>
-<span id="73">73</span>
-<span id="74">74</span>
-<span id="75">75</span>
-<span id="76">76</span>
-<span id="77">77</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -93,37 +88,32 @@
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 
 <span class="kw">impl</span> <span class="ident">Application</span> {
-    <span class="doccomment">/// Creates a new `Application` instance.</span>
+    <span class="doccomment">/// Creates a new `GtkApplication` instance.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// When using `Application`, it is not necessary to call `gtk_init`</span>
+    <span class="doccomment">/// When using `GtkApplication`, it is not necessary to call [func`Gtk.init`]</span>
     <span class="doccomment">/// manually. It is called as soon as the application gets registered as</span>
     <span class="doccomment">/// the primary instance.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Concretely, `gtk_init` is called in the default handler for the</span>
-    <span class="doccomment">/// `gio::Application::startup` signal. Therefore, `Application` subclasses should</span>
-    <span class="doccomment">/// chain up in their `gio::Application::startup` handler before using any GTK+ API.</span>
+    <span class="doccomment">/// Concretely, [func`Gtk.init`] is called in the default handler for the</span>
+    <span class="doccomment">/// `GApplication::startup` signal. Therefore, `GtkApplication` subclasses should</span>
+    <span class="doccomment">/// always chain up in their `GApplication::startup` handler before using any GTK</span>
+    <span class="doccomment">/// API.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that commandline arguments are not passed to `gtk_init`.</span>
-    <span class="doccomment">/// All GTK+ functionality that is available via commandline arguments</span>
-    <span class="doccomment">/// can also be achieved by setting suitable environment variables</span>
-    <span class="doccomment">/// such as `G_DEBUG`, so this should not be a big</span>
-    <span class="doccomment">/// problem. If you absolutely must support GTK+ commandline arguments,</span>
-    <span class="doccomment">/// you can explicitly call `gtk_init` before creating the application</span>
-    <span class="doccomment">/// instance.</span>
+    <span class="doccomment">/// Note that commandline arguments are not passed to [func`Gtk.init`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If non-`None`, the application ID must be valid. See</span>
-    <span class="doccomment">/// `gio::Application::id_is_valid`.</span>
+    <span class="doccomment">/// If `application_id` is not `None`, then it must be valid. See</span>
+    <span class="doccomment">/// `g_application_id_is_valid()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If no application ID is given then some features (most notably application</span>
     <span class="doccomment">/// uniqueness) will be disabled.</span>
     <span class="doccomment">/// ## `application_id`</span>
-    <span class="doccomment">/// The application ID.</span>
+    <span class="doccomment">/// The application ID</span>
     <span class="doccomment">/// ## `flags`</span>
     <span class="doccomment">/// the application flags</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `Application` instance</span>
+    <span class="doccomment">/// a new `GtkApplication` instance</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_application_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">application_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>, <span class="ident">flags</span>: <span class="ident">ApplicationFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Application</span> {
         <span class="macro">skip_assert_initialized!</span>();

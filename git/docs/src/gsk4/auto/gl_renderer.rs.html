@@ -59,11 +59,11 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// A GSK renderer that is using OpenGL.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`RendererExt`](trait.RendererExt.html)</span>
+    <span class="doccomment">/// [`RendererExt`](trait@crate::RendererExt), [`RendererExtManual`](trait@crate::RendererExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GLRenderer</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GskGLRenderer</span>, <span class="ident">ffi::GskGLRendererClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Renderer</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {

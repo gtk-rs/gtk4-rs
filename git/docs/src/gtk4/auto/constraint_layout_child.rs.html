@@ -83,11 +83,11 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A `LayoutChild` in a `ConstraintLayout`.</span>
+    <span class="doccomment">/// `GtkLayoutChild` subclass for children in a `GtkConstraintLayout`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`LayoutChildExt`](trait.LayoutChildExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)</span>
+    <span class="doccomment">/// [`LayoutChildExt`](trait@crate::LayoutChildExt), [`trait@glib::object::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ConstraintLayoutChild</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkConstraintLayoutChild</span>, <span class="ident">ffi::GtkConstraintLayoutChildClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">LayoutChild</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {

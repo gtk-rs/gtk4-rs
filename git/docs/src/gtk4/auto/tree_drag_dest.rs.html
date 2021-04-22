@@ -103,11 +103,11 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// Interface for Drag-and-Drop destinations in `GtkTreeView`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`TreeDragDestExt`](trait.TreeDragDestExt.html)</span>
+    <span class="doccomment">/// [`TreeDragDestExt`](trait@crate::TreeDragDestExt)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TreeDragDest</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GtkTreeDragDest</span>, <span class="ident">ffi::GtkTreeDragDestIface</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -121,7 +121,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`ListStore`](struct.ListStore.html), [`TreeDragDest`](struct.TreeDragDest.html), [`TreeStore`](struct.TreeStore.html)</span>
+<span class="doccomment">/// [`ListStore`](struct@crate::ListStore), [`TreeDragDest`](struct@crate::TreeDragDest), [`TreeStore`](struct@crate::TreeStore)</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TreeDragDestExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Asks the `TreeDragDest` to insert a row before the path `dest`,</span>
     <span class="doccomment">/// deriving the contents of the row from `value`. If `dest` is</span>

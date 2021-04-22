@@ -116,11 +116,11 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// Interface for Drag-and-Drop destinations in `GtkTreeView`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`TreeDragSourceExt`](trait.TreeDragSourceExt.html)</span>
+    <span class="doccomment">/// [`TreeDragSourceExt`](trait@crate::TreeDragSourceExt)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TreeDragSource</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GtkTreeDragSource</span>, <span class="ident">ffi::GtkTreeDragSourceIface</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -134,7 +134,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`ListStore`](struct.ListStore.html), [`TreeDragSource`](struct.TreeDragSource.html), [`TreeModelFilter`](struct.TreeModelFilter.html), [`TreeModelSort`](struct.TreeModelSort.html), [`TreeStore`](struct.TreeStore.html)</span>
+<span class="doccomment">/// [`ListStore`](struct@crate::ListStore), [`TreeDragSource`](struct@crate::TreeDragSource), [`TreeModelFilter`](struct@crate::TreeModelFilter), [`TreeModelSort`](struct@crate::TreeModelSort), [`TreeStore`](struct@crate::TreeStore)</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TreeDragSourceExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Asks the `TreeDragSource` to delete the row at `path`, because</span>
     <span class="doccomment">/// it was moved somewhere else via drag-and-drop. Returns `false`</span>

@@ -74,7 +74,6 @@
 <span id="71">71</span>
 <span id="72">72</span>
 <span id="73">73</span>
-<span id="74">74</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -90,13 +89,12 @@
 <span class="kw">use</span> <span class="ident">std::str</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">EditableExtManual</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// This signal is emitted when text is inserted into</span>
-    <span class="doccomment">/// the widget by the user. The default handler for</span>
-    <span class="doccomment">/// this signal will normally be responsible for inserting</span>
-    <span class="doccomment">/// the text, so by connecting to this signal and then</span>
-    <span class="doccomment">/// stopping the signal with `g_signal_stop_emission`, it</span>
-    <span class="doccomment">/// is possible to modify the inserted text, or prevent</span>
-    <span class="doccomment">/// it from being inserted entirely.</span>
+    <span class="doccomment">/// Emitted when text is inserted into the widget by the user.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The default handler for this signal will normally be responsible</span>
+    <span class="doccomment">/// for inserting the text, so by connecting to this signal and then</span>
+    <span class="doccomment">/// stopping the signal with `g_signal_stop_emission`, it is possible</span>
+    <span class="doccomment">/// to modify the inserted text, or prevent it from being inserted entirely.</span>
     <span class="doccomment">/// ## `text`</span>
     <span class="doccomment">/// the new text to insert</span>
     <span class="doccomment">/// ## `length`</span>

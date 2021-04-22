@@ -50,6 +50,7 @@
 <span id="47">47</span>
 <span id="48">48</span>
 <span id="49">49</span>
+<span id="50">50</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -64,7 +65,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `BoolFilter`</span>
+    <span class="doccomment">/// a new `GtkBoolFilter`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_bool_filter_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">E</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Expression</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">expression</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">E</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BoolFilter</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -80,11 +81,12 @@
         }
     }
 
-    <span class="doccomment">/// Sets the expression that the filter uses to</span>
-    <span class="doccomment">/// check if items should be filtered. The expression must have</span>
-    <span class="doccomment">/// a value type of `G_TYPE_BOOLEAN`.</span>
+    <span class="doccomment">/// Sets the expression that the filter uses to check if items</span>
+    <span class="doccomment">/// should be filtered.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The expression must have a value type of `G_TYPE_BOOLEAN`.</span>
     <span class="doccomment">/// ## `expression`</span>
-    <span class="doccomment">/// a `Expression`</span>
+    <span class="doccomment">/// a `GtkExpression`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_bool_filter_set_expression&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_expression</span><span class="op">&lt;</span><span class="ident">E</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Expression</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">expression</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">E</span><span class="op">&gt;</span>) {
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">e</span>) <span class="op">=</span> <span class="ident">expression</span> {

@@ -35,11 +35,11 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// The Wayland implementation of `GdkGLContext`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`gdk::GLContextExt`](../gdk/trait.GLContextExt.html), [`gdk::DrawContextExt`](../gdk/trait.DrawContextExt.html)</span>
+    <span class="doccomment">/// [`trait@gdk::GLContextExt`], [`trait@gdk::DrawContextExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WaylandGLContext</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GdkWaylandGLContext</span>, <span class="ident">ffi::GdkWaylandGLContextClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">gdk::GLContext</span>, <span class="ident">gdk::DrawContext</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {

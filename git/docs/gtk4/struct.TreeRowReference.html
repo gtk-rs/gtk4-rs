@@ -36,7 +36,7 @@ doesn’t work for reasons of internal implementation.</p>
 need to carefully monitor exactly when a row reference updates
 itself, and is not generally needed by most applications.</p>
 <h2 id="proxy" class="section-header"><a href="#proxy"><code>proxy</code></a></h2>
-<p>a proxy <code>gobject::Object</code></p>
+<p>a proxy <code>glib::object::Object</code></p>
 <h2 id="model-1" class="section-header"><a href="#model-1"><code>model</code></a></h2>
 <p>a <code>TreeModel</code></p>
 <h2 id="path-1" class="section-header"><a href="#path-1"><code>path</code></a></h2>
@@ -51,21 +51,21 @@ a current valid path.</p>
 <code>TreeRowReference::new_proxy</code> know that the
 model emitted the <code>TreeModel::row-deleted</code> signal.</p>
 <h2 id="proxy-1" class="section-header"><a href="#proxy-1"><code>proxy</code></a></h2>
-<p>a <code>gobject::Object</code></p>
+<p>a <code>glib::object::Object</code></p>
 <h2 id="path-2" class="section-header"><a href="#path-2"><code>path</code></a></h2>
 <p>the path position that was deleted</p>
 </div><h4 id="method.inserted" class="method"><code>pub fn <a href="#method.inserted" class="fnname">inserted</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;&gt;(proxy: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P, path: &amp;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>)</code><a href="#method.inserted" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/tree_row_reference.rs.html#159-167" title="goto source code">[src]</a></h4><div class="docblock"><p>Lets a set of row reference created by
 <code>TreeRowReference::new_proxy</code> know that the
 model emitted the <code>TreeModel::row-inserted</code> signal.</p>
 <h2 id="proxy-2" class="section-header"><a href="#proxy-2"><code>proxy</code></a></h2>
-<p>a <code>gobject::Object</code></p>
+<p>a <code>glib::object::Object</code></p>
 <h2 id="path-3" class="section-header"><a href="#path-3"><code>path</code></a></h2>
 <p>the row position that was inserted</p>
 </div></div><h3 id="impl-1" class="impl"><code class="in-band">impl <a class="struct" href="struct.TreeRowReference.html" title="struct gtk4::TreeRowReference">TreeRowReference</a></code><a href="#impl-1" class="anchor"></a><a class="srclink" href="../src/gtk4/tree_row_reference.rs.html#8-43" title="goto source code">[src]</a></h3><div class="impl-items"><h4 id="method.reordered" class="method"><code>pub fn <a href="#method.reordered" class="fnname">reordered</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;proxy: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P, <br>&nbsp;&nbsp;&nbsp;&nbsp;path: &amp;<a class="struct" href="struct.TreePath.html" title="struct gtk4::TreePath">TreePath</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;iter: &amp;<a class="struct" href="struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;new_order: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a><br>)</code><a href="#method.reordered" class="anchor"></a><a class="srclink" href="../src/gtk4/tree_row_reference.rs.html#21-42" title="goto source code">[src]</a></h4><div class="docblock"><p>Lets a set of row reference created by
 <code>TreeRowReference::new_proxy</code> know that the
 model emitted the <code>TreeModel::rows-reordered</code> signal.</p>
 <h2 id="proxy-3" class="section-header"><a href="#proxy-3"><code>proxy</code></a></h2>
-<p>a <code>gobject::Object</code></p>
+<p>a <code>glib::object::Object</code></p>
 <h2 id="path-4" class="section-header"><a href="#path-4"><code>path</code></a></h2>
 <p>the parent path of the reordered signal</p>
 <h2 id="iter" class="section-header"><a href="#iter"><code>iter</code></a></h2>

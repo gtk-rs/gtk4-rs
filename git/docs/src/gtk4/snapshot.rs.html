@@ -249,6 +249,15 @@
 <span id="246">246</span>
 <span id="247">247</span>
 <span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -258,10 +267,11 @@
 <span class="kw">use</span> <span class="ident">gsk::ColorStop</span>;
 
 <span class="kw">impl</span> <span class="ident">Snapshot</span> {
-    <span class="doccomment">/// Appends a stroked border rectangle inside the given `outline`. The</span>
-    <span class="doccomment">/// 4 sides of the border can have different widths and colors.</span>
+    <span class="doccomment">/// Appends a stroked border rectangle inside the given `outline`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The four sides of the border can have different widths and colors.</span>
     <span class="doccomment">/// ## `outline`</span>
-    <span class="doccomment">/// a `gsk::RoundedRect` describing the outline of the border</span>
+    <span class="doccomment">/// a `GskRoundedRect` describing the outline of the border</span>
     <span class="doccomment">/// ## `border_width`</span>
     <span class="doccomment">/// the stroke width of the border on</span>
     <span class="doccomment">///  the top, right, bottom and left side respectively.</span>
@@ -295,7 +305,8 @@
     <span class="doccomment">/// ## `end_point`</span>
     <span class="doccomment">/// the point at which the linear gradient will finish</span>
     <span class="doccomment">/// ## `stops`</span>
-    <span class="doccomment">/// a pointer to an array of `gsk::ColorStop` defining the gradient</span>
+    <span class="doccomment">/// a pointer to an array of `GskColorStop`</span>
+    <span class="doccomment">///  defining the gradient</span>
     <span class="doccomment">/// ## `n_stops`</span>
     <span class="doccomment">/// the number of elements in `stops`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_linear_gradient&quot;</span>)]</span>
@@ -333,7 +344,8 @@
     <span class="doccomment">/// ## `end`</span>
     <span class="doccomment">/// the end position (on the horizontal axis)</span>
     <span class="doccomment">/// ## `stops`</span>
-    <span class="doccomment">/// a pointer to an array of `gsk::ColorStop` defining the gradient</span>
+    <span class="doccomment">/// a pointer to an array of `GskColorStop`</span>
+    <span class="doccomment">///  defining the gradient</span>
     <span class="doccomment">/// ## `n_stops`</span>
     <span class="doccomment">/// the number of elements in `stops`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_radial_gradient&quot;</span>)]</span>
@@ -369,10 +381,11 @@
     <span class="doccomment">/// ## `center`</span>
     <span class="doccomment">/// the center point of the conic gradient</span>
     <span class="doccomment">/// ## `rotation`</span>
-    <span class="doccomment">/// the clockwise rotation in degrees of the starting angle. 0 means the</span>
-    <span class="doccomment">///  starting angle is the top.</span>
+    <span class="doccomment">/// the clockwise rotation in degrees of the starting angle.</span>
+    <span class="doccomment">///  0 means the starting angle is the top.</span>
     <span class="doccomment">/// ## `stops`</span>
-    <span class="doccomment">/// a pointer to an array of `gsk::ColorStop` defining the gradient</span>
+    <span class="doccomment">/// a pointer to an array of `GskColorStop`</span>
+    <span class="doccomment">///  defining the gradient</span>
     <span class="doccomment">/// ## `n_stops`</span>
     <span class="doccomment">/// the number of elements in `stops`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_conic_gradient&quot;</span>)]</span>
@@ -410,7 +423,8 @@
     <span class="doccomment">/// ## `end`</span>
     <span class="doccomment">/// the end position (on the horizontal axis)</span>
     <span class="doccomment">/// ## `stops`</span>
-    <span class="doccomment">/// a pointer to an array of `gsk::ColorStop` defining the gradient</span>
+    <span class="doccomment">/// a pointer to an array of `GskColorStop`</span>
+    <span class="doccomment">///  defining the gradient</span>
     <span class="doccomment">/// ## `n_stops`</span>
     <span class="doccomment">/// the number of elements in `stops`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_repeating_radial_gradient&quot;</span>)]</span>
@@ -448,7 +462,8 @@
     <span class="doccomment">/// ## `end_point`</span>
     <span class="doccomment">/// the point at which the linear gradient will finish</span>
     <span class="doccomment">/// ## `stops`</span>
-    <span class="doccomment">/// a pointer to an array of `gsk::ColorStop` defining the gradient</span>
+    <span class="doccomment">/// a pointer to an array of `GskColorStop`</span>
+    <span class="doccomment">///  defining the gradient</span>
     <span class="doccomment">/// ## `n_stops`</span>
     <span class="doccomment">/// the number of elements in `stops`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_repeating_linear_gradient&quot;</span>)]</span>
@@ -472,9 +487,11 @@
         }
     }
 
-    <span class="doccomment">/// Inserts a debug node with a message. Debug nodes don&#39;t affect</span>
-    <span class="doccomment">/// the rendering at all, but can be helpful in identifying parts</span>
-    <span class="doccomment">/// of a render node tree dump, for example in the GTK inspector.</span>
+    <span class="doccomment">/// Inserts a debug node with a message.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Debug nodes don&#39;t affect the rendering at all, but can be</span>
+    <span class="doccomment">/// helpful in identifying parts of a render node tree dump,</span>
+    <span class="doccomment">/// for example in the GTK inspector.</span>
     <span class="doccomment">/// ## `message`</span>
     <span class="doccomment">/// a printf-style format string</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_push_debug&quot;</span>)]</span>
@@ -483,9 +500,10 @@
     }
 
     <span class="doccomment">/// Appends `node` to the current render node of `self`,</span>
-    <span class="doccomment">/// without changing the current node. If `self` does</span>
-    <span class="doccomment">/// not have a current node yet, `node` will become the</span>
-    <span class="doccomment">/// initial node.</span>
+    <span class="doccomment">/// without changing the current node.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If `self` does not have a current node yet, `node`</span>
+    <span class="doccomment">/// will become the initial node.</span>
     <span class="doccomment">/// ## `node`</span>
     <span class="doccomment">/// a `gsk::RenderNode`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_node&quot;</span>)]</span>

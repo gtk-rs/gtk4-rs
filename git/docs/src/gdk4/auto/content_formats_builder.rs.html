@@ -122,9 +122,8 @@
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A `ContentFormatsBuilder` struct is an opaque struct. It is meant to</span>
-    <span class="doccomment">/// not be kept around and only be used to create new `ContentFormats`</span>
-    <span class="doccomment">/// objects.</span>
+    <span class="doccomment">/// A `GdkContentFormatsBuilder` is an auxiliary struct used to create</span>
+    <span class="doccomment">/// new `GdkContentFormats`, and should not be kept around.</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ContentFormatsBuilder</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GdkContentFormatsBuilder</span><span class="op">&gt;</span>);
 
@@ -136,13 +135,14 @@
 }
 
 <span class="kw">impl</span> <span class="ident">ContentFormatsBuilder</span> {
-    <span class="doccomment">/// Create a new `ContentFormatsBuilder` object. The resulting builder</span>
-    <span class="doccomment">/// would create an empty `ContentFormats`. Use addition functions to add</span>
-    <span class="doccomment">/// types to it.</span>
+    <span class="doccomment">/// Create a new `GdkContentFormatsBuilder` object.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The resulting builder would create an empty `GdkContentFormats`.</span>
+    <span class="doccomment">/// Use addition functions to add types to it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `ContentFormatsBuilder`</span>
+    <span class="doccomment">/// a new `GdkContentFormatsBuilder`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_builder_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentFormatsBuilder</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -183,12 +183,12 @@
         }
     }
 
-    <span class="doccomment">/// Creates a new `ContentFormats` from the current state of the</span>
+    <span class="doccomment">/// Creates a new `GdkContentFormats` from the current state of the</span>
     <span class="doccomment">/// given `self`, and frees the `self` instance.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the newly created `ContentFormats`</span>
+    <span class="doccomment">/// the newly created `GdkContentFormats`</span>
     <span class="doccomment">///  with all the formats added to `self`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_builder_free_to_formats&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">free_to_formats</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ContentFormats</span><span class="op">&gt;</span> {
@@ -199,17 +199,17 @@
         }
     }
 
-    <span class="doccomment">/// Creates a new `ContentFormats` from the given `self`.</span>
+    <span class="doccomment">/// Creates a new `GdkContentFormats` from the given `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The given `ContentFormatsBuilder` is reset once this function returns;</span>
+    <span class="doccomment">/// The given `GdkContentFormatsBuilder` is reset once this function returns;</span>
     <span class="doccomment">/// you cannot call this function multiple times on the same `self` instance.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is intended primarily for bindings. C code should use</span>
-    <span class="doccomment">/// `ContentFormatsBuilder::free_to_formats`.</span>
+    <span class="doccomment">/// [method`Gdk.ContentFormatsBuilder`.free_to_formats].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the newly created `ContentFormats`</span>
+    <span class="doccomment">/// the newly created `GdkContentFormats`</span>
     <span class="doccomment">///  with all the formats added to `self`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_builder_to_formats&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_formats</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ContentFormats</span><span class="op">&gt;</span> {

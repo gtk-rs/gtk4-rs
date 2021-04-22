@@ -98,13 +98,13 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `ListBase` is the abstract base class for GTK&#39;s list widgets.</span>
+    <span class="doccomment">/// `GtkListBase` is the abstract base class for GTK&#39;s list widgets.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is an Abstract Base Class, you cannot instantiate it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`ListBaseExt`](trait.ListBaseExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`AccessibleExt`](trait.AccessibleExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ConstraintTargetExt`](trait.ConstraintTargetExt.html), [`OrientableExt`](trait.OrientableExt.html), [`ScrollableExt`](trait.ScrollableExt.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html)</span>
+    <span class="doccomment">/// [`ListBaseExt`](trait@crate::ListBaseExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`OrientableExt`](trait@crate::OrientableExt), [`ScrollableExt`](trait@crate::ScrollableExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ListBase</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkListBase</span>, <span class="ident">ffi::GtkListBaseClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Orientable</span>, <span class="ident">Scrollable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -118,7 +118,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`GridView`](struct.GridView.html), [`ListBase`](struct.ListBase.html), [`ListView`](struct.ListView.html)</span>
+<span class="doccomment">/// [`GridView`](struct@crate::GridView), [`ListBase`](struct@crate::ListBase), [`ListView`](struct@crate::ListView)</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ListBaseExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="kw">fn</span> <span class="ident">connect_property_orientation_notify</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 }

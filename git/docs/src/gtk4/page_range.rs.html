@@ -96,12 +96,18 @@
 <span id="93">93</span>
 <span id="94">94</span>
 <span id="95">95</span>
+<span id="96">96</span>
+<span id="97">97</span>
+<span id="98">98</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">std::ptr</span>;
 
+<span class="doccomment">/// A range of pages to print.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// See also [method`Gtk.PrintSettings`.set_page_ranges].</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PageRange</span>(<span class="ident">ffi::GtkPageRange</span>);
 

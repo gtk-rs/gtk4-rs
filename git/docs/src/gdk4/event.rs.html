@@ -809,6 +809,10 @@
 <span id="806">806</span>
 <span id="807">807</span>
 <span id="808">808</span>
+<span id="809">809</span>
+<span id="810">810</span>
+<span id="811">811</span>
+<span id="812">812</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -828,14 +832,18 @@
 <span class="kw">use</span> <span class="ident">std::mem</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// The `Event` struct contains only private fields and</span>
-    <span class="doccomment">/// should not be accessed directly.</span>
+    <span class="doccomment">/// `GdkEvent`s are immutable data structures, created by GDK to</span>
+    <span class="doccomment">/// represent windowing system events.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// In GTK applications the events are handled automatically by toplevel</span>
+    <span class="doccomment">/// widgets and passed on to the event controllers of appropriate widgets,</span>
+    <span class="doccomment">/// so using `GdkEvent` and its related API is rarely needed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is an Abstract Base Class, you cannot instantiate it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`EventExt`](trait.EventExt.html)</span>
+    <span class="doccomment">/// [`EventExt`](trait@crate::EventExt)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Event</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GdkEvent</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {

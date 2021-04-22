@@ -247,6 +247,16 @@
 <span id="244">244</span>
 <span id="245">245</span>
 <span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -260,8 +270,15 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RgbaParseError</span>;
 
-<span class="doccomment">/// A `RGBA` is used to represent a (possibly translucent)</span>
-<span class="doccomment">/// color, in a way that is compatible with cairo’s notion of color.</span>
+<span class="doccomment">/// A `GdkRGBA` is used to represent a color, in a way that is compatible</span>
+<span class="doccomment">/// with cairo’s notion of color.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// `GdkRGBA` is a convenient way to pass colors around. It’s based on</span>
+<span class="doccomment">/// cairo’s way to deal with colors and mirrors its behavior. All values</span>
+<span class="doccomment">/// are in the range from 0.0 to 1.0 inclusive. So the color</span>
+<span class="doccomment">/// (0.0, 0.0, 0.0, 0.0) represents transparent black and</span>
+<span class="doccomment">/// (1.0, 1.0, 1.0, 1.0) is opaque white. Other values will</span>
+<span class="doccomment">/// be clamped to this range when drawing.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::upper_case_acronyms</span>)]</span>
@@ -273,8 +290,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">RGBA</span> {
-    <span class="doccomment">/// Checks if an `self` value is opaque. That is, drawing with the value</span>
-    <span class="doccomment">/// will not retain any results from previous contents.</span>
+    <span class="doccomment">/// Checks if an `self` value is opaque.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// That is, drawing with the value will not retain any results</span>
+    <span class="doccomment">/// from previous contents.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -285,8 +304,9 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_rgba_is_opaque</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Checks if an `self` value is transparent. That is, drawing with the value</span>
-    <span class="doccomment">/// would not produce any change.</span>
+    <span class="doccomment">/// Checks if an `self` value is transparent.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// That is, drawing with the value would not produce any change.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

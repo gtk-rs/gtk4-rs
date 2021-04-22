@@ -255,15 +255,6 @@
 <span id="252">252</span>
 <span id="253">253</span>
 <span id="254">254</span>
-<span id="255">255</span>
-<span id="256">256</span>
-<span id="257">257</span>
-<span id="258">258</span>
-<span id="259">259</span>
-<span id="260">260</span>
-<span id="261">261</span>
-<span id="262">262</span>
-<span id="263">263</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -322,15 +313,6 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_set_column_types&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_column_types</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">types</span>: <span class="kw-2">&amp;</span>[<span class="ident">glib::Type</span>]);
 
-    <span class="doccomment">/// Sets the data in the cell specified by `iter` and `column`.</span>
-    <span class="doccomment">/// The type of `value` must be convertible to the type of the</span>
-    <span class="doccomment">/// column.</span>
-    <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// A valid `TreeIter` for the row being modified</span>
-    <span class="doccomment">/// ## `column`</span>
-    <span class="doccomment">/// column number to modify</span>
-    <span class="doccomment">/// ## `value`</span>
-    <span class="doccomment">/// new value for the cell</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_set_value&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">column</span>: <span class="ident">u32</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">Value</span>);
 }

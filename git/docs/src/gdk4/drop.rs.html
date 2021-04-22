@@ -114,15 +114,15 @@
 <span class="kw">use</span> <span class="ident">std::ptr</span>;
 
 <span class="kw">impl</span> <span class="ident">Drop</span> {
-    <span class="doccomment">/// Asynchronously read the dropped data from a `Drop`</span>
+    <span class="doccomment">/// Asynchronously read the dropped data from a `GdkDrop`</span>
     <span class="doccomment">/// in a format that complies with one of the mime types.</span>
     <span class="doccomment">/// ## `mime_types`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///  pointer to an array of mime types</span>
     <span class="doccomment">/// ## `io_priority`</span>
-    <span class="doccomment">/// the io priority for the read operation</span>
+    <span class="doccomment">/// the I/O priority for the read operation</span>
     <span class="doccomment">/// ## `cancellable`</span>
-    <span class="doccomment">/// optional `gio::Cancellable` object,</span>
+    <span class="doccomment">/// optional `GCancellable` object,</span>
     <span class="doccomment">///  `None` to ignore</span>
     <span class="doccomment">/// ## `callback`</span>
     <span class="doccomment">/// a `GAsyncReadyCallback` to call when</span>

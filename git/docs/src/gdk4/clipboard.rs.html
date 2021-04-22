@@ -116,6 +116,9 @@
 <span id="113">113</span>
 <span id="114">114</span>
 <span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -129,19 +132,19 @@
 
 <span class="kw">impl</span> <span class="ident">Clipboard</span> {
     <span class="doccomment">/// Asynchronously requests an input stream to read the `self`&#39;s</span>
-    <span class="doccomment">/// contents from. When the operation is finished `callback` will be called.</span>
-    <span class="doccomment">/// You can then call `Clipboard::read_finish` to get the result of the</span>
-    <span class="doccomment">/// operation.</span>
+    <span class="doccomment">/// contents from.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// When the operation is finished `callback` will be called. You must then</span>
+    <span class="doccomment">/// call [method`Gdk.Clipboard`.read_finish] to get the result of the operation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The clipboard will choose the most suitable mime type from the given list</span>
     <span class="doccomment">/// to fulfill the request, preferring the ones listed first.</span>
     <span class="doccomment">/// ## `mime_types`</span>
     <span class="doccomment">/// a `None`-terminated array of mime types to choose from</span>
     <span class="doccomment">/// ## `io_priority`</span>
-    <span class="doccomment">/// the [I/O priority][io-priority]</span>
-    <span class="doccomment">/// of the request.</span>
+    <span class="doccomment">/// the I/O priority of the request</span>
     <span class="doccomment">/// ## `cancellable`</span>
-    <span class="doccomment">/// optional `gio::Cancellable` object, `None` to ignore.</span>
+    <span class="doccomment">/// optional `GCancellable` object, `None` to ignore.</span>
     <span class="doccomment">/// ## `callback`</span>
     <span class="doccomment">/// callback to call when the request is satisfied</span>
     <span class="doccomment">/// ## `user_data`</span>
@@ -219,8 +222,11 @@
         }))
     }
 
-    <span class="doccomment">/// Sets the clipboard to contain the value collected from the given</span>
-    <span class="doccomment">/// varargs.</span>
+    <span class="doccomment">/// Sets the clipboard to contain the value collected from the given varargs.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ```c</span>
+    <span class="doccomment">/// gdk_clipboard_set (clipboard, GTK_TYPE_TEXT_BUFFER, buffer);</span>
+    <span class="doccomment">/// ```</span>
     <span class="doccomment">/// ## `type_`</span>
     <span class="doccomment">/// type of value to set</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_clipboard_set_value&quot;</span>)]</span>

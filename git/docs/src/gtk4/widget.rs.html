@@ -135,6 +135,8 @@
 <span id="132">132</span>
 <span id="133">133</span>
 <span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -150,25 +152,27 @@
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">WidgetExtManual</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Queues an animation frame update and adds a callback to be called</span>
-    <span class="doccomment">/// before each frame. Until the tick callback is removed, it will be</span>
-    <span class="doccomment">/// called frequently (usually at the frame rate of the output device</span>
-    <span class="doccomment">/// or as quickly as the application can be repainted, whichever is</span>
-    <span class="doccomment">/// slower). For this reason, is most suitable for handling graphics</span>
-    <span class="doccomment">/// that change every frame or every few frames. The tick callback does</span>
-    <span class="doccomment">/// not automatically imply a relayout or repaint. If you want a</span>
-    <span class="doccomment">/// repaint or relayout, and aren’t changing widget properties that</span>
-    <span class="doccomment">/// would trigger that (for example, changing the text of a `Label`),</span>
-    <span class="doccomment">/// then you will have to call `WidgetExt::queue_resize` or</span>
-    <span class="doccomment">/// `WidgetExt::queue_draw` yourself.</span>
+    <span class="doccomment">/// before each frame.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `gdk::FrameClock::get_frame_time` should generally be used for timing</span>
-    <span class="doccomment">/// continuous animations and</span>
-    <span class="doccomment">/// `gdk::FrameTimings::get_predicted_presentation_time` if you are</span>
+    <span class="doccomment">/// Until the tick callback is removed, it will be called frequently</span>
+    <span class="doccomment">/// (usually at the frame rate of the output device or as quickly as</span>
+    <span class="doccomment">/// the application can be repainted, whichever is slower). For this</span>
+    <span class="doccomment">/// reason, is most suitable for handling graphics that change every</span>
+    <span class="doccomment">/// frame or every few frames. The tick callback does not automatically</span>
+    <span class="doccomment">/// imply a relayout or repaint. If you want a repaint or relayout, and</span>
+    <span class="doccomment">/// aren’t changing widget properties that would trigger that (for example,</span>
+    <span class="doccomment">/// changing the text of a `Label`), then you will have to call</span>
+    <span class="doccomment">/// [method`Gtk.Widget`.queue_resize] or [method`Gtk.Widget`.queue_draw]</span>
+    <span class="doccomment">/// yourself.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// [method`Gdk.FrameClock`.get_frame_time] should generally be used</span>
+    <span class="doccomment">/// for timing continuous animations and</span>
+    <span class="doccomment">/// [method`Gdk.FrameTimings`.get_predicted_presentation_time] if you are</span>
     <span class="doccomment">/// trying to display isolated frames at particular times.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a more convenient alternative to connecting directly to the</span>
-    <span class="doccomment">/// `gdk::FrameClock::update` signal of `gdk::FrameClock`, since you don&#39;t</span>
-    <span class="doccomment">/// have to worry about when a `gdk::FrameClock` is assigned to a widget.</span>
+    <span class="doccomment">/// [signal`Gdk.FrameClock`::update] signal of `GdkFrameClock`, since you</span>
+    <span class="doccomment">/// don&#39;t have to worry about when a `GdkFrameClock` is assigned to a widget.</span>
     <span class="doccomment">/// ## `callback`</span>
     <span class="doccomment">/// function to call for updating animations</span>
     <span class="doccomment">/// ## `user_data`</span>
@@ -180,7 +184,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// an id for the connection of this callback. Remove the callback</span>
     <span class="doccomment">///  by passing the id returned from this function to</span>
-    <span class="doccomment">///  `Widget::remove_tick_callback`</span>
+    <span class="doccomment">///  [method`Gtk.Widget`.remove_tick_callback]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_widget_add_tick_callback&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">add_tick_callback</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">gdk::FrameClock</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Continue</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,

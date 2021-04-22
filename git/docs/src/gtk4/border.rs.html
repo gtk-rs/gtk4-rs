@@ -65,6 +65,7 @@
 <span id="62">62</span>
 <span id="63">63</span>
 <span id="64">64</span>
+<span id="65">65</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -73,8 +74,9 @@
 <span class="kw">use</span> <span class="ident">std::ops</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A struct that specifies a border around a rectangular area</span>
-    <span class="doccomment">/// that can be of different width on each side.</span>
+    <span class="doccomment">/// A struct that specifies a border around a rectangular area.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Each side can have different width.</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Border</span>(<span class="ident">Boxed</span><span class="op">&lt;</span><span class="ident">ffi::GtkBorder</span><span class="op">&gt;</span>);
 

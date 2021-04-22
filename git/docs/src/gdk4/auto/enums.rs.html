@@ -2131,9 +2131,7 @@
 <span class="kw">use</span> <span class="ident">glib::Type</span>;
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
-<span class="doccomment">/// An enumeration describing the way in which a device</span>
-<span class="doccomment">/// axis (valuator) maps onto the predefined valuator</span>
-<span class="doccomment">/// types that GTK understands.</span>
+<span class="doccomment">/// Defines how device axes are interpreted by GTK.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Note that the X and Y axes are not really needed; pointer devices</span>
 <span class="doccomment">/// report their location via the x/y members of events regardless. Whether</span>
@@ -2605,7 +2603,7 @@
     }
 }
 
-<span class="doccomment">/// Used in `Drag` to the reason of a cancelled DND operation.</span>
+<span class="doccomment">/// Used in `GdkDrag` to the reason of a cancelled DND operation.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkDragCancelReason&quot;</span>)]</span>
@@ -2936,8 +2934,7 @@
     }
 }
 
-<span class="doccomment">/// Indicates which monitor (in a multi-head setup) a surface should span over</span>
-<span class="doccomment">/// when in fullscreen mode.</span>
+<span class="doccomment">/// Indicates which monitor a surface should span over when in fullscreen mode.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkFullscreenMode&quot;</span>)]</span>
@@ -3015,7 +3012,7 @@
     }
 }
 
-<span class="doccomment">/// Error enumeration for `GLContext`.</span>
+<span class="doccomment">/// Error enumeration for `GdkGLContext`.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkGLError&quot;</span>)]</span>
@@ -3374,8 +3371,9 @@
     }
 }
 
-<span class="doccomment">/// The possible return values from `KeyEvent::matches`</span>
-<span class="doccomment">/// describe how well an event matches a given keyval and modifiers.</span>
+<span class="doccomment">/// Describes how well an event matches a given keyval and modifiers.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// `GdkKeyMatch` values are returned by [method`Gdk.KeyEvent`.matches].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkKeyMatch&quot;</span>)]</span>
@@ -3460,13 +3458,13 @@
     }
 }
 
-<span class="doccomment">/// `MemoryFormat` describes a format that bytes can have in memory.</span>
+<span class="doccomment">/// `GdkMemoryFormat` describes a format that bytes can have in memory.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// It describes formats by listing the contents of the memory passed to it.</span>
 <span class="doccomment">/// So GDK_MEMORY_A8R8G8B8 will be 1 byte (8 bits) of alpha, followed by a</span>
 <span class="doccomment">/// byte each of red, green and blue. It is not endian-dependent, so</span>
-<span class="doccomment">/// CAIRO_FORMAT_ARGB32 is represented by different ``GdkMemoryFormats`` on</span>
-<span class="doccomment">/// architectures with different endiannesses.</span>
+<span class="doccomment">/// CAIRO_FORMAT_ARGB32 is represented by different `GdkMemoryFormats`</span>
+<span class="doccomment">/// on architectures with different endiannesses.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Its naming is modelled after VkFormat (see</span>
 <span class="doccomment">/// https://www.khronos.org/registry/vulkan/specs/1.0/html/vkspec.html`VkFormat`</span>
@@ -4026,9 +4024,11 @@
     }
 }
 
-<span class="doccomment">/// Specifies the current state of a touchpad gesture. All gestures are</span>
-<span class="doccomment">/// guaranteed to begin with an event with phase `TouchpadGesturePhase::Begin`,</span>
-<span class="doccomment">/// followed by 0 or several events with phase `TouchpadGesturePhase::Update`.</span>
+<span class="doccomment">/// Specifies the current state of a touchpad gesture.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// All gestures are guaranteed to begin with an event with phase</span>
+<span class="doccomment">/// `TouchpadGesturePhase::Begin`, followed by 0 or several events</span>
+<span class="doccomment">/// with phase `TouchpadGesturePhase::Update`.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// A finished gesture may have 2 possible outcomes, an event with phase</span>
 <span class="doccomment">/// `TouchpadGesturePhase::End` will be emitted when the gesture is</span>

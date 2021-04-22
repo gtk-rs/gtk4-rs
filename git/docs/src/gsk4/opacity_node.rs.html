@@ -45,6 +45,16 @@
 <span id="42">42</span>
 <span id="43">43</span>
 <span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -59,7 +69,7 @@
 );
 
 <span class="kw">impl</span> <span class="ident">OpacityNode</span> {
-    <span class="doccomment">/// Creates a `RenderNode` that will drawn the `child` with reduced</span>
+    <span class="doccomment">/// Creates a `GskRenderNode` that will drawn the `child` with reduced</span>
     <span class="doccomment">/// `opacity`.</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// The node to draw</span>
@@ -68,7 +78,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A new `RenderNode`</span>
+    <span class="doccomment">/// A new `GskRenderNode`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_opacity_node_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsRenderNode</span><span class="op">&gt;</span>(<span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">opacity</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">OpacityNode</span> {
         <span class="macro">skip_assert_initialized!</span>();
@@ -80,11 +90,21 @@
         }
     }
 
+    <span class="doccomment">/// Gets the child node that is getting opacityed by the given `self`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The child that is getting opacityed</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_opacity_node_get_child&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">RenderNode</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gsk_opacity_node_get_child</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
+    <span class="doccomment">/// Gets the transparency factor for an opacity node.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// the opacity factor</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_opacity_node_get_opacity&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">opacity</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span> {
         <span class="kw">unsafe</span> { <span class="ident">ffi::gsk_opacity_node_get_opacity</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }

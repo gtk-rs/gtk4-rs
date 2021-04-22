@@ -88,8 +88,8 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `FixedLayout` is a layout manager which can place child widgets</span>
-    <span class="doccomment">/// at fixed positions, and with fixed sizes.</span>
+    <span class="doccomment">/// `GtkFixedLayout` is a layout manager which can place child widgets</span>
+    <span class="doccomment">/// at fixed positions.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Most applications should never use this layout manager; fixed positioning</span>
     <span class="doccomment">/// and sizing requires constant recalculations on where children need to be</span>
@@ -109,20 +109,20 @@
     <span class="doccomment">///  display of non-English text will use a different font in many</span>
     <span class="doccomment">///  cases.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// In addition, `FixedLayout` does not pay attention to text direction and</span>
+    <span class="doccomment">/// In addition, `GtkFixedLayout` does not pay attention to text direction and</span>
     <span class="doccomment">/// thus may produce unwanted results if your app is run under right-to-left</span>
     <span class="doccomment">/// languages such as Hebrew or Arabic. That is: normally GTK will order</span>
     <span class="doccomment">/// containers appropriately depending on the text direction, e.g. to put labels</span>
     <span class="doccomment">/// to the right of the thing they label when using an RTL language;</span>
-    <span class="doccomment">/// `FixedLayout` won&#39;t be able to do that for you.</span>
+    <span class="doccomment">/// `GtkFixedLayout` won&#39;t be able to do that for you.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Finally, fixed positioning makes it kind of annoying to add/remove GUI</span>
+    <span class="doccomment">/// Finally, fixed positioning makes it kind of annoying to add/remove UI</span>
     <span class="doccomment">/// elements, since you have to reposition all the other elements. This is a</span>
     <span class="doccomment">/// long-term maintenance problem for your application.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`LayoutManagerExt`](trait.LayoutManagerExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html)</span>
+    <span class="doccomment">/// [`LayoutManagerExt`](trait@crate::LayoutManagerExt), [`trait@glib::object::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FixedLayout</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkFixedLayout</span>, <span class="ident">ffi::GtkFixedLayoutClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">LayoutManager</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -131,11 +131,11 @@
 }
 
 <span class="kw">impl</span> <span class="ident">FixedLayout</span> {
-    <span class="doccomment">/// Creates a new `FixedLayout`.</span>
+    <span class="doccomment">/// Creates a new `GtkFixedLayout`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the newly created `FixedLayout`</span>
+    <span class="doccomment">/// the newly created `GtkFixedLayout`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_fixed_layout_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FixedLayout</span> {
         <span class="macro">assert_initialized_main_thread!</span>();

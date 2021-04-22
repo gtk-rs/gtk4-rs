@@ -93,6 +93,7 @@
 <span id="90">90</span>
 <span id="91">91</span>
 <span id="92">92</span>
+<span id="93">93</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -100,6 +101,7 @@
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
+<span class="doccomment">/// A `TimeCoord` stores a single event in a motion history.</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TimeCoord</span>(<span class="ident">ffi::GdkTimeCoord</span>);
 

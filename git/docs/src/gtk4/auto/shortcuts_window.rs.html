@@ -800,18 +800,19 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A `ShortcutsWindow` shows brief information about the keyboard shortcuts</span>
-    <span class="doccomment">/// and gestures of an application. The shortcuts can be grouped, and you can</span>
-    <span class="doccomment">/// have multiple sections in this window, corresponding to the major modes of</span>
-    <span class="doccomment">/// your application.</span>
+    <span class="doccomment">/// A `GtkShortcutsWindow` shows information about the keyboard shortcuts</span>
+    <span class="doccomment">/// and gestures of an application.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The shortcuts can be grouped, and you can have multiple sections in this</span>
+    <span class="doccomment">/// window, corresponding to the major modes of your application.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Additionally, the shortcuts can be filtered by the current view, to avoid</span>
     <span class="doccomment">/// showing information that is not relevant in the current application context.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The recommended way to construct a `ShortcutsWindow` is with `Builder`,</span>
-    <span class="doccomment">/// by populating a `ShortcutsWindow` with one or more `ShortcutsSection`</span>
-    <span class="doccomment">/// objects, which contain ``GtkShortcutsGroups`` that in turn contain objects of</span>
-    <span class="doccomment">/// class `ShortcutsShortcut`.</span>
+    <span class="doccomment">/// The recommended way to construct a `GtkShortcutsWindow` is with</span>
+    <span class="doccomment">/// [class`Gtk.Builder`], by populating a `GtkShortcutsWindow` with one or</span>
+    <span class="doccomment">/// more `GtkShortcutsSection` objects, which contain `GtkShortcutsGroups`</span>
+    <span class="doccomment">/// that in turn contain objects of class `GtkShortcutsShortcut`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # A simple example:</span>
     <span class="doccomment">///</span>
@@ -827,7 +828,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// ![](clocks-shortcuts.png)</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This example shows a `ShortcutsWindow` that has been configured to show only</span>
+    <span class="doccomment">/// This example shows a `GtkShortcutsWindow` that has been configured to show only</span>
     <span class="doccomment">/// the shortcuts relevant to the &quot;stopwatch&quot; view.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The .ui file for this example can be found [here](https://gitlab.gnome.org/GNOME/gtk/tree/master/demos/gtk-demo/shortcuts-clocks.ui).</span>
@@ -836,14 +837,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// ![](builder-shortcuts.png)</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This example shows a `ShortcutsWindow` with two sections, &quot;Editor Shortcuts&quot;</span>
+    <span class="doccomment">/// This example shows a `GtkShortcutsWindow` with two sections, &quot;Editor Shortcuts&quot;</span>
     <span class="doccomment">/// and &quot;Terminal Shortcuts&quot;.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The .ui file for this example can be found [here](https://gitlab.gnome.org/GNOME/gtk/tree/master/demos/gtk-demo/shortcuts-builder.ui).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`GtkWindowExt`](trait.GtkWindowExt.html), [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`AccessibleExt`](trait.AccessibleExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ConstraintTargetExt`](trait.ConstraintTargetExt.html), [`NativeExt`](trait.NativeExt.html), [`RootExt`](trait.RootExt.html), [`ShortcutManagerExt`](trait.ShortcutManagerExt.html), [`GtkWindowExtManual`](prelude/trait.GtkWindowExtManual.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html)</span>
+    <span class="doccomment">/// [`GtkWindowExt`](trait@crate::GtkWindowExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`NativeExt`](trait@crate::NativeExt), [`RootExt`](trait@crate::RootExt), [`ShortcutManagerExt`](trait@crate::ShortcutManagerExt), [`GtkWindowExtManual`](trait@crate::GtkWindowExtManual), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ShortcutsWindow</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkShortcutsWindow</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Window</span>, <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Native</span>, <span class="ident">Root</span>, <span class="ident">ShortcutManager</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -904,10 +905,9 @@
         }
     }
 
-    <span class="doccomment">/// The ::close signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`SignalAction`]</span>
-    <span class="doccomment">/// which gets emitted when the user uses a keybinding to close</span>
-    <span class="doccomment">/// the window.</span>
+    <span class="doccomment">/// Emitted when the user uses a keybinding to close the window.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is a [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default binding for this signal is the Escape key.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_close</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">ShortcutsWindow</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
@@ -939,9 +939,9 @@
         };
     }
 
-    <span class="doccomment">/// The ::search signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`SignalAction`]</span>
-    <span class="doccomment">/// which gets emitted when the user uses a keybinding to start a search.</span>
+    <span class="doccomment">/// Emitted when the user uses a keybinding to start a search.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is a [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default binding for this signal is Control-F.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_search</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">ShortcutsWindow</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {

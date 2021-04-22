@@ -188,6 +188,10 @@
 <span id="185">185</span>
 <span id="186">186</span>
 <span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -196,23 +200,25 @@
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">mem</span>, <span class="ident">ptr</span>};
 
 <span class="kw">impl</span> <span class="ident">Display</span> {
-    <span class="doccomment">/// Translates the contents of a ``GdkEventKey`` (ie `keycode`, `state`, and `group`)</span>
-    <span class="doccomment">/// into a keyval, effective group, and level. Modifiers that affected the</span>
-    <span class="doccomment">/// translation and are thus unavailable for application use are returned in</span>
-    <span class="doccomment">/// `consumed_modifiers`.</span>
+    <span class="doccomment">/// Translates the contents of a `GdkEventKey` into a keyval, effective group,</span>
+    <span class="doccomment">/// and level.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `effective_group` is the group that was actually used for the translation;</span>
-    <span class="doccomment">/// some keys such as Enter are not affected by the active keyboard group.</span>
-    <span class="doccomment">/// The `level` is derived from `state`.</span>
+    <span class="doccomment">/// Modifiers that affected the translation and are thus unavailable for</span>
+    <span class="doccomment">/// application use are returned in `consumed_modifiers`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `consumed_modifiers` gives modifiers that should be masked outfrom `state`</span>
-    <span class="doccomment">/// when comparing this key press to a keyboard shortcut. For instance, on a US</span>
-    <span class="doccomment">/// keyboard, the `plus` symbol is shifted, so when comparing a key press to a</span>
-    <span class="doccomment">/// `&lt;Control&gt;plus` accelerator `&lt;Shift&gt;` should be masked out.</span>
+    <span class="doccomment">/// The `effective_group` is the group that was actually used for the</span>
+    <span class="doccomment">/// translation; some keys such as Enter are not affected by the active</span>
+    <span class="doccomment">/// keyboard group. The `level` is derived from `state`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This function should rarely be needed, since ``GdkEventKey`` already contains</span>
-    <span class="doccomment">/// the translated keyval. It is exported for the benefit of virtualized test</span>
-    <span class="doccomment">/// environments.</span>
+    <span class="doccomment">/// `consumed_modifiers` gives modifiers that should be masked out</span>
+    <span class="doccomment">/// from `state` when comparing this key press to a keyboard shortcut.</span>
+    <span class="doccomment">/// For instance, on a US keyboard, the `plus` symbol is shifted, so</span>
+    <span class="doccomment">/// when comparing a key press to a `&lt;Control&gt;plus` accelerator `&lt;Shift&gt;`</span>
+    <span class="doccomment">/// should be masked out.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This function should rarely be needed, since `GdkEventKey` already</span>
+    <span class="doccomment">/// contains the translated keyval. It is exported for the benefit of</span>
+    <span class="doccomment">/// virtualized test environments.</span>
     <span class="doccomment">/// ## `keycode`</span>
     <span class="doccomment">/// a keycode</span>
     <span class="doccomment">/// ## `state`</span>
@@ -268,16 +274,17 @@
     }
 
     <span class="doccomment">/// Obtains a list of keycode/group/level combinations that will</span>
-    <span class="doccomment">/// generate `keyval`. Groups and levels are two kinds of keyboard mode;</span>
-    <span class="doccomment">/// in general, the level determines whether the top or bottom symbol</span>
-    <span class="doccomment">/// on a key is used, and the group determines whether the left or</span>
-    <span class="doccomment">/// right symbol is used.</span>
+    <span class="doccomment">/// generate `keyval`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Groups and levels are two kinds of keyboard mode; in general, the level</span>
+    <span class="doccomment">/// determines whether the top or bottom symbol on a key is used, and the</span>
+    <span class="doccomment">/// group determines whether the left or right symbol is used.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// On US keyboards, the shift key changes the keyboard level, and there</span>
     <span class="doccomment">/// are no groups. A group switch key might convert a keyboard between</span>
     <span class="doccomment">/// Hebrew to English modes, for example.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ``GdkEventKey`` contains a `group` field that indicates the active</span>
+    <span class="doccomment">/// `GdkEventKey` contains a `group` field that indicates the active</span>
     <span class="doccomment">/// keyboard group. The level is computed from the modifier mask.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The returned array should be freed with `g_free`.</span>
@@ -285,7 +292,7 @@
     <span class="doccomment">/// a keyval, such as `GDK_KEY_a`, `GDK_KEY_Up`, `GDK_KEY_Return`, etc.</span>
     <span class="doccomment">/// ## `keys`</span>
     <span class="doccomment">/// return location</span>
-    <span class="doccomment">///  for an array of `KeymapKey`</span>
+    <span class="doccomment">///  for an array of `GdkKeymapKey`</span>
     <span class="doccomment">/// ## `n_keys`</span>
     <span class="doccomment">/// return location for number of elements in returned array</span>
     <span class="doccomment">///</span>
@@ -314,8 +321,9 @@
         }
     }
 
-    <span class="doccomment">/// Returns the keyvals bound to `keycode`. The Nth `KeymapKey`</span>
-    <span class="doccomment">/// in `keys` is bound to the Nth keyval in `keyvals`.</span>
+    <span class="doccomment">/// Returns the keyvals bound to `keycode`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The Nth `GdkKeymapKey` in `keys` is bound to the Nth keyval in `keyvals`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When a keycode is pressed by the user, the keyval from</span>
     <span class="doccomment">/// this list of entries is selected by considering the effective</span>
@@ -326,7 +334,7 @@
     <span class="doccomment">/// a keycode</span>
     <span class="doccomment">/// ## `keys`</span>
     <span class="doccomment">/// return</span>
-    <span class="doccomment">///  location for array of `KeymapKey`, or `None`</span>
+    <span class="doccomment">///  location for array of `GdkKeymapKey`, or `None`</span>
     <span class="doccomment">/// ## `keyvals`</span>
     <span class="doccomment">/// return</span>
     <span class="doccomment">///  location for array of keyvals, or `None`</span>
@@ -368,7 +376,7 @@
     <span class="doccomment">/// This function is only useful in very special situations</span>
     <span class="doccomment">/// and should not be used by applications.</span>
     <span class="doccomment">/// ## `event`</span>
-    <span class="doccomment">/// a `Event`</span>
+    <span class="doccomment">/// a `GdkEvent`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_put_event&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">put_event</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
         <span class="kw">unsafe</span> {

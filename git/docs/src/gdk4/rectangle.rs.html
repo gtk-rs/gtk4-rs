@@ -218,6 +218,21 @@
 <span id="215">215</span>
 <span id="216">216</span>
 <span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -227,8 +242,21 @@
 <span class="kw">use</span> <span class="ident">std::convert</span>::{<span class="ident">AsRef</span>, <span class="ident">From</span>};
 <span class="kw">use</span> <span class="ident">std::mem</span>;
 
-<span class="doccomment">/// Defines the position and size of a rectangle. It is identical to</span>
-<span class="doccomment">/// `cairo::RectangleInt`.</span>
+<span class="doccomment">/// A `GdkRectangle` data type for representing rectangles.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// `GdkRectangle` is identical to `cairo_rectangle_t`. Together with Cairo’s</span>
+<span class="doccomment">/// `cairo_region_t` data type, these are the central types for representing</span>
+<span class="doccomment">/// sets of pixels.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// The intersection of two rectangles can be computed with</span>
+<span class="doccomment">/// [method`Gdk.Rectangle`.intersect]; to find the union of two rectangles use</span>
+<span class="doccomment">/// [method`Gdk.Rectangle`.union].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// The `cairo_region_t` type provided by Cairo is usually used for managing</span>
+<span class="doccomment">/// non-rectangular clipping of graphical operations.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// The Graphene library has a number of other data types for regions and</span>
+<span class="doccomment">/// volumes in 2D and 3D.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Rectangle</span> {
@@ -259,17 +287,18 @@
         }
     }
 
-    <span class="doccomment">/// Calculates the intersection of two rectangles. It is allowed for</span>
-    <span class="doccomment">/// `dest` to be the same as either `self` or `src2`. If the rectangles</span>
-    <span class="doccomment">/// do not intersect, `dest`’s width and height is set to 0 and its x</span>
-    <span class="doccomment">/// and y values are undefined. If you are only interested in whether</span>
-    <span class="doccomment">/// the rectangles intersect, but not in the intersecting area itself,</span>
-    <span class="doccomment">/// pass `None` for `dest`.</span>
+    <span class="doccomment">/// Calculates the intersection of two rectangles.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// It is allowed for `dest` to be the same as either `self` or `src2`.</span>
+    <span class="doccomment">/// If the rectangles do not intersect, `dest`’s width and height is set</span>
+    <span class="doccomment">/// to 0 and its x and y values are undefined. If you are only interested</span>
+    <span class="doccomment">/// in whether the rectangles intersect, but not in the intersecting area</span>
+    <span class="doccomment">/// itself, pass `None` for `dest`.</span>
     <span class="doccomment">/// ## `src2`</span>
-    <span class="doccomment">/// a `Rectangle`</span>
+    <span class="doccomment">/// a `GdkRectangle`</span>
     <span class="doccomment">/// ## `dest`</span>
     <span class="doccomment">/// return location for the</span>
-    <span class="doccomment">/// intersection of `self` and `src2`, or `None`</span>
+    <span class="doccomment">///  intersection of `self` and `src2`, or `None`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -291,14 +320,15 @@
     }
 
     <span class="doccomment">/// Calculates the union of two rectangles.</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// The union of rectangles `self` and `src2` is the smallest rectangle which</span>
-    <span class="doccomment">/// includes both `self` and `src2` within it.</span>
-    <span class="doccomment">/// It is allowed for `dest` to be the same as either `self` or `src2`.</span>
+    <span class="doccomment">/// includes both `self` and `src2` within it. It is allowed for `dest` to be</span>
+    <span class="doccomment">/// the same as either `self` or `src2`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this function does not ignore &#39;empty&#39; rectangles (ie. with</span>
     <span class="doccomment">/// zero width or height).</span>
     <span class="doccomment">/// ## `src2`</span>
-    <span class="doccomment">/// a `Rectangle`</span>
+    <span class="doccomment">/// a `GdkRectangle`</span>
     <span class="doccomment">/// ## `dest`</span>
     <span class="doccomment">/// return location for the union of `self` and `src2`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_rectangle_union&quot;</span>)]</span>

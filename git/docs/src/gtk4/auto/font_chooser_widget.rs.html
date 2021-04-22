@@ -488,27 +488,27 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// The `FontChooserWidget` widget lists the available fonts,</span>
-    <span class="doccomment">/// styles and sizes, allowing the user to select a font. It is</span>
-    <span class="doccomment">/// used in the `FontChooserDialog` widget to provide a</span>
-    <span class="doccomment">/// dialog box for selecting fonts.</span>
+    <span class="doccomment">/// The `GtkFontChooserWidget` widget lets the user select a font.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// It is used in the `GtkFontChooserDialog` widget to provide a</span>
+    <span class="doccomment">/// dialog for selecting fonts.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To set the font which is initially selected, use</span>
-    <span class="doccomment">/// `FontChooser::set_font` or `FontChooser::set_font_desc`.</span>
+    <span class="doccomment">/// [method`Gtk.FontChooser`.set_font] or [method`Gtk.FontChooser`.set_font_desc].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To get the selected font use `FontChooser::get_font` or</span>
-    <span class="doccomment">/// `FontChooser::get_font_desc`.</span>
+    <span class="doccomment">/// To get the selected font use [method`Gtk.FontChooser`.get_font] or</span>
+    <span class="doccomment">/// [method`Gtk.FontChooser`.get_font_desc].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To change the text which is shown in the preview area, use</span>
-    <span class="doccomment">/// `FontChooser::set_preview_text`.</span>
+    <span class="doccomment">/// [method`Gtk.FontChooser`.set_preview_text].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # CSS nodes</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `FontChooserWidget` has a single CSS node with name fontchooser.</span>
+    <span class="doccomment">/// `GtkFontChooserWidget` has a single CSS node with name fontchooser.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`WidgetExt`](trait.WidgetExt.html), [`glib::object::ObjectExt`](../glib/object/trait.ObjectExt.html), [`AccessibleExt`](trait.AccessibleExt.html), [`BuildableExt`](trait.BuildableExt.html), [`ConstraintTargetExt`](trait.ConstraintTargetExt.html), [`FontChooserExt`](trait.FontChooserExt.html), [`WidgetExtManual`](prelude/trait.WidgetExtManual.html)</span>
+    <span class="doccomment">/// [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`FontChooserExt`](trait@crate::FontChooserExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual), [`FontChooserExtManual`](trait@crate::FontChooserExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FontChooserWidget</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkFontChooserWidget</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">FontChooser</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -517,11 +517,11 @@
 }
 
 <span class="kw">impl</span> <span class="ident">FontChooserWidget</span> {
-    <span class="doccomment">/// Creates a new `FontChooserWidget`.</span>
+    <span class="doccomment">/// Creates a new `GtkFontChooserWidget`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `FontChooserWidget`</span>
+    <span class="doccomment">/// a new `GtkFontChooserWidget`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_font_chooser_widget_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FontChooserWidget</span> {
         <span class="macro">assert_initialized_main_thread!</span>();

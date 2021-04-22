@@ -453,6 +453,14 @@
 <span id="450">450</span>
 <span id="451">451</span>
 <span id="452">452</span>
+<span id="453">453</span>
+<span id="454">454</span>
+<span id="455">455</span>
+<span id="456">456</span>
+<span id="457">457</span>
+<span id="458">458</span>
+<span id="459">459</span>
+<span id="460">460</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -466,10 +474,10 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="kw">impl</span> <span class="ident">Text</span> {
-    <span class="doccomment">/// The ::activate signal is emitted when the user hits</span>
-    <span class="doccomment">/// the Enter key.</span>
+    <span class="doccomment">/// Emitted when the user hits the Enter key.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The default bindings for this signal are all forms of the Enter key.</span>
+    <span class="doccomment">/// The default bindings for this signal are all forms</span>
+    <span class="doccomment">/// of the `&lt;kbd&gt;`Enter`&lt;/kbd&gt;` key.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_activate</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Text</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">activate_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Text</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkText</span>,
@@ -489,12 +497,12 @@
         }
     }
 
-    <span class="doccomment">/// The ::backspace signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`SignalAction`]</span>
-    <span class="doccomment">/// which gets emitted when the user asks for it.</span>
+    <span class="doccomment">/// Emitted when the user asks for it.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is a [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal are</span>
-    <span class="doccomment">/// Backspace and Shift-Backspace.</span>
+    <span class="doccomment">/// `&lt;kbd&gt;`Backspace`&lt;/kbd&gt;` and `&lt;kbd&gt;`Shift`&lt;/kbd&gt;`-`&lt;kbd&gt;`Backspace`&lt;/kbd&gt;`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_backspace</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Text</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">backspace_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Text</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkText</span>,
@@ -514,12 +522,13 @@
         }
     }
 
-    <span class="doccomment">/// The ::copy-clipboard signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`SignalAction`]</span>
-    <span class="doccomment">/// which gets emitted to copy the selection to the clipboard.</span>
+    <span class="doccomment">/// Emitted to copy the selection to the clipboard.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is a [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal are</span>
-    <span class="doccomment">/// Ctrl-c and Ctrl-Insert.</span>
+    <span class="doccomment">/// `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`c`&lt;/kbd&gt;` and</span>
+    <span class="doccomment">/// `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`Insert`&lt;/kbd&gt;`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_copy_clipboard</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Text</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">copy_clipboard_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Text</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkText</span>,
@@ -539,12 +548,13 @@
         }
     }
 
-    <span class="doccomment">/// The ::cut-clipboard signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`SignalAction`]</span>
-    <span class="doccomment">/// which gets emitted to cut the selection to the clipboard.</span>
+    <span class="doccomment">/// Emitted to cut the selection to the clipboard.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is a [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal are</span>
-    <span class="doccomment">/// Ctrl-x and Shift-Delete.</span>
+    <span class="doccomment">/// `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`x`&lt;/kbd&gt;` and</span>
+    <span class="doccomment">/// `&lt;kbd&gt;`Shift`&lt;/kbd&gt;`-`&lt;kbd&gt;`Delete`&lt;/kbd&gt;`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_cut_clipboard</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Text</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">cut_clipboard_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Text</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkText</span>,
@@ -564,17 +574,17 @@
         }
     }
 
-    <span class="doccomment">/// The ::delete-from-cursor signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`SignalAction`]</span>
-    <span class="doccomment">/// which gets emitted when the user initiates a text deletion.</span>
+    <span class="doccomment">/// Emitted when the user initiates a text deletion.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is a [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the `type_` is `DeleteType::Chars`, GTK deletes the selection</span>
     <span class="doccomment">/// if there is one, otherwise it deletes the requested number</span>
     <span class="doccomment">/// of characters.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The default bindings for this signal are</span>
-    <span class="doccomment">/// Delete for deleting a character and Ctrl-Delete for</span>
-    <span class="doccomment">/// deleting a word.</span>
+    <span class="doccomment">/// The default bindings for this signal are `&lt;kbd&gt;`Delete`&lt;/kbd&gt;`</span>
+    <span class="doccomment">/// for deleting a character and `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`Delete`&lt;/kbd&gt;`</span>
+    <span class="doccomment">/// for deleting a word.</span>
     <span class="doccomment">/// ## `type_`</span>
     <span class="doccomment">/// the granularity of the deletion, as a `DeleteType`</span>
     <span class="doccomment">/// ## `count`</span>
@@ -605,10 +615,10 @@
         }
     }
 
-    <span class="doccomment">/// The ::insert-at-cursor signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`SignalAction`]</span>
-    <span class="doccomment">/// which gets emitted when the user initiates the insertion of a</span>
+    <span class="doccomment">/// Emitted when the user initiates the insertion of a</span>
     <span class="doccomment">/// fixed string at the cursor.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is a [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This signal has no default bindings.</span>
     <span class="doccomment">/// ## `string`</span>
@@ -633,11 +643,13 @@
         }
     }
 
-    <span class="doccomment">/// The ::insert-emoji signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`SignalAction`]</span>
-    <span class="doccomment">/// which gets emitted to present the Emoji chooser for the `self_`.</span>
+    <span class="doccomment">/// Emitted to present the Emoji chooser for the `self_`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The default bindings for this signal are Ctrl-. and Ctrl-;</span>
+    <span class="doccomment">/// This is a [keybinding signal](class.SignalAction.html).</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The default bindings for this signal are</span>
+    <span class="doccomment">/// `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`.`&lt;/kbd&gt;` and</span>
+    <span class="doccomment">/// `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`;`&lt;/kbd&gt;`</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_insert_emoji</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Text</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">insert_emoji_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Text</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkText</span>,
@@ -657,23 +669,26 @@
         }
     }
 
-    <span class="doccomment">/// The ::move-cursor signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`SignalAction`]</span>
-    <span class="doccomment">/// which gets emitted when the user initiates a cursor movement.</span>
+    <span class="doccomment">/// Emitted when the user initiates a cursor movement.</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// If the cursor is not visible in `self_`, this signal causes</span>
     <span class="doccomment">/// the viewport to be moved instead.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is a [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Applications should not connect to it, but may emit it with</span>
     <span class="doccomment">/// `g_signal_emit_by_name` if they need to control the cursor</span>
     <span class="doccomment">/// programmatically.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal come in two variants,</span>
-    <span class="doccomment">/// the variant with the Shift modifier extends the selection,</span>
-    <span class="doccomment">/// the variant without the Shift modifier does not.</span>
+    <span class="doccomment">/// the variant with the `&lt;kbd&gt;`Shift`&lt;/kbd&gt;` modifier extends the</span>
+    <span class="doccomment">/// selection, the variant without it does not.</span>
     <span class="doccomment">/// There are too many key combinations to list them all here.</span>
-    <span class="doccomment">/// - Arrow keys move by individual characters/lines</span>
-    <span class="doccomment">/// - Ctrl-arrow key combinations move by words/paragraphs</span>
-    <span class="doccomment">/// - Home/End keys move to the ends of the buffer</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// - `&lt;kbd&gt;`←`&lt;/kbd&gt;`, `&lt;kbd&gt;`→`&lt;/kbd&gt;`, `&lt;kbd&gt;`↑`&lt;/kbd&gt;`, `&lt;kbd&gt;`↓`&lt;/kbd&gt;`</span>
+    <span class="doccomment">///  move by individual characters/lines</span>
+    <span class="doccomment">/// - `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`→`&lt;/kbd&gt;`, etc. move by words/paragraphs</span>
+    <span class="doccomment">/// - `&lt;kbd&gt;`Home`&lt;/kbd&gt;`, `&lt;kbd&gt;`End`&lt;/kbd&gt;` move to the ends of the buffer</span>
     <span class="doccomment">/// ## `step`</span>
     <span class="doccomment">/// the granularity of the move, as a `MovementStep`</span>
     <span class="doccomment">/// ## `count`</span>
@@ -712,13 +727,12 @@
         }
     }
 
-    <span class="doccomment">/// The ::paste-clipboard signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`SignalAction`]</span>
-    <span class="doccomment">/// which gets emitted to paste the contents of the clipboard</span>
-    <span class="doccomment">/// into the text view.</span>
+    <span class="doccomment">/// Emitted to paste the contents of the clipboard.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is a [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal are</span>
-    <span class="doccomment">/// Ctrl-v and Shift-Insert.</span>
+    <span class="doccomment">/// `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`v`&lt;/kbd&gt;` and `&lt;kbd&gt;`Shift`&lt;/kbd&gt;`-`&lt;kbd&gt;`Insert`&lt;/kbd&gt;`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_paste_clipboard</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Text</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">paste_clipboard_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Text</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkText</span>,
@@ -758,6 +772,8 @@
         }
     }
 
+    <span class="doccomment">/// Emitted when the preedit text changes.</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// If an input method is used, the typed text will not immediately</span>
     <span class="doccomment">/// be committed to the buffer. So if you are interested in the text,</span>
     <span class="doccomment">/// connect to this signal.</span>
@@ -783,11 +799,11 @@
         }
     }
 
-    <span class="doccomment">/// The ::toggle-overwrite signal is a</span>
-    <span class="doccomment">/// [keybinding signal][`SignalAction`]</span>
-    <span class="doccomment">/// which gets emitted to toggle the overwrite mode of the self.</span>
+    <span class="doccomment">/// Emitted to toggle the overwrite mode of the `GtkText`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The default bindings for this signal is Insert.</span>
+    <span class="doccomment">/// This is a [keybinding signal](class.SignalAction.html).</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The default bindings for this signal is `&lt;kbd&gt;`Insert`&lt;/kbd&gt;`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_toggle_overwrite</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Text</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">toggle_overwrite_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Text</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkText</span>,

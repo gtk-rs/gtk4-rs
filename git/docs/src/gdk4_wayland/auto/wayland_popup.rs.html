@@ -37,11 +37,11 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">///</span>
+    <span class="doccomment">/// The Wayland implementation of `GdkPopup`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`WaylandSurfaceExt`](trait.WaylandSurfaceExt.html), [`gdk::SurfaceExt`](../gdk/trait.SurfaceExt.html), [`gdk::PopupExt`](../gdk/trait.PopupExt.html), [`WaylandSurfaceManualExt`](prelude/trait.WaylandSurfaceManualExt.html)</span>
+    <span class="doccomment">/// [`WaylandSurfaceExt`](trait@crate::WaylandSurfaceExt), [`trait@gdk::SurfaceExt`], [`trait@gdk::PopupExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WaylandPopup</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GdkWaylandPopup</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">WaylandSurface</span>, <span class="ident">gdk::Surface</span>, @<span class="ident">implements</span> <span class="ident">gdk::Popup</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {

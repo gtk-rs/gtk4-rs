@@ -40,6 +40,11 @@
 <span id="37">37</span>
 <span id="38">38</span>
 <span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -54,16 +59,16 @@
 );
 
 <span class="kw">impl</span> <span class="ident">ColorNode</span> {
-    <span class="doccomment">/// Creates a `RenderNode` that will render the color specified by `rgba` into</span>
+    <span class="doccomment">/// Creates a `GskRenderNode` that will render the color specified by `rgba` into</span>
     <span class="doccomment">/// the area given by `bounds`.</span>
     <span class="doccomment">/// ## `rgba`</span>
-    <span class="doccomment">/// a `gdk::RGBA` specifying a color</span>
+    <span class="doccomment">/// a `GdkRGBA` specifying a color</span>
     <span class="doccomment">/// ## `bounds`</span>
     <span class="doccomment">/// the rectangle to render the color into</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A new `RenderNode`</span>
+    <span class="doccomment">/// A new `GskRenderNode`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_color_node_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">rgba</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::RGBA</span>, <span class="ident">bounds</span>: <span class="kw-2">&amp;</span><span class="ident">graphene::Rect</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ColorNode</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -75,6 +80,11 @@
         }
     }
 
+    <span class="doccomment">/// Retrieves the color of the given `self`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// the color of the node</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_color_node_get_color&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">color</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::RGBA</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gsk_color_node_get_color</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }

@@ -74,6 +74,18 @@
 <span id="71">71</span>
 <span id="72">72</span>
 <span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -88,15 +100,12 @@
 );
 
 <span class="kw">impl</span> <span class="ident">ColorMatrixNode</span> {
-    <span class="doccomment">/// Creates a `RenderNode` that will drawn the `child` with reduced</span>
+    <span class="doccomment">/// Creates a `GskRenderNode` that will drawn the `child` with</span>
     <span class="doccomment">/// `color_matrix`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In particular, the node will transform the operation</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```plain</span>
-    <span class="doccomment">///   pixel = color_matrix * pixel + color_offset</span>
-    <span class="doccomment">/// ```</span>
+    <span class="doccomment">///  pixel = color_matrix * pixel + color_offset</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// for every pixel.</span>
     <span class="doccomment">/// ## `child`</span>
@@ -108,7 +117,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A new `RenderNode`</span>
+    <span class="doccomment">/// A new `GskRenderNode`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_color_matrix_node_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsRenderNode</span><span class="op">&gt;</span>(
         <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
@@ -125,11 +134,21 @@
         }
     }
 
+    <span class="doccomment">/// Gets the child node that is getting its colors modified by the given `self`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The child that is getting its colors modified</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_color_matrix_node_get_child&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">RenderNode</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gsk_color_matrix_node_get_child</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
+    <span class="doccomment">/// Retrieves the color matrix used by the `self`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// a 4x4 color matrix</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_color_matrix_node_get_color_matrix&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">color_matrix</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">graphene::Matrix</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -139,6 +158,11 @@
         }
     }
 
+    <span class="doccomment">/// Retrieves the color offset used by the `self`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// a color vector</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_color_matrix_node_get_color_offset&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">color_offset</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">graphene::Vec4</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
