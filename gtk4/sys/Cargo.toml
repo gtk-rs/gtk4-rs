@@ -1,5 +1,31 @@
-[build-dependencies]
-system-deps = "3"
+[package]
+authors = ["The Gtk-rs Project Developers"]
+build = "build.rs"
+description = "FFI bindings of GTK 4"
+documentation = "https://gtk-rs.org/gtk4-rs/stable/docs/gtk4_sys"
+edition = "2018"
+homepage = "http://gtk-rs.org/"
+keywords = ["gtk", "gtk4", "ffi", "gtk-rs", "gnome"]
+license = "MIT"
+links = "gtk-4"
+name = "gtk4-sys"
+repository = "https://github.com/gtk-rs/gtk4-rs"
+version = "0.1.0"
+[package.metadata.docs.rs]
+features = ["dox"]
+[package.metadata.system-deps.gtk4]
+name = "gtk4"
+version = "4.0.0"
+
+[package.metadata.system-deps.gtk4.v4_2]
+version = "4.1.2"
+
+[lib]
+name = "gtk4_sys"
+
+[features]
+dox = []
+v4_2 = []
 
 [dependencies]
 libc = "0.2"
@@ -31,34 +57,9 @@ path = "../../gsk4/sys"
 [dependencies.pango-sys]
 git = "https://github.com/gtk-rs/gtk-rs"
 
+[build-dependencies]
+system-deps = "3"
+
 [dev-dependencies]
 shell-words = "1.0.0"
 tempfile = "3"
-
-[features]
-dox = []
-v4_2 = []
-
-[lib]
-name = "gtk4_sys"
-
-[package]
-authors = ["The Gtk-rs Project Developers"]
-build = "build.rs"
-description = "FFI bindings to libgtk-4"
-homepage = "http://gtk-rs.org/"
-keywords = ["gtk", "gtk4", "ffi", "gtk-rs", "gnome"]
-license = "MIT"
-links = "gtk-4"
-name = "gtk4-sys"
-repository = "https://github.com/gtk-rs/sys"
-version = "0.1.0"
-edition = "2018"
-[package.metadata.docs.rs]
-features = ["dox"]
-[package.metadata.system-deps.gtk4]
-name = "gtk4"
-version = "4.0.0"
-
-[package.metadata.system-deps.gtk4.v4_2]
-version = "4.1.2"

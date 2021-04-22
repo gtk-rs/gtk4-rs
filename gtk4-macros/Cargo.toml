@@ -1,18 +1,15 @@
 [package]
-documentation = "https://gtk-rs.org/docs/gtk4-macros/"
-categories = ["api-bindings", "gui"]
-license = "MIT"
-description = "Rust bindings for the GTK 4 library"
-homepage = "https://gtk-rs.org/"
-name = "gtk4-macros"
-version = "0.1.0"
 authors = ["The Gtk-rs Project Developers"]
+categories = ["api-bindings", "gui"]
+description = "Macros helpers for GTK 4 bindings"
+documentation = "https://gtk-rs.org/gtk4-rs/stable/docs/gtk4_macros"
 edition = "2018"
+homepage = "https://gtk-rs.org/"
 keywords = ["gtk", "gtk4", "gtk-rs", "gnome", "GUI"]
+license = "MIT"
+name = "gtk4-macros"
 repository = "https://github.com/gtk-rs/gtk4-rs"
-exclude = [
-    "gir-files/*",
-]
+version = "0.1.0"
 
 [lib]
 proc-macro = true
@@ -21,8 +18,8 @@ proc-macro = true
 anyhow = "1.0"
 heck = "0.3"
 itertools = "0.10"
+proc-macro-crate = "1.0"
 proc-macro-error = "1.0"
 proc-macro2 = "1.0"
 quote = "1.0"
-syn = { version = "1.0", default-features = false, features = ["full"] }
-proc-macro-crate = "1.0"
+syn = {version = "1.0", default-features = false, features = ["full"]}
