@@ -25,7 +25,7 @@ jobs:
       - working-directory: gir
         run: cargo build --release
       - run: cargo install rustdoc-stripper
-      - run: python3 ./gir/generator.py --embed-docs --no-fmt --yes ../
+      - run: python3 ./generator.py --embed-docs --no-fmt --yes ./
       - run: echo "DEST=$(if [ "$GITHUB_EVENT_NAME" == "release" ]; then echo 'stable'; else echo 'git'; fi)" >> ${GITHUB_ENV}
       - uses: actions-rs/cargo@v1
         env:
