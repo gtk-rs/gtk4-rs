@@ -1,0 +1,1 @@
+./gir/generator.py
