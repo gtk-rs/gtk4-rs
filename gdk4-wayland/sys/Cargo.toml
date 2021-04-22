@@ -1,9 +1,15 @@
 [package]
-name = "gdk4-wayland-sys"
-version = "0.1.0"
-authors = ["Bilal Elmoussaoui <bil.elmoussaoui@gmail.com>"]
+authors = ["The Gtk-rs Project Developers"]
 build = "build.rs"
+description = "FFI bindings of GDK4 Wayland"
+documentation = "https://gtk-rs.org/gtk4-rs/git/docs/gdk4_wayland_sys/"
 edition = "2018"
+homepage = "http://gtk-rs.org/"
+keywords = ["gdk", "gdk4", "gdk4-wayland", "ffi", "gtk-rs", "gnome"]
+license = "MIT"
+name = "gdk4-wayland-sys"
+repository = "https://github.com/gtk-rs/gtk4-rs"
+version = "0.1.0"
 [package.metadata.system-deps.gtk4_wayland]
 name = "gtk4-wayland"
 version = "4.0.0"
@@ -12,6 +18,9 @@ features = ["dox"]
 
 [lib]
 name = "gdk4_wayland_sys"
+
+[features]
+dox = []
 
 [dependencies]
 libc = "0.2"
@@ -25,6 +34,3 @@ system-deps = "3"
 [dev-dependencies]
 shell-words = "1.0.0"
 tempfile = "3"
-
-[features]
-dox = []

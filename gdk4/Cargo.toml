@@ -1,46 +1,43 @@
 [package]
-name = "gdk4"
-license = "MIT"
-homepage = "https://gtk-rs.org/"
 authors = ["The Gtk-rs Project Developers"]
-keywords = ["gdk", "gdk4", "gtk", "gtk-rs", "gnome", "GUI"]
-readme = "README.md"
-documentation = "https://gtk-rs.org/docs/gdk4/"
-version = "0.1.0"
-description = "Rust bindings for the GDK 4 library"
-repository = "https://github.com/gtk-rs/gdk4"
 build = "build.rs"
+description = "Rust bindings of the GDK 4 library"
+documentation = "https://gtk-rs.org/gtk4-rs/stable/docs/gdk4/"
 edition = "2018"
-exclude = [
-    "gir-files/*",
-]
+homepage = "https://gtk-rs.org/"
+keywords = ["gdk", "gdk4", "gtk", "gtk-rs", "gnome", "GUI"]
+license = "MIT"
+name = "gdk4"
+readme = "README.md"
+repository = "https://github.com/gtk-rs/gtk4-rs"
+version = "0.1.0"
 
 [lib]
 name = "gdk4"
 
 [features]
 dox = ["ffi/dox", "glib/dox", "gio/dox", "gdk-pixbuf/dox", "cairo-rs/dox", "pango/dox"]
-purge-lgpl-docs = ["gtk-rs-lgpl-docs", "cairo-rs/purge-lgpl-docs", "gdk-pixbuf/purge-lgpl-docs", "gio/purge-lgpl-docs"]
 embed-lgpl-docs = ["gtk-rs-lgpl-docs", "cairo-rs/embed-lgpl-docs", "gdk-pixbuf/embed-lgpl-docs", "gio/embed-lgpl-docs"]
+purge-lgpl-docs = ["gtk-rs-lgpl-docs", "cairo-rs/purge-lgpl-docs", "gdk-pixbuf/purge-lgpl-docs", "gio/purge-lgpl-docs"]
 v4_2 = ["ffi/v4_2"]
 
 [package.metadata.docs.rs]
 features = ["dox", "embed-lgpl-docs"]
 
-[build-dependencies.gtk-rs-lgpl-docs]
-version = "0.1.3"
-optional = true
-git = "https://github.com/gtk-rs/lgpl-docs"
-
 [dependencies]
-libc = "0.2"
 bitflags = "1.0"
-ffi = { package = "gdk4-sys", path = "./sys" }
-cairo-rs = { git = "https://github.com/gtk-rs/gtk-rs", features = ["v1_14"] }
-gdk-pixbuf = { git = "https://github.com/gtk-rs/gtk-rs" }
-gio = { git = "https://github.com/gtk-rs/gtk-rs", features = ["v2_66"] }
-glib = { git = "https://github.com/gtk-rs/gtk-rs", features = ["v2_66"] }
-pango = { git = "https://github.com/gtk-rs/gtk-rs", features = ["v1_46"] }
+cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs", features = ["v1_14"]}
+ffi = {package = "gdk4-sys", path = "./sys"}
+gdk-pixbuf = {git = "https://github.com/gtk-rs/gtk-rs"}
+gio = {git = "https://github.com/gtk-rs/gtk-rs", features = ["v2_66"]}
+glib = {git = "https://github.com/gtk-rs/gtk-rs", features = ["v2_66"]}
+libc = "0.2"
+pango = {git = "https://github.com/gtk-rs/gtk-rs", features = ["v1_46"]}
+
+[build-dependencies.gtk-rs-lgpl-docs]
+git = "https://github.com/gtk-rs/lgpl-docs"
+optional = true
+version = "0.1.3"
 
 [dev-dependencies]
 gir-format-check = "^0.1"
