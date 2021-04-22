@@ -55,10 +55,10 @@ The bindings are composed of two parts:
 - Automatically generated ones using [gir]
 - Manual parts
 
-The automatic ones can be generated using the `generator.py` script
+The automatic ones can be generated using the [`generator.py`](https://github.com/gtk-rs/gir/blob/master/generator.py) script
 
 ```bash
-python3 generator.py
+python3 ./gir/generator.py
 ```
 
 All the crates except `gtk4-macros` follow this structure
