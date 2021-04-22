@@ -1,6 +1,5 @@
 [package]
 authors = ["The Gtk-rs Project Developers"]
-build = "build.rs"
 description = "Rust bindings of the GDK 4 Wayland library"
 documentation = "https://gtk-rs.org/gtk4-rs/stable/docs/gdk4_wayland/"
 edition = "2018"
@@ -14,11 +13,9 @@ version = "0.1.0"
 
 [features]
 dox = ["ffi/dox"]
-embed-lgpl-docs = ["gtk-rs-lgpl-docs"]
-purge-lgpl-docs = ["gtk-rs-lgpl-docs"]
 
 [package.metadata.docs.rs]
-features = ["dox", "embed-lgpl-docs"]
+features = ["dox"]
 
 [dependencies]
 ffi = {path = "./sys", package = "gdk4-wayland-sys"}
@@ -27,11 +24,6 @@ gio = {git = "https://github.com/gtk-rs/gtk-rs", features = ["v2_66"]}
 glib = {git = "https://github.com/gtk-rs/gtk-rs", features = ["v2_66"]}
 libc = "0.2"
 wayland-client = {version = "0.28", features = ["use_system_lib"]}
-
-[build-dependencies.gtk-rs-lgpl-docs]
-git = "https://github.com/gtk-rs/lgpl-docs"
-optional = true
-version = "0.1.3"
 
 [dev-dependencies]
 gir-format-check = "^0.1"
