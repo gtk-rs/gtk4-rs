@@ -48,6 +48,15 @@ When using crates that are not part of the `gtk4-rs` repository, you will
 need to be careful and ensure that they do not pull in incompatible versions of core
 crates like `glib-rs`.
 
+### Built with GTK4 Rust bindings
+
+Below is a list of applications built using the Rust bindings of GTK 4
+
+- [Solanum](https://gitlab.gnome.org/World/Solanum)
+- [Shortwave](https://gitlab.gnome.org/World/Shortwave)
+- [Authenticator](https://gitlab.gnome.org/World/Authenticator)
+- [Health](https://gitlab.gnome.org/Cogitri/Health)
+
 ## Contributing
 
 The bindings are composed of two parts:
