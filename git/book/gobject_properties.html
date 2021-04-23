@@ -221,7 +221,7 @@ That is why, <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/st
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre></pre>
-<p>Alternatively, we can use the general <a href="http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.get_property"><code>get_property</code></a> and <a href="http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.set_property"><code>set_property</code></a> methods.
+<p>Alternatively, we can use the general <a href="http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.property"><code>property</code></a> and <a href="http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.set_property"><code>set_property</code></a> methods.
 Because they can be used for properties of different types, they operate with <code>glib::Value</code>.</p>
 <p><span class="filename">Filename: listings/gobject_properties/2/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
@@ -392,9 +392,13 @@ Until it hits stable, we will add it as external dependency.</p>
 once_cell = &quot;1&quot;
 </code></pre>
 <p>Now we define the &quot;number&quot; property within the <code>ObjectImpl</code> implementation.
-We can immediately take advantage of this new property by binding the &quot;label&quot; property to it.
-It even converts the integer value of &quot;number&quot; to the string of &quot;label&quot;.
-Now we do not have to adapt the label in the &quot;clicked&quot; callback anymore.</p>
+The <code>properties</code> method describes our set of properties.
+When naming our property, we make sure to do that in <a href="https://wiki.c2.com/?KebabCase">kebab-case</a>.
+Then, we describe its type, range and default value.
+We also declare that the property can be read and be written to.
+<code>set_property</code> describes how the underlying values can be changed.
+<code>property</code> takes care of returning the underlying value.
+The formerly private <code>number</code> is now accessible via the <code>property</code> and <code>set_property</code> methods.</p>
 <p><span class="filename">Filename: listings/gobject_properties/4/custom_button/imp.rs</span></p>
 <pre><pre class="playground"><code class="language-rust">
 <span class="boring">#![allow(unused)]
@@ -423,16 +427,6 @@ Now we do not have to adapt the label in the &quot;clicked&quot; callback anymor
 </span><span class="boring">
 </span>// Trait shared by all GObjects
 impl ObjectImpl for CustomButton {
-    fn constructed(&amp;self, obj: &amp;Self::Type) {
-        self.parent_constructed(obj);
-
-        // Bind label to number
-        // `SYNC_CREATE` ensures that the label will be immediately set
-        obj.bind_property(&quot;number&quot;, obj, &quot;label&quot;)
-            .flags(BindingFlags::SYNC_CREATE)
-            .build();
-    }
-
     fn properties() -&gt; &amp;'static [ParamSpec] {
         static PROPERTIES: Lazy&lt;Vec&lt;ParamSpec&gt;&gt; = Lazy::new(|| {
             vec![ParamSpec::new_int(
@@ -471,6 +465,16 @@ impl ObjectImpl for CustomButton {
             _ =&gt; unimplemented!(),
         }
     }
+
+    fn constructed(&amp;self, obj: &amp;Self::Type) {
+        self.parent_constructed(obj);
+
+        // Bind label to number
+        // `SYNC_CREATE` ensures that the label will be immediately set
+        obj.bind_property(&quot;number&quot;, obj, &quot;label&quot;)
+            .flags(BindingFlags::SYNC_CREATE)
+            .build();
+    }
 }
 <span class="boring">
 </span><span class="boring">// Trait shared by all widgets
@@ -481,18 +485,13 @@ impl ObjectImpl for CustomButton {
 </span><span class="boring">    fn clicked(&amp;self, button: &amp;Self::Type) {
 </span><span class="boring">        let incremented_number = *self.number.borrow() + 1;
 </span><span class="boring">        button.set_property(&quot;number&quot;, &amp;incremented_number).unwrap();
-</span><span class="boring">        button.set_label(&amp;self.number.borrow().to_string())
 </span><span class="boring">    }
 </span><span class="boring">}
 </span><span class="boring">}
 </span></code></pre></pre>
-<p>The <code>properties</code> method describes our set of properties.
-When naming our property, we make sure to do that in <a href="https://wiki.c2.com/?KebabCase">kebab-case</a>.
-Then, we describe its type, range and default value.
-We also declare that the property can be read and be written to.
-<code>set_property</code> describes how the underlying values can be changed.
-<code>get_property</code> takes care of returning the underlying value.
-The formerly private <code>number</code> is now accessible via the <code>get_property</code> and <code>set_property</code> methods.</p>
+<p>We can immediately take advantage of this new property by binding the &quot;label&quot; property to it.
+It even converts the integer value of &quot;number&quot; to the string of &quot;label&quot;.
+Now we do not have to adapt the label in the &quot;clicked&quot; callback anymore.</p>
 <p>Let us see what we can do with this by creating two custom buttons.</p>
 <p><span class="filename">Filename: listings/gobject_properties/4/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod custom_button;
