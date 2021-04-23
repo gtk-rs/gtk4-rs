@@ -12,7 +12,7 @@ That is why, `gtk-rs` provides corresponding [`get_state`](../docs/gtk4/struct.S
 ```rust ,no_run
 {{#rustdoc_include ../listings/gobject_properties/1/main.rs:switch}}
 ```
-Alternatively, we can use the general [`get_property`](http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.get_property) and [`set_property`](http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.set_property) methods.
+Alternatively, we can use the general [`property`](http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.property) and [`set_property`](http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.set_property) methods.
 Because they can be used for properties of different types, they operate with `glib::Value`.
 
 <span class="filename">Filename: listings/gobject_properties/2/main.rs</span>
@@ -66,8 +66,8 @@ When naming our property, we make sure to do that in [kebab-case](https://wiki.c
 Then, we describe its type, range and default value.
 We also declare that the property can be read and be written to.
 `set_property` describes how the underlying values can be changed.
-`get_property` takes care of returning the underlying value.
-The formerly private `number` is now accessible via the `get_property` and `set_property` methods.
+`property` takes care of returning the underlying value.
+The formerly private `number` is now accessible via the `property` and `set_property` methods.
 
 <span class="filename">Filename: listings/gobject_properties/4/custom_button/imp.rs</span>
 
