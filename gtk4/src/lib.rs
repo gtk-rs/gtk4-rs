@@ -328,3 +328,4 @@ pub use requisition::Requisition;
 pub use response_type::ResponseType;
 pub use tree_sortable::SortColumn;
 pub use widget::TickCallbackId;
+pub use glib::signal::Inhibit;
