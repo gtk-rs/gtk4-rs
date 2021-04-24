@@ -13,3 +13,4 @@ Cargo.lock
 book/book
 .vscode
 *.log
+**/**/docs.md
