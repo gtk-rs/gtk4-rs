@@ -46,6 +46,7 @@ mod cairo_interaction;
 mod clipboard;
 mod content_deserializer;
 mod content_formats;
+mod content_provider;
 mod display;
 mod draw_context;
 mod drop;

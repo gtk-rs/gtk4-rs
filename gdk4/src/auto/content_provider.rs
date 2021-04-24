@@ -64,9 +64,6 @@ pub trait ContentProviderExt: 'static {
     #[doc(alias = "gdk_content_provider_content_changed")]
     fn content_changed(&self);
 
-    #[doc(alias = "gdk_content_provider_get_value")]
-    fn value(&self, value: &mut glib::Value) -> Result<(), glib::Error>;
-
     #[doc(alias = "gdk_content_provider_ref_formats")]
     fn ref_formats(&self) -> Option<ContentFormats>;
 
@@ -114,22 +111,6 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
     fn content_changed(&self) {
         unsafe {
             ffi::gdk_content_provider_content_changed(self.as_ref().to_glib_none().0);
-        }
-    }
-
-    fn value(&self, value: &mut glib::Value) -> Result<(), glib::Error> {
-        unsafe {
-            let mut error = ptr::null_mut();
-            let _ = ffi::gdk_content_provider_get_value(
-                self.as_ref().to_glib_none().0,
-                value.to_glib_none_mut().0,
-                &mut error,
-            );
-            if error.is_null() {
-                Ok(())
-            } else {
-                Err(from_glib_full(error))
-            }
         }
     }
 
