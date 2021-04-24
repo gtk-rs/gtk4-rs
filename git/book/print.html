@@ -1345,7 +1345,7 @@ This knowledge will be useful in the next chapters where we discuss properties, 
 <p>Let us see how this is done by experimenting with the <code>Switch</code> widget.
 One of its properties is the <a href="https://docs.gtk.org/gtk4/property.Switch.state.html">state</a>.
 According to the GTK docs, it can be read and be written to.
-That is why, <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/struct.Switch.html#method.get_state"><code>get_state</code></a> and <a href="../docs/gtk4/docs/gtk4/struct.Switch.html#method.set_state"><code>set_state</code></a> methods.</p>
+That is why, <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/struct.Switch.html#method.state"><code>state</code></a> and <a href="../docs/gtk4/docs/gtk4/struct.Switch.html#method.set_state"><code>set_state</code></a> methods.</p>
 <p><span class="filename">Filename: listings/gobject_properties/1/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Align, BoxBuilder, Orientation, Switch};
@@ -3119,7 +3119,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 But we can make this even better.
 The <code>Switch</code> has a property &quot;state&quot; and <code>Settings</code> allows us to bind properties to a specific setting.
 So let us do exactly that.</p>
-<p>We can remove the <code>get_boolean</code> call before initializing the <code>Switch</code> as well as the <code>connect_state_set</code> call.
+<p>We can remove the <a href="http://gtk-rs.org/docs/gio/trait.SettingsExt.html#tymethod.boolean"><code>boolean</code></a> call before initializing the <code>Switch</code> as well as the <code>connect_state_set</code> call.
 We then bind the setting to the property by specifying the key, object and name of the property.
 We also specify <a href="https://gtk-rs.org/docs/gio/struct.SettingsBindFlags.html"><code>SettingsBindFlags</code></a> to control the direction in which the binding works.</p>
 <p><span class="filename">Filename: listings/settings/2/main.rs</span></p>
