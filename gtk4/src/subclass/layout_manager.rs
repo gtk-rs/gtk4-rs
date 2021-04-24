@@ -41,21 +41,8 @@ pub trait LayoutManagerImpl: LayoutManagerImplExt + ObjectImpl {
         widget: &Widget,
         orientation: Orientation,
         for_size: i32,
-        minimum: &mut i32,
-        natural: &mut i32,
-        minimum_baseline: &mut i32,
-        natural_baseline: &mut i32,
-    ) {
-        self.parent_measure(
-            layout_manager,
-            widget,
-            orientation,
-            for_size,
-            minimum,
-            natural,
-            minimum_baseline,
-            natural_baseline,
-        )
+    ) -> (i32, i32, i32, i32) {
+        self.parent_measure(layout_manager, widget, orientation, for_size)
     }
 
     fn root(&self, layout_manager: &Self::Type) {
@@ -92,11 +79,7 @@ pub trait LayoutManagerImplExt: ObjectSubclass {
         widget: &Widget,
         orientation: Orientation,
         for_size: i32,
-        minimum: &mut i32,
-        natural: &mut i32,
-        minimum_baseline: &mut i32,
-        natural_baseline: &mut i32,
-    );
+    ) -> (i32, i32, i32, i32);
 
     fn parent_root(&self, layout_manager: &Self::Type);
 
@@ -176,17 +159,18 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
         widget: &Widget,
         orientation: Orientation,
         for_size: i32,
-        minimum: &mut i32,
-        natural: &mut i32,
-        minimum_baseline: &mut i32,
-        natural_baseline: &mut i32,
-    ) {
+    ) -> (i32, i32, i32, i32) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkLayoutManagerClass;
             let f = (*parent_class)
                 .measure
                 .expect("No parent class impl for \"measure\"");
+
+            let mut minimum = 0;
+            let mut natural = 0;
+            let mut minimum_baseline = -1;
+            let mut natural_baseline = -1;
             f(
                 layout_manager
                     .unsafe_cast_ref::<LayoutManager>()
@@ -195,11 +179,12 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
                 widget.to_glib_none().0,
                 orientation.to_glib(),
                 for_size,
-                minimum,
-                natural,
-                minimum_baseline,
-                natural_baseline,
+                &mut minimum,
+                &mut natural,
+                &mut minimum_baseline,
+                &mut natural_baseline,
             );
+            (minimum, natural, minimum_baseline, natural_baseline)
         }
     }
 
@@ -307,31 +292,11 @@ unsafe extern "C" fn layout_manager_measure<T: LayoutManagerImpl>(
     let wrap: Borrowed<LayoutManager> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(widgetptr);
 
-    let mut minimum = 0;
-    let mut natural = 0;
-    let mut minimum_baseline = -1;
-    let mut natural_baseline = -1;
-    if !minimum_ptr.is_null() {
-        minimum = *minimum_ptr;
-    }
-    if !natural_ptr.is_null() {
-        natural = *natural_ptr;
-    }
-    if !minimum_baseline_ptr.is_null() {
-        minimum_baseline = *minimum_baseline_ptr;
-    }
-    if !natural_baseline_ptr.is_null() {
-        natural_baseline = *natural_baseline_ptr;
-    }
-    imp.measure(
+    let (minimum, natural, minimum_baseline, natural_baseline) = imp.measure(
         wrap.unsafe_cast_ref(),
         &widget,
         from_glib(orientation),
         for_size,
-        &mut minimum,
-        &mut natural,
-        &mut minimum_baseline,
-        &mut natural_baseline,
     );
     if !minimum_ptr.is_null() {
         *minimum_ptr = minimum;
