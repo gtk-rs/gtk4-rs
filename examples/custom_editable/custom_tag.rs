@@ -118,17 +118,8 @@ pub mod imp {
             _widget: &Self::Type,
             orientation: gtk::Orientation,
             for_size: i32,
-            min: &mut i32,
-            nat: &mut i32,
-            min_base: &mut i32,
-            nat_base: &mut i32,
-        ) {
-            let (c_min, c_nat, c_min_base, c_nat_base) =
-                self.container.measure(orientation, for_size);
-            *min = c_min;
-            *nat = c_nat;
-            *min_base = c_min_base;
-            *nat_base = c_nat_base;
+        ) -> (i32, i32, i32, i32) {
+            self.container.measure(orientation, for_size)
         }
 
         fn size_allocate(&self, _widget: &Self::Type, width: i32, height: i32, baseline: i32) {
