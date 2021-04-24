@@ -56,6 +56,7 @@ Below is a list of applications built using the Rust bindings of GTK 4
 - [Shortwave](https://gitlab.gnome.org/World/Shortwave)
 - [Authenticator](https://gitlab.gnome.org/World/Authenticator)
 - [Health](https://gitlab.gnome.org/Cogitri/Health)
+- [Video Trimmer](https://gitlab.gnome.org/YaLTeR/video-trimmer)
 
 ## Contributing
 
