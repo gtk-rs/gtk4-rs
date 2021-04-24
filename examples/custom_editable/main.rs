@@ -35,6 +35,10 @@ tag {
 ";
 
 fn build_ui(application: &gtk::Application) {
+    let provider = gtk::CssProvider::new();
+    provider.load_from_data(CSS.as_bytes());
+    gtk::StyleContext::add_provider_for_display(&gdk::Display::default().unwrap(), &provider, 800);
+
     let window = gtk::ApplicationWindow::new(application);
     window.set_title(Some("Custom Editable"));
     window.set_default_size(500, 500);
@@ -86,9 +90,6 @@ fn main() {
         Some("com.github.gtk-rs.examples.editable"),
         Default::default(),
     );
-    let provider = gtk::CssProvider::new();
-    provider.load_from_data(CSS.as_bytes());
-    gtk::StyleContext::add_provider_for_display(&gdk::Display::default().unwrap(), &provider, 800);
 
     application.connect_activate(build_ui);
     application.run();
