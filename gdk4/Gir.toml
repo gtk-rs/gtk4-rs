@@ -246,9 +246,14 @@ status = "generate"
 [[object]]
 name = "Gdk.ContentProvider"
 status = "generate"
+manual_traits = ["ContentProviderExtManual"]
     [[object.function]]
     name = "new_typed"
     ignore = true # new_for_value is what the bindings are supposed to use
+    [[object.function]]
+    name = "get_value"
+    manual = true # to return Value
+    doc_trait_name = "ContentProviderExtManual"
 
 [[object]]
 name = "Gdk.ContentSerializer"
