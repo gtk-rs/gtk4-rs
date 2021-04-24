@@ -50,7 +50,7 @@ jobs:
           git sparse-checkout init --cone
           git sparse-checkout set docs/reference/gtk/images
           git checkout master
-          mv ./docs/reference/gtk/images/*.png ./target/doc/gtk4
+          mv ./docs/reference/gtk/images/*.png ../target/doc/gtk4
           
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
