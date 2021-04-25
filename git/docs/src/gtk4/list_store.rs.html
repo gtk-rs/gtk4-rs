@@ -367,11 +367,11 @@
                     <span class="kw-2">*</span><span class="ident">column</span> <span class="kw">as</span> <span class="ident">c_int</span>,
                 ));
                 <span class="macro">assert!</span>(
-                    <span class="ident">Value::type_transformable</span>(<span class="ident">value</span>.<span class="ident">to_value_type</span>(), <span class="ident">type_</span>),
+                    <span class="ident">Value::type_transformable</span>(<span class="ident">value</span>.<span class="ident">value_type</span>(), <span class="ident">type_</span>),
                     <span class="string">&quot;column {} is of type {} but found value of type {}&quot;</span>,
                     <span class="kw-2">*</span><span class="ident">column</span>,
                     <span class="ident">type_</span>,
-                    <span class="ident">value</span>.<span class="ident">to_value_type</span>()
+                    <span class="ident">value</span>.<span class="ident">value_type</span>()
                 );
             }
 
@@ -453,11 +453,11 @@
                     <span class="kw-2">*</span><span class="ident">column</span> <span class="kw">as</span> <span class="ident">c_int</span>,
                 ));
                 <span class="macro">assert!</span>(
-                    <span class="ident">Value::type_transformable</span>(<span class="ident">value</span>.<span class="ident">to_value_type</span>(), <span class="ident">type_</span>),
+                    <span class="ident">Value::type_transformable</span>(<span class="ident">value</span>.<span class="ident">value_type</span>(), <span class="ident">type_</span>),
                     <span class="string">&quot;column {} is of type {} but found value of type {}&quot;</span>,
                     <span class="kw-2">*</span><span class="ident">column</span>,
                     <span class="ident">type_</span>,
-                    <span class="ident">value</span>.<span class="ident">to_value_type</span>()
+                    <span class="ident">value</span>.<span class="ident">value_type</span>()
                 );
             }
 

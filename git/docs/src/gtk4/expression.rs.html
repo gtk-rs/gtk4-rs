@@ -718,11 +718,46 @@
 <span id="715">715</span>
 <span id="716">716</span>
 <span id="717">717</span>
+<span id="718">718</span>
+<span id="719">719</span>
+<span id="720">720</span>
+<span id="721">721</span>
+<span id="722">722</span>
+<span id="723">723</span>
+<span id="724">724</span>
+<span id="725">725</span>
+<span id="726">726</span>
+<span id="727">727</span>
+<span id="728">728</span>
+<span id="729">729</span>
+<span id="730">730</span>
+<span id="731">731</span>
+<span id="732">732</span>
+<span id="733">733</span>
+<span id="734">734</span>
+<span id="735">735</span>
+<span id="736">736</span>
+<span id="737">737</span>
+<span id="738">738</span>
+<span id="739">739</span>
+<span id="740">740</span>
+<span id="741">741</span>
+<span id="742">742</span>
+<span id="743">743</span>
+<span id="744">744</span>
+<span id="745">745</span>
+<span id="746">746</span>
+<span id="747">747</span>
+<span id="748">748</span>
+<span id="749">749</span>
+<span id="750">750</span>
+<span id="751">751</span>
+<span id="752">752</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">translate</span>::<span class="kw-2">*</span>, <span class="ident">ToValue</span>};
-<span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">IsA</span>, <span class="ident">Object</span>, <span class="ident">Type</span>, <span class="ident">Value</span>};
+<span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">IsA</span>, <span class="ident">Object</span>, <span class="ident">StaticType</span>, <span class="ident">Type</span>, <span class="ident">Value</span>};
 <span class="kw">use</span> <span class="ident">std::boxed::Box</span> <span class="kw">as</span> <span class="ident">Box_</span>;
 
 <span class="macro">glib::wrapper!</span> {
@@ -1072,21 +1107,37 @@
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">glib::value::FromValueOptional</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Expression</span> {
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_value_optional</span>(<span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Value</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+<span class="kw">impl</span> <span class="ident">glib::value::ValueType</span> <span class="kw">for</span> <span class="ident">Expression</span> {
+    <span class="kw">type</span> <span class="ident">Type</span> <span class="op">=</span> <span class="self">Self</span>;
+}
+
+<span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">glib::value::FromValue</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Expression</span> {
+    <span class="kw">type</span> <span class="ident">Checker</span> <span class="op">=</span> <span class="ident">glib::value::GenericValueTypeOrNoneChecker</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>;
+
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_value</span>(<span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Value</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="macro">skip_assert_initialized!</span>();
         <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_value_dup_expression</span>(<span class="ident">value</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">glib::value::SetValue</span> <span class="kw">for</span> <span class="ident">Expression</span> {
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">set_value</span>(<span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Value</span>, <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) {
-        <span class="ident">ffi::gtk_value_set_expression</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="ident">this</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)
+<span class="kw">impl</span> <span class="ident">glib::value::ToValue</span> <span class="kw">for</span> <span class="ident">Expression</span> {
+    <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="ident">Expression</span><span class="op">&gt;</span>();
+        <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_value_set_expression</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
+        <span class="ident">value</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">value_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Type</span> {
+        <span class="self">Self</span><span class="ident">::static_type</span>()
     }
 }
 
-<span class="kw">impl</span> <span class="ident">glib::value::SetValueOptional</span> <span class="kw">for</span> <span class="ident">Expression</span> {
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">set_value_optional</span>(<span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::Value</span>, <span class="ident">this</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="self">Self</span><span class="op">&gt;</span>) {
-        <span class="ident">ffi::gtk_value_set_expression</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="ident">this</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)
+<span class="kw">impl</span> <span class="ident">glib::value::ToValueOptional</span> <span class="kw">for</span> <span class="ident">Expression</span> {
+    <span class="kw">fn</span> <span class="ident">to_value_optional</span>(<span class="ident">s</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
+        <span class="macro">skip_assert_initialized!</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="ident">Expression</span><span class="op">&gt;</span>();
+        <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_value_set_expression</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="ident">s</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
+        <span class="ident">value</span>
     }
 }
 
@@ -1224,24 +1275,43 @@
 
         <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">IsExpression</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {}
 
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">glib::value::FromValueOptional</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
-            <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_value_optional</span>(<span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Value</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+        <span class="kw">impl</span> <span class="ident">glib::value::ValueType</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
+            <span class="kw">type</span> <span class="ident">Type</span> <span class="op">=</span> <span class="self">Self</span>;
+        }
+
+        <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">glib::value::FromValue</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
+            <span class="kw">type</span> <span class="ident">Checker</span> <span class="op">=</span> <span class="ident">glib::value::GenericValueTypeOrNoneChecker</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>;
+
+            <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_value</span>(<span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Value</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+                <span class="macro">skip_assert_initialized!</span>();
                 <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_value_dup_expression</span>(<span class="ident">value</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>))
             }
         }
 
-        <span class="kw">impl</span> <span class="ident">glib::value::SetValue</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
-            <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">set_value</span>(<span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Value</span>, <span class="ident">this</span>: <span class="kw-2">&amp;</span><span class="self">Self</span>) {
-                <span class="ident">ffi::gtk_value_set_expression</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="ident">this</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>)
+        <span class="kw">impl</span> <span class="ident">glib::value::ToValue</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
+            <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span><span class="op">&gt;</span>();
+                <span class="kw">unsafe</span> {
+                    <span class="ident">ffi::gtk_value_set_expression</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>)
+                }
+                <span class="ident">value</span>
+            }
+
+            <span class="kw">fn</span> <span class="ident">value_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Type</span> {
+                <span class="self">Self</span><span class="ident">::static_type</span>()
             }
         }
 
-        <span class="kw">impl</span> <span class="ident">glib::value::SetValueOptional</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
-            <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">set_value_optional</span>(<span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::Value</span>, <span class="ident">this</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="self">Self</span><span class="op">&gt;</span>) {
-                <span class="ident">ffi::gtk_value_set_expression</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="ident">this</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>)
+        <span class="kw">impl</span> <span class="ident">glib::value::ToValueOptional</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span> {
+            <span class="kw">fn</span> <span class="ident">to_value_optional</span>(<span class="ident">s</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="self">Self</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
+                <span class="macro">skip_assert_initialized!</span>();
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="macro-nonterminal">$</span><span class="macro-nonterminal">rust_type</span><span class="op">&gt;</span>();
+                <span class="kw">unsafe</span> {
+                    <span class="ident">ffi::gtk_value_set_expression</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="ident">s</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>)
+                }
+                <span class="ident">value</span>
             }
         }
-
     };
 }
 
@@ -1427,13 +1497,13 @@
         <span class="macro">assert_eq!</span>(<span class="ident">expr</span>.<span class="ident">object</span>().<span class="ident">unwrap</span>(), <span class="ident">obj</span>);
 
         <span class="kw">let</span> <span class="ident">expr1</span> <span class="op">=</span> <span class="ident">ConstantExpression::new</span>(<span class="kw-2">&amp;</span><span class="number">23</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">expr1</span>.<span class="ident">value</span>().<span class="ident">get_some</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>(), <span class="number">23</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">expr1</span>.<span class="ident">value</span>().<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>(), <span class="number">23</span>);
         <span class="kw">let</span> <span class="ident">expr2</span> <span class="op">=</span> <span class="ident">ConstantExpression::for_value</span>(<span class="kw-2">&amp;</span><span class="string">&quot;hello&quot;</span>.<span class="ident">to_value</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">expr2</span>.<span class="ident">value</span>().<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>().<span class="ident">unwrap</span>(), <span class="string">&quot;hello&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">expr2</span>.<span class="ident">value</span>().<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>(), <span class="string">&quot;hello&quot;</span>);
         <span class="kw">let</span> <span class="ident">expr1</span> <span class="op">=</span> <span class="ident">ConstantExpression::new</span>(<span class="kw-2">&amp;</span><span class="number">23</span>);
-        <span class="macro">assert_eq!</span>(<span class="ident">expr1</span>.<span class="ident">value</span>().<span class="ident">get_some</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>(), <span class="number">23</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">expr1</span>.<span class="ident">value</span>().<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>(), <span class="number">23</span>);
         <span class="kw">let</span> <span class="ident">expr2</span> <span class="op">=</span> <span class="ident">ConstantExpression::for_value</span>(<span class="kw-2">&amp;</span><span class="string">&quot;hello&quot;</span>.<span class="ident">to_value</span>());
-        <span class="macro">assert_eq!</span>(<span class="ident">expr2</span>.<span class="ident">value</span>().<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>().<span class="ident">unwrap</span>(), <span class="string">&quot;hello&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="ident">expr2</span>.<span class="ident">value</span>().<span class="ident">get</span>::<span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>().<span class="ident">unwrap</span>(), <span class="string">&quot;hello&quot;</span>);
     }
 }
 </pre></div>

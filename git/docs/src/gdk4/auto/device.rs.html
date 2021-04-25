@@ -609,6 +609,7 @@
 <span class="kw">use</span> <span class="ident">glib::signal::SignalHandlerId</span>;
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib::StaticType</span>;
+<span class="kw">use</span> <span class="ident">glib::ToValue</span>;
 <span class="kw">use</span> <span class="ident">std::boxed::Box</span> <span class="kw">as</span> <span class="ident">Box_</span>;
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 <span class="kw">use</span> <span class="ident">std::mem</span>;
@@ -875,7 +876,6 @@
             <span class="ident">value</span>
                 .<span class="ident">get</span>()
                 .<span class="ident">expect</span>(<span class="string">&quot;Return Value for property `n-axes` getter&quot;</span>)
-                .<span class="ident">unwrap</span>()
         }
     }
 
@@ -885,7 +885,7 @@
             <span class="ident">glib::gobject_ffi::g_object_set_property</span>(
                 <span class="self">self</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::gobject_ffi::GObject</span>,
                 <span class="string">b&quot;seat\0&quot;</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>,
-                <span class="ident">glib::Value::from</span>(<span class="ident">seat</span>).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="ident">seat</span>.<span class="ident">to_value</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             );
         }
     }

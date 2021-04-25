@@ -1552,7 +1552,7 @@
             <span class="ident">glib::gobject_ffi::g_object_set_property</span>(
                 <span class="self">self</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">glib::gobject_ffi::GObject</span>,
                 <span class="string">b&quot;print-settings\0&quot;</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="kw">_</span>,
-                <span class="ident">glib::Value::from</span>(<span class="ident">print_settings</span>).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="ident">print_settings</span>.<span class="ident">to_value</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             );
         }
     }
