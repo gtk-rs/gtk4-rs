@@ -201,15 +201,14 @@ fn main() {
 
     // Retrieve `i32` from `number_value`
     let number = number_value
-        .get_some::&lt;i32&gt;()
+        .get::&lt;i32&gt;()
         .expect(&quot;The value needs to be of type `i32`.&quot;);
     assert_eq!(number, 10);
 
     // Retrieve `String` from `string_value`
     let string = string_value
         .get::&lt;String&gt;()
-        .expect(&quot;The value needs to be of type `String`.&quot;)
-        .expect(&quot;The value needs to be `Some`.&quot;);
+        .expect(&quot;The value needs to be of type `String`.&quot;);
     assert_eq!(string, &quot;Hello!&quot;);
 }
 </code></pre></pre>
