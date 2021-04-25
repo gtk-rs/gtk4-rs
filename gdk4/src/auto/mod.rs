@@ -17,7 +17,6 @@ mod content_deserializer;
 pub use self::content_deserializer::ContentDeserializer;
 
 mod content_provider;
-pub use self::content_provider::ContentProviderExt;
 pub use self::content_provider::{ContentProvider, NONE_CONTENT_PROVIDER};
 
 mod content_serializer;
@@ -31,7 +30,6 @@ mod device;
 pub use self::device::Device;
 
 mod device_pad;
-pub use self::device_pad::DevicePadExt;
 pub use self::device_pad::{DevicePad, NONE_DEVICE_PAD};
 
 mod device_tool;
@@ -49,11 +47,9 @@ mod drag;
 pub use self::drag::Drag;
 
 mod drag_surface;
-pub use self::drag_surface::DragSurfaceExt;
 pub use self::drag_surface::{DragSurface, NONE_DRAG_SURFACE};
 
 mod draw_context;
-pub use self::draw_context::DrawContextExt;
 pub use self::draw_context::{DrawContext, NONE_DRAW_CONTEXT};
 
 mod drop;
@@ -76,11 +72,9 @@ pub use self::monitor::Monitor;
 pub use self::monitor::MonitorBuilder;
 
 mod paintable;
-pub use self::paintable::PaintableExt;
 pub use self::paintable::{Paintable, NONE_PAINTABLE};
 
 mod popup;
-pub use self::popup::PopupExt;
 pub use self::popup::{Popup, NONE_POPUP};
 
 mod seat;
@@ -93,11 +87,9 @@ mod surface;
 pub use self::surface::Surface;
 
 mod texture;
-pub use self::texture::TextureExt;
 pub use self::texture::{Texture, NONE_TEXTURE};
 
 mod toplevel;
-pub use self::toplevel::ToplevelExt;
 pub use self::toplevel::{Toplevel, NONE_TOPLEVEL};
 
 mod vulkan_context;
@@ -155,12 +147,12 @@ pub mod functions;
 
 #[doc(hidden)]
 pub mod traits {
-    pub use super::ContentProviderExt;
-    pub use super::DevicePadExt;
-    pub use super::DragSurfaceExt;
-    pub use super::DrawContextExt;
-    pub use super::PaintableExt;
-    pub use super::PopupExt;
-    pub use super::TextureExt;
-    pub use super::ToplevelExt;
+    pub use super::content_provider::ContentProviderExt;
+    pub use super::device_pad::DevicePadExt;
+    pub use super::drag_surface::DragSurfaceExt;
+    pub use super::draw_context::DrawContextExt;
+    pub use super::paintable::PaintableExt;
+    pub use super::popup::PopupExt;
+    pub use super::texture::TextureExt;
+    pub use super::toplevel::ToplevelExt;
 }

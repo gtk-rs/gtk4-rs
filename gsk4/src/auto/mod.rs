@@ -27,7 +27,6 @@ mod ngl_renderer;
 pub use self::ngl_renderer::NglRenderer;
 
 mod renderer;
-pub use self::renderer::RendererExt;
 pub use self::renderer::{Renderer, NONE_RENDERER};
 
 #[cfg(any(feature = "vulkan", feature = "dox"))]
@@ -54,5 +53,5 @@ pub use self::enums::TransformCategory;
 
 #[doc(hidden)]
 pub mod traits {
-    pub use super::RendererExt;
+    pub use super::renderer::RendererExt;
 }
