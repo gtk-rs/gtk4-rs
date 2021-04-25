@@ -9,6 +9,7 @@ Consists of various examples to get familiar with writing GTK applications using
 - [CSS](./css/)
 - [Custom Application](./custom_application/)
 - [Custom Editable](./custom_editable/)
+- [Custom Layout Manager](./custom_layout_manager/)
 - [Custom Orientable](./custom_orientable/)
 - [Custom Paintable](./custom_paintable/)
 - [Custom Widget](./custom_widget/)
