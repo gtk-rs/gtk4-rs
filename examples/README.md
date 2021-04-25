@@ -17,5 +17,6 @@ Consists of various examples to get familiar with writing GTK applications using
 - [Entry Completion](./entry_completion/)
 - [Entry Undo](./entry_undo/)
 - [GtkBuilder example](./gtk_builder/)
+- [ListView: Applications Launcher](./list_view_apps_launcher/)
 - [TextView](./text_viewer/)
 - [Video Player](./video_player/)
