@@ -13,6 +13,7 @@ pub use crate::cell_layout::CellLayoutExtManual;
 pub use crate::cell_renderer::CellRendererExtManual;
 pub use crate::color_chooser::ColorChooserExtManual;
 pub use crate::combo_box::ComboBoxExtManual;
+pub use crate::constraint_guide::ConstraintGuideExtManual;
 pub use crate::dialog::DialogExtManual;
 pub use crate::drawing_area::DrawingAreaExtManual;
 pub use crate::editable::EditableExtManual;

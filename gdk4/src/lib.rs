@@ -71,10 +71,8 @@ pub use functions::*;
 
 pub use event::*;
 pub use keymap_key::KeymapKey;
-pub use popup_layout::PopupLayoutExtManual;
 pub use rectangle::Rectangle;
 pub use rgba::{RgbaParseError, RGBA};
-pub use surface::SurfaceExtManual;
 pub use time_coord::TimeCoord;
 pub use toplevel_size::ToplevelSize;
 
