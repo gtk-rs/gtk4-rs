@@ -45,6 +45,10 @@ name = "custom_editable"
 path = "custom_editable/main.rs"
 
 [[bin]]
+name = "custom_layout_manager"
+path = "custom_layout_manager/main.rs"
+
+[[bin]]
 name = "custom_paintable"
 path = "custom_paintable/main.rs"
 
@@ -71,7 +75,6 @@ path = "entry_undo/main.rs"
 [[bin]]
 name = "text_viewer"
 path = "text_viewer/main.rs"
-
 
 [[bin]]
 name = "video_player"
