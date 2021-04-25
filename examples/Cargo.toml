@@ -73,6 +73,10 @@ name = "entry_undo"
 path = "entry_undo/main.rs"
 
 [[bin]]
+name = "list_view_apps_launcher"
+path = "list_view_apps_launcher/main.rs"
+
+[[bin]]
 name = "text_viewer"
 path = "text_viewer/main.rs"
 
