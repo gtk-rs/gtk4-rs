@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::subclass::prelude::WidgetImpl;
+use crate::subclass::prelude::*;
 use crate::Native;
 use glib::subclass::prelude::*;
 
