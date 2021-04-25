@@ -1,13 +1,11 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::prelude::WidgetExt;
-use crate::subclass::prelude::WidgetImpl;
+use crate::prelude::*;
+use crate::subclass::prelude::*;
 use crate::Widget;
 
 use glib::object::{Cast, IsA, WeakRef};
 use glib::translate::*;
-use glib::ObjectExt;
-
 use glib::Continue;
 
 pub trait WidgetExtManual: 'static {

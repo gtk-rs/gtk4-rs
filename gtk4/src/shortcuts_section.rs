@@ -1,10 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use crate::prelude::*;
 use crate::ShortcutsSection;
 use glib::object::ObjectType;
 use glib::signal::{connect_raw, SignalHandlerId};
 use glib::translate::*;
-use glib::ObjectExt;
 use std::mem::transmute;
 
 impl ShortcutsSection {

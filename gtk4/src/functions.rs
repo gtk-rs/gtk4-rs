@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::prelude::{GtkWindowExt, WidgetExt};
+use crate::prelude::*;
 use crate::{AboutDialog, Window};
 use glib::translate::*;
 use glib::{IsA, ToValue};

@@ -1,6 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use crate::{Dialog, DialogExt, DialogFlags, ResponseType, Widget, WidgetExt, Window};
+use crate::prelude::*;
+use crate::{Dialog, DialogFlags, ResponseType, Widget, Window};
 use glib::object::Cast;
 use glib::translate::*;
 use glib::{IsA, ObjectExt};

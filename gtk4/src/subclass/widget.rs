@@ -1,9 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use crate::prelude::*;
 use crate::{
     AccessibleRole, BuilderScope, DirectionType, LayoutManager, Orientation, Shortcut,
     SizeRequestMode, Snapshot, StateFlags, SystemSetting, TextDirection, Tooltip, Widget,
-    WidgetExt,
 };
 use glib::prelude::*;
 use glib::subclass::{prelude::*, SignalId};
