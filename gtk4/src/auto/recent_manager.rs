@@ -231,7 +231,6 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
             value
                 .get()
                 .expect("Return Value for property `size` getter")
-                .unwrap()
         }
     }
 

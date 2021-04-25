@@ -45,7 +45,6 @@ impl CellRendererAccel {
             value
                 .get()
                 .expect("Return Value for property `accel-key` getter")
-                .unwrap()
         }
     }
 
@@ -55,7 +54,7 @@ impl CellRendererAccel {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"accel-key\0".as_ptr() as *const _,
-                glib::Value::from(&accel_key).to_glib_none().0,
+                accel_key.to_value().to_glib_none().0,
             );
         }
     }
@@ -73,7 +72,6 @@ impl CellRendererAccel {
             value
                 .get()
                 .expect("Return Value for property `accel-mode` getter")
-                .unwrap()
         }
     }
 
@@ -83,7 +81,7 @@ impl CellRendererAccel {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"accel-mode\0".as_ptr() as *const _,
-                glib::Value::from(&accel_mode).to_glib_none().0,
+                accel_mode.to_value().to_glib_none().0,
             );
         }
     }
@@ -101,7 +99,6 @@ impl CellRendererAccel {
             value
                 .get()
                 .expect("Return Value for property `accel-mods` getter")
-                .unwrap()
         }
     }
 
@@ -111,7 +108,7 @@ impl CellRendererAccel {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"accel-mods\0".as_ptr() as *const _,
-                glib::Value::from(&accel_mods).to_glib_none().0,
+                accel_mods.to_value().to_glib_none().0,
             );
         }
     }
@@ -128,7 +125,6 @@ impl CellRendererAccel {
             value
                 .get()
                 .expect("Return Value for property `keycode` getter")
-                .unwrap()
         }
     }
 
@@ -138,7 +134,7 @@ impl CellRendererAccel {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"keycode\0".as_ptr() as *const _,
-                glib::Value::from(&keycode).to_glib_none().0,
+                keycode.to_value().to_glib_none().0,
             );
         }
     }

@@ -34,7 +34,7 @@ fn on_activate(application: &Application) {
             // Get the number from the arguments
             // args[0] would return the `CustomButton` instance
             let number = args[1]
-                .get_some::<i32>()
+                .get::<i32>()
                 .expect("The value needs to be of type `i32`.");
             println!("The maximum number {} has been reached", number);
             None

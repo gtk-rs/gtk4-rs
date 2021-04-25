@@ -129,10 +129,7 @@ impl Calendar {
                 b"day\0".as_ptr() as *const _,
                 value.to_glib_none_mut().0,
             );
-            value
-                .get()
-                .expect("Return Value for property `day` getter")
-                .unwrap()
+            value.get().expect("Return Value for property `day` getter")
         }
     }
 
@@ -142,7 +139,7 @@ impl Calendar {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"day\0".as_ptr() as *const _,
-                glib::Value::from(&day).to_glib_none().0,
+                day.to_value().to_glib_none().0,
             );
         }
     }
@@ -159,7 +156,6 @@ impl Calendar {
             value
                 .get()
                 .expect("Return Value for property `month` getter")
-                .unwrap()
         }
     }
 
@@ -169,7 +165,7 @@ impl Calendar {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"month\0".as_ptr() as *const _,
-                glib::Value::from(&month).to_glib_none().0,
+                month.to_value().to_glib_none().0,
             );
         }
     }
@@ -186,7 +182,6 @@ impl Calendar {
             value
                 .get()
                 .expect("Return Value for property `year` getter")
-                .unwrap()
         }
     }
 
@@ -196,7 +191,7 @@ impl Calendar {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"year\0".as_ptr() as *const _,
-                glib::Value::from(&year).to_glib_none().0,
+                year.to_value().to_glib_none().0,
             );
         }
     }

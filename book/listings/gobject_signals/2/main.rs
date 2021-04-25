@@ -34,8 +34,7 @@ fn on_activate(application: &Application) {
             // Get the button from the arguments
             let button = args[0]
                 .get::<Button>()
-                .expect("The value needs to be of type `Button`.")
-                .expect("The value needs to be `Some`.");
+                .expect("The value needs to be of type `Button`.");
             // Set the label to "Hello World!" after the button has been clicked on
             button.set_label("Hello World!");
             None

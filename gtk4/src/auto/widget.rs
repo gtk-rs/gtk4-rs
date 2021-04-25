@@ -30,6 +30,7 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
+use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -1882,7 +1883,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
             value
                 .get()
                 .expect("Return Value for property `height-request` getter")
-                .unwrap()
         }
     }
 
@@ -1891,7 +1891,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"height-request\0".as_ptr() as *const _,
-                glib::Value::from(&height_request).to_glib_none().0,
+                height_request.to_value().to_glib_none().0,
             );
         }
     }
@@ -1907,7 +1907,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
             value
                 .get()
                 .expect("Return Value for property `width-request` getter")
-                .unwrap()
         }
     }
 
@@ -1916,7 +1915,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"width-request\0".as_ptr() as *const _,
-                glib::Value::from(&width_request).to_glib_none().0,
+                width_request.to_value().to_glib_none().0,
             );
         }
     }

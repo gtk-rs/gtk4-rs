@@ -91,7 +91,6 @@ impl ConstraintGuide {
             value
                 .get()
                 .expect("Return Value for property `max-height` getter")
-                .unwrap()
         }
     }
 
@@ -101,7 +100,7 @@ impl ConstraintGuide {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"max-height\0".as_ptr() as *const _,
-                glib::Value::from(&max_height).to_glib_none().0,
+                max_height.to_value().to_glib_none().0,
             );
         }
     }
@@ -118,7 +117,6 @@ impl ConstraintGuide {
             value
                 .get()
                 .expect("Return Value for property `max-width` getter")
-                .unwrap()
         }
     }
 
@@ -128,7 +126,7 @@ impl ConstraintGuide {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"max-width\0".as_ptr() as *const _,
-                glib::Value::from(&max_width).to_glib_none().0,
+                max_width.to_value().to_glib_none().0,
             );
         }
     }
@@ -145,7 +143,6 @@ impl ConstraintGuide {
             value
                 .get()
                 .expect("Return Value for property `min-height` getter")
-                .unwrap()
         }
     }
 
@@ -155,7 +152,7 @@ impl ConstraintGuide {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"min-height\0".as_ptr() as *const _,
-                glib::Value::from(&min_height).to_glib_none().0,
+                min_height.to_value().to_glib_none().0,
             );
         }
     }
@@ -172,7 +169,6 @@ impl ConstraintGuide {
             value
                 .get()
                 .expect("Return Value for property `min-width` getter")
-                .unwrap()
         }
     }
 
@@ -182,7 +178,7 @@ impl ConstraintGuide {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"min-width\0".as_ptr() as *const _,
-                glib::Value::from(&min_width).to_glib_none().0,
+                min_width.to_value().to_glib_none().0,
             );
         }
     }
@@ -199,7 +195,6 @@ impl ConstraintGuide {
             value
                 .get()
                 .expect("Return Value for property `nat-height` getter")
-                .unwrap()
         }
     }
 
@@ -209,7 +204,7 @@ impl ConstraintGuide {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"nat-height\0".as_ptr() as *const _,
-                glib::Value::from(&nat_height).to_glib_none().0,
+                nat_height.to_value().to_glib_none().0,
             );
         }
     }
@@ -226,7 +221,6 @@ impl ConstraintGuide {
             value
                 .get()
                 .expect("Return Value for property `nat-width` getter")
-                .unwrap()
         }
     }
 
@@ -236,7 +230,7 @@ impl ConstraintGuide {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"nat-width\0".as_ptr() as *const _,
-                glib::Value::from(&nat_width).to_glib_none().0,
+                nat_width.to_value().to_glib_none().0,
             );
         }
     }

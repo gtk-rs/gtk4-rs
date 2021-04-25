@@ -12,6 +12,7 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
+use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -311,7 +312,6 @@ impl<O: IsA<Editable>> EditableExt for O {
             value
                 .get()
                 .expect("Return Value for property `cursor-position` getter")
-                .unwrap()
         }
     }
 
@@ -326,7 +326,6 @@ impl<O: IsA<Editable>> EditableExt for O {
             value
                 .get()
                 .expect("Return Value for property `selection-bound` getter")
-                .unwrap()
         }
     }
 
@@ -341,7 +340,6 @@ impl<O: IsA<Editable>> EditableExt for O {
             value
                 .get()
                 .expect("Return Value for property `xalign` getter")
-                .unwrap()
         }
     }
 
@@ -350,7 +348,7 @@ impl<O: IsA<Editable>> EditableExt for O {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"xalign\0".as_ptr() as *const _,
-                glib::Value::from(&xalign).to_glib_none().0,
+                xalign.to_value().to_glib_none().0,
             );
         }
     }

@@ -99,11 +99,11 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
             let pspec = pspec.unwrap_or_else(|| {
                 panic!("The CellArea property {} doesn't exists", property_name)
             });
-            if !pspec.value_type().is_a(value.to_value_type()) {
+            if !pspec.value_type().is_a(value.value_type()) {
                 panic!(
                     "The CellArea property's value is of wrong type. Expected '{}' but got '{}'",
                     pspec.value_type(),
-                    value.to_value_type()
+                    value.value_type()
                 )
             }
 

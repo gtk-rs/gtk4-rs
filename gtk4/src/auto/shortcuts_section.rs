@@ -47,7 +47,6 @@ impl ShortcutsSection {
             value
                 .get()
                 .expect("Return Value for property `max-height` getter")
-                .unwrap()
         }
     }
 
@@ -57,7 +56,7 @@ impl ShortcutsSection {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"max-height\0".as_ptr() as *const _,
-                glib::Value::from(&max_height).to_glib_none().0,
+                max_height.to_value().to_glib_none().0,
             );
         }
     }
@@ -83,7 +82,7 @@ impl ShortcutsSection {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"section-name\0".as_ptr() as *const _,
-                glib::Value::from(section_name).to_glib_none().0,
+                section_name.to_value().to_glib_none().0,
             );
         }
     }
@@ -109,7 +108,7 @@ impl ShortcutsSection {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"title\0".as_ptr() as *const _,
-                glib::Value::from(title).to_glib_none().0,
+                title.to_value().to_glib_none().0,
             );
         }
     }
@@ -135,7 +134,7 @@ impl ShortcutsSection {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"view-name\0".as_ptr() as *const _,
-                glib::Value::from(view_name).to_glib_none().0,
+                view_name.to_value().to_glib_none().0,
             );
         }
     }

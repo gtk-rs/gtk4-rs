@@ -79,9 +79,9 @@ pub mod imp {
             pspec: &ParamSpec,
         ) {
             match pspec.name() {
-                "label" => self.label.set_text(value.get().unwrap().unwrap()),
+                "label" => self.label.set_text(value.get().unwrap()),
                 "has-close-button" => {
-                    tag.set_has_close_button(value.get_some().unwrap());
+                    tag.set_has_close_button(value.get().unwrap());
                 }
                 _ => unimplemented!(),
             }

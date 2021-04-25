@@ -119,7 +119,7 @@ impl PopoverMenu {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"visible-submenu\0".as_ptr() as *const _,
-                glib::Value::from(visible_submenu).to_glib_none().0,
+                visible_submenu.to_value().to_glib_none().0,
             );
         }
     }

@@ -54,7 +54,7 @@ impl CellRendererSpin {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"adjustment\0".as_ptr() as *const _,
-                glib::Value::from(adjustment).to_glib_none().0,
+                adjustment.to_value().to_glib_none().0,
             );
         }
     }
@@ -71,7 +71,6 @@ impl CellRendererSpin {
             value
                 .get()
                 .expect("Return Value for property `climb-rate` getter")
-                .unwrap()
         }
     }
 
@@ -81,7 +80,7 @@ impl CellRendererSpin {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"climb-rate\0".as_ptr() as *const _,
-                glib::Value::from(&climb_rate).to_glib_none().0,
+                climb_rate.to_value().to_glib_none().0,
             );
         }
     }
@@ -98,7 +97,6 @@ impl CellRendererSpin {
             value
                 .get()
                 .expect("Return Value for property `digits` getter")
-                .unwrap()
         }
     }
 
@@ -108,7 +106,7 @@ impl CellRendererSpin {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"digits\0".as_ptr() as *const _,
-                glib::Value::from(&digits).to_glib_none().0,
+                digits.to_value().to_glib_none().0,
             );
         }
     }

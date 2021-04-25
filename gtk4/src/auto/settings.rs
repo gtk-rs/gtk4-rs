@@ -42,7 +42,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-alternative-button-order` getter")
-                .unwrap()
         }
     }
 
@@ -52,9 +51,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-alternative-button-order\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_alternative_button_order)
-                    .to_glib_none()
-                    .0,
+                gtk_alternative_button_order.to_value().to_glib_none().0,
             );
         }
     }
@@ -71,7 +68,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-alternative-sort-arrows` getter")
-                .unwrap()
         }
     }
 
@@ -81,9 +77,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-alternative-sort-arrows\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_alternative_sort_arrows)
-                    .to_glib_none()
-                    .0,
+                gtk_alternative_sort_arrows.to_value().to_glib_none().0,
             );
         }
     }
@@ -100,7 +94,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-application-prefer-dark-theme` getter")
-                .unwrap()
         }
     }
 
@@ -110,7 +103,8 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-application-prefer-dark-theme\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_application_prefer_dark_theme)
+                gtk_application_prefer_dark_theme
+                    .to_value()
                     .to_glib_none()
                     .0,
             );
@@ -129,7 +123,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-cursor-aspect-ratio` getter")
-                .unwrap()
         }
     }
 
@@ -139,7 +132,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-cursor-aspect-ratio\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_cursor_aspect_ratio).to_glib_none().0,
+                gtk_cursor_aspect_ratio.to_value().to_glib_none().0,
             );
         }
     }
@@ -156,7 +149,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-cursor-blink` getter")
-                .unwrap()
         }
     }
 
@@ -166,7 +158,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-cursor-blink\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_cursor_blink).to_glib_none().0,
+                gtk_cursor_blink.to_value().to_glib_none().0,
             );
         }
     }
@@ -183,7 +175,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-cursor-blink-time` getter")
-                .unwrap()
         }
     }
 
@@ -193,7 +184,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-cursor-blink-time\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_cursor_blink_time).to_glib_none().0,
+                gtk_cursor_blink_time.to_value().to_glib_none().0,
             );
         }
     }
@@ -210,7 +201,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-cursor-blink-timeout` getter")
-                .unwrap()
         }
     }
 
@@ -220,9 +210,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-cursor-blink-timeout\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_cursor_blink_timeout)
-                    .to_glib_none()
-                    .0,
+                gtk_cursor_blink_timeout.to_value().to_glib_none().0,
             );
         }
     }
@@ -248,7 +236,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-cursor-theme-name\0".as_ptr() as *const _,
-                glib::Value::from(gtk_cursor_theme_name).to_glib_none().0,
+                gtk_cursor_theme_name.to_value().to_glib_none().0,
             );
         }
     }
@@ -265,7 +253,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-cursor-theme-size` getter")
-                .unwrap()
         }
     }
 
@@ -275,7 +262,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-cursor-theme-size\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_cursor_theme_size).to_glib_none().0,
+                gtk_cursor_theme_size.to_value().to_glib_none().0,
             );
         }
     }
@@ -301,7 +288,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-decoration-layout\0".as_ptr() as *const _,
-                glib::Value::from(gtk_decoration_layout).to_glib_none().0,
+                gtk_decoration_layout.to_value().to_glib_none().0,
             );
         }
     }
@@ -318,7 +305,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-dialogs-use-header` getter")
-                .unwrap()
         }
     }
 
@@ -328,7 +314,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-dialogs-use-header\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_dialogs_use_header).to_glib_none().0,
+                gtk_dialogs_use_header.to_value().to_glib_none().0,
             );
         }
     }
@@ -345,7 +331,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-dnd-drag-threshold` getter")
-                .unwrap()
         }
     }
 
@@ -355,7 +340,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-dnd-drag-threshold\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_dnd_drag_threshold).to_glib_none().0,
+                gtk_dnd_drag_threshold.to_value().to_glib_none().0,
             );
         }
     }
@@ -372,7 +357,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-double-click-distance` getter")
-                .unwrap()
         }
     }
 
@@ -382,9 +366,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-double-click-distance\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_double_click_distance)
-                    .to_glib_none()
-                    .0,
+                gtk_double_click_distance.to_value().to_glib_none().0,
             );
         }
     }
@@ -401,7 +383,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-double-click-time` getter")
-                .unwrap()
         }
     }
 
@@ -411,7 +392,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-double-click-time\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_double_click_time).to_glib_none().0,
+                gtk_double_click_time.to_value().to_glib_none().0,
             );
         }
     }
@@ -428,7 +409,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-enable-accels` getter")
-                .unwrap()
         }
     }
 
@@ -438,7 +418,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-enable-accels\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_enable_accels).to_glib_none().0,
+                gtk_enable_accels.to_value().to_glib_none().0,
             );
         }
     }
@@ -455,7 +435,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-enable-animations` getter")
-                .unwrap()
         }
     }
 
@@ -465,7 +444,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-enable-animations\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_enable_animations).to_glib_none().0,
+                gtk_enable_animations.to_value().to_glib_none().0,
             );
         }
     }
@@ -482,7 +461,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-enable-event-sounds` getter")
-                .unwrap()
         }
     }
 
@@ -492,7 +470,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-enable-event-sounds\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_enable_event_sounds).to_glib_none().0,
+                gtk_enable_event_sounds.to_value().to_glib_none().0,
             );
         }
     }
@@ -509,7 +487,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-enable-input-feedback-sounds` getter")
-                .unwrap()
         }
     }
 
@@ -519,9 +496,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-enable-input-feedback-sounds\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_enable_input_feedback_sounds)
-                    .to_glib_none()
-                    .0,
+                gtk_enable_input_feedback_sounds.to_value().to_glib_none().0,
             );
         }
     }
@@ -538,7 +513,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-enable-primary-paste` getter")
-                .unwrap()
         }
     }
 
@@ -548,9 +522,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-enable-primary-paste\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_enable_primary_paste)
-                    .to_glib_none()
-                    .0,
+                gtk_enable_primary_paste.to_value().to_glib_none().0,
             );
         }
     }
@@ -567,7 +539,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-entry-password-hint-timeout` getter")
-                .unwrap()
         }
     }
 
@@ -577,9 +548,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-entry-password-hint-timeout\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_entry_password_hint_timeout)
-                    .to_glib_none()
-                    .0,
+                gtk_entry_password_hint_timeout.to_value().to_glib_none().0,
             );
         }
     }
@@ -596,7 +565,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-entry-select-on-focus` getter")
-                .unwrap()
         }
     }
 
@@ -606,9 +574,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-entry-select-on-focus\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_entry_select_on_focus)
-                    .to_glib_none()
-                    .0,
+                gtk_entry_select_on_focus.to_value().to_glib_none().0,
             );
         }
     }
@@ -625,7 +591,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-error-bell` getter")
-                .unwrap()
         }
     }
 
@@ -635,7 +600,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-error-bell\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_error_bell).to_glib_none().0,
+                gtk_error_bell.to_value().to_glib_none().0,
             );
         }
     }
@@ -661,7 +626,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-font-name\0".as_ptr() as *const _,
-                glib::Value::from(gtk_font_name).to_glib_none().0,
+                gtk_font_name.to_value().to_glib_none().0,
             );
         }
     }
@@ -678,7 +643,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-fontconfig-timestamp` getter")
-                .unwrap()
         }
     }
 
@@ -688,9 +652,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-fontconfig-timestamp\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_fontconfig_timestamp)
-                    .to_glib_none()
-                    .0,
+                gtk_fontconfig_timestamp.to_value().to_glib_none().0,
             );
         }
     }
@@ -716,7 +678,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-icon-theme-name\0".as_ptr() as *const _,
-                glib::Value::from(gtk_icon_theme_name).to_glib_none().0,
+                gtk_icon_theme_name.to_value().to_glib_none().0,
             );
         }
     }
@@ -742,7 +704,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-im-module\0".as_ptr() as *const _,
-                glib::Value::from(gtk_im_module).to_glib_none().0,
+                gtk_im_module.to_value().to_glib_none().0,
             );
         }
     }
@@ -759,7 +721,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-keynav-use-caret` getter")
-                .unwrap()
         }
     }
 
@@ -769,7 +730,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-keynav-use-caret\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_keynav_use_caret).to_glib_none().0,
+                gtk_keynav_use_caret.to_value().to_glib_none().0,
             );
         }
     }
@@ -786,7 +747,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-label-select-on-focus` getter")
-                .unwrap()
         }
     }
 
@@ -796,9 +756,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-label-select-on-focus\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_label_select_on_focus)
-                    .to_glib_none()
-                    .0,
+                gtk_label_select_on_focus.to_value().to_glib_none().0,
             );
         }
     }
@@ -815,7 +773,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-long-press-time` getter")
-                .unwrap()
         }
     }
 
@@ -825,7 +782,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-long-press-time\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_long_press_time).to_glib_none().0,
+                gtk_long_press_time.to_value().to_glib_none().0,
             );
         }
     }
@@ -842,7 +799,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-overlay-scrolling` getter")
-                .unwrap()
         }
     }
 
@@ -852,7 +808,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-overlay-scrolling\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_overlay_scrolling).to_glib_none().0,
+                gtk_overlay_scrolling.to_value().to_glib_none().0,
             );
         }
     }
@@ -869,7 +825,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-primary-button-warps-slider` getter")
-                .unwrap()
         }
     }
 
@@ -879,9 +834,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-primary-button-warps-slider\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_primary_button_warps_slider)
-                    .to_glib_none()
-                    .0,
+                gtk_primary_button_warps_slider.to_value().to_glib_none().0,
             );
         }
     }
@@ -907,7 +860,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-print-backends\0".as_ptr() as *const _,
-                glib::Value::from(gtk_print_backends).to_glib_none().0,
+                gtk_print_backends.to_value().to_glib_none().0,
             );
         }
     }
@@ -933,9 +886,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-print-preview-command\0".as_ptr() as *const _,
-                glib::Value::from(gtk_print_preview_command)
-                    .to_glib_none()
-                    .0,
+                gtk_print_preview_command.to_value().to_glib_none().0,
             );
         }
     }
@@ -952,7 +903,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-recent-files-enabled` getter")
-                .unwrap()
         }
     }
 
@@ -962,9 +912,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-recent-files-enabled\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_recent_files_enabled)
-                    .to_glib_none()
-                    .0,
+                gtk_recent_files_enabled.to_value().to_glib_none().0,
             );
         }
     }
@@ -981,7 +929,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-recent-files-max-age` getter")
-                .unwrap()
         }
     }
 
@@ -991,9 +938,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-recent-files-max-age\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_recent_files_max_age)
-                    .to_glib_none()
-                    .0,
+                gtk_recent_files_max_age.to_value().to_glib_none().0,
             );
         }
     }
@@ -1010,7 +955,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-shell-shows-app-menu` getter")
-                .unwrap()
         }
     }
 
@@ -1020,9 +964,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-shell-shows-app-menu\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_shell_shows_app_menu)
-                    .to_glib_none()
-                    .0,
+                gtk_shell_shows_app_menu.to_value().to_glib_none().0,
             );
         }
     }
@@ -1039,7 +981,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-shell-shows-desktop` getter")
-                .unwrap()
         }
     }
 
@@ -1049,7 +990,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-shell-shows-desktop\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_shell_shows_desktop).to_glib_none().0,
+                gtk_shell_shows_desktop.to_value().to_glib_none().0,
             );
         }
     }
@@ -1066,7 +1007,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-shell-shows-menubar` getter")
-                .unwrap()
         }
     }
 
@@ -1076,7 +1016,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-shell-shows-menubar\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_shell_shows_menubar).to_glib_none().0,
+                gtk_shell_shows_menubar.to_value().to_glib_none().0,
             );
         }
     }
@@ -1102,7 +1042,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-sound-theme-name\0".as_ptr() as *const _,
-                glib::Value::from(gtk_sound_theme_name).to_glib_none().0,
+                gtk_sound_theme_name.to_value().to_glib_none().0,
             );
         }
     }
@@ -1119,7 +1059,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-split-cursor` getter")
-                .unwrap()
         }
     }
 
@@ -1129,7 +1068,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-split-cursor\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_split_cursor).to_glib_none().0,
+                gtk_split_cursor.to_value().to_glib_none().0,
             );
         }
     }
@@ -1155,7 +1094,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-theme-name\0".as_ptr() as *const _,
-                glib::Value::from(gtk_theme_name).to_glib_none().0,
+                gtk_theme_name.to_value().to_glib_none().0,
             );
         }
     }
@@ -1181,9 +1120,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-titlebar-double-click\0".as_ptr() as *const _,
-                glib::Value::from(gtk_titlebar_double_click)
-                    .to_glib_none()
-                    .0,
+                gtk_titlebar_double_click.to_value().to_glib_none().0,
             );
         }
     }
@@ -1209,9 +1146,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-titlebar-middle-click\0".as_ptr() as *const _,
-                glib::Value::from(gtk_titlebar_middle_click)
-                    .to_glib_none()
-                    .0,
+                gtk_titlebar_middle_click.to_value().to_glib_none().0,
             );
         }
     }
@@ -1237,7 +1172,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-titlebar-right-click\0".as_ptr() as *const _,
-                glib::Value::from(gtk_titlebar_right_click).to_glib_none().0,
+                gtk_titlebar_right_click.to_value().to_glib_none().0,
             );
         }
     }
@@ -1254,7 +1189,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-xft-antialias` getter")
-                .unwrap()
         }
     }
 
@@ -1264,7 +1198,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-xft-antialias\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_xft_antialias).to_glib_none().0,
+                gtk_xft_antialias.to_value().to_glib_none().0,
             );
         }
     }
@@ -1281,7 +1215,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-xft-dpi` getter")
-                .unwrap()
         }
     }
 
@@ -1291,7 +1224,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-xft-dpi\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_xft_dpi).to_glib_none().0,
+                gtk_xft_dpi.to_value().to_glib_none().0,
             );
         }
     }
@@ -1308,7 +1241,6 @@ impl Settings {
             value
                 .get()
                 .expect("Return Value for property `gtk-xft-hinting` getter")
-                .unwrap()
         }
     }
 
@@ -1318,7 +1250,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-xft-hinting\0".as_ptr() as *const _,
-                glib::Value::from(&gtk_xft_hinting).to_glib_none().0,
+                gtk_xft_hinting.to_value().to_glib_none().0,
             );
         }
     }
@@ -1344,7 +1276,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-xft-hintstyle\0".as_ptr() as *const _,
-                glib::Value::from(gtk_xft_hintstyle).to_glib_none().0,
+                gtk_xft_hintstyle.to_value().to_glib_none().0,
             );
         }
     }
@@ -1370,7 +1302,7 @@ impl Settings {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"gtk-xft-rgba\0".as_ptr() as *const _,
-                glib::Value::from(gtk_xft_rgba).to_glib_none().0,
+                gtk_xft_rgba.to_value().to_glib_none().0,
             );
         }
     }

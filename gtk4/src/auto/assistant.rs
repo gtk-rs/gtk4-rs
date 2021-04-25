@@ -269,7 +269,6 @@ impl Assistant {
             value
                 .get()
                 .expect("Return Value for property `use-header-bar` getter")
-                .unwrap()
         }
     }
 

@@ -160,7 +160,7 @@ impl IconTheme {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"display\0".as_ptr() as *const _,
-                glib::Value::from(display).to_glib_none().0,
+                display.to_value().to_glib_none().0,
             );
         }
     }

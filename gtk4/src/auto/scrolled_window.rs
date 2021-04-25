@@ -321,7 +321,6 @@ impl ScrolledWindow {
             value
                 .get()
                 .expect("Return Value for property `hscrollbar-policy` getter")
-                .unwrap()
         }
     }
 
@@ -331,7 +330,7 @@ impl ScrolledWindow {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"hscrollbar-policy\0".as_ptr() as *const _,
-                glib::Value::from(&hscrollbar_policy).to_glib_none().0,
+                hscrollbar_policy.to_value().to_glib_none().0,
             );
         }
     }
@@ -348,7 +347,6 @@ impl ScrolledWindow {
             value
                 .get()
                 .expect("Return Value for property `vscrollbar-policy` getter")
-                .unwrap()
         }
     }
 
@@ -358,7 +356,7 @@ impl ScrolledWindow {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"vscrollbar-policy\0".as_ptr() as *const _,
-                glib::Value::from(&vscrollbar_policy).to_glib_none().0,
+                vscrollbar_policy.to_value().to_glib_none().0,
             );
         }
     }
@@ -375,7 +373,6 @@ impl ScrolledWindow {
             value
                 .get()
                 .expect("Return Value for property `window-placement` getter")
-                .unwrap()
         }
     }
 
@@ -385,7 +382,7 @@ impl ScrolledWindow {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"window-placement\0".as_ptr() as *const _,
-                glib::Value::from(&window_placement).to_glib_none().0,
+                window_placement.to_value().to_glib_none().0,
             );
         }
     }
@@ -521,7 +518,6 @@ impl ScrolledWindow {
         res.unwrap()
             .get()
             .expect("Return Value for `emit_scroll_child`")
-            .unwrap()
     }
 
     pub fn connect_property_child_notify<F: Fn(&ScrolledWindow) + 'static>(

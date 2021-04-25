@@ -6,14 +6,13 @@ fn main() {
 
     // Retrieve `i32` from `number_value`
     let number = number_value
-        .get_some::<i32>()
+        .get::<i32>()
         .expect("The value needs to be of type `i32`.");
     assert_eq!(number, 10);
 
     // Retrieve `String` from `string_value`
     let string = string_value
         .get::<String>()
-        .expect("The value needs to be of type `String`.")
-        .expect("The value needs to be `Some`.");
+        .expect("The value needs to be of type `String`.");
     assert_eq!(string, "Hello!");
 }

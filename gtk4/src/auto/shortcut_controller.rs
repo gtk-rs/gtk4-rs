@@ -114,7 +114,6 @@ impl ShortcutController {
             value
                 .get()
                 .expect("Return Value for property `mnemonic-modifiers` getter")
-                .unwrap()
         }
     }
 
@@ -124,7 +123,7 @@ impl ShortcutController {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"mnemonic-modifiers\0".as_ptr() as *const _,
-                glib::Value::from(&mnemonic_modifiers).to_glib_none().0,
+                mnemonic_modifiers.to_value().to_glib_none().0,
             );
         }
     }

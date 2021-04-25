@@ -99,7 +99,7 @@ mod imp {
         ) {
             match pspec.name() {
                 "orientation" => {
-                    let orientation = value.get().unwrap().unwrap();
+                    let orientation = value.get().unwrap();
                     self.orientation.replace(orientation);
                     // We have to set the value in our layout manager as well.
                     let layout_manager = obj

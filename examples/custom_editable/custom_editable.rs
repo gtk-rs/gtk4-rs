@@ -65,7 +65,7 @@ mod imp {
             if !self.delegate_set_property(editable, id, value, pspec) {
                 match pspec.name() {
                     "show-spinner" => {
-                        editable.set_show_spinner(value.get_some().unwrap());
+                        editable.set_show_spinner(value.get().unwrap());
                     }
                     _ => unimplemented!(),
                 }

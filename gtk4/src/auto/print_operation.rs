@@ -695,7 +695,6 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
             value
                 .get()
                 .expect("Return Value for property `allow-async` getter")
-                .unwrap()
         }
     }
 
@@ -710,7 +709,6 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
             value
                 .get()
                 .expect("Return Value for property `current-page` getter")
-                .unwrap()
         }
     }
 
@@ -767,7 +765,6 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
             value
                 .get()
                 .expect("Return Value for property `n-pages` getter")
-                .unwrap()
         }
     }
 
@@ -782,7 +779,6 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
             value
                 .get()
                 .expect("Return Value for property `show-progress` getter")
-                .unwrap()
         }
     }
 
@@ -797,7 +793,6 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
             value
                 .get()
                 .expect("Return Value for property `track-print-status` getter")
-                .unwrap()
         }
     }
 
@@ -812,7 +807,6 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
             value
                 .get()
                 .expect("Return Value for property `unit` getter")
-                .unwrap()
         }
     }
 
@@ -827,7 +821,6 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
             value
                 .get()
                 .expect("Return Value for property `use-full-page` getter")
-                .unwrap()
         }
     }
 

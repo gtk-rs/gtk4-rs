@@ -1593,7 +1593,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
             glib::gobject_ffi::g_object_set_property(
                 self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
                 b"im-module\0".as_ptr() as *const _,
-                glib::Value::from(im_module).to_glib_none().0,
+                im_module.to_value().to_glib_none().0,
             );
         }
     }

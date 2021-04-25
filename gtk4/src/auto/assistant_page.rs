@@ -42,7 +42,6 @@ impl AssistantPage {
             value
                 .get()
                 .expect("Return Value for property `complete` getter")
-                .unwrap()
         }
     }
 
@@ -52,7 +51,7 @@ impl AssistantPage {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"complete\0".as_ptr() as *const _,
-                glib::Value::from(&complete).to_glib_none().0,
+                complete.to_value().to_glib_none().0,
             );
         }
     }
@@ -70,7 +69,6 @@ impl AssistantPage {
             value
                 .get()
                 .expect("Return Value for property `page-type` getter")
-                .unwrap()
         }
     }
 
@@ -80,7 +78,7 @@ impl AssistantPage {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"page-type\0".as_ptr() as *const _,
-                glib::Value::from(&page_type).to_glib_none().0,
+                page_type.to_value().to_glib_none().0,
             );
         }
     }
@@ -106,7 +104,7 @@ impl AssistantPage {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"title\0".as_ptr() as *const _,
-                glib::Value::from(title).to_glib_none().0,
+                title.to_value().to_glib_none().0,
             );
         }
     }

@@ -149,7 +149,6 @@ impl Paned {
             value
                 .get()
                 .expect("Return Value for property `max-position` getter")
-                .unwrap()
         }
     }
 
@@ -165,7 +164,6 @@ impl Paned {
             value
                 .get()
                 .expect("Return Value for property `min-position` getter")
-                .unwrap()
         }
     }
 
@@ -181,7 +179,6 @@ impl Paned {
             value
                 .get()
                 .expect("Return Value for property `position-set` getter")
-                .unwrap()
         }
     }
 
@@ -191,7 +188,7 @@ impl Paned {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"position-set\0".as_ptr() as *const _,
-                glib::Value::from(&position_set).to_glib_none().0,
+                position_set.to_value().to_glib_none().0,
             );
         }
     }
@@ -229,7 +226,6 @@ impl Paned {
         res.unwrap()
             .get()
             .expect("Return Value for `emit_accept_position`")
-            .unwrap()
     }
 
     pub fn connect_cancel_position<F: Fn(&Paned) -> bool + 'static>(
@@ -265,7 +261,6 @@ impl Paned {
         res.unwrap()
             .get()
             .expect("Return Value for `emit_cancel_position`")
-            .unwrap()
     }
 
     pub fn connect_cycle_child_focus<F: Fn(&Paned, bool) -> bool + 'static>(
@@ -302,7 +297,6 @@ impl Paned {
         res.unwrap()
             .get()
             .expect("Return Value for `emit_cycle_child_focus`")
-            .unwrap()
     }
 
     pub fn connect_cycle_handle_focus<F: Fn(&Paned, bool) -> bool + 'static>(
@@ -341,7 +335,6 @@ impl Paned {
         res.unwrap()
             .get()
             .expect("Return Value for `emit_cycle_handle_focus`")
-            .unwrap()
     }
 
     pub fn connect_move_handle<F: Fn(&Paned, ScrollType) -> bool + 'static>(
@@ -378,7 +371,6 @@ impl Paned {
         res.unwrap()
             .get()
             .expect("Return Value for `emit_move_handle`")
-            .unwrap()
     }
 
     pub fn connect_toggle_handle_focus<F: Fn(&Paned) -> bool + 'static>(
@@ -414,7 +406,6 @@ impl Paned {
         res.unwrap()
             .get()
             .expect("Return Value for `emit_toggle_handle_focus`")
-            .unwrap()
     }
 
     pub fn connect_property_end_child_notify<F: Fn(&Paned) + 'static>(

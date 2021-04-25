@@ -715,7 +715,6 @@ impl IconView {
         res.unwrap()
             .get()
             .expect("Return Value for `emit_activate_cursor_item`")
-            .unwrap()
     }
 
     pub fn connect_item_activated<F: Fn(&IconView, &TreePath) + 'static>(
@@ -797,7 +796,6 @@ impl IconView {
         res.unwrap()
             .get()
             .expect("Return Value for `emit_move_cursor`")
-            .unwrap()
     }
 
     pub fn connect_select_all<F: Fn(&IconView) + 'static>(&self, f: F) -> SignalHandlerId {

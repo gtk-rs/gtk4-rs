@@ -297,7 +297,7 @@ impl Text {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"im-module\0".as_ptr() as *const _,
-                glib::Value::from(im_module).to_glib_none().0,
+                im_module.to_value().to_glib_none().0,
             );
         }
     }
@@ -314,7 +314,6 @@ impl Text {
             value
                 .get()
                 .expect("Return Value for property `invisible-char-set` getter")
-                .unwrap()
         }
     }
 
@@ -324,7 +323,7 @@ impl Text {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"invisible-char-set\0".as_ptr() as *const _,
-                glib::Value::from(&invisible_char_set).to_glib_none().0,
+                invisible_char_set.to_value().to_glib_none().0,
             );
         }
     }
@@ -341,7 +340,6 @@ impl Text {
             value
                 .get()
                 .expect("Return Value for property `scroll-offset` getter")
-                .unwrap()
         }
     }
 

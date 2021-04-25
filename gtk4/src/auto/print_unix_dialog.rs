@@ -226,7 +226,7 @@ impl PrintUnixDialog {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"print-settings\0".as_ptr() as *const _,
-                glib::Value::from(print_settings).to_glib_none().0,
+                print_settings.to_value().to_glib_none().0,
             );
         }
     }

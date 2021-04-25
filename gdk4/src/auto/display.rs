@@ -13,6 +13,7 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
+use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -187,7 +188,6 @@ impl Display {
             value
                 .get()
                 .expect("Return Value for property `input-shapes` getter")
-                .unwrap()
         }
     }
 

@@ -316,7 +316,6 @@ impl Notebook {
             value
                 .get()
                 .expect("Return Value for property `enable-popup` getter")
-                .unwrap()
         }
     }
 
@@ -326,7 +325,7 @@ impl Notebook {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"enable-popup\0".as_ptr() as *const _,
-                glib::Value::from(&enable_popup).to_glib_none().0,
+                enable_popup.to_value().to_glib_none().0,
             );
         }
     }
@@ -337,7 +336,7 @@ impl Notebook {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"page\0".as_ptr() as *const _,
-                glib::Value::from(&page).to_glib_none().0,
+                page.to_value().to_glib_none().0,
             );
         }
     }
@@ -378,7 +377,6 @@ impl Notebook {
         res.unwrap()
             .get()
             .expect("Return Value for `emit_change_current_page`")
-            .unwrap()
     }
 
     pub fn connect_create_window<F: Fn(&Notebook, &Widget) -> Notebook + 'static>(
@@ -446,7 +444,6 @@ impl Notebook {
         res.unwrap()
             .get()
             .expect("Return Value for `emit_focus_tab`")
-            .unwrap()
     }
 
     pub fn connect_move_focus_out<F: Fn(&Notebook, DirectionType) + 'static>(
@@ -599,7 +596,6 @@ impl Notebook {
         res.unwrap()
             .get()
             .expect("Return Value for `emit_reorder_tab`")
-            .unwrap()
     }
 
     pub fn connect_select_page<F: Fn(&Notebook, bool) -> bool + 'static>(
@@ -636,7 +632,6 @@ impl Notebook {
         res.unwrap()
             .get()
             .expect("Return Value for `emit_select_page`")
-            .unwrap()
     }
 
     pub fn connect_switch_page<F: Fn(&Notebook, &Widget, u32) + 'static>(

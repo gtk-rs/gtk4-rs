@@ -412,7 +412,6 @@ impl ListBox {
             value
                 .get()
                 .expect("Return Value for property `accept-unpaired-release` getter")
-                .unwrap()
         }
     }
 
@@ -422,7 +421,7 @@ impl ListBox {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
                 b"accept-unpaired-release\0".as_ptr() as *const _,
-                glib::Value::from(&accept_unpaired_release).to_glib_none().0,
+                accept_unpaired_release.to_value().to_glib_none().0,
             );
         }
     }
