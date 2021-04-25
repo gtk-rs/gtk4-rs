@@ -10,7 +10,6 @@ pub use self::about_dialog::AboutDialog;
 pub use self::about_dialog::AboutDialogBuilder;
 
 mod accessible;
-pub use self::accessible::AccessibleExt;
 pub use self::accessible::{Accessible, NONE_ACCESSIBLE};
 
 mod action_bar;
@@ -18,7 +17,6 @@ pub use self::action_bar::ActionBar;
 pub use self::action_bar::ActionBarBuilder;
 
 mod actionable;
-pub use self::actionable::ActionableExt;
 pub use self::actionable::{Actionable, NONE_ACTIONABLE};
 
 mod activate_action;
@@ -26,7 +24,6 @@ pub use self::activate_action::ActivateAction;
 
 mod adjustment;
 pub use self::adjustment::AdjustmentBuilder;
-pub use self::adjustment::AdjustmentExt;
 pub use self::adjustment::{Adjustment, NONE_ADJUSTMENT};
 
 mod alternative_trigger;
@@ -37,7 +34,6 @@ mod any_filter;
 pub use self::any_filter::AnyFilter;
 
 mod app_chooser;
-pub use self::app_chooser::AppChooserExt;
 pub use self::app_chooser::{AppChooser, NONE_APP_CHOOSER};
 
 mod app_chooser_button;
@@ -54,12 +50,10 @@ pub use self::app_chooser_widget::AppChooserWidgetBuilder;
 
 mod application;
 pub use self::application::ApplicationBuilder;
-pub use self::application::GtkApplicationExt;
 pub use self::application::{Application, NONE_APPLICATION};
 
 mod application_window;
 pub use self::application_window::ApplicationWindowBuilder;
-pub use self::application_window::ApplicationWindowExt;
 pub use self::application_window::{ApplicationWindow, NONE_APPLICATION_WINDOW};
 
 mod aspect_frame;
@@ -87,7 +81,6 @@ pub use self::bool_filter::BoolFilterBuilder;
 
 mod box_;
 pub use self::box_::BoxBuilder;
-pub use self::box_::BoxExt;
 pub use self::box_::{Box, NONE_BOX};
 
 mod box_layout;
@@ -95,7 +88,6 @@ pub use self::box_layout::BoxLayout;
 pub use self::box_layout::BoxLayoutBuilder;
 
 mod buildable;
-pub use self::buildable::BuildableExt;
 pub use self::buildable::{Buildable, NONE_BUILDABLE};
 
 mod builder;
@@ -107,12 +99,10 @@ pub use self::builder_list_item_factory::BuilderListItemFactory;
 pub use self::builder_list_item_factory::BuilderListItemFactoryBuilder;
 
 mod builder_scope;
-pub use self::builder_scope::BuilderScopeExt;
 pub use self::builder_scope::{BuilderScope, NONE_BUILDER_SCOPE};
 
 mod button;
 pub use self::button::ButtonBuilder;
-pub use self::button::ButtonExt;
 pub use self::button::{Button, NONE_BUTTON};
 
 mod calendar;
@@ -123,7 +113,6 @@ mod callback_action;
 pub use self::callback_action::CallbackAction;
 
 mod cell_area;
-pub use self::cell_area::CellAreaExt;
 pub use self::cell_area::{CellArea, NONE_CELL_AREA};
 
 mod cell_area_box;
@@ -132,19 +121,15 @@ pub use self::cell_area_box::CellAreaBoxBuilder;
 
 mod cell_area_context;
 pub use self::cell_area_context::CellAreaContextBuilder;
-pub use self::cell_area_context::CellAreaContextExt;
 pub use self::cell_area_context::{CellAreaContext, NONE_CELL_AREA_CONTEXT};
 
 mod cell_editable;
-pub use self::cell_editable::CellEditableExt;
 pub use self::cell_editable::{CellEditable, NONE_CELL_EDITABLE};
 
 mod cell_layout;
-pub use self::cell_layout::CellLayoutExt;
 pub use self::cell_layout::{CellLayout, NONE_CELL_LAYOUT};
 
 mod cell_renderer;
-pub use self::cell_renderer::CellRendererExt;
 pub use self::cell_renderer::{CellRenderer, NONE_CELL_RENDERER};
 
 mod cell_renderer_accel;
@@ -173,7 +158,6 @@ pub use self::cell_renderer_spinner::CellRendererSpinnerBuilder;
 
 mod cell_renderer_text;
 pub use self::cell_renderer_text::CellRendererTextBuilder;
-pub use self::cell_renderer_text::CellRendererTextExt;
 pub use self::cell_renderer_text::{CellRendererText, NONE_CELL_RENDERER_TEXT};
 
 mod cell_renderer_toggle;
@@ -193,7 +177,6 @@ pub use self::center_layout::CenterLayout;
 
 mod check_button;
 pub use self::check_button::CheckButtonBuilder;
-pub use self::check_button::CheckButtonExt;
 pub use self::check_button::{CheckButton, NONE_CHECK_BUTTON};
 
 mod color_button;
@@ -201,7 +184,6 @@ pub use self::color_button::ColorButton;
 pub use self::color_button::ColorButtonBuilder;
 
 mod color_chooser;
-pub use self::color_chooser::ColorChooserExt;
 pub use self::color_chooser::{ColorChooser, NONE_COLOR_CHOOSER};
 
 mod color_chooser_dialog;
@@ -222,7 +204,6 @@ pub use self::column_view_column::ColumnViewColumnBuilder;
 
 mod combo_box;
 pub use self::combo_box::ComboBoxBuilder;
-pub use self::combo_box::ComboBoxExt;
 pub use self::combo_box::{ComboBox, NONE_COMBO_BOX};
 
 mod combo_box_text;
@@ -245,7 +226,6 @@ pub use self::constraint_layout_child::ConstraintLayoutChild;
 pub use self::constraint_layout_child::ConstraintLayoutChildBuilder;
 
 mod constraint_target;
-pub use self::constraint_target::ConstraintTargetExt;
 pub use self::constraint_target::{ConstraintTarget, NONE_CONSTRAINT_TARGET};
 
 mod css_provider;
@@ -259,7 +239,6 @@ pub use self::custom_sorter::CustomSorter;
 
 mod dialog;
 pub use self::dialog::DialogBuilder;
-pub use self::dialog::DialogExt;
 pub use self::dialog::{Dialog, NONE_DIALOG};
 
 mod directory_list;
@@ -276,7 +255,6 @@ pub use self::drag_source::DragSourceBuilder;
 
 mod drawing_area;
 pub use self::drawing_area::DrawingAreaBuilder;
-pub use self::drawing_area::DrawingAreaExt;
 pub use self::drawing_area::{DrawingArea, NONE_DRAWING_AREA};
 
 mod drop_controller_motion;
@@ -296,7 +274,6 @@ pub use self::drop_target_async::DropTargetAsync;
 pub use self::drop_target_async::DropTargetAsyncBuilder;
 
 mod editable;
-pub use self::editable::EditableExt;
 pub use self::editable::{Editable, NONE_EDITABLE};
 
 mod editable_label;
@@ -309,12 +286,10 @@ pub use self::emoji_chooser::EmojiChooserBuilder;
 
 mod entry;
 pub use self::entry::EntryBuilder;
-pub use self::entry::EntryExt;
 pub use self::entry::{Entry, NONE_ENTRY};
 
 mod entry_buffer;
 pub use self::entry_buffer::EntryBufferBuilder;
-pub use self::entry_buffer::EntryBufferExt;
 pub use self::entry_buffer::{EntryBuffer, NONE_ENTRY_BUFFER};
 
 mod entry_completion;
@@ -322,7 +297,6 @@ pub use self::entry_completion::EntryCompletion;
 pub use self::entry_completion::EntryCompletionBuilder;
 
 mod event_controller;
-pub use self::event_controller::EventControllerExt;
 pub use self::event_controller::{EventController, NONE_EVENT_CONTROLLER};
 
 mod event_controller_focus;
@@ -353,7 +327,6 @@ pub use self::expander::Expander;
 pub use self::expander::ExpanderBuilder;
 
 mod file_chooser;
-pub use self::file_chooser::FileChooserExt;
 pub use self::file_chooser::{FileChooser, NONE_FILE_CHOOSER};
 
 mod file_chooser_dialog;
@@ -373,7 +346,6 @@ pub use self::file_filter::FileFilter;
 pub use self::file_filter::FileFilterBuilder;
 
 mod filter;
-pub use self::filter::FilterExt;
 pub use self::filter::{Filter, NONE_FILTER};
 
 mod filter_list_model;
@@ -382,7 +354,6 @@ pub use self::filter_list_model::FilterListModelBuilder;
 
 mod fixed;
 pub use self::fixed::FixedBuilder;
-pub use self::fixed::FixedExt;
 pub use self::fixed::{Fixed, NONE_FIXED};
 
 mod fixed_layout;
@@ -402,7 +373,6 @@ pub use self::flow_box::FlowBoxBuilder;
 
 mod flow_box_child;
 pub use self::flow_box_child::FlowBoxChildBuilder;
-pub use self::flow_box_child::FlowBoxChildExt;
 pub use self::flow_box_child::{FlowBoxChild, NONE_FLOW_BOX_CHILD};
 
 mod font_button;
@@ -410,7 +380,6 @@ pub use self::font_button::FontButton;
 pub use self::font_button::FontButtonBuilder;
 
 mod font_chooser;
-pub use self::font_chooser::FontChooserExt;
 pub use self::font_chooser::{FontChooser, NONE_FONT_CHOOSER};
 
 mod font_chooser_dialog;
@@ -423,16 +392,13 @@ pub use self::font_chooser_widget::FontChooserWidgetBuilder;
 
 mod frame;
 pub use self::frame::FrameBuilder;
-pub use self::frame::FrameExt;
 pub use self::frame::{Frame, NONE_FRAME};
 
 mod gl_area;
 pub use self::gl_area::GLAreaBuilder;
-pub use self::gl_area::GLAreaExt;
 pub use self::gl_area::{GLArea, NONE_GL_AREA};
 
 mod gesture;
-pub use self::gesture::GestureExt;
 pub use self::gesture::{Gesture, NONE_GESTURE};
 
 mod gesture_click;
@@ -441,7 +407,6 @@ pub use self::gesture_click::GestureClickBuilder;
 
 mod gesture_drag;
 pub use self::gesture_drag::GestureDragBuilder;
-pub use self::gesture_drag::GestureDragExt;
 pub use self::gesture_drag::{GestureDrag, NONE_GESTURE_DRAG};
 
 mod gesture_long_press;
@@ -458,7 +423,6 @@ pub use self::gesture_rotate::GestureRotateBuilder;
 
 mod gesture_single;
 pub use self::gesture_single::GestureSingleBuilder;
-pub use self::gesture_single::GestureSingleExt;
 pub use self::gesture_single::{GestureSingle, NONE_GESTURE_SINGLE};
 
 mod gesture_stylus;
@@ -475,7 +439,6 @@ pub use self::gesture_zoom::GestureZoomBuilder;
 
 mod grid;
 pub use self::grid::GridBuilder;
-pub use self::grid::GridExt;
 pub use self::grid::{Grid, NONE_GRID};
 
 mod grid_layout;
@@ -495,7 +458,6 @@ pub use self::header_bar::HeaderBar;
 pub use self::header_bar::HeaderBarBuilder;
 
 mod im_context;
-pub use self::im_context::IMContextExt;
 pub use self::im_context::{IMContext, NONE_IM_CONTEXT};
 
 mod im_context_simple;
@@ -504,7 +466,6 @@ pub use self::im_context_simple::{IMContextSimple, NONE_IM_CONTEXT_SIMPLE};
 
 mod im_multicontext;
 pub use self::im_multicontext::IMMulticontextBuilder;
-pub use self::im_multicontext::IMMulticontextExt;
 pub use self::im_multicontext::{IMMulticontext, NONE_IM_MULTICONTEXT};
 
 mod icon_paintable;
@@ -532,11 +493,9 @@ pub use self::label::Label;
 pub use self::label::LabelBuilder;
 
 mod layout_child;
-pub use self::layout_child::LayoutChildExt;
 pub use self::layout_child::{LayoutChild, NONE_LAYOUT_CHILD};
 
 mod layout_manager;
-pub use self::layout_manager::LayoutManagerExt;
 pub use self::layout_manager::{LayoutManager, NONE_LAYOUT_MANAGER};
 
 mod level_bar;
@@ -548,7 +507,6 @@ pub use self::link_button::LinkButton;
 pub use self::link_button::LinkButtonBuilder;
 
 mod list_base;
-pub use self::list_base::ListBaseExt;
 pub use self::list_base::{ListBase, NONE_LIST_BASE};
 
 mod list_box;
@@ -557,7 +515,6 @@ pub use self::list_box::ListBoxBuilder;
 
 mod list_box_row;
 pub use self::list_box_row::ListBoxRowBuilder;
-pub use self::list_box_row::ListBoxRowExt;
 pub use self::list_box_row::{ListBoxRow, NONE_LIST_BOX_ROW};
 
 mod list_item;
@@ -568,7 +525,6 @@ mod list_item_factory;
 pub use self::list_item_factory::{ListItemFactory, NONE_LIST_ITEM_FACTORY};
 
 mod list_store;
-pub use self::list_store::GtkListStoreExt;
 pub use self::list_store::{ListStore, NONE_LIST_STORE};
 
 mod list_view;
@@ -588,11 +544,9 @@ pub use self::media_controls::MediaControls;
 pub use self::media_controls::MediaControlsBuilder;
 
 mod media_file;
-pub use self::media_file::MediaFileExt;
 pub use self::media_file::{MediaFile, NONE_MEDIA_FILE};
 
 mod media_stream;
-pub use self::media_stream::MediaStreamExt;
 pub use self::media_stream::{MediaStream, NONE_MEDIA_STREAM};
 
 mod menu_button;
@@ -608,11 +562,9 @@ pub use self::mnemonic_action::MnemonicAction;
 
 mod mount_operation;
 pub use self::mount_operation::MountOperationBuilder;
-pub use self::mount_operation::MountOperationExt;
 pub use self::mount_operation::{MountOperation, NONE_MOUNT_OPERATION};
 
 mod multi_filter;
-pub use self::multi_filter::MultiFilterExt;
 pub use self::multi_filter::{MultiFilter, NONE_MULTI_FILTER};
 
 mod multi_selection;
@@ -627,11 +579,9 @@ pub use self::named_action::NamedAction;
 pub use self::named_action::NamedActionBuilder;
 
 mod native;
-pub use self::native::NativeExt;
 pub use self::native::{Native, NONE_NATIVE};
 
 mod native_dialog;
-pub use self::native_dialog::NativeDialogExt;
 pub use self::native_dialog::{NativeDialog, NONE_NATIVE_DIALOG};
 
 mod never_trigger;
@@ -657,7 +607,6 @@ pub use self::numeric_sorter::NumericSorter;
 pub use self::numeric_sorter::NumericSorterBuilder;
 
 mod orientable;
-pub use self::orientable::OrientableExt;
 pub use self::orientable::{Orientable, NONE_ORIENTABLE};
 
 mod overlay;
@@ -702,7 +651,6 @@ pub use self::picture::PictureBuilder;
 
 mod popover;
 pub use self::popover::PopoverBuilder;
-pub use self::popover::PopoverExt;
 pub use self::popover::{Popover, NONE_POPOVER};
 
 mod popover_menu;
@@ -728,11 +676,9 @@ pub use self::print_job::PrintJobBuilder;
 
 mod print_operation;
 pub use self::print_operation::PrintOperationBuilder;
-pub use self::print_operation::PrintOperationExt;
 pub use self::print_operation::{PrintOperation, NONE_PRINT_OPERATION};
 
 mod print_operation_preview;
-pub use self::print_operation_preview::PrintOperationPreviewExt;
 pub use self::print_operation_preview::{PrintOperationPreview, NONE_PRINT_OPERATION_PREVIEW};
 
 mod print_settings;
@@ -764,12 +710,10 @@ pub use self::progress_bar::ProgressBarBuilder;
 
 mod range;
 pub use self::range::RangeBuilder;
-pub use self::range::RangeExt;
 pub use self::range::{Range, NONE_RANGE};
 
 mod recent_manager;
 pub use self::recent_manager::RecentManagerBuilder;
-pub use self::recent_manager::RecentManagerExt;
 pub use self::recent_manager::{RecentManager, NONE_RECENT_MANAGER};
 
 mod revealer;
@@ -777,21 +721,17 @@ pub use self::revealer::Revealer;
 pub use self::revealer::RevealerBuilder;
 
 mod root;
-pub use self::root::RootExt;
 pub use self::root::{Root, NONE_ROOT};
 
 mod scale;
 pub use self::scale::ScaleBuilder;
-pub use self::scale::ScaleExt;
 pub use self::scale::{Scale, NONE_SCALE};
 
 mod scale_button;
 pub use self::scale_button::ScaleButtonBuilder;
-pub use self::scale_button::ScaleButtonExt;
 pub use self::scale_button::{ScaleButton, NONE_SCALE_BUTTON};
 
 mod scrollable;
-pub use self::scrollable::ScrollableExt;
 pub use self::scrollable::{Scrollable, NONE_SCROLLABLE};
 
 mod scrollbar;
@@ -815,7 +755,6 @@ pub use self::selection_filter_model::SelectionFilterModel;
 pub use self::selection_filter_model::SelectionFilterModelBuilder;
 
 mod selection_model;
-pub use self::selection_model::SelectionModelExt;
 pub use self::selection_model::{SelectionModel, NONE_SELECTION_MODEL};
 
 mod separator;
@@ -831,7 +770,6 @@ pub use self::shortcut::Shortcut;
 pub use self::shortcut::ShortcutBuilder;
 
 mod shortcut_action;
-pub use self::shortcut_action::ShortcutActionExt;
 pub use self::shortcut_action::{ShortcutAction, NONE_SHORTCUT_ACTION};
 
 mod shortcut_controller;
@@ -843,11 +781,9 @@ pub use self::shortcut_label::ShortcutLabel;
 pub use self::shortcut_label::ShortcutLabelBuilder;
 
 mod shortcut_manager;
-pub use self::shortcut_manager::ShortcutManagerExt;
 pub use self::shortcut_manager::{ShortcutManager, NONE_SHORTCUT_MANAGER};
 
 mod shortcut_trigger;
-pub use self::shortcut_trigger::ShortcutTriggerExt;
 pub use self::shortcut_trigger::{ShortcutTrigger, NONE_SHORTCUT_TRIGGER};
 
 mod shortcuts_group;
@@ -893,7 +829,6 @@ pub use self::sort_list_model::SortListModel;
 pub use self::sort_list_model::SortListModelBuilder;
 
 mod sorter;
-pub use self::sorter::SorterExt;
 pub use self::sorter::{Sorter, NONE_SORTER};
 
 mod spin_button;
@@ -940,11 +875,9 @@ pub use self::string_sorter::StringSorterBuilder;
 
 mod style_context;
 pub use self::style_context::StyleContextBuilder;
-pub use self::style_context::StyleContextExt;
 pub use self::style_context::{StyleContext, NONE_STYLE_CONTEXT};
 
 mod style_provider;
-pub use self::style_provider::StyleProviderExt;
 pub use self::style_provider::{StyleProvider, NONE_STYLE_PROVIDER};
 
 mod switch;
@@ -957,21 +890,17 @@ pub use self::text::TextBuilder;
 
 mod text_buffer;
 pub use self::text_buffer::TextBufferBuilder;
-pub use self::text_buffer::TextBufferExt;
 pub use self::text_buffer::{TextBuffer, NONE_TEXT_BUFFER};
 
 mod text_child_anchor;
-pub use self::text_child_anchor::TextChildAnchorExt;
 pub use self::text_child_anchor::{TextChildAnchor, NONE_TEXT_CHILD_ANCHOR};
 
 mod text_mark;
 pub use self::text_mark::TextMarkBuilder;
-pub use self::text_mark::TextMarkExt;
 pub use self::text_mark::{TextMark, NONE_TEXT_MARK};
 
 mod text_tag;
 pub use self::text_tag::TextTagBuilder;
-pub use self::text_tag::TextTagExt;
 pub use self::text_tag::{TextTag, NONE_TEXT_TAG};
 
 mod text_tag_table;
@@ -979,23 +908,19 @@ pub use self::text_tag_table::TextTagTable;
 
 mod text_view;
 pub use self::text_view::TextViewBuilder;
-pub use self::text_view::TextViewExt;
 pub use self::text_view::{TextView, NONE_TEXT_VIEW};
 
 mod toggle_button;
 pub use self::toggle_button::ToggleButtonBuilder;
-pub use self::toggle_button::ToggleButtonExt;
 pub use self::toggle_button::{ToggleButton, NONE_TOGGLE_BUTTON};
 
 mod tooltip;
 pub use self::tooltip::Tooltip;
 
 mod tree_drag_dest;
-pub use self::tree_drag_dest::TreeDragDestExt;
 pub use self::tree_drag_dest::{TreeDragDest, NONE_TREE_DRAG_DEST};
 
 mod tree_drag_source;
-pub use self::tree_drag_source::TreeDragSourceExt;
 pub use self::tree_drag_source::{TreeDragSource, NONE_TREE_DRAG_SOURCE};
 
 mod tree_expander;
@@ -1015,17 +940,14 @@ pub use self::tree_list_row_sorter::TreeListRowSorter;
 pub use self::tree_list_row_sorter::TreeListRowSorterBuilder;
 
 mod tree_model;
-pub use self::tree_model::TreeModelExt;
 pub use self::tree_model::{TreeModel, NONE_TREE_MODEL};
 
 mod tree_model_filter;
 pub use self::tree_model_filter::TreeModelFilterBuilder;
-pub use self::tree_model_filter::TreeModelFilterExt;
 pub use self::tree_model_filter::{TreeModelFilter, NONE_TREE_MODEL_FILTER};
 
 mod tree_model_sort;
 pub use self::tree_model_sort::TreeModelSortBuilder;
-pub use self::tree_model_sort::TreeModelSortExt;
 pub use self::tree_model_sort::{TreeModelSort, NONE_TREE_MODEL_SORT};
 
 mod tree_selection;
@@ -1033,16 +955,13 @@ pub use self::tree_selection::TreeSelection;
 pub use self::tree_selection::TreeSelectionBuilder;
 
 mod tree_sortable;
-pub use self::tree_sortable::TreeSortableExt;
 pub use self::tree_sortable::{TreeSortable, NONE_TREE_SORTABLE};
 
 mod tree_store;
-pub use self::tree_store::TreeStoreExt;
 pub use self::tree_store::{TreeStore, NONE_TREE_STORE};
 
 mod tree_view;
 pub use self::tree_view::TreeViewBuilder;
-pub use self::tree_view::TreeViewExt;
 pub use self::tree_view::{TreeView, NONE_TREE_VIEW};
 
 mod tree_view_column;
@@ -1062,7 +981,6 @@ pub use self::volume_button::VolumeButton;
 pub use self::volume_button::VolumeButtonBuilder;
 
 mod widget;
-pub use self::widget::WidgetExt;
 pub use self::widget::{Widget, NONE_WIDGET};
 
 mod widget_paintable;
@@ -1070,7 +988,6 @@ pub use self::widget_paintable::WidgetPaintable;
 pub use self::widget_paintable::WidgetPaintableBuilder;
 
 mod window;
-pub use self::window::GtkWindowExt;
 pub use self::window::WindowBuilder;
 pub use self::window::{Window, NONE_WINDOW};
 
@@ -1079,7 +996,6 @@ pub use self::window_controls::WindowControls;
 pub use self::window_controls::WindowControlsBuilder;
 
 mod window_group;
-pub use self::window_group::WindowGroupExt;
 pub use self::window_group::{WindowGroup, NONE_WINDOW_GROUP};
 
 mod window_handle;
@@ -1275,88 +1191,88 @@ pub use self::constants::PRINT_SETTINGS_WIN32_DRIVER_VERSION;
 
 #[doc(hidden)]
 pub mod traits {
-    pub use super::AccessibleExt;
-    pub use super::ActionableExt;
-    pub use super::AdjustmentExt;
-    pub use super::AppChooserExt;
-    pub use super::ApplicationWindowExt;
-    pub use super::BoxExt;
-    pub use super::BuildableExt;
-    pub use super::BuilderScopeExt;
-    pub use super::ButtonExt;
-    pub use super::CellAreaContextExt;
-    pub use super::CellAreaExt;
-    pub use super::CellEditableExt;
-    pub use super::CellLayoutExt;
-    pub use super::CellRendererExt;
-    pub use super::CellRendererTextExt;
-    pub use super::CheckButtonExt;
-    pub use super::ColorChooserExt;
-    pub use super::ComboBoxExt;
-    pub use super::ConstraintTargetExt;
-    pub use super::DialogExt;
-    pub use super::DrawingAreaExt;
-    pub use super::EditableExt;
-    pub use super::EntryBufferExt;
-    pub use super::EntryExt;
-    pub use super::EventControllerExt;
-    pub use super::FileChooserExt;
-    pub use super::FilterExt;
-    pub use super::FixedExt;
-    pub use super::FlowBoxChildExt;
-    pub use super::FontChooserExt;
-    pub use super::FrameExt;
-    pub use super::GLAreaExt;
-    pub use super::GestureDragExt;
-    pub use super::GestureExt;
-    pub use super::GestureSingleExt;
-    pub use super::GridExt;
-    pub use super::GtkApplicationExt;
-    pub use super::GtkListStoreExt;
-    pub use super::GtkWindowExt;
-    pub use super::IMContextExt;
-    pub use super::IMMulticontextExt;
-    pub use super::LayoutChildExt;
-    pub use super::LayoutManagerExt;
-    pub use super::ListBaseExt;
-    pub use super::ListBoxRowExt;
-    pub use super::MediaFileExt;
-    pub use super::MediaStreamExt;
-    pub use super::MountOperationExt;
-    pub use super::MultiFilterExt;
-    pub use super::NativeDialogExt;
-    pub use super::NativeExt;
-    pub use super::OrientableExt;
-    pub use super::PopoverExt;
-    pub use super::PrintOperationExt;
-    pub use super::PrintOperationPreviewExt;
-    pub use super::RangeExt;
-    pub use super::RecentManagerExt;
-    pub use super::RootExt;
-    pub use super::ScaleButtonExt;
-    pub use super::ScaleExt;
-    pub use super::ScrollableExt;
-    pub use super::SelectionModelExt;
-    pub use super::ShortcutActionExt;
-    pub use super::ShortcutManagerExt;
-    pub use super::ShortcutTriggerExt;
-    pub use super::SorterExt;
-    pub use super::StyleContextExt;
-    pub use super::StyleProviderExt;
-    pub use super::TextBufferExt;
-    pub use super::TextChildAnchorExt;
-    pub use super::TextMarkExt;
-    pub use super::TextTagExt;
-    pub use super::TextViewExt;
-    pub use super::ToggleButtonExt;
-    pub use super::TreeDragDestExt;
-    pub use super::TreeDragSourceExt;
-    pub use super::TreeModelExt;
-    pub use super::TreeModelFilterExt;
-    pub use super::TreeModelSortExt;
-    pub use super::TreeSortableExt;
-    pub use super::TreeStoreExt;
-    pub use super::TreeViewExt;
-    pub use super::WidgetExt;
-    pub use super::WindowGroupExt;
+    pub use super::accessible::AccessibleExt;
+    pub use super::actionable::ActionableExt;
+    pub use super::adjustment::AdjustmentExt;
+    pub use super::app_chooser::AppChooserExt;
+    pub use super::application::GtkApplicationExt;
+    pub use super::application_window::ApplicationWindowExt;
+    pub use super::box_::BoxExt;
+    pub use super::buildable::BuildableExt;
+    pub use super::builder_scope::BuilderScopeExt;
+    pub use super::button::ButtonExt;
+    pub use super::cell_area::CellAreaExt;
+    pub use super::cell_area_context::CellAreaContextExt;
+    pub use super::cell_editable::CellEditableExt;
+    pub use super::cell_layout::CellLayoutExt;
+    pub use super::cell_renderer::CellRendererExt;
+    pub use super::cell_renderer_text::CellRendererTextExt;
+    pub use super::check_button::CheckButtonExt;
+    pub use super::color_chooser::ColorChooserExt;
+    pub use super::combo_box::ComboBoxExt;
+    pub use super::constraint_target::ConstraintTargetExt;
+    pub use super::dialog::DialogExt;
+    pub use super::drawing_area::DrawingAreaExt;
+    pub use super::editable::EditableExt;
+    pub use super::entry::EntryExt;
+    pub use super::entry_buffer::EntryBufferExt;
+    pub use super::event_controller::EventControllerExt;
+    pub use super::file_chooser::FileChooserExt;
+    pub use super::filter::FilterExt;
+    pub use super::fixed::FixedExt;
+    pub use super::flow_box_child::FlowBoxChildExt;
+    pub use super::font_chooser::FontChooserExt;
+    pub use super::frame::FrameExt;
+    pub use super::gesture::GestureExt;
+    pub use super::gesture_drag::GestureDragExt;
+    pub use super::gesture_single::GestureSingleExt;
+    pub use super::gl_area::GLAreaExt;
+    pub use super::grid::GridExt;
+    pub use super::im_context::IMContextExt;
+    pub use super::im_multicontext::IMMulticontextExt;
+    pub use super::layout_child::LayoutChildExt;
+    pub use super::layout_manager::LayoutManagerExt;
+    pub use super::list_base::ListBaseExt;
+    pub use super::list_box_row::ListBoxRowExt;
+    pub use super::list_store::GtkListStoreExt;
+    pub use super::media_file::MediaFileExt;
+    pub use super::media_stream::MediaStreamExt;
+    pub use super::mount_operation::MountOperationExt;
+    pub use super::multi_filter::MultiFilterExt;
+    pub use super::native::NativeExt;
+    pub use super::native_dialog::NativeDialogExt;
+    pub use super::orientable::OrientableExt;
+    pub use super::popover::PopoverExt;
+    pub use super::print_operation::PrintOperationExt;
+    pub use super::print_operation_preview::PrintOperationPreviewExt;
+    pub use super::range::RangeExt;
+    pub use super::recent_manager::RecentManagerExt;
+    pub use super::root::RootExt;
+    pub use super::scale::ScaleExt;
+    pub use super::scale_button::ScaleButtonExt;
+    pub use super::scrollable::ScrollableExt;
+    pub use super::selection_model::SelectionModelExt;
+    pub use super::shortcut_action::ShortcutActionExt;
+    pub use super::shortcut_manager::ShortcutManagerExt;
+    pub use super::shortcut_trigger::ShortcutTriggerExt;
+    pub use super::sorter::SorterExt;
+    pub use super::style_context::StyleContextExt;
+    pub use super::style_provider::StyleProviderExt;
+    pub use super::text_buffer::TextBufferExt;
+    pub use super::text_child_anchor::TextChildAnchorExt;
+    pub use super::text_mark::TextMarkExt;
+    pub use super::text_tag::TextTagExt;
+    pub use super::text_view::TextViewExt;
+    pub use super::toggle_button::ToggleButtonExt;
+    pub use super::tree_drag_dest::TreeDragDestExt;
+    pub use super::tree_drag_source::TreeDragSourceExt;
+    pub use super::tree_model::TreeModelExt;
+    pub use super::tree_model_filter::TreeModelFilterExt;
+    pub use super::tree_model_sort::TreeModelSortExt;
+    pub use super::tree_sortable::TreeSortableExt;
+    pub use super::tree_store::TreeStoreExt;
+    pub use super::tree_view::TreeViewExt;
+    pub use super::widget::WidgetExt;
+    pub use super::window::GtkWindowExt;
+    pub use super::window_group::WindowGroupExt;
 }

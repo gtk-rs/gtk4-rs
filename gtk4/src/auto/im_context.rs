@@ -53,7 +53,7 @@ pub trait IMContextExt: 'static {
     #[doc(alias = "gtk_im_context_get_preedit_string")]
     fn preedit_string(&self) -> (glib::GString, pango::AttrList, i32);
 
-    #[cfg_attr(feature = "v4_2", deprecated)]
+    #[cfg_attr(feature = "v4_2", deprecated = "Since 4.2")]
     #[doc(alias = "gtk_im_context_get_surrounding")]
     fn surrounding(&self) -> Option<(glib::GString, i32)>;
 
@@ -71,7 +71,7 @@ pub trait IMContextExt: 'static {
     #[doc(alias = "gtk_im_context_set_cursor_location")]
     fn set_cursor_location(&self, area: &gdk::Rectangle);
 
-    #[cfg_attr(feature = "v4_2", deprecated)]
+    #[cfg_attr(feature = "v4_2", deprecated = "Since 4.2")]
     #[doc(alias = "gtk_im_context_set_surrounding")]
     fn set_surrounding(&self, text: &str, cursor_index: i32);
 
