@@ -2330,7 +2330,6 @@ manual_traits = ["WidgetExtManual"]
 name = "Gtk.Window"
 status = "generate"
 trait_name = "GtkWindowExt"
-manual_traits = ["GtkWindowExtManual"]
     [[object.signal]]
     name = "close-request"
     inhibit = true
