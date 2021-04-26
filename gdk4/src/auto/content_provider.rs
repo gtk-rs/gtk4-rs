@@ -8,7 +8,6 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -65,10 +64,10 @@ pub trait ContentProviderExt: 'static {
     fn content_changed(&self);
 
     #[doc(alias = "gdk_content_provider_ref_formats")]
-    fn ref_formats(&self) -> Option<ContentFormats>;
+    fn formats(&self) -> ContentFormats;
 
     #[doc(alias = "gdk_content_provider_ref_storable_formats")]
-    fn ref_storable_formats(&self) -> Option<ContentFormats>;
+    fn storable_formats(&self) -> ContentFormats;
 
     #[doc(alias = "gdk_content_provider_write_mime_type_async")]
     fn write_mime_type_async<
@@ -91,12 +90,6 @@ pub trait ContentProviderExt: 'static {
         io_priority: glib::Priority,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
 
-    #[doc(alias = "get_property_formats")]
-    fn formats(&self) -> Option<ContentFormats>;
-
-    #[doc(alias = "get_property_storable_formats")]
-    fn storable_formats(&self) -> Option<ContentFormats>;
-
     fn connect_content_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn connect_property_formats_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -114,7 +107,7 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
         }
     }
 
-    fn ref_formats(&self) -> Option<ContentFormats> {
+    fn formats(&self) -> ContentFormats {
         unsafe {
             from_glib_full(ffi::gdk_content_provider_ref_formats(
                 self.as_ref().to_glib_none().0,
@@ -122,7 +115,7 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
         }
     }
 
-    fn ref_storable_formats(&self) -> Option<ContentFormats> {
+    fn storable_formats(&self) -> ContentFormats {
         unsafe {
             from_glib_full(ffi::gdk_content_provider_ref_storable_formats(
                 self.as_ref().to_glib_none().0,
@@ -200,34 +193,6 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
 
             cancellable
         }))
-    }
-
-    fn formats(&self) -> Option<ContentFormats> {
-        unsafe {
-            let mut value = glib::Value::from_type(<ContentFormats as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"formats\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `formats` getter")
-        }
-    }
-
-    fn storable_formats(&self) -> Option<ContentFormats> {
-        unsafe {
-            let mut value = glib::Value::from_type(<ContentFormats as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
-                b"storable-formats\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `storable-formats` getter")
-        }
     }
 
     fn connect_content_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
