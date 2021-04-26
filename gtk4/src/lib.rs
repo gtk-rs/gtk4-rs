@@ -321,6 +321,7 @@ pub use expression::{
 pub use flags::PrintCapabilities;
 pub use functions::*;
 pub use keyval_trigger::KeyvalTrigger;
+pub use mnemonic_trigger::MnemonicTrigger;
 pub use pad_action_entry::PadActionEntry;
 pub use page_range::PageRange;
 pub use recent_data::RecentData;
