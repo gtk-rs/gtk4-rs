@@ -5,25 +5,24 @@ Enums in C are not as powerful as the one in Rust, which is why [`glib::Value`](
 Conceptually though, there are similar to a Rust enum defined like this:
 
 ```rust
-enum Value <T> {
-    bool(bool),
-    i8(i8),
-    i32(i32),
-    u32(u32),
-    i64(i64),
-    u64(u64),
-    f32(f32),
-    f64(f64),
-    // boxed types
-    String(Option<String>),
-    Object(Option<T: impl IsA<Object>>),
+enum Value {
+    bool,
+    i8,
+    i32,
+    u32,
+    i64,
+    u64,
+    f32,
+    f64,
+    String,
+    Object,
 }
 ```
 
 That means that a `glib::Value` can represent a set of types, but only one of them per instance.
-Also note that boxed types such as `String` or `Object` are wrapped in an `Option`.
-This comes from C, where boxed types can always be `None` (or null in C terms).
-That also means that the retrieval of Rust types from `glib::Value` differs slightly between boxed and non-boxed types.
+For example, this is how you would use a `Value` representing an `i32`.
+
+<span class="filename">Filename: listings/gobject_values/1/main.rs</span>
 
 ```rust ,no_run
 {{#rustdoc_include ../listings/gobject_values/1/main.rs}}
