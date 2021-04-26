@@ -5,7 +5,6 @@ use crate::{
     PageSetup, PrintContext, PrintOperation, PrintOperationPreview, PrintOperationResult,
     PrintSettings, Widget, Window,
 };
-use glib::subclass::prelude::*;
 use glib::translate::*;
 use glib::{Cast, Object};
 

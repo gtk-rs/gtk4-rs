@@ -1,11 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::subclass::prelude::*;
+use crate::subclass::prelude::*;
+use crate::{ScaleButton, Widget};
 use glib::translate::*;
 use glib::Cast;
-
-use super::widget::WidgetImpl;
-use crate::{ScaleButton, Widget};
 
 pub trait ScaleButtonImpl: ScaleButtonImplExt + WidgetImpl {
     fn value_changed(&self, scale_button: &Self::Type, new_value: f64) {

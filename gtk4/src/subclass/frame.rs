@@ -1,11 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::subclass::prelude::*;
+use crate::subclass::prelude::*;
+use crate::{Allocation, Frame, Widget};
 use glib::translate::*;
 use glib::Cast;
-
-use super::widget::WidgetImpl;
-use crate::{Allocation, Frame, Widget};
 
 pub trait FrameImpl: FrameImplExt + WidgetImpl {
     fn compute_child_allocation(&self, frame: &Self::Type) -> Allocation {

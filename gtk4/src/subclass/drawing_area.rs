@@ -1,11 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::subclass::prelude::*;
+use crate::subclass::prelude::*;
+use crate::{DrawingArea, Widget};
 use glib::translate::*;
 use glib::Cast;
-
-use super::widget::WidgetImpl;
-use crate::{DrawingArea, Widget};
 
 pub trait DrawingAreaImpl: DrawingAreaImplExt + WidgetImpl {
     fn resize(&self, drawing_area: &Self::Type, width: i32, height: i32) {

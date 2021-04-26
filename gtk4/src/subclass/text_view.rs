@@ -1,14 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::subclass::prelude::*;
-use glib::translate::*;
-use glib::Cast;
-
-use super::widget::WidgetImpl;
+use crate::subclass::prelude::*;
 use crate::{
     DeleteType, MovementStep, Snapshot, TextExtendSelection, TextIter, TextView, TextViewLayer,
     Widget,
 };
+use glib::translate::*;
+use glib::Cast;
 
 pub trait TextViewImpl: TextViewImplExt + WidgetImpl {
     fn backspace(&self, text_view: &Self::Type) {

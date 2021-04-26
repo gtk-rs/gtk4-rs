@@ -1,12 +1,10 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::subclass::prelude::*;
-use glib::translate::*;
-use glib::Cast;
-
-use super::widget::WidgetImpl;
+use crate::subclass::prelude::*;
 use crate::{GLArea, Widget};
 use gdk::GLContext;
+use glib::translate::*;
+use glib::Cast;
 
 #[allow(clippy::upper_case_acronyms)]
 pub trait GLAreaImpl: GLAreaImplExt + WidgetImpl {

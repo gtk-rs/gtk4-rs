@@ -1,11 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::subclass::prelude::*;
+use crate::subclass::prelude::*;
+use crate::{Range, Scale};
 use glib::translate::*;
 use glib::Cast;
-
-use super::range::RangeImpl;
-use crate::{Range, Scale};
 
 pub trait ScaleImpl: ScaleImplExt + RangeImpl {
     fn layout_offsets(&self, scale: &Self::Type) -> (i32, i32) {

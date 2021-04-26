@@ -3,9 +3,9 @@
 use libc::{c_char, c_int};
 use std::mem;
 
+use crate::subclass::prelude::*;
 use crate::{CellEditable, CellRenderer, CellRendererState, SizeRequestMode, Snapshot, Widget};
 use glib::object::IsA;
-use glib::subclass::prelude::*;
 use glib::translate::*;
 use glib::{Cast, GString, Object};
 

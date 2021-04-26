@@ -2,7 +2,6 @@
 
 use crate::subclass::prelude::*;
 use crate::Root;
-use glib::subclass::prelude::*;
 
 pub trait RootImpl: NativeImpl {}
 

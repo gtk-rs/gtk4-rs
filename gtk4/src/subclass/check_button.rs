@@ -1,11 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::subclass::prelude::*;
+use crate::subclass::prelude::*;
+use crate::{CheckButton, Widget};
 use glib::translate::*;
 use glib::Cast;
-
-use super::widget::WidgetImpl;
-use crate::{CheckButton, Widget};
 
 pub trait CheckButtonImpl: CheckButtonImplExt + WidgetImpl {
     fn toggled(&self, check_button: &Self::Type) {

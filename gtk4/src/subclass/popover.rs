@@ -1,11 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::subclass::prelude::*;
+use crate::subclass::prelude::*;
+use crate::{Popover, Widget};
 use glib::translate::*;
 use glib::Cast;
-
-use super::widget::WidgetImpl;
-use crate::{Popover, Widget};
 
 pub trait PopoverImpl: PopoverImplExt + WidgetImpl {
     fn activate_default(&self, button: &Self::Type) {

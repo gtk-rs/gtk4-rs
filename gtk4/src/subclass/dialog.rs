@@ -1,11 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::subclass::prelude::*;
+use crate::subclass::prelude::*;
+use crate::{Dialog, ResponseType, Window};
 use glib::translate::*;
 use glib::Cast;
-
-use super::window::WindowImpl;
-use crate::{Dialog, ResponseType, Window};
 
 pub trait DialogImpl: DialogImplExt + WindowImpl {
     fn response(&self, dialog: &Self::Type, response: ResponseType) {

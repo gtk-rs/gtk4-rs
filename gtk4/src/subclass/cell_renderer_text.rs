@@ -1,11 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::subclass::prelude::*;
+use crate::subclass::prelude::*;
+use crate::{CellRenderer, CellRendererText};
 use glib::translate::*;
 use glib::{Cast, GString};
-
-use super::cell_renderer::CellRendererImpl;
-use crate::{CellRenderer, CellRendererText};
 
 pub trait CellRendererTextImpl: CellRendererTextImplExt + CellRendererImpl {
     fn edited(&self, renderer: &Self::Type, path: &str, new_text: &str) {

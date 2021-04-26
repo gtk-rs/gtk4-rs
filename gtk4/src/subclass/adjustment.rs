@@ -1,7 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::subclass::object::ObjectImpl;
-use glib::subclass::prelude::*;
+use crate::subclass::prelude::*;
 use glib::translate::*;
 use glib::{Cast, Object};
 

@@ -1,11 +1,9 @@
-use glib::subclass::prelude::*;
 use gtk::prelude::*;
-use gtk::subclass::widget::WidgetImplExt;
+use gtk::subclass::prelude::*;
 use gtk::{gio, glib, CompositeTemplate};
 
 mod imp {
     use super::*;
-    use gtk::subclass::prelude::*;
 
     /// The private struct, which can hold widgets and other data.
     #[derive(Debug, Default, CompositeTemplate)]

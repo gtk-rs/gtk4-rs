@@ -1,11 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::subclass::object::ObjectImpl;
-use glib::subclass::prelude::*;
+use crate::subclass::prelude::*;
+use crate::{NativeDialog, ResponseType};
 use glib::translate::*;
 use glib::{Cast, Object};
-
-use crate::{NativeDialog, ResponseType};
 
 pub trait NativeDialogImpl: NativeDialogImplExt + ObjectImpl {
     fn response(&self, dialog: &Self::Type, response: ResponseType) {

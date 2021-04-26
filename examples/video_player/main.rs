@@ -1,10 +1,9 @@
 use glib::clone;
-use glib::subclass::prelude::*;
+use gtk::subclass::prelude::*;
 use gtk::{gio, glib, prelude::*, CompositeTemplate};
 
 mod imp {
     use super::*;
-    use gtk::subclass::prelude::*;
 
     #[derive(Debug, CompositeTemplate)]
     #[template(file = "video_player.ui")]
