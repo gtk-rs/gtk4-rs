@@ -11,11 +11,89 @@ use glib::translate::*;
 use glib::{Cast, GString, IsA, Object, Variant};
 use std::boxed::Box as Box_;
 use std::collections::HashMap;
+use std::fmt;
 
 #[derive(Debug, Default)]
 struct Actions(pub(crate) HashMap<String, glib::ffi::gpointer>);
 unsafe impl Sync for Actions {}
 unsafe impl Send for Actions {}
+
+pub struct WidgetActionIter(*mut ffi::GtkWidgetClass, u32);
+
+pub struct WidgetAction(
+    glib::Type,
+    GString,
+    Option<glib::VariantType>,
+    Option<GString>,
+);
+
+impl WidgetAction {
+    /// The type where the action was defined
+    pub fn owner(&self) -> glib::Type {
+        self.0
+    }
+
+    /// The action name
+    pub fn name(&self) -> &str {
+        self.1.as_ref()
+    }
+
+    /// The action parameter type
+    pub fn parameter_type(&self) -> Option<&glib::VariantType> {
+        self.2.as_ref()
+    }
+
+    /// The action property name
+    pub fn property_name(&self) -> Option<&str> {
+        self.3.as_ref().map(|s| s.as_ref())
+    }
+}
+
+impl fmt::Debug for WidgetAction {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.debug_struct("WidgetAction")
+            .field("owner", &self.owner())
+            .field("name", &self.name())
+            .field("parameter_type", &self.parameter_type())
+            .field("property_name", &self.property_name())
+            .finish()
+    }
+}
+
+impl Iterator for WidgetActionIter {
+    type Item = WidgetAction;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        unsafe {
+            let mut owner = std::mem::MaybeUninit::uninit();
+            let mut action_name_ptr = std::ptr::null();
+            let mut parameter_type = std::ptr::null();
+            let mut property_name_ptr = std::ptr::null();
+            let found: bool = from_glib(ffi::gtk_widget_class_query_action(
+                self.0,
+                self.1,
+                owner.as_mut_ptr(),
+                &mut action_name_ptr,
+                &mut parameter_type,
+                &mut property_name_ptr,
+            ));
+            if found {
+                self.1 += 1;
+                let property_name: Option<GString> = from_glib_none(property_name_ptr);
+                let action_name: GString = from_glib_none(action_name_ptr);
+
+                Some(WidgetAction(
+                    from_glib(owner.assume_init()),
+                    action_name,
+                    from_glib_none(parameter_type),
+                    property_name,
+                ))
+            } else {
+                None
+            }
+        }
+    }
+}
 
 pub trait WidgetImpl: WidgetImplExt + ObjectImpl {
     fn compute_expand(&self, widget: &Self::Type, hexpand: &mut bool, vexpand: &mut bool) {
@@ -927,6 +1005,12 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
                 Some(callback),
             );
         }
+    }
+
+    #[doc(alias = "gtk_widget_class_query_action")]
+    fn query_action(&self) -> WidgetActionIter {
+        let widget_class = self as *const _ as *mut ffi::GtkWidgetClass;
+        WidgetActionIter(widget_class, 0)
     }
 
     #[doc(alias = "gtk_widget_class_set_template_scope")]
