@@ -254,6 +254,22 @@ manual_traits = ["ContentProviderExtManual"]
     name = "get_value"
     manual = true # to return Value
     doc_trait_name = "ContentProviderExtManual"
+    [[object.function]]
+    name = "ref_formats"
+    rename = "formats"
+        [object.function.return]
+        nullable = false
+    [[object.function]]
+    name = "ref_storable_formats"
+    rename = "storable_formats"
+        [object.function.return]
+        nullable = false
+    [[object.property]]
+    name = "formats"
+    generate = ["notify"] # ignore get/set
+    [[object.property]]
+    name = "storable-formats"
+    generate = ["notify"] # ignore get/set
 
 [[object]]
 name = "Gdk.ContentSerializer"
