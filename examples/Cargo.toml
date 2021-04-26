@@ -17,10 +17,6 @@ name = "basics"
 path = "basics/main.rs"
 
 [[bin]]
-name = "gtk_builder"
-path = "gtk_builder/main.rs"
-
-[[bin]]
 name = "builder_pattern"
 path = "builder_pattern/main.rs"
 
@@ -71,6 +67,14 @@ path = "entry_completion/main.rs"
 [[bin]]
 name = "entry_undo"
 path = "entry_undo/main.rs"
+
+[[bin]]
+name = "flow_box"
+path = "flow_box/main.rs"
+
+[[bin]]
+name = "gtk_builder"
+path = "gtk_builder/main.rs"
 
 [[bin]]
 name = "list_view_apps_launcher"
