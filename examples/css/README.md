@@ -1,5 +1,5 @@
 # CSS
 
-This example demonstrates how to use CSS with gtk4-rs.
+This example demonstrates how to use CSS.
 
 ![Screenshot](screenshot.png)
