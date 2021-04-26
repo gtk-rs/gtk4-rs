@@ -318,6 +318,7 @@ pub use expression::{
 #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 pub use flags::PrintCapabilities;
 pub use functions::*;
+pub use glib::signal::Inhibit;
 pub use keyval_trigger::KeyvalTrigger;
 pub use pad_action_entry::PadActionEntry;
 pub use page_range::PageRange;
@@ -326,4 +327,3 @@ pub use requisition::Requisition;
 pub use response_type::ResponseType;
 pub use tree_sortable::SortColumn;
 pub use widget::TickCallbackId;
-pub use glib::signal::Inhibit;
