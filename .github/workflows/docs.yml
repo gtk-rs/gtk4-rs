@@ -22,9 +22,9 @@ jobs:
           profile: minimal
           toolchain: nightly
           override: true
+          components: rustfmt
       - working-directory: gir
         run: cargo build --release
-      - run: rustup component add rustfmt
       - run: cargo install rustdoc-stripper
       - run: python3 ./generator.py --embed-docs --yes ./
       - run: echo "DEST=$(if [ "$GITHUB_EVENT_NAME" == "release" ]; then echo 'stable'; else echo 'git'; fi)" >> ${GITHUB_ENV}
@@ -43,7 +43,7 @@ jobs:
         with:
           command: doc
           args: -p gdk4 -p gdk4-sys -p gdk4-wayland -p gdk4-wayland-sys -p gdk4-x11 -p gdk4-x11-sys -p gsk4 -p gsk4-sys -p gtk4 -p gtk4-sys -p gtk4-macros --features "dox" --no-deps
-      
+
       - name: GTK Docs Images
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'release' }}
         run: |
@@ -53,7 +53,7 @@ jobs:
           git sparse-checkout set docs/reference/gtk/images
           git checkout master
           mv ./docs/reference/gtk/images/*.png ../target/doc/gtk4
-          
+
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'release' }}

@@ -58,9 +58,9 @@ jobs:
           profile: minimal
           toolchain: stable
           override: true
+          components: clippy
       - name: "examples: build"
         run: cargo build --manifest-path examples/Cargo.toml --bins --examples --all-features
-      - run: rustup component add clippy
       - name: "examples: clippy"
         run: cargo clippy --manifest-path examples/Cargo.toml --all-targets -- -D warnings
 
@@ -74,7 +74,7 @@ jobs:
           profile: minimal
           toolchain: stable
           override: true
-      - run: rustup component add rustfmt
+          components: rustfmt
       - uses: actions-rs/cargo@v1
         with:
           command: fmt

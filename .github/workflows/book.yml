@@ -21,14 +21,13 @@ jobs:
           profile: minimal
           toolchain: stable
           override: true
+          components: clippy
 
       - run: cargo build
         name: "Build"
         working-directory: book/listings
-        
-      - run: |
-          rustup component add clippy
-          cargo clippy
+
+      - run: cargo clippy
         name: "Clippy"
         working-directory: book/listings
 
