@@ -33,6 +33,7 @@ pub trait LayoutManagerImpl: LayoutManagerImplExt + ObjectImpl {
         None
     }
 
+    #[doc(alias = "get_request_mode")]
     fn request_mode(&self, layout_manager: &Self::Type, widget: &Widget) -> SizeRequestMode {
         self.parent_request_mode(layout_manager, widget)
     }

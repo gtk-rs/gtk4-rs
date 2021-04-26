@@ -21,6 +21,7 @@ impl MnemonicTrigger {
     }
 
     #[doc(alias = "gtk_mnemonic_trigger_get_keyval")]
+    #[doc(alias = "get_keyval")]
     pub fn keyval(&self) -> Key {
         unsafe { ffi::gtk_mnemonic_trigger_get_keyval(self.to_glib_none().0).into() }
     }

@@ -6,6 +6,7 @@ use glib::translate::*;
 
 impl GestureStylus {
     #[doc(alias = "gtk_gesture_stylus_get_axes")]
+    #[doc(alias = "get_axes")]
     pub fn axes(&self, axes: Vec<AxisUse>) -> Option<Vec<f64>> {
         let mut values = std::ptr::null_mut();
         unsafe {

@@ -20,6 +20,7 @@ impl Builder {
 
 pub trait BuilderExtManual: 'static {
     #[doc(alias = "gtk_builder_get_object")]
+    #[doc(alias = "get_object")]
     fn object<T: IsA<Object>>(&self, name: &str) -> Option<T>;
 
     #[doc(alias = "gtk_builder_add_from_file")]

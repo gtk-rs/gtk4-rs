@@ -112,6 +112,7 @@ pub trait WidgetImpl: WidgetImplExt + ObjectImpl {
         self.parent_focus(widget, direction_type)
     }
 
+    #[doc(alias = "get_request_mode")]
     fn request_mode(&self, widget: &Self::Type) -> SizeRequestMode {
         self.parent_request_mode(widget)
     }
@@ -1117,6 +1118,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
     }
 
     #[doc(alias = "gtk_widget_class_get_activate_signal")]
+    #[doc(alias = "get_activate_signal")]
     fn activate_signal(&self) -> Option<SignalId> {
         unsafe {
             let widget_class = self as *const _ as *mut ffi::GtkWidgetClass;
@@ -1167,6 +1169,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
     }
 
     #[doc(alias = "gtk_widget_class_get_layout_manager_type")]
+    #[doc(alias = "get_layout_manager_type")]
     fn layout_manager_type(&self) -> glib::Type {
         unsafe {
             let widget_class = self as *const _ as *mut ffi::GtkWidgetClass;
@@ -1183,6 +1186,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
     }
 
     #[doc(alias = "gtk_widget_class_get_css_name")]
+    #[doc(alias = "get_css_name")]
     fn css_name(&self) -> glib::GString {
         unsafe {
             let widget_class = self as *const _ as *mut ffi::GtkWidgetClass;
@@ -1199,6 +1203,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
     }
 
     #[doc(alias = "gtk_widget_class_get_accessible_role")]
+    #[doc(alias = "get_accessible_role")]
     fn accessible_role(&self) -> AccessibleRole {
         unsafe {
             let widget_class = self as *const _ as *mut ffi::GtkWidgetClass;

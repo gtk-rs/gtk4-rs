@@ -6,22 +6,27 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait PaintableImpl: ObjectImpl {
+    #[doc(alias = "get_current_image")]
     fn current_image(&self, paintable: &Self::Type) -> Paintable {
         self.parent_current_image(paintable)
     }
 
+    #[doc(alias = "get_flags")]
     fn flags(&self, paintable: &Self::Type) -> PaintableFlags {
         self.parent_flags(paintable)
     }
 
+    #[doc(alias = "get_intrinsic_width")]
     fn intrinsic_width(&self, paintable: &Self::Type) -> i32 {
         self.parent_intrinsic_width(paintable)
     }
 
+    #[doc(alias = "get_intrinsic_height")]
     fn intrinsic_height(&self, paintable: &Self::Type) -> i32 {
         self.parent_intrinsic_height(paintable)
     }
 
+    #[doc(alias = "get_intrinsic_aspect_ratio")]
     fn intrinsic_aspect_ratio(&self, paintable: &Self::Type) -> f64 {
         self.parent_intrinsic_aspect_ratio(paintable)
     }

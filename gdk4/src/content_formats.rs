@@ -5,6 +5,7 @@ use glib::translate::*;
 
 impl ContentFormats {
     #[doc(alias = "gdk_content_formats_get_gtypes")]
+    #[doc(alias = "get_gtypes")]
     pub fn types(&self) -> Vec<glib::Type> {
         unsafe {
             let mut n_types = std::mem::MaybeUninit::uninit();

@@ -31,6 +31,7 @@ impl ConstantExpression {
     }
 
     #[doc(alias = "gtk_constant_expression_get_value")]
+    #[doc(alias = "get_value")]
     pub fn value(&self) -> Value {
         unsafe {
             from_glib_none(ffi::gtk_constant_expression_get_value(

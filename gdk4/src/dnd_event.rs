@@ -13,6 +13,7 @@ define_event! {
 
 impl DNDEvent {
     #[doc(alias = "gdk_dnd_event_get_drop")]
+    #[doc(alias = "get_drop")]
     pub fn drop(&self) -> Option<Drop> {
         unsafe { from_glib_none(ffi::gdk_dnd_event_get_drop(self.to_glib_none().0)) }
     }

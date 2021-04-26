@@ -6,6 +6,7 @@ use glib::translate::*;
 use glib::{Cast, GString};
 
 pub trait BuilderScopeImpl: ObjectImpl {
+    #[doc(alias = "get_type_from_name")]
     fn type_from_name(
         &self,
         builder_scope: &Self::Type,
@@ -15,6 +16,7 @@ pub trait BuilderScopeImpl: ObjectImpl {
         self.parent_type_from_name(builder_scope, builder, type_name)
     }
 
+    #[doc(alias = "get_type_from_function")]
     fn type_from_function(
         &self,
         builder_scope: &Self::Type,

@@ -56,6 +56,7 @@ impl Expression {
             }
         }
     }
+    #[doc(alias = "get_type")]
     pub fn type_(&self) -> Type {
         unsafe {
             let ptr = self.to_glib_none().0;
@@ -65,6 +66,7 @@ impl Expression {
     }
 
     #[doc(alias = "gtk_expression_get_value_type")]
+    #[doc(alias = "get_value_type")]
     pub fn value_type(&self) -> Type {
         assert_initialized_main_thread!();
         unsafe { from_glib(ffi::gtk_expression_get_value_type(self.to_glib_none().0)) }

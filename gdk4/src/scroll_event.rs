@@ -14,6 +14,7 @@ define_event! {
 
 impl ScrollEvent {
     #[doc(alias = "gdk_scroll_event_get_deltas")]
+    #[doc(alias = "get_deltas")]
     pub fn deltas(&self) -> (f64, f64) {
         unsafe {
             let mut delta_x = mem::MaybeUninit::uninit();
@@ -30,6 +31,7 @@ impl ScrollEvent {
     }
 
     #[doc(alias = "gdk_scroll_event_get_direction")]
+    #[doc(alias = "get_direction")]
     pub fn direction(&self) -> ScrollDirection {
         unsafe { from_glib(ffi::gdk_scroll_event_get_direction(self.to_glib_none().0)) }
     }

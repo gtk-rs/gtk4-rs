@@ -46,6 +46,7 @@ impl Event {
     }
 
     #[doc(alias = "gdk_events_get_angle")]
+    #[doc(alias = "get_angle")]
     pub fn angle<P: AsRef<Event>>(&self, event: P) -> Option<f64> {
         skip_assert_initialized!();
         unsafe {
@@ -65,6 +66,7 @@ impl Event {
     }
 
     #[doc(alias = "gdk_events_get_center")]
+    #[doc(alias = "get_center")]
     pub fn center<P: AsRef<Event>>(&self, event: P) -> Option<(f64, f64)> {
         skip_assert_initialized!();
         unsafe {
@@ -87,6 +89,7 @@ impl Event {
     }
 
     #[doc(alias = "gdk_events_get_distance")]
+    #[doc(alias = "get_distance")]
     pub fn distance<P: AsRef<Event>>(&self, event: P) -> Option<f64> {
         skip_assert_initialized!();
         unsafe {
@@ -106,6 +109,7 @@ impl Event {
     }
 
     #[doc(alias = "gdk_event_get_axis")]
+    #[doc(alias = "get_axis")]
     pub fn axis(&self, axis_use: AxisUse) -> Option<f64> {
         unsafe {
             let mut value = mem::MaybeUninit::uninit();
@@ -124,21 +128,25 @@ impl Event {
     }
 
     #[doc(alias = "gdk_event_get_device")]
+    #[doc(alias = "get_device")]
     pub fn device(&self) -> Option<Device> {
         unsafe { from_glib_none(ffi::gdk_event_get_device(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_event_get_display")]
+    #[doc(alias = "get_display")]
     pub fn display(&self) -> Option<Display> {
         unsafe { from_glib_none(ffi::gdk_event_get_display(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_event_get_event_type")]
+    #[doc(alias = "get_event_type")]
     pub fn event_type(&self) -> EventType {
         unsafe { from_glib(ffi::gdk_event_get_event_type(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_event_get_history")]
+    #[doc(alias = "get_history")]
     pub fn history(&self) -> Vec<TimeCoord> {
         unsafe {
             let mut out_n_coords = mem::MaybeUninit::uninit();
@@ -151,16 +159,19 @@ impl Event {
     }
 
     #[doc(alias = "gdk_event_get_modifier_state")]
+    #[doc(alias = "get_modifier_state")]
     pub fn modifier_state(&self) -> ModifierType {
         unsafe { from_glib(ffi::gdk_event_get_modifier_state(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_event_get_pointer_emulated")]
+    #[doc(alias = "get_pointer_emulated")]
     pub fn is_pointer_emulated(&self) -> bool {
         unsafe { from_glib(ffi::gdk_event_get_pointer_emulated(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_event_get_position")]
+    #[doc(alias = "get_position")]
     pub fn position(&self) -> Option<(f64, f64)> {
         unsafe {
             let mut x = mem::MaybeUninit::uninit();
@@ -181,16 +192,19 @@ impl Event {
     }
 
     #[doc(alias = "gdk_event_get_seat")]
+    #[doc(alias = "get_seat")]
     pub fn seat(&self) -> Option<Seat> {
         unsafe { from_glib_none(ffi::gdk_event_get_seat(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_event_get_surface")]
+    #[doc(alias = "get_surface")]
     pub fn surface(&self) -> Option<Surface> {
         unsafe { from_glib_none(ffi::gdk_event_get_surface(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_event_get_time")]
+    #[doc(alias = "get_time")]
     pub fn time(&self) -> u32 {
         unsafe { ffi::gdk_event_get_time(self.to_glib_none().0) }
     }

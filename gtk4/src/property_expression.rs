@@ -39,6 +39,7 @@ impl PropertyExpression {
     }
 
     #[doc(alias = "gtk_property_expression_get_expression")]
+    #[doc(alias = "get_expression")]
     pub fn expression(&self) -> Option<Expression> {
         assert_initialized_main_thread!();
         unsafe {
@@ -49,6 +50,7 @@ impl PropertyExpression {
     }
 
     #[doc(alias = "gtk_property_expression_get_pspec")]
+    #[doc(alias = "get_pspec")]
     pub fn pspec(&self) -> glib::ParamSpec {
         assert_initialized_main_thread!();
         unsafe {

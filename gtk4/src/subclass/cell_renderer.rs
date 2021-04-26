@@ -39,6 +39,7 @@ pub trait CellRendererImpl: CellRendererImplExt + ObjectImpl {
         self.parent_editing_started(renderer, editable, path)
     }
 
+    #[doc(alias = "get_aligned_area")]
     fn aligned_area<P: IsA<Widget>>(
         &self,
         renderer: &Self::Type,
@@ -49,6 +50,7 @@ pub trait CellRendererImpl: CellRendererImplExt + ObjectImpl {
         self.parent_aligned_area(renderer, widget, flags, cell_area)
     }
 
+    #[doc(alias = "get_preferred_height_for_width")]
     fn preferred_height_for_width<P: IsA<Widget>>(
         &self,
         renderer: &Self::Type,
@@ -58,10 +60,12 @@ pub trait CellRendererImpl: CellRendererImplExt + ObjectImpl {
         self.parent_preferred_height_for_width(renderer, widget, width)
     }
 
+    #[doc(alias = "get_preferred_height")]
     fn preferred_height<P: IsA<Widget>>(&self, renderer: &Self::Type, widget: &P) -> (i32, i32) {
         self.parent_preferred_height(renderer, widget)
     }
 
+    #[doc(alias = "get_preferred_width_for_height")]
     fn preferred_width_for_height<P: IsA<Widget>>(
         &self,
         renderer: &Self::Type,
@@ -71,10 +75,12 @@ pub trait CellRendererImpl: CellRendererImplExt + ObjectImpl {
         self.parent_preferred_width_for_height(renderer, widget, height)
     }
 
+    #[doc(alias = "get_preferred_width")]
     fn preferred_width<P: IsA<Widget>>(&self, renderer: &Self::Type, widget: &P) -> (i32, i32) {
         self.parent_preferred_width(renderer, widget)
     }
 
+    #[doc(alias = "get_request_mode")]
     fn request_mode(&self, renderer: &Self::Type) -> SizeRequestMode {
         self.parent_request_mode(renderer)
     }

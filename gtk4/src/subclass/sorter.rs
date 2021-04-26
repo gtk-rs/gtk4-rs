@@ -9,6 +9,7 @@ pub trait SorterImpl: SorterImplExt + ObjectImpl {
     fn compare(&self, sorter: &Self::Type, item1: &Object, item2: &Object) -> Ordering {
         self.parent_compare(sorter, item1, item2)
     }
+    #[doc(alias = "get_order")]
     fn order(&self, sorter: &Self::Type) -> SorterOrder {
         self.parent_order(sorter)
     }

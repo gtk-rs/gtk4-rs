@@ -7,6 +7,7 @@ use glib::Cast;
 
 pub trait EntryCompletionExtManual: 'static {
     #[doc(alias = "gtk_entry_completion_get_entry")]
+    #[doc(alias = "get_entry")]
     fn entry(&self) -> Option<Entry>;
 }
 
