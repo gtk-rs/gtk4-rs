@@ -218,12 +218,18 @@ impl Clipboard {
     }
 
     #[doc(alias = "gdk_clipboard_set_content")]
-    pub fn set_content<P: IsA<ContentProvider>>(&self, provider: Option<&P>) -> bool {
+    pub fn set_content<P: IsA<ContentProvider>>(
+        &self,
+        provider: Option<&P>,
+    ) -> Result<(), glib::error::BoolError> {
         unsafe {
-            from_glib(ffi::gdk_clipboard_set_content(
-                self.to_glib_none().0,
-                provider.map(|p| p.as_ref()).to_glib_none().0,
-            ))
+            glib::result_from_gboolean!(
+                ffi::gdk_clipboard_set_content(
+                    self.to_glib_none().0,
+                    provider.map(|p| p.as_ref()).to_glib_none().0
+                ),
+                "Can't set new clipboard content"
+            )
         }
     }
 
