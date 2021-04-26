@@ -869,7 +869,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`ApplicationWindowExt`](trait@crate::ApplicationWindowExt), [`GtkWindowExt`](trait@crate::GtkWindowExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`NativeExt`](trait@crate::NativeExt), [`RootExt`](trait@crate::RootExt), [`ShortcutManagerExt`](trait@crate::ShortcutManagerExt), [`trait@gio::ActionGroupExt`], [`trait@gio::ActionMapExt`], [`GtkWindowExtManual`](trait@crate::GtkWindowExtManual), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`ApplicationWindowExt`](trait@crate::prelude::ApplicationWindowExt), [`GtkWindowExt`](trait@crate::prelude::GtkWindowExt), [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`NativeExt`](trait@crate::prelude::NativeExt), [`RootExt`](trait@crate::prelude::RootExt), [`ShortcutManagerExt`](trait@crate::prelude::ShortcutManagerExt), [`trait@gio::ActionGroupExt`], [`trait@gio::ActionMapExt`], [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ApplicationWindow</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkApplicationWindow</span>, <span class="ident">ffi::GtkApplicationWindowClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Window</span>, <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Native</span>, <span class="ident">Root</span>, <span class="ident">ShortcutManager</span>, <span class="ident">gio::ActionGroup</span>, <span class="ident">gio::ActionMap</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1410,7 +1410,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the help overlay associated</span>
-    <span class="doccomment">///  with `self`, or `None`</span>
+    <span class="doccomment">///  with `self`, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_application_window_get_help_overlay&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">help_overlay</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ShortcutsWindow</span><span class="op">&gt;</span>;
 
@@ -1430,7 +1430,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if `self` will display a menubar when needed</span>
+    <span class="doccomment">/// [`true`] if `self` will display a menubar when needed</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_application_window_get_show_menubar&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">shows_menubar</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 

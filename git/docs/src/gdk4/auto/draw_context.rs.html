@@ -220,7 +220,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`DrawContextExt`](trait@crate::DrawContextExt), [`DrawContextExtManual`](trait@crate::DrawContextExtManual)</span>
+    <span class="doccomment">/// [`DrawContextExt`](trait@crate::prelude::DrawContextExt), [`DrawContextExtManual`](trait@crate::prelude::DrawContextExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DrawContext</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GdkDrawContext</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -253,11 +253,11 @@
     <span class="doccomment">/// Note that the `region` passed to this function is the minimum region that</span>
     <span class="doccomment">/// needs to be drawn and depending on implementation, windowing system and</span>
     <span class="doccomment">/// hardware in use, it might be necessary to draw a larger region. Drawing</span>
-    <span class="doccomment">/// implementation must use [method`Gdk.DrawContext`.`get_frame_region` to</span>
+    <span class="doccomment">/// implementation must use [method`Gdk`.[`DrawContext.get_frame_region()`](crate::DrawContext.get_frame_region()) to</span>
     <span class="doccomment">/// query the region that must be drawn.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When using GTK, the widget system automatically places calls to</span>
-    <span class="doccomment">/// `DrawContextExt::begin_frame` and `DrawContextExt::end_frame` via the</span>
+    <span class="doccomment">/// [`begin_frame()`](Self::begin_frame()) and [`end_frame()`](Self::end_frame()) via the</span>
     <span class="doccomment">/// use of [class`Gsk.Renderer`]s, so application code does not need to call</span>
     <span class="doccomment">/// these functions explicitly.</span>
     <span class="doccomment">/// ## `region`</span>
@@ -265,7 +265,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_draw_context_begin_frame&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">begin_frame</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">region</span>: <span class="kw-2">&amp;</span><span class="ident">cairo::Region</span>);
 
-    <span class="doccomment">/// Ends a drawing operation started with `DrawContextExt::begin_frame`.</span>
+    <span class="doccomment">/// Ends a drawing operation started with [`begin_frame()`](Self::begin_frame()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This makes the drawing available on screen.</span>
     <span class="doccomment">/// See [method`Gdk.DrawContext`.begin_frame] for more details about drawing.</span>
@@ -280,7 +280,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GdkDisplay` or `None`</span>
+    <span class="doccomment">/// a `GdkDisplay` or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_draw_context_get_display&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">display</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Display</span><span class="op">&gt;</span>;
 
@@ -288,11 +288,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `Surface` or `None`</span>
+    <span class="doccomment">/// a [`Surface`](crate::Surface) or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_draw_context_get_surface&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">surface</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Returns `true` if `self` is in the process of drawing to its surface.</span>
+    <span class="doccomment">/// Returns [`true`] if `self` is in the process of drawing to its surface.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is the case between calls to [method`Gdk.DrawContext`.begin_frame]</span>
     <span class="doccomment">/// and [method`Gdk.DrawContext`.end_frame]. In this situation, drawing commands</span>
@@ -300,7 +300,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the context is between [method`Gdk.DrawContext`.begin_frame]</span>
+    <span class="doccomment">/// [`true`] if the context is between [method`Gdk.DrawContext`.begin_frame]</span>
     <span class="doccomment">///  and [method`Gdk.DrawContext`.end_frame] calls.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_draw_context_is_in_frame&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_in_frame</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;

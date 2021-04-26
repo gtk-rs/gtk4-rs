@@ -812,10 +812,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The node at the top of the stack is the the one that gtk_snapshot_append_…</span>
     <span class="doccomment">/// functions operate on. Use the gtk_snapshot_push_… functions and</span>
-    <span class="doccomment">/// `Snapshot::pop` to change the current node.</span>
+    <span class="doccomment">/// [`pop()`](Self::pop()) to change the current node.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The typical way to obtain a `GtkSnapshot` object is as an argument to</span>
-    <span class="doccomment">/// the `WidgetClass`.`snapshot` vfunc. If you need to create your own</span>
+    <span class="doccomment">/// the [``WidgetClass`.snapshot()`](crate::`WidgetClass`.snapshot()) vfunc. If you need to create your own</span>
     <span class="doccomment">/// `GtkSnapshot`, use [ctor`Gtk.Snapshot`.new].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
@@ -996,7 +996,7 @@
     <span class="doccomment">/// constructed by `self` and frees `self`.</span>
     <span class="doccomment">/// ## `size`</span>
     <span class="doccomment">/// The size of the resulting paintable</span>
-    <span class="doccomment">///  or `None` to use the bounds of the snapshot</span>
+    <span class="doccomment">///  or [`None`] to use the bounds of the snapshot</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1203,7 +1203,7 @@
     <span class="doccomment">/// ## `bounds`</span>
     <span class="doccomment">/// the bounds within which to repeat</span>
     <span class="doccomment">/// ## `child_bounds`</span>
-    <span class="doccomment">/// the bounds of the child or `None`</span>
+    <span class="doccomment">/// the bounds of the child or [`None`]</span>
     <span class="doccomment">///  to use the full size of the collected child node</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_push_repeat&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">push_repeat</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">bounds</span>: <span class="kw-2">&amp;</span><span class="ident">graphene::Rect</span>, <span class="ident">child_bounds</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">graphene::Rect</span><span class="op">&gt;</span>) {
@@ -1358,9 +1358,9 @@
     <span class="doccomment">/// ## `layout`</span>
     <span class="doccomment">/// the `PangoLayout` of the text</span>
     <span class="doccomment">/// ## `index`</span>
-    <span class="doccomment">/// the index in the `pango::Layout`</span>
+    <span class="doccomment">/// the index in the [`pango::Layout`](crate::pango::Layout)</span>
     <span class="doccomment">/// ## `direction`</span>
-    <span class="doccomment">/// the `pango::Direction` of the text</span>
+    <span class="doccomment">/// the [`pango::Direction`](crate::pango::Direction) of the text</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_render_insertion_cursor&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_insertion_cursor</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -1394,7 +1394,7 @@
     <span class="doccomment">/// ## `y`</span>
     <span class="doccomment">/// Y origin of the rectangle</span>
     <span class="doccomment">/// ## `layout`</span>
-    <span class="doccomment">/// the `pango::Layout` to render</span>
+    <span class="doccomment">/// the [`pango::Layout`](crate::pango::Layout) to render</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_render_layout&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_layout</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -1415,7 +1415,7 @@
     }
 
     <span class="doccomment">/// Restores `self` to the state saved by a preceding call to</span>
-    <span class="doccomment">/// `Snapshot::save` and removes that state from the stack of</span>
+    <span class="doccomment">/// [`save()`](Self::save()) and removes that state from the stack of</span>
     <span class="doccomment">/// saved states.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_restore&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">restore</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
@@ -1456,12 +1456,12 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// When [method`Gtk.Snapshot`.restore] is called, `self` will</span>
     <span class="doccomment">/// be restored to the saved state. Multiple calls to</span>
-    <span class="doccomment">/// `Snapshot::save` and `Snapshot::restore` can be nested;</span>
-    <span class="doccomment">/// each call to `Snapshot::restore` restores the state from</span>
-    <span class="doccomment">/// the matching paired `Snapshot::save`.</span>
+    <span class="doccomment">/// [`save()`](Self::save()) and [`restore()`](Self::restore()) can be nested;</span>
+    <span class="doccomment">/// each call to [`restore()`](Self::restore()) restores the state from</span>
+    <span class="doccomment">/// the matching paired [`save()`](Self::save()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is necessary to clear all saved states with corresponding</span>
-    <span class="doccomment">/// calls to `Snapshot::restore`.</span>
+    <span class="doccomment">/// calls to [`restore()`](Self::restore()).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_save&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">save</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="kw">unsafe</span> {
@@ -1503,7 +1503,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// After calling this function, it is no longer possible to</span>
     <span class="doccomment">/// add more nodes to `self`. The only function that should</span>
-    <span class="doccomment">/// be called after this is `glib::object::ObjectExt::unref`.</span>
+    <span class="doccomment">/// be called after this is [`glib::object::ObjectExt::unref()`](crate::glib::object::ObjectExt::unref()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1518,14 +1518,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// After calling this function, it is no longer possible to</span>
     <span class="doccomment">/// add more nodes to `self`. The only function that should</span>
-    <span class="doccomment">/// be called after this is `glib::object::ObjectExt::unref`.</span>
+    <span class="doccomment">/// be called after this is [`glib::object::ObjectExt::unref()`](crate::glib::object::ObjectExt::unref()).</span>
     <span class="doccomment">/// ## `size`</span>
     <span class="doccomment">/// The size of the resulting paintable</span>
-    <span class="doccomment">///  or `None` to use the bounds of the snapshot</span>
+    <span class="doccomment">///  or [`None`] to use the bounds of the snapshot</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `gdk::Paintable`</span>
+    <span class="doccomment">/// a new [`gdk::Paintable`](crate::gdk::Paintable)</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_to_paintable&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_paintable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">size</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">graphene::Size</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Paintable</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {

@@ -22,11 +22,11 @@
 provided in. This given <code>GType</code> does not need to be listed in the formats
 returned by [method<code>Gdk.ContentProvider</code>.ref_formats]. However, if the
 given <code>GType</code> is not supported, this operation can fail and
-<code>gio::IOErrorEnum::NotSupported</code> will be reported.</p>
+<a href="https://gtk-rs.org/gtk-rs/git/docs/gio/auto/enums/enum.IOErrorEnum.html#variant.NotSupported"><code>gio::IOErrorEnum::NotSupported</code></a> will be reported.</p>
 <h2 id="value" class="section-header"><a href="#value"><code>value</code></a></h2>
 <p>the <code>GValue</code> to fill</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
-<p><code>true</code> if the value was set successfully. Otherwise
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the value was set successfully. Otherwise
 <code>error</code> will be set to describe the failure.</p>
 </div><h3 id="tymethod.ref_formats" class="method"><code>fn <a href="#tymethod.ref_formats" class="fnname">ref_formats</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.ContentFormats.html" title="struct gdk4::ContentFormats">ContentFormats</a>&gt;</code><a class="srclink" href="../../src/gdk4/auto/content_provider.rs.html#151" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets the formats that the provider can provide its current contents in.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
@@ -44,7 +44,7 @@ the data in.</p>
 of the operation.</p>
 <p>The given mime type does not need to be listed in the formats returned by
 [method<code>Gdk.ContentProvider</code>.ref_formats]. However, if the given <code>GType</code> is
-not supported, <code>gio::IOErrorEnum::NotSupported</code> will be reported.</p>
+not supported, <a href="https://gtk-rs.org/gtk-rs/git/docs/gio/auto/enums/enum.IOErrorEnum.html#variant.NotSupported"><code>gio::IOErrorEnum::NotSupported</code></a> will be reported.</p>
 <p>The given <code>stream</code> will not be closed.</p>
 <h2 id="mime_type" class="section-header"><a href="#mime_type"><code>mime_type</code></a></h2>
 <p>the mime type to provide the data in</p>
@@ -53,7 +53,7 @@ not supported, <code>gio::IOErrorEnum::NotSupported</code> will be reported.</p>
 <h2 id="io_priority" class="section-header"><a href="#io_priority"><code>io_priority</code></a></h2>
 <p>I/O priority of the request.</p>
 <h2 id="cancellable" class="section-header"><a href="#cancellable"><code>cancellable</code></a></h2>
-<p>optional <code>GCancellable</code> object, <code>None</code> to ignore.</p>
+<p>optional <code>GCancellable</code> object, <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> to ignore.</p>
 <h2 id="callback" class="section-header"><a href="#callback"><code>callback</code></a></h2>
 <p>callback to call when the request is satisfied</p>
 <h2 id="user_data" class="section-header"><a href="#user_data"><code>user_data</code></a></h2>

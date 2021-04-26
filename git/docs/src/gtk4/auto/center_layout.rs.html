@@ -216,7 +216,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`LayoutManagerExt`](trait@crate::LayoutManagerExt), [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`LayoutManagerExt`](trait@crate::prelude::LayoutManagerExt), [`trait@glib::object::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CenterLayout</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkCenterLayout</span>, <span class="ident">ffi::GtkCenterLayoutClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">LayoutManager</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -317,7 +317,7 @@
 
     <span class="doccomment">/// Sets the new center widget of `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To remove the existing center widget, pass `None`.</span>
+    <span class="doccomment">/// To remove the existing center widget, pass [`None`].</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// the new center widget</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_center_layout_set_center_widget&quot;</span>)]</span>
@@ -332,7 +332,7 @@
 
     <span class="doccomment">/// Sets the new end widget of `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To remove the existing center widget, pass `None`.</span>
+    <span class="doccomment">/// To remove the existing center widget, pass [`None`].</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// the new end widget</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_center_layout_set_end_widget&quot;</span>)]</span>
@@ -357,7 +357,7 @@
 
     <span class="doccomment">/// Sets the new start widget of `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To remove the existing start widget, pass `None`.</span>
+    <span class="doccomment">/// To remove the existing start widget, pass [`None`].</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// the new start widget</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_center_layout_set_start_widget&quot;</span>)]</span>

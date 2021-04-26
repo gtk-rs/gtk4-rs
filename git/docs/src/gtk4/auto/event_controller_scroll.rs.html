@@ -363,25 +363,25 @@
     <span class="doccomment">/// conditions of the widget changed).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The controller can be set up to emit motion for either/both vertical</span>
-    <span class="doccomment">/// and horizontal scroll events through `EventControllerScrollFlags::Vertical`,</span>
-    <span class="doccomment">/// `EventControllerScrollFlags::Horizontal` and `EventControllerScrollFlags::BothAxes`.</span>
+    <span class="doccomment">/// and horizontal scroll events through [`EventControllerScrollFlags::Vertical`],</span>
+    <span class="doccomment">/// [`EventControllerScrollFlags::Horizontal`] and [`EventControllerScrollFlags::BothAxes`].</span>
     <span class="doccomment">/// If any axis is disabled, the respective [signal`Gtk.EventControllerScroll`::scroll]</span>
     <span class="doccomment">/// delta will be 0. Vertical scroll events will be translated to horizontal</span>
     <span class="doccomment">/// motion for the devices incapable of horizontal scrolling.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The event controller can also be forced to emit discrete events on all</span>
-    <span class="doccomment">/// devices through `EventControllerScrollFlags::Discrete`. This can be used</span>
+    <span class="doccomment">/// devices through [`EventControllerScrollFlags::Discrete`]. This can be used</span>
     <span class="doccomment">/// to implement discrete actions triggered through scroll events (e.g.</span>
     <span class="doccomment">/// switching across combobox options).</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `EventControllerScrollFlags::Kinetic` flag toggles the emission of the</span>
+    <span class="doccomment">/// The [`EventControllerScrollFlags::Kinetic`] flag toggles the emission of the</span>
     <span class="doccomment">/// [signal`Gtk.EventControllerScroll`::decelerate] signal, emitted at the end</span>
     <span class="doccomment">/// of scrolling with two X/Y velocity arguments that are consistent with the</span>
     <span class="doccomment">/// motion that was received.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`EventControllerExt`](trait@crate::EventControllerExt), [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`EventControllerExt`](trait@crate::prelude::EventControllerExt), [`trait@glib::object::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EventControllerScroll</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkEventControllerScroll</span>, <span class="ident">ffi::GtkEventControllerScrollClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -431,7 +431,7 @@
     }
 
     <span class="doccomment">/// Emitted after scroll is finished if the</span>
-    <span class="doccomment">/// `EventControllerScrollFlags::Kinetic` flag is set.</span>
+    <span class="doccomment">/// [`EventControllerScrollFlags::Kinetic`] flag is set.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `vel_x` and `vel_y` express the initial velocity that was</span>
     <span class="doccomment">/// imprinted by the scroll events. `vel_x` and `vel_y` are expressed in</span>
@@ -477,8 +477,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the scroll event was handled,</span>
-    <span class="doccomment">///  `false` otherwise.</span>
+    <span class="doccomment">/// [`true`] if the scroll event was handled,</span>
+    <span class="doccomment">///  [`false`] otherwise.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_scroll</span><span class="op">&lt;</span>
         <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">EventControllerScroll</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::signal::Inhibit</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
     <span class="op">&gt;</span>(

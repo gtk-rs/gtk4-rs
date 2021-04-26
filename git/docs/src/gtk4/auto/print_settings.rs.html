@@ -1197,7 +1197,7 @@
     <span class="doccomment">/// Reads the print settings from `file_name`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Returns a new `GtkPrintSettings` object with the restored settings,</span>
-    <span class="doccomment">/// or `None` if an error occurred. If the file could not be loaded then</span>
+    <span class="doccomment">/// or [`None`] if an error occurred. If the file could not be loaded then</span>
     <span class="doccomment">/// error is set to either a `GFileError` or `GKeyFileError`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// See [method`Gtk.PrintSettings`.to_file].</span>
@@ -1249,12 +1249,12 @@
     <span class="doccomment">/// Reads the print settings from the group `group_name` in `key_file`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Returns a new `GtkPrintSettings` object with the restored settings,</span>
-    <span class="doccomment">/// or `None` if an error occurred. If the file could not be loaded then</span>
+    <span class="doccomment">/// or [`None`] if an error occurred. If the file could not be loaded then</span>
     <span class="doccomment">/// error is set to either `GFileError` or `GKeyFileError`.</span>
     <span class="doccomment">/// ## `key_file`</span>
     <span class="doccomment">/// the `GKeyFile` to retrieve the settings from</span>
     <span class="doccomment">/// ## `group_name`</span>
-    <span class="doccomment">/// the name of the group to use, or `None` to use</span>
+    <span class="doccomment">/// the name of the group to use, or [`None`] to use</span>
     <span class="doccomment">///  the default “Print Settings”</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -1340,14 +1340,14 @@
     <span class="doccomment">/// Returns the boolean represented by the value</span>
     <span class="doccomment">/// that is associated with `key`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The string “true” represents `true`, any other</span>
-    <span class="doccomment">/// string `false`.</span>
+    <span class="doccomment">/// The string “true” represents [`true`], any other</span>
+    <span class="doccomment">/// string [`false`].</span>
     <span class="doccomment">/// ## `key`</span>
     <span class="doccomment">/// a key</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true`, if `key` maps to a true value.</span>
+    <span class="doccomment">/// [`true`], if `key` maps to a true value.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_get_bool&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bool</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -1408,7 +1408,7 @@
     <span class="doccomment">/// the value that is associated with `key`, or `default_val`</span>
     <span class="doccomment">/// if the value does not represent a floating point number.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Floating point numbers are parsed with `g_ascii_strtod`.</span>
+    <span class="doccomment">/// Floating point numbers are parsed with `g_ascii_strtod()`.</span>
     <span class="doccomment">/// ## `key`</span>
     <span class="doccomment">/// a key</span>
     <span class="doccomment">/// ## `def`</span>
@@ -1594,7 +1594,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// an array</span>
-    <span class="doccomment">///  of `GtkPageRange`s. Use `g_free` to free the array when</span>
+    <span class="doccomment">///  of `GtkPageRange`s. Use `g_free()` to free the array when</span>
     <span class="doccomment">///  it is no longer needed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_get_page_ranges&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">page_ranges</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">PageRange</span><span class="op">&gt;</span> {
@@ -1767,13 +1767,13 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_print_settings_get_use_color</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns `true`, if a value is associated with `key`.</span>
+    <span class="doccomment">/// Returns [`true`], if a value is associated with `key`.</span>
     <span class="doccomment">/// ## `key`</span>
     <span class="doccomment">/// a key</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true`, if `key` has a value</span>
+    <span class="doccomment">/// [`true`], if `key` has a value</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_has_key&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_key</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -1795,7 +1795,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` on success</span>
+    <span class="doccomment">/// [`true`] on success</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_load_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load_file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">std::path::Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">file_name</span>: <span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -1820,12 +1820,12 @@
     <span class="doccomment">/// ## `key_file`</span>
     <span class="doccomment">/// the `GKeyFile` to retrieve the settings from</span>
     <span class="doccomment">/// ## `group_name`</span>
-    <span class="doccomment">/// the name of the group to use, or `None`</span>
+    <span class="doccomment">/// the name of the group to use, or [`None`]</span>
     <span class="doccomment">///  to use the default “Print Settings”</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` on success</span>
+    <span class="doccomment">/// [`true`] on success</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_load_key_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load_key_file</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -1852,7 +1852,7 @@
     <span class="doccomment">/// ## `key`</span>
     <span class="doccomment">/// a key</span>
     <span class="doccomment">/// ## `value`</span>
-    <span class="doccomment">/// a string value, or `None`</span>
+    <span class="doccomment">/// a string value, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_set&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">value</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -1927,7 +1927,7 @@
 
     <span class="doccomment">/// Sets the value of `GTK_PRINT_SETTINGS_DUPLEX`.</span>
     <span class="doccomment">/// ## `duplex`</span>
-    <span class="doccomment">/// a `PrintDuplex` value</span>
+    <span class="doccomment">/// a [`PrintDuplex`](crate::PrintDuplex) value</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_set_duplex&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_duplex</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">duplex</span>: <span class="ident">PrintDuplex</span>) {
         <span class="kw">unsafe</span> {
@@ -2016,7 +2016,7 @@
 
     <span class="doccomment">/// Sets the value of `GTK_PRINT_SETTINGS_NUMBER_UP_LAYOUT`.</span>
     <span class="doccomment">/// ## `number_up_layout`</span>
-    <span class="doccomment">/// a `NumberUpLayout` value</span>
+    <span class="doccomment">/// a [`NumberUpLayout`](crate::NumberUpLayout) value</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_set_number_up_layout&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_number_up_layout</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">number_up_layout</span>: <span class="ident">NumberUpLayout</span>) {
         <span class="kw">unsafe</span> {
@@ -2052,7 +2052,7 @@
 
     <span class="doccomment">/// Sets the value of `GTK_PRINT_SETTINGS_PAGE_SET`.</span>
     <span class="doccomment">/// ## `page_set`</span>
-    <span class="doccomment">/// a `PageSet` value</span>
+    <span class="doccomment">/// a [`PageSet`](crate::PageSet) value</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_set_page_set&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_page_set</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">page_set</span>: <span class="ident">PageSet</span>) {
         <span class="kw">unsafe</span> {
@@ -2101,7 +2101,7 @@
 
     <span class="doccomment">/// Sets the value of `GTK_PRINT_SETTINGS_PRINT_PAGES`.</span>
     <span class="doccomment">/// ## `pages`</span>
-    <span class="doccomment">/// a `PrintPages` value</span>
+    <span class="doccomment">/// a [`PrintPages`](crate::PrintPages) value</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_set_print_pages&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_print_pages</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pages</span>: <span class="ident">PrintPages</span>) {
         <span class="kw">unsafe</span> {
@@ -2132,7 +2132,7 @@
 
     <span class="doccomment">/// Sets the value of `GTK_PRINT_SETTINGS_QUALITY`.</span>
     <span class="doccomment">/// ## `quality`</span>
-    <span class="doccomment">/// a `PrintQuality` value</span>
+    <span class="doccomment">/// a [`PrintQuality`](crate::PrintQuality) value</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_set_quality&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_quality</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">quality</span>: <span class="ident">PrintQuality</span>) {
         <span class="kw">unsafe</span> {
@@ -2209,7 +2209,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` on success</span>
+    <span class="doccomment">/// [`true`] on success</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_to_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">std::path::Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">file_name</span>: <span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -2242,7 +2242,7 @@
     <span class="doccomment">/// the `GKeyFile` to save the print settings to</span>
     <span class="doccomment">/// ## `group_name`</span>
     <span class="doccomment">/// the group to add the settings to in `key_file`, or</span>
-    <span class="doccomment">///  `None` to use the default “Print Settings”</span>
+    <span class="doccomment">///  [`None`] to use the default “Print Settings”</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_to_key_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_key_file</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key_file</span>: <span class="kw-2">&amp;</span><span class="ident">glib::KeyFile</span>, <span class="ident">group_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -2256,7 +2256,7 @@
 
     <span class="doccomment">/// Removes any value associated with `key`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This has the same effect as setting the value to `None`.</span>
+    <span class="doccomment">/// This has the same effect as setting the value to [`None`].</span>
     <span class="doccomment">/// ## `key`</span>
     <span class="doccomment">/// a key</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_settings_unset&quot;</span>)]</span>

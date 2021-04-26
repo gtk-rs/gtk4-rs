@@ -690,7 +690,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`AdjustmentExt`](trait@crate::AdjustmentExt), [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`AdjustmentExt`](trait@crate::prelude::AdjustmentExt), [`trait@glib::object::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Adjustment</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkAdjustment</span>, <span class="ident">ffi::GtkAdjustmentClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -927,10 +927,10 @@
     <span class="doccomment">/// [signal`Gtk.Adjustment`::changed] signal is tied to the emission</span>
     <span class="doccomment">/// of the ::notify signals of the changed properties, it’s possible</span>
     <span class="doccomment">/// to compress the [signal`Gtk.Adjustment`::changed] signals into one</span>
-    <span class="doccomment">/// by calling `glib::object::ObjectExt::freeze_notify` and `glib::object::ObjectExt::thaw_notify`</span>
+    <span class="doccomment">/// by calling [`glib::object::ObjectExt::freeze_notify()`](crate::glib::object::ObjectExt::freeze_notify()) and [`glib::object::ObjectExt::thaw_notify()`](crate::glib::object::ObjectExt::thaw_notify())</span>
     <span class="doccomment">/// around the calls to the individual setters.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Alternatively, using a single `glib::object::ObjectExt::set` for all the properties</span>
+    <span class="doccomment">/// Alternatively, using a single [`glib::object::ObjectExt::set()`](crate::glib::object::ObjectExt::set()) for all the properties</span>
     <span class="doccomment">/// to change, or using [method`Gtk.Adjustment`.configure] has the same effect.</span>
     <span class="doccomment">/// ## `lower`</span>
     <span class="doccomment">/// the new minimum value</span>

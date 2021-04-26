@@ -46,10 +46,10 @@ platforms can be found in the CSS specification:</p>
 <h2 id="name" class="section-header"><a href="#name"><code>name</code></a></h2>
 <p>the name of the cursor</p>
 <h2 id="fallback" class="section-header"><a href="#fallback"><code>fallback</code></a></h2>
-<p><code>None</code> or the <code>GdkCursor</code> to fall back to when
+<p><a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> or the <code>GdkCursor</code> to fall back to when
 this one cannot be supported</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
-<p>a new <code>GdkCursor</code>, or <code>None</code> if there is no
+<p>a new <code>GdkCursor</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if there is no
 cursor with the given name</p>
 </div><h4 id="method.from_texture" class="method"><code>pub fn <a href="#method.from_texture" class="fnname">from_texture</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.Texture.html" title="struct gdk4::Texture">Texture</a>&gt;&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;texture: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P, <br>&nbsp;&nbsp;&nbsp;&nbsp;hotspot_x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;hotspot_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;fallback: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="struct.Cursor.html" title="struct gdk4::Cursor">Cursor</a>&gt;<br>) -&gt; <a class="struct" href="struct.Cursor.html" title="struct gdk4::Cursor">Cursor</a></code><a href="#method.from_texture" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/cursor.rs.html#109-124" title="goto source code">[src]</a></h4><div class="docblock"><p>Creates a new cursor from a <code>GdkTexture</code>.</p>
 <h2 id="texture" class="section-header"><a href="#texture"><code>texture</code></a></h2>
@@ -59,7 +59,7 @@ cursor with the given name</p>
 <h2 id="hotspot_y" class="section-header"><a href="#hotspot_y"><code>hotspot_y</code></a></h2>
 <p>the vertical offset of the “hotspot” of the cursor</p>
 <h2 id="fallback-1" class="section-header"><a href="#fallback-1"><code>fallback</code></a></h2>
-<p><code>None</code> or the <code>GdkCursor</code> to fall back to when
+<p><a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> or the <code>GdkCursor</code> to fall back to when
 this one cannot be supported</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
 <p>a new <code>GdkCursor</code></p>
@@ -70,7 +70,7 @@ names or when using an incomplete cursor theme. For textured cursors,
 this can happen when the texture is too large or when the <code>GdkDisplay</code>
 it is used on does not support textured cursors.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
-<p>the fallback of the cursor or <code>None</code>
+<p>the fallback of the cursor or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>
 to use the default cursor as fallback.</p>
 </div><h4 id="method.hotspot_x" class="method"><code>pub fn <a href="#method.hotspot_x" class="fnname">hotspot_x</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a href="#method.hotspot_x" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/cursor.rs.html#155-157" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the horizontal offset of the hotspot.</p>
 <p>The hotspot indicates the pixel that will be directly above the cursor.</p>
@@ -87,14 +87,14 @@ will only return the hotspot position for cursors created with
 <h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
 <p>the vertical offset of the hotspot or 0 for named cursors</p>
 </div><h4 id="method.name" class="method"><code>pub fn <a href="#method.name" class="fnname">name</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</code><a href="#method.name" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/cursor.rs.html#184-186" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the name of the cursor.</p>
-<p>If the cursor is not a named cursor, <code>None</code> will be returned.</p>
+<p>If the cursor is not a named cursor, <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> will be returned.</p>
 <h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>
-<p>the name of the cursor or <code>None</code>
+<p>the name of the cursor or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>
 if it is not a named cursor</p>
 </div><h4 id="method.texture" class="method"><code>pub fn <a href="#method.texture" class="fnname">texture</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.Texture.html" title="struct gdk4::Texture">Texture</a>&gt;</code><a href="#method.texture" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/cursor.rs.html#197-199" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the texture for the cursor.</p>
-<p>If the cursor is a named cursor, <code>None</code> will be returned.</p>
+<p>If the cursor is a named cursor, <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> will be returned.</p>
 <h1 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h1>
-<p>the texture for cursor or <code>None</code>
+<p>the texture for cursor or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>
 if it is a named cursor</p>
 </div></div></details><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor"></a></h2><div id="trait-implementations-list"><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl-Clone" class="impl"><code class="in-band">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="struct.Cursor.html" title="struct gdk4::Cursor">Cursor</a></code><a href="#impl-Clone" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/cursor.rs.html#13-53" title="goto source code">[src]</a></h3></summary><div class="impl-items"><h4 id="method.clone" class="method hidden trait-impl"><code>fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone" class="fnname">clone</a>(&amp;self) -&gt; <a class="struct" href="struct.Cursor.html" title="struct gdk4::Cursor">Cursor</a></code><a href="#method.clone" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/cursor.rs.html#13-53" title="goto source code">[src]</a></h4><div class='docblock hidden'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
 </div><h4 id="method.clone_from" class="method hidden trait-impl"><code>pub fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from" class="fnname">clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</code><span class="since" title="Stable since Rust version 1.0.0">1.0.0</span><a href="#method.clone_from" class="anchor"></a><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#130" title="goto source code">[src]</a></h4><div class='docblock hidden'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>

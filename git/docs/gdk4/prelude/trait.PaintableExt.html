@@ -92,14 +92,14 @@ Negative values are never returned.</p>
 multiple calls of [method<code>Gdk.Paintable</code>.snapshot] produce the same output.</p>
 <p>This function will emit the [signal<code>Gdk.Paintable</code>::invalidate-contents]
 signal.</p>
-<p>If a <code>self</code> reports the <code>PaintableFlags::Contents</code> flag,
+<p>If a <code>self</code> reports the [<code>PaintableFlags::Contents</code>] flag,
 it must not call this function.</p>
 </div><h3 id="tymethod.invalidate_size" class="method"><code>fn <a href="#tymethod.invalidate_size" class="fnname">invalidate_size</a>(&amp;self)</code><a class="srclink" href="../../src/gdk4/auto/paintable.rs.html#254" title="goto source code">[src]</a></h3><div class="docblock"><p>Called by implementations of <code>GdkPaintable</code> to invalidate their size.</p>
 <p>As long as the size is not invalidated, <code>self</code> must return the same
 values for its intrinsic width, height and aspect ratio.</p>
 <p>This function will emit the [signal<code>Gdk.Paintable</code>::invalidate-size]
 signal.</p>
-<p>If a <code>self</code> reports the <code>PaintableFlags::Size</code> flag,
+<p>If a <code>self</code> reports the [<code>PaintableFlags::Size</code>] flag,
 it must not call this function.</p>
 </div><h3 id="tymethod.snapshot" class="method"><code>fn <a href="#tymethod.snapshot" class="fnname">snapshot</a>(&amp;self, snapshot: &amp;<a class="struct" href="../struct.Snapshot.html" title="struct gdk4::Snapshot">Snapshot</a>, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</code><a class="srclink" href="../../src/gdk4/auto/paintable.rs.html#268" title="goto source code">[src]</a></h3><div class="docblock"><p>Snapshots the given paintable with the given <code>width</code> and <code>height</code>.</p>
 <p>The paintable is drawn at the current (0,0) offset of the <code>snapshot</code>.

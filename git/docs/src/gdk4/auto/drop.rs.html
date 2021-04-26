@@ -299,8 +299,8 @@
     <span class="doccomment">/// The `GdkDrop` object represents the target of an ongoing DND operation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Possible drop sites get informed about the status of the ongoing drag</span>
-    <span class="doccomment">/// operation with events of type `EventType::DragEnter`, `EventType::DragLeave`,</span>
-    <span class="doccomment">/// `EventType::DragMotion` and `EventType::DropStart`. The `GdkDrop` object can be obtained</span>
+    <span class="doccomment">/// operation with events of type [`EventType::DragEnter`], [`EventType::DragLeave`],</span>
+    <span class="doccomment">/// [`EventType::DragMotion`] and [`EventType::DropStart`]. The `GdkDrop` object can be obtained</span>
     <span class="doccomment">/// from these [class`Gdk.Event`] types using [method`Gdk.DNDEvent`.get_drop].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The actual data transfer is initiated from the target side via an async</span>
@@ -336,11 +336,11 @@
     <span class="doccomment">/// Returns the possible actions for this `GdkDrop`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If this value contains multiple actions - i.e.</span>
-    <span class="doccomment">/// [func`Gdk.DragAction`.is_unique] returns `false` for the result -</span>
+    <span class="doccomment">/// [func`Gdk.DragAction`.is_unique] returns [`false`] for the result -</span>
     <span class="doccomment">/// [method`Gdk.Drop`.finish] must choose the action to use when</span>
     <span class="doccomment">/// accepting the drop. This will only happen if you passed</span>
-    <span class="doccomment">/// `DragAction::Ask` as one of the possible actions in</span>
-    <span class="doccomment">/// [method`Gdk.Drop`.status]. `DragAction::Ask` itself will not</span>
+    <span class="doccomment">/// [`DragAction::Ask`] as one of the possible actions in</span>
+    <span class="doccomment">/// [method`Gdk.Drop`.status]. [`DragAction::Ask`] itself will not</span>
     <span class="doccomment">/// be included in the actions returned by this function.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This value may change over the lifetime of the [class`Gdk.Drop`]</span>
@@ -379,7 +379,7 @@
     <span class="doccomment">/// If this is an in-app drag-and-drop operation, returns the `GdkDrag`</span>
     <span class="doccomment">/// that corresponds to this drop.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If it is not, `None` is returned.</span>
+    <span class="doccomment">/// If it is not, [`None`] is returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -425,7 +425,7 @@
     <span class="doccomment">/// ## `io_priority`</span>
     <span class="doccomment">/// the I/O priority of the request.</span>
     <span class="doccomment">/// ## `cancellable`</span>
-    <span class="doccomment">/// optional `GCancellable` object, `None` to ignore.</span>
+    <span class="doccomment">/// optional `GCancellable` object, [`None`] to ignore.</span>
     <span class="doccomment">/// ## `callback`</span>
     <span class="doccomment">/// callback to call when the request is satisfied</span>
     <span class="doccomment">/// ## `user_data`</span>
@@ -498,7 +498,7 @@
     <span class="doccomment">/// action to use when multiple actions are possible.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function should be called by drag destinations in response to</span>
-    <span class="doccomment">/// `EventType::DragEnter` or `EventType::DragMotion` events. If the destination does</span>
+    <span class="doccomment">/// [`EventType::DragEnter`] or [`EventType::DragMotion`] events. If the destination does</span>
     <span class="doccomment">/// not yet know the exact actions it supports, it should set any possible</span>
     <span class="doccomment">/// actions first and then later call this function again.</span>
     <span class="doccomment">/// ## `actions`</span>

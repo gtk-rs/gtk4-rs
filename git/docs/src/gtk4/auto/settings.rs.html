@@ -3172,7 +3172,7 @@
     <span class="doccomment">/// next to their `gtk.css` file.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Applications can override system-wide settings by setting the property</span>
-    <span class="doccomment">/// of the `GtkSettings` object with `glib::object::ObjectExt::set`. This should be restricted</span>
+    <span class="doccomment">/// of the `GtkSettings` object with [`glib::object::ObjectExt::set()`](crate::glib::object::ObjectExt::set()). This should be restricted</span>
     <span class="doccomment">/// to special cases though; `GtkSettings` are not meant as an application</span>
     <span class="doccomment">/// configuration facility.</span>
     <span class="doccomment">///</span>
@@ -3182,7 +3182,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`StyleProviderExt`](trait@crate::StyleProviderExt)</span>
+    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`StyleProviderExt`](trait@crate::prelude::StyleProviderExt)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Settings</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkSettings</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">StyleProvider</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -3191,7 +3191,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Settings</span> {
-    <span class="doccomment">/// Undoes the effect of calling `glib::object::ObjectExt::set` to install an</span>
+    <span class="doccomment">/// Undoes the effect of calling [`glib::object::ObjectExt::set()`](crate::glib::object::ObjectExt::set()) to install an</span>
     <span class="doccomment">/// application-specific value for a setting.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// After this call, the setting will again follow the session-wide</span>
@@ -4490,7 +4490,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a `GtkSettings` object. If there is</span>
-    <span class="doccomment">///  no default display, then returns `None`.</span>
+    <span class="doccomment">///  no default display, then returns [`None`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_settings_get_default&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Settings</span><span class="op">&gt;</span> {
         <span class="macro">assert_initialized_main_thread!</span>();

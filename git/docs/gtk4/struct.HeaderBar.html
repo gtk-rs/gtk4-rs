@@ -57,7 +57,7 @@ the title.</p>
 <h1 id="accessibility" class="section-header"><a href="#accessibility">Accessibility</a></h1>
 <p><code>HeaderBar</code> uses the %GTK_ACCESSIBLE_ROLE_GROUP role.</p>
 <h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
-<p><a href="prelude/trait.WidgetExt.html"><code>WidgetExt</code></a>, <a href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.ObjectExt.html" title="glib::object::ObjectExt"><code>glib::object::ObjectExt</code></a>, <a href="prelude/trait.AccessibleExt.html"><code>AccessibleExt</code></a>, <a href="prelude/trait.BuildableExt.html"><code>BuildableExt</code></a>, <a href="prelude/trait.ConstraintTargetExt.html"><code>ConstraintTargetExt</code></a>, <a href="trait@crate::WidgetExtManual"><code>WidgetExtManual</code></a>, <a href="trait@crate::AccessibleExtManual"><code>AccessibleExtManual</code></a></p>
+<p><a href="prelude/trait.WidgetExt.html"><code>WidgetExt</code></a>, <a href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.ObjectExt.html" title="glib::object::ObjectExt"><code>glib::object::ObjectExt</code></a>, <a href="prelude/trait.AccessibleExt.html"><code>AccessibleExt</code></a>, <a href="prelude/trait.BuildableExt.html"><code>BuildableExt</code></a>, <a href="prelude/trait.ConstraintTargetExt.html"><code>ConstraintTargetExt</code></a>, <a href="prelude/trait.WidgetExtManual.html"><code>WidgetExtManual</code></a>, <a href="prelude/trait.AccessibleExtManual.html"><code>AccessibleExtManual</code></a></p>
 </div><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl" class="impl"><code class="in-band">impl <a class="struct" href="struct.HeaderBar.html" title="struct gtk4::HeaderBar">HeaderBar</a></code><a href="#impl" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/header_bar.rs.html#108-337" title="goto source code">[src]</a></h3></summary><div class="impl-items"><h4 id="method.new" class="method"><code>pub fn <a href="#method.new" class="fnname">new</a>() -&gt; <a class="struct" href="struct.HeaderBar.html" title="struct gtk4::HeaderBar">HeaderBar</a></code><a href="#method.new" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/header_bar.rs.html#115-118" title="goto source code">[src]</a></h4><div class="docblock"><p>Creates a new <code>GtkHeaderBar</code> widget.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
 <p>a new <code>GtkHeaderBar</code></p>
@@ -67,20 +67,20 @@ the title.</p>
 </div><h4 id="method.shows_title_buttons" class="method"><code>pub fn <a href="#method.shows_title_buttons" class="fnname">shows_title_buttons</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.shows_title_buttons" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/header_bar.rs.html#141-147" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns whether this header bar shows the standard window
 title buttons.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
-<p><code>true</code> if title buttons are shown</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if title buttons are shown</p>
 </div><h4 id="method.title_widget" class="method"><code>pub fn <a href="#method.title_widget" class="fnname">title_widget</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</code><a href="#method.title_widget" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/header_bar.rs.html#158-160" title="goto source code">[src]</a></h4><div class="docblock"><p>Retrieves the title widget of the header.</p>
 <p>See [method<code>Gtk.HeaderBar</code>.set_title_widget].</p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
 <p>the title widget
-of the header, or <code>None</code> if none has been set explicitly.</p>
+of the header, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if none has been set explicitly.</p>
 </div><h4 id="method.pack_end" class="method"><code>pub fn <a href="#method.pack_end" class="fnname">pack_end</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;(&amp;self, child: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P)</code><a href="#method.pack_end" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/header_bar.rs.html#167-171" title="goto source code">[src]</a></h4><div class="docblock"><p>Adds <code>child</code> to <code>self</code>, packed with reference to the
 end of the <code>self</code>.</p>
 <h2 id="child" class="section-header"><a href="#child"><code>child</code></a></h2>
-<p>the <code>Widget</code> to be added to <code>self</code></p>
+<p>the <a href="struct.Widget.html"><code>Widget</code></a> to be added to <code>self</code></p>
 </div><h4 id="method.pack_start" class="method"><code>pub fn <a href="#method.pack_start" class="fnname">pack_start</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;(&amp;self, child: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P)</code><a href="#method.pack_start" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/header_bar.rs.html#178-182" title="goto source code">[src]</a></h4><div class="docblock"><p>Adds <code>child</code> to <code>self</code>, packed with reference to the
 start of the <code>self</code>.</p>
 <h2 id="child-1" class="section-header"><a href="#child-1"><code>child</code></a></h2>
-<p>the <code>Widget</code> to be added to <code>self</code></p>
+<p>the <a href="struct.Widget.html"><code>Widget</code></a> to be added to <code>self</code></p>
 </div><h4 id="method.remove" class="method"><code>pub fn <a href="#method.remove" class="fnname">remove</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;(&amp;self, child: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P)</code><a href="#method.remove" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/header_bar.rs.html#193-197" title="goto source code">[src]</a></h4><div class="docblock"><p>Removes a child from the <code>GtkHeaderBar</code>.</p>
 <p>The child must have been added with
 [method<code>Gtk.HeaderBar</code>.pack_start],
@@ -102,19 +102,19 @@ maximize, close and icon (the window icon).</p>
 <p>For example, “icon:minimize,maximize,close” specifies a icon
 on the left, and minimize, maximize and close buttons on the right.</p>
 <h2 id="layout" class="section-header"><a href="#layout"><code>layout</code></a></h2>
-<p>a decoration layout, or <code>None</code> to
+<p>a decoration layout, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> to
 unset the layout</p>
 </div><h4 id="method.set_show_title_buttons" class="method"><code>pub fn <a href="#method.set_show_title_buttons" class="fnname">set_show_title_buttons</a>(&amp;self, setting: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code><a href="#method.set_show_title_buttons" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/header_bar.rs.html#234-238" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets whether this header bar shows the standard window
 title buttons.</p>
 <h2 id="setting" class="section-header"><a href="#setting"><code>setting</code></a></h2>
-<p><code>true</code> to show standard title buttons</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> to show standard title buttons</p>
 </div><h4 id="method.set_title_widget" class="method"><code>pub fn <a href="#method.set_title_widget" class="fnname">set_title_widget</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;(&amp;self, title_widget: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P&gt;)</code><a href="#method.set_title_widget" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/header_bar.rs.html#254-261" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the title for the <code>GtkHeaderBar</code>.</p>
-<p>When set to <code>None</code>, the headerbar will display the title of
+<p>When set to <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, the headerbar will display the title of
 the window it is contained in.</p>
 <p>The title should help a user identify the current view.
 To achieve the same style as the builtin title, use the
 “title” style class.</p>
-<p>You should set the title widget to <code>None</code>, for the window
+<p>You should set the title widget to <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, for the window
 title label to be visible again.</p>
 <h2 id="title_widget" class="section-header"><a href="#title_widget"><code>title_widget</code></a></h2>
 <p>a widget to use for a title</p>

@@ -708,7 +708,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`DialogExt`](trait@crate::DialogExt), [`GtkWindowExt`](trait@crate::GtkWindowExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`NativeExt`](trait@crate::NativeExt), [`RootExt`](trait@crate::RootExt), [`ShortcutManagerExt`](trait@crate::ShortcutManagerExt), [`ColorChooserExt`](trait@crate::ColorChooserExt), [`DialogExtManual`](trait@crate::DialogExtManual), [`GtkWindowExtManual`](trait@crate::GtkWindowExtManual), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual), [`ColorChooserExtManual`](trait@crate::ColorChooserExtManual)</span>
+    <span class="doccomment">/// [`DialogExt`](trait@crate::prelude::DialogExt), [`GtkWindowExt`](trait@crate::prelude::GtkWindowExt), [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`NativeExt`](trait@crate::prelude::NativeExt), [`RootExt`](trait@crate::prelude::RootExt), [`ShortcutManagerExt`](trait@crate::prelude::ShortcutManagerExt), [`ColorChooserExt`](trait@crate::prelude::ColorChooserExt), [`DialogExtManual`](trait@crate::prelude::DialogExtManual), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual), [`ColorChooserExtManual`](trait@crate::prelude::ColorChooserExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ColorChooserDialog</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkColorChooserDialog</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Dialog</span>, <span class="ident">Window</span>, <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Native</span>, <span class="ident">Root</span>, <span class="ident">ShortcutManager</span>, <span class="ident">ColorChooser</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -719,9 +719,9 @@
 <span class="kw">impl</span> <span class="ident">ColorChooserDialog</span> {
     <span class="doccomment">/// Creates a new `GtkColorChooserDialog`.</span>
     <span class="doccomment">/// ## `title`</span>
-    <span class="doccomment">/// Title of the dialog, or `None`</span>
+    <span class="doccomment">/// Title of the dialog, or [`None`]</span>
     <span class="doccomment">/// ## `parent`</span>
-    <span class="doccomment">/// Transient parent of the dialog, or `None`</span>
+    <span class="doccomment">/// Transient parent of the dialog, or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

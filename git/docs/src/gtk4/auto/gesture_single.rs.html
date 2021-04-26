@@ -391,7 +391,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`GestureSingleExt`](trait@crate::GestureSingleExt), [`GestureExt`](trait@crate::GestureExt), [`EventControllerExt`](trait@crate::EventControllerExt), [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`GestureSingleExt`](trait@crate::prelude::GestureSingleExt), [`GestureExt`](trait@crate::prelude::GestureExt), [`EventControllerExt`](trait@crate::prelude::EventControllerExt), [`trait@glib::object::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GestureSingle</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkGestureSingle</span>, <span class="ident">ffi::GtkGestureSingleClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Gesture</span>, <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -508,7 +508,7 @@
     <span class="doccomment">/// Returns the event sequence currently interacting with `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is only meaningful if [method`Gtk.Gesture`.is_active]</span>
-    <span class="doccomment">/// returns `true`.</span>
+    <span class="doccomment">/// returns [`true`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -526,11 +526,11 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_single_get_exclusive&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_exclusive</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Returns `true` if the gesture is only triggered by touch events.</span>
+    <span class="doccomment">/// Returns [`true`] if the gesture is only triggered by touch events.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the gesture only handles touch events</span>
+    <span class="doccomment">/// [`true`] if the gesture only handles touch events</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_single_get_touch_only&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_touch_only</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -550,14 +550,14 @@
     <span class="doccomment">/// touch events, so at any given time, there is only one sequence able</span>
     <span class="doccomment">/// to interact with those.</span>
     <span class="doccomment">/// ## `exclusive`</span>
-    <span class="doccomment">/// `true` to make `self` exclusive</span>
+    <span class="doccomment">/// [`true`] to make `self` exclusive</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_single_set_exclusive&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_exclusive</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">exclusive</span>: <span class="ident">bool</span>);
 
     <span class="doccomment">/// Sets whether to handle only touch events.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `touch_only` is `true`, `self` will only handle events of type</span>
-    <span class="doccomment">/// `gdk::EventType::TouchBegin`, `gdk::EventType::TouchUpdate` or `gdk::EventType::TouchEnd`. If `false`,</span>
+    <span class="doccomment">/// If `touch_only` is [`true`], `self` will only handle events of type</span>
+    <span class="doccomment">/// [`gdk::EventType::TouchBegin`], [`gdk::EventType::TouchUpdate`] or [`gdk::EventType::TouchEnd`]. If [`false`],</span>
     <span class="doccomment">/// mouse events will be handled too.</span>
     <span class="doccomment">/// ## `touch_only`</span>
     <span class="doccomment">/// whether `self` handles only touch events</span>

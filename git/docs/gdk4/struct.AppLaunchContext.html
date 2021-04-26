@@ -19,7 +19,7 @@ if (!g_app_info_launch_default_for_uri (&quot;http://www.gtk.org&quot;, context,
 g_object_unref (context);
 </code></pre>
 <h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
-<p><a href="https://gtk-rs.org/gtk-rs/git/docs/gio/auto/app_launch_context/trait.AppLaunchContextExt.html" title="gio::AppLaunchContextExt"><code>gio::AppLaunchContextExt</code></a></p>
+<p>[<code>trait@gio::AppLaunchContextExt</code>]</p>
 </div><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl" class="impl"><code class="in-band">impl <a class="struct" href="struct.AppLaunchContext.html" title="struct gdk4::AppLaunchContext">AppLaunchContext</a></code><a href="#impl" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/app_launch_context.rs.html#46-136" title="goto source code">[src]</a></h3></summary><div class="impl-items"><h4 id="method.display" class="method"><code>pub fn <a href="#method.display" class="fnname">display</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.Display.html" title="struct gdk4::Display">Display</a>&gt;</code><a href="#method.display" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/app_launch_context.rs.html#53-59" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the <code>GdkDisplay</code> that <code>self</code> is for.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
 <p>the display of <code>self</code></p>
@@ -38,16 +38,16 @@ context.</p>
 notification.</p>
 <p>See also [method<code>Gdk.AppLaunchContext</code>.set_icon_name].</p>
 <h2 id="icon" class="section-header"><a href="#icon"><code>icon</code></a></h2>
-<p>a <code>gio::Icon</code>, or <code>None</code></p>
+<p>a <a href="https://gtk-rs.org/gtk-rs/git/docs/gio/auto/icon/struct.Icon.html"><code>gio::Icon</code></a>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 </div><h4 id="method.set_icon_name" class="method"><code>pub fn <a href="#method.set_icon_name" class="fnname">set_icon_name</a>(&amp;self, icon_name: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;)</code><a href="#method.set_icon_name" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/app_launch_context.rs.html#110-117" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the icon for applications that are launched with this context.</p>
 <p>The <code>icon_name</code> will be interpreted in the same way as the Icon field
-in desktop files. See also [method<code>Gdk.AppLaunchContext</code>.<code>set_icon</code>].</p>
+in desktop files. See also [method<code>Gdk</code>.<a href="crate::AppLaunchContext.set_icon()"><code>AppLaunchContext.set_icon()</code></a>].</p>
 <p>If both <code>icon</code> and <code>icon_name</code> are set, the <code>icon_name</code> takes priority.
 If neither <code>icon</code> or <code>icon_name</code> is set, the icon is taken from either
 the file that is passed to launched application or from the <code>GAppInfo</code>
 for the launched application itself.</p>
 <h2 id="icon_name" class="section-header"><a href="#icon_name"><code>icon_name</code></a></h2>
-<p>an icon name, or <code>None</code></p>
+<p>an icon name, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 </div><h4 id="method.set_timestamp" class="method"><code>pub fn <a href="#method.set_timestamp" class="fnname">set_timestamp</a>(&amp;self, timestamp: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</code><a href="#method.set_timestamp" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/app_launch_context.rs.html#131-135" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the timestamp of <code>self</code>.</p>
 <p>The timestamp should ideally be taken from the event that
 triggered the launch.</p>

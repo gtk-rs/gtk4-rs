@@ -127,7 +127,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`RootExt`](trait@crate::RootExt), [`NativeExt`](trait@crate::NativeExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`RootExt`](trait@crate::prelude::RootExt), [`NativeExt`](trait@crate::prelude::NativeExt), [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Root</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GtkRoot</span>, <span class="ident">ffi::GtkRootInterface</span><span class="op">&gt;</span>) @<span class="ident">requires</span> <span class="ident">Native</span>, <span class="ident">Widget</span>, <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -147,26 +147,26 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this is the widget that would have the focus</span>
     <span class="doccomment">/// if the root is active; if the root is not focused then</span>
-    <span class="doccomment">/// `gtk_widget_has_focus (widget)` will be `false` for the</span>
+    <span class="doccomment">/// `gtk_widget_has_focus (widget)` will be [`false`] for the</span>
     <span class="doccomment">/// widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the currently focused</span>
-    <span class="doccomment">///  widget, or `None` if there is none.</span>
+    <span class="doccomment">///  widget, or [`None`] if there is none.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_root_get_focus&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// If `focus` is not the current focus widget, and is focusable, sets</span>
     <span class="doccomment">/// it as the focus widget for the root.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `focus` is `None`, unsets the focus widget for the root.</span>
+    <span class="doccomment">/// If `focus` is [`None`], unsets the focus widget for the root.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To set the focus to a particular widget in the root, it is usually</span>
     <span class="doccomment">/// more convenient to use [method`Gtk.Widget`.grab_focus] instead of</span>
     <span class="doccomment">/// this function.</span>
     <span class="doccomment">/// ## `focus`</span>
-    <span class="doccomment">/// widget to be the new focus widget, or `None`</span>
+    <span class="doccomment">/// widget to be the new focus widget, or [`None`]</span>
     <span class="doccomment">///  to unset the focus widget</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_root_set_focus&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_focus</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">focus</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>);

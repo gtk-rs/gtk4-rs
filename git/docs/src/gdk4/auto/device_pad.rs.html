@@ -139,7 +139,7 @@
 
 <span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// `GdkDevicePad` is an interface implemented by devices of type</span>
-    <span class="doccomment">/// `InputSource::TabletPad`</span>
+    <span class="doccomment">/// [`InputSource::TabletPad`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It allows querying the features provided by the pad device.</span>
     <span class="doccomment">///</span>
@@ -154,11 +154,11 @@
     <span class="doccomment">/// (current) for each given group, different groups may have different</span>
     <span class="doccomment">/// current modes. The number of available modes in a group can be found</span>
     <span class="doccomment">/// out through [method`Gdk.DevicePad`.get_group_n_modes], and the current mode</span>
-    <span class="doccomment">/// for a given group will be notified through events of type `EventType::PadGroupMode`.</span>
+    <span class="doccomment">/// for a given group will be notified through events of type [`EventType::PadGroupMode`](crate::EventType::PadGroupMode).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`DevicePadExt`](trait@crate::DevicePadExt), [`DeviceExt`](trait@crate::DeviceExt)</span>
+    <span class="doccomment">/// [`DevicePadExt`](trait@crate::prelude::DevicePadExt), [`DeviceExt`](trait@crate::prelude::DeviceExt)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DevicePad</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GdkDevicePad</span>, <span class="ident">ffi::GdkDevicePadInterface</span><span class="op">&gt;</span>) @<span class="ident">requires</span> <span class="ident">Device</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {

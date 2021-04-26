@@ -6,7 +6,7 @@
 has API to set up cross-process parent-child relationships between
 surfaces with [method<code>GdkWayland`.WaylandToplevel`.export_handle] and [method</code>GdkWayland<code>.WaylandToplevel</code>.set_transient_for_exported].</p>
 <h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
-<p><a href="trait@crate::WaylandSurfaceExt"><code>WaylandSurfaceExt</code></a>, [<code>trait@gdk::SurfaceExt</code>], <a href="../gdk4/auto/toplevel/trait.ToplevelExt.html" title="gdk::ToplevelExt"><code>gdk::ToplevelExt</code></a></p>
+<p><a href="trait@crate::prelude::WaylandSurfaceExt"><code>WaylandSurfaceExt</code></a>, [<code>trait@gdk::SurfaceExt</code>], [<code>trait@gdk::ToplevelExt</code>]</p>
 </div><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl" class="impl"><code class="in-band">impl <a class="struct" href="struct.WaylandToplevel.html" title="struct gdk4_wayland::WaylandToplevel">WaylandToplevel</a></code><a href="#impl" class="anchor"></a><a class="srclink" href="../src/gdk4_wayland/auto/wayland_toplevel.rs.html#28-140" title="goto source code">[src]</a></h3></summary><div class="impl-items"><h4 id="method.export_handle" class="method"><code>pub fn <a href="#method.export_handle" class="fnname">export_handle</a>&lt;P:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="struct.WaylandToplevel.html" title="struct gdk4_wayland::WaylandToplevel">WaylandToplevel</a>, &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;callback: P<br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.export_handle" class="anchor"></a><a class="srclink" href="../src/gdk4_wayland/auto/wayland_toplevel.rs.html#58-86" title="goto source code">[src]</a></h4><div class="docblock"><p>Asynchronously obtains a handle for a surface that can be passed
 to other processes.</p>
 <p>When the handle has been obtained, <code>callback</code> will be called.</p>
@@ -26,7 +26,7 @@ and thus may require changes in the future.</p>
 <h2 id="destroy_func" class="section-header"><a href="#destroy_func"><code>destroy_func</code></a></h2>
 <p>destroy notify for <code>user_data</code></p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
-<p><code>true</code> if the handle has been requested, <code>false</code> if
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the handle has been requested, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> if
 an error occurred.</p>
 </div><h4 id="method.set_application_id" class="method"><code>pub fn <a href="#method.set_application_id" class="fnname">set_application_id</a>(&amp;self, application_id: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</code><a href="#method.set_application_id" class="anchor"></a><a class="srclink" href="../src/gdk4_wayland/auto/wayland_toplevel.rs.html#92-99" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the application id on a <code>GdkToplevel</code>.</p>
 <h2 id="application_id" class="section-header"><a href="#application_id"><code>application_id</code></a></h2>
@@ -40,10 +40,10 @@ and thus may require changes in the future.</p>
 <h2 id="parent_handle_str" class="section-header"><a href="#parent_handle_str"><code>parent_handle_str</code></a></h2>
 <p>an exported handle for a surface</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
-<p><code>true</code> if the surface has been marked as transient,
-<code>false</code> if an error occurred.</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the surface has been marked as transient,
+<a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> if an error occurred.</p>
 </div><h4 id="method.unexport_handle" class="method"><code>pub fn <a href="#method.unexport_handle" class="fnname">unexport_handle</a>(&amp;self)</code><a href="#method.unexport_handle" class="anchor"></a><a class="srclink" href="../src/gdk4_wayland/auto/wayland_toplevel.rs.html#135-139" title="goto source code">[src]</a></h4><div class="docblock"><p>Destroys the handle that was obtained with
-<code>WaylandToplevel::export_handle</code>.</p>
+<a href="struct.WaylandToplevel.html#method.export_handle"><code>export_handle()</code></a>.</p>
 <p>It is an error to call this function on a surface that
 does not have a handle.</p>
 <p>Note that this API depends on an unstable Wayland protocol,

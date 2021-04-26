@@ -372,7 +372,7 @@
 
 <span class="kw">impl</span> <span class="ident">TreeListRow</span> {
     <span class="doccomment">/// If `self` is not expanded or `position` is greater than the</span>
-    <span class="doccomment">/// number of children, `None` is returned.</span>
+    <span class="doccomment">/// number of children, [`None`] is returned.</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// position of the child to get</span>
     <span class="doccomment">///</span>
@@ -424,7 +424,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the row is expanded</span>
+    <span class="doccomment">/// [`true`] if the row is expanded</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_list_row_get_expanded&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_expanded</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_tree_list_row_get_expanded</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -438,7 +438,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The item</span>
-    <span class="doccomment">///  of this row or `None` when the row was destroyed</span>
+    <span class="doccomment">///  of this row or [`None`] when the row was destroyed</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_list_row_get_item&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">item</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::Object</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_tree_list_row_get_item</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -450,7 +450,7 @@
     <span class="doccomment">/// to make this row disappear.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `self` is a row corresponding to the root model,</span>
-    <span class="doccomment">/// `None` is returned.</span>
+    <span class="doccomment">/// [`None`] is returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The value returned by this function never changes</span>
     <span class="doccomment">/// until the row is destroyed.</span>
@@ -483,7 +483,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the row is expandable</span>
+    <span class="doccomment">/// [`true`] if the row is expandable</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_list_row_is_expandable&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_expandable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_tree_list_row_is_expandable</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -498,7 +498,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the row is not expandable, this function does nothing.</span>
     <span class="doccomment">/// ## `expanded`</span>
-    <span class="doccomment">/// `true` if the row should be expanded</span>
+    <span class="doccomment">/// [`true`] if the row should be expanded</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_list_row_set_expanded&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_expanded</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">expanded</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {

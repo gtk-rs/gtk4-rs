@@ -785,7 +785,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Initially, a `GtkAppChooserButton` selects the first application</span>
     <span class="doccomment">/// in its list, which will either be the most-recently used application</span>
-    <span class="doccomment">/// or, if [property`Gtk.AppChooserButton`:show-default-item] is `true`, the</span>
+    <span class="doccomment">/// or, if [property`Gtk.AppChooserButton`:show-default-item] is [`true`], the</span>
     <span class="doccomment">/// default application.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The list of applications shown in a `GtkAppChooserButton` includes</span>
@@ -809,7 +809,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`AppChooserExt`](trait@crate::AppChooserExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`AppChooserExt`](trait@crate::prelude::AppChooserExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AppChooserButton</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkAppChooserButton</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">AppChooser</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -878,7 +878,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the text to display at the top of the dialog,</span>
-    <span class="doccomment">///  or `None`, in which case a default text is displayed</span>
+    <span class="doccomment">///  or [`None`], in which case a default text is displayed</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_app_chooser_button_get_heading&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">heading</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -892,7 +892,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the dialog is modal</span>
+    <span class="doccomment">/// [`true`] if the dialog is modal</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_app_chooser_button_get_modal&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_modal</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_app_chooser_button_get_modal</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -963,7 +963,7 @@
 
     <span class="doccomment">/// Sets whether the dialog should be modal.</span>
     <span class="doccomment">/// ## `modal`</span>
-    <span class="doccomment">/// `true` to make the dialog modal</span>
+    <span class="doccomment">/// [`true`] to make the dialog modal</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_app_chooser_button_set_modal&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_modal</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">modal</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {

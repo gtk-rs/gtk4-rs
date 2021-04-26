@@ -16,16 +16,16 @@ given at creation time, or modified at a later point through
 [method<code>Gtk.EventControllerScroll</code>.set_flags] (e.g. because the scrolling
 conditions of the widget changed).</p>
 <p>The controller can be set up to emit motion for either/both vertical
-and horizontal scroll events through <code>EventControllerScrollFlags::Vertical</code>,
-<code>EventControllerScrollFlags::Horizontal</code> and <code>EventControllerScrollFlags::BothAxes</code>.
+and horizontal scroll events through [<code>EventControllerScrollFlags::Vertical</code>],
+[<code>EventControllerScrollFlags::Horizontal</code>] and [<code>EventControllerScrollFlags::BothAxes</code>].
 If any axis is disabled, the respective [signal<code>Gtk.EventControllerScroll</code>::scroll]
 delta will be 0. Vertical scroll events will be translated to horizontal
 motion for the devices incapable of horizontal scrolling.</p>
 <p>The event controller can also be forced to emit discrete events on all
-devices through <code>EventControllerScrollFlags::Discrete</code>. This can be used
+devices through [<code>EventControllerScrollFlags::Discrete</code>]. This can be used
 to implement discrete actions triggered through scroll events (e.g.
 switching across combobox options).</p>
-<p>The <code>EventControllerScrollFlags::Kinetic</code> flag toggles the emission of the
+<p>The [<code>EventControllerScrollFlags::Kinetic</code>] flag toggles the emission of the
 [signal<code>Gtk.EventControllerScroll</code>::decelerate] signal, emitted at the end
 of scrolling with two X/Y velocity arguments that are consistent with the
 motion that was received.</p>
@@ -43,7 +43,7 @@ motion that was received.</p>
 <h2 id="flags-1" class="section-header"><a href="#flags-1"><code>flags</code></a></h2>
 <p>flags affecting the controller behavior</p>
 </div><h4 id="method.connect_decelerate" class="method"><code>pub fn <a href="#method.connect_decelerate" class="fnname">connect_decelerate</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="struct.EventControllerScroll.html" title="struct gtk4::EventControllerScroll">EventControllerScroll</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></code><a href="#method.connect_decelerate" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/event_controller_scroll.rs.html#117-143" title="goto source code">[src]</a></h4><div class="docblock"><p>Emitted after scroll is finished if the
-<code>EventControllerScrollFlags::Kinetic</code> flag is set.</p>
+[<code>EventControllerScrollFlags::Kinetic</code>] flag is set.</p>
 <p><code>vel_x</code> and <code>vel_y</code> express the initial velocity that was
 imprinted by the scroll events. <code>vel_x</code> and <code>vel_y</code> are expressed in
 pixels/ms.</p>
@@ -58,8 +58,8 @@ amount specified by <code>dx</code> and <code>dy</code>.</p>
 <h2 id="dy" class="section-header"><a href="#dy"><code>dy</code></a></h2>
 <p>Y delta</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
-<p><code>true</code> if the scroll event was handled,
-<code>false</code> otherwise.</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the scroll event was handled,
+<a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> otherwise.</p>
 </div><h4 id="method.connect_scroll_begin" class="method"><code>pub fn <a href="#method.connect_scroll_begin" class="fnname">connect_scroll_begin</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="struct.EventControllerScroll.html" title="struct gtk4::EventControllerScroll">EventControllerScroll</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></code><a href="#method.connect_scroll_begin" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/event_controller_scroll.rs.html#189-211" title="goto source code">[src]</a></h4><div class="docblock"><p>Signals that a new scrolling operation has begun.</p>
 <p>It will only be emitted on devices capable of it.</p>
 </div><h4 id="method.connect_scroll_end" class="method"><code>pub fn <a href="#method.connect_scroll_end" class="fnname">connect_scroll_end</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="struct.EventControllerScroll.html" title="struct gtk4::EventControllerScroll">EventControllerScroll</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></code><a href="#method.connect_scroll_end" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/event_controller_scroll.rs.html#216-238" title="goto source code">[src]</a></h4><div class="docblock"><p>Signals that a scrolling operation has finished.</p>

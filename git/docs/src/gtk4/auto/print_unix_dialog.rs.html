@@ -1218,9 +1218,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// `GtkPrintUnixDialog` uses the following response values:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// - `ResponseType::Ok`: for the “Print” button</span>
-    <span class="doccomment">/// - `ResponseType::Apply`: for the “Preview” button</span>
-    <span class="doccomment">/// - `ResponseType::Cancel`: for the “Cancel” button</span>
+    <span class="doccomment">/// - [`ResponseType::Ok`]: for the “Print” button</span>
+    <span class="doccomment">/// - [`ResponseType::Apply`]: for the “Preview” button</span>
+    <span class="doccomment">/// - [`ResponseType::Cancel`]: for the “Cancel” button</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # `PrintUnixDialog` as `Buildable`</span>
     <span class="doccomment">///</span>
@@ -1261,7 +1261,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`DialogExt`](trait@crate::DialogExt), [`GtkWindowExt`](trait@crate::GtkWindowExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`NativeExt`](trait@crate::NativeExt), [`RootExt`](trait@crate::RootExt), [`ShortcutManagerExt`](trait@crate::ShortcutManagerExt), [`DialogExtManual`](trait@crate::DialogExtManual), [`GtkWindowExtManual`](trait@crate::GtkWindowExtManual), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`DialogExt`](trait@crate::prelude::DialogExt), [`GtkWindowExt`](trait@crate::prelude::GtkWindowExt), [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`NativeExt`](trait@crate::prelude::NativeExt), [`RootExt`](trait@crate::prelude::RootExt), [`ShortcutManagerExt`](trait@crate::prelude::ShortcutManagerExt), [`DialogExtManual`](trait@crate::prelude::DialogExtManual), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintUnixDialog</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkPrintUnixDialog</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Dialog</span>, <span class="ident">Window</span>, <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Native</span>, <span class="ident">Root</span>, <span class="ident">ShortcutManager</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1272,9 +1272,9 @@
 <span class="kw">impl</span> <span class="ident">PrintUnixDialog</span> {
     <span class="doccomment">/// Creates a new `GtkPrintUnixDialog`.</span>
     <span class="doccomment">/// ## `title`</span>
-    <span class="doccomment">/// Title of the dialog, or `None`</span>
+    <span class="doccomment">/// Title of the dialog, or [`None`]</span>
     <span class="doccomment">/// ## `parent`</span>
-    <span class="doccomment">/// Transient parent of the dialog, or `None`</span>
+    <span class="doccomment">/// Transient parent of the dialog, or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1458,7 +1458,7 @@
 
     <span class="doccomment">/// Sets whether a selection exists.</span>
     <span class="doccomment">/// ## `has_selection`</span>
-    <span class="doccomment">/// `true` indicates that a selection exists</span>
+    <span class="doccomment">/// [`true`] indicates that a selection exists</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_unix_dialog_set_has_selection&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_has_selection</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">has_selection</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -1473,7 +1473,7 @@
     <span class="doccomment">/// supports.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// For instance, if you can handle scaling the output then you pass</span>
-    <span class="doccomment">/// `PrintCapabilities::Scale`. If you don’t pass that, then the dialog</span>
+    <span class="doccomment">/// [`PrintCapabilities::Scale`]. If you don’t pass that, then the dialog</span>
     <span class="doccomment">/// will only let you select the scale if the printing system automatically</span>
     <span class="doccomment">/// handles scaling.</span>
     <span class="doccomment">/// ## `capabilities`</span>
@@ -1507,7 +1507,7 @@
     <span class="doccomment">/// from a previous print operation before the print dialog</span>
     <span class="doccomment">/// is shown.</span>
     <span class="doccomment">/// ## `settings`</span>
-    <span class="doccomment">/// a `GtkPrintSettings`, or `None`</span>
+    <span class="doccomment">/// a `GtkPrintSettings`, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_unix_dialog_set_settings&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">settings</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">PrintSettings</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -1520,7 +1520,7 @@
 
     <span class="doccomment">/// Sets whether the print dialog allows user to print a selection.</span>
     <span class="doccomment">/// ## `support_selection`</span>
-    <span class="doccomment">/// `true` to allow print selection</span>
+    <span class="doccomment">/// [`true`] to allow print selection</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_unix_dialog_set_support_selection&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_support_selection</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">support_selection</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {

@@ -2558,7 +2558,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`TextBufferExt`](trait@crate::TextBufferExt), [`trait@glib::object::ObjectExt`], [`TextBufferExtManual`](trait@crate::TextBufferExtManual)</span>
+    <span class="doccomment">/// [`TextBufferExt`](trait@crate::prelude::TextBufferExt), [`trait@glib::object::ObjectExt`], [`TextBufferExtManual`](trait@crate::prelude::TextBufferExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TextBuffer</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkTextBuffer</span>, <span class="ident">ffi::GtkTextBufferClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -2569,7 +2569,7 @@
 <span class="kw">impl</span> <span class="ident">TextBuffer</span> {
     <span class="doccomment">/// Creates a new text buffer.</span>
     <span class="doccomment">/// ## `table`</span>
-    <span class="doccomment">/// a tag table, or `None` to create a new one</span>
+    <span class="doccomment">/// a tag table, or [`None`] to create a new one</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2635,7 +2635,7 @@
     <span class="doccomment">/// Adds the mark at position `where_`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The mark must not be added to another buffer, and if its name</span>
-    <span class="doccomment">/// is not `None` then there must not be another mark in the buffer</span>
+    <span class="doccomment">/// is not [`None`] then there must not be another mark in the buffer</span>
     <span class="doccomment">/// with the same name.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Emits the `GtkTextBuffer`::mark-set signal as notification of</span>
@@ -2705,7 +2705,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the buffer was modified</span>
+    <span class="doccomment">/// [`true`] if the buffer was modified</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_backspace&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">backspace</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>, <span class="ident">interactive</span>: <span class="ident">bool</span>, <span class="ident">default_editable</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -2718,20 +2718,20 @@
     <span class="doccomment">/// [method`Gtk.TextBuffer`.end_irreversible_action] after the irreversible</span>
     <span class="doccomment">/// action has completed.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// You may nest calls to `TextBufferExt::begin_irreversible_action` and</span>
-    <span class="doccomment">/// `TextBufferExt::end_irreversible_action` pairs.</span>
+    <span class="doccomment">/// You may nest calls to [`begin_irreversible_action()`](Self::begin_irreversible_action()) and</span>
+    <span class="doccomment">/// [`end_irreversible_action()`](Self::end_irreversible_action()) pairs.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_begin_irreversible_action&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">begin_irreversible_action</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
     <span class="doccomment">/// Called to indicate that the buffer operations between here and a</span>
-    <span class="doccomment">/// call to `TextBufferExt::end_user_action` are part of a single</span>
+    <span class="doccomment">/// call to [`end_user_action()`](Self::end_user_action()) are part of a single</span>
     <span class="doccomment">/// user-visible operation.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The operations between `TextBufferExt::begin_user_action` and</span>
-    <span class="doccomment">/// `TextBufferExt::end_user_action` can then be grouped when creating</span>
+    <span class="doccomment">/// The operations between [`begin_user_action()`](Self::begin_user_action()) and</span>
+    <span class="doccomment">/// [`end_user_action()`](Self::end_user_action()) can then be grouped when creating</span>
     <span class="doccomment">/// an undo stack. `GtkTextBuffer` maintains a count of calls to</span>
-    <span class="doccomment">/// `TextBufferExt::begin_user_action` that have not been closed with</span>
-    <span class="doccomment">/// a call to `TextBufferExt::end_user_action`, and emits the</span>
+    <span class="doccomment">/// [`begin_user_action()`](Self::begin_user_action()) that have not been closed with</span>
+    <span class="doccomment">/// a call to [`end_user_action()`](Self::end_user_action()), and emits the</span>
     <span class="doccomment">/// “begin-user-action” and “end-user-action” signals only for the</span>
     <span class="doccomment">/// outermost pair of calls. This allows you to build user actions</span>
     <span class="doccomment">/// from other user actions.</span>
@@ -2769,25 +2769,25 @@
 
     <span class="doccomment">/// Creates a mark at position `where_`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `mark_name` is `None`, the mark is anonymous; otherwise, the mark</span>
+    <span class="doccomment">/// If `mark_name` is [`None`], the mark is anonymous; otherwise, the mark</span>
     <span class="doccomment">/// can be retrieved by name using [method`Gtk.TextBuffer`.get_mark].</span>
     <span class="doccomment">/// If a mark has left gravity, and text is inserted at the mark’s</span>
     <span class="doccomment">/// current location, the mark will be moved to the left of the</span>
     <span class="doccomment">/// newly-inserted text. If the mark has right gravity</span>
-    <span class="doccomment">/// (`left_gravity` = `false`), the mark will end up on the right of</span>
+    <span class="doccomment">/// (`left_gravity` = [`false`]), the mark will end up on the right of</span>
     <span class="doccomment">/// newly-inserted text. The standard left-to-right cursor is a mark</span>
     <span class="doccomment">/// with right gravity (when you type, the cursor stays on the right</span>
     <span class="doccomment">/// side of the text you’re typing).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The caller of this function does not own a</span>
-    <span class="doccomment">/// reference to the returned `TextMark`, so you can ignore the</span>
+    <span class="doccomment">/// reference to the returned [`TextMark`](crate::TextMark), so you can ignore the</span>
     <span class="doccomment">/// return value if you like. Marks are owned by the buffer and go</span>
     <span class="doccomment">/// away when the buffer does.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Emits the `GtkTextBuffer`::mark-set signal as notification of</span>
     <span class="doccomment">/// the mark&#39;s initial placement.</span>
     <span class="doccomment">/// ## `mark_name`</span>
-    <span class="doccomment">/// name for mark, or `None`</span>
+    <span class="doccomment">/// name for mark, or [`None`]</span>
     <span class="doccomment">/// ## `where_`</span>
     <span class="doccomment">/// location to place mark</span>
     <span class="doccomment">/// ## `left_gravity`</span>
@@ -2795,7 +2795,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the new `TextMark` object</span>
+    <span class="doccomment">/// the new [`TextMark`](crate::TextMark) object</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_create_mark&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">create_mark</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -2819,7 +2819,7 @@
     <span class="doccomment">/// Deletes text between `start` and `end`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The order of `start` and `end` is not actually relevant;</span>
-    <span class="doccomment">/// `TextBufferExt::delete` will reorder them.</span>
+    <span class="doccomment">/// [`delete()`](Self::delete()) will reorder them.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function actually emits the “delete-range” signal, and</span>
     <span class="doccomment">/// the default handler of that signal deletes the text. Because the</span>
@@ -2861,7 +2861,7 @@
     <span class="doccomment">/// buffer.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Removes the reference the buffer holds to the mark, so if</span>
-    <span class="doccomment">/// you haven’t called `glib::object::ObjectExt::ref` on the mark, it will be freed.</span>
+    <span class="doccomment">/// you haven’t called [`glib::object::ObjectExt::ref()`](crate::glib::object::ObjectExt::ref()) on the mark, it will be freed.</span>
     <span class="doccomment">/// Even if the mark isn’t freed, most operations on `mark` become</span>
     <span class="doccomment">/// invalid, until it gets added to a buffer again with</span>
     <span class="doccomment">/// [method`Gtk.TextBuffer`.add_mark]. Use [method`Gtk.TextMark`.get_deleted]</span>
@@ -2885,7 +2885,7 @@
     <span class="doccomment">/// Deletes the range between the “insert” and “selection_bound” marks,</span>
     <span class="doccomment">/// that is, the currently-selected text.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `interactive` is `true`, the editability of the selection will be</span>
+    <span class="doccomment">/// If `interactive` is [`true`], the editability of the selection will be</span>
     <span class="doccomment">/// considered (users can’t delete uneditable text).</span>
     <span class="doccomment">/// ## `interactive`</span>
     <span class="doccomment">/// whether the deletion is caused by user interaction</span>
@@ -2904,11 +2904,11 @@
     <span class="doccomment">/// queue to be cleared.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This should be called after completing modifications to the</span>
-    <span class="doccomment">/// text buffer after `TextBufferExt::begin_irreversible_action`</span>
+    <span class="doccomment">/// text buffer after [`begin_irreversible_action()`](Self::begin_irreversible_action())</span>
     <span class="doccomment">/// was called.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// You may nest calls to `TextBufferExt::begin_irreversible_action` and</span>
-    <span class="doccomment">/// `TextBufferExt::end_irreversible_action` pairs.</span>
+    <span class="doccomment">/// You may nest calls to [`begin_irreversible_action()`](Self::begin_irreversible_action()) and</span>
+    <span class="doccomment">/// [`end_irreversible_action()`](Self::end_irreversible_action()) pairs.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_end_irreversible_action&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">end_irreversible_action</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
@@ -2933,7 +2933,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if there is an redoable action</span>
+    <span class="doccomment">/// [`true`] if there is an redoable action</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_get_can_redo&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">can_redo</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -2941,7 +2941,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if there is an undoable action</span>
+    <span class="doccomment">/// [`true`] if there is an undoable action</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_get_can_undo&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">can_undo</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -2985,7 +2985,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the there is text selected</span>
+    <span class="doccomment">/// [`true`] if the there is text selected</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_get_has_selection&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">has_selection</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -3097,14 +3097,14 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_get_line_count&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">line_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
 
-    <span class="doccomment">/// Returns the mark named `name` in buffer `self`, or `None` if no such</span>
+    <span class="doccomment">/// Returns the mark named `name` in buffer `self`, or [`None`] if no such</span>
     <span class="doccomment">/// mark exists in the buffer.</span>
     <span class="doccomment">/// ## `name`</span>
     <span class="doccomment">/// a mark name</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `TextMark`, or `None`</span>
+    <span class="doccomment">/// a [`TextMark`](crate::TextMark), or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_get_mark&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">mark</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TextMark</span><span class="op">&gt;</span>;
 
@@ -3118,13 +3118,13 @@
 
     <span class="doccomment">/// Indicates whether the buffer has been modified since the last call</span>
     <span class="doccomment">/// to [method`Gtk.TextBuffer`.set_modified] set the modification flag to</span>
-    <span class="doccomment">/// `false`.</span>
+    <span class="doccomment">/// [`false`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Used for example to enable a “save” function in a text editor.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the buffer has been modified</span>
+    <span class="doccomment">/// [`true`] if the buffer has been modified</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_get_modified&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_modified</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -3147,12 +3147,12 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_get_selection_bound&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">selection_bound</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextMark</span>;
 
-    <span class="doccomment">/// Returns `true` if some text is selected; places the bounds</span>
+    <span class="doccomment">/// Returns [`true`] if some text is selected; places the bounds</span>
     <span class="doccomment">/// of the selection in `start` and `end`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the selection has length 0, then `start` and `end` are filled</span>
     <span class="doccomment">/// in with the same value. `start` and `end` will be in ascending order.</span>
-    <span class="doccomment">/// If `start` and `end` are `None`, then they are not filled in, but the</span>
+    <span class="doccomment">/// If `start` and `end` are [`None`], then they are not filled in, but the</span>
     <span class="doccomment">/// return value still indicates whether text is selected.</span>
     <span class="doccomment">/// ## `start`</span>
     <span class="doccomment">/// iterator to initialize with selection start</span>
@@ -3179,7 +3179,7 @@
     <span class="doccomment">/// Returns the text in the range [`start`,`end`).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Excludes undisplayed text (text marked with tags that set the</span>
-    <span class="doccomment">/// invisibility attribute) if `include_hidden_chars` is `false`.</span>
+    <span class="doccomment">/// invisibility attribute) if `include_hidden_chars` is [`false`].</span>
     <span class="doccomment">/// The returned string includes a 0xFFFC character whenever the</span>
     <span class="doccomment">/// buffer contains embedded images, so byte and character indexes</span>
     <span class="doccomment">/// into the returned string do correspond to byte and character</span>
@@ -3219,7 +3219,7 @@
     <span class="doccomment">/// Returns the text in the range [`start`,`end`).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Excludes undisplayed text (text marked with tags that set the</span>
-    <span class="doccomment">/// invisibility attribute) if `include_hidden_chars` is `false`.</span>
+    <span class="doccomment">/// invisibility attribute) if `include_hidden_chars` is [`false`].</span>
     <span class="doccomment">/// Does not include characters representing embedded images, so</span>
     <span class="doccomment">/// byte and character indexes into the returned string do not</span>
     <span class="doccomment">/// correspond to byte and character indexes into the buffer.</span>
@@ -3440,7 +3440,7 @@
 
     <span class="doccomment">/// Pastes the contents of a clipboard.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `override_location` is `None`, the pasted text will be inserted</span>
+    <span class="doccomment">/// If `override_location` is [`None`], the pasted text will be inserted</span>
     <span class="doccomment">/// at the cursor position, or the buffer selection will be replaced</span>
     <span class="doccomment">/// if the selection is non-empty.</span>
     <span class="doccomment">///</span>
@@ -3450,7 +3450,7 @@
     <span class="doccomment">/// ## `clipboard`</span>
     <span class="doccomment">/// the `GdkClipboard` to paste from</span>
     <span class="doccomment">/// ## `override_location`</span>
-    <span class="doccomment">/// location to insert pasted text, or `None`</span>
+    <span class="doccomment">/// location to insert pasted text, or [`None`]</span>
     <span class="doccomment">/// ## `default_editable`</span>
     <span class="doccomment">/// whether the buffer is editable by default</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_paste_clipboard&quot;</span>)]</span>
@@ -3493,7 +3493,7 @@
     <span class="kw">fn</span> <span class="ident">remove_all_tags</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">start</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>, <span class="ident">end</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>);
 
     <span class="doccomment">/// Removes a `GdkClipboard` added with</span>
-    <span class="doccomment">/// `TextBufferExt::add_selection_clipboard`.</span>
+    <span class="doccomment">/// [`add_selection_clipboard()`](Self::add_selection_clipboard()).</span>
     <span class="doccomment">/// ## `clipboard`</span>
     <span class="doccomment">/// a `GdkClipboard` added to `self` by</span>
     <span class="doccomment">///  [method`Gtk.TextBuffer`.add_selection_clipboard]</span>
@@ -3553,7 +3553,7 @@
     <span class="doccomment">/// [method`Gtk.TextBuffer`.end_irreversible_action] to create</span>
     <span class="doccomment">/// changes to the buffer that cannot be undone.</span>
     <span class="doccomment">/// ## `enable_undo`</span>
-    <span class="doccomment">/// `true` to enable undo</span>
+    <span class="doccomment">/// [`true`] to enable undo</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_buffer_set_enable_undo&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_enable_undo</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">enable_undo</span>: <span class="ident">bool</span>);
 
@@ -3644,7 +3644,7 @@
     <span class="doccomment">/// to revalidate them). The default signal handler revalidates</span>
     <span class="doccomment">/// the `start` and `end` iters to both point to the location</span>
     <span class="doccomment">/// where text was deleted. Handlers which run after the default</span>
-    <span class="doccomment">/// handler (see `g_signal_connect_after`) do not have access to</span>
+    <span class="doccomment">/// handler (see `g_signal_connect_after()`) do not have access to</span>
     <span class="doccomment">/// the deleted text.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// See also: [method`Gtk.TextBuffer`.delete].</span>

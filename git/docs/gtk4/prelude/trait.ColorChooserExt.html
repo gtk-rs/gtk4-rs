@@ -17,14 +17,14 @@
 <p>a <code>GdkRGBA</code> to fill in with the current color</p>
 </div><h3 id="tymethod.uses_alpha" class="method"><code>fn <a href="#tymethod.uses_alpha" class="fnname">uses_alpha</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/color_chooser.rs.html#55" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns whether the color chooser shows the alpha channel.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
-<p><code>true</code> if the color chooser uses the alpha channel,
-<code>false</code> if not</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the color chooser uses the alpha channel,
+<a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> if not</p>
 </div><h3 id="tymethod.set_rgba" class="method"><code>fn <a href="#tymethod.set_rgba" class="fnname">set_rgba</a>(&amp;self, color: &amp;<a class="struct" href="../../gdk4/rgba/struct.RGBA.html" title="struct gdk4::rgba::RGBA">RGBA</a>)</code><a class="srclink" href="../../src/gtk4/auto/color_chooser.rs.html#61" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets the color.</p>
 <h2 id="color-1" class="section-header"><a href="#color-1"><code>color</code></a></h2>
 <p>the new color</p>
 </div><h3 id="tymethod.set_use_alpha" class="method"><code>fn <a href="#tymethod.set_use_alpha" class="fnname">set_use_alpha</a>(&amp;self, use_alpha: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code><a class="srclink" href="../../src/gtk4/auto/color_chooser.rs.html#67" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets whether or not the color chooser should use the alpha channel.</p>
 <h2 id="use_alpha" class="section-header"><a href="#use_alpha"><code>use_alpha</code></a></h2>
-<p><code>true</code> if color chooser should use alpha channel, <code>false</code> if not</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if color chooser should use alpha channel, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> if not</p>
 </div><h3 id="tymethod.connect_color_activated" class="method"><code>fn <a href="#tymethod.connect_color_activated" class="fnname">connect_color_activated</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../../gdk4/rgba/struct.RGBA.html" title="struct gdk4::rgba::RGBA">RGBA</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></code><a class="srclink" href="../../src/gtk4/auto/color_chooser.rs.html#76" title="goto source code">[src]</a></h3><div class="docblock"><p>Emitted when a color is activated from the color chooser.</p>
 <p>This usually happens when the user clicks a color swatch,
 or a color is selected and the user presses one of the keys

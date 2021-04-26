@@ -106,11 +106,11 @@
     <span class="doccomment">/// A `GtkShortcut`Action that emits a signal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Signals that are used in this way are referred to as keybinding signals,</span>
-    <span class="doccomment">/// and they are expected to be defined with the `glib::object::SignalFlags::Action` flag.</span>
+    <span class="doccomment">/// and they are expected to be defined with the [`glib::object::SignalFlags::Action`] flag.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`ShortcutActionExt`](trait@crate::ShortcutActionExt), [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`ShortcutActionExt`](trait@crate::prelude::ShortcutActionExt), [`trait@glib::object::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SignalAction</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkSignalAction</span>, <span class="ident">ffi::GtkSignalActionClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">ShortcutAction</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {

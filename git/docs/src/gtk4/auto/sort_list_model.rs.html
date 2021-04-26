@@ -375,9 +375,9 @@
 <span class="kw">impl</span> <span class="ident">SortListModel</span> {
     <span class="doccomment">/// Creates a new sort list model that uses the `sorter` to sort `model`.</span>
     <span class="doccomment">/// ## `model`</span>
-    <span class="doccomment">/// the model to sort, or `None`</span>
+    <span class="doccomment">/// the model to sort, or [`None`]</span>
     <span class="doccomment">/// ## `sorter`</span>
-    <span class="doccomment">/// the `GtkSorter` to sort `model` with, or `None`</span>
+    <span class="doccomment">/// the `GtkSorter` to sort `model` with, or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -402,7 +402,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if incremental sorting is enabled</span>
+    <span class="doccomment">/// [`true`] if incremental sorting is enabled</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_sort_list_model_get_incremental&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_incremental</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -412,7 +412,7 @@
         }
     }
 
-    <span class="doccomment">/// Gets the model currently sorted or `None` if none.</span>
+    <span class="doccomment">/// Gets the model currently sorted or [`None`] if none.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -437,7 +437,7 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If no sort operation is ongoing - in particular when</span>
-    <span class="doccomment">/// [property`Gtk.SortListModel`:incremental] is `false` - this</span>
+    <span class="doccomment">/// [property`Gtk.SortListModel`:incremental] is [`false`] - this</span>
     <span class="doccomment">/// function returns 0.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -475,7 +475,7 @@
     <span class="doccomment">/// See [method`Gtk.SortListModel`.get_pending] for progress information</span>
     <span class="doccomment">/// about an ongoing incremental sorting operation.</span>
     <span class="doccomment">/// ## `incremental`</span>
-    <span class="doccomment">/// `true` to sort incrementally</span>
+    <span class="doccomment">/// [`true`] to sort incrementally</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_sort_list_model_set_incremental&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_incremental</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">incremental</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {

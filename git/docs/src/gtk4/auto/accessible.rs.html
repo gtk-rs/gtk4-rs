@@ -196,12 +196,12 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The attributes are updated every time a UI element&#39;s state changes in</span>
     <span class="doccomment">/// a way that should be reflected by assistive technologies. For instance,</span>
-    <span class="doccomment">/// if a `GtkWidget` visibility changes, the `AccessibleState::Hidden`</span>
+    <span class="doccomment">/// if a `GtkWidget` visibility changes, the [`AccessibleState::Hidden`]</span>
     <span class="doccomment">/// state will also change to reflect the [property`Gtk.Widget`:visible] property.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`AccessibleExt`](trait@crate::AccessibleExt), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Accessible</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GtkAccessible</span>, <span class="ident">ffi::GtkAccessibleInterface</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {

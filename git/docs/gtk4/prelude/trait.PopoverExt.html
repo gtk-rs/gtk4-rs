@@ -41,10 +41,10 @@
 <p>See [method<code>Gtk.Popover</code>.set_autohide] for the
 implications of this.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
-<p><code>true</code> if <code>self</code> is modal</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> is modal</p>
 </div><h3 id="tymethod.is_cascade_popdown" class="method"><code>fn <a href="#tymethod.is_cascade_popdown" class="fnname">is_cascade_popdown</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/popover.rs.html#519" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns whether the popover will close after a modal child is closed.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
-<p><code>true</code> if <code>self</code> will close after a modal child.</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> will close after a modal child.</p>
 </div><h3 id="tymethod.child" class="method"><code>fn <a href="#tymethod.child" class="fnname">child</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/popover.rs.html#527" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets the child widget of <code>self</code>.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
 <p>the child widget of <code>self</code></p>
@@ -54,22 +54,22 @@ pointing at the widget that it is relative to.</p>
 <p>whether the popover has an arrow</p>
 </div><h3 id="tymethod.is_mnemonics_visible" class="method"><code>fn <a href="#tymethod.is_mnemonics_visible" class="fnname">is_mnemonics_visible</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/popover.rs.html#545" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets whether mnemonics are visible.</p>
 <h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
-<p><code>true</code> if mnemonics are supposed to be visible
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if mnemonics are supposed to be visible
 in this popover</p>
-</div><h3 id="tymethod.offset" class="method"><code>fn <a href="#tymethod.offset" class="fnname">offset</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></code><a class="srclink" href="../../src/gtk4/auto/popover.rs.html#553" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets the offset previous set with <code>PopoverExt::set_offset</code>.</p>
+</div><h3 id="tymethod.offset" class="method"><code>fn <a href="#tymethod.offset" class="fnname">offset</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></code><a class="srclink" href="../../src/gtk4/auto/popover.rs.html#553" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets the offset previous set with <a href="trait.PopoverExt.html#tymethod.set_offset"><code>set_offset()</code></a>.</p>
 <h2 id="x_offset" class="section-header"><a href="#x_offset"><code>x_offset</code></a></h2>
 <p>a location for the x_offset</p>
 <h2 id="y_offset" class="section-header"><a href="#y_offset"><code>y_offset</code></a></h2>
 <p>a location for the y_offset</p>
 </div><h3 id="tymethod.pointing_to" class="method"><code>fn <a href="#tymethod.pointing_to" class="fnname">pointing_to</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../gdk4/rectangle/struct.Rectangle.html" title="struct gdk4::rectangle::Rectangle">Rectangle</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/popover.rs.html#568" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets the rectangle that the popover points to.</p>
 <p>If a rectangle to point to has been set, this function will
-return <code>true</code> and fill in <code>rect</code> with such rectangle, otherwise
-it will return <code>false</code> and fill in <code>rect</code> with the parent
+return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> and fill in <code>rect</code> with such rectangle, otherwise
+it will return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> and fill in <code>rect</code> with the parent
 widget coordinates.</p>
 <h2 id="rect" class="section-header"><a href="#rect"><code>rect</code></a></h2>
 <p>location to store the rectangle</p>
 <h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>
-<p><code>true</code> if a rectangle to point to was set.</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if a rectangle to point to was set.</p>
 </div><h3 id="tymethod.position" class="method"><code>fn <a href="#tymethod.position" class="fnname">position</a>(&amp;self) -&gt; <a class="enum" href="../enum.PositionType.html" title="enum gtk4::PositionType">PositionType</a></code><a class="srclink" href="../../src/gtk4/auto/popover.rs.html#576" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns the preferred position of <code>self</code>.</p>
 <h1 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h1>
 <p>The preferred position.</p>
@@ -79,7 +79,7 @@ in that it may show the popover with a transition. If
 you want to hide the popover without a transition, just
 use [method<code>Gtk.Widget</code>.hide].</p>
 </div><h3 id="tymethod.popup" class="method"><code>fn <a href="#tymethod.popup" class="fnname">popup</a>(&amp;self)</code><a class="srclink" href="../../src/gtk4/auto/popover.rs.html#594" title="goto source code">[src]</a></h3><div class="docblock"><p>Pops <code>self</code> up.</p>
-<p>This is different from a [method<code>Gtk.Widget</code>.<code>show</code> call
+<p>This is different from a [method<code>Gtk</code>.<a href="crate::Widget.show()"><code>Widget.show()</code></a> call
 in that it may show the popover with a transition. If
 you want to show the popover without a transition, just
 use [method<code>Gtk.Widget</code>.show].</p>
@@ -92,12 +92,12 @@ will dismiss the popover.</p>
 autohide value different from the current one, will cause the
 popup to be hidden.</p>
 <h2 id="autohide" class="section-header"><a href="#autohide"><code>autohide</code></a></h2>
-<p><code>true</code> to dismiss the popover on outside clicks</p>
-</div><h3 id="tymethod.set_cascade_popdown" class="method"><code>fn <a href="#tymethod.set_cascade_popdown" class="fnname">set_cascade_popdown</a>(&amp;self, cascade_popdown: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code><a class="srclink" href="../../src/gtk4/auto/popover.rs.html#621" title="goto source code">[src]</a></h3><div class="docblock"><p>If <code>cascade_popdown</code> is <code>true</code>, the popover will be
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> to dismiss the popover on outside clicks</p>
+</div><h3 id="tymethod.set_cascade_popdown" class="method"><code>fn <a href="#tymethod.set_cascade_popdown" class="fnname">set_cascade_popdown</a>(&amp;self, cascade_popdown: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code><a class="srclink" href="../../src/gtk4/auto/popover.rs.html#621" title="goto source code">[src]</a></h3><div class="docblock"><p>If <code>cascade_popdown</code> is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, the popover will be
 closed when a child modal popover is closed.</p>
-<p>If <code>false</code>, <code>self</code> will stay visible.</p>
+<p>If <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>, <code>self</code> will stay visible.</p>
 <h2 id="cascade_popdown" class="section-header"><a href="#cascade_popdown"><code>cascade_popdown</code></a></h2>
-<p><code>true</code> if the popover should follow a child closing</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the popover should follow a child closing</p>
 </div><h3 id="tymethod.set_child" class="method"><code>fn <a href="#tymethod.set_child" class="fnname">set_child</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;(&amp;self, child: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P&gt;)</code><a class="srclink" href="../../src/gtk4/auto/popover.rs.html#627" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets the child widget of <code>self</code>.</p>
 <h2 id="child" class="section-header"><a href="#child"><code>child</code></a></h2>
 <p>the child widget</p>
@@ -107,11 +107,11 @@ presses Enter in a dialog (for example). This function sets or
 unsets the default widget for a <code>GtkPopover</code>.</p>
 <h2 id="widget" class="section-header"><a href="#widget"><code>widget</code></a></h2>
 <p>a child widget of <code>self</code> to set as
-the default, or <code>None</code> to unset the default widget for the popover</p>
+the default, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> to unset the default widget for the popover</p>
 </div><h3 id="tymethod.set_has_arrow" class="method"><code>fn <a href="#tymethod.set_has_arrow" class="fnname">set_has_arrow</a>(&amp;self, has_arrow: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code><a class="srclink" href="../../src/gtk4/auto/popover.rs.html#645" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets whether this popover should draw an arrow
 pointing at the widget it is relative to.</p>
 <h2 id="has_arrow" class="section-header"><a href="#has_arrow"><code>has_arrow</code></a></h2>
-<p><code>true</code> to draw an arrow</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> to draw an arrow</p>
 </div><h3 id="tymethod.set_mnemonics_visible" class="method"><code>fn <a href="#tymethod.set_mnemonics_visible" class="fnname">set_mnemonics_visible</a>(&amp;self, mnemonics_visible: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code><a class="srclink" href="../../src/gtk4/auto/popover.rs.html#651" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets whether mnemonics should be visible.</p>
 <h2 id="mnemonics_visible" class="section-header"><a href="#mnemonics_visible"><code>mnemonics_visible</code></a></h2>
 <p>the new value</p>

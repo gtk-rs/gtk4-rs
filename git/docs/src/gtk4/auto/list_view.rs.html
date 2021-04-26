@@ -970,12 +970,12 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkListView` uses the `AccessibleRole::List` role, and the list</span>
-    <span class="doccomment">/// items use the `AccessibleRole::ListItem` role.</span>
+    <span class="doccomment">/// `GtkListView` uses the [`AccessibleRole::List`] role, and the list</span>
+    <span class="doccomment">/// items use the [`AccessibleRole::ListItem`] role.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`ListBaseExt`](trait@crate::ListBaseExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`OrientableExt`](trait@crate::OrientableExt), [`ScrollableExt`](trait@crate::ScrollableExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`ListBaseExt`](trait@crate::prelude::ListBaseExt), [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`OrientableExt`](trait@crate::prelude::OrientableExt), [`ScrollableExt`](trait@crate::prelude::ScrollableExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ListView</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkListView</span>, <span class="ident">ffi::GtkListViewClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">ListBase</span>, <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Orientable</span>, <span class="ident">Scrollable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -994,9 +994,9 @@
     <span class="doccomment">///   gtk_builder_list_item_factory_new_from_resource (&quot;/resource.ui&quot;));</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">/// ## `model`</span>
-    <span class="doccomment">/// the model to use, or `None`</span>
+    <span class="doccomment">/// the model to use, or [`None`]</span>
     <span class="doccomment">/// ## `factory`</span>
-    <span class="doccomment">/// The factory to populate items with, or `None`</span>
+    <span class="doccomment">/// The factory to populate items with, or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1020,7 +1020,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if rubberband selection is enabled</span>
+    <span class="doccomment">/// [`true`] if rubberband selection is enabled</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_view_get_enable_rubberband&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enables_rubberband</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -1055,7 +1055,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the list box shows separators</span>
+    <span class="doccomment">/// [`true`] if the list box shows separators</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_view_get_show_separators&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">shows_separators</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -1070,7 +1070,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if rows are activated on single click</span>
+    <span class="doccomment">/// [`true`] if rows are activated on single click</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_view_get_single_click_activate&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_single_click_activate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -1082,7 +1082,7 @@
 
     <span class="doccomment">/// Sets whether selections can be changed by dragging with the mouse.</span>
     <span class="doccomment">/// ## `enable_rubberband`</span>
-    <span class="doccomment">/// `true` to enable rubberband selection</span>
+    <span class="doccomment">/// [`true`] to enable rubberband selection</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_view_set_enable_rubberband&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_enable_rubberband</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">enable_rubberband</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -1095,7 +1095,7 @@
 
     <span class="doccomment">/// Sets the `GtkListItemFactory` to use for populating list items.</span>
     <span class="doccomment">/// ## `factory`</span>
-    <span class="doccomment">/// the factory to use or `None` for none</span>
+    <span class="doccomment">/// the factory to use or [`None`] for none</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_view_set_factory&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_factory</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ListItemFactory</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">factory</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -1110,7 +1110,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This must be a [iface`Gtk.SelectionModel`] to use.</span>
     <span class="doccomment">/// ## `model`</span>
-    <span class="doccomment">/// the model to use or `None` for none</span>
+    <span class="doccomment">/// the model to use or [`None`] for none</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_view_set_model&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_model</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">SelectionModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">model</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -1124,7 +1124,7 @@
     <span class="doccomment">/// Sets whether the list box should show separators</span>
     <span class="doccomment">/// between rows.</span>
     <span class="doccomment">/// ## `show_separators`</span>
-    <span class="doccomment">/// `true` to show separators</span>
+    <span class="doccomment">/// [`true`] to show separators</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_view_set_show_separators&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_show_separators</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">show_separators</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -1138,7 +1138,7 @@
     <span class="doccomment">/// Sets whether rows should be activated on single click and</span>
     <span class="doccomment">/// selected on hover.</span>
     <span class="doccomment">/// ## `single_click_activate`</span>
-    <span class="doccomment">/// `true` to activate items on single click</span>
+    <span class="doccomment">/// [`true`] to activate items on single click</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_view_set_single_click_activate&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_single_click_activate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">single_click_activate</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {

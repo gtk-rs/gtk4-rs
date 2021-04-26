@@ -717,7 +717,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// a string array</span>
     <span class="doccomment">///  holding the names of all the icons in the theme. You must</span>
-    <span class="doccomment">///  free the array using `g_strfreev`.</span>
+    <span class="doccomment">///  free the array using `g_strfreev()`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_theme_get_icon_names&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">icon_names</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -734,8 +734,8 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  A list of resource paths or `None`.</span>
-    <span class="doccomment">///  The returned value should be freed with `g_strfreev`.</span>
+    <span class="doccomment">///  A list of resource paths or [`None`].</span>
+    <span class="doccomment">///  The returned value should be freed with `g_strfreev()`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_theme_get_resource_path&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">resource_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -752,8 +752,8 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  a list of icon theme path directories or `None`.</span>
-    <span class="doccomment">///  The returned value should be freed with `g_strfreev`.</span>
+    <span class="doccomment">///  a list of icon theme path directories or [`None`].</span>
+    <span class="doccomment">///  The returned value should be freed with `g_strfreev()`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_theme_get_search_path&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">search_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">std::path::PathBuf</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -778,7 +778,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if `self` includes an</span>
+    <span class="doccomment">/// [`true`] if `self` includes an</span>
     <span class="doccomment">///  icon for `icon_name`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_theme_has_icon&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_icon</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">icon_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
@@ -808,7 +808,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a `GtkIconPaintable` containing</span>
-    <span class="doccomment">///  information about the icon. Unref with `glib::object::ObjectExt::unref`</span>
+    <span class="doccomment">///  information about the icon. Unref with [`glib::object::ObjectExt::unref()`](crate::glib::object::ObjectExt::unref())</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_theme_lookup_by_gicon&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lookup_by_gicon</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::Icon</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -845,7 +845,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that you probably want to listen for icon theme changes and</span>
     <span class="doccomment">/// update the icon. This is usually done by overriding the</span>
-    <span class="doccomment">/// `WidgetClass`.css-`changed` function.</span>
+    <span class="doccomment">/// `WidgetClass`.css-`changed()` function.</span>
     <span class="doccomment">/// ## `icon_name`</span>
     <span class="doccomment">/// the name of the icon to lookup</span>
     <span class="doccomment">/// ## `size`</span>
@@ -916,7 +916,7 @@
     <span class="doccomment">/// from [type_func`Gtk.IconTheme`.get_for_display].</span>
     <span class="doccomment">/// ## `theme_name`</span>
     <span class="doccomment">/// name of icon theme to use instead of</span>
-    <span class="doccomment">///  configured theme, or `None` to unset a previously set custom theme</span>
+    <span class="doccomment">///  configured theme, or [`None`] to unset a previously set custom theme</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_theme_set_theme_name&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_theme_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">theme_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {

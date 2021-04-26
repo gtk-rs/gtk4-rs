@@ -2071,7 +2071,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkLabel` uses the `AccessibleRole::Label` role.</span>
+    <span class="doccomment">/// `GtkLabel` uses the [`AccessibleRole::Label`](crate::AccessibleRole::Label) role.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Mnemonics</span>
     <span class="doccomment">///</span>
@@ -2128,11 +2128,11 @@
     <span class="doccomment">/// (See the Pango manual for complete documentation] of available</span>
     <span class="doccomment">/// tags, [func`Pango.parse_markup`])</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The markup passed to `Label::set_markup` must be valid; for example,</span>
+    <span class="doccomment">/// The markup passed to [`set_markup()`](Self::set_markup()) must be valid; for example,</span>
     <span class="doccomment">/// literal &lt;, &gt; and &amp; characters must be escaped as &amp;lt;, &amp;gt;, and &amp;amp;.</span>
     <span class="doccomment">/// If you pass text obtained from the user, file, or a network to</span>
     <span class="doccomment">/// [method`Gtk.Label`.set_markup], you’ll want to escape it with</span>
-    <span class="doccomment">/// `g_markup_escape_text` or `g_markup_printf_escaped`.</span>
+    <span class="doccomment">/// `g_markup_escape_text()` or `g_markup_printf_escaped()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Markup strings are just a convenient way to set the [struct`Pango.AttrList`]</span>
     <span class="doccomment">/// on a label; [method`Gtk.Label`.set_attributes] may be a simpler way to set</span>
@@ -2199,7 +2199,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Label</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkLabel</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -2210,7 +2210,7 @@
 <span class="kw">impl</span> <span class="ident">Label</span> {
     <span class="doccomment">/// Creates a new label with the given text inside it.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// You can pass `None` to get an empty label widget.</span>
+    <span class="doccomment">/// You can pass [`None`] to get an empty label widget.</span>
     <span class="doccomment">/// ## `str`</span>
     <span class="doccomment">/// The text of the label</span>
     <span class="doccomment">///</span>
@@ -2264,7 +2264,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the attribute list, or `None`</span>
+    <span class="doccomment">/// the attribute list, or [`None`]</span>
     <span class="doccomment">///  if none was set.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_label_get_attributes&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">attributes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango::AttrList</span><span class="op">&gt;</span> {
@@ -2282,7 +2282,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the currently active URI or `None` if there is none.</span>
+    <span class="doccomment">/// the currently active URI or [`None`] if there is none.</span>
     <span class="doccomment">///  The string is owned by GTK and must not be freed or modified.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_label_get_current_uri&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">current_uri</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
@@ -2363,9 +2363,9 @@
     <span class="doccomment">/// functions you need to convert to and from pixels using PANGO_PIXELS()</span>
     <span class="doccomment">/// or [constant`Pango.SCALE`].</span>
     <span class="doccomment">/// ## `x`</span>
-    <span class="doccomment">/// location to store X offset of layout, or `None`</span>
+    <span class="doccomment">/// location to store X offset of layout, or [`None`]</span>
     <span class="doccomment">/// ## `y`</span>
-    <span class="doccomment">/// location to store Y offset of layout, or `None`</span>
+    <span class="doccomment">/// location to store Y offset of layout, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_label_get_layout_offsets&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layout_offsets</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>) {
         <span class="kw">unsafe</span> {
@@ -2415,7 +2415,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the target of the label’s mnemonic,</span>
-    <span class="doccomment">///  or `None` if none has been set and the default algorithm will be used.</span>
+    <span class="doccomment">///  or [`None`] if none has been set and the default algorithm will be used.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_label_get_mnemonic_widget&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mnemonic_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_label_get_mnemonic_widget</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -2425,7 +2425,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the user can copy text from the label</span>
+    <span class="doccomment">/// [`true`] if the user can copy text from the label</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_label_get_selectable&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_selectable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_label_get_selectable</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -2439,7 +2439,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if selection is non-empty</span>
+    <span class="doccomment">/// [`true`] if selection is non-empty</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_label_get_selection_bounds&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">selection_bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">i32</span>, <span class="ident">i32</span>)<span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -2464,7 +2464,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` when the label is in single line mode.</span>
+    <span class="doccomment">/// [`true`] when the label is in single line mode.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_label_get_single_line_mode&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_single_line_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_label_get_single_line_mode</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -2491,7 +2491,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the label’s text will be parsed for markup.</span>
+    <span class="doccomment">/// [`true`] if the label’s text will be parsed for markup.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_label_get_use_markup&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uses_markup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_label_get_use_markup</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -2503,7 +2503,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` whether an embedded underline in the label indicates</span>
+    <span class="doccomment">/// [`true`] whether an embedded underline in the label indicates</span>
     <span class="doccomment">///  the mnemonic accelerator keys.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_label_get_use_underline&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uses_underline</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
@@ -2528,7 +2528,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the lines of the label are automatically wrapped.</span>
+    <span class="doccomment">/// [`true`] if the lines of the label are automatically wrapped.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_label_get_wrap&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wraps</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_label_get_wrap</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -2540,7 +2540,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the lines of the label are automatically wrapped.</span>
+    <span class="doccomment">/// [`true`] if the lines of the label are automatically wrapped.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_label_get_wrap_mode&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wrap_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">pango::WrapMode</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_label_get_wrap_mode</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -2595,7 +2595,7 @@
     <span class="doccomment">/// manually set attributes, if you must; know that the attributes will</span>
     <span class="doccomment">/// be applied to the label after the markup string is parsed.</span>
     <span class="doccomment">/// ## `attrs`</span>
-    <span class="doccomment">/// a [struct`Pango.AttrList`], or `None`</span>
+    <span class="doccomment">/// a [struct`Pango.AttrList`], or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_label_set_attributes&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_attributes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">attrs</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">pango::AttrList</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -2633,7 +2633,7 @@
     <span class="doccomment">/// Sets the alignment of the lines in the text of the label relative to</span>
     <span class="doccomment">/// each other.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `Justification::Left` is the default value when the widget is first created</span>
+    <span class="doccomment">/// [`Justification::Left`] is the default value when the widget is first created</span>
     <span class="doccomment">/// with [ctor`Gtk.Label`.new]. If you instead want to set the alignment of</span>
     <span class="doccomment">/// the label as a whole, use [method`Gtk.Widget`.set_halign] instead.</span>
     <span class="doccomment">/// [method`Gtk.Label`.set_justify] has no effect on labels containing</span>
@@ -2681,7 +2681,7 @@
     <span class="doccomment">/// (see [func`Pango.parse_markup`]).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the `str` is external data, you may need to escape it</span>
-    <span class="doccomment">/// with `g_markup_escape_text` or `g_markup_printf_escaped`:</span>
+    <span class="doccomment">/// with `g_markup_escape_text()` or `g_markup_printf_escaped()`:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```c</span>
     <span class="doccomment">/// GtkWidget *self = gtk_label_new (NULL);</span>
@@ -2695,7 +2695,7 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function will set the [property`Gtk.Label`:use-markup] property</span>
-    <span class="doccomment">/// to `true` as a side effect.</span>
+    <span class="doccomment">/// to [`true`] as a side effect.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you set the label contents using the [property`Gtk.Label`:label]</span>
     <span class="doccomment">/// property you should also ensure that you set the</span>
@@ -2757,7 +2757,7 @@
     <span class="doccomment">/// this signal will activate the widget if there are no mnemonic collisions</span>
     <span class="doccomment">/// and toggle focus between the colliding widgets otherwise.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// the target `Widget`, or `None` to unset</span>
+    <span class="doccomment">/// the target [`Widget`](crate::Widget), or [`None`] to unset</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_label_set_mnemonic_widget&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_mnemonic_widget</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -2773,7 +2773,7 @@
     <span class="doccomment">/// Selectable labels allow the user to select text from the label,</span>
     <span class="doccomment">/// for copy-and-paste.</span>
     <span class="doccomment">/// ## `setting`</span>
-    <span class="doccomment">/// `true` to allow selecting text in the label</span>
+    <span class="doccomment">/// [`true`] to allow selecting text in the label</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_label_set_selectable&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_selectable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">setting</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -2783,7 +2783,7 @@
 
     <span class="doccomment">/// Sets whether the label is in single line mode.</span>
     <span class="doccomment">/// ## `single_line_mode`</span>
-    <span class="doccomment">/// `true` if the label should be in single line mode</span>
+    <span class="doccomment">/// [`true`] if the label should be in single line mode</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_label_set_single_line_mode&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_single_line_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">single_line_mode</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -2796,11 +2796,11 @@
     <span class="doccomment">/// It overwrites any text that was there before.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function will clear any previously set mnemonic accelerators,</span>
-    <span class="doccomment">/// and set the [property`Gtk.Label`:use-underline property] to `false` as</span>
+    <span class="doccomment">/// and set the [property`Gtk.Label`:use-underline property] to [`false`] as</span>
     <span class="doccomment">/// a side effect.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function will set the [property`Gtk.Label`:use-markup] property</span>
-    <span class="doccomment">/// to `false` as a side effect.</span>
+    <span class="doccomment">/// to [`false`] as a side effect.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// See also: [method`Gtk.Label`.set_markup]</span>
     <span class="doccomment">/// ## `str`</span>
@@ -2831,7 +2831,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// See [method`Gtk.Label`.set_markup].</span>
     <span class="doccomment">/// ## `setting`</span>
-    <span class="doccomment">/// `true` if the label’s text should be parsed for markup.</span>
+    <span class="doccomment">/// [`true`] if the label’s text should be parsed for markup.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_label_set_use_markup&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_use_markup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">setting</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -2841,7 +2841,7 @@
 
     <span class="doccomment">/// Sets whether underlines in the text indicate mnemonics.</span>
     <span class="doccomment">/// ## `setting`</span>
-    <span class="doccomment">/// `true` if underlines in the text indicate mnemonics</span>
+    <span class="doccomment">/// [`true`] if underlines in the text indicate mnemonics</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_label_set_use_underline&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_use_underline</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">setting</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -2861,11 +2861,11 @@
 
     <span class="doccomment">/// Toggles line wrapping within the `GtkLabel` widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` makes it break lines if text exceeds the widget’s size.</span>
-    <span class="doccomment">/// `false` lets the text get cut off by the edge of the widget if</span>
+    <span class="doccomment">/// [`true`] makes it break lines if text exceeds the widget’s size.</span>
+    <span class="doccomment">/// [`false`] lets the text get cut off by the edge of the widget if</span>
     <span class="doccomment">/// it exceeds the widget size.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that setting line wrapping to `true` does not make the label</span>
+    <span class="doccomment">/// Note that setting line wrapping to [`true`] does not make the label</span>
     <span class="doccomment">/// wrap at its parent container’s width, because GTK widgets</span>
     <span class="doccomment">/// conceptually can’t make their requisition depend on the parent</span>
     <span class="doccomment">/// container’s size. For a label that wraps at a specific position,</span>
@@ -2882,7 +2882,7 @@
     <span class="doccomment">/// Controls how line wrapping is done.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This only affects the label if line wrapping is on. (See</span>
-    <span class="doccomment">/// [method`Gtk.Label`.set_wrap]) The default is `pango::WrapMode::Word`</span>
+    <span class="doccomment">/// [method`Gtk.Label`.set_wrap]) The default is [`pango::WrapMode::Word`]</span>
     <span class="doccomment">/// which means wrap on word boundaries.</span>
     <span class="doccomment">/// ## `wrap_mode`</span>
     <span class="doccomment">/// the line wrapping mode</span>
@@ -2921,7 +2921,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The ::activate-current-link is a [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Applications may also emit the signal with `g_signal_emit_by_name`</span>
+    <span class="doccomment">/// Applications may also emit the signal with `g_signal_emit_by_name()`</span>
     <span class="doccomment">/// if they need to control activation of URIs programmatically.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal are all forms of the Enter key.</span>
@@ -2957,13 +2957,13 @@
     <span class="doccomment">/// Gets emitted to activate a URI.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Applications may connect to it to override the default behaviour,</span>
-    <span class="doccomment">/// which is to call `gtk_show_uri`.</span>
+    <span class="doccomment">/// which is to call `gtk_show_uri()`.</span>
     <span class="doccomment">/// ## `uri`</span>
     <span class="doccomment">/// the URI that is activated</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the link has been activated</span>
+    <span class="doccomment">/// [`true`] if the link has been activated</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_activate_link</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Label</span>, <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::signal::Inhibit</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
@@ -3036,7 +3036,7 @@
     <span class="doccomment">/// be moved instead.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Applications should not connect to it, but may emit it with</span>
-    <span class="doccomment">/// `g_signal_emit_by_name` if they need to control the cursor</span>
+    <span class="doccomment">/// `g_signal_emit_by_name()` if they need to control the cursor</span>
     <span class="doccomment">/// programmatically.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal come in two variants,</span>
@@ -3047,11 +3047,11 @@
     <span class="doccomment">/// - Ctrl-arrow key combinations move by words/paragraphs</span>
     <span class="doccomment">/// - Home/End keys move to the ends of the buffer</span>
     <span class="doccomment">/// ## `step`</span>
-    <span class="doccomment">/// the granularity of the move, as a `MovementStep`</span>
+    <span class="doccomment">/// the granularity of the move, as a [`MovementStep`](crate::MovementStep)</span>
     <span class="doccomment">/// ## `count`</span>
     <span class="doccomment">/// the number of `step` units to move</span>
     <span class="doccomment">/// ## `extend_selection`</span>
-    <span class="doccomment">/// `true` if the move should extend the selection</span>
+    <span class="doccomment">/// [`true`] if the move should extend the selection</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_move_cursor</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Label</span>, <span class="ident">MovementStep</span>, <span class="ident">i32</span>, <span class="ident">bool</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,

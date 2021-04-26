@@ -1186,7 +1186,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`GLAreaExt`](trait@crate::GLAreaExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`GLAreaExt`](trait@crate::prelude::GLAreaExt), [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GLArea</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkGLArea</span>, <span class="ident">ffi::GtkGLAreaClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1559,7 +1559,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the `self` is auto rendering, `false` otherwise</span>
+    <span class="doccomment">/// [`true`] if the `self` is auto rendering, [`false`] otherwise</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gl_area_get_auto_render&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_auto_render</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -1575,7 +1575,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the `glib::Error` or `None`</span>
+    <span class="doccomment">/// the [`glib::Error`](crate::glib::Error) or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gl_area_get_error&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">error</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::Error</span><span class="op">&gt;</span>;
 
@@ -1583,7 +1583,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the `self` has a depth buffer, `false` otherwise</span>
+    <span class="doccomment">/// [`true`] if the `self` has a depth buffer, [`false`] otherwise</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gl_area_get_has_depth_buffer&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">has_depth_buffer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -1591,7 +1591,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the `self` has a stencil buffer, `false` otherwise</span>
+    <span class="doccomment">/// [`true`] if the `self` has a stencil buffer, [`false`] otherwise</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gl_area_get_has_stencil_buffer&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">has_stencil_buffer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -1611,8 +1611,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the `GtkGLArea` should create an OpenGL ES context</span>
-    <span class="doccomment">///  and `false` otherwise</span>
+    <span class="doccomment">/// [`true`] if the `GtkGLArea` should create an OpenGL ES context</span>
+    <span class="doccomment">///  and [`false`] otherwise</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gl_area_get_use_es&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">uses_es</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -1632,18 +1632,18 @@
     <span class="doccomment">/// is emitted during the draw.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is only needed when [method`Gtk.GLArea`.set_auto_render] has</span>
-    <span class="doccomment">/// been called with a `false` value. The default behaviour is to</span>
+    <span class="doccomment">/// been called with a [`false`] value. The default behaviour is to</span>
     <span class="doccomment">/// emit [signal`Gtk.GLArea`::render] on each draw.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gl_area_queue_render&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">queue_render</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
     <span class="doccomment">/// Sets whether the `GtkGLArea` is in auto render mode.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `auto_render` is `true` the [signal`Gtk.GLArea`::render] signal will</span>
+    <span class="doccomment">/// If `auto_render` is [`true`] the [signal`Gtk.GLArea`::render] signal will</span>
     <span class="doccomment">/// be emitted every time the widget draws. This is the default and is</span>
     <span class="doccomment">/// useful if drawing the widget is faster.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `auto_render` is `false` the data from previous rendering is kept</span>
+    <span class="doccomment">/// If `auto_render` is [`false`] the data from previous rendering is kept</span>
     <span class="doccomment">/// around and will be used for drawing the widget the next time,</span>
     <span class="doccomment">/// unless the window is resized. In order to force a rendering</span>
     <span class="doccomment">/// [method`Gtk.GLArea`.queue_render] must be called. This mode is</span>
@@ -1659,27 +1659,27 @@
     <span class="doccomment">/// This is useful in the [signal`Gtk.GLArea`::create-context]</span>
     <span class="doccomment">/// signal if GL context creation fails.</span>
     <span class="doccomment">/// ## `error`</span>
-    <span class="doccomment">/// a new `GError`, or `None` to unset the error</span>
+    <span class="doccomment">/// a new `GError`, or [`None`] to unset the error</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gl_area_set_error&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_error</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">error</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">glib::Error</span><span class="op">&gt;</span>);
 
     <span class="doccomment">/// Sets whether the `GtkGLArea` should use a depth buffer.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `has_depth_buffer` is `true` the widget will allocate and</span>
+    <span class="doccomment">/// If `has_depth_buffer` is [`true`] the widget will allocate and</span>
     <span class="doccomment">/// enable a depth buffer for the target framebuffer. Otherwise</span>
     <span class="doccomment">/// there will be none.</span>
     <span class="doccomment">/// ## `has_depth_buffer`</span>
-    <span class="doccomment">/// `true` to add a depth buffer</span>
+    <span class="doccomment">/// [`true`] to add a depth buffer</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gl_area_set_has_depth_buffer&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_has_depth_buffer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">has_depth_buffer</span>: <span class="ident">bool</span>);
 
     <span class="doccomment">/// Sets whether the `GtkGLArea` should use a stencil buffer.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `has_stencil_buffer` is `true` the widget will allocate and</span>
+    <span class="doccomment">/// If `has_stencil_buffer` is [`true`] the widget will allocate and</span>
     <span class="doccomment">/// enable a stencil buffer for the target framebuffer. Otherwise</span>
     <span class="doccomment">/// there will be none.</span>
     <span class="doccomment">/// ## `has_stencil_buffer`</span>
-    <span class="doccomment">/// `true` to add a stencil buffer</span>
+    <span class="doccomment">/// [`true`] to add a stencil buffer</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gl_area_set_has_stencil_buffer&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_has_stencil_buffer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">has_stencil_buffer</span>: <span class="ident">bool</span>);
 
@@ -1696,7 +1696,7 @@
 
     <span class="doccomment">/// Sets whether the `self` should create an OpenGL or an OpenGL ES context.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// You should check the capabilities of the `gdk::GLContext` before drawing</span>
+    <span class="doccomment">/// You should check the capabilities of the [`gdk::GLContext`](crate::gdk::GLContext) before drawing</span>
     <span class="doccomment">/// with either API.</span>
     <span class="doccomment">/// ## `use_es`</span>
     <span class="doccomment">/// whether to use OpenGL or OpenGL ES</span>
@@ -1731,8 +1731,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` to stop other handlers from being invoked for the event.</span>
-    <span class="doccomment">///  `false` to propagate the event further.</span>
+    <span class="doccomment">/// [`true`] to stop other handlers from being invoked for the event.</span>
+    <span class="doccomment">///  [`false`] to propagate the event further.</span>
     <span class="kw">fn</span> <span class="ident">connect_render</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">gdk::GLContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::signal::Inhibit</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,

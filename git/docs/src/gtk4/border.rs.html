@@ -104,12 +104,12 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Border</span> {
-    <span class="doccomment">/// Allocates a new `Border`-struct and initializes its elements to zero.</span>
+    <span class="doccomment">/// Allocates a new [`Border`](crate::Border)-struct and initializes its elements to zero.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly allocated `Border`-struct.</span>
-    <span class="doccomment">///  Free with `Border::free`</span>
+    <span class="doccomment">/// a newly allocated [`Border`](crate::Border)-struct.</span>
+    <span class="doccomment">///  Free with [`free()`](Self::free())</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Border</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_border_new</span>()) }

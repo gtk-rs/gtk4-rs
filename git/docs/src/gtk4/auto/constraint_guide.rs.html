@@ -636,7 +636,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`ConstraintGuideExtManual`](trait@crate::ConstraintGuideExtManual)</span>
+    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`ConstraintGuideExtManual`](trait@crate::prelude::ConstraintGuideExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ConstraintGuide</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkConstraintGuide</span>, <span class="ident">ffi::GtkConstraintGuideClass</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -656,7 +656,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_constraint_guide_new</span>()) }
     }
 
-    <span class="doccomment">/// Retrieves the name set using `ConstraintGuide::set_name`.</span>
+    <span class="doccomment">/// Retrieves the name set using [`set_name()`](Self::set_name()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -666,7 +666,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_constraint_guide_get_name</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Retrieves the strength set using `ConstraintGuide::set_strength`.</span>
+    <span class="doccomment">/// Retrieves the strength set using [`set_strength()`](Self::set_strength()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

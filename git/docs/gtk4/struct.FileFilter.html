@@ -78,13 +78,13 @@ of <code>GtkFileChooser</code>.</p>
 <p>See [method<code>Gtk.FileFilter</code>.set_name].</p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
 <p>The human-readable name of the filter,
-or <code>None</code>. This value is owned by GTK and must not
+or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>. This value is owned by GTK and must not
 be modified or freed.</p>
 </div><h4 id="method.set_name" class="method"><code>pub fn <a href="#method.set_name" class="fnname">set_name</a>(&amp;self, name: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;)</code><a href="#method.set_name" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/file_filter.rs.html#189-193" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets a human-readable name of the filter.</p>
 <p>This is the string that will be displayed in the file chooser
 if there is a selectable list of filters.</p>
 <h2 id="name" class="section-header"><a href="#name"><code>name</code></a></h2>
-<p>the human-readable-name for the filter, or <code>None</code>
+<p>the human-readable-name for the filter, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>
 to remove any existing name.</p>
 </div><h4 id="method.to_gvariant" class="method"><code>pub fn <a href="#method.to_gvariant" class="fnname">to_gvariant</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/variant/struct.Variant.html" title="struct glib::variant::Variant">Variant</a>&gt;</code><a href="#method.to_gvariant" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/file_filter.rs.html#201-203" title="goto source code">[src]</a></h4><div class="docblock"><p>Serialize a file filter to an <code>a{sv}</code> variant.</p>
 <h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>

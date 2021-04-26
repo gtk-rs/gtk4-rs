@@ -12,7 +12,7 @@ that belong to a user.</p>
 <p>capabilities to get devices for</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
 <p>A list
-of <code>GdkDevices</code>. The list must be freed with <code>glib::List::free</code>,
+of <code>GdkDevices</code>. The list must be freed with <a href="crate::glib::List::free()"><code>glib::List::free()</code></a>,
 the elements are owned by GTK and must not be freed.</p>
 </div><h4 id="method.display" class="method"><code>pub fn <a href="#method.display" class="fnname">display</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.Display.html" title="struct gdk4::Display">Display</a>&gt;</code><a href="#method.display" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/seat.rs.html#66-68" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the <code>GdkDisplay</code> this seat belongs to.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
@@ -28,7 +28,7 @@ capabilities. This object is owned by GTK and must not be freed.</p>
 capabilities. This object is owned by GTK and must not be freed.</p>
 </div><h4 id="method.tools" class="method"><code>pub fn <a href="#method.tools" class="fnname">tools</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="struct.DeviceTool.html" title="struct gdk4::DeviceTool">DeviceTool</a>&gt;</code><a href="#method.tools" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/seat.rs.html#99-105" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns all <code>GdkDeviceTools</code> that are known to the application.</p>
 <h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>
-<p>A list of tools. Free with <code>glib::List::free</code>.</p>
+<p>A list of tools. Free with <a href="crate::glib::List::free()"><code>glib::List::free()</code></a>.</p>
 </div><h4 id="method.connect_device_added" class="method"><code>pub fn <a href="#method.connect_device_added" class="fnname">connect_device_added</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="struct.Seat.html" title="struct gdk4::Seat">Seat</a>, &amp;<a class="struct" href="struct.Device.html" title="struct gdk4::Device">Device</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></code><a href="#method.connect_device_added" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/seat.rs.html#110-130" title="goto source code">[src]</a></h4><div class="docblock"><p>Emitted when a new input device is related to this seat.</p>
 <h2 id="device" class="section-header"><a href="#device"><code>device</code></a></h2>
 <p>the newly added <code>GdkDevice</code>.</p>

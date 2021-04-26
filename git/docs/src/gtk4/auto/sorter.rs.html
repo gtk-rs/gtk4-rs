@@ -215,7 +215,7 @@
     <span class="doccomment">/// Sorters may change their sorting behavior through their lifetime.</span>
     <span class="doccomment">/// In that case, they will emit the [signal`Gtk.Sorter`::changed] signal</span>
     <span class="doccomment">/// to notify that the sort order is no longer valid and should be updated</span>
-    <span class="doccomment">/// by calling `SorterExt::compare` again.</span>
+    <span class="doccomment">/// by calling [`SorterExt::compare()`](crate::SorterExt::compare()) again.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// GTK provides various pre-made sorter implementations for common sorting</span>
     <span class="doccomment">/// operations. [class`Gtk.ColumnView`] has built-in support for sorting lists</span>
@@ -227,7 +227,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`SorterExt`](trait@crate::SorterExt), [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`SorterExt`](trait@crate::prelude::SorterExt), [`trait@glib::object::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Sorter</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkSorter</span>, <span class="ident">ffi::GtkSorterClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -247,7 +247,7 @@
     <span class="doccomment">/// of the sorter that it has changed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Users of the sorter should then update the sort order via</span>
-    <span class="doccomment">/// `SorterExt::compare`.</span>
+    <span class="doccomment">/// [`compare()`](Self::compare()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Depending on the `change` parameter, it may be possible to update</span>
     <span class="doccomment">/// the sort order without a full resorting. Refer to the</span>
@@ -279,9 +279,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `Ordering::Equal` if `item1` == `item2`,</span>
-    <span class="doccomment">///  `Ordering::Smaller` if `item1` &lt; `item2`,</span>
-    <span class="doccomment">///  `Ordering::Larger` if `item1` &gt; `item2`</span>
+    <span class="doccomment">/// [`Ordering::Equal`] if `item1` == `item2`,</span>
+    <span class="doccomment">///  [`Ordering::Smaller`] if `item1` &lt; `item2`,</span>
+    <span class="doccomment">///  [`Ordering::Larger`] if `item1` &gt; `item2`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_sorter_compare&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">compare</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">glib::Object</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">glib::Object</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">item1</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">item2</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>)
         <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ordering</span>;
@@ -302,7 +302,7 @@
     <span class="doccomment">/// Emitted whenever the sorter changed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Users of the sorter should then update the sort order</span>
-    <span class="doccomment">/// again via `SorterExt::compare`.</span>
+    <span class="doccomment">/// again via [`compare()`](Self::compare()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [class`Gtk.SortListModel`] handles this signal automatically.</span>
     <span class="doccomment">///</span>

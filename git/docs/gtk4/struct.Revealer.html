@@ -10,13 +10,13 @@ setting.</p>
 <p><code>GtkRevealer</code> has a single CSS node with name revealer.
 When styling <code>GtkRevealer</code> using CSS, remember that it only hides its contents,
 not itself. That means applied margin, padding and borders will be visible even
-when the [property<code>Gtk.Revealer</code>:reveal-child] property is set to <code>false</code>.</p>
+when the [property<code>Gtk.Revealer</code>:reveal-child] property is set to <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>.</p>
 <h1 id="accessibility" class="section-header"><a href="#accessibility">Accessibility</a></h1>
-<p><code>GtkRevealer</code> uses the <code>AccessibleRole::Group</code> role.</p>
+<p><code>GtkRevealer</code> uses the <a href="enum.AccessibleRole.html#variant.Group" title="AccessibleRole::Group"><code>AccessibleRole::Group</code></a> role.</p>
 <p>The child of <code>GtkRevealer</code>, if set, is always available in the accessibility
 tree, regardless of the state of the revealer widget.</p>
 <h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
-<p><a href="prelude/trait.WidgetExt.html"><code>WidgetExt</code></a>, <a href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.ObjectExt.html" title="glib::object::ObjectExt"><code>glib::object::ObjectExt</code></a>, <a href="prelude/trait.AccessibleExt.html"><code>AccessibleExt</code></a>, <a href="prelude/trait.BuildableExt.html"><code>BuildableExt</code></a>, <a href="prelude/trait.ConstraintTargetExt.html"><code>ConstraintTargetExt</code></a>, <a href="trait@crate::WidgetExtManual"><code>WidgetExtManual</code></a>, <a href="trait@crate::AccessibleExtManual"><code>AccessibleExtManual</code></a></p>
+<p><a href="prelude/trait.WidgetExt.html"><code>WidgetExt</code></a>, <a href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.ObjectExt.html" title="glib::object::ObjectExt"><code>glib::object::ObjectExt</code></a>, <a href="prelude/trait.AccessibleExt.html"><code>AccessibleExt</code></a>, <a href="prelude/trait.BuildableExt.html"><code>BuildableExt</code></a>, <a href="prelude/trait.ConstraintTargetExt.html"><code>ConstraintTargetExt</code></a>, <a href="prelude/trait.WidgetExtManual.html"><code>WidgetExtManual</code></a>, <a href="prelude/trait.AccessibleExtManual.html"><code>AccessibleExtManual</code></a></p>
 </div><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl" class="impl"><code class="in-band">impl <a class="struct" href="struct.Revealer.html" title="struct gtk4::Revealer">Revealer</a></code><a href="#impl" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/revealer.rs.html#59-304" title="goto source code">[src]</a></h3></summary><div class="impl-items"><h4 id="method.new" class="method"><code>pub fn <a href="#method.new" class="fnname">new</a>() -&gt; <a class="struct" href="struct.Revealer.html" title="struct gtk4::Revealer">Revealer</a></code><a href="#method.new" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/revealer.rs.html#66-69" title="goto source code">[src]</a></h4><div class="docblock"><p>Creates a new <code>GtkRevealer</code>.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
 <p>a newly created <code>GtkRevealer</code></p>
@@ -27,14 +27,14 @@ tree, regardless of the state of the revealer widget.</p>
 <p>In other words, this returns whether the transition
 to the revealed state is completed.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
-<p><code>true</code> if the child is fully revealed</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the child is fully revealed</p>
 </div><h4 id="method.reveals_child" class="method"><code>pub fn <a href="#method.reveals_child" class="fnname">reveals_child</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.reveals_child" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/revealer.rs.html#105-107" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns whether the child is currently revealed.</p>
-<p>This function returns <code>true</code> as soon as the transition
+<p>This function returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> as soon as the transition
 is to the revealed state is started. To learn whether
 the child is fully revealed (ie the transition is completed),
 use [method<code>Gtk.Revealer</code>.get_child_revealed].</p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
-<p><code>true</code> if the child is revealed.</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the child is revealed.</p>
 </div><h4 id="method.transition_duration" class="method"><code>pub fn <a href="#method.transition_duration" class="fnname">transition_duration</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></code><a href="#method.transition_duration" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/revealer.rs.html#116-118" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the amount of time (in milliseconds) that
 transitions will take.</p>
 <h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
@@ -50,7 +50,7 @@ for transitions in <code>self</code>.</p>
 <p>The transition will be animated with the current
 transition type of <code>self</code>.</p>
 <h2 id="reveal_child" class="section-header"><a href="#reveal_child"><code>reveal_child</code></a></h2>
-<p><code>true</code> to reveal the child</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> to reveal the child</p>
 </div><h4 id="method.set_transition_duration" class="method"><code>pub fn <a href="#method.set_transition_duration" class="fnname">set_transition_duration</a>(&amp;self, duration: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</code><a href="#method.set_transition_duration" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/revealer.rs.html#161-165" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the duration that transitions will take.</p>
 <h2 id="duration" class="section-header"><a href="#duration"><code>duration</code></a></h2>
 <p>the new duration, in milliseconds</p>

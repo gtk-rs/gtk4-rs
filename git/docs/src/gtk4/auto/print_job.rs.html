@@ -827,7 +827,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if print job status will be reported after printing</span>
+    <span class="doccomment">/// [`true`] if print job status will be reported after printing</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_job_get_track_print_status&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tracks_print_status</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -945,7 +945,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `false` if an error occurred</span>
+    <span class="doccomment">/// [`false`] if an error occurred</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_job_set_source_fd&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_source_fd</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fd</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -971,7 +971,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `false` if an error occurred</span>
+    <span class="doccomment">/// [`false`] if an error occurred</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_job_set_source_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_source_file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">std::path::Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -992,7 +992,7 @@
         }
     }
 
-    <span class="doccomment">/// If track_status is `true`, the print job will try to continue report</span>
+    <span class="doccomment">/// If track_status is [`true`], the print job will try to continue report</span>
     <span class="doccomment">/// on the status of the print job in the printer queues and printer.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This can allow your application to show things like “out of paper”</span>
@@ -1001,7 +1001,7 @@
     <span class="doccomment">/// This function is often implemented using some form of polling,</span>
     <span class="doccomment">/// so it should not be enabled unless needed.</span>
     <span class="doccomment">/// ## `track_status`</span>
-    <span class="doccomment">/// `true` to track status after printing</span>
+    <span class="doccomment">/// [`true`] to track status after printing</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_job_set_track_print_status&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_track_print_status</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">track_status</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {

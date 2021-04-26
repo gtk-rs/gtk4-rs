@@ -11,16 +11,16 @@
 If the current sort column id of <code>self</code> is
 <code>GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID</code>, then the model will sort using
 this function.</p>
-<p>If <code>sort_func</code> is <code>None</code>, then there will be no default comparison function.
+<p>If <code>sort_func</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, then there will be no default comparison function.
 This means that once the model has been sorted, it can’t go back to the
 default state. In this case, when the current sort column id of <code>self</code>
 is <code>GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID</code>, the model will be unsorted.</p>
 <h2 id="sort_func" class="section-header"><a href="#sort_func"><code>sort_func</code></a></h2>
 <p>The comparison function</p>
 <h2 id="user_data" class="section-header"><a href="#user_data"><code>user_data</code></a></h2>
-<p>User data to pass to <code>sort_func</code>, or <code>None</code></p>
+<p>User data to pass to <code>sort_func</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h2 id="destroy" class="section-header"><a href="#destroy"><code>destroy</code></a></h2>
-<p>Destroy notifier of <code>user_data</code>, or <code>None</code></p>
+<p>Destroy notifier of <code>user_data</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 </div><h3 id="tymethod.set_sort_func" class="method"><code>fn <a href="#tymethod.set_sort_func" class="fnname">set_sort_func</a>&lt;F&gt;(&amp;self, sort_column_id: <a class="enum" href="../enum.SortColumn.html" title="enum gtk4::SortColumn">SortColumn</a>, sort_func: F) <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>, &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/cmp/enum.Ordering.html" title="enum core::cmp::Ordering">Ordering</a> + 'static,&nbsp;</span></code><a class="srclink" href="../../src/gtk4/tree_sortable.rs.html#94-96" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets the comparison function used when sorting to be <code>sort_func</code>. If the
 current sort column id of <code>self</code> is the same as <code>sort_column_id</code>, then
 the model will sort using this function.</p>
@@ -29,23 +29,23 @@ the model will sort using this function.</p>
 <h2 id="sort_func-1" class="section-header"><a href="#sort_func-1"><code>sort_func</code></a></h2>
 <p>The comparison function</p>
 <h2 id="user_data-1" class="section-header"><a href="#user_data-1"><code>user_data</code></a></h2>
-<p>User data to pass to <code>sort_func</code>, or <code>None</code></p>
+<p>User data to pass to <code>sort_func</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h2 id="destroy-1" class="section-header"><a href="#destroy-1"><code>destroy</code></a></h2>
-<p>Destroy notifier of <code>user_data</code>, or <code>None</code></p>
+<p>Destroy notifier of <code>user_data</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 </div><h3 id="tymethod.sort_column_id" class="method"><code>fn <a href="#tymethod.sort_column_id" class="fnname">sort_column_id</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="enum" href="../enum.SortColumn.html" title="enum gtk4::SortColumn">SortColumn</a>, <a class="enum" href="../enum.SortType.html" title="enum gtk4::SortType">SortType</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;</code><a class="srclink" href="../../src/gtk4/tree_sortable.rs.html#111" title="goto source code">[src]</a></h3><div class="docblock"><p>Fills in <code>sort_column_id</code> and <code>order</code> with the current sort column and the
-order. It returns <code>true</code> unless the <code>sort_column_id</code> is
+order. It returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> unless the <code>sort_column_id</code> is
 <code>GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID</code> or
 <code>GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID</code>.</p>
 <h2 id="sort_column_id-1" class="section-header"><a href="#sort_column_id-1"><code>sort_column_id</code></a></h2>
 <p>The sort column id to be filled in</p>
 <h2 id="order" class="section-header"><a href="#order"><code>order</code></a></h2>
-<p>The <code>SortType</code> to be filled in</p>
+<p>The <a href="../enum.SortType.html"><code>SortType</code></a> to be filled in</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
-<p><code>true</code> if the sort column is not one of the special sort
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the sort column is not one of the special sort
 column ids.</p>
 </div><h3 id="tymethod.set_sort_column_id" class="method"><code>fn <a href="#tymethod.set_sort_column_id" class="fnname">set_sort_column_id</a>(&amp;self, sort_column_id: <a class="enum" href="../enum.SortColumn.html" title="enum gtk4::SortColumn">SortColumn</a>, order: <a class="enum" href="../enum.SortType.html" title="enum gtk4::SortType">SortType</a>)</code><a class="srclink" href="../../src/gtk4/tree_sortable.rs.html#126" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets the current sort column to be <code>sort_column_id</code>. The <code>self</code> will
 resort itself to reflect this change, after emitting a
-<code>TreeSortable::sort-column-changed</code> signal. <code>sort_column_id</code> may either be
+<a href="crate::TreeSortable::sort-column-changed"><code>TreeSortable::sort-column-changed</code></a> signal. <code>sort_column_id</code> may either be
 a regular column id, or one of the following special values:</p>
 <ul>
 <li>

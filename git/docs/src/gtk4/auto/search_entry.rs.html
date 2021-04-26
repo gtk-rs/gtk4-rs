@@ -871,11 +871,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkSearchEntry` uses the `AccessibleRole::SearchBox` role.</span>
+    <span class="doccomment">/// `GtkSearchEntry` uses the [`AccessibleRole::SearchBox`] role.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`EditableExt`](trait@crate::EditableExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual), [`EditableExtManual`](trait@crate::EditableExtManual)</span>
+    <span class="doccomment">/// [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`EditableExt`](trait@crate::prelude::EditableExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual), [`EditableExtManual`](trait@crate::prelude::EditableExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SearchEntry</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkSearchEntry</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Editable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -927,7 +927,7 @@
     <span class="doccomment">/// capture and forward the events yourself with</span>
     <span class="doccomment">/// [method`Gtk.EventControllerKey`.forward].</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// a `Widget`</span>
+    <span class="doccomment">/// a [`Widget`](crate::Widget)</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_search_entry_set_key_capture_widget&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_key_capture_widget</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {

@@ -656,7 +656,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// By default, `GtkLinkButton` calls [func`Gtk.show_uri`] when the button</span>
     <span class="doccomment">/// is clicked. This behaviour can be overridden by connecting to the</span>
-    <span class="doccomment">/// [signal`Gtk.LinkButton`::activate-link] signal and returning `true` from</span>
+    <span class="doccomment">/// [signal`Gtk.LinkButton`::activate-link] signal and returning [`true`] from</span>
     <span class="doccomment">/// the signal handler.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # CSS nodes</span>
@@ -666,11 +666,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkLinkButton` uses the `AccessibleRole::Link` role.</span>
+    <span class="doccomment">/// `GtkLinkButton` uses the [`AccessibleRole::Link`](crate::AccessibleRole::Link) role.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`ButtonExt`](trait@crate::ButtonExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`ActionableExt`](trait@crate::ActionableExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual), [`ActionableExtManual`](trait@crate::ActionableExtManual)</span>
+    <span class="doccomment">/// [`ButtonExt`](trait@crate::prelude::ButtonExt), [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`ActionableExt`](trait@crate::prelude::ActionableExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual), [`ActionableExtManual`](trait@crate::prelude::ActionableExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LinkButton</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkLinkButton</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Button</span>, <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Actionable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -735,7 +735,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the link has been visited, `false` otherwise</span>
+    <span class="doccomment">/// [`true`] if the link has been visited, [`false`] otherwise</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_link_button_get_visited&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_visited</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_link_button_get_visited</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -772,11 +772,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// To override the default behavior, you can connect to the</span>
     <span class="doccomment">/// ::activate-link signal and stop the propagation of the signal</span>
-    <span class="doccomment">/// by returning `true` from your handler.</span>
+    <span class="doccomment">/// by returning [`true`] from your handler.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the signal has been handled</span>
+    <span class="doccomment">/// [`true`] if the signal has been handled</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_activate_link</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">LinkButton</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::signal::Inhibit</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,

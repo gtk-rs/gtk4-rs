@@ -41,10 +41,10 @@ The button widget is returned, but usually you don’t need it.</p>
 <p>the <code>GtkButton</code> widget that was added</p>
 </div><h3 id="tymethod.content_area" class="method"><code>fn <a href="#tymethod.content_area" class="fnname">content_area</a>(&amp;self) -&gt; <a class="struct" href="../struct.Box.html" title="struct gtk4::Box">Box</a></code><a class="srclink" href="../../src/gtk4/auto/dialog.rs.html#732" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns the content area of <code>self</code>.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
-<p>the content area <code>Box</code>.</p>
+<p>the content area <a href="../struct.Box.html"><code>Box</code></a>.</p>
 </div><h3 id="tymethod.header_bar" class="method"><code>fn <a href="#tymethod.header_bar" class="fnname">header_bar</a>(&amp;self) -&gt; <a class="struct" href="../struct.HeaderBar.html" title="struct gtk4::HeaderBar">HeaderBar</a></code><a class="srclink" href="../../src/gtk4/auto/dialog.rs.html#743" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns the header bar of <code>self</code>.</p>
 <p>Note that the headerbar is only used by the dialog if the
-[property<code>Gtk.Dialog</code>:use-header-bar] property is <code>true</code>.</p>
+[property<code>Gtk.Dialog</code>:use-header-bar] property is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
 <p>the header bar</p>
 </div><h3 id="tymethod.widget_for_response" class="method"><code>fn <a href="#tymethod.widget_for_response" class="fnname">widget_for_response</a>(&amp;self, response_id: <a class="enum" href="../enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/dialog.rs.html#755" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets the widget button that uses the given response ID in the action area
@@ -53,7 +53,7 @@ of a dialog.</p>
 <p>the response ID used by the <code>self</code> widget</p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
 <p>the <code>widget</code> button that uses the given
-<code>response_id</code>, or <code>None</code>.</p>
+<code>response_id</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>.</p>
 </div><h3 id="tymethod.response" class="method"><code>fn <a href="#tymethod.response" class="fnname">response</a>(&amp;self, response_id: <a class="enum" href="../enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a>)</code><a class="srclink" href="../../src/gtk4/auto/dialog.rs.html#763" title="goto source code">[src]</a></h3><div class="docblock"><p>Emits the ::response signal with the given response ID.</p>
 <p>Used to indicate that the user has responded to the dialog in some way.</p>
 <h2 id="response_id-3" class="section-header"><a href="#response_id-3"><code>response_id</code></a></h2>
@@ -68,14 +68,14 @@ for each widget in the dialog’s action area with the given <code>response_id</
 <h2 id="response_id-5" class="section-header"><a href="#response_id-5"><code>response_id</code></a></h2>
 <p>a response ID</p>
 <h2 id="setting" class="section-header"><a href="#setting"><code>setting</code></a></h2>
-<p><code>true</code> for sensitive</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> for sensitive</p>
 </div><h3 id="tymethod.use_header_bar" class="method"><code>fn <a href="#tymethod.use_header_bar" class="fnname">use_header_bar</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a class="srclink" href="../../src/gtk4/auto/dialog.rs.html#785" title="goto source code">[src]</a></h3><h3 id="tymethod.connect_close" class="method"><code>fn <a href="#tymethod.connect_close" class="fnname">connect_close</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></code><a class="srclink" href="../../src/gtk4/auto/dialog.rs.html#792" title="goto source code">[src]</a></h3><div class="docblock"><p>Emitted when the user uses a keybinding to close the dialog.</p>
 <p>This is a <a href="class.SignalAction.html">keybinding signal</a>.</p>
 <p>The default binding for this signal is the Escape key.</p>
 </div><h3 id="tymethod.emit_close" class="method"><code>fn <a href="#tymethod.emit_close" class="fnname">emit_close</a>(&amp;self)</code><a class="srclink" href="../../src/gtk4/auto/dialog.rs.html#794" title="goto source code">[src]</a></h3><h3 id="tymethod.connect_response" class="method"><code>fn <a href="#tymethod.connect_response" class="fnname">connect_response</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, <a class="enum" href="../enum.ResponseType.html" title="enum gtk4::ResponseType">ResponseType</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></code><a class="srclink" href="../../src/gtk4/auto/dialog.rs.html#804" title="goto source code">[src]</a></h3><div class="docblock"><p>Emitted when an action widget is clicked.</p>
 <p>The signal is also emitted when the dialog receives a
 delete event, and when [method<code>Gtk.Dialog</code>.response] is called.
-On a delete event, the response ID is <code>ResponseType::DeleteEvent</code>.
+On a delete event, the response ID is <a href="../enum.ResponseType.html#variant.DeleteEvent" title="ResponseType::DeleteEvent"><code>ResponseType::DeleteEvent</code></a>.
 Otherwise, it depends on which action widget was clicked.</p>
 <h2 id="response_id-6" class="section-header"><a href="#response_id-6"><code>response_id</code></a></h2>
 <p>the response ID</p>

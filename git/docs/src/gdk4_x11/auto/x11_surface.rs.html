@@ -273,7 +273,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_x11_surface_get_group</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns the X resource (surface) belonging to a `gdk::Surface`.</span>
+    <span class="doccomment">/// Returns the X resource (surface) belonging to a [`gdk::Surface`](crate::gdk::Surface).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -327,7 +327,7 @@
     <span class="doccomment">/// Sets the group leader of `self` to be `leader`.</span>
     <span class="doccomment">/// See the ICCCM for details.</span>
     <span class="doccomment">/// ## `leader`</span>
-    <span class="doccomment">/// a `gdk::Surface`</span>
+    <span class="doccomment">/// a [`gdk::Surface`](crate::gdk::Surface)</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_x11_surface_set_group&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_group</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Surface</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">leader</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
         <span class="kw">unsafe</span> {
@@ -338,7 +338,7 @@
     <span class="doccomment">/// Sets a hint on `self` that pagers should not</span>
     <span class="doccomment">/// display it. See the EWMH for details.</span>
     <span class="doccomment">/// ## `skips_pager`</span>
-    <span class="doccomment">/// `true` to skip pagers</span>
+    <span class="doccomment">/// [`true`] to skip pagers</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_x11_surface_set_skip_pager_hint&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_skip_pager_hint</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">skips_pager</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -349,7 +349,7 @@
     <span class="doccomment">/// Sets a hint on `self` that taskbars should not</span>
     <span class="doccomment">/// display it. See the EWMH for details.</span>
     <span class="doccomment">/// ## `skips_taskbar`</span>
-    <span class="doccomment">/// `true` to skip taskbars</span>
+    <span class="doccomment">/// [`true`] to skip taskbars</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_x11_surface_set_skip_taskbar_hint&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_skip_taskbar_hint</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">skips_taskbar</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -381,7 +381,7 @@
     <span class="doccomment">/// Sets a hint on `self` that it needs user attention.</span>
     <span class="doccomment">/// See the ICCCM for details.</span>
     <span class="doccomment">/// ## `urgent`</span>
-    <span class="doccomment">/// `true` to indicate urgenct attention needed</span>
+    <span class="doccomment">/// [`true`] to indicate urgenct attention needed</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_x11_surface_set_urgency_hint&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_urgency_hint</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">urgent</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -416,7 +416,7 @@
     <span class="doccomment">/// ## `name`</span>
     <span class="doccomment">/// Property name, will be interned as an X atom</span>
     <span class="doccomment">/// ## `value`</span>
-    <span class="doccomment">/// Property value, or `None` to delete</span>
+    <span class="doccomment">/// Property value, or [`None`] to delete</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_x11_surface_set_utf8_property&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_utf8_property</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">value</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -428,17 +428,17 @@
         }
     }
 
-    <span class="doccomment">/// Looks up the `gdk::Surface` that wraps the given native window handle.</span>
+    <span class="doccomment">/// Looks up the [`gdk::Surface`](crate::gdk::Surface) that wraps the given native window handle.</span>
     <span class="doccomment">/// ## `display`</span>
-    <span class="doccomment">/// the `gdk::Display` corresponding to the</span>
+    <span class="doccomment">/// the [`gdk::Display`](crate::gdk::Display) corresponding to the</span>
     <span class="doccomment">///  window handle</span>
     <span class="doccomment">/// ## `window`</span>
     <span class="doccomment">/// an Xlib Window</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the `gdk::Surface` wrapper for the native</span>
-    <span class="doccomment">///  window, or `None` if there is none.</span>
+    <span class="doccomment">/// the [`gdk::Surface`](crate::gdk::Surface) wrapper for the native</span>
+    <span class="doccomment">///  window, or [`None`] if there is none.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_x11_surface_lookup_for_display&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">lookup_for_display</span>(<span class="ident">display</span>: <span class="kw-2">&amp;</span><span class="ident">X11Display</span>, <span class="ident">window</span>: <span class="ident">xlib::Window</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">X11Surface</span><span class="op">&gt;</span> {
         <span class="macro">skip_assert_initialized!</span>();

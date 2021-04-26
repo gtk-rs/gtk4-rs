@@ -225,7 +225,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`ColorChooserExt`](trait@crate::ColorChooserExt), [`ColorChooserExtManual`](trait@crate::ColorChooserExtManual)</span>
+    <span class="doccomment">/// [`ColorChooserExt`](trait@crate::prelude::ColorChooserExt), [`ColorChooserExtManual`](trait@crate::prelude::ColorChooserExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ColorChooser</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GtkColorChooser</span>, <span class="ident">ffi::GtkColorChooserInterface</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -251,8 +251,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the color chooser uses the alpha channel,</span>
-    <span class="doccomment">///  `false` if not</span>
+    <span class="doccomment">/// [`true`] if the color chooser uses the alpha channel,</span>
+    <span class="doccomment">///  [`false`] if not</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_color_chooser_get_use_alpha&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">uses_alpha</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -264,7 +264,7 @@
 
     <span class="doccomment">/// Sets whether or not the color chooser should use the alpha channel.</span>
     <span class="doccomment">/// ## `use_alpha`</span>
-    <span class="doccomment">/// `true` if color chooser should use alpha channel, `false` if not</span>
+    <span class="doccomment">/// [`true`] if color chooser should use alpha channel, [`false`] if not</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_color_chooser_set_use_alpha&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_use_alpha</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">use_alpha</span>: <span class="ident">bool</span>);
 

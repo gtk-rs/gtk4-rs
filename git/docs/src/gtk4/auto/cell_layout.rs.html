@@ -363,25 +363,25 @@
 <span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// An interface for packing cells</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `CellLayout` is an interface to be implemented by all objects which</span>
-    <span class="doccomment">/// want to provide a `TreeViewColumn` like API for packing cells,</span>
+    <span class="doccomment">/// [`CellLayout`](crate::CellLayout) is an interface to be implemented by all objects which</span>
+    <span class="doccomment">/// want to provide a [`TreeViewColumn`](crate::TreeViewColumn) like API for packing cells,</span>
     <span class="doccomment">/// setting attributes and data funcs.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// One of the notable features provided by implementations of</span>
     <span class="doccomment">/// `CellLayout` are attributes. Attributes let you set the properties</span>
     <span class="doccomment">/// in flexible ways. They can just be set to constant values like regular</span>
     <span class="doccomment">/// properties. But they can also be mapped to a column of the underlying</span>
-    <span class="doccomment">/// tree model with `CellLayout::set_attributes`, which means that the value</span>
+    <span class="doccomment">/// tree model with [`set_attributes()`](Self::set_attributes()), which means that the value</span>
     <span class="doccomment">/// of the attribute can change from cell to cell as they are rendered by</span>
     <span class="doccomment">/// the cell renderer. Finally, it is possible to specify a function with</span>
-    <span class="doccomment">/// `CellLayout::set_cell_data_func` that is called to determine the</span>
+    <span class="doccomment">/// [`set_cell_data_func()`](Self::set_cell_data_func()) that is called to determine the</span>
     <span class="doccomment">/// value of the attribute for each cell that is rendered.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # `GtkCellLayouts` as `Buildable`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Implementations of `CellLayout` which also implement the `Buildable`</span>
-    <span class="doccomment">/// interface (`CellView`, `IconView`, `ComboBox`,</span>
-    <span class="doccomment">/// `EntryCompletion`, `TreeViewColumn`) accept `CellRenderer` objects</span>
+    <span class="doccomment">/// interface ([`CellView`](crate::CellView), [`IconView`](crate::IconView), [`ComboBox`](crate::ComboBox),</span>
+    <span class="doccomment">/// [`EntryCompletion`](crate::EntryCompletion), [`TreeViewColumn`](crate::TreeViewColumn)) accept `CellRenderer` objects</span>
     <span class="doccomment">/// as `&lt;child&gt;` elements in UI definitions. They support a custom `&lt;attributes&gt;`</span>
     <span class="doccomment">/// element for their children, which can contain multiple `&lt;attribute&gt;`</span>
     <span class="doccomment">/// elements. Each `&lt;attribute&gt;` element has a name attribute which specifies</span>
@@ -395,9 +395,9 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// to use a custom cell area with a combo box. But construct properties</span>
-    <span class="doccomment">/// are only initialized after instance `init`</span>
+    <span class="doccomment">/// are only initialized after instance `init()`</span>
     <span class="doccomment">/// functions have run, which means that using functions which rely on</span>
-    <span class="doccomment">/// the existence of the cell area in your subclass’ `init` function will</span>
+    <span class="doccomment">/// the existence of the cell area in your subclass’ `init()` function will</span>
     <span class="doccomment">/// cause the default cell area to be instantiated. In this case, a provided</span>
     <span class="doccomment">/// construct property value will be ignored (with a warning, to alert</span>
     <span class="doccomment">/// you to the problem).</span>
@@ -427,12 +427,12 @@
     <span class="doccomment">/// If supporting alternative cell areas with your derived widget is</span>
     <span class="doccomment">/// not important, then this does not have to concern you. If you want</span>
     <span class="doccomment">/// to support alternative cell areas, you can do so by moving the</span>
-    <span class="doccomment">/// problematic calls out of `init` and into a `constructor`</span>
+    <span class="doccomment">/// problematic calls out of `init()` and into a `constructor()`</span>
     <span class="doccomment">/// for your class.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`CellLayoutExt`](trait@crate::CellLayoutExt), [`CellLayoutExtManual`](trait@crate::CellLayoutExtManual)</span>
+    <span class="doccomment">/// [`CellLayoutExt`](trait@crate::prelude::CellLayoutExt), [`CellLayoutExtManual`](trait@crate::prelude::CellLayoutExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CellLayout</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GtkCellLayout</span>, <span class="ident">ffi::GtkCellLayoutIface</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -453,9 +453,9 @@
     <span class="doccomment">/// The `column` is the column of the model to get a value from, and the</span>
     <span class="doccomment">/// `attribute` is the parameter on `cell` to be set from the value. So for</span>
     <span class="doccomment">/// example if column 2 of the model contains strings, you could have the</span>
-    <span class="doccomment">/// “text” attribute of a `CellRendererText` get its values from column 2.</span>
+    <span class="doccomment">/// “text” attribute of a [`CellRendererText`](crate::CellRendererText) get its values from column 2.</span>
     <span class="doccomment">/// ## `cell`</span>
-    <span class="doccomment">/// a `CellRenderer`</span>
+    <span class="doccomment">/// a [`CellRenderer`](crate::CellRenderer)</span>
     <span class="doccomment">/// ## `attribute`</span>
     <span class="doccomment">/// an attribute on the renderer</span>
     <span class="doccomment">/// ## `column`</span>
@@ -469,20 +469,20 @@
     <span class="kw">fn</span> <span class="ident">clear</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
     <span class="doccomment">/// Clears all existing attributes previously set with</span>
-    <span class="doccomment">/// `CellLayout::set_attributes`.</span>
+    <span class="doccomment">/// [`CellLayout::set_attributes()`](crate::CellLayout::set_attributes()).</span>
     <span class="doccomment">/// ## `cell`</span>
-    <span class="doccomment">/// a `CellRenderer` to clear the attribute mapping on</span>
+    <span class="doccomment">/// a [`CellRenderer`](crate::CellRenderer) to clear the attribute mapping on</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_layout_clear_attributes&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">clear_attributes</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>);
 
-    <span class="doccomment">/// Returns the underlying `CellArea` which might be `self`</span>
-    <span class="doccomment">/// if called on a `CellArea` or might be `None` if no `CellArea`</span>
+    <span class="doccomment">/// Returns the underlying [`CellArea`](crate::CellArea) which might be `self`</span>
+    <span class="doccomment">/// if called on a [`CellArea`](crate::CellArea) or might be [`None`] if no [`CellArea`](crate::CellArea)</span>
     <span class="doccomment">/// is used by `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the cell area used by `self`,</span>
-    <span class="doccomment">/// or `None` in case no cell area is used.</span>
+    <span class="doccomment">/// or [`None`] in case no cell area is used.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_layout_get_area&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CellArea</span><span class="op">&gt;</span>;
 
@@ -492,32 +492,32 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///  a list of cell renderers. The list, but not the renderers has</span>
-    <span class="doccomment">///  been newly allocated and should be freed with `glib::List::free`</span>
+    <span class="doccomment">///  been newly allocated and should be freed with [`glib::List::free()`](crate::glib::List::free())</span>
     <span class="doccomment">///  when no longer needed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_layout_get_cells&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">cells</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Adds the `cell` to the end of `self`. If `expand` is `false`, then the</span>
+    <span class="doccomment">/// Adds the `cell` to the end of `self`. If `expand` is [`false`], then the</span>
     <span class="doccomment">/// `cell` is allocated no more space than it needs. Any unused space is</span>
-    <span class="doccomment">/// divided evenly between cells for which `expand` is `true`.</span>
+    <span class="doccomment">/// divided evenly between cells for which `expand` is [`true`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that reusing the same cell renderer is not supported.</span>
     <span class="doccomment">/// ## `cell`</span>
-    <span class="doccomment">/// a `CellRenderer`</span>
+    <span class="doccomment">/// a [`CellRenderer`](crate::CellRenderer)</span>
     <span class="doccomment">/// ## `expand`</span>
-    <span class="doccomment">/// `true` if `cell` is to be given extra space allocated to `self`</span>
+    <span class="doccomment">/// [`true`] if `cell` is to be given extra space allocated to `self`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_layout_pack_end&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">pack_end</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">expand</span>: <span class="ident">bool</span>);
 
-    <span class="doccomment">/// Packs the `cell` into the beginning of `self`. If `expand` is `false`,</span>
+    <span class="doccomment">/// Packs the `cell` into the beginning of `self`. If `expand` is [`false`],</span>
     <span class="doccomment">/// then the `cell` is allocated no more space than it needs. Any unused space</span>
-    <span class="doccomment">/// is divided evenly between cells for which `expand` is `true`.</span>
+    <span class="doccomment">/// is divided evenly between cells for which `expand` is [`true`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that reusing the same cell renderer is not supported.</span>
     <span class="doccomment">/// ## `cell`</span>
-    <span class="doccomment">/// a `CellRenderer`</span>
+    <span class="doccomment">/// a [`CellRenderer`](crate::CellRenderer)</span>
     <span class="doccomment">/// ## `expand`</span>
-    <span class="doccomment">/// `true` if `cell` is to be given extra space allocated to `self`</span>
+    <span class="doccomment">/// [`true`] if `cell` is to be given extra space allocated to `self`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_layout_pack_start&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">pack_start</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CellRenderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cell</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">expand</span>: <span class="ident">bool</span>);
 
@@ -526,7 +526,7 @@
     <span class="doccomment">/// Note that `cell` has already to be packed into `self`</span>
     <span class="doccomment">/// for this to function properly.</span>
     <span class="doccomment">/// ## `cell`</span>
-    <span class="doccomment">/// a `CellRenderer` to reorder</span>
+    <span class="doccomment">/// a [`CellRenderer`](crate::CellRenderer) to reorder</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// new position to insert `cell` at</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_layout_reorder&quot;</span>)]</span>
@@ -541,11 +541,11 @@
     <span class="doccomment">/// for setting the column value, and should set the value of `self`’s</span>
     <span class="doccomment">/// cell renderer(s) as appropriate.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `func` may be `None` to remove a previously set function.</span>
+    <span class="doccomment">/// `func` may be [`None`] to remove a previously set function.</span>
     <span class="doccomment">/// ## `cell`</span>
-    <span class="doccomment">/// a `CellRenderer`</span>
+    <span class="doccomment">/// a [`CellRenderer`](crate::CellRenderer)</span>
     <span class="doccomment">/// ## `func`</span>
-    <span class="doccomment">/// the ``GtkCellLayoutDataFunc`` to use, or `None`</span>
+    <span class="doccomment">/// the ``GtkCellLayoutDataFunc`` to use, or [`None`]</span>
     <span class="doccomment">/// ## `func_data`</span>
     <span class="doccomment">/// user data for `func`</span>
     <span class="doccomment">/// ## `destroy`</span>

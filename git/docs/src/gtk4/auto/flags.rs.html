@@ -1318,15 +1318,15 @@
 }
 
 <span class="macro">bitflags!</span> {
-    <span class="doccomment">/// The list of flags that can be passed to `Builder::create_closure`.</span>
+    <span class="doccomment">/// The list of flags that can be passed to [`Builder::create_closure()`](crate::Builder::create_closure()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// New values may be added in the future for new features, so external</span>
     <span class="doccomment">/// implementations of [interface`Gtk.BuilderScope`] should test the flags</span>
-    <span class="doccomment">/// for unknown values and raise a `BuilderError::InvalidAttribute` error</span>
+    <span class="doccomment">/// for unknown values and raise a [`BuilderError::InvalidAttribute`] error</span>
     <span class="doccomment">/// when they encounter one.</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BuilderClosureFlags</span>: <span class="ident">u32</span> {
         <span class="doccomment">/// The closure should be created swapped. See</span>
-        <span class="doccomment">///  `glib::object::CClosure::new_swap` for details.</span>
+        <span class="doccomment">///  [`glib::object::CClosure::new_swap()`](crate::glib::object::CClosure::new_swap()) for details.</span>
         <span class="kw">const</span> <span class="ident">SWAPPED</span> <span class="op">=</span> <span class="number">1</span>;
     }
 }
@@ -1763,7 +1763,7 @@
 }
 
 <span class="macro">bitflags!</span> {
-    <span class="doccomment">/// Used to specify options for `IconTheme::lookup_icon`.</span>
+    <span class="doccomment">/// Used to specify options for [`IconTheme::lookup_icon()`](crate::IconTheme::lookup_icon()).</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">IconLookupFlags</span>: <span class="ident">u32</span> {
         <span class="doccomment">/// Try to always load regular icons, even</span>
         <span class="doccomment">///  when symbolic icon names are given</span>
@@ -1841,7 +1841,7 @@
     <span class="doccomment">/// to the `GtkInputPurpose` of the entry.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Some common sense is expected when using these flags - mixing</span>
-    <span class="doccomment">/// `InputHints::Lowercase` with any of the uppercase hints makes no sense.</span>
+    <span class="doccomment">/// [`Lowercase`](Self::Lowercase) with any of the uppercase hints makes no sense.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This enumeration may be extended in the future; input methods should</span>
     <span class="doccomment">/// ignore unknown values.</span>
@@ -1936,13 +1936,13 @@
 }
 
 <span class="macro">bitflags!</span> {
-    <span class="doccomment">/// Flags that influence the behavior of `WidgetExt::pick`.</span>
+    <span class="doccomment">/// Flags that influence the behavior of [`WidgetExt::pick()`](crate::WidgetExt::pick()).</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PickFlags</span>: <span class="ident">u32</span> {
         <span class="doccomment">/// The default behavior, include widgets that are receiving events</span>
         <span class="kw">const</span> <span class="ident">DEFAULT</span> <span class="op">=</span> <span class="number">0</span>;
         <span class="doccomment">/// Include widgets that are insensitive</span>
         <span class="kw">const</span> <span class="ident">INSENSITIVE</span> <span class="op">=</span> <span class="number">1</span>;
-        <span class="doccomment">/// Include widgets that are marked as non-targetable. See `Widget:can-target`</span>
+        <span class="doccomment">/// Include widgets that are marked as non-targetable. See [`Widget:can-target`](crate::Widget:can-target)</span>
         <span class="kw">const</span> <span class="ident">NON_TARGETABLE</span> <span class="op">=</span> <span class="number">2</span>;
     }
 }
@@ -2237,7 +2237,7 @@
 }
 
 <span class="macro">bitflags!</span> {
-    <span class="doccomment">/// Flags that modify the behavior of `StyleContextExt::to_string`.</span>
+    <span class="doccomment">/// Flags that modify the behavior of [`StyleContextExt::to_string()`](crate::StyleContextExt::to_string()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// New values may be added to this enumeration.</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StyleContextPrintFlags</span>: <span class="ident">u32</span> {
@@ -2314,7 +2314,7 @@
 <span class="macro">bitflags!</span> {
     <span class="doccomment">/// Flags affecting how a search is done.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If neither `TextSearchFlags::VisibleOnly` nor `TextSearchFlags::TextOnly` are</span>
+    <span class="doccomment">/// If neither [`VisibleOnly`](Self::VisibleOnly) nor [`TextOnly`](Self::TextOnly) are</span>
     <span class="doccomment">/// enabled, the match must be exact; the special 0xFFFC character will match</span>
     <span class="doccomment">/// embedded paintables or child widgets.</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TextSearchFlags</span>: <span class="ident">u32</span> {
@@ -2387,11 +2387,11 @@
 }
 
 <span class="macro">bitflags!</span> {
-    <span class="doccomment">/// These flags indicate various properties of a `TreeModel`.</span>
+    <span class="doccomment">/// These flags indicate various properties of a [`TreeModel`](crate::TreeModel).</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// They are returned by `TreeModel::get_flags`, and must be</span>
+    <span class="doccomment">/// They are returned by [`TreeModel::get_flags()`](crate::TreeModel::get_flags()), and must be</span>
     <span class="doccomment">/// static for the lifetime of the object. A more complete description</span>
-    <span class="doccomment">/// of `TreeModelFlags::ItersPersist` can be found in the overview of</span>
+    <span class="doccomment">/// of [`ItersPersist`](Self::ItersPersist) can be found in the overview of</span>
     <span class="doccomment">/// this section.</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TreeModelFlags</span>: <span class="ident">u32</span> {
         <span class="doccomment">/// iterators survive all signals</span>

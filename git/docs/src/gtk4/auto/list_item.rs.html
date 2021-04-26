@@ -401,10 +401,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// 1. The unbound stage where the listitem is not currently connected to</span>
     <span class="doccomment">///  an item in the list. In that case, the [property`Gtk.ListItem`:item]</span>
-    <span class="doccomment">///  property is set to `None`.</span>
+    <span class="doccomment">///  property is set to [`None`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// 2. The bound stage where the listitem references an item from the list.</span>
-    <span class="doccomment">///  The [property`Gtk.ListItem`:item] property is not `None`.</span>
+    <span class="doccomment">///  The [property`Gtk.ListItem`:item] property is not [`None`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
@@ -418,18 +418,18 @@
 
 <span class="kw">impl</span> <span class="ident">ListItem</span> {
     <span class="doccomment">/// Checks if a list item has been set to be activatable via</span>
-    <span class="doccomment">/// `ListItem::set_activatable`.</span>
+    <span class="doccomment">/// [`set_activatable()`](Self::set_activatable()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the item is activatable</span>
+    <span class="doccomment">/// [`true`] if the item is activatable</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_item_get_activatable&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_activatable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_list_item_get_activatable</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Gets the child previously set via `ListItem::set_child` or</span>
-    <span class="doccomment">/// `None` if none was set.</span>
+    <span class="doccomment">/// Gets the child previously set via [`set_child()`](Self::set_child()) or</span>
+    <span class="doccomment">/// [`None`] if none was set.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -441,7 +441,7 @@
 
     <span class="doccomment">/// Gets the model item that associated with `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `self` is unbound, this function returns `None`.</span>
+    <span class="doccomment">/// If `self` is unbound, this function returns [`None`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -464,13 +464,13 @@
     }
 
     <span class="doccomment">/// Checks if a list item has been set to be selectable via</span>
-    <span class="doccomment">/// `ListItem::set_selectable`.</span>
+    <span class="doccomment">/// [`set_selectable()`](Self::set_selectable()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Do not confuse this function with [method`Gtk.ListItem`.get_selected].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the item is selectable</span>
+    <span class="doccomment">/// [`true`] if the item is selectable</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_item_get_selectable&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_selectable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_list_item_get_selectable</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -483,7 +483,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the item is selected.</span>
+    <span class="doccomment">/// [`true`] if the item is selected.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_item_get_selected&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_selected</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_list_item_get_selected</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -492,7 +492,7 @@
     <span class="doccomment">/// Sets `self` to be activatable.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If an item is activatable, double-clicking on the item, using</span>
-    <span class="doccomment">/// the Return key or calling `WidgetExt::activate` will activate</span>
+    <span class="doccomment">/// the Return key or calling [`WidgetExt::activate()`](crate::WidgetExt::activate()) will activate</span>
     <span class="doccomment">/// the item. Activating instructs the containing view to handle</span>
     <span class="doccomment">/// activation. `GtkListView` for example will be emitting the</span>
     <span class="doccomment">/// [signal`Gtk.ListView`::activate] signal.</span>
@@ -513,7 +513,7 @@
     <span class="doccomment">/// setting up a listitem so that the widget can be reused when</span>
     <span class="doccomment">/// binding it multiple times.</span>
     <span class="doccomment">/// ## `child`</span>
-    <span class="doccomment">/// The list item&#39;s child or `None` to unset</span>
+    <span class="doccomment">/// The list item&#39;s child or [`None`] to unset</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_item_set_child&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_child</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {

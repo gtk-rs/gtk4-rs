@@ -255,7 +255,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// See also [method`Gdk.AppLaunchContext`.set_icon_name].</span>
     <span class="doccomment">/// ## `icon`</span>
-    <span class="doccomment">/// a `gio::Icon`, or `None`</span>
+    <span class="doccomment">/// a [`gio::Icon`](crate::gio::Icon), or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_app_launch_context_set_icon&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_icon</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::Icon</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">icon</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -269,14 +269,14 @@
     <span class="doccomment">/// Sets the icon for applications that are launched with this context.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The `icon_name` will be interpreted in the same way as the Icon field</span>
-    <span class="doccomment">/// in desktop files. See also [method`Gdk.AppLaunchContext`.`set_icon`].</span>
+    <span class="doccomment">/// in desktop files. See also [method`Gdk`.[`AppLaunchContext.set_icon()`](crate::AppLaunchContext.set_icon())].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If both `icon` and `icon_name` are set, the `icon_name` takes priority.</span>
     <span class="doccomment">/// If neither `icon` or `icon_name` is set, the icon is taken from either</span>
     <span class="doccomment">/// the file that is passed to launched application or from the `GAppInfo`</span>
     <span class="doccomment">/// for the launched application itself.</span>
     <span class="doccomment">/// ## `icon_name`</span>
-    <span class="doccomment">/// an icon name, or `None`</span>
+    <span class="doccomment">/// an icon name, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_app_launch_context_set_icon_name&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_icon_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">icon_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {

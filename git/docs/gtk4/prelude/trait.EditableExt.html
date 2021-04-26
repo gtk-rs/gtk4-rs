@@ -81,10 +81,10 @@ implementation to.</p>
 <p>the delegate <code>GtkEditable</code></p>
 </div><h3 id="tymethod.is_editable" class="method"><code>fn <a href="#tymethod.is_editable" class="fnname">is_editable</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/editable.rs.html#243" title="goto source code">[src]</a></h3><div class="docblock"><p>Retrieves whether <code>self</code> is editable.</p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
-<p><code>true</code> if <code>self</code> is editable.</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> is editable.</p>
 </div><h3 id="tymethod.enables_undo" class="method"><code>fn <a href="#tymethod.enables_undo" class="fnname">enables_undo</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/editable.rs.html#251" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets if undo/redo actions are enabled for <code>self</code></p>
 <h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
-<p><code>true</code> if undo is enabled</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if undo is enabled</p>
 </div><h3 id="tymethod.max_width_chars" class="method"><code>fn <a href="#tymethod.max_width_chars" class="fnname">max_width_chars</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a class="srclink" href="../../src/gtk4/auto/editable.rs.html#259" title="goto source code">[src]</a></h3><div class="docblock"><p>Retrieves the desired maximum width of <code>self</code>, in characters.</p>
 <h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>
 <p>the maximum width of the entry, in characters</p>
@@ -96,14 +96,14 @@ to the start of the content of the editable.</p>
 </div><h3 id="tymethod.selection_bounds" class="method"><code>fn <a href="#tymethod.selection_bounds" class="fnname">selection_bounds</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/editable.rs.html#288" title="goto source code">[src]</a></h3><div class="docblock"><p>Retrieves the selection bound of the editable.</p>
 <p><code>start_pos</code> will be filled with the start of the selection and
 <code>end_pos</code> with end. If no text was selected both will be identical
-and <code>false</code> will be returned.</p>
+and <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> will be returned.</p>
 <p>Note that positions are specified in characters, not bytes.</p>
 <h2 id="start_pos-2" class="section-header"><a href="#start_pos-2"><code>start_pos</code></a></h2>
-<p>location to store the starting position, or <code>None</code></p>
+<p>location to store the starting position, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h2 id="end_pos-2" class="section-header"><a href="#end_pos-2"><code>end_pos</code></a></h2>
-<p>location to store the end position, or <code>None</code></p>
+<p>location to store the end position, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h1 id="returns-7" class="section-header"><a href="#returns-7">Returns</a></h1>
-<p><code>true</code> if there is a non-empty selection, <code>false</code> otherwise</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if there is a non-empty selection, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> otherwise</p>
 </div><h3 id="tymethod.text" class="method"><code>fn <a href="#tymethod.text" class="fnname">text</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a></code><a class="srclink" href="../../src/gtk4/auto/editable.rs.html#298" title="goto source code">[src]</a></h3><div class="docblock"><p>Retrieves the contents of <code>self</code>.</p>
 <p>The returned string is owned by GTK and must not be modified or freed.</p>
 <h1 id="returns-8" class="section-header"><a href="#returns-8">Returns</a></h1>
@@ -146,13 +146,13 @@ the displayed text is shorter than the width of the editable.</p>
 Reversed for RTL layouts</p>
 </div><h3 id="tymethod.set_editable" class="method"><code>fn <a href="#tymethod.set_editable" class="fnname">set_editable</a>(&amp;self, is_editable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code><a class="srclink" href="../../src/gtk4/auto/editable.rs.html#364" title="goto source code">[src]</a></h3><div class="docblock"><p>Determines if the user can edit the text in the editable widget.</p>
 <h2 id="is_editable" class="section-header"><a href="#is_editable"><code>is_editable</code></a></h2>
-<p><code>true</code> if the user is allowed to edit the text
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the user is allowed to edit the text
 in the widget</p>
 </div><h3 id="tymethod.set_enable_undo" class="method"><code>fn <a href="#tymethod.set_enable_undo" class="fnname">set_enable_undo</a>(&amp;self, enable_undo: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code><a class="srclink" href="../../src/gtk4/auto/editable.rs.html#375" title="goto source code">[src]</a></h3><div class="docblock"><p>If enabled, changes to <code>self</code> will be saved for undo/redo
 actions.</p>
 <p>This results in an additional copy of text changes and are not
 stored in secure memory. As such, undo is forcefully disabled
-when [property<code>Gtk.Text</code>:visibility] is set to <code>false</code>.</p>
+when [property<code>Gtk.Text</code>:visibility] is set to <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>.</p>
 <h2 id="enable_undo" class="section-header"><a href="#enable_undo"><code>enable_undo</code></a></h2>
 <p>if undo/redo should be enabled</p>
 </div><h3 id="tymethod.set_max_width_chars" class="method"><code>fn <a href="#tymethod.set_max_width_chars" class="fnname">set_max_width_chars</a>(&amp;self, n_chars: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</code><a class="srclink" href="../../src/gtk4/auto/editable.rs.html#381" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets the desired maximum width in characters of <code>self</code>.</p>
@@ -187,7 +187,7 @@ to be emitted).</p>
 </div><h3 id="tymethod.connect_delete_text" class="method"><code>fn <a href="#tymethod.connect_delete_text" class="fnname">connect_delete_text</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></code><a class="srclink" href="../../src/gtk4/auto/editable.rs.html#449" title="goto source code">[src]</a></h3><div class="docblock"><p>Emitted when text is deleted from the widget by the user.</p>
 <p>The default handler for this signal will normally be responsible for
 deleting the text, so by connecting to this signal and then stopping
-the signal with <code>g_signal_stop_emission</code>, it is possible to modify the
+the signal with <code>g_signal_stop_emission()</code>, it is possible to modify the
 range of deleted text, or prevent it from being deleted entirely.</p>
 <p>The <code>start_pos</code> and <code>end_pos</code> parameters are interpreted as for
 [method<code>Gtk.Editable</code>.delete_text].</p>

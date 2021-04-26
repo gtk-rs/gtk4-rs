@@ -1058,11 +1058,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkScale` uses the `AccessibleRole::Slider` role.</span>
+    <span class="doccomment">/// `GtkScale` uses the [`AccessibleRole::Slider`] role.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`ScaleExt`](trait@crate::ScaleExt), [`RangeExt`](trait@crate::RangeExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`OrientableExt`](trait@crate::OrientableExt), [`ScaleExtManual`](trait@crate::ScaleExtManual), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`ScaleExt`](trait@crate::prelude::ScaleExt), [`RangeExt`](trait@crate::prelude::RangeExt), [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`OrientableExt`](trait@crate::prelude::OrientableExt), [`ScaleExtManual`](trait@crate::prelude::ScaleExtManual), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Scale</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkScale</span>, <span class="ident">ffi::GtkScaleClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Range</span>, <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Orientable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1076,7 +1076,7 @@
     <span class="doccomment">/// the scale’s orientation.</span>
     <span class="doccomment">/// ## `adjustment`</span>
     <span class="doccomment">/// the [class`Gtk.Adjustment`] which sets</span>
-    <span class="doccomment">///  the range of the scale, or `None` to create a new adjustment.</span>
+    <span class="doccomment">///  the range of the scale, or [`None`] to create a new adjustment.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1115,7 +1115,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `Scale`</span>
+    <span class="doccomment">/// a new [`Scale`](crate::Scale)</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_scale_new_with_range&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_range</span>(<span class="ident">orientation</span>: <span class="ident">Orientation</span>, <span class="ident">min</span>: <span class="ident">f64</span>, <span class="ident">max</span>: <span class="ident">f64</span>, <span class="ident">step</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Scale</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -1530,20 +1530,20 @@
     <span class="doccomment">/// and GTK makes it easy for the user to position the scale exactly at the</span>
     <span class="doccomment">/// marks value.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `markup` is not `None`, text is shown next to the tick mark.</span>
+    <span class="doccomment">/// If `markup` is not [`None`], text is shown next to the tick mark.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To remove marks from a scale, use [method`Gtk.Scale`.clear_marks].</span>
     <span class="doccomment">/// ## `value`</span>
     <span class="doccomment">/// the value at which the mark is placed, must be between</span>
     <span class="doccomment">///  the lower and upper limits of the scales’ adjustment</span>
     <span class="doccomment">/// ## `position`</span>
-    <span class="doccomment">/// where to draw the mark. For a horizontal scale, `PositionType::Top`</span>
-    <span class="doccomment">///  and `PositionType::Left` are drawn above the scale, anything else below.</span>
-    <span class="doccomment">///  For a vertical scale, `PositionType::Left` and `PositionType::Top` are drawn to</span>
+    <span class="doccomment">/// where to draw the mark. For a horizontal scale, [`PositionType::Top`](crate::PositionType::Top)</span>
+    <span class="doccomment">///  and [`PositionType::Left`] are drawn above the scale, anything else below.</span>
+    <span class="doccomment">///  For a vertical scale, [`PositionType::Left`](crate::PositionType::Left) and [`PositionType::Top`] are drawn to</span>
     <span class="doccomment">///  the left of the scale, anything else to the right.</span>
     <span class="doccomment">/// ## `markup`</span>
     <span class="doccomment">/// Text to be shown at the mark, using</span>
-    <span class="doccomment">///  Pango markup, or `None`</span>
+    <span class="doccomment">///  Pango markup, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_scale_add_mark&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">add_mark</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">value</span>: <span class="ident">f64</span>, <span class="ident">position</span>: <span class="ident">PositionType</span>, <span class="ident">markup</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>);
 
@@ -1572,7 +1572,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the scale has an origin.</span>
+    <span class="doccomment">/// [`true`] if the scale has an origin.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_scale_get_has_origin&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">has_origin</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -1584,8 +1584,8 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the [class`Pango.Layout`]</span>
-    <span class="doccomment">///  for this scale, or `None` if the [property[`crate::Scale:draw-value`] (XXX: @-reference does not belong to ScaleExt!)]</span>
-    <span class="doccomment">///  property is `false`.</span>
+    <span class="doccomment">///  for this scale, or [`None`] if the [property[`crate::Scale:draw-value`] (XXX: @-reference does not belong to ScaleExt!)]</span>
+    <span class="doccomment">///  property is [`false`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_scale_get_layout&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">layout</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango::Layout</span><span class="op">&gt;</span>;
 
@@ -1595,12 +1595,12 @@
     <span class="doccomment">/// Remember when using the `PangoLayout` function you need to</span>
     <span class="doccomment">/// convert to and from pixels using `PANGO_PIXELS()` or `PANGO_SCALE`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the [property[`crate::Scale:draw-value`] (XXX: @-reference does not belong to ScaleExt!)] property is `false`, the return</span>
+    <span class="doccomment">/// If the [property[`crate::Scale:draw-value`] (XXX: @-reference does not belong to ScaleExt!)] property is [`false`], the return</span>
     <span class="doccomment">/// values are undefined.</span>
     <span class="doccomment">/// ## `x`</span>
-    <span class="doccomment">/// location to store X offset of layout, or `None`</span>
+    <span class="doccomment">/// location to store X offset of layout, or [`None`]</span>
     <span class="doccomment">/// ## `y`</span>
-    <span class="doccomment">/// location to store Y offset of layout, or `None`</span>
+    <span class="doccomment">/// location to store Y offset of layout, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_scale_get_layout_offsets&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">layout_offsets</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
 
@@ -1616,9 +1616,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Also causes the value of the adjustment to be rounded to this number</span>
     <span class="doccomment">/// of digits, so the retrieved value matches the displayed one, if</span>
-    <span class="doccomment">/// [property[`crate::Scale:draw-value`] (XXX: @-reference does not belong to ScaleExt!)] is `true` when the value changes. If</span>
+    <span class="doccomment">/// [property[`crate::Scale:draw-value`] (XXX: @-reference does not belong to ScaleExt!)] is [`true`] when the value changes. If</span>
     <span class="doccomment">/// you want to enforce rounding the value when [property[`crate::Scale:draw-value`] (XXX: @-reference does not belong to ScaleExt!)]</span>
-    <span class="doccomment">/// is `false`, you can set [property[`crate::Range:round-digits`] (XXX: @-reference does not belong to ScaleExt!)] instead.</span>
+    <span class="doccomment">/// is [`false`], you can set [property[`crate::Range:round-digits`] (XXX: @-reference does not belong to ScaleExt!)] instead.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that rounding to a small number of digits can interfere with</span>
     <span class="doccomment">/// the smooth autoscrolling that is built into `GtkScale`. As an alternative,</span>
@@ -1633,7 +1633,7 @@
     <span class="doccomment">/// Specifies whether the current value is displayed as a string next</span>
     <span class="doccomment">/// to the slider.</span>
     <span class="doccomment">/// ## `draw_value`</span>
-    <span class="doccomment">/// `true` to draw the value</span>
+    <span class="doccomment">/// [`true`] to draw the value</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_scale_set_draw_value&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_draw_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">draw_value</span>: <span class="ident">bool</span>);
 
@@ -1642,7 +1642,7 @@
     <span class="doccomment">/// The given function will return an allocated string representing</span>
     <span class="doccomment">/// `value`. That string will then be used to display the scale&#39;s value.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `None` is passed as `func`, the value will be displayed on</span>
+    <span class="doccomment">/// If [`None`](crate::None) is passed as `func`, the value will be displayed on</span>
     <span class="doccomment">/// its own, rounded according to the value of the</span>
     <span class="doccomment">/// [property[`crate::Scale:digits`] (XXX: @-reference does not belong to ScaleExt!)] property.</span>
     <span class="doccomment">/// ## `func`</span>
@@ -1656,11 +1656,11 @@
 
     <span class="doccomment">/// Sets whether the scale has an origin.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If [property[`crate::Scale:has-origin`] (XXX: @-reference does not belong to ScaleExt!)] is set to `true` (the default),</span>
+    <span class="doccomment">/// If [property[`crate::Scale:has-origin`] (XXX: @-reference does not belong to ScaleExt!)] is set to [`true`] (the default),</span>
     <span class="doccomment">/// the scale will highlight the part of the trough between the origin</span>
     <span class="doccomment">/// (bottom or left side) and the current value.</span>
     <span class="doccomment">/// ## `has_origin`</span>
-    <span class="doccomment">/// `true` if the scale has an origin</span>
+    <span class="doccomment">/// [`true`] if the scale has an origin</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_scale_set_has_origin&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_has_origin</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">has_origin</span>: <span class="ident">bool</span>);
 

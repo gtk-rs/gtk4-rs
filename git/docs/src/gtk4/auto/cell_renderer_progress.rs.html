@@ -598,12 +598,12 @@
 <span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// Renders numbers as progress bars</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `CellRendererProgress` renders a numeric value as a progress par in a cell.</span>
+    <span class="doccomment">/// [`CellRendererProgress`](crate::CellRendererProgress) renders a numeric value as a progress par in a cell.</span>
     <span class="doccomment">/// Additionally, it can display a text on top of the progress bar.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`CellRendererExt`](trait@crate::CellRendererExt), [`trait@glib::object::ObjectExt`], [`OrientableExt`](trait@crate::OrientableExt), [`CellRendererExtManual`](trait@crate::CellRendererExtManual)</span>
+    <span class="doccomment">/// [`CellRendererExt`](trait@crate::prelude::CellRendererExt), [`trait@glib::object::ObjectExt`], [`OrientableExt`](trait@crate::prelude::OrientableExt), [`CellRendererExtManual`](trait@crate::prelude::CellRendererExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CellRendererProgress</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkCellRendererProgress</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">CellRenderer</span>, @<span class="ident">implements</span> <span class="ident">Orientable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -612,7 +612,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">CellRendererProgress</span> {
-    <span class="doccomment">/// Creates a new `CellRendererProgress`.</span>
+    <span class="doccomment">/// Creates a new [`CellRendererProgress`](crate::CellRendererProgress).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

@@ -574,10 +574,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The position of each overlay widget is determined by its</span>
     <span class="doccomment">/// [property`Gtk.Widget`:halign] and [property`Gtk.Widget`:valign]</span>
-    <span class="doccomment">/// properties. E.g. a widget with both alignments set to `Align::Start`</span>
+    <span class="doccomment">/// properties. E.g. a widget with both alignments set to [`Align::Start`]</span>
     <span class="doccomment">/// will be placed at the top left corner of the `GtkOverlay` container,</span>
-    <span class="doccomment">/// whereas an overlay with halign set to `Align::Center` and valign set</span>
-    <span class="doccomment">/// to `Align::End` will be placed a the bottom edge of the `GtkOverlay`,</span>
+    <span class="doccomment">/// whereas an overlay with halign set to [`Align::Center`] and valign set</span>
+    <span class="doccomment">/// to [`Align::End`] will be placed a the bottom edge of the `GtkOverlay`,</span>
     <span class="doccomment">/// horizontally centered. The position can be adjusted by setting the margin</span>
     <span class="doccomment">/// properties of the child to non-zero values.</span>
     <span class="doccomment">///</span>
@@ -602,7 +602,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`OverlayExtManual`](trait@crate::OverlayExtManual), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`OverlayExtManual`](trait@crate::prelude::OverlayExtManual), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Overlay</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkOverlay</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -684,7 +684,7 @@
         }
     }
 
-    <span class="doccomment">/// Removes an overlay that was added with `Overlay::add_overlay`.</span>
+    <span class="doccomment">/// Removes an overlay that was added with [`add_overlay()`](Self::add_overlay()).</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// a `GtkWidget` to be removed</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_overlay_remove_overlay&quot;</span>)]</span>
@@ -729,7 +729,7 @@
     <span class="doccomment">/// Sets whether `widget` is included in the measured size of `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The overlay will request the size of the largest child that has</span>
-    <span class="doccomment">/// this property set to `true`. Children who are not included may</span>
+    <span class="doccomment">/// this property set to [`true`]. Children who are not included may</span>
     <span class="doccomment">/// be drawn outside of `self`&#39;s allocation if they are too large.</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// an overlay child of `GtkOverlay`</span>

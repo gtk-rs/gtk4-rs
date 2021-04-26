@@ -4,7 +4,7 @@
                 <a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Struct <a href="index.html">gtk4</a>::<wbr><a class="struct" href="">Gesture</a><button id="copy-path" onclick="copy_path(this)">⎘</button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/gtk4/auto/gesture.rs.html#19-120" title="goto source code">[src]</a></span></h1><div class="docblock type-decl"><pre class="rust struct">pub struct Gesture(_);</pre></div><div class="docblock"><p><code>GtkGesture</code> is the base class for gesture recognition.</p>
 <p>Although <code>GtkGesture</code> is quite generalized to serve as a base for
 multi-touch gestures, it is suitable to implement single-touch and
-pointer-based gestures (using the special <code>None</code> <code>GdkEventSequence</code>
+pointer-based gestures (using the special <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> <code>GdkEventSequence</code>
 value for these).</p>
 <p>The number of touches that a <code>GtkGesture</code> need to be recognized is
 controlled by the [property<code>Gtk.Gesture</code>:n-points] property, if a
@@ -41,27 +41,27 @@ accordingly in order to enable cooperation of gestures around the
 Grouped gestures synchronize the state of sequences, so calling
 [method<code>Gtk.Gesture</code>.set_sequence_state] on one will effectively propagate
 the state throughout the group.</p>
-<p>By default, all sequences start out in the <code>EventSequenceState::None</code> state,
+<p>By default, all sequences start out in the <a href="enum.EventSequenceState.html#variant.None" title="EventSequenceState::None"><code>EventSequenceState::None</code></a> state,
 sequences in this state trigger the gesture event handler, but event
 propagation will continue unstopped by gestures.</p>
-<p>If a sequence enters into the <code>EventSequenceState::Denied</code> state, the gesture
+<p>If a sequence enters into the <a href="enum.EventSequenceState.html#variant.Denied" title="EventSequenceState::Denied"><code>EventSequenceState::Denied</code></a> state, the gesture
 group will effectively ignore the sequence, letting events go unstopped
 through the gesture, but the “slot” will still remain occupied while
 the touch is active.</p>
-<p>If a sequence enters in the <code>EventSequenceState::Claimed</code> state, the gesture
+<p>If a sequence enters in the <a href="enum.EventSequenceState.html#variant.Claimed" title="EventSequenceState::Claimed"><code>EventSequenceState::Claimed</code></a> state, the gesture
 group will grab all interaction on the sequence, by:</p>
 <ul>
-<li>Setting the same sequence to <code>EventSequenceState::Denied</code> on every other
+<li>Setting the same sequence to <a href="enum.EventSequenceState.html#variant.Denied" title="EventSequenceState::Denied"><code>EventSequenceState::Denied</code></a> on every other
 gesture group within the widget, and every gesture on parent widgets
 in the propagation chain.</li>
 <li>Emitting [signal<code>Gtk.Gesture</code>::cancel] on every gesture in widgets
 underneath in the propagation chain.</li>
 <li>Stopping event propagation after the gesture group handles the event.</li>
 </ul>
-<p>Note: if a sequence is set early to <code>EventSequenceState::Claimed</code> on
-<code>gdk::EventType::TouchBegin</code>/<code>gdk::EventType::ButtonPress</code> (so those events are captured before
-reaching the event widget, this implies <code>PropagationPhase::Capture</code>), one similar
-event will emulated if the sequence changes to <code>EventSequenceState::Denied</code>.
+<p>Note: if a sequence is set early to <a href="enum.EventSequenceState.html#variant.Claimed" title="EventSequenceState::Claimed"><code>EventSequenceState::Claimed</code></a> on
+<a href="../gdk4/auto/enums/enum.EventType.html#variant.TouchBegin" title="gdk::EventType::TouchBegin"><code>gdk::EventType::TouchBegin</code></a>/<a href="../gdk4/auto/enums/enum.EventType.html#variant.ButtonPress" title="gdk::EventType::ButtonPress"><code>gdk::EventType::ButtonPress</code></a> (so those events are captured before
+reaching the event widget, this implies [<code>PropagationPhase::Capture</code>]), one similar
+event will emulated if the sequence changes to <a href="enum.EventSequenceState.html#variant.Denied" title="EventSequenceState::Denied"><code>EventSequenceState::Denied</code></a>.
 This way event coherence is preserved before event propagation is unstopped
 again.</p>
 <p>Sequence states can’t be changed freely.
@@ -72,8 +72,8 @@ lifetimes of a <code>GdkEventSequence</code>.</p>
 touchpad gesture events. The only precautions users of <code>GtkGesture</code> should
 do to enable this support are:</p>
 <ul>
-<li>If the gesture has <code>PropagationPhase::None</code>, ensuring events of type
-<code>gdk::EventType::TouchpadSwipe</code> and <code>gdk::EventType::TouchpadPinch</code> are handled by the <code>GtkGesture</code></li>
+<li>If the gesture has [<code>PropagationPhase::None</code>], ensuring events of type
+<a href="../gdk4/auto/enums/enum.EventType.html#variant.TouchpadSwipe" title="gdk::EventType::TouchpadSwipe"><code>gdk::EventType::TouchpadSwipe</code></a> and <a href="../gdk4/auto/enums/enum.EventType.html#variant.TouchpadPinch" title="gdk::EventType::TouchpadPinch"><code>gdk::EventType::TouchpadPinch</code></a> are handled by the <code>GtkGesture</code></li>
 </ul>
 <p>This is an Abstract Base Class, you cannot instantiate it.</p>
 <h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>

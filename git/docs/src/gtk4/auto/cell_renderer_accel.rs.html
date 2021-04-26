@@ -963,13 +963,13 @@
 <span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// Renders a keyboard accelerator in a cell</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `CellRendererAccel` displays a keyboard accelerator (i.e. a key</span>
+    <span class="doccomment">/// [`CellRendererAccel`](crate::CellRendererAccel) displays a keyboard accelerator (i.e. a key</span>
     <span class="doccomment">/// combination like `Control + a`). If the cell renderer is editable,</span>
     <span class="doccomment">/// the accelerator can be changed by simply typing the new combination.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`CellRendererTextExt`](trait@crate::CellRendererTextExt), [`CellRendererExt`](trait@crate::CellRendererExt), [`trait@glib::object::ObjectExt`], [`CellRendererExtManual`](trait@crate::CellRendererExtManual)</span>
+    <span class="doccomment">/// [`CellRendererTextExt`](trait@crate::prelude::CellRendererTextExt), [`CellRendererExt`](trait@crate::prelude::CellRendererExt), [`trait@glib::object::ObjectExt`], [`CellRendererExtManual`](trait@crate::prelude::CellRendererExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CellRendererAccel</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkCellRendererAccel</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">CellRendererText</span>, <span class="ident">CellRenderer</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -978,7 +978,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">CellRendererAccel</span> {
-    <span class="doccomment">/// Creates a new `CellRendererAccel`.</span>
+    <span class="doccomment">/// Creates a new [`CellRendererAccel`](crate::CellRendererAccel).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

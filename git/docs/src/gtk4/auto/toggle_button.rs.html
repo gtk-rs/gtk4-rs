@@ -795,7 +795,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`ToggleButtonExt`](trait@crate::ToggleButtonExt), [`ButtonExt`](trait@crate::ButtonExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`ActionableExt`](trait@crate::ActionableExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual), [`ActionableExtManual`](trait@crate::ActionableExtManual)</span>
+    <span class="doccomment">/// [`ToggleButtonExt`](trait@crate::prelude::ToggleButtonExt), [`ButtonExt`](trait@crate::prelude::ButtonExt), [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`ActionableExt`](trait@crate::prelude::ActionableExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual), [`ActionableExtManual`](trait@crate::prelude::ActionableExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ToggleButton</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkToggleButton</span>, <span class="ident">ffi::GtkToggleButtonClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Button</span>, <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Actionable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1241,7 +1241,7 @@
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ToggleButtonExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Queries a `GtkToggleButton` and returns its current state.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns `true` if the toggle button is pressed in and `false`</span>
+    <span class="doccomment">/// Returns [`true`] if the toggle button is pressed in and [`false`]</span>
     <span class="doccomment">/// if it is raised.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -1252,13 +1252,13 @@
 
     <span class="doccomment">/// Sets the status of the toggle button.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Set to `true` if you want the `GtkToggleButton` to be “pressed in”,</span>
-    <span class="doccomment">/// and `false` to raise it.</span>
+    <span class="doccomment">/// Set to [`true`] if you want the `GtkToggleButton` to be “pressed in”,</span>
+    <span class="doccomment">/// and [`false`] to raise it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the status of the button changes, this action causes the</span>
     <span class="doccomment">/// [signal[`crate::ToggleButton::toggled`] (XXX: @-reference does not belong to ToggleButtonExt!)] signal to be emitted.</span>
     <span class="doccomment">/// ## `is_active`</span>
-    <span class="doccomment">/// `true` or `false`.</span>
+    <span class="doccomment">/// [`true`] or [`false`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_toggle_button_set_active&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_active</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">is_active</span>: <span class="ident">bool</span>);
 

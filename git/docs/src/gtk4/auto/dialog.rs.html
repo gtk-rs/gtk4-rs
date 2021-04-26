@@ -1012,7 +1012,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// `GtkDialogs` uses some heuristics to decide whether to add a close</span>
     <span class="doccomment">/// button to the window decorations. If any of the action buttons use</span>
-    <span class="doccomment">/// the response ID `ResponseType::Close` or `ResponseType::Cancel`, the</span>
+    <span class="doccomment">/// the response ID [`ResponseType::Close`] or [`ResponseType::Cancel`], the</span>
     <span class="doccomment">/// close button is omitted.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Clicking a button that was added as an action widget will emit the</span>
@@ -1022,7 +1022,7 @@
     <span class="doccomment">/// IDs in the [enum`Gtk.ResponseType`] enumeration (these all have values</span>
     <span class="doccomment">/// less than zero). If a dialog receives a delete event, the</span>
     <span class="doccomment">/// [signal`Gtk.Dialog`::response] signal will be emitted with the</span>
-    <span class="doccomment">/// `ResponseType::DeleteEvent` response ID.</span>
+    <span class="doccomment">/// [`ResponseType::DeleteEvent`] response ID.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Dialogs are created with a call to [ctor`Gtk.Dialog`.new] or</span>
     <span class="doccomment">/// [ctor`Gtk.Dialog`.new_with_buttons]. The latter is recommended; it allows</span>
@@ -1031,7 +1031,7 @@
     <span class="doccomment">/// A “modal” dialog (that is, one which freezes the rest of the application</span>
     <span class="doccomment">/// from user input), can be created by calling [method`Gtk.Window`.set_modal]</span>
     <span class="doccomment">/// on the dialog. When using [ctor`Gtk.Dialog`.new_with_buttons], you can also</span>
-    <span class="doccomment">/// pass the `DialogFlags::Modal` flag to make a dialog modal.</span>
+    <span class="doccomment">/// pass the [`DialogFlags::Modal`] flag to make a dialog modal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// For the simple dialog in the following example, a [class`Gtk.MessageDialog`]</span>
     <span class="doccomment">/// would save some effort. But you’d need to create the dialog contents manually</span>
@@ -1089,7 +1089,7 @@
     <span class="doccomment">/// on the “use-header-bar“ property. The response id has to be associated</span>
     <span class="doccomment">/// with the action widget using the `&lt;action-widgets&gt;` element.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// An example of a `Dialog` UI definition fragment:</span>
+    <span class="doccomment">/// An example of a [`Dialog`](crate::Dialog) UI definition fragment:</span>
     <span class="doccomment">/// ```xml</span>
     <span class="doccomment">/// &lt;object class=&quot;GtkDialog&quot; id=&quot;dialog1&quot;&gt;</span>
     <span class="doccomment">///   &lt;child type=&quot;action&quot;&gt;</span>
@@ -1108,11 +1108,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkDialog` uses the `AccessibleRole::Dialog` role.</span>
+    <span class="doccomment">/// `GtkDialog` uses the [`AccessibleRole::Dialog`] role.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`DialogExt`](trait@crate::DialogExt), [`GtkWindowExt`](trait@crate::GtkWindowExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`NativeExt`](trait@crate::NativeExt), [`RootExt`](trait@crate::RootExt), [`ShortcutManagerExt`](trait@crate::ShortcutManagerExt), [`DialogExtManual`](trait@crate::DialogExtManual), [`GtkWindowExtManual`](trait@crate::GtkWindowExtManual), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`DialogExt`](trait@crate::prelude::DialogExt), [`GtkWindowExt`](trait@crate::prelude::GtkWindowExt), [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`NativeExt`](trait@crate::prelude::NativeExt), [`RootExt`](trait@crate::prelude::RootExt), [`ShortcutManagerExt`](trait@crate::prelude::ShortcutManagerExt), [`DialogExtManual`](trait@crate::prelude::DialogExtManual), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Dialog</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkDialog</span>, <span class="ident">ffi::GtkDialogClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Window</span>, <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Native</span>, <span class="ident">Root</span>, <span class="ident">ShortcutManager</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1686,14 +1686,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the content area `Box`.</span>
+    <span class="doccomment">/// the content area [`Box`](crate::Box).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_dialog_get_content_area&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">content_area</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Box</span>;
 
     <span class="doccomment">/// Returns the header bar of `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the headerbar is only used by the dialog if the</span>
-    <span class="doccomment">/// [property`Gtk.Dialog`:use-header-bar] property is `true`.</span>
+    <span class="doccomment">/// [property`Gtk.Dialog`:use-header-bar] property is [`true`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1709,7 +1709,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the `widget` button that uses the given</span>
-    <span class="doccomment">///  `response_id`, or `None`.</span>
+    <span class="doccomment">///  `response_id`, or [`None`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_dialog_get_widget_for_response&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">widget_for_response</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">response_id</span>: <span class="ident">ResponseType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>;
 
@@ -1736,7 +1736,7 @@
     <span class="doccomment">/// ## `response_id`</span>
     <span class="doccomment">/// a response ID</span>
     <span class="doccomment">/// ## `setting`</span>
-    <span class="doccomment">/// `true` for sensitive</span>
+    <span class="doccomment">/// [`true`] for sensitive</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_dialog_set_response_sensitive&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_response_sensitive</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">response_id</span>: <span class="ident">ResponseType</span>, <span class="ident">setting</span>: <span class="ident">bool</span>);
 
@@ -1756,7 +1756,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The signal is also emitted when the dialog receives a</span>
     <span class="doccomment">/// delete event, and when [method`Gtk.Dialog`.response] is called.</span>
-    <span class="doccomment">/// On a delete event, the response ID is `ResponseType::DeleteEvent`.</span>
+    <span class="doccomment">/// On a delete event, the response ID is [`ResponseType::DeleteEvent`].</span>
     <span class="doccomment">/// Otherwise, it depends on which action widget was clicked.</span>
     <span class="doccomment">/// ## `response_id`</span>
     <span class="doccomment">/// the response ID</span>

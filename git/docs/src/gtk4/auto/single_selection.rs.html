@@ -399,7 +399,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`trait@gio::ListModelExt`], [`SelectionModelExt`](trait@crate::SelectionModelExt)</span>
+    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`trait@gio::ListModelExt`], [`SelectionModelExt`](trait@crate::prelude::SelectionModelExt)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SingleSelection</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkSingleSelection</span>, <span class="ident">ffi::GtkSingleSelectionClass</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">gio::ListModel</span>, <span class="ident">SelectionModel</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -410,7 +410,7 @@
 <span class="kw">impl</span> <span class="ident">SingleSelection</span> {
     <span class="doccomment">/// Creates a new selection to handle `model`.</span>
     <span class="doccomment">/// ## `model`</span>
-    <span class="doccomment">/// the `GListModel` to manage, or `None`</span>
+    <span class="doccomment">/// the `GListModel` to manage, or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -426,11 +426,11 @@
     }
 
     <span class="doccomment">/// Checks if autoselect has been enabled or disabled via</span>
-    <span class="doccomment">/// `SingleSelection::set_autoselect`.</span>
+    <span class="doccomment">/// [`set_autoselect()`](Self::set_autoselect()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if autoselect is enabled</span>
+    <span class="doccomment">/// [`true`] if autoselect is enabled</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_single_selection_get_autoselect&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_autoselect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -440,12 +440,12 @@
         }
     }
 
-    <span class="doccomment">/// If `true`, `SelectionModel::unselect_item` is supported and allows</span>
+    <span class="doccomment">/// If [`true`], [`SelectionModel::unselect_item()`](crate::SelectionModel::unselect_item()) is supported and allows</span>
     <span class="doccomment">/// unselecting the selected item.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` to support unselecting</span>
+    <span class="doccomment">/// [`true`] to support unselecting</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_single_selection_get_can_unselect&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">can_unselect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -479,7 +479,7 @@
 
     <span class="doccomment">/// Gets the selected item.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If no item is selected, `None` is returned.</span>
+    <span class="doccomment">/// If no item is selected, [`None`] is returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -495,11 +495,11 @@
 
     <span class="doccomment">/// Enables or disables autoselect.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `autoselect` is `true`, `self` will enforce that an item is always</span>
+    <span class="doccomment">/// If `autoselect` is [`true`], `self` will enforce that an item is always</span>
     <span class="doccomment">/// selected. It will select a new item when the currently selected</span>
     <span class="doccomment">/// item is deleted and it will disallow unselecting the current item.</span>
     <span class="doccomment">/// ## `autoselect`</span>
-    <span class="doccomment">/// `true` to always select an item</span>
+    <span class="doccomment">/// [`true`] to always select an item</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_single_selection_set_autoselect&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_autoselect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">autoselect</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -507,14 +507,14 @@
         }
     }
 
-    <span class="doccomment">/// If `true`, unselecting the current item via</span>
-    <span class="doccomment">/// `SelectionModel::unselect_item` is supported.</span>
+    <span class="doccomment">/// If [`true`], unselecting the current item via</span>
+    <span class="doccomment">/// [`SelectionModel::unselect_item()`](crate::SelectionModel::unselect_item()) is supported.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that setting [property`Gtk.SingleSelection`:autoselect] will</span>
     <span class="doccomment">/// cause unselecting to not work, so it practically makes no sense</span>
     <span class="doccomment">/// to set both at the same time the same time.</span>
     <span class="doccomment">/// ## `can_unselect`</span>
-    <span class="doccomment">/// `true` to allow unselecting</span>
+    <span class="doccomment">/// [`true`] to allow unselecting</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_single_selection_set_can_unselect&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_can_unselect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">can_unselect</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -527,7 +527,7 @@
 
     <span class="doccomment">/// Sets the model that `self` should wrap.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `model` is `None`, `self` will be empty.</span>
+    <span class="doccomment">/// If `model` is [`None`], `self` will be empty.</span>
     <span class="doccomment">/// ## `model`</span>
     <span class="doccomment">/// A `GListModel` to wrap</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_single_selection_set_model&quot;</span>)]</span>

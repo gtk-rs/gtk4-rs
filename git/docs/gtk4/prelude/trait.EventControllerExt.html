@@ -22,12 +22,12 @@
 <h1 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h1>
 <p><a href="../struct.DropControllerMotion.html"><code>DropControllerMotion</code></a>, <a href="../struct.DropTargetAsync.html"><code>DropTargetAsync</code></a>, <a href="../struct.DropTarget.html"><code>DropTarget</code></a>, <a href="../struct.EventControllerFocus.html"><code>EventControllerFocus</code></a>, <a href="../struct.EventControllerKey.html"><code>EventControllerKey</code></a>, <a href="../struct.EventControllerLegacy.html"><code>EventControllerLegacy</code></a>, <a href="../struct.EventControllerMotion.html"><code>EventControllerMotion</code></a>, <a href="../struct.EventControllerScroll.html"><code>EventControllerScroll</code></a>, <a href="../struct.EventController.html"><code>EventController</code></a>, <a href="../struct.Gesture.html"><code>Gesture</code></a>, <a href="../struct.PadController.html"><code>PadController</code></a>, <a href="../struct.ShortcutController.html"><code>ShortcutController</code></a></p>
 </div><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><h3 id="tymethod.current_event" class="method"><code>fn <a href="#tymethod.current_event" class="fnname">current_event</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../gdk4/event/struct.Event.html" title="struct gdk4::event::Event">Event</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/event_controller.rs.html#59" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns the event that is currently being handled by the
-controller, and <code>None</code> at other times.</p>
+controller, and <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> at other times.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
 <p>the event that is currently
 handled by <code>self</code></p>
 </div><h3 id="tymethod.current_event_device" class="method"><code>fn <a href="#tymethod.current_event_device" class="fnname">current_event_device</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../gdk4/auto/device/struct.Device.html" title="struct gdk4::auto::device::Device">Device</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/event_controller.rs.html#69" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns the device of the event that is currently being
-handled by the controller, and <code>None</code> otherwise.</p>
+handled by the controller, and <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> otherwise.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
 <p>device of the event is
 currently handled by <code>self</code></p>
@@ -46,7 +46,7 @@ handled by the controller, and 0 otherwise.</p>
 </div><h3 id="tymethod.propagation_phase" class="method"><code>fn <a href="#tymethod.propagation_phase" class="fnname">propagation_phase</a>(&amp;self) -&gt; <a class="enum" href="../enum.PropagationPhase.html" title="enum gtk4::PropagationPhase">PropagationPhase</a></code><a class="srclink" href="../../src/gtk4/auto/event_controller.rs.html#107" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets the propagation phase at which <code>self</code> handles events.</p>
 <h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>
 <p>the propagation phase</p>
-</div><h3 id="tymethod.widget" class="method"><code>fn <a href="#tymethod.widget" class="fnname">widget</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/event_controller.rs.html#115" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns the <code>Widget</code> this controller relates to.</p>
+</div><h3 id="tymethod.widget" class="method"><code>fn <a href="#tymethod.widget" class="fnname">widget</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/event_controller.rs.html#115" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns the <a href="../struct.Widget.html"><code>Widget</code></a> this controller relates to.</p>
 <h1 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h1>
 <p>a <code>GtkWidget</code></p>
 </div><h3 id="tymethod.reset" class="method"><code>fn <a href="#tymethod.reset" class="fnname">reset</a>(&amp;self)</code><a class="srclink" href="../../src/gtk4/auto/event_controller.rs.html#119" title="goto source code">[src]</a></h3><div class="docblock"><p>Resets the <code>self</code> to a clean state.</p>
@@ -54,13 +54,13 @@ handled by the controller, and 0 otherwise.</p>
 <h2 id="name" class="section-header"><a href="#name"><code>name</code></a></h2>
 <p>a name for <code>self</code></p>
 </div><h3 id="tymethod.set_propagation_limit" class="method"><code>fn <a href="#tymethod.set_propagation_limit" class="fnname">set_propagation_limit</a>(&amp;self, limit: <a class="enum" href="../enum.PropagationLimit.html" title="enum gtk4::PropagationLimit">PropagationLimit</a>)</code><a class="srclink" href="../../src/gtk4/auto/event_controller.rs.html#135" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets the event propagation limit on the event controller.</p>
-<p>If the limit is set to <code>PropagationLimit::SameNative</code>, the controller
+<p>If the limit is set to <a href="../enum.PropagationLimit.html#variant.SameNative" title="PropagationLimit::SameNative"><code>PropagationLimit::SameNative</code></a>, the controller
 won’t handle events that are targeted at widgets on a different
 surface, such as popovers.</p>
 <h2 id="limit" class="section-header"><a href="#limit"><code>limit</code></a></h2>
 <p>the propagation limit</p>
 </div><h3 id="tymethod.set_propagation_phase" class="method"><code>fn <a href="#tymethod.set_propagation_phase" class="fnname">set_propagation_phase</a>(&amp;self, phase: <a class="enum" href="../enum.PropagationPhase.html" title="enum gtk4::PropagationPhase">PropagationPhase</a>)</code><a class="srclink" href="../../src/gtk4/auto/event_controller.rs.html#144" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets the propagation phase at which a controller handles events.</p>
-<p>If <code>phase</code> is <code>PropagationPhase::None</code>, no automatic event handling will be
+<p>If <code>phase</code> is <a href="../enum.PropagationPhase.html#variant.None" title="PropagationPhase::None"><code>PropagationPhase::None</code></a>, no automatic event handling will be
 performed, but other additional gesture maintenance will.</p>
 <h2 id="phase" class="section-header"><a href="#phase"><code>phase</code></a></h2>
 <p>a propagation phase</p>

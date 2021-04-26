@@ -652,22 +652,22 @@
 <span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// Renders a pixbuf in a cell</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `CellRendererPixbuf` can be used to render an image in a cell. It allows</span>
-    <span class="doccomment">/// to render either a given `gdk_pixbuf::Pixbuf` (set via the</span>
-    <span class="doccomment">/// `CellRendererPixbuf:pixbuf` property) or a named icon (set via the</span>
-    <span class="doccomment">/// `CellRendererPixbuf:icon-name` property).</span>
+    <span class="doccomment">/// A [`CellRendererPixbuf`](crate::CellRendererPixbuf) can be used to render an image in a cell. It allows</span>
+    <span class="doccomment">/// to render either a given [`gdk_pixbuf::Pixbuf`](crate::gdk_pixbuf::Pixbuf) (set via the</span>
+    <span class="doccomment">/// [`CellRendererPixbuf:pixbuf`](crate::CellRendererPixbuf:pixbuf) property) or a named icon (set via the</span>
+    <span class="doccomment">/// [`CellRendererPixbuf:icon-name`](crate::CellRendererPixbuf:icon-name) property).</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To support the tree view, `CellRendererPixbuf` also supports rendering two</span>
-    <span class="doccomment">/// alternative pixbufs, when the `CellRenderer:is-expander` property is `true`.</span>
-    <span class="doccomment">/// If the `CellRenderer:is-expanded` property is `true` and the</span>
-    <span class="doccomment">/// `CellRendererPixbuf:pixbuf-expander-open` property is set to a pixbuf, it</span>
-    <span class="doccomment">/// renders that pixbuf, if the `CellRenderer:is-expanded` property is `false`</span>
-    <span class="doccomment">/// and the `CellRendererPixbuf:pixbuf-expander-closed` property is set to a</span>
+    <span class="doccomment">/// To support the tree view, [`CellRendererPixbuf`](crate::CellRendererPixbuf) also supports rendering two</span>
+    <span class="doccomment">/// alternative pixbufs, when the [`CellRenderer:is-expander`](crate::CellRenderer:is-expander) property is [`true`].</span>
+    <span class="doccomment">/// If the [`CellRenderer:is-expanded`](crate::CellRenderer:is-expanded) property is [`true`] and the</span>
+    <span class="doccomment">/// [`CellRendererPixbuf:pixbuf-expander-open`](crate::CellRendererPixbuf:pixbuf-expander-open) property is set to a pixbuf, it</span>
+    <span class="doccomment">/// renders that pixbuf, if the [`CellRenderer:is-expanded`](crate::CellRenderer:is-expanded) property is [`false`]</span>
+    <span class="doccomment">/// and the [`CellRendererPixbuf:pixbuf-expander-closed`](crate::CellRendererPixbuf:pixbuf-expander-closed) property is set to a</span>
     <span class="doccomment">/// pixbuf, it renders that one.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`CellRendererExt`](trait@crate::CellRendererExt), [`trait@glib::object::ObjectExt`], [`CellRendererExtManual`](trait@crate::CellRendererExtManual)</span>
+    <span class="doccomment">/// [`CellRendererExt`](trait@crate::prelude::CellRendererExt), [`trait@glib::object::ObjectExt`], [`CellRendererExtManual`](trait@crate::prelude::CellRendererExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CellRendererPixbuf</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkCellRendererPixbuf</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">CellRenderer</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -676,13 +676,13 @@
 }
 
 <span class="kw">impl</span> <span class="ident">CellRendererPixbuf</span> {
-    <span class="doccomment">/// Creates a new `CellRendererPixbuf`. Adjust rendering</span>
+    <span class="doccomment">/// Creates a new [`CellRendererPixbuf`](crate::CellRendererPixbuf). Adjust rendering</span>
     <span class="doccomment">/// parameters using object properties. Object properties can be set</span>
-    <span class="doccomment">/// globally (with `glib::object::ObjectExt::set`). Also, with `TreeViewColumn`, you</span>
-    <span class="doccomment">/// can bind a property to a value in a `TreeModel`. For example, you</span>
+    <span class="doccomment">/// globally (with [`glib::object::ObjectExt::set()`](crate::glib::object::ObjectExt::set())). Also, with [`TreeViewColumn`](crate::TreeViewColumn), you</span>
+    <span class="doccomment">/// can bind a property to a value in a [`TreeModel`](crate::TreeModel). For example, you</span>
     <span class="doccomment">/// can bind the “pixbuf” property on the cell renderer to a pixbuf value</span>
     <span class="doccomment">/// in the model, thus rendering a different image in each row of the</span>
-    <span class="doccomment">/// `TreeView`.</span>
+    <span class="doccomment">/// [`TreeView`](crate::TreeView).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

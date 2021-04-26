@@ -435,20 +435,16 @@
 <span id="432">432</span>
 <span id="433">433</span>
 <span id="434">434</span>
-<span id="435">435</span>
-<span id="436">436</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="ident">glib::subclass::prelude</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">glib::Cast</span>;
-
-<span class="kw">use</span> <span class="kw">super</span><span class="ident">::widget::WidgetImpl</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::subclass::prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">DeleteType</span>, <span class="ident">MovementStep</span>, <span class="ident">Snapshot</span>, <span class="ident">TextExtendSelection</span>, <span class="ident">TextIter</span>, <span class="ident">TextView</span>, <span class="ident">TextViewLayer</span>,
     <span class="ident">Widget</span>,
 };
+<span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">glib::Cast</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TextViewImpl</span>: <span class="ident">TextViewImplExt</span> <span class="op">+</span> <span class="ident">WidgetImpl</span> {
     <span class="kw">fn</span> <span class="ident">backspace</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text_view</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {

@@ -164,17 +164,13 @@
 <span id="161">161</span>
 <span id="162">162</span>
 <span id="163">163</span>
-<span id="164">164</span>
-<span id="165">165</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="ident">glib::subclass::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::subclass::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Widget</span>, <span class="ident">Window</span>};
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib::Cast</span>;
-
-<span class="kw">use</span> <span class="kw">super</span><span class="ident">::widget::WidgetImpl</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Widget</span>, <span class="ident">Window</span>};
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">WindowImpl</span>: <span class="ident">WindowImplExt</span> <span class="op">+</span> <span class="ident">WidgetImpl</span> {
     <span class="kw">fn</span> <span class="ident">activate_focus</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">window</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {

@@ -3926,7 +3926,7 @@
     <span class="doccomment">/// The `GtkEntry` implementation of the `GtkBuildable` interface supports a</span>
     <span class="doccomment">/// custom `&lt;attributes&gt;` element, which supports any number of `&lt;attribute&gt;`</span>
     <span class="doccomment">/// elements. The `&lt;attribute&gt;` element has attributes named “name“, “value“,</span>
-    <span class="doccomment">/// “start“ and “end“ and allows you to specify `pango::Attribute` values for</span>
+    <span class="doccomment">/// “start“ and “end“ and allows you to specify [`pango::Attribute`](crate::pango::Attribute) values for</span>
     <span class="doccomment">/// this label.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// An example of a UI definition fragment specifying Pango attributes:</span>
@@ -3947,11 +3947,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkEntry` uses the `AccessibleRole::TextBox` role.</span>
+    <span class="doccomment">/// `GtkEntry` uses the [`AccessibleRole::TextBox`] role.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`EntryExt`](trait@crate::EntryExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`CellEditableExt`](trait@crate::CellEditableExt), [`EditableExt`](trait@crate::EditableExt), [`EntryExtManual`](trait@crate::EntryExtManual), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual), [`CellEditableExtManual`](trait@crate::CellEditableExtManual), [`EditableExtManual`](trait@crate::EditableExtManual)</span>
+    <span class="doccomment">/// [`EntryExt`](trait@crate::prelude::EntryExt), [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`CellEditableExt`](trait@crate::prelude::CellEditableExt), [`EditableExt`](trait@crate::prelude::EditableExt), [`EntryExtManual`](trait@crate::prelude::EntryExtManual), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual), [`CellEditableExtManual`](trait@crate::prelude::CellEditableExtManual), [`EditableExtManual`](trait@crate::prelude::EditableExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Entry</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkEntry</span>, <span class="ident">ffi::GtkEntryClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">CellEditable</span>, <span class="ident">Editable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -4677,11 +4677,11 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`Entry`](struct@crate::Entry)</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">EntryExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Retrieves the value set by `EntryExt::set_activates_default`.</span>
+    <span class="doccomment">/// Retrieves the value set by [`set_activates_default()`](Self::set_activates_default()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the entry will activate the default widget</span>
+    <span class="doccomment">/// [`true`] if the entry will activate the default widget</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_get_activates_default&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">activates_default</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -4692,7 +4692,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the attribute list,</span>
-    <span class="doccomment">///  or `None` if none was set.</span>
+    <span class="doccomment">///  or [`None`] if none was set.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_get_attributes&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">attributes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango::AttrList</span><span class="op">&gt;</span>;
 
@@ -4725,7 +4725,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_get_current_icon_drag_source&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">current_icon_drag_source</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
 
-    <span class="doccomment">/// Gets the menu model set with `EntryExt::set_extra_menu`.</span>
+    <span class="doccomment">/// Gets the menu model set with [`set_extra_menu()`](Self::set_extra_menu()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -4733,7 +4733,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_get_extra_menu&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">extra_menu</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::MenuModel</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Gets the value set by `EntryExt::set_has_frame`.</span>
+    <span class="doccomment">/// Gets the value set by [`set_has_frame()`](Self::set_has_frame()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -4747,7 +4747,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the icon is activatable.</span>
+    <span class="doccomment">/// [`true`] if the icon is activatable.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_get_icon_activatable&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">icon_is_activatable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">icon_pos</span>: <span class="ident">EntryIconPosition</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -4786,41 +4786,41 @@
 
     <span class="doccomment">/// Retrieves the `GIcon` used for the icon.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `None` will be returned if there is no icon or if the icon was</span>
+    <span class="doccomment">/// [`None`] will be returned if there is no icon or if the icon was</span>
     <span class="doccomment">/// set by some other method (e.g., by `GdkPaintable` or icon name).</span>
     <span class="doccomment">/// ## `icon_pos`</span>
     <span class="doccomment">/// Icon position</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GIcon`, or `None` if no</span>
+    <span class="doccomment">/// A `GIcon`, or [`None`] if no</span>
     <span class="doccomment">///  icon is set or if the icon is not a `GIcon`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_get_icon_gicon&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">icon_gicon</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">icon_pos</span>: <span class="ident">EntryIconPosition</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::Icon</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Retrieves the icon name used for the icon.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `None` is returned if there is no icon or if the icon was set</span>
+    <span class="doccomment">/// [`None`] is returned if there is no icon or if the icon was set</span>
     <span class="doccomment">/// by some other method (e.g., by `GdkPaintable` or gicon).</span>
     <span class="doccomment">/// ## `icon_pos`</span>
     <span class="doccomment">/// Icon position</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// An icon name, or `None` if no icon is set</span>
+    <span class="doccomment">/// An icon name, or [`None`] if no icon is set</span>
     <span class="doccomment">///  or if the icon wasn’t set from an icon name</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_get_icon_name&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">icon_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">icon_pos</span>: <span class="ident">EntryIconPosition</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Retrieves the `GdkPaintable` used for the icon.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If no `GdkPaintable` was used for the icon, `None` is returned.</span>
+    <span class="doccomment">/// If no `GdkPaintable` was used for the icon, [`None`] is returned.</span>
     <span class="doccomment">/// ## `icon_pos`</span>
     <span class="doccomment">/// Icon position</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GdkPaintable`, or `None`</span>
+    <span class="doccomment">/// A `GdkPaintable`, or [`None`]</span>
     <span class="doccomment">///  if no icon is set for this position or the icon set is not</span>
     <span class="doccomment">///  a `GdkPaintable`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_get_icon_paintable&quot;</span>)]</span>
@@ -4832,7 +4832,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the icon is sensitive.</span>
+    <span class="doccomment">/// [`true`] if the icon is sensitive.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_get_icon_sensitive&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">icon_is_sensitive</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">icon_pos</span>: <span class="ident">EntryIconPosition</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -4840,7 +4840,7 @@
     <span class="doccomment">/// to store image data.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the icon has no image data, the return value will</span>
-    <span class="doccomment">/// be `ImageType::Empty`.</span>
+    <span class="doccomment">/// be [`ImageType::Empty`].</span>
     <span class="doccomment">/// ## `icon_pos`</span>
     <span class="doccomment">/// Icon position</span>
     <span class="doccomment">///</span>
@@ -4857,8 +4857,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the tooltip text, or `None`. Free the</span>
-    <span class="doccomment">///  returned string with `g_free` when done.</span>
+    <span class="doccomment">/// the tooltip text, or [`None`]. Free the</span>
+    <span class="doccomment">///  returned string with `g_free()` when done.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_get_icon_tooltip_markup&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">icon_tooltip_markup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">icon_pos</span>: <span class="ident">EntryIconPosition</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
 
@@ -4869,8 +4869,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the tooltip text, or `None`. Free the returned</span>
-    <span class="doccomment">///  string with `g_free` when done.</span>
+    <span class="doccomment">/// the tooltip text, or [`None`]. Free the returned</span>
+    <span class="doccomment">///  string with `g_free()` when done.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_get_icon_tooltip_text&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">icon_tooltip_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">icon_pos</span>: <span class="ident">EntryIconPosition</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
 
@@ -4918,7 +4918,7 @@
     <span class="doccomment">///  placeholder text as a string. This string points to</span>
     <span class="doccomment">///  internally allocated storage in the widget and must</span>
     <span class="doccomment">///  not be freed, modified or stored. If no placeholder</span>
-    <span class="doccomment">///  text has been set, `None` will be returned.</span>
+    <span class="doccomment">///  text has been set, [`None`] will be returned.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_get_placeholder_text&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">placeholder_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
 
@@ -4933,7 +4933,7 @@
     <span class="kw">fn</span> <span class="ident">progress_fraction</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span>;
 
     <span class="doccomment">/// Retrieves the pulse step set with</span>
-    <span class="doccomment">/// `EntryExt::set_progress_pulse_step`.</span>
+    <span class="doccomment">/// [`set_progress_pulse_step()`](Self::set_progress_pulse_step()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -4948,7 +4948,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the tabstops,</span>
-    <span class="doccomment">///  or `None` if none was set.</span>
+    <span class="doccomment">///  or [`None`] if none was set.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_get_tabs&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">tabs</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango::TabArray</span><span class="op">&gt;</span>;
 
@@ -4970,7 +4970,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the text is currently visible</span>
+    <span class="doccomment">/// [`true`] if the text is currently visible</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_get_visibility&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_visible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -4983,7 +4983,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if focus is now inside `self_`</span>
+    <span class="doccomment">/// [`true`] if focus is now inside `self_`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_grab_focus_without_selecting&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">grab_focus_without_selecting</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -4992,7 +4992,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Causes the entry’s progress indicator to enter “activity</span>
     <span class="doccomment">/// mode”, where a block bounces back and forth. Each call to</span>
-    <span class="doccomment">/// `EntryExt::progress_pulse` causes the block to move by a</span>
+    <span class="doccomment">/// [`progress_pulse()`](Self::progress_pulse()) causes the block to move by a</span>
     <span class="doccomment">/// little bit (the amount of movement per pulse is determined</span>
     <span class="doccomment">/// by [method`Gtk.Entry`.set_progress_pulse_step]).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_progress_pulse&quot;</span>)]</span>
@@ -5011,7 +5011,7 @@
     <span class="doccomment">/// This usually means that the dialog containing the entry will be closed,</span>
     <span class="doccomment">/// since the default widget is usually one of the dialog buttons.</span>
     <span class="doccomment">/// ## `setting`</span>
-    <span class="doccomment">/// `true` to activate window’s default widget on Enter keypress</span>
+    <span class="doccomment">/// [`true`] to activate window’s default widget on Enter keypress</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_set_activates_default&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_activates_default</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">setting</span>: <span class="ident">bool</span>);
 
@@ -5039,9 +5039,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// All further configuration of the completion mechanism is</span>
     <span class="doccomment">/// done on `completion` using the `GtkEntryCompletion` API.</span>
-    <span class="doccomment">/// Completion is disabled if `completion` is set to `None`.</span>
+    <span class="doccomment">/// Completion is disabled if `completion` is set to [`None`].</span>
     <span class="doccomment">/// ## `completion`</span>
-    <span class="doccomment">/// The `GtkEntryCompletion` or `None`</span>
+    <span class="doccomment">/// The `GtkEntryCompletion` or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_set_completion&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_completion</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">completion</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">EntryCompletion</span><span class="op">&gt;</span>);
 
@@ -5062,7 +5062,7 @@
     <span class="doccomment">/// ## `icon_pos`</span>
     <span class="doccomment">/// Icon position</span>
     <span class="doccomment">/// ## `activatable`</span>
-    <span class="doccomment">/// `true` if the icon should be activatable</span>
+    <span class="doccomment">/// [`true`] if the icon should be activatable</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_set_icon_activatable&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_icon_activatable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">icon_pos</span>: <span class="ident">EntryIconPosition</span>, <span class="ident">activatable</span>: <span class="ident">bool</span>);
 
@@ -5073,7 +5073,7 @@
     <span class="doccomment">/// ## `icon_pos`</span>
     <span class="doccomment">/// icon position</span>
     <span class="doccomment">/// ## `provider`</span>
-    <span class="doccomment">/// a `gdk::ContentProvider`</span>
+    <span class="doccomment">/// a [`gdk::ContentProvider`](crate::gdk::ContentProvider)</span>
     <span class="doccomment">/// ## `actions`</span>
     <span class="doccomment">/// a bitmask of the allowed drag actions</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_set_icon_drag_source&quot;</span>)]</span>
@@ -5090,12 +5090,12 @@
     <span class="doccomment">/// If the icon isn’t known, a “broken image” icon will be</span>
     <span class="doccomment">/// displayed instead.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `icon` is `None`, no icon will be shown in the</span>
+    <span class="doccomment">/// If `icon` is [`None`], no icon will be shown in the</span>
     <span class="doccomment">/// specified position.</span>
     <span class="doccomment">/// ## `icon_pos`</span>
     <span class="doccomment">/// The position at which to set the icon</span>
     <span class="doccomment">/// ## `icon`</span>
-    <span class="doccomment">/// The icon to set, or `None`</span>
+    <span class="doccomment">/// The icon to set, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_set_icon_from_gicon&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_icon_from_gicon</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::Icon</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">icon_pos</span>: <span class="ident">EntryIconPosition</span>, <span class="ident">icon</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>);
 
@@ -5105,22 +5105,22 @@
     <span class="doccomment">/// If the icon name isn’t known, a “broken image” icon will be</span>
     <span class="doccomment">/// displayed instead.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `icon_name` is `None`, no icon will be shown in the</span>
+    <span class="doccomment">/// If `icon_name` is [`None`], no icon will be shown in the</span>
     <span class="doccomment">/// specified position.</span>
     <span class="doccomment">/// ## `icon_pos`</span>
     <span class="doccomment">/// The position at which to set the icon</span>
     <span class="doccomment">/// ## `icon_name`</span>
-    <span class="doccomment">/// An icon name, or `None`</span>
+    <span class="doccomment">/// An icon name, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_set_icon_from_icon_name&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_icon_from_icon_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">icon_pos</span>: <span class="ident">EntryIconPosition</span>, <span class="ident">icon_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>);
 
     <span class="doccomment">/// Sets the icon shown in the specified position using a `GdkPaintable`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `paintable` is `None`, no icon will be shown in the specified position.</span>
+    <span class="doccomment">/// If `paintable` is [`None`], no icon will be shown in the specified position.</span>
     <span class="doccomment">/// ## `icon_pos`</span>
     <span class="doccomment">/// Icon position</span>
     <span class="doccomment">/// ## `paintable`</span>
-    <span class="doccomment">/// A `GdkPaintable`, or `None`</span>
+    <span class="doccomment">/// A `GdkPaintable`, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_set_icon_from_paintable&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_icon_from_paintable</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Paintable</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -5142,7 +5142,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// `tooltip` is assumed to be marked up with Pango Markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use `None` for `tooltip` to remove an existing tooltip.</span>
+    <span class="doccomment">/// Use [`None`] for `tooltip` to remove an existing tooltip.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// See also [method`Gtk.Widget`.set_tooltip_markup] and</span>
     <span class="doccomment">/// [method`Gtk.Entry`.set_icon_tooltip_text].</span>
@@ -5150,14 +5150,14 @@
     <span class="doccomment">/// the icon position</span>
     <span class="doccomment">/// ## `tooltip`</span>
     <span class="doccomment">/// the contents of the tooltip for the</span>
-    <span class="doccomment">///  icon, or `None`</span>
+    <span class="doccomment">///  icon, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_set_icon_tooltip_markup&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_icon_tooltip_markup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">icon_pos</span>: <span class="ident">EntryIconPosition</span>, <span class="ident">tooltip</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>);
 
     <span class="doccomment">/// Sets `tooltip` as the contents of the tooltip for the icon</span>
     <span class="doccomment">/// at the specified position.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use `None` for `tooltip` to remove an existing tooltip.</span>
+    <span class="doccomment">/// Use [`None`] for `tooltip` to remove an existing tooltip.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// See also [method`Gtk.Widget`.set_tooltip_text] and</span>
     <span class="doccomment">/// [method`Gtk.Entry`.set_icon_tooltip_markup].</span>
@@ -5165,17 +5165,17 @@
     <span class="doccomment">/// If you unset the widget tooltip via</span>
     <span class="doccomment">/// [method`Gtk.Widget`.set_tooltip_text] or</span>
     <span class="doccomment">/// [method`Gtk.Widget`.set_tooltip_markup], this sets</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] to `false`, which suppresses</span>
+    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] to [`false`], which suppresses</span>
     <span class="doccomment">/// icon tooltips too. You can resolve this by then calling</span>
     <span class="doccomment">/// [method`Gtk.Widget`.set_has_tooltip] to set</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] back to `true`, or</span>
+    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] back to [`true`], or</span>
     <span class="doccomment">/// setting at least one non-empty tooltip on any icon</span>
     <span class="doccomment">/// achieves the same result.</span>
     <span class="doccomment">/// ## `icon_pos`</span>
     <span class="doccomment">/// the icon position</span>
     <span class="doccomment">/// ## `tooltip`</span>
     <span class="doccomment">/// the contents of the tooltip for the</span>
-    <span class="doccomment">///  icon, or `None`</span>
+    <span class="doccomment">///  icon, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_set_icon_tooltip_text&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_icon_tooltip_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">icon_pos</span>: <span class="ident">EntryIconPosition</span>, <span class="ident">tooltip</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>);
 
@@ -5234,7 +5234,7 @@
     <span class="doccomment">/// contents of the `GtkEntry`.</span>
     <span class="doccomment">/// ## `text`</span>
     <span class="doccomment">/// a string to be displayed when `self` is</span>
-    <span class="doccomment">///  empty and unfocused, or `None`</span>
+    <span class="doccomment">///  empty and unfocused, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_set_placeholder_text&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_placeholder_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>);
 
@@ -5267,7 +5267,7 @@
 
     <span class="doccomment">/// Sets whether the contents of the entry are visible or not.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// When visibility is set to `false`, characters are displayed</span>
+    <span class="doccomment">/// When visibility is set to [`false`], characters are displayed</span>
     <span class="doccomment">/// as the invisible char, and will also appear that way when</span>
     <span class="doccomment">/// the text in the entry widget is copied elsewhere.</span>
     <span class="doccomment">///</span>
@@ -5276,11 +5276,11 @@
     <span class="doccomment">/// [method`Gtk.Entry`.set_invisible_char].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that you probably want to set [property`Gtk.Entry`:input-purpose]</span>
-    <span class="doccomment">/// to `InputPurpose::Password` or `InputPurpose::Pin` to</span>
+    <span class="doccomment">/// to [`InputPurpose::Password`] or [`InputPurpose::Pin`] to</span>
     <span class="doccomment">/// inform input methods about the purpose of this entry,</span>
-    <span class="doccomment">/// in addition to setting visibility to `false`.</span>
+    <span class="doccomment">/// in addition to setting visibility to [`false`].</span>
     <span class="doccomment">/// ## `visible`</span>
-    <span class="doccomment">/// `true` if the contents of the entry are displayed</span>
+    <span class="doccomment">/// [`true`] if the contents of the entry are displayed</span>
     <span class="doccomment">///  as plaintext</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_set_visibility&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_visibility</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">visible</span>: <span class="ident">bool</span>);

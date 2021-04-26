@@ -694,7 +694,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`FontChooserExt`](trait@crate::FontChooserExt), [`FontChooserExtManual`](trait@crate::FontChooserExtManual)</span>
+    <span class="doccomment">/// [`FontChooserExt`](trait@crate::prelude::FontChooserExt), [`FontChooserExtManual`](trait@crate::prelude::FontChooserExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FontChooser</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GtkFontChooser</span>, <span class="ident">ffi::GtkFontChooserIface</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -724,8 +724,8 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A string with the name</span>
-    <span class="doccomment">///  of the current font, or `None` if no font is selected. You must</span>
-    <span class="doccomment">///  free this string with `g_free`.</span>
+    <span class="doccomment">///  of the current font, or [`None`] if no font is selected. You must</span>
+    <span class="doccomment">///  free this string with `g_free()`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_font_chooser_get_font&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">font</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
 
@@ -743,19 +743,19 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A `PangoFontDescription` for the</span>
-    <span class="doccomment">///  current font, or `None` if no font is selected.</span>
+    <span class="doccomment">///  current font, or [`None`] if no font is selected.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_font_chooser_get_font_desc&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">font_desc</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango::FontDescription</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Gets the `PangoFontFace` representing the selected font group</span>
     <span class="doccomment">/// details (i.e. family, slant, weight, width, etc).</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the selected font is not installed, returns `None`.</span>
+    <span class="doccomment">/// If the selected font is not installed, returns [`None`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A `PangoFontFace` representing the</span>
-    <span class="doccomment">///  selected font group details, or `None`. The returned object is owned by</span>
+    <span class="doccomment">///  selected font group details, or [`None`]. The returned object is owned by</span>
     <span class="doccomment">///  `self` and must not be modified or freed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_font_chooser_get_font_face&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">font_face</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango::FontFace</span><span class="op">&gt;</span>;
@@ -764,12 +764,12 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Font families are a collection of font faces.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the selected font is not installed, returns `None`.</span>
+    <span class="doccomment">/// If the selected font is not installed, returns [`None`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A `PangoFontFamily` representing the</span>
-    <span class="doccomment">///  selected font family, or `None`. The returned object is owned by `self`</span>
+    <span class="doccomment">///  selected font family, or [`None`]. The returned object is owned by `self`</span>
     <span class="doccomment">///  and must not be modified or freed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_font_chooser_get_font_family&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">font_family</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango::FontFamily</span><span class="op">&gt;</span>;
@@ -783,11 +783,11 @@
     <span class="kw">fn</span> <span class="ident">font_features</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Gets the custom font map of this font chooser widget,</span>
-    <span class="doccomment">/// or `None` if it does not have one.</span>
+    <span class="doccomment">/// or [`None`] if it does not have one.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `PangoFontMap`, or `None`</span>
+    <span class="doccomment">/// a `PangoFontMap`, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_font_chooser_get_font_map&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">font_map</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango::FontMap</span><span class="op">&gt;</span>;
 
@@ -828,14 +828,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the preview entry is shown or `false` if it is hidden.</span>
+    <span class="doccomment">/// [`true`] if the preview entry is shown or [`false`] if it is hidden.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_font_chooser_get_show_preview_entry&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">shows_preview_entry</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="doccomment">/// Adds a filter function that decides which fonts to display</span>
     <span class="doccomment">/// in the font chooser.</span>
     <span class="doccomment">/// ## `filter`</span>
-    <span class="doccomment">/// a `GtkFontFilterFunc`, or `None`</span>
+    <span class="doccomment">/// a `GtkFontFilterFunc`, or [`None`]</span>
     <span class="doccomment">/// ## `user_data`</span>
     <span class="doccomment">/// data to pass to `filter`</span>
     <span class="doccomment">/// ## `destroy`</span>

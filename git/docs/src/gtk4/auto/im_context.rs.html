@@ -888,7 +888,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`IMContextExt`](trait@crate::IMContextExt), [`trait@glib::object::ObjectExt`], [`IMContextExtManual`](trait@crate::IMContextExtManual)</span>
+    <span class="doccomment">/// [`IMContextExt`](trait@crate::prelude::IMContextExt), [`trait@glib::object::ObjectExt`], [`IMContextExtManual`](trait@crate::prelude::IMContextExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">IMContext</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkIMContext</span>, <span class="ident">ffi::GtkIMContextClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -909,10 +909,10 @@
     <span class="doccomment">/// `IMContext`::delete_surrounding signal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that `offset` and `n_chars` are in characters not in bytes</span>
-    <span class="doccomment">/// which differs from the usage other places in `IMContext`.</span>
+    <span class="doccomment">/// which differs from the usage other places in [`IMContext`](crate::IMContext).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In order to use this function, you should first call</span>
-    <span class="doccomment">/// `IMContextExt::get_surrounding` to get the current context, and</span>
+    <span class="doccomment">/// [`get_surrounding()`](Self::get_surrounding()) to get the current context, and</span>
     <span class="doccomment">/// call this function immediately afterwards to make sure that you</span>
     <span class="doccomment">/// know what you are deleting. You should also account for the fact</span>
     <span class="doccomment">/// that even if the signal was handled, the input context might not</span>
@@ -929,7 +929,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the signal was handled.</span>
+    <span class="doccomment">/// [`true`] if the signal was handled.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_im_context_delete_surrounding&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">delete_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">offset</span>: <span class="ident">i32</span>, <span class="ident">n_chars</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -953,7 +953,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the input method handled the key event.</span>
+    <span class="doccomment">/// [`true`] if the input method handled the key event.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_im_context_filter_key&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">filter_key</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -988,11 +988,11 @@
     <span class="doccomment">/// This string should be displayed inserted at the insertion point.</span>
     <span class="doccomment">/// ## `str`</span>
     <span class="doccomment">/// location to store the retrieved</span>
-    <span class="doccomment">///  string. The string retrieved must be freed with `g_free`.</span>
+    <span class="doccomment">///  string. The string retrieved must be freed with `g_free()`.</span>
     <span class="doccomment">/// ## `attrs`</span>
     <span class="doccomment">/// location to store the retrieved</span>
     <span class="doccomment">///  attribute list. When you are done with this list, you</span>
-    <span class="doccomment">///  must unreference it with `pango::AttrList::unref`.</span>
+    <span class="doccomment">///  must unreference it with [`pango::AttrList::unref()`](crate::pango::AttrList::unref()).</span>
     <span class="doccomment">/// ## `cursor_pos`</span>
     <span class="doccomment">/// location to store position of cursor (in characters)</span>
     <span class="doccomment">///  within the preedit string.</span>
@@ -1021,8 +1021,8 @@
     <span class="doccomment">/// ## `text`</span>
     <span class="doccomment">/// location to store a UTF-8 encoded</span>
     <span class="doccomment">///  string of text holding context around the insertion point.</span>
-    <span class="doccomment">///  If the function returns `true`, then you must free the result</span>
-    <span class="doccomment">///  stored in this location with `g_free`.</span>
+    <span class="doccomment">///  If the function returns [`true`], then you must free the result</span>
+    <span class="doccomment">///  stored in this location with `g_free()`.</span>
     <span class="doccomment">/// ## `cursor_index`</span>
     <span class="doccomment">/// location to store byte index of the insertion</span>
     <span class="doccomment">///  cursor within `text`.</span>
@@ -1031,7 +1031,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// `TRUE` if surrounding text was provided; in this case</span>
     <span class="doccomment">///  you must free the result stored in `text`.</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>, <span class="ident">deprecated</span>)]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>, <span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;Since 4.2&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_im_context_get_surrounding&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">glib::GString</span>, <span class="ident">i32</span>)<span class="op">&gt;</span>;
 
@@ -1053,8 +1053,8 @@
     <span class="doccomment">/// ## `text`</span>
     <span class="doccomment">/// location to store a UTF-8 encoded</span>
     <span class="doccomment">///  string of text holding context around the insertion point.</span>
-    <span class="doccomment">///  If the function returns `true`, then you must free the result</span>
-    <span class="doccomment">///  stored in this location with `g_free`.</span>
+    <span class="doccomment">///  If the function returns [`true`], then you must free the result</span>
+    <span class="doccomment">///  stored in this location with `g_free()`.</span>
     <span class="doccomment">/// ## `cursor_index`</span>
     <span class="doccomment">/// location to store byte index of the insertion</span>
     <span class="doccomment">///  cursor within `text`.</span>
@@ -1084,7 +1084,7 @@
     <span class="doccomment">/// used in order to correctly position status windows, and may</span>
     <span class="doccomment">/// also be used for purposes internal to the input method.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// the client widget. This may be `None` to indicate</span>
+    <span class="doccomment">/// the client widget. This may be [`None`] to indicate</span>
     <span class="doccomment">///  that the previous client widget no longer exists.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_im_context_set_client_widget&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_client_widget</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>);
@@ -1116,7 +1116,7 @@
     <span class="doccomment">/// the length of `text`, or -1 if `text` is nul-terminated</span>
     <span class="doccomment">/// ## `cursor_index`</span>
     <span class="doccomment">/// the byte index of the insertion cursor within `text`.</span>
-    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>, <span class="ident">deprecated</span>)]</span>
+    <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>, <span class="ident">deprecated</span> <span class="op">=</span> <span class="string">&quot;Since 4.2&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_im_context_set_surrounding&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">cursor_index</span>: <span class="ident">i32</span>);
 
@@ -1142,7 +1142,7 @@
     <span class="doccomment">/// Sets whether the IM context should use the preedit string</span>
     <span class="doccomment">/// to display feedback.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `use_preedit` is `false` (default is `true`), then the IM context</span>
+    <span class="doccomment">/// If `use_preedit` is [`false`] (default is [`true`]), then the IM context</span>
     <span class="doccomment">/// may use some other method to display feedback, such as displaying</span>
     <span class="doccomment">/// it in a child of the root window.</span>
     <span class="doccomment">/// ## `use_preedit`</span>
@@ -1180,7 +1180,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the signal was handled.</span>
+    <span class="doccomment">/// [`true`] if the signal was handled.</span>
     <span class="kw">fn</span> <span class="ident">connect_delete_surrounding</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">i32</span>, <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
@@ -1189,7 +1189,7 @@
     <span class="doccomment">/// The ::preedit-changed signal is emitted whenever the preedit sequence</span>
     <span class="doccomment">/// currently being entered has changed. It is also emitted at the end of</span>
     <span class="doccomment">/// a preedit sequence, in which case</span>
-    <span class="doccomment">/// `IMContextExt::get_preedit_string` returns the empty string.</span>
+    <span class="doccomment">/// [`get_preedit_string()`](Self::get_preedit_string()) returns the empty string.</span>
     <span class="kw">fn</span> <span class="ident">connect_preedit_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
     <span class="doccomment">/// The ::preedit-end signal is emitted when a preediting sequence</span>
@@ -1203,11 +1203,11 @@
     <span class="doccomment">/// The ::retrieve-surrounding signal is emitted when the input method</span>
     <span class="doccomment">/// requires the context surrounding the cursor. The callback should set</span>
     <span class="doccomment">/// the input method surrounding context by calling the</span>
-    <span class="doccomment">/// `IMContextExt::set_surrounding` method.</span>
+    <span class="doccomment">/// [`set_surrounding()`](Self::set_surrounding()) method.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the signal was handled.</span>
+    <span class="doccomment">/// [`true`] if the signal was handled.</span>
     <span class="kw">fn</span> <span class="ident">connect_retrieve_surrounding</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>)
         <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 

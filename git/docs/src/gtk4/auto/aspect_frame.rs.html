@@ -686,7 +686,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AspectFrame</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkAspectFrame</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -705,7 +705,7 @@
     <span class="doccomment">/// ## `ratio`</span>
     <span class="doccomment">/// The desired aspect ratio.</span>
     <span class="doccomment">/// ## `obey_child`</span>
-    <span class="doccomment">/// If `true`, `ratio` is ignored, and the aspect</span>
+    <span class="doccomment">/// If [`true`], `ratio` is ignored, and the aspect</span>
     <span class="doccomment">///  ratio is taken from the requistion of the child.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -795,7 +795,7 @@
     <span class="doccomment">/// request should override the set aspect ratio of</span>
     <span class="doccomment">/// the `GtkAspectFrame`.</span>
     <span class="doccomment">/// ## `obey_child`</span>
-    <span class="doccomment">/// If `true`, `ratio` is ignored, and the aspect</span>
+    <span class="doccomment">/// If [`true`], `ratio` is ignored, and the aspect</span>
     <span class="doccomment">///  ratio is taken from the requistion of the child.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_aspect_frame_set_obey_child&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_obey_child</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">obey_child</span>: <span class="ident">bool</span>) {

@@ -301,7 +301,7 @@
     <span class="doccomment">/// It presents the slice from `offset` to offset + `size`</span>
     <span class="doccomment">/// of the given `model`.</span>
     <span class="doccomment">/// ## `model`</span>
-    <span class="doccomment">/// The model to use, or `None`</span>
+    <span class="doccomment">/// The model to use, or [`None`]</span>
     <span class="doccomment">/// ## `offset`</span>
     <span class="doccomment">/// the offset of the slice</span>
     <span class="doccomment">/// ## `size`</span>
@@ -326,7 +326,7 @@
         }
     }
 
-    <span class="doccomment">/// Gets the model that is currently being used or `None` if none.</span>
+    <span class="doccomment">/// Gets the model that is currently being used or [`None`] if none.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -336,7 +336,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_slice_list_model_get_model</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Gets the offset set via `SliceListModel::set_offset`.</span>
+    <span class="doccomment">/// Gets the offset set via [`set_offset()`](Self::set_offset()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -346,7 +346,7 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_slice_list_model_get_offset</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Gets the size set via `SliceListModel::set_size`.</span>
+    <span class="doccomment">/// Gets the size set via [`set_size()`](Self::set_size()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

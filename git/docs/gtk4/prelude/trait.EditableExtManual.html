@@ -6,7 +6,7 @@
 }</pre></div><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><h3 id="tymethod.connect_insert_text" class="method"><code>fn <a href="#tymethod.connect_insert_text" class="fnname">connect_insert_text</a>&lt;F&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a> <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, &amp;mut <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) + 'static,&nbsp;</span></code><a class="srclink" href="../../src/gtk4/editable.rs.html#31-33" title="goto source code">[src]</a></h3><div class="docblock"><p>Emitted when text is inserted into the widget by the user.</p>
 <p>The default handler for this signal will normally be responsible
 for inserting the text, so by connecting to this signal and then
-stopping the signal with <code>g_signal_stop_emission</code>, it is possible
+stopping the signal with <code>g_signal_stop_emission()</code>, it is possible
 to modify the inserted text, or prevent it from being inserted entirely.</p>
 <h2 id="text" class="section-header"><a href="#text"><code>text</code></a></h2>
 <p>the new text to insert</p>

@@ -12,7 +12,7 @@
 </div><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><h3 id="tymethod.changed" class="method"><code>fn <a href="#tymethod.changed" class="fnname">changed</a>(&amp;self, change: <a class="enum" href="../enum.SorterChange.html" title="enum gtk4::SorterChange">SorterChange</a>)</code><a class="srclink" href="../../src/gtk4/auto/sorter.rs.html#72" title="goto source code">[src]</a></h3><div class="docblock"><p>Emits the [signal<code>Gtk.Sorter</code>::changed] signal to notify all users
 of the sorter that it has changed.</p>
 <p>Users of the sorter should then update the sort order via
-<code>SorterExt::compare</code>.</p>
+<a href="trait.SorterExt.html#tymethod.compare"><code>compare()</code></a>.</p>
 <p>Depending on the <code>change</code> parameter, it may be possible to update
 the sort order without a full resorting. Refer to the
 [enum<code>Gtk.SorterChange</code>] documentation for details.</p>
@@ -36,9 +36,9 @@ via the return value of [method<code>Gtk.Sorter</code>.get_order].</p>
 <h2 id="item2" class="section-header"><a href="#item2"><code>item2</code></a></h2>
 <p>second item to compare</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
-<p><code>Ordering::Equal</code> if <code>item1</code> == <code>item2</code>,
-<code>Ordering::Smaller</code> if <code>item1</code> &lt; <code>item2</code>,
-<code>Ordering::Larger</code> if <code>item1</code> &gt; <code>item2</code></p>
+<p><a href="../enum.Ordering.html#variant.Equal" title="Ordering::Equal"><code>Ordering::Equal</code></a> if <code>item1</code> == <code>item2</code>,
+<a href="../enum.Ordering.html#variant.Smaller" title="Ordering::Smaller"><code>Ordering::Smaller</code></a> if <code>item1</code> &lt; <code>item2</code>,
+<a href="../enum.Ordering.html#variant.Larger" title="Ordering::Larger"><code>Ordering::Larger</code></a> if <code>item1</code> &gt; <code>item2</code></p>
 </div><h3 id="tymethod.order" class="method"><code>fn <a href="#tymethod.order" class="fnname">order</a>(&amp;self) -&gt; <a class="enum" href="../enum.SorterOrder.html" title="enum gtk4::SorterOrder">SorterOrder</a></code><a class="srclink" href="../../src/gtk4/auto/sorter.rs.html#111" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets the order that <code>self</code> conforms to.</p>
 <p>See [enum<code>Gtk.SorterOrder</code>] for details
 of the possible return values.</p>
@@ -47,7 +47,7 @@ of the possible return values.</p>
 <p>The order</p>
 </div><h3 id="tymethod.connect_changed" class="method"><code>fn <a href="#tymethod.connect_changed" class="fnname">connect_changed</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, <a class="enum" href="../enum.SorterChange.html" title="enum gtk4::SorterChange">SorterChange</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></code><a class="srclink" href="../../src/gtk4/auto/sorter.rs.html#125" title="goto source code">[src]</a></h3><div class="docblock"><p>Emitted whenever the sorter changed.</p>
 <p>Users of the sorter should then update the sort order
-again via <code>SorterExt::compare</code>.</p>
+again via <a href="trait.SorterExt.html#tymethod.compare"><code>compare()</code></a>.</p>
 <p>[class<code>Gtk.SortListModel</code>] handles this signal automatically.</p>
 <p>Depending on the <code>change</code> parameter, it may be possible to update
 the sort order without a full resorting. Refer to the

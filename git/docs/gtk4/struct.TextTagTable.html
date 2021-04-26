@@ -30,7 +30,7 @@ the same name as an already-added tag.</p>
 <h2 id="tag" class="section-header"><a href="#tag"><code>tag</code></a></h2>
 <p>a <code>GtkTextTag</code></p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
-<p><code>true</code> on success.</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> on success.</p>
 </div><h4 id="method.foreach" class="method"><code>pub fn <a href="#method.foreach" class="fnname">foreach</a>&lt;P:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnMut.html" title="trait core::ops::function::FnMut">FnMut</a>(&amp;<a class="struct" href="struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>)&gt;(&amp;self, func: P)</code><a href="#method.foreach" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_tag_table.rs.html#94-113" title="goto source code">[src]</a></h4><div class="docblock"><p>Calls <code>func</code> on each tag in <code>self</code>, with user data <code>data</code>.</p>
 <p>Note that the table may not be modified while iterating
 over it (you can’t add/remove tags).</p>
@@ -46,7 +46,7 @@ over it (you can’t add/remove tags).</p>
 <p>name of a tag</p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
 <p>The tag,
-or <code>None</code> if none by that name is in the table.</p>
+or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if none by that name is in the table.</p>
 </div><h4 id="method.remove" class="method"><code>pub fn <a href="#method.remove" class="fnname">remove</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>&gt;&gt;(&amp;self, tag: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P)</code><a href="#method.remove" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_tag_table.rs.html#152-156" title="goto source code">[src]</a></h4><div class="docblock"><p>Remove a tag from the table.</p>
 <p>If a <code>GtkTextBuffer</code> has <code>self</code> as its tag table, the tag is
 removed from the buffer. The table’s reference to the tag is

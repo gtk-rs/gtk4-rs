@@ -146,9 +146,9 @@
     <span class="doccomment">/// Note that `color` may not be used if the font contains</span>
     <span class="doccomment">/// color glyphs.</span>
     <span class="doccomment">/// ## `font`</span>
-    <span class="doccomment">/// the `pango::Font` containing the glyphs</span>
+    <span class="doccomment">/// the [`pango::Font`](crate::pango::Font) containing the glyphs</span>
     <span class="doccomment">/// ## `glyphs`</span>
-    <span class="doccomment">/// the `pango::GlyphString` to render</span>
+    <span class="doccomment">/// the [`pango::GlyphString`](crate::pango::GlyphString) to render</span>
     <span class="doccomment">/// ## `color`</span>
     <span class="doccomment">/// the foreground color to render with</span>
     <span class="doccomment">/// ## `offset`</span>
@@ -245,7 +245,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the text node has color glyphs</span>
+    <span class="doccomment">/// [`true`] if the text node has color glyphs</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_color_glyphs</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gsk_text_node_has_color_glyphs</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }

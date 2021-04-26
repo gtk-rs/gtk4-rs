@@ -284,7 +284,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`TextMarkExt`](trait@crate::TextMarkExt), [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`TextMarkExt`](trait@crate::prelude::TextMarkExt), [`trait@glib::object::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TextMark</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkTextMark</span>, <span class="ident">ffi::GtkTextMarkClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -296,16 +296,16 @@
     <span class="doccomment">/// Creates a text mark.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Add it to a buffer using [method`Gtk.TextBuffer`.add_mark].</span>
-    <span class="doccomment">/// If `name` is `None`, the mark is anonymous; otherwise, the mark can be</span>
+    <span class="doccomment">/// If `name` is [`None`], the mark is anonymous; otherwise, the mark can be</span>
     <span class="doccomment">/// retrieved by name using [method`Gtk.TextBuffer`.get_mark]. If a mark</span>
     <span class="doccomment">/// has left gravity, and text is inserted at the mark’s current location,</span>
     <span class="doccomment">/// the mark will be moved to the left of the newly-inserted text. If the</span>
-    <span class="doccomment">/// mark has right gravity (`left_gravity` = `false`), the mark will end up</span>
+    <span class="doccomment">/// mark has right gravity (`left_gravity` = [`false`]), the mark will end up</span>
     <span class="doccomment">/// on the right of newly-inserted text. The standard left-to-right cursor</span>
     <span class="doccomment">/// is a mark with right gravity (when you type, the cursor stays on the</span>
     <span class="doccomment">/// right side of the text you’re typing).</span>
     <span class="doccomment">/// ## `name`</span>
-    <span class="doccomment">/// mark name or `None`</span>
+    <span class="doccomment">/// mark name or [`None`]</span>
     <span class="doccomment">/// ## `left_gravity`</span>
     <span class="doccomment">/// whether the mark should have left gravity</span>
     <span class="doccomment">///</span>
@@ -368,7 +368,7 @@
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TextMarkExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Gets the buffer this mark is located inside.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns `None` if the mark is deleted.</span>
+    <span class="doccomment">/// Returns [`None`] if the mark is deleted.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -376,7 +376,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_mark_get_buffer&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">buffer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Returns `true` if the mark has been removed from its buffer.</span>
+    <span class="doccomment">/// Returns [`true`] if the mark has been removed from its buffer.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// See [method`Gtk.TextBuffer`.add_mark] for a way to add it</span>
     <span class="doccomment">/// to a buffer again.</span>
@@ -391,13 +391,13 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the mark has left gravity, `false` otherwise</span>
+    <span class="doccomment">/// [`true`] if the mark has left gravity, [`false`] otherwise</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_mark_get_left_gravity&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_left_gravity</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="doccomment">/// Returns the mark name.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns `None` for anonymous marks.</span>
+    <span class="doccomment">/// Returns [`None`] for anonymous marks.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -405,13 +405,13 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_mark_get_name&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Returns `true` if the mark is visible.</span>
+    <span class="doccomment">/// Returns [`true`] if the mark is visible.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A cursor is displayed for visible marks.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if visible</span>
+    <span class="doccomment">/// [`true`] if visible</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_mark_get_visible&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_visible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 

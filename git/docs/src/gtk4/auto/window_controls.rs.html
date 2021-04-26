@@ -636,16 +636,16 @@
     <span class="doccomment">/// exist and where they are placed exactly depends on the desktop environment</span>
     <span class="doccomment">/// and [property`Gtk.WindowControls`:decoration-layout] value.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// When [property`Gtk.WindowControls`:empty] is `true`, it gets the .empty</span>
+    <span class="doccomment">/// When [property`Gtk.WindowControls`:empty] is [`true`], it gets the .empty</span>
     <span class="doccomment">/// style class.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkWindowControls` uses the `AccessibleRole::Group` role.</span>
+    <span class="doccomment">/// `GtkWindowControls` uses the [`AccessibleRole::Group`] role.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WindowControls</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkWindowControls</span>, <span class="ident">ffi::GtkWindowControlsClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -673,7 +673,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the decoration layout or `None` if it is unset</span>
+    <span class="doccomment">/// the decoration layout or [`None`] if it is unset</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_controls_get_decoration_layout&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">decoration_layout</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -687,7 +687,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the widget has window buttons, otherwise `false`</span>
+    <span class="doccomment">/// [`true`] if the widget has window buttons, otherwise [`false`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_controls_get_empty&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_empty</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_window_controls_get_empty</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -719,7 +719,7 @@
     <span class="doccomment">/// If [property`Gtk.WindowControls`:side] value is [`crate::PackType::Start`] (XXX: @-reference does not belong to WindowControls!), `self`</span>
     <span class="doccomment">/// will display the part before the colon, otherwise after that.</span>
     <span class="doccomment">/// ## `layout`</span>
-    <span class="doccomment">/// a decoration layout, or `None` to</span>
+    <span class="doccomment">/// a decoration layout, or [`None`] to</span>
     <span class="doccomment">///  unset the layout</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_controls_set_decoration_layout&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_decoration_layout</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">layout</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) {

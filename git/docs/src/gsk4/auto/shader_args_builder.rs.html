@@ -202,7 +202,7 @@
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// An object to build the uniforms data for a `GLShader`.</span>
+    <span class="doccomment">/// An object to build the uniforms data for a [`GLShader`](crate::GLShader).</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ShaderArgsBuilder</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GskShaderArgsBuilder</span><span class="op">&gt;</span>);
 
@@ -236,7 +236,7 @@
         }
     }
 
-    <span class="doccomment">/// Creates a new `glib::Bytes` args from the current state of the</span>
+    <span class="doccomment">/// Creates a new [`glib::Bytes`](crate::glib::Bytes) args from the current state of the</span>
     <span class="doccomment">/// given `self`, and frees the `self` instance.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Any uniforms of the shader that have not been explicitly set</span>

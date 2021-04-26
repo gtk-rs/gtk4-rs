@@ -167,7 +167,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`WaylandSurfaceExt`](trait@crate::WaylandSurfaceExt), [`trait@gdk::SurfaceExt`], [`trait@gdk::ToplevelExt`]</span>
+    <span class="doccomment">/// [`WaylandSurfaceExt`](trait@crate::prelude::WaylandSurfaceExt), [`trait@gdk::SurfaceExt`], [`trait@gdk::ToplevelExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WaylandToplevel</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GdkWaylandToplevel</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">WaylandSurface</span>, <span class="ident">gdk::Surface</span>, @<span class="ident">implements</span> <span class="ident">gdk::Toplevel</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -202,7 +202,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the handle has been requested, `false` if</span>
+    <span class="doccomment">/// [`true`] if the handle has been requested, [`false`] if</span>
     <span class="doccomment">///  an error occurred.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_wayland_toplevel_export_handle&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">export_handle</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">WaylandToplevel</span>, <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">callback</span>: <span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
@@ -261,8 +261,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the surface has been marked as transient,</span>
-    <span class="doccomment">///  `false` if an error occurred.</span>
+    <span class="doccomment">/// [`true`] if the surface has been marked as transient,</span>
+    <span class="doccomment">///  [`false`] if an error occurred.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_wayland_toplevel_set_transient_for_exported&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_transient_for_exported</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">parent_handle_str</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -274,7 +274,7 @@
     }
 
     <span class="doccomment">/// Destroys the handle that was obtained with</span>
-    <span class="doccomment">/// `WaylandToplevel::export_handle`.</span>
+    <span class="doccomment">/// [`export_handle()`](Self::export_handle()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is an error to call this function on a surface that</span>
     <span class="doccomment">/// does not have a handle.</span>

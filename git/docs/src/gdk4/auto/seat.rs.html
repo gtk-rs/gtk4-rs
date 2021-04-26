@@ -269,7 +269,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A list</span>
-    <span class="doccomment">///  of `GdkDevices`. The list must be freed with `glib::List::free`,</span>
+    <span class="doccomment">///  of `GdkDevices`. The list must be freed with [`glib::List::free()`](crate::glib::List::free()),</span>
     <span class="doccomment">///  the elements are owned by GTK and must not be freed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_seat_get_devices&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">devices</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">capabilities</span>: <span class="ident">SeatCapabilities</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Device</span><span class="op">&gt;</span> {
@@ -319,7 +319,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  A list of tools. Free with `glib::List::free`.</span>
+    <span class="doccomment">///  A list of tools. Free with [`glib::List::free()`](crate::glib::List::free()).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_seat_get_tools&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tools</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">DeviceTool</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {

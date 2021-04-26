@@ -63,7 +63,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`RendererExt`](trait@crate::RendererExt), [`RendererExtManual`](trait@crate::RendererExtManual)</span>
+    <span class="doccomment">/// [`RendererExt`](trait@crate::prelude::RendererExt), [`RendererExtManual`](trait@crate::prelude::RendererExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GLRenderer</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GskGLRenderer</span>, <span class="ident">ffi::GskGLRendererClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Renderer</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -72,7 +72,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">GLRenderer</span> {
-    <span class="doccomment">/// Creates a new `Renderer` using OpenGL. This is the default renderer</span>
+    <span class="doccomment">/// Creates a new [`Renderer`](crate::Renderer) using OpenGL. This is the default renderer</span>
     <span class="doccomment">/// used by GTK.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>

@@ -112,7 +112,7 @@
     <span class="doccomment">/// Creates a new `GtkSorter` that works by calling</span>
     <span class="doccomment">/// `sort_func` to compare items.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `sort_func` is `None`, all items are considered equal.</span>
+    <span class="doccomment">/// If `sort_func` is [`None`], all items are considered equal.</span>
     <span class="doccomment">/// ## `sort_func`</span>
     <span class="doccomment">/// the `GCompareDataFunc` to use for sorting</span>
     <span class="doccomment">/// ## `user_data`</span>
@@ -140,10 +140,10 @@
 
     <span class="doccomment">/// Sets (or unsets) the function used for sorting items.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `sort_func` is `None`, all items are considered equal.</span>
+    <span class="doccomment">/// If `sort_func` is [`None`], all items are considered equal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the sort func changes its sorting behavior,</span>
-    <span class="doccomment">/// `SorterExt::changed` needs to be called.</span>
+    <span class="doccomment">/// [`SorterExt::changed()`](crate::SorterExt::changed()) needs to be called.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If a previous function was set, its `user_destroy` will be</span>
     <span class="doccomment">/// called now.</span>

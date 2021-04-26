@@ -385,17 +385,17 @@
 <span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// A tree-like data structure that can be used with the `TreeView`</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `TreeStore` object is a list model for use with a `TreeView`</span>
-    <span class="doccomment">/// widget. It implements the `TreeModel` interface, and consequently,</span>
+    <span class="doccomment">/// The [`TreeStore`](crate::TreeStore) object is a list model for use with a [`TreeView`](crate::TreeView)</span>
+    <span class="doccomment">/// widget. It implements the [`TreeModel`](crate::TreeModel) interface, and consequently,</span>
     <span class="doccomment">/// can use all of the methods available there. It also implements the</span>
-    <span class="doccomment">/// `TreeSortable` interface so it can be sorted by the view. Finally,</span>
+    <span class="doccomment">/// [`TreeSortable`](crate::TreeSortable) interface so it can be sorted by the view. Finally,</span>
     <span class="doccomment">/// it also implements the tree</span>
     <span class="doccomment">/// [drag and drop][gtk3-`TreeView`-drag-and-drop]</span>
     <span class="doccomment">/// interfaces.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # `TreeStore` as `Buildable`</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `TreeStore` implementation of the `Buildable` interface allows</span>
+    <span class="doccomment">/// The `TreeStore` implementation of the [`Buildable`](crate::Buildable) interface allows</span>
     <span class="doccomment">/// to specify the model columns with a `&lt;columns&gt;` element that may contain</span>
     <span class="doccomment">/// multiple `&lt;column&gt;` elements, each specifying one model column. The “type”</span>
     <span class="doccomment">/// attribute specifies the data type for the column.</span>
@@ -414,7 +414,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`TreeStoreExt`](trait@crate::TreeStoreExt), [`trait@glib::object::ObjectExt`], [`BuildableExt`](trait@crate::BuildableExt), [`TreeDragDestExt`](trait@crate::TreeDragDestExt), [`TreeDragSourceExt`](trait@crate::TreeDragSourceExt), [`TreeModelExt`](trait@crate::TreeModelExt), [`TreeSortableExt`](trait@crate::TreeSortableExt), [`TreeStoreExtManual`](trait@crate::TreeStoreExtManual), [`TreeModelExtManual`](trait@crate::TreeModelExtManual), [`TreeSortableExtManual`](trait@crate::TreeSortableExtManual)</span>
+    <span class="doccomment">/// [`TreeStoreExt`](trait@crate::prelude::TreeStoreExt), [`trait@glib::object::ObjectExt`], [`BuildableExt`](trait@crate::prelude::BuildableExt), [`TreeDragDestExt`](trait@crate::prelude::TreeDragDestExt), [`TreeDragSourceExt`](trait@crate::prelude::TreeDragSourceExt), [`TreeModelExt`](trait@crate::prelude::TreeModelExt), [`TreeSortableExt`](trait@crate::prelude::TreeSortableExt), [`TreeStoreExtManual`](trait@crate::prelude::TreeStoreExtManual), [`TreeModelExtManual`](trait@crate::prelude::TreeModelExtManual), [`TreeSortableExtManual`](trait@crate::prelude::TreeSortableExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TreeStore</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkTreeStore</span>, <span class="ident">ffi::GtkTreeStoreClass</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">Buildable</span>, <span class="ident">TreeDragDest</span>, <span class="ident">TreeDragSource</span>, <span class="ident">TreeModel</span>, <span class="ident">TreeSortable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -430,15 +430,15 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`TreeStore`](struct@crate::TreeStore)</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TreeStoreExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Appends a new row to `self`. If `parent` is non-`None`, then it will append the</span>
+    <span class="doccomment">/// Appends a new row to `self`. If `parent` is non-[`None`], then it will append the</span>
     <span class="doccomment">/// new row after the last child of `parent`, otherwise it will append a row to</span>
     <span class="doccomment">/// the top level. `iter` will be changed to point to this new row. The row will</span>
     <span class="doccomment">/// be empty after this function is called. To fill in values, you need to call</span>
-    <span class="doccomment">/// `TreeStore::set` or `TreeStore::set_value`.</span>
+    <span class="doccomment">/// [`TreeStore::set()`](crate::TreeStore::set()) or [`TreeStore::set_value()`](crate::TreeStore::set_value()).</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// An unset `TreeIter` to set to the appended row</span>
+    <span class="doccomment">/// An unset [`TreeIter`](crate::TreeIter) to set to the appended row</span>
     <span class="doccomment">/// ## `parent`</span>
-    <span class="doccomment">/// A valid `TreeIter`, or `None`</span>
+    <span class="doccomment">/// A valid [`TreeIter`](crate::TreeIter), or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_append&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">append</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">parent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span>;
 
@@ -446,75 +446,75 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_clear&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">clear</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Creates a new row at `position`. If parent is non-`None`, then the row will be</span>
+    <span class="doccomment">/// Creates a new row at `position`. If parent is non-[`None`], then the row will be</span>
     <span class="doccomment">/// made a child of `parent`. Otherwise, the row will be created at the toplevel.</span>
     <span class="doccomment">/// If `position` is -1 or is larger than the number of rows at that level, then</span>
     <span class="doccomment">/// the new row will be inserted to the end of the list. `iter` will be changed</span>
     <span class="doccomment">/// to point to this new row. The row will be empty after this function is</span>
-    <span class="doccomment">/// called. To fill in values, you need to call `TreeStore::set` or</span>
-    <span class="doccomment">/// `TreeStore::set_value`.</span>
+    <span class="doccomment">/// called. To fill in values, you need to call [`TreeStore::set()`](crate::TreeStore::set()) or</span>
+    <span class="doccomment">/// [`TreeStore::set_value()`](crate::TreeStore::set_value()).</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// An unset `TreeIter` to set to the new row</span>
+    <span class="doccomment">/// An unset [`TreeIter`](crate::TreeIter) to set to the new row</span>
     <span class="doccomment">/// ## `parent`</span>
-    <span class="doccomment">/// A valid `TreeIter`, or `None`</span>
+    <span class="doccomment">/// A valid [`TreeIter`](crate::TreeIter), or [`None`]</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// position to insert the new row, or -1 for last</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_insert&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">insert</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">parent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>, <span class="ident">position</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span>;
 
-    <span class="doccomment">/// Inserts a new row after `sibling`. If `sibling` is `None`, then the row will be</span>
-    <span class="doccomment">/// prepended to `parent` ’s children. If `parent` and `sibling` are `None`, then</span>
+    <span class="doccomment">/// Inserts a new row after `sibling`. If `sibling` is [`None`], then the row will be</span>
+    <span class="doccomment">/// prepended to `parent` ’s children. If `parent` and `sibling` are [`None`], then</span>
     <span class="doccomment">/// the row will be prepended to the toplevel. If both `sibling` and `parent` are</span>
     <span class="doccomment">/// set, then `parent` must be the parent of `sibling`. When `sibling` is set,</span>
     <span class="doccomment">/// `parent` is optional.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `iter` will be changed to point to this new row. The row will be empty after</span>
     <span class="doccomment">/// this function is called. To fill in values, you need to call</span>
-    <span class="doccomment">/// `TreeStore::set` or `TreeStore::set_value`.</span>
+    <span class="doccomment">/// [`TreeStore::set()`](crate::TreeStore::set()) or [`TreeStore::set_value()`](crate::TreeStore::set_value()).</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// An unset `TreeIter` to set to the new row</span>
+    <span class="doccomment">/// An unset [`TreeIter`](crate::TreeIter) to set to the new row</span>
     <span class="doccomment">/// ## `parent`</span>
-    <span class="doccomment">/// A valid `TreeIter`, or `None`</span>
+    <span class="doccomment">/// A valid [`TreeIter`](crate::TreeIter), or [`None`]</span>
     <span class="doccomment">/// ## `sibling`</span>
-    <span class="doccomment">/// A valid `TreeIter`, or `None`</span>
+    <span class="doccomment">/// A valid [`TreeIter`](crate::TreeIter), or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_insert_after&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">insert_after</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">parent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>, <span class="ident">sibling</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span>;
 
-    <span class="doccomment">/// Inserts a new row before `sibling`. If `sibling` is `None`, then the row will</span>
-    <span class="doccomment">/// be appended to `parent` ’s children. If `parent` and `sibling` are `None`, then</span>
+    <span class="doccomment">/// Inserts a new row before `sibling`. If `sibling` is [`None`], then the row will</span>
+    <span class="doccomment">/// be appended to `parent` ’s children. If `parent` and `sibling` are [`None`], then</span>
     <span class="doccomment">/// the row will be appended to the toplevel. If both `sibling` and `parent` are</span>
     <span class="doccomment">/// set, then `parent` must be the parent of `sibling`. When `sibling` is set,</span>
     <span class="doccomment">/// `parent` is optional.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `iter` will be changed to point to this new row. The row will be empty after</span>
     <span class="doccomment">/// this function is called. To fill in values, you need to call</span>
-    <span class="doccomment">/// `TreeStore::set` or `TreeStore::set_value`.</span>
+    <span class="doccomment">/// [`TreeStore::set()`](crate::TreeStore::set()) or [`TreeStore::set_value()`](crate::TreeStore::set_value()).</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// An unset `TreeIter` to set to the new row</span>
+    <span class="doccomment">/// An unset [`TreeIter`](crate::TreeIter) to set to the new row</span>
     <span class="doccomment">/// ## `parent`</span>
-    <span class="doccomment">/// A valid `TreeIter`, or `None`</span>
+    <span class="doccomment">/// A valid [`TreeIter`](crate::TreeIter), or [`None`]</span>
     <span class="doccomment">/// ## `sibling`</span>
-    <span class="doccomment">/// A valid `TreeIter`, or `None`</span>
+    <span class="doccomment">/// A valid [`TreeIter`](crate::TreeIter), or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_insert_before&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">insert_before</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">parent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>, <span class="ident">sibling</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span>;
 
-    <span class="doccomment">/// Returns `true` if `iter` is an ancestor of `descendant`. That is, `iter` is the</span>
+    <span class="doccomment">/// Returns [`true`] if `iter` is an ancestor of `descendant`. That is, `iter` is the</span>
     <span class="doccomment">/// parent (or grandparent or great-grandparent) of `descendant`.</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// A valid `TreeIter`</span>
+    <span class="doccomment">/// A valid [`TreeIter`](crate::TreeIter)</span>
     <span class="doccomment">/// ## `descendant`</span>
-    <span class="doccomment">/// A valid `TreeIter`</span>
+    <span class="doccomment">/// A valid [`TreeIter`](crate::TreeIter)</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true`, if `iter` is an ancestor of `descendant`</span>
+    <span class="doccomment">/// [`true`], if `iter` is an ancestor of `descendant`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_is_ancestor&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_ancestor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">descendant</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="doccomment">/// Returns the depth of `iter`. This will be 0 for anything on the root level, 1</span>
     <span class="doccomment">/// for anything down a level, etc.</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// A valid `TreeIter`</span>
+    <span class="doccomment">/// A valid [`TreeIter`](crate::TreeIter)</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -525,47 +525,47 @@
     <span class="doccomment">/// WARNING: This function is slow. Only use it for debugging and/or testing</span>
     <span class="doccomment">/// purposes.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Checks if the given iter is a valid iter for this `TreeStore`.</span>
+    <span class="doccomment">/// Checks if the given iter is a valid iter for this [`TreeStore`](crate::TreeStore).</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// A `TreeIter`.</span>
+    <span class="doccomment">/// A [`TreeIter`](crate::TreeIter).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the iter is valid, `false` if the iter is invalid.</span>
+    <span class="doccomment">/// [`true`] if the iter is valid, [`false`] if the iter is invalid.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_iter_is_valid&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">iter_is_valid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="doccomment">/// Moves `iter` in `self` to the position after `position`. `iter` and</span>
     <span class="doccomment">/// `position` should be in the same level. Note that this function only</span>
-    <span class="doccomment">/// works with unsorted stores. If `position` is `None`, `iter` will be moved</span>
+    <span class="doccomment">/// works with unsorted stores. If `position` is [`None`], `iter` will be moved</span>
     <span class="doccomment">/// to the start of the level.</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// A `TreeIter`.</span>
+    <span class="doccomment">/// A [`TreeIter`](crate::TreeIter).</span>
     <span class="doccomment">/// ## `position`</span>
-    <span class="doccomment">/// A `TreeIter`.</span>
+    <span class="doccomment">/// A [`TreeIter`](crate::TreeIter).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_move_after&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">move_after</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>);
 
     <span class="doccomment">/// Moves `iter` in `self` to the position before `position`. `iter` and</span>
     <span class="doccomment">/// `position` should be in the same level. Note that this function only</span>
-    <span class="doccomment">/// works with unsorted stores. If `position` is `None`, `iter` will be</span>
+    <span class="doccomment">/// works with unsorted stores. If `position` is [`None`], `iter` will be</span>
     <span class="doccomment">/// moved to the end of the level.</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// A `TreeIter`.</span>
+    <span class="doccomment">/// A [`TreeIter`](crate::TreeIter).</span>
     <span class="doccomment">/// ## `position`</span>
-    <span class="doccomment">/// A `TreeIter` or `None`.</span>
+    <span class="doccomment">/// A [`TreeIter`](crate::TreeIter) or [`None`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_move_before&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">move_before</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">position</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Prepends a new row to `self`. If `parent` is non-`None`, then it will prepend</span>
+    <span class="doccomment">/// Prepends a new row to `self`. If `parent` is non-[`None`], then it will prepend</span>
     <span class="doccomment">/// the new row before the first child of `parent`, otherwise it will prepend a row</span>
     <span class="doccomment">/// to the top level. `iter` will be changed to point to this new row. The row</span>
     <span class="doccomment">/// will be empty after this function is called. To fill in values, you need to</span>
-    <span class="doccomment">/// call `TreeStore::set` or `TreeStore::set_value`.</span>
+    <span class="doccomment">/// call [`TreeStore::set()`](crate::TreeStore::set()) or [`TreeStore::set_value()`](crate::TreeStore::set_value()).</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// An unset `TreeIter` to set to the prepended row</span>
+    <span class="doccomment">/// An unset [`TreeIter`](crate::TreeIter) to set to the prepended row</span>
     <span class="doccomment">/// ## `parent`</span>
-    <span class="doccomment">/// A valid `TreeIter`, or `None`</span>
+    <span class="doccomment">/// A valid [`TreeIter`](crate::TreeIter), or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_prepend&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">prepend</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">parent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span>;
 
@@ -573,20 +573,20 @@
     <span class="doccomment">/// next valid row at that level, or invalidated if it previously pointed to the</span>
     <span class="doccomment">/// last one.</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// A valid `TreeIter`</span>
+    <span class="doccomment">/// A valid [`TreeIter`](crate::TreeIter)</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if `iter` is still valid, `false` if not.</span>
+    <span class="doccomment">/// [`true`] if `iter` is still valid, [`false`] if not.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_remove&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">remove</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="doccomment">/// Swaps `a` and `b` in the same level of `self`. Note that this function</span>
     <span class="doccomment">/// only works with unsorted stores.</span>
     <span class="doccomment">/// ## `a`</span>
-    <span class="doccomment">/// A `TreeIter`.</span>
+    <span class="doccomment">/// A [`TreeIter`](crate::TreeIter).</span>
     <span class="doccomment">/// ## `b`</span>
-    <span class="doccomment">/// Another `TreeIter`.</span>
+    <span class="doccomment">/// Another [`TreeIter`](crate::TreeIter).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_swap&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">swap</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">a</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">b</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>);
 }

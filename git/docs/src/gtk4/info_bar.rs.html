@@ -51,14 +51,14 @@
 <span class="kw">impl</span> <span class="ident">InfoBar</span> {
     <span class="doccomment">/// Creates a new `GtkInfoBar` with buttons.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Button text/response ID pairs should be listed, with a `None` pointer</span>
+    <span class="doccomment">/// Button text/response ID pairs should be listed, with a [`None`] pointer</span>
     <span class="doccomment">/// ending the list. A response ID can be any positive number,</span>
     <span class="doccomment">/// or one of the values in the `GtkResponseType` enumeration. If the</span>
     <span class="doccomment">/// user clicks one of these dialog buttons, `InfoBar` will emit</span>
     <span class="doccomment">/// the [signal`Gtk.InfoBar`::response] signal with the corresponding</span>
     <span class="doccomment">/// response ID.</span>
     <span class="doccomment">/// ## `first_button_text`</span>
-    <span class="doccomment">/// ext to go in first button, or `None`</span>
+    <span class="doccomment">/// ext to go in first button, or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -74,7 +74,7 @@
     <span class="doccomment">/// Adds multiple buttons.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is the same as calling [method`Gtk.InfoBar`.add_button]</span>
-    <span class="doccomment">/// repeatedly. The variable argument list should be `None`-terminated</span>
+    <span class="doccomment">/// repeatedly. The variable argument list should be [`None`]-terminated</span>
     <span class="doccomment">/// as with [ctor`Gtk.InfoBar`.new_with_buttons]. Each button must have both</span>
     <span class="doccomment">/// text and response ID.</span>
     <span class="doccomment">/// ## `first_button_text`</span>

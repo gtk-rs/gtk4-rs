@@ -369,23 +369,23 @@
 <span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// A `TreeModel` which makes an underlying tree model sortable</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `TreeModelSort` is a model which implements the `TreeSortable`</span>
+    <span class="doccomment">/// The [`TreeModelSort`](crate::TreeModelSort) is a model which implements the [`TreeSortable`](crate::TreeSortable)</span>
     <span class="doccomment">/// interface. It does not hold any data itself, but rather is created with</span>
     <span class="doccomment">/// a child model and proxies its data. It has identical column types to</span>
     <span class="doccomment">/// this child model, and the changes in the child are propagated. The</span>
     <span class="doccomment">/// primary purpose of this model is to provide a way to sort a different</span>
     <span class="doccomment">/// model without modifying it. Note that the sort function used by</span>
-    <span class="doccomment">/// `TreeModelSort` is not guaranteed to be stable.</span>
+    <span class="doccomment">/// [`TreeModelSort`](crate::TreeModelSort) is not guaranteed to be stable.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The use of this is best demonstrated through an example. In the</span>
-    <span class="doccomment">/// following sample code we create two `TreeView` widgets each with a</span>
+    <span class="doccomment">/// following sample code we create two [`TreeView`](crate::TreeView) widgets each with a</span>
     <span class="doccomment">/// view of the same data. As the model is wrapped here by a</span>
-    <span class="doccomment">/// `TreeModelSort`, the two ``GtkTreeViews`` can each sort their</span>
+    <span class="doccomment">/// [`TreeModelSort`](crate::TreeModelSort), the two ``GtkTreeViews`` can each sort their</span>
     <span class="doccomment">/// view of the data without affecting the other. By contrast, if we</span>
     <span class="doccomment">/// simply put the same model in each widget, then sorting the first would</span>
     <span class="doccomment">/// sort the second.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ## Using a `TreeModelSort`</span>
+    <span class="doccomment">/// ## Using a [`TreeModelSort`](crate::TreeModelSort)</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```C</span>
@@ -416,8 +416,8 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To demonstrate how to access the underlying child model from the sort</span>
-    <span class="doccomment">/// model, the next example will be a callback for the `TreeSelection`</span>
-    <span class="doccomment">/// `TreeSelection::changed` signal. In this callback, we get a string</span>
+    <span class="doccomment">/// model, the next example will be a callback for the [`TreeSelection`](crate::TreeSelection)</span>
+    <span class="doccomment">/// [`TreeSelection::changed`](crate::TreeSelection::changed) signal. In this callback, we get a string</span>
     <span class="doccomment">/// from COLUMN_1 of the model. We then modify the string, find the same</span>
     <span class="doccomment">/// selected row on the child model, and change the row there.</span>
     <span class="doccomment">///</span>
@@ -468,7 +468,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`TreeModelSortExt`](trait@crate::TreeModelSortExt), [`trait@glib::object::ObjectExt`], [`TreeDragSourceExt`](trait@crate::TreeDragSourceExt), [`TreeModelExt`](trait@crate::TreeModelExt), [`TreeSortableExt`](trait@crate::TreeSortableExt), [`TreeModelExtManual`](trait@crate::TreeModelExtManual), [`TreeSortableExtManual`](trait@crate::TreeSortableExtManual)</span>
+    <span class="doccomment">/// [`TreeModelSortExt`](trait@crate::prelude::TreeModelSortExt), [`trait@glib::object::ObjectExt`], [`TreeDragSourceExt`](trait@crate::prelude::TreeDragSourceExt), [`TreeModelExt`](trait@crate::prelude::TreeModelExt), [`TreeSortableExt`](trait@crate::prelude::TreeSortableExt), [`TreeModelExtManual`](trait@crate::prelude::TreeModelExtManual), [`TreeSortableExtManual`](trait@crate::prelude::TreeSortableExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TreeModelSort</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkTreeModelSort</span>, <span class="ident">ffi::GtkTreeModelSortClass</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">TreeDragSource</span>, <span class="ident">TreeModel</span>, <span class="ident">TreeSortable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -477,13 +477,13 @@
 }
 
 <span class="kw">impl</span> <span class="ident">TreeModelSort</span> {
-    <span class="doccomment">/// Creates a new `TreeModelSort`, with `child_model` as the child model.</span>
+    <span class="doccomment">/// Creates a new [`TreeModelSort`](crate::TreeModelSort), with `child_model` as the child model.</span>
     <span class="doccomment">/// ## `child_model`</span>
-    <span class="doccomment">/// A `TreeModel`</span>
+    <span class="doccomment">/// A [`TreeModel`](crate::TreeModel)</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A new `TreeModelSort`.</span>
+    <span class="doccomment">/// A new [`TreeModelSort`](crate::TreeModelSort).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_sort_new_with_model&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_model</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">child_model</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeModelSort</span> {
         <span class="macro">skip_assert_initialized!</span>();
@@ -530,7 +530,7 @@
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TreeModelSortExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// This function should almost never be called. It clears the `self`</span>
     <span class="doccomment">/// of any cached iterators that haven’t been reffed with</span>
-    <span class="doccomment">/// `TreeModel::ref_node`. This might be useful if the child model being</span>
+    <span class="doccomment">/// [`TreeModel::ref_node()`](crate::TreeModel::ref_node()). This might be useful if the child model being</span>
     <span class="doccomment">/// sorted is static (and doesn’t change often) and there has been a lot of</span>
     <span class="doccomment">/// unreffed access to nodes. As a side effect of this function, all unreffed</span>
     <span class="doccomment">/// iters will be invalid.</span>
@@ -538,16 +538,16 @@
     <span class="kw">fn</span> <span class="ident">clear_cache</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
     <span class="doccomment">/// Sets `sort_iter` to point to the row in `self` that corresponds to</span>
-    <span class="doccomment">/// the row pointed at by `child_iter`. If `sort_iter` was not set, `false`</span>
+    <span class="doccomment">/// the row pointed at by `child_iter`. If `sort_iter` was not set, [`false`]</span>
     <span class="doccomment">/// is returned. Note: a boolean is only returned since 2.14.</span>
     <span class="doccomment">/// ## `sort_iter`</span>
-    <span class="doccomment">/// An uninitialized `TreeIter`.</span>
+    <span class="doccomment">/// An uninitialized [`TreeIter`](crate::TreeIter).</span>
     <span class="doccomment">/// ## `child_iter`</span>
-    <span class="doccomment">/// A valid `TreeIter` pointing to a row on the child model</span>
+    <span class="doccomment">/// A valid [`TreeIter`](crate::TreeIter) pointing to a row on the child model</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true`, if `sort_iter` was set, i.e. if `sort_iter` is a</span>
+    <span class="doccomment">/// [`true`], if `sort_iter` was set, i.e. if `sort_iter` is a</span>
     <span class="doccomment">/// valid iterator pointer to a visible row in the child model.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_sort_convert_child_iter_to_iter&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">convert_child_iter_to_iter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child_iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>;
@@ -555,21 +555,21 @@
     <span class="doccomment">/// Converts `child_path` to a path relative to `self`. That is,</span>
     <span class="doccomment">/// `child_path` points to a path in the child model. The returned path will</span>
     <span class="doccomment">/// point to the same row in the sorted model. If `child_path` isn’t a valid</span>
-    <span class="doccomment">/// path on the child model, then `None` is returned.</span>
+    <span class="doccomment">/// path on the child model, then [`None`] is returned.</span>
     <span class="doccomment">/// ## `child_path`</span>
-    <span class="doccomment">/// A `TreePath` to convert</span>
+    <span class="doccomment">/// A [`TreePath`](crate::TreePath) to convert</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A newly allocated `TreePath`, or `None`</span>
+    <span class="doccomment">/// A newly allocated [`TreePath`](crate::TreePath), or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_sort_convert_child_path_to_path&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">convert_child_path_to_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child_path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Sets `child_iter` to point to the row pointed to by `sorted_iter`.</span>
     <span class="doccomment">/// ## `child_iter`</span>
-    <span class="doccomment">/// An uninitialized `TreeIter`</span>
+    <span class="doccomment">/// An uninitialized [`TreeIter`](crate::TreeIter)</span>
     <span class="doccomment">/// ## `sorted_iter`</span>
-    <span class="doccomment">/// A valid `TreeIter` pointing to a row on `self`.</span>
+    <span class="doccomment">/// A valid [`TreeIter`](crate::TreeIter) pointing to a row on `self`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_sort_convert_iter_to_child_iter&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">convert_iter_to_child_iter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sorted_iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span>;
 
@@ -577,17 +577,17 @@
     <span class="doccomment">/// That is, `sorted_path` points to a location in `self`. The</span>
     <span class="doccomment">/// returned path will point to the same location in the model not being</span>
     <span class="doccomment">/// sorted. If `sorted_path` does not point to a location in the child model,</span>
-    <span class="doccomment">/// `None` is returned.</span>
+    <span class="doccomment">/// [`None`] is returned.</span>
     <span class="doccomment">/// ## `sorted_path`</span>
-    <span class="doccomment">/// A `TreePath` to convert</span>
+    <span class="doccomment">/// A [`TreePath`](crate::TreePath) to convert</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A newly allocated `TreePath`, or `None`</span>
+    <span class="doccomment">/// A newly allocated [`TreePath`](crate::TreePath), or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_sort_convert_path_to_child_path&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">convert_path_to_child_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">sorted_path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Returns the model the `TreeModelSort` is sorting.</span>
+    <span class="doccomment">/// Returns the model the [`TreeModelSort`](crate::TreeModelSort) is sorting.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -598,19 +598,19 @@
     <span class="doccomment">/// &gt; This function is slow. Only use it for debugging and/or testing</span>
     <span class="doccomment">/// &gt; purposes.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Checks if the given iter is a valid iter for this `TreeModelSort`.</span>
+    <span class="doccomment">/// Checks if the given iter is a valid iter for this [`TreeModelSort`](crate::TreeModelSort).</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// A `TreeIter`.</span>
+    <span class="doccomment">/// A [`TreeIter`](crate::TreeIter).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the iter is valid, `false` if the iter is invalid.</span>
+    <span class="doccomment">/// [`true`] if the iter is valid, [`false`] if the iter is invalid.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_sort_iter_is_valid&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">iter_is_valid</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="doccomment">/// This resets the default sort function to be in the “unsorted” state. That</span>
     <span class="doccomment">/// is, it is in the same order as the child model. It will re-sort the model</span>
-    <span class="doccomment">/// to be in the same order as the child model only if the `TreeModelSort`</span>
+    <span class="doccomment">/// to be in the same order as the child model only if the [`TreeModelSort`](crate::TreeModelSort)</span>
     <span class="doccomment">/// is in “unsorted” state.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_sort_reset_default_sort_func&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">reset_default_sort_func</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);

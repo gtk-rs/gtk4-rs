@@ -7,7 +7,7 @@ function.</p>
 <p><a href="prelude/trait.SorterExt.html"><code>SorterExt</code></a>, <a href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.ObjectExt.html" title="glib::object::ObjectExt"><code>glib::object::ObjectExt</code></a></p>
 </div><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl" class="impl"><code class="in-band">impl <a class="struct" href="struct.CustomSorter.html" title="struct gtk4::CustomSorter">CustomSorter</a></code><a href="#impl" class="anchor"></a><a class="srclink" href="../src/gtk4/custom_sorter.rs.html#8-73" title="goto source code">[src]</a></h3></summary><div class="impl-items"><h4 id="method.new" class="method"><code>pub fn <a href="#method.new" class="fnname">new</a>&lt;F&gt;(sort_func: F) -&gt; Self <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>, &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>) -&gt; <a class="enum" href="enum.Ordering.html" title="enum gtk4::Ordering">Ordering</a> + 'static,&nbsp;</span></code><a href="#method.new" class="anchor"></a><a class="srclink" href="../src/gtk4/custom_sorter.rs.html#24-36" title="goto source code">[src]</a></h4><div class="docblock"><p>Creates a new <code>GtkSorter</code> that works by calling
 <code>sort_func</code> to compare items.</p>
-<p>If <code>sort_func</code> is <code>None</code>, all items are considered equal.</p>
+<p>If <code>sort_func</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, all items are considered equal.</p>
 <h2 id="sort_func" class="section-header"><a href="#sort_func"><code>sort_func</code></a></h2>
 <p>the <code>GCompareDataFunc</code> to use for sorting</p>
 <h2 id="user_data" class="section-header"><a href="#user_data"><code>user_data</code></a></h2>
@@ -17,9 +17,9 @@ function.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
 <p>a new <code>GtkCustomSorter</code></p>
 </div><h4 id="method.set_sort_func" class="method"><code>pub fn <a href="#method.set_sort_func" class="fnname">set_sort_func</a>&lt;F&gt;(&amp;self, sort_func: F) <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>, &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>) -&gt; <a class="enum" href="enum.Ordering.html" title="enum gtk4::Ordering">Ordering</a> + 'static,&nbsp;</span></code><a href="#method.set_sort_func" class="anchor"></a><a class="srclink" href="../src/gtk4/custom_sorter.rs.html#54-66" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets (or unsets) the function used for sorting items.</p>
-<p>If <code>sort_func</code> is <code>None</code>, all items are considered equal.</p>
+<p>If <code>sort_func</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, all items are considered equal.</p>
 <p>If the sort func changes its sorting behavior,
-<code>SorterExt::changed</code> needs to be called.</p>
+<a href="crate::SorterExt::changed()"><code>SorterExt::changed()</code></a> needs to be called.</p>
 <p>If a previous function was set, its <code>user_destroy</code> will be
 called now.</p>
 <h2 id="sort_func-1" class="section-header"><a href="#sort_func-1"><code>sort_func</code></a></h2>

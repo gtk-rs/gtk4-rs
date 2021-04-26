@@ -733,7 +733,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Video</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkVideo</span>, <span class="ident">ffi::GtkVideoClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -831,17 +831,17 @@
         }
     }
 
-    <span class="doccomment">/// Returns `true` if videos have been set to loop.</span>
+    <span class="doccomment">/// Returns [`true`] if videos have been set to loop.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if streams should autoplay</span>
+    <span class="doccomment">/// [`true`] if streams should autoplay</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_video_get_autoplay&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_autoplay</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_video_get_autoplay</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Gets the file played by `self` or `None` if not playing back</span>
+    <span class="doccomment">/// Gets the file played by `self` or [`None`] if not playing back</span>
     <span class="doccomment">/// a file.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -852,17 +852,17 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_video_get_file</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns `true` if videos have been set to loop.</span>
+    <span class="doccomment">/// Returns [`true`] if videos have been set to loop.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if streams should loop</span>
+    <span class="doccomment">/// [`true`] if streams should loop</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_video_get_loop&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_loop</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_video_get_loop</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Gets the media stream managed by `self` or `None` if none.</span>
+    <span class="doccomment">/// Gets the media stream managed by `self` or [`None`] if none.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -898,7 +898,7 @@
 
     <span class="doccomment">/// Makes `self` play the given `filename`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is a utility function that calls `Video::set_file`,</span>
+    <span class="doccomment">/// This is a utility function that calls [`set_file()`](Self::set_file()),</span>
     <span class="doccomment">/// ## `filename`</span>
     <span class="doccomment">/// the filename to play</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_video_set_filename&quot;</span>)]</span>
@@ -927,7 +927,7 @@
     <span class="doccomment">/// If you want to display a file, consider using [method`Gtk.Video`.set_file]</span>
     <span class="doccomment">/// instead.</span>
     <span class="doccomment">/// ## `stream`</span>
-    <span class="doccomment">/// The media stream to play or `None` to unset</span>
+    <span class="doccomment">/// The media stream to play or [`None`] to unset</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_video_set_media_stream&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_media_stream</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">MediaStream</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">stream</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {

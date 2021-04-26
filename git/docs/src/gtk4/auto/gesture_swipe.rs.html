@@ -250,7 +250,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`GestureSingleExt`](trait@crate::GestureSingleExt), [`GestureExt`](trait@crate::GestureExt), [`EventControllerExt`](trait@crate::EventControllerExt), [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`GestureSingleExt`](trait@crate::prelude::GestureSingleExt), [`GestureExt`](trait@crate::prelude::GestureExt), [`EventControllerExt`](trait@crate::prelude::EventControllerExt), [`trait@glib::object::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GestureSwipe</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkGestureSwipe</span>, <span class="ident">ffi::GtkGestureSwipeClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">GestureSingle</span>, <span class="ident">Gesture</span>, <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -272,7 +272,7 @@
 
     <span class="doccomment">/// Gets the current velocity.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the gesture is recognized, this function returns `true` and fills</span>
+    <span class="doccomment">/// If the gesture is recognized, this function returns [`true`] and fills</span>
     <span class="doccomment">/// in `velocity_x` and `velocity_y` with the recorded velocity, as per the</span>
     <span class="doccomment">/// last events processed.</span>
     <span class="doccomment">/// ## `velocity_x`</span>

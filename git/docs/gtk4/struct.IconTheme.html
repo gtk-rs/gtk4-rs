@@ -57,17 +57,17 @@ created for.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
 <p>a string array
 holding the names of all the icons in the theme. You must
-free the array using <code>g_strfreev</code>.</p>
+free the array using <code>g_strfreev()</code>.</p>
 </div><h4 id="method.resource_path" class="method"><code>pub fn <a href="#method.resource_path" class="fnname">resource_path</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</code><a href="#method.resource_path" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/icon_theme.rs.html#149-155" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the current resource path.</p>
 <p>See [method<code>Gtk.IconTheme</code>.set_resource_path].</p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
-<p>A list of resource paths or <code>None</code>.
-The returned value should be freed with <code>g_strfreev</code>.</p>
+<p>A list of resource paths or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>.
+The returned value should be freed with <code>g_strfreev()</code>.</p>
 </div><h4 id="method.search_path" class="method"><code>pub fn <a href="#method.search_path" class="fnname">search_path</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/std/path/struct.PathBuf.html" title="struct std::path::PathBuf">PathBuf</a>&gt;</code><a href="#method.search_path" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/icon_theme.rs.html#167-173" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the current search path.</p>
 <p>See [method<code>Gtk.IconTheme</code>.set_search_path].</p>
 <h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
-<p>a list of icon theme path directories or <code>None</code>.
-The returned value should be freed with <code>g_strfreev</code>.</p>
+<p>a list of icon theme path directories or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>.
+The returned value should be freed with <code>g_strfreev()</code>.</p>
 </div><h4 id="method.theme_name" class="method"><code>pub fn <a href="#method.theme_name" class="fnname">theme_name</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</code><a href="#method.theme_name" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/icon_theme.rs.html#179-181" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the current icon theme name.</p>
 <p>Returns (transfer full): the current icon theme name,</p>
 </div><h4 id="method.has_icon" class="method"><code>pub fn <a href="#method.has_icon" class="fnname">has_icon</a>(&amp;self, icon_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.has_icon" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/icon_theme.rs.html#193-200" title="goto source code">[src]</a></h4><div class="docblock"><p>Checks whether an icon theme includes an icon
@@ -75,7 +75,7 @@ for a particular name.</p>
 <h2 id="icon_name" class="section-header"><a href="#icon_name"><code>icon_name</code></a></h2>
 <p>the name of an icon</p>
 <h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>
-<p><code>true</code> if <code>self</code> includes an
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> includes an
 icon for <code>icon_name</code>.</p>
 </div><h4 id="method.lookup_by_gicon" class="method"><code>pub fn <a href="#method.lookup_by_gicon" class="fnname">lookup_by_gicon</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/gio/auto/icon/struct.Icon.html" title="struct gio::auto::icon::Icon">Icon</a>&gt;&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;icon: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P, <br>&nbsp;&nbsp;&nbsp;&nbsp;size: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;scale: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;direction: <a class="enum" href="enum.TextDirection.html" title="enum gtk4::TextDirection">TextDirection</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;flags: <a class="struct" href="struct.IconLookupFlags.html" title="struct gtk4::IconLookupFlags">IconLookupFlags</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.IconPaintable.html" title="struct gtk4::IconPaintable">IconPaintable</a>&gt;</code><a href="#method.lookup_by_gicon" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/icon_theme.rs.html#222-240" title="goto source code">[src]</a></h4><div class="docblock"><p>Looks up a icon for a desired size and window scale.</p>
 <p>The icon can then be rendered by using it as a <code>GdkPaintable</code>,
@@ -92,7 +92,7 @@ or you can get information such as the filename and size.</p>
 <p>flags modifying the behavior of the icon lookup</p>
 <h1 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h1>
 <p>a <code>GtkIconPaintable</code> containing
-information about the icon. Unref with <code>glib::object::ObjectExt::unref</code></p>
+information about the icon. Unref with <a href="crate::glib::object::ObjectExt::unref()"><code>glib::object::ObjectExt::unref()</code></a></p>
 </div><h4 id="method.lookup_icon" class="method"><code>pub fn <a href="#method.lookup_icon" class="fnname">lookup_icon</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;icon_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;fallbacks: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[</a>&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;size: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;scale: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;direction: <a class="enum" href="enum.TextDirection.html" title="enum gtk4::TextDirection">TextDirection</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;flags: <a class="struct" href="struct.IconLookupFlags.html" title="struct gtk4::IconLookupFlags">IconLookupFlags</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.IconPaintable.html" title="struct gtk4::IconPaintable">IconPaintable</a>&gt;</code><a href="#method.lookup_icon" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/icon_theme.rs.html#274-294" title="goto source code">[src]</a></h4><div class="docblock"><p>Looks up a named icon for a desired size and window scale,
 returning a <code>GtkIconPaintable</code>.</p>
 <p>The icon can then be rendered by using it as a <code>GdkPaintable</code>,
@@ -104,7 +104,7 @@ provided, they will be tried in order.</p>
 for missing icons you need to use [method<code>Gtk.IconTheme</code>.has_icon].</p>
 <p>Note that you probably want to listen for icon theme changes and
 update the icon. This is usually done by overriding the
-<code>WidgetClass</code>.css-<code>changed</code> function.</p>
+<code>WidgetClass</code>.css-<code>changed()</code> function.</p>
 <h2 id="icon_name-1" class="section-header"><a href="#icon_name-1"><code>icon_name</code></a></h2>
 <p>the name of the icon to lookup</p>
 <h2 id="size-1" class="section-header"><a href="#size-1"><code>size</code></a></h2>
@@ -140,7 +140,7 @@ overriding system configuration.</p>
 from [type_func<code>Gtk.IconTheme</code>.get_for_display].</p>
 <h2 id="theme_name" class="section-header"><a href="#theme_name"><code>theme_name</code></a></h2>
 <p>name of icon theme to use instead of
-configured theme, or <code>None</code> to unset a previously set custom theme</p>
+configured theme, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> to unset a previously set custom theme</p>
 </div><h4 id="method.set_display" class="method"><code>pub fn <a href="#method.set_display" class="fnname">set_display</a>(&amp;self, display: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../gdk4/auto/display/struct.Display.html" title="struct gdk4::auto::display::Display">Display</a>&gt;)</code><a href="#method.set_display" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/icon_theme.rs.html#337-345" title="goto source code">[src]</a></h4><h4 id="method.for_display" class="method"><code>pub fn <a href="#method.for_display" class="fnname">for_display</a>(display: &amp;<a class="struct" href="../gdk4/auto/display/struct.Display.html" title="struct gdk4::auto::display::Display">Display</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.IconTheme.html" title="struct gtk4::IconTheme">IconTheme</a>&gt;</code><a href="#method.for_display" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/icon_theme.rs.html#364-371" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the icon theme object associated with <code>display</code>.</p>
 <p>If this function has not previously been called for the given
 display, a new icon theme object will be created and associated

@@ -1206,7 +1206,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Image</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkImage</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1229,7 +1229,7 @@
     <span class="doccomment">/// Creates a new `GtkImage` displaying the file `filename`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the file isn’t found or can’t be loaded, the resulting `GtkImage`</span>
-    <span class="doccomment">/// will display a “broken image” icon. This function never returns `None`,</span>
+    <span class="doccomment">/// will display a “broken image” icon. This function never returns [`None`],</span>
     <span class="doccomment">/// it always returns a valid `GtkImage` widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you need to detect failures to load the file, use</span>
@@ -1284,7 +1284,7 @@
     <span class="doccomment">/// displayed instead. If the current icon theme is changed, the icon</span>
     <span class="doccomment">/// will be updated appropriately.</span>
     <span class="doccomment">/// ## `icon_name`</span>
-    <span class="doccomment">/// an icon name or `None`</span>
+    <span class="doccomment">/// an icon name or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1309,7 +1309,7 @@
     <span class="doccomment">/// The `GtkImage` will track changes to the `paintable` and update</span>
     <span class="doccomment">/// its size and contents in response to it.</span>
     <span class="doccomment">/// ## `paintable`</span>
-    <span class="doccomment">/// a `GdkPaintable`, or `None`</span>
+    <span class="doccomment">/// a `GdkPaintable`, or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1338,7 +1338,7 @@
     <span class="doccomment">/// The `GtkImage` created will not react to state changes. Should you</span>
     <span class="doccomment">/// want that, you should use [ctor`Gtk.Image`.new_from_icon_name].</span>
     <span class="doccomment">/// ## `pixbuf`</span>
-    <span class="doccomment">/// a `GdkPixbuf`, or `None`</span>
+    <span class="doccomment">/// a `GdkPixbuf`, or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1355,7 +1355,7 @@
     <span class="doccomment">/// Creates a new `GtkImage` displaying the resource file `resource_path`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the file isn’t found or can’t be loaded, the resulting `GtkImage` will</span>
-    <span class="doccomment">/// display a “broken image” icon. This function never returns `None`,</span>
+    <span class="doccomment">/// display a “broken image” icon. This function never returns [`None`],</span>
     <span class="doccomment">/// it always returns a valid `GtkImage` widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you need to detect failures to load the file, use</span>
@@ -1392,14 +1392,14 @@
 
     <span class="doccomment">/// Gets the `GIcon` being displayed by the `GtkImage`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The storage type of the image must be `ImageType::Empty` or</span>
-    <span class="doccomment">/// `ImageType::Gicon` (see [method`Gtk.Image`.get_storage_type]).</span>
+    <span class="doccomment">/// The storage type of the image must be [`ImageType::Empty`] or</span>
+    <span class="doccomment">/// [`ImageType::Gicon`] (see [method`Gtk.Image`.get_storage_type]).</span>
     <span class="doccomment">/// The caller of this function does not own a reference to the</span>
     <span class="doccomment">/// returned `GIcon`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GIcon`, or `None`</span>
+    <span class="doccomment">/// a `GIcon`, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_image_get_gicon&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gicon</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::Icon</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_image_get_gicon</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -1407,14 +1407,14 @@
 
     <span class="doccomment">/// Gets the icon name and size being displayed by the `GtkImage`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The storage type of the image must be `ImageType::Empty` or</span>
-    <span class="doccomment">/// `ImageType::IconName` (see [method`Gtk.Image`.get_storage_type]).</span>
+    <span class="doccomment">/// The storage type of the image must be [`ImageType::Empty`] or</span>
+    <span class="doccomment">/// [`ImageType::IconName`] (see [method`Gtk.Image`.get_storage_type]).</span>
     <span class="doccomment">/// The returned string is owned by the `GtkImage` and should not</span>
     <span class="doccomment">/// be freed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the icon name, or `None`</span>
+    <span class="doccomment">/// the icon name, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_image_get_icon_name&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">icon_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_image_get_icon_name</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -1432,15 +1432,15 @@
 
     <span class="doccomment">/// Gets the image `GdkPaintable` being displayed by the `GtkImage`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The storage type of the image must be `ImageType::Empty` or</span>
-    <span class="doccomment">/// `ImageType::Paintable` (see [method`Gtk.Image`.get_storage_type]).</span>
+    <span class="doccomment">/// The storage type of the image must be [`ImageType::Empty`] or</span>
+    <span class="doccomment">/// [`ImageType::Paintable`] (see [method`Gtk.Image`.get_storage_type]).</span>
     <span class="doccomment">/// The caller of this function does not own a reference to the</span>
     <span class="doccomment">/// returned paintable.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the displayed paintable,</span>
-    <span class="doccomment">///  or `None` if the image is empty</span>
+    <span class="doccomment">///  or [`None`] if the image is empty</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_image_get_paintable&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">paintable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Paintable</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_image_get_paintable</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -1460,7 +1460,7 @@
     <span class="doccomment">/// to store image data.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the `GtkImage` has no image data, the return value will</span>
-    <span class="doccomment">/// be `ImageType::Empty`.</span>
+    <span class="doccomment">/// be [`ImageType::Empty`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1474,7 +1474,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// See [ctor`Gtk.Image`.new_from_file] for details.</span>
     <span class="doccomment">/// ## `filename`</span>
-    <span class="doccomment">/// a filename or `None`</span>
+    <span class="doccomment">/// a filename or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_image_set_from_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_from_file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">std::path::Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">filename</span>: <span class="ident">P</span>) {
         <span class="kw">unsafe</span> {
@@ -1498,7 +1498,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// See [ctor`Gtk.Image`.new_from_icon_name] for details.</span>
     <span class="doccomment">/// ## `icon_name`</span>
-    <span class="doccomment">/// an icon name or `None`</span>
+    <span class="doccomment">/// an icon name or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_image_set_from_icon_name&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_from_icon_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">icon_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -1510,7 +1510,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// See [ctor`Gtk.Image`.new_from_paintable] for details.</span>
     <span class="doccomment">/// ## `paintable`</span>
-    <span class="doccomment">/// a `GdkPaintable` or `None`</span>
+    <span class="doccomment">/// a `GdkPaintable` or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_image_set_from_paintable&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_from_paintable</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Paintable</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">paintable</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -1541,7 +1541,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// See [ctor`Gtk.Image`.new_from_resource] for details.</span>
     <span class="doccomment">/// ## `resource_path`</span>
-    <span class="doccomment">/// a resource path or `None`</span>
+    <span class="doccomment">/// a resource path or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_image_set_from_resource&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_from_resource</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">resource_path</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {

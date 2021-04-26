@@ -36,7 +36,7 @@
 <span class="kw">use</span> <span class="ident">x11::xlib</span>;
 
 <span class="kw">impl</span> <span class="ident">X11Display</span> {
-    <span class="doccomment">/// Returns the X display of a `gdk::Display`.</span>
+    <span class="doccomment">/// Returns the X display of a [`gdk::Display`](crate::gdk::Display).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -46,7 +46,7 @@
         <span class="ident">ffi::gdk_x11_display_get_xdisplay</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)
     }
 
-    <span class="doccomment">/// Returns the X Screen used by `gdk::Display`.</span>
+    <span class="doccomment">/// Returns the X Screen used by [`gdk::Display`](crate::gdk::Display).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

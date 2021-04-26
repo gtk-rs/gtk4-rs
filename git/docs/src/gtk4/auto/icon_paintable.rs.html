@@ -192,7 +192,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a `GtkIconPaintable` containing</span>
-    <span class="doccomment">///  for the icon. Unref with `glib::object::ObjectExt::unref`</span>
+    <span class="doccomment">///  for the icon. Unref with [`glib::object::ObjectExt::unref()`](crate::glib::object::ObjectExt::unref())</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_paintable_new_for_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::File</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">file</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">size</span>: <span class="ident">i32</span>, <span class="ident">scale</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">IconPaintable</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -207,12 +207,12 @@
 
     <span class="doccomment">/// Gets the `GFile` that was used to load the icon.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns `None` if the icon was not loaded from a file.</span>
+    <span class="doccomment">/// Returns [`None`] if the icon was not loaded from a file.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the `gio::File` for the icon, or `None`.</span>
-    <span class="doccomment">///  Free with `glib::object::ObjectExt::unref`.</span>
+    <span class="doccomment">/// the [`gio::File`](crate::gio::File) for the icon, or [`None`].</span>
+    <span class="doccomment">///  Free with [`glib::object::ObjectExt::unref()`](crate::glib::object::ObjectExt::unref()).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_paintable_get_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">file</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::File</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_icon_paintable_get_file</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -222,16 +222,16 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// When an icon looked up in the icon theme was not available, the</span>
     <span class="doccomment">/// icon theme may use fallback icons - either those specified to</span>
-    <span class="doccomment">/// `IconTheme::lookup_icon` or the always-available</span>
+    <span class="doccomment">/// [`IconTheme::lookup_icon()`](crate::IconTheme::lookup_icon()) or the always-available</span>
     <span class="doccomment">/// &quot;image-missing&quot;. The icon chosen is returned by this function.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the icon was created without an icon theme, this function</span>
-    <span class="doccomment">/// returns `None`.</span>
+    <span class="doccomment">/// returns [`None`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the themed icon-name for the</span>
-    <span class="doccomment">///  icon, or `None` if its not a themed icon.</span>
+    <span class="doccomment">///  icon, or [`None`] if its not a themed icon.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_paintable_get_icon_name&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">icon_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">std::path::PathBuf</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_icon_paintable_get_icon_name</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -247,7 +247,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the icon is symbolic, `false` otherwise</span>
+    <span class="doccomment">/// [`true`] if the icon is symbolic, [`false`] otherwise</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_paintable_is_symbolic&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_symbolic</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_icon_paintable_is_symbolic</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }

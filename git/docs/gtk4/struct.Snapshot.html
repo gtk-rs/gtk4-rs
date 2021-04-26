@@ -6,9 +6,9 @@
 of render nodes and their associated transformations.</p>
 <p>The node at the top of the stack is the the one that gtk_snapshot_append_…
 functions operate on. Use the gtk_snapshot_push_… functions and
-<code>Snapshot::pop</code> to change the current node.</p>
+<a href="struct.Snapshot.html#method.pop"><code>pop()</code></a> to change the current node.</p>
 <p>The typical way to obtain a <code>GtkSnapshot</code> object is as an argument to
-the <code>WidgetClass</code>.<code>snapshot</code> vfunc. If you need to create your own
+the <a href="crate::%60WidgetClass%60.snapshot()">``WidgetClass<code>.snapshot()</code></a> vfunc. If you need to create your own
 <code>GtkSnapshot</code>, use [ctor<code>Gtk.Snapshot</code>.new].</p>
 <h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
 <p>[<code>trait@gdk::SnapshotExt</code>], <a href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.ObjectExt.html" title="glib::object::ObjectExt"><code>glib::object::ObjectExt</code></a></p>
@@ -72,7 +72,7 @@ and frees <code>self</code>.</p>
 constructed by <code>self</code> and frees <code>self</code>.</p>
 <h2 id="size" class="section-header"><a href="#size"><code>size</code></a></h2>
 <p>The size of the resulting paintable
-or <code>None</code> to use the bounds of the snapshot</p>
+or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> to use the bounds of the snapshot</p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
 <p>a newly-created <code>GdkPaintable</code></p>
 </div><h4 id="method.gl_shader_pop_texture" class="method"><code>pub fn <a href="#method.gl_shader_pop_texture" class="fnname">gl_shader_pop_texture</a>(&amp;self)</code><a href="#method.gl_shader_pop_texture" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/snapshot.rs.html#224-228" title="goto source code">[src]</a></h4><div class="docblock"><p>Removes the top element from the stack of render nodes and
@@ -160,7 +160,7 @@ re-rendered.</p>
 <h2 id="bounds-5" class="section-header"><a href="#bounds-5"><code>bounds</code></a></h2>
 <p>the bounds within which to repeat</p>
 <h2 id="child_bounds" class="section-header"><a href="#child_bounds"><code>child_bounds</code></a></h2>
-<p>the bounds of the child or <code>None</code>
+<p>the bounds of the child or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>
 to use the full size of the collected child node</p>
 </div><h4 id="method.push_rounded_clip" class="method"><code>pub fn <a href="#method.push_rounded_clip" class="fnname">push_rounded_clip</a>(&amp;self, bounds: &amp;<a class="struct" href="../gsk4/rounded_rect/struct.RoundedRect.html" title="struct gsk4::rounded_rect::RoundedRect">RoundedRect</a>)</code><a href="#method.push_rounded_clip" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/snapshot.rs.html#428-432" title="goto source code">[src]</a></h4><div class="docblock"><p>Clips an image to a rounded rectangle.</p>
 <p>The image is recorded until the next call to [method<code>Gtk.Snapshot</code>.pop].</p>
@@ -221,9 +221,9 @@ the current node.</p>
 <h2 id="layout" class="section-header"><a href="#layout"><code>layout</code></a></h2>
 <p>the <code>PangoLayout</code> of the text</p>
 <h2 id="index" class="section-header"><a href="#index"><code>index</code></a></h2>
-<p>the index in the <code>pango::Layout</code></p>
+<p>the index in the <a href="https://gtk-rs.org/gtk-rs/git/docs/pango/auto/layout/struct.Layout.html"><code>pango::Layout</code></a></p>
 <h2 id="direction" class="section-header"><a href="#direction"><code>direction</code></a></h2>
-<p>the <code>pango::Direction</code> of the text</p>
+<p>the <a href="https://gtk-rs.org/gtk-rs/git/docs/pango/auto/enums/enum.Direction.html"><code>pango::Direction</code></a> of the text</p>
 </div><h4 id="method.render_layout" class="method"><code>pub fn <a href="#method.render_layout" class="fnname">render_layout</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.StyleContext.html" title="struct gtk4::StyleContext">StyleContext</a>&gt;&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;context: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P, <br>&nbsp;&nbsp;&nbsp;&nbsp;x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;layout: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/pango/auto/layout/struct.Layout.html" title="struct pango::auto::layout::Layout">Layout</a><br>)</code><a href="#method.render_layout" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/snapshot.rs.html#602-618" title="goto source code">[src]</a></h4><div class="docblock"><p>Creates a render node for rendering <code>layout</code> according to the style
 information in <code>context</code>, and appends it to the current node of <code>self</code>,
 without changing the current node.</p>
@@ -234,9 +234,9 @@ without changing the current node.</p>
 <h2 id="y-4" class="section-header"><a href="#y-4"><code>y</code></a></h2>
 <p>Y origin of the rectangle</p>
 <h2 id="layout-1" class="section-header"><a href="#layout-1"><code>layout</code></a></h2>
-<p>the <code>pango::Layout</code> to render</p>
+<p>the <a href="https://gtk-rs.org/gtk-rs/git/docs/pango/auto/layout/struct.Layout.html"><code>pango::Layout</code></a> to render</p>
 </div><h4 id="method.restore" class="method"><code>pub fn <a href="#method.restore" class="fnname">restore</a>(&amp;self)</code><a href="#method.restore" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/snapshot.rs.html#624-628" title="goto source code">[src]</a></h4><div class="docblock"><p>Restores <code>self</code> to the state saved by a preceding call to
-<code>Snapshot::save</code> and removes that state from the stack of
+<a href="struct.Snapshot.html#method.save"><code>save()</code></a> and removes that state from the stack of
 saved states.</p>
 </div><h4 id="method.rotate" class="method"><code>pub fn <a href="#method.rotate" class="fnname">rotate</a>(&amp;self, angle: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>)</code><a href="#method.rotate" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/snapshot.rs.html#637-641" title="goto source code">[src]</a></h4><div class="docblock"><p>Rotates @<code>self</code>’s coordinate system by <code>angle</code> degrees in 2D space -
 or in 3D speak, rotates around the Z axis.</p>
@@ -253,11 +253,11 @@ or in 3D speak, rotates around the Z axis.</p>
 on an internal stack.</p>
 <p>When [method<code>Gtk.Snapshot</code>.restore] is called, <code>self</code> will
 be restored to the saved state. Multiple calls to
-<code>Snapshot::save</code> and <code>Snapshot::restore</code> can be nested;
-each call to <code>Snapshot::restore</code> restores the state from
-the matching paired <code>Snapshot::save</code>.</p>
+<a href="struct.Snapshot.html#method.save"><code>save()</code></a> and <a href="struct.Snapshot.html#method.restore"><code>restore()</code></a> can be nested;
+each call to <a href="struct.Snapshot.html#method.restore"><code>restore()</code></a> restores the state from
+the matching paired <a href="struct.Snapshot.html#method.save"><code>save()</code></a>.</p>
 <p>It is necessary to clear all saved states with corresponding
-calls to <code>Snapshot::restore</code>.</p>
+calls to <a href="struct.Snapshot.html#method.restore"><code>restore()</code></a>.</p>
 </div><h4 id="method.scale" class="method"><code>pub fn <a href="#method.scale" class="fnname">scale</a>(&amp;self, factor_x: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>, factor_y: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f32.html">f32</a>)</code><a href="#method.scale" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/snapshot.rs.html#684-688" title="goto source code">[src]</a></h4><div class="docblock"><p>Scales <code>self</code>’s coordinate system in 2-dimensional space by
 the given factors.</p>
 <p>Use [method<code>Gtk.Snapshot</code>.scale_3d] to scale in all 3 dimensions.</p>
@@ -276,19 +276,19 @@ the given factors.</p>
 by <code>self</code>.</p>
 <p>After calling this function, it is no longer possible to
 add more nodes to <code>self</code>. The only function that should
-be called after this is <code>glib::object::ObjectExt::unref</code>.</p>
+be called after this is <a href="crate::glib::object::ObjectExt::unref()"><code>glib::object::ObjectExt::unref()</code></a>.</p>
 <h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
 <p>the constructed <code>GskRenderNode</code></p>
 </div><h4 id="method.to_paintable" class="method"><code>pub fn <a href="#method.to_paintable" class="fnname">to_paintable</a>(&amp;self, size: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/graphene/auto/size/struct.Size.html" title="struct graphene::auto::size::Size">Size</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../gdk4/auto/paintable/struct.Paintable.html" title="struct gdk4::auto::paintable::Paintable">Paintable</a>&gt;</code><a href="#method.to_paintable" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/snapshot.rs.html#733-740" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns a paintable encapsulating the render node
 that was constructed by <code>self</code>.</p>
 <p>After calling this function, it is no longer possible to
 add more nodes to <code>self</code>. The only function that should
-be called after this is <code>glib::object::ObjectExt::unref</code>.</p>
+be called after this is <a href="crate::glib::object::ObjectExt::unref()"><code>glib::object::ObjectExt::unref()</code></a>.</p>
 <h2 id="size-1" class="section-header"><a href="#size-1"><code>size</code></a></h2>
 <p>The size of the resulting paintable
-or <code>None</code> to use the bounds of the snapshot</p>
+or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> to use the bounds of the snapshot</p>
 <h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>
-<p>a new <code>gdk::Paintable</code></p>
+<p>a new <a href="../gdk4/auto/paintable/struct.Paintable.html"><code>gdk::Paintable</code></a></p>
 </div><h4 id="method.transform" class="method"><code>pub fn <a href="#method.transform" class="fnname">transform</a>(&amp;self, transform: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../gsk4/auto/transform/struct.Transform.html" title="struct gsk4::auto::transform::Transform">Transform</a>&gt;)</code><a href="#method.transform" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/snapshot.rs.html#746-750" title="goto source code">[src]</a></h4><div class="docblock"><p>Transforms <code>self</code>’s coordinate system with the given <code>transform</code>.</p>
 <h2 id="transform" class="section-header"><a href="#transform"><code>transform</code></a></h2>
 <p>the transform to apply</p>
@@ -395,7 +395,7 @@ without changing the current node.</p>
 <p>If <code>self</code> does not have a current node yet, <code>node</code>
 will become the initial node.</p>
 <h2 id="node" class="section-header"><a href="#node"><code>node</code></a></h2>
-<p>a <code>gsk::RenderNode</code></p>
+<p>a <a href="../gsk4/render_node/struct.RenderNode.html"><code>gsk::RenderNode</code></a></p>
 </div></div></details><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor"></a></h2><div id="trait-implementations-list"><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl-Clone" class="impl"><code class="in-band">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="struct.Snapshot.html" title="struct gtk4::Snapshot">Snapshot</a></code><a href="#impl-Clone" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/snapshot.rs.html#10-32" title="goto source code">[src]</a></h3></summary><div class="impl-items"><h4 id="method.clone" class="method hidden trait-impl"><code>fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone" class="fnname">clone</a>(&amp;self) -&gt; <a class="struct" href="struct.Snapshot.html" title="struct gtk4::Snapshot">Snapshot</a></code><a href="#method.clone" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/snapshot.rs.html#10-32" title="goto source code">[src]</a></h4><div class='docblock hidden'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
 </div><h4 id="method.clone_from" class="method hidden trait-impl"><code>pub fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from" class="fnname">clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</code><span class="since" title="Stable since Rust version 1.0.0">1.0.0</span><a href="#method.clone_from" class="anchor"></a><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#130" title="goto source code">[src]</a></h4><div class='docblock hidden'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
 </div></div></details><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl-Debug" class="impl"><code class="in-band">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="struct.Snapshot.html" title="struct gtk4::Snapshot">Snapshot</a></code><a href="#impl-Debug" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/snapshot.rs.html#10-32" title="goto source code">[src]</a></h3></summary><div class="impl-items"><h4 id="method.fmt" class="method hidden trait-impl"><code>fn <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt" class="fnname">fmt</a>(&amp;self, f: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>&lt;'_&gt;) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code><a href="#method.fmt" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/snapshot.rs.html#10-32" title="goto source code">[src]</a></h4><div class='docblock hidden'><p>Formats the value using the given formatter. <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt">Read more</a></p>

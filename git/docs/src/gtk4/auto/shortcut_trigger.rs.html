@@ -206,7 +206,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`ShortcutTriggerExt`](trait@crate::ShortcutTriggerExt), [`trait@glib::object::ObjectExt`], [`ShortcutTriggerExtManual`](trait@crate::ShortcutTriggerExtManual)</span>
+    <span class="doccomment">/// [`ShortcutTriggerExt`](trait@crate::prelude::ShortcutTriggerExt), [`trait@glib::object::ObjectExt`], [`ShortcutTriggerExtManual`](trait@crate::prelude::ShortcutTriggerExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ShortcutTrigger</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkShortcutTrigger</span>, <span class="ident">ffi::GtkShortcutTriggerClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -218,12 +218,12 @@
     <span class="doccomment">/// Tries to parse the given string into a trigger.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// On success, the parsed trigger is returned.</span>
-    <span class="doccomment">/// When parsing failed, `None` is returned.</span>
+    <span class="doccomment">/// When parsing failed, [`None`] is returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The accepted strings are:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///  - `never`, for `GtkNeverTrigger`</span>
-    <span class="doccomment">///  - a string parsed by `gtk_accelerator_parse`, for a `GtkKeyvalTrigger`, e.g. `&lt;Control&gt;C`</span>
+    <span class="doccomment">///  - a string parsed by `gtk_accelerator_parse()`, for a `GtkKeyvalTrigger`, e.g. `&lt;Control&gt;C`</span>
     <span class="doccomment">///  - underscore, followed by a single character, for `GtkMnemonicTrigger`, e.g. `_l`</span>
     <span class="doccomment">///  - two valid trigger strings, separated by a `|` character, for a</span>
     <span class="doccomment">///  `GtkAlternativeTrigger`: `&lt;Control&gt;q|&lt;Control&gt;w`</span>
@@ -237,7 +237,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a new `GtkShortcutTrigger`</span>
-    <span class="doccomment">///  or `None` on error</span>
+    <span class="doccomment">///  or [`None`] on error</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_shortcut_trigger_parse_string&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse_string</span>(<span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ShortcutTrigger</span><span class="op">&gt;</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -292,7 +292,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if something was printed or `false` if the</span>
+    <span class="doccomment">/// [`true`] if something was printed or [`false`] if the</span>
     <span class="doccomment">///  trigger did not have a textual representation suitable</span>
     <span class="doccomment">///  for end users.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_shortcut_trigger_print_label&quot;</span>)]</span>

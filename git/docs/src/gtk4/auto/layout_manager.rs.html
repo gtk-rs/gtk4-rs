@@ -289,7 +289,7 @@
     <span class="doccomment">/// Each `GtkLayoutChild` instance storing the layout properties for a</span>
     <span class="doccomment">/// specific child is created through the [method`Gtk.LayoutManager`.get_layout_child]</span>
     <span class="doccomment">/// method; a `GtkLayoutManager` controls the creation of its `GtkLayoutChild`</span>
-    <span class="doccomment">/// instances by overriding the `LayoutManagerClass`.`create_layout_child`</span>
+    <span class="doccomment">/// instances by overriding the [``LayoutManagerClass`.create_layout_child()`](crate::`LayoutManagerClass`.create_layout_child())</span>
     <span class="doccomment">/// virtual function. The typical implementation should look like:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```c</span>
@@ -322,7 +322,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`LayoutManagerExt`](trait@crate::LayoutManagerExt), [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`LayoutManagerExt`](trait@crate::prelude::LayoutManagerExt), [`trait@glib::object::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LayoutManager</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkLayoutManager</span>, <span class="ident">ffi::GtkLayoutManagerClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -403,8 +403,8 @@
     <span class="doccomment">/// the orientation to measure</span>
     <span class="doccomment">/// ## `for_size`</span>
     <span class="doccomment">/// Size for the opposite of `orientation`; for instance, if</span>
-    <span class="doccomment">///  the `orientation` is `Orientation::Horizontal`, this is the height</span>
-    <span class="doccomment">///  of the widget; if the `orientation` is `Orientation::Vertical`, this</span>
+    <span class="doccomment">///  the `orientation` is [`Orientation::Horizontal`], this is the height</span>
+    <span class="doccomment">///  of the widget; if the `orientation` is [`Orientation::Vertical`], this</span>
     <span class="doccomment">///  is the width of the widget. This allows to measure the height for the</span>
     <span class="doccomment">///  given width, and the width for the given height. Use -1 if the size</span>
     <span class="doccomment">///  is not known</span>

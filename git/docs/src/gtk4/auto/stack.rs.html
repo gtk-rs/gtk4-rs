@@ -1108,12 +1108,12 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkStack` uses the `AccessibleRole::TabPanel` for the stack</span>
+    <span class="doccomment">/// `GtkStack` uses the [`AccessibleRole::TabPanel`] for the stack</span>
     <span class="doccomment">/// pages, which are the accessible parent objects of the child widgets.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Stack</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkStack</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1156,7 +1156,7 @@
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the widget to add</span>
     <span class="doccomment">/// ## `name`</span>
-    <span class="doccomment">/// the name for `child` or `None`</span>
+    <span class="doccomment">/// the name for `child` or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1206,7 +1206,7 @@
 
     <span class="doccomment">/// Finds the child with the name given as the argument.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns `None` if there is no child with this name.</span>
+    <span class="doccomment">/// Returns [`None`] if there is no child with this name.</span>
     <span class="doccomment">/// ## `name`</span>
     <span class="doccomment">/// the name of the child to find</span>
     <span class="doccomment">///</span>
@@ -1234,12 +1234,12 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_stack_get_hhomogeneous</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns whether the `Stack` is set up to interpolate between</span>
+    <span class="doccomment">/// Returns whether the [`Stack`](crate::Stack) is set up to interpolate between</span>
     <span class="doccomment">/// the sizes of children on page switch.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if child sizes are interpolated</span>
+    <span class="doccomment">/// [`true`] if child sizes are interpolated</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_stack_get_interpolate_size&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">interpolates_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_stack_get_interpolate_size</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -1292,7 +1292,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the transition is currently running, `false` otherwise.</span>
+    <span class="doccomment">/// [`true`] if the transition is currently running, [`false`] otherwise.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_stack_get_transition_running&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_transition_running</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_stack_get_transition_running</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -1321,7 +1321,7 @@
 
     <span class="doccomment">/// Gets the currently visible child of `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns `None` if there are no visible children.</span>
+    <span class="doccomment">/// Returns [`None`] if there are no visible children.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1333,7 +1333,7 @@
 
     <span class="doccomment">/// Returns the name of the currently visible child of `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns `None` if there is no visible child.</span>
+    <span class="doccomment">/// Returns [`None`] if there is no visible child.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1360,7 +1360,7 @@
     <span class="doccomment">/// width for all its children. If it isn&#39;t, the stack</span>
     <span class="doccomment">/// may change width when a different child becomes visible.</span>
     <span class="doccomment">/// ## `hhomogeneous`</span>
-    <span class="doccomment">/// `true` to make `self` horizontally homogeneous</span>
+    <span class="doccomment">/// [`true`] to make `self` horizontally homogeneous</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_stack_set_hhomogeneous&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_hhomogeneous</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">hhomogeneous</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -1372,7 +1372,7 @@
     <span class="doccomment">/// changing the visible child.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the [property`Gtk.Stack`:interpolate-size] property is set</span>
-    <span class="doccomment">/// to `true`, `self` will interpolate its size between the current</span>
+    <span class="doccomment">/// to [`true`], `self` will interpolate its size between the current</span>
     <span class="doccomment">/// one and the one it&#39;ll take after changing the visible child,</span>
     <span class="doccomment">/// according to the set transition duration.</span>
     <span class="doccomment">/// ## `interpolate_size`</span>
@@ -1412,13 +1412,13 @@
         }
     }
 
-    <span class="doccomment">/// Sets the `Stack` to be vertically homogeneous or not.</span>
+    <span class="doccomment">/// Sets the [`Stack`](crate::Stack) to be vertically homogeneous or not.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If it is homogeneous, the `GtkStack` will request the same</span>
     <span class="doccomment">/// height for all its children. If it isn&#39;t, the stack</span>
     <span class="doccomment">/// may change height when a different child becomes visible.</span>
     <span class="doccomment">/// ## `vhomogeneous`</span>
-    <span class="doccomment">/// `true` to make `self` vertically homogeneous</span>
+    <span class="doccomment">/// [`true`] to make `self` vertically homogeneous</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_stack_set_vhomogeneous&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_vhomogeneous</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">vhomogeneous</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {

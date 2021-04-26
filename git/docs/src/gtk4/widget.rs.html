@@ -135,19 +135,15 @@
 <span id="132">132</span>
 <span id="133">133</span>
 <span id="134">134</span>
-<span id="135">135</span>
-<span id="136">136</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::prelude::WidgetExt</span>;
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::subclass::prelude::WidgetImpl</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::subclass::prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Widget</span>;
 
 <span class="kw">use</span> <span class="ident">glib::object</span>::{<span class="ident">Cast</span>, <span class="ident">IsA</span>, <span class="ident">WeakRef</span>};
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">glib::ObjectExt</span>;
-
 <span class="kw">use</span> <span class="ident">glib::Continue</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">WidgetExtManual</span>: <span class="lifetime">&#39;static</span> {
@@ -161,7 +157,7 @@
     <span class="doccomment">/// frame or every few frames. The tick callback does not automatically</span>
     <span class="doccomment">/// imply a relayout or repaint. If you want a repaint or relayout, and</span>
     <span class="doccomment">/// aren’t changing widget properties that would trigger that (for example,</span>
-    <span class="doccomment">/// changing the text of a `Label`), then you will have to call</span>
+    <span class="doccomment">/// changing the text of a [`Label`](crate::Label)), then you will have to call</span>
     <span class="doccomment">/// [method`Gtk.Widget`.queue_resize] or [method`Gtk.Widget`.queue_draw]</span>
     <span class="doccomment">/// yourself.</span>
     <span class="doccomment">///</span>

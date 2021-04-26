@@ -1014,7 +1014,7 @@
     <span class="doccomment">/// `GtkMessageDialog` from `GtkDialog` without too much effort, but</span>
     <span class="doccomment">/// `GtkMessageDialog` saves typing.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The easiest way to do a modal message dialog is to use the `DialogFlags::Modal`</span>
+    <span class="doccomment">/// The easiest way to do a modal message dialog is to use the [`DialogFlags::Modal`]</span>
     <span class="doccomment">/// flag, which will call [method`Gtk.Window`.set_modal] internally. The dialog will</span>
     <span class="doccomment">/// prevent interaction with the parent window until it&#39;s hidden or destroyed.</span>
     <span class="doccomment">/// You can use the [signal`Gtk.Dialog`::response] signal to know when the user</span>
@@ -1039,7 +1039,7 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You might do a non-modal `GtkMessageDialog` simply by omitting the</span>
-    <span class="doccomment">/// `DialogFlags::Modal` flag:</span>
+    <span class="doccomment">/// [`DialogFlags::Modal`] flag:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```c</span>
     <span class="doccomment">/// GtkDialogFlags flags = GTK_DIALOG_DESTROY_WITH_PARENT;</span>
@@ -1065,7 +1065,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`DialogExt`](trait@crate::DialogExt), [`GtkWindowExt`](trait@crate::GtkWindowExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`NativeExt`](trait@crate::NativeExt), [`RootExt`](trait@crate::RootExt), [`ShortcutManagerExt`](trait@crate::ShortcutManagerExt), [`DialogExtManual`](trait@crate::DialogExtManual), [`GtkWindowExtManual`](trait@crate::GtkWindowExtManual), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`DialogExt`](trait@crate::prelude::DialogExt), [`GtkWindowExt`](trait@crate::prelude::GtkWindowExt), [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`NativeExt`](trait@crate::prelude::NativeExt), [`RootExt`](trait@crate::prelude::RootExt), [`ShortcutManagerExt`](trait@crate::prelude::ShortcutManagerExt), [`DialogExtManual`](trait@crate::prelude::DialogExtManual), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MessageDialog</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkMessageDialog</span>, <span class="ident">ffi::GtkMessageDialogClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Dialog</span>, <span class="ident">Window</span>, <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Native</span>, <span class="ident">Root</span>, <span class="ident">ShortcutManager</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {

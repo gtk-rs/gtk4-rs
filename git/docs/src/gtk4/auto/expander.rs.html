@@ -1013,11 +1013,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkExpander` uses the `AccessibleRole::Button` role.</span>
+    <span class="doccomment">/// `GtkExpander` uses the [`AccessibleRole::Button`] role.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Expander</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkExpander</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1075,9 +1075,9 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_expander_get_child</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Queries a `Expander` and returns its current state.</span>
+    <span class="doccomment">/// Queries a [`Expander`](crate::Expander) and returns its current state.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns `true` if the child widget is revealed.</span>
+    <span class="doccomment">/// Returns [`true`] if the child widget is revealed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1091,8 +1091,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is including any embedded underlines indicating mnemonics and</span>
     <span class="doccomment">/// Pango markup, as set by [method`Gtk.Expander`.set_label]. If the label</span>
-    <span class="doccomment">/// text has not been set the return value will be `None`. This will be the</span>
-    <span class="doccomment">/// case if you create an empty button with `Button::new` to use as a</span>
+    <span class="doccomment">/// text has not been set the return value will be [`None`]. This will be the</span>
+    <span class="doccomment">/// case if you create an empty button with [`Button::new()`](crate::Button::new()) to use as a</span>
     <span class="doccomment">/// container.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -1109,7 +1109,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the label widget,</span>
-    <span class="doccomment">///  or `None` if there is none</span>
+    <span class="doccomment">///  or [`None`] if there is none</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_expander_get_label_widget&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">label_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_expander_get_label_widget</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -1130,7 +1130,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the label’s text will be parsed for markup</span>
+    <span class="doccomment">/// [`true`] if the label’s text will be parsed for markup</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_expander_get_use_markup&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uses_markup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_expander_get_use_markup</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -1140,7 +1140,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if an embedded underline in the expander</span>
+    <span class="doccomment">/// [`true`] if an embedded underline in the expander</span>
     <span class="doccomment">///  label indicates the mnemonic accelerator keys</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_expander_get_use_underline&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uses_underline</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
@@ -1162,8 +1162,8 @@
 
     <span class="doccomment">/// Sets the state of the expander.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Set to `true`, if you want the child widget to be revealed,</span>
-    <span class="doccomment">/// and `false` if you want the child widget to be hidden.</span>
+    <span class="doccomment">/// Set to [`true`], if you want the child widget to be revealed,</span>
+    <span class="doccomment">/// and [`false`] if you want the child widget to be hidden.</span>
     <span class="doccomment">/// ## `expanded`</span>
     <span class="doccomment">/// whether the child widget is revealed</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_expander_set_expanded&quot;</span>)]</span>
@@ -1214,7 +1214,7 @@
 
     <span class="doccomment">/// Sets whether the text of the label contains Pango markup.</span>
     <span class="doccomment">/// ## `use_markup`</span>
-    <span class="doccomment">/// `true` if the label’s text should be parsed for markup</span>
+    <span class="doccomment">/// [`true`] if the label’s text should be parsed for markup</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_expander_set_use_markup&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_use_markup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">use_markup</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -1224,7 +1224,7 @@
 
     <span class="doccomment">/// If true, an underline in the text indicates a mnemonic.</span>
     <span class="doccomment">/// ## `use_underline`</span>
-    <span class="doccomment">/// `true` if underlines in the text indicate mnemonics</span>
+    <span class="doccomment">/// [`true`] if underlines in the text indicate mnemonics</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_expander_set_use_underline&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_use_underline</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">use_underline</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {

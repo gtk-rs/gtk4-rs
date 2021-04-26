@@ -1268,7 +1268,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`PopoverExt`](trait@crate::PopoverExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`NativeExt`](trait@crate::NativeExt), [`ShortcutManagerExt`](trait@crate::ShortcutManagerExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`PopoverExt`](trait@crate::prelude::PopoverExt), [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`NativeExt`](trait@crate::prelude::NativeExt), [`ShortcutManagerExt`](trait@crate::prelude::ShortcutManagerExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Popover</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkPopover</span>, <span class="ident">ffi::GtkPopoverClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Native</span>, <span class="ident">ShortcutManager</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1668,7 +1668,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if `self` is modal</span>
+    <span class="doccomment">/// [`true`] if `self` is modal</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_get_autohide&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_autohide</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -1676,7 +1676,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if `self` will close after a modal child.</span>
+    <span class="doccomment">/// [`true`] if `self` will close after a modal child.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_get_cascade_popdown&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_cascade_popdown</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -1701,12 +1701,12 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if mnemonics are supposed to be visible</span>
+    <span class="doccomment">/// [`true`] if mnemonics are supposed to be visible</span>
     <span class="doccomment">///  in this popover</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_get_mnemonics_visible&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_mnemonics_visible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Gets the offset previous set with `PopoverExt::set_offset`.</span>
+    <span class="doccomment">/// Gets the offset previous set with [`set_offset()`](Self::set_offset()).</span>
     <span class="doccomment">/// ## `x_offset`</span>
     <span class="doccomment">/// a location for the x_offset</span>
     <span class="doccomment">/// ## `y_offset`</span>
@@ -1717,15 +1717,15 @@
     <span class="doccomment">/// Gets the rectangle that the popover points to.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If a rectangle to point to has been set, this function will</span>
-    <span class="doccomment">/// return `true` and fill in `rect` with such rectangle, otherwise</span>
-    <span class="doccomment">/// it will return `false` and fill in `rect` with the parent</span>
+    <span class="doccomment">/// return [`true`] and fill in `rect` with such rectangle, otherwise</span>
+    <span class="doccomment">/// it will return [`false`] and fill in `rect` with the parent</span>
     <span class="doccomment">/// widget coordinates.</span>
     <span class="doccomment">/// ## `rect`</span>
     <span class="doccomment">/// location to store the rectangle</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if a rectangle to point to was set.</span>
+    <span class="doccomment">/// [`true`] if a rectangle to point to was set.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_get_pointing_to&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">pointing_to</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Rectangle</span><span class="op">&gt;</span>;
 
@@ -1748,7 +1748,7 @@
 
     <span class="doccomment">/// Pops `self` up.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is different from a [method`Gtk.Widget`.`show` call</span>
+    <span class="doccomment">/// This is different from a [method`Gtk`.[`Widget.show()`](crate::Widget.show()) call</span>
     <span class="doccomment">/// in that it may show the popover with a transition. If</span>
     <span class="doccomment">/// you want to show the popover without a transition, just</span>
     <span class="doccomment">/// use [method`Gtk.Widget`.show].</span>
@@ -1769,16 +1769,16 @@
     <span class="doccomment">/// autohide value different from the current one, will cause the</span>
     <span class="doccomment">/// popup to be hidden.</span>
     <span class="doccomment">/// ## `autohide`</span>
-    <span class="doccomment">/// `true` to dismiss the popover on outside clicks</span>
+    <span class="doccomment">/// [`true`] to dismiss the popover on outside clicks</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_set_autohide&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_autohide</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">autohide</span>: <span class="ident">bool</span>);
 
-    <span class="doccomment">/// If `cascade_popdown` is `true`, the popover will be</span>
+    <span class="doccomment">/// If `cascade_popdown` is [`true`], the popover will be</span>
     <span class="doccomment">/// closed when a child modal popover is closed.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `false`, `self` will stay visible.</span>
+    <span class="doccomment">/// If [`false`], `self` will stay visible.</span>
     <span class="doccomment">/// ## `cascade_popdown`</span>
-    <span class="doccomment">/// `true` if the popover should follow a child closing</span>
+    <span class="doccomment">/// [`true`] if the popover should follow a child closing</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_set_cascade_popdown&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_cascade_popdown</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cascade_popdown</span>: <span class="ident">bool</span>);
 
@@ -1795,14 +1795,14 @@
     <span class="doccomment">/// unsets the default widget for a `GtkPopover`.</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// a child widget of `self` to set as</span>
-    <span class="doccomment">///  the default, or `None` to unset the default widget for the popover</span>
+    <span class="doccomment">///  the default, or [`None`] to unset the default widget for the popover</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_set_default_widget&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_default_widget</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>);
 
     <span class="doccomment">/// Sets whether this popover should draw an arrow</span>
     <span class="doccomment">/// pointing at the widget it is relative to.</span>
     <span class="doccomment">/// ## `has_arrow`</span>
-    <span class="doccomment">/// `true` to draw an arrow</span>
+    <span class="doccomment">/// [`true`] to draw an arrow</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_set_has_arrow&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_has_arrow</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">has_arrow</span>: <span class="ident">bool</span>);
 

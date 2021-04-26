@@ -28,7 +28,7 @@ widgets will either be part of a larger hierarchy constructed by the
 builder (in which case you should not have to worry about their lifecycle),
 or without a parent, in which case they have to be added to some container
 to make use of them. Non-widget objects need to be reffed with
-<code>glib::object::ObjectExt::ref</code> to keep them beyond the lifespan of the builder.</p>
+<a href="crate::glib::object::ObjectExt::ref()"><code>glib::object::ObjectExt::ref()</code></a> to keep them beyond the lifespan of the builder.</p>
 <h1 id="builder-ui-definitions" class="section-header"><a href="#builder-ui-definitions"><code>Builder</code> UI Definitions</a></h1>
 <p><code>GtkBuilder</code> parses textual descriptions of user interfaces which are
 specified in XML format. We refer to these descriptions as “<code>Builder</code>
@@ -73,14 +73,14 @@ may help the translators.</p>
 <p><code>GtkBuilder</code> can parse textual representations for the most common
 property types: characters, strings, integers, floating-point numbers,
 booleans (strings like “TRUE”, “t”, “yes”, “y”, “1” are interpreted
-as <code>true</code>, strings like “FALSE”, “f”, “no”, “n”, “0” are interpreted
-as <code>false</code>), enumerations (can be specified by their name, nick or
+as <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, strings like “FALSE”, “f”, “no”, “n”, “0” are interpreted
+as <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>), enumerations (can be specified by their name, nick or
 integer value), flags (can be specified by their name, nick, integer
 value, optionally combined with “|”, e.g.
 “GTK_INPUT_HINT_EMOJI|GTK_INPUT_HINT_LOWERCASE”)
 and colors (in a format understood by [method<code>Gdk.RGBA</code>.parse]).</p>
 <p><code>GVariant</code>s can be specified in the format understood by
-<code>g_variant_parse</code>, and pixbufs can be specified as a filename of an
+<code>g_variant_parse()</code>, and pixbufs can be specified as a filename of an
 image file to load.</p>
 <p>Objects can be referred to by their name and by default refer to
 objects declared in the local XML fragment and objects exposed via
@@ -94,12 +94,12 @@ property value using the attributes “bind-source” to specify the
 source object of the binding, and optionally, “bind-property” and
 “bind-flags” to specify the source property and source binding flags
 respectively. Internally, <code>GtkBuilder</code> implements this using <code>GBinding</code>
-objects. For more information see <code>glib::object::ObjectExt::bind_property</code>.</p>
+objects. For more information see <a href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.ObjectExt.html#tymethod.bind_property"><code>glib::object::ObjectExt::bind_property()</code></a>.</p>
 <p>Sometimes it is necessary to refer to widgets which have implicitly
 been constructed by GTK as part of a composite widget, to set
 properties on them or to add further children (e.g. the content area
 of a <code>GtkDialog</code>). This can be achieved by setting the “internal-child”
-property of the <code>&lt;child&gt;</code> element to a true value. Note that <code>Builder</code>
+property of the <code>&lt;child&gt;</code> element to a true value. Note that <a href="struct.Builder.html"><code>Builder</code></a>
 still requires an <code>&lt;object&gt;</code> element for the internal child, even if it
 has already been constructed.</p>
 <p>A number of widgets have different places where a child can be added
@@ -113,7 +113,7 @@ attribute specifies the name of the signal, and the “handler” attribute
 specifies the function to connect to the signal.
 The remaining attributes, “after”, “swapped” and “object”, have the
 same meaning as the corresponding parameters of the
-<code>g_signal_connect_object</code> or <code>g_signal_connect_data</code> functions. A
+<code>g_signal_connect_object()</code> or <code>g_signal_connect_data()</code> functions. A
 “last_modification_time” attribute is also allowed, but it does not
 have a meaning to the builder.</p>
 <p>If you rely on <code>GModule</code> support to lookup callbacks in the symbol table,
@@ -153,7 +153,7 @@ respective objects.</p>
 <p>A <code>&lt;template&gt;</code> tag can be used to define a widget class’s components.
 See the <a href="class.Widget.html%60building%60-composite-widgets-from-template-xml"><code>Widget</code> documentation</a> for details.</p>
 <h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
-<p><a href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.ObjectExt.html" title="glib::object::ObjectExt"><code>glib::object::ObjectExt</code></a>, <a href="trait@crate::BuilderExtManual"><code>BuilderExtManual</code></a></p>
+<p><a href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.ObjectExt.html" title="glib::object::ObjectExt"><code>glib::object::ObjectExt</code></a>, <a href="prelude/trait.BuilderExtManual.html"><code>BuilderExtManual</code></a></p>
 </div><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl" class="impl"><code class="in-band">impl <a class="struct" href="struct.Builder.html" title="struct gtk4::Builder">Builder</a></code><a href="#impl" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#211-786" title="goto source code">[src]</a></h3></summary><div class="impl-items"><h4 id="method.new" class="method"><code>pub fn <a href="#method.new" class="fnname">new</a>() -&gt; <a class="struct" href="struct.Builder.html" title="struct gtk4::Builder">Builder</a></code><a href="#method.new" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#223-226" title="goto source code">[src]</a></h4><div class="docblock"><p>Creates a new empty builder object.</p>
 <p>This function is only useful if you intend to make multiple calls
 to [method<code>Gtk.Builder</code>.add_from_file], [method<code>Gtk.Builder</code>.add_from_resource]
@@ -169,7 +169,7 @@ description, then the program will be aborted.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
 <p>a <code>GtkBuilder</code> containing the described interface</p>
 </div><h4 id="method.from_string" class="method"><code>pub fn <a href="#method.from_string" class="fnname">from_string</a>(string: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="struct" href="struct.Builder.html" title="struct gtk4::Builder">Builder</a></code><a href="#method.from_string" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#265-274" title="goto source code">[src]</a></h4><div class="docblock"><p>Parses the UI definition in <code>string</code>.</p>
-<p>If <code>string</code> is <code>None</code>-terminated, then <code>length</code> should be -1.
+<p>If <code>string</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>-terminated, then <code>length</code> should be -1.
 If <code>length</code> is not -1, then it is the length of <code>string</code>.</p>
 <p>If there is an error parsing <code>string</code> then the program will be
 aborted. You should not attempt to parse user interface description
@@ -191,29 +191,29 @@ want [ctor<code>Gtk.Builder</code>.new_from_resource] instead.</p>
 domain.</p>
 <p>It’s not really reasonable to attempt to handle failures of this
 call. The only reasonable thing to do when an error is detected is
-to call <code>g_error</code>.</p>
+to call <code>g_error()</code>.</p>
 <h2 id="resource_path-1" class="section-header"><a href="#resource_path-1"><code>resource_path</code></a></h2>
 <p>the path of the resource file to parse</p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
-<p><code>true</code> on success, <code>false</code> if an error occurred</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> on success, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> if an error occurred</p>
 </div><h4 id="method.add_from_string" class="method"><code>pub fn <a href="#method.add_from_string" class="fnname">add_from_string</a>(&amp;self, buffer: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</code><a href="#method.add_from_string" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#338-354" title="goto source code">[src]</a></h4><div class="docblock"><p>Parses a string containing a UI definition and merges it
 with the current contents of <code>self</code>.</p>
 <p>This function is useful if you need to call
 [method<code>Gtk.Builder</code>.set_current_object] to add user data to
 callbacks before loading <code>GtkBuilder</code> UI. Otherwise, you probably
 want [ctor<code>Gtk.Builder</code>.new_from_string] instead.</p>
-<p>Upon errors <code>false</code> will be returned and <code>error</code> will be assigned a
+<p>Upon errors <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> will be returned and <code>error</code> will be assigned a
 <code>GError</code> from the <code>GTK_BUILDER_ERROR</code>, <code>G_MARKUP_ERROR</code> or
 <code>G_VARIANT_PARSE_ERROR</code> domain.</p>
 <p>It’s not really reasonable to attempt to handle failures of this
 call. The only reasonable thing to do when an error is detected is
-to call <code>g_error</code>.</p>
+to call <code>g_error()</code>.</p>
 <h2 id="buffer" class="section-header"><a href="#buffer"><code>buffer</code></a></h2>
 <p>the string to parse</p>
 <h2 id="length-1" class="section-header"><a href="#length-1"><code>length</code></a></h2>
 <p>the length of <code>buffer</code> (may be -1 if <code>buffer</code> is nul-terminated)</p>
 <h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
-<p><code>true</code> on success, <code>false</code> if an error occurred</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> on success, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> if an error occurred</p>
 </div><h4 id="method.add_objects_from_resource" class="method"><code>pub fn <a href="#method.add_objects_from_resource" class="fnname">add_objects_from_resource</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;resource_path: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;object_ids: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[</a>&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</code><a href="#method.add_objects_from_resource" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#376-395" title="goto source code">[src]</a></h4><div class="docblock"><p>Parses a resource file containing a UI definition, building
 only the requested objects and merges them with the current
 contents of <code>self</code>.</p>
@@ -228,11 +228,11 @@ its child (for instance a <code>GtkTreeView</code> that depends on its
 <h2 id="object_ids" class="section-header"><a href="#object_ids"><code>object_ids</code></a></h2>
 <p>nul-terminated array of objects to build</p>
 <h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>
-<p><code>true</code> on success, <code>false</code> if an error occurred</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> on success, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> if an error occurred</p>
 </div><h4 id="method.add_objects_from_string" class="method"><code>pub fn <a href="#method.add_objects_from_string" class="fnname">add_objects_from_string</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;buffer: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;object_ids: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[</a>&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</code><a href="#method.add_objects_from_string" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#418-439" title="goto source code">[src]</a></h4><div class="docblock"><p>Parses a string containing a UI definition, building only the
 requested objects and merges them with the current contents of
 <code>self</code>.</p>
-<p>Upon errors <code>false</code> will be returned and <code>error</code> will be assigned a
+<p>Upon errors <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> will be returned and <code>error</code> will be assigned a
 <code>GError</code> from the <code>GTK_BUILDER_ERROR</code> or <code>G_MARKUP_ERROR</code> domain.</p>
 <p>If you are adding an object that depends on an object that is not
 its child (for instance a <code>GtkTreeView</code> that depends on its
@@ -244,11 +244,11 @@ its child (for instance a <code>GtkTreeView</code> that depends on its
 <h2 id="object_ids-1" class="section-header"><a href="#object_ids-1"><code>object_ids</code></a></h2>
 <p>nul-terminated array of objects to build</p>
 <h1 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h1>
-<p><code>true</code> on success, <code>false</code> if an error occurred</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> on success, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> if an error occurred</p>
 </div><h4 id="method.create_closure" class="method"><code>pub fn <a href="#method.create_closure" class="fnname">create_closure</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;function_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;flags: <a class="struct" href="struct.BuilderClosureFlags.html" title="struct gtk4::BuilderClosureFlags">BuilderClosureFlags</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;object: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P&gt;<br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/closure/struct.Closure.html" title="struct glib::closure::Closure">Closure</a>&gt;, <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</code><a href="#method.create_closure" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#459-480" title="goto source code">[src]</a></h4><div class="docblock"><p>Creates a closure to invoke the function called <code>function_name</code>.</p>
-<p>This is using the <code>create_closure</code> implementation of <code>self</code>’s
+<p>This is using the <code>create_closure()</code> implementation of <code>self</code>’s
 [class<code>Gtk.BuilderScope</code>].</p>
-<p>If no closure could be created, <code>None</code> will be returned and <code>error</code>
+<p>If no closure could be created, <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> will be returned and <code>error</code>
 will be set.</p>
 <h2 id="function_name" class="section-header"><a href="#function_name"><code>function_name</code></a></h2>
 <p>name of the function to look up</p>
@@ -278,7 +278,7 @@ templates, applications have no need to call this function.</p>
 <p>the length of <code>buffer</code> (may be -1 if <code>buffer</code> is nul-terminated)</p>
 <h1 id="returns-8" class="section-header"><a href="#returns-8">Returns</a></h1>
 <p>A positive value on success, 0 if an error occurred</p>
-</div><h4 id="method.current_object" class="method"><code>pub fn <a href="#method.current_object" class="fnname">current_object</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;</code><a href="#method.current_object" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#548-550" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the current object set via <code>Builder::set_current_object</code>.</p>
+</div><h4 id="method.current_object" class="method"><code>pub fn <a href="#method.current_object" class="fnname">current_object</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;</code><a href="#method.current_object" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#548-550" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the current object set via <a href="struct.Builder.html#method.set_current_object"><code>set_current_object()</code></a>.</p>
 <h1 id="returns-9" class="section-header"><a href="#returns-9">Returns</a></h1>
 <p>the current object</p>
 </div><h4 id="method.objects" class="method"><code>pub fn <a href="#method.objects" class="fnname">objects</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;</code><a href="#method.objects" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#564-570" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets all objects that have been constructed by <code>self</code>.</p>
@@ -288,14 +288,14 @@ counts of the returned objects.</p>
 <p>a
 newly-allocated <code>GSList</code> containing all the objects
 constructed by the <code>GtkBuilder instance</code>. It should be
-freed by <code>glib::SList::free</code></p>
-</div><h4 id="method.scope" class="method"><code>pub fn <a href="#method.scope" class="fnname">scope</a>(&amp;self) -&gt; <a class="struct" href="struct.BuilderScope.html" title="struct gtk4::BuilderScope">BuilderScope</a></code><a href="#method.scope" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#578-580" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the scope in use that was set via <code>Builder::set_scope</code>.</p>
+freed by <a href="crate::glib::SList::free()"><code>glib::SList::free()</code></a></p>
+</div><h4 id="method.scope" class="method"><code>pub fn <a href="#method.scope" class="fnname">scope</a>(&amp;self) -&gt; <a class="struct" href="struct.BuilderScope.html" title="struct gtk4::BuilderScope">BuilderScope</a></code><a href="#method.scope" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#578-580" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the scope in use that was set via <a href="struct.Builder.html#method.set_scope"><code>set_scope()</code></a>.</p>
 <h1 id="returns-11" class="section-header"><a href="#returns-11">Returns</a></h1>
 <p>the current scope</p>
 </div><h4 id="method.translation_domain" class="method"><code>pub fn <a href="#method.translation_domain" class="fnname">translation_domain</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</code><a href="#method.translation_domain" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#590-596" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the translation domain of <code>self</code>.</p>
 <h1 id="returns-12" class="section-header"><a href="#returns-12">Returns</a></h1>
 <p>the translation domain
-or <code>None</code>. This string is owned by the builder object and
+or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>. This string is owned by the builder object and
 must not be modified or freed.</p>
 </div><h4 id="method.type_from_name" class="method"><code>pub fn <a href="#method.type_from_name" class="fnname">type_from_name</a>(&amp;self, type_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/types/struct.Type.html" title="struct glib::types::Type">Type</a></code><a href="#method.type_from_name" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#611-618" title="goto source code">[src]</a></h4><div class="docblock"><p>Looks up a type by name.</p>
 <p>This is using the virtual function that <code>GtkBuilder</code> has
@@ -312,33 +312,33 @@ builder is working for and will often be used as the default object
 when an object is optional.</p>
 <p>[method<code>Gtk.Widget</code>.init_template] for example will set the current
 object to the widget the template is inited for. For functions like
-[ctor<code>Gtk.Builder</code>.new_from_resource], the current object will be <code>None</code>.</p>
+[ctor<code>Gtk.Builder</code>.new_from_resource], the current object will be <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>.</p>
 <h2 id="current_object" class="section-header"><a href="#current_object"><code>current_object</code></a></h2>
 <p>the new current object or
-<code>None</code> for none</p>
+<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> for none</p>
 </div><h4 id="method.set_scope" class="method"><code>pub fn <a href="#method.set_scope" class="fnname">set_scope</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.BuilderScope.html" title="struct gtk4::BuilderScope">BuilderScope</a>&gt;&gt;(&amp;self, scope: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P&gt;)</code><a href="#method.set_scope" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#649-656" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the scope the builder should operate in.</p>
-<p>If <code>scope</code> is <code>None</code> a new [class<code>Gtk.BuilderCScope</code>] will be created.</p>
+<p>If <code>scope</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> a new [class<code>Gtk.BuilderCScope</code>] will be created.</p>
 <h2 id="scope" class="section-header"><a href="#scope"><code>scope</code></a></h2>
 <p>the scope to use or
-<code>None</code> for the default</p>
+<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> for the default</p>
 </div><h4 id="method.set_translation_domain" class="method"><code>pub fn <a href="#method.set_translation_domain" class="fnname">set_translation_domain</a>(&amp;self, domain: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;)</code><a href="#method.set_translation_domain" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#662-666" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the translation domain of <code>self</code>.</p>
 <h2 id="domain" class="section-header"><a href="#domain"><code>domain</code></a></h2>
-<p>the translation domain or <code>None</code></p>
+<p>the translation domain or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 </div><h4 id="method.value_from_string_type" class="method"><code>pub fn <a href="#method.value_from_string_type" class="fnname">value_from_string_type</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;type_: <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/types/struct.Type.html" title="struct glib::types::Type">Type</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;string: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/value/struct.Value.html" title="struct glib::value::Value">Value</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</code><a href="#method.value_from_string_type" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#689-710" title="goto source code">[src]</a></h4><div class="docblock"><p>Demarshals a value from a string.</p>
 <p>Unlike [method<code>Gtk.Builder</code>.value_from_string], this function
 takes a <code>GType</code> instead of <code>GParamSpec</code>.</p>
-<p>Calls <code>glib::object::Value::init</code> on the <code>value</code> argument, so it
+<p>Calls <a href="crate::glib::object::Value::init()"><code>glib::object::Value::init()</code></a> on the <code>value</code> argument, so it
 need not be initialised beforehand.</p>
-<p>Upon errors <code>false</code> will be returned and <code>error</code> will be
+<p>Upon errors <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> will be returned and <code>error</code> will be
 assigned a <code>GError</code> from the <code>GTK_BUILDER_ERROR</code> domain.</p>
 <h2 id="type_" class="section-header"><a href="#type_"><code>type_</code></a></h2>
 <p>the <code>GType</code> of the value</p>
 <h2 id="string-1" class="section-header"><a href="#string-1"><code>string</code></a></h2>
 <p>the string representation of the value</p>
 <h2 id="value" class="section-header"><a href="#value"><code>value</code></a></h2>
-<p>the <code>glib::object::Value</code> to store the result in</p>
+<p>the <a href="crate::glib::object::Value"><code>glib::object::Value</code></a> to store the result in</p>
 <h1 id="returns-14" class="section-header"><a href="#returns-14">Returns</a></h1>
-<p><code>true</code> on success</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> on success</p>
 </div><h4 id="method.connect_property_current_object_notify" class="method"><code>pub fn <a href="#method.connect_property_current_object_notify" class="fnname">connect_property_current_object_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="struct.Builder.html" title="struct gtk4::Builder">Builder</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></code><a href="#method.connect_property_current_object_notify" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#712-735" title="goto source code">[src]</a></h4><h4 id="method.connect_property_scope_notify" class="method"><code>pub fn <a href="#method.connect_property_scope_notify" class="fnname">connect_property_scope_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="struct.Builder.html" title="struct gtk4::Builder">Builder</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></code><a href="#method.connect_property_scope_notify" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#737-760" title="goto source code">[src]</a></h4><h4 id="method.connect_property_translation_domain_notify" class="method"><code>pub fn <a href="#method.connect_property_translation_domain_notify" class="fnname">connect_property_translation_domain_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="struct.Builder.html" title="struct gtk4::Builder">Builder</a>) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></code><a href="#method.connect_property_translation_domain_notify" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#762-785" title="goto source code">[src]</a></h4></div></details><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl-1" class="impl"><code class="in-band">impl <a class="struct" href="struct.Builder.html" title="struct gtk4::Builder">Builder</a></code><a href="#impl-1" class="anchor"></a><a class="srclink" href="../src/gtk4/builder.rs.html#9-19" title="goto source code">[src]</a></h3></summary><div class="impl-items"><h4 id="method.new_from_file" class="method"><code>pub fn <a href="#method.new_from_file" class="fnname">new_from_file</a>&lt;T:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/std/path/struct.Path.html" title="struct std::path::Path">Path</a>&gt;&gt;(file_path: T) -&gt; <a class="struct" href="struct.Builder.html" title="struct gtk4::Builder">Builder</a></code><a href="#method.new_from_file" class="anchor"></a><a class="srclink" href="../src/gtk4/builder.rs.html#11-18" title="goto source code">[src]</a></h4></div></details><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor"></a></h2><div id="trait-implementations-list"><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl-Clone" class="impl"><code class="in-band">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="struct.Builder.html" title="struct gtk4::Builder">Builder</a></code><a href="#impl-Clone" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#20-209" title="goto source code">[src]</a></h3></summary><div class="impl-items"><h4 id="method.clone" class="method hidden trait-impl"><code>fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone" class="fnname">clone</a>(&amp;self) -&gt; <a class="struct" href="struct.Builder.html" title="struct gtk4::Builder">Builder</a></code><a href="#method.clone" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#20-209" title="goto source code">[src]</a></h4><div class='docblock hidden'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
 </div><h4 id="method.clone_from" class="method hidden trait-impl"><code>pub fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from" class="fnname">clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</code><span class="since" title="Stable since Rust version 1.0.0">1.0.0</span><a href="#method.clone_from" class="anchor"></a><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#130" title="goto source code">[src]</a></h4><div class='docblock hidden'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
 </div></div></details><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl-Debug" class="impl"><code class="in-band">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="struct.Builder.html" title="struct gtk4::Builder">Builder</a></code><a href="#impl-Debug" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#20-209" title="goto source code">[src]</a></h3></summary><div class="impl-items"><h4 id="method.fmt" class="method hidden trait-impl"><code>fn <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt" class="fnname">fmt</a>(&amp;self, f: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>&lt;'_&gt;) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code><a href="#method.fmt" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/builder.rs.html#20-209" title="goto source code">[src]</a></h4><div class='docblock hidden'><p>Formats the value using the given formatter. <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt">Read more</a></p>

@@ -637,7 +637,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// While a pointer is dragged over the drop target&#39;s widget and the drop</span>
     <span class="doccomment">/// has not been rejected, that widget will receive the</span>
-    <span class="doccomment">/// `StateFlags::DropActive` state, which can be used to style the widget.</span>
+    <span class="doccomment">/// [`StateFlags::DropActive`] state, which can be used to style the widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you are not interested in receiving the drop, but just want to update</span>
     <span class="doccomment">/// UI state during a Drag-and-Drop operation (e.g. switching tabs), you can</span>
@@ -645,7 +645,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`EventControllerExt`](trait@crate::EventControllerExt), [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`EventControllerExt`](trait@crate::prelude::EventControllerExt), [`trait@glib::object::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DropTarget</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkDropTarget</span>, <span class="ident">ffi::GtkDropTargetClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -685,7 +685,7 @@
 
     <span class="doccomment">/// Gets the currently handled drop operation.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If no drop operation is going on, `None` is returned.</span>
+    <span class="doccomment">/// If no drop operation is going on, [`None`] is returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -697,7 +697,7 @@
 
     <span class="doccomment">/// Gets the data formats that this drop target accepts.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the result is `None`, all formats are expected to be supported.</span>
+    <span class="doccomment">/// If the result is [`None`], all formats are expected to be supported.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -711,7 +711,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if drop data should be preloaded</span>
+    <span class="doccomment">/// [`true`] if drop data should be preloaded</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_drop_target_get_preload&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_preload</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_drop_target_get_preload</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -730,7 +730,7 @@
     <span class="doccomment">/// Rejects the ongoing drop operation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If no drop operation is ongoing, i.e when [property`Gtk.DropTarget`:drop]</span>
-    <span class="doccomment">/// is `None`, this function does nothing.</span>
+    <span class="doccomment">/// is [`None`], this function does nothing.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function should be used when delaying the decision</span>
     <span class="doccomment">/// on whether to accept a drag or not until after reading</span>
@@ -754,7 +754,7 @@
 
     <span class="doccomment">/// Sets whether data should be preloaded on hover.</span>
     <span class="doccomment">/// ## `preload`</span>
-    <span class="doccomment">/// `true` to preload drop data</span>
+    <span class="doccomment">/// [`true`] to preload drop data</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_drop_target_set_preload&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_preload</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">preload</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -764,17 +764,17 @@
 
     <span class="doccomment">/// Emitted on the drop site when a drop operation is about to begin.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the drop is not accepted, `false` will be returned and the drop target</span>
-    <span class="doccomment">/// will ignore the drop. If `true` is returned, the drop is accepted for now</span>
+    <span class="doccomment">/// If the drop is not accepted, [`false`] will be returned and the drop target</span>
+    <span class="doccomment">/// will ignore the drop. If [`true`] is returned, the drop is accepted for now</span>
     <span class="doccomment">/// but may be rejected later via a call to [method`Gtk.DropTarget`.reject]</span>
-    <span class="doccomment">/// or ultimately by returning `false` from a [signal`Gtk.DropTarget`::drop]</span>
+    <span class="doccomment">/// or ultimately by returning [`false`] from a [signal`Gtk.DropTarget`::drop]</span>
     <span class="doccomment">/// handler.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default handler for this signal decides whether to accept the drop</span>
     <span class="doccomment">/// based on the formats provided by the `drop`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the decision whether the drop will be accepted or rejected depends</span>
-    <span class="doccomment">/// on the data, this function should return `true`, the</span>
+    <span class="doccomment">/// on the data, this function should return [`true`], the</span>
     <span class="doccomment">/// [property`Gtk.DropTarget`:preload] property should be set and the value</span>
     <span class="doccomment">/// should be inspected via the ::notify:value signal, calling</span>
     <span class="doccomment">/// [method`Gtk.DropTarget`.reject] if required.</span>
@@ -783,7 +783,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if `drop` is accepted</span>
+    <span class="doccomment">/// [`true`] if `drop` is accepted</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_accept</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">DropTarget</span>, <span class="kw-2">&amp;</span><span class="ident">gdk::Drop</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,

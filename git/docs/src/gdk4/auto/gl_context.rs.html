@@ -356,7 +356,7 @@
     <span class="doccomment">/// the integration of your rendering with that of other widgets.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Support for `GdkGLContext` is platform-specific and context creation</span>
-    <span class="doccomment">/// can fail, returning `None` context.</span>
+    <span class="doccomment">/// can fail, returning [`None`] context.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A `GdkGLContext` has to be made &quot;current&quot; in order to start using</span>
     <span class="doccomment">/// it, otherwise any OpenGL call will be ignored.</span>
@@ -395,7 +395,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`DrawContextExt`](trait@crate::DrawContextExt), [`DrawContextExtManual`](trait@crate::DrawContextExtManual)</span>
+    <span class="doccomment">/// [`DrawContextExt`](trait@crate::prelude::DrawContextExt), [`DrawContextExtManual`](trait@crate::prelude::DrawContextExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GLContext</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GdkGLContext</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">DrawContext</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -410,7 +410,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if debugging is enabled</span>
+    <span class="doccomment">/// [`true`] if debugging is enabled</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_gl_context_get_debug_enabled&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_debug_enabled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_gl_context_get_debug_enabled</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -422,7 +422,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the context should be forward-compatible</span>
+    <span class="doccomment">/// [`true`] if the context should be forward-compatible</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_gl_context_get_forward_compatible&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_forward_compatible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -459,7 +459,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GdkGLContext` or `None`</span>
+    <span class="doccomment">/// a `GdkGLContext` or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_gl_context_get_shared_context&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">shared_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GLContext</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -473,7 +473,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the `GdkGLContext` is using an OpenGL ES profile</span>
+    <span class="doccomment">/// [`true`] if the `GdkGLContext` is using an OpenGL ES profile</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_gl_context_get_use_es&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">uses_es</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_gl_context_get_use_es</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -509,11 +509,11 @@
     <span class="doccomment">/// When realizing a GL context, GDK will try to use the OpenGL 3.2 core</span>
     <span class="doccomment">/// profile; this profile removes all the OpenGL API that was deprecated</span>
     <span class="doccomment">/// prior to the 3.2 version of the specification. If the realization is</span>
-    <span class="doccomment">/// successful, this function will return `false`.</span>
+    <span class="doccomment">/// successful, this function will return [`false`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the underlying OpenGL implementation does not support core profiles,</span>
     <span class="doccomment">/// GDK will fall back to a pre-3.2 compatibility profile, and this function</span>
-    <span class="doccomment">/// will return `true`.</span>
+    <span class="doccomment">/// will return [`true`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You can use the value returned by this function to decide which kind</span>
     <span class="doccomment">/// of OpenGL API to use, or whether to do extension discovery, or what</span>
@@ -521,7 +521,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the GL context is in legacy mode</span>
+    <span class="doccomment">/// [`true`] if the GL context is in legacy mode</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_gl_context_is_legacy&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_legacy</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_gl_context_is_legacy</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -541,7 +541,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the context is realized</span>
+    <span class="doccomment">/// [`true`] if the context is realized</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_gl_context_realize&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">realize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -645,7 +645,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the current `GdkGLContext`, or `None`</span>
+    <span class="doccomment">/// the current `GdkGLContext`, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_gl_context_get_current&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">current</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GLContext</span><span class="op">&gt;</span> {
         <span class="macro">assert_initialized_main_thread!</span>();

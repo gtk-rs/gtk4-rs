@@ -3364,7 +3364,7 @@
     }
 }
 
-<span class="doccomment">/// Defines the reference point of a surface and is used in `PopupLayout`.</span>
+<span class="doccomment">/// Defines the reference point of a surface and is used in [`PopupLayout`](crate::PopupLayout).</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkGravity&quot;</span>)]</span>
@@ -4005,7 +4005,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SCROLL_RIGHT&quot;</span>)]</span>
     <span class="ident">Right</span>,
     <span class="doccomment">/// the scrolling is determined by the delta values</span>
-    <span class="doccomment">///  in scroll events. See `ScrollEvent::get_deltas`</span>
+    <span class="doccomment">///  in scroll events. See [`ScrollEvent::get_deltas()`](crate::ScrollEvent::get_deltas())</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SCROLL_SMOOTH&quot;</span>)]</span>
     <span class="ident">Smooth</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -4331,11 +4331,11 @@
 <span class="doccomment">/// Specifies the current state of a touchpad gesture.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// All gestures are guaranteed to begin with an event with phase</span>
-<span class="doccomment">/// `TouchpadGesturePhase::Begin`, followed by 0 or several events</span>
-<span class="doccomment">/// with phase `TouchpadGesturePhase::Update`.</span>
+<span class="doccomment">/// [`Begin`](Self::Begin), followed by 0 or several events</span>
+<span class="doccomment">/// with phase [`Update`](Self::Update).</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// A finished gesture may have 2 possible outcomes, an event with phase</span>
-<span class="doccomment">/// `TouchpadGesturePhase::End` will be emitted when the gesture is</span>
+<span class="doccomment">/// [`End`](Self::End) will be emitted when the gesture is</span>
 <span class="doccomment">/// considered successful, this should be used as the hint to perform any</span>
 <span class="doccomment">/// permanent changes.</span>
 <span class="doccomment">///</span>
@@ -4343,7 +4343,7 @@
 <span class="doccomment">/// or the compositor, or due to the gesture recognition layers hinting the</span>
 <span class="doccomment">/// gesture did not finish resolutely (eg. a 3rd finger being added during</span>
 <span class="doccomment">/// a pinch gesture). In these cases, the last event will report the phase</span>
-<span class="doccomment">/// `TouchpadGesturePhase::Cancel`, this should be used as a hint</span>
+<span class="doccomment">/// [`Cancel`](Self::Cancel), this should be used as a hint</span>
 <span class="doccomment">/// to undo any visible/permanent changes that were done throughout the</span>
 <span class="doccomment">/// progress of the gesture.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
@@ -4446,7 +4446,7 @@
     }
 }
 
-<span class="doccomment">/// Error enumeration for `VulkanContext`.</span>
+<span class="doccomment">/// Error enumeration for [`VulkanContext`](crate::VulkanContext).</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkVulkanError&quot;</span>)]</span>

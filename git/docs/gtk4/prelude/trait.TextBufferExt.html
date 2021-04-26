@@ -95,7 +95,7 @@
 <p><a href="../struct.TextBuffer.html"><code>TextBuffer</code></a></p>
 </div><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><h3 id="tymethod.add_mark" class="method"><code>fn <a href="#tymethod.add_mark" class="fnname">add_mark</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>&gt;&gt;(&amp;self, mark: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P, where_: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#118" title="goto source code">[src]</a></h3><div class="docblock"><p>Adds the mark at position <code>where_</code>.</p>
 <p>The mark must not be added to another buffer, and if its name
-is not <code>None</code> then there must not be another mark in the buffer
+is not <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> then there must not be another mark in the buffer
 with the same name.</p>
 <p>Emits the <code>GtkTextBuffer</code>::mark-set signal as notification of
 the mark’s initial placement.</p>
@@ -145,23 +145,23 @@ re-initialized to point to the location where text was deleted.</p>
 <h2 id="default_editable" class="section-header"><a href="#default_editable"><code>default_editable</code></a></h2>
 <p>whether the buffer is editable by default</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
-<p><code>true</code> if the buffer was modified</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the buffer was modified</p>
 </div><h3 id="tymethod.begin_irreversible_action" class="method"><code>fn <a href="#tymethod.begin_irreversible_action" class="fnname">begin_irreversible_action</a>(&amp;self)</code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#194" title="goto source code">[src]</a></h3><div class="docblock"><p>Denotes the beginning of an action that may not be undone.</p>
 <p>This will cause any previous operations in the undo/redo queue
 to be cleared.</p>
 <p>This should be paired with a call to
 [method<code>Gtk.TextBuffer</code>.end_irreversible_action] after the irreversible
 action has completed.</p>
-<p>You may nest calls to <code>TextBufferExt::begin_irreversible_action</code> and
-<code>TextBufferExt::end_irreversible_action</code> pairs.</p>
+<p>You may nest calls to <a href="trait.TextBufferExt.html#tymethod.begin_irreversible_action"><code>begin_irreversible_action()</code></a> and
+<a href="trait.TextBufferExt.html#tymethod.end_irreversible_action"><code>end_irreversible_action()</code></a> pairs.</p>
 </div><h3 id="tymethod.begin_user_action" class="method"><code>fn <a href="#tymethod.begin_user_action" class="fnname">begin_user_action</a>(&amp;self)</code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#215" title="goto source code">[src]</a></h3><div class="docblock"><p>Called to indicate that the buffer operations between here and a
-call to <code>TextBufferExt::end_user_action</code> are part of a single
+call to <a href="trait.TextBufferExt.html#tymethod.end_user_action"><code>end_user_action()</code></a> are part of a single
 user-visible operation.</p>
-<p>The operations between <code>TextBufferExt::begin_user_action</code> and
-<code>TextBufferExt::end_user_action</code> can then be grouped when creating
+<p>The operations between <a href="trait.TextBufferExt.html#tymethod.begin_user_action"><code>begin_user_action()</code></a> and
+<a href="trait.TextBufferExt.html#tymethod.end_user_action"><code>end_user_action()</code></a> can then be grouped when creating
 an undo stack. <code>GtkTextBuffer</code> maintains a count of calls to
-<code>TextBufferExt::begin_user_action</code> that have not been closed with
-a call to <code>TextBufferExt::end_user_action</code>, and emits the
+<a href="trait.TextBufferExt.html#tymethod.begin_user_action"><code>begin_user_action()</code></a> that have not been closed with
+a call to <a href="trait.TextBufferExt.html#tymethod.end_user_action"><code>end_user_action()</code></a>, and emits the
 “begin-user-action” and “end-user-action” signals only for the
 outermost pair of calls. This allows you to build user actions
 from other user actions.</p>
@@ -184,29 +184,29 @@ returned to the caller of this function.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
 <p>the created child anchor</p>
 </div><h3 id="tymethod.create_mark" class="method"><code>fn <a href="#tymethod.create_mark" class="fnname">create_mark</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;mark_name: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;where_: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;left_gravity: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>) -&gt; <a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a></code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#270-275" title="goto source code">[src]</a></h3><div class="docblock"><p>Creates a mark at position <code>where_</code>.</p>
-<p>If <code>mark_name</code> is <code>None</code>, the mark is anonymous; otherwise, the mark
+<p>If <code>mark_name</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, the mark is anonymous; otherwise, the mark
 can be retrieved by name using [method<code>Gtk.TextBuffer</code>.get_mark].
 If a mark has left gravity, and text is inserted at the mark’s
 current location, the mark will be moved to the left of the
 newly-inserted text. If the mark has right gravity
-(<code>left_gravity</code> = <code>false</code>), the mark will end up on the right of
+(<code>left_gravity</code> = <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>), the mark will end up on the right of
 newly-inserted text. The standard left-to-right cursor is a mark
 with right gravity (when you type, the cursor stays on the right
 side of the text you’re typing).</p>
 <p>The caller of this function does not own a
-reference to the returned <code>TextMark</code>, so you can ignore the
+reference to the returned <a href="../struct.TextMark.html"><code>TextMark</code></a>, so you can ignore the
 return value if you like. Marks are owned by the buffer and go
 away when the buffer does.</p>
 <p>Emits the <code>GtkTextBuffer</code>::mark-set signal as notification of
 the mark’s initial placement.</p>
 <h2 id="mark_name" class="section-header"><a href="#mark_name"><code>mark_name</code></a></h2>
-<p>name for mark, or <code>None</code></p>
+<p>name for mark, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h2 id="where_-1" class="section-header"><a href="#where_-1"><code>where_</code></a></h2>
 <p>location to place mark</p>
 <h2 id="left_gravity" class="section-header"><a href="#left_gravity"><code>left_gravity</code></a></h2>
 <p>whether the mark has left gravity</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
-<p>the new <code>TextMark</code> object</p>
+<p>the new <a href="../struct.TextMark.html"><code>TextMark</code></a> object</p>
 </div><h3 id="tymethod.cut_clipboard" class="method"><code>fn <a href="#tymethod.cut_clipboard" class="fnname">cut_clipboard</a>(&amp;self, clipboard: &amp;<a class="struct" href="../../gdk4/auto/clipboard/struct.Clipboard.html" title="struct gdk4::auto::clipboard::Clipboard">Clipboard</a>, default_editable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#287" title="goto source code">[src]</a></h3><div class="docblock"><p>Copies the currently-selected text to a clipboard,
 then deletes said text if it’s editable.</p>
 <h2 id="clipboard-2" class="section-header"><a href="#clipboard-2"><code>clipboard</code></a></h2>
@@ -215,7 +215,7 @@ then deletes said text if it’s editable.</p>
 <p>default editability of the buffer</p>
 </div><h3 id="tymethod.delete" class="method"><code>fn <a href="#tymethod.delete" class="fnname">delete</a>(&amp;self, start: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, end: &amp;mut <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#304" title="goto source code">[src]</a></h3><div class="docblock"><p>Deletes text between <code>start</code> and <code>end</code>.</p>
 <p>The order of <code>start</code> and <code>end</code> is not actually relevant;
-<code>TextBufferExt::delete</code> will reorder them.</p>
+<a href="trait.TextBufferExt.html#tymethod.delete"><code>delete()</code></a> will reorder them.</p>
 <p>This function actually emits the “delete-range” signal, and
 the default handler of that signal deletes the text. Because the
 buffer is modified, all outstanding iterators become invalid after
@@ -241,7 +241,7 @@ untouched if no text was deleted.</p>
 </div><h3 id="tymethod.delete_mark" class="method"><code>fn <a href="#tymethod.delete_mark" class="fnname">delete_mark</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>&gt;&gt;(&amp;self, mark: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P)</code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#345" title="goto source code">[src]</a></h3><div class="docblock"><p>Deletes <code>mark</code>, so that it’s no longer located anywhere in the
 buffer.</p>
 <p>Removes the reference the buffer holds to the mark, so if
-you haven’t called <code>glib::object::ObjectExt::ref</code> on the mark, it will be freed.
+you haven’t called <a href="crate::glib::object::ObjectExt::ref()"><code>glib::object::ObjectExt::ref()</code></a> on the mark, it will be freed.
 Even if the mark isn’t freed, most operations on <code>mark</code> become
 invalid, until it gets added to a buffer again with
 [method<code>Gtk.TextBuffer</code>.add_mark]. Use [method<code>Gtk.TextMark</code>.get_deleted]
@@ -256,7 +256,7 @@ notification after the mark is deleted.</p>
 <p>name of a mark in <code>self</code></p>
 </div><h3 id="tymethod.delete_selection" class="method"><code>fn <a href="#tymethod.delete_selection" class="fnname">delete_selection</a>(&amp;self, interactive: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>, default_editable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#369" title="goto source code">[src]</a></h3><div class="docblock"><p>Deletes the range between the “insert” and “selection_bound” marks,
 that is, the currently-selected text.</p>
-<p>If <code>interactive</code> is <code>true</code>, the editability of the selection will be
+<p>If <code>interactive</code> is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, the editability of the selection will be
 considered (users can’t delete uneditable text).</p>
 <h2 id="interactive-1" class="section-header"><a href="#interactive-1"><code>interactive</code></a></h2>
 <p>whether the deletion is caused by user interaction</p>
@@ -268,10 +268,10 @@ considered (users can’t delete uneditable text).</p>
 <p>This will cause any previous operations in the undo/redo
 queue to be cleared.</p>
 <p>This should be called after completing modifications to the
-text buffer after <code>TextBufferExt::begin_irreversible_action</code>
+text buffer after <a href="trait.TextBufferExt.html#tymethod.begin_irreversible_action"><code>begin_irreversible_action()</code></a>
 was called.</p>
-<p>You may nest calls to <code>TextBufferExt::begin_irreversible_action</code> and
-<code>TextBufferExt::end_irreversible_action</code> pairs.</p>
+<p>You may nest calls to <a href="trait.TextBufferExt.html#tymethod.begin_irreversible_action"><code>begin_irreversible_action()</code></a> and
+<a href="trait.TextBufferExt.html#tymethod.end_irreversible_action"><code>end_irreversible_action()</code></a> pairs.</p>
 </div><h3 id="tymethod.end_user_action" class="method"><code>fn <a href="#tymethod.end_user_action" class="fnname">end_user_action</a>(&amp;self)</code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#391" title="goto source code">[src]</a></h3><div class="docblock"><p>Ends a user-visible operation.</p>
 <p>Should be paired with a call to
 [method<code>Gtk.TextBuffer</code>.begin_user_action].
@@ -284,10 +284,10 @@ entire buffer lies within the range [<code>start</code>,<code>end</code>).</p>
 <p>iterator to initialize with the end iterator</p>
 </div><h3 id="tymethod.can_redo" class="method"><code>fn <a href="#tymethod.can_redo" class="fnname">can_redo</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#408" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets whether there is a redoable action in the history.</p>
 <h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>
-<p><code>true</code> if there is an redoable action</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if there is an redoable action</p>
 </div><h3 id="tymethod.can_undo" class="method"><code>fn <a href="#tymethod.can_undo" class="fnname">can_undo</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#416" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets whether there is an undoable action in the history.</p>
 <h1 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h1>
-<p><code>true</code> if there is an undoable action</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if there is an undoable action</p>
 </div><h3 id="tymethod.char_count" class="method"><code>fn <a href="#tymethod.char_count" class="fnname">char_count</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#430" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets the number of characters in the buffer.</p>
 <p>Note that characters and bytes are not the same, you can’t e.g.
 expect the contents of the buffer in string form to be this
@@ -311,7 +311,7 @@ character position 0) to the end iterator.</p>
 <p>iterator to initialize</p>
 </div><h3 id="tymethod.has_selection" class="method"><code>fn <a href="#tymethod.has_selection" class="fnname">has_selection</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#460" title="goto source code">[src]</a></h3><div class="docblock"><p>Indicates whether the buffer has some text currently selected.</p>
 <h1 id="returns-8" class="section-header"><a href="#returns-8">Returns</a></h1>
-<p><code>true</code> if the there is text selected</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the there is text selected</p>
 </div><h3 id="tymethod.get_insert" class="method"><code>fn <a href="#tymethod.get_insert" class="fnname">get_insert</a>(&amp;self) -&gt; <a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a></code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#472" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns the mark that represents the cursor (insertion point).</p>
 <p>Equivalent to calling [method<code>Gtk.TextBuffer</code>.get_mark]
 to get the mark named “insert”, but very slightly more
@@ -378,22 +378,22 @@ the iterator one past the last valid character in the buffer.</p>
 <p>This value is cached, so the function is very fast.</p>
 <h1 id="returns-13" class="section-header"><a href="#returns-13">Returns</a></h1>
 <p>number of lines in the buffer</p>
-</div><h3 id="tymethod.mark" class="method"><code>fn <a href="#tymethod.mark" class="fnname">mark</a>(&amp;self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#579" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns the mark named <code>name</code> in buffer <code>self</code>, or <code>None</code> if no such
+</div><h3 id="tymethod.mark" class="method"><code>fn <a href="#tymethod.mark" class="fnname">mark</a>(&amp;self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#579" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns the mark named <code>name</code> in buffer <code>self</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if no such
 mark exists in the buffer.</p>
 <h2 id="name-2" class="section-header"><a href="#name-2"><code>name</code></a></h2>
 <p>a mark name</p>
 <h1 id="returns-14" class="section-header"><a href="#returns-14">Returns</a></h1>
-<p>a <code>TextMark</code>, or <code>None</code></p>
+<p>a <a href="../struct.TextMark.html"><code>TextMark</code></a>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 </div><h3 id="tymethod.max_undo_levels" class="method"><code>fn <a href="#tymethod.max_undo_levels" class="fnname">max_undo_levels</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#587" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets the maximum number of undo levels to perform.</p>
 <p>If 0, unlimited undo actions may be performed. Note that this may
 have a memory usage impact as it requires storing an additional
 copy of the inserted or removed text within the text buffer.</p>
 </div><h3 id="tymethod.is_modified" class="method"><code>fn <a href="#tymethod.is_modified" class="fnname">is_modified</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#599" title="goto source code">[src]</a></h3><div class="docblock"><p>Indicates whether the buffer has been modified since the last call
 to [method<code>Gtk.TextBuffer</code>.set_modified] set the modification flag to
-<code>false</code>.</p>
+<a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>.</p>
 <p>Used for example to enable a “save” function in a text editor.</p>
 <h1 id="returns-15" class="section-header"><a href="#returns-15">Returns</a></h1>
-<p><code>true</code> if the buffer has been modified</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the buffer has been modified</p>
 </div><h3 id="tymethod.selection_bound" class="method"><code>fn <a href="#tymethod.selection_bound" class="fnname">selection_bound</a>(&amp;self) -&gt; <a class="struct" href="../struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a></code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#618" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns the mark that represents the selection bound.</p>
 <p>Equivalent to calling [method<code>Gtk.TextBuffer</code>.get_mark]
 to get the mark named “selection_bound”, but very slightly
@@ -406,11 +406,11 @@ function for handling the selection, if you just want to know whether
 there’s a selection and what its bounds are.</p>
 <h1 id="returns-16" class="section-header"><a href="#returns-16">Returns</a></h1>
 <p>selection bound mark</p>
-</div><h3 id="tymethod.selection_bounds" class="method"><code>fn <a href="#tymethod.selection_bounds" class="fnname">selection_bounds</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#636" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns <code>true</code> if some text is selected; places the bounds
+</div><h3 id="tymethod.selection_bounds" class="method"><code>fn <a href="#tymethod.selection_bounds" class="fnname">selection_bounds</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#636" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if some text is selected; places the bounds
 of the selection in <code>start</code> and <code>end</code>.</p>
 <p>If the selection has length 0, then <code>start</code> and <code>end</code> are filled
 in with the same value. <code>start</code> and <code>end</code> will be in ascending order.
-If <code>start</code> and <code>end</code> are <code>None</code>, then they are not filled in, but the
+If <code>start</code> and <code>end</code> are <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, then they are not filled in, but the
 return value still indicates whether text is selected.</p>
 <h2 id="start-4" class="section-header"><a href="#start-4"><code>start</code></a></h2>
 <p>iterator to initialize with selection start</p>
@@ -425,7 +425,7 @@ in a <code>GdkClipboard</code>, see [method<code>Gdk.Clipboard</code>.set_conten
 <p>a new <code>GdkContentProvider</code>.</p>
 </div><h3 id="tymethod.slice" class="method"><code>fn <a href="#tymethod.slice" class="fnname">slice</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;start: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;end: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;include_hidden_chars: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a></code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#670" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns the text in the range [<code>start</code>,<code>end</code>).</p>
 <p>Excludes undisplayed text (text marked with tags that set the
-invisibility attribute) if <code>include_hidden_chars</code> is <code>false</code>.
+invisibility attribute) if <code>include_hidden_chars</code> is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>.
 The returned string includes a 0xFFFC character whenever the
 buffer contains embedded images, so byte and character indexes
 into the returned string do correspond to byte and character
@@ -450,7 +450,7 @@ to get the iter at character offset 0.</p>
 <p>the buffer’s tag table</p>
 </div><h3 id="tymethod.text" class="method"><code>fn <a href="#tymethod.text" class="fnname">text</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;start: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;end: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;include_hidden_chars: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a></code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#708" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns the text in the range [<code>start</code>,<code>end</code>).</p>
 <p>Excludes undisplayed text (text marked with tags that set the
-invisibility attribute) if <code>include_hidden_chars</code> is <code>false</code>.
+invisibility attribute) if <code>include_hidden_chars</code> is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>.
 Does not include characters representing embedded images, so
 byte and character indexes into the returned string do not
 correspond to byte and character indexes into the buffer.
@@ -598,7 +598,7 @@ signal as notification of the move.</p>
 <h2 id="where_-3" class="section-header"><a href="#where_-3"><code>where_</code></a></h2>
 <p>new location for mark</p>
 </div><h3 id="tymethod.paste_clipboard" class="method"><code>fn <a href="#tymethod.paste_clipboard" class="fnname">paste_clipboard</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;clipboard: &amp;<a class="struct" href="../../gdk4/auto/clipboard/struct.Clipboard.html" title="struct gdk4::auto::clipboard::Clipboard">Clipboard</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;override_location: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;default_editable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a><br>)</code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#927-932" title="goto source code">[src]</a></h3><div class="docblock"><p>Pastes the contents of a clipboard.</p>
-<p>If <code>override_location</code> is <code>None</code>, the pasted text will be inserted
+<p>If <code>override_location</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, the pasted text will be inserted
 at the cursor position, or the buffer selection will be replaced
 if the selection is non-empty.</p>
 <p>Note: pasting is asynchronous, that is, we’ll ask for the paste data
@@ -607,7 +607,7 @@ data will be inserted.</p>
 <h2 id="clipboard-3" class="section-header"><a href="#clipboard-3"><code>clipboard</code></a></h2>
 <p>the <code>GdkClipboard</code> to paste from</p>
 <h2 id="override_location" class="section-header"><a href="#override_location"><code>override_location</code></a></h2>
-<p>location to insert pasted text, or <code>None</code></p>
+<p>location to insert pasted text, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h2 id="default_editable-7" class="section-header"><a href="#default_editable-7"><code>default_editable</code></a></h2>
 <p>whether the buffer is editable by default</p>
 </div><h3 id="tymethod.place_cursor" class="method"><code>fn <a href="#tymethod.place_cursor" class="fnname">place_cursor</a>(&amp;self, where_: &amp;<a class="struct" href="../struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#946" title="goto source code">[src]</a></h3><div class="docblock"><p>This function moves the “insert” and “selection_bound” marks
@@ -631,7 +631,7 @@ code sections that add tags.</p>
 <h2 id="end-9" class="section-header"><a href="#end-9"><code>end</code></a></h2>
 <p>other bound of range to be untagged</p>
 </div><h3 id="tymethod.remove_selection_clipboard" class="method"><code>fn <a href="#tymethod.remove_selection_clipboard" class="fnname">remove_selection_clipboard</a>(&amp;self, clipboard: &amp;<a class="struct" href="../../gdk4/auto/clipboard/struct.Clipboard.html" title="struct gdk4::auto::clipboard::Clipboard">Clipboard</a>)</code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#971" title="goto source code">[src]</a></h3><div class="docblock"><p>Removes a <code>GdkClipboard</code> added with
-<code>TextBufferExt::add_selection_clipboard</code>.</p>
+<a href="trait.TextBufferExt.html#tymethod.add_selection_clipboard"><code>add_selection_clipboard()</code></a>.</p>
 <h2 id="clipboard-4" class="section-header"><a href="#clipboard-4"><code>clipboard</code></a></h2>
 <p>a <code>GdkClipboard</code> added to <code>self</code> by
 [method<code>Gtk.TextBuffer</code>.add_selection_clipboard]</p>
@@ -674,7 +674,7 @@ up to [method<code>Gtk.TextBuffer</code>.get_max_undo_levels].</p>
 [method<code>Gtk.TextBuffer</code>.end_irreversible_action] to create
 changes to the buffer that cannot be undone.</p>
 <h2 id="enable_undo" class="section-header"><a href="#enable_undo"><code>enable_undo</code></a></h2>
-<p><code>true</code> to enable undo</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> to enable undo</p>
 </div><h3 id="tymethod.set_max_undo_levels" class="method"><code>fn <a href="#tymethod.set_max_undo_levels" class="fnname">set_max_undo_levels</a>(&amp;self, max_undo_levels: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</code><a class="srclink" href="../../src/gtk4/auto/text_buffer.rs.html#1038" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets the maximum number of undo levels to perform.</p>
 <p>If 0, unlimited undo actions may be performed. Note that this may
 have a memory usage impact as it requires storing an additional
@@ -730,7 +730,7 @@ it must not invalidate the <code>start</code> and <code>end</code> iters (or has
 to revalidate them). The default signal handler revalidates
 the <code>start</code> and <code>end</code> iters to both point to the location
 where text was deleted. Handlers which run after the default
-handler (see <code>g_signal_connect_after</code>) do not have access to
+handler (see <code>g_signal_connect_after()</code>) do not have access to
 the deleted text.</p>
 <p>See also: [method<code>Gtk.TextBuffer</code>.delete].</p>
 <h2 id="start-13" class="section-header"><a href="#start-13"><code>start</code></a></h2>

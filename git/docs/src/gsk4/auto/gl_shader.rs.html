@@ -532,7 +532,7 @@
     <span class="doccomment">/// each instance of use). A shader can also receive up to 4</span>
     <span class="doccomment">/// textures that it can use as input when producing the pixel data.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GskGLShader` is usually used with `gtk_snapshot_push_gl_shader`</span>
+    <span class="doccomment">/// `GskGLShader` is usually used with `gtk_snapshot_push_gl_shader()`</span>
     <span class="doccomment">/// to produce a [class`Gsk.GLShaderNode`] in the rendering hierarchy,</span>
     <span class="doccomment">/// and then its input textures are constructed by rendering the child</span>
     <span class="doccomment">/// nodes to textures before rendering the shader node itself. (You can</span>
@@ -586,7 +586,7 @@
     <span class="doccomment">/// you want of types int, uint, bool, float, vec2, vec3 or vec4.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// All textures sources contain premultiplied alpha colors, but if some</span>
-    <span class="doccomment">/// there are outer sources of colors there is a `gsk_premultiply` helper</span>
+    <span class="doccomment">/// there are outer sources of colors there is a `gsk_premultiply()` helper</span>
     <span class="doccomment">/// to compute premultiplication when needed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that GTK parses the uniform declarations, so each uniform has to</span>
@@ -680,7 +680,7 @@
 
     <span class="doccomment">/// Tries to compile the `self` for the given `renderer`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If there is a problem, this function returns `false` and reports</span>
+    <span class="doccomment">/// If there is a problem, this function returns [`false`] and reports</span>
     <span class="doccomment">/// an error. You should use this function before relying on the shader</span>
     <span class="doccomment">/// for rendering and use a fallback with a simpler shader or without</span>
     <span class="doccomment">/// shaders if it fails.</span>
@@ -695,7 +695,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` on success, `false` if an error occurred</span>
+    <span class="doccomment">/// [`true`] on success, [`false`] if an error occurred</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_gl_shader_compile&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">compile</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Renderer</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -910,7 +910,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The resource path for the shader,</span>
-    <span class="doccomment">///  or `None` if none.</span>
+    <span class="doccomment">///  or [`None`] if none.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_gl_shader_get_resource&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">resource</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gsk_gl_shader_get_resource</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }

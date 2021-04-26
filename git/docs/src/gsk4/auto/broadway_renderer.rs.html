@@ -69,7 +69,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`RendererExt`](trait@crate::RendererExt), [`RendererExtManual`](trait@crate::RendererExtManual)</span>
+    <span class="doccomment">/// [`RendererExt`](trait@crate::prelude::RendererExt), [`RendererExtManual`](trait@crate::prelude::RendererExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BroadwayRenderer</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GskBroadwayRenderer</span>, <span class="ident">ffi::GskBroadwayRendererClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Renderer</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -82,7 +82,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The Broadway renderer is the default renderer for the broadway backend.</span>
     <span class="doccomment">/// It will only work with broadway surfaces, otherwise it will fail the</span>
-    <span class="doccomment">/// call to `RendererExt::realize`.</span>
+    <span class="doccomment">/// call to [`RendererExt::realize()`](crate::RendererExt::realize()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is only available when GTK was compiled with Broadway</span>
     <span class="doccomment">/// support.</span>

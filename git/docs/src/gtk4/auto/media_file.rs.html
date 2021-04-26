@@ -353,7 +353,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`MediaFileExt`](trait@crate::MediaFileExt), [`MediaStreamExt`](trait@crate::MediaStreamExt), [`trait@glib::object::ObjectExt`], [`trait@gdk::PaintableExt`], [`MediaStreamExtManual`](trait@crate::MediaStreamExtManual)</span>
+    <span class="doccomment">/// [`MediaFileExt`](trait@crate::prelude::MediaFileExt), [`MediaStreamExt`](trait@crate::prelude::MediaStreamExt), [`trait@glib::object::ObjectExt`], [`trait@gdk::PaintableExt`], [`MediaStreamExtManual`](trait@crate::prelude::MediaStreamExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MediaFile</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkMediaFile</span>, <span class="ident">ffi::GtkMediaFileClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">MediaStream</span>, @<span class="ident">implements</span> <span class="ident">gdk::Paintable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -472,24 +472,24 @@
     <span class="doccomment">/// Returns the file that `self` is currently playing from.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When `self` is not playing or not playing from a file,</span>
-    <span class="doccomment">/// `None` is returned.</span>
+    <span class="doccomment">/// [`None`] is returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The currently playing file</span>
-    <span class="doccomment">///  or `None` if not playing from a file.</span>
+    <span class="doccomment">///  or [`None`] if not playing from a file.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_file_get_file&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">file</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::File</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Returns the stream that `self` is currently playing from.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When `self` is not playing or not playing from a stream,</span>
-    <span class="doccomment">/// `None` is returned.</span>
+    <span class="doccomment">/// [`None`] is returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The currently playing</span>
-    <span class="doccomment">///  stream or `None` if not playing from a stream.</span>
+    <span class="doccomment">///  stream or [`None`] if not playing from a stream.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_file_get_input_stream&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">input_stream</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::InputStream</span><span class="op">&gt;</span>;
 

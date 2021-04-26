@@ -83,17 +83,13 @@
 <span id="80">80</span>
 <span id="81">81</span>
 <span id="82">82</span>
-<span id="83">83</span>
-<span id="84">84</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="ident">glib::subclass::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::subclass::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">ComboBox</span>, <span class="ident">Widget</span>};
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">Cast</span>, <span class="ident">GString</span>};
-
-<span class="kw">use</span> <span class="kw">super</span><span class="ident">::widget::WidgetImpl</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">ComboBox</span>, <span class="ident">Widget</span>};
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ComboBoxImpl</span>: <span class="ident">ComboBoxImplExt</span> <span class="op">+</span> <span class="ident">WidgetImpl</span> {
     <span class="kw">fn</span> <span class="ident">changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">combo_box</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {

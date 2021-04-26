@@ -540,12 +540,12 @@
     <span class="doccomment">/// [method`Gdk.Drop`.finish].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Between the ::drag-enter and ::drag-leave signals the widget is a</span>
-    <span class="doccomment">/// current drop target, and will receive the `StateFlags::DropActive`</span>
+    <span class="doccomment">/// current drop target, and will receive the [`StateFlags::DropActive`]</span>
     <span class="doccomment">/// state, which can be used by themes to style the widget as a drop target.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`EventControllerExt`](trait@crate::EventControllerExt), [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`EventControllerExt`](trait@crate::prelude::EventControllerExt), [`trait@glib::object::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DropTargetAsync</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkDropTargetAsync</span>, <span class="ident">ffi::GtkDropTargetAsyncClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -590,7 +590,7 @@
 
     <span class="doccomment">/// Gets the data formats that this drop target accepts.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the result is `None`, all formats are expected to be supported.</span>
+    <span class="doccomment">/// If the result is [`None`], all formats are expected to be supported.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -610,7 +610,7 @@
     <span class="doccomment">/// on whether to accept a drag or not until after reading</span>
     <span class="doccomment">/// the data.</span>
     <span class="doccomment">/// ## `drop`</span>
-    <span class="doccomment">/// the `gdk::Drop` of an ongoing drag operation</span>
+    <span class="doccomment">/// the [`gdk::Drop`](crate::gdk::Drop) of an ongoing drag operation</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_drop_target_async_reject_drop&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reject_drop</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">drop</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Drop</span>) {
         <span class="kw">unsafe</span> {
@@ -630,7 +630,7 @@
 
     <span class="doccomment">/// Sets the data formats that this drop target will accept.</span>
     <span class="doccomment">/// ## `formats`</span>
-    <span class="doccomment">/// the supported data formats or `None` for</span>
+    <span class="doccomment">/// the supported data formats or [`None`] for</span>
     <span class="doccomment">///  any format.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_drop_target_async_set_formats&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_formats</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">formats</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk::ContentFormats</span><span class="op">&gt;</span>) {
@@ -641,10 +641,10 @@
 
     <span class="doccomment">/// Emitted on the drop site when a drop operation is about to begin.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the drop is not accepted, `false` will be returned and the drop target</span>
-    <span class="doccomment">/// will ignore the drop. If `true` is returned, the drop is accepted for now</span>
+    <span class="doccomment">/// If the drop is not accepted, [`false`] will be returned and the drop target</span>
+    <span class="doccomment">/// will ignore the drop. If [`true`] is returned, the drop is accepted for now</span>
     <span class="doccomment">/// but may be rejected later via a call to [method`Gtk.DropTargetAsync`.reject_drop]</span>
-    <span class="doccomment">/// or ultimately by returning `false` from a [signal`Gtk.DropTargetAsync`::drop]</span>
+    <span class="doccomment">/// or ultimately by returning [`false`] from a [signal`Gtk.DropTargetAsync`::drop]</span>
     <span class="doccomment">/// handler.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default handler for this signal decides whether to accept the drop</span>
@@ -652,14 +652,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the decision whether the drop will be accepted or rejected needs</span>
     <span class="doccomment">/// further processing, such as inspecting the data, this function should</span>
-    <span class="doccomment">/// return `true` and proceed as is `drop` was accepted and if it decides to</span>
+    <span class="doccomment">/// return [`true`] and proceed as is `drop` was accepted and if it decides to</span>
     <span class="doccomment">/// reject the drop later, it should call [method`Gtk.DropTargetAsync`.reject_drop].</span>
     <span class="doccomment">/// ## `drop`</span>
-    <span class="doccomment">/// the `gdk::Drop`</span>
+    <span class="doccomment">/// the [`gdk::Drop`](crate::gdk::Drop)</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if `drop` is accepted</span>
+    <span class="doccomment">/// [`true`] if `drop` is accepted</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_accept</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">DropTargetAsync</span>, <span class="kw-2">&amp;</span><span class="ident">gdk::Drop</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
@@ -691,7 +691,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// It can be used to set up custom highlighting.</span>
     <span class="doccomment">/// ## `drop`</span>
-    <span class="doccomment">/// the `gdk::Drop`</span>
+    <span class="doccomment">/// the [`gdk::Drop`](crate::gdk::Drop)</span>
     <span class="doccomment">/// ## `x`</span>
     <span class="doccomment">/// the x coordinate of the current pointer position</span>
     <span class="doccomment">/// ## `y`</span>
@@ -736,7 +736,7 @@
     <span class="doccomment">/// Its main purpose it to undo things done in</span>
     <span class="doccomment">/// `GtkDropTargetAsync`::drag-enter.</span>
     <span class="doccomment">/// ## `drop`</span>
-    <span class="doccomment">/// the `gdk::Drop`</span>
+    <span class="doccomment">/// the [`gdk::Drop`](crate::gdk::Drop)</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_drag_leave</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">DropTargetAsync</span>, <span class="kw-2">&amp;</span><span class="ident">gdk::Drop</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
@@ -766,7 +766,7 @@
 
     <span class="doccomment">/// Emitted while the pointer is moving over the drop target.</span>
     <span class="doccomment">/// ## `drop`</span>
-    <span class="doccomment">/// the `gdk::Drop`</span>
+    <span class="doccomment">/// the [`gdk::Drop`](crate::gdk::Drop)</span>
     <span class="doccomment">/// ## `x`</span>
     <span class="doccomment">/// the x coordinate of the current pointer position</span>
     <span class="doccomment">/// ## `y`</span>
@@ -809,10 +809,10 @@
     <span class="doccomment">/// Emitted on the drop site when the user drops the data onto the widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The signal handler must determine whether the pointer position is in a</span>
-    <span class="doccomment">/// drop zone or not. If it is not in a drop zone, it returns `false` and no</span>
+    <span class="doccomment">/// drop zone or not. If it is not in a drop zone, it returns [`false`] and no</span>
     <span class="doccomment">/// further processing is necessary.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Otherwise, the handler returns `true`. In this case, this handler will</span>
+    <span class="doccomment">/// Otherwise, the handler returns [`true`]. In this case, this handler will</span>
     <span class="doccomment">/// accept the drop. The handler must ensure that [method`Gdk.Drop`.finish]</span>
     <span class="doccomment">/// is called to let the source know that the drop is done. The call to</span>
     <span class="doccomment">/// [method`Gdk.Drop`.finish] must only be done when all data has been received.</span>
@@ -821,7 +821,7 @@
     <span class="doccomment">/// [class`Gdk.Drop`] such as [method`Gdk.Drop`.read_async] or</span>
     <span class="doccomment">/// [method`Gdk.Drop`.read_value_async].</span>
     <span class="doccomment">/// ## `drop`</span>
-    <span class="doccomment">/// the `gdk::Drop`</span>
+    <span class="doccomment">/// the [`gdk::Drop`](crate::gdk::Drop)</span>
     <span class="doccomment">/// ## `x`</span>
     <span class="doccomment">/// the x coordinate of the current pointer position</span>
     <span class="doccomment">/// ## `y`</span>

@@ -1181,7 +1181,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`RangeExt`](trait@crate::RangeExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`OrientableExt`](trait@crate::OrientableExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`RangeExt`](trait@crate::prelude::RangeExt), [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`OrientableExt`](trait@crate::prelude::OrientableExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Range</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkRange</span>, <span class="ident">ffi::GtkRangeClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Orientable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1568,7 +1568,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the range is flippable</span>
+    <span class="doccomment">/// [`true`] if the range is flippable</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_range_get_flippable&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_flippable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -1578,7 +1578,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the range is inverted</span>
+    <span class="doccomment">/// [`true`] if the range is inverted</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_range_get_inverted&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_inverted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -1595,7 +1595,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if `self` is restricted to the fill level.</span>
+    <span class="doccomment">/// [`true`] if `self` is restricted to the fill level.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_range_get_restrict_to_fill_level&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">restricts_to_fill_level</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -1614,7 +1614,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if `self` shows the fill level.</span>
+    <span class="doccomment">/// [`true`] if `self` shows the fill level.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_range_get_show_fill_level&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">shows_fill_level</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -1624,10 +1624,10 @@
     <span class="doccomment">/// This function is useful mainly for `GtkRange` subclasses.</span>
     <span class="doccomment">/// ## `slider_start`</span>
     <span class="doccomment">/// return location for the slider&#39;s</span>
-    <span class="doccomment">///  start, or `None`</span>
+    <span class="doccomment">///  start, or [`None`]</span>
     <span class="doccomment">/// ## `slider_end`</span>
     <span class="doccomment">/// return location for the slider&#39;s</span>
-    <span class="doccomment">///  end, or `None`</span>
+    <span class="doccomment">///  end, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_range_get_slider_range&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">slider_range</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
 
@@ -1688,11 +1688,11 @@
     <span class="doccomment">/// Sets whether the `GtkRange` respects text direction.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If a range is flippable, it will switch its direction</span>
-    <span class="doccomment">/// if it is horizontal and its direction is `TextDirection::Rtl`.</span>
+    <span class="doccomment">/// if it is horizontal and its direction is [`TextDirection::Rtl`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// See [method`Gtk.Widget`.get_direction].</span>
     <span class="doccomment">/// ## `flippable`</span>
-    <span class="doccomment">/// `true` to make the range flippable</span>
+    <span class="doccomment">/// [`true`] to make the range flippable</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_range_set_flippable&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_flippable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">flippable</span>: <span class="ident">bool</span>);
 
@@ -1715,7 +1715,7 @@
     <span class="doccomment">/// ranges have higher values at the top or on the right rather</span>
     <span class="doccomment">/// than on the bottom or left.</span>
     <span class="doccomment">/// ## `setting`</span>
-    <span class="doccomment">/// `true` to invert the range</span>
+    <span class="doccomment">/// [`true`] to invert the range</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_range_set_inverted&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_inverted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">setting</span>: <span class="ident">bool</span>);
 
@@ -1763,7 +1763,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is useful mainly for `GtkRange` subclasses.</span>
     <span class="doccomment">/// ## `size_fixed`</span>
-    <span class="doccomment">/// `true` to make the slider size constant</span>
+    <span class="doccomment">/// [`true`] to make the slider size constant</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_range_set_slider_size_fixed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_slider_size_fixed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">size_fixed</span>: <span class="ident">bool</span>);
 
@@ -1787,8 +1787,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// It allows an application to determine the type of scroll event</span>
     <span class="doccomment">/// that occurred and the resultant new value. The application can</span>
-    <span class="doccomment">/// handle the event itself and return `true` to prevent further</span>
-    <span class="doccomment">/// processing. Or, by returning `false`, it can pass the event to</span>
+    <span class="doccomment">/// handle the event itself and return [`true`] to prevent further</span>
+    <span class="doccomment">/// processing. Or, by returning [`false`], it can pass the event to</span>
     <span class="doccomment">/// other handlers until the default GTK handler is reached.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The value parameter is unrounded. An application that overrides</span>
@@ -1802,8 +1802,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` to prevent other handlers from being invoked for</span>
-    <span class="doccomment">///  the signal, `false` to propagate the signal further</span>
+    <span class="doccomment">/// [`true`] to prevent other handlers from being invoked for</span>
+    <span class="doccomment">///  the signal, [`false`] to propagate the signal further</span>
     <span class="kw">fn</span> <span class="ident">connect_change_value</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">ScrollType</span>, <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::signal::Inhibit</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,

@@ -15,7 +15,7 @@
 <p>See [method<code>Gtk.ApplicationWindow</code>.set_help_overlay].</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
 <p>the help overlay associated
-with <code>self</code>, or <code>None</code></p>
+with <code>self</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 </div><h3 id="tymethod.id" class="method"><code>fn <a href="#tymethod.id" class="fnname">id</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></code><a class="srclink" href="../../src/gtk4/auto/application_window.rs.html#659" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns the unique ID of the window.</p>
 <p>If the window has not yet been added to a <code>GtkApplication</code>, returns <code>0</code>.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
@@ -24,7 +24,7 @@ has not yet been added to a <code>GtkApplication</code></p>
 </div><h3 id="tymethod.shows_menubar" class="method"><code>fn <a href="#tymethod.shows_menubar" class="fnname">shows_menubar</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/application_window.rs.html#668" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns whether the window will display a menubar for the app menu
 and menubar as needed.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
-<p><code>true</code> if <code>self</code> will display a menubar when needed</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> will display a menubar when needed</p>
 </div><h3 id="tymethod.set_help_overlay" class="method"><code>fn <a href="#tymethod.set_help_overlay" class="fnname">set_help_overlay</a>(&amp;self, help_overlay: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.ShortcutsWindow.html" title="struct gtk4::ShortcutsWindow">ShortcutsWindow</a>&gt;)</code><a class="srclink" href="../../src/gtk4/auto/application_window.rs.html#679" title="goto source code">[src]</a></h3><div class="docblock"><p>Associates a shortcuts window with the application window.</p>
 <p>Additionally, sets up an action with the name
 <code>win.show-help-overlay</code> to present it.</p>

@@ -2278,7 +2278,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`PrintOperationExt`](trait@crate::PrintOperationExt), [`trait@glib::object::ObjectExt`], [`PrintOperationPreviewExt`](trait@crate::PrintOperationPreviewExt)</span>
+    <span class="doccomment">/// [`PrintOperationExt`](trait@crate::prelude::PrintOperationExt), [`trait@glib::object::ObjectExt`], [`PrintOperationPreviewExt`](trait@crate::prelude::PrintOperationPreviewExt)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintOperation</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkPrintOperation</span>, <span class="ident">ffi::GtkPrintOperationClass</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">PrintOperationPreview</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -2498,7 +2498,7 @@
     <span class="kw">fn</span> <span class="ident">embeds_page_setup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="doccomment">/// Call this when the result of a print operation is</span>
-    <span class="doccomment">/// `PrintOperationResult::Error`.</span>
+    <span class="doccomment">/// [`PrintOperationResult::Error`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It can be called either after [method`Gtk.PrintOperation`.run]</span>
     <span class="doccomment">/// returns, or in the [signal`Gtk.PrintOperation`::done] signal</span>
@@ -2519,11 +2519,11 @@
     <span class="doccomment">/// Returns the number of pages that will be printed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this value is set during print preparation phase</span>
-    <span class="doccomment">/// (`PrintStatus::Preparing`), so this function should never be</span>
-    <span class="doccomment">/// called before the data generation phase (`PrintStatus::GeneratingData`).</span>
+    <span class="doccomment">/// ([`PrintStatus::Preparing`]), so this function should never be</span>
+    <span class="doccomment">/// called before the data generation phase ([`PrintStatus::GeneratingData`]).</span>
     <span class="doccomment">/// You can connect to the [signal`Gtk.PrintOperation`::status-changed]</span>
-    <span class="doccomment">/// signal and call `PrintOperationExt::get_n_pages_to_print` when</span>
-    <span class="doccomment">/// print status is `PrintStatus::GeneratingData`.</span>
+    <span class="doccomment">/// signal and call [`get_n_pages_to_print()`](Self::get_n_pages_to_print()) when</span>
+    <span class="doccomment">/// print status is [`PrintStatus::GeneratingData`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is typically used to track the progress of print operation.</span>
     <span class="doccomment">///</span>
@@ -2535,7 +2535,7 @@
 
     <span class="doccomment">/// Returns the current print settings.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that the return value is `None` until either</span>
+    <span class="doccomment">/// Note that the return value is [`None`] until either</span>
     <span class="doccomment">/// [method`Gtk.PrintOperation`.set_print_settings] or</span>
     <span class="doccomment">/// [method`Gtk.PrintOperation`.run] have been called.</span>
     <span class="doccomment">///</span>
@@ -2583,7 +2583,7 @@
     <span class="doccomment">/// is finished.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a print operation is finished if its status is either</span>
-    <span class="doccomment">/// `PrintStatus::Finished` or `PrintStatus::FinishedAborted`.</span>
+    <span class="doccomment">/// [`PrintStatus::Finished`] or [`PrintStatus::FinishedAborted`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note: when you enable print status tracking the print operation</span>
     <span class="doccomment">/// can be in a non-finished state even after done has been called, as</span>
@@ -2591,7 +2591,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true`, if the print operation is finished.</span>
+    <span class="doccomment">/// [`true`], if the print operation is finished.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_is_finished&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_finished</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -2648,7 +2648,7 @@
     <span class="doccomment">///  }</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that `PrintOperationExt::run` can only be called once on a</span>
+    <span class="doccomment">/// Note that [`run()`](Self::run()) can only be called once on a</span>
     <span class="doccomment">/// given `GtkPrintOperation`.</span>
     <span class="doccomment">/// ## `action`</span>
     <span class="doccomment">/// the action to start</span>
@@ -2658,12 +2658,12 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the result of the print operation. A return value of</span>
-    <span class="doccomment">///  `PrintOperationResult::Apply` indicates that the printing was</span>
+    <span class="doccomment">///  [`PrintOperationResult::Apply`] indicates that the printing was</span>
     <span class="doccomment">///  completed successfully. In this case, it is a good idea to obtain</span>
     <span class="doccomment">///  the used print settings with</span>
     <span class="doccomment">///  [method`Gtk.PrintOperation`.get_print_settings]</span>
     <span class="doccomment">///  and store them for reuse with the next print operation. A value of</span>
-    <span class="doccomment">///  `PrintOperationResult::InProgress` means the operation is running</span>
+    <span class="doccomment">///  [`PrintOperationResult::InProgress`] means the operation is running</span>
     <span class="doccomment">///  asynchronously, and will emit the [signal`Gtk.PrintOperation`::done]</span>
     <span class="doccomment">///  signal when done.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_run&quot;</span>)]</span>
@@ -2673,13 +2673,13 @@
         <span class="ident">parent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">PrintOperationResult</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Sets whether `PrintOperationExt::run` may return</span>
+    <span class="doccomment">/// Sets whether [`run()`](Self::run()) may return</span>
     <span class="doccomment">/// before the print operation is completed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that some platforms may not allow asynchronous</span>
     <span class="doccomment">/// operation.</span>
     <span class="doccomment">/// ## `allow_async`</span>
-    <span class="doccomment">/// `true` to allow asynchronous operation</span>
+    <span class="doccomment">/// [`true`] to allow asynchronous operation</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_set_allow_async&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_allow_async</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">allow_async</span>: <span class="ident">bool</span>);
 
@@ -2696,7 +2696,7 @@
 
     <span class="doccomment">/// Sets the label for the tab holding custom widgets.</span>
     <span class="doccomment">/// ## `label`</span>
-    <span class="doccomment">/// the label to use, or `None` to use the default label</span>
+    <span class="doccomment">/// the label to use, or [`None`] to use the default label</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_set_custom_tab_label&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_custom_tab_label</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>);
 
@@ -2706,7 +2706,7 @@
     <span class="doccomment">/// but it can be overridden on a per-page basis by connecting</span>
     <span class="doccomment">/// to the [signal`Gtk.PrintOperation`::request-page-setup] signal.</span>
     <span class="doccomment">/// ## `default_page_setup`</span>
-    <span class="doccomment">/// a `GtkPageSetup`, or `None`</span>
+    <span class="doccomment">/// a `GtkPageSetup`, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_set_default_page_setup&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_default_page_setup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">default_page_setup</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">PageSetup</span><span class="op">&gt;</span>);
 
@@ -2724,7 +2724,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Selected page setup is stored as default page setup in `GtkPrintOperation`.</span>
     <span class="doccomment">/// ## `embed`</span>
-    <span class="doccomment">/// `true` to embed page setup selection in the `GtkPrintUnixDialog`</span>
+    <span class="doccomment">/// [`true`] to embed page setup selection in the `GtkPrintUnixDialog`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_set_embed_page_setup&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_embed_page_setup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">embed</span>: <span class="ident">bool</span>);
 
@@ -2749,7 +2749,7 @@
     <span class="doccomment">/// will draw by [method`Gtk.PrintOperation`.set_n_pages] in a handler</span>
     <span class="doccomment">/// for the [signal`Gtk.PrintOperation`::begin-print] signal.</span>
     <span class="doccomment">/// ## `has_selection`</span>
-    <span class="doccomment">/// `true` indicates that a selection exists</span>
+    <span class="doccomment">/// [`true`] indicates that a selection exists</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_set_has_selection&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_has_selection</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">has_selection</span>: <span class="ident">bool</span>);
 
@@ -2790,20 +2790,20 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_set_print_settings&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_print_settings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">print_settings</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">PrintSettings</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// If `show_progress` is `true`, the print operation will show</span>
+    <span class="doccomment">/// If `show_progress` is [`true`], the print operation will show</span>
     <span class="doccomment">/// a progress dialog during the print operation.</span>
     <span class="doccomment">/// ## `show_progress`</span>
-    <span class="doccomment">/// `true` to show a progress dialog</span>
+    <span class="doccomment">/// [`true`] to show a progress dialog</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_set_show_progress&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_show_progress</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">show_progress</span>: <span class="ident">bool</span>);
 
     <span class="doccomment">/// Sets whether selection is supported by `GtkPrintOperation`.</span>
     <span class="doccomment">/// ## `support_selection`</span>
-    <span class="doccomment">/// `true` to support selection</span>
+    <span class="doccomment">/// [`true`] to support selection</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_set_support_selection&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_support_selection</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">support_selection</span>: <span class="ident">bool</span>);
 
-    <span class="doccomment">/// If track_status is `true`, the print operation will try to continue</span>
+    <span class="doccomment">/// If track_status is [`true`], the print operation will try to continue</span>
     <span class="doccomment">/// report on the status of the print job in the printer queues and printer.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This can allow your application to show things like “out of paper”</span>
@@ -2812,7 +2812,7 @@
     <span class="doccomment">/// This function is often implemented using some form of polling,</span>
     <span class="doccomment">/// so it should not be enabled unless needed.</span>
     <span class="doccomment">/// ## `track_status`</span>
-    <span class="doccomment">/// `true` to track status after printing</span>
+    <span class="doccomment">/// [`true`] to track status after printing</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_set_track_print_status&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_track_print_status</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">track_status</span>: <span class="ident">bool</span>);
 
@@ -2824,7 +2824,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_set_unit&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_unit</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">unit</span>: <span class="ident">Unit</span>);
 
-    <span class="doccomment">/// If `full_page` is `true`, the transformation for the cairo context</span>
+    <span class="doccomment">/// If `full_page` is [`true`], the transformation for the cairo context</span>
     <span class="doccomment">/// obtained from `GtkPrintContext` puts the origin at the top left</span>
     <span class="doccomment">/// corner of the page.</span>
     <span class="doccomment">///</span>
@@ -2832,7 +2832,7 @@
     <span class="doccomment">/// orientation and the number of pages per sheet). Otherwise, the origin</span>
     <span class="doccomment">/// is at the top left corner of the imageable area (i.e. inside the margins).</span>
     <span class="doccomment">/// ## `full_page`</span>
-    <span class="doccomment">/// `true` to set up the `GtkPrintContext` for the full page</span>
+    <span class="doccomment">/// [`true`] to set up the `GtkPrintContext` for the full page</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_operation_set_use_full_page&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_use_full_page</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">full_page</span>: <span class="ident">bool</span>);
 
@@ -2892,7 +2892,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A custom widget that gets embedded in</span>
-    <span class="doccomment">///  the print dialog, or `None`</span>
+    <span class="doccomment">///  the print dialog, or [`None`]</span>
     <span class="kw">fn</span> <span class="ident">connect_create_custom_widget</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Object</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
@@ -2913,11 +2913,11 @@
     <span class="doccomment">/// everything required for printing.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `result` gives you information about what happened during the run.</span>
-    <span class="doccomment">/// If `result` is `PrintOperationResult::Error` then you can call</span>
+    <span class="doccomment">/// If `result` is [`PrintOperationResult::Error`] then you can call</span>
     <span class="doccomment">/// [method`Gtk.PrintOperation`.get_error] for more information.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you enabled print status tracking then</span>
-    <span class="doccomment">/// [method`Gtk.PrintOperation`.is_finished] may still return `false`</span>
+    <span class="doccomment">/// [method`Gtk.PrintOperation`.is_finished] may still return [`false`]</span>
     <span class="doccomment">/// after the ::done signal was emitted.</span>
     <span class="doccomment">/// ## `result`</span>
     <span class="doccomment">/// the result of the print operation</span>
@@ -2994,12 +2994,12 @@
     <span class="doccomment">/// Emitted after the ::begin-print signal, but before the actual rendering</span>
     <span class="doccomment">/// starts.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// It keeps getting emitted until a connected signal handler returns `true`.</span>
+    <span class="doccomment">/// It keeps getting emitted until a connected signal handler returns [`true`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The ::paginate signal is intended to be used for paginating a document</span>
     <span class="doccomment">/// in small chunks, to avoid blocking the user interface for a long</span>
     <span class="doccomment">/// time. The signal handler should update the number of pages using</span>
-    <span class="doccomment">/// [method`Gtk.PrintOperation`.set_n_pages], and return `true` if the document</span>
+    <span class="doccomment">/// [method`Gtk.PrintOperation`.set_n_pages], and return [`true`] if the document</span>
     <span class="doccomment">/// has been completely paginated.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you don&#39;t need to do pagination in chunks, you can simply do</span>
@@ -3010,7 +3010,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if pagination is complete</span>
+    <span class="doccomment">/// [`true`] if pagination is complete</span>
     <span class="kw">fn</span> <span class="ident">connect_paginate</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
@@ -3022,7 +3022,7 @@
     <span class="doccomment">/// application to preview.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To implement a custom print preview, an application must return</span>
-    <span class="doccomment">/// `true` from its handler for this signal. In order to use the</span>
+    <span class="doccomment">/// [`true`] from its handler for this signal. In order to use the</span>
     <span class="doccomment">/// provided `context` for the preview implementation, it must be</span>
     <span class="doccomment">/// given a suitable cairo context with</span>
     <span class="doccomment">/// [method`Gtk.PrintContext`.set_cairo_context].</span>
@@ -3038,11 +3038,11 @@
     <span class="doccomment">/// ## `context`</span>
     <span class="doccomment">/// the `GtkPrintContext` that will be used</span>
     <span class="doccomment">/// ## `parent`</span>
-    <span class="doccomment">/// the `GtkWindow` to use as window parent, or `None`</span>
+    <span class="doccomment">/// the `GtkWindow` to use as window parent, or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the listener wants to take over control of the preview</span>
+    <span class="doccomment">/// [`true`] if the listener wants to take over control of the preview</span>
     <span class="kw">fn</span> <span class="ident">connect_preview</span><span class="op">&lt;</span>
         <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">PrintOperationPreview</span>, <span class="kw-2">&amp;</span><span class="ident">PrintContext</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Window</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
     <span class="op">&gt;</span>(

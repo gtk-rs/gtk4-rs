@@ -444,7 +444,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`LayoutManagerExt`](trait@crate::LayoutManagerExt), [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`LayoutManagerExt`](trait@crate::prelude::LayoutManagerExt), [`trait@glib::object::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GridLayout</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkGridLayout</span>, <span class="ident">ffi::GtkGridLayoutClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">LayoutManager</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -464,7 +464,7 @@
         <span class="kw">unsafe</span> { <span class="ident">LayoutManager::from_glib_full</span>(<span class="ident">ffi::gtk_grid_layout_new</span>()).<span class="ident">unsafe_cast</span>() }
     }
 
-    <span class="doccomment">/// Retrieves the row set with `GridLayout::set_baseline_row`.</span>
+    <span class="doccomment">/// Retrieves the row set with [`set_baseline_row()`](Self::set_baseline_row()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -478,7 +478,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the columns are homogeneous, and `false` otherwise</span>
+    <span class="doccomment">/// [`true`] if the columns are homogeneous, and [`false`] otherwise</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_grid_layout_get_column_homogeneous&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_column_homogeneous</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -488,7 +488,7 @@
         }
     }
 
-    <span class="doccomment">/// Retrieves the spacing set with `GridLayout::set_column_spacing`.</span>
+    <span class="doccomment">/// Retrieves the spacing set with [`set_column_spacing()`](Self::set_column_spacing()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -502,7 +502,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If no value has been set with</span>
     <span class="doccomment">/// [method`Gtk.GridLayout`.set_row_baseline_position],</span>
-    <span class="doccomment">/// the default value of `BaselinePosition::Center`</span>
+    <span class="doccomment">/// the default value of [`BaselinePosition::Center`]</span>
     <span class="doccomment">/// is returned.</span>
     <span class="doccomment">/// ## `row`</span>
     <span class="doccomment">/// a row index</span>
@@ -524,7 +524,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the rows are homogeneous, and `false` otherwise</span>
+    <span class="doccomment">/// [`true`] if the rows are homogeneous, and [`false`] otherwise</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_grid_layout_get_row_homogeneous&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_row_homogeneous</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -534,7 +534,7 @@
         }
     }
 
-    <span class="doccomment">/// Retrieves the spacing set with `GridLayout::set_row_spacing`.</span>
+    <span class="doccomment">/// Retrieves the spacing set with [`set_row_spacing()`](Self::set_row_spacing()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -560,7 +560,7 @@
 
     <span class="doccomment">/// Sets whether all columns of `self` should have the same width.</span>
     <span class="doccomment">/// ## `homogeneous`</span>
-    <span class="doccomment">/// `true` to make columns homogeneous</span>
+    <span class="doccomment">/// [`true`] to make columns homogeneous</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_grid_layout_set_column_homogeneous&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_column_homogeneous</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">homogeneous</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -600,7 +600,7 @@
 
     <span class="doccomment">/// Sets whether all rows of `self` should have the same height.</span>
     <span class="doccomment">/// ## `homogeneous`</span>
-    <span class="doccomment">/// `true` to make rows homogeneous</span>
+    <span class="doccomment">/// [`true`] to make rows homogeneous</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_grid_layout_set_row_homogeneous&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_row_homogeneous</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">homogeneous</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {

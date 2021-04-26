@@ -136,7 +136,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`TextChildAnchorExt`](trait@crate::TextChildAnchorExt), [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`TextChildAnchorExt`](trait@crate::prelude::TextChildAnchorExt), [`trait@glib::object::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TextChildAnchor</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkTextChildAnchor</span>, <span class="ident">ffi::GtkTextChildAnchorClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -181,13 +181,13 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Keep in mind that the child anchor will be unreferenced</span>
     <span class="doccomment">/// when removed from the buffer, so you need to hold your own</span>
-    <span class="doccomment">/// reference (with `glib::object::ObjectExt::ref`) if you plan to use this</span>
+    <span class="doccomment">/// reference (with [`glib::object::ObjectExt::ref()`](crate::glib::object::ObjectExt::ref())) if you plan to use this</span>
     <span class="doccomment">/// function — otherwise all deleted child anchors will also</span>
     <span class="doccomment">/// be finalized.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the child anchor has been deleted from its buffer</span>
+    <span class="doccomment">/// [`true`] if the child anchor has been deleted from its buffer</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_child_anchor_get_deleted&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_deleted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 

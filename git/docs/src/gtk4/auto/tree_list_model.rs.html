@@ -343,9 +343,9 @@
     <span class="doccomment">/// ## `root`</span>
     <span class="doccomment">/// The `GListModel` to use as root</span>
     <span class="doccomment">/// ## `passthrough`</span>
-    <span class="doccomment">/// `true` to pass through items from the models</span>
+    <span class="doccomment">/// [`true`] to pass through items from the models</span>
     <span class="doccomment">/// ## `autoexpand`</span>
-    <span class="doccomment">/// `true` to set the autoexpand property and expand the `root` model</span>
+    <span class="doccomment">/// [`true`] to set the autoexpand property and expand the `root` model</span>
     <span class="doccomment">/// ## `create_func`</span>
     <span class="doccomment">/// Function to call to create the `GListModel` for the children</span>
     <span class="doccomment">///  of an item</span>
@@ -409,7 +409,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the model is set to autoexpand</span>
+    <span class="doccomment">/// [`true`] if the model is set to autoexpand</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_list_model_get_autoexpand&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_autoexpand</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -423,7 +423,7 @@
     <span class="doccomment">/// `self`&#39;s root model.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `position` is greater than the number of children in the root model,</span>
-    <span class="doccomment">/// `None` is returned.</span>
+    <span class="doccomment">/// [`None`] is returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Do not confuse this function with [method`Gtk.TreeListModel`.get_row].</span>
     <span class="doccomment">/// ## `position`</span>
@@ -454,18 +454,18 @@
 
     <span class="doccomment">/// Gets whether the model is passing through original row items.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If this function returns `false`, the `GListModel` functions for `self`</span>
+    <span class="doccomment">/// If this function returns [`false`], the `GListModel` functions for `self`</span>
     <span class="doccomment">/// return custom `GtkTreeListRow` objects. You need to call</span>
     <span class="doccomment">/// [method`Gtk.TreeListRow`.get_item] on these objects to get the original</span>
     <span class="doccomment">/// item.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `true`, the values of the child models are passed through in their</span>
+    <span class="doccomment">/// If [`true`], the values of the child models are passed through in their</span>
     <span class="doccomment">/// original state. You then need to call [method`Gtk.TreeListModel`.get_row]</span>
     <span class="doccomment">/// to get the custom `GtkTreeListRow`s.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the model is passing through original row items</span>
+    <span class="doccomment">/// [`true`] if the model is passing through original row items</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_list_model_get_passthrough&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_passthrough</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -478,7 +478,7 @@
     <span class="doccomment">/// Gets the row object for the given row.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `position` is greater than the number of items in `self`,</span>
-    <span class="doccomment">/// `None` is returned.</span>
+    <span class="doccomment">/// [`None`] is returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The row object can be used to expand and collapse rows as</span>
     <span class="doccomment">/// well as to inspect its position in the tree. See its</span>
@@ -489,7 +489,7 @@
     <span class="doccomment">/// other rows being added or removed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `self` is set to not be passthrough, this function is</span>
-    <span class="doccomment">/// equivalent to calling `gio::ListModel::get_item`.</span>
+    <span class="doccomment">/// equivalent to calling [`gio::ListModel::get_item()`](crate::gio::ListModel::get_item()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Do not confuse this function with [method`Gtk.TreeListModel`.get_child_row].</span>
     <span class="doccomment">/// ## `position`</span>
@@ -510,11 +510,11 @@
 
     <span class="doccomment">/// Sets whether the model should autoexpand.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If set to `true`, the model will recursively expand all rows that</span>
+    <span class="doccomment">/// If set to [`true`], the model will recursively expand all rows that</span>
     <span class="doccomment">/// get added to the model. This can be either rows added by changes</span>
     <span class="doccomment">/// to the underlying models or via [method`Gtk.TreeListRow`.set_expanded].</span>
     <span class="doccomment">/// ## `autoexpand`</span>
-    <span class="doccomment">/// `true` to make the model autoexpand its rows</span>
+    <span class="doccomment">/// [`true`] to make the model autoexpand its rows</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_list_model_set_autoexpand&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_autoexpand</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">autoexpand</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {

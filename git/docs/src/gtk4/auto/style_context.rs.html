@@ -614,7 +614,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`StyleContextExt`](trait@crate::StyleContextExt), [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`StyleContextExt`](trait@crate::prelude::StyleContextExt), [`trait@glib::object::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StyleContext</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkStyleContext</span>, <span class="ident">ffi::GtkStyleContextClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -806,14 +806,14 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_style_context_get_state&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">state</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">StateFlags</span>;
 
-    <span class="doccomment">/// Returns `true` if `self` currently has defined the</span>
+    <span class="doccomment">/// Returns [`true`] if `self` currently has defined the</span>
     <span class="doccomment">/// given class name.</span>
     <span class="doccomment">/// ## `class_name`</span>
     <span class="doccomment">/// a class name</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if `self` has `class_name` defined</span>
+    <span class="doccomment">/// [`true`] if `self` has `class_name` defined</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_style_context_has_class&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">has_class</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">class_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -825,7 +825,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if `color_name` was found and resolved, `false` otherwise</span>
+    <span class="doccomment">/// [`true`] if `color_name` was found and resolved, [`false`] otherwise</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_style_context_lookup_color&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">lookup_color</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">color_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::RGBA</span><span class="op">&gt;</span>;
 

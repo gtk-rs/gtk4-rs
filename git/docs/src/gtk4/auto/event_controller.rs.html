@@ -398,7 +398,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`EventControllerExt`](trait@crate::EventControllerExt), [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`EventControllerExt`](trait@crate::prelude::EventControllerExt), [`trait@glib::object::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EventController</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkEventController</span>, <span class="ident">ffi::GtkEventControllerClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -415,7 +415,7 @@
 <span class="doccomment">/// [`DropControllerMotion`](struct@crate::DropControllerMotion), [`DropTargetAsync`](struct@crate::DropTargetAsync), [`DropTarget`](struct@crate::DropTarget), [`EventControllerFocus`](struct@crate::EventControllerFocus), [`EventControllerKey`](struct@crate::EventControllerKey), [`EventControllerLegacy`](struct@crate::EventControllerLegacy), [`EventControllerMotion`](struct@crate::EventControllerMotion), [`EventControllerScroll`](struct@crate::EventControllerScroll), [`EventController`](struct@crate::EventController), [`Gesture`](struct@crate::Gesture), [`PadController`](struct@crate::PadController), [`ShortcutController`](struct@crate::ShortcutController)</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">EventControllerExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Returns the event that is currently being handled by the</span>
-    <span class="doccomment">/// controller, and `None` at other times.</span>
+    <span class="doccomment">/// controller, and [`None`] at other times.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -425,7 +425,7 @@
     <span class="kw">fn</span> <span class="ident">current_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Event</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Returns the device of the event that is currently being</span>
-    <span class="doccomment">/// handled by the controller, and `None` otherwise.</span>
+    <span class="doccomment">/// handled by the controller, and [`None`] otherwise.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -472,7 +472,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_event_controller_get_propagation_phase&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">propagation_phase</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PropagationPhase</span>;
 
-    <span class="doccomment">/// Returns the `Widget` this controller relates to.</span>
+    <span class="doccomment">/// Returns the [`Widget`](crate::Widget) this controller relates to.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -492,7 +492,7 @@
 
     <span class="doccomment">/// Sets the event propagation limit on the event controller.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the limit is set to `PropagationLimit::SameNative`, the controller</span>
+    <span class="doccomment">/// If the limit is set to [`PropagationLimit::SameNative`], the controller</span>
     <span class="doccomment">/// won&#39;t handle events that are targeted at widgets on a different</span>
     <span class="doccomment">/// surface, such as popovers.</span>
     <span class="doccomment">/// ## `limit`</span>
@@ -502,7 +502,7 @@
 
     <span class="doccomment">/// Sets the propagation phase at which a controller handles events.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `phase` is `PropagationPhase::None`, no automatic event handling will be</span>
+    <span class="doccomment">/// If `phase` is [`PropagationPhase::None`], no automatic event handling will be</span>
     <span class="doccomment">/// performed, but other additional gesture maintenance will.</span>
     <span class="doccomment">/// ## `phase`</span>
     <span class="doccomment">/// a propagation phase</span>

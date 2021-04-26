@@ -276,7 +276,7 @@
     <span class="doccomment">/// semantic meaning.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Buttons and sensors are not constrained to triggering a single action,</span>
-    <span class="doccomment">/// some `gdk::InputSource::TabletPad` devices feature multiple &quot;modes&quot;. All these</span>
+    <span class="doccomment">/// some [`gdk::InputSource::TabletPad`] devices feature multiple &quot;modes&quot;. All these</span>
     <span class="doccomment">/// input elements have one current mode, which may determine the final action</span>
     <span class="doccomment">/// being triggered.</span>
     <span class="doccomment">///</span>
@@ -314,7 +314,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`EventControllerExt`](trait@crate::EventControllerExt), [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`EventControllerExt`](trait@crate::prelude::EventControllerExt), [`trait@glib::object::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PadController</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkPadController</span>, <span class="ident">ffi::GtkPadControllerClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -326,9 +326,9 @@
     <span class="doccomment">/// Creates a new `GtkPadController` that will associate events from `pad` to</span>
     <span class="doccomment">/// actions.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `None` pad may be provided so the controller manages all pad devices</span>
+    <span class="doccomment">/// A [`None`] pad may be provided so the controller manages all pad devices</span>
     <span class="doccomment">/// generically, it is discouraged to mix `GtkPadController` objects with</span>
-    <span class="doccomment">/// `None` and non-`None` `pad` argument on the same toplevel window, as execution</span>
+    <span class="doccomment">/// [`None`] and non-[`None`] `pad` argument on the same toplevel window, as execution</span>
     <span class="doccomment">/// order is not guaranteed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The `GtkPadController` is created with no mapped actions. In order to</span>
@@ -340,7 +340,7 @@
     <span class="doccomment">/// ## `group`</span>
     <span class="doccomment">/// `GActionGroup` to trigger actions from</span>
     <span class="doccomment">/// ## `pad`</span>
-    <span class="doccomment">/// A `gdk::InputSource::TabletPad` device, or `None` to handle all pads</span>
+    <span class="doccomment">/// A [`gdk::InputSource::TabletPad`] device, or [`None`] to handle all pads</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -375,7 +375,7 @@
     <span class="doccomment">/// Human readable description of this action, this string should</span>
     <span class="doccomment">///  be deemed user-visible.</span>
     <span class="doccomment">/// ## `action_name`</span>
-    <span class="doccomment">/// action name that will be activated in the `gio::ActionGroup`</span>
+    <span class="doccomment">/// action name that will be activated in the [`gio::ActionGroup`](crate::gio::ActionGroup)</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_pad_controller_set_action&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_action</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,

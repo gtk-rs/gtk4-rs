@@ -6,9 +6,9 @@
 <p><a href="prelude/trait.FilterExt.html"><code>FilterExt</code></a>, <a href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.ObjectExt.html" title="glib::object::ObjectExt"><code>glib::object::ObjectExt</code></a></p>
 </div><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl" class="impl"><code class="in-band">impl <a class="struct" href="struct.CustomFilter.html" title="struct gtk4::CustomFilter">CustomFilter</a></code><a href="#impl" class="anchor"></a><a class="srclink" href="../src/gtk4/custom_filter.rs.html#7-80" title="goto source code">[src]</a></h3></summary><div class="impl-items"><h4 id="method.new" class="method"><code>pub fn <a href="#method.new" class="fnname">new</a>&lt;F&gt;(filter_func: F) -&gt; <a class="struct" href="struct.CustomFilter.html" title="struct gtk4::CustomFilter">CustomFilter</a> <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static,&nbsp;</span></code><a href="#method.new" class="anchor"></a><a class="srclink" href="../src/gtk4/custom_filter.rs.html#26-38" title="goto source code">[src]</a></h4><div class="docblock"><p>Creates a new filter using the given <code>match_func</code> to filter
 items.</p>
-<p>If <code>match_func</code> is <code>None</code>, the filter matches all items.</p>
+<p>If <code>match_func</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, the filter matches all items.</p>
 <p>If the filter func changes its filtering behavior,
-<code>FilterExt::changed</code> needs to be called.</p>
+<a href="crate::FilterExt::changed()"><code>FilterExt::changed()</code></a> needs to be called.</p>
 <h2 id="match_func" class="section-header"><a href="#match_func"><code>match_func</code></a></h2>
 <p>function to filter items</p>
 <h2 id="user_data" class="section-header"><a href="#user_data"><code>user_data</code></a></h2>
@@ -18,9 +18,9 @@ items.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
 <p>a new <code>GtkCustomFilter</code></p>
 </div><h4 id="method.set_filter_func" class="method"><code>pub fn <a href="#method.set_filter_func" class="fnname">set_filter_func</a>&lt;F&gt;(&amp;self, filter_func: F) <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static,&nbsp;</span></code><a href="#method.set_filter_func" class="anchor"></a><a class="srclink" href="../src/gtk4/custom_filter.rs.html#56-68" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the function used for filtering items.</p>
-<p>If <code>match_func</code> is <code>None</code>, the filter matches all items.</p>
+<p>If <code>match_func</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, the filter matches all items.</p>
 <p>If the filter func changes its filtering behavior,
-<code>FilterExt::changed</code> needs to be called.</p>
+<a href="crate::FilterExt::changed()"><code>FilterExt::changed()</code></a> needs to be called.</p>
 <p>If a previous function was set, its <code>user_destroy</code> will be
 called now.</p>
 <h2 id="match_func-1" class="section-header"><a href="#match_func-1"><code>match_func</code></a></h2>

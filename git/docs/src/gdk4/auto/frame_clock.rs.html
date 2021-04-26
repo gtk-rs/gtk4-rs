@@ -459,13 +459,13 @@
     <span class="doccomment">/// for the synchronization being implemented, the clock will process a frame and</span>
     <span class="doccomment">/// emit signals for each phase that has been requested. (See the signals of the</span>
     <span class="doccomment">/// `GdkFrameClock` class for documentation of the phases.</span>
-    <span class="doccomment">/// `FrameClockPhase::Update` and the [signal[`crate::FrameClock::update`] (XXX: @-reference does not belong to FrameClock!)] signal</span>
+    <span class="doccomment">/// [`FrameClockPhase::Update`] and the [signal[`crate::FrameClock::update`] (XXX: @-reference does not belong to FrameClock!)] signal</span>
     <span class="doccomment">/// are most interesting for application writers, and are used to update the</span>
     <span class="doccomment">/// animations, using the frame time given by [metohd`Gdk.FrameClock`.get_frame_time].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The frame time is reported in microseconds and generally in the same</span>
-    <span class="doccomment">/// timescale as `g_get_monotonic_time`, however, it is not the same</span>
-    <span class="doccomment">/// as `g_get_monotonic_time`. The frame time does not advance during</span>
+    <span class="doccomment">/// timescale as `g_get_monotonic_time()`, however, it is not the same</span>
+    <span class="doccomment">/// as `g_get_monotonic_time()`. The frame time does not advance during</span>
     <span class="doccomment">/// the time a frame is being painted, and outside of a frame, an attempt</span>
     <span class="doccomment">/// is made so that all calls to [method`Gdk.FrameClock`.get_frame_time] that</span>
     <span class="doccomment">/// are called at a “similar” time get the same value. This means that</span>
@@ -487,8 +487,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Until a matching call to [method`Gdk.FrameClock`.end_updating] is made,</span>
     <span class="doccomment">/// the frame clock will continually request a new frame with the</span>
-    <span class="doccomment">/// `FrameClockPhase::Update` phase. This function may be called multiple</span>
-    <span class="doccomment">/// times and frames will be requested until `FrameClock::end_updating`</span>
+    <span class="doccomment">/// [`FrameClockPhase::Update`] phase. This function may be called multiple</span>
+    <span class="doccomment">/// times and frames will be requested until [`end_updating()`](Self::end_updating())</span>
     <span class="doccomment">/// is called the same number of times.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_frame_clock_begin_updating&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">begin_updating</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
@@ -514,7 +514,7 @@
     <span class="doccomment">/// the `GdkFrameTimings` for the</span>
     <span class="doccomment">///  frame currently being processed, or even no frame is being</span>
     <span class="doccomment">///  processed, for the previous frame. Before any frames have been</span>
-    <span class="doccomment">///  processed, returns `None`.</span>
+    <span class="doccomment">///  processed, returns [`None`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_frame_clock_get_current_timings&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">current_timings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FrameTimings</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -559,7 +559,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a timestamp in microseconds, in the timescale of</span>
-    <span class="doccomment">///  of `g_get_monotonic_time`.</span>
+    <span class="doccomment">///  of `g_get_monotonic_time()`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_frame_clock_get_frame_time&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">frame_time</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i64</span> {
         <span class="kw">unsafe</span> { <span class="ident">ffi::gdk_frame_clock_get_frame_time</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
@@ -595,7 +595,7 @@
     <span class="doccomment">/// base time for determining a presentaton time</span>
     <span class="doccomment">/// ## `refresh_interval_return`</span>
     <span class="doccomment">/// a location to store the</span>
-    <span class="doccomment">///  determined refresh interval, or `None`. A default refresh interval of</span>
+    <span class="doccomment">///  determined refresh interval, or [`None`]. A default refresh interval of</span>
     <span class="doccomment">///  1/60th of a second will be stored if no history is present.</span>
     <span class="doccomment">/// ## `presentation_time_return`</span>
     <span class="doccomment">/// a location to store the next</span>
@@ -630,7 +630,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the `GdkFrameTimings` object</span>
-    <span class="doccomment">///  for the specified frame, or `None` if it is not available. See</span>
+    <span class="doccomment">///  for the specified frame, or [`None`] if it is not available. See</span>
     <span class="doccomment">///  [method`Gdk.FrameClock`.get_history_start].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_frame_clock_get_timings&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">timings</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">frame_counter</span>: <span class="ident">i64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">FrameTimings</span><span class="op">&gt;</span> {
@@ -646,10 +646,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The signal corresponding the requested phase will be emitted the next</span>
     <span class="doccomment">/// time the frame clock processes. Multiple calls to</span>
-    <span class="doccomment">/// `FrameClock::request_phase` will be combined together</span>
+    <span class="doccomment">/// [`request_phase()`](Self::request_phase()) will be combined together</span>
     <span class="doccomment">/// and only one frame processed. If you are displaying animated</span>
     <span class="doccomment">/// content and want to continually request the</span>
-    <span class="doccomment">/// `FrameClockPhase::Update` phase for a period of time,</span>
+    <span class="doccomment">/// [`FrameClockPhase::Update`] phase for a period of time,</span>
     <span class="doccomment">/// you should use [method`Gdk.FrameClock`.begin_updating] instead,</span>
     <span class="doccomment">/// since this allows GTK to adjust system parameters to get maximally</span>
     <span class="doccomment">/// smooth animations.</span>

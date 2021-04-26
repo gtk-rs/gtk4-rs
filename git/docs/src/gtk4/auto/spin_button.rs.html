@@ -1474,11 +1474,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessiblity</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkSpinButton` uses the `AccessibleRole::SpinButton` role.</span>
+    <span class="doccomment">/// `GtkSpinButton` uses the [`AccessibleRole::SpinButton`] role.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`CellEditableExt`](trait@crate::CellEditableExt), [`EditableExt`](trait@crate::EditableExt), [`OrientableExt`](trait@crate::OrientableExt), [`SpinButtonExtManual`](trait@crate::SpinButtonExtManual), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual), [`CellEditableExtManual`](trait@crate::CellEditableExtManual), [`EditableExtManual`](trait@crate::EditableExtManual)</span>
+    <span class="doccomment">/// [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`CellEditableExt`](trait@crate::prelude::CellEditableExt), [`EditableExt`](trait@crate::prelude::EditableExt), [`OrientableExt`](trait@crate::prelude::OrientableExt), [`SpinButtonExtManual`](trait@crate::prelude::SpinButtonExtManual), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual), [`CellEditableExtManual`](trait@crate::prelude::CellEditableExtManual), [`EditableExtManual`](trait@crate::prelude::EditableExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SpinButton</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkSpinButton</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">CellEditable</span>, <span class="ident">Editable</span>, <span class="ident">Orientable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1490,7 +1490,7 @@
     <span class="doccomment">/// Creates a new `GtkSpinButton`.</span>
     <span class="doccomment">/// ## `adjustment`</span>
     <span class="doccomment">/// the `GtkAdjustment` that this spin</span>
-    <span class="doccomment">///  button should use, or `None`</span>
+    <span class="doccomment">///  button should use, or [`None`]</span>
     <span class="doccomment">/// ## `climb_rate`</span>
     <span class="doccomment">/// specifies by how much the rate of change in the value will</span>
     <span class="doccomment">///  accelerate if you continue to hold down an up/down button or arrow key</span>
@@ -1555,7 +1555,7 @@
     <span class="doccomment">/// are updated accordingly.</span>
     <span class="doccomment">/// ## `adjustment`</span>
     <span class="doccomment">/// a `GtkAdjustment` to replace the spin button’s</span>
-    <span class="doccomment">///  existing adjustment, or `None` to leave its current adjustment unchanged</span>
+    <span class="doccomment">///  existing adjustment, or [`None`] to leave its current adjustment unchanged</span>
     <span class="doccomment">/// ## `climb_rate`</span>
     <span class="doccomment">/// the new climb rate</span>
     <span class="doccomment">/// ## `digits`</span>
@@ -1612,9 +1612,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// See [method`Gtk.SpinButton`.set_increments].</span>
     <span class="doccomment">/// ## `step`</span>
-    <span class="doccomment">/// location to store step increment, or `None`</span>
+    <span class="doccomment">/// location to store step increment, or [`None`]</span>
     <span class="doccomment">/// ## `page`</span>
-    <span class="doccomment">/// location to store page increment, or `None`</span>
+    <span class="doccomment">/// location to store page increment, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_spin_button_get_increments&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">increments</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">f64</span>, <span class="ident">f64</span>) {
         <span class="kw">unsafe</span> {
@@ -1635,7 +1635,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if only numeric text can be entered</span>
+    <span class="doccomment">/// [`true`] if only numeric text can be entered</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_spin_button_get_numeric&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_numeric</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_spin_button_get_numeric</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -1645,9 +1645,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// See [method`Gtk.SpinButton`.set_range].</span>
     <span class="doccomment">/// ## `min`</span>
-    <span class="doccomment">/// location to store minimum allowed value, or `None`</span>
+    <span class="doccomment">/// location to store minimum allowed value, or [`None`]</span>
     <span class="doccomment">/// ## `max`</span>
-    <span class="doccomment">/// location to store maximum allowed value, or `None`</span>
+    <span class="doccomment">/// location to store maximum allowed value, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_spin_button_get_range&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">range</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">f64</span>, <span class="ident">f64</span>) {
         <span class="kw">unsafe</span> {
@@ -1668,7 +1668,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if values are snapped to the nearest step</span>
+    <span class="doccomment">/// [`true`] if values are snapped to the nearest step</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_spin_button_get_snap_to_ticks&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">snaps_to_ticks</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -1720,7 +1720,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the spin button wraps around</span>
+    <span class="doccomment">/// [`true`] if the spin button wraps around</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_spin_button_get_wrap&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wraps</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_spin_button_get_wrap</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -1877,12 +1877,12 @@
     <span class="doccomment">/// This is a [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Applications should not connect to it, but may emit it with</span>
-    <span class="doccomment">/// `g_signal_emit_by_name` if they need to control the cursor</span>
+    <span class="doccomment">/// `g_signal_emit_by_name()` if they need to control the cursor</span>
     <span class="doccomment">/// programmatically.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal are Up/Down and PageUp/PageDown.</span>
     <span class="doccomment">/// ## `scroll`</span>
-    <span class="doccomment">/// a `ScrollType` to specify the speed and amount of change</span>
+    <span class="doccomment">/// a [`ScrollType`](crate::ScrollType) to specify the speed and amount of change</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_change_value</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">SpinButton</span>, <span class="ident">ScrollType</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
@@ -1944,7 +1944,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the value has been displayed</span>
+    <span class="doccomment">/// [`true`] if the value has been displayed</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_output</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">SpinButton</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::signal::Inhibit</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,

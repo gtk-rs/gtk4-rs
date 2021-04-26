@@ -344,12 +344,12 @@
     <span class="doccomment">/// ## `name`</span>
     <span class="doccomment">/// the name of the cursor</span>
     <span class="doccomment">/// ## `fallback`</span>
-    <span class="doccomment">/// `None` or the `GdkCursor` to fall back to when</span>
+    <span class="doccomment">/// [`None`] or the `GdkCursor` to fall back to when</span>
     <span class="doccomment">///  this one cannot be supported</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GdkCursor`, or `None` if there is no</span>
+    <span class="doccomment">/// a new `GdkCursor`, or [`None`] if there is no</span>
     <span class="doccomment">///  cursor with the given name</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_cursor_new_from_name&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_name</span>(<span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">fallback</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Cursor</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Cursor</span><span class="op">&gt;</span> {
@@ -370,7 +370,7 @@
     <span class="doccomment">/// ## `hotspot_y`</span>
     <span class="doccomment">/// the vertical offset of the “hotspot” of the cursor</span>
     <span class="doccomment">/// ## `fallback`</span>
-    <span class="doccomment">/// `None` or the `GdkCursor` to fall back to when</span>
+    <span class="doccomment">/// [`None`] or the `GdkCursor` to fall back to when</span>
     <span class="doccomment">///  this one cannot be supported</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -404,7 +404,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the fallback of the cursor or `None`</span>
+    <span class="doccomment">/// the fallback of the cursor or [`None`]</span>
     <span class="doccomment">///  to use the default cursor as fallback.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_cursor_get_fallback&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fallback</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Cursor</span><span class="op">&gt;</span> {
@@ -445,11 +445,11 @@
 
     <span class="doccomment">/// Returns the name of the cursor.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the cursor is not a named cursor, `None` will be returned.</span>
+    <span class="doccomment">/// If the cursor is not a named cursor, [`None`] will be returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the name of the cursor or `None`</span>
+    <span class="doccomment">/// the name of the cursor or [`None`]</span>
     <span class="doccomment">///  if it is not a named cursor</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_cursor_get_name&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
@@ -458,11 +458,11 @@
 
     <span class="doccomment">/// Returns the texture for the cursor.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the cursor is a named cursor, `None` will be returned.</span>
+    <span class="doccomment">/// If the cursor is a named cursor, [`None`] will be returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the texture for cursor or `None`</span>
+    <span class="doccomment">/// the texture for cursor or [`None`]</span>
     <span class="doccomment">///  if it is a named cursor</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_cursor_get_texture&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">texture</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Texture</span><span class="op">&gt;</span> {

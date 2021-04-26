@@ -917,7 +917,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`GtkApplicationExt`](trait@crate::GtkApplicationExt), [`trait@gio::ApplicationExt`], [`trait@glib::object::ObjectExt`], [`trait@gio::ActionGroupExt`], [`trait@gio::ActionMapExt`]</span>
+    <span class="doccomment">/// [`GtkApplicationExt`](trait@crate::prelude::GtkApplicationExt), [`trait@gio::ApplicationExt`], [`trait@glib::object::ObjectExt`], [`trait@gio::ActionGroupExt`], [`trait@gio::ActionMapExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Application</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkApplication</span>, <span class="ident">ffi::GtkApplicationClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">gio::Application</span>, @<span class="ident">implements</span> <span class="ident">gio::ActionGroup</span>, <span class="ident">gio::ActionMap</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1070,7 +1070,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `None`-terminated array of actions for `accel`</span>
+    <span class="doccomment">/// a [`None`]-terminated array of actions for `accel`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_application_get_actions_for_accel&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">actions_for_accel</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">accel</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
 

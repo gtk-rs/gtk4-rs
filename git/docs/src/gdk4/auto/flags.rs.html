@@ -718,12 +718,12 @@
     <span class="doccomment">/// These hints determine how the surface should be positioned in the case that</span>
     <span class="doccomment">/// the surface would fall off-screen if placed in its ideal position.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// For example, `AnchorHints::FlipX` will replace `Gravity::NorthWest` with</span>
-    <span class="doccomment">/// `Gravity::NorthEast` and vice versa if the surface extends beyond the left</span>
+    <span class="doccomment">/// For example, [`FlipX`](Self::FlipX) will replace [`Gravity::NorthWest`] with</span>
+    <span class="doccomment">/// [`Gravity::NorthEast`] and vice versa if the surface extends beyond the left</span>
     <span class="doccomment">/// or right edges of the monitor.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `AnchorHints::SlideX` is set, the surface can be shifted horizontally to fit</span>
-    <span class="doccomment">/// on-screen. If `AnchorHints::ResizeX` is set, the surface can be shrunken</span>
+    <span class="doccomment">/// If [`SlideX`](Self::SlideX) is set, the surface can be shifted horizontally to fit</span>
+    <span class="doccomment">/// on-screen. If [`ResizeX`](Self::ResizeX) is set, the surface can be shrunken</span>
     <span class="doccomment">/// horizontally to fit.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In general, when multiple flags are set, flipping should take precedence over</span>
@@ -1303,7 +1303,7 @@
     <span class="doccomment">/// Specifies the state of a toplevel surface.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// On platforms that support information about individual edges, the</span>
-    <span class="doccomment">/// `ToplevelState::Tiled` state will be set whenever any of the individual</span>
+    <span class="doccomment">/// [`Tiled`](Self::Tiled) state will be set whenever any of the individual</span>
     <span class="doccomment">/// tiled states is set. On platforms that lack that support, the tiled state</span>
     <span class="doccomment">/// will give an indication of tiledness without any of the per-edge states</span>
     <span class="doccomment">/// being set.</span>

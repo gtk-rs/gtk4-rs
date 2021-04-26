@@ -55,22 +55,22 @@ by the [property<code>Gtk.ComboBox</code>:id-column] property of <code>self</cod
 compare the pointer by value to other interned strings and that you
 must not free it.</p>
 <p>If the [property<code>Gtk.ComboBox</code>:id-column] property of <code>self</code> is
-not set, or if no row is active, or if the active row has a <code>None</code>
-ID value, then <code>None</code> is returned.</p>
+not set, or if no row is active, or if the active row has a <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>
+ID value, then <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> is returned.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
-<p>the ID of the active row, or <code>None</code></p>
+<p>the ID of the active row, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 </div><h3 id="tymethod.active_iter" class="method"><code>fn <a href="#tymethod.active_iter" class="fnname">active_iter</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/combo_box.rs.html#592" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets <code>iter</code> to point to the currently active item.</p>
 <p>If no item is active, <code>iter</code> is left unchanged.</p>
 <h2 id="iter" class="section-header"><a href="#iter"><code>iter</code></a></h2>
 <p>A <code>GtkTreeIter</code></p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
-<p><code>true</code> if <code>iter</code> was set, <code>false</code> otherwise</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>iter</code> was set, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> otherwise</p>
 </div><h3 id="tymethod.button_sensitivity" class="method"><code>fn <a href="#tymethod.button_sensitivity" class="fnname">button_sensitivity</a>(&amp;self) -&gt; <a class="enum" href="../enum.SensitivityType.html" title="enum gtk4::SensitivityType">SensitivityType</a></code><a class="srclink" href="../../src/gtk4/auto/combo_box.rs.html#605" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns whether the combo box sets the dropdown button
 sensitive or not when there are no items in the model.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
-<p><code>SensitivityType::On</code> if the dropdown button
-is sensitive when the model is empty, <code>SensitivityType::Off</code>
-if the button is always insensitive or <code>SensitivityType::Auto</code>
+<p><a href="../enum.SensitivityType.html#variant.On" title="SensitivityType::On"><code>SensitivityType::On</code></a> if the dropdown button
+is sensitive when the model is empty, <a href="../enum.SensitivityType.html#variant.Off" title="SensitivityType::Off"><code>SensitivityType::Off</code></a>
+if the button is always insensitive or <a href="../enum.SensitivityType.html#variant.Auto" title="SensitivityType::Auto"><code>SensitivityType::Auto</code></a>
 if it is only sensitive as long as the model has one item to
 be selected.</p>
 </div><h3 id="tymethod.child" class="method"><code>fn <a href="#tymethod.child" class="fnname">child</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/combo_box.rs.html#613" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets the child widget of <code>self</code>.</p>
@@ -93,7 +93,7 @@ for values from.</p>
 during construction.</p>
 </div><h3 id="tymethod.is_popup_fixed_width" class="method"><code>fn <a href="#tymethod.is_popup_fixed_width" class="fnname">is_popup_fixed_width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/combo_box.rs.html#656" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets whether the popup uses a fixed width.</p>
 <h1 id="returns-8" class="section-header"><a href="#returns-8">Returns</a></h1>
-<p><code>true</code> if the popup uses a fixed width</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the popup uses a fixed width</p>
 </div><h3 id="tymethod.popdown" class="method"><code>fn <a href="#tymethod.popdown" class="fnname">popdown</a>(&amp;self)</code><a class="srclink" href="../../src/gtk4/auto/combo_box.rs.html#666" title="goto source code">[src]</a></h3><div class="docblock"><p>Hides the menu or dropdown list of <code>self</code>.</p>
 <p>This function is mostly intended for use by accessibility technologies;
 applications should have little use for it.</p>
@@ -110,21 +110,21 @@ back later.</p>
 <p>a <code>GdkDevice</code></p>
 </div><h3 id="tymethod.set_active_id" class="method"><code>fn <a href="#tymethod.set_active_id" class="fnname">set_active_id</a>(&amp;self, active_id: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/combo_box.rs.html#706" title="goto source code">[src]</a></h3><div class="docblock"><p>Changes the active row of <code>self</code> to the one that has an ID equal to
 <code>active_id</code>.</p>
-<p>If <code>active_id</code> is <code>None</code>, the active row is unset. Rows having
-a <code>None</code> ID string cannot be made active by this function.</p>
+<p>If <code>active_id</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, the active row is unset. Rows having
+a <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> ID string cannot be made active by this function.</p>
 <p>If the [property<code>Gtk.ComboBox</code>:id-column] property of <code>self</code> is
 unset or if no row has the given ID then the function does nothing
-and returns <code>false</code>.</p>
+and returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>.</p>
 <h2 id="active_id" class="section-header"><a href="#active_id"><code>active_id</code></a></h2>
-<p>the ID of the row to select, or <code>None</code></p>
+<p>the ID of the row to select, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h1 id="returns-9" class="section-header"><a href="#returns-9">Returns</a></h1>
-<p><code>true</code> if a row with a matching ID was found. If a <code>None</code>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if a row with a matching ID was found. If a <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>
 <code>active_id</code> was given to unset the active row, the function
-always returns <code>true</code>.</p>
+always returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>.</p>
 </div><h3 id="tymethod.set_active_iter" class="method"><code>fn <a href="#tymethod.set_active_iter" class="fnname">set_active_iter</a>(&amp;self, iter: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>&gt;)</code><a class="srclink" href="../../src/gtk4/auto/combo_box.rs.html#714" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets the current active item to be the one referenced by <code>iter</code>.</p>
-<p>If <code>iter</code> is <code>None</code>, the active item is unset.</p>
+<p>If <code>iter</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, the active item is unset.</p>
 <h2 id="iter-1" class="section-header"><a href="#iter-1"><code>iter</code></a></h2>
-<p>The <code>GtkTreeIter</code>, or <code>None</code></p>
+<p>The <code>GtkTreeIter</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 </div><h3 id="tymethod.set_button_sensitivity" class="method"><code>fn <a href="#tymethod.set_button_sensitivity" class="fnname">set_button_sensitivity</a>(&amp;self, sensitivity: <a class="enum" href="../enum.SensitivityType.html" title="enum gtk4::SensitivityType">SensitivityType</a>)</code><a class="srclink" href="../../src/gtk4/auto/combo_box.rs.html#721" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets whether the dropdown button of the combo box should update
 its sensitivity depending on the model contents.</p>
 <h2 id="sensitivity" class="section-header"><a href="#sensitivity"><code>sensitivity</code></a></h2>
@@ -137,7 +137,7 @@ from to be <code>text_column</code>.</p>
 <p>The column <code>text_column</code> in the model of <code>self</code> must be of
 type <code>G_TYPE_STRING</code>.</p>
 <p>This is only relevant if <code>self</code> has been created with
-[property<code>Gtk.ComboBox</code>:has-entry] as <code>true</code>.</p>
+[property<code>Gtk.ComboBox</code>:has-entry] as <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>.</p>
 <h2 id="text_column" class="section-header"><a href="#text_column"><code>text_column</code></a></h2>
 <p>A column in <code>model</code> to get the strings from for
 the internal entry</p>
@@ -148,7 +148,7 @@ for values from.</p>
 <h2 id="id_column" class="section-header"><a href="#id_column"><code>id_column</code></a></h2>
 <p>A column in <code>model</code> to get string IDs for values from</p>
 </div><h3 id="tymethod.set_model" class="method"><code>fn <a href="#tymethod.set_model" class="fnname">set_model</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>&gt;&gt;(&amp;self, model: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P&gt;)</code><a class="srclink" href="../../src/gtk4/auto/combo_box.rs.html#764" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets the model used by <code>self</code> to be <code>model</code>.</p>
-<p>Will unset a previously set model (if applicable). If model is <code>None</code>,
+<p>Will unset a previously set model (if applicable). If model is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>,
 then it will unset the model.</p>
 <p>Note that this function does not clear the cell renderers, you have to
 call [method<code>Gtk.CellLayout</code>.clear] yourself if you need to set up different
@@ -156,20 +156,20 @@ cell renderers for the new model.</p>
 <h2 id="model" class="section-header"><a href="#model"><code>model</code></a></h2>
 <p>A <code>GtkTreeModel</code></p>
 </div><h3 id="tymethod.set_popup_fixed_width" class="method"><code>fn <a href="#tymethod.set_popup_fixed_width" class="fnname">set_popup_fixed_width</a>(&amp;self, fixed: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code><a class="srclink" href="../../src/gtk4/auto/combo_box.rs.html#773" title="goto source code">[src]</a></h3><div class="docblock"><p>Specifies whether the popup’s width should be a fixed width.</p>
-<p>If <code>fixed</code> is <code>true</code>, the popup’s width is set to match the
+<p>If <code>fixed</code> is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, the popup’s width is set to match the
 allocated width of the combo box.</p>
 <h2 id="fixed" class="section-header"><a href="#fixed"><code>fixed</code></a></h2>
 <p>whether to use a fixed popup width</p>
 </div><h3 id="tymethod.set_row_separator_func" class="method"><code>fn <a href="#tymethod.set_row_separator_func" class="fnname">set_row_separator_func</a>&lt;P:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="../struct.TreeModel.html" title="struct gtk4::TreeModel">TreeModel</a>, &amp;<a class="struct" href="../struct.TreeIter.html" title="struct gtk4::TreeIter">TreeIter</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;func: P<br>)</code><a class="srclink" href="../../src/gtk4/auto/combo_box.rs.html#787" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets the row separator function, which is used to determine
 whether a row should be drawn as a separator.</p>
-<p>If the row separator function is <code>None</code>, no separators are drawn.
+<p>If the row separator function is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, no separators are drawn.
 This is the default value.</p>
 <h2 id="func" class="section-header"><a href="#func"><code>func</code></a></h2>
 <p>a <code>GtkTreeViewRowSeparatorFunc</code></p>
 <h2 id="data" class="section-header"><a href="#data"><code>data</code></a></h2>
-<p>user data to pass to <code>func</code>, or <code>None</code></p>
+<p>user data to pass to <code>func</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h2 id="destroy" class="section-header"><a href="#destroy"><code>destroy</code></a></h2>
-<p>destroy notifier for <code>data</code>, or <code>None</code></p>
+<p>destroy notifier for <code>data</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 </div><h3 id="tymethod.has_frame" class="method"><code>fn <a href="#tymethod.has_frame" class="fnname">has_frame</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/combo_box.rs.html#790" title="goto source code">[src]</a></h3><h3 id="tymethod.set_has_frame" class="method"><code>fn <a href="#tymethod.set_has_frame" class="fnname">set_has_frame</a>(&amp;self, has_frame: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code><a class="srclink" href="../../src/gtk4/auto/combo_box.rs.html#793" title="goto source code">[src]</a></h3><h3 id="tymethod.is_popup_shown" class="method"><code>fn <a href="#tymethod.is_popup_shown" class="fnname">is_popup_shown</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/combo_box.rs.html#796" title="goto source code">[src]</a></h3><h3 id="tymethod.connect_changed" class="method"><code>fn <a href="#tymethod.connect_changed" class="fnname">connect_changed</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></code><a class="srclink" href="../../src/gtk4/auto/combo_box.rs.html#803" title="goto source code">[src]</a></h3><div class="docblock"><p>Emitted when the active item is changed.</p>
 <p>The can be due to the user selecting a different item from the list,
 or due to a call to [method<code>Gtk.ComboBox</code>.set_active_iter]. It will

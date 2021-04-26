@@ -14,7 +14,7 @@ pub enum WrapMode {
 <div class="docblock non-exhaustive non-exhaustive-enum">Non-exhaustive enums could have additional variants added in future. Therefore, when matching against variants of non-exhaustive enums, an extra wildcard arm must be added to account for any future variants.</div><div id="variant.None" class="variant small-section-header"><a href="#variant.None" class="anchor field"></a><code>None</code></div><div class="docblock"><p>do not wrap lines; just make the text area wider</p>
 </div><div id="variant.Char" class="variant small-section-header"><a href="#variant.Char" class="anchor field"></a><code>Char</code></div><div class="docblock"><p>wrap text, breaking lines anywhere the cursor can
 appear (between characters, usually - if you want to be technical,
-between graphemes, see <code>pango_get_log_attrs</code>)</p>
+between graphemes, see <code>pango_get_log_attrs()</code>)</p>
 </div><div id="variant.Word" class="variant small-section-header"><a href="#variant.Word" class="anchor field"></a><code>Word</code></div><div class="docblock"><p>wrap text, breaking lines in between words</p>
 </div><div id="variant.WordChar" class="variant small-section-header"><a href="#variant.WordChar" class="anchor field"></a><code>WordChar</code></div><div class="docblock"><p>wrap text, breaking lines in between words, or if
 that is not enough, also between graphemes</p>

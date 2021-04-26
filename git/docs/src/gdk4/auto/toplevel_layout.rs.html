@@ -213,22 +213,22 @@
 <span class="kw">impl</span> <span class="ident">ToplevelLayout</span> {
     <span class="doccomment">/// Create a toplevel layout description.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Used together with `Toplevel::present` to describe</span>
+    <span class="doccomment">/// Used together with [`Toplevel::present()`](crate::Toplevel::present()) to describe</span>
     <span class="doccomment">/// how a toplevel surface should be placed and behave on-screen.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The size is in ”application pixels”, not</span>
-    <span class="doccomment">/// ”device pixels” (see `Surface::get_scale_factor`).</span>
+    <span class="doccomment">/// ”device pixels” (see [`Surface::get_scale_factor()`](crate::Surface::get_scale_factor())).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// newly created instance of `ToplevelLayout`</span>
+    <span class="doccomment">/// newly created instance of [`ToplevelLayout`](crate::ToplevelLayout)</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_layout_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ToplevelLayout</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_toplevel_layout_new</span>()) }
     }
 
-    <span class="doccomment">/// Create a new `ToplevelLayout` and copy the contents of `self` into it.</span>
+    <span class="doccomment">/// Create a new [`ToplevelLayout`](crate::ToplevelLayout) and copy the contents of `self` into it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -240,12 +240,12 @@
 
     <span class="doccomment">/// Check whether `self` and `other` has identical layout properties.</span>
     <span class="doccomment">/// ## `other`</span>
-    <span class="doccomment">/// another `ToplevelLayout`</span>
+    <span class="doccomment">/// another [`ToplevelLayout`](crate::ToplevelLayout)</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if `self` and `other` have identical layout properties,</span>
-    <span class="doccomment">///  otherwise `false`.</span>
+    <span class="doccomment">/// [`true`] if `self` and `other` have identical layout properties,</span>
+    <span class="doccomment">///  otherwise [`false`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_layout_equal&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">equal</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">ToplevelLayout</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -311,7 +311,7 @@
     <span class="doccomment">/// Sets whether the layout should cause the surface</span>
     <span class="doccomment">/// to be fullscreen when presented.</span>
     <span class="doccomment">/// ## `fullscreen`</span>
-    <span class="doccomment">/// `true` to fullscreen the surface</span>
+    <span class="doccomment">/// [`true`] to fullscreen the surface</span>
     <span class="doccomment">/// ## `monitor`</span>
     <span class="doccomment">/// the monitor to fullscreen on</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_layout_set_fullscreen&quot;</span>)]</span>
@@ -328,7 +328,7 @@
     <span class="doccomment">/// Sets whether the layout should cause the surface</span>
     <span class="doccomment">/// to be maximized when presented.</span>
     <span class="doccomment">/// ## `maximized`</span>
-    <span class="doccomment">/// `true` to maximize</span>
+    <span class="doccomment">/// [`true`] to maximize</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_layout_set_maximized&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_maximized</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">maximized</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -339,7 +339,7 @@
     <span class="doccomment">/// Sets whether the layout should allow the user</span>
     <span class="doccomment">/// to resize the surface after it has been presented.</span>
     <span class="doccomment">/// ## `resizable`</span>
-    <span class="doccomment">/// `true` to allow resizing</span>
+    <span class="doccomment">/// [`true`] to allow resizing</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_layout_set_resizable&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_resizable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">resizable</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {

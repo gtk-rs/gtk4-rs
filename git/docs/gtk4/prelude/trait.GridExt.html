@@ -48,16 +48,16 @@ by <code>width</code> and <code>height</code>.</p>
 <p>the number of rows that <code>child</code> will span</p>
 </div><h3 id="tymethod.attach_next_to" class="method"><code>fn <a href="#tymethod.attach_next_to" class="fnname">attach_next_to</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;, Q:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;child: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P, <br>&nbsp;&nbsp;&nbsp;&nbsp;sibling: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Q&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;side: <a class="enum" href="../enum.PositionType.html" title="enum gtk4::PositionType">PositionType</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a><br>)</code><a class="srclink" href="../../src/gtk4/auto/grid.rs.html#529-536" title="goto source code">[src]</a></h3><div class="docblock"><p>Adds a widget to the grid.</p>
 <p>The widget is placed next to <code>sibling</code>, on the side determined by
-<code>side</code>. When <code>sibling</code> is <code>None</code>, the widget is placed in row (for
+<code>side</code>. When <code>sibling</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, the widget is placed in row (for
 left or right placement) or column 0 (for top or bottom placement),
 at the end indicated by <code>side</code>.</p>
-<p>Attaching widgets labeled [1], [2], [3] with <code>sibling</code> == <code>None</code> and
-<code>side</code> == <code>PositionType::Left</code> yields a layout of [3][2][1].</p>
+<p>Attaching widgets labeled [1], [2], [3] with <code>sibling</code> == <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> and
+<code>side</code> == <a href="../enum.PositionType.html#variant.Left" title="PositionType::Left"><code>PositionType::Left</code></a> yields a layout of [3][2][1].</p>
 <h2 id="child-1" class="section-header"><a href="#child-1"><code>child</code></a></h2>
 <p>the widget to add</p>
 <h2 id="sibling" class="section-header"><a href="#sibling"><code>sibling</code></a></h2>
 <p>the child of <code>self</code> that <code>child</code> will be placed
-next to, or <code>None</code> to place <code>child</code> at the beginning or end</p>
+next to, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> to place <code>child</code> at the beginning or end</p>
 <h2 id="side" class="section-header"><a href="#side"><code>side</code></a></h2>
 <p>the side of <code>sibling</code> that <code>child</code> is positioned next to</p>
 <h2 id="width-1" class="section-header"><a href="#width-1"><code>width</code></a></h2>
@@ -74,7 +74,7 @@ cell at <code>column</code>, <code>row</code>.</p>
 <h2 id="row-1" class="section-header"><a href="#row-1"><code>row</code></a></h2>
 <p>the top edge of the cell</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
-<p>the child at the given position, or <code>None</code></p>
+<p>the child at the given position, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 </div><h3 id="tymethod.is_column_homogeneous" class="method"><code>fn <a href="#tymethod.is_column_homogeneous" class="fnname">is_column_homogeneous</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/grid.rs.html#565" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns whether all columns of <code>self</code> have the same width.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
 <p>whether all columns of <code>self</code> have the same width.</p>
@@ -101,8 +101,8 @@ position are grown to span the new column.</p>
 <p>the position to insert the column at</p>
 </div><h3 id="tymethod.insert_next_to" class="method"><code>fn <a href="#tymethod.insert_next_to" class="fnname">insert_next_to</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;(&amp;self, sibling: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P, side: <a class="enum" href="../enum.PositionType.html" title="enum gtk4::PositionType">PositionType</a>)</code><a class="srclink" href="../../src/gtk4/auto/grid.rs.html#625" title="goto source code">[src]</a></h3><div class="docblock"><p>Inserts a row or column at the specified position.</p>
 <p>The new row or column is placed next to <code>sibling</code>, on the side
-determined by <code>side</code>. If <code>side</code> is <code>PositionType::Top</code> or <code>PositionType::Bottom</code>,
-a row is inserted. If <code>side</code> is <code>PositionType::Left</code> of <code>PositionType::Right</code>,
+determined by <code>side</code>. If <code>side</code> is <a href="../enum.PositionType.html#variant.Top" title="PositionType::Top"><code>PositionType::Top</code></a> or <a href="../enum.PositionType.html#variant.Bottom" title="PositionType::Bottom"><code>PositionType::Bottom</code></a>,
+a row is inserted. If <code>side</code> is <a href="../enum.PositionType.html#variant.Left" title="PositionType::Left"><code>PositionType::Left</code></a> of <a href="../enum.PositionType.html#variant.Right" title="PositionType::Right"><code>PositionType::Right</code></a>,
 a column is inserted.</p>
 <h2 id="sibling-1" class="section-header"><a href="#sibling-1"><code>sibling</code></a></h2>
 <p>the child of <code>self</code> that the new row or column will be
@@ -153,20 +153,20 @@ parent of the <code>self</code>.</p>
 <p>the row index</p>
 </div><h3 id="tymethod.set_column_homogeneous" class="method"><code>fn <a href="#tymethod.set_column_homogeneous" class="fnname">set_column_homogeneous</a>(&amp;self, homogeneous: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code><a class="srclink" href="../../src/gtk4/auto/grid.rs.html#696" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets whether all columns of <code>self</code> will have the same width.</p>
 <h2 id="homogeneous" class="section-header"><a href="#homogeneous"><code>homogeneous</code></a></h2>
-<p><code>true</code> to make columns homogeneous</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> to make columns homogeneous</p>
 </div><h3 id="tymethod.set_column_spacing" class="method"><code>fn <a href="#tymethod.set_column_spacing" class="fnname">set_column_spacing</a>(&amp;self, spacing: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</code><a class="srclink" href="../../src/gtk4/auto/grid.rs.html#702" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets the amount of space between columns of <code>self</code>.</p>
 <h2 id="spacing" class="section-header"><a href="#spacing"><code>spacing</code></a></h2>
 <p>the amount of space to insert between columns</p>
 </div><h3 id="tymethod.set_row_baseline_position" class="method"><code>fn <a href="#tymethod.set_row_baseline_position" class="fnname">set_row_baseline_position</a>(&amp;self, row: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, pos: <a class="enum" href="../enum.BaselinePosition.html" title="enum gtk4::BaselinePosition">BaselinePosition</a>)</code><a class="srclink" href="../../src/gtk4/auto/grid.rs.html#713" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets how the baseline should be positioned on <code>row</code> of the
 grid, in case that row is assigned more space than is requested.</p>
-<p>The default baseline position is <code>BaselinePosition::Center</code>.</p>
+<p>The default baseline position is <a href="../enum.BaselinePosition.html#variant.Center" title="BaselinePosition::Center"><code>BaselinePosition::Center</code></a>.</p>
 <h2 id="row-5" class="section-header"><a href="#row-5"><code>row</code></a></h2>
 <p>a row index</p>
 <h2 id="pos" class="section-header"><a href="#pos"><code>pos</code></a></h2>
 <p>a <code>GtkBaselinePosition</code></p>
 </div><h3 id="tymethod.set_row_homogeneous" class="method"><code>fn <a href="#tymethod.set_row_homogeneous" class="fnname">set_row_homogeneous</a>(&amp;self, homogeneous: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code><a class="srclink" href="../../src/gtk4/auto/grid.rs.html#719" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets whether all rows of <code>self</code> will have the same height.</p>
 <h2 id="homogeneous-1" class="section-header"><a href="#homogeneous-1"><code>homogeneous</code></a></h2>
-<p><code>true</code> to make rows homogeneous</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> to make rows homogeneous</p>
 </div><h3 id="tymethod.set_row_spacing" class="method"><code>fn <a href="#tymethod.set_row_spacing" class="fnname">set_row_spacing</a>(&amp;self, spacing: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a>)</code><a class="srclink" href="../../src/gtk4/auto/grid.rs.html#725" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets the amount of space between rows of <code>self</code>.</p>
 <h2 id="spacing-1" class="section-header"><a href="#spacing-1"><code>spacing</code></a></h2>
 <p>the amount of space to insert between rows</p>

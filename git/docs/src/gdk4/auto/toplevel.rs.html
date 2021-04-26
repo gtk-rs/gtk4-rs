@@ -846,7 +846,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`ToplevelExt`](trait@crate::ToplevelExt), [`SurfaceExt`](trait@crate::SurfaceExt), [`ToplevelExtManual`](trait@crate::ToplevelExtManual), [`SurfaceExtManual`](trait@crate::SurfaceExtManual)</span>
+    <span class="doccomment">/// [`ToplevelExt`](trait@crate::prelude::ToplevelExt), [`SurfaceExt`](trait@crate::prelude::SurfaceExt), [`ToplevelExtManual`](trait@crate::prelude::ToplevelExtManual), [`SurfaceExtManual`](trait@crate::prelude::SurfaceExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Toplevel</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GdkToplevel</span>, <span class="ident">ffi::GdkToplevelInterface</span><span class="op">&gt;</span>) @<span class="ident">requires</span> <span class="ident">Surface</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -930,7 +930,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the surface was lowered</span>
+    <span class="doccomment">/// [`true`] if the surface was lowered</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_lower&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">lower</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -940,7 +940,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the surface was minimized</span>
+    <span class="doccomment">/// [`true`] if the surface was minimized</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_minimize&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">minimize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -969,20 +969,20 @@
 
     <span class="doccomment">/// Sets the toplevel to be decorated.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Setting `decorated` to `false` hints the desktop environment</span>
+    <span class="doccomment">/// Setting `decorated` to [`false`] hints the desktop environment</span>
     <span class="doccomment">/// that the surface has its own, client-side decorations and</span>
     <span class="doccomment">/// does not need to have window decorations added.</span>
     <span class="doccomment">/// ## `decorated`</span>
-    <span class="doccomment">/// `true` to request decorations</span>
+    <span class="doccomment">/// [`true`] to request decorations</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_set_decorated&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_decorated</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">decorated</span>: <span class="ident">bool</span>);
 
     <span class="doccomment">/// Sets the toplevel to be deletable.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Setting `deletable` to `true` hints the desktop environment</span>
+    <span class="doccomment">/// Setting `deletable` to [`true`] hints the desktop environment</span>
     <span class="doccomment">/// that it should offer the user a way to close the surface.</span>
     <span class="doccomment">/// ## `deletable`</span>
-    <span class="doccomment">/// `true` to request a delete button</span>
+    <span class="doccomment">/// [`true`] to request a delete button</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_set_deletable&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_deletable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">deletable</span>: <span class="ident">bool</span>);
 
@@ -1011,7 +1011,7 @@
     <span class="doccomment">/// You should only use this on surfaces for which you have</span>
     <span class="doccomment">/// previously called [method`Gdk.Toplevel`.set_transient_for].</span>
     <span class="doccomment">/// ## `modal`</span>
-    <span class="doccomment">/// `true` if the surface is modal, `false` otherwise.</span>
+    <span class="doccomment">/// [`true`] if the surface is modal, [`false`] otherwise.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_set_modal&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_modal</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">modal</span>: <span class="ident">bool</span>);
 
@@ -1053,7 +1053,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the desktop environment supports</span>
+    <span class="doccomment">/// [`true`] if the desktop environment supports</span>
     <span class="doccomment">///  tiled window states</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_supports_edge_constraints&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">supports_edge_constraints</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;

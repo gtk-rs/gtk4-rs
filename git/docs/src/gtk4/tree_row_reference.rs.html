@@ -47,17 +47,17 @@
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::prelude::TreeModelExt</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">TreeIter</span>, <span class="ident">TreePath</span>, <span class="ident">TreeRowReference</span>};
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib::IsA</span>;
 
 <span class="kw">impl</span> <span class="ident">TreeRowReference</span> {
     <span class="doccomment">/// Lets a set of row reference created by</span>
-    <span class="doccomment">/// `TreeRowReference::new_proxy` know that the</span>
-    <span class="doccomment">/// model emitted the `TreeModel::rows-reordered` signal.</span>
+    <span class="doccomment">/// [`new_proxy()`](Self::new_proxy()) know that the</span>
+    <span class="doccomment">/// model emitted the [`TreeModel::rows-reordered`](crate::TreeModel::rows-reordered) signal.</span>
     <span class="doccomment">/// ## `proxy`</span>
-    <span class="doccomment">/// a `glib::object::Object`</span>
+    <span class="doccomment">/// a [`glib::object::Object`](crate::glib::object::Object)</span>
     <span class="doccomment">/// ## `path`</span>
     <span class="doccomment">/// the parent path of the reordered signal</span>
     <span class="doccomment">/// ## `iter`</span>

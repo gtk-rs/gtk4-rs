@@ -72,17 +72,15 @@
 <span id="69">69</span>
 <span id="70">70</span>
 <span id="71">71</span>
-<span id="72">72</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::rt</span>;
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Application</span>;
-<span class="kw">use</span> <span class="ident">gio::ApplicationExt</span>;
 <span class="kw">use</span> <span class="ident">gio::ApplicationFlags</span>;
 <span class="kw">use</span> <span class="ident">glib::signal::SignalHandlerId</span>;
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">glib::ObjectExt</span>;
 
 <span class="kw">use</span> <span class="ident">std::cell::RefCell</span>;
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
@@ -101,7 +99,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that commandline arguments are not passed to [func`Gtk.init`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `application_id` is not `None`, then it must be valid. See</span>
+    <span class="doccomment">/// If `application_id` is not [`None`], then it must be valid. See</span>
     <span class="doccomment">/// `g_application_id_is_valid()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If no application ID is given then some features (most notably application</span>

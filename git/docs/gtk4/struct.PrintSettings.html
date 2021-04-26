@@ -18,7 +18,7 @@ so that moving such a document between systems still works.</p>
 <p>a new <code>GtkPrintSettings</code> object</p>
 </div><h4 id="method.from_file" class="method"><code>pub fn <a href="#method.from_file" class="fnname">from_file</a>&lt;P:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/std/path/struct.Path.html" title="struct std::path::Path">Path</a>&gt;&gt;(file_name: P) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="struct.PrintSettings.html" title="struct gtk4::PrintSettings">PrintSettings</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</code><a href="#method.from_file" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#69-85" title="goto source code">[src]</a></h4><div class="docblock"><p>Reads the print settings from <code>file_name</code>.</p>
 <p>Returns a new <code>GtkPrintSettings</code> object with the restored settings,
-or <code>None</code> if an error occurred. If the file could not be loaded then
+or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if an error occurred. If the file could not be loaded then
 error is set to either a <code>GFileError</code> or <code>GKeyFileError</code>.</p>
 <p>See [method<code>Gtk.PrintSettings</code>.to_file].</p>
 <h2 id="file_name" class="section-header"><a href="#file_name"><code>file_name</code></a></h2>
@@ -34,12 +34,12 @@ error is set to either a <code>GFileError</code> or <code>GKeyFileError</code>.<
 <p>a new <code>GtkPrintSettings</code> object</p>
 </div><h4 id="method.from_key_file" class="method"><code>pub fn <a href="#method.from_key_file" class="fnname">from_key_file</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;key_file: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/auto/key_file/struct.KeyFile.html" title="struct glib::auto::key_file::KeyFile">KeyFile</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;group_name: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;<br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="struct.PrintSettings.html" title="struct gtk4::PrintSettings">PrintSettings</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</code><a href="#method.from_key_file" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#122-140" title="goto source code">[src]</a></h4><div class="docblock"><p>Reads the print settings from the group <code>group_name</code> in <code>key_file</code>.</p>
 <p>Returns a new <code>GtkPrintSettings</code> object with the restored settings,
-or <code>None</code> if an error occurred. If the file could not be loaded then
+or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if an error occurred. If the file could not be loaded then
 error is set to either <code>GFileError</code> or <code>GKeyFileError</code>.</p>
 <h2 id="key_file" class="section-header"><a href="#key_file"><code>key_file</code></a></h2>
 <p>the <code>GKeyFile</code> to retrieve the settings from</p>
 <h2 id="group_name" class="section-header"><a href="#group_name"><code>group_name</code></a></h2>
-<p>the name of the group to use, or <code>None</code> to use
+<p>the name of the group to use, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> to use
 the default “Print Settings”</p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
 <p>the restored <code>GtkPrintSettings</code></p>
@@ -58,12 +58,12 @@ the default “Print Settings”</p>
 <p>the string value for <code>key</code></p>
 </div><h4 id="method.bool" class="method"><code>pub fn <a href="#method.bool" class="fnname">bool</a>(&amp;self, key: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.bool" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#210-217" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the boolean represented by the value
 that is associated with <code>key</code>.</p>
-<p>The string “true” represents <code>true</code>, any other
-string <code>false</code>.</p>
+<p>The string “true” represents <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, any other
+string <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>.</p>
 <h2 id="key-1" class="section-header"><a href="#key-1"><code>key</code></a></h2>
 <p>a key</p>
 <h1 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h1>
-<p><code>true</code>, if <code>key</code> maps to a true value.</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, if <code>key</code> maps to a true value.</p>
 </div><h4 id="method.is_collate" class="method"><code>pub fn <a href="#method.is_collate" class="fnname">is_collate</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.is_collate" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#225-227" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the value of <code>GTK_PRINT_SETTINGS_COLLATE</code>.</p>
 <h1 id="returns-7" class="section-header"><a href="#returns-7">Returns</a></h1>
 <p>whether to collate the printed pages</p>
@@ -81,7 +81,7 @@ string <code>false</code>.</p>
 </div><h4 id="method.double_with_default" class="method"><code>pub fn <a href="#method.double_with_default" class="fnname">double_with_default</a>(&amp;self, key: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, def: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a></code><a href="#method.double_with_default" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#279-287" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the floating point number represented by
 the value that is associated with <code>key</code>, or <code>default_val</code>
 if the value does not represent a floating point number.</p>
-<p>Floating point numbers are parsed with <code>g_ascii_strtod</code>.</p>
+<p>Floating point numbers are parsed with <code>g_ascii_strtod()</code>.</p>
 <h2 id="key-3" class="section-header"><a href="#key-3"><code>key</code></a></h2>
 <p>a key</p>
 <h2 id="def" class="section-header"><a href="#def"><code>def</code></a></h2>
@@ -141,7 +141,7 @@ converted to a <code>GtkPageOrientation</code>.</p>
 <p>return location for the length of the returned array</p>
 <h1 id="returns-23" class="section-header"><a href="#returns-23">Returns</a></h1>
 <p>an array
-of <code>GtkPageRange</code>s. Use <code>g_free</code> to free the array when
+of <code>GtkPageRange</code>s. Use <code>g_free()</code> to free the array when
 it is no longer needed.</p>
 </div><h4 id="method.page_set" class="method"><code>pub fn <a href="#method.page_set" class="fnname">page_set</a>(&amp;self) -&gt; <a class="enum" href="enum.PageSet.html" title="enum gtk4::PageSet">PageSet</a></code><a href="#method.page_set" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#478-480" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the value of <code>GTK_PRINT_SETTINGS_PAGE_SET</code>.</p>
 <h1 id="returns-24" class="section-header"><a href="#returns-24">Returns</a></h1>
@@ -193,11 +193,11 @@ converted to <code>unit</code>.</p>
 </div><h4 id="method.uses_color" class="method"><code>pub fn <a href="#method.uses_color" class="fnname">uses_color</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.uses_color" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#624-626" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the value of <code>GTK_PRINT_SETTINGS_USE_COLOR</code>.</p>
 <h1 id="returns-37" class="section-header"><a href="#returns-37">Returns</a></h1>
 <p>whether to use color</p>
-</div><h4 id="method.has_key" class="method"><code>pub fn <a href="#method.has_key" class="fnname">has_key</a>(&amp;self, key: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.has_key" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#636-643" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns <code>true</code>, if a value is associated with <code>key</code>.</p>
+</div><h4 id="method.has_key" class="method"><code>pub fn <a href="#method.has_key" class="fnname">has_key</a>(&amp;self, key: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.has_key" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#636-643" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, if a value is associated with <code>key</code>.</p>
 <h2 id="key-7" class="section-header"><a href="#key-7"><code>key</code></a></h2>
 <p>a key</p>
 <h1 id="returns-38" class="section-header"><a href="#returns-38">Returns</a></h1>
-<p><code>true</code>, if <code>key</code> has a value</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, if <code>key</code> has a value</p>
 </div><h4 id="method.load_file" class="method"><code>pub fn <a href="#method.load_file" class="fnname">load_file</a>&lt;P:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/std/path/struct.Path.html" title="struct std::path::Path">Path</a>&gt;&gt;(&amp;self, file_name: P) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</code><a href="#method.load_file" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#658-672" title="goto source code">[src]</a></h4><div class="docblock"><p>Reads the print settings from <code>file_name</code>.</p>
 <p>If the file could not be loaded then error is set to either
 a <code>GFileError</code> or <code>GKeyFileError</code>.</p>
@@ -205,22 +205,22 @@ a <code>GFileError</code> or <code>GKeyFileError</code>.</p>
 <h2 id="file_name-1" class="section-header"><a href="#file_name-1"><code>file_name</code></a></h2>
 <p>the filename to read the settings from</p>
 <h1 id="returns-39" class="section-header"><a href="#returns-39">Returns</a></h1>
-<p><code>true</code> on success</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> on success</p>
 </div><h4 id="method.load_key_file" class="method"><code>pub fn <a href="#method.load_key_file" class="fnname">load_key_file</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;key_file: &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/auto/key_file/struct.KeyFile.html" title="struct glib::auto::key_file::KeyFile">KeyFile</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;group_name: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;<br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</code><a href="#method.load_key_file" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#688-707" title="goto source code">[src]</a></h4><div class="docblock"><p>Reads the print settings from the group <code>group_name</code> in <code>key_file</code>.</p>
 <p>If the file could not be loaded then error is set to either a
 <code>GFileError</code> or <code>GKeyFileError</code>.</p>
 <h2 id="key_file-1" class="section-header"><a href="#key_file-1"><code>key_file</code></a></h2>
 <p>the <code>GKeyFile</code> to retrieve the settings from</p>
 <h2 id="group_name-1" class="section-header"><a href="#group_name-1"><code>group_name</code></a></h2>
-<p>the name of the group to use, or <code>None</code>
+<p>the name of the group to use, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>
 to use the default “Print Settings”</p>
 <h1 id="returns-40" class="section-header"><a href="#returns-40">Returns</a></h1>
-<p><code>true</code> on success</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> on success</p>
 </div><h4 id="method.set" class="method"><code>pub fn <a href="#method.set" class="fnname">set</a>(&amp;self, key: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, value: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;)</code><a href="#method.set" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#715-723" title="goto source code">[src]</a></h4><div class="docblock"><p>Associates <code>value</code> with <code>key</code>.</p>
 <h2 id="key-8" class="section-header"><a href="#key-8"><code>key</code></a></h2>
 <p>a key</p>
 <h2 id="value" class="section-header"><a href="#value"><code>value</code></a></h2>
-<p>a string value, or <code>None</code></p>
+<p>a string value, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 </div><h4 id="method.set_bool" class="method"><code>pub fn <a href="#method.set_bool" class="fnname">set_bool</a>(&amp;self, key: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, value: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code><a href="#method.set_bool" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#731-739" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets <code>key</code> to a boolean value.</p>
 <h2 id="key-9" class="section-header"><a href="#key-9"><code>key</code></a></h2>
 <p>a key</p>
@@ -242,7 +242,7 @@ to use the default “Print Settings”</p>
 <p>a double value</p>
 </div><h4 id="method.set_duplex" class="method"><code>pub fn <a href="#method.set_duplex" class="fnname">set_duplex</a>(&amp;self, duplex: <a class="enum" href="enum.PrintDuplex.html" title="enum gtk4::PrintDuplex">PrintDuplex</a>)</code><a href="#method.set_duplex" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#790-794" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the value of <code>GTK_PRINT_SETTINGS_DUPLEX</code>.</p>
 <h2 id="duplex" class="section-header"><a href="#duplex"><code>duplex</code></a></h2>
-<p>a <code>PrintDuplex</code> value</p>
+<p>a <a href="enum.PrintDuplex.html"><code>PrintDuplex</code></a> value</p>
 </div><h4 id="method.set_finishings" class="method"><code>pub fn <a href="#method.set_finishings" class="fnname">set_finishings</a>(&amp;self, finishings: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</code><a href="#method.set_finishings" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#800-807" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the value of <code>GTK_PRINT_SETTINGS_FINISHINGS</code>.</p>
 <h2 id="finishings" class="section-header"><a href="#finishings"><code>finishings</code></a></h2>
 <p>the finishings</p>
@@ -270,7 +270,7 @@ to use the default “Print Settings”</p>
 <p>the number of pages per sheet</p>
 </div><h4 id="method.set_number_up_layout" class="method"><code>pub fn <a href="#method.set_number_up_layout" class="fnname">set_number_up_layout</a>(&amp;self, number_up_layout: <a class="enum" href="enum.NumberUpLayout.html" title="enum gtk4::NumberUpLayout">NumberUpLayout</a>)</code><a href="#method.set_number_up_layout" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#879-886" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the value of <code>GTK_PRINT_SETTINGS_NUMBER_UP_LAYOUT</code>.</p>
 <h2 id="number_up_layout" class="section-header"><a href="#number_up_layout"><code>number_up_layout</code></a></h2>
-<p>a <code>NumberUpLayout</code> value</p>
+<p>a <a href="enum.NumberUpLayout.html"><code>NumberUpLayout</code></a> value</p>
 </div><h4 id="method.set_orientation" class="method"><code>pub fn <a href="#method.set_orientation" class="fnname">set_orientation</a>(&amp;self, orientation: <a class="enum" href="enum.PageOrientation.html" title="enum gtk4::PageOrientation">PageOrientation</a>)</code><a href="#method.set_orientation" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#892-896" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the value of <code>GTK_PRINT_SETTINGS_ORIENTATION</code>.</p>
 <h2 id="orientation" class="section-header"><a href="#orientation"><code>orientation</code></a></h2>
 <p>a page orientation</p>
@@ -279,7 +279,7 @@ to use the default “Print Settings”</p>
 <p>the output bin</p>
 </div><h4 id="method.set_page_set" class="method"><code>pub fn <a href="#method.set_page_set" class="fnname">set_page_set</a>(&amp;self, page_set: <a class="enum" href="enum.PageSet.html" title="enum gtk4::PageSet">PageSet</a>)</code><a href="#method.set_page_set" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#915-919" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the value of <code>GTK_PRINT_SETTINGS_PAGE_SET</code>.</p>
 <h2 id="page_set" class="section-header"><a href="#page_set"><code>page_set</code></a></h2>
-<p>a <code>PageSet</code> value</p>
+<p>a <a href="enum.PageSet.html"><code>PageSet</code></a> value</p>
 </div><h4 id="method.set_paper_height" class="method"><code>pub fn <a href="#method.set_paper_height" class="fnname">set_paper_height</a>(&amp;self, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, unit: <a class="enum" href="enum.Unit.html" title="enum gtk4::Unit">Unit</a>)</code><a href="#method.set_paper_height" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#927-931" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the value of <code>GTK_PRINT_SETTINGS_PAPER_HEIGHT</code>.</p>
 <h2 id="height" class="section-header"><a href="#height"><code>height</code></a></h2>
 <p>the paper height</p>
@@ -297,7 +297,7 @@ to use the default “Print Settings”</p>
 <p>the units of <code>width</code></p>
 </div><h4 id="method.set_print_pages" class="method"><code>pub fn <a href="#method.set_print_pages" class="fnname">set_print_pages</a>(&amp;self, pages: <a class="enum" href="enum.PrintPages.html" title="enum gtk4::PrintPages">PrintPages</a>)</code><a href="#method.set_print_pages" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#964-968" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the value of <code>GTK_PRINT_SETTINGS_PRINT_PAGES</code>.</p>
 <h2 id="pages" class="section-header"><a href="#pages"><code>pages</code></a></h2>
-<p>a <code>PrintPages</code> value</p>
+<p>a <a href="enum.PrintPages.html"><code>PrintPages</code></a> value</p>
 </div><h4 id="method.set_printer" class="method"><code>pub fn <a href="#method.set_printer" class="fnname">set_printer</a>(&amp;self, printer: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</code><a href="#method.set_printer" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#975-979" title="goto source code">[src]</a></h4><div class="docblock"><p>Convenience function to set <code>GTK_PRINT_SETTINGS_PRINTER</code>
 to <code>printer</code>.</p>
 <h2 id="printer" class="section-header"><a href="#printer"><code>printer</code></a></h2>
@@ -307,7 +307,7 @@ to <code>printer</code>.</p>
 <p>the resolution in lpi (lines per inch)</p>
 </div><h4 id="method.set_quality" class="method"><code>pub fn <a href="#method.set_quality" class="fnname">set_quality</a>(&amp;self, quality: <a class="enum" href="enum.PrintQuality.html" title="enum gtk4::PrintQuality">PrintQuality</a>)</code><a href="#method.set_quality" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#995-999" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the value of <code>GTK_PRINT_SETTINGS_QUALITY</code>.</p>
 <h2 id="quality" class="section-header"><a href="#quality"><code>quality</code></a></h2>
-<p>a <code>PrintQuality</code> value</p>
+<p>a <a href="enum.PrintQuality.html"><code>PrintQuality</code></a> value</p>
 </div><h4 id="method.set_resolution" class="method"><code>pub fn <a href="#method.set_resolution" class="fnname">set_resolution</a>(&amp;self, resolution: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</code><a href="#method.set_resolution" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#1007-1011" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the values of <code>GTK_PRINT_SETTINGS_RESOLUTION</code>,
 <code>GTK_PRINT_SETTINGS_RESOLUTION_X</code> and
 <code>GTK_PRINT_SETTINGS_RESOLUTION_Y</code>.</p>
@@ -335,7 +335,7 @@ to <code>printer</code>.</p>
 <h2 id="file_name-2" class="section-header"><a href="#file_name-2"><code>file_name</code></a></h2>
 <p>the file to save to</p>
 <h1 id="returns-41" class="section-header"><a href="#returns-41">Returns</a></h1>
-<p><code>true</code> on success</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> on success</p>
 </div><h4 id="method.to_gvariant" class="method"><code>pub fn <a href="#method.to_gvariant" class="fnname">to_gvariant</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/variant/struct.Variant.html" title="struct glib::variant::Variant">Variant</a>&gt;</code><a href="#method.to_gvariant" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#1094-1096" title="goto source code">[src]</a></h4><div class="docblock"><p>Serialize print settings to an a{sv} variant.</p>
 <h1 id="returns-42" class="section-header"><a href="#returns-42">Returns</a></h1>
 <p>a new, floating, <code>GVariant</code></p>
@@ -344,9 +344,9 @@ to <code>printer</code>.</p>
 <p>the <code>GKeyFile</code> to save the print settings to</p>
 <h2 id="group_name-2" class="section-header"><a href="#group_name-2"><code>group_name</code></a></h2>
 <p>the group to add the settings to in <code>key_file</code>, or
-<code>None</code> to use the default “Print Settings”</p>
+<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> to use the default “Print Settings”</p>
 </div><h4 id="method.unset" class="method"><code>pub fn <a href="#method.unset" class="fnname">unset</a>(&amp;self, key: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</code><a href="#method.unset" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#1121-1125" title="goto source code">[src]</a></h4><div class="docblock"><p>Removes any value associated with <code>key</code>.</p>
-<p>This has the same effect as setting the value to <code>None</code>.</p>
+<p>This has the same effect as setting the value to <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>.</p>
 <h2 id="key-13" class="section-header"><a href="#key-13"><code>key</code></a></h2>
 <p>a key</p>
 </div></div></details><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor"></a></h2><div id="trait-implementations-list"><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl-Clone" class="impl"><code class="in-band">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="struct.PrintSettings.html" title="struct gtk4::PrintSettings">PrintSettings</a></code><a href="#impl-Clone" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#19-41" title="goto source code">[src]</a></h3></summary><div class="impl-items"><h4 id="method.clone" class="method hidden trait-impl"><code>fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone" class="fnname">clone</a>(&amp;self) -&gt; <a class="struct" href="struct.PrintSettings.html" title="struct gtk4::PrintSettings">PrintSettings</a></code><a href="#method.clone" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/print_settings.rs.html#19-41" title="goto source code">[src]</a></h4><div class='docblock hidden'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>

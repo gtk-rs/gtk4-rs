@@ -1519,12 +1519,12 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkListBox` uses the `AccessibleRole::List` role and `GtkListBoxRow` uses</span>
-    <span class="doccomment">/// the `AccessibleRole::ListItem` role.</span>
+    <span class="doccomment">/// `GtkListBox` uses the [`AccessibleRole::List`] role and `GtkListBoxRow` uses</span>
+    <span class="doccomment">/// the [`AccessibleRole::ListItem`] role.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ListBox</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkListBox</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1564,7 +1564,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The contents of `self` are cleared and then filled with widgets that</span>
     <span class="doccomment">/// represent items from `model`. `self` is updated whenever `model` changes.</span>
-    <span class="doccomment">/// If `model` is `None`, `self` is left empty.</span>
+    <span class="doccomment">/// If `model` is [`None`], `self` is left empty.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is undefined to add or remove widgets directly (for example, with</span>
     <span class="doccomment">/// [method`Gtk.ListBox`.insert]) while `self` is bound to a model.</span>
@@ -1576,7 +1576,7 @@
     <span class="doccomment">/// the `GListModel` to be bound to `self`</span>
     <span class="doccomment">/// ## `create_widget_func`</span>
     <span class="doccomment">/// a function that creates widgets for items</span>
-    <span class="doccomment">///  or `None` in case you also passed `None` as `model`</span>
+    <span class="doccomment">///  or [`None`] in case you also passed [`None`] as `model`</span>
     <span class="doccomment">/// ## `user_data`</span>
     <span class="doccomment">/// user data passed to `create_widget_func`</span>
     <span class="doccomment">/// ## `user_data_free_func`</span>
@@ -1626,7 +1626,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a helper function for implementing DnD onto a `GtkListBox`.</span>
     <span class="doccomment">/// The passed in `row` will be highlighted by setting the</span>
-    <span class="doccomment">/// `StateFlags::DropActive` state and any previously highlighted</span>
+    <span class="doccomment">/// [`StateFlags::DropActive`] state and any previously highlighted</span>
     <span class="doccomment">/// row will be unhighlighted.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The row will also be unhighlighted when the widget gets</span>
@@ -1643,7 +1643,7 @@
         }
     }
 
-    <span class="doccomment">/// If a row has previously been highlighted via `ListBox::drag_highlight_row`,</span>
+    <span class="doccomment">/// If a row has previously been highlighted via [`drag_highlight_row()`](Self::drag_highlight_row()),</span>
     <span class="doccomment">/// it will have the highlight removed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_box_drag_unhighlight_row&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drag_unhighlight_row</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
@@ -1656,7 +1656,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if rows are activated on single click, `false` otherwise</span>
+    <span class="doccomment">/// [`true`] if rows are activated on single click, [`false`] otherwise</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_box_get_activate_on_single_click&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">activates_on_single_click</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -1680,13 +1680,13 @@
     <span class="doccomment">/// Gets the n-th child in the list (not counting headers).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `index_` is negative or larger than the number of items in the</span>
-    <span class="doccomment">/// list, `None` is returned.</span>
+    <span class="doccomment">/// list, [`None`] is returned.</span>
     <span class="doccomment">/// ## `index_`</span>
     <span class="doccomment">/// the index of the row</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the child `GtkWidget` or `None`</span>
+    <span class="doccomment">/// the child `GtkWidget` or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_box_get_row_at_index&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">row_at_index</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">index_</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ListBoxRow</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -1703,14 +1703,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the row or `None`</span>
+    <span class="doccomment">/// the row or [`None`]</span>
     <span class="doccomment">///  in case no row exists for the given y coordinate.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_box_get_row_at_y&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">row_at_y</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">y</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ListBoxRow</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_list_box_get_row_at_y</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">y</span>)) }
     }
 
-    <span class="doccomment">/// Gets the selected row, or `None` if no rows are selected.</span>
+    <span class="doccomment">/// Gets the selected row, or [`None`] if no rows are selected.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the box may allow multiple selection, in which</span>
     <span class="doccomment">/// case you should use [method`Gtk.ListBox`.selected_foreach] to</span>
@@ -1718,7 +1718,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the selected row or `None`</span>
+    <span class="doccomment">/// the selected row or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_box_get_selected_row&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">selected_row</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ListBoxRow</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_list_box_get_selected_row</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -1730,7 +1730,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///  A `GList` containing the `GtkWidget` for each selected child.</span>
-    <span class="doccomment">///  Free with `glib::List::free` when done.</span>
+    <span class="doccomment">///  Free with [`glib::List::free()`](crate::glib::List::free()) when done.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_box_get_selected_rows&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">selected_rows</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ListBoxRow</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -1755,7 +1755,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the list box shows separators</span>
+    <span class="doccomment">/// [`true`] if the list box shows separators</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_box_get_show_separators&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">shows_separators</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_list_box_get_show_separators</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -1854,7 +1854,7 @@
 
     <span class="doccomment">/// Make `row` the currently selected row.</span>
     <span class="doccomment">/// ## `row`</span>
-    <span class="doccomment">/// The row to select or `None`</span>
+    <span class="doccomment">/// The row to select or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_box_select_row&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">select_row</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ListBoxRow</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">row</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -1896,7 +1896,7 @@
         }
     }
 
-    <span class="doccomment">/// If `single` is `true`, rows will be activated when you click on them,</span>
+    <span class="doccomment">/// If `single` is [`true`], rows will be activated when you click on them,</span>
     <span class="doccomment">/// otherwise you need to double-click.</span>
     <span class="doccomment">/// ## `single`</span>
     <span class="doccomment">/// a boolean</span>
@@ -1918,7 +1918,7 @@
     <span class="doccomment">/// be picked up automatically, so there is no need</span>
     <span class="doccomment">/// to manually do that.</span>
     <span class="doccomment">/// ## `adjustment`</span>
-    <span class="doccomment">/// the adjustment, or `None`</span>
+    <span class="doccomment">/// the adjustment, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_box_set_adjustment&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_adjustment</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Adjustment</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">adjustment</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -1990,7 +1990,7 @@
     <span class="doccomment">/// The `update_header` can look at the current header widget using</span>
     <span class="doccomment">/// [method`Gtk.ListBoxRow`.get_header] and either update the state of the widget</span>
     <span class="doccomment">/// as needed, or set a new one using [method`Gtk.ListBoxRow`.set_header]. If no</span>
-    <span class="doccomment">/// header is needed, set the header to `None`.</span>
+    <span class="doccomment">/// header is needed, set the header to [`None`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that you may get many calls `update_header` to this for a particular</span>
     <span class="doccomment">/// row when e.g. changing things that don’t affect the header. In this case</span>
@@ -2048,7 +2048,7 @@
     <span class="doccomment">/// Sets the placeholder widget that is shown in the list when</span>
     <span class="doccomment">/// it doesn&#39;t display any visible children.</span>
     <span class="doccomment">/// ## `placeholder`</span>
-    <span class="doccomment">/// a `Widget` or `None`</span>
+    <span class="doccomment">/// a [`Widget`](crate::Widget) or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_box_set_placeholder&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_placeholder</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">placeholder</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -2072,7 +2072,7 @@
     <span class="doccomment">/// Sets whether the list box should show separators</span>
     <span class="doccomment">/// between rows.</span>
     <span class="doccomment">/// ## `show_separators`</span>
-    <span class="doccomment">/// `true` to show separators</span>
+    <span class="doccomment">/// [`true`] to show separators</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_box_set_show_separators&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_show_separators</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">show_separators</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -2275,10 +2275,10 @@
         }
     }
 
-    <span class="doccomment">/// Emitted when a new row is selected, or (with a `None` `row`)</span>
+    <span class="doccomment">/// Emitted when a new row is selected, or (with a [`None`] `row`)</span>
     <span class="doccomment">/// when the selection is cleared.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// When the `box_` is using `SelectionMode::Multiple`, this signal will not</span>
+    <span class="doccomment">/// When the `box_` is using [`SelectionMode::Multiple`], this signal will not</span>
     <span class="doccomment">/// give you the full picture of selection changes, and you should use</span>
     <span class="doccomment">/// the [signal`Gtk.ListBox`::selected-rows-changed] signal instead.</span>
     <span class="doccomment">/// ## `row`</span>

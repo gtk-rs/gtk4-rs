@@ -29,16 +29,16 @@
 <p>the child widget of <code>self</code></p>
 </div><h3 id="tymethod.has_frame" class="method"><code>fn <a href="#tymethod.has_frame" class="fnname">has_frame</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/button.rs.html#518" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns whether the button has a frame.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
-<p><code>true</code> if the button has a frame</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the button has a frame</p>
 </div><h3 id="tymethod.icon_name" class="method"><code>fn <a href="#tymethod.icon_name" class="fnname">icon_name</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/button.rs.html#530" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns the icon name of the button.</p>
 <p>If the icon name has not been set with [method<code>Gtk.Button</code>.set_icon_name]
-the return value will be <code>None</code>. This will be the case if you create
+the return value will be <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>. This will be the case if you create
 an empty button with [ctor<code>Gtk.Button</code>.new] to use as a container.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
 <p>The icon name set via [method<code>Gtk.Button</code>.set_icon_name]</p>
 </div><h3 id="tymethod.label" class="method"><code>fn <a href="#tymethod.label" class="fnname">label</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/button.rs.html#543" title="goto source code">[src]</a></h3><div class="docblock"><p>Fetches the text from the label of the button.</p>
 <p>If the label text has not been set with [method<code>Gtk.Button</code>.set_label]
-the return value will be <code>None</code>. This will be the case if you create
+the return value will be <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>. This will be the case if you create
 an empty button with [ctor<code>Gtk.Button</code>.new] to use as a container.</p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
 <p>The text of the label widget. This string is owned
@@ -46,7 +46,7 @@ by the widget and must not be modified or freed.</p>
 </div><h3 id="tymethod.uses_underline" class="method"><code>fn <a href="#tymethod.uses_underline" class="fnname">uses_underline</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/button.rs.html#554" title="goto source code">[src]</a></h3><div class="docblock"><p>gets whether underlines are interpreted as mnemonics.</p>
 <p>See [method<code>Gtk.Button</code>.set_use_underline].</p>
 <h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
-<p><code>true</code> if an embedded underline in the button label
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if an embedded underline in the button label
 indicates the mnemonic accelerator keys.</p>
 </div><h3 id="tymethod.set_child" class="method"><code>fn <a href="#tymethod.set_child" class="fnname">set_child</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;(&amp;self, child: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P&gt;)</code><a class="srclink" href="../../src/gtk4/auto/button.rs.html#560" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets the child widget of <code>self</code>.</p>
 <h2 id="child" class="section-header"><a href="#child"><code>child</code></a></h2>
@@ -68,7 +68,7 @@ be removed and replaced with the image.</p>
 <p>If true, an underline in the text of the button label indicates
 the next character should be used for the mnemonic accelerator key.</p>
 <h2 id="use_underline" class="section-header"><a href="#use_underline"><code>use_underline</code></a></h2>
-<p><code>true</code> if underlines in the text indicate mnemonics</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if underlines in the text indicate mnemonics</p>
 </div><h3 id="tymethod.connect_activate" class="method"><code>fn <a href="#tymethod.connect_activate" class="fnname">connect_activate</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></code><a class="srclink" href="../../src/gtk4/auto/button.rs.html#600" title="goto source code">[src]</a></h3><div class="docblock"><p>Emitted to animate press then release.</p>
 <p>This is an action signal. Applications should never connect
 to this signal, but use the [signal<code>Gtk.Button</code>::clicked] signal.</p>

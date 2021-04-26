@@ -17,14 +17,10 @@
 <span id="14">14</span>
 <span id="15">15</span>
 <span id="16">16</span>
-<span id="17">17</span>
-<span id="18">18</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="ident">glib::subclass::prelude</span>::<span class="kw-2">*</span>;
-
-<span class="kw">use</span> <span class="kw">super</span><span class="ident">::widget::WidgetImpl</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::subclass::prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Grid</span>, <span class="ident">Widget</span>};
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">GridImpl</span>: <span class="ident">WidgetImpl</span> {}

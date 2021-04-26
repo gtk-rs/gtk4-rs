@@ -179,7 +179,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The model will use the filter to determine if it should include items</span>
     <span class="doccomment">/// or not by calling [method`Gtk.Filter`.match] for each item and only</span>
-    <span class="doccomment">/// keeping the ones that the function returns `true` for.</span>
+    <span class="doccomment">/// keeping the ones that the function returns [`true`] for.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Filters may change what items they match through their lifetime. In that</span>
     <span class="doccomment">/// case, they will emit the [signal`Gtk.Filter`::changed] signal to notify</span>
@@ -191,11 +191,11 @@
     <span class="doccomment">/// various widgets to easily allow searches.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// However, in particular for large lists or complex search methods, it is</span>
-    <span class="doccomment">/// also possible to subclass `Filter` and provide one&#39;s own filter.</span>
+    <span class="doccomment">/// also possible to subclass [`Filter`](crate::Filter) and provide one&#39;s own filter.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`FilterExt`](trait@crate::FilterExt), [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`FilterExt`](trait@crate::prelude::FilterExt), [`trait@glib::object::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Filter</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkFilter</span>, <span class="ident">ffi::GtkFilterClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -211,14 +211,14 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`BoolFilter`](struct@crate::BoolFilter), [`CustomFilter`](struct@crate::CustomFilter), [`FileFilter`](struct@crate::FileFilter), [`Filter`](struct@crate::Filter), [`MultiFilter`](struct@crate::MultiFilter), [`StringFilter`](struct@crate::StringFilter)</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">FilterExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Emits the `Filter::changed` signal to notify all users of the filter that</span>
+    <span class="doccomment">/// Emits the [`Filter::changed`](crate::Filter::changed) signal to notify all users of the filter that</span>
     <span class="doccomment">/// the filter changed. Users of the filter should then check items again via</span>
-    <span class="doccomment">/// `FilterExt::match`.</span>
+    <span class="doccomment">/// [`match()`](Self::match()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Depending on the `change` parameter, not all items need to be changed, but</span>
-    <span class="doccomment">/// only some. Refer to the `FilterChange` documentation for details.</span>
+    <span class="doccomment">/// only some. Refer to the [`FilterChange`](crate::FilterChange) documentation for details.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This function is intended for implementors of `Filter` subclasses and</span>
+    <span class="doccomment">/// This function is intended for implementors of [`Filter`](crate::Filter) subclasses and</span>
     <span class="doccomment">/// should not be called from other functions.</span>
     <span class="doccomment">/// ## `change`</span>
     <span class="doccomment">/// How the filter changed</span>
@@ -226,12 +226,12 @@
     <span class="kw">fn</span> <span class="ident">changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">change</span>: <span class="ident">FilterChange</span>);
 
     <span class="doccomment">/// Gets the known strictness of `filters`. If the strictness is not known,</span>
-    <span class="doccomment">/// `FilterMatch::Some` is returned.</span>
+    <span class="doccomment">/// [`FilterMatch::Some`] is returned.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This value may change after emission of the `Filter::changed` signal.</span>
+    <span class="doccomment">/// This value may change after emission of the [`Filter::changed`](crate::Filter::changed) signal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is meant purely for optimization purposes, filters can</span>
-    <span class="doccomment">/// choose to omit implementing it, but `FilterListModel` uses it.</span>
+    <span class="doccomment">/// choose to omit implementing it, but [`FilterListModel`](crate::FilterListModel) uses it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

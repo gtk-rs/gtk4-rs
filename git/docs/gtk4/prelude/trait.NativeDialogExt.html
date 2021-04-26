@@ -31,19 +31,19 @@ to destroying a <code>GtkWindow</code>) because there is no reference from the
 windowing system to the <code>GtkNativeDialog</code>.</p>
 </div><h3 id="tymethod.is_modal" class="method"><code>fn <a href="#tymethod.is_modal" class="fnname">is_modal</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/native_dialog.rs.html#76" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns whether the dialog is modal.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
-<p><code>true</code> if the dialog is set to be modal</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the dialog is set to be modal</p>
 </div><h3 id="tymethod.title" class="method"><code>fn <a href="#tymethod.title" class="fnname">title</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/native_dialog.rs.html#86" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets the title of the <code>GtkNativeDialog</code>.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
-<p>the title of the dialog, or <code>None</code> if none has
+<p>the title of the dialog, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if none has
 been set explicitly. The returned string is owned by the widget
 and must not be modified or freed.</p>
 </div><h3 id="tymethod.transient_for" class="method"><code>fn <a href="#tymethod.transient_for" class="fnname">transient_for</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.Window.html" title="struct gtk4::Window">Window</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/native_dialog.rs.html#95" title="goto source code">[src]</a></h3><div class="docblock"><p>Fetches the transient parent for this window.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
 <p>the transient parent for this window,
-or <code>None</code> if no transient parent has been set.</p>
+or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if no transient parent has been set.</p>
 </div><h3 id="tymethod.is_visible" class="method"><code>fn <a href="#tymethod.is_visible" class="fnname">is_visible</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/native_dialog.rs.html#103" title="goto source code">[src]</a></h3><div class="docblock"><p>Determines whether the dialog is visible.</p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
-<p><code>true</code> if the dialog is visible</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the dialog is visible</p>
 </div><h3 id="tymethod.hide" class="method"><code>fn <a href="#tymethod.hide" class="fnname">hide</a>(&amp;self)</code><a class="srclink" href="../../src/gtk4/auto/native_dialog.rs.html#113" title="goto source code">[src]</a></h3><div class="docblock"><p>Hides the dialog if it is visible, aborting any interaction.</p>
 <p>Once this is called the [signal<code>Gtk.NativeDialog</code>::response] signal
 will <em>not</em> be emitted until after the next call to
@@ -64,9 +64,9 @@ then disallow lowering the dialog below the parent.</p>
 window they were spawned from.</p>
 <p>This allows window managers to e.g. keep the dialog on top of the
 main window, or center the dialog over the main window.</p>
-<p>Passing <code>None</code> for <code>parent</code> unsets the current transient window.</p>
+<p>Passing <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> for <code>parent</code> unsets the current transient window.</p>
 <h2 id="parent" class="section-header"><a href="#parent"><code>parent</code></a></h2>
-<p>parent window, or <code>None</code></p>
+<p>parent window, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 </div><h3 id="tymethod.show" class="method"><code>fn <a href="#tymethod.show" class="fnname">show</a>(&amp;self)</code><a class="srclink" href="../../src/gtk4/auto/native_dialog.rs.html#153" title="goto source code">[src]</a></h3><div class="docblock"><p>Shows the dialog on the display.</p>
 <p>When the user accepts the state of the dialog the dialog will
 be automatically hidden and the [signal<code>Gtk.NativeDialog</code>::response]

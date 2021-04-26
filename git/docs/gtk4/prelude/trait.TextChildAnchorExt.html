@@ -11,11 +11,11 @@
 the buffer.</p>
 <p>Keep in mind that the child anchor will be unreferenced
 when removed from the buffer, so you need to hold your own
-reference (with <code>glib::object::ObjectExt::ref</code>) if you plan to use this
+reference (with <a href="crate::glib::object::ObjectExt::ref()"><code>glib::object::ObjectExt::ref()</code></a>) if you plan to use this
 function — otherwise all deleted child anchors will also
 be finalized.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
-<p><code>true</code> if the child anchor has been deleted from its buffer</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the child anchor has been deleted from its buffer</p>
 </div><h3 id="tymethod.widgets" class="method"><code>fn <a href="#tymethod.widgets" class="fnname">widgets</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/text_child_anchor.rs.html#85" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets a list of all widgets anchored at this child anchor.</p>
 <p>The order in which the widgets are returned is not defined.</p>
 <h2 id="out_len" class="section-header"><a href="#out_len"><code>out_len</code></a></h2>

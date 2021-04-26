@@ -270,7 +270,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`StyleProviderExt`](trait@crate::StyleProviderExt)</span>
+    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`StyleProviderExt`](trait@crate::prelude::StyleProviderExt)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CssProvider</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkCssProvider</span>, <span class="ident">ffi::GtkCssProviderClass</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">StyleProvider</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -363,7 +363,7 @@
     <span class="doccomment">/// A theme name</span>
     <span class="doccomment">/// ## `variant`</span>
     <span class="doccomment">/// variant to load, for example, &quot;dark&quot;, or</span>
-    <span class="doccomment">///  `None` for the default</span>
+    <span class="doccomment">///  [`None`] for the default</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_css_provider_load_named&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load_named</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">variant</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {

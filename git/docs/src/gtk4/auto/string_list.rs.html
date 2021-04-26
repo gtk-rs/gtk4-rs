@@ -202,7 +202,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`trait@gio::ListModelExt`], [`BuildableExt`](trait@crate::BuildableExt)</span>
+    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`trait@gio::ListModelExt`], [`BuildableExt`](trait@crate::prelude::BuildableExt)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StringList</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkStringList</span>, <span class="ident">ffi::GtkStringListClass</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">gio::ListModel</span>, <span class="ident">Buildable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -239,10 +239,10 @@
 
     <span class="doccomment">/// Gets the string that is at `position` in `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `self` does not contain `position` items, `None` is returned.</span>
+    <span class="doccomment">/// If `self` does not contain `position` items, [`None`] is returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function returns the const char *. To get the</span>
-    <span class="doccomment">/// object wrapping it, use `gio::ListModel::get_item`.</span>
+    <span class="doccomment">/// object wrapping it, use [`gio::ListModel::get_item()`](crate::gio::ListModel::get_item()).</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// the position to get the string for</span>
     <span class="doccomment">///</span>

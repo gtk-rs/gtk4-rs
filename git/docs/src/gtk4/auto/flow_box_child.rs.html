@@ -559,7 +559,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`FlowBoxChildExt`](trait@crate::FlowBoxChildExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`FlowBoxChildExt`](trait@crate::prelude::FlowBoxChildExt), [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FlowBoxChild</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkFlowBoxChild</span>, <span class="ident">ffi::GtkFlowBoxChildClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -900,7 +900,7 @@
     <span class="doccomment">/// used for the sorting and filtering functions. For instance, if</span>
     <span class="doccomment">/// the list is mirroring some external data set, and *two* children</span>
     <span class="doccomment">/// changed in the external data set when you call</span>
-    <span class="doccomment">/// `FlowBoxChildExt::changed` on the first child, the sort function</span>
+    <span class="doccomment">/// [`changed()`](Self::changed()) on the first child, the sort function</span>
     <span class="doccomment">/// must only read the new data for the first of the two changed</span>
     <span class="doccomment">/// children, otherwise the resorting of the children will be wrong.</span>
     <span class="doccomment">///</span>
@@ -935,7 +935,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if `self` is selected</span>
+    <span class="doccomment">/// [`true`] if `self` is selected</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_flow_box_child_is_selected&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_selected</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 

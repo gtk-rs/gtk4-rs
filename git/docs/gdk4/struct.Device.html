@@ -9,17 +9,17 @@ about the various kinds of devices, and their relationships.</p>
 </div><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl" class="impl"><code class="in-band">impl <a class="struct" href="struct.Device.html" title="struct gdk4::Device">Device</a></code><a href="#impl" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/device.rs.html#37-586" title="goto source code">[src]</a></h3></summary><div class="impl-items"><h4 id="method.is_caps_locked" class="method"><code>pub fn <a href="#method.is_caps_locked" class="fnname">is_caps_locked</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.is_caps_locked" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/device.rs.html#46-48" title="goto source code">[src]</a></h4><div class="docblock"><p>Retrieves whether the Caps Lock modifier of the keyboard is locked.</p>
 <p>This is only relevant for keyboard devices.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
-<p><code>true</code> if Caps Lock is on for <code>self</code></p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if Caps Lock is on for <code>self</code></p>
 </div><h4 id="method.device_tool" class="method"><code>pub fn <a href="#method.device_tool" class="fnname">device_tool</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.DeviceTool.html" title="struct gdk4::DeviceTool">DeviceTool</a>&gt;</code><a href="#method.device_tool" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/device.rs.html#56-58" title="goto source code">[src]</a></h4><div class="docblock"><p>Retrieves the current tool for <code>self</code>.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
-<p>the <code>GdkDeviceTool</code>, or <code>None</code></p>
+<p>the <code>GdkDeviceTool</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 </div><h4 id="method.direction" class="method"><code>pub fn <a href="#method.direction" class="fnname">direction</a>(&amp;self) -&gt; <a class="enum" href="https://gtk-rs.org/gtk-rs/git/docs/pango/auto/enums/enum.Direction.html" title="enum pango::auto::enums::Direction">Direction</a></code><a href="#method.direction" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/device.rs.html#73-75" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the direction of effective layout of the keyboard.</p>
 <p>This is only relevant for keyboard devices.</p>
 <p>The direction of a layout is the direction of the majority
 of its symbols. See [func<code>Pango.unichar_direction</code>].</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
-<p><code>pango::Direction::Ltr</code> or <code>pango::Direction::Rtl</code>
-if it can determine the direction. <code>pango::Direction::Neutral</code>
+<p><a href="https://gtk-rs.org/gtk-rs/git/docs/pango/auto/enums/enum.Direction.html#variant.Ltr" title="pango::Direction::Ltr"><code>pango::Direction::Ltr</code></a> or <a href="https://gtk-rs.org/gtk-rs/git/docs/pango/auto/enums/enum.Direction.html#variant.Rtl" title="pango::Direction::Rtl"><code>pango::Direction::Rtl</code></a>
+if it can determine the direction. <a href="https://gtk-rs.org/gtk-rs/git/docs/pango/auto/enums/enum.Direction.html#variant.Neutral" title="pango::Direction::Neutral"><code>pango::Direction::Neutral</code></a>
 otherwise</p>
 </div><h4 id="method.display" class="method"><code>pub fn <a href="#method.display" class="fnname">display</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.Display.html" title="struct gdk4::Display">Display</a>&gt;</code><a href="#method.display" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/device.rs.html#83-85" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the <code>GdkDisplay</code> to which <code>self</code> pertains.</p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
@@ -28,7 +28,7 @@ otherwise</p>
 <p>This is not meaningful for keyboard devices, which
 don’t have a pointer.</p>
 <h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
-<p><code>true</code> if the pointer follows device motion</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the pointer follows device motion</p>
 </div><h4 id="method.modifier_state" class="method"><code>pub fn <a href="#method.modifier_state" class="fnname">modifier_state</a>(&amp;self) -&gt; <a class="struct" href="struct.ModifierType.html" title="struct gdk4::ModifierType">ModifierType</a></code><a href="#method.modifier_state" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/device.rs.html#108-110" title="goto source code">[src]</a></h4><div class="docblock"><p>Retrieves the current modifier state of the keyboard.</p>
 <p>This is only relevant for keyboard devices.</p>
 <h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>
@@ -39,7 +39,7 @@ don’t have a pointer.</p>
 </div><h4 id="method.is_num_locked" class="method"><code>pub fn <a href="#method.is_num_locked" class="fnname">is_num_locked</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.is_num_locked" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/device.rs.html#130-132" title="goto source code">[src]</a></h4><div class="docblock"><p>Retrieves whether the Num Lock modifier of the keyboard is locked.</p>
 <p>This is only relevant for keyboard devices.</p>
 <h1 id="returns-7" class="section-header"><a href="#returns-7">Returns</a></h1>
-<p><code>true</code> if Num Lock is on for <code>self</code></p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if Num Lock is on for <code>self</code></p>
 </div><h4 id="method.num_touches" class="method"><code>pub fn <a href="#method.num_touches" class="fnname">num_touches</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></code><a href="#method.num_touches" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/device.rs.html#140-142" title="goto source code">[src]</a></h4><div class="docblock"><p>Retrieves the number of touch points associated to <code>self</code>.</p>
 <h1 id="returns-8" class="section-header"><a href="#returns-8">Returns</a></h1>
 <p>the number of touch points</p>
@@ -47,11 +47,11 @@ don’t have a pointer.</p>
 <p>This ID is retrieved from the device, and does not change.
 See [method<code>Gdk.Device</code>.get_vendor_id] for more information.</p>
 <h1 id="returns-9" class="section-header"><a href="#returns-9">Returns</a></h1>
-<p>the product ID, or <code>None</code></p>
+<p>the product ID, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 </div><h4 id="method.is_scroll_locked" class="method"><code>pub fn <a href="#method.is_scroll_locked" class="fnname">is_scroll_locked</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.is_scroll_locked" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/device.rs.html#165-167" title="goto source code">[src]</a></h4><div class="docblock"><p>Retrieves whether the Scroll Lock modifier of the keyboard is locked.</p>
 <p>This is only relevant for keyboard devices.</p>
 <h1 id="returns-10" class="section-header"><a href="#returns-10">Returns</a></h1>
-<p><code>true</code> if Scroll Lock is on for <code>self</code></p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if Scroll Lock is on for <code>self</code></p>
 </div><h4 id="method.seat" class="method"><code>pub fn <a href="#method.seat" class="fnname">seat</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.Seat.html" title="struct gdk4::Seat">Seat</a>&gt;</code><a href="#method.seat" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/device.rs.html#175-177" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the <code>GdkSeat</code> the device belongs to.</p>
 <h1 id="returns-11" class="section-header"><a href="#returns-11">Returns</a></h1>
 <p>a <code>GdkSeat</code></p>
@@ -60,17 +60,17 @@ See [method<code>Gdk.Device</code>.get_vendor_id] for more information.</p>
 <p>a <code>GdkInputSource</code></p>
 </div><h4 id="method.surface_at_position" class="method"><code>pub fn <a href="#method.surface_at_position" class="fnname">surface_at_position</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.Surface.html" title="struct gdk4::Surface">Surface</a>&gt;, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></code><a href="#method.surface_at_position" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/device.rs.html#206-219" title="goto source code">[src]</a></h4><div class="docblock"><p>Obtains the surface underneath <code>self</code>, returning the location of the
 device in <code>win_x</code> and <code>win_y</code></p>
-<p>Returns <code>None</code> if the surface tree under <code>self</code> is not known to GDK
+<p>Returns <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if the surface tree under <code>self</code> is not known to GDK
 (for example, belongs to another application).</p>
 <h2 id="win_x" class="section-header"><a href="#win_x"><code>win_x</code></a></h2>
 <p>return location for the X coordinate of the device location,
-relative to the surface origin, or <code>None</code>.</p>
+relative to the surface origin, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>.</p>
 <h2 id="win_y" class="section-header"><a href="#win_y"><code>win_y</code></a></h2>
 <p>return location for the Y coordinate of the device location,
-relative to the surface origin, or <code>None</code>.</p>
+relative to the surface origin, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>.</p>
 <h1 id="returns-13" class="section-header"><a href="#returns-13">Returns</a></h1>
 <p>the <code>GdkSurface</code> under the
-device position, or <code>None</code></p>
+device position, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 </div><h4 id="method.vendor_id" class="method"><code>pub fn <a href="#method.vendor_id" class="fnname">vendor_id</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</code><a href="#method.vendor_id" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/device.rs.html#253-255" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the vendor ID of this device.</p>
 <p>This ID is retrieved from the device, and does not change.</p>
 <p>This function, together with [method<code>Gdk.Device</code>.get_product_id],
@@ -95,13 +95,13 @@ for this device.</p>
  }
 </code></pre>
 <h1 id="returns-14" class="section-header"><a href="#returns-14">Returns</a></h1>
-<p>the vendor ID, or <code>None</code></p>
+<p>the vendor ID, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 </div><h4 id="method.has_bidi_layouts" class="method"><code>pub fn <a href="#method.has_bidi_layouts" class="fnname">has_bidi_layouts</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.has_bidi_layouts" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/device.rs.html#267-269" title="goto source code">[src]</a></h4><div class="docblock"><p>Determines if layouts for both right-to-left and
 left-to-right languages are in use on the keyboard.</p>
 <p>This is only relevant for keyboard devices.</p>
 <h1 id="returns-15" class="section-header"><a href="#returns-15">Returns</a></h1>
-<p><code>true</code> if there are layouts with both directions,
-<code>false</code> otherwise</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if there are layouts with both directions,
+<a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> otherwise</p>
 </div><h4 id="method.n_axes" class="method"><code>pub fn <a href="#method.n_axes" class="fnname">n_axes</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></code><a href="#method.n_axes" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/device.rs.html#272-284" title="goto source code">[src]</a></h4><h4 id="method.set_seat" class="method"><code>pub fn <a href="#method.set_seat" class="fnname">set_seat</a>(&amp;self, seat: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="struct.Seat.html" title="struct gdk4::Seat">Seat</a>&gt;)</code><a href="#method.set_seat" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/device.rs.html#287-295" title="goto source code">[src]</a></h4><h4 id="method.tool" class="method"><code>pub fn <a href="#method.tool" class="fnname">tool</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.DeviceTool.html" title="struct gdk4::DeviceTool">DeviceTool</a>&gt;</code><a href="#method.tool" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/device.rs.html#298-310" title="goto source code">[src]</a></h4><h4 id="method.connect_changed" class="method"><code>pub fn <a href="#method.connect_changed" class="fnname">connect_changed</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="struct.Device.html" title="struct gdk4::Device">Device</a>) + 'static&gt;(&amp;self, f: F) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></code><a href="#method.connect_changed" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/device.rs.html#319-338" title="goto source code">[src]</a></h4><div class="docblock"><p>Emitted either when the the number of either axes or keys changes.</p>
 <p>On X11 this will normally happen when the physical device
 routing events through the logical device changes (for

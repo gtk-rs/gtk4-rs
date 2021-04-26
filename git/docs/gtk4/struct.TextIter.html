@@ -13,8 +13,8 @@ iterators can be assigned with <code>GtkTextIter i = j;</code>.</p>
 <h2 id="other" class="section-header"><a href="#other"><code>other</code></a></h2>
 <p>another <code>GtkTextIter</code></p>
 </div><h4 id="method.backward_char" class="method"><code>pub fn <a href="#method.backward_char" class="fnname">backward_char</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.backward_char" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#59-61" title="goto source code">[src]</a></h4><div class="docblock"><p>Moves backward by one character offset.</p>
-<p>Returns <code>true</code> if movement was possible; if <code>self</code> was the first
-in the buffer (character offset 0), this function returns <code>false</code>
+<p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if movement was possible; if <code>self</code> was the first
+in the buffer (character offset 0), this function returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>
 for convenience when writing loops.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
 <p>whether movement was possible</p>
@@ -23,37 +23,37 @@ for convenience when writing loops.</p>
 to the start or end of the buffer.</p>
 <p>The return value indicates whether the iterator moved
 onto a dereferenceable position; if the iterator didn’t move, or
-moved onto the end iterator, then <code>false</code> is returned. If <code>count</code> is 0,
-the function does nothing and returns <code>false</code>.</p>
+moved onto the end iterator, then <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> is returned. If <code>count</code> is 0,
+the function does nothing and returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>.</p>
 <h2 id="count" class="section-header"><a href="#count"><code>count</code></a></h2>
 <p>number of characters to move</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
 <p>whether <code>self</code> moved and is dereferenceable</p>
-</div><h4 id="method.backward_cursor_position" class="method"><code>pub fn <a href="#method.backward_cursor_position" class="fnname">backward_cursor_position</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.backward_cursor_position" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#94-100" title="goto source code">[src]</a></h4><div class="docblock"><p>Like <code>TextIter::forward_cursor_position</code>, but moves backward.</p>
+</div><h4 id="method.backward_cursor_position" class="method"><code>pub fn <a href="#method.backward_cursor_position" class="fnname">backward_cursor_position</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.backward_cursor_position" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#94-100" title="goto source code">[src]</a></h4><div class="docblock"><p>Like <a href="struct.TextIter.html#method.forward_cursor_position"><code>forward_cursor_position()</code></a>, but moves backward.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
-<p><code>true</code> if we moved</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if we moved</p>
 </div><h4 id="method.backward_cursor_positions" class="method"><code>pub fn <a href="#method.backward_cursor_positions" class="fnname">backward_cursor_positions</a>(&amp;mut self, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.backward_cursor_positions" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#112-119" title="goto source code">[src]</a></h4><div class="docblock"><p>Moves up to <code>count</code> cursor positions.</p>
 <p>See [method<code>Gtk.TextIter</code>.forward_cursor_position] for details.</p>
 <h2 id="count-1" class="section-header"><a href="#count-1"><code>count</code></a></h2>
 <p>number of positions to move</p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
-<p><code>true</code> if we moved and the new position is dereferenceable</p>
-</div><h4 id="method.backward_find_char" class="method"><code>pub fn <a href="#method.backward_find_char" class="fnname">backward_find_char</a>&lt;P:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnMut.html" title="trait core::ops::function::FnMut">FnMut</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.char.html">char</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;pred: P, <br>&nbsp;&nbsp;&nbsp;&nbsp;limit: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>&gt;<br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.backward_find_char" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#134-160" title="goto source code">[src]</a></h4><div class="docblock"><p>Same as <code>TextIter::forward_find_char</code>,
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if we moved and the new position is dereferenceable</p>
+</div><h4 id="method.backward_find_char" class="method"><code>pub fn <a href="#method.backward_find_char" class="fnname">backward_find_char</a>&lt;P:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnMut.html" title="trait core::ops::function::FnMut">FnMut</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.char.html">char</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;pred: P, <br>&nbsp;&nbsp;&nbsp;&nbsp;limit: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>&gt;<br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.backward_find_char" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#134-160" title="goto source code">[src]</a></h4><div class="docblock"><p>Same as <a href="struct.TextIter.html#method.forward_find_char"><code>forward_find_char()</code></a>,
 but goes backward from <code>self</code>.</p>
 <h2 id="pred" class="section-header"><a href="#pred"><code>pred</code></a></h2>
 <p>function to be called on each character</p>
 <h2 id="user_data" class="section-header"><a href="#user_data"><code>user_data</code></a></h2>
 <p>user data for <code>pred</code></p>
 <h2 id="limit" class="section-header"><a href="#limit"><code>limit</code></a></h2>
-<p>search limit, or <code>None</code> for none</p>
+<p>search limit, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> for none</p>
 <h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
 <p>whether a match was found</p>
 </div><h4 id="method.backward_line" class="method"><code>pub fn <a href="#method.backward_line" class="fnname">backward_line</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.backward_line" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#176-178" title="goto source code">[src]</a></h4><div class="docblock"><p>Moves <code>self</code> to the start of the previous line.</p>
-<p>Returns <code>true</code> if <code>self</code> could be moved; i.e. if <code>self</code> was at
-character offset 0, this function returns <code>false</code>. Therefore,
+<p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> could be moved; i.e. if <code>self</code> was at
+character offset 0, this function returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>. Therefore,
 if <code>self</code> was already on line 0, but not at the start of the line,
 <code>self</code> is snapped to the start of the line and the function returns
-<code>true</code>. (Note that this implies that
+<a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>. (Note that this implies that
 in a loop calling this function, the line number may not change on
 every iteration, if your first iteration is on line 0.)</p>
 <h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>
@@ -63,14 +63,14 @@ every iteration, if your first iteration is on line 0.)</p>
 the start or end of the buffer.</p>
 <p>The return value indicates whether the iterator moved
 onto a dereferenceable position; if the iterator didn’t move, or
-moved onto the end iterator, then <code>false</code> is returned. If <code>count</code> is 0,
-the function does nothing and returns <code>false</code>. If <code>count</code> is negative,
+moved onto the end iterator, then <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> is returned. If <code>count</code> is 0,
+the function does nothing and returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>. If <code>count</code> is negative,
 moves forward by 0 - <code>count</code> lines.</p>
 <h2 id="count-2" class="section-header"><a href="#count-2"><code>count</code></a></h2>
 <p>number of lines to move backward</p>
 <h1 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h1>
 <p>whether <code>self</code> moved and is dereferenceable</p>
-</div><h4 id="method.backward_search" class="method"><code>pub fn <a href="#method.backward_search" class="fnname">backward_search</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;str: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;flags: <a class="struct" href="struct.TextSearchFlags.html" title="struct gtk4::TextSearchFlags">TextSearchFlags</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;limit: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>&gt;<br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="struct" href="struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <a class="struct" href="struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;</code><a href="#method.backward_search" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#225-248" title="goto source code">[src]</a></h4><div class="docblock"><p>Same as <code>TextIter::forward_search</code>, but moves backward.</p>
+</div><h4 id="method.backward_search" class="method"><code>pub fn <a href="#method.backward_search" class="fnname">backward_search</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;str: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;flags: <a class="struct" href="struct.TextSearchFlags.html" title="struct gtk4::TextSearchFlags">TextSearchFlags</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;limit: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>&gt;<br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="struct" href="struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>, <a class="struct" href="struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;</code><a href="#method.backward_search" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#225-248" title="goto source code">[src]</a></h4><div class="docblock"><p>Same as <a href="struct.TextIter.html#method.forward_search"><code>forward_search()</code></a>, but moves backward.</p>
 <p><code>match_end</code> will never be set to a <code>GtkTextIter</code> located after <code>self</code>,
 even if there is a possible <code>match_start</code> before or at <code>self</code>.</p>
 <h2 id="str" class="section-header"><a href="#str"><code>str</code></a></h2>
@@ -78,11 +78,11 @@ even if there is a possible <code>match_start</code> before or at <code>self</co
 <h2 id="flags" class="section-header"><a href="#flags"><code>flags</code></a></h2>
 <p>bitmask of flags affecting the search</p>
 <h2 id="match_start" class="section-header"><a href="#match_start"><code>match_start</code></a></h2>
-<p>return location for start of match, or <code>None</code></p>
+<p>return location for start of match, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h2 id="match_end" class="section-header"><a href="#match_end"><code>match_end</code></a></h2>
-<p>return location for end of match, or <code>None</code></p>
+<p>return location for end of match, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h2 id="limit-1" class="section-header"><a href="#limit-1"><code>limit</code></a></h2>
-<p>location of last possible <code>match_start</code>, or <code>None</code> for start of buffer</p>
+<p>location of last possible <code>match_start</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> for start of buffer</p>
 <h1 id="returns-7" class="section-header"><a href="#returns-7">Returns</a></h1>
 <p>whether a match was found</p>
 </div><h4 id="method.backward_sentence_start" class="method"><code>pub fn <a href="#method.backward_sentence_start" class="fnname">backward_sentence_start</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.backward_sentence_start" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#262-268" title="goto source code">[src]</a></h4><div class="docblock"><p>Moves backward to the previous sentence start.</p>
@@ -91,41 +91,41 @@ to the next one.</p>
 <p>Sentence boundaries are determined by Pango and should
 be correct for nearly any language.</p>
 <h1 id="returns-8" class="section-header"><a href="#returns-8">Returns</a></h1>
-<p><code>true</code> if <code>self</code> moved and is not the end iterator</p>
-</div><h4 id="method.backward_sentence_starts" class="method"><code>pub fn <a href="#method.backward_sentence_starts" class="fnname">backward_sentence_starts</a>(&amp;mut self, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.backward_sentence_starts" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#280-287" title="goto source code">[src]</a></h4><div class="docblock"><p>Calls <code>TextIter::backward_sentence_start</code> up to <code>count</code> times.</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> moved and is not the end iterator</p>
+</div><h4 id="method.backward_sentence_starts" class="method"><code>pub fn <a href="#method.backward_sentence_starts" class="fnname">backward_sentence_starts</a>(&amp;mut self, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.backward_sentence_starts" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#280-287" title="goto source code">[src]</a></h4><div class="docblock"><p>Calls <a href="struct.TextIter.html#method.backward_sentence_start"><code>backward_sentence_start()</code></a> up to <code>count</code> times.</p>
 <p>If <code>count</code> is negative, moves forward instead of backward.</p>
 <h2 id="count-3" class="section-header"><a href="#count-3"><code>count</code></a></h2>
 <p>number of sentences to move</p>
 <h1 id="returns-9" class="section-header"><a href="#returns-9">Returns</a></h1>
-<p><code>true</code> if <code>self</code> moved and is not the end iterator</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> moved and is not the end iterator</p>
 </div><h4 id="method.backward_to_tag_toggle" class="method"><code>pub fn <a href="#method.backward_to_tag_toggle" class="fnname">backward_to_tag_toggle</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>&gt;&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;tag: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P&gt;<br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.backward_to_tag_toggle" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#305-312" title="goto source code">[src]</a></h4><div class="docblock"><p>Moves backward to the next toggle (on or off) of the
 <code>tag</code>, or to the next toggle of any tag if
-<code>tag</code> is <code>None</code>.</p>
+<code>tag</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>.</p>
 <p>If no matching tag toggles are found,
-returns <code>false</code>, otherwise <code>true</code>. Does not return toggles
+returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>, otherwise <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>. Does not return toggles
 located at <code>self</code>, only toggles before <code>self</code>. Sets <code>self</code>
 to the location of the toggle, or the start of the buffer
 if no toggle is found.</p>
 <h2 id="tag" class="section-header"><a href="#tag"><code>tag</code></a></h2>
-<p>a <code>GtkTextTag</code>, or <code>None</code></p>
+<p>a <code>GtkTextTag</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h1 id="returns-10" class="section-header"><a href="#returns-10">Returns</a></h1>
 <p>whether we found a tag toggle before <code>self</code></p>
 </div><h4 id="method.backward_visible_cursor_position" class="method"><code>pub fn <a href="#method.backward_visible_cursor_position" class="fnname">backward_visible_cursor_position</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.backward_visible_cursor_position" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#322-328" title="goto source code">[src]</a></h4><div class="docblock"><p>Moves <code>self</code> forward to the previous visible cursor position.</p>
 <p>See [method<code>Gtk.TextIter</code>.backward_cursor_position] for details.</p>
 <h1 id="returns-11" class="section-header"><a href="#returns-11">Returns</a></h1>
-<p><code>true</code> if we moved and the new position is dereferenceable</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if we moved and the new position is dereferenceable</p>
 </div><h4 id="method.backward_visible_cursor_positions" class="method"><code>pub fn <a href="#method.backward_visible_cursor_positions" class="fnname">backward_visible_cursor_positions</a>(&amp;mut self, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.backward_visible_cursor_positions" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#340-347" title="goto source code">[src]</a></h4><div class="docblock"><p>Moves up to <code>count</code> visible cursor positions.</p>
 <p>See [method<code>Gtk.TextIter</code>.backward_cursor_position] for details.</p>
 <h2 id="count-4" class="section-header"><a href="#count-4"><code>count</code></a></h2>
 <p>number of positions to move</p>
 <h1 id="returns-12" class="section-header"><a href="#returns-12">Returns</a></h1>
-<p><code>true</code> if we moved and the new position is dereferenceable</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if we moved and the new position is dereferenceable</p>
 </div><h4 id="method.backward_visible_line" class="method"><code>pub fn <a href="#method.backward_visible_line" class="fnname">backward_visible_line</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.backward_visible_line" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#363-369" title="goto source code">[src]</a></h4><div class="docblock"><p>Moves <code>self</code> to the start of the previous visible line.</p>
-<p>Returns <code>true</code> if
+<p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if
 <code>self</code> could be moved; i.e. if <code>self</code> was at character offset 0, this
-function returns <code>false</code>. Therefore if <code>self</code> was already on line 0,
+function returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>. Therefore if <code>self</code> was already on line 0,
 but not at the start of the line, <code>self</code> is snapped to the start of
-the line and the function returns <code>true</code>. (Note that this implies that
+the line and the function returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>. (Note that this implies that
 in a loop calling this function, the line number may not change on
 every iteration, if your first iteration is on line 0.)</p>
 <h1 id="returns-13" class="section-header"><a href="#returns-13">Returns</a></h1>
@@ -135,8 +135,8 @@ every iteration, if your first iteration is on line 0.)</p>
 the start or end of the buffer.</p>
 <p>The return value indicates whether the iterator moved
 onto a dereferenceable position; if the iterator didn’t move, or
-moved onto the end iterator, then <code>false</code> is returned. If <code>count</code> is 0,
-the function does nothing and returns <code>false</code>. If <code>count</code> is negative,
+moved onto the end iterator, then <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> is returned. If <code>count</code> is 0,
+the function does nothing and returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>. If <code>count</code> is negative,
 moves forward by 0 - <code>count</code> lines.</p>
 <h2 id="count-5" class="section-header"><a href="#count-5"><code>count</code></a></h2>
 <p>number of lines to move backward</p>
@@ -148,24 +148,24 @@ next one after that.</p>
 <p>Word breaks are determined by Pango and should be correct
 for nearly any language.</p>
 <h1 id="returns-15" class="section-header"><a href="#returns-15">Returns</a></h1>
-<p><code>true</code> if <code>self</code> moved and is not the end iterator</p>
-</div><h4 id="method.backward_visible_word_starts" class="method"><code>pub fn <a href="#method.backward_visible_word_starts" class="fnname">backward_visible_word_starts</a>(&amp;mut self, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.backward_visible_word_starts" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#425-432" title="goto source code">[src]</a></h4><div class="docblock"><p>Calls <code>TextIter::backward_visible_word_start</code> up to <code>count</code> times.</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> moved and is not the end iterator</p>
+</div><h4 id="method.backward_visible_word_starts" class="method"><code>pub fn <a href="#method.backward_visible_word_starts" class="fnname">backward_visible_word_starts</a>(&amp;mut self, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.backward_visible_word_starts" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#425-432" title="goto source code">[src]</a></h4><div class="docblock"><p>Calls <a href="struct.TextIter.html#method.backward_visible_word_start"><code>backward_visible_word_start()</code></a> up to <code>count</code> times.</p>
 <h2 id="count-6" class="section-header"><a href="#count-6"><code>count</code></a></h2>
 <p>number of times to move</p>
 <h1 id="returns-16" class="section-header"><a href="#returns-16">Returns</a></h1>
-<p><code>true</code> if <code>self</code> moved and is not the end iterator</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> moved and is not the end iterator</p>
 </div><h4 id="method.backward_word_start" class="method"><code>pub fn <a href="#method.backward_word_start" class="fnname">backward_word_start</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.backward_word_start" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#446-452" title="goto source code">[src]</a></h4><div class="docblock"><p>Moves backward to the previous word start.</p>
 <p>If <code>self</code> is currently on a word start, moves backward to the
 next one after that.</p>
 <p>Word breaks are determined by Pango and should be correct
 for nearly any language</p>
 <h1 id="returns-17" class="section-header"><a href="#returns-17">Returns</a></h1>
-<p><code>true</code> if <code>self</code> moved and is not the end iterator</p>
-</div><h4 id="method.backward_word_starts" class="method"><code>pub fn <a href="#method.backward_word_starts" class="fnname">backward_word_starts</a>(&amp;mut self, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.backward_word_starts" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#462-469" title="goto source code">[src]</a></h4><div class="docblock"><p>Calls <code>TextIter::backward_word_start</code> up to <code>count</code> times.</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> moved and is not the end iterator</p>
+</div><h4 id="method.backward_word_starts" class="method"><code>pub fn <a href="#method.backward_word_starts" class="fnname">backward_word_starts</a>(&amp;mut self, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.backward_word_starts" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#462-469" title="goto source code">[src]</a></h4><div class="docblock"><p>Calls <a href="struct.TextIter.html#method.backward_word_start"><code>backward_word_start()</code></a> up to <code>count</code> times.</p>
 <h2 id="count-7" class="section-header"><a href="#count-7"><code>count</code></a></h2>
 <p>number of times to move</p>
 <h1 id="returns-18" class="section-header"><a href="#returns-18">Returns</a></h1>
-<p><code>true</code> if <code>self</code> moved and is not the end iterator</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> moved and is not the end iterator</p>
 </div><h4 id="method.can_insert" class="method"><code>pub fn <a href="#method.can_insert" class="fnname">can_insert</a>(&amp;self, default_editability: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.can_insert" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#486-493" title="goto source code">[src]</a></h4><div class="docblock"><p>Considering the default editability of the buffer, and tags that
 affect editability, determines whether text inserted at <code>self</code> would
 be editable.</p>
@@ -174,13 +174,13 @@ user should be allowed to insert text at <code>self</code>.
 [method<code>Gtk.TextBuffer</code>.insert_interactive] uses this function
 to decide whether insertions are allowed at a given position.</p>
 <h2 id="default_editability" class="section-header"><a href="#default_editability"><code>default_editability</code></a></h2>
-<p><code>true</code> if text is editable by default</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if text is editable by default</p>
 <h1 id="returns-19" class="section-header"><a href="#returns-19">Returns</a></h1>
 <p>whether text inserted at <code>self</code> would be editable</p>
 </div><h4 id="method.editable" class="method"><code>pub fn <a href="#method.editable" class="fnname">editable</a>(&amp;self, default_setting: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.editable" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#531-538" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns whether the character at <code>self</code> is within an editable region
 of text.</p>
 <p>Non-editable text is “locked” and can’t be changed by the
-user via <code>TextView</code>. If no tags applied to this text affect
+user via <a href="struct.TextView.html"><code>TextView</code></a>. If no tags applied to this text affect
 editability, <code>default_setting</code> will be returned.</p>
 <p>You don’t want to use this function to decide whether text can be
 inserted at <code>self</code>, because for insertion you don’t want to know
@@ -189,10 +189,10 @@ know whether a new character inserted at <code>self</code> would be inside an
 editable range. Use [method<code>Gtk.TextIter</code>.can_insert] to handle this
 case.</p>
 <h2 id="default_setting" class="section-header"><a href="#default_setting"><code>default_setting</code></a></h2>
-<p><code>true</code> if text is editable by default</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if text is editable by default</p>
 <h1 id="returns-20" class="section-header"><a href="#returns-20">Returns</a></h1>
 <p>whether <code>self</code> is inside an editable range</p>
-</div><h4 id="method.ends_line" class="method"><code>pub fn <a href="#method.ends_line" class="fnname">ends_line</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.ends_line" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#556-558" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns <code>true</code> if <code>self</code> points to the start of the paragraph
+</div><h4 id="method.ends_line" class="method"><code>pub fn <a href="#method.ends_line" class="fnname">ends_line</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.ends_line" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#556-558" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> points to the start of the paragraph
 delimiter characters for a line.</p>
 <p>Delimiters will be either a newline, a carriage return, a carriage
 return followed by a newline, or a Unicode paragraph separator
@@ -207,30 +207,30 @@ are no paragraph delimiter chars there.</p>
 <p>Sentence boundaries are determined by Pango and should
 be correct for nearly any language.</p>
 <h1 id="returns-22" class="section-header"><a href="#returns-22">Returns</a></h1>
-<p><code>true</code> if <code>self</code> is at the end of a sentence.</p>
-</div><h4 id="method.ends_tag" class="method"><code>pub fn <a href="#method.ends_tag" class="fnname">ends_tag</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>&gt;&gt;(&amp;self, tag: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.ends_tag" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#590-597" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns <code>true</code> if <code>tag</code> is toggled off at exactly this point.</p>
-<p>If <code>tag</code> is <code>None</code>, returns <code>true</code> if any tag is toggled off at this point.</p>
-<p>Note that if this function returns <code>true</code>, it means that
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> is at the end of a sentence.</p>
+</div><h4 id="method.ends_tag" class="method"><code>pub fn <a href="#method.ends_tag" class="fnname">ends_tag</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>&gt;&gt;(&amp;self, tag: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.ends_tag" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#590-597" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>tag</code> is toggled off at exactly this point.</p>
+<p>If <code>tag</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if any tag is toggled off at this point.</p>
+<p>Note that if this function returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, it means that
 <code>self</code> is at the end of the tagged range, but that the character
 at <code>self</code> is outside the tagged range. In other words,
 unlike [method<code>Gtk.TextIter</code>.starts_tag], if this function
-returns <code>true</code>, [method<code>Gtk.TextIter</code>.has_tag] will return
-<code>false</code> for the same parameters.</p>
+returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, [method<code>Gtk.TextIter</code>.has_tag] will return
+<a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> for the same parameters.</p>
 <h2 id="tag-1" class="section-header"><a href="#tag-1"><code>tag</code></a></h2>
-<p>a <code>GtkTextTag</code>, or <code>None</code></p>
+<p>a <code>GtkTextTag</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h1 id="returns-23" class="section-header"><a href="#returns-23">Returns</a></h1>
 <p>whether <code>self</code> is the end of a range tagged with <code>tag</code></p>
 </div><h4 id="method.ends_word" class="method"><code>pub fn <a href="#method.ends_word" class="fnname">ends_word</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.ends_word" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#608-610" title="goto source code">[src]</a></h4><div class="docblock"><p>Determines whether <code>self</code> ends a natural-language word.</p>
 <p>Word breaks are determined by Pango and should be correct
 for nearly any language.</p>
 <h1 id="returns-24" class="section-header"><a href="#returns-24">Returns</a></h1>
-<p><code>true</code> if <code>self</code> is at the end of a word</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> is at the end of a word</p>
 </div><h4 id="method.forward_char" class="method"><code>pub fn <a href="#method.forward_char" class="fnname">forward_char</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.forward_char" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#647-649" title="goto source code">[src]</a></h4><div class="docblock"><p>Moves <code>self</code> forward by one character offset.</p>
 <p>Note that images embedded in the buffer occupy 1 character slot, so
 this function may actually move onto an image instead of a character,
 if you have images in your buffer. If <code>self</code> is the end iterator or
 one character before it, <code>self</code> will now point at the end iterator,
-and this function returns <code>false</code> for convenience when writing loops.</p>
+and this function returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> for convenience when writing loops.</p>
 <h1 id="returns-25" class="section-header"><a href="#returns-25">Returns</a></h1>
 <p>whether <code>self</code> moved and is dereferenceable</p>
 </div><h4 id="method.forward_chars" class="method"><code>pub fn <a href="#method.forward_chars" class="fnname">forward_chars</a>(&amp;mut self, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.forward_chars" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#667-674" title="goto source code">[src]</a></h4><div class="docblock"><p>Moves <code>count</code> characters if possible.</p>
@@ -239,7 +239,7 @@ moves to the start or end of the buffer.</p>
 <p>The return value indicates whether the new position of
 <code>self</code> is different from its original position, and dereferenceable
 (the last iterator in the buffer is not dereferenceable). If <code>count</code>
-is 0, the function does nothing and returns <code>false</code>.</p>
+is 0, the function does nothing and returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>.</p>
 <h2 id="count-8" class="section-header"><a href="#count-8"><code>count</code></a></h2>
 <p>number of characters to move, may be negative</p>
 <h1 id="returns-26" class="section-header"><a href="#returns-26">Returns</a></h1>
@@ -257,30 +257,30 @@ rendered; so the cursor can’t go between those two characters.</p>
 <p>See also the [struct<code>Pango.LogAttr</code>] struct and the [func<code>Pango.break</code>]
 function.</p>
 <h1 id="returns-27" class="section-header"><a href="#returns-27">Returns</a></h1>
-<p><code>true</code> if we moved and the new position is dereferenceable</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if we moved and the new position is dereferenceable</p>
 </div><h4 id="method.forward_cursor_positions" class="method"><code>pub fn <a href="#method.forward_cursor_positions" class="fnname">forward_cursor_positions</a>(&amp;mut self, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.forward_cursor_positions" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#714-721" title="goto source code">[src]</a></h4><div class="docblock"><p>Moves up to <code>count</code> cursor positions.</p>
 <p>See [method<code>Gtk.TextIter</code>.forward_cursor_position] for details.</p>
 <h2 id="count-9" class="section-header"><a href="#count-9"><code>count</code></a></h2>
 <p>number of positions to move</p>
 <h1 id="returns-28" class="section-header"><a href="#returns-28">Returns</a></h1>
-<p><code>true</code> if we moved and the new position is dereferenceable</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if we moved and the new position is dereferenceable</p>
 </div><h4 id="method.forward_find_char" class="method"><code>pub fn <a href="#method.forward_find_char" class="fnname">forward_find_char</a>&lt;P:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.FnMut.html" title="trait core::ops::function::FnMut">FnMut</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.char.html">char</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;pred: P, <br>&nbsp;&nbsp;&nbsp;&nbsp;limit: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>&gt;<br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.forward_find_char" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#739-765" title="goto source code">[src]</a></h4><div class="docblock"><p>Advances <code>self</code>, calling <code>pred</code> on each character.</p>
-<p>If <code>pred</code> returns <code>true</code>, returns <code>true</code> and stops scanning.
-If <code>pred</code> never returns <code>true</code>, <code>self</code> is set to <code>limit</code> if
-<code>limit</code> is non-<code>None</code>, otherwise to the end iterator.</p>
+<p>If <code>pred</code> returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> and stops scanning.
+If <code>pred</code> never returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, <code>self</code> is set to <code>limit</code> if
+<code>limit</code> is non-<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, otherwise to the end iterator.</p>
 <h2 id="pred-1" class="section-header"><a href="#pred-1"><code>pred</code></a></h2>
 <p>a function to be called on each character</p>
 <h2 id="user_data-1" class="section-header"><a href="#user_data-1"><code>user_data</code></a></h2>
 <p>user data for <code>pred</code></p>
 <h2 id="limit-2" class="section-header"><a href="#limit-2"><code>limit</code></a></h2>
-<p>search limit, or <code>None</code> for none</p>
+<p>search limit, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> for none</p>
 <h1 id="returns-29" class="section-header"><a href="#returns-29">Returns</a></h1>
 <p>whether a match was found</p>
 </div><h4 id="method.forward_line" class="method"><code>pub fn <a href="#method.forward_line" class="fnname">forward_line</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.forward_line" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#778-780" title="goto source code">[src]</a></h4><div class="docblock"><p>Moves <code>self</code> to the start of the next line.</p>
 <p>If the iter is already on the last line of the buffer,
 moves the iter to the end of the current line. If after
 the operation, the iter is at the end of the buffer and not
-dereferenceable, returns <code>false</code>. Otherwise, returns <code>true</code>.</p>
+dereferenceable, returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>. Otherwise, returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>.</p>
 <h1 id="returns-30" class="section-header"><a href="#returns-30">Returns</a></h1>
 <p>whether <code>self</code> can be dereferenced</p>
 </div><h4 id="method.forward_lines" class="method"><code>pub fn <a href="#method.forward_lines" class="fnname">forward_lines</a>(&amp;mut self, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.forward_lines" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#799-806" title="goto source code">[src]</a></h4><div class="docblock"><p>Moves <code>count</code> lines forward, if possible.</p>
@@ -288,8 +288,8 @@ dereferenceable, returns <code>false</code>. Otherwise, returns <code>true</code
 the start or end of the buffer.</p>
 <p>The return value indicates whether the iterator moved
 onto a dereferenceable position; if the iterator didn’t move, or
-moved onto the end iterator, then <code>false</code> is returned. If <code>count</code> is 0,
-the function does nothing and returns <code>false</code>. If <code>count</code> is negative,
+moved onto the end iterator, then <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> is returned. If <code>count</code> is 0,
+the function does nothing and returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>. If <code>count</code> is negative,
 moves backward by 0 - <code>count</code> lines.</p>
 <h2 id="count-10" class="section-header"><a href="#count-10"><code>count</code></a></h2>
 <p>number of lines to move forward</p>
@@ -308,11 +308,11 @@ even if there is a possible <code>match_end</code> after or at <code>self</code>
 <h2 id="flags-1" class="section-header"><a href="#flags-1"><code>flags</code></a></h2>
 <p>flags affecting how the search is done</p>
 <h2 id="match_start-1" class="section-header"><a href="#match_start-1"><code>match_start</code></a></h2>
-<p>return location for start of match, or <code>None</code></p>
+<p>return location for start of match, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h2 id="match_end-1" class="section-header"><a href="#match_end-1"><code>match_end</code></a></h2>
-<p>return location for end of match, or <code>None</code></p>
+<p>return location for end of match, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h2 id="limit-3" class="section-header"><a href="#limit-3"><code>limit</code></a></h2>
-<p>location of last possible <code>match_end</code>, or <code>None</code> for the end of the buffer</p>
+<p>location of last possible <code>match_end</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> for the end of the buffer</p>
 <h1 id="returns-32" class="section-header"><a href="#returns-32">Returns</a></h1>
 <p>whether a match was found</p>
 </div><h4 id="method.forward_sentence_end" class="method"><code>pub fn <a href="#method.forward_sentence_end" class="fnname">forward_sentence_end</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.forward_sentence_end" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#870-876" title="goto source code">[src]</a></h4><div class="docblock"><p>Moves forward to the next sentence end.</p>
@@ -321,16 +321,16 @@ end of sentence.</p>
 <p>Sentence boundaries are determined by Pango and should
 be correct for nearly any language.</p>
 <h1 id="returns-33" class="section-header"><a href="#returns-33">Returns</a></h1>
-<p><code>true</code> if <code>self</code> moved and is not the end iterator</p>
-</div><h4 id="method.forward_sentence_ends" class="method"><code>pub fn <a href="#method.forward_sentence_ends" class="fnname">forward_sentence_ends</a>(&amp;mut self, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.forward_sentence_ends" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#888-895" title="goto source code">[src]</a></h4><div class="docblock"><p>Calls <code>TextIter::forward_sentence_end</code> <code>count</code> times.</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> moved and is not the end iterator</p>
+</div><h4 id="method.forward_sentence_ends" class="method"><code>pub fn <a href="#method.forward_sentence_ends" class="fnname">forward_sentence_ends</a>(&amp;mut self, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.forward_sentence_ends" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#888-895" title="goto source code">[src]</a></h4><div class="docblock"><p>Calls <a href="struct.TextIter.html#method.forward_sentence_end"><code>forward_sentence_end()</code></a> <code>count</code> times.</p>
 <p>If <code>count</code> is negative, moves backward instead of forward.</p>
 <h2 id="count-11" class="section-header"><a href="#count-11"><code>count</code></a></h2>
 <p>number of sentences to move</p>
 <h1 id="returns-34" class="section-header"><a href="#returns-34">Returns</a></h1>
-<p><code>true</code> if <code>self</code> moved and is not the end iterator</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> moved and is not the end iterator</p>
 </div><h4 id="method.forward_to_end" class="method"><code>pub fn <a href="#method.forward_to_end" class="fnname">forward_to_end</a>(&amp;mut self)</code><a href="#method.forward_to_end" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#903-907" title="goto source code">[src]</a></h4><div class="docblock"><p>Moves <code>self</code> forward to the “end iterator”, which points
 one past the last valid character in the buffer.</p>
-<p><code>TextIter::get_char</code> called on the end iterator
+<p><a href="Self::get_char()"><code>get_char()</code></a> called on the end iterator
 returns 0, which is convenient for writing loops.</p>
 </div><h4 id="method.forward_to_line_end" class="method"><code>pub fn <a href="#method.forward_to_line_end" class="fnname">forward_to_line_end</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.forward_to_line_end" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#925-931" title="goto source code">[src]</a></h4><div class="docblock"><p>Moves the iterator to point to the paragraph delimiter characters.</p>
 <p>The possible characters are either a newline, a carriage return,
@@ -340,34 +340,34 @@ separator character.</p>
 characters, moves to the paragraph delimiter characters for the
 next line. If <code>self</code> is on the last line in the buffer, which does
 not end in paragraph delimiters, moves to the end iterator (end of
-the last line), and returns <code>false</code>.</p>
+the last line), and returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>.</p>
 <h1 id="returns-35" class="section-header"><a href="#returns-35">Returns</a></h1>
-<p><code>true</code> if we moved and the new location is not the end iterator</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if we moved and the new location is not the end iterator</p>
 </div><h4 id="method.forward_to_tag_toggle" class="method"><code>pub fn <a href="#method.forward_to_tag_toggle" class="fnname">forward_to_tag_toggle</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>&gt;&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;tag: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P&gt;<br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.forward_to_tag_toggle" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#949-956" title="goto source code">[src]</a></h4><div class="docblock"><p>Moves forward to the next toggle (on or off) of the
 <code>tag</code>, or to the next toggle of any tag if
-<code>tag</code> is <code>None</code>.</p>
+<code>tag</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>.</p>
 <p>If no matching tag toggles are found,
-returns <code>false</code>, otherwise <code>true</code>. Does not return toggles
+returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>, otherwise <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>. Does not return toggles
 located at <code>self</code>, only toggles after <code>self</code>. Sets <code>self</code> to
 the location of the toggle, or to the end of the buffer
 if no toggle is found.</p>
 <h2 id="tag-2" class="section-header"><a href="#tag-2"><code>tag</code></a></h2>
-<p>a <code>GtkTextTag</code>, or <code>None</code></p>
+<p>a <code>GtkTextTag</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h1 id="returns-36" class="section-header"><a href="#returns-36">Returns</a></h1>
 <p>whether we found a tag toggle after <code>self</code></p>
 </div><h4 id="method.forward_visible_cursor_position" class="method"><code>pub fn <a href="#method.forward_visible_cursor_position" class="fnname">forward_visible_cursor_position</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.forward_visible_cursor_position" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#966-972" title="goto source code">[src]</a></h4><div class="docblock"><p>Moves <code>self</code> forward to the next visible cursor position.</p>
 <p>See [method<code>Gtk.TextIter</code>.forward_cursor_position] for details.</p>
 <h1 id="returns-37" class="section-header"><a href="#returns-37">Returns</a></h1>
-<p><code>true</code> if we moved and the new position is dereferenceable</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if we moved and the new position is dereferenceable</p>
 </div><h4 id="method.forward_visible_cursor_positions" class="method"><code>pub fn <a href="#method.forward_visible_cursor_positions" class="fnname">forward_visible_cursor_positions</a>(&amp;mut self, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.forward_visible_cursor_positions" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#984-991" title="goto source code">[src]</a></h4><div class="docblock"><p>Moves up to <code>count</code> visible cursor positions.</p>
 <p>See [method<code>Gtk.TextIter</code>.forward_cursor_position] for details.</p>
 <h2 id="count-12" class="section-header"><a href="#count-12"><code>count</code></a></h2>
 <p>number of positions to move</p>
 <h1 id="returns-38" class="section-header"><a href="#returns-38">Returns</a></h1>
-<p><code>true</code> if we moved and the new position is dereferenceable</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if we moved and the new position is dereferenceable</p>
 </div><h4 id="method.forward_visible_line" class="method"><code>pub fn <a href="#method.forward_visible_line" class="fnname">forward_visible_line</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.forward_visible_line" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1004-1010" title="goto source code">[src]</a></h4><div class="docblock"><p>Moves <code>self</code> to the start of the next visible line.</p>
-<p>Returns <code>true</code> if there
-was a next line to move to, and <code>false</code> if <code>self</code> was simply moved to
+<p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if there
+was a next line to move to, and <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> if <code>self</code> was simply moved to
 the end of the buffer and is now not dereferenceable, or if <code>self</code> was
 already at the end of the buffer.</p>
 <h1 id="returns-39" class="section-header"><a href="#returns-39">Returns</a></h1>
@@ -377,8 +377,8 @@ already at the end of the buffer.</p>
 the start or end of the buffer.</p>
 <p>The return value indicates whether the iterator moved
 onto a dereferenceable position; if the iterator didn’t move, or
-moved onto the end iterator, then <code>false</code> is returned. If <code>count</code> is 0,
-the function does nothing and returns <code>false</code>. If <code>count</code> is negative,
+moved onto the end iterator, then <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> is returned. If <code>count</code> is 0,
+the function does nothing and returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a>. If <code>count</code> is negative,
 moves backward by 0 - <code>count</code> lines.</p>
 <h2 id="count-13" class="section-header"><a href="#count-13"><code>count</code></a></h2>
 <p>number of lines to move forward</p>
@@ -390,25 +390,25 @@ next one after that.</p>
 <p>Word breaks are determined by Pango and should be correct
 for nearly any language</p>
 <h1 id="returns-41" class="section-header"><a href="#returns-41">Returns</a></h1>
-<p><code>true</code> if <code>self</code> moved and is not the end iterator</p>
-</div><h4 id="method.forward_visible_word_ends" class="method"><code>pub fn <a href="#method.forward_visible_word_ends" class="fnname">forward_visible_word_ends</a>(&amp;mut self, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.forward_visible_word_ends" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1066-1073" title="goto source code">[src]</a></h4><div class="docblock"><p>Calls <code>TextIter::forward_visible_word_end</code> up to <code>count</code> times.</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> moved and is not the end iterator</p>
+</div><h4 id="method.forward_visible_word_ends" class="method"><code>pub fn <a href="#method.forward_visible_word_ends" class="fnname">forward_visible_word_ends</a>(&amp;mut self, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.forward_visible_word_ends" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1066-1073" title="goto source code">[src]</a></h4><div class="docblock"><p>Calls <a href="struct.TextIter.html#method.forward_visible_word_end"><code>forward_visible_word_end()</code></a> up to <code>count</code> times.</p>
 <h2 id="count-14" class="section-header"><a href="#count-14"><code>count</code></a></h2>
 <p>number of times to move</p>
 <h1 id="returns-42" class="section-header"><a href="#returns-42">Returns</a></h1>
-<p><code>true</code> if <code>self</code> moved and is not the end iterator</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> moved and is not the end iterator</p>
 </div><h4 id="method.forward_word_end" class="method"><code>pub fn <a href="#method.forward_word_end" class="fnname">forward_word_end</a>(&amp;mut self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.forward_word_end" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1087-1093" title="goto source code">[src]</a></h4><div class="docblock"><p>Moves forward to the next word end.</p>
 <p>If <code>self</code> is currently on a word end, moves forward to the
 next one after that.</p>
 <p>Word breaks are determined by Pango and should be correct
 for nearly any language.</p>
 <h1 id="returns-43" class="section-header"><a href="#returns-43">Returns</a></h1>
-<p><code>true</code> if <code>self</code> moved and is not the end iterator</p>
-</div><h4 id="method.forward_word_ends" class="method"><code>pub fn <a href="#method.forward_word_ends" class="fnname">forward_word_ends</a>(&amp;mut self, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.forward_word_ends" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1103-1110" title="goto source code">[src]</a></h4><div class="docblock"><p>Calls <code>TextIter::forward_word_end</code> up to <code>count</code> times.</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> moved and is not the end iterator</p>
+</div><h4 id="method.forward_word_ends" class="method"><code>pub fn <a href="#method.forward_word_ends" class="fnname">forward_word_ends</a>(&amp;mut self, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.forward_word_ends" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1103-1110" title="goto source code">[src]</a></h4><div class="docblock"><p>Calls <a href="struct.TextIter.html#method.forward_word_end"><code>forward_word_end()</code></a> up to <code>count</code> times.</p>
 <h2 id="count-15" class="section-header"><a href="#count-15"><code>count</code></a></h2>
 <p>number of times to move</p>
 <h1 id="returns-44" class="section-header"><a href="#returns-44">Returns</a></h1>
-<p><code>true</code> if <code>self</code> moved and is not the end iterator</p>
-</div><h4 id="method.buffer" class="method"><code>pub fn <a href="#method.buffer" class="fnname">buffer</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.TextBuffer.html" title="struct gtk4::TextBuffer">TextBuffer</a>&gt;</code><a href="#method.buffer" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1113-1115" title="goto source code">[src]</a></h4><h4 id="method.bytes_in_line" class="method"><code>pub fn <a href="#method.bytes_in_line" class="fnname">bytes_in_line</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a href="#method.bytes_in_line" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1118-1120" title="goto source code">[src]</a></h4><h4 id="method.char" class="method"><code>pub fn <a href="#method.char" class="fnname">char</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.char.html">char</a></code><a href="#method.char" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1123-1128" title="goto source code">[src]</a></h4><h4 id="method.chars_in_line" class="method"><code>pub fn <a href="#method.chars_in_line" class="fnname">chars_in_line</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a href="#method.chars_in_line" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1131-1133" title="goto source code">[src]</a></h4><h4 id="method.child_anchor" class="method"><code>pub fn <a href="#method.child_anchor" class="fnname">child_anchor</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.TextChildAnchor.html" title="struct gtk4::TextChildAnchor">TextChildAnchor</a>&gt;</code><a href="#method.child_anchor" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1136-1138" title="goto source code">[src]</a></h4><h4 id="method.language" class="method"><code>pub fn <a href="#method.language" class="fnname">language</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/pango/language/struct.Language.html" title="struct pango::language::Language">Language</a></code><a href="#method.language" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1141-1143" title="goto source code">[src]</a></h4><h4 id="method.line" class="method"><code>pub fn <a href="#method.line" class="fnname">line</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a href="#method.line" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1146-1148" title="goto source code">[src]</a></h4><h4 id="method.line_index" class="method"><code>pub fn <a href="#method.line_index" class="fnname">line_index</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a href="#method.line_index" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1151-1153" title="goto source code">[src]</a></h4><h4 id="method.line_offset" class="method"><code>pub fn <a href="#method.line_offset" class="fnname">line_offset</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a href="#method.line_offset" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1156-1158" title="goto source code">[src]</a></h4><h4 id="method.marks" class="method"><code>pub fn <a href="#method.marks" class="fnname">marks</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>&gt;</code><a href="#method.marks" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1161-1167" title="goto source code">[src]</a></h4><h4 id="method.offset" class="method"><code>pub fn <a href="#method.offset" class="fnname">offset</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a href="#method.offset" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1170-1172" title="goto source code">[src]</a></h4><h4 id="method.paintable" class="method"><code>pub fn <a href="#method.paintable" class="fnname">paintable</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../gdk4/auto/paintable/struct.Paintable.html" title="struct gdk4::auto::paintable::Paintable">Paintable</a>&gt;</code><a href="#method.paintable" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1175-1177" title="goto source code">[src]</a></h4><h4 id="method.slice" class="method"><code>pub fn <a href="#method.slice" class="fnname">slice</a>(&amp;self, end: &amp;<a class="struct" href="struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</code><a href="#method.slice" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1180-1187" title="goto source code">[src]</a></h4><h4 id="method.tags" class="method"><code>pub fn <a href="#method.tags" class="fnname">tags</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>&gt;</code><a href="#method.tags" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1190-1196" title="goto source code">[src]</a></h4><h4 id="method.text" class="method"><code>pub fn <a href="#method.text" class="fnname">text</a>(&amp;self, end: &amp;<a class="struct" href="struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</code><a href="#method.text" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1199-1206" title="goto source code">[src]</a></h4><h4 id="method.toggled_tags" class="method"><code>pub fn <a href="#method.toggled_tags" class="fnname">toggled_tags</a>(&amp;self, toggled_on: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>&gt;</code><a href="#method.toggled_tags" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1209-1216" title="goto source code">[src]</a></h4><h4 id="method.visible_line_index" class="method"><code>pub fn <a href="#method.visible_line_index" class="fnname">visible_line_index</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a href="#method.visible_line_index" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1219-1221" title="goto source code">[src]</a></h4><h4 id="method.visible_line_offset" class="method"><code>pub fn <a href="#method.visible_line_offset" class="fnname">visible_line_offset</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a href="#method.visible_line_offset" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1224-1226" title="goto source code">[src]</a></h4><h4 id="method.visible_slice" class="method"><code>pub fn <a href="#method.visible_slice" class="fnname">visible_slice</a>(&amp;self, end: &amp;<a class="struct" href="struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</code><a href="#method.visible_slice" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1229-1236" title="goto source code">[src]</a></h4><h4 id="method.visible_text" class="method"><code>pub fn <a href="#method.visible_text" class="fnname">visible_text</a>(&amp;self, end: &amp;<a class="struct" href="struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</code><a href="#method.visible_text" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1239-1246" title="goto source code">[src]</a></h4><h4 id="method.has_tag" class="method"><code>pub fn <a href="#method.has_tag" class="fnname">has_tag</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>&gt;&gt;(&amp;self, tag: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.has_tag" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1260-1267" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns <code>true</code> if <code>self</code> points to a character that is part
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> moved and is not the end iterator</p>
+</div><h4 id="method.buffer" class="method"><code>pub fn <a href="#method.buffer" class="fnname">buffer</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.TextBuffer.html" title="struct gtk4::TextBuffer">TextBuffer</a>&gt;</code><a href="#method.buffer" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1113-1115" title="goto source code">[src]</a></h4><h4 id="method.bytes_in_line" class="method"><code>pub fn <a href="#method.bytes_in_line" class="fnname">bytes_in_line</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a href="#method.bytes_in_line" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1118-1120" title="goto source code">[src]</a></h4><h4 id="method.char" class="method"><code>pub fn <a href="#method.char" class="fnname">char</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.char.html">char</a></code><a href="#method.char" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1123-1128" title="goto source code">[src]</a></h4><h4 id="method.chars_in_line" class="method"><code>pub fn <a href="#method.chars_in_line" class="fnname">chars_in_line</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a href="#method.chars_in_line" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1131-1133" title="goto source code">[src]</a></h4><h4 id="method.child_anchor" class="method"><code>pub fn <a href="#method.child_anchor" class="fnname">child_anchor</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.TextChildAnchor.html" title="struct gtk4::TextChildAnchor">TextChildAnchor</a>&gt;</code><a href="#method.child_anchor" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1136-1138" title="goto source code">[src]</a></h4><h4 id="method.language" class="method"><code>pub fn <a href="#method.language" class="fnname">language</a>(&amp;self) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/pango/language/struct.Language.html" title="struct pango::language::Language">Language</a></code><a href="#method.language" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1141-1143" title="goto source code">[src]</a></h4><h4 id="method.line" class="method"><code>pub fn <a href="#method.line" class="fnname">line</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a href="#method.line" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1146-1148" title="goto source code">[src]</a></h4><h4 id="method.line_index" class="method"><code>pub fn <a href="#method.line_index" class="fnname">line_index</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a href="#method.line_index" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1151-1153" title="goto source code">[src]</a></h4><h4 id="method.line_offset" class="method"><code>pub fn <a href="#method.line_offset" class="fnname">line_offset</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a href="#method.line_offset" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1156-1158" title="goto source code">[src]</a></h4><h4 id="method.marks" class="method"><code>pub fn <a href="#method.marks" class="fnname">marks</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="struct.TextMark.html" title="struct gtk4::TextMark">TextMark</a>&gt;</code><a href="#method.marks" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1161-1167" title="goto source code">[src]</a></h4><h4 id="method.offset" class="method"><code>pub fn <a href="#method.offset" class="fnname">offset</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a href="#method.offset" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1170-1172" title="goto source code">[src]</a></h4><h4 id="method.paintable" class="method"><code>pub fn <a href="#method.paintable" class="fnname">paintable</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../gdk4/auto/paintable/struct.Paintable.html" title="struct gdk4::auto::paintable::Paintable">Paintable</a>&gt;</code><a href="#method.paintable" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1175-1177" title="goto source code">[src]</a></h4><h4 id="method.slice" class="method"><code>pub fn <a href="#method.slice" class="fnname">slice</a>(&amp;self, end: &amp;<a class="struct" href="struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</code><a href="#method.slice" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1180-1187" title="goto source code">[src]</a></h4><h4 id="method.tags" class="method"><code>pub fn <a href="#method.tags" class="fnname">tags</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>&gt;</code><a href="#method.tags" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1190-1196" title="goto source code">[src]</a></h4><h4 id="method.text" class="method"><code>pub fn <a href="#method.text" class="fnname">text</a>(&amp;self, end: &amp;<a class="struct" href="struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</code><a href="#method.text" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1199-1206" title="goto source code">[src]</a></h4><h4 id="method.toggled_tags" class="method"><code>pub fn <a href="#method.toggled_tags" class="fnname">toggled_tags</a>(&amp;self, toggled_on: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>&gt;</code><a href="#method.toggled_tags" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1209-1216" title="goto source code">[src]</a></h4><h4 id="method.visible_line_index" class="method"><code>pub fn <a href="#method.visible_line_index" class="fnname">visible_line_index</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a href="#method.visible_line_index" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1219-1221" title="goto source code">[src]</a></h4><h4 id="method.visible_line_offset" class="method"><code>pub fn <a href="#method.visible_line_offset" class="fnname">visible_line_offset</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a href="#method.visible_line_offset" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1224-1226" title="goto source code">[src]</a></h4><h4 id="method.visible_slice" class="method"><code>pub fn <a href="#method.visible_slice" class="fnname">visible_slice</a>(&amp;self, end: &amp;<a class="struct" href="struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</code><a href="#method.visible_slice" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1229-1236" title="goto source code">[src]</a></h4><h4 id="method.visible_text" class="method"><code>pub fn <a href="#method.visible_text" class="fnname">visible_text</a>(&amp;self, end: &amp;<a class="struct" href="struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</code><a href="#method.visible_text" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1239-1246" title="goto source code">[src]</a></h4><h4 id="method.has_tag" class="method"><code>pub fn <a href="#method.has_tag" class="fnname">has_tag</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>&gt;&gt;(&amp;self, tag: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.has_tag" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1260-1267" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> points to a character that is part
 of a range tagged with <code>tag</code>.</p>
 <p>See also [method<code>Gtk.TextIter</code>.starts_tag] and
 [method<code>Gtk.TextIter</code>.ends_tag].</p>
@@ -423,36 +423,36 @@ of a range tagged with <code>tag</code>.</p>
 <h2 id="end" class="section-header"><a href="#end"><code>end</code></a></h2>
 <p>end of range</p>
 <h1 id="returns-46" class="section-header"><a href="#returns-46">Returns</a></h1>
-<p><code>true</code> if <code>self</code> is in the range</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> is in the range</p>
 </div><h4 id="method.inside_sentence" class="method"><code>pub fn <a href="#method.inside_sentence" class="fnname">inside_sentence</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.inside_sentence" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1302-1304" title="goto source code">[src]</a></h4><div class="docblock"><p>Determines whether <code>self</code> is inside a sentence (as opposed to in
 between two sentences, e.g. after a period and before the first
 letter of the next sentence).</p>
 <p>Sentence boundaries are determined by Pango and should be correct
 for nearly any language.</p>
 <h1 id="returns-47" class="section-header"><a href="#returns-47">Returns</a></h1>
-<p><code>true</code> if <code>self</code> is inside a sentence.</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> is inside a sentence.</p>
 </div><h4 id="method.inside_word" class="method"><code>pub fn <a href="#method.inside_word" class="fnname">inside_word</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.inside_word" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1320-1322" title="goto source code">[src]</a></h4><div class="docblock"><p>Determines whether the character pointed by <code>self</code> is part of a
 natural-language word (as opposed to say inside some whitespace).</p>
 <p>Word breaks are determined by Pango and should be correct
 for nearly any language.</p>
-<p>Note that if [method<code>Gtk.TextIter</code>.starts_word] returns <code>true</code>,
-then this function returns <code>true</code> too, since <code>self</code> points to
+<p>Note that if [method<code>Gtk.TextIter</code>.starts_word] returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>,
+then this function returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> too, since <code>self</code> points to
 the first character of the word.</p>
 <h1 id="returns-48" class="section-header"><a href="#returns-48">Returns</a></h1>
-<p><code>true</code> if <code>self</code> is inside a word</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> is inside a word</p>
 </div><h4 id="method.is_cursor_position" class="method"><code>pub fn <a href="#method.is_cursor_position" class="fnname">is_cursor_position</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.is_cursor_position" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1334-1336" title="goto source code">[src]</a></h4><div class="docblock"><p>Determine if <code>self</code> is at a cursor position.</p>
 <p>See [method<code>Gtk.TextIter</code>.forward_cursor_position] or
 [struct<code>Pango.LogAttr</code>] or [func<code>Pango.break</code>] for details
 on what a cursor position is.</p>
 <h1 id="returns-49" class="section-header"><a href="#returns-49">Returns</a></h1>
-<p><code>true</code> if the cursor can be placed at <code>self</code></p>
-</div><h4 id="method.is_end" class="method"><code>pub fn <a href="#method.is_end" class="fnname">is_end</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.is_end" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1348-1350" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns <code>true</code> if <code>self</code> is the end iterator.</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the cursor can be placed at <code>self</code></p>
+</div><h4 id="method.is_end" class="method"><code>pub fn <a href="#method.is_end" class="fnname">is_end</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.is_end" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1348-1350" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> is the end iterator.</p>
 <p>This means it is one past the last dereferenceable iterator
-in the buffer. <code>TextIter::is_end</code> is the most efficient
+in the buffer. <a href="struct.TextIter.html#method.is_end"><code>is_end()</code></a> is the most efficient
 way to check whether an iterator is the end iterator.</p>
 <h1 id="returns-50" class="section-header"><a href="#returns-50">Returns</a></h1>
 <p>whether <code>self</code> is the end iterator</p>
-</div><h4 id="method.is_start" class="method"><code>pub fn <a href="#method.is_start" class="fnname">is_start</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.is_start" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1358-1360" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns <code>true</code> if <code>self</code> is the first iterator in the buffer.</p>
+</div><h4 id="method.is_start" class="method"><code>pub fn <a href="#method.is_start" class="fnname">is_start</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.is_start" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1358-1360" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> is the first iterator in the buffer.</p>
 <h1 id="returns-51" class="section-header"><a href="#returns-51">Returns</a></h1>
 <p>whether <code>self</code> is the first in the buffer</p>
 </div><h4 id="method.order" class="method"><code>pub fn <a href="#method.order" class="fnname">order</a>(&amp;mut self, second: &amp;mut <a class="struct" href="struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a>)</code><a href="#method.order" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1374-1378" title="goto source code">[src]</a></h4><div class="docblock"><p>Swaps the value of <code>self</code> and <code>second</code> if <code>second</code> comes before
@@ -470,7 +470,7 @@ pre-sorted range.</p>
 in the buffer, moves <code>self</code> to the start of the last line in the buffer.</p>
 <h2 id="line_number" class="section-header"><a href="#line_number"><code>line_number</code></a></h2>
 <p>line number (counted from 0)</p>
-</div><h4 id="method.set_line_index" class="method"><code>pub fn <a href="#method.set_line_index" class="fnname">set_line_index</a>(&amp;mut self, byte_on_line: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</code><a href="#method.set_line_index" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1400-1404" title="goto source code">[src]</a></h4><div class="docblock"><p>Same as <code>TextIter::set_line_offset</code>, but works with a
+</div><h4 id="method.set_line_index" class="method"><code>pub fn <a href="#method.set_line_index" class="fnname">set_line_index</a>(&amp;mut self, byte_on_line: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</code><a href="#method.set_line_index" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1400-1404" title="goto source code">[src]</a></h4><div class="docblock"><p>Same as <a href="struct.TextIter.html#method.set_line_offset"><code>set_line_offset()</code></a>, but works with a
 byte index. The given byte index must be at
 the start of a character, it can’t be in the middle of a UTF-8
 encoded character.</p>
@@ -488,17 +488,17 @@ index rather than a character offset.</p>
 of the entire text buffer, starting with 0.</p>
 <h2 id="char_offset" class="section-header"><a href="#char_offset"><code>char_offset</code></a></h2>
 <p>a character number</p>
-</div><h4 id="method.set_visible_line_index" class="method"><code>pub fn <a href="#method.set_visible_line_index" class="fnname">set_visible_line_index</a>(&amp;mut self, byte_on_line: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</code><a href="#method.set_visible_line_index" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1440-1444" title="goto source code">[src]</a></h4><div class="docblock"><p>Like <code>TextIter::set_line_index</code>, but the index is in visible
+</div><h4 id="method.set_visible_line_index" class="method"><code>pub fn <a href="#method.set_visible_line_index" class="fnname">set_visible_line_index</a>(&amp;mut self, byte_on_line: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</code><a href="#method.set_visible_line_index" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1440-1444" title="goto source code">[src]</a></h4><div class="docblock"><p>Like <a href="struct.TextIter.html#method.set_line_index"><code>set_line_index()</code></a>, but the index is in visible
 bytes, i.e. text with a tag making it invisible is not counted
 in the index.</p>
 <h2 id="byte_on_line-1" class="section-header"><a href="#byte_on_line-1"><code>byte_on_line</code></a></h2>
 <p>a byte index</p>
-</div><h4 id="method.set_visible_line_offset" class="method"><code>pub fn <a href="#method.set_visible_line_offset" class="fnname">set_visible_line_offset</a>(&amp;mut self, char_on_line: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</code><a href="#method.set_visible_line_offset" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1452-1456" title="goto source code">[src]</a></h4><div class="docblock"><p>Like <code>TextIter::set_line_offset</code>, but the offset is in visible
+</div><h4 id="method.set_visible_line_offset" class="method"><code>pub fn <a href="#method.set_visible_line_offset" class="fnname">set_visible_line_offset</a>(&amp;mut self, char_on_line: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</code><a href="#method.set_visible_line_offset" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1452-1456" title="goto source code">[src]</a></h4><div class="docblock"><p>Like <a href="struct.TextIter.html#method.set_line_offset"><code>set_line_offset()</code></a>, but the offset is in visible
 characters, i.e. text with a tag making it invisible is not
 counted in the offset.</p>
 <h2 id="char_on_line-1" class="section-header"><a href="#char_on_line-1"><code>char_on_line</code></a></h2>
 <p>a character offset</p>
-</div><h4 id="method.starts_line" class="method"><code>pub fn <a href="#method.starts_line" class="fnname">starts_line</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.starts_line" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1470-1472" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns <code>true</code> if <code>self</code> begins a paragraph.</p>
+</div><h4 id="method.starts_line" class="method"><code>pub fn <a href="#method.starts_line" class="fnname">starts_line</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.starts_line" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1470-1472" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> begins a paragraph.</p>
 <p>This is the case if [method<code>Gtk.TextIter</code>.get_line_offset]
 would return 0. However this function is potentially more
 efficient than [method<code>Gtk.TextIter</code>.get_line_offset], because
@@ -510,30 +510,30 @@ whether it’s 0.</p>
 <p>Sentence boundaries are determined by Pango and
 should be correct for nearly any language.</p>
 <h1 id="returns-53" class="section-header"><a href="#returns-53">Returns</a></h1>
-<p><code>true</code> if <code>self</code> is at the start of a sentence.</p>
-</div><h4 id="method.starts_tag" class="method"><code>pub fn <a href="#method.starts_tag" class="fnname">starts_tag</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>&gt;&gt;(&amp;self, tag: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.starts_tag" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1504-1511" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns <code>true</code> if <code>tag</code> is toggled on at exactly this point.</p>
-<p>If <code>tag</code> is <code>None</code>, returns <code>true</code> if any tag is toggled on at this point.</p>
-<p>Note that if this function returns <code>true</code>, it means that
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> is at the start of a sentence.</p>
+</div><h4 id="method.starts_tag" class="method"><code>pub fn <a href="#method.starts_tag" class="fnname">starts_tag</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>&gt;&gt;(&amp;self, tag: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.starts_tag" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1504-1511" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>tag</code> is toggled on at exactly this point.</p>
+<p>If <code>tag</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if any tag is toggled on at this point.</p>
+<p>Note that if this function returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, it means that
 <code>self</code> is at the beginning of the tagged range, and that the
 character at <code>self</code> is inside the tagged range. In other
 words, unlike [method<code>Gtk.TextIter</code>.ends_tag], if
-this function returns <code>true</code>, [method<code>Gtk.TextIter</code>.has_tag
-will also return <code>true</code> for the same parameters.</p>
+this function returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, [method<code>Gtk.TextIter</code>.has_tag
+will also return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> for the same parameters.</p>
 <h2 id="tag-4" class="section-header"><a href="#tag-4"><code>tag</code></a></h2>
-<p>a <code>GtkTextTag</code>, or <code>None</code></p>
+<p>a <code>GtkTextTag</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h1 id="returns-54" class="section-header"><a href="#returns-54">Returns</a></h1>
 <p>whether <code>self</code> is the start of a range tagged with <code>tag</code></p>
 </div><h4 id="method.starts_word" class="method"><code>pub fn <a href="#method.starts_word" class="fnname">starts_word</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.starts_word" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1522-1524" title="goto source code">[src]</a></h4><div class="docblock"><p>Determines whether <code>self</code> begins a natural-language word.</p>
 <p>Word breaks are determined by Pango and should be correct
 for nearly any language.</p>
 <h1 id="returns-55" class="section-header"><a href="#returns-55">Returns</a></h1>
-<p><code>true</code> if <code>self</code> is at the start of a word</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> is at the start of a word</p>
 </div><h4 id="method.toggles_tag" class="method"><code>pub fn <a href="#method.toggles_tag" class="fnname">toggles_tag</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.TextTag.html" title="struct gtk4::TextTag">TextTag</a>&gt;&gt;(&amp;self, tag: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.toggles_tag" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#1538-1545" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets whether a range with <code>tag</code> applied to it begins
 or ends at <code>self</code>.</p>
-<p>This is equivalent to (<code>TextIter::starts_tag</code> ||
-<code>TextIter::ends_tag</code>)</p>
+<p>This is equivalent to (<a href="struct.TextIter.html#method.starts_tag"><code>starts_tag()</code></a> ||
+<a href="struct.TextIter.html#method.ends_tag"><code>ends_tag()</code></a>)</p>
 <h2 id="tag-5" class="section-header"><a href="#tag-5"><code>tag</code></a></h2>
-<p>a <code>GtkTextTag</code>, or <code>None</code></p>
+<p>a <code>GtkTextTag</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h1 id="returns-56" class="section-header"><a href="#returns-56">Returns</a></h1>
 <p>whether <code>tag</code> is toggled on or off at <code>self</code></p>
 </div></div></details><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor"></a></h2><div id="trait-implementations-list"><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl-Clone" class="impl"><code class="in-band">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a></code><a href="#impl-Clone" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#14-31" title="goto source code">[src]</a></h3></summary><div class="impl-items"><h4 id="method.clone" class="method hidden trait-impl"><code>fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone" class="fnname">clone</a>(&amp;self) -&gt; <a class="struct" href="struct.TextIter.html" title="struct gtk4::TextIter">TextIter</a></code><a href="#method.clone" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/text_iter.rs.html#14-31" title="goto source code">[src]</a></h4><div class='docblock hidden'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>

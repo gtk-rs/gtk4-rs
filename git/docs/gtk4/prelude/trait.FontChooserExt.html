@@ -42,8 +42,8 @@ normalized to “Helvetica Bold Italic 12”.</p>
 font descriptions.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
 <p>A string with the name
-of the current font, or <code>None</code> if no font is selected. You must
-free this string with <code>g_free</code>.</p>
+of the current font, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if no font is selected. You must
+free this string with <code>g_free()</code>.</p>
 </div><h3 id="tymethod.font_desc" class="method"><code>fn <a href="#tymethod.font_desc" class="fnname">font_desc</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/pango/auto/font_description/struct.FontDescription.html" title="struct pango::auto::font_description::FontDescription">FontDescription</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/font_chooser.rs.html#76" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets the currently-selected font.</p>
 <p>Note that this can be a different string than what you set with
 [method<code>Gtk.FontChooser</code>.set_font], as the font chooser widget may
@@ -54,28 +54,28 @@ normalized to “Helvetica Bold Italic 12”.</p>
 font descriptions.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
 <p>A <code>PangoFontDescription</code> for the
-current font, or <code>None</code> if no font is selected.</p>
+current font, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if no font is selected.</p>
 </div><h3 id="tymethod.font_face" class="method"><code>fn <a href="#tymethod.font_face" class="fnname">font_face</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/pango/auto/font_face/struct.FontFace.html" title="struct pango::auto::font_face::FontFace">FontFace</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/font_chooser.rs.html#89" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets the <code>PangoFontFace</code> representing the selected font group
 details (i.e. family, slant, weight, width, etc).</p>
-<p>If the selected font is not installed, returns <code>None</code>.</p>
+<p>If the selected font is not installed, returns <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
 <p>A <code>PangoFontFace</code> representing the
-selected font group details, or <code>None</code>. The returned object is owned by
+selected font group details, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>. The returned object is owned by
 <code>self</code> and must not be modified or freed.</p>
 </div><h3 id="tymethod.font_family" class="method"><code>fn <a href="#tymethod.font_family" class="fnname">font_family</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/pango/auto/font_family/struct.FontFamily.html" title="struct pango::auto::font_family::FontFamily">FontFamily</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/font_chooser.rs.html#103" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets the <code>PangoFontFamily</code> representing the selected font family.</p>
 <p>Font families are a collection of font faces.</p>
-<p>If the selected font is not installed, returns <code>None</code>.</p>
+<p>If the selected font is not installed, returns <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>.</p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
 <p>A <code>PangoFontFamily</code> representing the
-selected font family, or <code>None</code>. The returned object is owned by <code>self</code>
+selected font family, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>. The returned object is owned by <code>self</code>
 and must not be modified or freed.</p>
 </div><h3 id="tymethod.font_features" class="method"><code>fn <a href="#tymethod.font_features" class="fnname">font_features</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/font_chooser.rs.html#111" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets the currently-selected font features.</p>
 <h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
 <p>the currently selected font features</p>
 </div><h3 id="tymethod.font_map" class="method"><code>fn <a href="#tymethod.font_map" class="fnname">font_map</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/pango/auto/font_map/struct.FontMap.html" title="struct pango::auto::font_map::FontMap">FontMap</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/font_chooser.rs.html#120" title="goto source code">[src]</a></h3><div class="docblock"><p>Gets the custom font map of this font chooser widget,
-or <code>None</code> if it does not have one.</p>
+or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if it does not have one.</p>
 <h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>
-<p>a <code>PangoFontMap</code>, or <code>None</code></p>
+<p>a <code>PangoFontMap</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 </div><h3 id="tymethod.font_size" class="method"><code>fn <a href="#tymethod.font_size" class="fnname">font_size</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a class="srclink" href="../../src/gtk4/auto/font_chooser.rs.html#129" title="goto source code">[src]</a></h3><div class="docblock"><p>The selected font size.</p>
 <h1 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h1>
 <p>A n integer representing the selected font size,
@@ -91,11 +91,11 @@ or -1 if no font size is selected.</p>
 <p>the text displayed in the preview area</p>
 </div><h3 id="tymethod.shows_preview_entry" class="method"><code>fn <a href="#tymethod.shows_preview_entry" class="fnname">shows_preview_entry</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/font_chooser.rs.html#161" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns whether the preview entry is shown or not.</p>
 <h1 id="returns-10" class="section-header"><a href="#returns-10">Returns</a></h1>
-<p><code>true</code> if the preview entry is shown or <code>false</code> if it is hidden.</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the preview entry is shown or <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> if it is hidden.</p>
 </div><h3 id="tymethod.set_filter_func" class="method"><code>fn <a href="#tymethod.set_filter_func" class="fnname">set_filter_func</a>&lt;P:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/pango/auto/font_family/struct.FontFamily.html" title="struct pango::auto::font_family::FontFamily">FontFamily</a>, &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/pango/auto/font_face/struct.FontFace.html" title="struct pango::auto::font_face::FontFace">FontFace</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;filter: P<br>)</code><a class="srclink" href="../../src/gtk4/auto/font_chooser.rs.html#172-175" title="goto source code">[src]</a></h3><div class="docblock"><p>Adds a filter function that decides which fonts to display
 in the font chooser.</p>
 <h2 id="filter" class="section-header"><a href="#filter"><code>filter</code></a></h2>
-<p>a <code>GtkFontFilterFunc</code>, or <code>None</code></p>
+<p>a <code>GtkFontFilterFunc</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h2 id="user_data" class="section-header"><a href="#user_data"><code>user_data</code></a></h2>
 <p>data to pass to <code>filter</code></p>
 <h2 id="destroy" class="section-header"><a href="#destroy"><code>destroy</code></a></h2>

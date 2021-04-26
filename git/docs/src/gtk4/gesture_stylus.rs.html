@@ -58,13 +58,13 @@
     <span class="doccomment">/// [signal`Gtk.GestureStylus`::up] or [signal`Gtk.GestureStylus`::proximity]</span>
     <span class="doccomment">/// signals.</span>
     <span class="doccomment">/// ## `axes`</span>
-    <span class="doccomment">/// array of requested axes, terminated with `gdk::AxisUse::Ignore`</span>
+    <span class="doccomment">/// array of requested axes, terminated with [`gdk::AxisUse::Ignore`]</span>
     <span class="doccomment">/// ## `values`</span>
     <span class="doccomment">/// return location for the axis values</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if there is a current value for the axes</span>
+    <span class="doccomment">/// [`true`] if there is a current value for the axes</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_stylus_get_axes&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">axes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">axes</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">AxisUse</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">values</span> <span class="op">=</span> <span class="ident">std::ptr::null_mut</span>();

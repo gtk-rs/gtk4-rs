@@ -20,7 +20,7 @@ to be updated.</p>
 used for the sorting and filtering functions. For instance, if
 the list is mirroring some external data set, and <em>two</em> children
 changed in the external data set when you call
-<code>FlowBoxChildExt::changed</code> on the first child, the sort function
+<a href="trait.FlowBoxChildExt.html#tymethod.changed"><code>changed()</code></a> on the first child, the sort function
 must only read the new data for the first of the two changed
 children, otherwise the resorting of the children will be wrong.</p>
 <p>This generally means that if you don’t fully control the data
@@ -38,7 +38,7 @@ in a flow box.</p>
 </div><h3 id="tymethod.is_selected" class="method"><code>fn <a href="#tymethod.is_selected" class="fnname">is_selected</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/flow_box_child.rs.html#408" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns whether the <code>self</code> is currently selected in its
 <code>GtkFlowBox</code> container.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
-<p><code>true</code> if <code>self</code> is selected</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> is selected</p>
 </div><h3 id="tymethod.set_child" class="method"><code>fn <a href="#tymethod.set_child" class="fnname">set_child</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt;(&amp;self, child: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P&gt;)</code><a class="srclink" href="../../src/gtk4/auto/flow_box_child.rs.html#414" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets the child widget of <code>self</code>.</p>
 <h2 id="child" class="section-header"><a href="#child"><code>child</code></a></h2>
 <p>the child widget</p>

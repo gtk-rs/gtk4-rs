@@ -1108,14 +1108,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkColumnView` uses the `AccessibleRole::TreeGrid` role, header title</span>
-    <span class="doccomment">/// widgets are using the `AccessibleRole::ColumnHeader` role. The row widgets</span>
-    <span class="doccomment">/// are using the `AccessibleRole::Row` role, and individual cells are using</span>
-    <span class="doccomment">/// the `AccessibleRole::GridCell` role</span>
+    <span class="doccomment">/// `GtkColumnView` uses the [`AccessibleRole::TreeGrid`] role, header title</span>
+    <span class="doccomment">/// widgets are using the [`AccessibleRole::ColumnHeader`] role. The row widgets</span>
+    <span class="doccomment">/// are using the [`AccessibleRole::Row`] role, and individual cells are using</span>
+    <span class="doccomment">/// the [`AccessibleRole::GridCell`] role</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`ScrollableExt`](trait@crate::ScrollableExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`ScrollableExt`](trait@crate::prelude::ScrollableExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ColumnView</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkColumnView</span>, <span class="ident">ffi::GtkColumnViewClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Scrollable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1129,7 +1129,7 @@
     <span class="doccomment">/// You most likely want to call [method`Gtk.ColumnView`.append_column]</span>
     <span class="doccomment">/// to add columns next.</span>
     <span class="doccomment">/// ## `model`</span>
-    <span class="doccomment">/// the list model to use, or `None`</span>
+    <span class="doccomment">/// the list model to use, or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1174,7 +1174,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if rubberband selection is enabled</span>
+    <span class="doccomment">/// [`true`] if rubberband selection is enabled</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_get_enable_rubberband&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">enables_rubberband</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -1198,7 +1198,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if columns are reorderable</span>
+    <span class="doccomment">/// [`true`] if columns are reorderable</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_get_reorderable&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_reorderable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_column_view_get_reorderable</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -1209,7 +1209,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the list shows column separators</span>
+    <span class="doccomment">/// [`true`] if the list shows column separators</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_get_show_column_separators&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">shows_column_separators</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -1224,7 +1224,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the list shows separators</span>
+    <span class="doccomment">/// [`true`] if the list shows separators</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_get_show_row_separators&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">shows_row_separators</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -1239,7 +1239,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if rows are activated on single click</span>
+    <span class="doccomment">/// [`true`] if rows are activated on single click</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_get_single_click_activate&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_single_click_activate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -1307,7 +1307,7 @@
 
     <span class="doccomment">/// Sets whether selections can be changed by dragging with the mouse.</span>
     <span class="doccomment">/// ## `enable_rubberband`</span>
-    <span class="doccomment">/// `true` to enable rubberband selection</span>
+    <span class="doccomment">/// [`true`] to enable rubberband selection</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_set_enable_rubberband&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_enable_rubberband</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">enable_rubberband</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -1322,7 +1322,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This must be a [iface`Gtk.SelectionModel`].</span>
     <span class="doccomment">/// ## `model`</span>
-    <span class="doccomment">/// the model to use or `None` for none</span>
+    <span class="doccomment">/// the model to use or [`None`] for none</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_set_model&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_model</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">SelectionModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">model</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -1346,7 +1346,7 @@
     <span class="doccomment">/// Sets whether the list should show separators</span>
     <span class="doccomment">/// between columns.</span>
     <span class="doccomment">/// ## `show_column_separators`</span>
-    <span class="doccomment">/// `true` to show column separators</span>
+    <span class="doccomment">/// [`true`] to show column separators</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_set_show_column_separators&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_show_column_separators</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">show_column_separators</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -1360,7 +1360,7 @@
     <span class="doccomment">/// Sets whether the list should show separators</span>
     <span class="doccomment">/// between rows.</span>
     <span class="doccomment">/// ## `show_row_separators`</span>
-    <span class="doccomment">/// `true` to show row separators</span>
+    <span class="doccomment">/// [`true`] to show row separators</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_set_show_row_separators&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_show_row_separators</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">show_row_separators</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -1374,7 +1374,7 @@
     <span class="doccomment">/// Sets whether rows should be activated on single click and</span>
     <span class="doccomment">/// selected on hover.</span>
     <span class="doccomment">/// ## `single_click_activate`</span>
-    <span class="doccomment">/// `true` to activate items on single click</span>
+    <span class="doccomment">/// [`true`] to activate items on single click</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_set_single_click_activate&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_single_click_activate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">single_click_activate</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -1396,9 +1396,9 @@
     <span class="doccomment">/// and [method`Gtk.ColumnViewColumn`.set_sorter] has been called</span>
     <span class="doccomment">/// on `column` to associate a sorter with the column.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `column` is `None`, the view will be unsorted.</span>
+    <span class="doccomment">/// If `column` is [`None`], the view will be unsorted.</span>
     <span class="doccomment">/// ## `column`</span>
-    <span class="doccomment">/// the `GtkColumnViewColumn` to sort by, or `None`</span>
+    <span class="doccomment">/// the `GtkColumnViewColumn` to sort by, or [`None`]</span>
     <span class="doccomment">/// ## `direction`</span>
     <span class="doccomment">/// the direction to sort in</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_sort_by_column&quot;</span>)]</span>

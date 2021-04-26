@@ -814,7 +814,7 @@
     <span class="doccomment">/// content. `&lt;attribute&gt;` elements can be marked for translation with a</span>
     <span class="doccomment">/// `translatable=&quot;yes&quot;` attribute. It is also possible to specify message</span>
     <span class="doccomment">/// context and translator comments, using the context and comments attributes.</span>
-    <span class="doccomment">/// To make use of this, the `Builder` must have been given the gettext</span>
+    <span class="doccomment">/// To make use of this, the [`Builder`](crate::Builder) must have been given the gettext</span>
     <span class="doccomment">/// domain to use.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The following attributes are used when constructing menu items:</span>
@@ -861,15 +861,15 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkPopoverMenu` uses the `AccessibleRole::Menu` role, and its</span>
-    <span class="doccomment">/// items use the `AccessibleRole::MenuItem`,</span>
-    <span class="doccomment">/// `AccessibleRole::MenuItemCheckbox` or</span>
-    <span class="doccomment">/// `AccessibleRole::MenuItemRadio` roles, depending on the</span>
+    <span class="doccomment">/// `GtkPopoverMenu` uses the [`AccessibleRole::Menu`] role, and its</span>
+    <span class="doccomment">/// items use the [`AccessibleRole::MenuItem`],</span>
+    <span class="doccomment">/// [`AccessibleRole::MenuItemCheckbox`] or</span>
+    <span class="doccomment">/// [`AccessibleRole::MenuItemRadio`] roles, depending on the</span>
     <span class="doccomment">/// action they are connected to.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`PopoverExt`](trait@crate::PopoverExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`NativeExt`](trait@crate::NativeExt), [`ShortcutManagerExt`](trait@crate::ShortcutManagerExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`PopoverExt`](trait@crate::prelude::PopoverExt), [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`NativeExt`](trait@crate::prelude::NativeExt), [`ShortcutManagerExt`](trait@crate::prelude::ShortcutManagerExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PopoverMenu</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkPopoverMenu</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Popover</span>, <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Native</span>, <span class="ident">ShortcutManager</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -892,7 +892,7 @@
     <span class="doccomment">/// See [ctor`Gtk.PopoverMenu`.new_from_model_full] for a way</span>
     <span class="doccomment">/// to control this.</span>
     <span class="doccomment">/// ## `model`</span>
-    <span class="doccomment">/// a `GMenuModel`, or `None`</span>
+    <span class="doccomment">/// a `GMenuModel`, or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -917,7 +917,7 @@
     <span class="doccomment">/// on the parent widget or on any of its parent widgets.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The only flag that is supported currently is</span>
-    <span class="doccomment">/// `PopoverMenuFlags::Nested`, which makes GTK create traditional,</span>
+    <span class="doccomment">/// [`PopoverMenuFlags::Nested`], which makes GTK create traditional,</span>
     <span class="doccomment">/// nested submenus instead of the default sliding submenus.</span>
     <span class="doccomment">/// ## `model`</span>
     <span class="doccomment">/// a `GMenuModel`</span>
@@ -953,7 +953,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if `id` was found and the widget added</span>
+    <span class="doccomment">/// [`true`] if `id` was found and the widget added</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_menu_add_child&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_child</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">id</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -976,13 +976,13 @@
     }
 
     <span class="doccomment">/// Removes a widget that has previously been added with</span>
-    <span class="doccomment">/// `PopoverMenu::add_child`.</span>
+    <span class="doccomment">/// [`add_child()`](Self::add_child()).</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the `GtkWidget` to remove</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the widget was removed</span>
+    <span class="doccomment">/// [`true`] if the widget was removed</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_menu_remove_child&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove_child</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -999,7 +999,7 @@
     <span class="doccomment">/// the `self` is populated with new contents according</span>
     <span class="doccomment">/// to `model`.</span>
     <span class="doccomment">/// ## `model`</span>
-    <span class="doccomment">/// a `GMenuModel`, or `None`</span>
+    <span class="doccomment">/// a `GMenuModel`, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_popover_menu_set_menu_model&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_menu_model</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::MenuModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">model</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {

@@ -789,7 +789,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`SurfaceExtManual`](trait@crate::SurfaceExtManual)</span>
+    <span class="doccomment">/// [`SurfaceExtManual`](trait@crate::prelude::SurfaceExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Surface</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GdkSurface</span>, <span class="ident">ffi::GdkSurfaceClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -865,7 +865,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the newly created `GdkGLContext`,</span>
-    <span class="doccomment">///  or `None` on error</span>
+    <span class="doccomment">///  or [`None`] on error</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_create_gl_context&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_gl_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">GLContext</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -886,7 +886,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the newly created `GdkVulkanContext`, or</span>
-    <span class="doccomment">///  `None` on error</span>
+    <span class="doccomment">///  [`None`] on error</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_create_vulkan_context&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_vulkan_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">VulkanContext</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -919,12 +919,12 @@
     <span class="doccomment">/// Retrieves a `GdkCursor` pointer for the cursor currently set on the</span>
     <span class="doccomment">/// `GdkSurface`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the return value is `None` then there is no custom cursor set on</span>
+    <span class="doccomment">/// If the return value is [`None`] then there is no custom cursor set on</span>
     <span class="doccomment">/// the surface, and it is using the cursor for its parent surface.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GdkCursor`, or `None`. The</span>
+    <span class="doccomment">/// a `GdkCursor`, or [`None`]. The</span>
     <span class="doccomment">///  returned object is owned by the `GdkSurface` and should not be</span>
     <span class="doccomment">///  unreferenced directly. Use [method`Gdk.Surface`.set_cursor] to</span>
     <span class="doccomment">///  unset the cursor of the surface</span>
@@ -936,14 +936,14 @@
     <span class="doccomment">/// Retrieves a `GdkCursor` pointer for the `device` currently set on the</span>
     <span class="doccomment">/// specified `GdkSurface`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the return value is `None` then there is no custom cursor set on the</span>
+    <span class="doccomment">/// If the return value is [`None`] then there is no custom cursor set on the</span>
     <span class="doccomment">/// specified surface, and it is using the cursor for its parent surface.</span>
     <span class="doccomment">/// ## `device`</span>
     <span class="doccomment">/// a pointer `GdkDevice`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GdkCursor`, or `None`. The</span>
+    <span class="doccomment">/// a `GdkCursor`, or [`None`]. The</span>
     <span class="doccomment">///  returned object is owned by the `GdkSurface` and should not be</span>
     <span class="doccomment">///  unreferenced directly. Use [method`Gdk.Surface`.set_cursor] to unset</span>
     <span class="doccomment">///  the cursor of the surface</span>
@@ -964,15 +964,15 @@
     <span class="doccomment">/// ## `device`</span>
     <span class="doccomment">/// pointer `GdkDevice` to query to</span>
     <span class="doccomment">/// ## `x`</span>
-    <span class="doccomment">/// return locatio for the X coordinate of `device`, or `None`</span>
+    <span class="doccomment">/// return locatio for the X coordinate of `device`, or [`None`]</span>
     <span class="doccomment">/// ## `y`</span>
-    <span class="doccomment">/// return location for the Y coordinate of `device`, or `None`</span>
+    <span class="doccomment">/// return location for the Y coordinate of `device`, or [`None`]</span>
     <span class="doccomment">/// ## `mask`</span>
-    <span class="doccomment">/// return location for the modifier mask, or `None`</span>
+    <span class="doccomment">/// return location for the modifier mask, or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the device is over the surface</span>
+    <span class="doccomment">/// [`true`] if the device is over the surface</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_get_device_position&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">device_position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="ident">Device</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">f64</span>, <span class="ident">f64</span>, <span class="ident">ModifierType</span>)<span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -1040,7 +1040,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the surface is mapped</span>
+    <span class="doccomment">/// [`true`] if the surface is mapped</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_get_mapped&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_mapped</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_surface_get_mapped</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -1096,7 +1096,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the surface is destroyed</span>
+    <span class="doccomment">/// [`true`] if the surface is destroyed</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_is_destroyed&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_destroyed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_surface_is_destroyed</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -1126,7 +1126,7 @@
 
     <span class="doccomment">/// Sets the default mouse pointer for a `GdkSurface`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Passing `None` for the `cursor` argument means that `self` will use</span>
+    <span class="doccomment">/// Passing [`None`] for the `cursor` argument means that `self` will use</span>
     <span class="doccomment">/// the cursor of its parent surface. Most surfaces should use this default.</span>
     <span class="doccomment">/// Note that `cursor` must be for the same display as `self`.</span>
     <span class="doccomment">///</span>
@@ -1143,7 +1143,7 @@
 
     <span class="doccomment">/// Sets a specific `GdkCursor` for a given device when it gets inside `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Passing `None` for the `cursor` argument means that `self` will use the</span>
+    <span class="doccomment">/// Passing [`None`] for the `cursor` argument means that `self` will use the</span>
     <span class="doccomment">/// cursor of its parent surface. Most surfaces should use this default.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Use [ctor`Gdk.Cursor`.new_from_name] or [ctor`Gdk.Cursor`.new_from_texture]</span>
@@ -1200,9 +1200,9 @@
     <span class="doccomment">/// GTK will update this property automatically if the `self` background</span>
     <span class="doccomment">/// is opaque, as we know where the opaque regions are. If your surface</span>
     <span class="doccomment">/// background is not opaque, please update this property in your</span>
-    <span class="doccomment">/// ``GtkWidgetClass`.css_changed`() handler.</span>
+    <span class="doccomment">/// [``GtkWidgetClass`.css_changed()`](crate::`GtkWidgetClass`.css_changed()) handler.</span>
     <span class="doccomment">/// ## `region`</span>
-    <span class="doccomment">/// a region, or `None`</span>
+    <span class="doccomment">/// a region, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_surface_set_opaque_region&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_opaque_region</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">region</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">cairo::Region</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -1247,7 +1247,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` to indicate that the event has been handled</span>
+    <span class="doccomment">/// [`true`] to indicate that the event has been handled</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_event</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Surface</span>, <span class="kw-2">&amp;</span><span class="ident">Event</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
@@ -1277,7 +1277,7 @@
     <span class="doccomment">/// be performed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Surface size is reported in ”application pixels”, not</span>
-    <span class="doccomment">/// ”device pixels” (see `Surface::get_scale_factor`).</span>
+    <span class="doccomment">/// ”device pixels” (see [`get_scale_factor()`](Self::get_scale_factor())).</span>
     <span class="doccomment">/// ## `width`</span>
     <span class="doccomment">/// the current width</span>
     <span class="doccomment">/// ## `height`</span>
@@ -1339,7 +1339,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` to indicate that the signal has been handled</span>
+    <span class="doccomment">/// [`true`] to indicate that the signal has been handled</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_render</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Surface</span>, <span class="kw-2">&amp;</span><span class="ident">cairo::Region</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,

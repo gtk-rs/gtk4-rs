@@ -941,7 +941,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`MediaStreamExt`](trait@crate::MediaStreamExt), [`trait@glib::object::ObjectExt`], [`trait@gdk::PaintableExt`], [`MediaStreamExtManual`](trait@crate::MediaStreamExtManual)</span>
+    <span class="doccomment">/// [`MediaStreamExt`](trait@crate::prelude::MediaStreamExt), [`trait@glib::object::ObjectExt`], [`trait@gdk::PaintableExt`], [`MediaStreamExtManual`](trait@crate::prelude::MediaStreamExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MediaStream</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkMediaStream</span>, <span class="ident">ffi::GtkMediaStreamClass</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">gdk::Paintable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -959,7 +959,7 @@
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">MediaStreamExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Pauses the media stream and marks it as ended.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is a hint only, calls to `MediaStream`.`play`</span>
+    <span class="doccomment">/// This is a hint only, calls to [``MediaStream`.play()`](crate::`MediaStream`.play())</span>
     <span class="doccomment">/// may still happen.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_ended&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">ended</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
@@ -978,11 +978,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if playback is finished</span>
+    <span class="doccomment">/// [`true`] if playback is finished</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_get_ended&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_ended</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Sets `self` into an error state using a `printf`-style format string.</span>
+    <span class="doccomment">/// Sets `self` into an error state using a `printf()`-style format string.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a utility function that calls [method`Gtk.MediaStream`.gerror].</span>
     <span class="doccomment">/// See that function for details.</span>
@@ -991,7 +991,7 @@
     <span class="doccomment">/// ## `code`</span>
     <span class="doccomment">/// error code</span>
     <span class="doccomment">/// ## `format`</span>
-    <span class="doccomment">/// `printf`-style format for error message</span>
+    <span class="doccomment">/// `printf()`-style format for error message</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_get_error&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">error</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::Error</span><span class="op">&gt;</span>;
 
@@ -1001,7 +1001,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the stream should loop</span>
+    <span class="doccomment">/// [`true`] if the stream should loop</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_get_loop&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_loop</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -1011,7 +1011,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the stream is muted</span>
+    <span class="doccomment">/// [`true`] if the stream is muted</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_get_muted&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_muted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -1019,7 +1019,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the stream is playing</span>
+    <span class="doccomment">/// [`true`] if the stream is playing</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_get_playing&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_playing</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -1045,7 +1045,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the stream has audio</span>
+    <span class="doccomment">/// [`true`] if the stream has audio</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_has_audio&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">has_audio</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -1053,7 +1053,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the stream has video</span>
+    <span class="doccomment">/// [`true`] if the stream has video</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_has_video&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">has_video</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -1063,15 +1063,15 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the stream is prepared</span>
+    <span class="doccomment">/// [`true`] if the stream is prepared</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_is_prepared&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_prepared</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="doccomment">/// Checks if a stream may be seekable.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is meant to be a hint. Streams may not allow seeking even if</span>
-    <span class="doccomment">/// this function returns `true`. However, if this function returns</span>
-    <span class="doccomment">/// `false`, streams are guaranteed to not be seekable and user interfaces</span>
+    <span class="doccomment">/// this function returns [`true`]. However, if this function returns</span>
+    <span class="doccomment">/// [`false`], streams are guaranteed to not be seekable and user interfaces</span>
     <span class="doccomment">/// may hide controls that allow seeking.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is allowed to call [method`Gtk.MediaStream`.seek] on a non-seekable</span>
@@ -1079,7 +1079,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the stream may support seeking</span>
+    <span class="doccomment">/// [`true`] if the stream may support seeking</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_is_seekable&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_seekable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -1087,7 +1087,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if a seek operation is ongoing.</span>
+    <span class="doccomment">/// [`true`] if a seek operation is ongoing.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_is_seeking&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_seeking</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -1108,17 +1108,17 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the arguments are hints. If the stream implementation</span>
     <span class="doccomment">/// cannot determine the correct values, it is better to err on the</span>
-    <span class="doccomment">/// side of caution and return `true`. User interfaces will use those</span>
+    <span class="doccomment">/// side of caution and return [`true`]. User interfaces will use those</span>
     <span class="doccomment">/// values to determine what controls to show.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function may not be called again until the stream has been</span>
     <span class="doccomment">/// reset via [method`Gtk.MediaStream`.unprepared].</span>
     <span class="doccomment">/// ## `has_audio`</span>
-    <span class="doccomment">/// `true` if the stream should advertise audio support</span>
+    <span class="doccomment">/// [`true`] if the stream should advertise audio support</span>
     <span class="doccomment">/// ## `has_video`</span>
-    <span class="doccomment">/// `true` if the stream should advertise video support</span>
+    <span class="doccomment">/// [`true`] if the stream should advertise video support</span>
     <span class="doccomment">/// ## `seekable`</span>
-    <span class="doccomment">/// `true` if the stream should advertise seekability</span>
+    <span class="doccomment">/// [`true`] if the stream should advertise seekability</span>
     <span class="doccomment">/// ## `duration`</span>
     <span class="doccomment">/// The duration of the stream or 0 if unknown</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_prepared&quot;</span>)]</span>
@@ -1153,7 +1153,7 @@
     <span class="doccomment">/// seek operation is in process, the [property`Gtk.MediaStream`:seeking]</span>
     <span class="doccomment">/// property will be set.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// When calling `MediaStreamExt::seek` during an</span>
+    <span class="doccomment">/// When calling [`seek()`](Self::seek()) during an</span>
     <span class="doccomment">/// ongoing seek operation, the new seek will override</span>
     <span class="doccomment">/// any pending seek.</span>
     <span class="doccomment">/// ## `timestamp`</span>
@@ -1161,7 +1161,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_seek&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">seek</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">timestamp</span>: <span class="ident">i64</span>);
 
-    <span class="doccomment">/// Ends a seek operation started via `MediaStream`.`seek` as a failure.</span>
+    <span class="doccomment">/// Ends a seek operation started via [``MediaStream`.seek()`](crate::`MediaStream`.seek()) as a failure.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This will not cause an error on the stream and will assume that</span>
     <span class="doccomment">/// playback continues as if no seek had happened.</span>
@@ -1171,7 +1171,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_seek_failed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">seek_failed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Ends a seek operation started via `MediaStream`.`seek` successfully.</span>
+    <span class="doccomment">/// Ends a seek operation started via [``MediaStream`.seek()`](crate::`MediaStream`.seek()) successfully.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function will unset the `MediaStream`:ended property</span>
     <span class="doccomment">/// if it was set.</span>
@@ -1190,7 +1190,7 @@
     <span class="doccomment">/// non-seekable streams. Those streams will ignore the</span>
     <span class="doccomment">/// loop setting and just end.</span>
     <span class="doccomment">/// ## `loop_`</span>
-    <span class="doccomment">/// `true` if the stream should loop</span>
+    <span class="doccomment">/// [`true`] if the stream should loop</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_set_loop&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_loop</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">loop_</span>: <span class="ident">bool</span>);
 
@@ -1203,7 +1203,7 @@
     <span class="doccomment">/// If the stream has no audio, calling this function will</span>
     <span class="doccomment">/// still work but it will not have an audible effect.</span>
     <span class="doccomment">/// ## `muted`</span>
-    <span class="doccomment">/// `true` if the stream should be muted</span>
+    <span class="doccomment">/// [`true`] if the stream should be muted</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_set_muted&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_muted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">muted</span>: <span class="ident">bool</span>);
 
@@ -1237,7 +1237,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_unprepared&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">unprepared</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Undoes a previous call to `MediaStreamExt::realize`.</span>
+    <span class="doccomment">/// Undoes a previous call to [`realize()`](Self::realize()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This causes the stream to release all resources it had</span>
     <span class="doccomment">/// allocated from `surface`.</span>

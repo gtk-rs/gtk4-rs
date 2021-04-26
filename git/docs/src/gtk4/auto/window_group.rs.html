@@ -145,7 +145,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// `GtkWindowGroup` objects are referenced by each window in the group,</span>
     <span class="doccomment">/// so once you have added all windows to a `GtkWindowGroup`, you can drop</span>
-    <span class="doccomment">/// the initial reference to the window group with `glib::object::ObjectExt::unref`. If the</span>
+    <span class="doccomment">/// the initial reference to the window group with [`glib::object::ObjectExt::unref()`](crate::glib::object::ObjectExt::unref()). If the</span>
     <span class="doccomment">/// windows in the window group are subsequently destroyed, then they will</span>
     <span class="doccomment">/// be removed from the window group and drop their references on the window</span>
     <span class="doccomment">/// group; when all window have been removed, the window group will be</span>
@@ -153,7 +153,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`WindowGroupExt`](trait@crate::WindowGroupExt), [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`WindowGroupExt`](trait@crate::prelude::WindowGroupExt), [`trait@glib::object::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WindowGroup</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkWindowGroup</span>, <span class="ident">ffi::GtkWindowGroupClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {

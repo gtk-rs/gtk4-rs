@@ -372,10 +372,10 @@
     <span class="doccomment">/// [PWG 5101.1-2002](ftp://ftp.pwg.org/pub/pwg/candidates/cs-pwgmsn10-20020226-5101.1.pdf)</span>
     <span class="doccomment">/// paper name.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `name` is `None`, the default paper size is returned,</span>
+    <span class="doccomment">/// If `name` is [`None`], the default paper size is returned,</span>
     <span class="doccomment">/// see [func`Gtk.PaperSize`.get_default].</span>
     <span class="doccomment">/// ## `name`</span>
-    <span class="doccomment">/// a paper size name, or `None`</span>
+    <span class="doccomment">/// a paper size name, or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -398,7 +398,7 @@
     <span class="doccomment">/// ## `height`</span>
     <span class="doccomment">/// the paper height, in units of `unit`</span>
     <span class="doccomment">/// ## `unit`</span>
-    <span class="doccomment">/// the unit for `width` and `height`. not `Unit::None`.</span>
+    <span class="doccomment">/// the unit for `width` and `height`. not [`Unit::None`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -561,7 +561,7 @@
         }
     }
 
-    <span class="doccomment">/// Returns `true` if `self` is not a standard paper size.</span>
+    <span class="doccomment">/// Returns [`true`] if `self` is not a standard paper size.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -581,7 +581,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true`, if `self` and `size2`</span>
+    <span class="doccomment">/// [`true`], if `self` and `size2`</span>
     <span class="doccomment">/// represent the same paper size</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_paper_size_is_equal&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_equal</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">size2</span>: <span class="kw-2">&amp;</span><span class="ident">PaperSize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
@@ -593,7 +593,7 @@
         }
     }
 
-    <span class="doccomment">/// Returns `true` if `self` is an IPP standard paper size.</span>
+    <span class="doccomment">/// Returns [`true`] if `self` is an IPP standard paper size.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

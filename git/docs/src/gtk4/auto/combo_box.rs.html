@@ -1630,11 +1630,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkComboBox` uses the `AccessibleRole::ComboBox` role.</span>
+    <span class="doccomment">/// `GtkComboBox` uses the [`AccessibleRole::ComboBox`] role.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`ComboBoxExt`](trait@crate::ComboBoxExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`CellEditableExt`](trait@crate::CellEditableExt), [`CellLayoutExt`](trait@crate::CellLayoutExt), [`ComboBoxExtManual`](trait@crate::ComboBoxExtManual), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual), [`CellEditableExtManual`](trait@crate::CellEditableExtManual), [`CellLayoutExtManual`](trait@crate::CellLayoutExtManual)</span>
+    <span class="doccomment">/// [`ComboBoxExt`](trait@crate::prelude::ComboBoxExt), [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`CellEditableExt`](trait@crate::prelude::CellEditableExt), [`CellLayoutExt`](trait@crate::prelude::CellLayoutExt), [`ComboBoxExtManual`](trait@crate::prelude::ComboBoxExtManual), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual), [`CellEditableExtManual`](trait@crate::prelude::CellEditableExtManual), [`CellLayoutExtManual`](trait@crate::prelude::CellLayoutExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ComboBox</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkComboBox</span>, <span class="ident">ffi::GtkComboBoxClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">CellEditable</span>, <span class="ident">CellLayout</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -2112,12 +2112,12 @@
     <span class="doccomment">/// must not free it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the [property`Gtk.ComboBox`:id-column] property of `self` is</span>
-    <span class="doccomment">/// not set, or if no row is active, or if the active row has a `None`</span>
-    <span class="doccomment">/// ID value, then `None` is returned.</span>
+    <span class="doccomment">/// not set, or if no row is active, or if the active row has a [`None`]</span>
+    <span class="doccomment">/// ID value, then [`None`] is returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the ID of the active row, or `None`</span>
+    <span class="doccomment">/// the ID of the active row, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_combo_box_get_active_id&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">active_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span>;
 
@@ -2129,7 +2129,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if `iter` was set, `false` otherwise</span>
+    <span class="doccomment">/// [`true`] if `iter` was set, [`false`] otherwise</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_combo_box_get_active_iter&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">active_iter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>;
 
@@ -2138,9 +2138,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `SensitivityType::On` if the dropdown button</span>
-    <span class="doccomment">///  is sensitive when the model is empty, `SensitivityType::Off`</span>
-    <span class="doccomment">///  if the button is always insensitive or `SensitivityType::Auto`</span>
+    <span class="doccomment">/// [`SensitivityType::On`] if the dropdown button</span>
+    <span class="doccomment">///  is sensitive when the model is empty, [`SensitivityType::Off`]</span>
+    <span class="doccomment">///  if the button is always insensitive or [`SensitivityType::Auto`]</span>
     <span class="doccomment">///  if it is only sensitive as long as the model has one item to</span>
     <span class="doccomment">///  be selected.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_combo_box_get_button_sensitivity&quot;</span>)]</span>
@@ -2193,7 +2193,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the popup uses a fixed width</span>
+    <span class="doccomment">/// [`true`] if the popup uses a fixed width</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_combo_box_get_popup_fixed_width&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_popup_fixed_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -2230,28 +2230,28 @@
     <span class="doccomment">/// Changes the active row of `self` to the one that has an ID equal to</span>
     <span class="doccomment">/// `active_id`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `active_id` is `None`, the active row is unset. Rows having</span>
-    <span class="doccomment">/// a `None` ID string cannot be made active by this function.</span>
+    <span class="doccomment">/// If `active_id` is [`None`], the active row is unset. Rows having</span>
+    <span class="doccomment">/// a [`None`] ID string cannot be made active by this function.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the [property`Gtk.ComboBox`:id-column] property of `self` is</span>
     <span class="doccomment">/// unset or if no row has the given ID then the function does nothing</span>
-    <span class="doccomment">/// and returns `false`.</span>
+    <span class="doccomment">/// and returns [`false`].</span>
     <span class="doccomment">/// ## `active_id`</span>
-    <span class="doccomment">/// the ID of the row to select, or `None`</span>
+    <span class="doccomment">/// the ID of the row to select, or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if a row with a matching ID was found. If a `None`</span>
+    <span class="doccomment">/// [`true`] if a row with a matching ID was found. If a [`None`]</span>
     <span class="doccomment">///  `active_id` was given to unset the active row, the function</span>
-    <span class="doccomment">///  always returns `true`.</span>
+    <span class="doccomment">///  always returns [`true`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_combo_box_set_active_id&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_active_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">active_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="doccomment">/// Sets the current active item to be the one referenced by `iter`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `iter` is `None`, the active item is unset.</span>
+    <span class="doccomment">/// If `iter` is [`None`], the active item is unset.</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// The `GtkTreeIter`, or `None`</span>
+    <span class="doccomment">/// The `GtkTreeIter`, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_combo_box_set_active_iter&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_active_iter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeIter</span><span class="op">&gt;</span>);
 
@@ -2275,7 +2275,7 @@
     <span class="doccomment">/// type `G_TYPE_STRING`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is only relevant if `self` has been created with</span>
-    <span class="doccomment">/// [property`Gtk.ComboBox`:has-entry] as `true`.</span>
+    <span class="doccomment">/// [property`Gtk.ComboBox`:has-entry] as [`true`].</span>
     <span class="doccomment">/// ## `text_column`</span>
     <span class="doccomment">/// A column in `model` to get the strings from for</span>
     <span class="doccomment">///  the internal entry</span>
@@ -2294,7 +2294,7 @@
 
     <span class="doccomment">/// Sets the model used by `self` to be `model`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Will unset a previously set model (if applicable). If model is `None`,</span>
+    <span class="doccomment">/// Will unset a previously set model (if applicable). If model is [`None`],</span>
     <span class="doccomment">/// then it will unset the model.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this function does not clear the cell renderers, you have to</span>
@@ -2307,7 +2307,7 @@
 
     <span class="doccomment">/// Specifies whether the popup’s width should be a fixed width.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `fixed` is `true`, the popup&#39;s width is set to match the</span>
+    <span class="doccomment">/// If `fixed` is [`true`], the popup&#39;s width is set to match the</span>
     <span class="doccomment">/// allocated width of the combo box.</span>
     <span class="doccomment">/// ## `fixed`</span>
     <span class="doccomment">/// whether to use a fixed popup width</span>
@@ -2317,14 +2317,14 @@
     <span class="doccomment">/// Sets the row separator function, which is used to determine</span>
     <span class="doccomment">/// whether a row should be drawn as a separator.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the row separator function is `None`, no separators are drawn.</span>
+    <span class="doccomment">/// If the row separator function is [`None`], no separators are drawn.</span>
     <span class="doccomment">/// This is the default value.</span>
     <span class="doccomment">/// ## `func`</span>
     <span class="doccomment">/// a `GtkTreeViewRowSeparatorFunc`</span>
     <span class="doccomment">/// ## `data`</span>
-    <span class="doccomment">/// user data to pass to `func`, or `None`</span>
+    <span class="doccomment">/// user data to pass to `func`, or [`None`]</span>
     <span class="doccomment">/// ## `destroy`</span>
-    <span class="doccomment">/// destroy notifier for `data`, or `None`</span>
+    <span class="doccomment">/// destroy notifier for `data`, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_combo_box_set_row_separator_func&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_row_separator_func</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">TreeModel</span>, <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">func</span>: <span class="ident">P</span>);
 

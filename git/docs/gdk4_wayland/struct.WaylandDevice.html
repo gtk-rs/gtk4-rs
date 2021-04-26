@@ -11,9 +11,9 @@ provides access to Wayland objects such as the <code>wl_seat</code> with
 </div><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl" class="impl"><code class="in-band">impl <a class="struct" href="struct.WaylandDevice.html" title="struct gdk4_wayland::WaylandDevice">WaylandDevice</a></code><a href="#impl" class="anchor"></a><a class="srclink" href="../src/gdk4_wayland/auto/wayland_device.rs.html#27-45" title="goto source code">[src]</a></h3></summary><div class="impl-items"><h4 id="method.node_path" class="method"><code>pub fn <a href="#method.node_path" class="fnname">node_path</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</code><a href="#method.node_path" class="anchor"></a><a class="srclink" href="../src/gdk4_wayland/auto/wayland_device.rs.html#42-44" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the <code>/dev/input/event*</code> path of this device.</p>
 <p>For <code>GdkDevice</code>s that possibly coalesce multiple hardware
 devices (eg. mouse, keyboard, touch,…), this function
-will return <code>None</code>.</p>
+will return <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>.</p>
 <p>This is most notably implemented for devices of type
-<code>gdk::InputSource::Pen</code>, <code>gdk::InputSource::TabletPad</code>.</p>
+<a href="../gdk4/auto/enums/enum.InputSource.html#variant.Pen" title="gdk::InputSource::Pen"><code>gdk::InputSource::Pen</code></a>, <a href="../gdk4/auto/enums/enum.InputSource.html#variant.TabletPad" title="gdk::InputSource::TabletPad"><code>gdk::InputSource::TabletPad</code></a>.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
 <p>the <code>/dev/input/event*</code>
 path of this device</p>

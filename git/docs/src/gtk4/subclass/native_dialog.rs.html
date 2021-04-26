@@ -107,17 +107,13 @@
 <span id="104">104</span>
 <span id="105">105</span>
 <span id="106">106</span>
-<span id="107">107</span>
-<span id="108">108</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="ident">glib::subclass::object::ObjectImpl</span>;
-<span class="kw">use</span> <span class="ident">glib::subclass::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::subclass::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">NativeDialog</span>, <span class="ident">ResponseType</span>};
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">Cast</span>, <span class="ident">Object</span>};
-
-<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">NativeDialog</span>, <span class="ident">ResponseType</span>};
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">NativeDialogImpl</span>: <span class="ident">NativeDialogImplExt</span> <span class="op">+</span> <span class="ident">ObjectImpl</span> {
     <span class="kw">fn</span> <span class="ident">response</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">dialog</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">response</span>: <span class="ident">ResponseType</span>) {

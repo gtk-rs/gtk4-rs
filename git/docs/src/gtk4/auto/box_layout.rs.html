@@ -305,7 +305,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`LayoutManagerExt`](trait@crate::LayoutManagerExt), [`trait@glib::object::ObjectExt`], [`OrientableExt`](trait@crate::OrientableExt)</span>
+    <span class="doccomment">/// [`LayoutManagerExt`](trait@crate::prelude::LayoutManagerExt), [`trait@glib::object::ObjectExt`], [`OrientableExt`](trait@crate::prelude::OrientableExt)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BoxLayout</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkBoxLayout</span>, <span class="ident">ffi::GtkBoxLayoutClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">LayoutManager</span>, @<span class="ident">implements</span> <span class="ident">Orientable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -330,7 +330,7 @@
         }
     }
 
-    <span class="doccomment">/// Gets the value set by `BoxLayout::set_baseline_position`.</span>
+    <span class="doccomment">/// Gets the value set by [`set_baseline_position()`](Self::set_baseline_position()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -348,7 +348,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the layout is homogeneous</span>
+    <span class="doccomment">/// [`true`] if the layout is homogeneous</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_box_layout_get_homogeneous&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_homogeneous</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_box_layout_get_homogeneous</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -383,7 +383,7 @@
     <span class="doccomment">/// Sets whether the box layout will allocate the same</span>
     <span class="doccomment">/// size to all children.</span>
     <span class="doccomment">/// ## `homogeneous`</span>
-    <span class="doccomment">/// `true` to set the box layout as homogeneous</span>
+    <span class="doccomment">/// [`true`] to set the box layout as homogeneous</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_box_layout_set_homogeneous&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_homogeneous</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">homogeneous</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {

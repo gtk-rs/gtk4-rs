@@ -29,9 +29,9 @@
 <h1 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h1>
 <p><a href="../struct.GestureRotate.html"><code>GestureRotate</code></a>, <a href="../struct.GestureSingle.html"><code>GestureSingle</code></a>, <a href="../struct.GestureZoom.html"><code>GestureZoom</code></a>, <a href="../struct.Gesture.html"><code>Gesture</code></a></p>
 </div><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><h3 id="tymethod.bounding_box" class="method"><code>fn <a href="#tymethod.bounding_box" class="fnname">bounding_box</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../gdk4/rectangle/struct.Rectangle.html" title="struct gdk4::rectangle::Rectangle">Rectangle</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/gesture.rs.html#148" title="goto source code">[src]</a></h3><div class="docblock"><p>If there are touch sequences being currently handled by <code>self</code>,
-returns <code>true</code> and fills in <code>rect</code> with the bounding box containing
+returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> and fills in <code>rect</code> with the bounding box containing
 all active touches.</p>
-<p>Otherwise, <code>false</code> will be returned.</p>
+<p>Otherwise, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> will be returned.</p>
 <p>Note: This function will yield unexpected results on touchpad
 gestures. Since there is no correlation between physical and
 pixel distances, these will look as if constrained in an
@@ -40,26 +40,26 @@ regardless of the number of touchpoints.</p>
 <h2 id="rect" class="section-header"><a href="#rect"><code>rect</code></a></h2>
 <p>bounding box containing all active touches.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
-<p><code>true</code> if there are active touches, <code>false</code> otherwise</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if there are active touches, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> otherwise</p>
 </div><h3 id="tymethod.bounding_box_center" class="method"><code>fn <a href="#tymethod.bounding_box_center" class="fnname">bounding_box_center</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/gesture.rs.html#164" title="goto source code">[src]</a></h3><div class="docblock"><p>If there are touch sequences being currently handled by <code>self</code>,
-returns <code>true</code> and fills in <code>x</code> and <code>y</code> with the center of the bounding
+returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> and fills in <code>x</code> and <code>y</code> with the center of the bounding
 box containing all active touches.</p>
-<p>Otherwise, <code>false</code> will be returned.</p>
+<p>Otherwise, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> will be returned.</p>
 <h2 id="x" class="section-header"><a href="#x"><code>x</code></a></h2>
 <p>X coordinate for the bounding box center</p>
 <h2 id="y" class="section-header"><a href="#y"><code>y</code></a></h2>
 <p>Y coordinate for the bounding box center</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
-<p><code>false</code> if no active touches are present, <code>true</code> otherwise</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> if no active touches are present, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> otherwise</p>
 </div><h3 id="tymethod.device" class="method"><code>fn <a href="#tymethod.device" class="fnname">device</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../gdk4/auto/device/struct.Device.html" title="struct gdk4::auto::device::Device">Device</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/gesture.rs.html#175" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns the logical <code>GdkDevice</code> that is currently operating
 on <code>self</code>.</p>
-<p>This returns <code>None</code> if the gesture is not being interacted.</p>
+<p>This returns <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if the gesture is not being interacted.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
-<p>a <code>GdkDevice</code>, or <code>None</code></p>
+<p>a <code>GdkDevice</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 </div><h3 id="tymethod.group" class="method"><code>fn <a href="#tymethod.group" class="fnname">group</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../struct.Gesture.html" title="struct gtk4::Gesture">Gesture</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/gesture.rs.html#184" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns all gestures in the group of <code>self</code></p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
 <p>The list
-of <code>GtkGesture</code>s, free with <code>glib::List::free</code></p>
+of <code>GtkGesture</code>s, free with <a href="crate::glib::List::free()"><code>glib::List::free()</code></a></p>
 </div><h3 id="tymethod.last_event" class="method"><code>fn <a href="#tymethod.last_event" class="fnname">last_event</a>(&amp;self, sequence: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../../gdk4/auto/event_sequence/struct.EventSequence.html" title="struct gdk4::auto::event_sequence::EventSequence">EventSequence</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../gdk4/event/struct.Event.html" title="struct gdk4::event::Event">Event</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/gesture.rs.html#198" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns the last event that was processed for <code>sequence</code>.</p>
 <p>Note that the returned pointer is only valid as long as the
 <code>sequence</code> is still interpreted by the <code>self</code>. If in doubt,
@@ -72,20 +72,20 @@ you should make a copy of the event.</p>
 <h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>
 <p>The last updated sequence</p>
 </div><h3 id="tymethod.point" class="method"><code>fn <a href="#tymethod.point" class="fnname">point</a>(&amp;self, sequence: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../../gdk4/auto/event_sequence/struct.EventSequence.html" title="struct gdk4::auto::event_sequence::EventSequence">EventSequence</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/gesture.rs.html#224" title="goto source code">[src]</a></h3><div class="docblock"><p>If <code>sequence</code> is currently being interpreted by <code>self</code>,
-returns <code>true</code> and fills in <code>x</code> and <code>y</code> with the last coordinates
+returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> and fills in <code>x</code> and <code>y</code> with the last coordinates
 stored for that event sequence.</p>
 <p>The coordinates are always relative to the widget allocation.</p>
 <h2 id="sequence-1" class="section-header"><a href="#sequence-1"><code>sequence</code></a></h2>
-<p>a <code>GdkEventSequence</code>, or <code>None</code> for pointer events</p>
+<p>a <code>GdkEventSequence</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> for pointer events</p>
 <h2 id="x-1" class="section-header"><a href="#x-1"><code>x</code></a></h2>
 <p>return location for X axis of the sequence coordinates</p>
 <h2 id="y-1" class="section-header"><a href="#y-1"><code>y</code></a></h2>
 <p>return location for Y axis of the sequence coordinates</p>
 <h1 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h1>
-<p><code>true</code> if <code>sequence</code> is currently interpreted</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>sequence</code> is currently interpreted</p>
 </div><h3 id="tymethod.sequence_state" class="method"><code>fn <a href="#tymethod.sequence_state" class="fnname">sequence_state</a>(&amp;self, sequence: &amp;<a class="struct" href="../../gdk4/auto/event_sequence/struct.EventSequence.html" title="struct gdk4::auto::event_sequence::EventSequence">EventSequence</a>) -&gt; <a class="enum" href="../enum.EventSequenceState.html" title="enum gtk4::EventSequenceState">EventSequenceState</a></code><a class="srclink" href="../../src/gtk4/auto/gesture.rs.html#234" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns the <code>sequence</code> state, as seen by <code>self</code>.</p>
 <h2 id="sequence-2" class="section-header"><a href="#sequence-2"><code>sequence</code></a></h2>
-<p>a <code>gdk::EventSequence</code></p>
+<p>a <a href="../../gdk4/auto/event_sequence/struct.EventSequence.html"><code>gdk::EventSequence</code></a></p>
 <h1 id="returns-7" class="section-header"><a href="#returns-7">Returns</a></h1>
 <p>The sequence state in <code>self</code></p>
 </div><h3 id="tymethod.sequences" class="method"><code>fn <a href="#tymethod.sequences" class="fnname">sequences</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../../gdk4/auto/event_sequence/struct.EventSequence.html" title="struct gdk4::auto::event_sequence::EventSequence">EventSequence</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/gesture.rs.html#246" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns the list of <code>GdkEventSequences</code> currently being interpreted
@@ -94,7 +94,7 @@ by <code>self</code>.</p>
 <p>A list
 of <code>GdkEventSequence</code>, the list elements are owned by GTK and must
 not be freed or modified, the list itself must be deleted
-through <code>glib::List::free</code></p>
+through <a href="crate::glib::List::free()"><code>glib::List::free()</code></a></p>
 </div><h3 id="tymethod.group_with" class="method"><code>fn <a href="#tymethod.group_with" class="fnname">group_with</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Gesture.html" title="struct gtk4::Gesture">Gesture</a>&gt;&gt;(&amp;self, gesture: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P)</code><a class="srclink" href="../../src/gtk4/auto/gesture.rs.html#268" title="goto source code">[src]</a></h3><div class="docblock"><p>Adds <code>gesture</code> to the same group than <code>self</code>.</p>
 <p>Gestures are by default isolated in their own groups.</p>
 <p>Both gestures must have been added to the same widget before
@@ -104,37 +104,37 @@ is kept in sync for all of those, so calling
 [method<code>Gtk.Gesture</code>.set_sequence_state], on one will transfer
 the same value to the others.</p>
 <p>Groups also perform an “implicit grabbing” of sequences, if a
-<code>GdkEventSequence</code> state is set to <code>EventSequenceState::Claimed</code>
+<code>GdkEventSequence</code> state is set to <a href="../enum.EventSequenceState.html#variant.Claimed" title="EventSequenceState::Claimed"><code>EventSequenceState::Claimed</code></a>
 on one group, every other gesture group attached to the same
 <code>GtkWidget</code> will switch the state for that sequence to
-<code>EventSequenceState::Denied</code>.</p>
+<a href="../enum.EventSequenceState.html#variant.Denied" title="EventSequenceState::Denied"><code>EventSequenceState::Denied</code></a>.</p>
 <h2 id="gesture" class="section-header"><a href="#gesture"><code>gesture</code></a></h2>
 <p>a <code>GtkGesture</code></p>
-</div><h3 id="tymethod.handles_sequence" class="method"><code>fn <a href="#tymethod.handles_sequence" class="fnname">handles_sequence</a>(&amp;self, sequence: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../../gdk4/auto/event_sequence/struct.EventSequence.html" title="struct gdk4::auto::event_sequence::EventSequence">EventSequence</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/gesture.rs.html#279" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns <code>true</code> if <code>self</code> is currently handling events
+</div><h3 id="tymethod.handles_sequence" class="method"><code>fn <a href="#tymethod.handles_sequence" class="fnname">handles_sequence</a>(&amp;self, sequence: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../../gdk4/auto/event_sequence/struct.EventSequence.html" title="struct gdk4::auto::event_sequence::EventSequence">EventSequence</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/gesture.rs.html#279" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> is currently handling events
 corresponding to <code>sequence</code>.</p>
 <h2 id="sequence-3" class="section-header"><a href="#sequence-3"><code>sequence</code></a></h2>
-<p>a <code>GdkEventSequence</code> or <code>None</code></p>
+<p>a <code>GdkEventSequence</code> or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h1 id="returns-9" class="section-header"><a href="#returns-9">Returns</a></h1>
-<p><code>true</code> if <code>self</code> is handling <code>sequence</code>, <code>false</code> otherwise</p>
-</div><h3 id="tymethod.is_active" class="method"><code>fn <a href="#tymethod.is_active" class="fnname">is_active</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/gesture.rs.html#290" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns <code>true</code> if the gesture is currently active.</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>self</code> is handling <code>sequence</code>, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> otherwise</p>
+</div><h3 id="tymethod.is_active" class="method"><code>fn <a href="#tymethod.is_active" class="fnname">is_active</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/gesture.rs.html#290" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the gesture is currently active.</p>
 <p>A gesture is active while there are touch sequences
 interacting with it.</p>
 <h1 id="returns-10" class="section-header"><a href="#returns-10">Returns</a></h1>
-<p><code>true</code> if gesture is active</p>
-</div><h3 id="tymethod.is_grouped_with" class="method"><code>fn <a href="#tymethod.is_grouped_with" class="fnname">is_grouped_with</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Gesture.html" title="struct gtk4::Gesture">Gesture</a>&gt;&gt;(&amp;self, other: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/gesture.rs.html#300" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns <code>true</code> if both gestures pertain to the same group.</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if gesture is active</p>
+</div><h3 id="tymethod.is_grouped_with" class="method"><code>fn <a href="#tymethod.is_grouped_with" class="fnname">is_grouped_with</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Gesture.html" title="struct gtk4::Gesture">Gesture</a>&gt;&gt;(&amp;self, other: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/gesture.rs.html#300" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if both gestures pertain to the same group.</p>
 <h2 id="other" class="section-header"><a href="#other"><code>other</code></a></h2>
 <p>another <code>GtkGesture</code></p>
 <h1 id="returns-11" class="section-header"><a href="#returns-11">Returns</a></h1>
 <p>whether the gestures are grouped</p>
-</div><h3 id="tymethod.is_recognized" class="method"><code>fn <a href="#tymethod.is_recognized" class="fnname">is_recognized</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/gesture.rs.html#311" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns <code>true</code> if the gesture is currently recognized.</p>
+</div><h3 id="tymethod.is_recognized" class="method"><code>fn <a href="#tymethod.is_recognized" class="fnname">is_recognized</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/gesture.rs.html#311" title="goto source code">[src]</a></h3><div class="docblock"><p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the gesture is currently recognized.</p>
 <p>A gesture is recognized if there are as many interacting
 touch sequences as required by <code>self</code>.</p>
 <h1 id="returns-12" class="section-header"><a href="#returns-12">Returns</a></h1>
-<p><code>true</code> if gesture is recognized</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if gesture is recognized</p>
 </div><h3 id="tymethod.set_sequence_state" class="method"><code>fn <a href="#tymethod.set_sequence_state" class="fnname">set_sequence_state</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;sequence: &amp;<a class="struct" href="../../gdk4/auto/event_sequence/struct.EventSequence.html" title="struct gdk4::auto::event_sequence::EventSequence">EventSequence</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;state: <a class="enum" href="../enum.EventSequenceState.html" title="enum gtk4::EventSequenceState">EventSequenceState</a><br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/gesture.rs.html#365" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets the state of <code>sequence</code> in <code>self</code>.</p>
-<p>Sequences start in state <code>EventSequenceState::None</code>, and whenever
+<p>Sequences start in state <a href="../enum.EventSequenceState.html#variant.None" title="EventSequenceState::None"><code>EventSequenceState::None</code></a>, and whenever
 they change state, they can never go back to that state. Likewise,
-sequences in state <code>EventSequenceState::Denied</code> cannot turn back to
+sequences in state <a href="../enum.EventSequenceState.html#variant.Denied" title="EventSequenceState::Denied"><code>EventSequenceState::Denied</code></a> cannot turn back to
 a not denied state. With these rules, the lifetime of an event
 sequence is constrained to the next four:</p>
 <ul>
@@ -174,7 +174,7 @@ gesture processes the event.</p>
 <h2 id="state" class="section-header"><a href="#state"><code>state</code></a></h2>
 <p>the sequence state</p>
 <h1 id="returns-13" class="section-header"><a href="#returns-13">Returns</a></h1>
-<p><code>true</code> if <code>sequence</code> is handled by <code>self</code>,
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>sequence</code> is handled by <code>self</code>,
 and the state is changed successfully</p>
 </div><h3 id="tymethod.set_state" class="method"><code>fn <a href="#tymethod.set_state" class="fnname">set_state</a>(&amp;self, state: <a class="enum" href="../enum.EventSequenceState.html" title="enum gtk4::EventSequenceState">EventSequenceState</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/gesture.rs.html#380" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets the state of all sequences that <code>self</code> is currently
 interacting with.</p>
@@ -183,7 +183,7 @@ on sequence states.</p>
 <h2 id="state-1" class="section-header"><a href="#state-1"><code>state</code></a></h2>
 <p>the sequence state</p>
 <h1 id="returns-14" class="section-header"><a href="#returns-14">Returns</a></h1>
-<p><code>true</code> if the state of at least one sequence
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the state of at least one sequence
 was changed successfully</p>
 </div><h3 id="tymethod.ungroup" class="method"><code>fn <a href="#tymethod.ungroup" class="fnname">ungroup</a>(&amp;self)</code><a class="srclink" href="../../src/gtk4/auto/gesture.rs.html#384" title="goto source code">[src]</a></h3><div class="docblock"><p>Separates <code>self</code> into an isolated group.</p>
 </div><h3 id="tymethod.n_points" class="method"><code>fn <a href="#tymethod.n_points" class="fnname">n_points</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u32.html">u32</a></code><a class="srclink" href="../../src/gtk4/auto/gesture.rs.html#387" title="goto source code">[src]</a></h3><h3 id="tymethod.connect_begin" class="method"><code>fn <a href="#tymethod.connect_begin" class="fnname">connect_begin</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../../gdk4/auto/event_sequence/struct.EventSequence.html" title="struct gdk4::auto::event_sequence::EventSequence">EventSequence</a>&gt;) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></code><a class="srclink" href="../../src/gtk4/auto/gesture.rs.html#401-404" title="goto source code">[src]</a></h3><div class="docblock"><p>Emitted when the gesture is recognized.</p>

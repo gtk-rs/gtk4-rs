@@ -51,7 +51,7 @@
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::prelude::DialogExtManual</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">FileChooserAction</span>, <span class="ident">FileChooserDialog</span>, <span class="ident">ResponseType</span>, <span class="ident">Widget</span>, <span class="ident">Window</span>};
 <span class="kw">use</span> <span class="ident">glib::object</span>::{<span class="ident">Cast</span>, <span class="ident">IsA</span>};
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
@@ -63,13 +63,13 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is analogous to [ctor`Gtk.Dialog`.new_with_buttons].</span>
     <span class="doccomment">/// ## `title`</span>
-    <span class="doccomment">/// Title of the dialog, or `None`</span>
+    <span class="doccomment">/// Title of the dialog, or [`None`]</span>
     <span class="doccomment">/// ## `parent`</span>
-    <span class="doccomment">/// Transient parent of the dialog, or `None`</span>
+    <span class="doccomment">/// Transient parent of the dialog, or [`None`]</span>
     <span class="doccomment">/// ## `action`</span>
     <span class="doccomment">/// Open or save mode for the dialog</span>
     <span class="doccomment">/// ## `first_button_text`</span>
-    <span class="doccomment">/// text to go in the first button, or `None`</span>
+    <span class="doccomment">/// text to go in the first button, or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

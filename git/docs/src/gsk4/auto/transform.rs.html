@@ -538,7 +538,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the two transforms perform the same operation.</span>
+    <span class="doccomment">/// [`true`] if the two transforms perform the same operation.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_transform_equal&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">equal</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">second</span>: <span class="kw-2">&amp;</span><span class="ident">Transform</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -556,15 +556,15 @@
 
     <span class="doccomment">/// Inverts the given transform.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `self` is not invertible, `None` is returned.</span>
-    <span class="doccomment">/// Note that inverting `None` also returns `None`, which is</span>
-    <span class="doccomment">/// the correct inverse of `None`. If you need to differentiate</span>
-    <span class="doccomment">/// between those cases, you should check `self` is not `None`</span>
+    <span class="doccomment">/// If `self` is not invertible, [`None`] is returned.</span>
+    <span class="doccomment">/// Note that inverting [`None`] also returns [`None`], which is</span>
+    <span class="doccomment">/// the correct inverse of [`None`]. If you need to differentiate</span>
+    <span class="doccomment">/// between those cases, you should check `self` is not [`None`]</span>
     <span class="doccomment">/// before calling this function.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The inverted transform or `None` if the transform</span>
+    <span class="doccomment">/// The inverted transform or [`None`] if the transform</span>
     <span class="doccomment">///  cannot be inverted.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_transform_invert&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">invert</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Transform</span><span class="op">&gt;</span> {
@@ -703,8 +703,8 @@
     <span class="doccomment">/// Converts a `GskTransform` to a 2D transformation matrix.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `self` must be a 2D transformation. If you are not</span>
-    <span class="doccomment">/// sure, use `Transform::get_category` &gt;=</span>
-    <span class="doccomment">/// `TransformCategory::2d` to check.</span>
+    <span class="doccomment">/// sure, use [`get_category()`](Self::get_category()) &gt;=</span>
+    <span class="doccomment">/// [`TransformCategory::2d`] to check.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The returned values have the following layout:</span>
     <span class="doccomment">///</span>
@@ -760,8 +760,8 @@
     <span class="doccomment">/// Converts a `GskTransform` to 2D affine transformation factors.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `self` must be a 2D transformation. If you are not</span>
-    <span class="doccomment">/// sure, use `Transform::get_category` &gt;=</span>
-    <span class="doccomment">/// `TransformCategory::2dAffine` to check.</span>
+    <span class="doccomment">/// sure, use [`get_category()`](Self::get_category()) &gt;=</span>
+    <span class="doccomment">/// [`TransformCategory::2dAffine`] to check.</span>
     <span class="doccomment">/// ## `out_scale_x`</span>
     <span class="doccomment">/// return location for the scale</span>
     <span class="doccomment">///  factor in the x direction</span>
@@ -818,8 +818,8 @@
     <span class="doccomment">/// Converts a `GskTransform` to a translation operation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `self` must be a 2D transformation. If you are not</span>
-    <span class="doccomment">/// sure, use `Transform::get_category` &gt;=</span>
-    <span class="doccomment">/// `TransformCategory::2dTranslate` to check.</span>
+    <span class="doccomment">/// sure, use [`get_category()`](Self::get_category()) &gt;=</span>
+    <span class="doccomment">/// [`TransformCategory::2dTranslate`] to check.</span>
     <span class="doccomment">/// ## `out_dx`</span>
     <span class="doccomment">/// return location for the translation</span>
     <span class="doccomment">///  in the x direction</span>
@@ -939,8 +939,8 @@
     <span class="doccomment">/// Strings printed via [method`Gsk.Transform`.to_string]</span>
     <span class="doccomment">/// can be read in again successfully using this function.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `string` does not describe a valid transform, `false` is</span>
-    <span class="doccomment">/// returned and `None` is put in `out_transform`.</span>
+    <span class="doccomment">/// If `string` does not describe a valid transform, [`false`] is</span>
+    <span class="doccomment">/// returned and [`None`] is put in `out_transform`.</span>
     <span class="doccomment">/// ## `string`</span>
     <span class="doccomment">/// the string to parse</span>
     <span class="doccomment">/// ## `out_transform`</span>
@@ -948,7 +948,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if `string` described a valid transform.</span>
+    <span class="doccomment">/// [`true`] if `string` described a valid transform.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_transform_parse&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse</span>(<span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Transform</span><span class="op">&gt;</span> {
         <span class="macro">assert_initialized_main_thread!</span>();

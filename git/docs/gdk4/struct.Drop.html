@@ -3,8 +3,8 @@
 <link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc struct"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../gdk4/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><p class="location">Struct Drop</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#implementations">Methods</a><div class="sidebar-links"><a href="#method.actions">actions</a><a href="#method.connect_property_display_notify">connect_property_display_notify</a><a href="#method.device">device</a><a href="#method.display">display</a><a href="#method.drag">drag</a><a href="#method.finish">finish</a><a href="#method.formats">formats</a><a href="#method.read_async">read_async</a><a href="#method.read_async_future">read_async_future</a><a href="#method.read_value_async">read_value_async</a><a href="#method.read_value_async_future">read_value_async_future</a><a href="#method.status">status</a><a href="#method.surface">surface</a></div><a class="sidebar-title" href="#trait-implementations">Trait Implementations</a><div class="sidebar-links"><a href="#impl-Clone">Clone</a><a href="#impl-Debug">Debug</a><a href="#impl-Display">Display</a><a href="#impl-Eq">Eq</a><a href="#impl-Hash">Hash</a><a href="#impl-Ord">Ord</a><a href="#impl-ParentClassIs">ParentClassIs</a><a href="#impl-PartialEq%3CT%3E">PartialEq&lt;T&gt;</a><a href="#impl-PartialOrd%3CT%3E">PartialOrd&lt;T&gt;</a><a href="#impl-StaticType">StaticType</a><a href="#impl-StructuralEq">StructuralEq</a></div><a class="sidebar-title" href="#synthetic-implementations">Auto Trait Implementations</a><div class="sidebar-links"><a href="#impl-RefUnwindSafe">RefUnwindSafe</a><a href="#impl-Send">!Send</a><a href="#impl-Sync">!Sync</a><a href="#impl-Unpin">Unpin</a><a href="#impl-UnwindSafe">UnwindSafe</a></div><a class="sidebar-title" href="#blanket-implementations">Blanket Implementations</a><div class="sidebar-links"><a href="#impl-Any">Any</a><a href="#impl-Borrow%3CT%3E">Borrow&lt;T&gt;</a><a href="#impl-BorrowMut%3CT%3E">BorrowMut&lt;T&gt;</a><a href="#impl-CanDowncast%3CSub%3E">CanDowncast&lt;Sub&gt;</a><a href="#impl-Cast">Cast</a><a href="#impl-From%3CT%3E">From&lt;T&gt;</a><a href="#impl-FromValueOptional%3C%27a%3E">FromValueOptional&lt;&#39;a&gt;</a><a href="#impl-Into%3CU%3E">Into&lt;U&gt;</a><a href="#impl-ObjectExt">ObjectExt</a><a href="#impl-ToOwned">ToOwned</a><a href="#impl-ToSendValue">ToSendValue</a><a href="#impl-ToString">ToString</a><a href="#impl-TryFrom%3CU%3E">TryFrom&lt;U&gt;</a><a href="#impl-TryInto%3CU%3E">TryInto&lt;U&gt;</a></div></div><p class="location"><a href="index.html">gdk4</a></p><div id="sidebar-vars" data-name="Drop" data-ty="struct" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
                 <a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Struct <a href="index.html">gdk4</a>::<wbr><a class="struct" href="">Drop</a><button id="copy-path" onclick="copy_path(this)">⎘</button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/gdk4/auto/drop.rs.html#22-44" title="goto source code">[src]</a></span></h1><div class="docblock type-decl"><pre class="rust struct">pub struct Drop(_);</pre></div><div class="docblock"><p>The <code>GdkDrop</code> object represents the target of an ongoing DND operation.</p>
 <p>Possible drop sites get informed about the status of the ongoing drag
-operation with events of type <code>EventType::DragEnter</code>, <code>EventType::DragLeave</code>,
-<code>EventType::DragMotion</code> and <code>EventType::DropStart</code>. The <code>GdkDrop</code> object can be obtained
+operation with events of type [<code>EventType::DragEnter</code>], [<code>EventType::DragLeave</code>],
+[<code>EventType::DragMotion</code>] and [<code>EventType::DropStart</code>]. The <code>GdkDrop</code> object can be obtained
 from these [class<code>Gdk.Event</code>] types using [method<code>Gdk.DNDEvent</code>.get_drop].</p>
 <p>The actual data transfer is initiated from the target side via an async
 read, using one of the <code>GdkDrop</code> methods for this purpose:
@@ -20,11 +20,11 @@ available via [method<code>Gdk.Drop</code>.get_actions].</p>
 <p>the action performed by the destination or 0 if the drop failed</p>
 </div><h4 id="method.actions" class="method"><code>pub fn <a href="#method.actions" class="fnname">actions</a>(&amp;self) -&gt; <a class="struct" href="struct.DragAction.html" title="struct gdk4::DragAction">DragAction</a></code><a href="#method.actions" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/drop.rs.html#79-81" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the possible actions for this <code>GdkDrop</code>.</p>
 <p>If this value contains multiple actions - i.e.
-[func<code>Gdk.DragAction</code>.is_unique] returns <code>false</code> for the result -
+[func<code>Gdk.DragAction</code>.is_unique] returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> for the result -
 [method<code>Gdk.Drop</code>.finish] must choose the action to use when
 accepting the drop. This will only happen if you passed
-<code>DragAction::Ask</code> as one of the possible actions in
-[method<code>Gdk.Drop</code>.status]. <code>DragAction::Ask</code> itself will not
+[<code>DragAction::Ask</code>] as one of the possible actions in
+[method<code>Gdk.Drop</code>.status]. [<code>DragAction::Ask</code>] itself will not
 be included in the actions returned by this function.</p>
 <p>This value may change over the lifetime of the [class<code>Gdk.Drop</code>]
 both as a response to source side actions as well as to calls to
@@ -40,7 +40,7 @@ side will not change this value anymore once a drop has started.</p>
 <p>a <code>GdkDisplay</code></p>
 </div><h4 id="method.drag" class="method"><code>pub fn <a href="#method.drag" class="fnname">drag</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.Drag.html" title="struct gdk4::Drag">Drag</a>&gt;</code><a href="#method.drag" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/drop.rs.html#112-114" title="goto source code">[src]</a></h4><div class="docblock"><p>If this is an in-app drag-and-drop operation, returns the <code>GdkDrag</code>
 that corresponds to this drop.</p>
-<p>If it is not, <code>None</code> is returned.</p>
+<p>If it is not, <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> is returned.</p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
 <p>the corresponding <code>GdkDrag</code></p>
 </div><h4 id="method.formats" class="method"><code>pub fn <a href="#method.formats" class="fnname">formats</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.ContentFormats.html" title="struct gdk4::ContentFormats">ContentFormats</a>&gt;</code><a href="#method.formats" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/drop.rs.html#123-125" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the <code>GdkContentFormats</code> that the drop offers the data
@@ -63,7 +63,7 @@ try to use [func<code>Gdk.content_deserialize_async</code>] to convert the data.
 <h2 id="io_priority" class="section-header"><a href="#io_priority"><code>io_priority</code></a></h2>
 <p>the I/O priority of the request.</p>
 <h2 id="cancellable" class="section-header"><a href="#cancellable"><code>cancellable</code></a></h2>
-<p>optional <code>GCancellable</code> object, <code>None</code> to ignore.</p>
+<p>optional <code>GCancellable</code> object, <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> to ignore.</p>
 <h2 id="callback" class="section-header"><a href="#callback"><code>callback</code></a></h2>
 <p>callback to call when the request is satisfied</p>
 <h2 id="user_data" class="section-header"><a href="#user_data"><code>user_data</code></a></h2>
@@ -75,7 +75,7 @@ change in the future, even depending on the actions you provide here.</p>
 <p>The <code>preferred</code> action is a hint to the drag’n’drop mechanism about which
 action to use when multiple actions are possible.</p>
 <p>This function should be called by drag destinations in response to
-<code>EventType::DragEnter</code> or <code>EventType::DragMotion</code> events. If the destination does
+[<code>EventType::DragEnter</code>] or [<code>EventType::DragMotion</code>] events. If the destination does
 not yet know the exact actions it supports, it should set any possible
 actions first and then later call this function again.</p>
 <h2 id="actions" class="section-header"><a href="#actions"><code>actions</code></a></h2>
@@ -92,7 +92,7 @@ in a format that complies with one of the mime types.</p>
 <p>the I/O priority for the read operation</p>
 <h2 id="cancellable-1" class="section-header"><a href="#cancellable-1"><code>cancellable</code></a></h2>
 <p>optional <code>GCancellable</code> object,
-<code>None</code> to ignore</p>
+<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> to ignore</p>
 <h2 id="callback-1" class="section-header"><a href="#callback-1"><code>callback</code></a></h2>
 <p>a <code>GAsyncReadyCallback</code> to call when
 the request is satisfied</p>

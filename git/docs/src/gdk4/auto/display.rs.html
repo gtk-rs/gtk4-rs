@@ -674,13 +674,13 @@
         }
     }
 
-    <span class="doccomment">/// Returns `true` if there is an ongoing grab on `device` for `self`.</span>
+    <span class="doccomment">/// Returns [`true`] if there is an ongoing grab on `device` for `self`.</span>
     <span class="doccomment">/// ## `device`</span>
     <span class="doccomment">/// a `GdkDevice`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if there is a grab in effect for `device`.</span>
+    <span class="doccomment">/// [`true`] if there is a grab in effect for `device`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_device_is_grabbed&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">device_is_grabbed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="ident">Device</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -714,7 +714,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a new `GdkAppLaunchContext` for `self`.</span>
-    <span class="doccomment">///  Free with `glib::object::Object::unref` when done</span>
+    <span class="doccomment">///  Free with [`glib::object::Object::unref()`](crate::glib::object::Object::unref()) when done</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_get_app_launch_context&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">app_launch_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">AppLaunchContext</span> {
         <span class="kw">unsafe</span> {
@@ -737,7 +737,7 @@
     <span class="doccomment">/// Returns the default `GdkSeat` for this display.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that a display may not have a seat. In this case,</span>
-    <span class="doccomment">/// this function will return `None`.</span>
+    <span class="doccomment">/// this function will return [`None`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -779,7 +779,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `gio::ListModel` of `GdkMonitor`</span>
+    <span class="doccomment">/// a [`gio::ListModel`](crate::gio::ListModel) of `GdkMonitor`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_get_monitors&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">monitors</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::ListModel</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_display_get_monitors</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -822,8 +822,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the setting existed and a value was stored</span>
-    <span class="doccomment">///  in `value`, `false` otherwise</span>
+    <span class="doccomment">/// [`true`] if the setting existed and a value was stored</span>
+    <span class="doccomment">///  in `value`, [`false`] otherwise</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_get_setting&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_setting</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">glib::Value</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -835,12 +835,12 @@
         }
     }
 
-    <span class="doccomment">/// Gets the startup notification ID for a Wayland display, or `None`</span>
+    <span class="doccomment">/// Gets the startup notification ID for a Wayland display, or [`None`]</span>
     <span class="doccomment">/// if no ID has been defined.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the startup notification ID for `self`, or `None`</span>
+    <span class="doccomment">/// the startup notification ID for `self`, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_get_startup_notification_id&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">startup_notification_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -854,7 +854,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the display is closed.</span>
+    <span class="doccomment">/// [`true`] if the display is closed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_is_closed&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_closed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_display_is_closed</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -869,7 +869,7 @@
     <span class="doccomment">/// On X11 this function returns whether a compositing manager is</span>
     <span class="doccomment">/// compositing on `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// On modern displays, this value is always `true`.</span>
+    <span class="doccomment">/// On modern displays, this value is always [`true`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -884,19 +884,19 @@
     <span class="doccomment">/// Returns whether surfaces on this `self` are created with an</span>
     <span class="doccomment">/// alpha channel.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Even if a `true` is returned, it is possible that the</span>
+    <span class="doccomment">/// Even if a [`true`] is returned, it is possible that the</span>
     <span class="doccomment">/// surface’s alpha channel won’t be honored when displaying the</span>
     <span class="doccomment">/// surface on the screen: in particular, for X an appropriate</span>
     <span class="doccomment">/// windowing manager and compositing manager must be running to</span>
     <span class="doccomment">/// provide appropriate display. Use [method`Gdk.Display`.is_composited]</span>
     <span class="doccomment">/// to check if that is the case.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// On modern displays, this value is always `true`.</span>
+    <span class="doccomment">/// On modern displays, this value is always [`true`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if surfaces are created with an alpha channel or</span>
-    <span class="doccomment">///  `false` if the display does not support this functionality.</span>
+    <span class="doccomment">/// [`true`] if surfaces are created with an alpha channel or</span>
+    <span class="doccomment">///  [`false`] if the display does not support this functionality.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_is_rgba&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_rgba</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_display_is_rgba</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -937,16 +937,16 @@
         }
     }
 
-    <span class="doccomment">/// Returns `true` if the display supports input shapes.</span>
+    <span class="doccomment">/// Returns [`true`] if the display supports input shapes.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This means that [method`Gdk.Surface`.set_input_region] can</span>
     <span class="doccomment">/// be used to modify the input shape of surfaces on `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// On modern displays, this value is always `true`.</span>
+    <span class="doccomment">/// On modern displays, this value is always [`true`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if surfaces with modified input shape are supported</span>
+    <span class="doccomment">/// [`true`] if surfaces with modified input shape are supported</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_supports_input_shapes&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">supports_input_shapes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -995,7 +995,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GdkDisplay`, or `None` if</span>
+    <span class="doccomment">/// a `GdkDisplay`, or [`None`] if</span>
     <span class="doccomment">///  there is no default display</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_get_default&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Display</span><span class="op">&gt;</span> {
@@ -1009,7 +1009,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GdkDisplay`, or `None` if the</span>
+    <span class="doccomment">/// a `GdkDisplay`, or [`None`] if the</span>
     <span class="doccomment">///  display could not be opened</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_open&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">open</span>(<span class="ident">display_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Display</span><span class="op">&gt;</span> {
@@ -1019,7 +1019,7 @@
 
     <span class="doccomment">/// Emitted when the connection to the windowing system for `display` is closed.</span>
     <span class="doccomment">/// ## `is_error`</span>
-    <span class="doccomment">/// `true` if the display was closed due to an error</span>
+    <span class="doccomment">/// [`true`] if the display was closed due to an error</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_closed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Display</span>, <span class="ident">bool</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">closed_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Display</span>, <span class="ident">bool</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GdkDisplay</span>,

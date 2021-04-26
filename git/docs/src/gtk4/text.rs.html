@@ -464,8 +464,8 @@
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::prelude</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">DeleteType</span>, <span class="ident">MovementStep</span>, <span class="ident">Text</span>, <span class="ident">Widget</span>};
-<span class="kw">use</span> <span class="ident">glib::object::ObjectExt</span>;
 <span class="kw">use</span> <span class="ident">glib::object::ObjectType</span>;
 <span class="kw">use</span> <span class="ident">glib::signal::connect_raw</span>;
 <span class="kw">use</span> <span class="ident">glib::signal::SignalHandlerId</span>;
@@ -578,7 +578,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the `type_` is `DeleteType::Chars`, GTK deletes the selection</span>
+    <span class="doccomment">/// If the `type_` is [`DeleteType::Chars`], GTK deletes the selection</span>
     <span class="doccomment">/// if there is one, otherwise it deletes the requested number</span>
     <span class="doccomment">/// of characters.</span>
     <span class="doccomment">///</span>
@@ -586,7 +586,7 @@
     <span class="doccomment">/// for deleting a character and `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`Delete`&lt;/kbd&gt;`</span>
     <span class="doccomment">/// for deleting a word.</span>
     <span class="doccomment">/// ## `type_`</span>
-    <span class="doccomment">/// the granularity of the deletion, as a `DeleteType`</span>
+    <span class="doccomment">/// the granularity of the deletion, as a [`DeleteType`](crate::DeleteType)</span>
     <span class="doccomment">/// ## `count`</span>
     <span class="doccomment">/// the number of `type_` units to delete</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_delete_from_cursor</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Text</span>, <span class="ident">DeleteType</span>, <span class="ident">i32</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
@@ -677,7 +677,7 @@
     <span class="doccomment">/// This is a [keybinding signal](class.SignalAction.html).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Applications should not connect to it, but may emit it with</span>
-    <span class="doccomment">/// `g_signal_emit_by_name` if they need to control the cursor</span>
+    <span class="doccomment">/// `g_signal_emit_by_name()` if they need to control the cursor</span>
     <span class="doccomment">/// programmatically.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default bindings for this signal come in two variants,</span>
@@ -690,11 +690,11 @@
     <span class="doccomment">/// - `&lt;kbd&gt;`Ctrl`&lt;/kbd&gt;`-`&lt;kbd&gt;`→`&lt;/kbd&gt;`, etc. move by words/paragraphs</span>
     <span class="doccomment">/// - `&lt;kbd&gt;`Home`&lt;/kbd&gt;`, `&lt;kbd&gt;`End`&lt;/kbd&gt;` move to the ends of the buffer</span>
     <span class="doccomment">/// ## `step`</span>
-    <span class="doccomment">/// the granularity of the move, as a `MovementStep`</span>
+    <span class="doccomment">/// the granularity of the move, as a [`MovementStep`](crate::MovementStep)</span>
     <span class="doccomment">/// ## `count`</span>
     <span class="doccomment">/// the number of `step` units to move</span>
     <span class="doccomment">/// ## `extend`</span>
-    <span class="doccomment">/// `true` if the move should extend the selection</span>
+    <span class="doccomment">/// [`true`] if the move should extend the selection</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_move_cursor</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Text</span>, <span class="ident">MovementStep</span>, <span class="ident">i32</span>, <span class="ident">bool</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,

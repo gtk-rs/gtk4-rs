@@ -458,7 +458,7 @@
     <span class="doccomment">/// a different output with the same snapshot. Once that happens, it will call</span>
     <span class="doccomment">/// [method`Gdk.Paintable`.invalidate_contents] which will emit the</span>
     <span class="doccomment">/// [signal[`crate::Paintable::invalidate-contents`] (XXX: @-reference does not belong to Paintable!)] signal. If a paintable is known</span>
-    <span class="doccomment">/// to never change its contents, it will set the `PaintableFlags::Contents`</span>
+    <span class="doccomment">/// to never change its contents, it will set the [`PaintableFlags::Contents`]</span>
     <span class="doccomment">/// flag. If a consumer cannot deal with changing contents, it may call</span>
     <span class="doccomment">/// [method`Gdk.Paintable`.get_current_image] which will return a static</span>
     <span class="doccomment">/// paintable and use that.</span>
@@ -470,7 +470,7 @@
     <span class="doccomment">/// by calling [method`Gdk.Paintable`.invalidate_size] which will emit the</span>
     <span class="doccomment">/// [signal[`crate::Paintable::invalidate-size`] (XXX: @-reference does not belong to Paintable!)] signal. And just like for contents,</span>
     <span class="doccomment">/// if a paintable is known to never change its size, it will set the</span>
-    <span class="doccomment">/// `PaintableFlags::Size` flag.</span>
+    <span class="doccomment">/// [`PaintableFlags::Size`] flag.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Besides API for applications, there are some functions that are only</span>
     <span class="doccomment">/// useful for implementing subclasses and should not be used by applications:</span>
@@ -480,7 +480,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`PaintableExt`](trait@crate::PaintableExt)</span>
+    <span class="doccomment">/// [`PaintableExt`](trait@crate::prelude::PaintableExt)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Paintable</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GdkPaintable</span>, <span class="ident">ffi::GdkPaintableInterface</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -492,7 +492,7 @@
     <span class="doccomment">/// Returns a paintable that has the given intrinsic size and draws nothing.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is often useful for implementing the</span>
-    <span class="doccomment">/// `PaintableInterface.get_current_image`() virtual function</span>
+    <span class="doccomment">/// [``PaintableInterface`.get_current_image()`](crate::`PaintableInterface`.get_current_image()) virtual function</span>
     <span class="doccomment">/// when the paintable is in an incomplete state (like a</span>
     <span class="doccomment">/// [class`Gtk.MediaStream`] before receiving the first frame).</span>
     <span class="doccomment">/// ## `intrinsic_width`</span>
@@ -652,7 +652,7 @@
     <span class="doccomment">/// This function will emit the [signal`Gdk.Paintable`::invalidate-contents]</span>
     <span class="doccomment">/// signal.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If a `self` reports the `PaintableFlags::Contents` flag,</span>
+    <span class="doccomment">/// If a `self` reports the [`PaintableFlags::Contents`] flag,</span>
     <span class="doccomment">/// it must not call this function.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_paintable_invalidate_contents&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">invalidate_contents</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
@@ -665,7 +665,7 @@
     <span class="doccomment">/// This function will emit the [signal`Gdk.Paintable`::invalidate-size]</span>
     <span class="doccomment">/// signal.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If a `self` reports the `PaintableFlags::Size` flag,</span>
+    <span class="doccomment">/// If a `self` reports the [`PaintableFlags::Size`] flag,</span>
     <span class="doccomment">/// it must not call this function.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_paintable_invalidate_size&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">invalidate_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);

@@ -458,13 +458,13 @@
     <span class="comment">//    unsafe { TODO: call ffi:gdk_x11_display_broadcast_startup_message() }</span>
     <span class="comment">//}</span>
 
-    <span class="doccomment">/// Pops the error trap pushed by `X11Display::error_trap_push`.</span>
+    <span class="doccomment">/// Pops the error trap pushed by [`error_trap_push()`](Self::error_trap_push()).</span>
     <span class="doccomment">/// Will XSync() if necessary and will always block until</span>
     <span class="doccomment">/// the error is known to have occurred or not occurred,</span>
     <span class="doccomment">/// so the error code can be returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you don’t need to use the return value,</span>
-    <span class="doccomment">/// `X11Display::error_trap_pop_ignored` would be more efficient.</span>
+    <span class="doccomment">/// [`error_trap_pop_ignored()`](Self::error_trap_pop_ignored()) would be more efficient.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -474,7 +474,7 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gdk_x11_display_error_trap_pop</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Pops the error trap pushed by `X11Display::error_trap_push`.</span>
+    <span class="doccomment">/// Pops the error trap pushed by [`error_trap_push()`](Self::error_trap_push()).</span>
     <span class="doccomment">/// Does not block to see if an error occurred; merely records the</span>
     <span class="doccomment">/// range of requests to ignore errors for, and ignores those errors</span>
     <span class="doccomment">/// if they arrive asynchronously.</span>
@@ -487,8 +487,8 @@
 
     <span class="doccomment">/// Begins a range of X requests on `self` for which X error events</span>
     <span class="doccomment">/// will be ignored. Unignored errors (when no trap is pushed) will abort</span>
-    <span class="doccomment">/// the application. Use `X11Display::error_trap_pop` or</span>
-    <span class="doccomment">/// `X11Display::error_trap_pop_ignored`to lift a trap pushed</span>
+    <span class="doccomment">/// the application. Use [`error_trap_pop()`](Self::error_trap_pop()) or</span>
+    <span class="doccomment">/// [`error_trap_pop_ignored()`](Self::error_trap_pop_ignored())to lift a trap pushed</span>
     <span class="doccomment">/// with this function.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_x11_display_error_trap_push&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">error_trap_push</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
@@ -499,7 +499,7 @@
 
     <span class="doccomment">/// Returns the default group leader surface for all toplevel surfaces</span>
     <span class="doccomment">/// on `self`. This surface is implicitly created by GDK.</span>
-    <span class="doccomment">/// See `X11Surface::set_group`.</span>
+    <span class="doccomment">/// See [`X11Surface::set_group()`](crate::X11Surface::set_group()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -522,7 +522,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if GLX is available</span>
+    <span class="doccomment">/// [`true`] if GLX is available</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_x11_display_get_glx_version&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">glx_version</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">i32</span>, <span class="ident">i32</span>)<span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -566,11 +566,11 @@
         }
     }
 
-    <span class="doccomment">/// Retrieves the `X11Screen` of the `self`.</span>
+    <span class="doccomment">/// Retrieves the [`X11Screen`](crate::X11Screen) of the `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the `X11Screen`</span>
+    <span class="doccomment">/// the [`X11Screen`](crate::X11Screen)</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_x11_display_get_screen&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">screen</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">X11Screen</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_x11_display_get_screen</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -593,7 +593,7 @@
     <span class="doccomment">/// Returns the timestamp of the last user interaction on</span>
     <span class="doccomment">/// `self`. The timestamp is taken from events caused</span>
     <span class="doccomment">/// by user interaction such as key presses or pointer</span>
-    <span class="doccomment">/// movements. See `X11Surface::set_user_time`.</span>
+    <span class="doccomment">/// movements. See [`X11Surface::set_user_time()`](crate::X11Surface::set_user_time()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -603,7 +603,7 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gdk_x11_display_get_user_time</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Returns the X cursor belonging to a `gdk::Cursor`, potentially</span>
+    <span class="doccomment">/// Returns the X cursor belonging to a [`gdk::Cursor`](crate::gdk::Cursor), potentially</span>
     <span class="doccomment">/// creating the cursor.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Be aware that the returned cursor may not be unique to `cursor`.</span>
@@ -611,7 +611,7 @@
     <span class="doccomment">/// X servers that don&#39;t support the XCursor extension, all cursors</span>
     <span class="doccomment">/// may even fall back to a few default cursors.</span>
     <span class="doccomment">/// ## `cursor`</span>
-    <span class="doccomment">/// a `gdk::Cursor`.</span>
+    <span class="doccomment">/// a [`gdk::Cursor`](crate::gdk::Cursor).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -621,7 +621,7 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gdk_x11_display_get_xcursor</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">cursor</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Returns the root X window used by `gdk::Display`.</span>
+    <span class="doccomment">/// Returns the root X window used by [`gdk::Display`](crate::gdk::Display).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -632,9 +632,9 @@
     }
 
     <span class="doccomment">/// Call XGrabServer() on `self`.</span>
-    <span class="doccomment">/// To ungrab the display again, use `X11Display::ungrab`.</span>
+    <span class="doccomment">/// To ungrab the display again, use [`ungrab()`](Self::ungrab()).</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `X11Display::grab`/`X11Display::ungrab` calls can be nested.</span>
+    <span class="doccomment">/// [`grab()`](Self::grab())/[`ungrab()`](Self::ungrab()) calls can be nested.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_x11_display_grab&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">grab</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="kw">unsafe</span> {
@@ -646,13 +646,13 @@
     <span class="doccomment">/// should be taken.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the windowing system supports it, existing cursors created</span>
-    <span class="doccomment">/// with `gdk::Cursor::new_from_name` are updated to reflect the theme</span>
-    <span class="doccomment">/// change. Custom cursors constructed with `gdk::Cursor::new_from_texture`</span>
+    <span class="doccomment">/// with [`gdk::Cursor::new_from_name()`](crate::gdk::Cursor::new_from_name()) are updated to reflect the theme</span>
+    <span class="doccomment">/// change. Custom cursors constructed with [`gdk::Cursor::new_from_texture()`](crate::gdk::Cursor::new_from_texture())</span>
     <span class="doccomment">/// will have to be handled by the application (GTK applications can learn</span>
     <span class="doccomment">/// about cursor theme changes by listening for change notification</span>
     <span class="doccomment">/// for the corresponding ``GtkSetting``).</span>
     <span class="doccomment">/// ## `theme`</span>
-    <span class="doccomment">/// the name of the cursor theme to use, or `None` to unset</span>
+    <span class="doccomment">/// the name of the cursor theme to use, or [`None`] to unset</span>
     <span class="doccomment">///  a previously set value</span>
     <span class="doccomment">/// ## `size`</span>
     <span class="doccomment">/// the cursor size to use, or 0 to keep the previous size</span>
@@ -671,7 +671,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is usually taken from the value of the DESKTOP_STARTUP_ID</span>
     <span class="doccomment">/// environment variable, but in some cases (such as the application not</span>
-    <span class="doccomment">/// being launched using `exec`) it can come from other sources.</span>
+    <span class="doccomment">/// being launched using `exec()`) it can come from other sources.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the ID contains the string &quot;_TIME&quot; then the portion following that</span>
     <span class="doccomment">/// string is taken to be the X11 timestamp of the event that triggered</span>
@@ -680,7 +680,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The startup ID is also what is used to signal that the startup is</span>
     <span class="doccomment">/// complete (for example, when opening a window or when calling</span>
-    <span class="doccomment">/// `gdk::DisplayExt::notify_startup_complete`).</span>
+    <span class="doccomment">/// [`gdk::DisplayExt::notify_startup_complete()`](crate::gdk::DisplayExt::notify_startup_complete())).</span>
     <span class="doccomment">/// ## `startup_id`</span>
     <span class="doccomment">/// the startup notification ID (must be valid utf8)</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_x11_display_set_startup_notification_id&quot;</span>)]</span>
@@ -753,7 +753,7 @@
     }
 
     <span class="doccomment">/// Ungrab `self` after it has been grabbed with</span>
-    <span class="doccomment">/// `X11Display::grab`.</span>
+    <span class="doccomment">/// [`grab()`](Self::grab()).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_x11_display_ungrab&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ungrab</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="kw">unsafe</span> {
@@ -776,8 +776,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the conversion succeeded,</span>
-    <span class="doccomment">///  otherwise `false`</span>
+    <span class="doccomment">/// [`true`] if the conversion succeeded,</span>
+    <span class="doccomment">///  otherwise [`false`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_x11_display_utf8_to_compound_text&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">utf8_to_compound_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">str</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">glib::GString</span>, <span class="ident">i32</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>)<span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -807,7 +807,7 @@
     }
 
     <span class="doccomment">/// Tries to open a new display to the X server given by</span>
-    <span class="doccomment">/// `display_name`. If opening the display fails, `None` is</span>
+    <span class="doccomment">/// `display_name`. If opening the display fails, [`None`] is</span>
     <span class="doccomment">/// returned.</span>
     <span class="doccomment">/// ## `display_name`</span>
     <span class="doccomment">/// name of the X display.</span>
@@ -816,7 +816,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The new display or</span>
-    <span class="doccomment">///  `None` on error.</span>
+    <span class="doccomment">///  [`None`] on error.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_x11_display_open&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">open</span>(<span class="ident">display_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Display</span><span class="op">&gt;</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -828,7 +828,7 @@
     <span class="doccomment">/// The X11 backend uses the program class to set the class name part</span>
     <span class="doccomment">/// of the `WM_CLASS` property on toplevel windows; see the ICCCM.</span>
     <span class="doccomment">/// ## `display`</span>
-    <span class="doccomment">/// a `gdk::Display`</span>
+    <span class="doccomment">/// a [`gdk::Display`](crate::gdk::Display)</span>
     <span class="doccomment">/// ## `program_class`</span>
     <span class="doccomment">/// a string</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_x11_display_set_program_class&quot;</span>)]</span>

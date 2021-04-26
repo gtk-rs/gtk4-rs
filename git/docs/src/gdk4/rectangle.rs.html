@@ -287,7 +287,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Rectangle</span> {
-    <span class="doccomment">/// Returns `true` if `self` contains the point described by `x` and `y`.</span>
+    <span class="doccomment">/// Returns [`true`](crate::true) if `self` contains the point described by `x` and `y`.</span>
     <span class="doccomment">/// ## `x`</span>
     <span class="doccomment">/// X coordinate</span>
     <span class="doccomment">/// ## `y`</span>
@@ -295,7 +295,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if `self` contains the point</span>
+    <span class="doccomment">/// [`true`](crate::true) if `self` contains the point</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_rectangle_contains_point&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">contains_point</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -313,16 +313,16 @@
     <span class="doccomment">/// If the rectangles do not intersect, `dest`’s width and height is set</span>
     <span class="doccomment">/// to 0 and its x and y values are undefined. If you are only interested</span>
     <span class="doccomment">/// in whether the rectangles intersect, but not in the intersecting area</span>
-    <span class="doccomment">/// itself, pass `None` for `dest`.</span>
+    <span class="doccomment">/// itself, pass [`None`] for `dest`.</span>
     <span class="doccomment">/// ## `src2`</span>
     <span class="doccomment">/// a `GdkRectangle`</span>
     <span class="doccomment">/// ## `dest`</span>
     <span class="doccomment">/// return location for the</span>
-    <span class="doccomment">///  intersection of `self` and `src2`, or `None`</span>
+    <span class="doccomment">///  intersection of `self` and `src2`, or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the rectangles intersect.</span>
+    <span class="doccomment">/// [`true`] if the rectangles intersect.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_rectangle_intersect&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intersect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">Rectangle</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Rectangle</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {

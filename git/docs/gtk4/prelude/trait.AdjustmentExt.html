@@ -85,9 +85,9 @@ be emitted. However, since the emission of the
 [signal<code>Gtk.Adjustment</code>::changed] signal is tied to the emission
 of the ::notify signals of the changed properties, it’s possible
 to compress the [signal<code>Gtk.Adjustment</code>::changed] signals into one
-by calling <code>glib::object::ObjectExt::freeze_notify</code> and <code>glib::object::ObjectExt::thaw_notify</code>
+by calling <a href="crate::glib::object::ObjectExt::freeze_notify()"><code>glib::object::ObjectExt::freeze_notify()</code></a> and <a href="crate::glib::object::ObjectExt::thaw_notify()"><code>glib::object::ObjectExt::thaw_notify()</code></a>
 around the calls to the individual setters.</p>
-<p>Alternatively, using a single <code>glib::object::ObjectExt::set</code> for all the properties
+<p>Alternatively, using a single <a href="crate::glib::object::ObjectExt::set()"><code>glib::object::ObjectExt::set()</code></a> for all the properties
 to change, or using [method<code>Gtk.Adjustment</code>.configure] has the same effect.</p>
 <h2 id="lower-2" class="section-header"><a href="#lower-2"><code>lower</code></a></h2>
 <p>the new minimum value</p>

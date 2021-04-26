@@ -9,7 +9,7 @@ the shader can declare a set of other input arguments, called
 uniforms (as they are uniform over all the calls to your shader in
 each instance of use). A shader can also receive up to 4
 textures that it can use as input when producing the pixel data.</p>
-<p><code>GskGLShader</code> is usually used with <code>gtk_snapshot_push_gl_shader</code>
+<p><code>GskGLShader</code> is usually used with <code>gtk_snapshot_push_gl_shader()</code>
 to produce a [class<code>Gsk.GLShaderNode</code>] in the rendering hierarchy,
 and then its input textures are constructed by rendering the child
 nodes to textures before rendering the shader node itself. (You can
@@ -52,7 +52,7 @@ up to 4 uniforms for textures which must be called u_textureN
 (i.e. u_texture1 to u_texture4) as well as any custom uniforms
 you want of types int, uint, bool, float, vec2, vec3 or vec4.</p>
 <p>All textures sources contain premultiplied alpha colors, but if some
-there are outer sources of colors there is a <code>gsk_premultiply</code> helper
+there are outer sources of colors there is a <code>gsk_premultiply()</code> helper
 to compute premultiplication when needed.</p>
 <p>Note that GTK parses the uniform declarations, so each uniform has to
 be on a line by itself with no other code, like so:</p>
@@ -102,7 +102,7 @@ the shader</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
 <p>A new <code>GskGLShader</code></p>
 </div><h4 id="method.compile" class="method"><code>pub fn <a href="#method.compile" class="fnname">compile</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="struct.Renderer.html" title="struct gsk4::Renderer">Renderer</a>&gt;&gt;(&amp;self, renderer: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</code><a href="#method.compile" class="anchor"></a><a class="srclink" href="../src/gsk4/auto/gl_shader.rs.html#191-205" title="goto source code">[src]</a></h4><div class="docblock"><p>Tries to compile the <code>self</code> for the given <code>renderer</code>.</p>
-<p>If there is a problem, this function returns <code>false</code> and reports
+<p>If there is a problem, this function returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> and reports
 an error. You should use this function before relying on the shader
 for rendering and use a fallback with a simpler shader or without
 shaders if it fails.</p>
@@ -114,7 +114,7 @@ widget snapshot.</p>
 <h2 id="renderer" class="section-header"><a href="#renderer"><code>renderer</code></a></h2>
 <p>a <code>GskRenderer</code></p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
-<p><code>true</code> on success, <code>false</code> if an error occurred</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> on success, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> if an error occurred</p>
 </div><h4 id="method.find_uniform_by_name" class="method"><code>pub fn <a href="#method.find_uniform_by_name" class="fnname">find_uniform_by_name</a>(&amp;self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a href="#method.find_uniform_by_name" class="anchor"></a><a class="srclink" href="../src/gsk4/auto/gl_shader.rs.html#216-220" title="goto source code">[src]</a></h4><div class="docblock"><p>Looks for a uniform by the name <code>name</code>, and returns the index
 of the uniform, or -1 if it was not found.</p>
 <h2 id="name" class="section-header"><a href="#name"><code>name</code></a></h2>
@@ -193,7 +193,7 @@ u_textureN value that the shader defines.</p>
 to render this shader.</p>
 <h1 id="returns-11" class="section-header"><a href="#returns-11">Returns</a></h1>
 <p>The resource path for the shader,
-or <code>None</code> if none.</p>
+or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if none.</p>
 </div><h4 id="method.source" class="method"><code>pub fn <a href="#method.source" class="fnname">source</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/bytes/struct.Bytes.html" title="struct glib::bytes::Bytes">Bytes</a>&gt;</code><a href="#method.source" class="anchor"></a><a class="srclink" href="../src/gsk4/auto/gl_shader.rs.html#416-418" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the GLSL sourcecode being used to render this shader.</p>
 <h1 id="returns-12" class="section-header"><a href="#returns-12">Returns</a></h1>
 <p>The source code for the shader</p>

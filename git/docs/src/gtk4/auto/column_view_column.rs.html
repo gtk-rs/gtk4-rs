@@ -710,7 +710,7 @@
 
     <span class="doccomment">/// Gets the column view that&#39;s currently displaying this column.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `self` has not been added to a column view yet, `None` is returned.</span>
+    <span class="doccomment">/// If `self` has not been added to a column view yet, [`None`] is returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -728,7 +728,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if this column expands</span>
+    <span class="doccomment">/// [`true`] if this column expands</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_column_get_expand&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">expands</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -768,7 +768,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the `gio::MenuModel`, or `None`</span>
+    <span class="doccomment">/// the [`gio::MenuModel`](crate::gio::MenuModel), or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_column_get_header_menu&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">header_menu</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::MenuModel</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -782,7 +782,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if this column is resizable</span>
+    <span class="doccomment">/// [`true`] if this column is resizable</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_column_get_resizable&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_resizable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -806,7 +806,7 @@
         }
     }
 
-    <span class="doccomment">/// Returns the title set with `ColumnViewColumn::set_title`.</span>
+    <span class="doccomment">/// Returns the title set with [`set_title()`](Self::set_title()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -820,7 +820,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if this column is visible</span>
+    <span class="doccomment">/// [`true`] if this column is visible</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_column_get_visible&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_visible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -833,9 +833,9 @@
     <span class="doccomment">/// Sets the column to take available extra space.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The extra space is shared equally amongst all columns that</span>
-    <span class="doccomment">/// have the expand set to `true`.</span>
+    <span class="doccomment">/// have the expand set to [`true`].</span>
     <span class="doccomment">/// ## `expand`</span>
-    <span class="doccomment">/// `true` if this column should expand to fill available sace</span>
+    <span class="doccomment">/// [`true`] if this column should expand to fill available sace</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_column_set_expand&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_expand</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">expand</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -846,7 +846,7 @@
     <span class="doccomment">/// Sets the `GtkListItemFactory` to use for populating list items for this</span>
     <span class="doccomment">/// column.</span>
     <span class="doccomment">/// ## `factory`</span>
-    <span class="doccomment">/// the factory to use or `None` for none</span>
+    <span class="doccomment">/// the factory to use or [`None`] for none</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_column_set_factory&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_factory</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ListItemFactory</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">factory</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -874,7 +874,7 @@
     <span class="doccomment">/// Sets the menu model that is used to create the context menu</span>
     <span class="doccomment">/// for the column header.</span>
     <span class="doccomment">/// ## `menu`</span>
-    <span class="doccomment">/// a `GMenuModel`, or `None`</span>
+    <span class="doccomment">/// a `GMenuModel`, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_column_view_column_set_header_menu&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_header_menu</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::MenuModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">menu</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -897,7 +897,7 @@
 
     <span class="doccomment">/// Associates a sorter with the column.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `sorter` is `None`, the column will not let users change</span>
+    <span class="doccomment">/// If `sorter` is [`None`], the column will not let users change</span>
     <span class="doccomment">/// the sorting by clicking on its header.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This sorter can be made active by clicking on the column</span>

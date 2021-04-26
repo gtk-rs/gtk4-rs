@@ -377,9 +377,9 @@
     <span class="doccomment">/// Creates a new `GtkFilterListModel` that will filter `model` using the given</span>
     <span class="doccomment">/// `filter`.</span>
     <span class="doccomment">/// ## `model`</span>
-    <span class="doccomment">/// the model to sort, or `None`</span>
+    <span class="doccomment">/// the model to sort, or [`None`]</span>
     <span class="doccomment">/// ## `filter`</span>
-    <span class="doccomment">/// filter or `None` to not filter items</span>
+    <span class="doccomment">/// filter or [`None`] to not filter items</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -403,7 +403,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The filter currently in use</span>
-    <span class="doccomment">///  or `None` if the list isn&#39;t filtered</span>
+    <span class="doccomment">///  or [`None`] if the list isn&#39;t filtered</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_filter_list_model_get_filter&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">filter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Filter</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_filter_list_model_get_filter</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -415,7 +415,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if incremental filtering is enabled</span>
+    <span class="doccomment">/// [`true`] if incremental filtering is enabled</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_filter_list_model_get_incremental&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_incremental</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -425,7 +425,7 @@
         }
     }
 
-    <span class="doccomment">/// Gets the model currently filtered or `None` if none.</span>
+    <span class="doccomment">/// Gets the model currently filtered or [`None`] if none.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -449,7 +449,7 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If no filter operation is ongoing - in particular when</span>
-    <span class="doccomment">/// [property`Gtk.FilterListModel`:incremental] is `false` - this</span>
+    <span class="doccomment">/// [property`Gtk.FilterListModel`:incremental] is [`false`] - this</span>
     <span class="doccomment">/// function returns 0.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -462,7 +462,7 @@
 
     <span class="doccomment">/// Sets the filter used to filter items.</span>
     <span class="doccomment">/// ## `filter`</span>
-    <span class="doccomment">/// filter to use or `None` to not filter items</span>
+    <span class="doccomment">/// filter to use or [`None`] to not filter items</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_filter_list_model_set_filter&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_filter</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Filter</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">filter</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -490,7 +490,7 @@
     <span class="doccomment">/// See [method`Gtk.FilterListModel`.get_pending] for progress information</span>
     <span class="doccomment">/// about an ongoing incremental filtering operation.</span>
     <span class="doccomment">/// ## `incremental`</span>
-    <span class="doccomment">/// `true` to enable incremental filtering</span>
+    <span class="doccomment">/// [`true`] to enable incremental filtering</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_filter_list_model_set_incremental&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_incremental</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">incremental</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {

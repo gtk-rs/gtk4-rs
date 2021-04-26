@@ -602,13 +602,13 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkTreeExpander` uses the `AccessibleRole::Group` role. The expander icon</span>
-    <span class="doccomment">/// is represented as a `AccessibleRole::Button`, labelled by the expander&#39;s</span>
-    <span class="doccomment">/// child, and toggling it will change the `AccessibleState::Expanded` state.</span>
+    <span class="doccomment">/// `GtkTreeExpander` uses the [`AccessibleRole::Group`] role. The expander icon</span>
+    <span class="doccomment">/// is represented as a [`AccessibleRole::Button`], labelled by the expander&#39;s</span>
+    <span class="doccomment">/// child, and toggling it will change the [`AccessibleState::Expanded`] state.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TreeExpander</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkTreeExpander</span>, <span class="ident">ffi::GtkTreeExpanderClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -666,7 +666,7 @@
 
     <span class="doccomment">/// Sets the content widget to display.</span>
     <span class="doccomment">/// ## `child`</span>
-    <span class="doccomment">/// a `GtkWidget`, or `None`</span>
+    <span class="doccomment">/// a `GtkWidget`, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_expander_set_child&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_child</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -679,7 +679,7 @@
 
     <span class="doccomment">/// Sets the tree list row that this expander should manage.</span>
     <span class="doccomment">/// ## `list_row`</span>
-    <span class="doccomment">/// a `GtkTreeListRow`, or `None`</span>
+    <span class="doccomment">/// a `GtkTreeListRow`, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_expander_set_list_row&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_list_row</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">list_row</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TreeListRow</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {

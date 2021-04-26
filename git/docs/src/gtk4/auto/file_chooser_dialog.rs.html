@@ -888,16 +888,16 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// There are various cases in which you may need to use a `GtkFileChooserDialog`:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// - To select a file for opening, use `FileChooserAction::Open`.</span>
+    <span class="doccomment">/// - To select a file for opening, use [`FileChooserAction::Open`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// - To save a file for the first time, use `FileChooserAction::Save`,</span>
+    <span class="doccomment">/// - To save a file for the first time, use [`FileChooserAction::Save`],</span>
     <span class="doccomment">///  and suggest a name such as “Untitled” with</span>
     <span class="doccomment">///  [method`Gtk.FileChooser`.set_current_name].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// - To save a file under a different name, use `FileChooserAction::Save`,</span>
+    <span class="doccomment">/// - To save a file under a different name, use [`FileChooserAction::Save`],</span>
     <span class="doccomment">///  and set the existing file with [method`Gtk.FileChooser`.set_file].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// - To choose a folder instead of a filem use `FileChooserAction::SelectFolder`.</span>
+    <span class="doccomment">/// - To choose a folder instead of a filem use [`FileChooserAction::SelectFolder`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In general, you should only cause the file chooser to show a specific</span>
     <span class="doccomment">/// folder when it is appropriate to use [method`Gtk`,FileChooser.set_file],</span>
@@ -907,8 +907,8 @@
     <span class="doccomment">/// ## Response Codes</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `GtkFileChooserDialog` inherits from [class`Gtk.Dialog`], so buttons that</span>
-    <span class="doccomment">/// go in its action area have response codes such as `ResponseType::Accept` and</span>
-    <span class="doccomment">/// `ResponseType::Cancel`. For example, you could call</span>
+    <span class="doccomment">/// go in its action area have response codes such as [`ResponseType::Accept`] and</span>
+    <span class="doccomment">/// [`ResponseType::Cancel`]. For example, you could call</span>
     <span class="doccomment">/// [ctor`Gtk.FileChooserDialog`.new] as follows:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```c</span>
@@ -932,10 +932,10 @@
     <span class="doccomment">/// its “accept”-type action, e.g. an “Open” or “Save” button,</span>
     <span class="doccomment">/// will have one of the following response codes:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// - `ResponseType::Accept`</span>
-    <span class="doccomment">/// - `ResponseType::Ok`</span>
-    <span class="doccomment">/// - `ResponseType::Yes`</span>
-    <span class="doccomment">/// - `ResponseType::Apply`</span>
+    <span class="doccomment">/// - [`ResponseType::Accept`]</span>
+    <span class="doccomment">/// - [`ResponseType::Ok`]</span>
+    <span class="doccomment">/// - [`ResponseType::Yes`]</span>
+    <span class="doccomment">/// - [`ResponseType::Apply`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is because `GtkFileChooserDialog` must intercept responses and switch</span>
     <span class="doccomment">/// to folders if appropriate, rather than letting the dialog terminate — the</span>
@@ -947,7 +947,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`DialogExt`](trait@crate::DialogExt), [`GtkWindowExt`](trait@crate::GtkWindowExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`NativeExt`](trait@crate::NativeExt), [`RootExt`](trait@crate::RootExt), [`ShortcutManagerExt`](trait@crate::ShortcutManagerExt), [`FileChooserExt`](trait@crate::FileChooserExt), [`DialogExtManual`](trait@crate::DialogExtManual), [`GtkWindowExtManual`](trait@crate::GtkWindowExtManual), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`DialogExt`](trait@crate::prelude::DialogExt), [`GtkWindowExt`](trait@crate::prelude::GtkWindowExt), [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`NativeExt`](trait@crate::prelude::NativeExt), [`RootExt`](trait@crate::prelude::RootExt), [`ShortcutManagerExt`](trait@crate::prelude::ShortcutManagerExt), [`FileChooserExt`](trait@crate::prelude::FileChooserExt), [`DialogExtManual`](trait@crate::prelude::DialogExtManual), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FileChooserDialog</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkFileChooserDialog</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Dialog</span>, <span class="ident">Window</span>, <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Native</span>, <span class="ident">Root</span>, <span class="ident">ShortcutManager</span>, <span class="ident">FileChooser</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {

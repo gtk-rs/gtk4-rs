@@ -38,18 +38,18 @@ macros like GDK_IS_X11_DISPLAY() to find out which backend is in use:</p>
 </code></pre>
 </div><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl" class="impl"><code class="in-band">impl <a class="struct" href="struct.DisplayManager.html" title="struct gdk4::DisplayManager">DisplayManager</a></code><a href="#impl" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/display_manager.rs.html#67-203" title="goto source code">[src]</a></h3></summary><div class="impl-items"><h4 id="method.default_display" class="method"><code>pub fn <a href="#method.default_display" class="fnname">default_display</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.Display.html" title="struct gdk4::Display">Display</a>&gt;</code><a href="#method.default_display" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/display_manager.rs.html#75-81" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the default <code>GdkDisplay</code>.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
-<p>a <code>GdkDisplay</code>, or <code>None</code> if
+<p>a <code>GdkDisplay</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if
 there is no default display.</p>
 </div><h4 id="method.list_displays" class="method"><code>pub fn <a href="#method.list_displays" class="fnname">list_displays</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="struct.Display.html" title="struct gdk4::Display">Display</a>&gt;</code><a href="#method.list_displays" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/display_manager.rs.html#91-97" title="goto source code">[src]</a></h4><div class="docblock"><p>List all currently open displays.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
 <p>a newly
-allocated <code>GSList</code> of <code>GdkDisplay</code> objects. Free with <code>glib::SList::free</code>
+allocated <code>GSList</code> of <code>GdkDisplay</code> objects. Free with <a href="crate::glib::SList::free()"><code>glib::SList::free()</code></a>
 when you are done with it.</p>
 </div><h4 id="method.open_display" class="method"><code>pub fn <a href="#method.open_display" class="fnname">open_display</a>(&amp;self, name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="struct.Display.html" title="struct gdk4::Display">Display</a>&gt;</code><a href="#method.open_display" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/display_manager.rs.html#108-115" title="goto source code">[src]</a></h4><div class="docblock"><p>Opens a display.</p>
 <h2 id="name" class="section-header"><a href="#name"><code>name</code></a></h2>
 <p>the name of the display to open</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
-<p>a <code>GdkDisplay</code>, or <code>None</code>
+<p>a <code>GdkDisplay</code>, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>
 if the display could not be opened</p>
 </div><h4 id="method.set_default_display" class="method"><code>pub fn <a href="#method.set_default_display" class="fnname">set_default_display</a>(&amp;self, display: &amp;<a class="struct" href="struct.Display.html" title="struct gdk4::Display">Display</a>)</code><a href="#method.set_default_display" class="anchor"></a><a class="srclink" href="../src/gdk4/auto/display_manager.rs.html#121-128" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets <code>display</code> as the default display.</p>
 <h2 id="display" class="section-header"><a href="#display"><code>display</code></a></h2>

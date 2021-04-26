@@ -433,7 +433,7 @@
 <span class="kw">impl</span> <span class="ident">Drag</span> {
     <span class="doccomment">/// Informs GDK that the drop ended.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Passing `false` for `success` may trigger a drag cancellation</span>
+    <span class="doccomment">/// Passing [`false`] for `success` may trigger a drag cancellation</span>
     <span class="doccomment">/// animation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is called by the drag source, and should be the</span>
@@ -501,7 +501,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the drag surface, or `None`</span>
+    <span class="doccomment">/// the drag surface, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_drag_get_drag_surface&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drag_surface</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Surface</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_drag_get_drag_surface</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -584,10 +584,10 @@
     <span class="doccomment">/// but GTK keeps its own reference as well, as long as the DND operation</span>
     <span class="doccomment">/// is going on.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note: if `actions` include `DragAction::Move`, you need to listen for</span>
+    <span class="doccomment">/// Note: if `actions` include [`DragAction::Move`], you need to listen for</span>
     <span class="doccomment">/// the [signal`Gdk.Drag`::dnd-finished] signal and delete the data at</span>
     <span class="doccomment">/// the source if [method`Gdk.Drag`.get_selected_action] returns</span>
-    <span class="doccomment">/// `DragAction::Move`.</span>
+    <span class="doccomment">/// [`DragAction::Move`].</span>
     <span class="doccomment">/// ## `surface`</span>
     <span class="doccomment">/// the source surface for this drag</span>
     <span class="doccomment">/// ## `device`</span>
@@ -604,7 +604,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a newly created [class`Gdk.Drag`]</span>
-    <span class="doccomment">///  or `None` on error</span>
+    <span class="doccomment">///  or [`None`] on error</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_drag_begin&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">begin</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ContentProvider</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="ident">Surface</span>,

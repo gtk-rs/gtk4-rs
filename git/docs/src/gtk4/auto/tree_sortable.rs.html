@@ -122,13 +122,13 @@
 <span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// The interface for sortable models used by `TreeView`</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `TreeSortable` is an interface to be implemented by tree models which</span>
-    <span class="doccomment">/// support sorting. The `TreeView` uses the methods provided by this interface</span>
+    <span class="doccomment">/// [`TreeSortable`](crate::TreeSortable) is an interface to be implemented by tree models which</span>
+    <span class="doccomment">/// support sorting. The [`TreeView`](crate::TreeView) uses the methods provided by this interface</span>
     <span class="doccomment">/// to sort the model.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`TreeSortableExt`](trait@crate::TreeSortableExt), [`TreeModelExt`](trait@crate::TreeModelExt), [`TreeSortableExtManual`](trait@crate::TreeSortableExtManual), [`TreeModelExtManual`](trait@crate::TreeModelExtManual)</span>
+    <span class="doccomment">/// [`TreeSortableExt`](trait@crate::prelude::TreeSortableExt), [`TreeModelExt`](trait@crate::prelude::TreeModelExt), [`TreeSortableExtManual`](trait@crate::prelude::TreeSortableExtManual), [`TreeModelExtManual`](trait@crate::prelude::TreeModelExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TreeSortable</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GtkTreeSortable</span>, <span class="ident">ffi::GtkTreeSortableIface</span><span class="op">&gt;</span>) @<span class="ident">requires</span> <span class="ident">TreeModel</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -144,17 +144,17 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// [`ListStore`](struct@crate::ListStore), [`TreeModelSort`](struct@crate::TreeModelSort), [`TreeSortable`](struct@crate::TreeSortable), [`TreeStore`](struct@crate::TreeStore)</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TreeSortableExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Returns `true` if the model has a default sort function. This is used</span>
+    <span class="doccomment">/// Returns [`true`] if the model has a default sort function. This is used</span>
     <span class="doccomment">/// primarily by `GtkTreeViewColumns` in order to determine if a model can</span>
     <span class="doccomment">/// go back to the default state, or not.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true`, if the model has a default sort function</span>
+    <span class="doccomment">/// [`true`], if the model has a default sort function</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_sortable_has_default_sort_func&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">has_default_sort_func</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Emits a `TreeSortable::sort-column-changed` signal on `self`.</span>
+    <span class="doccomment">/// Emits a [`TreeSortable::sort-column-changed`](crate::TreeSortable::sort-column-changed) signal on `self`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_sortable_sort_column_changed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">sort_column_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 

@@ -592,7 +592,7 @@
     <span class="doccomment">/// Reads the page setup from the file `file_name`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Returns a new `GtkPageSetup` object with the restored</span>
-    <span class="doccomment">/// page setup, or `None` if an error occurred.</span>
+    <span class="doccomment">/// page setup, or [`None`] if an error occurred.</span>
     <span class="doccomment">/// See [method`Gtk.PageSetup`.to_file].</span>
     <span class="doccomment">/// ## `file_name`</span>
     <span class="doccomment">/// the filename to read the page setup from</span>
@@ -639,11 +639,11 @@
     <span class="doccomment">/// `key_file`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Returns a new `GtkPageSetup` object with the restored</span>
-    <span class="doccomment">/// page setup, or `None` if an error occurred.</span>
+    <span class="doccomment">/// page setup, or [`None`] if an error occurred.</span>
     <span class="doccomment">/// ## `key_file`</span>
     <span class="doccomment">/// the `GKeyFile` to retrieve the page_setup from</span>
     <span class="doccomment">/// ## `group_name`</span>
-    <span class="doccomment">/// the name of the group in the key_file to read, or `None`</span>
+    <span class="doccomment">/// the name of the group in the key_file to read, or [`None`]</span>
     <span class="doccomment">///  to use the default name “Page Setup”</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -820,7 +820,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` on success</span>
+    <span class="doccomment">/// [`true`] on success</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_load_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load_file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">std::path::Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">file_name</span>: <span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -843,12 +843,12 @@
     <span class="doccomment">/// ## `key_file`</span>
     <span class="doccomment">/// the `GKeyFile` to retrieve the page_setup from</span>
     <span class="doccomment">/// ## `group_name`</span>
-    <span class="doccomment">/// the name of the group in the key_file to read, or `None`</span>
+    <span class="doccomment">/// the name of the group in the key_file to read, or [`None`]</span>
     <span class="doccomment">///  to use the default name “Page Setup”</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` on success</span>
+    <span class="doccomment">/// [`true`] on success</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_load_key_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">load_key_file</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -897,7 +897,7 @@
 
     <span class="doccomment">/// Sets the page orientation of the `GtkPageSetup`.</span>
     <span class="doccomment">/// ## `orientation`</span>
-    <span class="doccomment">/// a `PageOrientation` value</span>
+    <span class="doccomment">/// a [`PageOrientation`](crate::PageOrientation) value</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_set_orientation&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_orientation</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">orientation</span>: <span class="ident">PageOrientation</span>) {
         <span class="kw">unsafe</span> {
@@ -910,7 +910,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// See [method`Gtk.PageSetup`.set_paper_size_and_default_margins].</span>
     <span class="doccomment">/// ## `size`</span>
-    <span class="doccomment">/// a `PaperSize`</span>
+    <span class="doccomment">/// a [`PaperSize`](crate::PaperSize)</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_set_paper_size&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_paper_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">size</span>: <span class="kw-2">&amp;</span><span class="ident">PaperSize</span>) {
         <span class="kw">unsafe</span> {
@@ -924,7 +924,7 @@
     <span class="doccomment">/// Sets the paper size of the `GtkPageSetup` and modifies</span>
     <span class="doccomment">/// the margins according to the new paper size.</span>
     <span class="doccomment">/// ## `size`</span>
-    <span class="doccomment">/// a `PaperSize`</span>
+    <span class="doccomment">/// a [`PaperSize`](crate::PaperSize)</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_set_paper_size_and_default_margins&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_paper_size_and_default_margins</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">size</span>: <span class="kw-2">&amp;</span><span class="ident">PaperSize</span>) {
         <span class="kw">unsafe</span> {
@@ -965,7 +965,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` on success</span>
+    <span class="doccomment">/// [`true`] on success</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_to_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">std::path::Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">file_name</span>: <span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -987,7 +987,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new, floating, `glib::Variant`</span>
+    <span class="doccomment">/// a new, floating, [`glib::Variant`](crate::glib::Variant)</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_to_gvariant&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_gvariant</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::Variant</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_page_setup_to_gvariant</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -998,7 +998,7 @@
     <span class="doccomment">/// the `GKeyFile` to save the page setup to</span>
     <span class="doccomment">/// ## `group_name`</span>
     <span class="doccomment">/// the group to add the settings to in `key_file`,</span>
-    <span class="doccomment">///  or `None` to use the default name “Page Setup”</span>
+    <span class="doccomment">///  or [`None`] to use the default name “Page Setup”</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_to_key_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_key_file</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">key_file</span>: <span class="kw-2">&amp;</span><span class="ident">glib::KeyFile</span>, <span class="ident">group_name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {

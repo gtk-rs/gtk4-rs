@@ -1208,7 +1208,7 @@
     <span class="doccomment">/// page statuses.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you have a case that doesn’t quite fit in `GtkAssistant`s way of</span>
-    <span class="doccomment">/// handling buttons, you can use the `AssistantPageType::Custom` page</span>
+    <span class="doccomment">/// handling buttons, you can use the [`AssistantPageType::Custom`] page</span>
     <span class="doccomment">/// type and handle buttons yourself.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `GtkAssistant` maintains a `GtkAssistantPage` object for each added</span>
@@ -1233,7 +1233,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`GtkWindowExt`](trait@crate::GtkWindowExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`NativeExt`](trait@crate::NativeExt), [`RootExt`](trait@crate::RootExt), [`ShortcutManagerExt`](trait@crate::ShortcutManagerExt), [`GtkWindowExtManual`](trait@crate::GtkWindowExtManual), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`GtkWindowExt`](trait@crate::prelude::GtkWindowExt), [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`NativeExt`](trait@crate::prelude::NativeExt), [`RootExt`](trait@crate::prelude::RootExt), [`ShortcutManagerExt`](trait@crate::prelude::ShortcutManagerExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Assistant</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkAssistant</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Window</span>, <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Native</span>, <span class="ident">Root</span>, <span class="ident">ShortcutManager</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1326,7 +1326,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the child widget, or `None`</span>
+    <span class="doccomment">/// the child widget, or [`None`]</span>
     <span class="doccomment">///  if `page_num` is out of bounds</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_assistant_get_nth_page&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">nth_page</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">page_num</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> {
@@ -1361,7 +1361,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if `page` is complete.</span>
+    <span class="doccomment">/// [`true`] if `page` is complete.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_assistant_get_page_complete&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">page_is_complete</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">page</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -1443,7 +1443,7 @@
     <span class="doccomment">/// there is no next page.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is for use when creating pages of the</span>
-    <span class="doccomment">/// `AssistantPageType::Custom` type.</span>
+    <span class="doccomment">/// [`AssistantPageType::Custom`] type.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_assistant_next_page&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">next_page</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="kw">unsafe</span> {
@@ -1471,7 +1471,7 @@
     <span class="doccomment">/// no previous page is available.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is for use when creating pages of the</span>
-    <span class="doccomment">/// `AssistantPageType::Custom` type.</span>
+    <span class="doccomment">/// [`AssistantPageType::Custom`] type.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_assistant_previous_page&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">previous_page</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="kw">unsafe</span> {
@@ -1507,7 +1507,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this will only be necessary in custom buttons,</span>
     <span class="doccomment">/// as the `self` flow can be set with</span>
-    <span class="doccomment">/// `Assistant::set_forward_page_func`.</span>
+    <span class="doccomment">/// [`set_forward_page_func()`](Self::set_forward_page_func()).</span>
     <span class="doccomment">/// ## `page_num`</span>
     <span class="doccomment">/// index of the page to switch to, starting from 0.</span>
     <span class="doccomment">///  If negative, the last page will be used. If greater</span>
@@ -1524,11 +1524,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function will be used to determine what will be</span>
     <span class="doccomment">/// the next page when the user presses the forward button.</span>
-    <span class="doccomment">/// Setting `page_func` to `None` will make the assistant to</span>
+    <span class="doccomment">/// Setting `page_func` to [`None`] will make the assistant to</span>
     <span class="doccomment">/// use the default forward function, which just goes to the</span>
     <span class="doccomment">/// next visible page.</span>
     <span class="doccomment">/// ## `page_func`</span>
-    <span class="doccomment">/// the `GtkAssistant`PageFunc, or `None`</span>
+    <span class="doccomment">/// the `GtkAssistant`PageFunc, or [`None`]</span>
     <span class="doccomment">///  to use the default one</span>
     <span class="doccomment">/// ## `data`</span>
     <span class="doccomment">/// user data for `page_func`</span>
@@ -1656,7 +1656,7 @@
     <span class="doccomment">/// A handler for the ::apply signal should carry out the actions for</span>
     <span class="doccomment">/// which the wizard has collected data. If the action takes a long time</span>
     <span class="doccomment">/// to complete, you might consider putting a page of type</span>
-    <span class="doccomment">/// `AssistantPageType::Progress` after the confirmation page and handle</span>
+    <span class="doccomment">/// [`AssistantPageType::Progress`] after the confirmation page and handle</span>
     <span class="doccomment">/// this operation within the [signal`Gtk.Assistant`::prepare] signal of</span>
     <span class="doccomment">/// the progress page.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_apply</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Assistant</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
@@ -1704,7 +1704,7 @@
 
     <span class="doccomment">/// Emitted either when the close button of a summary page is clicked,</span>
     <span class="doccomment">/// or when the apply button in the last page in the flow (of type</span>
-    <span class="doccomment">/// `AssistantPageType::Confirm`) is clicked.</span>
+    <span class="doccomment">/// [`AssistantPageType::Confirm`]) is clicked.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_close</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Assistant</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">close_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Assistant</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
             <span class="ident">this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkAssistant</span>,

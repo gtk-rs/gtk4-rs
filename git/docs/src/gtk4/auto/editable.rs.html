@@ -1012,7 +1012,7 @@
     <span class="doccomment">/// ## Implementing `Editable`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The most likely scenario for implementing `GtkEditable` on your own widget</span>
-    <span class="doccomment">/// is that you will embed a `Text` inside a complex widget, and want to</span>
+    <span class="doccomment">/// is that you will embed a [`Text`](crate::Text) inside a complex widget, and want to</span>
     <span class="doccomment">/// delegate the editable functionality to that text widget. `GtkEditable`</span>
     <span class="doccomment">/// provides some utility functions to make this easy.</span>
     <span class="doccomment">///</span>
@@ -1048,7 +1048,7 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You don&#39;t need to provide any other vfuncs. The default implementations</span>
-    <span class="doccomment">/// work by forwarding to the delegate that the `EditableInterface`.`get_delegate`</span>
+    <span class="doccomment">/// work by forwarding to the delegate that the [``EditableInterface`.get_delegate()`](crate::`EditableInterface`.get_delegate())</span>
     <span class="doccomment">/// vfunc returns.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In your instance_init function, create your text widget, and then call</span>
@@ -1102,7 +1102,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`EditableExt`](trait@crate::EditableExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`EditableExtManual`](trait@crate::EditableExtManual), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual)</span>
+    <span class="doccomment">/// [`EditableExt`](trait@crate::prelude::EditableExt), [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`EditableExtManual`](trait@crate::prelude::EditableExtManual), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Editable</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GtkEditable</span>, <span class="ident">ffi::GtkEditableInterface</span><span class="op">&gt;</span>) @<span class="ident">requires</span> <span class="ident">Widget</span>, <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1190,7 +1190,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if `self` is editable.</span>
+    <span class="doccomment">/// [`true`] if `self` is editable.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_editable_get_editable&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_editable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -1198,7 +1198,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if undo is enabled</span>
+    <span class="doccomment">/// [`true`] if undo is enabled</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_editable_get_enable_undo&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">enables_undo</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
@@ -1225,17 +1225,17 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// `start_pos` will be filled with the start of the selection and</span>
     <span class="doccomment">/// `end_pos` with end. If no text was selected both will be identical</span>
-    <span class="doccomment">/// and `false` will be returned.</span>
+    <span class="doccomment">/// and [`false`] will be returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that positions are specified in characters, not bytes.</span>
     <span class="doccomment">/// ## `start_pos`</span>
-    <span class="doccomment">/// location to store the starting position, or `None`</span>
+    <span class="doccomment">/// location to store the starting position, or [`None`]</span>
     <span class="doccomment">/// ## `end_pos`</span>
-    <span class="doccomment">/// location to store the end position, or `None`</span>
+    <span class="doccomment">/// location to store the end position, or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if there is a non-empty selection, `false` otherwise</span>
+    <span class="doccomment">/// [`true`] if there is a non-empty selection, [`false`] otherwise</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_editable_get_selection_bounds&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">selection_bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">i32</span>, <span class="ident">i32</span>)<span class="op">&gt;</span>;
 
@@ -1310,7 +1310,7 @@
 
     <span class="doccomment">/// Determines if the user can edit the text in the editable widget.</span>
     <span class="doccomment">/// ## `is_editable`</span>
-    <span class="doccomment">/// `true` if the user is allowed to edit the text</span>
+    <span class="doccomment">/// [`true`] if the user is allowed to edit the text</span>
     <span class="doccomment">///  in the widget</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_editable_set_editable&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_editable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">is_editable</span>: <span class="ident">bool</span>);
@@ -1320,7 +1320,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This results in an additional copy of text changes and are not</span>
     <span class="doccomment">/// stored in secure memory. As such, undo is forcefully disabled</span>
-    <span class="doccomment">/// when [property`Gtk.Text`:visibility] is set to `false`.</span>
+    <span class="doccomment">/// when [property`Gtk.Text`:visibility] is set to [`false`].</span>
     <span class="doccomment">/// ## `enable_undo`</span>
     <span class="doccomment">/// if undo/redo should be enabled</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_editable_set_enable_undo&quot;</span>)]</span>
@@ -1389,7 +1389,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default handler for this signal will normally be responsible for</span>
     <span class="doccomment">/// deleting the text, so by connecting to this signal and then stopping</span>
-    <span class="doccomment">/// the signal with `g_signal_stop_emission`, it is possible to modify the</span>
+    <span class="doccomment">/// the signal with `g_signal_stop_emission()`, it is possible to modify the</span>
     <span class="doccomment">/// range of deleted text, or prevent it from being deleted entirely.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The `start_pos` and `end_pos` parameters are interpreted as for</span>

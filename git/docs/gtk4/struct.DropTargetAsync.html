@@ -27,7 +27,7 @@ should decide if it ultimately accepts the drop and if it does, it
 should initiate the data transfer and finish the operation by calling
 [method<code>Gdk.Drop</code>.finish].</p>
 <p>Between the ::drag-enter and ::drag-leave signals the widget is a
-current drop target, and will receive the <code>StateFlags::DropActive</code>
+current drop target, and will receive the [<code>StateFlags::DropActive</code>]
 state, which can be used by themes to style the widget as a drop target.</p>
 <h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
 <p><a href="prelude/trait.EventControllerExt.html"><code>EventControllerExt</code></a>, <a href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.ObjectExt.html" title="glib::object::ObjectExt"><code>glib::object::ObjectExt</code></a></p>
@@ -42,7 +42,7 @@ state, which can be used by themes to style the widget as a drop target.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
 <p>the actions that this drop target supports</p>
 </div><h4 id="method.formats" class="method"><code>pub fn <a href="#method.formats" class="fnname">formats</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../gdk4/auto/content_formats/struct.ContentFormats.html" title="struct gdk4::auto::content_formats::ContentFormats">ContentFormats</a>&gt;</code><a href="#method.formats" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/drop_target_async.rs.html#108-114" title="goto source code">[src]</a></h4><div class="docblock"><p>Gets the data formats that this drop target accepts.</p>
-<p>If the result is <code>None</code>, all formats are expected to be supported.</p>
+<p>If the result is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, all formats are expected to be supported.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
 <p>the supported data formats</p>
 </div><h4 id="method.reject_drop" class="method"><code>pub fn <a href="#method.reject_drop" class="fnname">reject_drop</a>(&amp;self, drop: &amp;<a class="struct" href="../gdk4/auto/drop/struct.Drop.html" title="struct gdk4::auto::drop::Drop">Drop</a>)</code><a href="#method.reject_drop" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/drop_target_async.rs.html#124-128" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the <code>drop</code> as not accepted on this drag site.</p>
@@ -50,34 +50,34 @@ state, which can be used by themes to style the widget as a drop target.</p>
 on whether to accept a drag or not until after reading
 the data.</p>
 <h2 id="drop" class="section-header"><a href="#drop"><code>drop</code></a></h2>
-<p>the <code>gdk::Drop</code> of an ongoing drag operation</p>
+<p>the <a href="../gdk4/auto/drop/struct.Drop.html"><code>gdk::Drop</code></a> of an ongoing drag operation</p>
 </div><h4 id="method.set_actions" class="method"><code>pub fn <a href="#method.set_actions" class="fnname">set_actions</a>(&amp;self, actions: <a class="struct" href="../gdk4/auto/flags/struct.DragAction.html" title="struct gdk4::auto::flags::DragAction">DragAction</a>)</code><a href="#method.set_actions" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/drop_target_async.rs.html#134-138" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the actions that this drop target supports.</p>
 <h2 id="actions-1" class="section-header"><a href="#actions-1"><code>actions</code></a></h2>
 <p>the supported actions</p>
 </div><h4 id="method.set_formats" class="method"><code>pub fn <a href="#method.set_formats" class="fnname">set_formats</a>(&amp;self, formats: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="../gdk4/auto/content_formats/struct.ContentFormats.html" title="struct gdk4::auto::content_formats::ContentFormats">ContentFormats</a>&gt;)</code><a href="#method.set_formats" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/drop_target_async.rs.html#145-149" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the data formats that this drop target will accept.</p>
 <h2 id="formats-1" class="section-header"><a href="#formats-1"><code>formats</code></a></h2>
-<p>the supported data formats or <code>None</code> for
+<p>the supported data formats or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> for
 any format.</p>
 </div><h4 id="method.connect_accept" class="method"><code>pub fn <a href="#method.connect_accept" class="fnname">connect_accept</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="struct.DropTargetAsync.html" title="struct gtk4::DropTargetAsync">DropTargetAsync</a>, &amp;<a class="struct" href="../gdk4/auto/drop/struct.Drop.html" title="struct gdk4::auto::drop::Drop">Drop</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></code><a href="#method.connect_accept" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/drop_target_async.rs.html#172-197" title="goto source code">[src]</a></h4><div class="docblock"><p>Emitted on the drop site when a drop operation is about to begin.</p>
-<p>If the drop is not accepted, <code>false</code> will be returned and the drop target
-will ignore the drop. If <code>true</code> is returned, the drop is accepted for now
+<p>If the drop is not accepted, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> will be returned and the drop target
+will ignore the drop. If <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> is returned, the drop is accepted for now
 but may be rejected later via a call to [method<code>Gtk.DropTargetAsync</code>.reject_drop]
-or ultimately by returning <code>false</code> from a [signal<code>Gtk.DropTargetAsync</code>::drop]
+or ultimately by returning <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> from a [signal<code>Gtk.DropTargetAsync</code>::drop]
 handler.</p>
 <p>The default handler for this signal decides whether to accept the drop
 based on the formats provided by the <code>drop</code>.</p>
 <p>If the decision whether the drop will be accepted or rejected needs
 further processing, such as inspecting the data, this function should
-return <code>true</code> and proceed as is <code>drop</code> was accepted and if it decides to
+return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> and proceed as is <code>drop</code> was accepted and if it decides to
 reject the drop later, it should call [method<code>Gtk.DropTargetAsync</code>.reject_drop].</p>
 <h2 id="drop-1" class="section-header"><a href="#drop-1"><code>drop</code></a></h2>
-<p>the <code>gdk::Drop</code></p>
+<p>the <a href="../gdk4/auto/drop/struct.Drop.html"><code>gdk::Drop</code></a></p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
-<p><code>true</code> if <code>drop</code> is accepted</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if <code>drop</code> is accepted</p>
 </div><h4 id="method.connect_drag_enter" class="method"><code>pub fn <a href="#method.connect_drag_enter" class="fnname">connect_drag_enter</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="struct.DropTargetAsync.html" title="struct gtk4::DropTargetAsync">DropTargetAsync</a>, &amp;<a class="struct" href="../gdk4/auto/drop/struct.Drop.html" title="struct gdk4::auto::drop::Drop">Drop</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) -&gt; <a class="struct" href="../gdk4/auto/flags/struct.DragAction.html" title="struct gdk4::auto::flags::DragAction">DragAction</a> + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></code><a href="#method.connect_drag_enter" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/drop_target_async.rs.html#212-241" title="goto source code">[src]</a></h4><div class="docblock"><p>Emitted on the drop site when the pointer enters the widget.</p>
 <p>It can be used to set up custom highlighting.</p>
 <h2 id="drop-2" class="section-header"><a href="#drop-2"><code>drop</code></a></h2>
-<p>the <code>gdk::Drop</code></p>
+<p>the <a href="../gdk4/auto/drop/struct.Drop.html"><code>gdk::Drop</code></a></p>
 <h2 id="x" class="section-header"><a href="#x"><code>x</code></a></h2>
 <p>the x coordinate of the current pointer position</p>
 <h2 id="y" class="section-header"><a href="#y"><code>y</code></a></h2>
@@ -88,10 +88,10 @@ reject the drop later, it should call [method<code>Gtk.DropTargetAsync</code>.re
 <p>Its main purpose it to undo things done in
 <code>GtkDropTargetAsync</code>::drag-enter.</p>
 <h2 id="drop-3" class="section-header"><a href="#drop-3"><code>drop</code></a></h2>
-<p>the <code>gdk::Drop</code></p>
+<p>the <a href="../gdk4/auto/drop/struct.Drop.html"><code>gdk::Drop</code></a></p>
 </div><h4 id="method.connect_drag_motion" class="method"><code>pub fn <a href="#method.connect_drag_motion" class="fnname">connect_drag_motion</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="struct.DropTargetAsync.html" title="struct gtk4::DropTargetAsync">DropTargetAsync</a>, &amp;<a class="struct" href="../gdk4/auto/drop/struct.Drop.html" title="struct gdk4::auto::drop::Drop">Drop</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) -&gt; <a class="struct" href="../gdk4/auto/flags/struct.DragAction.html" title="struct gdk4::auto::flags::DragAction">DragAction</a> + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></code><a href="#method.connect_drag_motion" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/drop_target_async.rs.html#287-316" title="goto source code">[src]</a></h4><div class="docblock"><p>Emitted while the pointer is moving over the drop target.</p>
 <h2 id="drop-4" class="section-header"><a href="#drop-4"><code>drop</code></a></h2>
-<p>the <code>gdk::Drop</code></p>
+<p>the <a href="../gdk4/auto/drop/struct.Drop.html"><code>gdk::Drop</code></a></p>
 <h2 id="x-1" class="section-header"><a href="#x-1"><code>x</code></a></h2>
 <p>the x coordinate of the current pointer position</p>
 <h2 id="y-1" class="section-header"><a href="#y-1"><code>y</code></a></h2>
@@ -100,9 +100,9 @@ reject the drop later, it should call [method<code>Gtk.DropTargetAsync</code>.re
 <p>Preferred action for this drag operation.</p>
 </div><h4 id="method.connect_drop" class="method"><code>pub fn <a href="#method.connect_drop" class="fnname">connect_drop</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="struct.DropTargetAsync.html" title="struct gtk4::DropTargetAsync">DropTargetAsync</a>, &amp;<a class="struct" href="../gdk4/auto/drop/struct.Drop.html" title="struct gdk4::auto::drop::Drop">Drop</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></code><a href="#method.connect_drop" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/drop_target_async.rs.html#342-369" title="goto source code">[src]</a></h4><div class="docblock"><p>Emitted on the drop site when the user drops the data onto the widget.</p>
 <p>The signal handler must determine whether the pointer position is in a
-drop zone or not. If it is not in a drop zone, it returns <code>false</code> and no
+drop zone or not. If it is not in a drop zone, it returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> and no
 further processing is necessary.</p>
-<p>Otherwise, the handler returns <code>true</code>. In this case, this handler will
+<p>Otherwise, the handler returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>. In this case, this handler will
 accept the drop. The handler must ensure that [method<code>Gdk.Drop</code>.finish]
 is called to let the source know that the drop is done. The call to
 [method<code>Gdk.Drop</code>.finish] must only be done when all data has been received.</p>
@@ -110,7 +110,7 @@ is called to let the source know that the drop is done. The call to
 [class<code>Gdk.Drop</code>] such as [method<code>Gdk.Drop</code>.read_async] or
 [method<code>Gdk.Drop</code>.read_value_async].</p>
 <h2 id="drop-5" class="section-header"><a href="#drop-5"><code>drop</code></a></h2>
-<p>the <code>gdk::Drop</code></p>
+<p>the <a href="../gdk4/auto/drop/struct.Drop.html"><code>gdk::Drop</code></a></p>
 <h2 id="x-2" class="section-header"><a href="#x-2"><code>x</code></a></h2>
 <p>the x coordinate of the current pointer position</p>
 <h2 id="y-2" class="section-header"><a href="#y-2"><code>y</code></a></h2>

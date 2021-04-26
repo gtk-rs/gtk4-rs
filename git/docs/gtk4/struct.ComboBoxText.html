@@ -44,7 +44,7 @@ translation attributes “translatable”, “context” and “comments”.</p>
 the style class .combo to the main CSS nodes of its entry and button
 children, and the .linked class to the node of its internal box.</p>
 <h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
-<p><a href="prelude/trait.ComboBoxExt.html"><code>ComboBoxExt</code></a>, <a href="prelude/trait.WidgetExt.html"><code>WidgetExt</code></a>, <a href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.ObjectExt.html" title="glib::object::ObjectExt"><code>glib::object::ObjectExt</code></a>, <a href="prelude/trait.AccessibleExt.html"><code>AccessibleExt</code></a>, <a href="prelude/trait.BuildableExt.html"><code>BuildableExt</code></a>, <a href="prelude/trait.ConstraintTargetExt.html"><code>ConstraintTargetExt</code></a>, <a href="prelude/trait.CellEditableExt.html"><code>CellEditableExt</code></a>, <a href="prelude/trait.CellLayoutExt.html"><code>CellLayoutExt</code></a>, <a href="trait@crate::ComboBoxExtManual"><code>ComboBoxExtManual</code></a>, <a href="trait@crate::WidgetExtManual"><code>WidgetExtManual</code></a>, <a href="trait@crate::AccessibleExtManual"><code>AccessibleExtManual</code></a>, <a href="trait@crate::CellEditableExtManual"><code>CellEditableExtManual</code></a>, <a href="trait@crate::CellLayoutExtManual"><code>CellLayoutExtManual</code></a></p>
+<p><a href="prelude/trait.ComboBoxExt.html"><code>ComboBoxExt</code></a>, <a href="prelude/trait.WidgetExt.html"><code>WidgetExt</code></a>, <a href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.ObjectExt.html" title="glib::object::ObjectExt"><code>glib::object::ObjectExt</code></a>, <a href="prelude/trait.AccessibleExt.html"><code>AccessibleExt</code></a>, <a href="prelude/trait.BuildableExt.html"><code>BuildableExt</code></a>, <a href="prelude/trait.ConstraintTargetExt.html"><code>ConstraintTargetExt</code></a>, <a href="prelude/trait.CellEditableExt.html"><code>CellEditableExt</code></a>, <a href="prelude/trait.CellLayoutExt.html"><code>CellLayoutExt</code></a>, <a href="prelude/trait.ComboBoxExtManual.html"><code>ComboBoxExtManual</code></a>, <a href="prelude/trait.WidgetExtManual.html"><code>WidgetExtManual</code></a>, <a href="prelude/trait.AccessibleExtManual.html"><code>AccessibleExtManual</code></a>, <a href="prelude/trait.CellEditableExtManual.html"><code>CellEditableExtManual</code></a>, <a href="prelude/trait.CellLayoutExtManual.html"><code>CellLayoutExtManual</code></a></p>
 </div><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl" class="impl"><code class="in-band">impl <a class="struct" href="struct.ComboBoxText.html" title="struct gtk4::ComboBoxText">ComboBoxText</a></code><a href="#impl" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/combo_box_text.rs.html#93-267" title="goto source code">[src]</a></h3></summary><div class="impl-items"><h4 id="method.new" class="method"><code>pub fn <a href="#method.new" class="fnname">new</a>() -&gt; <a class="struct" href="struct.ComboBoxText.html" title="struct gtk4::ComboBoxText">ComboBoxText</a></code><a href="#method.new" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/combo_box_text.rs.html#100-103" title="goto source code">[src]</a></h4><div class="docblock"><p>Creates a new <code>GtkComboBoxText</code>.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
 <p>A new <code>GtkComboBoxText</code></p>
@@ -52,11 +52,11 @@ children, and the .linked class to the node of its internal box.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
 <p>a new <code>GtkComboBoxText</code></p>
 </div><h4 id="method.append" class="method"><code>pub fn <a href="#method.append" class="fnname">append</a>(&amp;self, id: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;, text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</code><a href="#method.append" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/combo_box_text.rs.html#127-135" title="goto source code">[src]</a></h4><div class="docblock"><p>Appends <code>text</code> to the list of strings stored in <code>self</code>.</p>
-<p>If <code>id</code> is non-<code>None</code> then it is used as the ID of the row.</p>
+<p>If <code>id</code> is non-<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> then it is used as the ID of the row.</p>
 <p>This is the same as calling [method<code>Gtk.ComboBoxText</code>.insert]
 with a position of -1.</p>
 <h2 id="id" class="section-header"><a href="#id"><code>id</code></a></h2>
-<p>a string ID for this value, or <code>None</code></p>
+<p>a string ID for this value, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h2 id="text" class="section-header"><a href="#text"><code>text</code></a></h2>
 <p>A string</p>
 </div><h4 id="method.append_text" class="method"><code>pub fn <a href="#method.append_text" class="fnname">append_text</a>(&amp;self, text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</code><a href="#method.append_text" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/combo_box_text.rs.html#144-148" title="goto source code">[src]</a></h4><div class="docblock"><p>Appends <code>text</code> to the list of strings stored in <code>self</code>.</p>
@@ -65,38 +65,38 @@ with a position of -1.</p>
 <h2 id="text-1" class="section-header"><a href="#text-1"><code>text</code></a></h2>
 <p>A string</p>
 </div><h4 id="method.active_text" class="method"><code>pub fn <a href="#method.active_text" class="fnname">active_text</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/gstring/struct.GString.html" title="struct glib::gstring::GString">GString</a>&gt;</code><a href="#method.active_text" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/combo_box_text.rs.html#163-169" title="goto source code">[src]</a></h4><div class="docblock"><p>Returns the currently active string in <code>self</code>.</p>
-<p>If no row is currently selected, <code>None</code> is returned.
+<p>If no row is currently selected, <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> is returned.
 If <code>self</code> contains an entry, this function will
 return its contents (which will not necessarily
 be an item from the list).</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
 <p>a newly allocated
 string containing the currently active text.
-Must be freed with <code>g_free</code>.</p>
+Must be freed with <code>g_free()</code>.</p>
 </div><h4 id="method.insert" class="method"><code>pub fn <a href="#method.insert" class="fnname">insert</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, id: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;, text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</code><a href="#method.insert" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/combo_box_text.rs.html#184-193" title="goto source code">[src]</a></h4><div class="docblock"><p>Inserts <code>text</code> at <code>position</code> in the list of strings stored in <code>self</code>.</p>
-<p>If <code>id</code> is non-<code>None</code> then it is used as the ID of the row.
+<p>If <code>id</code> is non-<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> then it is used as the ID of the row.
 See [property<code>Gtk.ComboBox</code>:id-column].</p>
 <p>If <code>position</code> is negative then <code>text</code> is appended.</p>
 <h2 id="position" class="section-header"><a href="#position"><code>position</code></a></h2>
 <p>An index to insert <code>text</code></p>
 <h2 id="id-1" class="section-header"><a href="#id-1"><code>id</code></a></h2>
-<p>a string ID for this value, or <code>None</code></p>
+<p>a string ID for this value, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h2 id="text-2" class="section-header"><a href="#text-2"><code>text</code></a></h2>
 <p>A string to display</p>
 </div><h4 id="method.insert_text" class="method"><code>pub fn <a href="#method.insert_text" class="fnname">insert_text</a>(&amp;self, position: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>, text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</code><a href="#method.insert_text" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/combo_box_text.rs.html#206-214" title="goto source code">[src]</a></h4><div class="docblock"><p>Inserts <code>text</code> at <code>position</code> in the list of strings stored in <code>self</code>.</p>
 <p>If <code>position</code> is negative then <code>text</code> is appended.</p>
 <p>This is the same as calling [method<code>Gtk.ComboBoxText</code>.insert]
-with a <code>None</code> ID string.</p>
+with a <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> ID string.</p>
 <h2 id="position-1" class="section-header"><a href="#position-1"><code>position</code></a></h2>
 <p>An index to insert <code>text</code></p>
 <h2 id="text-3" class="section-header"><a href="#text-3"><code>text</code></a></h2>
 <p>A string</p>
 </div><h4 id="method.prepend" class="method"><code>pub fn <a href="#method.prepend" class="fnname">prepend</a>(&amp;self, id: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;, text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</code><a href="#method.prepend" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/combo_box_text.rs.html#227-235" title="goto source code">[src]</a></h4><div class="docblock"><p>Prepends <code>text</code> to the list of strings stored in <code>self</code>.</p>
-<p>If <code>id</code> is non-<code>None</code> then it is used as the ID of the row.</p>
+<p>If <code>id</code> is non-<a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> then it is used as the ID of the row.</p>
 <p>This is the same as calling [method<code>Gtk.ComboBoxText</code>.insert]
 with a position of 0.</p>
 <h2 id="id-2" class="section-header"><a href="#id-2"><code>id</code></a></h2>
-<p>a string ID for this value, or <code>None</code></p>
+<p>a string ID for this value, or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a></p>
 <h2 id="text-4" class="section-header"><a href="#text-4"><code>text</code></a></h2>
 <p>a string</p>
 </div><h4 id="method.prepend_text" class="method"><code>pub fn <a href="#method.prepend_text" class="fnname">prepend_text</a>(&amp;self, text: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>)</code><a href="#method.prepend_text" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/combo_box_text.rs.html#244-248" title="goto source code">[src]</a></h4><div class="docblock"><p>Prepends <code>text</code> to the list of strings stored in <code>self</code>.</p>

@@ -12,7 +12,7 @@
 <p>Note that some actions ignore the passed in <code>flags</code>, <code>widget</code> or <code>args</code>.</p>
 <p>Activation of an action can fail for various reasons. If the action
 is not supported by the <code>widget</code>, if the <code>args</code> don’t match the action
-or if the activation otherwise had no effect, <code>false</code> will be returned.</p>
+or if the activation otherwise had no effect, <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> will be returned.</p>
 <h2 id="flags" class="section-header"><a href="#flags"><code>flags</code></a></h2>
 <p>flags to activate with</p>
 <h2 id="widget" class="section-header"><a href="#widget"><code>widget</code></a></h2>
@@ -20,7 +20,7 @@ or if the activation otherwise had no effect, <code>false</code> will be returne
 <h2 id="args" class="section-header"><a href="#args"><code>args</code></a></h2>
 <p>arguments to pass</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
-<p><code>true</code> if this action was activated successfully</p>
+<p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if this action was activated successfully</p>
 </div><h3 id="tymethod.print" class="method"><code>fn <a href="#tymethod.print" class="fnname">print</a>(&amp;self, string: &amp;mut <a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/string/struct.String.html" title="struct glib::string::String">String</a>)</code><a class="srclink" href="../../src/gtk4/auto/shortcut_action.rs.html#132" title="goto source code">[src]</a></h3><div class="docblock"><p>Prints the given action into a string for the developer.</p>
 <p>This is meant for debugging and logging.</p>
 <p>The form of the representation may change at any time and is

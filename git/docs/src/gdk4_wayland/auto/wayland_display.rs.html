@@ -136,12 +136,12 @@
 }
 
 <span class="kw">impl</span> <span class="ident">WaylandDisplay</span> {
-    <span class="doccomment">/// Gets the startup notification ID for a Wayland display, or `None`</span>
+    <span class="doccomment">/// Gets the startup notification ID for a Wayland display, or [`None`]</span>
     <span class="doccomment">/// if no ID has been defined.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the startup notification ID for `self`, or `None`</span>
+    <span class="doccomment">/// the startup notification ID for `self`, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_wayland_display_get_startup_notification_id&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">startup_notification_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::GString</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -151,14 +151,14 @@
         }
     }
 
-    <span class="doccomment">/// Returns `true` if the the interface was found in the display</span>
+    <span class="doccomment">/// Returns [`true`] if the the interface was found in the display</span>
     <span class="doccomment">/// `wl_registry.global` handler.</span>
     <span class="doccomment">/// ## `global`</span>
     <span class="doccomment">/// global interface to query in the registry</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the global is offered by the compositor</span>
+    <span class="doccomment">/// [`true`] if the global is offered by the compositor</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_wayland_display_query_registry&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">query_registry</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">global</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -189,7 +189,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is usually taken from the value of the `DESKTOP_STARTUP_ID`</span>
     <span class="doccomment">/// environment variable, but in some cases (such as the application not</span>
-    <span class="doccomment">/// being launched using `exec`) it can come from other sources.</span>
+    <span class="doccomment">/// being launched using `exec()`) it can come from other sources.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The startup ID is also what is used to signal that the startup is</span>
     <span class="doccomment">/// complete (for example, when opening a window or when calling</span>

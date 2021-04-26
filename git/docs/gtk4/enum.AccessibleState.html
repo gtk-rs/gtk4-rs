@@ -17,22 +17,22 @@ pub enum AccessibleState {
                    Variants (Non-exhaustive)<a href="#variants" class="anchor"></a></h2>
 <div class="docblock non-exhaustive non-exhaustive-enum">Non-exhaustive enums could have additional variants added in future. Therefore, when matching against variants of non-exhaustive enums, an extra wildcard arm must be added to account for any future variants.</div><div id="variant.Busy" class="variant small-section-header"><a href="#variant.Busy" class="anchor field"></a><code>Busy</code></div><div class="docblock"><p>A “busy” state. This state has boolean values</p>
 </div><div id="variant.Checked" class="variant small-section-header"><a href="#variant.Checked" class="anchor field"></a><code>Checked</code></div><div class="docblock"><p>A “checked” state; indicates the current
-state of a <code>CheckButton</code>. Value type: <code>AccessibleTristate</code></p>
+state of a <a href="struct.CheckButton.html"><code>CheckButton</code></a>. Value type: <a href="enum.AccessibleTristate.html"><code>AccessibleTristate</code></a></p>
 </div><div id="variant.Disabled" class="variant small-section-header"><a href="#variant.Disabled" class="anchor field"></a><code>Disabled</code></div><div class="docblock"><p>A “disabled” state; corresponds to the
-<code>Widget:sensitive</code> property on <code>Widget</code>. It indicates a UI element
+<a href="crate::Widget:sensitive"><code>Widget:sensitive</code></a> property on <a href="struct.Widget.html"><code>Widget</code></a>. It indicates a UI element
 that is perceivable, but not editable or operable. Value type: boolean</p>
 </div><div id="variant.Expanded" class="variant small-section-header"><a href="#variant.Expanded" class="anchor field"></a><code>Expanded</code></div><div class="docblock"><p>An “expanded” state; corresponds to the
-<code>Expander:expanded</code> property on <code>Expander</code>. Value type: boolean
+<a href="crate::Expander:expanded"><code>Expander:expanded</code></a> property on <a href="struct.Expander.html"><code>Expander</code></a>. Value type: boolean
 or undefined</p>
 </div><div id="variant.Hidden" class="variant small-section-header"><a href="#variant.Hidden" class="anchor field"></a><code>Hidden</code></div><div class="docblock"><p>A “hidden” state; corresponds to the
-<code>Widget:visible</code> property on <code>Widget</code>. You can use this state
+<a href="crate::Widget:visible"><code>Widget:visible</code></a> property on <a href="struct.Widget.html"><code>Widget</code></a>. You can use this state
 explicitly on UI elements that should not be exposed to an assistive
 technology. Value type: boolean
-See also: <code>AccessibleState::Disabled</code></p>
+See also: <a href="enum.AccessibleState.html#variant.Disabled"><code>Disabled</code></a></p>
 </div><div id="variant.Invalid" class="variant small-section-header"><a href="#variant.Invalid" class="anchor field"></a><code>Invalid</code></div><div class="docblock"><p>An “invalid” state; set when a widget
-is showing an error. Value type: <code>AccessibleInvalidState</code></p>
+is showing an error. Value type: <a href="enum.AccessibleInvalidState.html"><code>AccessibleInvalidState</code></a></p>
 </div><div id="variant.Pressed" class="variant small-section-header"><a href="#variant.Pressed" class="anchor field"></a><code>Pressed</code></div><div class="docblock"><p>A “pressed” state; indicates the current
-state of a <code>ToggleButton</code>. Value type: <code>AccessibleTristate</code>
+state of a <a href="struct.ToggleButton.html"><code>ToggleButton</code></a>. Value type: <a href="enum.AccessibleTristate.html"><code>AccessibleTristate</code></a>
 enumeration</p>
 </div><div id="variant.Selected" class="variant small-section-header"><a href="#variant.Selected" class="anchor field"></a><code>Selected</code></div><div class="docblock"><p>A “selected” state; set when a widget
 is selected. Value type: boolean or undefined</p>

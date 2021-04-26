@@ -940,11 +940,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkButton` uses the `AccessibleRole::Button` role.</span>
+    <span class="doccomment">/// `GtkButton` uses the [`AccessibleRole::Button`] role.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`ButtonExt`](trait@crate::ButtonExt), [`WidgetExt`](trait@crate::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::AccessibleExt), [`BuildableExt`](trait@crate::BuildableExt), [`ConstraintTargetExt`](trait@crate::ConstraintTargetExt), [`ActionableExt`](trait@crate::ActionableExt), [`WidgetExtManual`](trait@crate::WidgetExtManual), [`AccessibleExtManual`](trait@crate::AccessibleExtManual), [`ActionableExtManual`](trait@crate::ActionableExtManual)</span>
+    <span class="doccomment">/// [`ButtonExt`](trait@crate::prelude::ButtonExt), [`WidgetExt`](trait@crate::prelude::WidgetExt), [`trait@glib::object::ObjectExt`], [`AccessibleExt`](trait@crate::prelude::AccessibleExt), [`BuildableExt`](trait@crate::prelude::BuildableExt), [`ConstraintTargetExt`](trait@crate::prelude::ConstraintTargetExt), [`ActionableExt`](trait@crate::prelude::ActionableExt), [`WidgetExtManual`](trait@crate::prelude::WidgetExtManual), [`AccessibleExtManual`](trait@crate::prelude::AccessibleExtManual), [`ActionableExtManual`](trait@crate::prelude::ActionableExtManual)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Button</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkButton</span>, <span class="ident">ffi::GtkButtonClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Actionable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -972,7 +972,7 @@
     <span class="doccomment">/// displayed instead. If the current icon theme is changed, the icon</span>
     <span class="doccomment">/// will be updated appropriately.</span>
     <span class="doccomment">/// ## `icon_name`</span>
-    <span class="doccomment">/// an icon name or `None`</span>
+    <span class="doccomment">/// an icon name or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1402,14 +1402,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the button has a frame</span>
+    <span class="doccomment">/// [`true`] if the button has a frame</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_button_get_has_frame&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">has_frame</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="doccomment">/// Returns the icon name of the button.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the icon name has not been set with [method`Gtk.Button`.set_icon_name]</span>
-    <span class="doccomment">/// the return value will be `None`. This will be the case if you create</span>
+    <span class="doccomment">/// the return value will be [`None`]. This will be the case if you create</span>
     <span class="doccomment">/// an empty button with [ctor`Gtk.Button`.new] to use as a container.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -1421,7 +1421,7 @@
     <span class="doccomment">/// Fetches the text from the label of the button.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the label text has not been set with [method`Gtk.Button`.set_label]</span>
-    <span class="doccomment">/// the return value will be `None`. This will be the case if you create</span>
+    <span class="doccomment">/// the return value will be [`None`]. This will be the case if you create</span>
     <span class="doccomment">/// an empty button with [ctor`Gtk.Button`.new] to use as a container.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -1437,7 +1437,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if an embedded underline in the button label</span>
+    <span class="doccomment">/// [`true`] if an embedded underline in the button label</span>
     <span class="doccomment">///  indicates the mnemonic accelerator keys.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_button_get_use_underline&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">uses_underline</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
@@ -1478,7 +1478,7 @@
     <span class="doccomment">/// If true, an underline in the text of the button label indicates</span>
     <span class="doccomment">/// the next character should be used for the mnemonic accelerator key.</span>
     <span class="doccomment">/// ## `use_underline`</span>
-    <span class="doccomment">/// `true` if underlines in the text indicate mnemonics</span>
+    <span class="doccomment">/// [`true`] if underlines in the text indicate mnemonics</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_button_set_use_underline&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_use_underline</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">use_underline</span>: <span class="ident">bool</span>);
 

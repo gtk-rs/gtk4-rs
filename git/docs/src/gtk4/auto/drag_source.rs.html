@@ -647,13 +647,13 @@
     <span class="doccomment">/// can be used to obtain updates about the status of the operation,</span>
     <span class="doccomment">/// but it is not normally necessary to connect to any signals,</span>
     <span class="doccomment">/// except for one case: when the supported actions include</span>
-    <span class="doccomment">/// `gdk::DragAction::Move`, you need to listen for the</span>
+    <span class="doccomment">/// [`gdk::DragAction::Move`], you need to listen for the</span>
     <span class="doccomment">/// [signal`Gtk.DragSource`::drag-end] signal and delete the</span>
     <span class="doccomment">/// data after it has been transferred.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`GestureSingleExt`](trait@crate::GestureSingleExt), [`GestureExt`](trait@crate::GestureExt), [`EventControllerExt`](trait@crate::EventControllerExt), [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`GestureSingleExt`](trait@crate::prelude::GestureSingleExt), [`GestureExt`](trait@crate::prelude::GestureExt), [`EventControllerExt`](trait@crate::prelude::EventControllerExt), [`trait@glib::object::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DragSource</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkDragSource</span>, <span class="ident">ffi::GtkDragSourceClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">GestureSingle</span>, <span class="ident">Gesture</span>, <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -706,7 +706,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the `GdkDrag` of the current</span>
-    <span class="doccomment">///  drag operation, or `None`</span>
+    <span class="doccomment">///  drag operation, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_drag_source_get_drag&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drag</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Drag</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_drag_source_get_drag</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -715,9 +715,9 @@
     <span class="doccomment">/// Sets the actions on the `GtkDragSource`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// During a DND operation, the actions are offered to potential</span>
-    <span class="doccomment">/// drop targets. If `actions` include `gdk::DragAction::Move`, you need</span>
+    <span class="doccomment">/// drop targets. If `actions` include [`gdk::DragAction::Move`], you need</span>
     <span class="doccomment">/// to listen to the [signal`Gtk.DragSource`::drag-end] signal and</span>
-    <span class="doccomment">/// handle `delete_data` being `true`.</span>
+    <span class="doccomment">/// handle `delete_data` being [`true`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function can be called before a drag is started,</span>
     <span class="doccomment">/// or in a handler for the [signal`Gtk.DragSource`::prepare] signal.</span>
@@ -739,9 +739,9 @@
     <span class="doccomment">/// or in a handler for the [signal`Gtk.DragSource`::prepare] signal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You may consider setting the content provider back to</span>
-    <span class="doccomment">/// `None` in a [signal`Gtk.DragSource`::drag-end] signal handler.</span>
+    <span class="doccomment">/// [`None`] in a [signal`Gtk.DragSource`::drag-end] signal handler.</span>
     <span class="doccomment">/// ## `content`</span>
-    <span class="doccomment">/// a `GdkContentProvider`, or `None`</span>
+    <span class="doccomment">/// a `GdkContentProvider`, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_drag_source_set_content&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_content</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::ContentProvider</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">content</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {
@@ -757,13 +757,13 @@
     <span class="doccomment">/// The hotspot coordinates determine the point on the icon</span>
     <span class="doccomment">/// that gets aligned with the hotspot of the cursor.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `paintable` is `None`, a default icon is used.</span>
+    <span class="doccomment">/// If `paintable` is [`None`], a default icon is used.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function can be called before a drag is started, or in</span>
     <span class="doccomment">/// a [signal`Gtk.DragSource`::prepare] or</span>
     <span class="doccomment">/// [signal`Gtk.DragSource`::drag-begin] signal handler.</span>
     <span class="doccomment">/// ## `paintable`</span>
-    <span class="doccomment">/// the `gdk::Paintable` to use as icon, or `None`</span>
+    <span class="doccomment">/// the [`gdk::Paintable`](crate::gdk::Paintable) to use as icon, or [`None`]</span>
     <span class="doccomment">/// ## `hot_x`</span>
     <span class="doccomment">/// the hotspot X coordinate on the icon</span>
     <span class="doccomment">/// ## `hot_y`</span>
@@ -814,7 +814,7 @@
     <span class="doccomment">/// Emitted on the drag source when a drag has failed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The signal handler may handle a failed drag operation based on</span>
-    <span class="doccomment">/// the type of error. It should return `true` if the failure has been handled</span>
+    <span class="doccomment">/// the type of error. It should return [`true`] if the failure has been handled</span>
     <span class="doccomment">/// and the default &quot;drag operation failed&quot; animation should not be shown.</span>
     <span class="doccomment">/// ## `drag`</span>
     <span class="doccomment">/// the `GdkDrag` object</span>
@@ -823,7 +823,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `true` if the failed drag operation has been already handled</span>
+    <span class="doccomment">/// [`true`] if the failed drag operation has been already handled</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_drag_cancel</span><span class="op">&lt;</span>
         <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">DragSource</span>, <span class="kw-2">&amp;</span><span class="ident">gdk::Drag</span>, <span class="ident">gdk::DragCancelReason</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
     <span class="op">&gt;</span>(
@@ -867,7 +867,7 @@
     <span class="doccomment">/// ## `drag`</span>
     <span class="doccomment">/// the `GdkDrag` object</span>
     <span class="doccomment">/// ## `delete_data`</span>
-    <span class="doccomment">/// `true` if the drag was performing `gdk::DragAction::Move`,</span>
+    <span class="doccomment">/// [`true`] if the drag was performing [`gdk::DragAction::Move`],</span>
     <span class="doccomment">///  and the data should be deleted</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_drag_end</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">DragSource</span>, <span class="kw-2">&amp;</span><span class="ident">gdk::Drag</span>, <span class="ident">bool</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -912,7 +912,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GdkContentProvider`, or `None`</span>
+    <span class="doccomment">/// a `GdkContentProvider`, or [`None`]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_prepare</span><span class="op">&lt;</span>
         <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">DragSource</span>, <span class="ident">f64</span>, <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::ContentProvider</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span>,
     <span class="op">&gt;</span>(
