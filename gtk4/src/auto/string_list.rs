@@ -29,6 +29,7 @@ impl StringList {
     }
 
     #[doc(alias = "gtk_string_list_get_string")]
+    #[doc(alias = "get_string")]
     pub fn string(&self, position: u32) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_string_list_get_string(

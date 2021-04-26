@@ -35,6 +35,7 @@ impl WidgetPaintable {
     }
 
     #[doc(alias = "gtk_widget_paintable_get_widget")]
+    #[doc(alias = "get_widget")]
     pub fn widget(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_widget_paintable_get_widget(self.to_glib_none().0)) }
     }
@@ -49,7 +50,8 @@ impl WidgetPaintable {
         }
     }
 
-    pub fn connect_property_widget_notify<F: Fn(&WidgetPaintable) + 'static>(
+    #[doc(alias = "widget")]
+    pub fn connect_widget_notify<F: Fn(&WidgetPaintable) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

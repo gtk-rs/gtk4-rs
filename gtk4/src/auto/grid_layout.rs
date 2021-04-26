@@ -31,11 +31,13 @@ impl GridLayout {
     }
 
     #[doc(alias = "gtk_grid_layout_get_baseline_row")]
+    #[doc(alias = "get_baseline_row")]
     pub fn baseline_row(&self) -> i32 {
         unsafe { ffi::gtk_grid_layout_get_baseline_row(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_grid_layout_get_column_homogeneous")]
+    #[doc(alias = "get_column_homogeneous")]
     pub fn is_column_homogeneous(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_grid_layout_get_column_homogeneous(
@@ -45,11 +47,13 @@ impl GridLayout {
     }
 
     #[doc(alias = "gtk_grid_layout_get_column_spacing")]
+    #[doc(alias = "get_column_spacing")]
     pub fn column_spacing(&self) -> u32 {
         unsafe { ffi::gtk_grid_layout_get_column_spacing(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_grid_layout_get_row_baseline_position")]
+    #[doc(alias = "get_row_baseline_position")]
     pub fn row_baseline_position(&self, row: i32) -> BaselinePosition {
         unsafe {
             from_glib(ffi::gtk_grid_layout_get_row_baseline_position(
@@ -60,6 +64,7 @@ impl GridLayout {
     }
 
     #[doc(alias = "gtk_grid_layout_get_row_homogeneous")]
+    #[doc(alias = "get_row_homogeneous")]
     pub fn is_row_homogeneous(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_grid_layout_get_row_homogeneous(
@@ -69,6 +74,7 @@ impl GridLayout {
     }
 
     #[doc(alias = "gtk_grid_layout_get_row_spacing")]
+    #[doc(alias = "get_row_spacing")]
     pub fn row_spacing(&self) -> u32 {
         unsafe { ffi::gtk_grid_layout_get_row_spacing(self.to_glib_none().0) }
     }
@@ -125,7 +131,8 @@ impl GridLayout {
         }
     }
 
-    pub fn connect_property_baseline_row_notify<F: Fn(&GridLayout) + 'static>(
+    #[doc(alias = "baseline-row")]
+    pub fn connect_baseline_row_notify<F: Fn(&GridLayout) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -150,7 +157,8 @@ impl GridLayout {
         }
     }
 
-    pub fn connect_property_column_homogeneous_notify<F: Fn(&GridLayout) + 'static>(
+    #[doc(alias = "column-homogeneous")]
+    pub fn connect_column_homogeneous_notify<F: Fn(&GridLayout) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -175,7 +183,8 @@ impl GridLayout {
         }
     }
 
-    pub fn connect_property_column_spacing_notify<F: Fn(&GridLayout) + 'static>(
+    #[doc(alias = "column-spacing")]
+    pub fn connect_column_spacing_notify<F: Fn(&GridLayout) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -200,7 +209,8 @@ impl GridLayout {
         }
     }
 
-    pub fn connect_property_row_homogeneous_notify<F: Fn(&GridLayout) + 'static>(
+    #[doc(alias = "row-homogeneous")]
+    pub fn connect_row_homogeneous_notify<F: Fn(&GridLayout) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -225,7 +235,8 @@ impl GridLayout {
         }
     }
 
-    pub fn connect_property_row_spacing_notify<F: Fn(&GridLayout) + 'static>(
+    #[doc(alias = "row-spacing")]
+    pub fn connect_row_spacing_notify<F: Fn(&GridLayout) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

@@ -51,6 +51,7 @@ impl EventControllerMotion {
         }
     }
 
+    #[doc(alias = "enter")]
     pub fn connect_enter<F: Fn(&EventControllerMotion, f64, f64) + 'static>(
         &self,
         f: F,
@@ -77,6 +78,7 @@ impl EventControllerMotion {
         }
     }
 
+    #[doc(alias = "leave")]
     pub fn connect_leave<F: Fn(&EventControllerMotion) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn leave_trampoline<F: Fn(&EventControllerMotion) + 'static>(
             this: *mut ffi::GtkEventControllerMotion,
@@ -98,6 +100,7 @@ impl EventControllerMotion {
         }
     }
 
+    #[doc(alias = "motion")]
     pub fn connect_motion<F: Fn(&EventControllerMotion, f64, f64) + 'static>(
         &self,
         f: F,
@@ -126,7 +129,8 @@ impl EventControllerMotion {
         }
     }
 
-    pub fn connect_property_contains_pointer_notify<F: Fn(&EventControllerMotion) + 'static>(
+    #[doc(alias = "contains-pointer")]
+    pub fn connect_contains_pointer_notify<F: Fn(&EventControllerMotion) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -153,7 +157,8 @@ impl EventControllerMotion {
         }
     }
 
-    pub fn connect_property_is_pointer_notify<F: Fn(&EventControllerMotion) + 'static>(
+    #[doc(alias = "is-pointer")]
+    pub fn connect_is_pointer_notify<F: Fn(&EventControllerMotion) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

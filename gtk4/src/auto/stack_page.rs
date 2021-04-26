@@ -27,21 +27,25 @@ glib::wrapper! {
 
 impl StackPage {
     #[doc(alias = "gtk_stack_page_get_child")]
+    #[doc(alias = "get_child")]
     pub fn child(&self) -> Widget {
         unsafe { from_glib_none(ffi::gtk_stack_page_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_stack_page_get_icon_name")]
+    #[doc(alias = "get_icon_name")]
     pub fn icon_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_stack_page_get_icon_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_stack_page_get_name")]
+    #[doc(alias = "get_name")]
     pub fn name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_stack_page_get_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_stack_page_get_needs_attention")]
+    #[doc(alias = "get_needs_attention")]
     pub fn needs_attention(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_stack_page_get_needs_attention(
@@ -51,16 +55,19 @@ impl StackPage {
     }
 
     #[doc(alias = "gtk_stack_page_get_title")]
+    #[doc(alias = "get_title")]
     pub fn title(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_stack_page_get_title(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_stack_page_get_use_underline")]
+    #[doc(alias = "get_use_underline")]
     pub fn uses_underline(&self) -> bool {
         unsafe { from_glib(ffi::gtk_stack_page_get_use_underline(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_stack_page_get_visible")]
+    #[doc(alias = "get_visible")]
     pub fn is_visible(&self) -> bool {
         unsafe { from_glib(ffi::gtk_stack_page_get_visible(self.to_glib_none().0)) }
     }
@@ -107,10 +114,8 @@ impl StackPage {
         }
     }
 
-    pub fn connect_property_icon_name_notify<F: Fn(&StackPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "icon-name")]
+    pub fn connect_icon_name_notify<F: Fn(&StackPage) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<F: Fn(&StackPage) + 'static>(
             this: *mut ffi::GtkStackPage,
             _param_spec: glib::ffi::gpointer,
@@ -132,7 +137,8 @@ impl StackPage {
         }
     }
 
-    pub fn connect_property_needs_attention_notify<F: Fn(&StackPage) + 'static>(
+    #[doc(alias = "needs-attention")]
+    pub fn connect_needs_attention_notify<F: Fn(&StackPage) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -157,10 +163,8 @@ impl StackPage {
         }
     }
 
-    pub fn connect_property_title_notify<F: Fn(&StackPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "title")]
+    pub fn connect_title_notify<F: Fn(&StackPage) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&StackPage) + 'static>(
             this: *mut ffi::GtkStackPage,
             _param_spec: glib::ffi::gpointer,
@@ -182,7 +186,8 @@ impl StackPage {
         }
     }
 
-    pub fn connect_property_use_underline_notify<F: Fn(&StackPage) + 'static>(
+    #[doc(alias = "use-underline")]
+    pub fn connect_use_underline_notify<F: Fn(&StackPage) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -207,10 +212,8 @@ impl StackPage {
         }
     }
 
-    pub fn connect_property_visible_notify<F: Fn(&StackPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "visible")]
+    pub fn connect_visible_notify<F: Fn(&StackPage) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_visible_trampoline<F: Fn(&StackPage) + 'static>(
             this: *mut ffi::GtkStackPage,
             _param_spec: glib::ffi::gpointer,

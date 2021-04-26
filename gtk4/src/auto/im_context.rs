@@ -51,15 +51,18 @@ pub trait IMContextExt: 'static {
     fn focus_out(&self);
 
     #[doc(alias = "gtk_im_context_get_preedit_string")]
+    #[doc(alias = "get_preedit_string")]
     fn preedit_string(&self) -> (glib::GString, pango::AttrList, i32);
 
     #[cfg_attr(feature = "v4_2", deprecated = "Since 4.2")]
     #[doc(alias = "gtk_im_context_get_surrounding")]
+    #[doc(alias = "get_surrounding")]
     fn surrounding(&self) -> Option<(glib::GString, i32)>;
 
     #[cfg(any(feature = "v4_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
     #[doc(alias = "gtk_im_context_get_surrounding_with_selection")]
+    #[doc(alias = "get_surrounding_with_selection")]
     fn surrounding_with_selection(&self) -> Option<(glib::GString, i32, i32)>;
 
     #[doc(alias = "gtk_im_context_reset")]
@@ -83,40 +86,45 @@ pub trait IMContextExt: 'static {
     #[doc(alias = "gtk_im_context_set_use_preedit")]
     fn set_use_preedit(&self, use_preedit: bool);
 
-    #[doc(alias = "get_property_input_hints")]
+    #[doc(alias = "input-hints")]
     fn input_hints(&self) -> InputHints;
 
-    #[doc(alias = "set_property_input_hints")]
+    #[doc(alias = "input-hints")]
     fn set_input_hints(&self, input_hints: InputHints);
 
-    #[doc(alias = "get_property_input_purpose")]
+    #[doc(alias = "input-purpose")]
     fn input_purpose(&self) -> InputPurpose;
 
-    #[doc(alias = "set_property_input_purpose")]
+    #[doc(alias = "input-purpose")]
     fn set_input_purpose(&self, input_purpose: InputPurpose);
 
+    #[doc(alias = "commit")]
     fn connect_commit<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[doc(alias = "delete-surrounding")]
     fn connect_delete_surrounding<F: Fn(&Self, i32, i32) -> bool + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
+    #[doc(alias = "preedit-changed")]
     fn connect_preedit_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[doc(alias = "preedit-end")]
     fn connect_preedit_end<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[doc(alias = "preedit-start")]
     fn connect_preedit_start<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[doc(alias = "retrieve-surrounding")]
     fn connect_retrieve_surrounding<F: Fn(&Self) -> bool + 'static>(&self, f: F)
         -> SignalHandlerId;
 
-    fn connect_property_input_hints_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "input-hints")]
+    fn connect_input_hints_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_input_purpose_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "input-purpose")]
+    fn connect_input_purpose_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<IMContext>> IMContextExt for O {
@@ -331,6 +339,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
+    #[doc(alias = "commit")]
     fn connect_commit<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn commit_trampoline<P, F: Fn(&P, &str) + 'static>(
             this: *mut ffi::GtkIMContext,
@@ -358,6 +367,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
+    #[doc(alias = "delete-surrounding")]
     fn connect_delete_surrounding<F: Fn(&Self, i32, i32) -> bool + 'static>(
         &self,
         f: F,
@@ -395,6 +405,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
+    #[doc(alias = "preedit-changed")]
     fn connect_preedit_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn preedit_changed_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkIMContext,
@@ -418,6 +429,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
+    #[doc(alias = "preedit-end")]
     fn connect_preedit_end<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn preedit_end_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkIMContext,
@@ -441,6 +453,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
+    #[doc(alias = "preedit-start")]
     fn connect_preedit_start<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn preedit_start_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkIMContext,
@@ -464,6 +477,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
+    #[doc(alias = "retrieve-surrounding")]
     fn connect_retrieve_surrounding<F: Fn(&Self) -> bool + 'static>(
         &self,
         f: F,
@@ -491,7 +505,8 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    fn connect_property_input_hints_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "input-hints")]
+    fn connect_input_hints_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_hints_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkIMContext,
             _param_spec: glib::ffi::gpointer,
@@ -515,10 +530,8 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    fn connect_property_input_purpose_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "input-purpose")]
+    fn connect_input_purpose_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_purpose_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkIMContext,
             _param_spec: glib::ffi::gpointer,

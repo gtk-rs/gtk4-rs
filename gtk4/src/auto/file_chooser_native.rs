@@ -49,6 +49,7 @@ impl FileChooserNative {
     }
 
     #[doc(alias = "gtk_file_chooser_native_get_accept_label")]
+    #[doc(alias = "get_accept_label")]
     pub fn accept_label(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_file_chooser_native_get_accept_label(
@@ -58,6 +59,7 @@ impl FileChooserNative {
     }
 
     #[doc(alias = "gtk_file_chooser_native_get_cancel_label")]
+    #[doc(alias = "get_cancel_label")]
     pub fn cancel_label(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_file_chooser_native_get_cancel_label(
@@ -86,7 +88,8 @@ impl FileChooserNative {
         }
     }
 
-    pub fn connect_property_accept_label_notify<F: Fn(&FileChooserNative) + 'static>(
+    #[doc(alias = "accept-label")]
+    pub fn connect_accept_label_notify<F: Fn(&FileChooserNative) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -111,7 +114,8 @@ impl FileChooserNative {
         }
     }
 
-    pub fn connect_property_cancel_label_notify<F: Fn(&FileChooserNative) + 'static>(
+    #[doc(alias = "cancel-label")]
+    pub fn connect_cancel_label_notify<F: Fn(&FileChooserNative) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

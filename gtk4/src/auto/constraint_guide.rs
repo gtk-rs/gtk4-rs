@@ -31,11 +31,13 @@ impl ConstraintGuide {
     }
 
     #[doc(alias = "gtk_constraint_guide_get_name")]
+    #[doc(alias = "get_name")]
     pub fn name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_constraint_guide_get_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_constraint_guide_get_strength")]
+    #[doc(alias = "get_strength")]
     pub fn strength(&self) -> ConstraintStrength {
         unsafe {
             from_glib(ffi::gtk_constraint_guide_get_strength(
@@ -79,7 +81,7 @@ impl ConstraintGuide {
         }
     }
 
-    #[doc(alias = "get_property_max_height")]
+    #[doc(alias = "max-height")]
     pub fn max_height(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
@@ -94,7 +96,7 @@ impl ConstraintGuide {
         }
     }
 
-    #[doc(alias = "set_property_max_height")]
+    #[doc(alias = "max-height")]
     pub fn set_max_height(&self, max_height: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -105,7 +107,7 @@ impl ConstraintGuide {
         }
     }
 
-    #[doc(alias = "get_property_max_width")]
+    #[doc(alias = "max-width")]
     pub fn max_width(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
@@ -120,7 +122,7 @@ impl ConstraintGuide {
         }
     }
 
-    #[doc(alias = "set_property_max_width")]
+    #[doc(alias = "max-width")]
     pub fn set_max_width(&self, max_width: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -131,7 +133,7 @@ impl ConstraintGuide {
         }
     }
 
-    #[doc(alias = "get_property_min_height")]
+    #[doc(alias = "min-height")]
     pub fn min_height(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
@@ -146,7 +148,7 @@ impl ConstraintGuide {
         }
     }
 
-    #[doc(alias = "set_property_min_height")]
+    #[doc(alias = "min-height")]
     pub fn set_min_height(&self, min_height: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -157,7 +159,7 @@ impl ConstraintGuide {
         }
     }
 
-    #[doc(alias = "get_property_min_width")]
+    #[doc(alias = "min-width")]
     pub fn min_width(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
@@ -172,7 +174,7 @@ impl ConstraintGuide {
         }
     }
 
-    #[doc(alias = "set_property_min_width")]
+    #[doc(alias = "min-width")]
     pub fn set_min_width(&self, min_width: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -183,7 +185,7 @@ impl ConstraintGuide {
         }
     }
 
-    #[doc(alias = "get_property_nat_height")]
+    #[doc(alias = "nat-height")]
     pub fn nat_height(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
@@ -198,7 +200,7 @@ impl ConstraintGuide {
         }
     }
 
-    #[doc(alias = "set_property_nat_height")]
+    #[doc(alias = "nat-height")]
     pub fn set_nat_height(&self, nat_height: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -209,7 +211,7 @@ impl ConstraintGuide {
         }
     }
 
-    #[doc(alias = "get_property_nat_width")]
+    #[doc(alias = "nat-width")]
     pub fn nat_width(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
@@ -224,7 +226,7 @@ impl ConstraintGuide {
         }
     }
 
-    #[doc(alias = "set_property_nat_width")]
+    #[doc(alias = "nat-width")]
     pub fn set_nat_width(&self, nat_width: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -235,7 +237,8 @@ impl ConstraintGuide {
         }
     }
 
-    pub fn connect_property_max_height_notify<F: Fn(&ConstraintGuide) + 'static>(
+    #[doc(alias = "max-height")]
+    pub fn connect_max_height_notify<F: Fn(&ConstraintGuide) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -260,7 +263,8 @@ impl ConstraintGuide {
         }
     }
 
-    pub fn connect_property_max_width_notify<F: Fn(&ConstraintGuide) + 'static>(
+    #[doc(alias = "max-width")]
+    pub fn connect_max_width_notify<F: Fn(&ConstraintGuide) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -285,7 +289,8 @@ impl ConstraintGuide {
         }
     }
 
-    pub fn connect_property_min_height_notify<F: Fn(&ConstraintGuide) + 'static>(
+    #[doc(alias = "min-height")]
+    pub fn connect_min_height_notify<F: Fn(&ConstraintGuide) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -310,7 +315,8 @@ impl ConstraintGuide {
         }
     }
 
-    pub fn connect_property_min_width_notify<F: Fn(&ConstraintGuide) + 'static>(
+    #[doc(alias = "min-width")]
+    pub fn connect_min_width_notify<F: Fn(&ConstraintGuide) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -335,10 +341,8 @@ impl ConstraintGuide {
         }
     }
 
-    pub fn connect_property_name_notify<F: Fn(&ConstraintGuide) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "name")]
+    pub fn connect_name_notify<F: Fn(&ConstraintGuide) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<F: Fn(&ConstraintGuide) + 'static>(
             this: *mut ffi::GtkConstraintGuide,
             _param_spec: glib::ffi::gpointer,
@@ -360,7 +364,8 @@ impl ConstraintGuide {
         }
     }
 
-    pub fn connect_property_nat_height_notify<F: Fn(&ConstraintGuide) + 'static>(
+    #[doc(alias = "nat-height")]
+    pub fn connect_nat_height_notify<F: Fn(&ConstraintGuide) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -385,7 +390,8 @@ impl ConstraintGuide {
         }
     }
 
-    pub fn connect_property_nat_width_notify<F: Fn(&ConstraintGuide) + 'static>(
+    #[doc(alias = "nat-width")]
+    pub fn connect_nat_width_notify<F: Fn(&ConstraintGuide) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -410,7 +416,8 @@ impl ConstraintGuide {
         }
     }
 
-    pub fn connect_property_strength_notify<F: Fn(&ConstraintGuide) + 'static>(
+    #[doc(alias = "strength")]
+    pub fn connect_strength_notify<F: Fn(&ConstraintGuide) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

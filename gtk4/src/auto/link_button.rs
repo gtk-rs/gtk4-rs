@@ -42,6 +42,7 @@ impl LinkButton {
     }
 
     #[doc(alias = "gtk_link_button_new_with_label")]
+    #[doc(alias = "new_with_label")]
     pub fn with_label(uri: &str, label: &str) -> LinkButton {
         assert_initialized_main_thread!();
         unsafe {
@@ -54,11 +55,13 @@ impl LinkButton {
     }
 
     #[doc(alias = "gtk_link_button_get_uri")]
+    #[doc(alias = "get_uri")]
     pub fn uri(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_link_button_get_uri(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_link_button_get_visited")]
+    #[doc(alias = "get_visited")]
     pub fn is_visited(&self) -> bool {
         unsafe { from_glib(ffi::gtk_link_button_get_visited(self.to_glib_none().0)) }
     }
@@ -77,6 +80,7 @@ impl LinkButton {
         }
     }
 
+    #[doc(alias = "activate-link")]
     pub fn connect_activate_link<F: Fn(&LinkButton) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
@@ -103,10 +107,8 @@ impl LinkButton {
         }
     }
 
-    pub fn connect_property_uri_notify<F: Fn(&LinkButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "uri")]
+    pub fn connect_uri_notify<F: Fn(&LinkButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_uri_trampoline<F: Fn(&LinkButton) + 'static>(
             this: *mut ffi::GtkLinkButton,
             _param_spec: glib::ffi::gpointer,
@@ -128,10 +130,8 @@ impl LinkButton {
         }
     }
 
-    pub fn connect_property_visited_notify<F: Fn(&LinkButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "visited")]
+    pub fn connect_visited_notify<F: Fn(&LinkButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_visited_trampoline<F: Fn(&LinkButton) + 'static>(
             this: *mut ffi::GtkLinkButton,
             _param_spec: glib::ffi::gpointer,

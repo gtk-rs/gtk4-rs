@@ -29,6 +29,7 @@ pub trait TreeSortableExt: 'static {
     #[doc(alias = "gtk_tree_sortable_sort_column_changed")]
     fn sort_column_changed(&self);
 
+    #[doc(alias = "sort-column-changed")]
     fn connect_sort_column_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
@@ -47,6 +48,7 @@ impl<O: IsA<TreeSortable>> TreeSortableExt for O {
         }
     }
 
+    #[doc(alias = "sort-column-changed")]
     fn connect_sort_column_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn sort_column_changed_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTreeSortable,

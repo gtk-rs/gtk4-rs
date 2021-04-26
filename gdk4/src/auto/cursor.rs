@@ -20,6 +20,7 @@ glib::wrapper! {
 
 impl Cursor {
     #[doc(alias = "gdk_cursor_new_from_name")]
+    #[doc(alias = "new_from_name")]
     pub fn from_name(name: &str, fallback: Option<&Cursor>) -> Option<Cursor> {
         assert_initialized_main_thread!();
         unsafe {
@@ -31,6 +32,7 @@ impl Cursor {
     }
 
     #[doc(alias = "gdk_cursor_new_from_texture")]
+    #[doc(alias = "new_from_texture")]
     pub fn from_texture<P: IsA<Texture>>(
         texture: &P,
         hotspot_x: i32,
@@ -49,26 +51,31 @@ impl Cursor {
     }
 
     #[doc(alias = "gdk_cursor_get_fallback")]
+    #[doc(alias = "get_fallback")]
     pub fn fallback(&self) -> Option<Cursor> {
         unsafe { from_glib_none(ffi::gdk_cursor_get_fallback(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_cursor_get_hotspot_x")]
+    #[doc(alias = "get_hotspot_x")]
     pub fn hotspot_x(&self) -> i32 {
         unsafe { ffi::gdk_cursor_get_hotspot_x(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_cursor_get_hotspot_y")]
+    #[doc(alias = "get_hotspot_y")]
     pub fn hotspot_y(&self) -> i32 {
         unsafe { ffi::gdk_cursor_get_hotspot_y(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_cursor_get_name")]
+    #[doc(alias = "get_name")]
     pub fn name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gdk_cursor_get_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_cursor_get_texture")]
+    #[doc(alias = "get_texture")]
     pub fn texture(&self) -> Option<Texture> {
         unsafe { from_glib_none(ffi::gdk_cursor_get_texture(self.to_glib_none().0)) }
     }

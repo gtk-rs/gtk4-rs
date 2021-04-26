@@ -72,6 +72,7 @@ pub const NONE_IM_MULTICONTEXT: Option<&IMMulticontext> = None;
 
 pub trait IMMulticontextExt: 'static {
     #[doc(alias = "gtk_im_multicontext_get_context_id")]
+    #[doc(alias = "get_context_id")]
     fn context_id(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_im_multicontext_set_context_id")]

@@ -51,26 +51,31 @@ impl PrintJob {
     }
 
     #[doc(alias = "gtk_print_job_get_collate")]
+    #[doc(alias = "get_collate")]
     pub fn is_collate(&self) -> bool {
         unsafe { from_glib(ffi::gtk_print_job_get_collate(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_job_get_n_up")]
+    #[doc(alias = "get_n_up")]
     pub fn n_up(&self) -> u32 {
         unsafe { ffi::gtk_print_job_get_n_up(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_print_job_get_n_up_layout")]
+    #[doc(alias = "get_n_up_layout")]
     pub fn n_up_layout(&self) -> NumberUpLayout {
         unsafe { from_glib(ffi::gtk_print_job_get_n_up_layout(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_job_get_num_copies")]
+    #[doc(alias = "get_num_copies")]
     pub fn num_copies(&self) -> i32 {
         unsafe { ffi::gtk_print_job_get_num_copies(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_print_job_get_page_ranges")]
+    #[doc(alias = "get_page_ranges")]
     pub fn page_ranges(&self) -> Vec<PageRange> {
         unsafe {
             let mut n_ranges = mem::MaybeUninit::uninit();
@@ -83,46 +88,55 @@ impl PrintJob {
     }
 
     #[doc(alias = "gtk_print_job_get_page_set")]
+    #[doc(alias = "get_page_set")]
     pub fn page_set(&self) -> PageSet {
         unsafe { from_glib(ffi::gtk_print_job_get_page_set(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_job_get_pages")]
+    #[doc(alias = "get_pages")]
     pub fn pages(&self) -> PrintPages {
         unsafe { from_glib(ffi::gtk_print_job_get_pages(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_job_get_printer")]
+    #[doc(alias = "get_printer")]
     pub fn printer(&self) -> Printer {
         unsafe { from_glib_none(ffi::gtk_print_job_get_printer(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_job_get_reverse")]
+    #[doc(alias = "get_reverse")]
     pub fn is_reverse(&self) -> bool {
         unsafe { from_glib(ffi::gtk_print_job_get_reverse(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_job_get_rotate")]
+    #[doc(alias = "get_rotate")]
     pub fn is_rotate(&self) -> bool {
         unsafe { from_glib(ffi::gtk_print_job_get_rotate(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_job_get_scale")]
+    #[doc(alias = "get_scale")]
     pub fn scale(&self) -> f64 {
         unsafe { ffi::gtk_print_job_get_scale(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_print_job_get_settings")]
+    #[doc(alias = "get_settings")]
     pub fn settings(&self) -> PrintSettings {
         unsafe { from_glib_none(ffi::gtk_print_job_get_settings(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_job_get_status")]
+    #[doc(alias = "get_status")]
     pub fn status(&self) -> PrintStatus {
         unsafe { from_glib(ffi::gtk_print_job_get_status(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_job_get_surface")]
+    #[doc(alias = "get_surface")]
     pub fn surface(&self) -> Result<cairo::Surface, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -136,11 +150,13 @@ impl PrintJob {
     }
 
     #[doc(alias = "gtk_print_job_get_title")]
+    #[doc(alias = "get_title")]
     pub fn title(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_print_job_get_title(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_print_job_get_track_print_status")]
+    #[doc(alias = "get_track_print_status")]
     pub fn tracks_print_status(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_print_job_get_track_print_status(
@@ -255,7 +271,7 @@ impl PrintJob {
         }
     }
 
-    #[doc(alias = "get_property_page_setup")]
+    #[doc(alias = "page-setup")]
     pub fn page_setup(&self) -> Option<PageSetup> {
         unsafe {
             let mut value = glib::Value::from_type(<PageSetup as StaticType>::static_type());
@@ -270,6 +286,7 @@ impl PrintJob {
         }
     }
 
+    #[doc(alias = "status-changed")]
     pub fn connect_status_changed<F: Fn(&PrintJob) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn status_changed_trampoline<F: Fn(&PrintJob) + 'static>(
             this: *mut ffi::GtkPrintJob,
@@ -291,7 +308,8 @@ impl PrintJob {
         }
     }
 
-    pub fn connect_property_track_print_status_notify<F: Fn(&PrintJob) + 'static>(
+    #[doc(alias = "track-print-status")]
+    pub fn connect_track_print_status_notify<F: Fn(&PrintJob) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

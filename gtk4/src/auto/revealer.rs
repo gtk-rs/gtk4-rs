@@ -39,26 +39,31 @@ impl Revealer {
     }
 
     #[doc(alias = "gtk_revealer_get_child")]
+    #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_revealer_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_revealer_get_child_revealed")]
+    #[doc(alias = "get_child_revealed")]
     pub fn is_child_revealed(&self) -> bool {
         unsafe { from_glib(ffi::gtk_revealer_get_child_revealed(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_revealer_get_reveal_child")]
+    #[doc(alias = "get_reveal_child")]
     pub fn reveals_child(&self) -> bool {
         unsafe { from_glib(ffi::gtk_revealer_get_reveal_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_revealer_get_transition_duration")]
+    #[doc(alias = "get_transition_duration")]
     pub fn transition_duration(&self) -> u32 {
         unsafe { ffi::gtk_revealer_get_transition_duration(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_revealer_get_transition_type")]
+    #[doc(alias = "get_transition_type")]
     pub fn transition_type(&self) -> RevealerTransitionType {
         unsafe { from_glib(ffi::gtk_revealer_get_transition_type(self.to_glib_none().0)) }
     }
@@ -94,10 +99,8 @@ impl Revealer {
         }
     }
 
-    pub fn connect_property_child_notify<F: Fn(&Revealer) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "child")]
+    pub fn connect_child_notify<F: Fn(&Revealer) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&Revealer) + 'static>(
             this: *mut ffi::GtkRevealer,
             _param_spec: glib::ffi::gpointer,
@@ -119,7 +122,8 @@ impl Revealer {
         }
     }
 
-    pub fn connect_property_child_revealed_notify<F: Fn(&Revealer) + 'static>(
+    #[doc(alias = "child-revealed")]
+    pub fn connect_child_revealed_notify<F: Fn(&Revealer) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -144,10 +148,8 @@ impl Revealer {
         }
     }
 
-    pub fn connect_property_reveal_child_notify<F: Fn(&Revealer) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "reveal-child")]
+    pub fn connect_reveal_child_notify<F: Fn(&Revealer) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_reveal_child_trampoline<F: Fn(&Revealer) + 'static>(
             this: *mut ffi::GtkRevealer,
             _param_spec: glib::ffi::gpointer,
@@ -169,7 +171,8 @@ impl Revealer {
         }
     }
 
-    pub fn connect_property_transition_duration_notify<F: Fn(&Revealer) + 'static>(
+    #[doc(alias = "transition-duration")]
+    pub fn connect_transition_duration_notify<F: Fn(&Revealer) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -194,7 +197,8 @@ impl Revealer {
         }
     }
 
-    pub fn connect_property_transition_type_notify<F: Fn(&Revealer) + 'static>(
+    #[doc(alias = "transition-type")]
+    pub fn connect_transition_type_notify<F: Fn(&Revealer) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

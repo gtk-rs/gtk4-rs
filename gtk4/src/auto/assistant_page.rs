@@ -26,11 +26,11 @@ glib::wrapper! {
 
 impl AssistantPage {
     #[doc(alias = "gtk_assistant_page_get_child")]
+    #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_assistant_page_get_child(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "get_property_complete")]
     pub fn is_complete(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -45,7 +45,6 @@ impl AssistantPage {
         }
     }
 
-    #[doc(alias = "set_property_complete")]
     pub fn set_complete(&self, complete: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -56,7 +55,7 @@ impl AssistantPage {
         }
     }
 
-    #[doc(alias = "get_property_page_type")]
+    #[doc(alias = "page-type")]
     pub fn page_type(&self) -> AssistantPageType {
         unsafe {
             let mut value =
@@ -72,7 +71,7 @@ impl AssistantPage {
         }
     }
 
-    #[doc(alias = "set_property_page_type")]
+    #[doc(alias = "page-type")]
     pub fn set_page_type(&self, page_type: AssistantPageType) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -83,7 +82,6 @@ impl AssistantPage {
         }
     }
 
-    #[doc(alias = "get_property_title")]
     pub fn title(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -98,7 +96,6 @@ impl AssistantPage {
         }
     }
 
-    #[doc(alias = "set_property_title")]
     pub fn set_title(&self, title: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -109,7 +106,8 @@ impl AssistantPage {
         }
     }
 
-    pub fn connect_property_complete_notify<F: Fn(&AssistantPage) + 'static>(
+    #[doc(alias = "complete")]
+    pub fn connect_complete_notify<F: Fn(&AssistantPage) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -134,7 +132,8 @@ impl AssistantPage {
         }
     }
 
-    pub fn connect_property_page_type_notify<F: Fn(&AssistantPage) + 'static>(
+    #[doc(alias = "page-type")]
+    pub fn connect_page_type_notify<F: Fn(&AssistantPage) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -159,10 +158,8 @@ impl AssistantPage {
         }
     }
 
-    pub fn connect_property_title_notify<F: Fn(&AssistantPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "title")]
+    pub fn connect_title_notify<F: Fn(&AssistantPage) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&AssistantPage) + 'static>(
             this: *mut ffi::GtkAssistantPage,
             _param_spec: glib::ffi::gpointer,

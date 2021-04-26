@@ -27,6 +27,7 @@ glib::wrapper! {
 
 impl FixedLayoutChild {
     #[doc(alias = "gtk_fixed_layout_child_get_transform")]
+    #[doc(alias = "get_transform")]
     pub fn transform(&self) -> Option<gsk::Transform> {
         unsafe {
             from_glib_none(ffi::gtk_fixed_layout_child_get_transform(
@@ -45,7 +46,8 @@ impl FixedLayoutChild {
         }
     }
 
-    pub fn connect_property_transform_notify<F: Fn(&FixedLayoutChild) + 'static>(
+    #[doc(alias = "transform")]
+    pub fn connect_transform_notify<F: Fn(&FixedLayoutChild) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

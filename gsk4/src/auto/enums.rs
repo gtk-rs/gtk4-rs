@@ -55,7 +55,7 @@ impl fmt::Display for BlendMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "BlendMode::{}",
             match *self {
                 Self::Default => "Default",
                 Self::Multiply => "Multiply",
@@ -185,7 +185,7 @@ impl fmt::Display for Corner {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "Corner::{}",
             match *self {
                 Self::TopLeft => "TopLeft",
                 Self::TopRight => "TopRight",
@@ -287,7 +287,7 @@ impl fmt::Display for GLUniformType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "GLUniformType::{}",
             match *self {
                 Self::None => "None",
                 Self::Float => "Float",
@@ -437,7 +437,7 @@ impl fmt::Display for RenderNodeType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "RenderNodeType::{}",
             match *self {
                 Self::NotARenderNode => "NotARenderNode",
                 Self::ContainerNode => "ContainerNode",
@@ -595,7 +595,7 @@ impl fmt::Display for ScalingFilter {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "ScalingFilter::{}",
             match *self {
                 Self::Linear => "Linear",
                 Self::Nearest => "Nearest",
@@ -684,7 +684,7 @@ impl fmt::Display for SerializationError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "SerializationError::{}",
             match *self {
                 Self::UnsupportedFormat => "UnsupportedFormat",
                 Self::UnsupportedVersion => "UnsupportedVersion",
@@ -803,7 +803,7 @@ impl fmt::Display for TransformCategory {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "TransformCategory::{}",
             match *self {
                 Self::Unknown => "Unknown",
                 Self::Any => "Any",

@@ -33,6 +33,7 @@ impl GestureClick {
         unsafe { Gesture::from_glib_full(ffi::gtk_gesture_click_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "pressed")]
     pub fn connect_pressed<F: Fn(&GestureClick, i32, f64, f64) + 'static>(
         &self,
         f: F,
@@ -60,6 +61,7 @@ impl GestureClick {
         }
     }
 
+    #[doc(alias = "released")]
     pub fn connect_released<F: Fn(&GestureClick, i32, f64, f64) + 'static>(
         &self,
         f: F,
@@ -87,6 +89,7 @@ impl GestureClick {
         }
     }
 
+    #[doc(alias = "stopped")]
     pub fn connect_stopped<F: Fn(&GestureClick) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn stopped_trampoline<F: Fn(&GestureClick) + 'static>(
             this: *mut ffi::GtkGestureClick,
@@ -108,6 +111,7 @@ impl GestureClick {
         }
     }
 
+    #[doc(alias = "unpaired-release")]
     pub fn connect_unpaired_release<
         F: Fn(&GestureClick, f64, f64, u32, &gdk::EventSequence) + 'static,
     >(

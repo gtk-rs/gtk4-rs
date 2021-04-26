@@ -24,6 +24,7 @@ glib::wrapper! {
 
 impl ContentProvider {
     #[doc(alias = "gdk_content_provider_new_for_bytes")]
+    #[doc(alias = "new_for_bytes")]
     pub fn for_bytes(mime_type: &str, bytes: &glib::Bytes) -> ContentProvider {
         assert_initialized_main_thread!();
         unsafe {
@@ -35,6 +36,7 @@ impl ContentProvider {
     }
 
     #[doc(alias = "gdk_content_provider_new_for_value")]
+    #[doc(alias = "new_for_value")]
     pub fn for_value(value: &glib::Value) -> ContentProvider {
         assert_initialized_main_thread!();
         unsafe {
@@ -64,9 +66,11 @@ pub trait ContentProviderExt: 'static {
     fn content_changed(&self);
 
     #[doc(alias = "gdk_content_provider_ref_formats")]
+    #[doc(alias = "ref_formats")]
     fn formats(&self) -> ContentFormats;
 
     #[doc(alias = "gdk_content_provider_ref_storable_formats")]
+    #[doc(alias = "ref_storable_formats")]
     fn storable_formats(&self) -> ContentFormats;
 
     #[doc(alias = "gdk_content_provider_write_mime_type_async")]
@@ -90,14 +94,14 @@ pub trait ContentProviderExt: 'static {
         io_priority: glib::Priority,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
 
+    #[doc(alias = "content-changed")]
     fn connect_content_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_formats_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "formats")]
+    fn connect_formats_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_storable_formats_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "storable-formats")]
+    fn connect_storable_formats_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<ContentProvider>> ContentProviderExt for O {
@@ -195,6 +199,7 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
         }))
     }
 
+    #[doc(alias = "content-changed")]
     fn connect_content_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn content_changed_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkContentProvider,
@@ -218,7 +223,8 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
         }
     }
 
-    fn connect_property_formats_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "formats")]
+    fn connect_formats_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_formats_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkContentProvider,
             _param_spec: glib::ffi::gpointer,
@@ -242,10 +248,8 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
         }
     }
 
-    fn connect_property_storable_formats_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "storable-formats")]
+    fn connect_storable_formats_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_storable_formats_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkContentProvider,
             _param_spec: glib::ffi::gpointer,

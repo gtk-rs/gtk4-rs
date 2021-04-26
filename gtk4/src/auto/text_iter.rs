@@ -527,16 +527,19 @@ impl TextIter {
     }
 
     #[doc(alias = "gtk_text_iter_get_buffer")]
+    #[doc(alias = "get_buffer")]
     pub fn buffer(&self) -> Option<TextBuffer> {
         unsafe { from_glib_none(ffi::gtk_text_iter_get_buffer(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_iter_get_bytes_in_line")]
+    #[doc(alias = "get_bytes_in_line")]
     pub fn bytes_in_line(&self) -> i32 {
         unsafe { ffi::gtk_text_iter_get_bytes_in_line(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_text_iter_get_char")]
+    #[doc(alias = "get_char")]
     pub fn char(&self) -> char {
         unsafe {
             std::convert::TryFrom::try_from(ffi::gtk_text_iter_get_char(self.to_glib_none().0))
@@ -545,36 +548,43 @@ impl TextIter {
     }
 
     #[doc(alias = "gtk_text_iter_get_chars_in_line")]
+    #[doc(alias = "get_chars_in_line")]
     pub fn chars_in_line(&self) -> i32 {
         unsafe { ffi::gtk_text_iter_get_chars_in_line(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_text_iter_get_child_anchor")]
+    #[doc(alias = "get_child_anchor")]
     pub fn child_anchor(&self) -> Option<TextChildAnchor> {
         unsafe { from_glib_none(ffi::gtk_text_iter_get_child_anchor(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_iter_get_language")]
+    #[doc(alias = "get_language")]
     pub fn language(&self) -> pango::Language {
         unsafe { from_glib_full(ffi::gtk_text_iter_get_language(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_iter_get_line")]
+    #[doc(alias = "get_line")]
     pub fn line(&self) -> i32 {
         unsafe { ffi::gtk_text_iter_get_line(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_text_iter_get_line_index")]
+    #[doc(alias = "get_line_index")]
     pub fn line_index(&self) -> i32 {
         unsafe { ffi::gtk_text_iter_get_line_index(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_text_iter_get_line_offset")]
+    #[doc(alias = "get_line_offset")]
     pub fn line_offset(&self) -> i32 {
         unsafe { ffi::gtk_text_iter_get_line_offset(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_text_iter_get_marks")]
+    #[doc(alias = "get_marks")]
     pub fn marks(&self) -> Vec<TextMark> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_text_iter_get_marks(
@@ -584,16 +594,19 @@ impl TextIter {
     }
 
     #[doc(alias = "gtk_text_iter_get_offset")]
+    #[doc(alias = "get_offset")]
     pub fn offset(&self) -> i32 {
         unsafe { ffi::gtk_text_iter_get_offset(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_text_iter_get_paintable")]
+    #[doc(alias = "get_paintable")]
     pub fn paintable(&self) -> Option<gdk::Paintable> {
         unsafe { from_glib_none(ffi::gtk_text_iter_get_paintable(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_iter_get_slice")]
+    #[doc(alias = "get_slice")]
     pub fn slice(&self, end: &TextIter) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_text_iter_get_slice(
@@ -604,6 +617,7 @@ impl TextIter {
     }
 
     #[doc(alias = "gtk_text_iter_get_tags")]
+    #[doc(alias = "get_tags")]
     pub fn tags(&self) -> Vec<TextTag> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_text_iter_get_tags(
@@ -613,6 +627,7 @@ impl TextIter {
     }
 
     #[doc(alias = "gtk_text_iter_get_text")]
+    #[doc(alias = "get_text")]
     pub fn text(&self, end: &TextIter) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_text_iter_get_text(
@@ -623,6 +638,7 @@ impl TextIter {
     }
 
     #[doc(alias = "gtk_text_iter_get_toggled_tags")]
+    #[doc(alias = "get_toggled_tags")]
     pub fn toggled_tags(&self, toggled_on: bool) -> Vec<TextTag> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_text_iter_get_toggled_tags(
@@ -633,16 +649,19 @@ impl TextIter {
     }
 
     #[doc(alias = "gtk_text_iter_get_visible_line_index")]
+    #[doc(alias = "get_visible_line_index")]
     pub fn visible_line_index(&self) -> i32 {
         unsafe { ffi::gtk_text_iter_get_visible_line_index(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_text_iter_get_visible_line_offset")]
+    #[doc(alias = "get_visible_line_offset")]
     pub fn visible_line_offset(&self) -> i32 {
         unsafe { ffi::gtk_text_iter_get_visible_line_offset(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_text_iter_get_visible_slice")]
+    #[doc(alias = "get_visible_slice")]
     pub fn visible_slice(&self, end: &TextIter) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_text_iter_get_visible_slice(
@@ -653,6 +672,7 @@ impl TextIter {
     }
 
     #[doc(alias = "gtk_text_iter_get_visible_text")]
+    #[doc(alias = "get_visible_text")]
     pub fn visible_text(&self, end: &TextIter) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_text_iter_get_visible_text(

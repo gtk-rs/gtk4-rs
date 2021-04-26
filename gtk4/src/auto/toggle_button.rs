@@ -39,6 +39,7 @@ impl ToggleButton {
     }
 
     #[doc(alias = "gtk_toggle_button_new_with_label")]
+    #[doc(alias = "new_with_label")]
     pub fn with_label(label: &str) -> ToggleButton {
         assert_initialized_main_thread!();
         unsafe {
@@ -50,6 +51,7 @@ impl ToggleButton {
     }
 
     #[doc(alias = "gtk_toggle_button_new_with_mnemonic")]
+    #[doc(alias = "new_with_mnemonic")]
     pub fn with_mnemonic(label: &str) -> ToggleButton {
         assert_initialized_main_thread!();
         unsafe {
@@ -438,6 +440,7 @@ pub const NONE_TOGGLE_BUTTON: Option<&ToggleButton> = None;
 
 pub trait ToggleButtonExt: 'static {
     #[doc(alias = "gtk_toggle_button_get_active")]
+    #[doc(alias = "get_active")]
     fn is_active(&self) -> bool;
 
     #[doc(alias = "gtk_toggle_button_set_active")]
@@ -449,11 +452,14 @@ pub trait ToggleButtonExt: 'static {
     #[doc(alias = "gtk_toggle_button_toggled")]
     fn toggled(&self);
 
+    #[doc(alias = "toggled")]
     fn connect_toggled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "active")]
+    fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "group")]
+    fn connect_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
@@ -489,6 +495,7 @@ impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
         }
     }
 
+    #[doc(alias = "toggled")]
     fn connect_toggled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn toggled_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkToggleButton,
@@ -512,7 +519,8 @@ impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
         }
     }
 
-    fn connect_property_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "active")]
+    fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_active_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkToggleButton,
             _param_spec: glib::ffi::gpointer,
@@ -536,7 +544,8 @@ impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
         }
     }
 
-    fn connect_property_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "group")]
+    fn connect_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_group_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkToggleButton,
             _param_spec: glib::ffi::gpointer,

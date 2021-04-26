@@ -35,6 +35,7 @@ impl GestureSwipe {
     }
 
     #[doc(alias = "gtk_gesture_swipe_get_velocity")]
+    #[doc(alias = "get_velocity")]
     pub fn velocity(&self) -> Option<(f64, f64)> {
         unsafe {
             let mut velocity_x = mem::MaybeUninit::uninit();
@@ -54,6 +55,7 @@ impl GestureSwipe {
         }
     }
 
+    #[doc(alias = "swipe")]
     pub fn connect_swipe<F: Fn(&GestureSwipe, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn swipe_trampoline<F: Fn(&GestureSwipe, f64, f64) + 'static>(
             this: *mut ffi::GtkGestureSwipe,

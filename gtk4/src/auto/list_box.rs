@@ -108,6 +108,7 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_get_activate_on_single_click")]
+    #[doc(alias = "get_activate_on_single_click")]
     pub fn activates_on_single_click(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_list_box_get_activate_on_single_click(
@@ -117,11 +118,13 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_get_adjustment")]
+    #[doc(alias = "get_adjustment")]
     pub fn adjustment(&self) -> Option<Adjustment> {
         unsafe { from_glib_none(ffi::gtk_list_box_get_adjustment(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_list_box_get_row_at_index")]
+    #[doc(alias = "get_row_at_index")]
     pub fn row_at_index(&self, index_: i32) -> Option<ListBoxRow> {
         unsafe {
             from_glib_none(ffi::gtk_list_box_get_row_at_index(
@@ -132,16 +135,19 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_get_row_at_y")]
+    #[doc(alias = "get_row_at_y")]
     pub fn row_at_y(&self, y: i32) -> Option<ListBoxRow> {
         unsafe { from_glib_none(ffi::gtk_list_box_get_row_at_y(self.to_glib_none().0, y)) }
     }
 
     #[doc(alias = "gtk_list_box_get_selected_row")]
+    #[doc(alias = "get_selected_row")]
     pub fn selected_row(&self) -> Option<ListBoxRow> {
         unsafe { from_glib_none(ffi::gtk_list_box_get_selected_row(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_list_box_get_selected_rows")]
+    #[doc(alias = "get_selected_rows")]
     pub fn selected_rows(&self) -> Vec<ListBoxRow> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_list_box_get_selected_rows(
@@ -151,11 +157,13 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_get_selection_mode")]
+    #[doc(alias = "get_selection_mode")]
     pub fn selection_mode(&self) -> SelectionMode {
         unsafe { from_glib(ffi::gtk_list_box_get_selection_mode(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_list_box_get_show_separators")]
+    #[doc(alias = "get_show_separators")]
     pub fn shows_separators(&self) -> bool {
         unsafe { from_glib(ffi::gtk_list_box_get_show_separators(self.to_glib_none().0)) }
     }
@@ -406,7 +414,7 @@ impl ListBox {
         }
     }
 
-    #[doc(alias = "get_property_accept_unpaired_release")]
+    #[doc(alias = "accept-unpaired-release")]
     pub fn accepts_unpaired_release(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -421,7 +429,7 @@ impl ListBox {
         }
     }
 
-    #[doc(alias = "set_property_accept_unpaired_release")]
+    #[doc(alias = "accept-unpaired-release")]
     pub fn set_accept_unpaired_release(&self, accept_unpaired_release: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -432,6 +440,7 @@ impl ListBox {
         }
     }
 
+    #[doc(alias = "activate-cursor-row")]
     pub fn connect_activate_cursor_row<F: Fn(&ListBox) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_cursor_row_trampoline<F: Fn(&ListBox) + 'static>(
             this: *mut ffi::GtkListBox,
@@ -461,6 +470,7 @@ impl ListBox {
         };
     }
 
+    #[doc(alias = "move-cursor")]
     pub fn connect_move_cursor<F: Fn(&ListBox, MovementStep, i32, bool, bool) + 'static>(
         &self,
         f: F,
@@ -505,6 +515,7 @@ impl ListBox {
         };
     }
 
+    #[doc(alias = "row-activated")]
     pub fn connect_row_activated<F: Fn(&ListBox, &ListBoxRow) + 'static>(
         &self,
         f: F,
@@ -530,6 +541,7 @@ impl ListBox {
         }
     }
 
+    #[doc(alias = "row-selected")]
     pub fn connect_row_selected<F: Fn(&ListBox, Option<&ListBoxRow>) + 'static>(
         &self,
         f: F,
@@ -562,6 +574,7 @@ impl ListBox {
         }
     }
 
+    #[doc(alias = "select-all")]
     pub fn connect_select_all<F: Fn(&ListBox) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn select_all_trampoline<F: Fn(&ListBox) + 'static>(
             this: *mut ffi::GtkListBox,
@@ -591,6 +604,7 @@ impl ListBox {
         };
     }
 
+    #[doc(alias = "selected-rows-changed")]
     pub fn connect_selected_rows_changed<F: Fn(&ListBox) + 'static>(
         &self,
         f: F,
@@ -615,6 +629,7 @@ impl ListBox {
         }
     }
 
+    #[doc(alias = "toggle-cursor-row")]
     pub fn connect_toggle_cursor_row<F: Fn(&ListBox) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn toggle_cursor_row_trampoline<F: Fn(&ListBox) + 'static>(
             this: *mut ffi::GtkListBox,
@@ -644,6 +659,7 @@ impl ListBox {
         };
     }
 
+    #[doc(alias = "unselect-all")]
     pub fn connect_unselect_all<F: Fn(&ListBox) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn unselect_all_trampoline<F: Fn(&ListBox) + 'static>(
             this: *mut ffi::GtkListBox,
@@ -673,7 +689,8 @@ impl ListBox {
         };
     }
 
-    pub fn connect_property_accept_unpaired_release_notify<F: Fn(&ListBox) + 'static>(
+    #[doc(alias = "accept-unpaired-release")]
+    pub fn connect_accept_unpaired_release_notify<F: Fn(&ListBox) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -700,7 +717,8 @@ impl ListBox {
         }
     }
 
-    pub fn connect_property_activate_on_single_click_notify<F: Fn(&ListBox) + 'static>(
+    #[doc(alias = "activate-on-single-click")]
+    pub fn connect_activate_on_single_click_notify<F: Fn(&ListBox) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -727,7 +745,8 @@ impl ListBox {
         }
     }
 
-    pub fn connect_property_selection_mode_notify<F: Fn(&ListBox) + 'static>(
+    #[doc(alias = "selection-mode")]
+    pub fn connect_selection_mode_notify<F: Fn(&ListBox) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -752,7 +771,8 @@ impl ListBox {
         }
     }
 
-    pub fn connect_property_show_separators_notify<F: Fn(&ListBox) + 'static>(
+    #[doc(alias = "show-separators")]
+    pub fn connect_show_separators_notify<F: Fn(&ListBox) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

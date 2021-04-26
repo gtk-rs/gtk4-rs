@@ -35,6 +35,7 @@ impl MultiSelection {
     }
 
     #[doc(alias = "gtk_multi_selection_get_model")]
+    #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_multi_selection_get_model(self.to_glib_none().0)) }
     }
@@ -49,10 +50,8 @@ impl MultiSelection {
         }
     }
 
-    pub fn connect_property_model_notify<F: Fn(&MultiSelection) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "model")]
+    pub fn connect_model_notify<F: Fn(&MultiSelection) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<F: Fn(&MultiSelection) + 'static>(
             this: *mut ffi::GtkMultiSelection,
             _param_spec: glib::ffi::gpointer,

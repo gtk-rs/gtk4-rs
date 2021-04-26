@@ -47,6 +47,7 @@ impl TreeRowReference {
     }
 
     #[doc(alias = "gtk_tree_row_reference_get_model")]
+    #[doc(alias = "get_model")]
     pub fn model(&self) -> TreeModel {
         unsafe {
             from_glib_none(ffi::gtk_tree_row_reference_get_model(mut_override(
@@ -56,6 +57,7 @@ impl TreeRowReference {
     }
 
     #[doc(alias = "gtk_tree_row_reference_get_path")]
+    #[doc(alias = "get_path")]
     pub fn path(&self) -> Option<TreePath> {
         unsafe {
             from_glib_full(ffi::gtk_tree_row_reference_get_path(mut_override(

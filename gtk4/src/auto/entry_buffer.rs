@@ -64,11 +64,14 @@ pub trait EntryBufferExt: 'static {
     #[doc(alias = "gtk_entry_buffer_emit_inserted_text")]
     fn emit_inserted_text(&self, position: u32, chars: &str, n_chars: u32);
 
-    fn connect_property_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "length")]
+    fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_max_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "max-length")]
+    fn connect_max_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "text")]
+    fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
@@ -93,7 +96,8 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
         }
     }
 
-    fn connect_property_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "length")]
+    fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_length_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEntryBuffer,
             _param_spec: glib::ffi::gpointer,
@@ -117,7 +121,8 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
         }
     }
 
-    fn connect_property_max_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "max-length")]
+    fn connect_max_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_max_length_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEntryBuffer,
             _param_spec: glib::ffi::gpointer,
@@ -141,7 +146,8 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
         }
     }
 
-    fn connect_property_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "text")]
+    fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEntryBuffer,
             _param_spec: glib::ffi::gpointer,

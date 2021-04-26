@@ -69,18 +69,23 @@ pub const NONE_TEXT_MARK: Option<&TextMark> = None;
 
 pub trait TextMarkExt: 'static {
     #[doc(alias = "gtk_text_mark_get_buffer")]
+    #[doc(alias = "get_buffer")]
     fn buffer(&self) -> Option<TextBuffer>;
 
     #[doc(alias = "gtk_text_mark_get_deleted")]
+    #[doc(alias = "get_deleted")]
     fn is_deleted(&self) -> bool;
 
     #[doc(alias = "gtk_text_mark_get_left_gravity")]
+    #[doc(alias = "get_left_gravity")]
     fn is_left_gravity(&self) -> bool;
 
     #[doc(alias = "gtk_text_mark_get_name")]
+    #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_text_mark_get_visible")]
+    #[doc(alias = "get_visible")]
     fn is_visible(&self) -> bool;
 
     #[doc(alias = "gtk_text_mark_set_visible")]

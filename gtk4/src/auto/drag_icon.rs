@@ -34,6 +34,7 @@ glib::wrapper! {
 
 impl DragIcon {
     #[doc(alias = "gtk_drag_icon_get_child")]
+    #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_drag_icon_get_child(self.to_glib_none().0)) }
     }
@@ -59,6 +60,7 @@ impl DragIcon {
     }
 
     #[doc(alias = "gtk_drag_icon_get_for_drag")]
+    #[doc(alias = "get_for_drag")]
     pub fn for_drag(drag: &gdk::Drag) -> Option<Widget> {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_drag_icon_get_for_drag(drag.to_glib_none().0)) }
@@ -82,10 +84,8 @@ impl DragIcon {
         }
     }
 
-    pub fn connect_property_child_notify<F: Fn(&DragIcon) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "child")]
+    pub fn connect_child_notify<F: Fn(&DragIcon) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&DragIcon) + 'static>(
             this: *mut ffi::GtkDragIcon,
             _param_spec: glib::ffi::gpointer,

@@ -55,6 +55,7 @@ impl TextView {
     }
 
     #[doc(alias = "gtk_text_view_new_with_buffer")]
+    #[doc(alias = "new_with_buffer")]
     pub fn with_buffer<P: IsA<TextBuffer>>(buffer: &P) -> TextView {
         skip_assert_initialized!();
         unsafe {
@@ -613,87 +614,115 @@ pub trait TextViewExt: 'static {
     fn forward_display_line_end(&self, iter: &mut TextIter) -> bool;
 
     #[doc(alias = "gtk_text_view_get_accepts_tab")]
+    #[doc(alias = "get_accepts_tab")]
     fn accepts_tab(&self) -> bool;
 
     #[doc(alias = "gtk_text_view_get_bottom_margin")]
+    #[doc(alias = "get_bottom_margin")]
     fn bottom_margin(&self) -> i32;
 
     #[doc(alias = "gtk_text_view_get_buffer")]
+    #[doc(alias = "get_buffer")]
     fn buffer(&self) -> TextBuffer;
 
     #[doc(alias = "gtk_text_view_get_cursor_locations")]
+    #[doc(alias = "get_cursor_locations")]
     fn cursor_locations(&self, iter: Option<&TextIter>) -> (gdk::Rectangle, gdk::Rectangle);
 
     #[doc(alias = "gtk_text_view_get_cursor_visible")]
+    #[doc(alias = "get_cursor_visible")]
     fn is_cursor_visible(&self) -> bool;
 
     #[doc(alias = "gtk_text_view_get_editable")]
+    #[doc(alias = "get_editable")]
     fn is_editable(&self) -> bool;
 
     #[doc(alias = "gtk_text_view_get_extra_menu")]
+    #[doc(alias = "get_extra_menu")]
     fn extra_menu(&self) -> Option<gio::MenuModel>;
 
     #[doc(alias = "gtk_text_view_get_gutter")]
+    #[doc(alias = "get_gutter")]
     fn gutter(&self, win: TextWindowType) -> Option<Widget>;
 
     #[doc(alias = "gtk_text_view_get_indent")]
+    #[doc(alias = "get_indent")]
     fn indent(&self) -> i32;
 
     #[doc(alias = "gtk_text_view_get_input_hints")]
+    #[doc(alias = "get_input_hints")]
     fn input_hints(&self) -> InputHints;
 
     #[doc(alias = "gtk_text_view_get_input_purpose")]
+    #[doc(alias = "get_input_purpose")]
     fn input_purpose(&self) -> InputPurpose;
 
     #[doc(alias = "gtk_text_view_get_iter_at_location")]
+    #[doc(alias = "get_iter_at_location")]
     fn iter_at_location(&self, x: i32, y: i32) -> Option<TextIter>;
 
     #[doc(alias = "gtk_text_view_get_iter_at_position")]
+    #[doc(alias = "get_iter_at_position")]
     fn iter_at_position(&self, x: i32, y: i32) -> Option<(TextIter, i32)>;
 
     #[doc(alias = "gtk_text_view_get_iter_location")]
+    #[doc(alias = "get_iter_location")]
     fn iter_location(&self, iter: &TextIter) -> gdk::Rectangle;
 
     #[doc(alias = "gtk_text_view_get_justification")]
+    #[doc(alias = "get_justification")]
     fn justification(&self) -> Justification;
 
     #[doc(alias = "gtk_text_view_get_left_margin")]
+    #[doc(alias = "get_left_margin")]
     fn left_margin(&self) -> i32;
 
     #[doc(alias = "gtk_text_view_get_line_at_y")]
+    #[doc(alias = "get_line_at_y")]
     fn line_at_y(&self, y: i32) -> (TextIter, i32);
 
     #[doc(alias = "gtk_text_view_get_line_yrange")]
+    #[doc(alias = "get_line_yrange")]
     fn line_yrange(&self, iter: &TextIter) -> (i32, i32);
 
     #[doc(alias = "gtk_text_view_get_monospace")]
+    #[doc(alias = "get_monospace")]
     fn is_monospace(&self) -> bool;
 
     #[doc(alias = "gtk_text_view_get_overwrite")]
+    #[doc(alias = "get_overwrite")]
     fn overwrites(&self) -> bool;
 
     #[doc(alias = "gtk_text_view_get_pixels_above_lines")]
+    #[doc(alias = "get_pixels_above_lines")]
     fn pixels_above_lines(&self) -> i32;
 
     #[doc(alias = "gtk_text_view_get_pixels_below_lines")]
+    #[doc(alias = "get_pixels_below_lines")]
     fn pixels_below_lines(&self) -> i32;
 
     #[doc(alias = "gtk_text_view_get_pixels_inside_wrap")]
+    #[doc(alias = "get_pixels_inside_wrap")]
     fn pixels_inside_wrap(&self) -> i32;
 
     #[doc(alias = "gtk_text_view_get_right_margin")]
+    #[doc(alias = "get_right_margin")]
     fn right_margin(&self) -> i32;
 
     #[doc(alias = "gtk_text_view_get_tabs")]
+    #[doc(alias = "get_tabs")]
     fn tabs(&self) -> Option<pango::TabArray>;
 
     #[doc(alias = "gtk_text_view_get_top_margin")]
+    #[doc(alias = "get_top_margin")]
     fn top_margin(&self) -> i32;
 
     #[doc(alias = "gtk_text_view_get_visible_rect")]
+    #[doc(alias = "get_visible_rect")]
     fn visible_rect(&self) -> gdk::Rectangle;
 
     #[doc(alias = "gtk_text_view_get_wrap_mode")]
+    #[doc(alias = "get_wrap_mode")]
     fn wrap_mode(&self) -> WrapMode;
 
     #[doc(alias = "gtk_text_view_move_mark_onscreen")]
@@ -814,24 +843,28 @@ pub trait TextViewExt: 'static {
         window_y: i32,
     ) -> (i32, i32);
 
-    #[doc(alias = "get_property_im_module")]
+    #[doc(alias = "im-module")]
     fn im_module(&self) -> Option<glib::GString>;
 
-    #[doc(alias = "set_property_im_module")]
+    #[doc(alias = "im-module")]
     fn set_im_module(&self, im_module: Option<&str>);
 
+    #[doc(alias = "backspace")]
     fn connect_backspace<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_backspace(&self);
 
+    #[doc(alias = "copy-clipboard")]
     fn connect_copy_clipboard<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_copy_clipboard(&self);
 
+    #[doc(alias = "cut-clipboard")]
     fn connect_cut_clipboard<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_cut_clipboard(&self);
 
+    #[doc(alias = "delete-from-cursor")]
     fn connect_delete_from_cursor<F: Fn(&Self, DeleteType, i32) + 'static>(
         &self,
         f: F,
@@ -839,6 +872,7 @@ pub trait TextViewExt: 'static {
 
     fn emit_delete_from_cursor(&self, type_: DeleteType, count: i32);
 
+    #[doc(alias = "extend-selection")]
     fn connect_extend_selection<
         F: Fn(&Self, TextExtendSelection, &TextIter, &TextIter, &TextIter) -> glib::signal::Inhibit
             + 'static,
@@ -847,14 +881,17 @@ pub trait TextViewExt: 'static {
         f: F,
     ) -> SignalHandlerId;
 
+    #[doc(alias = "insert-at-cursor")]
     fn connect_insert_at_cursor<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_insert_at_cursor(&self, string: &str);
 
+    #[doc(alias = "insert-emoji")]
     fn connect_insert_emoji<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_insert_emoji(&self);
 
+    #[doc(alias = "move-cursor")]
     fn connect_move_cursor<F: Fn(&Self, MovementStep, i32, bool) + 'static>(
         &self,
         f: F,
@@ -862,6 +899,7 @@ pub trait TextViewExt: 'static {
 
     fn emit_move_cursor(&self, step: MovementStep, count: i32, extend_selection: bool);
 
+    #[doc(alias = "move-viewport")]
     fn connect_move_viewport<F: Fn(&Self, ScrollStep, i32) + 'static>(
         &self,
         f: F,
@@ -869,93 +907,98 @@ pub trait TextViewExt: 'static {
 
     fn emit_move_viewport(&self, step: ScrollStep, count: i32);
 
+    #[doc(alias = "paste-clipboard")]
     fn connect_paste_clipboard<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_paste_clipboard(&self);
 
+    #[doc(alias = "preedit-changed")]
     fn connect_preedit_changed<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_preedit_changed(&self, preedit: &str);
 
+    #[doc(alias = "select-all")]
     fn connect_select_all<F: Fn(&Self, bool) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_select_all(&self, select: bool);
 
+    #[doc(alias = "set-anchor")]
     fn connect_set_anchor<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_set_anchor(&self);
 
+    #[doc(alias = "toggle-cursor-visible")]
     fn connect_toggle_cursor_visible<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_toggle_cursor_visible(&self);
 
+    #[doc(alias = "toggle-overwrite")]
     fn connect_toggle_overwrite<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_toggle_overwrite(&self);
 
-    fn connect_property_accepts_tab_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "accepts-tab")]
+    fn connect_accepts_tab_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_bottom_margin_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "bottom-margin")]
+    fn connect_bottom_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "buffer")]
+    fn connect_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_cursor_visible_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "cursor-visible")]
+    fn connect_cursor_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "editable")]
+    fn connect_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_extra_menu_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "extra-menu")]
+    fn connect_extra_menu_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_im_module_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "im-module")]
+    fn connect_im_module_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_indent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "indent")]
+    fn connect_indent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_input_hints_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "input-hints")]
+    fn connect_input_hints_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_input_purpose_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "input-purpose")]
+    fn connect_input_purpose_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_justification_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "justification")]
+    fn connect_justification_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_left_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "left-margin")]
+    fn connect_left_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_monospace_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "monospace")]
+    fn connect_monospace_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_overwrite_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "overwrite")]
+    fn connect_overwrite_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_pixels_above_lines_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "pixels-above-lines")]
+    fn connect_pixels_above_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_pixels_below_lines_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "pixels-below-lines")]
+    fn connect_pixels_below_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_pixels_inside_wrap_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "pixels-inside-wrap")]
+    fn connect_pixels_inside_wrap_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_right_margin_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
+    #[doc(alias = "right-margin")]
+    fn connect_right_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_tabs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "tabs")]
+    fn connect_tabs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_top_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "top-margin")]
+    fn connect_top_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_wrap_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "wrap-mode")]
+    fn connect_wrap_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<TextView>> TextViewExt for O {
@@ -1601,6 +1644,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "backspace")]
     fn connect_backspace<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn backspace_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -1632,6 +1676,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         };
     }
 
+    #[doc(alias = "copy-clipboard")]
     fn connect_copy_clipboard<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn copy_clipboard_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -1663,6 +1708,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         };
     }
 
+    #[doc(alias = "cut-clipboard")]
     fn connect_cut_clipboard<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn cut_clipboard_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -1694,6 +1740,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         };
     }
 
+    #[doc(alias = "delete-from-cursor")]
     fn connect_delete_from_cursor<F: Fn(&Self, DeleteType, i32) + 'static>(
         &self,
         f: F,
@@ -1737,6 +1784,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         };
     }
 
+    #[doc(alias = "extend-selection")]
     fn connect_extend_selection<
         F: Fn(&Self, TextExtendSelection, &TextIter, &TextIter, &TextIter) -> glib::signal::Inhibit
             + 'static,
@@ -1788,6 +1836,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
+    #[doc(alias = "insert-at-cursor")]
     fn connect_insert_at_cursor<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn insert_at_cursor_trampoline<P, F: Fn(&P, &str) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -1823,6 +1872,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         };
     }
 
+    #[doc(alias = "insert-emoji")]
     fn connect_insert_emoji<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn insert_emoji_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -1854,6 +1904,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         };
     }
 
+    #[doc(alias = "move-cursor")]
     fn connect_move_cursor<F: Fn(&Self, MovementStep, i32, bool) + 'static>(
         &self,
         f: F,
@@ -1899,6 +1950,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         };
     }
 
+    #[doc(alias = "move-viewport")]
     fn connect_move_viewport<F: Fn(&Self, ScrollStep, i32) + 'static>(
         &self,
         f: F,
@@ -1939,6 +1991,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         };
     }
 
+    #[doc(alias = "paste-clipboard")]
     fn connect_paste_clipboard<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn paste_clipboard_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -1970,6 +2023,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         };
     }
 
+    #[doc(alias = "preedit-changed")]
     fn connect_preedit_changed<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn preedit_changed_trampoline<P, F: Fn(&P, &str) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -2005,6 +2059,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         };
     }
 
+    #[doc(alias = "select-all")]
     fn connect_select_all<F: Fn(&Self, bool) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn select_all_trampoline<P, F: Fn(&P, bool) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -2040,6 +2095,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         };
     }
 
+    #[doc(alias = "set-anchor")]
     fn connect_set_anchor<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn set_anchor_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -2071,6 +2127,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         };
     }
 
+    #[doc(alias = "toggle-cursor-visible")]
     fn connect_toggle_cursor_visible<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn toggle_cursor_visible_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -2102,6 +2159,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         };
     }
 
+    #[doc(alias = "toggle-overwrite")]
     fn connect_toggle_overwrite<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn toggle_overwrite_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
@@ -2133,7 +2191,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         };
     }
 
-    fn connect_property_accepts_tab_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "accepts-tab")]
+    fn connect_accepts_tab_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_accepts_tab_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
@@ -2157,10 +2216,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn connect_property_bottom_margin_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "bottom-margin")]
+    fn connect_bottom_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_bottom_margin_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
@@ -2184,7 +2241,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn connect_property_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "buffer")]
+    fn connect_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_buffer_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
@@ -2208,10 +2266,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn connect_property_cursor_visible_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "cursor-visible")]
+    fn connect_cursor_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cursor_visible_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
@@ -2235,7 +2291,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn connect_property_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "editable")]
+    fn connect_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_editable_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
@@ -2259,7 +2316,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn connect_property_extra_menu_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "extra-menu")]
+    fn connect_extra_menu_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_extra_menu_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
@@ -2283,7 +2341,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn connect_property_im_module_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "im-module")]
+    fn connect_im_module_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_im_module_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
@@ -2307,7 +2366,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn connect_property_indent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "indent")]
+    fn connect_indent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_indent_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
@@ -2331,7 +2391,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn connect_property_input_hints_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "input-hints")]
+    fn connect_input_hints_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_hints_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
@@ -2355,10 +2416,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn connect_property_input_purpose_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "input-purpose")]
+    fn connect_input_purpose_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_purpose_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
@@ -2382,10 +2441,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn connect_property_justification_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "justification")]
+    fn connect_justification_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_justification_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
@@ -2409,7 +2466,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn connect_property_left_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "left-margin")]
+    fn connect_left_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_left_margin_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
@@ -2433,7 +2491,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn connect_property_monospace_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "monospace")]
+    fn connect_monospace_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_monospace_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
@@ -2457,7 +2516,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn connect_property_overwrite_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "overwrite")]
+    fn connect_overwrite_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_overwrite_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
@@ -2481,10 +2541,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn connect_property_pixels_above_lines_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "pixels-above-lines")]
+    fn connect_pixels_above_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pixels_above_lines_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
@@ -2508,10 +2566,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn connect_property_pixels_below_lines_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "pixels-below-lines")]
+    fn connect_pixels_below_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pixels_below_lines_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
@@ -2535,10 +2591,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn connect_property_pixels_inside_wrap_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "pixels-inside-wrap")]
+    fn connect_pixels_inside_wrap_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pixels_inside_wrap_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
@@ -2562,10 +2616,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn connect_property_right_margin_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "right-margin")]
+    fn connect_right_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_right_margin_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
@@ -2589,7 +2641,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn connect_property_tabs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "tabs")]
+    fn connect_tabs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tabs_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
@@ -2613,7 +2666,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn connect_property_top_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "top-margin")]
+    fn connect_top_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_top_margin_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
@@ -2637,7 +2691,8 @@ impl<O: IsA<TextView>> TextViewExt for O {
         }
     }
 
-    fn connect_property_wrap_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "wrap-mode")]
+    fn connect_wrap_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_wrap_mode_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,

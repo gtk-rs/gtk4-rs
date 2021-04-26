@@ -27,21 +27,25 @@ glib::wrapper! {
 
 impl GridLayoutChild {
     #[doc(alias = "gtk_grid_layout_child_get_column")]
+    #[doc(alias = "get_column")]
     pub fn column(&self) -> i32 {
         unsafe { ffi::gtk_grid_layout_child_get_column(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_grid_layout_child_get_column_span")]
+    #[doc(alias = "get_column_span")]
     pub fn column_span(&self) -> i32 {
         unsafe { ffi::gtk_grid_layout_child_get_column_span(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_grid_layout_child_get_row")]
+    #[doc(alias = "get_row")]
     pub fn row(&self) -> i32 {
         unsafe { ffi::gtk_grid_layout_child_get_row(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_grid_layout_child_get_row_span")]
+    #[doc(alias = "get_row_span")]
     pub fn row_span(&self) -> i32 {
         unsafe { ffi::gtk_grid_layout_child_get_row_span(self.to_glib_none().0) }
     }
@@ -74,7 +78,8 @@ impl GridLayoutChild {
         }
     }
 
-    pub fn connect_property_column_notify<F: Fn(&GridLayoutChild) + 'static>(
+    #[doc(alias = "column")]
+    pub fn connect_column_notify<F: Fn(&GridLayoutChild) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -99,7 +104,8 @@ impl GridLayoutChild {
         }
     }
 
-    pub fn connect_property_column_span_notify<F: Fn(&GridLayoutChild) + 'static>(
+    #[doc(alias = "column-span")]
+    pub fn connect_column_span_notify<F: Fn(&GridLayoutChild) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -124,10 +130,8 @@ impl GridLayoutChild {
         }
     }
 
-    pub fn connect_property_row_notify<F: Fn(&GridLayoutChild) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "row")]
+    pub fn connect_row_notify<F: Fn(&GridLayoutChild) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_row_trampoline<F: Fn(&GridLayoutChild) + 'static>(
             this: *mut ffi::GtkGridLayoutChild,
             _param_spec: glib::ffi::gpointer,
@@ -149,7 +153,8 @@ impl GridLayoutChild {
         }
     }
 
-    pub fn connect_property_row_span_notify<F: Fn(&GridLayoutChild) + 'static>(
+    #[doc(alias = "row-span")]
+    pub fn connect_row_span_notify<F: Fn(&GridLayoutChild) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

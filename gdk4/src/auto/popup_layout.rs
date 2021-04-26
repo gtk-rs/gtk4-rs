@@ -54,6 +54,7 @@ impl PopupLayout {
     }
 
     #[doc(alias = "gdk_popup_layout_get_anchor_hints")]
+    #[doc(alias = "get_anchor_hints")]
     pub fn anchor_hints(&self) -> AnchorHints {
         unsafe {
             from_glib(ffi::gdk_popup_layout_get_anchor_hints(
@@ -63,11 +64,13 @@ impl PopupLayout {
     }
 
     #[doc(alias = "gdk_popup_layout_get_anchor_rect")]
+    #[doc(alias = "get_anchor_rect")]
     pub fn anchor_rect(&self) -> Option<Rectangle> {
         unsafe { from_glib_none(ffi::gdk_popup_layout_get_anchor_rect(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_popup_layout_get_rect_anchor")]
+    #[doc(alias = "get_rect_anchor")]
     pub fn rect_anchor(&self) -> Gravity {
         unsafe { from_glib(ffi::gdk_popup_layout_get_rect_anchor(self.to_glib_none().0)) }
     }
@@ -75,6 +78,7 @@ impl PopupLayout {
     #[cfg(any(feature = "v4_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
     #[doc(alias = "gdk_popup_layout_get_shadow_width")]
+    #[doc(alias = "get_shadow_width")]
     pub fn shadow_width(&self) -> (i32, i32, i32, i32) {
         unsafe {
             let mut left = mem::MaybeUninit::uninit();
@@ -97,6 +101,7 @@ impl PopupLayout {
     }
 
     #[doc(alias = "gdk_popup_layout_get_surface_anchor")]
+    #[doc(alias = "get_surface_anchor")]
     pub fn surface_anchor(&self) -> Gravity {
         unsafe {
             from_glib(ffi::gdk_popup_layout_get_surface_anchor(

@@ -28,11 +28,13 @@ glib::wrapper! {
 pub const NONE_LIST_BASE: Option<&ListBase> = None;
 
 pub trait ListBaseExt: 'static {
-    fn connect_property_orientation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "orientation")]
+    fn connect_orientation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<ListBase>> ListBaseExt for O {
-    fn connect_property_orientation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "orientation")]
+    fn connect_orientation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_orientation_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkListBase,
             _param_spec: glib::ffi::gpointer,

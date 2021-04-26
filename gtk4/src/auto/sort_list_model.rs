@@ -39,6 +39,7 @@ impl SortListModel {
     }
 
     #[doc(alias = "gtk_sort_list_model_get_incremental")]
+    #[doc(alias = "get_incremental")]
     pub fn is_incremental(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_sort_list_model_get_incremental(
@@ -48,16 +49,19 @@ impl SortListModel {
     }
 
     #[doc(alias = "gtk_sort_list_model_get_model")]
+    #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_sort_list_model_get_model(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_sort_list_model_get_pending")]
+    #[doc(alias = "get_pending")]
     pub fn pending(&self) -> u32 {
         unsafe { ffi::gtk_sort_list_model_get_pending(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_sort_list_model_get_sorter")]
+    #[doc(alias = "get_sorter")]
     pub fn sorter(&self) -> Option<Sorter> {
         unsafe { from_glib_none(ffi::gtk_sort_list_model_get_sorter(self.to_glib_none().0)) }
     }
@@ -92,7 +96,8 @@ impl SortListModel {
         }
     }
 
-    pub fn connect_property_incremental_notify<F: Fn(&SortListModel) + 'static>(
+    #[doc(alias = "incremental")]
+    pub fn connect_incremental_notify<F: Fn(&SortListModel) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -117,10 +122,8 @@ impl SortListModel {
         }
     }
 
-    pub fn connect_property_model_notify<F: Fn(&SortListModel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "model")]
+    pub fn connect_model_notify<F: Fn(&SortListModel) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<F: Fn(&SortListModel) + 'static>(
             this: *mut ffi::GtkSortListModel,
             _param_spec: glib::ffi::gpointer,
@@ -142,10 +145,8 @@ impl SortListModel {
         }
     }
 
-    pub fn connect_property_pending_notify<F: Fn(&SortListModel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "pending")]
+    pub fn connect_pending_notify<F: Fn(&SortListModel) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pending_trampoline<F: Fn(&SortListModel) + 'static>(
             this: *mut ffi::GtkSortListModel,
             _param_spec: glib::ffi::gpointer,
@@ -167,10 +168,8 @@ impl SortListModel {
         }
     }
 
-    pub fn connect_property_sorter_notify<F: Fn(&SortListModel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "sorter")]
+    pub fn connect_sorter_notify<F: Fn(&SortListModel) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_sorter_trampoline<F: Fn(&SortListModel) + 'static>(
             this: *mut ffi::GtkSortListModel,
             _param_spec: glib::ffi::gpointer,

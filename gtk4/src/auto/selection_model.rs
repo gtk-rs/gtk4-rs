@@ -24,9 +24,11 @@ pub const NONE_SELECTION_MODEL: Option<&SelectionModel> = None;
 
 pub trait SelectionModelExt: 'static {
     #[doc(alias = "gtk_selection_model_get_selection")]
+    #[doc(alias = "get_selection")]
     fn selection(&self) -> Bitset;
 
     #[doc(alias = "gtk_selection_model_get_selection_in_range")]
+    #[doc(alias = "get_selection_in_range")]
     fn selection_in_range(&self, position: u32, n_items: u32) -> Bitset;
 
     #[doc(alias = "gtk_selection_model_is_selected")]
@@ -56,6 +58,7 @@ pub trait SelectionModelExt: 'static {
     #[doc(alias = "gtk_selection_model_unselect_range")]
     fn unselect_range(&self, position: u32, n_items: u32) -> bool;
 
+    #[doc(alias = "selection-changed")]
     fn connect_selection_changed<F: Fn(&Self, u32, u32) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
@@ -163,6 +166,7 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
         }
     }
 
+    #[doc(alias = "selection-changed")]
     fn connect_selection_changed<F: Fn(&Self, u32, u32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn selection_changed_trampoline<P, F: Fn(&P, u32, u32) + 'static>(
             this: *mut ffi::GtkSelectionModel,

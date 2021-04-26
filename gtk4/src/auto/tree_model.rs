@@ -29,27 +29,35 @@ pub trait TreeModelExt: 'static {
     fn foreach<P: FnMut(&TreeModel, &TreePath, &TreeIter) -> bool>(&self, func: P);
 
     #[doc(alias = "gtk_tree_model_get_column_type")]
+    #[doc(alias = "get_column_type")]
     fn column_type(&self, index_: i32) -> glib::types::Type;
 
     #[doc(alias = "gtk_tree_model_get_flags")]
+    #[doc(alias = "get_flags")]
     fn flags(&self) -> TreeModelFlags;
 
     #[doc(alias = "gtk_tree_model_get_iter")]
+    #[doc(alias = "get_iter")]
     fn iter(&self, path: &TreePath) -> Option<TreeIter>;
 
     #[doc(alias = "gtk_tree_model_get_iter_first")]
+    #[doc(alias = "get_iter_first")]
     fn iter_first(&self) -> Option<TreeIter>;
 
     #[doc(alias = "gtk_tree_model_get_iter_from_string")]
+    #[doc(alias = "get_iter_from_string")]
     fn iter_from_string(&self, path_string: &str) -> Option<TreeIter>;
 
     #[doc(alias = "gtk_tree_model_get_n_columns")]
+    #[doc(alias = "get_n_columns")]
     fn n_columns(&self) -> i32;
 
     #[doc(alias = "gtk_tree_model_get_path")]
+    #[doc(alias = "get_path")]
     fn path(&self, iter: &TreeIter) -> TreePath;
 
     #[doc(alias = "gtk_tree_model_get_string_from_iter")]
+    #[doc(alias = "get_string_from_iter")]
     fn string_from_iter(&self, iter: &TreeIter) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_tree_model_iter_children")]
@@ -85,23 +93,28 @@ pub trait TreeModelExt: 'static {
     #[doc(alias = "gtk_tree_model_row_inserted")]
     fn row_inserted(&self, path: &TreePath, iter: &TreeIter);
 
+    #[doc(alias = "row-changed")]
     fn connect_row_changed<F: Fn(&Self, &TreePath, &TreeIter) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
+    #[doc(alias = "row-deleted")]
     fn connect_row_deleted<F: Fn(&Self, &TreePath) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[doc(alias = "row-has-child-toggled")]
     fn connect_row_has_child_toggled<F: Fn(&Self, &TreePath, &TreeIter) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
+    #[doc(alias = "row-inserted")]
     fn connect_row_inserted<F: Fn(&Self, &TreePath, &TreeIter) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
+    //#[doc(alias = "rows-reordered")]
     //fn connect_rows_reordered<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
 }
 
@@ -342,6 +355,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[doc(alias = "row-changed")]
     fn connect_row_changed<F: Fn(&Self, &TreePath, &TreeIter) + 'static>(
         &self,
         f: F,
@@ -374,6 +388,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[doc(alias = "row-deleted")]
     fn connect_row_deleted<F: Fn(&Self, &TreePath) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn row_deleted_trampoline<P, F: Fn(&P, &TreePath) + 'static>(
             this: *mut ffi::GtkTreeModel,
@@ -401,6 +416,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[doc(alias = "row-has-child-toggled")]
     fn connect_row_has_child_toggled<F: Fn(&Self, &TreePath, &TreeIter) + 'static>(
         &self,
         f: F,
@@ -436,6 +452,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    #[doc(alias = "row-inserted")]
     fn connect_row_inserted<F: Fn(&Self, &TreePath, &TreeIter) + 'static>(
         &self,
         f: F,
@@ -468,6 +485,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
         }
     }
 
+    //#[doc(alias = "rows-reordered")]
     //fn connect_rows_reordered<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
     //    Unimplemented new_order: *.Pointer
     //}

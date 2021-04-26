@@ -40,6 +40,7 @@ impl ToplevelLayout {
     }
 
     #[doc(alias = "gdk_toplevel_layout_get_fullscreen")]
+    #[doc(alias = "get_fullscreen")]
     pub fn fullscreen(&self) -> Option<bool> {
         unsafe {
             let mut fullscreen = mem::MaybeUninit::uninit();
@@ -57,6 +58,7 @@ impl ToplevelLayout {
     }
 
     #[doc(alias = "gdk_toplevel_layout_get_fullscreen_monitor")]
+    #[doc(alias = "get_fullscreen_monitor")]
     pub fn fullscreen_monitor(&self) -> Option<Monitor> {
         unsafe {
             from_glib_none(ffi::gdk_toplevel_layout_get_fullscreen_monitor(
@@ -66,6 +68,7 @@ impl ToplevelLayout {
     }
 
     #[doc(alias = "gdk_toplevel_layout_get_maximized")]
+    #[doc(alias = "get_maximized")]
     pub fn maximized(&self) -> Option<bool> {
         unsafe {
             let mut maximized = mem::MaybeUninit::uninit();
@@ -83,6 +86,7 @@ impl ToplevelLayout {
     }
 
     #[doc(alias = "gdk_toplevel_layout_get_resizable")]
+    #[doc(alias = "get_resizable")]
     pub fn is_resizable(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_toplevel_layout_get_resizable(

@@ -23,6 +23,7 @@ pub const NONE_ROOT: Option<&Root> = None;
 
 pub trait RootExt: 'static {
     #[doc(alias = "gtk_root_get_focus")]
+    #[doc(alias = "get_focus")]
     fn focus(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_root_set_focus")]

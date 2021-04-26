@@ -23,7 +23,7 @@ impl fmt::Display for X11DeviceType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "X11DeviceType::{}",
             match *self {
                 Self::Logical => "Logical",
                 Self::Physical => "Physical",

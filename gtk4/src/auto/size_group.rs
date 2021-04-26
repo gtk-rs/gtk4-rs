@@ -40,11 +40,13 @@ impl SizeGroup {
     }
 
     #[doc(alias = "gtk_size_group_get_mode")]
+    #[doc(alias = "get_mode")]
     pub fn mode(&self) -> SizeGroupMode {
         unsafe { from_glib(ffi::gtk_size_group_get_mode(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_size_group_get_widgets")]
+    #[doc(alias = "get_widgets")]
     pub fn widgets(&self) -> Vec<Widget> {
         unsafe {
             FromGlibPtrContainer::from_glib_none(ffi::gtk_size_group_get_widgets(
@@ -70,10 +72,8 @@ impl SizeGroup {
         }
     }
 
-    pub fn connect_property_mode_notify<F: Fn(&SizeGroup) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "mode")]
+    pub fn connect_mode_notify<F: Fn(&SizeGroup) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_mode_trampoline<F: Fn(&SizeGroup) + 'static>(
             this: *mut ffi::GtkSizeGroup,
             _param_spec: glib::ffi::gpointer,

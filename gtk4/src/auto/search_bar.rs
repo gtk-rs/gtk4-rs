@@ -49,11 +49,13 @@ impl SearchBar {
     }
 
     #[doc(alias = "gtk_search_bar_get_child")]
+    #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_search_bar_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_search_bar_get_key_capture_widget")]
+    #[doc(alias = "get_key_capture_widget")]
     pub fn key_capture_widget(&self) -> Widget {
         unsafe {
             from_glib_none(ffi::gtk_search_bar_get_key_capture_widget(
@@ -63,11 +65,13 @@ impl SearchBar {
     }
 
     #[doc(alias = "gtk_search_bar_get_search_mode")]
+    #[doc(alias = "get_search_mode")]
     pub fn is_search_mode(&self) -> bool {
         unsafe { from_glib(ffi::gtk_search_bar_get_search_mode(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_search_bar_get_show_close_button")]
+    #[doc(alias = "get_show_close_button")]
     pub fn shows_close_button(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_search_bar_get_show_close_button(
@@ -110,7 +114,7 @@ impl SearchBar {
         }
     }
 
-    #[doc(alias = "get_property_search_mode_enabled")]
+    #[doc(alias = "search-mode-enabled")]
     pub fn is_search_mode_enabled(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -125,7 +129,7 @@ impl SearchBar {
         }
     }
 
-    #[doc(alias = "set_property_search_mode_enabled")]
+    #[doc(alias = "search-mode-enabled")]
     pub fn set_search_mode_enabled(&self, search_mode_enabled: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -136,10 +140,8 @@ impl SearchBar {
         }
     }
 
-    pub fn connect_property_child_notify<F: Fn(&SearchBar) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "child")]
+    pub fn connect_child_notify<F: Fn(&SearchBar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&SearchBar) + 'static>(
             this: *mut ffi::GtkSearchBar,
             _param_spec: glib::ffi::gpointer,
@@ -161,7 +163,8 @@ impl SearchBar {
         }
     }
 
-    pub fn connect_property_key_capture_widget_notify<F: Fn(&SearchBar) + 'static>(
+    #[doc(alias = "key-capture-widget")]
+    pub fn connect_key_capture_widget_notify<F: Fn(&SearchBar) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -186,7 +189,8 @@ impl SearchBar {
         }
     }
 
-    pub fn connect_property_search_mode_enabled_notify<F: Fn(&SearchBar) + 'static>(
+    #[doc(alias = "search-mode-enabled")]
+    pub fn connect_search_mode_enabled_notify<F: Fn(&SearchBar) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -211,7 +215,8 @@ impl SearchBar {
         }
     }
 
-    pub fn connect_property_show_close_button_notify<F: Fn(&SearchBar) + 'static>(
+    #[doc(alias = "show-close-button")]
+    pub fn connect_show_close_button_notify<F: Fn(&SearchBar) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

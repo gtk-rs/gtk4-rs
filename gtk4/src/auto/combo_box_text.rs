@@ -38,6 +38,7 @@ impl ComboBoxText {
     }
 
     #[doc(alias = "gtk_combo_box_text_new_with_entry")]
+    #[doc(alias = "new_with_entry")]
     pub fn with_entry() -> ComboBoxText {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_combo_box_text_new_with_entry()).unsafe_cast() }
@@ -62,6 +63,7 @@ impl ComboBoxText {
     }
 
     #[doc(alias = "gtk_combo_box_text_get_active_text")]
+    #[doc(alias = "get_active_text")]
     pub fn active_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::gtk_combo_box_text_get_active_text(

@@ -49,6 +49,7 @@ impl Scale {
     }
 
     #[doc(alias = "gtk_scale_new_with_range")]
+    #[doc(alias = "new_with_range")]
     pub fn with_range(orientation: Orientation, min: f64, max: f64, step: f64) -> Scale {
         assert_initialized_main_thread!();
         unsafe {
@@ -457,21 +458,27 @@ pub trait ScaleExt: 'static {
     fn clear_marks(&self);
 
     #[doc(alias = "gtk_scale_get_digits")]
+    #[doc(alias = "get_digits")]
     fn digits(&self) -> i32;
 
     #[doc(alias = "gtk_scale_get_draw_value")]
+    #[doc(alias = "get_draw_value")]
     fn draws_value(&self) -> bool;
 
     #[doc(alias = "gtk_scale_get_has_origin")]
+    #[doc(alias = "get_has_origin")]
     fn has_origin(&self) -> bool;
 
     #[doc(alias = "gtk_scale_get_layout")]
+    #[doc(alias = "get_layout")]
     fn layout(&self) -> Option<pango::Layout>;
 
     #[doc(alias = "gtk_scale_get_layout_offsets")]
+    #[doc(alias = "get_layout_offsets")]
     fn layout_offsets(&self) -> (i32, i32);
 
     #[doc(alias = "gtk_scale_get_value_pos")]
+    #[doc(alias = "get_value_pos")]
     fn value_pos(&self) -> PositionType;
 
     #[doc(alias = "gtk_scale_set_digits")]
@@ -489,13 +496,17 @@ pub trait ScaleExt: 'static {
     #[doc(alias = "gtk_scale_set_value_pos")]
     fn set_value_pos(&self, pos: PositionType);
 
-    fn connect_property_digits_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "digits")]
+    fn connect_digits_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_draw_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "draw-value")]
+    fn connect_draw_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_has_origin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "has-origin")]
+    fn connect_has_origin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_value_pos_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "value-pos")]
+    fn connect_value_pos_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<Scale>> ScaleExt for O {
@@ -613,7 +624,8 @@ impl<O: IsA<Scale>> ScaleExt for O {
         }
     }
 
-    fn connect_property_digits_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "digits")]
+    fn connect_digits_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_digits_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScale,
             _param_spec: glib::ffi::gpointer,
@@ -637,7 +649,8 @@ impl<O: IsA<Scale>> ScaleExt for O {
         }
     }
 
-    fn connect_property_draw_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "draw-value")]
+    fn connect_draw_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_draw_value_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScale,
             _param_spec: glib::ffi::gpointer,
@@ -661,7 +674,8 @@ impl<O: IsA<Scale>> ScaleExt for O {
         }
     }
 
-    fn connect_property_has_origin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "has-origin")]
+    fn connect_has_origin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_origin_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScale,
             _param_spec: glib::ffi::gpointer,
@@ -685,7 +699,8 @@ impl<O: IsA<Scale>> ScaleExt for O {
         }
     }
 
-    fn connect_property_value_pos_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "value-pos")]
+    fn connect_value_pos_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_value_pos_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScale,
             _param_spec: glib::ffi::gpointer,

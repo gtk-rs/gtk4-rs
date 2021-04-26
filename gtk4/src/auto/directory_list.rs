@@ -35,6 +35,7 @@ impl DirectoryList {
     }
 
     #[doc(alias = "gtk_directory_list_get_attributes")]
+    #[doc(alias = "get_attributes")]
     pub fn attributes(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_directory_list_get_attributes(
@@ -44,21 +45,25 @@ impl DirectoryList {
     }
 
     #[doc(alias = "gtk_directory_list_get_error")]
+    #[doc(alias = "get_error")]
     pub fn error(&self) -> Option<glib::Error> {
         unsafe { from_glib_none(ffi::gtk_directory_list_get_error(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_directory_list_get_file")]
+    #[doc(alias = "get_file")]
     pub fn file(&self) -> Option<gio::File> {
         unsafe { from_glib_none(ffi::gtk_directory_list_get_file(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_directory_list_get_io_priority")]
+    #[doc(alias = "get_io_priority")]
     pub fn io_priority(&self) -> i32 {
         unsafe { ffi::gtk_directory_list_get_io_priority(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_directory_list_get_monitored")]
+    #[doc(alias = "get_monitored")]
     pub fn is_monitored(&self) -> bool {
         unsafe { from_glib(ffi::gtk_directory_list_get_monitored(self.to_glib_none().0)) }
     }
@@ -102,7 +107,8 @@ impl DirectoryList {
         }
     }
 
-    pub fn connect_property_attributes_notify<F: Fn(&DirectoryList) + 'static>(
+    #[doc(alias = "attributes")]
+    pub fn connect_attributes_notify<F: Fn(&DirectoryList) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -127,10 +133,8 @@ impl DirectoryList {
         }
     }
 
-    pub fn connect_property_error_notify<F: Fn(&DirectoryList) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "error")]
+    pub fn connect_error_notify<F: Fn(&DirectoryList) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_error_trampoline<F: Fn(&DirectoryList) + 'static>(
             this: *mut ffi::GtkDirectoryList,
             _param_spec: glib::ffi::gpointer,
@@ -152,10 +156,8 @@ impl DirectoryList {
         }
     }
 
-    pub fn connect_property_file_notify<F: Fn(&DirectoryList) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "file")]
+    pub fn connect_file_notify<F: Fn(&DirectoryList) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_file_trampoline<F: Fn(&DirectoryList) + 'static>(
             this: *mut ffi::GtkDirectoryList,
             _param_spec: glib::ffi::gpointer,
@@ -177,7 +179,8 @@ impl DirectoryList {
         }
     }
 
-    pub fn connect_property_io_priority_notify<F: Fn(&DirectoryList) + 'static>(
+    #[doc(alias = "io-priority")]
+    pub fn connect_io_priority_notify<F: Fn(&DirectoryList) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -202,10 +205,8 @@ impl DirectoryList {
         }
     }
 
-    pub fn connect_property_loading_notify<F: Fn(&DirectoryList) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "loading")]
+    pub fn connect_loading_notify<F: Fn(&DirectoryList) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_loading_trampoline<F: Fn(&DirectoryList) + 'static>(
             this: *mut ffi::GtkDirectoryList,
             _param_spec: glib::ffi::gpointer,
@@ -227,7 +228,8 @@ impl DirectoryList {
         }
     }
 
-    pub fn connect_property_monitored_notify<F: Fn(&DirectoryList) + 'static>(
+    #[doc(alias = "monitored")]
+    pub fn connect_monitored_notify<F: Fn(&DirectoryList) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

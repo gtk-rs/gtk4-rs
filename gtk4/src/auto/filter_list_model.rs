@@ -39,11 +39,13 @@ impl FilterListModel {
     }
 
     #[doc(alias = "gtk_filter_list_model_get_filter")]
+    #[doc(alias = "get_filter")]
     pub fn filter(&self) -> Option<Filter> {
         unsafe { from_glib_none(ffi::gtk_filter_list_model_get_filter(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_filter_list_model_get_incremental")]
+    #[doc(alias = "get_incremental")]
     pub fn is_incremental(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_filter_list_model_get_incremental(
@@ -53,11 +55,13 @@ impl FilterListModel {
     }
 
     #[doc(alias = "gtk_filter_list_model_get_model")]
+    #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_filter_list_model_get_model(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_filter_list_model_get_pending")]
+    #[doc(alias = "get_pending")]
     pub fn pending(&self) -> u32 {
         unsafe { ffi::gtk_filter_list_model_get_pending(self.to_glib_none().0) }
     }
@@ -92,7 +96,8 @@ impl FilterListModel {
         }
     }
 
-    pub fn connect_property_filter_notify<F: Fn(&FilterListModel) + 'static>(
+    #[doc(alias = "filter")]
+    pub fn connect_filter_notify<F: Fn(&FilterListModel) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -117,7 +122,8 @@ impl FilterListModel {
         }
     }
 
-    pub fn connect_property_incremental_notify<F: Fn(&FilterListModel) + 'static>(
+    #[doc(alias = "incremental")]
+    pub fn connect_incremental_notify<F: Fn(&FilterListModel) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -142,10 +148,8 @@ impl FilterListModel {
         }
     }
 
-    pub fn connect_property_model_notify<F: Fn(&FilterListModel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "model")]
+    pub fn connect_model_notify<F: Fn(&FilterListModel) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<F: Fn(&FilterListModel) + 'static>(
             this: *mut ffi::GtkFilterListModel,
             _param_spec: glib::ffi::gpointer,
@@ -167,7 +171,8 @@ impl FilterListModel {
         }
     }
 
-    pub fn connect_property_pending_notify<F: Fn(&FilterListModel) + 'static>(
+    #[doc(alias = "pending")]
+    pub fn connect_pending_notify<F: Fn(&FilterListModel) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

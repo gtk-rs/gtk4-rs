@@ -20,21 +20,25 @@ glib::wrapper! {
 
 impl DeviceTool {
     #[doc(alias = "gdk_device_tool_get_axes")]
+    #[doc(alias = "get_axes")]
     pub fn axes(&self) -> AxisFlags {
         unsafe { from_glib(ffi::gdk_device_tool_get_axes(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_tool_get_hardware_id")]
+    #[doc(alias = "get_hardware_id")]
     pub fn hardware_id(&self) -> u64 {
         unsafe { ffi::gdk_device_tool_get_hardware_id(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_device_tool_get_serial")]
+    #[doc(alias = "get_serial")]
     pub fn serial(&self) -> u64 {
         unsafe { ffi::gdk_device_tool_get_serial(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_device_tool_get_tool_type")]
+    #[doc(alias = "get_tool_type")]
     pub fn tool_type(&self) -> DeviceToolType {
         unsafe { from_glib(ffi::gdk_device_tool_get_tool_type(self.to_glib_none().0)) }
     }

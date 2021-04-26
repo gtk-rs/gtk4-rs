@@ -57,11 +57,13 @@ impl ColumnView {
     }
 
     #[doc(alias = "gtk_column_view_get_columns")]
+    #[doc(alias = "get_columns")]
     pub fn columns(&self) -> gio::ListModel {
         unsafe { from_glib_none(ffi::gtk_column_view_get_columns(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_column_view_get_enable_rubberband")]
+    #[doc(alias = "get_enable_rubberband")]
     pub fn enables_rubberband(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_get_enable_rubberband(
@@ -71,16 +73,19 @@ impl ColumnView {
     }
 
     #[doc(alias = "gtk_column_view_get_model")]
+    #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<SelectionModel> {
         unsafe { from_glib_none(ffi::gtk_column_view_get_model(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_column_view_get_reorderable")]
+    #[doc(alias = "get_reorderable")]
     pub fn is_reorderable(&self) -> bool {
         unsafe { from_glib(ffi::gtk_column_view_get_reorderable(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_column_view_get_show_column_separators")]
+    #[doc(alias = "get_show_column_separators")]
     pub fn shows_column_separators(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_get_show_column_separators(
@@ -90,6 +95,7 @@ impl ColumnView {
     }
 
     #[doc(alias = "gtk_column_view_get_show_row_separators")]
+    #[doc(alias = "get_show_row_separators")]
     pub fn shows_row_separators(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_get_show_row_separators(
@@ -99,6 +105,7 @@ impl ColumnView {
     }
 
     #[doc(alias = "gtk_column_view_get_single_click_activate")]
+    #[doc(alias = "get_single_click_activate")]
     pub fn is_single_click_activate(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_get_single_click_activate(
@@ -108,6 +115,7 @@ impl ColumnView {
     }
 
     #[doc(alias = "gtk_column_view_get_sorter")]
+    #[doc(alias = "get_sorter")]
     pub fn sorter(&self) -> Option<Sorter> {
         unsafe { from_glib_none(ffi::gtk_column_view_get_sorter(self.to_glib_none().0)) }
     }
@@ -198,6 +206,7 @@ impl ColumnView {
         }
     }
 
+    #[doc(alias = "activate")]
     pub fn connect_activate<F: Fn(&ColumnView, u32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<F: Fn(&ColumnView, u32) + 'static>(
             this: *mut ffi::GtkColumnView,
@@ -220,10 +229,8 @@ impl ColumnView {
         }
     }
 
-    pub fn connect_property_columns_notify<F: Fn(&ColumnView) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "columns")]
+    pub fn connect_columns_notify<F: Fn(&ColumnView) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_columns_trampoline<F: Fn(&ColumnView) + 'static>(
             this: *mut ffi::GtkColumnView,
             _param_spec: glib::ffi::gpointer,
@@ -245,7 +252,8 @@ impl ColumnView {
         }
     }
 
-    pub fn connect_property_enable_rubberband_notify<F: Fn(&ColumnView) + 'static>(
+    #[doc(alias = "enable-rubberband")]
+    pub fn connect_enable_rubberband_notify<F: Fn(&ColumnView) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -270,10 +278,8 @@ impl ColumnView {
         }
     }
 
-    pub fn connect_property_model_notify<F: Fn(&ColumnView) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "model")]
+    pub fn connect_model_notify<F: Fn(&ColumnView) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<F: Fn(&ColumnView) + 'static>(
             this: *mut ffi::GtkColumnView,
             _param_spec: glib::ffi::gpointer,
@@ -295,7 +301,8 @@ impl ColumnView {
         }
     }
 
-    pub fn connect_property_reorderable_notify<F: Fn(&ColumnView) + 'static>(
+    #[doc(alias = "reorderable")]
+    pub fn connect_reorderable_notify<F: Fn(&ColumnView) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -320,7 +327,8 @@ impl ColumnView {
         }
     }
 
-    pub fn connect_property_show_column_separators_notify<F: Fn(&ColumnView) + 'static>(
+    #[doc(alias = "show-column-separators")]
+    pub fn connect_show_column_separators_notify<F: Fn(&ColumnView) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -347,7 +355,8 @@ impl ColumnView {
         }
     }
 
-    pub fn connect_property_show_row_separators_notify<F: Fn(&ColumnView) + 'static>(
+    #[doc(alias = "show-row-separators")]
+    pub fn connect_show_row_separators_notify<F: Fn(&ColumnView) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -372,7 +381,8 @@ impl ColumnView {
         }
     }
 
-    pub fn connect_property_single_click_activate_notify<F: Fn(&ColumnView) + 'static>(
+    #[doc(alias = "single-click-activate")]
+    pub fn connect_single_click_activate_notify<F: Fn(&ColumnView) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -399,10 +409,8 @@ impl ColumnView {
         }
     }
 
-    pub fn connect_property_sorter_notify<F: Fn(&ColumnView) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "sorter")]
+    pub fn connect_sorter_notify<F: Fn(&ColumnView) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_sorter_trampoline<F: Fn(&ColumnView) + 'static>(
             this: *mut ffi::GtkColumnView,
             _param_spec: glib::ffi::gpointer,

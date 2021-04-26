@@ -36,6 +36,7 @@ impl EventControllerScroll {
     }
 
     #[doc(alias = "gtk_event_controller_scroll_get_flags")]
+    #[doc(alias = "get_flags")]
     pub fn flags(&self) -> EventControllerScrollFlags {
         unsafe {
             from_glib(ffi::gtk_event_controller_scroll_get_flags(
@@ -51,6 +52,7 @@ impl EventControllerScroll {
         }
     }
 
+    #[doc(alias = "decelerate")]
     pub fn connect_decelerate<F: Fn(&EventControllerScroll, f64, f64) + 'static>(
         &self,
         f: F,
@@ -79,6 +81,7 @@ impl EventControllerScroll {
         }
     }
 
+    #[doc(alias = "scroll")]
     pub fn connect_scroll<
         F: Fn(&EventControllerScroll, f64, f64) -> glib::signal::Inhibit + 'static,
     >(
@@ -109,6 +112,7 @@ impl EventControllerScroll {
         }
     }
 
+    #[doc(alias = "scroll-begin")]
     pub fn connect_scroll_begin<F: Fn(&EventControllerScroll) + 'static>(
         &self,
         f: F,
@@ -133,6 +137,7 @@ impl EventControllerScroll {
         }
     }
 
+    #[doc(alias = "scroll-end")]
     pub fn connect_scroll_end<F: Fn(&EventControllerScroll) + 'static>(
         &self,
         f: F,
@@ -157,7 +162,8 @@ impl EventControllerScroll {
         }
     }
 
-    pub fn connect_property_flags_notify<F: Fn(&EventControllerScroll) + 'static>(
+    #[doc(alias = "flags")]
+    pub fn connect_flags_notify<F: Fn(&EventControllerScroll) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

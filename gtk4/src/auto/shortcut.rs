@@ -40,21 +40,25 @@ impl Shortcut {
     }
 
     //#[doc(alias = "gtk_shortcut_new_with_arguments")]
+    //#[doc(alias = "new_with_arguments")]
     //pub fn with_arguments<P: IsA<ShortcutTrigger>, Q: IsA<ShortcutAction>>(trigger: Option<&P>, action: Option<&Q>, format_string: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Shortcut {
     //    unsafe { TODO: call ffi:gtk_shortcut_new_with_arguments() }
     //}
 
     #[doc(alias = "gtk_shortcut_get_action")]
+    #[doc(alias = "get_action")]
     pub fn action(&self) -> Option<ShortcutAction> {
         unsafe { from_glib_none(ffi::gtk_shortcut_get_action(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_shortcut_get_arguments")]
+    #[doc(alias = "get_arguments")]
     pub fn arguments(&self) -> Option<glib::Variant> {
         unsafe { from_glib_none(ffi::gtk_shortcut_get_arguments(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_shortcut_get_trigger")]
+    #[doc(alias = "get_trigger")]
     pub fn trigger(&self) -> Option<ShortcutTrigger> {
         unsafe { from_glib_none(ffi::gtk_shortcut_get_trigger(self.to_glib_none().0)) }
     }
@@ -86,10 +90,8 @@ impl Shortcut {
         }
     }
 
-    pub fn connect_property_action_notify<F: Fn(&Shortcut) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "action")]
+    pub fn connect_action_notify<F: Fn(&Shortcut) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_action_trampoline<F: Fn(&Shortcut) + 'static>(
             this: *mut ffi::GtkShortcut,
             _param_spec: glib::ffi::gpointer,
@@ -111,10 +113,8 @@ impl Shortcut {
         }
     }
 
-    pub fn connect_property_arguments_notify<F: Fn(&Shortcut) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "arguments")]
+    pub fn connect_arguments_notify<F: Fn(&Shortcut) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_arguments_trampoline<F: Fn(&Shortcut) + 'static>(
             this: *mut ffi::GtkShortcut,
             _param_spec: glib::ffi::gpointer,
@@ -136,10 +136,8 @@ impl Shortcut {
         }
     }
 
-    pub fn connect_property_trigger_notify<F: Fn(&Shortcut) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "trigger")]
+    pub fn connect_trigger_notify<F: Fn(&Shortcut) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_trigger_trampoline<F: Fn(&Shortcut) + 'static>(
             this: *mut ffi::GtkShortcut,
             _param_spec: glib::ffi::gpointer,

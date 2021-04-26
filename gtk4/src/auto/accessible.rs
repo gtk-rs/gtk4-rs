@@ -28,6 +28,7 @@ pub const NONE_ACCESSIBLE: Option<&Accessible> = None;
 
 pub trait AccessibleExt: 'static {
     #[doc(alias = "gtk_accessible_get_accessible_role")]
+    #[doc(alias = "get_accessible_role")]
     fn accessible_role(&self) -> AccessibleRole;
 
     #[doc(alias = "gtk_accessible_reset_property")]
@@ -39,13 +40,11 @@ pub trait AccessibleExt: 'static {
     #[doc(alias = "gtk_accessible_reset_state")]
     fn reset_state(&self, state: AccessibleState);
 
-    #[doc(alias = "set_property_accessible_role")]
+    #[doc(alias = "accessible-role")]
     fn set_accessible_role(&self, accessible_role: AccessibleRole);
 
-    fn connect_property_accessible_role_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "accessible-role")]
+    fn connect_accessible_role_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<Accessible>> AccessibleExt for O {
@@ -91,10 +90,8 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
         }
     }
 
-    fn connect_property_accessible_role_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "accessible-role")]
+    fn connect_accessible_role_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_accessible_role_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkAccessible,
             _param_spec: glib::ffi::gpointer,

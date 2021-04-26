@@ -25,31 +25,37 @@ glib::wrapper! {
 
 impl ListItem {
     #[doc(alias = "gtk_list_item_get_activatable")]
+    #[doc(alias = "get_activatable")]
     pub fn is_activatable(&self) -> bool {
         unsafe { from_glib(ffi::gtk_list_item_get_activatable(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_list_item_get_child")]
+    #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_list_item_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_list_item_get_item")]
+    #[doc(alias = "get_item")]
     pub fn item(&self) -> Option<glib::Object> {
         unsafe { from_glib_none(ffi::gtk_list_item_get_item(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_list_item_get_position")]
+    #[doc(alias = "get_position")]
     pub fn position(&self) -> u32 {
         unsafe { ffi::gtk_list_item_get_position(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_list_item_get_selectable")]
+    #[doc(alias = "get_selectable")]
     pub fn is_selectable(&self) -> bool {
         unsafe { from_glib(ffi::gtk_list_item_get_selectable(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_list_item_get_selected")]
+    #[doc(alias = "get_selected")]
     pub fn is_selected(&self) -> bool {
         unsafe { from_glib(ffi::gtk_list_item_get_selected(self.to_glib_none().0)) }
     }
@@ -78,10 +84,8 @@ impl ListItem {
         }
     }
 
-    pub fn connect_property_activatable_notify<F: Fn(&ListItem) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "activatable")]
+    pub fn connect_activatable_notify<F: Fn(&ListItem) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_activatable_trampoline<F: Fn(&ListItem) + 'static>(
             this: *mut ffi::GtkListItem,
             _param_spec: glib::ffi::gpointer,
@@ -103,10 +107,8 @@ impl ListItem {
         }
     }
 
-    pub fn connect_property_child_notify<F: Fn(&ListItem) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "child")]
+    pub fn connect_child_notify<F: Fn(&ListItem) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&ListItem) + 'static>(
             this: *mut ffi::GtkListItem,
             _param_spec: glib::ffi::gpointer,
@@ -128,10 +130,8 @@ impl ListItem {
         }
     }
 
-    pub fn connect_property_item_notify<F: Fn(&ListItem) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "item")]
+    pub fn connect_item_notify<F: Fn(&ListItem) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_item_trampoline<F: Fn(&ListItem) + 'static>(
             this: *mut ffi::GtkListItem,
             _param_spec: glib::ffi::gpointer,
@@ -153,10 +153,8 @@ impl ListItem {
         }
     }
 
-    pub fn connect_property_position_notify<F: Fn(&ListItem) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "position")]
+    pub fn connect_position_notify<F: Fn(&ListItem) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_position_trampoline<F: Fn(&ListItem) + 'static>(
             this: *mut ffi::GtkListItem,
             _param_spec: glib::ffi::gpointer,
@@ -178,10 +176,8 @@ impl ListItem {
         }
     }
 
-    pub fn connect_property_selectable_notify<F: Fn(&ListItem) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "selectable")]
+    pub fn connect_selectable_notify<F: Fn(&ListItem) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selectable_trampoline<F: Fn(&ListItem) + 'static>(
             this: *mut ffi::GtkListItem,
             _param_spec: glib::ffi::gpointer,
@@ -203,10 +199,8 @@ impl ListItem {
         }
     }
 
-    pub fn connect_property_selected_notify<F: Fn(&ListItem) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "selected")]
+    pub fn connect_selected_notify<F: Fn(&ListItem) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_trampoline<F: Fn(&ListItem) + 'static>(
             this: *mut ffi::GtkListItem,
             _param_spec: glib::ffi::gpointer,

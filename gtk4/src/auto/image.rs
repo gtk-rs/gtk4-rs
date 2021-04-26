@@ -40,6 +40,7 @@ impl Image {
     }
 
     #[doc(alias = "gtk_image_new_from_file")]
+    #[doc(alias = "new_from_file")]
     pub fn from_file<P: AsRef<std::path::Path>>(filename: P) -> Image {
         assert_initialized_main_thread!();
         unsafe {
@@ -51,6 +52,7 @@ impl Image {
     }
 
     #[doc(alias = "gtk_image_new_from_gicon")]
+    #[doc(alias = "new_from_gicon")]
     pub fn from_gicon<P: IsA<gio::Icon>>(icon: &P) -> Image {
         assert_initialized_main_thread!();
         unsafe {
@@ -62,6 +64,7 @@ impl Image {
     }
 
     #[doc(alias = "gtk_image_new_from_icon_name")]
+    #[doc(alias = "new_from_icon_name")]
     pub fn from_icon_name(icon_name: Option<&str>) -> Image {
         assert_initialized_main_thread!();
         unsafe {
@@ -73,6 +76,7 @@ impl Image {
     }
 
     #[doc(alias = "gtk_image_new_from_paintable")]
+    #[doc(alias = "new_from_paintable")]
     pub fn from_paintable<P: IsA<gdk::Paintable>>(paintable: Option<&P>) -> Image {
         assert_initialized_main_thread!();
         unsafe {
@@ -84,6 +88,7 @@ impl Image {
     }
 
     #[doc(alias = "gtk_image_new_from_pixbuf")]
+    #[doc(alias = "new_from_pixbuf")]
     pub fn from_pixbuf(pixbuf: Option<&gdk_pixbuf::Pixbuf>) -> Image {
         assert_initialized_main_thread!();
         unsafe {
@@ -93,6 +98,7 @@ impl Image {
     }
 
     #[doc(alias = "gtk_image_new_from_resource")]
+    #[doc(alias = "new_from_resource")]
     pub fn from_resource(resource_path: &str) -> Image {
         assert_initialized_main_thread!();
         unsafe {
@@ -111,31 +117,37 @@ impl Image {
     }
 
     #[doc(alias = "gtk_image_get_gicon")]
+    #[doc(alias = "get_gicon")]
     pub fn gicon(&self) -> Option<gio::Icon> {
         unsafe { from_glib_none(ffi::gtk_image_get_gicon(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_image_get_icon_name")]
+    #[doc(alias = "get_icon_name")]
     pub fn icon_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_image_get_icon_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_image_get_icon_size")]
+    #[doc(alias = "get_icon_size")]
     pub fn icon_size(&self) -> IconSize {
         unsafe { from_glib(ffi::gtk_image_get_icon_size(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_image_get_paintable")]
+    #[doc(alias = "get_paintable")]
     pub fn paintable(&self) -> Option<gdk::Paintable> {
         unsafe { from_glib_none(ffi::gtk_image_get_paintable(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_image_get_pixel_size")]
+    #[doc(alias = "get_pixel_size")]
     pub fn pixel_size(&self) -> i32 {
         unsafe { ffi::gtk_image_get_pixel_size(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_image_get_storage_type")]
+    #[doc(alias = "get_storage_type")]
     pub fn storage_type(&self) -> ImageType {
         unsafe { from_glib(ffi::gtk_image_get_storage_type(self.to_glib_none().0)) }
     }
@@ -199,7 +211,6 @@ impl Image {
         }
     }
 
-    #[doc(alias = "get_property_file")]
     pub fn file(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -214,7 +225,6 @@ impl Image {
         }
     }
 
-    #[doc(alias = "set_property_file")]
     pub fn set_file(&self, file: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -225,7 +235,6 @@ impl Image {
         }
     }
 
-    #[doc(alias = "set_property_gicon")]
     pub fn set_gicon<P: IsA<gio::Icon>>(&self, gicon: Option<&P>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -236,7 +245,7 @@ impl Image {
         }
     }
 
-    #[doc(alias = "set_property_icon_name")]
+    #[doc(alias = "icon-name")]
     pub fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -247,7 +256,6 @@ impl Image {
         }
     }
 
-    #[doc(alias = "set_property_paintable")]
     pub fn set_paintable<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -258,7 +266,6 @@ impl Image {
         }
     }
 
-    #[doc(alias = "get_property_resource")]
     pub fn resource(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -273,7 +280,6 @@ impl Image {
         }
     }
 
-    #[doc(alias = "set_property_resource")]
     pub fn set_resource(&self, resource: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -284,7 +290,7 @@ impl Image {
         }
     }
 
-    #[doc(alias = "get_property_use_fallback")]
+    #[doc(alias = "use-fallback")]
     pub fn uses_fallback(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -299,7 +305,7 @@ impl Image {
         }
     }
 
-    #[doc(alias = "set_property_use_fallback")]
+    #[doc(alias = "use-fallback")]
     pub fn set_use_fallback(&self, use_fallback: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -310,7 +316,8 @@ impl Image {
         }
     }
 
-    pub fn connect_property_file_notify<F: Fn(&Image) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "file")]
+    pub fn connect_file_notify<F: Fn(&Image) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_file_trampoline<F: Fn(&Image) + 'static>(
             this: *mut ffi::GtkImage,
             _param_spec: glib::ffi::gpointer,
@@ -332,7 +339,8 @@ impl Image {
         }
     }
 
-    pub fn connect_property_gicon_notify<F: Fn(&Image) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "gicon")]
+    pub fn connect_gicon_notify<F: Fn(&Image) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_gicon_trampoline<F: Fn(&Image) + 'static>(
             this: *mut ffi::GtkImage,
             _param_spec: glib::ffi::gpointer,
@@ -354,10 +362,8 @@ impl Image {
         }
     }
 
-    pub fn connect_property_icon_name_notify<F: Fn(&Image) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "icon-name")]
+    pub fn connect_icon_name_notify<F: Fn(&Image) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<F: Fn(&Image) + 'static>(
             this: *mut ffi::GtkImage,
             _param_spec: glib::ffi::gpointer,
@@ -379,10 +385,8 @@ impl Image {
         }
     }
 
-    pub fn connect_property_icon_size_notify<F: Fn(&Image) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "icon-size")]
+    pub fn connect_icon_size_notify<F: Fn(&Image) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_size_trampoline<F: Fn(&Image) + 'static>(
             this: *mut ffi::GtkImage,
             _param_spec: glib::ffi::gpointer,
@@ -404,10 +408,8 @@ impl Image {
         }
     }
 
-    pub fn connect_property_paintable_notify<F: Fn(&Image) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "paintable")]
+    pub fn connect_paintable_notify<F: Fn(&Image) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_paintable_trampoline<F: Fn(&Image) + 'static>(
             this: *mut ffi::GtkImage,
             _param_spec: glib::ffi::gpointer,
@@ -429,10 +431,8 @@ impl Image {
         }
     }
 
-    pub fn connect_property_pixel_size_notify<F: Fn(&Image) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "pixel-size")]
+    pub fn connect_pixel_size_notify<F: Fn(&Image) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pixel_size_trampoline<F: Fn(&Image) + 'static>(
             this: *mut ffi::GtkImage,
             _param_spec: glib::ffi::gpointer,
@@ -454,10 +454,8 @@ impl Image {
         }
     }
 
-    pub fn connect_property_resource_notify<F: Fn(&Image) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "resource")]
+    pub fn connect_resource_notify<F: Fn(&Image) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_resource_trampoline<F: Fn(&Image) + 'static>(
             this: *mut ffi::GtkImage,
             _param_spec: glib::ffi::gpointer,
@@ -479,10 +477,8 @@ impl Image {
         }
     }
 
-    pub fn connect_property_storage_type_notify<F: Fn(&Image) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "storage-type")]
+    pub fn connect_storage_type_notify<F: Fn(&Image) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_storage_type_trampoline<F: Fn(&Image) + 'static>(
             this: *mut ffi::GtkImage,
             _param_spec: glib::ffi::gpointer,
@@ -504,10 +500,8 @@ impl Image {
         }
     }
 
-    pub fn connect_property_use_fallback_notify<F: Fn(&Image) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "use-fallback")]
+    pub fn connect_use_fallback_notify<F: Fn(&Image) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_fallback_trampoline<F: Fn(&Image) + 'static>(
             this: *mut ffi::GtkImage,
             _param_spec: glib::ffi::gpointer,

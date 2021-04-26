@@ -372,24 +372,31 @@ pub trait GLAreaExt: 'static {
     fn attach_buffers(&self);
 
     #[doc(alias = "gtk_gl_area_get_auto_render")]
+    #[doc(alias = "get_auto_render")]
     fn is_auto_render(&self) -> bool;
 
     #[doc(alias = "gtk_gl_area_get_context")]
+    #[doc(alias = "get_context")]
     fn context(&self) -> Option<gdk::GLContext>;
 
     #[doc(alias = "gtk_gl_area_get_error")]
+    #[doc(alias = "get_error")]
     fn error(&self) -> Option<glib::Error>;
 
     #[doc(alias = "gtk_gl_area_get_has_depth_buffer")]
+    #[doc(alias = "get_has_depth_buffer")]
     fn has_depth_buffer(&self) -> bool;
 
     #[doc(alias = "gtk_gl_area_get_has_stencil_buffer")]
+    #[doc(alias = "get_has_stencil_buffer")]
     fn has_stencil_buffer(&self) -> bool;
 
     #[doc(alias = "gtk_gl_area_get_required_version")]
+    #[doc(alias = "get_required_version")]
     fn required_version(&self) -> (i32, i32);
 
     #[doc(alias = "gtk_gl_area_get_use_es")]
+    #[doc(alias = "get_use_es")]
     fn uses_es(&self) -> bool;
 
     #[doc(alias = "gtk_gl_area_make_current")]
@@ -416,33 +423,35 @@ pub trait GLAreaExt: 'static {
     #[doc(alias = "gtk_gl_area_set_use_es")]
     fn set_use_es(&self, use_es: bool);
 
+    #[doc(alias = "create-context")]
     fn connect_create_context<F: Fn(&Self) -> Option<gdk::GLContext> + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
+    #[doc(alias = "render")]
     fn connect_render<F: Fn(&Self, &gdk::GLContext) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
+    #[doc(alias = "resize")]
     fn connect_resize<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_auto_render_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "auto-render")]
+    fn connect_auto_render_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_context_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "context")]
+    fn connect_context_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_has_depth_buffer_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "has-depth-buffer")]
+    fn connect_has_depth_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_has_stencil_buffer_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "has-stencil-buffer")]
+    fn connect_has_stencil_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_use_es_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "use-es")]
+    fn connect_use_es_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<GLArea>> GLAreaExt for O {
@@ -560,6 +569,7 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
+    #[doc(alias = "create-context")]
     fn connect_create_context<F: Fn(&Self) -> Option<gdk::GLContext> + 'static>(
         &self,
         f: F,
@@ -590,6 +600,7 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
+    #[doc(alias = "render")]
     fn connect_render<F: Fn(&Self, &gdk::GLContext) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
@@ -625,6 +636,7 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
+    #[doc(alias = "resize")]
     fn connect_resize<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn resize_trampoline<P, F: Fn(&P, i32, i32) + 'static>(
             this: *mut ffi::GtkGLArea,
@@ -654,7 +666,8 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
-    fn connect_property_auto_render_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "auto-render")]
+    fn connect_auto_render_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_auto_render_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkGLArea,
             _param_spec: glib::ffi::gpointer,
@@ -678,7 +691,8 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
-    fn connect_property_context_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "context")]
+    fn connect_context_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_context_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkGLArea,
             _param_spec: glib::ffi::gpointer,
@@ -702,10 +716,8 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
-    fn connect_property_has_depth_buffer_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "has-depth-buffer")]
+    fn connect_has_depth_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_depth_buffer_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkGLArea,
             _param_spec: glib::ffi::gpointer,
@@ -729,10 +741,8 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
-    fn connect_property_has_stencil_buffer_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "has-stencil-buffer")]
+    fn connect_has_stencil_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_stencil_buffer_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkGLArea,
             _param_spec: glib::ffi::gpointer,
@@ -756,7 +766,8 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         }
     }
 
-    fn connect_property_use_es_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "use-es")]
+    fn connect_use_es_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_es_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkGLArea,
             _param_spec: glib::ffi::gpointer,

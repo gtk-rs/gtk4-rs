@@ -94,11 +94,13 @@ impl Surface {
     }
 
     #[doc(alias = "gdk_surface_get_cursor")]
+    #[doc(alias = "get_cursor")]
     pub fn cursor(&self) -> Option<Cursor> {
         unsafe { from_glib_none(ffi::gdk_surface_get_cursor(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_surface_get_device_cursor")]
+    #[doc(alias = "get_device_cursor")]
     pub fn device_cursor(&self, device: &Device) -> Option<Cursor> {
         unsafe {
             from_glib_none(ffi::gdk_surface_get_device_cursor(
@@ -109,6 +111,7 @@ impl Surface {
     }
 
     #[doc(alias = "gdk_surface_get_device_position")]
+    #[doc(alias = "get_device_position")]
     pub fn device_position(&self, device: &Device) -> Option<(f64, f64, ModifierType)> {
         unsafe {
             let mut x = mem::MaybeUninit::uninit();
@@ -133,31 +136,37 @@ impl Surface {
     }
 
     #[doc(alias = "gdk_surface_get_display")]
+    #[doc(alias = "get_display")]
     pub fn display(&self) -> Option<Display> {
         unsafe { from_glib_none(ffi::gdk_surface_get_display(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_surface_get_frame_clock")]
+    #[doc(alias = "get_frame_clock")]
     pub fn frame_clock(&self) -> Option<FrameClock> {
         unsafe { from_glib_none(ffi::gdk_surface_get_frame_clock(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_surface_get_height")]
+    #[doc(alias = "get_height")]
     pub fn height(&self) -> i32 {
         unsafe { ffi::gdk_surface_get_height(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_surface_get_mapped")]
+    #[doc(alias = "get_mapped")]
     pub fn is_mapped(&self) -> bool {
         unsafe { from_glib(ffi::gdk_surface_get_mapped(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_surface_get_scale_factor")]
+    #[doc(alias = "get_scale_factor")]
     pub fn scale_factor(&self) -> i32 {
         unsafe { ffi::gdk_surface_get_scale_factor(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_surface_get_width")]
+    #[doc(alias = "get_width")]
     pub fn width(&self) -> i32 {
         unsafe { ffi::gdk_surface_get_width(self.to_glib_none().0) }
     }
@@ -223,6 +232,7 @@ impl Surface {
         }
     }
 
+    #[doc(alias = "enter-monitor")]
     pub fn connect_enter_monitor<F: Fn(&Surface, &Monitor) + 'static>(
         &self,
         f: F,
@@ -248,6 +258,7 @@ impl Surface {
         }
     }
 
+    #[doc(alias = "event")]
     pub fn connect_event<F: Fn(&Surface, &Event) -> bool + 'static>(
         &self,
         f: F,
@@ -273,6 +284,7 @@ impl Surface {
         }
     }
 
+    #[doc(alias = "layout")]
     pub fn connect_layout<F: Fn(&Surface, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn layout_trampoline<F: Fn(&Surface, i32, i32) + 'static>(
             this: *mut ffi::GdkSurface,
@@ -296,6 +308,7 @@ impl Surface {
         }
     }
 
+    #[doc(alias = "leave-monitor")]
     pub fn connect_leave_monitor<F: Fn(&Surface, &Monitor) + 'static>(
         &self,
         f: F,
@@ -321,6 +334,7 @@ impl Surface {
         }
     }
 
+    #[doc(alias = "render")]
     pub fn connect_render<F: Fn(&Surface, &cairo::Region) -> bool + 'static>(
         &self,
         f: F,
@@ -348,10 +362,8 @@ impl Surface {
         }
     }
 
-    pub fn connect_property_cursor_notify<F: Fn(&Surface) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "cursor")]
+    pub fn connect_cursor_notify<F: Fn(&Surface) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cursor_trampoline<F: Fn(&Surface) + 'static>(
             this: *mut ffi::GdkSurface,
             _param_spec: glib::ffi::gpointer,
@@ -373,10 +385,8 @@ impl Surface {
         }
     }
 
-    pub fn connect_property_height_notify<F: Fn(&Surface) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "height")]
+    pub fn connect_height_notify<F: Fn(&Surface) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_height_trampoline<F: Fn(&Surface) + 'static>(
             this: *mut ffi::GdkSurface,
             _param_spec: glib::ffi::gpointer,
@@ -398,10 +408,8 @@ impl Surface {
         }
     }
 
-    pub fn connect_property_mapped_notify<F: Fn(&Surface) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "mapped")]
+    pub fn connect_mapped_notify<F: Fn(&Surface) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_mapped_trampoline<F: Fn(&Surface) + 'static>(
             this: *mut ffi::GdkSurface,
             _param_spec: glib::ffi::gpointer,
@@ -423,10 +431,8 @@ impl Surface {
         }
     }
 
-    pub fn connect_property_scale_factor_notify<F: Fn(&Surface) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "scale-factor")]
+    pub fn connect_scale_factor_notify<F: Fn(&Surface) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scale_factor_trampoline<F: Fn(&Surface) + 'static>(
             this: *mut ffi::GdkSurface,
             _param_spec: glib::ffi::gpointer,
@@ -448,10 +454,8 @@ impl Surface {
         }
     }
 
-    pub fn connect_property_width_notify<F: Fn(&Surface) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "width")]
+    pub fn connect_width_notify<F: Fn(&Surface) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_trampoline<F: Fn(&Surface) + 'static>(
             this: *mut ffi::GdkSurface,
             _param_spec: glib::ffi::gpointer,

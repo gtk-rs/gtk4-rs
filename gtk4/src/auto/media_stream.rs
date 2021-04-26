@@ -27,27 +27,35 @@ pub trait MediaStreamExt: 'static {
     fn ended(&self);
 
     #[doc(alias = "gtk_media_stream_get_duration")]
+    #[doc(alias = "get_duration")]
     fn duration(&self) -> i64;
 
     #[doc(alias = "gtk_media_stream_get_ended")]
+    #[doc(alias = "get_ended")]
     fn is_ended(&self) -> bool;
 
     #[doc(alias = "gtk_media_stream_get_error")]
+    #[doc(alias = "get_error")]
     fn error(&self) -> Option<glib::Error>;
 
     #[doc(alias = "gtk_media_stream_get_loop")]
+    #[doc(alias = "get_loop")]
     fn is_loop(&self) -> bool;
 
     #[doc(alias = "gtk_media_stream_get_muted")]
+    #[doc(alias = "get_muted")]
     fn is_muted(&self) -> bool;
 
     #[doc(alias = "gtk_media_stream_get_playing")]
+    #[doc(alias = "get_playing")]
     fn is_playing(&self) -> bool;
 
     #[doc(alias = "gtk_media_stream_get_timestamp")]
+    #[doc(alias = "get_timestamp")]
     fn timestamp(&self) -> i64;
 
     #[doc(alias = "gtk_media_stream_get_volume")]
+    #[doc(alias = "get_volume")]
     fn volume(&self) -> f64;
 
     #[doc(alias = "gtk_media_stream_has_audio")]
@@ -107,34 +115,46 @@ pub trait MediaStreamExt: 'static {
     #[doc(alias = "gtk_media_stream_update")]
     fn update(&self, timestamp: i64);
 
-    #[doc(alias = "set_property_prepared")]
     fn set_prepared(&self, prepared: bool);
 
-    fn connect_property_duration_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "duration")]
+    fn connect_duration_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_ended_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "ended")]
+    fn connect_ended_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_error_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "error")]
+    fn connect_error_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_has_audio_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "has-audio")]
+    fn connect_has_audio_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_has_video_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "has-video")]
+    fn connect_has_video_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_loop_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "loop")]
+    fn connect_loop_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_muted_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "muted")]
+    fn connect_muted_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_playing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "playing")]
+    fn connect_playing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_prepared_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "prepared")]
+    fn connect_prepared_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_seekable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "seekable")]
+    fn connect_seekable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_seeking_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "seeking")]
+    fn connect_seeking_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_timestamp_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "timestamp")]
+    fn connect_timestamp_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_volume_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "volume")]
+    fn connect_volume_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<MediaStream>> MediaStreamExt for O {
@@ -339,7 +359,8 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn connect_property_duration_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "duration")]
+    fn connect_duration_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_duration_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkMediaStream,
             _param_spec: glib::ffi::gpointer,
@@ -363,7 +384,8 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn connect_property_ended_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "ended")]
+    fn connect_ended_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_ended_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkMediaStream,
             _param_spec: glib::ffi::gpointer,
@@ -387,7 +409,8 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn connect_property_error_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "error")]
+    fn connect_error_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_error_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkMediaStream,
             _param_spec: glib::ffi::gpointer,
@@ -411,7 +434,8 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn connect_property_has_audio_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "has-audio")]
+    fn connect_has_audio_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_audio_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkMediaStream,
             _param_spec: glib::ffi::gpointer,
@@ -435,7 +459,8 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn connect_property_has_video_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "has-video")]
+    fn connect_has_video_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_video_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkMediaStream,
             _param_spec: glib::ffi::gpointer,
@@ -459,7 +484,8 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn connect_property_loop_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "loop")]
+    fn connect_loop_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_loop_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkMediaStream,
             _param_spec: glib::ffi::gpointer,
@@ -483,7 +509,8 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn connect_property_muted_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "muted")]
+    fn connect_muted_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_muted_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkMediaStream,
             _param_spec: glib::ffi::gpointer,
@@ -507,7 +534,8 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn connect_property_playing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "playing")]
+    fn connect_playing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_playing_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkMediaStream,
             _param_spec: glib::ffi::gpointer,
@@ -531,7 +559,8 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn connect_property_prepared_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "prepared")]
+    fn connect_prepared_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_prepared_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkMediaStream,
             _param_spec: glib::ffi::gpointer,
@@ -555,7 +584,8 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn connect_property_seekable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "seekable")]
+    fn connect_seekable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_seekable_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkMediaStream,
             _param_spec: glib::ffi::gpointer,
@@ -579,7 +609,8 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn connect_property_seeking_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "seeking")]
+    fn connect_seeking_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_seeking_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkMediaStream,
             _param_spec: glib::ffi::gpointer,
@@ -603,7 +634,8 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn connect_property_timestamp_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "timestamp")]
+    fn connect_timestamp_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_timestamp_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkMediaStream,
             _param_spec: glib::ffi::gpointer,
@@ -627,7 +659,8 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn connect_property_volume_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "volume")]
+    fn connect_volume_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_volume_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkMediaStream,
             _param_spec: glib::ffi::gpointer,

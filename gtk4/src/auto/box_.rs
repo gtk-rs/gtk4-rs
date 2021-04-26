@@ -370,12 +370,15 @@ pub trait BoxExt: 'static {
     fn append<P: IsA<Widget>>(&self, child: &P);
 
     #[doc(alias = "gtk_box_get_baseline_position")]
+    #[doc(alias = "get_baseline_position")]
     fn baseline_position(&self) -> BaselinePosition;
 
     #[doc(alias = "gtk_box_get_homogeneous")]
+    #[doc(alias = "get_homogeneous")]
     fn is_homogeneous(&self) -> bool;
 
     #[doc(alias = "gtk_box_get_spacing")]
+    #[doc(alias = "get_spacing")]
     fn spacing(&self) -> i32;
 
     #[doc(alias = "gtk_box_insert_child_after")]
@@ -399,14 +402,14 @@ pub trait BoxExt: 'static {
     #[doc(alias = "gtk_box_set_spacing")]
     fn set_spacing(&self, spacing: i32);
 
-    fn connect_property_baseline_position_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "baseline-position")]
+    fn connect_baseline_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_homogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "homogeneous")]
+    fn connect_homogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "spacing")]
+    fn connect_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<Box>> BoxExt for O {
@@ -494,10 +497,8 @@ impl<O: IsA<Box>> BoxExt for O {
         }
     }
 
-    fn connect_property_baseline_position_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "baseline-position")]
+    fn connect_baseline_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_baseline_position_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkBox,
             _param_spec: glib::ffi::gpointer,
@@ -521,7 +522,8 @@ impl<O: IsA<Box>> BoxExt for O {
         }
     }
 
-    fn connect_property_homogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "homogeneous")]
+    fn connect_homogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_homogeneous_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkBox,
             _param_spec: glib::ffi::gpointer,
@@ -545,7 +547,8 @@ impl<O: IsA<Box>> BoxExt for O {
         }
     }
 
-    fn connect_property_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "spacing")]
+    fn connect_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_spacing_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkBox,
             _param_spec: glib::ffi::gpointer,

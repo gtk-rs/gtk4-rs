@@ -383,18 +383,23 @@ pub trait ListBoxRowExt: 'static {
     fn changed(&self);
 
     #[doc(alias = "gtk_list_box_row_get_activatable")]
+    #[doc(alias = "get_activatable")]
     fn is_activatable(&self) -> bool;
 
     #[doc(alias = "gtk_list_box_row_get_child")]
+    #[doc(alias = "get_child")]
     fn child(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_list_box_row_get_header")]
+    #[doc(alias = "get_header")]
     fn header(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_list_box_row_get_index")]
+    #[doc(alias = "get_index")]
     fn index(&self) -> i32;
 
     #[doc(alias = "gtk_list_box_row_get_selectable")]
+    #[doc(alias = "get_selectable")]
     fn is_selectable(&self) -> bool;
 
     #[doc(alias = "gtk_list_box_row_is_selected")]
@@ -412,15 +417,19 @@ pub trait ListBoxRowExt: 'static {
     #[doc(alias = "gtk_list_box_row_set_selectable")]
     fn set_selectable(&self, selectable: bool);
 
+    #[doc(alias = "activate")]
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_activate(&self);
 
-    fn connect_property_activatable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "activatable")]
+    fn connect_activatable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "child")]
+    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_selectable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "selectable")]
+    fn connect_selectable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
@@ -510,6 +519,7 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
         }
     }
 
+    #[doc(alias = "activate")]
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkListBoxRow,
@@ -541,7 +551,8 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
         };
     }
 
-    fn connect_property_activatable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "activatable")]
+    fn connect_activatable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_activatable_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkListBoxRow,
             _param_spec: glib::ffi::gpointer,
@@ -565,7 +576,8 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
         }
     }
 
-    fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "child")]
+    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkListBoxRow,
             _param_spec: glib::ffi::gpointer,
@@ -589,7 +601,8 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
         }
     }
 
-    fn connect_property_selectable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "selectable")]
+    fn connect_selectable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selectable_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkListBoxRow,
             _param_spec: glib::ffi::gpointer,

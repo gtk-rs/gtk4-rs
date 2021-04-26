@@ -31,6 +31,7 @@ impl FileFilter {
     }
 
     #[doc(alias = "gtk_file_filter_new_from_gvariant")]
+    #[doc(alias = "new_from_gvariant")]
     pub fn from_gvariant(variant: &glib::Variant) -> FileFilter {
         assert_initialized_main_thread!();
         unsafe {
@@ -62,6 +63,7 @@ impl FileFilter {
     }
 
     #[doc(alias = "gtk_file_filter_get_attributes")]
+    #[doc(alias = "get_attributes")]
     pub fn attributes(&self) -> Vec<glib::GString> {
         unsafe {
             FromGlibPtrContainer::from_glib_none(ffi::gtk_file_filter_get_attributes(
@@ -71,6 +73,7 @@ impl FileFilter {
     }
 
     #[doc(alias = "gtk_file_filter_get_name")]
+    #[doc(alias = "get_name")]
     pub fn name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_file_filter_get_name(self.to_glib_none().0)) }
     }
@@ -87,10 +90,8 @@ impl FileFilter {
         unsafe { from_glib_none(ffi::gtk_file_filter_to_gvariant(self.to_glib_none().0)) }
     }
 
-    pub fn connect_property_name_notify<F: Fn(&FileFilter) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "name")]
+    pub fn connect_name_notify<F: Fn(&FileFilter) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<F: Fn(&FileFilter) + 'static>(
             this: *mut ffi::GtkFileFilter,
             _param_spec: glib::ffi::gpointer,

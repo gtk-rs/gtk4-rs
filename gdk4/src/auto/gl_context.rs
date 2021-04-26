@@ -18,11 +18,13 @@ glib::wrapper! {
 
 impl GLContext {
     #[doc(alias = "gdk_gl_context_get_debug_enabled")]
+    #[doc(alias = "get_debug_enabled")]
     pub fn is_debug_enabled(&self) -> bool {
         unsafe { from_glib(ffi::gdk_gl_context_get_debug_enabled(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_gl_context_get_forward_compatible")]
+    #[doc(alias = "get_forward_compatible")]
     pub fn is_forward_compatible(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_gl_context_get_forward_compatible(
@@ -32,6 +34,7 @@ impl GLContext {
     }
 
     #[doc(alias = "gdk_gl_context_get_required_version")]
+    #[doc(alias = "get_required_version")]
     pub fn required_version(&self) -> (i32, i32) {
         unsafe {
             let mut major = mem::MaybeUninit::uninit();
@@ -48,6 +51,7 @@ impl GLContext {
     }
 
     #[doc(alias = "gdk_gl_context_get_shared_context")]
+    #[doc(alias = "get_shared_context")]
     pub fn shared_context(&self) -> Option<GLContext> {
         unsafe {
             from_glib_none(ffi::gdk_gl_context_get_shared_context(
@@ -57,11 +61,13 @@ impl GLContext {
     }
 
     #[doc(alias = "gdk_gl_context_get_use_es")]
+    #[doc(alias = "get_use_es")]
     pub fn uses_es(&self) -> bool {
         unsafe { from_glib(ffi::gdk_gl_context_get_use_es(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_gl_context_get_version")]
+    #[doc(alias = "get_version")]
     pub fn version(&self) -> (i32, i32) {
         unsafe {
             let mut major = mem::MaybeUninit::uninit();
@@ -142,6 +148,7 @@ impl GLContext {
     }
 
     #[doc(alias = "gdk_gl_context_get_current")]
+    #[doc(alias = "get_current")]
     pub fn current() -> Option<GLContext> {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gdk_gl_context_get_current()) }

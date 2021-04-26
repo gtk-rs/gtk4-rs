@@ -59,6 +59,7 @@ impl SpinButton {
     }
 
     #[doc(alias = "gtk_spin_button_new_with_range")]
+    #[doc(alias = "new_with_range")]
     pub fn with_range(min: f64, max: f64, step: f64) -> SpinButton {
         assert_initialized_main_thread!();
         unsafe {
@@ -85,21 +86,25 @@ impl SpinButton {
     }
 
     #[doc(alias = "gtk_spin_button_get_adjustment")]
+    #[doc(alias = "get_adjustment")]
     pub fn adjustment(&self) -> Adjustment {
         unsafe { from_glib_none(ffi::gtk_spin_button_get_adjustment(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_spin_button_get_climb_rate")]
+    #[doc(alias = "get_climb_rate")]
     pub fn climb_rate(&self) -> f64 {
         unsafe { ffi::gtk_spin_button_get_climb_rate(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_spin_button_get_digits")]
+    #[doc(alias = "get_digits")]
     pub fn digits(&self) -> u32 {
         unsafe { ffi::gtk_spin_button_get_digits(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_spin_button_get_increments")]
+    #[doc(alias = "get_increments")]
     pub fn increments(&self) -> (f64, f64) {
         unsafe {
             let mut step = mem::MaybeUninit::uninit();
@@ -116,11 +121,13 @@ impl SpinButton {
     }
 
     #[doc(alias = "gtk_spin_button_get_numeric")]
+    #[doc(alias = "get_numeric")]
     pub fn is_numeric(&self) -> bool {
         unsafe { from_glib(ffi::gtk_spin_button_get_numeric(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_spin_button_get_range")]
+    #[doc(alias = "get_range")]
     pub fn range(&self) -> (f64, f64) {
         unsafe {
             let mut min = mem::MaybeUninit::uninit();
@@ -137,6 +144,7 @@ impl SpinButton {
     }
 
     #[doc(alias = "gtk_spin_button_get_snap_to_ticks")]
+    #[doc(alias = "get_snap_to_ticks")]
     pub fn snaps_to_ticks(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_spin_button_get_snap_to_ticks(
@@ -146,6 +154,7 @@ impl SpinButton {
     }
 
     #[doc(alias = "gtk_spin_button_get_update_policy")]
+    #[doc(alias = "get_update_policy")]
     pub fn update_policy(&self) -> SpinButtonUpdatePolicy {
         unsafe {
             from_glib(ffi::gtk_spin_button_get_update_policy(
@@ -155,16 +164,19 @@ impl SpinButton {
     }
 
     #[doc(alias = "gtk_spin_button_get_value")]
+    #[doc(alias = "get_value")]
     pub fn value(&self) -> f64 {
         unsafe { ffi::gtk_spin_button_get_value(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_spin_button_get_value_as_int")]
+    #[doc(alias = "get_value_as_int")]
     pub fn value_as_int(&self) -> i32 {
         unsafe { ffi::gtk_spin_button_get_value_as_int(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_spin_button_get_wrap")]
+    #[doc(alias = "get_wrap")]
     pub fn wraps(&self) -> bool {
         unsafe { from_glib(ffi::gtk_spin_button_get_wrap(self.to_glib_none().0)) }
     }
@@ -259,6 +271,7 @@ impl SpinButton {
         }
     }
 
+    #[doc(alias = "change-value")]
     pub fn connect_change_value<F: Fn(&SpinButton, ScrollType) + 'static>(
         &self,
         f: F,
@@ -292,10 +305,12 @@ impl SpinButton {
         };
     }
 
+    //#[doc(alias = "input")]
     //pub fn connect_input<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
     //    Out new_value: *.Double
     //}
 
+    #[doc(alias = "output")]
     pub fn connect_output<F: Fn(&SpinButton) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
@@ -322,6 +337,7 @@ impl SpinButton {
         }
     }
 
+    #[doc(alias = "value-changed")]
     pub fn connect_value_changed<F: Fn(&SpinButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn value_changed_trampoline<F: Fn(&SpinButton) + 'static>(
             this: *mut ffi::GtkSpinButton,
@@ -343,6 +359,7 @@ impl SpinButton {
         }
     }
 
+    #[doc(alias = "wrapped")]
     pub fn connect_wrapped<F: Fn(&SpinButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn wrapped_trampoline<F: Fn(&SpinButton) + 'static>(
             this: *mut ffi::GtkSpinButton,
@@ -364,10 +381,8 @@ impl SpinButton {
         }
     }
 
-    pub fn connect_property_adjustment_notify<F: Fn(&SpinButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "adjustment")]
+    pub fn connect_adjustment_notify<F: Fn(&SpinButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_adjustment_trampoline<F: Fn(&SpinButton) + 'static>(
             this: *mut ffi::GtkSpinButton,
             _param_spec: glib::ffi::gpointer,
@@ -389,10 +404,8 @@ impl SpinButton {
         }
     }
 
-    pub fn connect_property_climb_rate_notify<F: Fn(&SpinButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "climb-rate")]
+    pub fn connect_climb_rate_notify<F: Fn(&SpinButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_climb_rate_trampoline<F: Fn(&SpinButton) + 'static>(
             this: *mut ffi::GtkSpinButton,
             _param_spec: glib::ffi::gpointer,
@@ -414,10 +427,8 @@ impl SpinButton {
         }
     }
 
-    pub fn connect_property_digits_notify<F: Fn(&SpinButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "digits")]
+    pub fn connect_digits_notify<F: Fn(&SpinButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_digits_trampoline<F: Fn(&SpinButton) + 'static>(
             this: *mut ffi::GtkSpinButton,
             _param_spec: glib::ffi::gpointer,
@@ -439,10 +450,8 @@ impl SpinButton {
         }
     }
 
-    pub fn connect_property_numeric_notify<F: Fn(&SpinButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "numeric")]
+    pub fn connect_numeric_notify<F: Fn(&SpinButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_numeric_trampoline<F: Fn(&SpinButton) + 'static>(
             this: *mut ffi::GtkSpinButton,
             _param_spec: glib::ffi::gpointer,
@@ -464,7 +473,8 @@ impl SpinButton {
         }
     }
 
-    pub fn connect_property_snap_to_ticks_notify<F: Fn(&SpinButton) + 'static>(
+    #[doc(alias = "snap-to-ticks")]
+    pub fn connect_snap_to_ticks_notify<F: Fn(&SpinButton) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -489,7 +499,8 @@ impl SpinButton {
         }
     }
 
-    pub fn connect_property_update_policy_notify<F: Fn(&SpinButton) + 'static>(
+    #[doc(alias = "update-policy")]
+    pub fn connect_update_policy_notify<F: Fn(&SpinButton) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -514,10 +525,8 @@ impl SpinButton {
         }
     }
 
-    pub fn connect_property_value_notify<F: Fn(&SpinButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "value")]
+    pub fn connect_value_notify<F: Fn(&SpinButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_value_trampoline<F: Fn(&SpinButton) + 'static>(
             this: *mut ffi::GtkSpinButton,
             _param_spec: glib::ffi::gpointer,
@@ -539,10 +548,8 @@ impl SpinButton {
         }
     }
 
-    pub fn connect_property_wrap_notify<F: Fn(&SpinButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "wrap")]
+    pub fn connect_wrap_notify<F: Fn(&SpinButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_wrap_trampoline<F: Fn(&SpinButton) + 'static>(
             this: *mut ffi::GtkSpinButton,
             _param_spec: glib::ffi::gpointer,

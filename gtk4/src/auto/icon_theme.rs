@@ -50,11 +50,13 @@ impl IconTheme {
     }
 
     #[doc(alias = "gtk_icon_theme_get_display")]
+    #[doc(alias = "get_display")]
     pub fn display(&self) -> Option<gdk::Display> {
         unsafe { from_glib_none(ffi::gtk_icon_theme_get_display(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_icon_theme_get_icon_names")]
+    #[doc(alias = "get_icon_names")]
     pub fn icon_names(&self) -> Vec<glib::GString> {
         unsafe {
             FromGlibPtrContainer::from_glib_full(ffi::gtk_icon_theme_get_icon_names(
@@ -64,6 +66,7 @@ impl IconTheme {
     }
 
     #[doc(alias = "gtk_icon_theme_get_resource_path")]
+    #[doc(alias = "get_resource_path")]
     pub fn resource_path(&self) -> Vec<glib::GString> {
         unsafe {
             FromGlibPtrContainer::from_glib_full(ffi::gtk_icon_theme_get_resource_path(
@@ -73,6 +76,7 @@ impl IconTheme {
     }
 
     #[doc(alias = "gtk_icon_theme_get_search_path")]
+    #[doc(alias = "get_search_path")]
     pub fn search_path(&self) -> Vec<std::path::PathBuf> {
         unsafe {
             FromGlibPtrContainer::from_glib_full(ffi::gtk_icon_theme_get_search_path(
@@ -82,6 +86,7 @@ impl IconTheme {
     }
 
     #[doc(alias = "gtk_icon_theme_get_theme_name")]
+    #[doc(alias = "get_theme_name")]
     pub fn theme_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_full(ffi::gtk_icon_theme_get_theme_name(self.to_glib_none().0)) }
     }
@@ -154,7 +159,6 @@ impl IconTheme {
         }
     }
 
-    #[doc(alias = "set_property_display")]
     pub fn set_display(&self, display: Option<&gdk::Display>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -166,6 +170,7 @@ impl IconTheme {
     }
 
     #[doc(alias = "gtk_icon_theme_get_for_display")]
+    #[doc(alias = "get_for_display")]
     pub fn for_display(display: &gdk::Display) -> Option<IconTheme> {
         assert_initialized_main_thread!();
         unsafe {
@@ -175,6 +180,7 @@ impl IconTheme {
         }
     }
 
+    #[doc(alias = "changed")]
     pub fn connect_changed<F: Fn(&IconTheme) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<F: Fn(&IconTheme) + 'static>(
             this: *mut ffi::GtkIconTheme,
@@ -196,10 +202,8 @@ impl IconTheme {
         }
     }
 
-    pub fn connect_property_display_notify<F: Fn(&IconTheme) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "display")]
+    pub fn connect_display_notify<F: Fn(&IconTheme) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_display_trampoline<F: Fn(&IconTheme) + 'static>(
             this: *mut ffi::GtkIconTheme,
             _param_spec: glib::ffi::gpointer,
@@ -221,10 +225,8 @@ impl IconTheme {
         }
     }
 
-    pub fn connect_property_icon_names_notify<F: Fn(&IconTheme) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "icon-names")]
+    pub fn connect_icon_names_notify<F: Fn(&IconTheme) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_names_trampoline<F: Fn(&IconTheme) + 'static>(
             this: *mut ffi::GtkIconTheme,
             _param_spec: glib::ffi::gpointer,
@@ -246,7 +248,8 @@ impl IconTheme {
         }
     }
 
-    pub fn connect_property_resource_path_notify<F: Fn(&IconTheme) + 'static>(
+    #[doc(alias = "resource-path")]
+    pub fn connect_resource_path_notify<F: Fn(&IconTheme) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -271,10 +274,8 @@ impl IconTheme {
         }
     }
 
-    pub fn connect_property_search_path_notify<F: Fn(&IconTheme) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "search-path")]
+    pub fn connect_search_path_notify<F: Fn(&IconTheme) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_search_path_trampoline<F: Fn(&IconTheme) + 'static>(
             this: *mut ffi::GtkIconTheme,
             _param_spec: glib::ffi::gpointer,
@@ -296,10 +297,8 @@ impl IconTheme {
         }
     }
 
-    pub fn connect_property_theme_name_notify<F: Fn(&IconTheme) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "theme-name")]
+    pub fn connect_theme_name_notify<F: Fn(&IconTheme) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_theme_name_trampoline<F: Fn(&IconTheme) + 'static>(
             this: *mut ffi::GtkIconTheme,
             _param_spec: glib::ffi::gpointer,

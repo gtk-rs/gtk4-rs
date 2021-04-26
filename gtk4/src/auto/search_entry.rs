@@ -40,6 +40,7 @@ impl SearchEntry {
     }
 
     #[doc(alias = "gtk_search_entry_get_key_capture_widget")]
+    #[doc(alias = "get_key_capture_widget")]
     pub fn key_capture_widget(&self) -> Widget {
         unsafe {
             from_glib_none(ffi::gtk_search_entry_get_key_capture_widget(
@@ -58,7 +59,7 @@ impl SearchEntry {
         }
     }
 
-    #[doc(alias = "get_property_activates_default")]
+    #[doc(alias = "activates-default")]
     pub fn activates_default(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -73,7 +74,7 @@ impl SearchEntry {
         }
     }
 
-    #[doc(alias = "set_property_activates_default")]
+    #[doc(alias = "activates-default")]
     pub fn set_activates_default(&self, activates_default: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -84,7 +85,7 @@ impl SearchEntry {
         }
     }
 
-    #[doc(alias = "get_property_placeholder_text")]
+    #[doc(alias = "placeholder-text")]
     pub fn placeholder_text(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -99,7 +100,7 @@ impl SearchEntry {
         }
     }
 
-    #[doc(alias = "set_property_placeholder_text")]
+    #[doc(alias = "placeholder-text")]
     pub fn set_placeholder_text(&self, placeholder_text: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -110,6 +111,7 @@ impl SearchEntry {
         }
     }
 
+    #[doc(alias = "activate")]
     pub fn connect_activate<F: Fn(&SearchEntry) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<F: Fn(&SearchEntry) + 'static>(
             this: *mut ffi::GtkSearchEntry,
@@ -139,6 +141,7 @@ impl SearchEntry {
         };
     }
 
+    #[doc(alias = "next-match")]
     pub fn connect_next_match<F: Fn(&SearchEntry) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn next_match_trampoline<F: Fn(&SearchEntry) + 'static>(
             this: *mut ffi::GtkSearchEntry,
@@ -168,6 +171,7 @@ impl SearchEntry {
         };
     }
 
+    #[doc(alias = "previous-match")]
     pub fn connect_previous_match<F: Fn(&SearchEntry) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn previous_match_trampoline<F: Fn(&SearchEntry) + 'static>(
             this: *mut ffi::GtkSearchEntry,
@@ -197,6 +201,7 @@ impl SearchEntry {
         };
     }
 
+    #[doc(alias = "search-changed")]
     pub fn connect_search_changed<F: Fn(&SearchEntry) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn search_changed_trampoline<F: Fn(&SearchEntry) + 'static>(
             this: *mut ffi::GtkSearchEntry,
@@ -218,6 +223,7 @@ impl SearchEntry {
         }
     }
 
+    #[doc(alias = "search-started")]
     pub fn connect_search_started<F: Fn(&SearchEntry) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn search_started_trampoline<F: Fn(&SearchEntry) + 'static>(
             this: *mut ffi::GtkSearchEntry,
@@ -239,6 +245,7 @@ impl SearchEntry {
         }
     }
 
+    #[doc(alias = "stop-search")]
     pub fn connect_stop_search<F: Fn(&SearchEntry) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn stop_search_trampoline<F: Fn(&SearchEntry) + 'static>(
             this: *mut ffi::GtkSearchEntry,
@@ -268,7 +275,8 @@ impl SearchEntry {
         };
     }
 
-    pub fn connect_property_activates_default_notify<F: Fn(&SearchEntry) + 'static>(
+    #[doc(alias = "activates-default")]
+    pub fn connect_activates_default_notify<F: Fn(&SearchEntry) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -293,7 +301,8 @@ impl SearchEntry {
         }
     }
 
-    pub fn connect_property_placeholder_text_notify<F: Fn(&SearchEntry) + 'static>(
+    #[doc(alias = "placeholder-text")]
+    pub fn connect_placeholder_text_notify<F: Fn(&SearchEntry) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

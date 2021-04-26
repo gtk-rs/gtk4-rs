@@ -38,7 +38,7 @@ impl ColorChooserWidget {
         unsafe { Widget::from_glib_none(ffi::gtk_color_chooser_widget_new()).unsafe_cast() }
     }
 
-    #[doc(alias = "get_property_show_editor")]
+    #[doc(alias = "show-editor")]
     pub fn shows_editor(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -53,7 +53,7 @@ impl ColorChooserWidget {
         }
     }
 
-    #[doc(alias = "set_property_show_editor")]
+    #[doc(alias = "show-editor")]
     pub fn set_show_editor(&self, show_editor: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -64,7 +64,8 @@ impl ColorChooserWidget {
         }
     }
 
-    pub fn connect_property_show_editor_notify<F: Fn(&ColorChooserWidget) + 'static>(
+    #[doc(alias = "show-editor")]
+    pub fn connect_show_editor_notify<F: Fn(&ColorChooserWidget) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

@@ -36,6 +36,7 @@ impl ShortcutController {
     }
 
     #[doc(alias = "gtk_shortcut_controller_new_for_model")]
+    #[doc(alias = "new_for_model")]
     pub fn for_model<P: IsA<gio::ListModel>>(model: &P) -> ShortcutController {
         assert_initialized_main_thread!();
         unsafe {
@@ -57,6 +58,7 @@ impl ShortcutController {
     }
 
     #[doc(alias = "gtk_shortcut_controller_get_mnemonics_modifiers")]
+    #[doc(alias = "get_mnemonics_modifiers")]
     pub fn mnemonics_modifiers(&self) -> gdk::ModifierType {
         unsafe {
             from_glib(ffi::gtk_shortcut_controller_get_mnemonics_modifiers(
@@ -66,6 +68,7 @@ impl ShortcutController {
     }
 
     #[doc(alias = "gtk_shortcut_controller_get_scope")]
+    #[doc(alias = "get_scope")]
     pub fn scope(&self) -> ShortcutScope {
         unsafe {
             from_glib(ffi::gtk_shortcut_controller_get_scope(
@@ -101,7 +104,7 @@ impl ShortcutController {
         }
     }
 
-    #[doc(alias = "get_property_mnemonic_modifiers")]
+    #[doc(alias = "mnemonic-modifiers")]
     pub fn mnemonic_modifiers(&self) -> gdk::ModifierType {
         unsafe {
             let mut value =
@@ -117,7 +120,7 @@ impl ShortcutController {
         }
     }
 
-    #[doc(alias = "set_property_mnemonic_modifiers")]
+    #[doc(alias = "mnemonic-modifiers")]
     pub fn set_mnemonic_modifiers(&self, mnemonic_modifiers: gdk::ModifierType) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -128,7 +131,8 @@ impl ShortcutController {
         }
     }
 
-    pub fn connect_property_mnemonic_modifiers_notify<F: Fn(&ShortcutController) + 'static>(
+    #[doc(alias = "mnemonic-modifiers")]
+    pub fn connect_mnemonic_modifiers_notify<F: Fn(&ShortcutController) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -155,7 +159,8 @@ impl ShortcutController {
         }
     }
 
-    pub fn connect_property_scope_notify<F: Fn(&ShortcutController) + 'static>(
+    #[doc(alias = "scope")]
+    pub fn connect_scope_notify<F: Fn(&ShortcutController) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

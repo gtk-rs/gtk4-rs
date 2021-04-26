@@ -71,16 +71,19 @@ impl InfoBar {
     }
 
     #[doc(alias = "gtk_info_bar_get_message_type")]
+    #[doc(alias = "get_message_type")]
     pub fn message_type(&self) -> MessageType {
         unsafe { from_glib(ffi::gtk_info_bar_get_message_type(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_info_bar_get_revealed")]
+    #[doc(alias = "get_revealed")]
     pub fn is_revealed(&self) -> bool {
         unsafe { from_glib(ffi::gtk_info_bar_get_revealed(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_info_bar_get_show_close_button")]
+    #[doc(alias = "get_show_close_button")]
     pub fn shows_close_button(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_info_bar_get_show_close_button(
@@ -152,6 +155,7 @@ impl InfoBar {
         }
     }
 
+    #[doc(alias = "close")]
     pub fn connect_close<F: Fn(&InfoBar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn close_trampoline<F: Fn(&InfoBar) + 'static>(
             this: *mut ffi::GtkInfoBar,
@@ -181,6 +185,7 @@ impl InfoBar {
         };
     }
 
+    #[doc(alias = "response")]
     pub fn connect_response<F: Fn(&InfoBar, ResponseType) + 'static>(
         &self,
         f: F,
@@ -206,10 +211,8 @@ impl InfoBar {
         }
     }
 
-    pub fn connect_property_message_type_notify<F: Fn(&InfoBar) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "message-type")]
+    pub fn connect_message_type_notify<F: Fn(&InfoBar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_message_type_trampoline<F: Fn(&InfoBar) + 'static>(
             this: *mut ffi::GtkInfoBar,
             _param_spec: glib::ffi::gpointer,
@@ -231,10 +234,8 @@ impl InfoBar {
         }
     }
 
-    pub fn connect_property_revealed_notify<F: Fn(&InfoBar) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "revealed")]
+    pub fn connect_revealed_notify<F: Fn(&InfoBar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_revealed_trampoline<F: Fn(&InfoBar) + 'static>(
             this: *mut ffi::GtkInfoBar,
             _param_spec: glib::ffi::gpointer,
@@ -256,7 +257,8 @@ impl InfoBar {
         }
     }
 
-    pub fn connect_property_show_close_button_notify<F: Fn(&InfoBar) + 'static>(
+    #[doc(alias = "show-close-button")]
+    pub fn connect_show_close_button_notify<F: Fn(&InfoBar) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

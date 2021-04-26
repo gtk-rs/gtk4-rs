@@ -36,41 +36,49 @@ impl Drag {
     }
 
     #[doc(alias = "gdk_drag_get_actions")]
+    #[doc(alias = "get_actions")]
     pub fn actions(&self) -> DragAction {
         unsafe { from_glib(ffi::gdk_drag_get_actions(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drag_get_content")]
+    #[doc(alias = "get_content")]
     pub fn content(&self) -> Option<ContentProvider> {
         unsafe { from_glib_none(ffi::gdk_drag_get_content(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drag_get_device")]
+    #[doc(alias = "get_device")]
     pub fn device(&self) -> Option<Device> {
         unsafe { from_glib_none(ffi::gdk_drag_get_device(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drag_get_display")]
+    #[doc(alias = "get_display")]
     pub fn display(&self) -> Option<Display> {
         unsafe { from_glib_none(ffi::gdk_drag_get_display(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drag_get_drag_surface")]
+    #[doc(alias = "get_drag_surface")]
     pub fn drag_surface(&self) -> Option<Surface> {
         unsafe { from_glib_none(ffi::gdk_drag_get_drag_surface(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drag_get_formats")]
+    #[doc(alias = "get_formats")]
     pub fn formats(&self) -> Option<ContentFormats> {
         unsafe { from_glib_none(ffi::gdk_drag_get_formats(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drag_get_selected_action")]
+    #[doc(alias = "get_selected_action")]
     pub fn selected_action(&self) -> DragAction {
         unsafe { from_glib(ffi::gdk_drag_get_selected_action(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drag_get_surface")]
+    #[doc(alias = "get_surface")]
     pub fn surface(&self) -> Option<Surface> {
         unsafe { from_glib_none(ffi::gdk_drag_get_surface(self.to_glib_none().0)) }
     }
@@ -82,7 +90,6 @@ impl Drag {
         }
     }
 
-    #[doc(alias = "set_property_actions")]
     pub fn set_actions(&self, actions: DragAction) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -93,7 +100,7 @@ impl Drag {
         }
     }
 
-    #[doc(alias = "set_property_selected_action")]
+    #[doc(alias = "selected-action")]
     pub fn set_selected_action(&self, selected_action: DragAction) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -126,6 +133,7 @@ impl Drag {
         }
     }
 
+    #[doc(alias = "cancel")]
     pub fn connect_cancel<F: Fn(&Drag, DragCancelReason) + 'static>(
         &self,
         f: F,
@@ -151,6 +159,7 @@ impl Drag {
         }
     }
 
+    #[doc(alias = "dnd-finished")]
     pub fn connect_dnd_finished<F: Fn(&Drag) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn dnd_finished_trampoline<F: Fn(&Drag) + 'static>(
             this: *mut ffi::GdkDrag,
@@ -172,6 +181,7 @@ impl Drag {
         }
     }
 
+    #[doc(alias = "drop-performed")]
     pub fn connect_drop_performed<F: Fn(&Drag) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn drop_performed_trampoline<F: Fn(&Drag) + 'static>(
             this: *mut ffi::GdkDrag,
@@ -193,7 +203,8 @@ impl Drag {
         }
     }
 
-    pub fn connect_property_actions_notify<F: Fn(&Drag) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "actions")]
+    pub fn connect_actions_notify<F: Fn(&Drag) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_actions_trampoline<F: Fn(&Drag) + 'static>(
             this: *mut ffi::GdkDrag,
             _param_spec: glib::ffi::gpointer,
@@ -215,7 +226,8 @@ impl Drag {
         }
     }
 
-    pub fn connect_property_display_notify<F: Fn(&Drag) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "display")]
+    pub fn connect_display_notify<F: Fn(&Drag) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_display_trampoline<F: Fn(&Drag) + 'static>(
             this: *mut ffi::GdkDrag,
             _param_spec: glib::ffi::gpointer,
@@ -237,10 +249,8 @@ impl Drag {
         }
     }
 
-    pub fn connect_property_selected_action_notify<F: Fn(&Drag) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "selected-action")]
+    pub fn connect_selected_action_notify<F: Fn(&Drag) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_action_trampoline<F: Fn(&Drag) + 'static>(
             this: *mut ffi::GdkDrag,
             _param_spec: glib::ffi::gpointer,

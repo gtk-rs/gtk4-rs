@@ -70,16 +70,19 @@ impl Assistant {
     }
 
     #[doc(alias = "gtk_assistant_get_current_page")]
+    #[doc(alias = "get_current_page")]
     pub fn current_page(&self) -> i32 {
         unsafe { ffi::gtk_assistant_get_current_page(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_assistant_get_n_pages")]
+    #[doc(alias = "get_n_pages")]
     pub fn n_pages(&self) -> i32 {
         unsafe { ffi::gtk_assistant_get_n_pages(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_assistant_get_nth_page")]
+    #[doc(alias = "get_nth_page")]
     pub fn nth_page(&self, page_num: i32) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_assistant_get_nth_page(
@@ -90,6 +93,7 @@ impl Assistant {
     }
 
     #[doc(alias = "gtk_assistant_get_page")]
+    #[doc(alias = "get_page")]
     pub fn page<P: IsA<Widget>>(&self, child: &P) -> Option<AssistantPage> {
         unsafe {
             from_glib_none(ffi::gtk_assistant_get_page(
@@ -100,6 +104,7 @@ impl Assistant {
     }
 
     #[doc(alias = "gtk_assistant_get_page_complete")]
+    #[doc(alias = "get_page_complete")]
     pub fn page_is_complete<P: IsA<Widget>>(&self, page: &P) -> bool {
         unsafe {
             from_glib(ffi::gtk_assistant_get_page_complete(
@@ -110,6 +115,7 @@ impl Assistant {
     }
 
     #[doc(alias = "gtk_assistant_get_page_title")]
+    #[doc(alias = "get_page_title")]
     pub fn page_title<P: IsA<Widget>>(&self, page: &P) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_assistant_get_page_title(
@@ -120,6 +126,7 @@ impl Assistant {
     }
 
     #[doc(alias = "gtk_assistant_get_page_type")]
+    #[doc(alias = "get_page_type")]
     pub fn page_type<P: IsA<Widget>>(&self, page: &P) -> AssistantPageType {
         unsafe {
             from_glib(ffi::gtk_assistant_get_page_type(
@@ -130,6 +137,7 @@ impl Assistant {
     }
 
     #[doc(alias = "gtk_assistant_get_pages")]
+    #[doc(alias = "get_pages")]
     pub fn pages(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_full(ffi::gtk_assistant_get_pages(self.to_glib_none().0)) }
     }
@@ -257,7 +265,7 @@ impl Assistant {
         }
     }
 
-    #[doc(alias = "get_property_use_header_bar")]
+    #[doc(alias = "use-header-bar")]
     pub fn use_header_bar(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
@@ -272,6 +280,7 @@ impl Assistant {
         }
     }
 
+    #[doc(alias = "apply")]
     pub fn connect_apply<F: Fn(&Assistant) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn apply_trampoline<F: Fn(&Assistant) + 'static>(
             this: *mut ffi::GtkAssistant,
@@ -293,6 +302,7 @@ impl Assistant {
         }
     }
 
+    #[doc(alias = "cancel")]
     pub fn connect_cancel<F: Fn(&Assistant) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn cancel_trampoline<F: Fn(&Assistant) + 'static>(
             this: *mut ffi::GtkAssistant,
@@ -314,6 +324,7 @@ impl Assistant {
         }
     }
 
+    #[doc(alias = "close")]
     pub fn connect_close<F: Fn(&Assistant) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn close_trampoline<F: Fn(&Assistant) + 'static>(
             this: *mut ffi::GtkAssistant,
@@ -335,6 +346,7 @@ impl Assistant {
         }
     }
 
+    #[doc(alias = "escape")]
     pub fn connect_escape<F: Fn(&Assistant) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn escape_trampoline<F: Fn(&Assistant) + 'static>(
             this: *mut ffi::GtkAssistant,
@@ -364,6 +376,7 @@ impl Assistant {
         };
     }
 
+    #[doc(alias = "prepare")]
     pub fn connect_prepare<F: Fn(&Assistant, &Widget) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn prepare_trampoline<F: Fn(&Assistant, &Widget) + 'static>(
             this: *mut ffi::GtkAssistant,
@@ -386,10 +399,8 @@ impl Assistant {
         }
     }
 
-    pub fn connect_property_pages_notify<F: Fn(&Assistant) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "pages")]
+    pub fn connect_pages_notify<F: Fn(&Assistant) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pages_trampoline<F: Fn(&Assistant) + 'static>(
             this: *mut ffi::GtkAssistant,
             _param_spec: glib::ffi::gpointer,

@@ -79,10 +79,12 @@ impl CssProvider {
     }
 
     #[doc(alias = "gtk_css_provider_to_string")]
+    #[doc(alias = "to_string")]
     pub fn to_str(&self) -> glib::GString {
         unsafe { from_glib_full(ffi::gtk_css_provider_to_string(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "parsing-error")]
     pub fn connect_parsing_error<F: Fn(&CssProvider, &CssSection, &glib::Error) + 'static>(
         &self,
         f: F,

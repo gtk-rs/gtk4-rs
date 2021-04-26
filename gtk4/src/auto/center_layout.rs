@@ -27,6 +27,7 @@ impl CenterLayout {
     }
 
     #[doc(alias = "gtk_center_layout_get_baseline_position")]
+    #[doc(alias = "get_baseline_position")]
     pub fn baseline_position(&self) -> BaselinePosition {
         unsafe {
             from_glib(ffi::gtk_center_layout_get_baseline_position(
@@ -36,6 +37,7 @@ impl CenterLayout {
     }
 
     #[doc(alias = "gtk_center_layout_get_center_widget")]
+    #[doc(alias = "get_center_widget")]
     pub fn center_widget(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_center_layout_get_center_widget(
@@ -45,11 +47,13 @@ impl CenterLayout {
     }
 
     #[doc(alias = "gtk_center_layout_get_end_widget")]
+    #[doc(alias = "get_end_widget")]
     pub fn end_widget(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_center_layout_get_end_widget(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_center_layout_get_orientation")]
+    #[doc(alias = "get_orientation")]
     pub fn orientation(&self) -> Orientation {
         unsafe {
             from_glib(ffi::gtk_center_layout_get_orientation(
@@ -59,6 +63,7 @@ impl CenterLayout {
     }
 
     #[doc(alias = "gtk_center_layout_get_start_widget")]
+    #[doc(alias = "get_start_widget")]
     pub fn start_widget(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_center_layout_get_start_widget(

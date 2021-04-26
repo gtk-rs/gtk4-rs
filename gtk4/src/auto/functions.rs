@@ -190,48 +190,56 @@ pub fn enumerate_printers<P: Fn(&Printer) -> bool + Send + Sync + 'static>(func:
 }
 
 #[doc(alias = "gtk_get_binary_age")]
+#[doc(alias = "get_binary_age")]
 pub fn binary_age() -> u32 {
     skip_assert_initialized!();
     unsafe { ffi::gtk_get_binary_age() }
 }
 
 #[doc(alias = "gtk_get_debug_flags")]
+#[doc(alias = "get_debug_flags")]
 pub fn debug_flags() -> DebugFlags {
     assert_initialized_main_thread!();
     unsafe { from_glib(ffi::gtk_get_debug_flags()) }
 }
 
 #[doc(alias = "gtk_get_default_language")]
+#[doc(alias = "get_default_language")]
 pub fn default_language() -> Option<pango::Language> {
     assert_initialized_main_thread!();
     unsafe { from_glib_none(ffi::gtk_get_default_language()) }
 }
 
 #[doc(alias = "gtk_get_interface_age")]
+#[doc(alias = "get_interface_age")]
 pub fn interface_age() -> u32 {
     skip_assert_initialized!();
     unsafe { ffi::gtk_get_interface_age() }
 }
 
 #[doc(alias = "gtk_get_locale_direction")]
+#[doc(alias = "get_locale_direction")]
 pub fn locale_direction() -> TextDirection {
     assert_initialized_main_thread!();
     unsafe { from_glib(ffi::gtk_get_locale_direction()) }
 }
 
 #[doc(alias = "gtk_get_major_version")]
+#[doc(alias = "get_major_version")]
 pub fn major_version() -> u32 {
     skip_assert_initialized!();
     unsafe { ffi::gtk_get_major_version() }
 }
 
 #[doc(alias = "gtk_get_micro_version")]
+#[doc(alias = "get_micro_version")]
 pub fn micro_version() -> u32 {
     skip_assert_initialized!();
     unsafe { ffi::gtk_get_micro_version() }
 }
 
 #[doc(alias = "gtk_get_minor_version")]
+#[doc(alias = "get_minor_version")]
 pub fn minor_version() -> u32 {
     skip_assert_initialized!();
     unsafe { ffi::gtk_get_minor_version() }

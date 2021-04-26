@@ -19,7 +19,6 @@ glib::wrapper! {
 }
 
 impl X11DeviceManagerXI2 {
-    #[doc(alias = "get_property_display")]
     pub fn display(&self) -> Option<gdk::Display> {
         unsafe {
             let mut value = glib::Value::from_type(<gdk::Display as StaticType>::static_type());
@@ -34,7 +33,6 @@ impl X11DeviceManagerXI2 {
         }
     }
 
-    #[doc(alias = "get_property_major")]
     pub fn major(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
@@ -49,7 +47,6 @@ impl X11DeviceManagerXI2 {
         }
     }
 
-    #[doc(alias = "get_property_minor")]
     pub fn minor(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
@@ -64,7 +61,6 @@ impl X11DeviceManagerXI2 {
         }
     }
 
-    #[doc(alias = "get_property_opcode")]
     pub fn opcode(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());

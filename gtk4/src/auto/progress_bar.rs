@@ -40,31 +40,37 @@ impl ProgressBar {
     }
 
     #[doc(alias = "gtk_progress_bar_get_ellipsize")]
+    #[doc(alias = "get_ellipsize")]
     pub fn ellipsize(&self) -> pango::EllipsizeMode {
         unsafe { from_glib(ffi::gtk_progress_bar_get_ellipsize(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_progress_bar_get_fraction")]
+    #[doc(alias = "get_fraction")]
     pub fn fraction(&self) -> f64 {
         unsafe { ffi::gtk_progress_bar_get_fraction(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_progress_bar_get_inverted")]
+    #[doc(alias = "get_inverted")]
     pub fn is_inverted(&self) -> bool {
         unsafe { from_glib(ffi::gtk_progress_bar_get_inverted(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_progress_bar_get_pulse_step")]
+    #[doc(alias = "get_pulse_step")]
     pub fn pulse_step(&self) -> f64 {
         unsafe { ffi::gtk_progress_bar_get_pulse_step(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_progress_bar_get_show_text")]
+    #[doc(alias = "get_show_text")]
     pub fn shows_text(&self) -> bool {
         unsafe { from_glib(ffi::gtk_progress_bar_get_show_text(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_progress_bar_get_text")]
+    #[doc(alias = "get_text")]
     pub fn text(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_progress_bar_get_text(self.to_glib_none().0)) }
     }
@@ -118,10 +124,8 @@ impl ProgressBar {
         }
     }
 
-    pub fn connect_property_ellipsize_notify<F: Fn(&ProgressBar) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "ellipsize")]
+    pub fn connect_ellipsize_notify<F: Fn(&ProgressBar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_ellipsize_trampoline<F: Fn(&ProgressBar) + 'static>(
             this: *mut ffi::GtkProgressBar,
             _param_spec: glib::ffi::gpointer,
@@ -143,10 +147,8 @@ impl ProgressBar {
         }
     }
 
-    pub fn connect_property_fraction_notify<F: Fn(&ProgressBar) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "fraction")]
+    pub fn connect_fraction_notify<F: Fn(&ProgressBar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_fraction_trampoline<F: Fn(&ProgressBar) + 'static>(
             this: *mut ffi::GtkProgressBar,
             _param_spec: glib::ffi::gpointer,
@@ -168,10 +170,8 @@ impl ProgressBar {
         }
     }
 
-    pub fn connect_property_inverted_notify<F: Fn(&ProgressBar) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "inverted")]
+    pub fn connect_inverted_notify<F: Fn(&ProgressBar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_inverted_trampoline<F: Fn(&ProgressBar) + 'static>(
             this: *mut ffi::GtkProgressBar,
             _param_spec: glib::ffi::gpointer,
@@ -193,7 +193,8 @@ impl ProgressBar {
         }
     }
 
-    pub fn connect_property_pulse_step_notify<F: Fn(&ProgressBar) + 'static>(
+    #[doc(alias = "pulse-step")]
+    pub fn connect_pulse_step_notify<F: Fn(&ProgressBar) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -218,10 +219,8 @@ impl ProgressBar {
         }
     }
 
-    pub fn connect_property_show_text_notify<F: Fn(&ProgressBar) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "show-text")]
+    pub fn connect_show_text_notify<F: Fn(&ProgressBar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_text_trampoline<F: Fn(&ProgressBar) + 'static>(
             this: *mut ffi::GtkProgressBar,
             _param_spec: glib::ffi::gpointer,
@@ -243,10 +242,8 @@ impl ProgressBar {
         }
     }
 
-    pub fn connect_property_text_notify<F: Fn(&ProgressBar) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "text")]
+    pub fn connect_text_notify<F: Fn(&ProgressBar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<F: Fn(&ProgressBar) + 'static>(
             this: *mut ffi::GtkProgressBar,
             _param_spec: glib::ffi::gpointer,

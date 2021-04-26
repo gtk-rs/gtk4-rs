@@ -26,6 +26,7 @@ glib::wrapper! {
 
 impl NumericSorter {
     #[doc(alias = "gtk_numeric_sorter_get_expression")]
+    #[doc(alias = "get_expression")]
     pub fn expression(&self) -> Option<Expression> {
         unsafe {
             from_glib_none(ffi::gtk_numeric_sorter_get_expression(
@@ -35,6 +36,7 @@ impl NumericSorter {
     }
 
     #[doc(alias = "gtk_numeric_sorter_get_sort_order")]
+    #[doc(alias = "get_sort_order")]
     pub fn sort_order(&self) -> SortType {
         unsafe {
             from_glib(ffi::gtk_numeric_sorter_get_sort_order(
@@ -50,7 +52,8 @@ impl NumericSorter {
         }
     }
 
-    pub fn connect_property_expression_notify<F: Fn(&NumericSorter) + 'static>(
+    #[doc(alias = "expression")]
+    pub fn connect_expression_notify<F: Fn(&NumericSorter) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -75,7 +78,8 @@ impl NumericSorter {
         }
     }
 
-    pub fn connect_property_sort_order_notify<F: Fn(&NumericSorter) + 'static>(
+    #[doc(alias = "sort-order")]
+    pub fn connect_sort_order_notify<F: Fn(&NumericSorter) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

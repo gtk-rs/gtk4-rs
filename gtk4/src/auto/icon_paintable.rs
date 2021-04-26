@@ -19,6 +19,7 @@ glib::wrapper! {
 
 impl IconPaintable {
     #[doc(alias = "gtk_icon_paintable_new_for_file")]
+    #[doc(alias = "new_for_file")]
     pub fn for_file<P: IsA<gio::File>>(file: &P, size: i32, scale: i32) -> IconPaintable {
         assert_initialized_main_thread!();
         unsafe {
@@ -31,11 +32,13 @@ impl IconPaintable {
     }
 
     #[doc(alias = "gtk_icon_paintable_get_file")]
+    #[doc(alias = "get_file")]
     pub fn file(&self) -> Option<gio::File> {
         unsafe { from_glib_full(ffi::gtk_icon_paintable_get_file(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_icon_paintable_get_icon_name")]
+    #[doc(alias = "get_icon_name")]
     pub fn icon_name(&self) -> Option<std::path::PathBuf> {
         unsafe { from_glib_none(ffi::gtk_icon_paintable_get_icon_name(self.to_glib_none().0)) }
     }

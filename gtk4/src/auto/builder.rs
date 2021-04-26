@@ -33,6 +33,7 @@ impl Builder {
     }
 
     #[doc(alias = "gtk_builder_new_from_resource")]
+    #[doc(alias = "new_from_resource")]
     pub fn from_resource(resource_path: &str) -> Builder {
         assert_initialized_main_thread!();
         unsafe {
@@ -43,6 +44,7 @@ impl Builder {
     }
 
     #[doc(alias = "gtk_builder_new_from_string")]
+    #[doc(alias = "new_from_string")]
     pub fn from_string(string: &str) -> Builder {
         assert_initialized_main_thread!();
         let length = string.len() as isize;
@@ -198,11 +200,13 @@ impl Builder {
     }
 
     #[doc(alias = "gtk_builder_get_current_object")]
+    #[doc(alias = "get_current_object")]
     pub fn current_object(&self) -> Option<glib::Object> {
         unsafe { from_glib_none(ffi::gtk_builder_get_current_object(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_builder_get_objects")]
+    #[doc(alias = "get_objects")]
     pub fn objects(&self) -> Vec<glib::Object> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_builder_get_objects(
@@ -212,11 +216,13 @@ impl Builder {
     }
 
     #[doc(alias = "gtk_builder_get_scope")]
+    #[doc(alias = "get_scope")]
     pub fn scope(&self) -> BuilderScope {
         unsafe { from_glib_none(ffi::gtk_builder_get_scope(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_builder_get_translation_domain")]
+    #[doc(alias = "get_translation_domain")]
     pub fn translation_domain(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_builder_get_translation_domain(
@@ -226,6 +232,7 @@ impl Builder {
     }
 
     #[doc(alias = "gtk_builder_get_type_from_name")]
+    #[doc(alias = "get_type_from_name")]
     pub fn type_from_name(&self, type_name: &str) -> glib::types::Type {
         unsafe {
             from_glib(ffi::gtk_builder_get_type_from_name(
@@ -286,7 +293,8 @@ impl Builder {
         }
     }
 
-    pub fn connect_property_current_object_notify<F: Fn(&Builder) + 'static>(
+    #[doc(alias = "current-object")]
+    pub fn connect_current_object_notify<F: Fn(&Builder) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -311,10 +319,8 @@ impl Builder {
         }
     }
 
-    pub fn connect_property_scope_notify<F: Fn(&Builder) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "scope")]
+    pub fn connect_scope_notify<F: Fn(&Builder) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scope_trampoline<F: Fn(&Builder) + 'static>(
             this: *mut ffi::GtkBuilder,
             _param_spec: glib::ffi::gpointer,
@@ -336,7 +342,8 @@ impl Builder {
         }
     }
 
-    pub fn connect_property_translation_domain_notify<F: Fn(&Builder) + 'static>(
+    #[doc(alias = "translation-domain")]
+    pub fn connect_translation_domain_notify<F: Fn(&Builder) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

@@ -39,6 +39,7 @@ impl ColorButton {
     }
 
     #[doc(alias = "gtk_color_button_new_with_rgba")]
+    #[doc(alias = "new_with_rgba")]
     pub fn with_rgba(rgba: &gdk::RGBA) -> ColorButton {
         assert_initialized_main_thread!();
         unsafe {
@@ -48,11 +49,13 @@ impl ColorButton {
     }
 
     #[doc(alias = "gtk_color_button_get_modal")]
+    #[doc(alias = "get_modal")]
     pub fn is_modal(&self) -> bool {
         unsafe { from_glib(ffi::gtk_color_button_get_modal(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_color_button_get_title")]
+    #[doc(alias = "get_title")]
     pub fn title(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_color_button_get_title(self.to_glib_none().0)) }
     }
@@ -71,7 +74,7 @@ impl ColorButton {
         }
     }
 
-    #[doc(alias = "get_property_show_editor")]
+    #[doc(alias = "show-editor")]
     pub fn shows_editor(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -86,7 +89,7 @@ impl ColorButton {
         }
     }
 
-    #[doc(alias = "set_property_show_editor")]
+    #[doc(alias = "show-editor")]
     pub fn set_show_editor(&self, show_editor: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -97,6 +100,7 @@ impl ColorButton {
         }
     }
 
+    #[doc(alias = "color-set")]
     pub fn connect_color_set<F: Fn(&ColorButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn color_set_trampoline<F: Fn(&ColorButton) + 'static>(
             this: *mut ffi::GtkColorButton,
@@ -118,10 +122,8 @@ impl ColorButton {
         }
     }
 
-    pub fn connect_property_modal_notify<F: Fn(&ColorButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "modal")]
+    pub fn connect_modal_notify<F: Fn(&ColorButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_modal_trampoline<F: Fn(&ColorButton) + 'static>(
             this: *mut ffi::GtkColorButton,
             _param_spec: glib::ffi::gpointer,
@@ -143,7 +145,8 @@ impl ColorButton {
         }
     }
 
-    pub fn connect_property_show_editor_notify<F: Fn(&ColorButton) + 'static>(
+    #[doc(alias = "show-editor")]
+    pub fn connect_show_editor_notify<F: Fn(&ColorButton) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -168,10 +171,8 @@ impl ColorButton {
         }
     }
 
-    pub fn connect_property_title_notify<F: Fn(&ColorButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "title")]
+    pub fn connect_title_notify<F: Fn(&ColorButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&ColorButton) + 'static>(
             this: *mut ffi::GtkColorButton,
             _param_spec: glib::ffi::gpointer,

@@ -37,7 +37,7 @@ glib::wrapper! {
 }
 
 impl ShortcutsWindow {
-    #[doc(alias = "get_property_section_name")]
+    #[doc(alias = "section-name")]
     pub fn section_name(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -52,7 +52,7 @@ impl ShortcutsWindow {
         }
     }
 
-    #[doc(alias = "set_property_section_name")]
+    #[doc(alias = "section-name")]
     pub fn set_section_name(&self, section_name: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -63,7 +63,7 @@ impl ShortcutsWindow {
         }
     }
 
-    #[doc(alias = "get_property_view_name")]
+    #[doc(alias = "view-name")]
     pub fn view_name(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -78,7 +78,7 @@ impl ShortcutsWindow {
         }
     }
 
-    #[doc(alias = "set_property_view_name")]
+    #[doc(alias = "view-name")]
     pub fn set_view_name(&self, view_name: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -89,6 +89,7 @@ impl ShortcutsWindow {
         }
     }
 
+    #[doc(alias = "close")]
     pub fn connect_close<F: Fn(&ShortcutsWindow) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn close_trampoline<F: Fn(&ShortcutsWindow) + 'static>(
             this: *mut ffi::GtkShortcutsWindow,
@@ -118,6 +119,7 @@ impl ShortcutsWindow {
         };
     }
 
+    #[doc(alias = "search")]
     pub fn connect_search<F: Fn(&ShortcutsWindow) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn search_trampoline<F: Fn(&ShortcutsWindow) + 'static>(
             this: *mut ffi::GtkShortcutsWindow,
@@ -147,7 +149,8 @@ impl ShortcutsWindow {
         };
     }
 
-    pub fn connect_property_section_name_notify<F: Fn(&ShortcutsWindow) + 'static>(
+    #[doc(alias = "section-name")]
+    pub fn connect_section_name_notify<F: Fn(&ShortcutsWindow) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -172,7 +175,8 @@ impl ShortcutsWindow {
         }
     }
 
-    pub fn connect_property_view_name_notify<F: Fn(&ShortcutsWindow) + 'static>(
+    #[doc(alias = "view-name")]
+    pub fn connect_view_name_notify<F: Fn(&ShortcutsWindow) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

@@ -40,6 +40,7 @@ impl TreeViewColumn {
     }
 
     #[doc(alias = "gtk_tree_view_column_new_with_area")]
+    #[doc(alias = "new_with_area")]
     pub fn with_area<P: IsA<CellArea>>(area: &P) -> TreeViewColumn {
         skip_assert_initialized!();
         unsafe {
@@ -50,6 +51,7 @@ impl TreeViewColumn {
     }
 
     //#[doc(alias = "gtk_tree_view_column_new_with_attributes")]
+    //#[doc(alias = "new_with_attributes")]
     //pub fn with_attributes<P: IsA<CellRenderer>>(title: &str, cell: &P, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> TreeViewColumn {
     //    unsafe { TODO: call ffi:gtk_tree_view_column_new_with_attributes() }
     //}
@@ -143,16 +145,19 @@ impl TreeViewColumn {
     }
 
     #[doc(alias = "gtk_tree_view_column_get_alignment")]
+    #[doc(alias = "get_alignment")]
     pub fn alignment(&self) -> f32 {
         unsafe { ffi::gtk_tree_view_column_get_alignment(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_button")]
+    #[doc(alias = "get_button")]
     pub fn button(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_tree_view_column_get_button(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_clickable")]
+    #[doc(alias = "get_clickable")]
     pub fn is_clickable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_column_get_clickable(
@@ -162,26 +167,31 @@ impl TreeViewColumn {
     }
 
     #[doc(alias = "gtk_tree_view_column_get_expand")]
+    #[doc(alias = "get_expand")]
     pub fn expands(&self) -> bool {
         unsafe { from_glib(ffi::gtk_tree_view_column_get_expand(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_fixed_width")]
+    #[doc(alias = "get_fixed_width")]
     pub fn fixed_width(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_column_get_fixed_width(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_max_width")]
+    #[doc(alias = "get_max_width")]
     pub fn max_width(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_column_get_max_width(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_min_width")]
+    #[doc(alias = "get_min_width")]
     pub fn min_width(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_column_get_min_width(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_reorderable")]
+    #[doc(alias = "get_reorderable")]
     pub fn is_reorderable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_column_get_reorderable(
@@ -191,6 +201,7 @@ impl TreeViewColumn {
     }
 
     #[doc(alias = "gtk_tree_view_column_get_resizable")]
+    #[doc(alias = "get_resizable")]
     pub fn is_resizable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_column_get_resizable(
@@ -200,16 +211,19 @@ impl TreeViewColumn {
     }
 
     #[doc(alias = "gtk_tree_view_column_get_sizing")]
+    #[doc(alias = "get_sizing")]
     pub fn sizing(&self) -> TreeViewColumnSizing {
         unsafe { from_glib(ffi::gtk_tree_view_column_get_sizing(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_sort_column_id")]
+    #[doc(alias = "get_sort_column_id")]
     pub fn sort_column_id(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_column_get_sort_column_id(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_sort_indicator")]
+    #[doc(alias = "get_sort_indicator")]
     pub fn is_sort_indicator(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_view_column_get_sort_indicator(
@@ -219,6 +233,7 @@ impl TreeViewColumn {
     }
 
     #[doc(alias = "gtk_tree_view_column_get_sort_order")]
+    #[doc(alias = "get_sort_order")]
     pub fn sort_order(&self) -> SortType {
         unsafe {
             from_glib(ffi::gtk_tree_view_column_get_sort_order(
@@ -228,16 +243,19 @@ impl TreeViewColumn {
     }
 
     #[doc(alias = "gtk_tree_view_column_get_spacing")]
+    #[doc(alias = "get_spacing")]
     pub fn spacing(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_column_get_spacing(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_title")]
+    #[doc(alias = "get_title")]
     pub fn title(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_tree_view_column_get_title(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_tree_view")]
+    #[doc(alias = "get_tree_view")]
     pub fn tree_view(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_tree_view_column_get_tree_view(
@@ -247,21 +265,25 @@ impl TreeViewColumn {
     }
 
     #[doc(alias = "gtk_tree_view_column_get_visible")]
+    #[doc(alias = "get_visible")]
     pub fn is_visible(&self) -> bool {
         unsafe { from_glib(ffi::gtk_tree_view_column_get_visible(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_widget")]
+    #[doc(alias = "get_widget")]
     pub fn widget(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_tree_view_column_get_widget(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_width")]
+    #[doc(alias = "get_width")]
     pub fn width(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_column_get_width(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_tree_view_column_get_x_offset")]
+    #[doc(alias = "get_x_offset")]
     pub fn x_offset(&self) -> i32 {
         unsafe { ffi::gtk_tree_view_column_get_x_offset(self.to_glib_none().0) }
     }
@@ -443,7 +465,7 @@ impl TreeViewColumn {
         }
     }
 
-    #[doc(alias = "get_property_cell_area")]
+    #[doc(alias = "cell-area")]
     pub fn cell_area(&self) -> Option<CellArea> {
         unsafe {
             let mut value = glib::Value::from_type(<CellArea as StaticType>::static_type());
@@ -458,6 +480,7 @@ impl TreeViewColumn {
         }
     }
 
+    #[doc(alias = "clicked")]
     pub fn connect_clicked<F: Fn(&TreeViewColumn) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn clicked_trampoline<F: Fn(&TreeViewColumn) + 'static>(
             this: *mut ffi::GtkTreeViewColumn,
@@ -479,7 +502,8 @@ impl TreeViewColumn {
         }
     }
 
-    pub fn connect_property_alignment_notify<F: Fn(&TreeViewColumn) + 'static>(
+    #[doc(alias = "alignment")]
+    pub fn connect_alignment_notify<F: Fn(&TreeViewColumn) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -504,7 +528,8 @@ impl TreeViewColumn {
         }
     }
 
-    pub fn connect_property_clickable_notify<F: Fn(&TreeViewColumn) + 'static>(
+    #[doc(alias = "clickable")]
+    pub fn connect_clickable_notify<F: Fn(&TreeViewColumn) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -529,10 +554,8 @@ impl TreeViewColumn {
         }
     }
 
-    pub fn connect_property_expand_notify<F: Fn(&TreeViewColumn) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "expand")]
+    pub fn connect_expand_notify<F: Fn(&TreeViewColumn) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expand_trampoline<F: Fn(&TreeViewColumn) + 'static>(
             this: *mut ffi::GtkTreeViewColumn,
             _param_spec: glib::ffi::gpointer,
@@ -554,7 +577,8 @@ impl TreeViewColumn {
         }
     }
 
-    pub fn connect_property_fixed_width_notify<F: Fn(&TreeViewColumn) + 'static>(
+    #[doc(alias = "fixed-width")]
+    pub fn connect_fixed_width_notify<F: Fn(&TreeViewColumn) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -579,7 +603,8 @@ impl TreeViewColumn {
         }
     }
 
-    pub fn connect_property_max_width_notify<F: Fn(&TreeViewColumn) + 'static>(
+    #[doc(alias = "max-width")]
+    pub fn connect_max_width_notify<F: Fn(&TreeViewColumn) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -604,7 +629,8 @@ impl TreeViewColumn {
         }
     }
 
-    pub fn connect_property_min_width_notify<F: Fn(&TreeViewColumn) + 'static>(
+    #[doc(alias = "min-width")]
+    pub fn connect_min_width_notify<F: Fn(&TreeViewColumn) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -629,7 +655,8 @@ impl TreeViewColumn {
         }
     }
 
-    pub fn connect_property_reorderable_notify<F: Fn(&TreeViewColumn) + 'static>(
+    #[doc(alias = "reorderable")]
+    pub fn connect_reorderable_notify<F: Fn(&TreeViewColumn) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -654,7 +681,8 @@ impl TreeViewColumn {
         }
     }
 
-    pub fn connect_property_resizable_notify<F: Fn(&TreeViewColumn) + 'static>(
+    #[doc(alias = "resizable")]
+    pub fn connect_resizable_notify<F: Fn(&TreeViewColumn) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -679,10 +707,8 @@ impl TreeViewColumn {
         }
     }
 
-    pub fn connect_property_sizing_notify<F: Fn(&TreeViewColumn) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "sizing")]
+    pub fn connect_sizing_notify<F: Fn(&TreeViewColumn) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_sizing_trampoline<F: Fn(&TreeViewColumn) + 'static>(
             this: *mut ffi::GtkTreeViewColumn,
             _param_spec: glib::ffi::gpointer,
@@ -704,7 +730,8 @@ impl TreeViewColumn {
         }
     }
 
-    pub fn connect_property_sort_column_id_notify<F: Fn(&TreeViewColumn) + 'static>(
+    #[doc(alias = "sort-column-id")]
+    pub fn connect_sort_column_id_notify<F: Fn(&TreeViewColumn) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -729,7 +756,8 @@ impl TreeViewColumn {
         }
     }
 
-    pub fn connect_property_sort_indicator_notify<F: Fn(&TreeViewColumn) + 'static>(
+    #[doc(alias = "sort-indicator")]
+    pub fn connect_sort_indicator_notify<F: Fn(&TreeViewColumn) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -754,7 +782,8 @@ impl TreeViewColumn {
         }
     }
 
-    pub fn connect_property_sort_order_notify<F: Fn(&TreeViewColumn) + 'static>(
+    #[doc(alias = "sort-order")]
+    pub fn connect_sort_order_notify<F: Fn(&TreeViewColumn) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -779,7 +808,8 @@ impl TreeViewColumn {
         }
     }
 
-    pub fn connect_property_spacing_notify<F: Fn(&TreeViewColumn) + 'static>(
+    #[doc(alias = "spacing")]
+    pub fn connect_spacing_notify<F: Fn(&TreeViewColumn) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -804,10 +834,8 @@ impl TreeViewColumn {
         }
     }
 
-    pub fn connect_property_title_notify<F: Fn(&TreeViewColumn) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "title")]
+    pub fn connect_title_notify<F: Fn(&TreeViewColumn) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&TreeViewColumn) + 'static>(
             this: *mut ffi::GtkTreeViewColumn,
             _param_spec: glib::ffi::gpointer,
@@ -829,7 +857,8 @@ impl TreeViewColumn {
         }
     }
 
-    pub fn connect_property_visible_notify<F: Fn(&TreeViewColumn) + 'static>(
+    #[doc(alias = "visible")]
+    pub fn connect_visible_notify<F: Fn(&TreeViewColumn) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -854,10 +883,8 @@ impl TreeViewColumn {
         }
     }
 
-    pub fn connect_property_widget_notify<F: Fn(&TreeViewColumn) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "widget")]
+    pub fn connect_widget_notify<F: Fn(&TreeViewColumn) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_widget_trampoline<F: Fn(&TreeViewColumn) + 'static>(
             this: *mut ffi::GtkTreeViewColumn,
             _param_spec: glib::ffi::gpointer,
@@ -879,10 +906,8 @@ impl TreeViewColumn {
         }
     }
 
-    pub fn connect_property_width_notify<F: Fn(&TreeViewColumn) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "width")]
+    pub fn connect_width_notify<F: Fn(&TreeViewColumn) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_trampoline<F: Fn(&TreeViewColumn) + 'static>(
             this: *mut ffi::GtkTreeViewColumn,
             _param_spec: glib::ffi::gpointer,
@@ -904,7 +929,8 @@ impl TreeViewColumn {
         }
     }
 
-    pub fn connect_property_x_offset_notify<F: Fn(&TreeViewColumn) + 'static>(
+    #[doc(alias = "x-offset")]
+    pub fn connect_x_offset_notify<F: Fn(&TreeViewColumn) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

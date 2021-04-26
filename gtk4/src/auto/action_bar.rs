@@ -38,11 +38,13 @@ impl ActionBar {
     }
 
     #[doc(alias = "gtk_action_bar_get_center_widget")]
+    #[doc(alias = "get_center_widget")]
     pub fn center_widget(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_action_bar_get_center_widget(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_action_bar_get_revealed")]
+    #[doc(alias = "get_revealed")]
     pub fn is_revealed(&self) -> bool {
         unsafe { from_glib(ffi::gtk_action_bar_get_revealed(self.to_glib_none().0)) }
     }
@@ -85,10 +87,8 @@ impl ActionBar {
         }
     }
 
-    pub fn connect_property_revealed_notify<F: Fn(&ActionBar) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "revealed")]
+    pub fn connect_revealed_notify<F: Fn(&ActionBar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_revealed_trampoline<F: Fn(&ActionBar) + 'static>(
             this: *mut ffi::GtkActionBar,
             _param_spec: glib::ffi::gpointer,

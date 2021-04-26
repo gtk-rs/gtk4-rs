@@ -39,33 +39,43 @@ pub trait EditableExt: 'static {
     fn finish_delegate(&self);
 
     #[doc(alias = "gtk_editable_get_alignment")]
+    #[doc(alias = "get_alignment")]
     fn alignment(&self) -> f32;
 
     #[doc(alias = "gtk_editable_get_chars")]
+    #[doc(alias = "get_chars")]
     fn chars(&self, start_pos: i32, end_pos: i32) -> glib::GString;
 
     #[doc(alias = "gtk_editable_get_delegate")]
+    #[doc(alias = "get_delegate")]
     fn delegate(&self) -> Option<Editable>;
 
     #[doc(alias = "gtk_editable_get_editable")]
+    #[doc(alias = "get_editable")]
     fn is_editable(&self) -> bool;
 
     #[doc(alias = "gtk_editable_get_enable_undo")]
+    #[doc(alias = "get_enable_undo")]
     fn enables_undo(&self) -> bool;
 
     #[doc(alias = "gtk_editable_get_max_width_chars")]
+    #[doc(alias = "get_max_width_chars")]
     fn max_width_chars(&self) -> i32;
 
     #[doc(alias = "gtk_editable_get_position")]
+    #[doc(alias = "get_position")]
     fn position(&self) -> i32;
 
     #[doc(alias = "gtk_editable_get_selection_bounds")]
+    #[doc(alias = "get_selection_bounds")]
     fn selection_bounds(&self) -> Option<(i32, i32)>;
 
     #[doc(alias = "gtk_editable_get_text")]
+    #[doc(alias = "get_text")]
     fn text(&self) -> glib::GString;
 
     #[doc(alias = "gtk_editable_get_width_chars")]
+    #[doc(alias = "get_width_chars")]
     fn width_chars(&self) -> i32;
 
     #[doc(alias = "gtk_editable_init_delegate")]
@@ -98,46 +108,45 @@ pub trait EditableExt: 'static {
     #[doc(alias = "gtk_editable_set_width_chars")]
     fn set_width_chars(&self, n_chars: i32);
 
-    #[doc(alias = "get_property_cursor_position")]
+    #[doc(alias = "cursor-position")]
     fn cursor_position(&self) -> i32;
 
-    #[doc(alias = "get_property_selection_bound")]
+    #[doc(alias = "selection-bound")]
     fn selection_bound(&self) -> i32;
 
-    #[doc(alias = "get_property_xalign")]
     fn xalign(&self) -> f32;
 
-    #[doc(alias = "set_property_xalign")]
     fn set_xalign(&self, xalign: f32);
 
+    #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[doc(alias = "delete-text")]
     fn connect_delete_text<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_cursor_position_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "cursor-position")]
+    fn connect_cursor_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "editable")]
+    fn connect_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_enable_undo_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "enable-undo")]
+    fn connect_enable_undo_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_max_width_chars_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "max-width-chars")]
+    fn connect_max_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_selection_bound_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "selection-bound")]
+    fn connect_selection_bound_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "text")]
+    fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "width-chars")]
+    fn connect_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "xalign")]
+    fn connect_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<Editable>> EditableExt for O {
@@ -353,6 +362,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
+    #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEditable,
@@ -376,6 +386,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
+    #[doc(alias = "delete-text")]
     fn connect_delete_text<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn delete_text_trampoline<P, F: Fn(&P, i32, i32) + 'static>(
             this: *mut ffi::GtkEditable,
@@ -405,10 +416,8 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
-    fn connect_property_cursor_position_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "cursor-position")]
+    fn connect_cursor_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cursor_position_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEditable,
             _param_spec: glib::ffi::gpointer,
@@ -432,7 +441,8 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
-    fn connect_property_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "editable")]
+    fn connect_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_editable_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEditable,
             _param_spec: glib::ffi::gpointer,
@@ -456,7 +466,8 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
-    fn connect_property_enable_undo_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "enable-undo")]
+    fn connect_enable_undo_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_enable_undo_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEditable,
             _param_spec: glib::ffi::gpointer,
@@ -480,10 +491,8 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
-    fn connect_property_max_width_chars_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "max-width-chars")]
+    fn connect_max_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_max_width_chars_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEditable,
             _param_spec: glib::ffi::gpointer,
@@ -507,10 +516,8 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
-    fn connect_property_selection_bound_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "selection-bound")]
+    fn connect_selection_bound_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selection_bound_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEditable,
             _param_spec: glib::ffi::gpointer,
@@ -534,7 +541,8 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
-    fn connect_property_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "text")]
+    fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEditable,
             _param_spec: glib::ffi::gpointer,
@@ -558,7 +566,8 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
-    fn connect_property_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "width-chars")]
+    fn connect_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_chars_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEditable,
             _param_spec: glib::ffi::gpointer,
@@ -582,7 +591,8 @@ impl<O: IsA<Editable>> EditableExt for O {
         }
     }
 
-    fn connect_property_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "xalign")]
+    fn connect_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_xalign_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEditable,
             _param_spec: glib::ffi::gpointer,

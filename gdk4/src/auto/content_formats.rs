@@ -30,12 +30,14 @@ impl ContentFormats {
     }
 
     #[doc(alias = "gdk_content_formats_new_for_gtype")]
+    #[doc(alias = "new_for_gtype")]
     pub fn for_type(type_: glib::types::Type) -> ContentFormats {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gdk_content_formats_new_for_gtype(type_.into_glib())) }
     }
 
     #[doc(alias = "gdk_content_formats_contain_gtype")]
+    #[doc(alias = "contain_gtype")]
     pub fn contains_type(&self, type_: glib::types::Type) -> bool {
         unsafe {
             from_glib(ffi::gdk_content_formats_contain_gtype(
@@ -56,6 +58,7 @@ impl ContentFormats {
     }
 
     #[doc(alias = "gdk_content_formats_match")]
+    #[doc(alias = "match")]
     pub fn match_(&self, second: &ContentFormats) -> bool {
         unsafe {
             from_glib(ffi::gdk_content_formats_match(
@@ -66,6 +69,7 @@ impl ContentFormats {
     }
 
     #[doc(alias = "gdk_content_formats_match_gtype")]
+    #[doc(alias = "match_gtype")]
     pub fn match_type(&self, second: &ContentFormats) -> glib::types::Type {
         unsafe {
             from_glib(ffi::gdk_content_formats_match_gtype(
@@ -93,6 +97,7 @@ impl ContentFormats {
     }
 
     #[doc(alias = "gdk_content_formats_to_string")]
+    #[doc(alias = "to_string")]
     pub fn to_str(&self) -> glib::GString {
         unsafe { from_glib_full(ffi::gdk_content_formats_to_string(self.to_glib_none().0)) }
     }
@@ -108,6 +113,7 @@ impl ContentFormats {
     }
 
     #[doc(alias = "gdk_content_formats_union_deserialize_gtypes")]
+    #[doc(alias = "union_deserialize_gtypes")]
     pub fn union_deserialize_types(&self) -> Option<ContentFormats> {
         unsafe {
             from_glib_full(ffi::gdk_content_formats_union_deserialize_gtypes(
@@ -126,6 +132,7 @@ impl ContentFormats {
     }
 
     #[doc(alias = "gdk_content_formats_union_serialize_gtypes")]
+    #[doc(alias = "union_serialize_gtypes")]
     pub fn union_serialize_types(&self) -> Option<ContentFormats> {
         unsafe {
             from_glib_full(ffi::gdk_content_formats_union_serialize_gtypes(

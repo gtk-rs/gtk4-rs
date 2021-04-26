@@ -45,11 +45,13 @@ impl Overlay {
     }
 
     #[doc(alias = "gtk_overlay_get_child")]
+    #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_overlay_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_overlay_get_clip_overlay")]
+    #[doc(alias = "get_clip_overlay")]
     pub fn is_clip_overlay<P: IsA<Widget>>(&self, widget: &P) -> bool {
         unsafe {
             from_glib(ffi::gtk_overlay_get_clip_overlay(
@@ -60,6 +62,7 @@ impl Overlay {
     }
 
     #[doc(alias = "gtk_overlay_get_measure_overlay")]
+    #[doc(alias = "get_measure_overlay")]
     pub fn is_measure_overlay<P: IsA<Widget>>(&self, widget: &P) -> bool {
         unsafe {
             from_glib(ffi::gtk_overlay_get_measure_overlay(
@@ -111,14 +114,13 @@ impl Overlay {
         }
     }
 
+    //#[doc(alias = "get-child-position")]
     //pub fn connect_get_child_position<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
     //    Out allocation: Gdk.Rectangle
     //}
 
-    pub fn connect_property_child_notify<F: Fn(&Overlay) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "child")]
+    pub fn connect_child_notify<F: Fn(&Overlay) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&Overlay) + 'static>(
             this: *mut ffi::GtkOverlay,
             _param_spec: glib::ffi::gpointer,

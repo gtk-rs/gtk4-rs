@@ -37,6 +37,7 @@ impl Transform {
     }
 
     #[doc(alias = "gsk_transform_get_category")]
+    #[doc(alias = "get_category")]
     pub fn category(&self) -> TransformCategory {
         unsafe { from_glib(ffi::gsk_transform_get_category(self.to_glib_none().0)) }
     }
@@ -167,6 +168,7 @@ impl Transform {
     }
 
     #[doc(alias = "gsk_transform_to_string")]
+    #[doc(alias = "to_string")]
     pub fn to_str(&self) -> glib::GString {
         unsafe { from_glib_full(ffi::gsk_transform_to_string(self.to_glib_none().0)) }
     }

@@ -32,6 +32,7 @@ impl CellRendererToggle {
     }
 
     #[doc(alias = "gtk_cell_renderer_toggle_get_activatable")]
+    #[doc(alias = "get_activatable")]
     pub fn is_activatable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_cell_renderer_toggle_get_activatable(
@@ -41,6 +42,7 @@ impl CellRendererToggle {
     }
 
     #[doc(alias = "gtk_cell_renderer_toggle_get_active")]
+    #[doc(alias = "get_active")]
     pub fn is_active(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_cell_renderer_toggle_get_active(
@@ -50,6 +52,7 @@ impl CellRendererToggle {
     }
 
     #[doc(alias = "gtk_cell_renderer_toggle_get_radio")]
+    #[doc(alias = "get_radio")]
     pub fn is_radio(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_cell_renderer_toggle_get_radio(
@@ -82,7 +85,6 @@ impl CellRendererToggle {
         }
     }
 
-    #[doc(alias = "get_property_inconsistent")]
     pub fn is_inconsistent(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -97,7 +99,6 @@ impl CellRendererToggle {
         }
     }
 
-    #[doc(alias = "set_property_inconsistent")]
     pub fn set_inconsistent(&self, inconsistent: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -108,6 +109,7 @@ impl CellRendererToggle {
         }
     }
 
+    #[doc(alias = "toggled")]
     pub fn connect_toggled<F: Fn(&CellRendererToggle, TreePath) + 'static>(
         &self,
         f: F,
@@ -134,7 +136,8 @@ impl CellRendererToggle {
         }
     }
 
-    pub fn connect_property_activatable_notify<F: Fn(&CellRendererToggle) + 'static>(
+    #[doc(alias = "activatable")]
+    pub fn connect_activatable_notify<F: Fn(&CellRendererToggle) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -159,7 +162,8 @@ impl CellRendererToggle {
         }
     }
 
-    pub fn connect_property_active_notify<F: Fn(&CellRendererToggle) + 'static>(
+    #[doc(alias = "active")]
+    pub fn connect_active_notify<F: Fn(&CellRendererToggle) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -184,7 +188,8 @@ impl CellRendererToggle {
         }
     }
 
-    pub fn connect_property_inconsistent_notify<F: Fn(&CellRendererToggle) + 'static>(
+    #[doc(alias = "inconsistent")]
+    pub fn connect_inconsistent_notify<F: Fn(&CellRendererToggle) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -211,7 +216,8 @@ impl CellRendererToggle {
         }
     }
 
-    pub fn connect_property_radio_notify<F: Fn(&CellRendererToggle) + 'static>(
+    #[doc(alias = "radio")]
+    pub fn connect_radio_notify<F: Fn(&CellRendererToggle) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

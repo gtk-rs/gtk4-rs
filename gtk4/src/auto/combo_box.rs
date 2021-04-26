@@ -44,12 +44,14 @@ impl ComboBox {
     }
 
     #[doc(alias = "gtk_combo_box_new_with_entry")]
+    #[doc(alias = "new_with_entry")]
     pub fn with_entry() -> ComboBox {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_combo_box_new_with_entry()).unsafe_cast() }
     }
 
     #[doc(alias = "gtk_combo_box_new_with_model")]
+    #[doc(alias = "new_with_model")]
     pub fn with_model<P: IsA<TreeModel>>(model: &P) -> ComboBox {
         skip_assert_initialized!();
         unsafe {
@@ -61,6 +63,7 @@ impl ComboBox {
     }
 
     #[doc(alias = "gtk_combo_box_new_with_model_and_entry")]
+    #[doc(alias = "new_with_model_and_entry")]
     pub fn with_model_and_entry<P: IsA<TreeModel>>(model: &P) -> ComboBox {
         skip_assert_initialized!();
         unsafe {
@@ -467,33 +470,43 @@ pub const NONE_COMBO_BOX: Option<&ComboBox> = None;
 
 pub trait ComboBoxExt: 'static {
     #[doc(alias = "gtk_combo_box_get_active_id")]
+    #[doc(alias = "get_active_id")]
     fn active_id(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_combo_box_get_active_iter")]
+    #[doc(alias = "get_active_iter")]
     fn active_iter(&self) -> Option<TreeIter>;
 
     #[doc(alias = "gtk_combo_box_get_button_sensitivity")]
+    #[doc(alias = "get_button_sensitivity")]
     fn button_sensitivity(&self) -> SensitivityType;
 
     #[doc(alias = "gtk_combo_box_get_child")]
+    #[doc(alias = "get_child")]
     fn child(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_combo_box_get_entry_text_column")]
+    #[doc(alias = "get_entry_text_column")]
     fn entry_text_column(&self) -> i32;
 
     #[doc(alias = "gtk_combo_box_get_has_entry")]
+    #[doc(alias = "get_has_entry")]
     fn has_entry(&self) -> bool;
 
     #[doc(alias = "gtk_combo_box_get_id_column")]
+    #[doc(alias = "get_id_column")]
     fn id_column(&self) -> i32;
 
     #[doc(alias = "gtk_combo_box_get_model")]
+    #[doc(alias = "get_model")]
     fn model(&self) -> Option<TreeModel>;
 
     #[doc(alias = "gtk_combo_box_get_popup_fixed_width")]
+    #[doc(alias = "get_popup_fixed_width")]
     fn is_popup_fixed_width(&self) -> bool;
 
     //#[doc(alias = "gtk_combo_box_get_row_separator_func")]
+    //#[doc(alias = "get_row_separator_func")]
     //fn row_separator_func(&self) -> Option<Box_<dyn Fn(&TreeModel, &TreeIter) -> bool + 'static>>;
 
     #[doc(alias = "gtk_combo_box_popdown")]
@@ -532,62 +545,68 @@ pub trait ComboBoxExt: 'static {
     #[doc(alias = "gtk_combo_box_set_row_separator_func")]
     fn set_row_separator_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(&self, func: P);
 
-    #[doc(alias = "get_property_has_frame")]
+    #[doc(alias = "has-frame")]
     fn has_frame(&self) -> bool;
 
-    #[doc(alias = "set_property_has_frame")]
+    #[doc(alias = "has-frame")]
     fn set_has_frame(&self, has_frame: bool);
 
-    #[doc(alias = "get_property_popup_shown")]
+    #[doc(alias = "popup-shown")]
     fn is_popup_shown(&self) -> bool;
 
+    #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[doc(alias = "format-entry-text")]
     fn connect_format_entry_text<F: Fn(&Self, &str) -> String + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
+    #[doc(alias = "move-active")]
     fn connect_move_active<F: Fn(&Self, ScrollType) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_move_active(&self, scroll_type: ScrollType);
 
+    #[doc(alias = "popdown")]
     fn connect_popdown<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_popdown(&self) -> bool;
 
+    #[doc(alias = "popup")]
     fn connect_popup<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_popup(&self);
 
-    fn connect_property_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "active")]
+    fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_active_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "active-id")]
+    fn connect_active_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_button_sensitivity_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "button-sensitivity")]
+    fn connect_button_sensitivity_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "child")]
+    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_entry_text_column_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "entry-text-column")]
+    fn connect_entry_text_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_has_frame_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "has-frame")]
+    fn connect_has_frame_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_id_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "id-column")]
+    fn connect_id_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "model")]
+    fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_popup_fixed_width_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "popup-fixed-width")]
+    fn connect_popup_fixed_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_popup_shown_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "popup-shown")]
+    fn connect_popup_shown_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<ComboBox>> ComboBoxExt for O {
@@ -814,6 +833,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkComboBox,
@@ -837,6 +857,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[doc(alias = "format-entry-text")]
     fn connect_format_entry_text<F: Fn(&Self, &str) -> String + 'static>(
         &self,
         f: F,
@@ -869,6 +890,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
+    #[doc(alias = "move-active")]
     fn connect_move_active<F: Fn(&Self, ScrollType) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn move_active_trampoline<P, F: Fn(&P, ScrollType) + 'static>(
             this: *mut ffi::GtkComboBox,
@@ -904,6 +926,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         };
     }
 
+    #[doc(alias = "popdown")]
     fn connect_popdown<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn popdown_trampoline<P, F: Fn(&P) -> bool + 'static>(
             this: *mut ffi::GtkComboBox,
@@ -937,6 +960,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         res.unwrap().get().expect("Return Value for `emit_popdown`")
     }
 
+    #[doc(alias = "popup")]
     fn connect_popup<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn popup_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkComboBox,
@@ -968,7 +992,8 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         };
     }
 
-    fn connect_property_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "active")]
+    fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_active_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkComboBox,
             _param_spec: glib::ffi::gpointer,
@@ -992,7 +1017,8 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    fn connect_property_active_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "active-id")]
+    fn connect_active_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_active_id_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkComboBox,
             _param_spec: glib::ffi::gpointer,
@@ -1016,10 +1042,8 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    fn connect_property_button_sensitivity_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "button-sensitivity")]
+    fn connect_button_sensitivity_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_button_sensitivity_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkComboBox,
             _param_spec: glib::ffi::gpointer,
@@ -1043,7 +1067,8 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "child")]
+    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkComboBox,
             _param_spec: glib::ffi::gpointer,
@@ -1067,10 +1092,8 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    fn connect_property_entry_text_column_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "entry-text-column")]
+    fn connect_entry_text_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_entry_text_column_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkComboBox,
             _param_spec: glib::ffi::gpointer,
@@ -1094,7 +1117,8 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    fn connect_property_has_frame_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "has-frame")]
+    fn connect_has_frame_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_frame_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkComboBox,
             _param_spec: glib::ffi::gpointer,
@@ -1118,7 +1142,8 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    fn connect_property_id_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "id-column")]
+    fn connect_id_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_id_column_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkComboBox,
             _param_spec: glib::ffi::gpointer,
@@ -1142,7 +1167,8 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "model")]
+    fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkComboBox,
             _param_spec: glib::ffi::gpointer,
@@ -1166,10 +1192,8 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    fn connect_property_popup_fixed_width_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "popup-fixed-width")]
+    fn connect_popup_fixed_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_popup_fixed_width_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkComboBox,
             _param_spec: glib::ffi::gpointer,
@@ -1193,7 +1217,8 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         }
     }
 
-    fn connect_property_popup_shown_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "popup-shown")]
+    fn connect_popup_shown_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_popup_shown_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkComboBox,
             _param_spec: glib::ffi::gpointer,

@@ -26,12 +26,15 @@ pub trait LayoutManagerExt: 'static {
     fn allocate<P: IsA<Widget>>(&self, widget: &P, width: i32, height: i32, baseline: i32);
 
     #[doc(alias = "gtk_layout_manager_get_layout_child")]
+    #[doc(alias = "get_layout_child")]
     fn layout_child<P: IsA<Widget>>(&self, child: &P) -> Option<LayoutChild>;
 
     #[doc(alias = "gtk_layout_manager_get_request_mode")]
+    #[doc(alias = "get_request_mode")]
     fn request_mode(&self) -> SizeRequestMode;
 
     #[doc(alias = "gtk_layout_manager_get_widget")]
+    #[doc(alias = "get_widget")]
     fn widget(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_layout_manager_layout_changed")]

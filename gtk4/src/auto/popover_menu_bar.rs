@@ -32,6 +32,7 @@ glib::wrapper! {
 
 impl PopoverMenuBar {
     #[doc(alias = "gtk_popover_menu_bar_new_from_model")]
+    #[doc(alias = "new_from_model")]
     pub fn from_model<P: IsA<gio::MenuModel>>(model: Option<&P>) -> PopoverMenuBar {
         assert_initialized_main_thread!();
         unsafe {
@@ -54,6 +55,7 @@ impl PopoverMenuBar {
     }
 
     #[doc(alias = "gtk_popover_menu_bar_get_menu_model")]
+    #[doc(alias = "get_menu_model")]
     pub fn menu_model(&self) -> Option<gio::MenuModel> {
         unsafe {
             from_glib_none(ffi::gtk_popover_menu_bar_get_menu_model(
@@ -82,7 +84,8 @@ impl PopoverMenuBar {
         }
     }
 
-    pub fn connect_property_menu_model_notify<F: Fn(&PopoverMenuBar) + 'static>(
+    #[doc(alias = "menu-model")]
+    pub fn connect_menu_model_notify<F: Fn(&PopoverMenuBar) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

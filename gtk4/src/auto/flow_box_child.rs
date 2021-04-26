@@ -346,9 +346,11 @@ pub trait FlowBoxChildExt: 'static {
     fn changed(&self);
 
     #[doc(alias = "gtk_flow_box_child_get_child")]
+    #[doc(alias = "get_child")]
     fn child(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_flow_box_child_get_index")]
+    #[doc(alias = "get_index")]
     fn index(&self) -> i32;
 
     #[doc(alias = "gtk_flow_box_child_is_selected")]
@@ -357,11 +359,13 @@ pub trait FlowBoxChildExt: 'static {
     #[doc(alias = "gtk_flow_box_child_set_child")]
     fn set_child<P: IsA<Widget>>(&self, child: Option<&P>);
 
+    #[doc(alias = "activate")]
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_activate(&self);
 
-    fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "child")]
+    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<FlowBoxChild>> FlowBoxChildExt for O {
@@ -400,6 +404,7 @@ impl<O: IsA<FlowBoxChild>> FlowBoxChildExt for O {
         }
     }
 
+    #[doc(alias = "activate")]
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkFlowBoxChild,
@@ -431,7 +436,8 @@ impl<O: IsA<FlowBoxChild>> FlowBoxChildExt for O {
         };
     }
 
-    fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "child")]
+    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkFlowBoxChild,
             _param_spec: glib::ffi::gpointer,

@@ -550,12 +550,15 @@ pub const NONE_APPLICATION_WINDOW: Option<&ApplicationWindow> = None;
 
 pub trait ApplicationWindowExt: 'static {
     #[doc(alias = "gtk_application_window_get_help_overlay")]
+    #[doc(alias = "get_help_overlay")]
     fn help_overlay(&self) -> Option<ShortcutsWindow>;
 
     #[doc(alias = "gtk_application_window_get_id")]
+    #[doc(alias = "get_id")]
     fn id(&self) -> u32;
 
     #[doc(alias = "gtk_application_window_get_show_menubar")]
+    #[doc(alias = "get_show_menubar")]
     fn shows_menubar(&self) -> bool;
 
     #[doc(alias = "gtk_application_window_set_help_overlay")]
@@ -564,8 +567,8 @@ pub trait ApplicationWindowExt: 'static {
     #[doc(alias = "gtk_application_window_set_show_menubar")]
     fn set_show_menubar(&self, show_menubar: bool);
 
-    fn connect_property_show_menubar_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
+    #[doc(alias = "show-menubar")]
+    fn connect_show_menubar_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<ApplicationWindow>> ApplicationWindowExt for O {
@@ -607,10 +610,8 @@ impl<O: IsA<ApplicationWindow>> ApplicationWindowExt for O {
         }
     }
 
-    fn connect_property_show_menubar_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "show-menubar")]
+    fn connect_show_menubar_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_menubar_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkApplicationWindow,
             _param_spec: glib::ffi::gpointer,

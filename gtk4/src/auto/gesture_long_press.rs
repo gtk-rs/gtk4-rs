@@ -34,6 +34,7 @@ impl GestureLongPress {
     }
 
     #[doc(alias = "gtk_gesture_long_press_get_delay_factor")]
+    #[doc(alias = "get_delay_factor")]
     pub fn delay_factor(&self) -> f64 {
         unsafe { ffi::gtk_gesture_long_press_get_delay_factor(self.to_glib_none().0) }
     }
@@ -45,6 +46,7 @@ impl GestureLongPress {
         }
     }
 
+    #[doc(alias = "cancelled")]
     pub fn connect_cancelled<F: Fn(&GestureLongPress) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn cancelled_trampoline<F: Fn(&GestureLongPress) + 'static>(
             this: *mut ffi::GtkGestureLongPress,
@@ -66,6 +68,7 @@ impl GestureLongPress {
         }
     }
 
+    #[doc(alias = "pressed")]
     pub fn connect_pressed<F: Fn(&GestureLongPress, f64, f64) + 'static>(
         &self,
         f: F,
@@ -92,7 +95,8 @@ impl GestureLongPress {
         }
     }
 
-    pub fn connect_property_delay_factor_notify<F: Fn(&GestureLongPress) + 'static>(
+    #[doc(alias = "delay-factor")]
+    pub fn connect_delay_factor_notify<F: Fn(&GestureLongPress) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

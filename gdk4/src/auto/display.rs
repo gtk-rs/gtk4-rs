@@ -58,6 +58,7 @@ impl Display {
     }
 
     #[doc(alias = "gdk_display_get_app_launch_context")]
+    #[doc(alias = "get_app_launch_context")]
     pub fn app_launch_context(&self) -> AppLaunchContext {
         unsafe {
             from_glib_full(ffi::gdk_display_get_app_launch_context(
@@ -67,16 +68,19 @@ impl Display {
     }
 
     #[doc(alias = "gdk_display_get_clipboard")]
+    #[doc(alias = "get_clipboard")]
     pub fn clipboard(&self) -> Clipboard {
         unsafe { from_glib_none(ffi::gdk_display_get_clipboard(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_display_get_default_seat")]
+    #[doc(alias = "get_default_seat")]
     pub fn default_seat(&self) -> Seat {
         unsafe { from_glib_none(ffi::gdk_display_get_default_seat(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_display_get_monitor_at_surface")]
+    #[doc(alias = "get_monitor_at_surface")]
     pub fn monitor_at_surface(&self, surface: &Surface) -> Option<Monitor> {
         unsafe {
             from_glib_none(ffi::gdk_display_get_monitor_at_surface(
@@ -87,16 +91,19 @@ impl Display {
     }
 
     #[doc(alias = "gdk_display_get_monitors")]
+    #[doc(alias = "get_monitors")]
     pub fn monitors(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gdk_display_get_monitors(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_display_get_name")]
+    #[doc(alias = "get_name")]
     pub fn name(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gdk_display_get_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_display_get_primary_clipboard")]
+    #[doc(alias = "get_primary_clipboard")]
     pub fn primary_clipboard(&self) -> Clipboard {
         unsafe {
             from_glib_none(ffi::gdk_display_get_primary_clipboard(
@@ -117,6 +124,7 @@ impl Display {
     }
 
     #[doc(alias = "gdk_display_get_startup_notification_id")]
+    #[doc(alias = "get_startup_notification_id")]
     pub fn startup_notification_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gdk_display_get_startup_notification_id(
@@ -175,7 +183,7 @@ impl Display {
         }
     }
 
-    #[doc(alias = "get_property_input_shapes")]
+    #[doc(alias = "input-shapes")]
     pub fn is_input_shapes(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -191,6 +199,7 @@ impl Display {
     }
 
     #[doc(alias = "gdk_display_get_default")]
+    #[doc(alias = "get_default")]
     pub fn default() -> Option<Display> {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gdk_display_get_default()) }
@@ -202,6 +211,7 @@ impl Display {
         unsafe { from_glib_none(ffi::gdk_display_open(display_name.to_glib_none().0)) }
     }
 
+    #[doc(alias = "closed")]
     pub fn connect_closed<F: Fn(&Display, bool) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn closed_trampoline<F: Fn(&Display, bool) + 'static>(
             this: *mut ffi::GdkDisplay,
@@ -224,6 +234,7 @@ impl Display {
         }
     }
 
+    #[doc(alias = "opened")]
     pub fn connect_opened<F: Fn(&Display) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn opened_trampoline<F: Fn(&Display) + 'static>(
             this: *mut ffi::GdkDisplay,
@@ -245,6 +256,7 @@ impl Display {
         }
     }
 
+    #[doc(alias = "seat-added")]
     pub fn connect_seat_added<F: Fn(&Display, &Seat) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn seat_added_trampoline<F: Fn(&Display, &Seat) + 'static>(
             this: *mut ffi::GdkDisplay,
@@ -267,6 +279,7 @@ impl Display {
         }
     }
 
+    #[doc(alias = "seat-removed")]
     pub fn connect_seat_removed<F: Fn(&Display, &Seat) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn seat_removed_trampoline<F: Fn(&Display, &Seat) + 'static>(
             this: *mut ffi::GdkDisplay,
@@ -289,6 +302,7 @@ impl Display {
         }
     }
 
+    #[doc(alias = "setting-changed")]
     pub fn connect_setting_changed<F: Fn(&Display, &str) + 'static>(
         &self,
         f: F,
@@ -317,10 +331,8 @@ impl Display {
         }
     }
 
-    pub fn connect_property_composited_notify<F: Fn(&Display) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "composited")]
+    pub fn connect_composited_notify<F: Fn(&Display) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_composited_trampoline<F: Fn(&Display) + 'static>(
             this: *mut ffi::GdkDisplay,
             _param_spec: glib::ffi::gpointer,
@@ -342,10 +354,8 @@ impl Display {
         }
     }
 
-    pub fn connect_property_input_shapes_notify<F: Fn(&Display) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "input-shapes")]
+    pub fn connect_input_shapes_notify<F: Fn(&Display) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_shapes_trampoline<F: Fn(&Display) + 'static>(
             this: *mut ffi::GdkDisplay,
             _param_spec: glib::ffi::gpointer,
@@ -367,7 +377,8 @@ impl Display {
         }
     }
 
-    pub fn connect_property_rgba_notify<F: Fn(&Display) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "rgba")]
+    pub fn connect_rgba_notify<F: Fn(&Display) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rgba_trampoline<F: Fn(&Display) + 'static>(
             this: *mut ffi::GdkDisplay,
             _param_spec: glib::ffi::gpointer,

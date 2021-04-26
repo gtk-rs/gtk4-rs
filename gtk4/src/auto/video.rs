@@ -39,6 +39,7 @@ impl Video {
     }
 
     #[doc(alias = "gtk_video_new_for_file")]
+    #[doc(alias = "new_for_file")]
     pub fn for_file<P: IsA<gio::File>>(file: Option<&P>) -> Video {
         assert_initialized_main_thread!();
         unsafe {
@@ -50,6 +51,7 @@ impl Video {
     }
 
     #[doc(alias = "gtk_video_new_for_filename")]
+    #[doc(alias = "new_for_filename")]
     pub fn for_filename<P: AsRef<std::path::Path>>(filename: P) -> Video {
         assert_initialized_main_thread!();
         unsafe {
@@ -61,6 +63,7 @@ impl Video {
     }
 
     #[doc(alias = "gtk_video_new_for_media_stream")]
+    #[doc(alias = "new_for_media_stream")]
     pub fn for_media_stream<P: IsA<MediaStream>>(stream: Option<&P>) -> Video {
         assert_initialized_main_thread!();
         unsafe {
@@ -72,6 +75,7 @@ impl Video {
     }
 
     #[doc(alias = "gtk_video_new_for_resource")]
+    #[doc(alias = "new_for_resource")]
     pub fn for_resource(resource_path: Option<&str>) -> Video {
         assert_initialized_main_thread!();
         unsafe {
@@ -83,21 +87,25 @@ impl Video {
     }
 
     #[doc(alias = "gtk_video_get_autoplay")]
+    #[doc(alias = "get_autoplay")]
     pub fn is_autoplay(&self) -> bool {
         unsafe { from_glib(ffi::gtk_video_get_autoplay(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_video_get_file")]
+    #[doc(alias = "get_file")]
     pub fn file(&self) -> Option<gio::File> {
         unsafe { from_glib_none(ffi::gtk_video_get_file(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_video_get_loop")]
+    #[doc(alias = "get_loop")]
     pub fn is_loop(&self) -> bool {
         unsafe { from_glib(ffi::gtk_video_get_loop(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_video_get_media_stream")]
+    #[doc(alias = "get_media_stream")]
     pub fn media_stream(&self) -> Option<MediaStream> {
         unsafe { from_glib_none(ffi::gtk_video_get_media_stream(self.to_glib_none().0)) }
     }
@@ -150,10 +158,8 @@ impl Video {
         }
     }
 
-    pub fn connect_property_autoplay_notify<F: Fn(&Video) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "autoplay")]
+    pub fn connect_autoplay_notify<F: Fn(&Video) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_autoplay_trampoline<F: Fn(&Video) + 'static>(
             this: *mut ffi::GtkVideo,
             _param_spec: glib::ffi::gpointer,
@@ -175,7 +181,8 @@ impl Video {
         }
     }
 
-    pub fn connect_property_file_notify<F: Fn(&Video) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "file")]
+    pub fn connect_file_notify<F: Fn(&Video) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_file_trampoline<F: Fn(&Video) + 'static>(
             this: *mut ffi::GtkVideo,
             _param_spec: glib::ffi::gpointer,
@@ -197,7 +204,8 @@ impl Video {
         }
     }
 
-    pub fn connect_property_loop_notify<F: Fn(&Video) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "loop")]
+    pub fn connect_loop_notify<F: Fn(&Video) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_loop_trampoline<F: Fn(&Video) + 'static>(
             this: *mut ffi::GtkVideo,
             _param_spec: glib::ffi::gpointer,
@@ -219,10 +227,8 @@ impl Video {
         }
     }
 
-    pub fn connect_property_media_stream_notify<F: Fn(&Video) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "media-stream")]
+    pub fn connect_media_stream_notify<F: Fn(&Video) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_media_stream_trampoline<F: Fn(&Video) + 'static>(
             this: *mut ffi::GtkVideo,
             _param_spec: glib::ffi::gpointer,

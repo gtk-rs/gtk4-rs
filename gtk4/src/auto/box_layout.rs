@@ -36,6 +36,7 @@ impl BoxLayout {
     }
 
     #[doc(alias = "gtk_box_layout_get_baseline_position")]
+    #[doc(alias = "get_baseline_position")]
     pub fn baseline_position(&self) -> BaselinePosition {
         unsafe {
             from_glib(ffi::gtk_box_layout_get_baseline_position(
@@ -45,11 +46,13 @@ impl BoxLayout {
     }
 
     #[doc(alias = "gtk_box_layout_get_homogeneous")]
+    #[doc(alias = "get_homogeneous")]
     pub fn is_homogeneous(&self) -> bool {
         unsafe { from_glib(ffi::gtk_box_layout_get_homogeneous(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_box_layout_get_spacing")]
+    #[doc(alias = "get_spacing")]
     pub fn spacing(&self) -> u32 {
         unsafe { ffi::gtk_box_layout_get_spacing(self.to_glib_none().0) }
     }
@@ -75,7 +78,8 @@ impl BoxLayout {
         }
     }
 
-    pub fn connect_property_baseline_position_notify<F: Fn(&BoxLayout) + 'static>(
+    #[doc(alias = "baseline-position")]
+    pub fn connect_baseline_position_notify<F: Fn(&BoxLayout) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -100,10 +104,8 @@ impl BoxLayout {
         }
     }
 
-    pub fn connect_property_homogeneous_notify<F: Fn(&BoxLayout) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "homogeneous")]
+    pub fn connect_homogeneous_notify<F: Fn(&BoxLayout) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_homogeneous_trampoline<F: Fn(&BoxLayout) + 'static>(
             this: *mut ffi::GtkBoxLayout,
             _param_spec: glib::ffi::gpointer,
@@ -125,10 +127,8 @@ impl BoxLayout {
         }
     }
 
-    pub fn connect_property_spacing_notify<F: Fn(&BoxLayout) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "spacing")]
+    pub fn connect_spacing_notify<F: Fn(&BoxLayout) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_spacing_trampoline<F: Fn(&BoxLayout) + 'static>(
             this: *mut ffi::GtkBoxLayout,
             _param_spec: glib::ffi::gpointer,

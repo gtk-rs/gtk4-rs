@@ -40,6 +40,7 @@ impl PasswordEntry {
     }
 
     #[doc(alias = "gtk_password_entry_get_extra_menu")]
+    #[doc(alias = "get_extra_menu")]
     pub fn extra_menu(&self) -> Option<gio::MenuModel> {
         unsafe {
             from_glib_none(ffi::gtk_password_entry_get_extra_menu(
@@ -49,6 +50,7 @@ impl PasswordEntry {
     }
 
     #[doc(alias = "gtk_password_entry_get_show_peek_icon")]
+    #[doc(alias = "get_show_peek_icon")]
     pub fn shows_peek_icon(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_password_entry_get_show_peek_icon(
@@ -77,7 +79,7 @@ impl PasswordEntry {
         }
     }
 
-    #[doc(alias = "get_property_activates_default")]
+    #[doc(alias = "activates-default")]
     pub fn activates_default(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -92,7 +94,7 @@ impl PasswordEntry {
         }
     }
 
-    #[doc(alias = "set_property_activates_default")]
+    #[doc(alias = "activates-default")]
     pub fn set_activates_default(&self, activates_default: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -103,7 +105,7 @@ impl PasswordEntry {
         }
     }
 
-    #[doc(alias = "get_property_placeholder_text")]
+    #[doc(alias = "placeholder-text")]
     pub fn placeholder_text(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -118,7 +120,7 @@ impl PasswordEntry {
         }
     }
 
-    #[doc(alias = "set_property_placeholder_text")]
+    #[doc(alias = "placeholder-text")]
     pub fn set_placeholder_text(&self, placeholder_text: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -129,6 +131,7 @@ impl PasswordEntry {
         }
     }
 
+    #[doc(alias = "activate")]
     pub fn connect_activate<F: Fn(&PasswordEntry) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<F: Fn(&PasswordEntry) + 'static>(
             this: *mut ffi::GtkPasswordEntry,
@@ -158,7 +161,8 @@ impl PasswordEntry {
         };
     }
 
-    pub fn connect_property_activates_default_notify<F: Fn(&PasswordEntry) + 'static>(
+    #[doc(alias = "activates-default")]
+    pub fn connect_activates_default_notify<F: Fn(&PasswordEntry) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -185,7 +189,8 @@ impl PasswordEntry {
         }
     }
 
-    pub fn connect_property_extra_menu_notify<F: Fn(&PasswordEntry) + 'static>(
+    #[doc(alias = "extra-menu")]
+    pub fn connect_extra_menu_notify<F: Fn(&PasswordEntry) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -210,7 +215,8 @@ impl PasswordEntry {
         }
     }
 
-    pub fn connect_property_placeholder_text_notify<F: Fn(&PasswordEntry) + 'static>(
+    #[doc(alias = "placeholder-text")]
+    pub fn connect_placeholder_text_notify<F: Fn(&PasswordEntry) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -235,7 +241,8 @@ impl PasswordEntry {
         }
     }
 
-    pub fn connect_property_show_peek_icon_notify<F: Fn(&PasswordEntry) + 'static>(
+    #[doc(alias = "show-peek-icon")]
+    pub fn connect_show_peek_icon_notify<F: Fn(&PasswordEntry) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

@@ -38,6 +38,7 @@ impl Picture {
     }
 
     #[doc(alias = "gtk_picture_new_for_file")]
+    #[doc(alias = "new_for_file")]
     pub fn for_file<P: IsA<gio::File>>(file: Option<&P>) -> Picture {
         assert_initialized_main_thread!();
         unsafe {
@@ -49,6 +50,7 @@ impl Picture {
     }
 
     #[doc(alias = "gtk_picture_new_for_filename")]
+    #[doc(alias = "new_for_filename")]
     pub fn for_filename<P: AsRef<std::path::Path>>(filename: P) -> Picture {
         assert_initialized_main_thread!();
         unsafe {
@@ -60,6 +62,7 @@ impl Picture {
     }
 
     #[doc(alias = "gtk_picture_new_for_paintable")]
+    #[doc(alias = "new_for_paintable")]
     pub fn for_paintable<P: IsA<gdk::Paintable>>(paintable: Option<&P>) -> Picture {
         assert_initialized_main_thread!();
         unsafe {
@@ -71,6 +74,7 @@ impl Picture {
     }
 
     #[doc(alias = "gtk_picture_new_for_pixbuf")]
+    #[doc(alias = "new_for_pixbuf")]
     pub fn for_pixbuf(pixbuf: Option<&gdk_pixbuf::Pixbuf>) -> Picture {
         assert_initialized_main_thread!();
         unsafe {
@@ -80,6 +84,7 @@ impl Picture {
     }
 
     #[doc(alias = "gtk_picture_new_for_resource")]
+    #[doc(alias = "new_for_resource")]
     pub fn for_resource(resource_path: Option<&str>) -> Picture {
         assert_initialized_main_thread!();
         unsafe {
@@ -91,21 +96,25 @@ impl Picture {
     }
 
     #[doc(alias = "gtk_picture_get_alternative_text")]
+    #[doc(alias = "get_alternative_text")]
     pub fn alternative_text(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_picture_get_alternative_text(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_picture_get_can_shrink")]
+    #[doc(alias = "get_can_shrink")]
     pub fn can_shrink(&self) -> bool {
         unsafe { from_glib(ffi::gtk_picture_get_can_shrink(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_picture_get_file")]
+    #[doc(alias = "get_file")]
     pub fn file(&self) -> Option<gio::File> {
         unsafe { from_glib_none(ffi::gtk_picture_get_file(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_picture_get_keep_aspect_ratio")]
+    #[doc(alias = "get_keep_aspect_ratio")]
     pub fn is_keep_aspect_ratio(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_picture_get_keep_aspect_ratio(
@@ -115,6 +124,7 @@ impl Picture {
     }
 
     #[doc(alias = "gtk_picture_get_paintable")]
+    #[doc(alias = "get_paintable")]
     pub fn paintable(&self) -> Option<gdk::Paintable> {
         unsafe { from_glib_none(ffi::gtk_picture_get_paintable(self.to_glib_none().0)) }
     }
@@ -187,7 +197,8 @@ impl Picture {
         }
     }
 
-    pub fn connect_property_alternative_text_notify<F: Fn(&Picture) + 'static>(
+    #[doc(alias = "alternative-text")]
+    pub fn connect_alternative_text_notify<F: Fn(&Picture) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -212,10 +223,8 @@ impl Picture {
         }
     }
 
-    pub fn connect_property_can_shrink_notify<F: Fn(&Picture) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "can-shrink")]
+    pub fn connect_can_shrink_notify<F: Fn(&Picture) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_can_shrink_trampoline<F: Fn(&Picture) + 'static>(
             this: *mut ffi::GtkPicture,
             _param_spec: glib::ffi::gpointer,
@@ -237,7 +246,8 @@ impl Picture {
         }
     }
 
-    pub fn connect_property_file_notify<F: Fn(&Picture) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "file")]
+    pub fn connect_file_notify<F: Fn(&Picture) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_file_trampoline<F: Fn(&Picture) + 'static>(
             this: *mut ffi::GtkPicture,
             _param_spec: glib::ffi::gpointer,
@@ -259,7 +269,8 @@ impl Picture {
         }
     }
 
-    pub fn connect_property_keep_aspect_ratio_notify<F: Fn(&Picture) + 'static>(
+    #[doc(alias = "keep-aspect-ratio")]
+    pub fn connect_keep_aspect_ratio_notify<F: Fn(&Picture) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -284,10 +295,8 @@ impl Picture {
         }
     }
 
-    pub fn connect_property_paintable_notify<F: Fn(&Picture) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "paintable")]
+    pub fn connect_paintable_notify<F: Fn(&Picture) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_paintable_trampoline<F: Fn(&Picture) + 'static>(
             this: *mut ffi::GtkPicture,
             _param_spec: glib::ffi::gpointer,

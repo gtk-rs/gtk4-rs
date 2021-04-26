@@ -44,16 +44,19 @@ impl RecentInfo {
     }
 
     #[doc(alias = "gtk_recent_info_get_added")]
+    #[doc(alias = "get_added")]
     pub fn added(&self) -> glib::DateTime {
         unsafe { from_glib_none(ffi::gtk_recent_info_get_added(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_recent_info_get_age")]
+    #[doc(alias = "get_age")]
     pub fn age(&self) -> i32 {
         unsafe { ffi::gtk_recent_info_get_age(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_recent_info_get_application_info")]
+    #[doc(alias = "get_application_info")]
     pub fn application_info(&self, app_name: &str) -> Option<(glib::GString, u32, glib::DateTime)> {
         unsafe {
             let mut app_exec = ptr::null();
@@ -76,6 +79,7 @@ impl RecentInfo {
     }
 
     #[doc(alias = "gtk_recent_info_get_applications")]
+    #[doc(alias = "get_applications")]
     pub fn applications(&self) -> Vec<glib::GString> {
         unsafe {
             let mut length = mem::MaybeUninit::uninit();
@@ -88,21 +92,25 @@ impl RecentInfo {
     }
 
     #[doc(alias = "gtk_recent_info_get_description")]
+    #[doc(alias = "get_description")]
     pub fn description(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_recent_info_get_description(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_recent_info_get_display_name")]
+    #[doc(alias = "get_display_name")]
     pub fn display_name(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_recent_info_get_display_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_recent_info_get_gicon")]
+    #[doc(alias = "get_gicon")]
     pub fn gicon(&self) -> Option<gio::Icon> {
         unsafe { from_glib_full(ffi::gtk_recent_info_get_gicon(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_recent_info_get_groups")]
+    #[doc(alias = "get_groups")]
     pub fn groups(&self) -> Vec<glib::GString> {
         unsafe {
             let mut length = mem::MaybeUninit::uninit();
@@ -115,36 +123,43 @@ impl RecentInfo {
     }
 
     #[doc(alias = "gtk_recent_info_get_mime_type")]
+    #[doc(alias = "get_mime_type")]
     pub fn mime_type(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_recent_info_get_mime_type(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_recent_info_get_modified")]
+    #[doc(alias = "get_modified")]
     pub fn modified(&self) -> glib::DateTime {
         unsafe { from_glib_none(ffi::gtk_recent_info_get_modified(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_recent_info_get_private_hint")]
+    #[doc(alias = "get_private_hint")]
     pub fn is_private_hint(&self) -> bool {
         unsafe { from_glib(ffi::gtk_recent_info_get_private_hint(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_recent_info_get_short_name")]
+    #[doc(alias = "get_short_name")]
     pub fn short_name(&self) -> glib::GString {
         unsafe { from_glib_full(ffi::gtk_recent_info_get_short_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_recent_info_get_uri")]
+    #[doc(alias = "get_uri")]
     pub fn uri(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_recent_info_get_uri(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_recent_info_get_uri_display")]
+    #[doc(alias = "get_uri_display")]
     pub fn uri_display(&self) -> Option<glib::GString> {
         unsafe { from_glib_full(ffi::gtk_recent_info_get_uri_display(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_recent_info_get_visited")]
+    #[doc(alias = "get_visited")]
     pub fn visited(&self) -> glib::DateTime {
         unsafe { from_glib_none(ffi::gtk_recent_info_get_visited(self.to_glib_none().0)) }
     }
@@ -180,6 +195,7 @@ impl RecentInfo {
     }
 
     #[doc(alias = "gtk_recent_info_match")]
+    #[doc(alias = "match")]
     pub fn match_(&self, info_b: &RecentInfo) -> bool {
         unsafe {
             from_glib(ffi::gtk_recent_info_match(

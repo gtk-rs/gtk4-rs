@@ -69,6 +69,7 @@ impl TreeListModel {
     }
 
     #[doc(alias = "gtk_tree_list_model_get_autoexpand")]
+    #[doc(alias = "get_autoexpand")]
     pub fn is_autoexpand(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_list_model_get_autoexpand(
@@ -78,6 +79,7 @@ impl TreeListModel {
     }
 
     #[doc(alias = "gtk_tree_list_model_get_child_row")]
+    #[doc(alias = "get_child_row")]
     pub fn child_row(&self, position: u32) -> Option<TreeListRow> {
         unsafe {
             from_glib_full(ffi::gtk_tree_list_model_get_child_row(
@@ -88,11 +90,13 @@ impl TreeListModel {
     }
 
     #[doc(alias = "gtk_tree_list_model_get_model")]
+    #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_tree_list_model_get_model(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_list_model_get_passthrough")]
+    #[doc(alias = "get_passthrough")]
     pub fn is_passthrough(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_list_model_get_passthrough(
@@ -102,6 +106,7 @@ impl TreeListModel {
     }
 
     #[doc(alias = "gtk_tree_list_model_get_row")]
+    #[doc(alias = "get_row")]
     pub fn row(&self, position: u32) -> Option<TreeListRow> {
         unsafe {
             from_glib_full(ffi::gtk_tree_list_model_get_row(
@@ -118,7 +123,8 @@ impl TreeListModel {
         }
     }
 
-    pub fn connect_property_autoexpand_notify<F: Fn(&TreeListModel) + 'static>(
+    #[doc(alias = "autoexpand")]
+    pub fn connect_autoexpand_notify<F: Fn(&TreeListModel) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -143,10 +149,8 @@ impl TreeListModel {
         }
     }
 
-    pub fn connect_property_model_notify<F: Fn(&TreeListModel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "model")]
+    pub fn connect_model_notify<F: Fn(&TreeListModel) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<F: Fn(&TreeListModel) + 'static>(
             this: *mut ffi::GtkTreeListModel,
             _param_spec: glib::ffi::gpointer,

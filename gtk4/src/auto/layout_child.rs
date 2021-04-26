@@ -20,9 +20,11 @@ pub const NONE_LAYOUT_CHILD: Option<&LayoutChild> = None;
 
 pub trait LayoutChildExt: 'static {
     #[doc(alias = "gtk_layout_child_get_child_widget")]
+    #[doc(alias = "get_child_widget")]
     fn child_widget(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_layout_child_get_layout_manager")]
+    #[doc(alias = "get_layout_manager")]
     fn layout_manager(&self) -> Option<LayoutManager>;
 }
 

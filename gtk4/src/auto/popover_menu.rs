@@ -37,6 +37,7 @@ glib::wrapper! {
 
 impl PopoverMenu {
     #[doc(alias = "gtk_popover_menu_new_from_model")]
+    #[doc(alias = "new_from_model")]
     pub fn from_model<P: IsA<gio::MenuModel>>(model: Option<&P>) -> PopoverMenu {
         assert_initialized_main_thread!();
         unsafe {
@@ -48,6 +49,7 @@ impl PopoverMenu {
     }
 
     #[doc(alias = "gtk_popover_menu_new_from_model_full")]
+    #[doc(alias = "new_from_model_full")]
     pub fn from_model_full<P: IsA<gio::MenuModel>>(
         model: &P,
         flags: PopoverMenuFlags,
@@ -74,6 +76,7 @@ impl PopoverMenu {
     }
 
     #[doc(alias = "gtk_popover_menu_get_menu_model")]
+    #[doc(alias = "get_menu_model")]
     pub fn menu_model(&self) -> Option<gio::MenuModel> {
         unsafe { from_glib_none(ffi::gtk_popover_menu_get_menu_model(self.to_glib_none().0)) }
     }
@@ -98,7 +101,7 @@ impl PopoverMenu {
         }
     }
 
-    #[doc(alias = "get_property_visible_submenu")]
+    #[doc(alias = "visible-submenu")]
     pub fn visible_submenu(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -113,7 +116,7 @@ impl PopoverMenu {
         }
     }
 
-    #[doc(alias = "set_property_visible_submenu")]
+    #[doc(alias = "visible-submenu")]
     pub fn set_visible_submenu(&self, visible_submenu: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -124,7 +127,8 @@ impl PopoverMenu {
         }
     }
 
-    pub fn connect_property_menu_model_notify<F: Fn(&PopoverMenu) + 'static>(
+    #[doc(alias = "menu-model")]
+    pub fn connect_menu_model_notify<F: Fn(&PopoverMenu) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -149,7 +153,8 @@ impl PopoverMenu {
         }
     }
 
-    pub fn connect_property_visible_submenu_notify<F: Fn(&PopoverMenu) + 'static>(
+    #[doc(alias = "visible-submenu")]
+    pub fn connect_visible_submenu_notify<F: Fn(&PopoverMenu) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

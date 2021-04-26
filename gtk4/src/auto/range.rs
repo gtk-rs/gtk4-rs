@@ -387,36 +387,47 @@ pub const NONE_RANGE: Option<&Range> = None;
 
 pub trait RangeExt: 'static {
     #[doc(alias = "gtk_range_get_adjustment")]
+    #[doc(alias = "get_adjustment")]
     fn adjustment(&self) -> Adjustment;
 
     #[doc(alias = "gtk_range_get_fill_level")]
+    #[doc(alias = "get_fill_level")]
     fn fill_level(&self) -> f64;
 
     #[doc(alias = "gtk_range_get_flippable")]
+    #[doc(alias = "get_flippable")]
     fn is_flippable(&self) -> bool;
 
     #[doc(alias = "gtk_range_get_inverted")]
+    #[doc(alias = "get_inverted")]
     fn is_inverted(&self) -> bool;
 
     #[doc(alias = "gtk_range_get_range_rect")]
+    #[doc(alias = "get_range_rect")]
     fn range_rect(&self) -> gdk::Rectangle;
 
     #[doc(alias = "gtk_range_get_restrict_to_fill_level")]
+    #[doc(alias = "get_restrict_to_fill_level")]
     fn restricts_to_fill_level(&self) -> bool;
 
     #[doc(alias = "gtk_range_get_round_digits")]
+    #[doc(alias = "get_round_digits")]
     fn round_digits(&self) -> i32;
 
     #[doc(alias = "gtk_range_get_show_fill_level")]
+    #[doc(alias = "get_show_fill_level")]
     fn shows_fill_level(&self) -> bool;
 
     #[doc(alias = "gtk_range_get_slider_range")]
+    #[doc(alias = "get_slider_range")]
     fn slider_range(&self) -> (i32, i32);
 
     #[doc(alias = "gtk_range_get_slider_size_fixed")]
+    #[doc(alias = "get_slider_size_fixed")]
     fn is_slider_size_fixed(&self) -> bool;
 
     #[doc(alias = "gtk_range_get_value")]
+    #[doc(alias = "get_value")]
     fn value(&self) -> f64;
 
     #[doc(alias = "gtk_range_set_adjustment")]
@@ -452,37 +463,43 @@ pub trait RangeExt: 'static {
     #[doc(alias = "gtk_range_set_value")]
     fn set_value(&self, value: f64);
 
+    #[doc(alias = "adjust-bounds")]
     fn connect_adjust_bounds<F: Fn(&Self, f64) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[doc(alias = "change-value")]
     fn connect_change_value<F: Fn(&Self, ScrollType, f64) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
+    #[doc(alias = "move-slider")]
     fn connect_move_slider<F: Fn(&Self, ScrollType) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_move_slider(&self, step: ScrollType);
 
+    #[doc(alias = "value-changed")]
     fn connect_value_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_adjustment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "adjustment")]
+    fn connect_adjustment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_fill_level_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "fill-level")]
+    fn connect_fill_level_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_inverted_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "inverted")]
+    fn connect_inverted_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_restrict_to_fill_level_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "restrict-to-fill-level")]
+    fn connect_restrict_to_fill_level_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
-    fn connect_property_round_digits_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
+    #[doc(alias = "round-digits")]
+    fn connect_round_digits_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_show_fill_level_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "show-fill-level")]
+    fn connect_show_fill_level_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<Range>> RangeExt for O {
@@ -642,6 +659,7 @@ impl<O: IsA<Range>> RangeExt for O {
         }
     }
 
+    #[doc(alias = "adjust-bounds")]
     fn connect_adjust_bounds<F: Fn(&Self, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn adjust_bounds_trampoline<P, F: Fn(&P, f64) + 'static>(
             this: *mut ffi::GtkRange,
@@ -666,6 +684,7 @@ impl<O: IsA<Range>> RangeExt for O {
         }
     }
 
+    #[doc(alias = "change-value")]
     fn connect_change_value<F: Fn(&Self, ScrollType, f64) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
@@ -703,6 +722,7 @@ impl<O: IsA<Range>> RangeExt for O {
         }
     }
 
+    #[doc(alias = "move-slider")]
     fn connect_move_slider<F: Fn(&Self, ScrollType) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn move_slider_trampoline<P, F: Fn(&P, ScrollType) + 'static>(
             this: *mut ffi::GtkRange,
@@ -738,6 +758,7 @@ impl<O: IsA<Range>> RangeExt for O {
         };
     }
 
+    #[doc(alias = "value-changed")]
     fn connect_value_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn value_changed_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkRange,
@@ -761,7 +782,8 @@ impl<O: IsA<Range>> RangeExt for O {
         }
     }
 
-    fn connect_property_adjustment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "adjustment")]
+    fn connect_adjustment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_adjustment_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkRange,
             _param_spec: glib::ffi::gpointer,
@@ -785,7 +807,8 @@ impl<O: IsA<Range>> RangeExt for O {
         }
     }
 
-    fn connect_property_fill_level_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "fill-level")]
+    fn connect_fill_level_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_fill_level_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkRange,
             _param_spec: glib::ffi::gpointer,
@@ -809,7 +832,8 @@ impl<O: IsA<Range>> RangeExt for O {
         }
     }
 
-    fn connect_property_inverted_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "inverted")]
+    fn connect_inverted_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_inverted_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkRange,
             _param_spec: glib::ffi::gpointer,
@@ -833,7 +857,8 @@ impl<O: IsA<Range>> RangeExt for O {
         }
     }
 
-    fn connect_property_restrict_to_fill_level_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "restrict-to-fill-level")]
+    fn connect_restrict_to_fill_level_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -860,10 +885,8 @@ impl<O: IsA<Range>> RangeExt for O {
         }
     }
 
-    fn connect_property_round_digits_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "round-digits")]
+    fn connect_round_digits_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_round_digits_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkRange,
             _param_spec: glib::ffi::gpointer,
@@ -887,10 +910,8 @@ impl<O: IsA<Range>> RangeExt for O {
         }
     }
 
-    fn connect_property_show_fill_level_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "show-fill-level")]
+    fn connect_show_fill_level_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_fill_level_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkRange,
             _param_spec: glib::ffi::gpointer,

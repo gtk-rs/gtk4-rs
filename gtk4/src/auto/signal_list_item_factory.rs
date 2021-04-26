@@ -30,6 +30,7 @@ impl SignalListItemFactory {
         }
     }
 
+    #[doc(alias = "bind")]
     pub fn connect_bind<F: Fn(&SignalListItemFactory, &ListItem) + 'static>(
         &self,
         f: F,
@@ -55,6 +56,7 @@ impl SignalListItemFactory {
         }
     }
 
+    #[doc(alias = "setup")]
     pub fn connect_setup<F: Fn(&SignalListItemFactory, &ListItem) + 'static>(
         &self,
         f: F,
@@ -82,6 +84,7 @@ impl SignalListItemFactory {
         }
     }
 
+    #[doc(alias = "teardown")]
     pub fn connect_teardown<F: Fn(&SignalListItemFactory, &ListItem) + 'static>(
         &self,
         f: F,
@@ -109,6 +112,7 @@ impl SignalListItemFactory {
         }
     }
 
+    #[doc(alias = "unbind")]
     pub fn connect_unbind<F: Fn(&SignalListItemFactory, &ListItem) + 'static>(
         &self,
         f: F,

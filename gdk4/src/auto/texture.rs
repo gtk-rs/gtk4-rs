@@ -18,12 +18,14 @@ glib::wrapper! {
 
 impl Texture {
     #[doc(alias = "gdk_texture_new_for_pixbuf")]
+    #[doc(alias = "new_for_pixbuf")]
     pub fn for_pixbuf(pixbuf: &gdk_pixbuf::Pixbuf) -> Texture {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gdk_texture_new_for_pixbuf(pixbuf.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_texture_new_from_file")]
+    #[doc(alias = "new_from_file")]
     pub fn from_file<P: IsA<gio::File>>(file: &P) -> Result<Texture, glib::Error> {
         assert_initialized_main_thread!();
         unsafe {
@@ -38,6 +40,7 @@ impl Texture {
     }
 
     #[doc(alias = "gdk_texture_new_from_resource")]
+    #[doc(alias = "new_from_resource")]
     pub fn from_resource(resource_path: &str) -> Texture {
         assert_initialized_main_thread!();
         unsafe {
@@ -52,9 +55,11 @@ pub const NONE_TEXTURE: Option<&Texture> = None;
 
 pub trait TextureExt: 'static {
     #[doc(alias = "gdk_texture_get_height")]
+    #[doc(alias = "get_height")]
     fn height(&self) -> i32;
 
     #[doc(alias = "gdk_texture_get_width")]
+    #[doc(alias = "get_width")]
     fn width(&self) -> i32;
 
     #[doc(alias = "gdk_texture_save_to_png")]

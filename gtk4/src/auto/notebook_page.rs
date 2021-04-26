@@ -25,11 +25,11 @@ glib::wrapper! {
 
 impl NotebookPage {
     #[doc(alias = "gtk_notebook_page_get_child")]
+    #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_notebook_page_get_child(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "get_property_detachable")]
     pub fn is_detachable(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -44,7 +44,6 @@ impl NotebookPage {
         }
     }
 
-    #[doc(alias = "set_property_detachable")]
     pub fn set_detachable(&self, detachable: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -55,7 +54,6 @@ impl NotebookPage {
         }
     }
 
-    #[doc(alias = "get_property_menu")]
     pub fn menu(&self) -> Option<Widget> {
         unsafe {
             let mut value = glib::Value::from_type(<Widget as StaticType>::static_type());
@@ -70,7 +68,7 @@ impl NotebookPage {
         }
     }
 
-    #[doc(alias = "get_property_menu_label")]
+    #[doc(alias = "menu-label")]
     pub fn menu_label(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -85,7 +83,7 @@ impl NotebookPage {
         }
     }
 
-    #[doc(alias = "set_property_menu_label")]
+    #[doc(alias = "menu-label")]
     pub fn set_menu_label(&self, menu_label: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -96,7 +94,6 @@ impl NotebookPage {
         }
     }
 
-    #[doc(alias = "get_property_position")]
     pub fn position(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
@@ -111,7 +108,6 @@ impl NotebookPage {
         }
     }
 
-    #[doc(alias = "set_property_position")]
     pub fn set_position(&self, position: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -122,7 +118,6 @@ impl NotebookPage {
         }
     }
 
-    #[doc(alias = "get_property_reorderable")]
     pub fn is_reorderable(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -137,7 +132,6 @@ impl NotebookPage {
         }
     }
 
-    #[doc(alias = "set_property_reorderable")]
     pub fn set_reorderable(&self, reorderable: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -148,7 +142,6 @@ impl NotebookPage {
         }
     }
 
-    #[doc(alias = "get_property_tab")]
     pub fn tab(&self) -> Option<Widget> {
         unsafe {
             let mut value = glib::Value::from_type(<Widget as StaticType>::static_type());
@@ -161,7 +154,7 @@ impl NotebookPage {
         }
     }
 
-    #[doc(alias = "get_property_tab_expand")]
+    #[doc(alias = "tab-expand")]
     pub fn is_tab_expand(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -176,7 +169,7 @@ impl NotebookPage {
         }
     }
 
-    #[doc(alias = "set_property_tab_expand")]
+    #[doc(alias = "tab-expand")]
     pub fn set_tab_expand(&self, tab_expand: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -187,7 +180,7 @@ impl NotebookPage {
         }
     }
 
-    #[doc(alias = "get_property_tab_fill")]
+    #[doc(alias = "tab-fill")]
     pub fn is_tab_fill(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -202,7 +195,7 @@ impl NotebookPage {
         }
     }
 
-    #[doc(alias = "set_property_tab_fill")]
+    #[doc(alias = "tab-fill")]
     pub fn set_tab_fill(&self, tab_fill: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -213,7 +206,7 @@ impl NotebookPage {
         }
     }
 
-    #[doc(alias = "get_property_tab_label")]
+    #[doc(alias = "tab-label")]
     pub fn tab_label(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -228,7 +221,7 @@ impl NotebookPage {
         }
     }
 
-    #[doc(alias = "set_property_tab_label")]
+    #[doc(alias = "tab-label")]
     pub fn set_tab_label(&self, tab_label: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -239,7 +232,8 @@ impl NotebookPage {
         }
     }
 
-    pub fn connect_property_detachable_notify<F: Fn(&NotebookPage) + 'static>(
+    #[doc(alias = "detachable")]
+    pub fn connect_detachable_notify<F: Fn(&NotebookPage) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -264,7 +258,8 @@ impl NotebookPage {
         }
     }
 
-    pub fn connect_property_menu_label_notify<F: Fn(&NotebookPage) + 'static>(
+    #[doc(alias = "menu-label")]
+    pub fn connect_menu_label_notify<F: Fn(&NotebookPage) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -289,10 +284,8 @@ impl NotebookPage {
         }
     }
 
-    pub fn connect_property_position_notify<F: Fn(&NotebookPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "position")]
+    pub fn connect_position_notify<F: Fn(&NotebookPage) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_position_trampoline<F: Fn(&NotebookPage) + 'static>(
             this: *mut ffi::GtkNotebookPage,
             _param_spec: glib::ffi::gpointer,
@@ -314,7 +307,8 @@ impl NotebookPage {
         }
     }
 
-    pub fn connect_property_reorderable_notify<F: Fn(&NotebookPage) + 'static>(
+    #[doc(alias = "reorderable")]
+    pub fn connect_reorderable_notify<F: Fn(&NotebookPage) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -339,7 +333,8 @@ impl NotebookPage {
         }
     }
 
-    pub fn connect_property_tab_expand_notify<F: Fn(&NotebookPage) + 'static>(
+    #[doc(alias = "tab-expand")]
+    pub fn connect_tab_expand_notify<F: Fn(&NotebookPage) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -364,10 +359,8 @@ impl NotebookPage {
         }
     }
 
-    pub fn connect_property_tab_fill_notify<F: Fn(&NotebookPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "tab-fill")]
+    pub fn connect_tab_fill_notify<F: Fn(&NotebookPage) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tab_fill_trampoline<F: Fn(&NotebookPage) + 'static>(
             this: *mut ffi::GtkNotebookPage,
             _param_spec: glib::ffi::gpointer,
@@ -389,7 +382,8 @@ impl NotebookPage {
         }
     }
 
-    pub fn connect_property_tab_label_notify<F: Fn(&NotebookPage) + 'static>(
+    #[doc(alias = "tab-label")]
+    pub fn connect_tab_label_notify<F: Fn(&NotebookPage) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

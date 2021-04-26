@@ -49,6 +49,7 @@ pub trait ToplevelExt: 'static {
     fn focus(&self, timestamp: u32);
 
     #[doc(alias = "gdk_toplevel_get_state")]
+    #[doc(alias = "get_state")]
     fn state(&self) -> ToplevelState;
 
     #[doc(alias = "gdk_toplevel_lower")]
@@ -87,64 +88,61 @@ pub trait ToplevelExt: 'static {
     #[doc(alias = "gdk_toplevel_supports_edge_constraints")]
     fn supports_edge_constraints(&self) -> bool;
 
-    #[doc(alias = "get_property_decorated")]
     fn is_decorated(&self) -> bool;
 
-    #[doc(alias = "get_property_deletable")]
     fn is_deletable(&self) -> bool;
 
-    #[doc(alias = "get_property_fullscreen_mode")]
+    #[doc(alias = "fullscreen-mode")]
     fn fullscreen_mode(&self) -> FullscreenMode;
 
-    #[doc(alias = "set_property_fullscreen_mode")]
+    #[doc(alias = "fullscreen-mode")]
     fn set_fullscreen_mode(&self, fullscreen_mode: FullscreenMode);
 
-    //#[doc(alias = "get_property_icon_list")]
+    //#[doc(alias = "icon-list")]
     //fn icon_list(&self) -> /*Unimplemented*/Fundamental: Pointer;
 
-    #[doc(alias = "get_property_modal")]
     fn is_modal(&self) -> bool;
 
-    #[doc(alias = "get_property_shortcuts_inhibited")]
+    #[doc(alias = "shortcuts-inhibited")]
     fn is_shortcuts_inhibited(&self) -> bool;
 
-    #[doc(alias = "get_property_startup_id")]
+    #[doc(alias = "startup-id")]
     fn startup_id(&self) -> Option<glib::GString>;
 
-    #[doc(alias = "get_property_title")]
     fn title(&self) -> Option<glib::GString>;
 
-    #[doc(alias = "get_property_transient_for")]
+    #[doc(alias = "transient-for")]
     fn transient_for(&self) -> Option<Surface>;
 
-    fn connect_property_decorated_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "decorated")]
+    fn connect_decorated_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_deletable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "deletable")]
+    fn connect_deletable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_fullscreen_mode_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "fullscreen-mode")]
+    fn connect_fullscreen_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_icon_list_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "icon-list")]
+    fn connect_icon_list_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "modal")]
+    fn connect_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_shortcuts_inhibited_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "shortcuts-inhibited")]
+    fn connect_shortcuts_inhibited_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_startup_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "startup-id")]
+    fn connect_startup_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "state")]
+    fn connect_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "title")]
+    fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_transient_for_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "transient-for")]
+    fn connect_transient_for_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<Toplevel>> ToplevelExt for O {
@@ -402,7 +400,8 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn connect_property_decorated_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "decorated")]
+    fn connect_decorated_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_decorated_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkToplevel,
             _param_spec: glib::ffi::gpointer,
@@ -426,7 +425,8 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn connect_property_deletable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "deletable")]
+    fn connect_deletable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_deletable_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkToplevel,
             _param_spec: glib::ffi::gpointer,
@@ -450,10 +450,8 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn connect_property_fullscreen_mode_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "fullscreen-mode")]
+    fn connect_fullscreen_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_fullscreen_mode_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkToplevel,
             _param_spec: glib::ffi::gpointer,
@@ -477,7 +475,8 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn connect_property_icon_list_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "icon-list")]
+    fn connect_icon_list_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_list_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkToplevel,
             _param_spec: glib::ffi::gpointer,
@@ -501,7 +500,8 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn connect_property_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "modal")]
+    fn connect_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_modal_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkToplevel,
             _param_spec: glib::ffi::gpointer,
@@ -525,10 +525,8 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn connect_property_shortcuts_inhibited_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "shortcuts-inhibited")]
+    fn connect_shortcuts_inhibited_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_shortcuts_inhibited_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkToplevel,
             _param_spec: glib::ffi::gpointer,
@@ -552,7 +550,8 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn connect_property_startup_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "startup-id")]
+    fn connect_startup_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_startup_id_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkToplevel,
             _param_spec: glib::ffi::gpointer,
@@ -576,7 +575,8 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn connect_property_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "state")]
+    fn connect_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_state_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkToplevel,
             _param_spec: glib::ffi::gpointer,
@@ -600,7 +600,8 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn connect_property_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "title")]
+    fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkToplevel,
             _param_spec: glib::ffi::gpointer,
@@ -624,10 +625,8 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    fn connect_property_transient_for_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "transient-for")]
+    fn connect_transient_for_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_transient_for_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkToplevel,
             _param_spec: glib::ffi::gpointer,

@@ -41,6 +41,7 @@ impl ShortcutLabel {
     }
 
     #[doc(alias = "gtk_shortcut_label_get_accelerator")]
+    #[doc(alias = "get_accelerator")]
     pub fn accelerator(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_shortcut_label_get_accelerator(
@@ -50,6 +51,7 @@ impl ShortcutLabel {
     }
 
     #[doc(alias = "gtk_shortcut_label_get_disabled_text")]
+    #[doc(alias = "get_disabled_text")]
     pub fn disabled_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_shortcut_label_get_disabled_text(
@@ -78,7 +80,8 @@ impl ShortcutLabel {
         }
     }
 
-    pub fn connect_property_accelerator_notify<F: Fn(&ShortcutLabel) + 'static>(
+    #[doc(alias = "accelerator")]
+    pub fn connect_accelerator_notify<F: Fn(&ShortcutLabel) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -103,7 +106,8 @@ impl ShortcutLabel {
         }
     }
 
-    pub fn connect_property_disabled_text_notify<F: Fn(&ShortcutLabel) + 'static>(
+    #[doc(alias = "disabled-text")]
+    pub fn connect_disabled_text_notify<F: Fn(&ShortcutLabel) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

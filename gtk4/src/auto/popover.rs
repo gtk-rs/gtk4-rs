@@ -409,27 +409,35 @@ pub const NONE_POPOVER: Option<&Popover> = None;
 
 pub trait PopoverExt: 'static {
     #[doc(alias = "gtk_popover_get_autohide")]
+    #[doc(alias = "get_autohide")]
     fn is_autohide(&self) -> bool;
 
     #[doc(alias = "gtk_popover_get_cascade_popdown")]
+    #[doc(alias = "get_cascade_popdown")]
     fn is_cascade_popdown(&self) -> bool;
 
     #[doc(alias = "gtk_popover_get_child")]
+    #[doc(alias = "get_child")]
     fn child(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_popover_get_has_arrow")]
+    #[doc(alias = "get_has_arrow")]
     fn has_arrow(&self) -> bool;
 
     #[doc(alias = "gtk_popover_get_mnemonics_visible")]
+    #[doc(alias = "get_mnemonics_visible")]
     fn is_mnemonics_visible(&self) -> bool;
 
     #[doc(alias = "gtk_popover_get_offset")]
+    #[doc(alias = "get_offset")]
     fn offset(&self) -> (i32, i32);
 
     #[doc(alias = "gtk_popover_get_pointing_to")]
+    #[doc(alias = "get_pointing_to")]
     fn pointing_to(&self) -> Option<gdk::Rectangle>;
 
     #[doc(alias = "gtk_popover_get_position")]
+    #[doc(alias = "get_position")]
     fn position(&self) -> PositionType;
 
     #[doc(alias = "gtk_popover_popdown")]
@@ -468,39 +476,40 @@ pub trait PopoverExt: 'static {
     #[doc(alias = "gtk_popover_set_position")]
     fn set_position(&self, position: PositionType);
 
-    #[doc(alias = "get_property_default_widget")]
+    #[doc(alias = "default-widget")]
     fn default_widget(&self) -> Option<Widget>;
 
+    #[doc(alias = "activate-default")]
     fn connect_activate_default<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_activate_default(&self);
 
+    #[doc(alias = "closed")]
     fn connect_closed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_autohide_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "autohide")]
+    fn connect_autohide_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_cascade_popdown_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "cascade-popdown")]
+    fn connect_cascade_popdown_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "child")]
+    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_default_widget_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "default-widget")]
+    fn connect_default_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_has_arrow_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "has-arrow")]
+    fn connect_has_arrow_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_mnemonics_visible_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "mnemonics-visible")]
+    fn connect_mnemonics_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_pointing_to_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "pointing-to")]
+    fn connect_pointing_to_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "position")]
+    fn connect_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<Popover>> PopoverExt for O {
@@ -676,6 +685,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
+    #[doc(alias = "activate-default")]
     fn connect_activate_default<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_default_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkPopover,
@@ -707,6 +717,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         };
     }
 
+    #[doc(alias = "closed")]
     fn connect_closed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn closed_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkPopover,
@@ -730,7 +741,8 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn connect_property_autohide_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "autohide")]
+    fn connect_autohide_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_autohide_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkPopover,
             _param_spec: glib::ffi::gpointer,
@@ -754,10 +766,8 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn connect_property_cascade_popdown_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "cascade-popdown")]
+    fn connect_cascade_popdown_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cascade_popdown_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkPopover,
             _param_spec: glib::ffi::gpointer,
@@ -781,7 +791,8 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "child")]
+    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkPopover,
             _param_spec: glib::ffi::gpointer,
@@ -805,10 +816,8 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn connect_property_default_widget_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "default-widget")]
+    fn connect_default_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_default_widget_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkPopover,
             _param_spec: glib::ffi::gpointer,
@@ -832,7 +841,8 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn connect_property_has_arrow_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "has-arrow")]
+    fn connect_has_arrow_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_arrow_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkPopover,
             _param_spec: glib::ffi::gpointer,
@@ -856,10 +866,8 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn connect_property_mnemonics_visible_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "mnemonics-visible")]
+    fn connect_mnemonics_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_mnemonics_visible_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkPopover,
             _param_spec: glib::ffi::gpointer,
@@ -883,7 +891,8 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn connect_property_pointing_to_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "pointing-to")]
+    fn connect_pointing_to_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pointing_to_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkPopover,
             _param_spec: glib::ffi::gpointer,
@@ -907,7 +916,8 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn connect_property_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "position")]
+    fn connect_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_position_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkPopover,
             _param_spec: glib::ffi::gpointer,

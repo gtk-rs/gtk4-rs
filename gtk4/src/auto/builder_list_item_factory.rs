@@ -21,6 +21,7 @@ glib::wrapper! {
 
 impl BuilderListItemFactory {
     #[doc(alias = "gtk_builder_list_item_factory_new_from_bytes")]
+    #[doc(alias = "new_from_bytes")]
     pub fn from_bytes<P: IsA<BuilderScope>>(
         scope: Option<&P>,
         bytes: &glib::Bytes,
@@ -36,6 +37,7 @@ impl BuilderListItemFactory {
     }
 
     #[doc(alias = "gtk_builder_list_item_factory_new_from_resource")]
+    #[doc(alias = "new_from_resource")]
     pub fn from_resource<P: IsA<BuilderScope>>(
         scope: Option<&P>,
         resource_path: &str,
@@ -51,6 +53,7 @@ impl BuilderListItemFactory {
     }
 
     #[doc(alias = "gtk_builder_list_item_factory_get_bytes")]
+    #[doc(alias = "get_bytes")]
     pub fn bytes(&self) -> Option<glib::Bytes> {
         unsafe {
             from_glib_none(ffi::gtk_builder_list_item_factory_get_bytes(
@@ -60,6 +63,7 @@ impl BuilderListItemFactory {
     }
 
     #[doc(alias = "gtk_builder_list_item_factory_get_resource")]
+    #[doc(alias = "get_resource")]
     pub fn resource(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_builder_list_item_factory_get_resource(
@@ -69,6 +73,7 @@ impl BuilderListItemFactory {
     }
 
     #[doc(alias = "gtk_builder_list_item_factory_get_scope")]
+    #[doc(alias = "get_scope")]
     pub fn scope(&self) -> Option<BuilderScope> {
         unsafe {
             from_glib_none(ffi::gtk_builder_list_item_factory_get_scope(

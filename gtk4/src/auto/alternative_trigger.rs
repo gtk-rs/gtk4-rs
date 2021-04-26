@@ -35,6 +35,7 @@ impl AlternativeTrigger {
     }
 
     #[doc(alias = "gtk_alternative_trigger_get_first")]
+    #[doc(alias = "get_first")]
     pub fn first(&self) -> ShortcutTrigger {
         unsafe {
             from_glib_none(ffi::gtk_alternative_trigger_get_first(
@@ -44,6 +45,7 @@ impl AlternativeTrigger {
     }
 
     #[doc(alias = "gtk_alternative_trigger_get_second")]
+    #[doc(alias = "get_second")]
     pub fn second(&self) -> ShortcutTrigger {
         unsafe {
             from_glib_none(ffi::gtk_alternative_trigger_get_second(
