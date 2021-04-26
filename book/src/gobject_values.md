@@ -30,7 +30,8 @@ For example, this is how you would use a `Value` representing an `i32`.
 
 Please note that boxed types such as `String` or `Object` are wrapped in an `Option`.
 This comes from C, where boxed types can always be `None` (or null in C terms).
-If you are sure that your boxed type, will never be `None`, you can just access it the same way as with the `i32` above.
+You can still access it the same way as with the `i32` above.
+`get` will then not only return `Err` if you specified the wrong type, but also if the `Value` represents `None`.
 
 <span class="filename">Filename: listings/gobject_values/1/main.rs</span>
 
@@ -38,8 +39,7 @@ If you are sure that your boxed type, will never be `None`, you can just access 
 {{#rustdoc_include ../listings/gobject_values/1/main.rs:string}}
 ```
 
-In case your `Value` might be `None`, just call `get::<Option<T>>` instead.
-If you do that, it will give you the chance to check the output instead of panicking immediately.
+If you want to differentiate between specifying the wrong type and a `Value` representing `None`, just call `get::<Option<T>>` instead.
 
 ```rust,no_run
 {{#rustdoc_include ../listings/gobject_values/1/main.rs:string_none}}
