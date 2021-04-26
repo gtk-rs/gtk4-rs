@@ -218,8 +218,6 @@ mod rt;
 #[allow(unused_imports)]
 mod auto;
 
-mod signal;
-
 #[macro_use]
 pub mod subclass;
 
