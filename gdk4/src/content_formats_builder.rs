@@ -1,0 +1,48 @@
+// Take a look at the license at the top of the repository in the LICENSE file.
+
+use crate::{ContentFormats, ContentFormatsBuilder};
+use glib::translate::*;
+
+impl ContentFormatsBuilder {
+    #[doc(alias = "gdk_content_formats_builder_add_formats")]
+    pub fn add_formats(self, formats: &ContentFormats) -> Self {
+        unsafe {
+            ffi::gdk_content_formats_builder_add_formats(
+                self.to_glib_none().0,
+                formats.to_glib_none().0,
+            );
+        }
+
+        self
+    }
+
+    #[doc(alias = "gdk_content_formats_builder_add_gtype")]
+    pub fn add_type(self, type_: glib::types::Type) -> Self {
+        unsafe {
+            ffi::gdk_content_formats_builder_add_gtype(self.to_glib_none().0, type_.into_glib());
+        }
+
+        self
+    }
+
+    #[doc(alias = "gdk_content_formats_builder_add_mime_type")]
+    pub fn add_mime_type(self, mime_type: &str) -> Self {
+        unsafe {
+            ffi::gdk_content_formats_builder_add_mime_type(
+                self.to_glib_none().0,
+                mime_type.to_glib_none().0,
+            );
+        }
+
+        self
+    }
+
+    #[doc(alias = "gdk_content_formats_builder_to_formats")]
+    pub fn build(self) -> ContentFormats {
+        unsafe {
+            from_glib_full(ffi::gdk_content_formats_builder_to_formats(
+                self.to_glib_none().0,
+            ))
+        }
+    }
+}
