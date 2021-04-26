@@ -5,18 +5,18 @@ Enums in C are not as powerful as the one in Rust, which is why [`glib::Value`](
 Conceptually though, there are similar to a Rust enum defined like this:
 
 ```rust
-enum Value {
-    bool,
-    i8,
-    i32,
-    u32,
-    i64,
-    u64,
-    f32,
-    f64,
-    String,
-    Object,
-}
+enum Value <T> {
+    bool(bool),
+    i8(i8),
+    i32(i32),
+    u32(u32),
+    i64(i64),
+    u64(u64),
+    f32(f32),
+    f64(f64),
+    // boxed types
+    String(Option<String>),
+    Object(Option<T: impl IsA<Object>>),
 ```
 
 That means that a `glib::Value` can represent a set of types, but only one of them per instance.
@@ -24,8 +24,25 @@ For example, this is how you would use a `Value` representing an `i32`.
 
 <span class="filename">Filename: listings/gobject_values/1/main.rs</span>
 
-```rust ,no_run
-{{#rustdoc_include ../listings/gobject_values/1/main.rs}}
+```rust,no_run
+{{#rustdoc_include ../listings/gobject_values/1/main.rs:i32}}
+```
+
+Please note that boxed types such as `String` or `Object` are wrapped in an `Option`.
+This comes from C, where boxed types can always be `None` (or null in C terms).
+If you are sure that your boxed type, will never be `None`, you can just access it the same way as with the `i32` above.
+
+<span class="filename">Filename: listings/gobject_values/1/main.rs</span>
+
+```rust,no_run
+{{#rustdoc_include ../listings/gobject_values/1/main.rs:string}}
+```
+
+In case your `Value` might be `None`, just call `get::<Option<T>>` instead.
+If you do that, it will give you the chance to check the output instead of panicking immediately.
+
+```rust,no_run
+{{#rustdoc_include ../listings/gobject_values/1/main.rs:string_none}}
 ```
 
 For now, all you need to know is how to convert a Rust type into a `glib::Value` and vice versa.
