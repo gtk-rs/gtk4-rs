@@ -1,11 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::subclass::prelude::*;
+use crate::subclass::prelude::*;
+use crate::{ListBoxRow, Widget};
 use glib::translate::*;
 use glib::Cast;
-
-use super::widget::WidgetImpl;
-use crate::{ListBoxRow, Widget};
 
 pub trait ListBoxRowImpl: ListBoxRowImplExt + WidgetImpl {
     fn activate(&self, row: &Self::Type) {

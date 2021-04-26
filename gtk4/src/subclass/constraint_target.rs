@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use crate::subclass::prelude::*;
 use crate::ConstraintTarget;
-use glib::subclass::prelude::*;
 
 pub trait ConstraintTargetImpl: ObjectImpl {}
 

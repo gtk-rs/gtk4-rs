@@ -1,11 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::subclass::prelude::*;
+use crate::subclass::prelude::*;
+use crate::{Button, ToggleButton};
 use glib::translate::*;
 use glib::Cast;
-
-use super::button::ButtonImpl;
-use crate::{Button, ToggleButton};
 
 pub trait ToggleButtonImpl: ToggleButtonImplExt + ButtonImpl {
     fn toggled(&self, toggle_button: &Self::Type) {

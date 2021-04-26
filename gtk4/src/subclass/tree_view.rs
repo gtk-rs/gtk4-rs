@@ -1,11 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::subclass::prelude::*;
+use crate::subclass::prelude::*;
+use crate::{MovementStep, TreeIter, TreePath, TreeView, TreeViewColumn, Widget};
 use glib::translate::*;
 use glib::Cast;
-
-use super::widget::WidgetImpl;
-use crate::{MovementStep, TreeIter, TreePath, TreeView, TreeViewColumn, Widget};
 
 pub trait TreeViewImpl: TreeViewImplExt + WidgetImpl {
     fn columns_changed(&self, tree_view: &Self::Type) {

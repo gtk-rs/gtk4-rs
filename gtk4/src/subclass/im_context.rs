@@ -1,8 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use crate::subclass::prelude::*;
 use crate::{IMContext, Widget};
-use glib::subclass::object::ObjectImpl;
-use glib::subclass::prelude::*;
 use glib::translate::*;
 use glib::{Cast, GString, IsA, Object};
 use pango::AttrList;

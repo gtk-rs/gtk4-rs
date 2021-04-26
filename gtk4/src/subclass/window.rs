@@ -1,11 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::subclass::prelude::*;
+use crate::subclass::prelude::*;
+use crate::{Widget, Window};
 use glib::translate::*;
 use glib::Cast;
-
-use super::widget::WidgetImpl;
-use crate::{Widget, Window};
 
 pub trait WindowImpl: WindowImplExt + WidgetImpl {
     fn activate_focus(&self, window: &Self::Type) {

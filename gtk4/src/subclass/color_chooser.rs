@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use crate::subclass::prelude::*;
 use crate::{ColorChooser, Orientation};
 use gdk::RGBA;
-use glib::subclass::prelude::*;
 use glib::translate::*;
 use glib::Cast;
 

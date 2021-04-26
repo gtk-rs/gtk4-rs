@@ -1,12 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::prelude::*;
+use crate::subclass::prelude::*;
 use crate::{
     AccessibleRole, BuilderScope, DirectionType, LayoutManager, Orientation, Shortcut,
     SizeRequestMode, Snapshot, StateFlags, SystemSetting, TextDirection, Tooltip, Widget,
 };
-use glib::prelude::*;
-use glib::subclass::{prelude::*, SignalId};
+use glib::subclass::SignalId;
 use glib::translate::*;
 use glib::{Cast, GString, IsA, Object, Variant};
 use std::boxed::Box as Box_;
@@ -996,7 +996,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
         arguments: Option<&glib::Variant>,
     ) {
         let type_ = <Self::Type as ObjectSubclassType>::type_();
-        if glib::subclass::SignalId::lookup(signal_name, type_).is_none() {
+        if SignalId::lookup(signal_name, type_).is_none() {
             panic!(
                 "Signal '{}' doesn't exists for type '{}'",
                 signal_name, type_
@@ -1055,7 +1055,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
     #[doc(alias = "gtk_widget_class_set_activate_signal_from_name")]
     fn set_activate_signal_from_name(&mut self, signal_name: &str) {
         let type_ = <Self::Type as ObjectSubclassType>::type_();
-        if glib::subclass::SignalId::lookup(signal_name, type_).is_none() {
+        if SignalId::lookup(signal_name, type_).is_none() {
             panic!(
                 "Signal '{}' doesn't exists for type '{}'",
                 signal_name, type_

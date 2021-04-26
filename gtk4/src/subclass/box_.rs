@@ -1,8 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::subclass::prelude::*;
-
-use super::widget::WidgetImpl;
+use crate::subclass::prelude::*;
 use crate::{Box, Widget};
 
 pub trait BoxImpl: WidgetImpl {}

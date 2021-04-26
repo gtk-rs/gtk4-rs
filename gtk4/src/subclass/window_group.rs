@@ -1,8 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use crate::subclass::prelude::*;
 use crate::WindowGroup;
-use glib::subclass::object::ObjectImpl;
-use glib::subclass::prelude::*;
 use glib::Object;
 
 pub trait WindowGroupImpl: ObjectImpl {}

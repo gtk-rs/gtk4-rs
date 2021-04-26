@@ -1,8 +1,8 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use crate::subclass::prelude::*;
 use crate::TextTag;
-use glib::subclass::prelude::*;
-use glib::{subclass::object::ObjectImpl, Object};
+use glib::Object;
 
 pub trait TextTagImpl: ObjectImpl {}
 

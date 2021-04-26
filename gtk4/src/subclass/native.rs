@@ -2,7 +2,6 @@
 
 use crate::subclass::prelude::*;
 use crate::Native;
-use glib::subclass::prelude::*;
 
 pub trait NativeImpl: WidgetImpl {}
 

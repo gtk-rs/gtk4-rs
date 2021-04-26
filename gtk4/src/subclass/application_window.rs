@@ -1,8 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::subclass::prelude::*;
-
-use super::window::WindowImpl;
+use crate::subclass::prelude::*;
 use crate::{ApplicationWindow, Window};
 
 pub trait ApplicationWindowImpl: WindowImpl + 'static {}

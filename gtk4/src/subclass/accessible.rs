@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+use crate::subclass::prelude::*;
 use crate::Accessible;
-use glib::subclass::prelude::*;
 
 pub trait AccessibleImpl: ObjectImpl {}
 

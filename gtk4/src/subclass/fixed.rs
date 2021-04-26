@@ -1,8 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use super::widget::WidgetImpl;
+use crate::subclass::prelude::*;
 use crate::{Fixed, Widget};
-use glib::subclass::prelude::*;
 
 pub trait FixedImpl: WidgetImpl {}
 
