@@ -29,6 +29,10 @@ name = "composite_template"
 path = "composite_template/main.rs"
 
 [[bin]]
+name = "content_provider"
+path = "content_provider/main.rs"
+
+[[bin]]
 name = "css"
 path = "css/main.rs"
 
