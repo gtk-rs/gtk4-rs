@@ -255,6 +255,43 @@
 <span id="252">252</span>
 <span id="253">253</span>
 <span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -302,17 +339,54 @@
         <span class="ident">columns_and_values</span>: <span class="kw-2">&amp;</span>[(<span class="ident">u32</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)],
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeIter</span>;
 
+    <span class="doccomment">/// Reorders the children of `parent` in `self` to follow the order</span>
+    <span class="doccomment">/// indicated by `new_order`. Note that this function only works with</span>
+    <span class="doccomment">/// unsorted stores.</span>
+    <span class="doccomment">/// ## `parent`</span>
+    <span class="doccomment">/// A [`TreeIter`](crate::TreeIter), or [`None`]</span>
+    <span class="doccomment">/// ## `new_order`</span>
+    <span class="doccomment">/// an array of integers mapping the new position of each child</span>
+    <span class="doccomment">///  to its old position before the re-ordering,</span>
+    <span class="doccomment">///  i.e. `new_order``[newpos] = oldpos`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_reorder&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">reorder</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">parent</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">new_order</span>: <span class="kw-2">&amp;</span>[<span class="ident">u32</span>]);
 
+    <span class="doccomment">/// Sets the value of one or more cells in the row referenced by `iter`.</span>
+    <span class="doccomment">/// The variable argument list should contain integer column numbers,</span>
+    <span class="doccomment">/// each column number followed by the value to be set.</span>
+    <span class="doccomment">/// The list is terminated by a -1. For example, to set column 0 with type</span>
+    <span class="doccomment">/// `G_TYPE_STRING` to “Foo”, you would write</span>
+    <span class="doccomment">/// `gtk_tree_store_set (store, iter, 0, &quot;Foo&quot;, -1)`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The value will be referenced by the store if it is a `G_TYPE_OBJECT`, and it</span>
+    <span class="doccomment">/// will be copied if it is a `G_TYPE_STRING` or `G_TYPE_BOXED`.</span>
+    <span class="doccomment">/// ## `iter`</span>
+    <span class="doccomment">/// A valid [`TreeIter`](crate::TreeIter) for the row being modified</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_set&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_set_valuesv&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_set_valist&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">columns_and_values</span>: <span class="kw-2">&amp;</span>[(<span class="ident">u32</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)]);
 
+    <span class="doccomment">/// This function is meant primarily for `GObjects` that inherit from</span>
+    <span class="doccomment">/// [`TreeStore`](crate::TreeStore), and should only be used when constructing a new</span>
+    <span class="doccomment">/// [`TreeStore`](crate::TreeStore). It will not function after a row has been added,</span>
+    <span class="doccomment">/// or a method on the [`TreeModel`](crate::TreeModel) interface is called.</span>
+    <span class="doccomment">/// ## `n_columns`</span>
+    <span class="doccomment">/// Number of columns for the tree store</span>
+    <span class="doccomment">/// ## `types`</span>
+    <span class="doccomment">/// An array of [`glib::Type`](crate::glib::Type) types, one for each column</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_set_column_types&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_column_types</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">types</span>: <span class="kw-2">&amp;</span>[<span class="ident">glib::Type</span>]);
 
+    <span class="doccomment">/// Sets the data in the cell specified by `iter` and `column`.</span>
+    <span class="doccomment">/// The type of `value` must be convertible to the type of the</span>
+    <span class="doccomment">/// column.</span>
+    <span class="doccomment">/// ## `iter`</span>
+    <span class="doccomment">/// A valid [`TreeIter`](crate::TreeIter) for the row being modified</span>
+    <span class="doccomment">/// ## `column`</span>
+    <span class="doccomment">/// column number to modify</span>
+    <span class="doccomment">/// ## `value`</span>
+    <span class="doccomment">/// new value for the cell</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_store_set_value&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">column</span>: <span class="ident">u32</span>, <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">Value</span>);
 }

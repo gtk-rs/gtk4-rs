@@ -22,6 +22,19 @@
 <span id="19">19</span>
 <span id="20">20</span>
 <span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -30,6 +43,19 @@
 <span class="kw">use</span> <span class="ident">glib::IsA</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">DrawContextExtManual</span>: <span class="lifetime">&#39;static</span> {
+    <span class="doccomment">/// Retrieves the region that is currently being repainted.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// After a call to [method`Gdk.DrawContext`.begin_frame] this function will</span>
+    <span class="doccomment">/// return a union of the region passed to that function and the area of the</span>
+    <span class="doccomment">/// surface that the `self` determined needs to be repainted.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If `self` is not in between calls to [method`Gdk.DrawContext`.begin_frame]</span>
+    <span class="doccomment">/// and [method`Gdk.DrawContext`.end_frame], [`None`] will be returned.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// a Cairo region or [`None`] if not drawing</span>
+    <span class="doccomment">///  a frame.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_draw_context_get_frame_region&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">frame_region</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">cairo::Region</span><span class="op">&gt;</span>;
 }

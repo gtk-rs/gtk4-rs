@@ -36,6 +36,20 @@
 <span id="33">33</span>
 <span id="34">34</span>
 <span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -45,6 +59,20 @@
 <span class="kw">use</span> <span class="ident">glib::IsA</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TreeModelExtManual</span>: <span class="lifetime">&#39;static</span> {
+    <span class="doccomment">/// Gets the value of one or more cells in the row referenced by `iter`.</span>
+    <span class="doccomment">/// The variable argument list should contain integer column numbers,</span>
+    <span class="doccomment">/// each column number followed by a place to store the value being</span>
+    <span class="doccomment">/// retrieved. The list is terminated by a -1. For example, to get a</span>
+    <span class="doccomment">/// value from column 0 with type `G_TYPE_STRING`, you would</span>
+    <span class="doccomment">/// write: `gtk_tree_model_get (model, iter, 0, &amp;place_string_here, -1)`,</span>
+    <span class="doccomment">/// where `place_string_here` is a `gchararray`</span>
+    <span class="doccomment">/// to be filled with the string.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Returned values with type `G_TYPE_OBJECT` have to be unreferenced,</span>
+    <span class="doccomment">/// values with type `G_TYPE_STRING` or `G_TYPE_BOXED` have to be freed.</span>
+    <span class="doccomment">/// Other values are passed by value.</span>
+    <span class="doccomment">/// ## `iter`</span>
+    <span class="doccomment">/// a row in `self`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_get&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_get_value&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_model_get_valist&quot;</span>)]</span>

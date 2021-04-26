@@ -22,6 +22,19 @@
 <span id="19">19</span>
 <span id="20">20</span>
 <span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -30,6 +43,19 @@
 <span class="kw">use</span> <span class="ident">glib::IsA</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CellEditableExtManual</span> {
+    <span class="doccomment">/// Begins editing on a `self`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The [`CellRenderer`](crate::CellRenderer) for the cell creates and returns a [`CellEditable`](crate::CellEditable) from</span>
+    <span class="doccomment">/// [`CellRenderer::start_editing()`](crate::CellRenderer::start_editing()), configured for the [`CellRenderer`](crate::CellRenderer) type.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// [`CellEditable::start_editing()`](crate::CellEditable::start_editing()) can then set up `self` suitably for</span>
+    <span class="doccomment">/// editing a cell, e.g. making the Esc key emit [`CellEditable::editing-done`](crate::CellEditable::editing-done).</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that the `self` is created on-demand for the current edit; its</span>
+    <span class="doccomment">/// lifetime is temporary and does not persist across other edits and/or cells.</span>
+    <span class="doccomment">/// ## `event`</span>
+    <span class="doccomment">/// The [`gdk::Event`](crate::gdk::Event) that began the editing process, or</span>
+    <span class="doccomment">///  [`None`] if editing was initiated programmatically</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_editable_start_editing&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">start_editing</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">gdk::Event</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">event</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>);
 }

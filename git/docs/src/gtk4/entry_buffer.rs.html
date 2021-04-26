@@ -140,6 +140,91 @@
 <span id="137">137</span>
 <span id="138">138</span>
 <span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
+<span id="170">170</span>
+<span id="171">171</span>
+<span id="172">172</span>
+<span id="173">173</span>
+<span id="174">174</span>
+<span id="175">175</span>
+<span id="176">176</span>
+<span id="177">177</span>
+<span id="178">178</span>
+<span id="179">179</span>
+<span id="180">180</span>
+<span id="181">181</span>
+<span id="182">182</span>
+<span id="183">183</span>
+<span id="184">184</span>
+<span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -173,27 +258,112 @@
 }
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">EntryBufferExtManual</span>: <span class="lifetime">&#39;static</span> {
+    <span class="doccomment">/// Deletes a sequence of characters from the buffer.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// `n_chars` characters are deleted starting at `position`.</span>
+    <span class="doccomment">/// If `n_chars` is negative, then all characters until the</span>
+    <span class="doccomment">/// end of the text are deleted.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If `position` or `n_chars` are out of bounds, then they</span>
+    <span class="doccomment">/// are coerced to sane values.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that the positions are specified in characters,</span>
+    <span class="doccomment">/// not bytes.</span>
+    <span class="doccomment">/// ## `position`</span>
+    <span class="doccomment">/// position at which to delete text</span>
+    <span class="doccomment">/// ## `n_chars`</span>
+    <span class="doccomment">/// number of characters to delete</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The number of characters deleted.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_buffer_delete_text&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">delete_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">position</span>: <span class="ident">u16</span>, <span class="ident">n_chars</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u16</span>;
 
+    <span class="doccomment">/// Retrieves the length in bytes of the buffer.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// See [method`Gtk.EntryBuffer`.get_length].</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The byte length of the buffer.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_buffer_get_bytes&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">bytes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span>;
 
+    <span class="doccomment">/// Retrieves the length in characters of the buffer.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The number of characters in the buffer.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_buffer_get_length&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u16</span>;
 
+    <span class="doccomment">/// Retrieves the maximum allowed length of the text in `self`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// the maximum allowed number of characters</span>
+    <span class="doccomment">///  in [`EntryBuffer`](crate::EntryBuffer), or 0 if there is no maximum.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_buffer_get_max_length&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">max_length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>;
 
+    <span class="doccomment">/// Retrieves the contents of the buffer.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The memory pointer returned by this call will not change</span>
+    <span class="doccomment">/// unless this object emits a signal, or is finalized.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// a pointer to the contents of the widget as a</span>
+    <span class="doccomment">///  string. This string points to internally allocated storage</span>
+    <span class="doccomment">///  in the buffer and must not be freed, modified or stored.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_buffer_get_text&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span>;
 
+    <span class="doccomment">/// Inserts `n_chars` characters of `chars` into the contents of the</span>
+    <span class="doccomment">/// buffer, at position `position`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If `n_chars` is negative, then characters from chars will be inserted</span>
+    <span class="doccomment">/// until a null-terminator is found. If `position` or `n_chars` are out of</span>
+    <span class="doccomment">/// bounds, or the maximum buffer text length is exceeded, then they are</span>
+    <span class="doccomment">/// coerced to sane values.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that the position and length are in characters, not in bytes.</span>
+    <span class="doccomment">/// ## `position`</span>
+    <span class="doccomment">/// the position at which to insert text.</span>
+    <span class="doccomment">/// ## `chars`</span>
+    <span class="doccomment">/// the text to insert into the buffer.</span>
+    <span class="doccomment">/// ## `n_chars`</span>
+    <span class="doccomment">/// the length of the text in characters, or -1</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The number of characters actually inserted.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_buffer_insert_text&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">insert_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">position</span>: <span class="ident">u16</span>, <span class="ident">chars</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u16</span>;
 
+    <span class="doccomment">/// Sets the maximum allowed length of the contents of the buffer.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If the current contents are longer than the given length, then</span>
+    <span class="doccomment">/// they will be truncated to fit.</span>
+    <span class="doccomment">/// ## `max_length`</span>
+    <span class="doccomment">/// the maximum length of the entry buffer, or 0 for no maximum.</span>
+    <span class="doccomment">///  (other than the maximum length of entries.) The value passed in will</span>
+    <span class="doccomment">///  be clamped to the range 0-65536.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_buffer_set_max_length&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_max_length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">max_length</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>);
 
+    <span class="doccomment">/// Sets the text in the buffer.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is roughly equivalent to calling</span>
+    <span class="doccomment">/// [method`Gtk.EntryBuffer`.delete_text] and</span>
+    <span class="doccomment">/// [method`Gtk.EntryBuffer`.insert_text].</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that `n_chars` is in characters, not in bytes.</span>
+    <span class="doccomment">/// ## `chars`</span>
+    <span class="doccomment">/// the new text</span>
+    <span class="doccomment">/// ## `n_chars`</span>
+    <span class="doccomment">/// the number of characters in `text`, or -1</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_buffer_set_text&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">chars</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
 }

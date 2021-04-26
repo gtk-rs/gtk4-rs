@@ -22,6 +22,43 @@
 <span id="19">19</span>
 <span id="20">20</span>
 <span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -30,6 +67,43 @@
 <span class="kw">use</span> <span class="ident">glib::IsA</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TextViewExtManual</span> {
+    <span class="doccomment">/// Allow the `GtkTextView` input method to internally handle key press</span>
+    <span class="doccomment">/// and release events.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If this function returns [`true`], then no further processing should be</span>
+    <span class="doccomment">/// done for this key event. See [method`Gtk.IMContext`.filter_keypress].</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Note that you are expected to call this function from your handler</span>
+    <span class="doccomment">/// when overriding key event handling. This is needed in the case when</span>
+    <span class="doccomment">/// you need to insert your own key handling between the input method</span>
+    <span class="doccomment">/// and the default key event handling of the `GtkTextView`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ```c</span>
+    <span class="doccomment">/// static gboolean</span>
+    <span class="doccomment">/// gtk_foo_bar_key_press_event (GtkWidget *widget,</span>
+    <span class="doccomment">///                              GdkEvent  *event)</span>
+    <span class="doccomment">/// {</span>
+    <span class="doccomment">///   guint keyval;</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///   gdk_event_get_keyval ((GdkEvent*)event, &amp;keyval);</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///   if (keyval == GDK_KEY_Return || keyval == GDK_KEY_KP_Enter)</span>
+    <span class="doccomment">///     {</span>
+    <span class="doccomment">///       if (gtk_text_view_im_context_filter_keypress (GTK_TEXT_VIEW (widget), event))</span>
+    <span class="doccomment">///         return TRUE;</span>
+    <span class="doccomment">///     }</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///   // Do some stuff</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///   return GTK_WIDGET_CLASS (gtk_foo_bar_parent_class)-&gt;key_press_event (widget, event);</span>
+    <span class="doccomment">/// }</span>
+    <span class="doccomment">/// ```</span>
+    <span class="doccomment">/// ## `event`</span>
+    <span class="doccomment">/// the key event</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// [`true`] if the input method handled the key event.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_view_im_context_filter_keypress&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">im_context_filter_keypress</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">gdk::Event</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">event</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 }

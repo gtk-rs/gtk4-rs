@@ -25,6 +25,17 @@
 <span id="22">22</span>
 <span id="23">23</span>
 <span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -34,6 +45,17 @@
 <span class="kw">use</span> <span class="ident">libc::c_char</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ActionableExtManual</span>: <span class="lifetime">&#39;static</span> {
+    <span class="doccomment">/// Sets the target of an actionable widget.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This is a convenience function that calls [`glib::Variant::new()`](crate::glib::Variant::new()) for</span>
+    <span class="doccomment">/// `format_string` and uses the result to call</span>
+    <span class="doccomment">/// [method`Gtk.Actionable`.set_action_target_value].</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// If you are setting a string-valued target and want to set</span>
+    <span class="doccomment">/// the action name at the same time, you can use</span>
+    <span class="doccomment">/// [method`Gtk.Actionable`.set_detailed_action_name].</span>
+    <span class="doccomment">/// ## `format_string`</span>
+    <span class="doccomment">/// a GVariant format string</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_actionable_set_action_target&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_action_target</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>);
 }
