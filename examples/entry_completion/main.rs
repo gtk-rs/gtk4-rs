@@ -3,10 +3,7 @@ use gtk::prelude::*;
 
 use glib::Type;
 use gtk::gio::SimpleAction;
-use gtk::{
-    Application, ApplicationWindow, Box as Box_, Entry, EntryCompletion, Label, ListStore,
-    Orientation,
-};
+use gtk::{Application, Entry, EntryCompletion, Label, ListStore, Orientation};
 
 struct Data {
     description: String,
@@ -38,9 +35,12 @@ fn create_list_model() -> ListStore {
 
 fn build_ui(application: &Application) {
     // create the main window
-    let window = ApplicationWindow::new(application);
-    window.set_title(Some("Entry with autocompletion"));
-    window.set_default_size(840, 480);
+    let window = gtk::ApplicationWindowBuilder::new()
+        .application(application)
+        .title("Entry with autocompletion")
+        .default_width(600)
+        .default_height(480)
+        .build();
 
     // Create a title label
     let win_title = Label::new(None);
@@ -65,7 +65,14 @@ fn build_ui(application: &Application) {
     let input_field = Entry::new();
     input_field.set_completion(Some(&completion_countries));
 
-    let row = Box_::new(Orientation::Vertical, 5);
+    let row = gtk::BoxBuilder::new()
+        .orientation(Orientation::Vertical)
+        .spacing(12)
+        .margin_start(24)
+        .margin_end(24)
+        .margin_top(24)
+        .margin_bottom(24)
+        .build();
     row.append(&win_title);
     input_field.set_margin_top(10);
     row.append(&input_field);
