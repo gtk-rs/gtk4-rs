@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use crate::ContentFormats;
 use glib::translate::*;
 
 glib::wrapper! {
@@ -21,51 +20,6 @@ impl ContentFormatsBuilder {
     pub fn new() -> ContentFormatsBuilder {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gdk_content_formats_builder_new()) }
-    }
-
-    #[doc(alias = "gdk_content_formats_builder_add_formats")]
-    pub fn add_formats(&self, formats: &ContentFormats) {
-        unsafe {
-            ffi::gdk_content_formats_builder_add_formats(
-                self.to_glib_none().0,
-                formats.to_glib_none().0,
-            );
-        }
-    }
-
-    #[doc(alias = "gdk_content_formats_builder_add_gtype")]
-    pub fn add_type(&self, type_: glib::types::Type) {
-        unsafe {
-            ffi::gdk_content_formats_builder_add_gtype(self.to_glib_none().0, type_.into_glib());
-        }
-    }
-
-    #[doc(alias = "gdk_content_formats_builder_add_mime_type")]
-    pub fn add_mime_type(&self, mime_type: &str) {
-        unsafe {
-            ffi::gdk_content_formats_builder_add_mime_type(
-                self.to_glib_none().0,
-                mime_type.to_glib_none().0,
-            );
-        }
-    }
-
-    #[doc(alias = "gdk_content_formats_builder_free_to_formats")]
-    pub fn free_to_formats(&self) -> Option<ContentFormats> {
-        unsafe {
-            from_glib_full(ffi::gdk_content_formats_builder_free_to_formats(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "gdk_content_formats_builder_to_formats")]
-    pub fn to_formats(&self) -> Option<ContentFormats> {
-        unsafe {
-            from_glib_full(ffi::gdk_content_formats_builder_to_formats(
-                self.to_glib_none().0,
-            ))
-        }
     }
 }
 

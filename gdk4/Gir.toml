@@ -240,8 +240,11 @@ status = "generate"
 name = "Gdk.ContentFormatsBuilder"
 status = "generate"
     [[object.function]]
-    name = "add_gtype"
-    rename = "add_type"
+    name = "free_to_formats"
+    ignore = true # marked skip, redundant with to_formats
+    [[object.function]]
+    pattern = "to_formats|add_.+"
+    manual = true # renamed, returns non-null, builder-like
 
 [[object]]
 name = "Gdk.ContentProvider"
