@@ -361,6 +361,7 @@ status = "generate"
 manual_traits = ["DrawContextExtManual"]
     [[object.function]]
     name = "get_frame_region"
+    doc_trait_name = "DrawContextExtManual"
     manual = true
 
 [[object]]
@@ -388,6 +389,7 @@ status = "generate"
 manual_traits = ["PopupLayoutExtManual"]
     [[object.function]]
     name = "get_offset"
+    doc_trait_name = "PopupLayoutExtManual"
     manual = true # invalid mutability
 
 [[object]]
@@ -397,6 +399,7 @@ manual_traits = ["SurfaceExtManual"]
     [[object.function]]
     name = "create_similar_surface"
     manual = true
+    doc_trait_name = "SurfaceExtManual"
     [[object.function]]
     name = "set_opaque_region"
         [[object.function.parameter]]
@@ -404,6 +407,7 @@ manual_traits = ["SurfaceExtManual"]
         const = true
     [[object.function]]
     name = "translate_coordinates"
+    doc_trait_name = "SurfaceExtManual"
     manual = true # mutability issue
 
 [[object]]
@@ -412,6 +416,7 @@ status = "generate"
 manual_traits = ["TextureExtManual"]
     [[object.function]]
     name = "download"
+    doc_trait_name = "TextureExtManual"
     manual = true
 
 [[object]]
@@ -421,9 +426,11 @@ manual_traits = ["ToplevelExtManual"]
     [[object.function]]
     name = "inhibit_system_shortcuts"
     manual = true # event is a fundemental type
+    doc_trait_name = "ToplevelExtManual"
     [[object.function]]
     name = "show_window_menu"
     manual = true # event is a fundemental type
+    doc_trait_name = "ToplevelExtManual"
     [[object.signal]]
     name = "compute-size"
     ignore = true # manual

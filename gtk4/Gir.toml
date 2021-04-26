@@ -458,6 +458,7 @@ manual_traits = ["AccessibleExtManual"]
     ignore = true
     [[object.function]]
     pattern = "update_(property|state|relation)_value"
+    doc_trait_name = "AccessibleExtManual"
     manual = true
 
 [[object]]
@@ -470,6 +471,7 @@ manual_traits = ["ActionableExtManual"]
     [[object.function]]
     name = "set_action_target"
     manual = true # the target is defined as str
+    doc_trait_name = "ActionableExtManual"
 
 [[object]]
 name = "Gtk.ActivateAction"
@@ -555,6 +557,7 @@ manual_traits = ["BuilderExtManual"]
     [[object.function]]
     name = "value_from_string"
     manual = true # ParamSpec is a fundemental type
+    doc_trait_name = "BuilderExtManual"
 
 [[object]]
 name = "Gtk.BuilderListItemFactory"
@@ -586,15 +589,18 @@ trust_return_value_nullability = false
     [[object.function]]
     pattern = "cell_[gs]et"
     ignore = true # we use cell_[gs]et_property
+    doc_trait_name = "CellAreaExtManual"
     [[object.function]]
     pattern = "cell_[gs]et_property"
     manual = true
     [[object.function]]
     pattern = "activate_cell"
     manual = true # to handlndle gdk::Event
+    doc_trait_name = "CellAreaExtManual"
     [[object.function]]
     pattern = "event"
     manual = true # to handlndle gdk::Event
+    doc_trait_name = "CellAreaExtManual"
     [[object.function]]
     name = "apply_attributes"
         [[object.function.parameter]]
@@ -626,6 +632,7 @@ manual_traits = ["CellEditableExtManual"]
     [[object.function]]
     name = "start_editing"
     manual = true # to handle gdk::Event
+    doc_trait_name = "CellEditableExtManual"
 
 [[object]]
 name = "Gtk.CellLayout"
@@ -644,6 +651,7 @@ manual_traits = ["CellRendererExtManual"]
     [[object.function]]
     name = "activate"
     manual = true # to handle gdk::Event
+    doc_trait_name = "CellRendererExtManual"
     [[object.signal]]
     name = "editing-started"
         [[object.signal.parameter]]
@@ -652,6 +660,7 @@ manual_traits = ["CellRendererExtManual"]
     [[object.function]]
     name = "start_editing"
     manual = true # to handle gdk::Event
+    doc_trait_name = "CellRendererExtManual"
 
 [[object]]
 name = "Gtk.CellRendererAccel"
@@ -760,12 +769,15 @@ manual_traits = ["ConstraintGuideExtManual"]
     [[object.function]]
     name = "get_max_size"
     manual = true # missing inout annotation
+    doc_trait_name = "ConstraintGuideExtManual"
     [[object.function]]
     name = "get_min_size" # missing inout annotation
     manual = true
+    doc_trait_name = "ConstraintGuideExtManual"
     [[object.function]]
     name = "get_nat_size" # missing inout annotation
     manual = true
+    doc_trait_name = "ConstraintGuideExtManual"
 
 [[object]]
 name = "Gtk.ConstraintLayout"
@@ -885,6 +897,7 @@ manual_traits = ["EntryExtManual"]
     [[object.function]]
     name = "get_invisible_char"
     manual = true
+    doc_trait_name = "EntryExtManual"
     [[object.function]]
     name = "set_invisible_char"
         [[object.function.parameter]]
@@ -906,27 +919,35 @@ manual_traits = ["EntryBufferExtManual"]
     [[object.function]]
     name = "delete_text"
     manual = true
+    doc_trait_name = "EntryBufferExtManual"
     [[object.function]]
     name = "get_bytes"
     manual = true
+    doc_trait_name = "EntryBufferExtManual"
     [[object.function]]
     name = "get_length"
     manual = true
+    doc_trait_name = "EntryBufferExtManual"
     [[object.function]]
     name = "get_max_length"
     manual = true
+    doc_trait_name = "EntryBufferExtManual"
     [[object.function]]
     name = "get_text"
     manual = true
+    doc_trait_name = "EntryBufferExtManual"
     [[object.function]]
     name = "insert_text"
     manual = true
+    doc_trait_name = "EntryBufferExtManual"
     [[object.function]]
     name = "set_max_length"
     manual = true
+    doc_trait_name = "EntryBufferExtManual"
     [[object.function]]
     name = "set_text"
     manual = true
+    doc_trait_name = "EntryBufferExtManual"
     [[object.signal]]
     name = "deleted-text"
     ignore = true # TODO: implement me
@@ -1128,6 +1149,7 @@ manual_traits = ["IMContextExtManual"]
     [[object.function]]
     name = "filter_keypress"
     manual = true # to handle gdk::Event
+    doc_trait_name = "IMContextExtManual"
     [[object.function]]
     pattern = "(get|set)_surrounding_with_selection"
     version = "4.2" # remove once 4.2 is released
@@ -1246,6 +1268,7 @@ manual_traits = ["GtkListStoreExtManual"]
     [[object.function]]
     name = "set_value"
     manual = true
+    doc_trait_name = "GtkListStoreExtManual"
     [[object.function]]
     name = "set_valuesv"
     ignore = true
@@ -1276,12 +1299,15 @@ manual_traits = ["GtkListStoreExtManual"]
     [[object.function]]
     pattern = "insert_with_valuesv"
     manual = true
+    doc_trait_name = "GtkListStoreExtManual"
     [[object.function]]
     name = "reorder"
     manual = true # needs to assert the passed new_order = n_total_items
+    doc_trait_name = "GtkListStoreExtManual"
     [[object.function]]
     name = "set_column_types"
     manual = true
+    doc_trait_name = "GtkListStoreExtManual"
 
 [[object]]
 name = "Gtk.LockButton"
@@ -1311,10 +1337,11 @@ manual_traits = ["MediaStreamExtManual"]
     ignore = true # not useful for bindings
     [[object.function]]
     name = "error"
-    manual = true
+    ignore = true
     [[object.function]]
     name = "gerror"
     manual = true
+    doc_trait_name = "MediaStreamExtManual"
 
 [[object]]
 name = "Gtk.MenuButton"
@@ -1681,15 +1708,19 @@ manual_traits = ["ShortcutTriggerExtManual"]
     [[object.function]]
     name = "equal"
     manual = true # complains about the trait IsA<T> being so generic
+    doc_trait_name = "ShortcutTriggerExtManual"
     [[object.function]]
     name = "hash"
     manual = true # complains about the trait IsA<T> being so generic
+    doc_trait_name = "ShortcutTriggerExtManual"
     [[object.function]]
     name = "compare"
     manual = true # complains about the trait IsA<T> being so generic
+    doc_trait_name = "ShortcutTriggerExtManual"
     [[object.function]]
     name = "trigger"
     manual = true # to handle gdk::Event
+    doc_trait_name = "ShortcutTriggerExtManual"
 
 [[object]]
 name = "Gtk.Snapshot"
@@ -1867,6 +1898,7 @@ manual_traits = ["TextViewExtManual"]
     [[object.function]]
     name = "im_context_filter_keypress"
     manual = true # to handle gdk::Event
+    doc_trait_name = "TextViewExtManual"
     [[object.signal]]
     name = "extend-selection"
     inhibit = true
@@ -1938,8 +1970,12 @@ manual_traits = ["TreeModelExtManual"]
     name = 'unref_node'
     ignore = true # unsafe
     [[object.function]]
-    pattern = "(get|get_value|get_valist)"
+    pattern = "(get_value|get_valist)"
     ignore = true # generated manually to check for column 
+    [[object.function]]
+    name = "get"
+    manual = true
+    doc_trait_name = "TreeModelExtManual"
 
 [[object]]
 name = "Gtk.TreeModelFilter"
@@ -1949,6 +1985,7 @@ manual_traits = ["TreeModelFilterExtManual"]
     [[object.function]]
     name = "set_modify_func"
     manual = true
+    doc_trait_name = "TreeModelFilterExtManual"
     [[object.function]]
     name = "convert_child_path_to_path"
         [[object.function.parameter]]
@@ -2174,15 +2211,18 @@ manual_traits = ["TreeStoreExtManual"]
     [[object.function]]
     name = "set_value"
     manual = true
+    doc_trait_name = "TreeStoreExtManual"
     [[object.function]]
     name = "set_valist"
     ignore = true # not useful for Rust bindings
     [[object.function]]
     name = "reorder"
     manual = true
+    doc_trait_name = "TreeStoreExtManual"
     [[object.function]]
     name = "set"
     manual = true
+    doc_trait_name = "TreeStoreExtManual"
     [[object.function]]
     pattern = "new"
     ignore = true
@@ -2203,9 +2243,11 @@ manual_traits = ["TreeStoreExtManual"]
     [[object.function]]
     pattern = "insert_with_valuesv"
     manual = true
+    doc_trait_name = "TreeStoreExtManual"
     [[object.function]]
     name = "set_column_types"
     manual = true
+    doc_trait_name = "TreeStoreExtManual"
 
 [[object]]
 name = "Gtk.TreeView"

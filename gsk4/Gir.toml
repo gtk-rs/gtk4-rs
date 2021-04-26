@@ -106,10 +106,12 @@ manual_traits = ["RendererExtManual"]
     name = "render"
     # uses IsA<RenderNode> but RenderNode is not an Object
     manual = true
+    doc_trait_name = "RendererExtManual"
     [[object.function]]
     name = "render_texture"
     # uses IsA<RenderNode> but RenderNode is not an Object
     manual = true
+    doc_trait_name = "RendererExtManual"
 
 [[object]]
 name = "Gsk.Transform"
