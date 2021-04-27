@@ -218,8 +218,6 @@ mod rt;
 #[allow(unused_imports)]
 mod auto;
 
-mod signal;
-
 #[macro_use]
 pub mod subclass;
 
@@ -320,6 +318,7 @@ pub use expression::{
 #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 pub use flags::PrintCapabilities;
 pub use functions::*;
+pub use glib::signal::Inhibit;
 pub use keyval_trigger::KeyvalTrigger;
 pub use mnemonic_trigger::MnemonicTrigger;
 pub use pad_action_entry::PadActionEntry;
