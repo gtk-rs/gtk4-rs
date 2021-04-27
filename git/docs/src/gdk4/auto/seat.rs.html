@@ -276,7 +276,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">FromGlibPtrContainer::from_glib_container</span>(<span class="ident">ffi::gdk_seat_get_devices</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">capabilities</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">capabilities</span>.<span class="ident">into_glib</span>(),
             ))
         }
     }

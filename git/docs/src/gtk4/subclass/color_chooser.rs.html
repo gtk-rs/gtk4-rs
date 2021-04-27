@@ -261,7 +261,7 @@
                         .<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">ColorChooser</span><span class="op">&gt;</span>()
                         .<span class="ident">to_glib_none</span>()
                         .<span class="number">0</span>,
-                    <span class="ident">orientation</span>.<span class="ident">to_glib</span>(),
+                    <span class="ident">orientation</span>.<span class="ident">into_glib</span>(),
                     <span class="ident">colors_per_line</span>,
                     <span class="ident">colors</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">i32</span>,
                     <span class="ident">mut_override</span>(<span class="ident">colors_ptr</span>.<span class="ident">as_ptr</span>()),

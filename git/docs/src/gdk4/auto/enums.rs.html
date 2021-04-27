@@ -2369,11 +2369,11 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span> <span class="ident">ToGlib</span> <span class="kw">for</span> <span class="ident">AxisUse</span> {
+<span class="kw">impl</span> <span class="ident">IntoGlib</span> <span class="kw">for</span> <span class="ident">AxisUse</span> {
     <span class="kw">type</span> <span class="ident">GlibType</span> <span class="op">=</span> <span class="ident">ffi::GdkAxisUse</span>;
 
-    <span class="kw">fn</span> <span class="ident">to_glib</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkAxisUse</span> {
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+    <span class="kw">fn</span> <span class="ident">into_glib</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkAxisUse</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">AxisUse::Ignore</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_AXIS_IGNORE</span>,
             <span class="ident">AxisUse::X</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_AXIS_X</span>,
             <span class="ident">AxisUse::Y</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_AXIS_Y</span>,
@@ -2438,7 +2438,7 @@
     <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="ident">AxisUse</span><span class="op">&gt;</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">to_glib</span>());
+            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">into_glib</span>());
         }
         <span class="ident">value</span>
     }
@@ -2511,11 +2511,11 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span> <span class="ident">ToGlib</span> <span class="kw">for</span> <span class="ident">CrossingMode</span> {
+<span class="kw">impl</span> <span class="ident">IntoGlib</span> <span class="kw">for</span> <span class="ident">CrossingMode</span> {
     <span class="kw">type</span> <span class="ident">GlibType</span> <span class="op">=</span> <span class="ident">ffi::GdkCrossingMode</span>;
 
-    <span class="kw">fn</span> <span class="ident">to_glib</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkCrossingMode</span> {
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+    <span class="kw">fn</span> <span class="ident">into_glib</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkCrossingMode</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">CrossingMode::Normal</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_CROSSING_NORMAL</span>,
             <span class="ident">CrossingMode::Grab</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_CROSSING_GRAB</span>,
             <span class="ident">CrossingMode::Ungrab</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_CROSSING_UNGRAB</span>,
@@ -2572,7 +2572,7 @@
     <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="ident">CrossingMode</span><span class="op">&gt;</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">to_glib</span>());
+            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">into_glib</span>());
         }
         <span class="ident">value</span>
     }
@@ -2616,11 +2616,11 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span> <span class="ident">ToGlib</span> <span class="kw">for</span> <span class="ident">DevicePadFeature</span> {
+<span class="kw">impl</span> <span class="ident">IntoGlib</span> <span class="kw">for</span> <span class="ident">DevicePadFeature</span> {
     <span class="kw">type</span> <span class="ident">GlibType</span> <span class="op">=</span> <span class="ident">ffi::GdkDevicePadFeature</span>;
 
-    <span class="kw">fn</span> <span class="ident">to_glib</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkDevicePadFeature</span> {
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+    <span class="kw">fn</span> <span class="ident">into_glib</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkDevicePadFeature</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">DevicePadFeature::Button</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_DEVICE_PAD_FEATURE_BUTTON</span>,
             <span class="ident">DevicePadFeature::Ring</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_DEVICE_PAD_FEATURE_RING</span>,
             <span class="ident">DevicePadFeature::Strip</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_DEVICE_PAD_FEATURE_STRIP</span>,
@@ -2665,7 +2665,7 @@
     <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="ident">DevicePadFeature</span><span class="op">&gt;</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">to_glib</span>());
+            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">into_glib</span>());
         }
         <span class="ident">value</span>
     }
@@ -2730,11 +2730,11 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span> <span class="ident">ToGlib</span> <span class="kw">for</span> <span class="ident">DeviceToolType</span> {
+<span class="kw">impl</span> <span class="ident">IntoGlib</span> <span class="kw">for</span> <span class="ident">DeviceToolType</span> {
     <span class="kw">type</span> <span class="ident">GlibType</span> <span class="op">=</span> <span class="ident">ffi::GdkDeviceToolType</span>;
 
-    <span class="kw">fn</span> <span class="ident">to_glib</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkDeviceToolType</span> {
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+    <span class="kw">fn</span> <span class="ident">into_glib</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkDeviceToolType</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">DeviceToolType::Unknown</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_DEVICE_TOOL_TYPE_UNKNOWN</span>,
             <span class="ident">DeviceToolType::Pen</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_DEVICE_TOOL_TYPE_PEN</span>,
             <span class="ident">DeviceToolType::Eraser</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_DEVICE_TOOL_TYPE_ERASER</span>,
@@ -2789,7 +2789,7 @@
     <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="ident">DeviceToolType</span><span class="op">&gt;</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">to_glib</span>());
+            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">into_glib</span>());
         }
         <span class="ident">value</span>
     }
@@ -2833,11 +2833,11 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span> <span class="ident">ToGlib</span> <span class="kw">for</span> <span class="ident">DragCancelReason</span> {
+<span class="kw">impl</span> <span class="ident">IntoGlib</span> <span class="kw">for</span> <span class="ident">DragCancelReason</span> {
     <span class="kw">type</span> <span class="ident">GlibType</span> <span class="op">=</span> <span class="ident">ffi::GdkDragCancelReason</span>;
 
-    <span class="kw">fn</span> <span class="ident">to_glib</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkDragCancelReason</span> {
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+    <span class="kw">fn</span> <span class="ident">into_glib</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkDragCancelReason</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">DragCancelReason::NoTarget</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_DRAG_CANCEL_NO_TARGET</span>,
             <span class="ident">DragCancelReason::UserCancelled</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_DRAG_CANCEL_USER_CANCELLED</span>,
             <span class="ident">DragCancelReason::Error</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_DRAG_CANCEL_ERROR</span>,
@@ -2882,7 +2882,7 @@
     <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="ident">DragCancelReason</span><span class="op">&gt;</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">to_glib</span>());
+            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">into_glib</span>());
         }
         <span class="ident">value</span>
     }
@@ -3037,11 +3037,11 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span> <span class="ident">ToGlib</span> <span class="kw">for</span> <span class="ident">EventType</span> {
+<span class="kw">impl</span> <span class="ident">IntoGlib</span> <span class="kw">for</span> <span class="ident">EventType</span> {
     <span class="kw">type</span> <span class="ident">GlibType</span> <span class="op">=</span> <span class="ident">ffi::GdkEventType</span>;
 
-    <span class="kw">fn</span> <span class="ident">to_glib</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkEventType</span> {
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+    <span class="kw">fn</span> <span class="ident">into_glib</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkEventType</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">EventType::Delete</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_DELETE</span>,
             <span class="ident">EventType::MotionNotify</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_MOTION_NOTIFY</span>,
             <span class="ident">EventType::ButtonPress</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_BUTTON_PRESS</span>,
@@ -3138,7 +3138,7 @@
     <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="ident">EventType</span><span class="op">&gt;</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">to_glib</span>());
+            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">into_glib</span>());
         }
         <span class="ident">value</span>
     }
@@ -3178,11 +3178,11 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span> <span class="ident">ToGlib</span> <span class="kw">for</span> <span class="ident">FullscreenMode</span> {
+<span class="kw">impl</span> <span class="ident">IntoGlib</span> <span class="kw">for</span> <span class="ident">FullscreenMode</span> {
     <span class="kw">type</span> <span class="ident">GlibType</span> <span class="op">=</span> <span class="ident">ffi::GdkFullscreenMode</span>;
 
-    <span class="kw">fn</span> <span class="ident">to_glib</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkFullscreenMode</span> {
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+    <span class="kw">fn</span> <span class="ident">into_glib</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkFullscreenMode</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">FullscreenMode::CurrentMonitor</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_FULLSCREEN_ON_CURRENT_MONITOR</span>,
             <span class="ident">FullscreenMode::AllMonitors</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_FULLSCREEN_ON_ALL_MONITORS</span>,
             <span class="ident">FullscreenMode::__Unknown</span>(<span class="ident">value</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">value</span>,
@@ -3225,7 +3225,7 @@
     <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="ident">FullscreenMode</span><span class="op">&gt;</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">to_glib</span>());
+            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">into_glib</span>());
         }
         <span class="ident">value</span>
     }
@@ -3277,11 +3277,11 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span> <span class="ident">ToGlib</span> <span class="kw">for</span> <span class="ident">GLError</span> {
+<span class="kw">impl</span> <span class="ident">IntoGlib</span> <span class="kw">for</span> <span class="ident">GLError</span> {
     <span class="kw">type</span> <span class="ident">GlibType</span> <span class="op">=</span> <span class="ident">ffi::GdkGLError</span>;
 
-    <span class="kw">fn</span> <span class="ident">to_glib</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkGLError</span> {
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+    <span class="kw">fn</span> <span class="ident">into_glib</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkGLError</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">GLError::NotAvailable</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_GL_ERROR_NOT_AVAILABLE</span>,
             <span class="ident">GLError::UnsupportedFormat</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_GL_ERROR_UNSUPPORTED_FORMAT</span>,
             <span class="ident">GLError::UnsupportedProfile</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_GL_ERROR_UNSUPPORTED_PROFILE</span>,
@@ -3315,7 +3315,7 @@
     }
 
     <span class="kw">fn</span> <span class="ident">code</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
-        <span class="self">self</span>.<span class="ident">to_glib</span>()
+        <span class="self">self</span>.<span class="ident">into_glib</span>()
     }
 
     <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">code</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
@@ -3354,7 +3354,7 @@
     <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="ident">GLError</span><span class="op">&gt;</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">to_glib</span>());
+            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">into_glib</span>());
         }
         <span class="ident">value</span>
     }
@@ -3427,11 +3427,11 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span> <span class="ident">ToGlib</span> <span class="kw">for</span> <span class="ident">Gravity</span> {
+<span class="kw">impl</span> <span class="ident">IntoGlib</span> <span class="kw">for</span> <span class="ident">Gravity</span> {
     <span class="kw">type</span> <span class="ident">GlibType</span> <span class="op">=</span> <span class="ident">ffi::GdkGravity</span>;
 
-    <span class="kw">fn</span> <span class="ident">to_glib</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkGravity</span> {
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+    <span class="kw">fn</span> <span class="ident">into_glib</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkGravity</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">Gravity::NorthWest</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_GRAVITY_NORTH_WEST</span>,
             <span class="ident">Gravity::North</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_GRAVITY_NORTH</span>,
             <span class="ident">Gravity::NorthEast</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_GRAVITY_NORTH_EAST</span>,
@@ -3490,7 +3490,7 @@
     <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="ident">Gravity</span><span class="op">&gt;</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">to_glib</span>());
+            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">into_glib</span>());
         }
         <span class="ident">value</span>
     }
@@ -3554,11 +3554,11 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span> <span class="ident">ToGlib</span> <span class="kw">for</span> <span class="ident">InputSource</span> {
+<span class="kw">impl</span> <span class="ident">IntoGlib</span> <span class="kw">for</span> <span class="ident">InputSource</span> {
     <span class="kw">type</span> <span class="ident">GlibType</span> <span class="op">=</span> <span class="ident">ffi::GdkInputSource</span>;
 
-    <span class="kw">fn</span> <span class="ident">to_glib</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkInputSource</span> {
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+    <span class="kw">fn</span> <span class="ident">into_glib</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkInputSource</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">InputSource::Mouse</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_SOURCE_MOUSE</span>,
             <span class="ident">InputSource::Pen</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_SOURCE_PEN</span>,
             <span class="ident">InputSource::Keyboard</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_SOURCE_KEYBOARD</span>,
@@ -3611,7 +3611,7 @@
     <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="ident">InputSource</span><span class="op">&gt;</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">to_glib</span>());
+            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">into_glib</span>());
         }
         <span class="ident">value</span>
     }
@@ -3658,11 +3658,11 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span> <span class="ident">ToGlib</span> <span class="kw">for</span> <span class="ident">KeyMatch</span> {
+<span class="kw">impl</span> <span class="ident">IntoGlib</span> <span class="kw">for</span> <span class="ident">KeyMatch</span> {
     <span class="kw">type</span> <span class="ident">GlibType</span> <span class="op">=</span> <span class="ident">ffi::GdkKeyMatch</span>;
 
-    <span class="kw">fn</span> <span class="ident">to_glib</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkKeyMatch</span> {
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+    <span class="kw">fn</span> <span class="ident">into_glib</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkKeyMatch</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">KeyMatch::None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_KEY_MATCH_NONE</span>,
             <span class="ident">KeyMatch::Partial</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_KEY_MATCH_PARTIAL</span>,
             <span class="ident">KeyMatch::Exact</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_KEY_MATCH_EXACT</span>,
@@ -3707,7 +3707,7 @@
     <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="ident">KeyMatch</span><span class="op">&gt;</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">to_glib</span>());
+            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">into_glib</span>());
         }
         <span class="ident">value</span>
     }
@@ -3793,11 +3793,11 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span> <span class="ident">ToGlib</span> <span class="kw">for</span> <span class="ident">MemoryFormat</span> {
+<span class="kw">impl</span> <span class="ident">IntoGlib</span> <span class="kw">for</span> <span class="ident">MemoryFormat</span> {
     <span class="kw">type</span> <span class="ident">GlibType</span> <span class="op">=</span> <span class="ident">ffi::GdkMemoryFormat</span>;
 
-    <span class="kw">fn</span> <span class="ident">to_glib</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkMemoryFormat</span> {
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+    <span class="kw">fn</span> <span class="ident">into_glib</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkMemoryFormat</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">MemoryFormat::B8g8r8a8Premultiplied</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_MEMORY_B8G8R8A8_PREMULTIPLIED</span>,
             <span class="ident">MemoryFormat::A8r8g8b8Premultiplied</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_MEMORY_A8R8G8B8_PREMULTIPLIED</span>,
             <span class="ident">MemoryFormat::R8g8b8a8Premultiplied</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_MEMORY_R8G8B8A8_PREMULTIPLIED</span>,
@@ -3856,7 +3856,7 @@
     <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="ident">MemoryFormat</span><span class="op">&gt;</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">to_glib</span>());
+            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">into_glib</span>());
         }
         <span class="ident">value</span>
     }
@@ -3922,11 +3922,11 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span> <span class="ident">ToGlib</span> <span class="kw">for</span> <span class="ident">NotifyType</span> {
+<span class="kw">impl</span> <span class="ident">IntoGlib</span> <span class="kw">for</span> <span class="ident">NotifyType</span> {
     <span class="kw">type</span> <span class="ident">GlibType</span> <span class="op">=</span> <span class="ident">ffi::GdkNotifyType</span>;
 
-    <span class="kw">fn</span> <span class="ident">to_glib</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkNotifyType</span> {
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+    <span class="kw">fn</span> <span class="ident">into_glib</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkNotifyType</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">NotifyType::Ancestor</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_NOTIFY_ANCESTOR</span>,
             <span class="ident">NotifyType::Virtual</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_NOTIFY_VIRTUAL</span>,
             <span class="ident">NotifyType::Inferior</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_NOTIFY_INFERIOR</span>,
@@ -3977,7 +3977,7 @@
     <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="ident">NotifyType</span><span class="op">&gt;</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">to_glib</span>());
+            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">into_glib</span>());
         }
         <span class="ident">value</span>
     }
@@ -4030,11 +4030,11 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span> <span class="ident">ToGlib</span> <span class="kw">for</span> <span class="ident">ScrollDirection</span> {
+<span class="kw">impl</span> <span class="ident">IntoGlib</span> <span class="kw">for</span> <span class="ident">ScrollDirection</span> {
     <span class="kw">type</span> <span class="ident">GlibType</span> <span class="op">=</span> <span class="ident">ffi::GdkScrollDirection</span>;
 
-    <span class="kw">fn</span> <span class="ident">to_glib</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkScrollDirection</span> {
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+    <span class="kw">fn</span> <span class="ident">into_glib</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkScrollDirection</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">ScrollDirection::Up</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_SCROLL_UP</span>,
             <span class="ident">ScrollDirection::Down</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_SCROLL_DOWN</span>,
             <span class="ident">ScrollDirection::Left</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_SCROLL_LEFT</span>,
@@ -4083,7 +4083,7 @@
     <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="ident">ScrollDirection</span><span class="op">&gt;</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">to_glib</span>());
+            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">into_glib</span>());
         }
         <span class="ident">value</span>
     }
@@ -4140,11 +4140,11 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span> <span class="ident">ToGlib</span> <span class="kw">for</span> <span class="ident">SubpixelLayout</span> {
+<span class="kw">impl</span> <span class="ident">IntoGlib</span> <span class="kw">for</span> <span class="ident">SubpixelLayout</span> {
     <span class="kw">type</span> <span class="ident">GlibType</span> <span class="op">=</span> <span class="ident">ffi::GdkSubpixelLayout</span>;
 
-    <span class="kw">fn</span> <span class="ident">to_glib</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkSubpixelLayout</span> {
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+    <span class="kw">fn</span> <span class="ident">into_glib</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkSubpixelLayout</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">SubpixelLayout::Unknown</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_SUBPIXEL_LAYOUT_UNKNOWN</span>,
             <span class="ident">SubpixelLayout::None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_SUBPIXEL_LAYOUT_NONE</span>,
             <span class="ident">SubpixelLayout::HorizontalRgb</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_SUBPIXEL_LAYOUT_HORIZONTAL_RGB</span>,
@@ -4195,7 +4195,7 @@
     <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="ident">SubpixelLayout</span><span class="op">&gt;</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">to_glib</span>());
+            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">into_glib</span>());
         }
         <span class="ident">value</span>
     }
@@ -4259,11 +4259,11 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span> <span class="ident">ToGlib</span> <span class="kw">for</span> <span class="ident">SurfaceEdge</span> {
+<span class="kw">impl</span> <span class="ident">IntoGlib</span> <span class="kw">for</span> <span class="ident">SurfaceEdge</span> {
     <span class="kw">type</span> <span class="ident">GlibType</span> <span class="op">=</span> <span class="ident">ffi::GdkSurfaceEdge</span>;
 
-    <span class="kw">fn</span> <span class="ident">to_glib</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkSurfaceEdge</span> {
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+    <span class="kw">fn</span> <span class="ident">into_glib</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkSurfaceEdge</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">SurfaceEdge::NorthWest</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_SURFACE_EDGE_NORTH_WEST</span>,
             <span class="ident">SurfaceEdge::North</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_SURFACE_EDGE_NORTH</span>,
             <span class="ident">SurfaceEdge::NorthEast</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_SURFACE_EDGE_NORTH_EAST</span>,
@@ -4318,7 +4318,7 @@
     <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="ident">SurfaceEdge</span><span class="op">&gt;</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">to_glib</span>());
+            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">into_glib</span>());
         }
         <span class="ident">value</span>
     }
@@ -4385,11 +4385,11 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span> <span class="ident">ToGlib</span> <span class="kw">for</span> <span class="ident">TouchpadGesturePhase</span> {
+<span class="kw">impl</span> <span class="ident">IntoGlib</span> <span class="kw">for</span> <span class="ident">TouchpadGesturePhase</span> {
     <span class="kw">type</span> <span class="ident">GlibType</span> <span class="op">=</span> <span class="ident">ffi::GdkTouchpadGesturePhase</span>;
 
-    <span class="kw">fn</span> <span class="ident">to_glib</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkTouchpadGesturePhase</span> {
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+    <span class="kw">fn</span> <span class="ident">into_glib</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkTouchpadGesturePhase</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">TouchpadGesturePhase::Begin</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_TOUCHPAD_GESTURE_PHASE_BEGIN</span>,
             <span class="ident">TouchpadGesturePhase::Update</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_TOUCHPAD_GESTURE_PHASE_UPDATE</span>,
             <span class="ident">TouchpadGesturePhase::End</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_TOUCHPAD_GESTURE_PHASE_END</span>,
@@ -4436,7 +4436,7 @@
     <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="ident">TouchpadGesturePhase</span><span class="op">&gt;</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">to_glib</span>());
+            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">into_glib</span>());
         }
         <span class="ident">value</span>
     }
@@ -4477,11 +4477,11 @@
 }
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
-<span class="kw">impl</span> <span class="ident">ToGlib</span> <span class="kw">for</span> <span class="ident">VulkanError</span> {
+<span class="kw">impl</span> <span class="ident">IntoGlib</span> <span class="kw">for</span> <span class="ident">VulkanError</span> {
     <span class="kw">type</span> <span class="ident">GlibType</span> <span class="op">=</span> <span class="ident">ffi::GdkVulkanError</span>;
 
-    <span class="kw">fn</span> <span class="ident">to_glib</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkVulkanError</span> {
-        <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+    <span class="kw">fn</span> <span class="ident">into_glib</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GdkVulkanError</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">VulkanError::Unsupported</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_VULKAN_ERROR_UNSUPPORTED</span>,
             <span class="ident">VulkanError::NotAvailable</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GDK_VULKAN_ERROR_NOT_AVAILABLE</span>,
             <span class="ident">VulkanError::__Unknown</span>(<span class="ident">value</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">value</span>,
@@ -4509,7 +4509,7 @@
     }
 
     <span class="kw">fn</span> <span class="ident">code</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
-        <span class="self">self</span>.<span class="ident">to_glib</span>()
+        <span class="self">self</span>.<span class="ident">into_glib</span>()
     }
 
     <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">code</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
@@ -4545,7 +4545,7 @@
     <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Value</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="ident">VulkanError</span><span class="op">&gt;</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">to_glib</span>());
+            <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">into_glib</span>());
         }
         <span class="ident">value</span>
     }

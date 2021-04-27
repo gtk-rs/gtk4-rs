@@ -1288,6 +1288,10 @@
 <span id="1285">1285</span>
 <span id="1286">1286</span>
 <span id="1287">1287</span>
+<span id="1288">1288</span>
+<span id="1289">1289</span>
+<span id="1290">1290</span>
+<span id="1291">1291</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -1542,8 +1546,8 @@
             <span class="kw">let</span> <span class="ident">parent_class</span> <span class="op">=</span> <span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">parent_class</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
             <span class="kw">let</span> <span class="ident">widget</span> <span class="op">=</span> <span class="ident">widget</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>();
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">compute_expand</span> {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">hexpand_glib</span> <span class="op">=</span> <span class="ident">hexpand</span>.<span class="ident">to_glib</span>();
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">vexpand_glib</span> <span class="op">=</span> <span class="ident">vexpand</span>.<span class="ident">to_glib</span>();
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">hexpand_glib</span> <span class="op">=</span> <span class="ident">hexpand</span>.<span class="ident">into_glib</span>();
+                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">vexpand_glib</span> <span class="op">=</span> <span class="ident">vexpand</span>.<span class="ident">into_glib</span>();
                 <span class="ident">f</span>(
                     <span class="ident">widget</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                     <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">hexpand_glib</span>,
@@ -1574,7 +1578,7 @@
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">direction_changed</span> {
                 <span class="ident">f</span>(
                     <span class="ident">widget</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                    <span class="ident">previous_direction</span>.<span class="ident">to_glib</span>(),
+                    <span class="ident">previous_direction</span>.<span class="ident">into_glib</span>(),
                 )
             }
         }
@@ -1587,7 +1591,7 @@
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">focus</span> {
                 <span class="ident">from_glib</span>(<span class="ident">f</span>(
                     <span class="ident">widget</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                    <span class="ident">direction_type</span>.<span class="ident">to_glib</span>(),
+                    <span class="ident">direction_type</span>.<span class="ident">into_glib</span>(),
                 ))
             } <span class="kw">else</span> {
                 <span class="bool-val">false</span>
@@ -1635,7 +1639,7 @@
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">keynav_failed</span> {
                 <span class="ident">from_glib</span>(<span class="ident">f</span>(
                     <span class="ident">widget</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                    <span class="ident">direction_type</span>.<span class="ident">to_glib</span>(),
+                    <span class="ident">direction_type</span>.<span class="ident">into_glib</span>(),
                 ))
             } <span class="kw">else</span> {
                 <span class="bool-val">false</span>
@@ -1673,7 +1677,7 @@
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">nat_base</span> <span class="op">=</span> <span class="op">-</span><span class="number">1</span>;
             <span class="ident">f</span>(
                 <span class="ident">widget</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">orientation</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">orientation</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">for_size</span>,
                 <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">min</span>,
                 <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">nat</span>,
@@ -1691,7 +1695,7 @@
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">mnemonic_activate</span> {
                 <span class="ident">from_glib</span>(<span class="ident">f</span>(
                     <span class="ident">widget</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                    <span class="ident">group_cycling</span>.<span class="ident">to_glib</span>(),
+                    <span class="ident">group_cycling</span>.<span class="ident">into_glib</span>(),
                 ))
             } <span class="kw">else</span> {
                 <span class="bool-val">false</span>
@@ -1706,7 +1710,7 @@
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">move_focus</span> {
                 <span class="ident">f</span>(
                     <span class="ident">widget</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                    <span class="ident">direction_type</span>.<span class="ident">to_glib</span>(),
+                    <span class="ident">direction_type</span>.<span class="ident">into_glib</span>(),
                 )
             }
         }
@@ -1728,7 +1732,7 @@
                     <span class="ident">widget</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                     <span class="ident">x</span>,
                     <span class="ident">y</span>,
-                    <span class="ident">keyboard_tooltip</span>.<span class="ident">to_glib</span>(),
+                    <span class="ident">keyboard_tooltip</span>.<span class="ident">into_glib</span>(),
                     <span class="ident">tooltip</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 ))
             } <span class="kw">else</span> {
@@ -1815,7 +1819,7 @@
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">state_flags_changed</span> {
                 <span class="ident">f</span>(
                     <span class="ident">widget</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                    <span class="ident">state_flags</span>.<span class="ident">to_glib</span>(),
+                    <span class="ident">state_flags</span>.<span class="ident">into_glib</span>(),
                 )
             }
         }
@@ -1828,7 +1832,7 @@
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">system_setting_changed</span> {
                 <span class="ident">f</span>(
                     <span class="ident">widget</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                    <span class="ident">settings</span>.<span class="ident">to_glib</span>(),
+                    <span class="ident">settings</span>.<span class="ident">into_glib</span>(),
                 )
             }
         }
@@ -1931,8 +1935,8 @@
 
     <span class="ident">imp</span>.<span class="ident">compute_expand</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">hexpand</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">vexpand</span>);
 
-    <span class="kw-2">*</span><span class="ident">hexpand_ptr</span> <span class="op">=</span> <span class="ident">hexpand</span>.<span class="ident">to_glib</span>();
-    <span class="kw-2">*</span><span class="ident">vexpand_ptr</span> <span class="op">=</span> <span class="ident">vexpand</span>.<span class="ident">to_glib</span>();
+    <span class="kw-2">*</span><span class="ident">hexpand_ptr</span> <span class="op">=</span> <span class="ident">hexpand</span>.<span class="ident">into_glib</span>();
+    <span class="kw-2">*</span><span class="ident">vexpand_ptr</span> <span class="op">=</span> <span class="ident">vexpand</span>.<span class="ident">into_glib</span>();
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">widget_contains</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">WidgetImpl</span><span class="op">&gt;</span>(
@@ -1944,7 +1948,7 @@
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
-    <span class="ident">imp</span>.<span class="ident">contains</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="ident">x</span>, <span class="ident">y</span>).<span class="ident">to_glib</span>()
+    <span class="ident">imp</span>.<span class="ident">contains</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="ident">x</span>, <span class="ident">y</span>).<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">widget_direction_changed</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">WidgetImpl</span><span class="op">&gt;</span>(
@@ -1968,7 +1972,8 @@
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">direction_type</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">direction_type_ptr</span>);
 
-    <span class="ident">imp</span>.<span class="ident">focus</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="ident">direction_type</span>).<span class="ident">to_glib</span>()
+    <span class="ident">imp</span>.<span class="ident">focus</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="ident">direction_type</span>)
+        .<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">widget_get_request_mode</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">WidgetImpl</span><span class="op">&gt;</span>(
@@ -1978,7 +1983,7 @@
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
-    <span class="ident">imp</span>.<span class="ident">request_mode</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">to_glib</span>()
+    <span class="ident">imp</span>.<span class="ident">request_mode</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">widget_grab_focus</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">WidgetImpl</span><span class="op">&gt;</span>(
@@ -1988,7 +1993,7 @@
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
-    <span class="ident">imp</span>.<span class="ident">grab_focus</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">to_glib</span>()
+    <span class="ident">imp</span>.<span class="ident">grab_focus</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">widget_hide</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">WidgetImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidget</span>) {
@@ -2009,7 +2014,7 @@
     <span class="kw">let</span> <span class="ident">direction_type</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">direction_type_ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">keynav_failed</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="ident">direction_type</span>)
-        .<span class="ident">to_glib</span>()
+        .<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">widget_map</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">WidgetImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidget</span>) {
@@ -2058,7 +2063,7 @@
     <span class="kw">let</span> <span class="ident">group_cycling</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">group_cycling_ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">mnemonic_activate</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="ident">group_cycling</span>)
-        .<span class="ident">to_glib</span>()
+        .<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">widget_move_focus</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">WidgetImpl</span><span class="op">&gt;</span>(
@@ -2088,7 +2093,7 @@
     <span class="kw">let</span> <span class="ident">tooltip</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">tooltip_ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">query_tooltip</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="ident">x</span>, <span class="ident">y</span>, <span class="ident">keyboard_tooltip</span>, <span class="kw-2">&amp;</span><span class="ident">tooltip</span>)
-        .<span class="ident">to_glib</span>()
+        .<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">widget_realize</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">WidgetImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidget</span>) {
@@ -2423,7 +2428,7 @@
     <span class="kw">fn</span> <span class="ident">set_activate_signal</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">signal_id</span>: <span class="ident">SignalId</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">widget_class</span> <span class="op">=</span> <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
-            <span class="ident">ffi::gtk_widget_class_set_activate_signal</span>(<span class="ident">widget_class</span>, <span class="ident">signal_id</span>.<span class="ident">to_glib</span>())
+            <span class="ident">ffi::gtk_widget_class_set_activate_signal</span>(<span class="ident">widget_class</span>, <span class="ident">signal_id</span>.<span class="ident">into_glib</span>())
         }
     }
 
@@ -2449,7 +2454,10 @@
     <span class="kw">fn</span> <span class="ident">set_layout_manager_type</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">LayoutManager</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">widget_class</span> <span class="op">=</span> <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
-            <span class="ident">ffi::gtk_widget_class_set_layout_manager_type</span>(<span class="ident">widget_class</span>, <span class="ident">T::static_type</span>().<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_widget_class_set_layout_manager_type</span>(
+                <span class="ident">widget_class</span>,
+                <span class="ident">T::static_type</span>().<span class="ident">into_glib</span>(),
+            );
         }
     }
 
@@ -2481,7 +2489,7 @@
     <span class="kw">fn</span> <span class="ident">set_accessible_role</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">role</span>: <span class="ident">AccessibleRole</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">widget_class</span> <span class="op">=</span> <span class="self">self</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkWidgetClass</span>;
-            <span class="ident">ffi::gtk_widget_class_set_accessible_role</span>(<span class="ident">widget_class</span>, <span class="ident">role</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_widget_class_set_accessible_role</span>(<span class="ident">widget_class</span>, <span class="ident">role</span>.<span class="ident">into_glib</span>());
         }
     }
 

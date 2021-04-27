@@ -310,7 +310,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_center_layout_set_baseline_position</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">baseline_position</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">baseline_position</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -351,7 +351,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_center_layout_set_orientation&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_orientation</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">orientation</span>: <span class="ident">Orientation</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_center_layout_set_orientation</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">orientation</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_center_layout_set_orientation</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">orientation</span>.<span class="ident">into_glib</span>());
         }
     }
 

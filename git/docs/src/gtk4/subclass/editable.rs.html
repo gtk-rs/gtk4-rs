@@ -902,11 +902,11 @@
         <span class="kw">if</span> <span class="op">!</span><span class="ident">end_position</span>.<span class="ident">is_null</span>() {
             <span class="kw-2">*</span><span class="ident">end_position</span> <span class="op">=</span> <span class="ident">end_pos</span>;
         }
-        <span class="bool-val">true</span>.<span class="ident">to_glib</span>()
+        <span class="bool-val">true</span>.<span class="ident">into_glib</span>()
     } <span class="kw">else</span> {
         <span class="kw-2">*</span><span class="ident">start_position</span> <span class="op">=</span> <span class="number">0</span>;
         <span class="kw-2">*</span><span class="ident">end_position</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="bool-val">false</span>.<span class="ident">to_glib</span>()
+        <span class="bool-val">false</span>.<span class="ident">into_glib</span>()
     }
 }
 

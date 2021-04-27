@@ -879,7 +879,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_video_set_autoplay&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_autoplay</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">autoplay</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_video_set_autoplay</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">autoplay</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_video_set_autoplay</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">autoplay</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -914,7 +914,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_video_set_loop&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_loop</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">loop_</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_video_set_loop</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">loop_</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_video_set_loop</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">loop_</span>.<span class="ident">into_glib</span>());
         }
     }
 

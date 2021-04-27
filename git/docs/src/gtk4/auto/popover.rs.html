@@ -1979,7 +1979,7 @@
 
     <span class="kw">fn</span> <span class="ident">set_autohide</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">autohide</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_popover_set_autohide</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">autohide</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_popover_set_autohide</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">autohide</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -1987,7 +1987,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_popover_set_cascade_popdown</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">cascade_popdown</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">cascade_popdown</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -2012,7 +2012,7 @@
 
     <span class="kw">fn</span> <span class="ident">set_has_arrow</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">has_arrow</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_popover_set_has_arrow</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">has_arrow</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_popover_set_has_arrow</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">has_arrow</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -2020,7 +2020,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_popover_set_mnemonics_visible</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">mnemonics_visible</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">mnemonics_visible</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -2039,7 +2039,7 @@
 
     <span class="kw">fn</span> <span class="ident">set_position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">position</span>: <span class="ident">PositionType</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_popover_set_position</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">position</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_popover_set_position</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">position</span>.<span class="ident">into_glib</span>());
         }
     }
 

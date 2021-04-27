@@ -260,7 +260,7 @@
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Filter</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">FilterExt</span> <span class="kw">for</span> <span class="ident">O</span> {
     <span class="kw">fn</span> <span class="ident">changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">change</span>: <span class="ident">FilterChange</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_filter_changed</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">change</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_filter_changed</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">change</span>.<span class="ident">into_glib</span>());
         }
     }
 

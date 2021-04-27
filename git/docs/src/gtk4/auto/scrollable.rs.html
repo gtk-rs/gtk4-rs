@@ -569,7 +569,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_scrollable_set_hscroll_policy</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">policy</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">policy</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -587,7 +587,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_scrollable_set_vscroll_policy</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">policy</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">policy</span>.<span class="ident">into_glib</span>(),
             );
         }
     }

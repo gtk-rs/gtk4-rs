@@ -358,8 +358,8 @@
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_popup_layout_new</span>(
                 <span class="ident">anchor_rect</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">rect_anchor</span>.<span class="ident">to_glib</span>(),
-                <span class="ident">surface_anchor</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">rect_anchor</span>.<span class="ident">into_glib</span>(),
+                <span class="ident">surface_anchor</span>.<span class="ident">into_glib</span>(),
             ))
         }
     }
@@ -456,7 +456,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_popup_layout_set_anchor_hints&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_anchor_hints</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">anchor_hints</span>: <span class="ident">AnchorHints</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gdk_popup_layout_set_anchor_hints</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">anchor_hints</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gdk_popup_layout_set_anchor_hints</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">anchor_hints</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -491,7 +491,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_popup_layout_set_rect_anchor&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_rect_anchor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">anchor</span>: <span class="ident">Gravity</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gdk_popup_layout_set_rect_anchor</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">anchor</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gdk_popup_layout_set_rect_anchor</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">anchor</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -523,7 +523,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_popup_layout_set_surface_anchor&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_surface_anchor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">anchor</span>: <span class="ident">Gravity</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gdk_popup_layout_set_surface_anchor</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">anchor</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gdk_popup_layout_set_surface_anchor</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">anchor</span>.<span class="ident">into_glib</span>());
         }
     }
 }

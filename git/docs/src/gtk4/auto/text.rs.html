@@ -1939,7 +1939,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_set_activates_default&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_activates_default</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">activates</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_text_set_activates_default</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">activates</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_text_set_activates_default</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">activates</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -1976,7 +1976,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_text_set_enable_emoji_completion</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">enable_emoji_completion</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">enable_emoji_completion</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -2002,7 +2002,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_set_input_hints&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_input_hints</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">hints</span>: <span class="ident">InputHints</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_text_set_input_hints</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">hints</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_text_set_input_hints</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">hints</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -2015,7 +2015,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_set_input_purpose&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_input_purpose</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">purpose</span>: <span class="ident">InputPurpose</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_text_set_input_purpose</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">purpose</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_text_set_input_purpose</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">purpose</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -2031,7 +2031,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_set_invisible_char&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_invisible_char</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ch</span>: <span class="ident">char</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_text_set_invisible_char</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">ch</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_text_set_invisible_char</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">ch</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -2060,7 +2060,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_set_overwrite_mode&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_overwrite_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">overwrite</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_text_set_overwrite_mode</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">overwrite</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_text_set_overwrite_mode</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">overwrite</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -2086,7 +2086,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_text_set_propagate_text_width</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">propagate_text_width</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">propagate_text_width</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -2110,7 +2110,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_text_set_truncate_multiline</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">truncate_multiline</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">truncate_multiline</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -2135,7 +2135,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_set_visibility&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_visibility</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">visible</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_text_set_visibility</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">visible</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_text_set_visibility</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">visible</span>.<span class="ident">into_glib</span>());
         }
     }
 

@@ -388,7 +388,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_pad_controller_set_action</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">type_</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">type_</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">index</span>,
                 <span class="ident">mode</span>,
                 <span class="ident">label</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,

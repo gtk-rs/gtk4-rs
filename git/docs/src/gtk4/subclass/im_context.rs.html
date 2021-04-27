@@ -834,7 +834,7 @@
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">set_use_preedit</span> {
                 <span class="ident">f</span>(
                     <span class="ident">im_context</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                    <span class="ident">use_preedit</span>.<span class="ident">to_glib</span>(),
+                    <span class="ident">use_preedit</span>.<span class="ident">into_glib</span>(),
                 )
             }
         }
@@ -891,7 +891,7 @@
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">delete_surrounding</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="ident">offset</span>, <span class="ident">n_chars</span>)
-        .<span class="ident">to_glib</span>()
+        .<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_filter_keypress</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(
@@ -903,7 +903,7 @@
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
     <span class="kw">let</span> <span class="ident">event</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">gdk::Event</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">eventptr</span>);
     <span class="ident">imp</span>.<span class="ident">filter_keypress</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="kw-2">&amp;</span><span class="ident">event</span>)
-        .<span class="ident">to_glib</span>()
+        .<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_focus_in</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ffi::GtkIMContext</span>) {
@@ -951,11 +951,11 @@
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>((<span class="ident">text</span>, <span class="ident">cursor_idx</span>)) <span class="op">=</span> <span class="ident">imp</span>.<span class="ident">surrounding</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()) {
         <span class="kw-2">*</span><span class="ident">text_ptr</span> <span class="op">=</span> <span class="ident">text</span>.<span class="ident">to_glib_full</span>();
         <span class="kw-2">*</span><span class="ident">cursor_index_ptr</span> <span class="op">=</span> <span class="ident">cursor_idx</span>;
-        <span class="bool-val">true</span>.<span class="ident">to_glib</span>()
+        <span class="bool-val">true</span>.<span class="ident">into_glib</span>()
     } <span class="kw">else</span> {
         <span class="kw-2">*</span><span class="ident">text_ptr</span> <span class="op">=</span> <span class="ident">std::ptr::null_mut</span>();
         <span class="kw-2">*</span><span class="ident">cursor_index_ptr</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="bool-val">false</span>.<span class="ident">to_glib</span>()
+        <span class="bool-val">false</span>.<span class="ident">into_glib</span>()
     }
 }
 
@@ -998,7 +998,7 @@
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
-    <span class="ident">imp</span>.<span class="ident">retrieve_surrounding</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">to_glib</span>()
+    <span class="ident">imp</span>.<span class="ident">retrieve_surrounding</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_context_set_client_widget</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IMContextImpl</span><span class="op">&gt;</span>(

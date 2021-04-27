@@ -948,7 +948,7 @@
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
             <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_event_get_axis</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">axis_use</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">axis_use</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">value</span>.<span class="ident">as_mut_ptr</span>(),
             ));
             <span class="kw">if</span> <span class="ident">ret</span> {
@@ -1367,8 +1367,8 @@
             <span class="kw">unsafe</span> {
                 <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_key_event_matches</span>(
                     <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                    <span class="ident">keyval</span>.<span class="ident">to_glib</span>(),
-                    <span class="ident">modifiers</span>.<span class="ident">to_glib</span>(),
+                    <span class="ident">keyval</span>.<span class="ident">into_glib</span>(),
+                    <span class="ident">modifiers</span>.<span class="ident">into_glib</span>(),
                 ))
             }
         }

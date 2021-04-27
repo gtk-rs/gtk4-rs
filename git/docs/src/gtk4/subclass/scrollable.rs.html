@@ -126,10 +126,10 @@
         <span class="ident">imp</span>.<span class="ident">border</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">Scrollable</span><span class="op">&gt;</span>(<span class="ident">scrollable</span>).<span class="ident">unsafe_cast_ref</span>())
     {
         <span class="kw-2">*</span><span class="ident">borderptr</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">border</span>.<span class="ident">to_glib_full</span>();
-        <span class="bool-val">true</span>.<span class="ident">to_glib</span>()
+        <span class="bool-val">true</span>.<span class="ident">into_glib</span>()
     } <span class="kw">else</span> {
         <span class="kw-2">*</span><span class="ident">borderptr</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">std::ptr::null</span>();
-        <span class="bool-val">false</span>.<span class="ident">to_glib</span>()
+        <span class="bool-val">false</span>.<span class="ident">into_glib</span>()
     }
 }
 </pre></div>

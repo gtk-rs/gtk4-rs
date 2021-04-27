@@ -517,7 +517,7 @@
             <span class="ident">from_glib</span>(<span class="ident">func</span>(
                 <span class="ident">model</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">SelectionModel</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">position</span>,
-                <span class="ident">unselect_rest</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">unselect_rest</span>.<span class="ident">into_glib</span>(),
             ))
         }
     }
@@ -542,7 +542,7 @@
                 <span class="ident">model</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">SelectionModel</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">position</span>,
                 <span class="ident">n_items</span>,
-                <span class="ident">unselect_rest</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">unselect_rest</span>.<span class="ident">into_glib</span>(),
             ))
         }
     }
@@ -662,7 +662,7 @@
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">SelectionModel</span><span class="op">&gt;</span>(<span class="ident">model</span>).<span class="ident">unsafe_cast_ref</span>(),
         <span class="ident">position</span>,
     )
-    .<span class="ident">to_glib</span>()
+    .<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">model_select_all</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">SelectionModelImpl</span><span class="op">&gt;</span>(
@@ -672,7 +672,7 @@
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="ident">imp</span>.<span class="ident">select_all</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">SelectionModel</span><span class="op">&gt;</span>(<span class="ident">model</span>).<span class="ident">unsafe_cast_ref</span>())
-        .<span class="ident">to_glib</span>()
+        .<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">model_select_item</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">SelectionModelImpl</span><span class="op">&gt;</span>(
@@ -688,7 +688,7 @@
         <span class="ident">position</span>,
         <span class="ident">from_glib</span>(<span class="ident">unselect_rest</span>),
     )
-    .<span class="ident">to_glib</span>()
+    .<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">model_select_range</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">SelectionModelImpl</span><span class="op">&gt;</span>(
@@ -706,7 +706,7 @@
         <span class="ident">n_items</span>,
         <span class="ident">from_glib</span>(<span class="ident">unselect_rest</span>),
     )
-    .<span class="ident">to_glib</span>()
+    .<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">model_set_selection</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">SelectionModelImpl</span><span class="op">&gt;</span>(
@@ -722,7 +722,7 @@
     <span class="kw">let</span> <span class="ident">mask</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">mask_ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">set_selection</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="kw-2">&amp;</span><span class="ident">selected</span>, <span class="kw-2">&amp;</span><span class="ident">mask</span>)
-        .<span class="ident">to_glib</span>()
+        .<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">model_unselect_all</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">SelectionModelImpl</span><span class="op">&gt;</span>(
@@ -732,7 +732,7 @@
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
 
     <span class="ident">imp</span>.<span class="ident">unselect_all</span>(<span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">SelectionModel</span><span class="op">&gt;</span>(<span class="ident">model</span>).<span class="ident">unsafe_cast_ref</span>())
-        .<span class="ident">to_glib</span>()
+        .<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">model_unselect_item</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">SelectionModelImpl</span><span class="op">&gt;</span>(
@@ -746,7 +746,7 @@
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">SelectionModel</span><span class="op">&gt;</span>(<span class="ident">model</span>).<span class="ident">unsafe_cast_ref</span>(),
         <span class="ident">position</span>,
     )
-    .<span class="ident">to_glib</span>()
+    .<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">model_unselect_range</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">SelectionModelImpl</span><span class="op">&gt;</span>(
@@ -762,7 +762,7 @@
         <span class="ident">position</span>,
         <span class="ident">n_items</span>,
     )
-    .<span class="ident">to_glib</span>()
+    .<span class="ident">into_glib</span>()
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>

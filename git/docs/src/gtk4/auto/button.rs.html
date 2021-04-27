@@ -1553,7 +1553,7 @@
 
     <span class="kw">fn</span> <span class="ident">set_has_frame</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">has_frame</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_button_set_has_frame</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">has_frame</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_button_set_has_frame</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">has_frame</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -1576,7 +1576,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_button_set_use_underline</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">use_underline</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">use_underline</span>.<span class="ident">into_glib</span>(),
             );
         }
     }

@@ -3264,7 +3264,7 @@
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">error</span> <span class="op">=</span> <span class="ident">ptr::null_mut</span>();
             <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">ffi::gtk_print_operation_run</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">action</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">action</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">parent</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">error</span>,
             );
@@ -3280,7 +3280,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_print_operation_set_allow_async</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">allow_async</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">allow_async</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -3319,7 +3319,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_print_operation_set_embed_page_setup</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">embed</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">embed</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -3337,7 +3337,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_print_operation_set_has_selection</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">has_selection</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">has_selection</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -3370,7 +3370,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_print_operation_set_show_progress</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">show_progress</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">show_progress</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -3379,7 +3379,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_print_operation_set_support_selection</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">support_selection</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">support_selection</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -3388,14 +3388,14 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_print_operation_set_track_print_status</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">track_status</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">track_status</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
 
     <span class="kw">fn</span> <span class="ident">set_unit</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">unit</span>: <span class="ident">Unit</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_print_operation_set_unit</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">unit</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_print_operation_set_unit</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">unit</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -3403,7 +3403,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_print_operation_set_use_full_page</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">full_page</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">full_page</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -3740,7 +3740,7 @@
                 <span class="kw-2">&amp;</span><span class="ident">PrintOperation::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">context</span>),
             )
-            .<span class="ident">to_glib</span>()
+            .<span class="ident">into_glib</span>()
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -3781,7 +3781,7 @@
                 <span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">context</span>),
                 <span class="prelude-ty">Option</span>::<span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span><span class="ident">::from_glib_borrow</span>(<span class="ident">parent</span>).<span class="ident">as_ref</span>().<span class="ident">as_ref</span>(),
             )
-            .<span class="ident">to_glib</span>()
+            .<span class="ident">into_glib</span>()
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);

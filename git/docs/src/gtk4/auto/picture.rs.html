@@ -1156,7 +1156,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_picture_set_can_shrink&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_can_shrink</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">can_shrink</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_picture_set_can_shrink</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">can_shrink</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_picture_set_can_shrink</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">can_shrink</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -1202,7 +1202,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_picture_set_keep_aspect_ratio</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">keep_aspect_ratio</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">keep_aspect_ratio</span>.<span class="ident">into_glib</span>(),
             );
         }
     }

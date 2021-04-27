@@ -1155,7 +1155,7 @@
                 <span class="ident">name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">nick</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">blurb</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">flags</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">flags</span>.<span class="ident">into_glib</span>(),
             ))
         }
     }
@@ -1331,7 +1331,7 @@
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_property_expression_new</span>(
-                <span class="ident">this_type</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">this_type</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">expression</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">e</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">property_name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             ))
@@ -1410,7 +1410,7 @@
         <span class="kw">let</span> <span class="ident">closure</span> <span class="op">=</span> <span class="ident">glib::Closure::new_local</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">values</span><span class="op">|</span> <span class="ident">callback</span>(<span class="ident">values</span>));
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_closure_expression_new</span>(
-                <span class="ident">value_type</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">value_type</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">closure</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">params</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>,
                 <span class="ident">params</span>.<span class="ident">to_glib_full</span>(),
@@ -1423,7 +1423,7 @@
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_closure_expression_new</span>(
-                <span class="ident">value_type</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">value_type</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">closure</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">params</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>,
                 <span class="ident">params</span>.<span class="ident">to_glib_full</span>(),

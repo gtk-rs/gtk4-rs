@@ -2895,7 +2895,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_auto_startup_notification</span>(<span class="ident">setting</span>: <span class="ident">bool</span>) {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_window_set_auto_startup_notification</span>(<span class="ident">setting</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_window_set_auto_startup_notification</span>(<span class="ident">setting</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -2924,7 +2924,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_interactive_debugging</span>(<span class="ident">enable</span>: <span class="ident">bool</span>) {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_window_set_interactive_debugging</span>(<span class="ident">enable</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_window_set_interactive_debugging</span>(<span class="ident">enable</span>.<span class="ident">into_glib</span>());
         }
     }
 }
@@ -4432,7 +4432,7 @@
 
     <span class="kw">fn</span> <span class="ident">set_decorated</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">setting</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_window_set_decorated</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">setting</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_window_set_decorated</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">setting</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -4453,7 +4453,7 @@
 
     <span class="kw">fn</span> <span class="ident">set_deletable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">setting</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_window_set_deletable</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">setting</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_window_set_deletable</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">setting</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -4461,7 +4461,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_window_set_destroy_with_parent</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">setting</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">setting</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -4474,7 +4474,7 @@
 
     <span class="kw">fn</span> <span class="ident">set_focus_visible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">setting</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_window_set_focus_visible</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">setting</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_window_set_focus_visible</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">setting</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -4484,14 +4484,14 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_window_set_handle_menubar_accel</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">handle_menubar_accel</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">handle_menubar_accel</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
 
     <span class="kw">fn</span> <span class="ident">set_hide_on_close</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">setting</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_window_set_hide_on_close</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">setting</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_window_set_hide_on_close</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">setting</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -4505,20 +4505,20 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_window_set_mnemonics_visible</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">setting</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">setting</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
 
     <span class="kw">fn</span> <span class="ident">set_modal</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">modal</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_window_set_modal</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">modal</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_window_set_modal</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">modal</span>.<span class="ident">into_glib</span>());
         }
     }
 
     <span class="kw">fn</span> <span class="ident">set_resizable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">resizable</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_window_set_resizable</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">resizable</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_window_set_resizable</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">resizable</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -4756,7 +4756,7 @@
             <span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span>,
         {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">Window::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>()).<span class="ident">to_glib</span>()
+            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">Window::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>()).<span class="ident">into_glib</span>()
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -4788,7 +4788,7 @@
                 <span class="kw-2">&amp;</span><span class="ident">Window::from_glib_borrow</span>(<span class="ident">this</span>).<span class="ident">unsafe_cast_ref</span>(),
                 <span class="ident">from_glib</span>(<span class="ident">toggle</span>),
             )
-            .<span class="ident">to_glib</span>()
+            .<span class="ident">into_glib</span>()
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);

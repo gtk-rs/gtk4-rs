@@ -41,8 +41,8 @@
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> {
         <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_accelerator_valid</span>(
-            <span class="ident">keyval</span>.<span class="ident">to_glib</span>(),
-            <span class="ident">modifiers</span>.<span class="ident">to_glib</span>(),
+            <span class="ident">keyval</span>.<span class="ident">into_glib</span>(),
+            <span class="ident">modifiers</span>.<span class="ident">into_glib</span>(),
         ))
     }
 }

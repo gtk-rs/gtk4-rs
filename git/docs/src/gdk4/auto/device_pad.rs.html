@@ -226,7 +226,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gdk_device_pad_get_feature_group</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">feature</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">feature</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">feature_idx</span>,
             )
         }
@@ -238,7 +238,7 @@
 
     <span class="kw">fn</span> <span class="ident">n_features</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">feature</span>: <span class="ident">DevicePadFeature</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gdk_device_pad_get_n_features</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">feature</span>.<span class="ident">to_glib</span>())
+            <span class="ident">ffi::gdk_device_pad_get_n_features</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">feature</span>.<span class="ident">into_glib</span>())
         }
     }
 

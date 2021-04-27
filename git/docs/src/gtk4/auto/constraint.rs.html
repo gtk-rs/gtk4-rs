@@ -431,10 +431,10 @@
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_constraint_new</span>(
                 <span class="ident">target</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">target_attribute</span>.<span class="ident">to_glib</span>(),
-                <span class="ident">relation</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">target_attribute</span>.<span class="ident">into_glib</span>(),
+                <span class="ident">relation</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">source</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">source_attribute</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">source_attribute</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">multiplier</span>,
                 <span class="ident">constant</span>,
                 <span class="ident">strength</span>,
@@ -470,8 +470,8 @@
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_constraint_new_constant</span>(
                 <span class="ident">target</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">target_attribute</span>.<span class="ident">to_glib</span>(),
-                <span class="ident">relation</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">target_attribute</span>.<span class="ident">into_glib</span>(),
+                <span class="ident">relation</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">constant</span>,
                 <span class="ident">strength</span>,
             ))

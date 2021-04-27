@@ -272,7 +272,7 @@
             <span class="ident">Widget::from_glib_none</span>(<span class="ident">ffi::gtk_dialog_new_with_buttons</span>(
                 <span class="ident">title</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">parent</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">flags</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">flags</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">ptr::null_mut</span>(),
             ))
             .<span class="ident">unsafe_cast</span>()

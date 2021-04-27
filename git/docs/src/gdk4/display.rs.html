@@ -254,7 +254,7 @@
             <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_display_translate_key</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">keycode</span>,
-                <span class="ident">state</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">state</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">group</span>,
                 <span class="ident">keyval</span>.<span class="ident">as_mut_ptr</span>(),
                 <span class="ident">effective_group</span>.<span class="ident">as_mut_ptr</span>(),
@@ -306,7 +306,7 @@
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">n_keys</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
             <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">from_glib</span>(<span class="ident">ffi::gdk_display_map_keyval</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">keyval</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">keyval</span>.<span class="ident">into_glib</span>(),
                 <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">keys</span>,
                 <span class="ident">n_keys</span>.<span class="ident">as_mut_ptr</span>(),
             ));

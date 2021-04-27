@@ -614,7 +614,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_gesture_single_set_exclusive</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">exclusive</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">exclusive</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -623,7 +623,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_gesture_single_set_touch_only</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">touch_only</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">touch_only</span>.<span class="ident">into_glib</span>(),
             );
         }
     }

@@ -1026,7 +1026,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_grid_view_set_enable_rubberband</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">enable_rubberband</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">enable_rubberband</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -1098,7 +1098,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_grid_view_set_single_click_activate</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">single_click_activate</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">single_click_activate</span>.<span class="ident">into_glib</span>(),
             );
         }
     }

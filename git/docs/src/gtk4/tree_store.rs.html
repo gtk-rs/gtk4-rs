@@ -292,6 +292,9 @@
 <span id="289">289</span>
 <span id="290">290</span>
 <span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -320,7 +323,10 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">column_types</span>: <span class="kw-2">&amp;</span>[<span class="ident">Type</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TreeStore</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">column_types</span> <span class="op">=</span> <span class="ident">column_types</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">t</span><span class="op">|</span> <span class="ident">t</span>.<span class="ident">to_glib</span>()).<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">&gt;</span>();
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">column_types</span> <span class="op">=</span> <span class="ident">column_types</span>
+                .<span class="ident">iter</span>()
+                .<span class="ident">map</span>(<span class="op">|</span><span class="ident">t</span><span class="op">|</span> <span class="ident">t</span>.<span class="ident">into_glib</span>())
+                .<span class="ident">collect</span>::<span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span><span class="op">&gt;</span>();
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_tree_store_newv</span>(
                 <span class="ident">column_types</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">c_int</span>,
                 <span class="ident">column_types</span>.<span class="ident">as_mut_ptr</span>(),
@@ -542,7 +548,7 @@
 
     <span class="kw">fn</span> <span class="ident">set_column_types</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">types</span>: <span class="kw-2">&amp;</span>[<span class="ident">glib::Type</span>]) {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">types_ptr</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib::ffi::GType</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">types</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">t</span><span class="op">|</span> <span class="ident">t</span>.<span class="ident">to_glib</span>()).<span class="ident">collect</span>();
+            <span class="kw">let</span> <span class="ident">types_ptr</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">glib::ffi::GType</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">types</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">t</span><span class="op">|</span> <span class="ident">t</span>.<span class="ident">into_glib</span>()).<span class="ident">collect</span>();
             <span class="ident">ffi::gtk_tree_store_set_column_types</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">types</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">i32</span>,

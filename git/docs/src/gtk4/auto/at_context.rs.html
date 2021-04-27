@@ -273,7 +273,7 @@
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_at_context_create</span>(
-                <span class="ident">accessible_role</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">accessible_role</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">accessible</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">display</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             ))

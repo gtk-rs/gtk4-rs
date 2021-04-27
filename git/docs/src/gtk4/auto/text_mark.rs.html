@@ -318,7 +318,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_text_mark_new</span>(
                 <span class="ident">name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">left_gravity</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">left_gravity</span>.<span class="ident">into_glib</span>(),
             ))
         }
     }
@@ -458,7 +458,7 @@
 
     <span class="kw">fn</span> <span class="ident">set_visible</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">setting</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_text_mark_set_visible</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">setting</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_text_mark_set_visible</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">setting</span>.<span class="ident">into_glib</span>());
         }
     }
 }

@@ -561,7 +561,7 @@
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
             <span class="ident">Widget::from_glib_none</span>(<span class="ident">ffi::gtk_scrollbar_new</span>(
-                <span class="ident">orientation</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">orientation</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">adjustment</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             ))
             .<span class="ident">unsafe_cast</span>()

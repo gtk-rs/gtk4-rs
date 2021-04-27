@@ -580,7 +580,7 @@
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">delete_from_cursor</span> {
                 <span class="ident">f</span>(
                     <span class="ident">text_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TextView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                    <span class="ident">type_</span>.<span class="ident">to_glib</span>(),
+                    <span class="ident">type_</span>.<span class="ident">into_glib</span>(),
                     <span class="ident">count</span>,
                 )
             }
@@ -601,7 +601,7 @@
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">extend_selection</span> {
                 <span class="ident">glib::signal::Inhibit</span>(<span class="ident">from_glib</span>(<span class="ident">f</span>(
                     <span class="ident">text_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TextView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                    <span class="ident">granularity</span>.<span class="ident">to_glib</span>(),
+                    <span class="ident">granularity</span>.<span class="ident">into_glib</span>(),
                     <span class="ident">location</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                     <span class="ident">start</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>,
                     <span class="ident">end</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>,
@@ -648,9 +648,9 @@
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">move_cursor</span> {
                 <span class="ident">f</span>(
                     <span class="ident">text_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TextView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                    <span class="ident">step</span>.<span class="ident">to_glib</span>(),
+                    <span class="ident">step</span>.<span class="ident">into_glib</span>(),
                     <span class="ident">count</span>,
-                    <span class="ident">extend_selection</span>.<span class="ident">to_glib</span>(),
+                    <span class="ident">extend_selection</span>.<span class="ident">into_glib</span>(),
                 )
             }
         }
@@ -688,7 +688,7 @@
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">f</span>) <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">parent_class</span>).<span class="ident">snapshot_layer</span> {
                 <span class="ident">f</span>(
                     <span class="ident">text_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TextView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                    <span class="ident">layer</span>.<span class="ident">to_glib</span>(),
+                    <span class="ident">layer</span>.<span class="ident">into_glib</span>(),
                     <span class="ident">snapshot</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 )
             }
@@ -790,7 +790,7 @@
     <span class="kw-2">*</span><span class="ident">start</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">start_copy</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>;
     <span class="kw-2">*</span><span class="ident">end</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">end_copy</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>;
 
-    <span class="ident">result</span>.<span class="ident">to_glib</span>()
+    <span class="ident">result</span>.<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">text_view_insert_at_cursor</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TextViewImpl</span><span class="op">&gt;</span>(

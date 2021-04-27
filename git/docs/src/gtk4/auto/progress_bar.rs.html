@@ -971,7 +971,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_progress_bar_set_ellipsize&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_ellipsize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">mode</span>: <span class="ident">pango::EllipsizeMode</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_progress_bar_set_ellipsize</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">mode</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_progress_bar_set_ellipsize</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">mode</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -997,7 +997,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_progress_bar_set_inverted&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_inverted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">inverted</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_progress_bar_set_inverted</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">inverted</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_progress_bar_set_inverted</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">inverted</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -1029,7 +1029,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_progress_bar_set_show_text&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_show_text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">show_text</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_progress_bar_set_show_text</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">show_text</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_progress_bar_set_show_text</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">show_text</span>.<span class="ident">into_glib</span>());
         }
     }
 

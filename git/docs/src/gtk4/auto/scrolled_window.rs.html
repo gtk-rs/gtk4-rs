@@ -2071,7 +2071,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_scrolled_window_set_has_frame&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_has_frame</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">has_frame</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_scrolled_window_set_has_frame</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">has_frame</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_scrolled_window_set_has_frame</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">has_frame</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -2086,7 +2086,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_scrolled_window_set_kinetic_scrolling</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">kinetic_scrolling</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">kinetic_scrolling</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -2163,7 +2163,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_scrolled_window_set_overlay_scrolling</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">overlay_scrolling</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">overlay_scrolling</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -2185,7 +2185,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_scrolled_window_set_placement</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">window_placement</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">window_placement</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -2207,8 +2207,8 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_scrolled_window_set_policy</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">hscrollbar_policy</span>.<span class="ident">to_glib</span>(),
-                <span class="ident">vscrollbar_policy</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">hscrollbar_policy</span>.<span class="ident">into_glib</span>(),
+                <span class="ident">vscrollbar_policy</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -2222,7 +2222,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_scrolled_window_set_propagate_natural_height</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">propagate</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">propagate</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -2236,7 +2236,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_scrolled_window_set_propagate_natural_width</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">propagate</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">propagate</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -2494,7 +2494,7 @@
                 <span class="ident">from_glib</span>(<span class="ident">scroll</span>),
                 <span class="ident">from_glib</span>(<span class="ident">horizontal</span>),
             )
-            .<span class="ident">to_glib</span>()
+            .<span class="ident">into_glib</span>()
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);

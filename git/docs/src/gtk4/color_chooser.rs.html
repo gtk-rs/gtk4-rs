@@ -98,7 +98,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_color_chooser_add_palette</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">orientation</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">orientation</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">colors_per_line</span>,
                 <span class="ident">colors</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">c_int</span>,
                 <span class="ident">colors</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">gdk::ffi::GdkRGBA</span>,

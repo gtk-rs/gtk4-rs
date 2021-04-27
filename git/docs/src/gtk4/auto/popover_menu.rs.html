@@ -936,7 +936,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">Widget::from_glib_full</span>(<span class="ident">ffi::gtk_popover_menu_new_from_model_full</span>(
                 <span class="ident">model</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">flags</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">flags</span>.<span class="ident">into_glib</span>(),
             ))
             .<span class="ident">unsafe_cast</span>()
         }

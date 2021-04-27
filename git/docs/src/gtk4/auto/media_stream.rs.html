@@ -1401,9 +1401,9 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_media_stream_prepared</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">has_audio</span>.<span class="ident">to_glib</span>(),
-                <span class="ident">has_video</span>.<span class="ident">to_glib</span>(),
-                <span class="ident">seekable</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">has_audio</span>.<span class="ident">into_glib</span>(),
+                <span class="ident">has_video</span>.<span class="ident">into_glib</span>(),
+                <span class="ident">seekable</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">duration</span>,
             );
         }
@@ -1435,19 +1435,19 @@
 
     <span class="kw">fn</span> <span class="ident">set_loop</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">loop_</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_media_stream_set_loop</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">loop_</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_media_stream_set_loop</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">loop_</span>.<span class="ident">into_glib</span>());
         }
     }
 
     <span class="kw">fn</span> <span class="ident">set_muted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">muted</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_media_stream_set_muted</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">muted</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_media_stream_set_muted</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">muted</span>.<span class="ident">into_glib</span>());
         }
     }
 
     <span class="kw">fn</span> <span class="ident">set_playing</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">playing</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_media_stream_set_playing</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">playing</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_media_stream_set_playing</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">playing</span>.<span class="ident">into_glib</span>());
         }
     }
 

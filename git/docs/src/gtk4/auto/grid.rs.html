@@ -1853,7 +1853,7 @@
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">child</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">sibling</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">side</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">side</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">width</span>,
                 <span class="ident">height</span>,
             );
@@ -1918,7 +1918,7 @@
             <span class="ident">ffi::gtk_grid_insert_next_to</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">sibling</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">side</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">side</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -1982,7 +1982,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_grid_set_column_homogeneous</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">homogeneous</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">homogeneous</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -1998,7 +1998,7 @@
             <span class="ident">ffi::gtk_grid_set_row_baseline_position</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">row</span>,
-                <span class="ident">pos</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">pos</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -2007,7 +2007,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_grid_set_row_homogeneous</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">homogeneous</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">homogeneous</span>.<span class="ident">into_glib</span>(),
             );
         }
     }

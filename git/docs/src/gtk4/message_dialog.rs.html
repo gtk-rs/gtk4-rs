@@ -204,9 +204,9 @@
             <span class="kw">let</span> <span class="ident">message</span>: <span class="ident">Stash</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>, <span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">message</span>.<span class="ident">to_glib_none</span>();
             <span class="ident">Widget::from_glib_none</span>(<span class="ident">ffi::gtk_message_dialog_new</span>(
                 <span class="ident">parent</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">flags</span>.<span class="ident">to_glib</span>(),
-                <span class="ident">type_</span>.<span class="ident">to_glib</span>(),
-                <span class="ident">buttons</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">flags</span>.<span class="ident">into_glib</span>(),
+                <span class="ident">type_</span>.<span class="ident">into_glib</span>(),
+                <span class="ident">buttons</span>.<span class="ident">into_glib</span>(),
                 <span class="string">b&quot;%s\0&quot;</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>,
                 <span class="ident">message</span>.<span class="number">0</span>,
                 <span class="ident">ptr::null</span>::<span class="op">&lt;</span><span class="ident">c_char</span><span class="op">&gt;</span>(),
@@ -269,9 +269,9 @@
         <span class="kw">unsafe</span> {
             <span class="ident">Widget::from_glib_none</span>(<span class="ident">ffi::gtk_message_dialog_new_with_markup</span>(
                 <span class="ident">parent</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">flags</span>.<span class="ident">to_glib</span>(),
-                <span class="ident">type_</span>.<span class="ident">to_glib</span>(),
-                <span class="ident">buttons</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">flags</span>.<span class="ident">into_glib</span>(),
+                <span class="ident">type_</span>.<span class="ident">into_glib</span>(),
+                <span class="ident">buttons</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">message</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             ))
             .<span class="ident">unsafe_cast</span>()

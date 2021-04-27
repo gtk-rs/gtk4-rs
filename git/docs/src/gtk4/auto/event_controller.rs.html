@@ -604,7 +604,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_event_controller_set_propagation_limit</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">limit</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">limit</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -613,7 +613,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_event_controller_set_propagation_phase</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">phase</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">phase</span>.<span class="ident">into_glib</span>(),
             );
         }
     }

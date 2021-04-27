@@ -1086,7 +1086,7 @@
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
             <span class="ident">Widget::from_glib_none</span>(<span class="ident">ffi::gtk_scale_new</span>(
-                <span class="ident">orientation</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">orientation</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">adjustment</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             ))
             .<span class="ident">unsafe_cast</span>()
@@ -1121,7 +1121,7 @@
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
             <span class="ident">Widget::from_glib_none</span>(<span class="ident">ffi::gtk_scale_new_with_range</span>(
-                <span class="ident">orientation</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">orientation</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">min</span>,
                 <span class="ident">max</span>,
                 <span class="ident">step</span>,
@@ -1685,7 +1685,7 @@
             <span class="ident">ffi::gtk_scale_add_mark</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">value</span>,
-                <span class="ident">position</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">position</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">markup</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             );
         }
@@ -1748,7 +1748,7 @@
 
     <span class="kw">fn</span> <span class="ident">set_draw_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">draw_value</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_scale_set_draw_value</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">draw_value</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_scale_set_draw_value</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">draw_value</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -1784,13 +1784,13 @@
 
     <span class="kw">fn</span> <span class="ident">set_has_origin</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">has_origin</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_scale_set_has_origin</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">has_origin</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_scale_set_has_origin</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">has_origin</span>.<span class="ident">into_glib</span>());
         }
     }
 
     <span class="kw">fn</span> <span class="ident">set_value_pos</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">pos</span>: <span class="ident">PositionType</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_scale_set_value_pos</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">pos</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_scale_set_value_pos</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">pos</span>.<span class="ident">into_glib</span>());
         }
     }
 

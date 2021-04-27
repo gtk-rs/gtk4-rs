@@ -657,7 +657,7 @@
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_file_chooser_native_new</span>(
                 <span class="ident">title</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">parent</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">action</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">action</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">accept_label</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">cancel_label</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             ))

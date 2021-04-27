@@ -748,9 +748,9 @@
 
             <span class="ident">from_glib</span>(<span class="ident">f</span>(
                 <span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">logical</span>.<span class="ident">to_glib</span>(),
-                <span class="ident">expand</span>.<span class="ident">to_glib</span>(),
-                <span class="ident">open_all</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">logical</span>.<span class="ident">into_glib</span>(),
+                <span class="ident">expand</span>.<span class="ident">into_glib</span>(),
+                <span class="ident">open_all</span>.<span class="ident">into_glib</span>(),
             ))
         }
     }
@@ -772,10 +772,10 @@
 
             <span class="ident">from_glib</span>(<span class="ident">f</span>(
                 <span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">step</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">step</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">count</span>,
-                <span class="ident">extend</span>.<span class="ident">to_glib</span>(),
-                <span class="ident">modify</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">extend</span>.<span class="ident">into_glib</span>(),
+                <span class="ident">modify</span>.<span class="ident">into_glib</span>(),
             ))
         }
     }
@@ -861,7 +861,7 @@
 
             <span class="ident">from_glib</span>(<span class="ident">f</span>(
                 <span class="ident">tree_view</span>.<span class="ident">unsafe_cast_ref</span>::<span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">start_editing</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">start_editing</span>.<span class="ident">into_glib</span>(),
             ))
         }
     }
@@ -1004,7 +1004,7 @@
         <span class="ident">from_glib</span>(<span class="ident">expand</span>),
         <span class="ident">from_glib</span>(<span class="ident">open_all</span>),
     )
-    .<span class="ident">to_glib</span>()
+    .<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">tree_view_move_cursor</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TreeViewImpl</span><span class="op">&gt;</span>(
@@ -1025,7 +1025,7 @@
         <span class="ident">from_glib</span>(<span class="ident">extend</span>),
         <span class="ident">from_glib</span>(<span class="ident">modify</span>),
     )
-    .<span class="ident">to_glib</span>()
+    .<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">tree_view_row_activated</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TreeViewImpl</span><span class="op">&gt;</span>(
@@ -1077,7 +1077,7 @@
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
-    <span class="ident">imp</span>.<span class="ident">select_all</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">to_glib</span>()
+    <span class="ident">imp</span>.<span class="ident">select_all</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">tree_view_select_cursor_parent</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TreeViewImpl</span><span class="op">&gt;</span>(
@@ -1087,7 +1087,7 @@
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
-    <span class="ident">imp</span>.<span class="ident">select_cursor_parent</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">to_glib</span>()
+    <span class="ident">imp</span>.<span class="ident">select_cursor_parent</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">tree_view_select_cursor_row</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TreeViewImpl</span><span class="op">&gt;</span>(
@@ -1099,7 +1099,7 @@
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">select_cursor_row</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="ident">from_glib</span>(<span class="ident">start_editing</span>))
-        .<span class="ident">to_glib</span>()
+        .<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">tree_view_start_interactive_search</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TreeViewImpl</span><span class="op">&gt;</span>(
@@ -1110,7 +1110,7 @@
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">start_interactive_search</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>())
-        .<span class="ident">to_glib</span>()
+        .<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">tree_view_test_collapse_row</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TreeViewImpl</span><span class="op">&gt;</span>(
@@ -1125,7 +1125,7 @@
     <span class="kw">let</span> <span class="ident">iter</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeIter</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">iterptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">test_collapse_row</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="kw-2">&amp;</span><span class="ident">iter</span>, <span class="kw-2">&amp;</span><span class="ident">path</span>)
-        .<span class="ident">to_glib</span>()
+        .<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">tree_view_test_expand_row</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TreeViewImpl</span><span class="op">&gt;</span>(
@@ -1140,7 +1140,7 @@
     <span class="kw">let</span> <span class="ident">iter</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeIter</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">iterptr</span>);
 
     <span class="ident">imp</span>.<span class="ident">test_expand_row</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>(), <span class="kw-2">&amp;</span><span class="ident">iter</span>, <span class="kw-2">&amp;</span><span class="ident">path</span>)
-        .<span class="ident">to_glib</span>()
+        .<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">tree_view_toggle_cursor_row</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TreeViewImpl</span><span class="op">&gt;</span>(
@@ -1150,7 +1150,7 @@
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
-    <span class="ident">imp</span>.<span class="ident">toggle_cursor_row</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">to_glib</span>()
+    <span class="ident">imp</span>.<span class="ident">toggle_cursor_row</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">tree_view_unselect_all</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TreeViewImpl</span><span class="op">&gt;</span>(
@@ -1160,7 +1160,7 @@
     <span class="kw">let</span> <span class="ident">imp</span> <span class="op">=</span> <span class="ident">instance</span>.<span class="ident">impl_</span>();
     <span class="kw">let</span> <span class="ident">wrap</span>: <span class="ident">Borrowed</span><span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">from_glib_borrow</span>(<span class="ident">ptr</span>);
 
-    <span class="ident">imp</span>.<span class="ident">unselect_all</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">to_glib</span>()
+    <span class="ident">imp</span>.<span class="ident">unselect_all</span>(<span class="ident">wrap</span>.<span class="ident">unsafe_cast_ref</span>()).<span class="ident">into_glib</span>()
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>

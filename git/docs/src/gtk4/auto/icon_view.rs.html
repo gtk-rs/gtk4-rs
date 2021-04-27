@@ -2540,7 +2540,7 @@
             <span class="ident">ffi::gtk_icon_view_enable_model_drag_dest</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">formats</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">actions</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">actions</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -2564,9 +2564,9 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_icon_view_enable_model_drag_source</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">start_button_mask</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">start_button_mask</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">formats</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">actions</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">actions</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -3030,7 +3030,7 @@
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">x</span>,
                 <span class="ident">y</span>,
-                <span class="ident">keyboard_tip</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">keyboard_tip</span>.<span class="ident">into_glib</span>(),
                 <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">model</span>,
                 <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">path</span>,
                 <span class="ident">iter</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>,
@@ -3133,7 +3133,7 @@
             <span class="ident">ffi::gtk_icon_view_scroll_to_path</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">mut_override</span>(<span class="ident">path</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
-                <span class="ident">use_align</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">use_align</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">row_align</span>,
                 <span class="ident">col_align</span>,
             );
@@ -3201,7 +3201,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_icon_view_set_activate_on_single_click</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">single</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">single</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -3257,7 +3257,7 @@
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">mut_override</span>(<span class="ident">path</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
                 <span class="ident">cell</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">start_editing</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">start_editing</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -3273,7 +3273,7 @@
             <span class="ident">ffi::gtk_icon_view_set_drag_dest_item</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">mut_override</span>(<span class="ident">path</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>),
-                <span class="ident">pos</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">pos</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -3285,7 +3285,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_set_item_orientation&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_item_orientation</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">orientation</span>: <span class="ident">Orientation</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_icon_view_set_item_orientation</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">orientation</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_icon_view_set_item_orientation</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">orientation</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -3381,7 +3381,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_set_reorderable&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_reorderable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">reorderable</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_icon_view_set_reorderable</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">reorderable</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_icon_view_set_reorderable</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">reorderable</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -3402,7 +3402,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_view_set_selection_mode&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_selection_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">mode</span>: <span class="ident">SelectionMode</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_icon_view_set_selection_mode</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">mode</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_icon_view_set_selection_mode</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">mode</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -3565,7 +3565,7 @@
             <span class="ident">f</span>: <span class="ident">glib::ffi::gpointer</span>,
         ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::ffi::gboolean</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="ident">F</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">f</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">F</span>);
-            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">this</span>)).<span class="ident">to_glib</span>()
+            <span class="ident">f</span>(<span class="kw-2">&amp;</span><span class="ident">from_glib_borrow</span>(<span class="ident">this</span>)).<span class="ident">into_glib</span>()
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);
@@ -3671,7 +3671,7 @@
                 <span class="ident">from_glib</span>(<span class="ident">extend</span>),
                 <span class="ident">from_glib</span>(<span class="ident">modify</span>),
             )
-            .<span class="ident">to_glib</span>()
+            .<span class="ident">into_glib</span>()
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);

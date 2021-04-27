@@ -721,7 +721,7 @@
             <span class="ident">ffi::gtk_overlay_set_clip_overlay</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">widget</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">clip_overlay</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">clip_overlay</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -741,7 +741,7 @@
             <span class="ident">ffi::gtk_overlay_set_measure_overlay</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">widget</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">measure</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">measure</span>.<span class="ident">into_glib</span>(),
             );
         }
     }

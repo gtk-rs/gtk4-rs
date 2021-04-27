@@ -213,7 +213,7 @@
             <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_shortcut_trigger_trigger</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">event</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">enable_mnemonics</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">enable_mnemonics</span>.<span class="ident">into_glib</span>(),
             ))
         }
     }

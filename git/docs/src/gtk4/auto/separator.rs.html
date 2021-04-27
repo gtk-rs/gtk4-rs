@@ -429,7 +429,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">orientation</span>: <span class="ident">Orientation</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Separator</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">Widget::from_glib_none</span>(<span class="ident">ffi::gtk_separator_new</span>(<span class="ident">orientation</span>.<span class="ident">to_glib</span>())).<span class="ident">unsafe_cast</span>()
+            <span class="ident">Widget::from_glib_none</span>(<span class="ident">ffi::gtk_separator_new</span>(<span class="ident">orientation</span>.<span class="ident">into_glib</span>())).<span class="ident">unsafe_cast</span>()
         }
     }
 }

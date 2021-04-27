@@ -665,7 +665,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">side</span>: <span class="ident">PackType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WindowControls</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
-            <span class="ident">Widget::from_glib_none</span>(<span class="ident">ffi::gtk_window_controls_new</span>(<span class="ident">side</span>.<span class="ident">to_glib</span>())).<span class="ident">unsafe_cast</span>()
+            <span class="ident">Widget::from_glib_none</span>(<span class="ident">ffi::gtk_window_controls_new</span>(<span class="ident">side</span>.<span class="ident">into_glib</span>())).<span class="ident">unsafe_cast</span>()
         }
     }
 
@@ -739,7 +739,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_controls_set_side&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_side</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">side</span>: <span class="ident">PackType</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_window_controls_set_side</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">side</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_window_controls_set_side</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">side</span>.<span class="ident">into_glib</span>());
         }
     }
 

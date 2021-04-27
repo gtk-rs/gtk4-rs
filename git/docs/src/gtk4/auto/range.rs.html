@@ -1937,7 +1937,7 @@
 
     <span class="kw">fn</span> <span class="ident">set_flippable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">flippable</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_range_set_flippable</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">flippable</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_range_set_flippable</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">flippable</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -1949,7 +1949,7 @@
 
     <span class="kw">fn</span> <span class="ident">set_inverted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">setting</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_range_set_inverted</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">setting</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_range_set_inverted</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">setting</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -1963,7 +1963,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_range_set_restrict_to_fill_level</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">restrict_to_fill_level</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">restrict_to_fill_level</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -1978,7 +1978,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_range_set_show_fill_level</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">show_fill_level</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">show_fill_level</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -1987,7 +1987,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_range_set_slider_size_fixed</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">size_fixed</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">size_fixed</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -2044,7 +2044,7 @@
                 <span class="ident">from_glib</span>(<span class="ident">scroll</span>),
                 <span class="ident">value</span>,
             )
-            .<span class="ident">to_glib</span>()
+            .<span class="ident">into_glib</span>()
         }
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">f</span>: <span class="ident">Box_</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Box_::new</span>(<span class="ident">f</span>);

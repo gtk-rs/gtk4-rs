@@ -447,7 +447,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_drag_drop_done&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">drop_done</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">success</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gdk_drag_drop_done</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">success</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gdk_drag_drop_done</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">success</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -620,7 +620,7 @@
                 <span class="ident">surface</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">device</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">content</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">actions</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">actions</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">dx</span>,
                 <span class="ident">dy</span>,
             ))

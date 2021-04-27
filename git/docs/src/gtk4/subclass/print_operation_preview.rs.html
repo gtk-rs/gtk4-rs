@@ -449,7 +449,7 @@
         <span class="ident">from_glib_borrow</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">PrintOperationPreview</span><span class="op">&gt;</span>(<span class="ident">print_operation_preview</span>).<span class="ident">unsafe_cast_ref</span>(),
         <span class="ident">page_nr</span>,
     )
-    .<span class="ident">to_glib</span>()
+    .<span class="ident">into_glib</span>()
 }
 
 <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">print_operation_preview_end_preview</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">PrintOperationPreviewImpl</span><span class="op">&gt;</span>(

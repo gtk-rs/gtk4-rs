@@ -1345,7 +1345,7 @@
 
     <span class="kw">fn</span> <span class="ident">set_action</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">action</span>: <span class="ident">FileChooserAction</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_file_chooser_set_action</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">action</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_file_chooser_set_action</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">action</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -1363,7 +1363,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_file_chooser_set_create_folders</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">create_folders</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">create_folders</span>.<span class="ident">into_glib</span>(),
             );
         }
     }
@@ -1422,7 +1422,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gtk_file_chooser_set_select_multiple</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">select_multiple</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">select_multiple</span>.<span class="ident">into_glib</span>(),
             );
         }
     }

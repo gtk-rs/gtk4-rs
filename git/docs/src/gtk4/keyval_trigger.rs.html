@@ -111,8 +111,8 @@
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
             <span class="ident">ShortcutTrigger::from_glib_full</span>(<span class="ident">ffi::gtk_keyval_trigger_new</span>(
-                <span class="ident">keyval</span>.<span class="ident">to_glib</span>(),
-                <span class="ident">modifiers</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">keyval</span>.<span class="ident">into_glib</span>(),
+                <span class="ident">modifiers</span>.<span class="ident">into_glib</span>(),
             ))
             .<span class="ident">unsafe_cast</span>()
         }

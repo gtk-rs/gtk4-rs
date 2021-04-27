@@ -744,7 +744,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_constraint_guide_set_strength&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_strength</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">strength</span>: <span class="ident">ConstraintStrength</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gtk_constraint_guide_set_strength</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">strength</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gtk_constraint_guide_set_strength</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">strength</span>.<span class="ident">into_glib</span>());
         }
     }
 

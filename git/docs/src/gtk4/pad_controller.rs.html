@@ -68,7 +68,7 @@
             .<span class="ident">iter</span>()
             .<span class="ident">zip</span>(<span class="ident">entry_strings</span>.<span class="ident">iter</span>())
             .<span class="ident">map</span>(<span class="op">|</span>(<span class="ident">e</span>, (<span class="ident">label</span>, <span class="ident">action_name</span>))<span class="op">|</span> <span class="ident">ffi::GtkPadActionEntry</span> {
-                <span class="ident">type_</span>: <span class="ident">e</span>.<span class="ident">type_</span>().<span class="ident">to_glib</span>(),
+                <span class="ident">type_</span>: <span class="ident">e</span>.<span class="ident">type_</span>().<span class="ident">into_glib</span>(),
                 <span class="ident">index</span>: <span class="ident">e</span>.<span class="ident">index</span>(),
                 <span class="ident">mode</span>: <span class="ident">e</span>.<span class="ident">mode</span>(),
                 <span class="ident">label</span>: <span class="ident">label</span>.<span class="number">0</span>,

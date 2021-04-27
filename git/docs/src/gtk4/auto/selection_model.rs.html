@@ -690,7 +690,7 @@
             <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_selection_model_select_item</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">position</span>,
-                <span class="ident">unselect_rest</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">unselect_rest</span>.<span class="ident">into_glib</span>(),
             ))
         }
     }
@@ -701,7 +701,7 @@
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">position</span>,
                 <span class="ident">n_items</span>,
-                <span class="ident">unselect_rest</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">unselect_rest</span>.<span class="ident">into_glib</span>(),
             ))
         }
     }

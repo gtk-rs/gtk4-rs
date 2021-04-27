@@ -1144,7 +1144,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gdk_toplevel_begin_resize</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">edge</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">edge</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">device</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">button</span>,
                 <span class="ident">x</span>,
@@ -1186,13 +1186,13 @@
 
     <span class="kw">fn</span> <span class="ident">set_decorated</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">decorated</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gdk_toplevel_set_decorated</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">decorated</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gdk_toplevel_set_decorated</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">decorated</span>.<span class="ident">into_glib</span>());
         }
     }
 
     <span class="kw">fn</span> <span class="ident">set_deletable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">deletable</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gdk_toplevel_set_deletable</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">deletable</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gdk_toplevel_set_deletable</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">deletable</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -1207,7 +1207,7 @@
 
     <span class="kw">fn</span> <span class="ident">set_modal</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">modal</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gdk_toplevel_set_modal</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">modal</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gdk_toplevel_set_modal</span>(<span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">modal</span>.<span class="ident">into_glib</span>());
         }
     }
 

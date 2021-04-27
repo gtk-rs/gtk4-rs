@@ -319,7 +319,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">ffi::gdk_toplevel_layout_set_fullscreen</span>(
                 <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="ident">fullscreen</span>.<span class="ident">to_glib</span>(),
+                <span class="ident">fullscreen</span>.<span class="ident">into_glib</span>(),
                 <span class="ident">monitor</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             );
         }
@@ -332,7 +332,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_layout_set_maximized&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_maximized</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">maximized</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gdk_toplevel_layout_set_maximized</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">maximized</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gdk_toplevel_layout_set_maximized</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">maximized</span>.<span class="ident">into_glib</span>());
         }
     }
 
@@ -343,7 +343,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_layout_set_resizable&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_resizable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">resizable</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">ffi::gdk_toplevel_layout_set_resizable</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">resizable</span>.<span class="ident">to_glib</span>());
+            <span class="ident">ffi::gdk_toplevel_layout_set_resizable</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">resizable</span>.<span class="ident">into_glib</span>());
         }
     }
 }
