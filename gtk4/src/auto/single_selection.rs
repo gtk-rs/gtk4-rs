@@ -74,7 +74,7 @@ impl SingleSelection {
     #[doc(alias = "gtk_single_selection_set_autoselect")]
     pub fn set_autoselect(&self, autoselect: bool) {
         unsafe {
-            ffi::gtk_single_selection_set_autoselect(self.to_glib_none().0, autoselect.to_glib());
+            ffi::gtk_single_selection_set_autoselect(self.to_glib_none().0, autoselect.into_glib());
         }
     }
 
@@ -83,7 +83,7 @@ impl SingleSelection {
         unsafe {
             ffi::gtk_single_selection_set_can_unselect(
                 self.to_glib_none().0,
-                can_unselect.to_glib(),
+                can_unselect.into_glib(),
             );
         }
     }

@@ -132,7 +132,7 @@ impl Picture {
     #[doc(alias = "gtk_picture_set_can_shrink")]
     pub fn set_can_shrink(&self, can_shrink: bool) {
         unsafe {
-            ffi::gtk_picture_set_can_shrink(self.to_glib_none().0, can_shrink.to_glib());
+            ffi::gtk_picture_set_can_shrink(self.to_glib_none().0, can_shrink.into_glib());
         }
     }
 
@@ -158,7 +158,7 @@ impl Picture {
         unsafe {
             ffi::gtk_picture_set_keep_aspect_ratio(
                 self.to_glib_none().0,
-                keep_aspect_ratio.to_glib(),
+                keep_aspect_ratio.into_glib(),
             );
         }
     }

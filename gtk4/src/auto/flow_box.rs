@@ -227,7 +227,10 @@ impl FlowBox {
     #[doc(alias = "gtk_flow_box_set_activate_on_single_click")]
     pub fn set_activate_on_single_click(&self, single: bool) {
         unsafe {
-            ffi::gtk_flow_box_set_activate_on_single_click(self.to_glib_none().0, single.to_glib());
+            ffi::gtk_flow_box_set_activate_on_single_click(
+                self.to_glib_none().0,
+                single.into_glib(),
+            );
         }
     }
 
@@ -248,7 +251,7 @@ impl FlowBox {
             let child = from_glib_borrow(child);
             let callback: &P = &*(user_data as *mut _);
             let res = (*callback)(&child);
-            res.to_glib()
+            res.into_glib()
         }
         let filter_func = Some(filter_func_func::<P> as _);
         unsafe extern "C" fn destroy_func<P: Fn(&FlowBoxChild) -> bool + 'static>(
@@ -281,7 +284,7 @@ impl FlowBox {
     #[doc(alias = "gtk_flow_box_set_homogeneous")]
     pub fn set_homogeneous(&self, homogeneous: bool) {
         unsafe {
-            ffi::gtk_flow_box_set_homogeneous(self.to_glib_none().0, homogeneous.to_glib());
+            ffi::gtk_flow_box_set_homogeneous(self.to_glib_none().0, homogeneous.into_glib());
         }
     }
 
@@ -309,7 +312,7 @@ impl FlowBox {
     #[doc(alias = "gtk_flow_box_set_selection_mode")]
     pub fn set_selection_mode(&self, mode: SelectionMode) {
         unsafe {
-            ffi::gtk_flow_box_set_selection_mode(self.to_glib_none().0, mode.to_glib());
+            ffi::gtk_flow_box_set_selection_mode(self.to_glib_none().0, mode.into_glib());
         }
     }
 
@@ -484,7 +487,7 @@ impl FlowBox {
                 from_glib(extend),
                 from_glib(modify),
             )
-            .to_glib()
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

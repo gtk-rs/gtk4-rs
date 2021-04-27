@@ -81,7 +81,7 @@ impl TextIter {
                 .expect("conversion from an invalid Unicode value attempted");
             let callback: *mut P = user_data as *const _ as usize as *mut P;
             let res = (*callback)(ch);
-            res.to_glib()
+            res.into_glib()
         }
         let pred = Some(pred_func::<P> as _);
         let super_callback0: &P = &pred_data;
@@ -123,7 +123,7 @@ impl TextIter {
             let ret = from_glib(ffi::gtk_text_iter_backward_search(
                 self.to_glib_none().0,
                 str.to_glib_none().0,
-                flags.to_glib(),
+                flags.into_glib(),
                 match_start.to_glib_none_mut().0,
                 match_end.to_glib_none_mut().0,
                 limit.to_glib_none().0,
@@ -246,7 +246,7 @@ impl TextIter {
         unsafe {
             from_glib(ffi::gtk_text_iter_can_insert(
                 self.to_glib_none().0,
-                default_editability.to_glib(),
+                default_editability.into_glib(),
             ))
         }
     }
@@ -261,7 +261,7 @@ impl TextIter {
         unsafe {
             from_glib(ffi::gtk_text_iter_editable(
                 self.to_glib_none().0,
-                default_setting.to_glib(),
+                default_setting.into_glib(),
             ))
         }
     }
@@ -350,7 +350,7 @@ impl TextIter {
                 .expect("conversion from an invalid Unicode value attempted");
             let callback: *mut P = user_data as *const _ as usize as *mut P;
             let res = (*callback)(ch);
-            res.to_glib()
+            res.into_glib()
         }
         let pred = Some(pred_func::<P> as _);
         let super_callback0: &P = &pred_data;
@@ -392,7 +392,7 @@ impl TextIter {
             let ret = from_glib(ffi::gtk_text_iter_forward_search(
                 self.to_glib_none().0,
                 str.to_glib_none().0,
-                flags.to_glib(),
+                flags.into_glib(),
                 match_start.to_glib_none_mut().0,
                 match_end.to_glib_none_mut().0,
                 limit.to_glib_none().0,
@@ -627,7 +627,7 @@ impl TextIter {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_text_iter_get_toggled_tags(
                 self.to_glib_none().0,
-                toggled_on.to_glib(),
+                toggled_on.into_glib(),
             ))
         }
     }

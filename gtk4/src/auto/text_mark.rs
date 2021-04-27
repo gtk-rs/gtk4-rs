@@ -25,7 +25,7 @@ impl TextMark {
         unsafe {
             from_glib_full(ffi::gtk_text_mark_new(
                 name.to_glib_none().0,
-                left_gravity.to_glib(),
+                left_gravity.into_glib(),
             ))
         }
     }
@@ -126,7 +126,7 @@ impl<O: IsA<TextMark>> TextMarkExt for O {
 
     fn set_visible(&self, setting: bool) {
         unsafe {
-            ffi::gtk_text_mark_set_visible(self.as_ref().to_glib_none().0, setting.to_glib());
+            ffi::gtk_text_mark_set_visible(self.as_ref().to_glib_none().0, setting.into_glib());
         }
     }
 }

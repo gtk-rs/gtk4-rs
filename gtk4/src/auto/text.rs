@@ -155,7 +155,7 @@ impl Text {
     #[doc(alias = "gtk_text_set_activates_default")]
     pub fn set_activates_default(&self, activates: bool) {
         unsafe {
-            ffi::gtk_text_set_activates_default(self.to_glib_none().0, activates.to_glib());
+            ffi::gtk_text_set_activates_default(self.to_glib_none().0, activates.into_glib());
         }
     }
 
@@ -178,7 +178,7 @@ impl Text {
         unsafe {
             ffi::gtk_text_set_enable_emoji_completion(
                 self.to_glib_none().0,
-                enable_emoji_completion.to_glib(),
+                enable_emoji_completion.into_glib(),
             );
         }
     }
@@ -196,21 +196,21 @@ impl Text {
     #[doc(alias = "gtk_text_set_input_hints")]
     pub fn set_input_hints(&self, hints: InputHints) {
         unsafe {
-            ffi::gtk_text_set_input_hints(self.to_glib_none().0, hints.to_glib());
+            ffi::gtk_text_set_input_hints(self.to_glib_none().0, hints.into_glib());
         }
     }
 
     #[doc(alias = "gtk_text_set_input_purpose")]
     pub fn set_input_purpose(&self, purpose: InputPurpose) {
         unsafe {
-            ffi::gtk_text_set_input_purpose(self.to_glib_none().0, purpose.to_glib());
+            ffi::gtk_text_set_input_purpose(self.to_glib_none().0, purpose.into_glib());
         }
     }
 
     #[doc(alias = "gtk_text_set_invisible_char")]
     pub fn set_invisible_char(&self, ch: char) {
         unsafe {
-            ffi::gtk_text_set_invisible_char(self.to_glib_none().0, ch.to_glib());
+            ffi::gtk_text_set_invisible_char(self.to_glib_none().0, ch.into_glib());
         }
     }
 
@@ -224,7 +224,7 @@ impl Text {
     #[doc(alias = "gtk_text_set_overwrite_mode")]
     pub fn set_overwrite_mode(&self, overwrite: bool) {
         unsafe {
-            ffi::gtk_text_set_overwrite_mode(self.to_glib_none().0, overwrite.to_glib());
+            ffi::gtk_text_set_overwrite_mode(self.to_glib_none().0, overwrite.into_glib());
         }
     }
 
@@ -240,7 +240,7 @@ impl Text {
         unsafe {
             ffi::gtk_text_set_propagate_text_width(
                 self.to_glib_none().0,
-                propagate_text_width.to_glib(),
+                propagate_text_width.into_glib(),
             );
         }
     }
@@ -257,7 +257,7 @@ impl Text {
         unsafe {
             ffi::gtk_text_set_truncate_multiline(
                 self.to_glib_none().0,
-                truncate_multiline.to_glib(),
+                truncate_multiline.into_glib(),
             );
         }
     }
@@ -265,7 +265,7 @@ impl Text {
     #[doc(alias = "gtk_text_set_visibility")]
     pub fn set_visibility(&self, visible: bool) {
         unsafe {
-            ffi::gtk_text_set_visibility(self.to_glib_none().0, visible.to_glib());
+            ffi::gtk_text_set_visibility(self.to_glib_none().0, visible.into_glib());
         }
     }
 

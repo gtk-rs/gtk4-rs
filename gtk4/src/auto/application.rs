@@ -268,7 +268,7 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
             ffi::gtk_application_inhibit(
                 self.as_ref().to_glib_none().0,
                 window.map(|p| p.as_ref()).to_glib_none().0,
-                flags.to_glib(),
+                flags.into_glib(),
                 reason.to_glib_none().0,
             )
         }

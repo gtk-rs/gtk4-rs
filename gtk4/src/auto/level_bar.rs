@@ -114,7 +114,7 @@ impl LevelBar {
     #[doc(alias = "gtk_level_bar_set_inverted")]
     pub fn set_inverted(&self, inverted: bool) {
         unsafe {
-            ffi::gtk_level_bar_set_inverted(self.to_glib_none().0, inverted.to_glib());
+            ffi::gtk_level_bar_set_inverted(self.to_glib_none().0, inverted.into_glib());
         }
     }
 
@@ -135,7 +135,7 @@ impl LevelBar {
     #[doc(alias = "gtk_level_bar_set_mode")]
     pub fn set_mode(&self, mode: LevelBarMode) {
         unsafe {
-            ffi::gtk_level_bar_set_mode(self.to_glib_none().0, mode.to_glib());
+            ffi::gtk_level_bar_set_mode(self.to_glib_none().0, mode.into_glib());
         }
     }
 

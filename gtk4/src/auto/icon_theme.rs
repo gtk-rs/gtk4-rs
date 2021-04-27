@@ -111,8 +111,8 @@ impl IconTheme {
                 icon.as_ref().to_glib_none().0,
                 size,
                 scale,
-                direction.to_glib(),
-                flags.to_glib(),
+                direction.into_glib(),
+                flags.into_glib(),
             ))
         }
     }
@@ -134,8 +134,8 @@ impl IconTheme {
                 fallbacks.to_glib_none().0,
                 size,
                 scale,
-                direction.to_glib(),
-                flags.to_glib(),
+                direction.into_glib(),
+                flags.into_glib(),
             ))
         }
     }

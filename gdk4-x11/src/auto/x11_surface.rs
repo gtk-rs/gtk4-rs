@@ -51,7 +51,7 @@ impl X11Surface {
         unsafe {
             ffi::gdk_x11_surface_set_frame_sync_enabled(
                 self.to_glib_none().0,
-                frame_sync_enabled.to_glib(),
+                frame_sync_enabled.into_glib(),
             );
         }
     }
@@ -66,7 +66,10 @@ impl X11Surface {
     #[doc(alias = "gdk_x11_surface_set_skip_pager_hint")]
     pub fn set_skip_pager_hint(&self, skips_pager: bool) {
         unsafe {
-            ffi::gdk_x11_surface_set_skip_pager_hint(self.to_glib_none().0, skips_pager.to_glib());
+            ffi::gdk_x11_surface_set_skip_pager_hint(
+                self.to_glib_none().0,
+                skips_pager.into_glib(),
+            );
         }
     }
 
@@ -75,7 +78,7 @@ impl X11Surface {
         unsafe {
             ffi::gdk_x11_surface_set_skip_taskbar_hint(
                 self.to_glib_none().0,
-                skips_taskbar.to_glib(),
+                skips_taskbar.into_glib(),
             );
         }
     }
@@ -90,7 +93,7 @@ impl X11Surface {
     #[doc(alias = "gdk_x11_surface_set_urgency_hint")]
     pub fn set_urgency_hint(&self, urgent: bool) {
         unsafe {
-            ffi::gdk_x11_surface_set_urgency_hint(self.to_glib_none().0, urgent.to_glib());
+            ffi::gdk_x11_surface_set_urgency_hint(self.to_glib_none().0, urgent.into_glib());
         }
     }
 

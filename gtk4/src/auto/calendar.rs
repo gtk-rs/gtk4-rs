@@ -95,21 +95,21 @@ impl Calendar {
     #[doc(alias = "gtk_calendar_set_show_day_names")]
     pub fn set_show_day_names(&self, value: bool) {
         unsafe {
-            ffi::gtk_calendar_set_show_day_names(self.to_glib_none().0, value.to_glib());
+            ffi::gtk_calendar_set_show_day_names(self.to_glib_none().0, value.into_glib());
         }
     }
 
     #[doc(alias = "gtk_calendar_set_show_heading")]
     pub fn set_show_heading(&self, value: bool) {
         unsafe {
-            ffi::gtk_calendar_set_show_heading(self.to_glib_none().0, value.to_glib());
+            ffi::gtk_calendar_set_show_heading(self.to_glib_none().0, value.into_glib());
         }
     }
 
     #[doc(alias = "gtk_calendar_set_show_week_numbers")]
     pub fn set_show_week_numbers(&self, value: bool) {
         unsafe {
-            ffi::gtk_calendar_set_show_week_numbers(self.to_glib_none().0, value.to_glib());
+            ffi::gtk_calendar_set_show_week_numbers(self.to_glib_none().0, value.into_glib());
         }
     }
 

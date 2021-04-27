@@ -65,7 +65,10 @@ impl SortListModel {
     #[doc(alias = "gtk_sort_list_model_set_incremental")]
     pub fn set_incremental(&self, incremental: bool) {
         unsafe {
-            ffi::gtk_sort_list_model_set_incremental(self.to_glib_none().0, incremental.to_glib());
+            ffi::gtk_sort_list_model_set_incremental(
+                self.to_glib_none().0,
+                incremental.into_glib(),
+            );
         }
     }
 

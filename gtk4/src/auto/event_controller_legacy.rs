@@ -47,7 +47,7 @@ impl EventControllerLegacy {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(event)).to_glib()
+            f(&from_glib_borrow(this), &from_glib_borrow(event)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

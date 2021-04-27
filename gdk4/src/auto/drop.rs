@@ -31,7 +31,7 @@ impl Drop {
     #[doc(alias = "gdk_drop_finish")]
     pub fn finish(&self, action: DragAction) {
         unsafe {
-            ffi::gdk_drop_finish(self.to_glib_none().0, action.to_glib());
+            ffi::gdk_drop_finish(self.to_glib_none().0, action.into_glib());
         }
     }
 
@@ -98,8 +98,8 @@ impl Drop {
         unsafe {
             ffi::gdk_drop_read_value_async(
                 self.to_glib_none().0,
-                type_.to_glib(),
-                io_priority.to_glib(),
+                type_.into_glib(),
+                io_priority.into_glib(),
                 cancellable.map(|p| p.as_ref()).to_glib_none().0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,
@@ -128,8 +128,8 @@ impl Drop {
         unsafe {
             ffi::gdk_drop_status(
                 self.to_glib_none().0,
-                actions.to_glib(),
-                preferred.to_glib(),
+                actions.into_glib(),
+                preferred.into_glib(),
             );
         }
     }

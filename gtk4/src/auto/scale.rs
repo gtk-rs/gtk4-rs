@@ -41,7 +41,7 @@ impl Scale {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_scale_new(
-                orientation.to_glib(),
+                orientation.into_glib(),
                 adjustment.map(|p| p.as_ref()).to_glib_none().0,
             ))
             .unsafe_cast()
@@ -53,7 +53,7 @@ impl Scale {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_scale_new_with_range(
-                orientation.to_glib(),
+                orientation.into_glib(),
                 min,
                 max,
                 step,
@@ -505,7 +505,7 @@ impl<O: IsA<Scale>> ScaleExt for O {
             ffi::gtk_scale_add_mark(
                 self.as_ref().to_glib_none().0,
                 value,
-                position.to_glib(),
+                position.into_glib(),
                 markup.to_glib_none().0,
             );
         }
@@ -568,7 +568,7 @@ impl<O: IsA<Scale>> ScaleExt for O {
 
     fn set_draw_value(&self, draw_value: bool) {
         unsafe {
-            ffi::gtk_scale_set_draw_value(self.as_ref().to_glib_none().0, draw_value.to_glib());
+            ffi::gtk_scale_set_draw_value(self.as_ref().to_glib_none().0, draw_value.into_glib());
         }
     }
 
@@ -604,13 +604,13 @@ impl<O: IsA<Scale>> ScaleExt for O {
 
     fn set_has_origin(&self, has_origin: bool) {
         unsafe {
-            ffi::gtk_scale_set_has_origin(self.as_ref().to_glib_none().0, has_origin.to_glib());
+            ffi::gtk_scale_set_has_origin(self.as_ref().to_glib_none().0, has_origin.into_glib());
         }
     }
 
     fn set_value_pos(&self, pos: PositionType) {
         unsafe {
-            ffi::gtk_scale_set_value_pos(self.as_ref().to_glib_none().0, pos.to_glib());
+            ffi::gtk_scale_set_value_pos(self.as_ref().to_glib_none().0, pos.into_glib());
         }
     }
 

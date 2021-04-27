@@ -57,7 +57,7 @@ impl ListItem {
     #[doc(alias = "gtk_list_item_set_activatable")]
     pub fn set_activatable(&self, activatable: bool) {
         unsafe {
-            ffi::gtk_list_item_set_activatable(self.to_glib_none().0, activatable.to_glib());
+            ffi::gtk_list_item_set_activatable(self.to_glib_none().0, activatable.into_glib());
         }
     }
 
@@ -74,7 +74,7 @@ impl ListItem {
     #[doc(alias = "gtk_list_item_set_selectable")]
     pub fn set_selectable(&self, selectable: bool) {
         unsafe {
-            ffi::gtk_list_item_set_selectable(self.to_glib_none().0, selectable.to_glib());
+            ffi::gtk_list_item_set_selectable(self.to_glib_none().0, selectable.into_glib());
         }
     }
 

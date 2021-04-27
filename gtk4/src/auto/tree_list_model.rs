@@ -59,8 +59,8 @@ impl TreeListModel {
         unsafe {
             from_glib_full(ffi::gtk_tree_list_model_new(
                 root.as_ref().to_glib_full(),
-                passthrough.to_glib(),
-                autoexpand.to_glib(),
+                passthrough.into_glib(),
+                autoexpand.into_glib(),
                 create_func,
                 Box_::into_raw(super_callback0) as *mut _,
                 destroy_call5,
@@ -114,7 +114,7 @@ impl TreeListModel {
     #[doc(alias = "gtk_tree_list_model_set_autoexpand")]
     pub fn set_autoexpand(&self, autoexpand: bool) {
         unsafe {
-            ffi::gtk_tree_list_model_set_autoexpand(self.to_glib_none().0, autoexpand.to_glib());
+            ffi::gtk_tree_list_model_set_autoexpand(self.to_glib_none().0, autoexpand.into_glib());
         }
     }
 

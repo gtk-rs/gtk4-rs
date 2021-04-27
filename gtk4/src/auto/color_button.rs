@@ -60,7 +60,7 @@ impl ColorButton {
     #[doc(alias = "gtk_color_button_set_modal")]
     pub fn set_modal(&self, modal: bool) {
         unsafe {
-            ffi::gtk_color_button_set_modal(self.to_glib_none().0, modal.to_glib());
+            ffi::gtk_color_button_set_modal(self.to_glib_none().0, modal.into_glib());
         }
     }
 

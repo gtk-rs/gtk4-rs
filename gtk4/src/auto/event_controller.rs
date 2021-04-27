@@ -156,7 +156,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         unsafe {
             ffi::gtk_event_controller_set_propagation_limit(
                 self.as_ref().to_glib_none().0,
-                limit.to_glib(),
+                limit.into_glib(),
             );
         }
     }
@@ -165,7 +165,7 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         unsafe {
             ffi::gtk_event_controller_set_propagation_phase(
                 self.as_ref().to_glib_none().0,
-                phase.to_glib(),
+                phase.into_glib(),
             );
         }
     }

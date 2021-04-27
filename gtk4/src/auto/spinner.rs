@@ -45,7 +45,7 @@ impl Spinner {
     #[doc(alias = "gtk_spinner_set_spinning")]
     pub fn set_spinning(&self, spinning: bool) {
         unsafe {
-            ffi::gtk_spinner_set_spinning(self.to_glib_none().0, spinning.to_glib());
+            ffi::gtk_spinner_set_spinning(self.to_glib_none().0, spinning.into_glib());
         }
     }
 

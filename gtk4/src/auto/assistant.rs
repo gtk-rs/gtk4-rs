@@ -223,7 +223,7 @@ impl Assistant {
             ffi::gtk_assistant_set_page_complete(
                 self.to_glib_none().0,
                 page.as_ref().to_glib_none().0,
-                complete.to_glib(),
+                complete.into_glib(),
             );
         }
     }
@@ -245,7 +245,7 @@ impl Assistant {
             ffi::gtk_assistant_set_page_type(
                 self.to_glib_none().0,
                 page.as_ref().to_glib_none().0,
-                type_.to_glib(),
+                type_.into_glib(),
             );
         }
     }

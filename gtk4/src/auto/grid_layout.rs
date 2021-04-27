@@ -85,7 +85,7 @@ impl GridLayout {
         unsafe {
             ffi::gtk_grid_layout_set_column_homogeneous(
                 self.to_glib_none().0,
-                homogeneous.to_glib(),
+                homogeneous.into_glib(),
             );
         }
     }
@@ -103,7 +103,7 @@ impl GridLayout {
             ffi::gtk_grid_layout_set_row_baseline_position(
                 self.to_glib_none().0,
                 row,
-                pos.to_glib(),
+                pos.into_glib(),
             );
         }
     }
@@ -111,7 +111,10 @@ impl GridLayout {
     #[doc(alias = "gtk_grid_layout_set_row_homogeneous")]
     pub fn set_row_homogeneous(&self, homogeneous: bool) {
         unsafe {
-            ffi::gtk_grid_layout_set_row_homogeneous(self.to_glib_none().0, homogeneous.to_glib());
+            ffi::gtk_grid_layout_set_row_homogeneous(
+                self.to_glib_none().0,
+                homogeneous.into_glib(),
+            );
         }
     }
 

@@ -119,7 +119,7 @@ impl<O: IsA<TreeModel>> TreeModelExt for O {
             let iter = from_glib_borrow(iter);
             let callback: *mut P = data as *const _ as usize as *mut P;
             let res = (*callback)(&model, &path, &iter);
-            res.to_glib()
+            res.into_glib()
         }
         let func = Some(func_func::<P> as _);
         let super_callback0: &P = &func_data;

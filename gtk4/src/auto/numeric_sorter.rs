@@ -46,7 +46,7 @@ impl NumericSorter {
     #[doc(alias = "gtk_numeric_sorter_set_sort_order")]
     pub fn set_sort_order(&self, sort_order: SortType) {
         unsafe {
-            ffi::gtk_numeric_sorter_set_sort_order(self.to_glib_none().0, sort_order.to_glib());
+            ffi::gtk_numeric_sorter_set_sort_order(self.to_glib_none().0, sort_order.into_glib());
         }
     }
 

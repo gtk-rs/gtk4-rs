@@ -73,7 +73,7 @@ impl LinkButton {
     #[doc(alias = "gtk_link_button_set_visited")]
     pub fn set_visited(&self, visited: bool) {
         unsafe {
-            ffi::gtk_link_button_set_visited(self.to_glib_none().0, visited.to_glib());
+            ffi::gtk_link_button_set_visited(self.to_glib_none().0, visited.into_glib());
         }
     }
 
@@ -88,7 +88,7 @@ impl LinkButton {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this)).to_glib()
+            f(&from_glib_borrow(this)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

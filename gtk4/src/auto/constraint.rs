@@ -36,10 +36,10 @@ impl Constraint {
         unsafe {
             from_glib_full(ffi::gtk_constraint_new(
                 target.map(|p| p.as_ref()).to_glib_none().0,
-                target_attribute.to_glib(),
-                relation.to_glib(),
+                target_attribute.into_glib(),
+                relation.into_glib(),
                 source.map(|p| p.as_ref()).to_glib_none().0,
-                source_attribute.to_glib(),
+                source_attribute.into_glib(),
                 multiplier,
                 constant,
                 strength,
@@ -59,8 +59,8 @@ impl Constraint {
         unsafe {
             from_glib_full(ffi::gtk_constraint_new_constant(
                 target.map(|p| p.as_ref()).to_glib_none().0,
-                target_attribute.to_glib(),
-                relation.to_glib(),
+                target_attribute.into_glib(),
+                relation.into_glib(),
                 constant,
                 strength,
             ))

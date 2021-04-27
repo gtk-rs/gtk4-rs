@@ -181,7 +181,7 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
         unsafe {
             ffi::gtk_gesture_single_set_exclusive(
                 self.as_ref().to_glib_none().0,
-                exclusive.to_glib(),
+                exclusive.into_glib(),
             );
         }
     }
@@ -190,7 +190,7 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
         unsafe {
             ffi::gtk_gesture_single_set_touch_only(
                 self.as_ref().to_glib_none().0,
-                touch_only.to_glib(),
+                touch_only.into_glib(),
             );
         }
     }

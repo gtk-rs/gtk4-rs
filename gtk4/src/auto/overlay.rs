@@ -95,7 +95,7 @@ impl Overlay {
             ffi::gtk_overlay_set_clip_overlay(
                 self.to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
-                clip_overlay.to_glib(),
+                clip_overlay.into_glib(),
             );
         }
     }
@@ -106,7 +106,7 @@ impl Overlay {
             ffi::gtk_overlay_set_measure_overlay(
                 self.to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
-                measure.to_glib(),
+                measure.into_glib(),
             );
         }
     }

@@ -31,7 +31,7 @@ impl Drag {
     #[doc(alias = "gdk_drag_drop_done")]
     pub fn drop_done(&self, success: bool) {
         unsafe {
-            ffi::gdk_drag_drop_done(self.to_glib_none().0, success.to_glib());
+            ffi::gdk_drag_drop_done(self.to_glib_none().0, success.into_glib());
         }
     }
 
@@ -119,7 +119,7 @@ impl Drag {
                 surface.to_glib_none().0,
                 device.to_glib_none().0,
                 content.as_ref().to_glib_none().0,
-                actions.to_glib(),
+                actions.into_glib(),
                 dx,
                 dy,
             ))

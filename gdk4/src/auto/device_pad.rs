@@ -37,7 +37,7 @@ impl<O: IsA<DevicePad>> DevicePadExt for O {
         unsafe {
             ffi::gdk_device_pad_get_feature_group(
                 self.as_ref().to_glib_none().0,
-                feature.to_glib(),
+                feature.into_glib(),
                 feature_idx,
             )
         }
@@ -49,7 +49,7 @@ impl<O: IsA<DevicePad>> DevicePadExt for O {
 
     fn n_features(&self, feature: DevicePadFeature) -> i32 {
         unsafe {
-            ffi::gdk_device_pad_get_n_features(self.as_ref().to_glib_none().0, feature.to_glib())
+            ffi::gdk_device_pad_get_n_features(self.as_ref().to_glib_none().0, feature.into_glib())
         }
     }
 

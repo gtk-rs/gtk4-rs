@@ -72,7 +72,7 @@ impl CenterLayout {
         unsafe {
             ffi::gtk_center_layout_set_baseline_position(
                 self.to_glib_none().0,
-                baseline_position.to_glib(),
+                baseline_position.into_glib(),
             );
         }
     }
@@ -100,7 +100,7 @@ impl CenterLayout {
     #[doc(alias = "gtk_center_layout_set_orientation")]
     pub fn set_orientation(&self, orientation: Orientation) {
         unsafe {
-            ffi::gtk_center_layout_set_orientation(self.to_glib_none().0, orientation.to_glib());
+            ffi::gtk_center_layout_set_orientation(self.to_glib_none().0, orientation.into_glib());
         }
     }
 

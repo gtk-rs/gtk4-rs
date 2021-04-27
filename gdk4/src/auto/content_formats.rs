@@ -33,7 +33,7 @@ impl ContentFormats {
     #[doc(alias = "gdk_content_formats_new_for_gtype")]
     pub fn for_type(type_: glib::types::Type) -> ContentFormats {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(ffi::gdk_content_formats_new_for_gtype(type_.to_glib())) }
+        unsafe { from_glib_full(ffi::gdk_content_formats_new_for_gtype(type_.into_glib())) }
     }
 
     #[doc(alias = "gdk_content_formats_contain_gtype")]
@@ -41,7 +41,7 @@ impl ContentFormats {
         unsafe {
             from_glib(ffi::gdk_content_formats_contain_gtype(
                 self.to_glib_none().0,
-                type_.to_glib(),
+                type_.into_glib(),
             ))
         }
     }

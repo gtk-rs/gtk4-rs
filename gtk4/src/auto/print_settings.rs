@@ -201,7 +201,7 @@ impl PrintSettings {
             ffi::gtk_print_settings_get_length(
                 self.to_glib_none().0,
                 key.to_glib_none().0,
-                unit.to_glib(),
+                unit.into_glib(),
             )
         }
     }
@@ -274,7 +274,7 @@ impl PrintSettings {
 
     #[doc(alias = "gtk_print_settings_get_paper_height")]
     pub fn paper_height(&self, unit: Unit) -> f64 {
-        unsafe { ffi::gtk_print_settings_get_paper_height(self.to_glib_none().0, unit.to_glib()) }
+        unsafe { ffi::gtk_print_settings_get_paper_height(self.to_glib_none().0, unit.into_glib()) }
     }
 
     #[doc(alias = "gtk_print_settings_get_paper_size")]
@@ -288,7 +288,7 @@ impl PrintSettings {
 
     #[doc(alias = "gtk_print_settings_get_paper_width")]
     pub fn paper_width(&self, unit: Unit) -> f64 {
-        unsafe { ffi::gtk_print_settings_get_paper_width(self.to_glib_none().0, unit.to_glib()) }
+        unsafe { ffi::gtk_print_settings_get_paper_width(self.to_glib_none().0, unit.into_glib()) }
     }
 
     #[doc(alias = "gtk_print_settings_get_print_pages")]
@@ -411,7 +411,7 @@ impl PrintSettings {
             ffi::gtk_print_settings_set_bool(
                 self.to_glib_none().0,
                 key.to_glib_none().0,
-                value.to_glib(),
+                value.into_glib(),
             );
         }
     }
@@ -419,7 +419,7 @@ impl PrintSettings {
     #[doc(alias = "gtk_print_settings_set_collate")]
     pub fn set_collate(&self, collate: bool) {
         unsafe {
-            ffi::gtk_print_settings_set_collate(self.to_glib_none().0, collate.to_glib());
+            ffi::gtk_print_settings_set_collate(self.to_glib_none().0, collate.into_glib());
         }
     }
 
@@ -450,7 +450,7 @@ impl PrintSettings {
     #[doc(alias = "gtk_print_settings_set_duplex")]
     pub fn set_duplex(&self, duplex: PrintDuplex) {
         unsafe {
-            ffi::gtk_print_settings_set_duplex(self.to_glib_none().0, duplex.to_glib());
+            ffi::gtk_print_settings_set_duplex(self.to_glib_none().0, duplex.into_glib());
         }
     }
 
@@ -478,7 +478,7 @@ impl PrintSettings {
                 self.to_glib_none().0,
                 key.to_glib_none().0,
                 value,
-                unit.to_glib(),
+                unit.into_glib(),
             );
         }
     }
@@ -512,7 +512,7 @@ impl PrintSettings {
         unsafe {
             ffi::gtk_print_settings_set_number_up_layout(
                 self.to_glib_none().0,
-                number_up_layout.to_glib(),
+                number_up_layout.into_glib(),
             );
         }
     }
@@ -520,7 +520,7 @@ impl PrintSettings {
     #[doc(alias = "gtk_print_settings_set_orientation")]
     pub fn set_orientation(&self, orientation: PageOrientation) {
         unsafe {
-            ffi::gtk_print_settings_set_orientation(self.to_glib_none().0, orientation.to_glib());
+            ffi::gtk_print_settings_set_orientation(self.to_glib_none().0, orientation.into_glib());
         }
     }
 
@@ -537,14 +537,18 @@ impl PrintSettings {
     #[doc(alias = "gtk_print_settings_set_page_set")]
     pub fn set_page_set(&self, page_set: PageSet) {
         unsafe {
-            ffi::gtk_print_settings_set_page_set(self.to_glib_none().0, page_set.to_glib());
+            ffi::gtk_print_settings_set_page_set(self.to_glib_none().0, page_set.into_glib());
         }
     }
 
     #[doc(alias = "gtk_print_settings_set_paper_height")]
     pub fn set_paper_height(&self, height: f64, unit: Unit) {
         unsafe {
-            ffi::gtk_print_settings_set_paper_height(self.to_glib_none().0, height, unit.to_glib());
+            ffi::gtk_print_settings_set_paper_height(
+                self.to_glib_none().0,
+                height,
+                unit.into_glib(),
+            );
         }
     }
 
@@ -561,14 +565,14 @@ impl PrintSettings {
     #[doc(alias = "gtk_print_settings_set_paper_width")]
     pub fn set_paper_width(&self, width: f64, unit: Unit) {
         unsafe {
-            ffi::gtk_print_settings_set_paper_width(self.to_glib_none().0, width, unit.to_glib());
+            ffi::gtk_print_settings_set_paper_width(self.to_glib_none().0, width, unit.into_glib());
         }
     }
 
     #[doc(alias = "gtk_print_settings_set_print_pages")]
     pub fn set_print_pages(&self, pages: PrintPages) {
         unsafe {
-            ffi::gtk_print_settings_set_print_pages(self.to_glib_none().0, pages.to_glib());
+            ffi::gtk_print_settings_set_print_pages(self.to_glib_none().0, pages.into_glib());
         }
     }
 
@@ -589,7 +593,7 @@ impl PrintSettings {
     #[doc(alias = "gtk_print_settings_set_quality")]
     pub fn set_quality(&self, quality: PrintQuality) {
         unsafe {
-            ffi::gtk_print_settings_set_quality(self.to_glib_none().0, quality.to_glib());
+            ffi::gtk_print_settings_set_quality(self.to_glib_none().0, quality.into_glib());
         }
     }
 
@@ -614,7 +618,7 @@ impl PrintSettings {
     #[doc(alias = "gtk_print_settings_set_reverse")]
     pub fn set_reverse(&self, reverse: bool) {
         unsafe {
-            ffi::gtk_print_settings_set_reverse(self.to_glib_none().0, reverse.to_glib());
+            ffi::gtk_print_settings_set_reverse(self.to_glib_none().0, reverse.into_glib());
         }
     }
 
@@ -628,7 +632,7 @@ impl PrintSettings {
     #[doc(alias = "gtk_print_settings_set_use_color")]
     pub fn set_use_color(&self, use_color: bool) {
         unsafe {
-            ffi::gtk_print_settings_set_use_color(self.to_glib_none().0, use_color.to_glib());
+            ffi::gtk_print_settings_set_use_color(self.to_glib_none().0, use_color.into_glib());
         }
     }
 

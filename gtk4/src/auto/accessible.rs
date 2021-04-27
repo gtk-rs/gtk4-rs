@@ -59,19 +59,25 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
 
     fn reset_property(&self, property: AccessibleProperty) {
         unsafe {
-            ffi::gtk_accessible_reset_property(self.as_ref().to_glib_none().0, property.to_glib());
+            ffi::gtk_accessible_reset_property(
+                self.as_ref().to_glib_none().0,
+                property.into_glib(),
+            );
         }
     }
 
     fn reset_relation(&self, relation: AccessibleRelation) {
         unsafe {
-            ffi::gtk_accessible_reset_relation(self.as_ref().to_glib_none().0, relation.to_glib());
+            ffi::gtk_accessible_reset_relation(
+                self.as_ref().to_glib_none().0,
+                relation.into_glib(),
+            );
         }
     }
 
     fn reset_state(&self, state: AccessibleState) {
         unsafe {
-            ffi::gtk_accessible_reset_state(self.as_ref().to_glib_none().0, state.to_glib());
+            ffi::gtk_accessible_reset_state(self.as_ref().to_glib_none().0, state.into_glib());
         }
     }
 

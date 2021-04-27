@@ -77,12 +77,12 @@ impl PageSetup {
 
     #[doc(alias = "gtk_page_setup_get_bottom_margin")]
     pub fn bottom_margin(&self, unit: Unit) -> f64 {
-        unsafe { ffi::gtk_page_setup_get_bottom_margin(self.to_glib_none().0, unit.to_glib()) }
+        unsafe { ffi::gtk_page_setup_get_bottom_margin(self.to_glib_none().0, unit.into_glib()) }
     }
 
     #[doc(alias = "gtk_page_setup_get_left_margin")]
     pub fn left_margin(&self, unit: Unit) -> f64 {
-        unsafe { ffi::gtk_page_setup_get_left_margin(self.to_glib_none().0, unit.to_glib()) }
+        unsafe { ffi::gtk_page_setup_get_left_margin(self.to_glib_none().0, unit.into_glib()) }
     }
 
     #[doc(alias = "gtk_page_setup_get_orientation")]
@@ -92,17 +92,17 @@ impl PageSetup {
 
     #[doc(alias = "gtk_page_setup_get_page_height")]
     pub fn page_height(&self, unit: Unit) -> f64 {
-        unsafe { ffi::gtk_page_setup_get_page_height(self.to_glib_none().0, unit.to_glib()) }
+        unsafe { ffi::gtk_page_setup_get_page_height(self.to_glib_none().0, unit.into_glib()) }
     }
 
     #[doc(alias = "gtk_page_setup_get_page_width")]
     pub fn page_width(&self, unit: Unit) -> f64 {
-        unsafe { ffi::gtk_page_setup_get_page_width(self.to_glib_none().0, unit.to_glib()) }
+        unsafe { ffi::gtk_page_setup_get_page_width(self.to_glib_none().0, unit.into_glib()) }
     }
 
     #[doc(alias = "gtk_page_setup_get_paper_height")]
     pub fn paper_height(&self, unit: Unit) -> f64 {
-        unsafe { ffi::gtk_page_setup_get_paper_height(self.to_glib_none().0, unit.to_glib()) }
+        unsafe { ffi::gtk_page_setup_get_paper_height(self.to_glib_none().0, unit.into_glib()) }
     }
 
     #[doc(alias = "gtk_page_setup_get_paper_size")]
@@ -112,17 +112,17 @@ impl PageSetup {
 
     #[doc(alias = "gtk_page_setup_get_paper_width")]
     pub fn paper_width(&self, unit: Unit) -> f64 {
-        unsafe { ffi::gtk_page_setup_get_paper_width(self.to_glib_none().0, unit.to_glib()) }
+        unsafe { ffi::gtk_page_setup_get_paper_width(self.to_glib_none().0, unit.into_glib()) }
     }
 
     #[doc(alias = "gtk_page_setup_get_right_margin")]
     pub fn right_margin(&self, unit: Unit) -> f64 {
-        unsafe { ffi::gtk_page_setup_get_right_margin(self.to_glib_none().0, unit.to_glib()) }
+        unsafe { ffi::gtk_page_setup_get_right_margin(self.to_glib_none().0, unit.into_glib()) }
     }
 
     #[doc(alias = "gtk_page_setup_get_top_margin")]
     pub fn top_margin(&self, unit: Unit) -> f64 {
-        unsafe { ffi::gtk_page_setup_get_top_margin(self.to_glib_none().0, unit.to_glib()) }
+        unsafe { ffi::gtk_page_setup_get_top_margin(self.to_glib_none().0, unit.into_glib()) }
     }
 
     #[doc(alias = "gtk_page_setup_load_file")]
@@ -167,21 +167,21 @@ impl PageSetup {
     #[doc(alias = "gtk_page_setup_set_bottom_margin")]
     pub fn set_bottom_margin(&self, margin: f64, unit: Unit) {
         unsafe {
-            ffi::gtk_page_setup_set_bottom_margin(self.to_glib_none().0, margin, unit.to_glib());
+            ffi::gtk_page_setup_set_bottom_margin(self.to_glib_none().0, margin, unit.into_glib());
         }
     }
 
     #[doc(alias = "gtk_page_setup_set_left_margin")]
     pub fn set_left_margin(&self, margin: f64, unit: Unit) {
         unsafe {
-            ffi::gtk_page_setup_set_left_margin(self.to_glib_none().0, margin, unit.to_glib());
+            ffi::gtk_page_setup_set_left_margin(self.to_glib_none().0, margin, unit.into_glib());
         }
     }
 
     #[doc(alias = "gtk_page_setup_set_orientation")]
     pub fn set_orientation(&self, orientation: PageOrientation) {
         unsafe {
-            ffi::gtk_page_setup_set_orientation(self.to_glib_none().0, orientation.to_glib());
+            ffi::gtk_page_setup_set_orientation(self.to_glib_none().0, orientation.into_glib());
         }
     }
 
@@ -208,14 +208,14 @@ impl PageSetup {
     #[doc(alias = "gtk_page_setup_set_right_margin")]
     pub fn set_right_margin(&self, margin: f64, unit: Unit) {
         unsafe {
-            ffi::gtk_page_setup_set_right_margin(self.to_glib_none().0, margin, unit.to_glib());
+            ffi::gtk_page_setup_set_right_margin(self.to_glib_none().0, margin, unit.into_glib());
         }
     }
 
     #[doc(alias = "gtk_page_setup_set_top_margin")]
     pub fn set_top_margin(&self, margin: f64, unit: Unit) {
         unsafe {
-            ffi::gtk_page_setup_set_top_margin(self.to_glib_none().0, margin, unit.to_glib());
+            ffi::gtk_page_setup_set_top_margin(self.to_glib_none().0, margin, unit.into_glib());
         }
     }
 

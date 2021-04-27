@@ -108,7 +108,7 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
             ffi::gtk_cell_layout_pack_end(
                 self.as_ref().to_glib_none().0,
                 cell.as_ref().to_glib_none().0,
-                expand.to_glib(),
+                expand.into_glib(),
             );
         }
     }
@@ -118,7 +118,7 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
             ffi::gtk_cell_layout_pack_start(
                 self.as_ref().to_glib_none().0,
                 cell.as_ref().to_glib_none().0,
-                expand.to_glib(),
+                expand.into_glib(),
             );
         }
     }

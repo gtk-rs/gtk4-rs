@@ -65,7 +65,7 @@ impl Window {
     pub fn set_auto_startup_notification(setting: bool) {
         assert_initialized_main_thread!();
         unsafe {
-            ffi::gtk_window_set_auto_startup_notification(setting.to_glib());
+            ffi::gtk_window_set_auto_startup_notification(setting.into_glib());
         }
     }
 
@@ -81,7 +81,7 @@ impl Window {
     pub fn set_interactive_debugging(enable: bool) {
         assert_initialized_main_thread!();
         unsafe {
-            ffi::gtk_window_set_interactive_debugging(enable.to_glib());
+            ffi::gtk_window_set_interactive_debugging(enable.into_glib());
         }
     }
 }
@@ -1096,7 +1096,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
 
     fn set_decorated(&self, setting: bool) {
         unsafe {
-            ffi::gtk_window_set_decorated(self.as_ref().to_glib_none().0, setting.to_glib());
+            ffi::gtk_window_set_decorated(self.as_ref().to_glib_none().0, setting.into_glib());
         }
     }
 
@@ -1117,7 +1117,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
 
     fn set_deletable(&self, setting: bool) {
         unsafe {
-            ffi::gtk_window_set_deletable(self.as_ref().to_glib_none().0, setting.to_glib());
+            ffi::gtk_window_set_deletable(self.as_ref().to_glib_none().0, setting.into_glib());
         }
     }
 
@@ -1125,7 +1125,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         unsafe {
             ffi::gtk_window_set_destroy_with_parent(
                 self.as_ref().to_glib_none().0,
-                setting.to_glib(),
+                setting.into_glib(),
             );
         }
     }
@@ -1138,7 +1138,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
 
     fn set_focus_visible(&self, setting: bool) {
         unsafe {
-            ffi::gtk_window_set_focus_visible(self.as_ref().to_glib_none().0, setting.to_glib());
+            ffi::gtk_window_set_focus_visible(self.as_ref().to_glib_none().0, setting.into_glib());
         }
     }
 
@@ -1148,14 +1148,14 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         unsafe {
             ffi::gtk_window_set_handle_menubar_accel(
                 self.as_ref().to_glib_none().0,
-                handle_menubar_accel.to_glib(),
+                handle_menubar_accel.into_glib(),
             );
         }
     }
 
     fn set_hide_on_close(&self, setting: bool) {
         unsafe {
-            ffi::gtk_window_set_hide_on_close(self.as_ref().to_glib_none().0, setting.to_glib());
+            ffi::gtk_window_set_hide_on_close(self.as_ref().to_glib_none().0, setting.into_glib());
         }
     }
 
@@ -1169,20 +1169,20 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         unsafe {
             ffi::gtk_window_set_mnemonics_visible(
                 self.as_ref().to_glib_none().0,
-                setting.to_glib(),
+                setting.into_glib(),
             );
         }
     }
 
     fn set_modal(&self, modal: bool) {
         unsafe {
-            ffi::gtk_window_set_modal(self.as_ref().to_glib_none().0, modal.to_glib());
+            ffi::gtk_window_set_modal(self.as_ref().to_glib_none().0, modal.into_glib());
         }
     }
 
     fn set_resizable(&self, resizable: bool) {
         unsafe {
-            ffi::gtk_window_set_resizable(self.as_ref().to_glib_none().0, resizable.to_glib());
+            ffi::gtk_window_set_resizable(self.as_ref().to_glib_none().0, resizable.into_glib());
         }
     }
 
@@ -1420,7 +1420,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             P: IsA<Window>,
         {
             let f: &F = &*(f as *const F);
-            f(&Window::from_glib_borrow(this).unsafe_cast_ref()).to_glib()
+            f(&Window::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1452,7 +1452,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
                 &Window::from_glib_borrow(this).unsafe_cast_ref(),
                 from_glib(toggle),
             )
-            .to_glib()
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

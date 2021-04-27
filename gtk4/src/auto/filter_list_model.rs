@@ -77,7 +77,7 @@ impl FilterListModel {
         unsafe {
             ffi::gtk_filter_list_model_set_incremental(
                 self.to_glib_none().0,
-                incremental.to_glib(),
+                incremental.into_glib(),
             );
         }
     }

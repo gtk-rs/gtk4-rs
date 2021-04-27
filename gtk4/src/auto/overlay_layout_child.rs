@@ -49,7 +49,7 @@ impl OverlayLayoutChild {
         unsafe {
             ffi::gtk_overlay_layout_child_set_clip_overlay(
                 self.to_glib_none().0,
-                clip_overlay.to_glib(),
+                clip_overlay.into_glib(),
             );
         }
     }
@@ -57,7 +57,7 @@ impl OverlayLayoutChild {
     #[doc(alias = "gtk_overlay_layout_child_set_measure")]
     pub fn set_measure(&self, measure: bool) {
         unsafe {
-            ffi::gtk_overlay_layout_child_set_measure(self.to_glib_none().0, measure.to_glib());
+            ffi::gtk_overlay_layout_child_set_measure(self.to_glib_none().0, measure.into_glib());
         }
     }
 

@@ -39,7 +39,7 @@ impl Scrollbar {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_scrollbar_new(
-                orientation.to_glib(),
+                orientation.into_glib(),
                 adjustment.map(|p| p.as_ref()).to_glib_none().0,
             ))
             .unsafe_cast()

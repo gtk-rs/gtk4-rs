@@ -164,7 +164,7 @@ impl TreeSelection {
     #[doc(alias = "gtk_tree_selection_set_mode")]
     pub fn set_mode(&self, type_: SelectionMode) {
         unsafe {
-            ffi::gtk_tree_selection_set_mode(self.to_glib_none().0, type_.to_glib());
+            ffi::gtk_tree_selection_set_mode(self.to_glib_none().0, type_.into_glib());
         }
     }
 
@@ -191,7 +191,7 @@ impl TreeSelection {
             let path_currently_selected = from_glib(path_currently_selected);
             let callback: &P = &*(data as *mut _);
             let res = (*callback)(&selection, &model, &path, path_currently_selected);
-            res.to_glib()
+            res.into_glib()
         }
         let func = Some(func_func::<P> as _);
         unsafe extern "C" fn destroy_func<

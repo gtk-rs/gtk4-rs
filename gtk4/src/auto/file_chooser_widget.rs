@@ -39,7 +39,8 @@ impl FileChooserWidget {
     pub fn new(action: FileChooserAction) -> FileChooserWidget {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_file_chooser_widget_new(action.to_glib())).unsafe_cast()
+            Widget::from_glib_none(ffi::gtk_file_chooser_widget_new(action.into_glib()))
+                .unsafe_cast()
         }
     }
 

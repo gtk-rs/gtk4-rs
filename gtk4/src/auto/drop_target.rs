@@ -28,7 +28,12 @@ impl DropTarget {
     #[doc(alias = "gtk_drop_target_new")]
     pub fn new(type_: glib::types::Type, actions: gdk::DragAction) -> DropTarget {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(ffi::gtk_drop_target_new(type_.to_glib(), actions.to_glib())) }
+        unsafe {
+            from_glib_full(ffi::gtk_drop_target_new(
+                type_.into_glib(),
+                actions.into_glib(),
+            ))
+        }
     }
 
     #[doc(alias = "gtk_drop_target_get_actions")]
@@ -66,14 +71,14 @@ impl DropTarget {
     #[doc(alias = "gtk_drop_target_set_actions")]
     pub fn set_actions(&self, actions: gdk::DragAction) {
         unsafe {
-            ffi::gtk_drop_target_set_actions(self.to_glib_none().0, actions.to_glib());
+            ffi::gtk_drop_target_set_actions(self.to_glib_none().0, actions.into_glib());
         }
     }
 
     #[doc(alias = "gtk_drop_target_set_preload")]
     pub fn set_preload(&self, preload: bool) {
         unsafe {
-            ffi::gtk_drop_target_set_preload(self.to_glib_none().0, preload.to_glib());
+            ffi::gtk_drop_target_set_preload(self.to_glib_none().0, preload.into_glib());
         }
     }
 
@@ -87,7 +92,7 @@ impl DropTarget {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(drop)).to_glib()
+            f(&from_glib_borrow(this), &from_glib_borrow(drop)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -115,7 +120,7 @@ impl DropTarget {
             f: glib::ffi::gpointer,
         ) -> gdk::ffi::GdkDragAction {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), x, y).to_glib()
+            f(&from_glib_borrow(this), x, y).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -164,7 +169,7 @@ impl DropTarget {
             f: glib::ffi::gpointer,
         ) -> gdk::ffi::GdkDragAction {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), x, y).to_glib()
+            f(&from_glib_borrow(this), x, y).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

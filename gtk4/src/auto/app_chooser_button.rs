@@ -117,7 +117,7 @@ impl AppChooserButton {
     #[doc(alias = "gtk_app_chooser_button_set_modal")]
     pub fn set_modal(&self, modal: bool) {
         unsafe {
-            ffi::gtk_app_chooser_button_set_modal(self.to_glib_none().0, modal.to_glib());
+            ffi::gtk_app_chooser_button_set_modal(self.to_glib_none().0, modal.into_glib());
         }
     }
 
@@ -126,7 +126,7 @@ impl AppChooserButton {
         unsafe {
             ffi::gtk_app_chooser_button_set_show_default_item(
                 self.to_glib_none().0,
-                setting.to_glib(),
+                setting.into_glib(),
             );
         }
     }
@@ -136,7 +136,7 @@ impl AppChooserButton {
         unsafe {
             ffi::gtk_app_chooser_button_set_show_dialog_item(
                 self.to_glib_none().0,
-                setting.to_glib(),
+                setting.into_glib(),
             );
         }
     }

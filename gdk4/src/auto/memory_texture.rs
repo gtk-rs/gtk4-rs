@@ -31,7 +31,7 @@ impl MemoryTexture {
             Texture::from_glib_full(ffi::gdk_memory_texture_new(
                 width,
                 height,
-                format.to_glib(),
+                format.into_glib(),
                 bytes.to_glib_none().0,
                 stride,
             ))

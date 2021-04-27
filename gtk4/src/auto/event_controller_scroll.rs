@@ -30,7 +30,7 @@ impl EventControllerScroll {
     pub fn new(flags: EventControllerScrollFlags) -> EventControllerScroll {
         assert_initialized_main_thread!();
         unsafe {
-            EventController::from_glib_full(ffi::gtk_event_controller_scroll_new(flags.to_glib()))
+            EventController::from_glib_full(ffi::gtk_event_controller_scroll_new(flags.into_glib()))
                 .unsafe_cast()
         }
     }
@@ -47,7 +47,7 @@ impl EventControllerScroll {
     #[doc(alias = "gtk_event_controller_scroll_set_flags")]
     pub fn set_flags(&self, flags: EventControllerScrollFlags) {
         unsafe {
-            ffi::gtk_event_controller_scroll_set_flags(self.to_glib_none().0, flags.to_glib());
+            ffi::gtk_event_controller_scroll_set_flags(self.to_glib_none().0, flags.into_glib());
         }
     }
 
@@ -94,7 +94,7 @@ impl EventControllerScroll {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), dx, dy).to_glib()
+            f(&from_glib_borrow(this), dx, dy).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

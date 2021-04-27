@@ -151,7 +151,10 @@ impl PrintUnixDialog {
     #[doc(alias = "gtk_print_unix_dialog_set_embed_page_setup")]
     pub fn set_embed_page_setup(&self, embed: bool) {
         unsafe {
-            ffi::gtk_print_unix_dialog_set_embed_page_setup(self.to_glib_none().0, embed.to_glib());
+            ffi::gtk_print_unix_dialog_set_embed_page_setup(
+                self.to_glib_none().0,
+                embed.into_glib(),
+            );
         }
     }
 
@@ -160,7 +163,7 @@ impl PrintUnixDialog {
         unsafe {
             ffi::gtk_print_unix_dialog_set_has_selection(
                 self.to_glib_none().0,
-                has_selection.to_glib(),
+                has_selection.into_glib(),
             );
         }
     }
@@ -170,7 +173,7 @@ impl PrintUnixDialog {
         unsafe {
             ffi::gtk_print_unix_dialog_set_manual_capabilities(
                 self.to_glib_none().0,
-                capabilities.to_glib(),
+                capabilities.into_glib(),
             );
         }
     }
@@ -200,7 +203,7 @@ impl PrintUnixDialog {
         unsafe {
             ffi::gtk_print_unix_dialog_set_support_selection(
                 self.to_glib_none().0,
-                support_selection.to_glib(),
+                support_selection.into_glib(),
             );
         }
     }

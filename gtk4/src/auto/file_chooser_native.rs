@@ -41,7 +41,7 @@ impl FileChooserNative {
             from_glib_full(ffi::gtk_file_chooser_native_new(
                 title.to_glib_none().0,
                 parent.map(|p| p.as_ref()).to_glib_none().0,
-                action.to_glib(),
+                action.into_glib(),
                 accept_label.to_glib_none().0,
                 cancel_label.to_glib_none().0,
             ))

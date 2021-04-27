@@ -72,7 +72,10 @@ impl Viewport {
     #[doc(alias = "gtk_viewport_set_scroll_to_focus")]
     pub fn set_scroll_to_focus(&self, scroll_to_focus: bool) {
         unsafe {
-            ffi::gtk_viewport_set_scroll_to_focus(self.to_glib_none().0, scroll_to_focus.to_glib());
+            ffi::gtk_viewport_set_scroll_to_focus(
+                self.to_glib_none().0,
+                scroll_to_focus.into_glib(),
+            );
         }
     }
 

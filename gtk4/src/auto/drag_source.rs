@@ -59,7 +59,7 @@ impl DragSource {
     #[doc(alias = "gtk_drag_source_set_actions")]
     pub fn set_actions(&self, actions: gdk::DragAction) {
         unsafe {
-            ffi::gtk_drag_source_set_actions(self.to_glib_none().0, actions.to_glib());
+            ffi::gtk_drag_source_set_actions(self.to_glib_none().0, actions.into_glib());
         }
     }
 
@@ -130,7 +130,7 @@ impl DragSource {
                 &from_glib_borrow(drag),
                 from_glib(reason),
             )
-            .to_glib()
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

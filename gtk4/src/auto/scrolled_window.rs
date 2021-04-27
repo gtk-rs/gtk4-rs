@@ -199,7 +199,7 @@ impl ScrolledWindow {
     #[doc(alias = "gtk_scrolled_window_set_has_frame")]
     pub fn set_has_frame(&self, has_frame: bool) {
         unsafe {
-            ffi::gtk_scrolled_window_set_has_frame(self.to_glib_none().0, has_frame.to_glib());
+            ffi::gtk_scrolled_window_set_has_frame(self.to_glib_none().0, has_frame.into_glib());
         }
     }
 
@@ -208,7 +208,7 @@ impl ScrolledWindow {
         unsafe {
             ffi::gtk_scrolled_window_set_kinetic_scrolling(
                 self.to_glib_none().0,
-                kinetic_scrolling.to_glib(),
+                kinetic_scrolling.into_glib(),
             );
         }
     }
@@ -246,7 +246,7 @@ impl ScrolledWindow {
         unsafe {
             ffi::gtk_scrolled_window_set_overlay_scrolling(
                 self.to_glib_none().0,
-                overlay_scrolling.to_glib(),
+                overlay_scrolling.into_glib(),
             );
         }
     }
@@ -256,7 +256,7 @@ impl ScrolledWindow {
         unsafe {
             ffi::gtk_scrolled_window_set_placement(
                 self.to_glib_none().0,
-                window_placement.to_glib(),
+                window_placement.into_glib(),
             );
         }
     }
@@ -266,8 +266,8 @@ impl ScrolledWindow {
         unsafe {
             ffi::gtk_scrolled_window_set_policy(
                 self.to_glib_none().0,
-                hscrollbar_policy.to_glib(),
-                vscrollbar_policy.to_glib(),
+                hscrollbar_policy.into_glib(),
+                vscrollbar_policy.into_glib(),
             );
         }
     }
@@ -277,7 +277,7 @@ impl ScrolledWindow {
         unsafe {
             ffi::gtk_scrolled_window_set_propagate_natural_height(
                 self.to_glib_none().0,
-                propagate.to_glib(),
+                propagate.into_glib(),
             );
         }
     }
@@ -287,7 +287,7 @@ impl ScrolledWindow {
         unsafe {
             ffi::gtk_scrolled_window_set_propagate_natural_width(
                 self.to_glib_none().0,
-                propagate.to_glib(),
+                propagate.into_glib(),
             );
         }
     }
@@ -494,7 +494,7 @@ impl ScrolledWindow {
                 from_glib(scroll),
                 from_glib(horizontal),
             )
-            .to_glib()
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

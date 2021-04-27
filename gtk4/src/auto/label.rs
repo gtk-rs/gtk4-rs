@@ -203,7 +203,7 @@ impl Label {
     #[doc(alias = "gtk_label_set_ellipsize")]
     pub fn set_ellipsize(&self, mode: pango::EllipsizeMode) {
         unsafe {
-            ffi::gtk_label_set_ellipsize(self.to_glib_none().0, mode.to_glib());
+            ffi::gtk_label_set_ellipsize(self.to_glib_none().0, mode.into_glib());
         }
     }
 
@@ -220,7 +220,7 @@ impl Label {
     #[doc(alias = "gtk_label_set_justify")]
     pub fn set_justify(&self, jtype: Justification) {
         unsafe {
-            ffi::gtk_label_set_justify(self.to_glib_none().0, jtype.to_glib());
+            ffi::gtk_label_set_justify(self.to_glib_none().0, jtype.into_glib());
         }
     }
 
@@ -272,14 +272,17 @@ impl Label {
     #[doc(alias = "gtk_label_set_selectable")]
     pub fn set_selectable(&self, setting: bool) {
         unsafe {
-            ffi::gtk_label_set_selectable(self.to_glib_none().0, setting.to_glib());
+            ffi::gtk_label_set_selectable(self.to_glib_none().0, setting.into_glib());
         }
     }
 
     #[doc(alias = "gtk_label_set_single_line_mode")]
     pub fn set_single_line_mode(&self, single_line_mode: bool) {
         unsafe {
-            ffi::gtk_label_set_single_line_mode(self.to_glib_none().0, single_line_mode.to_glib());
+            ffi::gtk_label_set_single_line_mode(
+                self.to_glib_none().0,
+                single_line_mode.into_glib(),
+            );
         }
     }
 
@@ -300,14 +303,14 @@ impl Label {
     #[doc(alias = "gtk_label_set_use_markup")]
     pub fn set_use_markup(&self, setting: bool) {
         unsafe {
-            ffi::gtk_label_set_use_markup(self.to_glib_none().0, setting.to_glib());
+            ffi::gtk_label_set_use_markup(self.to_glib_none().0, setting.into_glib());
         }
     }
 
     #[doc(alias = "gtk_label_set_use_underline")]
     pub fn set_use_underline(&self, setting: bool) {
         unsafe {
-            ffi::gtk_label_set_use_underline(self.to_glib_none().0, setting.to_glib());
+            ffi::gtk_label_set_use_underline(self.to_glib_none().0, setting.into_glib());
         }
     }
 
@@ -321,14 +324,14 @@ impl Label {
     #[doc(alias = "gtk_label_set_wrap")]
     pub fn set_wrap(&self, wrap: bool) {
         unsafe {
-            ffi::gtk_label_set_wrap(self.to_glib_none().0, wrap.to_glib());
+            ffi::gtk_label_set_wrap(self.to_glib_none().0, wrap.into_glib());
         }
     }
 
     #[doc(alias = "gtk_label_set_wrap_mode")]
     pub fn set_wrap_mode(&self, wrap_mode: pango::WrapMode) {
         unsafe {
-            ffi::gtk_label_set_wrap_mode(self.to_glib_none().0, wrap_mode.to_glib());
+            ffi::gtk_label_set_wrap_mode(self.to_glib_none().0, wrap_mode.into_glib());
         }
     }
 
@@ -391,7 +394,7 @@ impl Label {
                 &from_glib_borrow(this),
                 &glib::GString::from_glib_borrow(uri),
             )
-            .to_glib()
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

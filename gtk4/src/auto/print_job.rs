@@ -152,7 +152,7 @@ impl PrintJob {
     #[doc(alias = "gtk_print_job_set_collate")]
     pub fn set_collate(&self, collate: bool) {
         unsafe {
-            ffi::gtk_print_job_set_collate(self.to_glib_none().0, collate.to_glib());
+            ffi::gtk_print_job_set_collate(self.to_glib_none().0, collate.into_glib());
         }
     }
 
@@ -166,7 +166,7 @@ impl PrintJob {
     #[doc(alias = "gtk_print_job_set_n_up_layout")]
     pub fn set_n_up_layout(&self, layout: NumberUpLayout) {
         unsafe {
-            ffi::gtk_print_job_set_n_up_layout(self.to_glib_none().0, layout.to_glib());
+            ffi::gtk_print_job_set_n_up_layout(self.to_glib_none().0, layout.into_glib());
         }
     }
 
@@ -180,28 +180,28 @@ impl PrintJob {
     #[doc(alias = "gtk_print_job_set_page_set")]
     pub fn set_page_set(&self, page_set: PageSet) {
         unsafe {
-            ffi::gtk_print_job_set_page_set(self.to_glib_none().0, page_set.to_glib());
+            ffi::gtk_print_job_set_page_set(self.to_glib_none().0, page_set.into_glib());
         }
     }
 
     #[doc(alias = "gtk_print_job_set_pages")]
     pub fn set_pages(&self, pages: PrintPages) {
         unsafe {
-            ffi::gtk_print_job_set_pages(self.to_glib_none().0, pages.to_glib());
+            ffi::gtk_print_job_set_pages(self.to_glib_none().0, pages.into_glib());
         }
     }
 
     #[doc(alias = "gtk_print_job_set_reverse")]
     pub fn set_reverse(&self, reverse: bool) {
         unsafe {
-            ffi::gtk_print_job_set_reverse(self.to_glib_none().0, reverse.to_glib());
+            ffi::gtk_print_job_set_reverse(self.to_glib_none().0, reverse.into_glib());
         }
     }
 
     #[doc(alias = "gtk_print_job_set_rotate")]
     pub fn set_rotate(&self, rotate: bool) {
         unsafe {
-            ffi::gtk_print_job_set_rotate(self.to_glib_none().0, rotate.to_glib());
+            ffi::gtk_print_job_set_rotate(self.to_glib_none().0, rotate.into_glib());
         }
     }
 
@@ -250,7 +250,7 @@ impl PrintJob {
         unsafe {
             ffi::gtk_print_job_set_track_print_status(
                 self.to_glib_none().0,
-                track_status.to_glib(),
+                track_status.into_glib(),
             );
         }
     }

@@ -105,7 +105,7 @@ impl Video {
     #[doc(alias = "gtk_video_set_autoplay")]
     pub fn set_autoplay(&self, autoplay: bool) {
         unsafe {
-            ffi::gtk_video_set_autoplay(self.to_glib_none().0, autoplay.to_glib());
+            ffi::gtk_video_set_autoplay(self.to_glib_none().0, autoplay.into_glib());
         }
     }
 
@@ -129,7 +129,7 @@ impl Video {
     #[doc(alias = "gtk_video_set_loop")]
     pub fn set_loop(&self, loop_: bool) {
         unsafe {
-            ffi::gtk_video_set_loop(self.to_glib_none().0, loop_.to_glib());
+            ffi::gtk_video_set_loop(self.to_glib_none().0, loop_.into_glib());
         }
     }
 

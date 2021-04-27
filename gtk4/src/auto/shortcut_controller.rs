@@ -89,7 +89,7 @@ impl ShortcutController {
         unsafe {
             ffi::gtk_shortcut_controller_set_mnemonics_modifiers(
                 self.to_glib_none().0,
-                modifiers.to_glib(),
+                modifiers.into_glib(),
             );
         }
     }
@@ -97,7 +97,7 @@ impl ShortcutController {
     #[doc(alias = "gtk_shortcut_controller_set_scope")]
     pub fn set_scope(&self, scope: ShortcutScope) {
         unsafe {
-            ffi::gtk_shortcut_controller_set_scope(self.to_glib_none().0, scope.to_glib());
+            ffi::gtk_shortcut_controller_set_scope(self.to_glib_none().0, scope.into_glib());
         }
     }
 

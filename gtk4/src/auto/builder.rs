@@ -148,7 +148,7 @@ impl Builder {
             let ret = ffi::gtk_builder_create_closure(
                 self.to_glib_none().0,
                 function_name.to_glib_none().0,
-                flags.to_glib(),
+                flags.into_glib(),
                 object.map(|p| p.as_ref()).to_glib_none().0,
                 &mut error,
             );
@@ -184,7 +184,7 @@ impl Builder {
             let _ = ffi::gtk_builder_extend_with_template(
                 self.to_glib_none().0,
                 object.as_ref().to_glib_none().0,
-                template_type.to_glib(),
+                template_type.into_glib(),
                 buffer.to_glib_none().0,
                 length,
                 &mut error,
@@ -273,7 +273,7 @@ impl Builder {
             let mut error = ptr::null_mut();
             let _ = ffi::gtk_builder_value_from_string_type(
                 self.to_glib_none().0,
-                type_.to_glib(),
+                type_.into_glib(),
                 string.to_glib_none().0,
                 value.to_glib_none_mut().0,
                 &mut error,

@@ -31,10 +31,10 @@ impl fmt::Display for AnchorHints {
 }
 
 #[doc(hidden)]
-impl ToGlib for AnchorHints {
+impl IntoGlib for AnchorHints {
     type GlibType = ffi::GdkAnchorHints;
 
-    fn to_glib(&self) -> ffi::GdkAnchorHints {
+    fn into_glib(self) -> ffi::GdkAnchorHints {
         self.bits()
     }
 }
@@ -70,7 +70,7 @@ impl ToValue for AnchorHints {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<AnchorHints>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -103,10 +103,10 @@ impl fmt::Display for AxisFlags {
 }
 
 #[doc(hidden)]
-impl ToGlib for AxisFlags {
+impl IntoGlib for AxisFlags {
     type GlibType = ffi::GdkAxisFlags;
 
-    fn to_glib(&self) -> ffi::GdkAxisFlags {
+    fn into_glib(self) -> ffi::GdkAxisFlags {
         self.bits()
     }
 }
@@ -142,7 +142,7 @@ impl ToValue for AxisFlags {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<AxisFlags>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -165,7 +165,7 @@ impl DragAction {
     #[doc(alias = "gdk_drag_action_is_unique")]
     pub fn is_unique(self) -> bool {
         assert_initialized_main_thread!();
-        unsafe { from_glib(ffi::gdk_drag_action_is_unique(self.to_glib())) }
+        unsafe { from_glib(ffi::gdk_drag_action_is_unique(self.into_glib())) }
     }
 }
 
@@ -176,10 +176,10 @@ impl fmt::Display for DragAction {
 }
 
 #[doc(hidden)]
-impl ToGlib for DragAction {
+impl IntoGlib for DragAction {
     type GlibType = ffi::GdkDragAction;
 
-    fn to_glib(&self) -> ffi::GdkDragAction {
+    fn into_glib(self) -> ffi::GdkDragAction {
         self.bits()
     }
 }
@@ -215,7 +215,7 @@ impl ToValue for DragAction {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<DragAction>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -245,10 +245,10 @@ impl fmt::Display for FrameClockPhase {
 }
 
 #[doc(hidden)]
-impl ToGlib for FrameClockPhase {
+impl IntoGlib for FrameClockPhase {
     type GlibType = ffi::GdkFrameClockPhase;
 
-    fn to_glib(&self) -> ffi::GdkFrameClockPhase {
+    fn into_glib(self) -> ffi::GdkFrameClockPhase {
         self.bits()
     }
 }
@@ -284,7 +284,7 @@ impl ToValue for FrameClockPhase {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<FrameClockPhase>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -318,10 +318,10 @@ impl fmt::Display for ModifierType {
 }
 
 #[doc(hidden)]
-impl ToGlib for ModifierType {
+impl IntoGlib for ModifierType {
     type GlibType = ffi::GdkModifierType;
 
-    fn to_glib(&self) -> ffi::GdkModifierType {
+    fn into_glib(self) -> ffi::GdkModifierType {
         self.bits()
     }
 }
@@ -357,7 +357,7 @@ impl ToValue for ModifierType {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<ModifierType>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -381,10 +381,10 @@ impl fmt::Display for PaintableFlags {
 }
 
 #[doc(hidden)]
-impl ToGlib for PaintableFlags {
+impl IntoGlib for PaintableFlags {
     type GlibType = ffi::GdkPaintableFlags;
 
-    fn to_glib(&self) -> ffi::GdkPaintableFlags {
+    fn into_glib(self) -> ffi::GdkPaintableFlags {
         self.bits()
     }
 }
@@ -420,7 +420,7 @@ impl ToValue for PaintableFlags {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<PaintableFlags>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -450,10 +450,10 @@ impl fmt::Display for SeatCapabilities {
 }
 
 #[doc(hidden)]
-impl ToGlib for SeatCapabilities {
+impl IntoGlib for SeatCapabilities {
     type GlibType = ffi::GdkSeatCapabilities;
 
-    fn to_glib(&self) -> ffi::GdkSeatCapabilities {
+    fn into_glib(self) -> ffi::GdkSeatCapabilities {
         self.bits()
     }
 }
@@ -489,7 +489,7 @@ impl ToValue for SeatCapabilities {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<SeatCapabilities>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -527,10 +527,10 @@ impl fmt::Display for ToplevelState {
 }
 
 #[doc(hidden)]
-impl ToGlib for ToplevelState {
+impl IntoGlib for ToplevelState {
     type GlibType = ffi::GdkToplevelState;
 
-    fn to_glib(&self) -> ffi::GdkToplevelState {
+    fn into_glib(self) -> ffi::GdkToplevelState {
         self.bits()
     }
 }
@@ -566,7 +566,7 @@ impl ToValue for ToplevelState {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<ToplevelState>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }

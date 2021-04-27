@@ -96,7 +96,7 @@ impl ListView {
         unsafe {
             ffi::gtk_list_view_set_enable_rubberband(
                 self.to_glib_none().0,
-                enable_rubberband.to_glib(),
+                enable_rubberband.into_glib(),
             );
         }
     }
@@ -126,7 +126,7 @@ impl ListView {
         unsafe {
             ffi::gtk_list_view_set_show_separators(
                 self.to_glib_none().0,
-                show_separators.to_glib(),
+                show_separators.into_glib(),
             );
         }
     }
@@ -136,7 +136,7 @@ impl ListView {
         unsafe {
             ffi::gtk_list_view_set_single_click_activate(
                 self.to_glib_none().0,
-                single_click_activate.to_glib(),
+                single_click_activate.into_glib(),
             );
         }
     }

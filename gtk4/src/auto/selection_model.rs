@@ -100,7 +100,7 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
             from_glib(ffi::gtk_selection_model_select_item(
                 self.as_ref().to_glib_none().0,
                 position,
-                unselect_rest.to_glib(),
+                unselect_rest.into_glib(),
             ))
         }
     }
@@ -111,7 +111,7 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
                 self.as_ref().to_glib_none().0,
                 position,
                 n_items,
-                unselect_rest.to_glib(),
+                unselect_rest.into_glib(),
             ))
         }
     }

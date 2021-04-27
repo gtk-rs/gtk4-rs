@@ -92,7 +92,7 @@ impl IconView {
             ffi::gtk_icon_view_enable_model_drag_dest(
                 self.to_glib_none().0,
                 formats.to_glib_none().0,
-                actions.to_glib(),
+                actions.into_glib(),
             );
         }
     }
@@ -107,9 +107,9 @@ impl IconView {
         unsafe {
             ffi::gtk_icon_view_enable_model_drag_source(
                 self.to_glib_none().0,
-                start_button_mask.to_glib(),
+                start_button_mask.into_glib(),
                 formats.to_glib_none().0,
-                actions.to_glib(),
+                actions.into_glib(),
             );
         }
     }
@@ -357,7 +357,7 @@ impl IconView {
                 self.to_glib_none().0,
                 x,
                 y,
-                keyboard_tip.to_glib(),
+                keyboard_tip.into_glib(),
                 &mut model,
                 &mut path,
                 iter.to_glib_none_mut().0,
@@ -414,7 +414,7 @@ impl IconView {
             ffi::gtk_icon_view_scroll_to_path(
                 self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
-                use_align.to_glib(),
+                use_align.into_glib(),
                 row_align,
                 col_align,
             );
@@ -467,7 +467,7 @@ impl IconView {
         unsafe {
             ffi::gtk_icon_view_set_activate_on_single_click(
                 self.to_glib_none().0,
-                single.to_glib(),
+                single.into_glib(),
             );
         }
     }
@@ -498,7 +498,7 @@ impl IconView {
                 self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 cell.map(|p| p.as_ref()).to_glib_none().0,
-                start_editing.to_glib(),
+                start_editing.into_glib(),
             );
         }
     }
@@ -509,7 +509,7 @@ impl IconView {
             ffi::gtk_icon_view_set_drag_dest_item(
                 self.to_glib_none().0,
                 mut_override(path.to_glib_none().0),
-                pos.to_glib(),
+                pos.into_glib(),
             );
         }
     }
@@ -517,7 +517,7 @@ impl IconView {
     #[doc(alias = "gtk_icon_view_set_item_orientation")]
     pub fn set_item_orientation(&self, orientation: Orientation) {
         unsafe {
-            ffi::gtk_icon_view_set_item_orientation(self.to_glib_none().0, orientation.to_glib());
+            ffi::gtk_icon_view_set_item_orientation(self.to_glib_none().0, orientation.into_glib());
         }
     }
 
@@ -569,7 +569,7 @@ impl IconView {
     #[doc(alias = "gtk_icon_view_set_reorderable")]
     pub fn set_reorderable(&self, reorderable: bool) {
         unsafe {
-            ffi::gtk_icon_view_set_reorderable(self.to_glib_none().0, reorderable.to_glib());
+            ffi::gtk_icon_view_set_reorderable(self.to_glib_none().0, reorderable.into_glib());
         }
     }
 
@@ -583,7 +583,7 @@ impl IconView {
     #[doc(alias = "gtk_icon_view_set_selection_mode")]
     pub fn set_selection_mode(&self, mode: SelectionMode) {
         unsafe {
-            ffi::gtk_icon_view_set_selection_mode(self.to_glib_none().0, mode.to_glib());
+            ffi::gtk_icon_view_set_selection_mode(self.to_glib_none().0, mode.into_glib());
         }
     }
 
@@ -691,7 +691,7 @@ impl IconView {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this)).to_glib()
+            f(&from_glib_borrow(this)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -766,7 +766,7 @@ impl IconView {
                 from_glib(extend),
                 from_glib(modify),
             )
-            .to_glib()
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

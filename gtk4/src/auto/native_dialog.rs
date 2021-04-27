@@ -119,7 +119,7 @@ impl<O: IsA<NativeDialog>> NativeDialogExt for O {
 
     fn set_modal(&self, modal: bool) {
         unsafe {
-            ffi::gtk_native_dialog_set_modal(self.as_ref().to_glib_none().0, modal.to_glib());
+            ffi::gtk_native_dialog_set_modal(self.as_ref().to_glib_none().0, modal.into_glib());
         }
     }
 

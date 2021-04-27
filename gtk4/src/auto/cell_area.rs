@@ -275,8 +275,8 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
                 context.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
                 cell_area.to_glib_none().0,
-                flags.to_glib(),
-                edit_only.to_glib(),
+                flags.into_glib(),
+                edit_only.into_glib(),
             ))
         }
     }
@@ -320,8 +320,8 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
                 self.as_ref().to_glib_none().0,
                 tree_model.as_ref().to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
-                is_expander.to_glib(),
-                is_expanded.to_glib(),
+                is_expander.into_glib(),
+                is_expanded.into_glib(),
             );
         }
     }
@@ -378,7 +378,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         unsafe {
             from_glib(ffi::gtk_cell_area_focus(
                 self.as_ref().to_glib_none().0,
-                direction.to_glib(),
+                direction.into_glib(),
             ))
         }
     }
@@ -392,7 +392,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             let renderer = from_glib_borrow(renderer);
             let callback: *mut P = data as *const _ as usize as *mut P;
             let res = (*callback)(&renderer);
-            res.to_glib()
+            res.into_glib()
         }
         let callback = Some(callback_func::<P> as _);
         let super_callback0: &P = &callback_data;
@@ -433,7 +433,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             let cell_background = from_glib_borrow(cell_background);
             let callback: *mut R = data as *const _ as usize as *mut R;
             let res = (*callback)(&renderer, &cell_area, &cell_background);
-            res.to_glib()
+            res.into_glib()
         }
         let callback = Some(callback_func::<P, Q, R> as _);
         let super_callback0: &R = &callback_data;
@@ -724,7 +724,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             ffi::gtk_cell_area_request_renderer(
                 self.as_ref().to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
-                orientation.to_glib(),
+                orientation.into_glib(),
                 widget.as_ref().to_glib_none().0,
                 for_size,
                 minimum_size.as_mut_ptr(),
@@ -763,15 +763,15 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
                 snapshot.to_glib_none().0,
                 background_area.to_glib_none().0,
                 cell_area.to_glib_none().0,
-                flags.to_glib(),
-                paint_focus.to_glib(),
+                flags.into_glib(),
+                paint_focus.into_glib(),
             );
         }
     }
 
     fn stop_editing(&self, canceled: bool) {
         unsafe {
-            ffi::gtk_cell_area_stop_editing(self.as_ref().to_glib_none().0, canceled.to_glib());
+            ffi::gtk_cell_area_stop_editing(self.as_ref().to_glib_none().0, canceled.into_glib());
         }
     }
 
