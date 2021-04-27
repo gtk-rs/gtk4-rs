@@ -25,3 +25,12 @@ pub fn show_about_dialog<P: IsA<Window>>(parent: Option<&P>, properties: &[(&str
     about_dialog.set_transient_for(parent);
     about_dialog.show();
 }
+
+#[doc(alias = "gtk_test_list_all_types")]
+pub fn test_list_all_types() -> Vec<glib::Type> {
+    unsafe {
+        let mut n_types = std::mem::MaybeUninit::uninit();
+        let types = ffi::gtk_test_list_all_types(n_types.as_mut_ptr());
+        FromGlibContainer::from_glib_container_num(types, n_types.assume_init() as usize)
+    }
+}

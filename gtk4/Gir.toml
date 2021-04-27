@@ -441,6 +441,9 @@ trust_return_value_nullability = false
     [[object.function]]
     name = "enumerate_printers"
     cfg_condition = "target_os = \"linux\""
+    [[object.function]]
+    name = "test_list_all_types"
+    manual = true
 
 
 [[object]]

@@ -706,11 +706,6 @@ pub fn test_accessible_has_state<P: IsA<Accessible>>(
 //    unsafe { TODO: call ffi:gtk_test_init() }
 //}
 
-//#[doc(alias = "gtk_test_list_all_types")]
-//pub fn test_list_all_types() -> /*Unimplemented*/CArray TypeId { ns_id: 0, id: 30 } {
-//    unsafe { TODO: call ffi:gtk_test_list_all_types() }
-//}
-
 #[doc(alias = "gtk_test_register_all_types")]
 pub fn test_register_all_types() {
     assert_initialized_main_thread!();
