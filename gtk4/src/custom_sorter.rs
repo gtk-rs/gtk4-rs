@@ -66,5 +66,5 @@ unsafe extern "C" fn trampoline<F: Fn(&glib::Object, &glib::Object) -> Ordering 
         &from_glib_borrow(a as *mut glib::gobject_ffi::GObject),
         &from_glib_borrow(b as *mut glib::gobject_ffi::GObject),
     )
-    .to_glib()
+    .into_glib()
 }

@@ -142,7 +142,7 @@ impl<T: TextViewImpl> TextViewImplExt for T {
             if let Some(f) = (*parent_class).delete_from_cursor {
                 f(
                     text_view.unsafe_cast_ref::<TextView>().to_glib_none().0,
-                    type_.to_glib(),
+                    type_.into_glib(),
                     count,
                 )
             }
@@ -163,7 +163,7 @@ impl<T: TextViewImpl> TextViewImplExt for T {
             if let Some(f) = (*parent_class).extend_selection {
                 glib::signal::Inhibit(from_glib(f(
                     text_view.unsafe_cast_ref::<TextView>().to_glib_none().0,
-                    granularity.to_glib(),
+                    granularity.into_glib(),
                     location.to_glib_none().0,
                     start.to_glib_none_mut().0,
                     end.to_glib_none_mut().0,
@@ -210,9 +210,9 @@ impl<T: TextViewImpl> TextViewImplExt for T {
             if let Some(f) = (*parent_class).move_cursor {
                 f(
                     text_view.unsafe_cast_ref::<TextView>().to_glib_none().0,
-                    step.to_glib(),
+                    step.into_glib(),
                     count,
-                    extend_selection.to_glib(),
+                    extend_selection.into_glib(),
                 )
             }
         }
@@ -250,7 +250,7 @@ impl<T: TextViewImpl> TextViewImplExt for T {
             if let Some(f) = (*parent_class).snapshot_layer {
                 f(
                     text_view.unsafe_cast_ref::<TextView>().to_glib_none().0,
-                    layer.to_glib(),
+                    layer.into_glib(),
                     snapshot.to_glib_none().0,
                 )
             }
@@ -352,7 +352,7 @@ unsafe extern "C" fn text_view_extend_selection<T: TextViewImpl>(
     *start = *start_copy.to_glib_none().0;
     *end = *end_copy.to_glib_none().0;
 
-    result.to_glib()
+    result.into_glib()
 }
 
 unsafe extern "C" fn text_view_insert_at_cursor<T: TextViewImpl>(

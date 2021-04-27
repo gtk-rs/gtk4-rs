@@ -116,7 +116,7 @@ unsafe extern "C" fn tree_drag_source_row_draggable<T: TreeDragSourceImpl>(
         from_glib_borrow::<_, TreeDragSource>(tree_drag_source).unsafe_cast_ref(),
         &path,
     )
-    .to_glib()
+    .into_glib()
 }
 
 unsafe extern "C" fn tree_drag_source_drag_data_get<T: TreeDragSourceImpl>(
@@ -145,5 +145,5 @@ unsafe extern "C" fn tree_drag_source_drag_data_delete<T: TreeDragSourceImpl>(
         from_glib_borrow::<_, TreeDragSource>(tree_drag_source).unsafe_cast_ref(),
         &path,
     )
-    .to_glib()
+    .into_glib()
 }

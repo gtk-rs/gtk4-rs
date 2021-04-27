@@ -9,7 +9,7 @@ impl GestureStylus {
     pub fn axes(&self, axes: Vec<AxisUse>) -> Option<Vec<f64>> {
         let mut values = std::ptr::null_mut();
         unsafe {
-            let mut axes1: Vec<gdk::ffi::GdkAxisUse> = axes.iter().map(|a| a.to_glib()).collect();
+            let mut axes1: Vec<gdk::ffi::GdkAxisUse> = axes.iter().map(|a| a.into_glib()).collect();
             axes1.push(gdk::ffi::GDK_AXIS_IGNORE);
             if from_glib(ffi::gtk_gesture_stylus_get_axes(
                 self.to_glib_none().0,

@@ -164,9 +164,9 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
 
             from_glib(f(
                 tree_view.unsafe_cast_ref::<TreeView>().to_glib_none().0,
-                logical.to_glib(),
-                expand.to_glib(),
-                open_all.to_glib(),
+                logical.into_glib(),
+                expand.into_glib(),
+                open_all.into_glib(),
             ))
         }
     }
@@ -188,10 +188,10 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
 
             from_glib(f(
                 tree_view.unsafe_cast_ref::<TreeView>().to_glib_none().0,
-                step.to_glib(),
+                step.into_glib(),
                 count,
-                extend.to_glib(),
-                modify.to_glib(),
+                extend.into_glib(),
+                modify.into_glib(),
             ))
         }
     }
@@ -277,7 +277,7 @@ impl<T: TreeViewImpl> TreeViewImplExt for T {
 
             from_glib(f(
                 tree_view.unsafe_cast_ref::<TreeView>().to_glib_none().0,
-                start_editing.to_glib(),
+                start_editing.into_glib(),
             ))
         }
     }
@@ -420,7 +420,7 @@ unsafe extern "C" fn tree_view_expand_collapse_cursor_row<T: TreeViewImpl>(
         from_glib(expand),
         from_glib(open_all),
     )
-    .to_glib()
+    .into_glib()
 }
 
 unsafe extern "C" fn tree_view_move_cursor<T: TreeViewImpl>(
@@ -441,7 +441,7 @@ unsafe extern "C" fn tree_view_move_cursor<T: TreeViewImpl>(
         from_glib(extend),
         from_glib(modify),
     )
-    .to_glib()
+    .into_glib()
 }
 
 unsafe extern "C" fn tree_view_row_activated<T: TreeViewImpl>(
@@ -493,7 +493,7 @@ unsafe extern "C" fn tree_view_select_all<T: TreeViewImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<TreeView> = from_glib_borrow(ptr);
 
-    imp.select_all(wrap.unsafe_cast_ref()).to_glib()
+    imp.select_all(wrap.unsafe_cast_ref()).into_glib()
 }
 
 unsafe extern "C" fn tree_view_select_cursor_parent<T: TreeViewImpl>(
@@ -503,7 +503,7 @@ unsafe extern "C" fn tree_view_select_cursor_parent<T: TreeViewImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<TreeView> = from_glib_borrow(ptr);
 
-    imp.select_cursor_parent(wrap.unsafe_cast_ref()).to_glib()
+    imp.select_cursor_parent(wrap.unsafe_cast_ref()).into_glib()
 }
 
 unsafe extern "C" fn tree_view_select_cursor_row<T: TreeViewImpl>(
@@ -515,7 +515,7 @@ unsafe extern "C" fn tree_view_select_cursor_row<T: TreeViewImpl>(
     let wrap: Borrowed<TreeView> = from_glib_borrow(ptr);
 
     imp.select_cursor_row(wrap.unsafe_cast_ref(), from_glib(start_editing))
-        .to_glib()
+        .into_glib()
 }
 
 unsafe extern "C" fn tree_view_start_interactive_search<T: TreeViewImpl>(
@@ -526,7 +526,7 @@ unsafe extern "C" fn tree_view_start_interactive_search<T: TreeViewImpl>(
     let wrap: Borrowed<TreeView> = from_glib_borrow(ptr);
 
     imp.start_interactive_search(wrap.unsafe_cast_ref())
-        .to_glib()
+        .into_glib()
 }
 
 unsafe extern "C" fn tree_view_test_collapse_row<T: TreeViewImpl>(
@@ -541,7 +541,7 @@ unsafe extern "C" fn tree_view_test_collapse_row<T: TreeViewImpl>(
     let iter: Borrowed<TreeIter> = from_glib_borrow(iterptr);
 
     imp.test_collapse_row(wrap.unsafe_cast_ref(), &iter, &path)
-        .to_glib()
+        .into_glib()
 }
 
 unsafe extern "C" fn tree_view_test_expand_row<T: TreeViewImpl>(
@@ -556,7 +556,7 @@ unsafe extern "C" fn tree_view_test_expand_row<T: TreeViewImpl>(
     let iter: Borrowed<TreeIter> = from_glib_borrow(iterptr);
 
     imp.test_expand_row(wrap.unsafe_cast_ref(), &iter, &path)
-        .to_glib()
+        .into_glib()
 }
 
 unsafe extern "C" fn tree_view_toggle_cursor_row<T: TreeViewImpl>(
@@ -566,7 +566,7 @@ unsafe extern "C" fn tree_view_toggle_cursor_row<T: TreeViewImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<TreeView> = from_glib_borrow(ptr);
 
-    imp.toggle_cursor_row(wrap.unsafe_cast_ref()).to_glib()
+    imp.toggle_cursor_row(wrap.unsafe_cast_ref()).into_glib()
 }
 
 unsafe extern "C" fn tree_view_unselect_all<T: TreeViewImpl>(
@@ -576,5 +576,5 @@ unsafe extern "C" fn tree_view_unselect_all<T: TreeViewImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<TreeView> = from_glib_borrow(ptr);
 
-    imp.unselect_all(wrap.unsafe_cast_ref()).to_glib()
+    imp.unselect_all(wrap.unsafe_cast_ref()).into_glib()
 }

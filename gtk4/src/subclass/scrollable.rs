@@ -57,9 +57,9 @@ unsafe extern "C" fn scrollable_get_border<T: ScrollableImpl>(
         imp.border(from_glib_borrow::<_, Scrollable>(scrollable).unsafe_cast_ref())
     {
         *borderptr = *border.to_glib_full();
-        true.to_glib()
+        true.into_glib()
     } else {
         *borderptr = *std::ptr::null();
-        false.to_glib()
+        false.into_glib()
     }
 }

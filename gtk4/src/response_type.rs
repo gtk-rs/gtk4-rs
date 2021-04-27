@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::translate::{from_glib, FromGlib, ToGlib, ToGlibPtr, ToGlibPtrMut};
+use glib::translate::{from_glib, FromGlib, IntoGlib, ToGlibPtr, ToGlibPtrMut};
 use glib::value::{FromValue, ToValue, ValueType};
 use glib::{StaticType, Type, Value};
 use std::fmt;
@@ -35,11 +35,11 @@ pub enum ResponseType {
 }
 
 #[doc(hidden)]
-impl ToGlib for ResponseType {
+impl IntoGlib for ResponseType {
     type GlibType = ffi::GtkResponseType;
 
-    fn to_glib(&self) -> ffi::GtkResponseType {
-        match *self {
+    fn into_glib(self) -> ffi::GtkResponseType {
+        match self {
             ResponseType::None => ffi::GTK_RESPONSE_NONE,
             ResponseType::Reject => ffi::GTK_RESPONSE_REJECT,
             ResponseType::Accept => ffi::GTK_RESPONSE_ACCEPT,
@@ -127,7 +127,7 @@ unsafe impl<'a> FromValue<'a> for ResponseType {
 impl ToValue for ResponseType {
     fn to_value(&self) -> Value {
         let mut value = glib::Value::for_value_type::<ResponseType>();
-        unsafe { glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.to_glib()) }
+        unsafe { glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib()) }
         value
     }
 

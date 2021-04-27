@@ -80,11 +80,11 @@ impl fmt::Display for BlendMode {
 }
 
 #[doc(hidden)]
-impl ToGlib for BlendMode {
+impl IntoGlib for BlendMode {
     type GlibType = ffi::GskBlendMode;
 
-    fn to_glib(&self) -> ffi::GskBlendMode {
-        match *self {
+    fn into_glib(self) -> ffi::GskBlendMode {
+        match self {
             BlendMode::Default => ffi::GSK_BLEND_MODE_DEFAULT,
             BlendMode::Multiply => ffi::GSK_BLEND_MODE_MULTIPLY,
             BlendMode::Screen => ffi::GSK_BLEND_MODE_SCREEN,
@@ -155,7 +155,7 @@ impl ToValue for BlendMode {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<BlendMode>();
         unsafe {
-            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -198,11 +198,11 @@ impl fmt::Display for Corner {
 }
 
 #[doc(hidden)]
-impl ToGlib for Corner {
+impl IntoGlib for Corner {
     type GlibType = ffi::GskCorner;
 
-    fn to_glib(&self) -> ffi::GskCorner {
-        match *self {
+    fn into_glib(self) -> ffi::GskCorner {
+        match self {
             Corner::TopLeft => ffi::GSK_CORNER_TOP_LEFT,
             Corner::TopRight => ffi::GSK_CORNER_TOP_RIGHT,
             Corner::BottomRight => ffi::GSK_CORNER_BOTTOM_RIGHT,
@@ -249,7 +249,7 @@ impl ToValue for Corner {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Corner>();
         unsafe {
-            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -304,11 +304,11 @@ impl fmt::Display for GLUniformType {
 }
 
 #[doc(hidden)]
-impl ToGlib for GLUniformType {
+impl IntoGlib for GLUniformType {
     type GlibType = ffi::GskGLUniformType;
 
-    fn to_glib(&self) -> ffi::GskGLUniformType {
-        match *self {
+    fn into_glib(self) -> ffi::GskGLUniformType {
+        match self {
             GLUniformType::None => ffi::GSK_GL_UNIFORM_TYPE_NONE,
             GLUniformType::Float => ffi::GSK_GL_UNIFORM_TYPE_FLOAT,
             GLUniformType::Int => ffi::GSK_GL_UNIFORM_TYPE_INT,
@@ -363,7 +363,7 @@ impl ToValue for GLUniformType {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<GLUniformType>();
         unsafe {
-            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -472,11 +472,11 @@ impl fmt::Display for RenderNodeType {
 }
 
 #[doc(hidden)]
-impl ToGlib for RenderNodeType {
+impl IntoGlib for RenderNodeType {
     type GlibType = ffi::GskRenderNodeType;
 
-    fn to_glib(&self) -> ffi::GskRenderNodeType {
-        match *self {
+    fn into_glib(self) -> ffi::GskRenderNodeType {
+        match self {
             RenderNodeType::NotARenderNode => ffi::GSK_NOT_A_RENDER_NODE,
             RenderNodeType::ContainerNode => ffi::GSK_CONTAINER_NODE,
             RenderNodeType::CairoNode => ffi::GSK_CAIRO_NODE,
@@ -567,7 +567,7 @@ impl ToValue for RenderNodeType {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<RenderNodeType>();
         unsafe {
-            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -607,11 +607,11 @@ impl fmt::Display for ScalingFilter {
 }
 
 #[doc(hidden)]
-impl ToGlib for ScalingFilter {
+impl IntoGlib for ScalingFilter {
     type GlibType = ffi::GskScalingFilter;
 
-    fn to_glib(&self) -> ffi::GskScalingFilter {
-        match *self {
+    fn into_glib(self) -> ffi::GskScalingFilter {
+        match self {
             ScalingFilter::Linear => ffi::GSK_SCALING_FILTER_LINEAR,
             ScalingFilter::Nearest => ffi::GSK_SCALING_FILTER_NEAREST,
             ScalingFilter::Trilinear => ffi::GSK_SCALING_FILTER_TRILINEAR,
@@ -656,7 +656,7 @@ impl ToValue for ScalingFilter {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<ScalingFilter>();
         unsafe {
-            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -696,11 +696,11 @@ impl fmt::Display for SerializationError {
 }
 
 #[doc(hidden)]
-impl ToGlib for SerializationError {
+impl IntoGlib for SerializationError {
     type GlibType = ffi::GskSerializationError;
 
-    fn to_glib(&self) -> ffi::GskSerializationError {
-        match *self {
+    fn into_glib(self) -> ffi::GskSerializationError {
+        match self {
             SerializationError::UnsupportedFormat => ffi::GSK_SERIALIZATION_UNSUPPORTED_FORMAT,
             SerializationError::UnsupportedVersion => ffi::GSK_SERIALIZATION_UNSUPPORTED_VERSION,
             SerializationError::InvalidData => ffi::GSK_SERIALIZATION_INVALID_DATA,
@@ -730,7 +730,7 @@ impl ErrorDomain for SerializationError {
     }
 
     fn code(self) -> i32 {
-        self.to_glib()
+        self.into_glib()
     }
 
     fn from(code: i32) -> Option<Self> {
@@ -767,7 +767,7 @@ impl ToValue for SerializationError {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<SerializationError>();
         unsafe {
-            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -819,11 +819,11 @@ impl fmt::Display for TransformCategory {
 }
 
 #[doc(hidden)]
-impl ToGlib for TransformCategory {
+impl IntoGlib for TransformCategory {
     type GlibType = ffi::GskTransformCategory;
 
-    fn to_glib(&self) -> ffi::GskTransformCategory {
-        match *self {
+    fn into_glib(self) -> ffi::GskTransformCategory {
+        match self {
             TransformCategory::Unknown => ffi::GSK_TRANSFORM_CATEGORY_UNKNOWN,
             TransformCategory::Any => ffi::GSK_TRANSFORM_CATEGORY_ANY,
             TransformCategory::_3d => ffi::GSK_TRANSFORM_CATEGORY_3D,
@@ -876,7 +876,7 @@ impl ToValue for TransformCategory {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<TransformCategory>();
         unsafe {
-            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }

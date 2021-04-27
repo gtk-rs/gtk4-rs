@@ -251,8 +251,8 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkWidgetClass;
             let widget = widget.unsafe_cast_ref::<Widget>();
             if let Some(f) = (*parent_class).compute_expand {
-                let mut hexpand_glib = hexpand.to_glib();
-                let mut vexpand_glib = vexpand.to_glib();
+                let mut hexpand_glib = hexpand.into_glib();
+                let mut vexpand_glib = vexpand.into_glib();
                 f(
                     widget.to_glib_none().0,
                     &mut hexpand_glib,
@@ -283,7 +283,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             if let Some(f) = (*parent_class).direction_changed {
                 f(
                     widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
-                    previous_direction.to_glib(),
+                    previous_direction.into_glib(),
                 )
             }
         }
@@ -296,7 +296,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             if let Some(f) = (*parent_class).focus {
                 from_glib(f(
                     widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
-                    direction_type.to_glib(),
+                    direction_type.into_glib(),
                 ))
             } else {
                 false
@@ -344,7 +344,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             if let Some(f) = (*parent_class).keynav_failed {
                 from_glib(f(
                     widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
-                    direction_type.to_glib(),
+                    direction_type.into_glib(),
                 ))
             } else {
                 false
@@ -382,7 +382,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             let mut nat_base = -1;
             f(
                 widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
-                orientation.to_glib(),
+                orientation.into_glib(),
                 for_size,
                 &mut min,
                 &mut nat,
@@ -400,7 +400,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             if let Some(f) = (*parent_class).mnemonic_activate {
                 from_glib(f(
                     widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
-                    group_cycling.to_glib(),
+                    group_cycling.into_glib(),
                 ))
             } else {
                 false
@@ -415,7 +415,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             if let Some(f) = (*parent_class).move_focus {
                 f(
                     widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
-                    direction_type.to_glib(),
+                    direction_type.into_glib(),
                 )
             }
         }
@@ -437,7 +437,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
                     widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
                     x,
                     y,
-                    keyboard_tooltip.to_glib(),
+                    keyboard_tooltip.into_glib(),
                     tooltip.to_glib_none().0,
                 ))
             } else {
@@ -524,7 +524,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             if let Some(f) = (*parent_class).state_flags_changed {
                 f(
                     widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
-                    state_flags.to_glib(),
+                    state_flags.into_glib(),
                 )
             }
         }
@@ -537,7 +537,7 @@ impl<T: WidgetImpl> WidgetImplExt for T {
             if let Some(f) = (*parent_class).system_setting_changed {
                 f(
                     widget.unsafe_cast_ref::<Widget>().to_glib_none().0,
-                    settings.to_glib(),
+                    settings.into_glib(),
                 )
             }
         }
@@ -640,8 +640,8 @@ unsafe extern "C" fn widget_compute_expand<T: WidgetImpl>(
 
     imp.compute_expand(wrap.unsafe_cast_ref(), &mut hexpand, &mut vexpand);
 
-    *hexpand_ptr = hexpand.to_glib();
-    *vexpand_ptr = vexpand.to_glib();
+    *hexpand_ptr = hexpand.into_glib();
+    *vexpand_ptr = vexpand.into_glib();
 }
 
 unsafe extern "C" fn widget_contains<T: WidgetImpl>(
@@ -653,7 +653,7 @@ unsafe extern "C" fn widget_contains<T: WidgetImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
-    imp.contains(wrap.unsafe_cast_ref(), x, y).to_glib()
+    imp.contains(wrap.unsafe_cast_ref(), x, y).into_glib()
 }
 
 unsafe extern "C" fn widget_direction_changed<T: WidgetImpl>(
@@ -677,7 +677,8 @@ unsafe extern "C" fn widget_focus<T: WidgetImpl>(
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
     let direction_type = from_glib(direction_type_ptr);
 
-    imp.focus(wrap.unsafe_cast_ref(), direction_type).to_glib()
+    imp.focus(wrap.unsafe_cast_ref(), direction_type)
+        .into_glib()
 }
 
 unsafe extern "C" fn widget_get_request_mode<T: WidgetImpl>(
@@ -687,7 +688,7 @@ unsafe extern "C" fn widget_get_request_mode<T: WidgetImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
-    imp.request_mode(wrap.unsafe_cast_ref()).to_glib()
+    imp.request_mode(wrap.unsafe_cast_ref()).into_glib()
 }
 
 unsafe extern "C" fn widget_grab_focus<T: WidgetImpl>(
@@ -697,7 +698,7 @@ unsafe extern "C" fn widget_grab_focus<T: WidgetImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<Widget> = from_glib_borrow(ptr);
 
-    imp.grab_focus(wrap.unsafe_cast_ref()).to_glib()
+    imp.grab_focus(wrap.unsafe_cast_ref()).into_glib()
 }
 
 unsafe extern "C" fn widget_hide<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
@@ -718,7 +719,7 @@ unsafe extern "C" fn widget_keynav_failed<T: WidgetImpl>(
     let direction_type = from_glib(direction_type_ptr);
 
     imp.keynav_failed(wrap.unsafe_cast_ref(), direction_type)
-        .to_glib()
+        .into_glib()
 }
 
 unsafe extern "C" fn widget_map<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
@@ -767,7 +768,7 @@ unsafe extern "C" fn widget_mnemonic_activate<T: WidgetImpl>(
     let group_cycling: bool = from_glib(group_cycling_ptr);
 
     imp.mnemonic_activate(wrap.unsafe_cast_ref(), group_cycling)
-        .to_glib()
+        .into_glib()
 }
 
 unsafe extern "C" fn widget_move_focus<T: WidgetImpl>(
@@ -797,7 +798,7 @@ unsafe extern "C" fn widget_query_tooltip<T: WidgetImpl>(
     let tooltip = from_glib_borrow(tooltip_ptr);
 
     imp.query_tooltip(wrap.unsafe_cast_ref(), x, y, keyboard_tooltip, &tooltip)
-        .to_glib()
+        .into_glib()
 }
 
 unsafe extern "C" fn widget_realize<T: WidgetImpl>(ptr: *mut ffi::GtkWidget) {
@@ -1132,7 +1133,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
     fn set_activate_signal(&mut self, signal_id: SignalId) {
         unsafe {
             let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
-            ffi::gtk_widget_class_set_activate_signal(widget_class, signal_id.to_glib())
+            ffi::gtk_widget_class_set_activate_signal(widget_class, signal_id.into_glib())
         }
     }
 
@@ -1158,7 +1159,10 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
     fn set_layout_manager_type<T: IsA<LayoutManager>>(&mut self) {
         unsafe {
             let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
-            ffi::gtk_widget_class_set_layout_manager_type(widget_class, T::static_type().to_glib());
+            ffi::gtk_widget_class_set_layout_manager_type(
+                widget_class,
+                T::static_type().into_glib(),
+            );
         }
     }
 
@@ -1190,7 +1194,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
     fn set_accessible_role(&mut self, role: AccessibleRole) {
         unsafe {
             let widget_class = self as *mut _ as *mut ffi::GtkWidgetClass;
-            ffi::gtk_widget_class_set_accessible_role(widget_class, role.to_glib());
+            ffi::gtk_widget_class_set_accessible_role(widget_class, role.into_glib());
         }
     }
 

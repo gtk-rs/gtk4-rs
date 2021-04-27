@@ -21,9 +21,9 @@ impl MessageDialog {
             let message: Stash<*const c_char, _> = message.to_glib_none();
             Widget::from_glib_none(ffi::gtk_message_dialog_new(
                 parent.map(|p| p.as_ref()).to_glib_none().0,
-                flags.to_glib(),
-                type_.to_glib(),
-                buttons.to_glib(),
+                flags.into_glib(),
+                type_.into_glib(),
+                buttons.into_glib(),
                 b"%s\0".as_ptr() as *const c_char,
                 message.0,
                 ptr::null::<c_char>(),
@@ -44,9 +44,9 @@ impl MessageDialog {
         unsafe {
             Widget::from_glib_none(ffi::gtk_message_dialog_new_with_markup(
                 parent.map(|p| p.as_ref()).to_glib_none().0,
-                flags.to_glib(),
-                type_.to_glib(),
-                buttons.to_glib(),
+                flags.into_glib(),
+                type_.into_glib(),
+                buttons.into_glib(),
                 message.to_glib_none().0,
             ))
             .unsafe_cast()

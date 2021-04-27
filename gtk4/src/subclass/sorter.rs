@@ -75,7 +75,7 @@ unsafe extern "C" fn sorter_compare<T: SorterImpl>(
         &from_glib_borrow(item1ptr),
         &from_glib_borrow(item2ptr),
     )
-    .to_glib()
+    .into_glib()
 }
 
 unsafe extern "C" fn sorter_get_order<T: SorterImpl>(
@@ -85,5 +85,5 @@ unsafe extern "C" fn sorter_get_order<T: SorterImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<Sorter> = from_glib_borrow(ptr);
 
-    imp.order(wrap.unsafe_cast_ref()).to_glib()
+    imp.order(wrap.unsafe_cast_ref()).into_glib()
 }

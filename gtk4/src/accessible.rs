@@ -22,7 +22,7 @@ impl<O: IsA<Accessible>> AccessibleExtManual for O {
     fn update_property(&self, properties: &[(AccessibleProperty, &dyn ToValue)]) {
         unsafe {
             let properties_ptr: Vec<ffi::GtkAccessibleProperty> =
-                properties.iter().map(|(k, _)| k.to_glib()).collect();
+                properties.iter().map(|(k, _)| k.into_glib()).collect();
             let values: Vec<glib::gobject_ffi::GValue> = properties
                 .iter()
                 .map(|(_, v)| *v.to_value().to_glib_none().0)
@@ -40,7 +40,7 @@ impl<O: IsA<Accessible>> AccessibleExtManual for O {
     fn update_relation(&self, relations: &[(AccessibleRelation, &dyn ToValue)]) {
         unsafe {
             let relations_ptr: Vec<ffi::GtkAccessibleRelation> =
-                relations.iter().map(|(k, _)| k.to_glib()).collect();
+                relations.iter().map(|(k, _)| k.into_glib()).collect();
             let values: Vec<glib::gobject_ffi::GValue> = relations
                 .iter()
                 .map(|(_, v)| *v.to_value().to_glib_none().0)
@@ -62,7 +62,7 @@ impl<O: IsA<Accessible>> AccessibleExtManual for O {
                 .map(|(_, v)| *v.to_value().to_glib_none().0)
                 .collect();
             let states_ptr: Vec<ffi::GtkAccessibleState> =
-                states.iter().map(|(k, _)| k.to_glib()).collect();
+                states.iter().map(|(k, _)| k.into_glib()).collect();
 
             ffi::gtk_accessible_update_state_value(
                 self.as_ref().to_glib_none().0,

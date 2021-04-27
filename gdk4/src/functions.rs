@@ -90,7 +90,7 @@ pub fn content_deserialize_async<
         ffi::gdk_content_deserialize_async(
             stream.as_ref().to_glib_none().0,
             mime_type.to_glib_none().0,
-            type_.to_glib(),
+            type_.into_glib(),
             io_priority,
             cancellable.map(|p| p.as_ref()).to_glib_none().0,
             Some(callback),
@@ -178,7 +178,7 @@ pub fn content_register_deserializer<
     unsafe {
         ffi::gdk_content_register_deserializer(
             mime_type.to_glib_none().0,
-            type_.to_glib(),
+            type_.into_glib(),
             deserialize,
             Box::into_raw(super_callback0) as *mut _,
             destroy_call4,
@@ -236,7 +236,7 @@ pub fn content_register_serializer<
     let super_callback0: Box<P> = serialize_data;
     unsafe {
         ffi::gdk_content_register_serializer(
-            type_.to_glib(),
+            type_.into_glib(),
             mime_type.to_glib_none().0,
             serialize,
             Box::into_raw(super_callback0) as *mut _,

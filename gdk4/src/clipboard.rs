@@ -49,7 +49,7 @@ impl Clipboard {
             ffi::gdk_clipboard_read_async(
                 self.to_glib_none().0,
                 mime_types.to_glib_none().0,
-                io_priority.to_glib(),
+                io_priority.into_glib(),
                 cancellable.map(|p| p.as_ref()).to_glib_none().0,
                 Some(callback),
                 Box::into_raw(user_data) as *mut _,

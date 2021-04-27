@@ -40,7 +40,7 @@ impl ShaderArgsBuilder {
     #[doc(alias = "gsk_shader_args_builder_set_bool")]
     pub fn set_bool(&self, idx: i32, value: bool) {
         unsafe {
-            ffi::gsk_shader_args_builder_set_bool(self.to_glib_none().0, idx, value.to_glib());
+            ffi::gsk_shader_args_builder_set_bool(self.to_glib_none().0, idx, value.into_glib());
         }
     }
 

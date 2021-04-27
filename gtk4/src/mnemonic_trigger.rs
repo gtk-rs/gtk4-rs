@@ -17,7 +17,7 @@ impl MnemonicTrigger {
     #[doc(alias = "gtk_mnemonic_trigger_new")]
     pub fn new(keyval: Key) -> MnemonicTrigger {
         assert_initialized_main_thread!();
-        unsafe { from_glib_full(ffi::gtk_mnemonic_trigger_new(keyval.to_glib())) }
+        unsafe { from_glib_full(ffi::gtk_mnemonic_trigger_new(keyval.into_glib())) }
     }
 
     #[doc(alias = "gtk_mnemonic_trigger_get_keyval")]

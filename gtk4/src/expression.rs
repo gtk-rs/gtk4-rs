@@ -186,7 +186,7 @@ impl GtkParamSpecExt for glib::ParamSpec {
                 name.to_glib_none().0,
                 nick.to_glib_none().0,
                 blurb.to_glib_none().0,
-                flags.to_glib(),
+                flags.into_glib(),
             ))
         }
     }
@@ -343,7 +343,7 @@ impl PropertyExpression {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_property_expression_new(
-                this_type.to_glib(),
+                this_type.into_glib(),
                 expression.map(|e| e.as_ref()).to_glib_none().0,
                 property_name.to_glib_none().0,
             ))
@@ -422,7 +422,7 @@ impl ClosureExpression {
         let closure = glib::Closure::new_local(move |values| callback(values));
         unsafe {
             from_glib_full(ffi::gtk_closure_expression_new(
-                value_type.to_glib(),
+                value_type.into_glib(),
                 closure.to_glib_none().0,
                 params.len() as u32,
                 params.to_glib_full(),
@@ -435,7 +435,7 @@ impl ClosureExpression {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_closure_expression_new(
-                value_type.to_glib(),
+                value_type.into_glib(),
                 closure.to_glib_none().0,
                 params.len() as u32,
                 params.to_glib_full(),

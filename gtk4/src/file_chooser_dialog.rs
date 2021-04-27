@@ -21,7 +21,7 @@ impl FileChooserDialog {
                 Widget::from_glib_none(ffi::gtk_file_chooser_dialog_new(
                     title.to_glib_none().0,
                     parent.map(|p| p.as_ref()).to_glib_none().0,
-                    action.to_glib(),
+                    action.into_glib(),
                     ptr::null::<c_char>(),
                 ))
                 .unsafe_cast();

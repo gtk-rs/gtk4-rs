@@ -56,7 +56,7 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
                 renderer.as_ref().to_glib_none().0,
                 event.as_ref().to_glib_none().0,
                 cell_area.to_glib_none().0,
-                flags.to_glib(),
+                flags.into_glib(),
             ))
         }
     }
@@ -131,7 +131,7 @@ impl<O: IsA<CellArea>> CellAreaExtManual for O {
                 widget.as_ref().to_glib_none().0,
                 event.as_ref().to_glib_none().0,
                 cell_area.to_glib_none().0,
-                flags.to_glib(),
+                flags.into_glib(),
             )
         }
     }

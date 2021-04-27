@@ -437,11 +437,11 @@ unsafe extern "C" fn editable_get_selection_bounds<T: EditableImpl>(
         if !end_position.is_null() {
             *end_position = end_pos;
         }
-        true.to_glib()
+        true.into_glib()
     } else {
         *start_position = 0;
         *end_position = 0;
-        false.to_glib()
+        false.into_glib()
     }
 }
 

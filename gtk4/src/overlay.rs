@@ -54,5 +54,5 @@ where
         }
         None => false,
     }
-    .to_glib()
+    .into_glib()
 }

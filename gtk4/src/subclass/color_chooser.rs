@@ -60,7 +60,7 @@ impl<T: ColorChooserImpl> ColorChooserImplExt for T {
                         .unsafe_cast_ref::<ColorChooser>()
                         .to_glib_none()
                         .0,
-                    orientation.to_glib(),
+                    orientation.into_glib(),
                     colors_per_line,
                     colors.len() as i32,
                     mut_override(colors_ptr.as_ptr()),

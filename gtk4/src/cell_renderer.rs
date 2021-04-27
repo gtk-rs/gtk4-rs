@@ -46,7 +46,7 @@ impl<O: IsA<CellRenderer>> CellRendererExtManual for O {
                 path.to_glib_none().0,
                 background_area.to_glib_none().0,
                 cell_area.to_glib_none().0,
-                flags.to_glib(),
+                flags.into_glib(),
             ))
         }
     }
@@ -68,7 +68,7 @@ impl<O: IsA<CellRenderer>> CellRendererExtManual for O {
                 path.to_glib_none().0,
                 background_area.to_glib_none().0,
                 cell_area.to_glib_none().0,
-                flags.to_glib(),
+                flags.into_glib(),
             ))
         }
     }

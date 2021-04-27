@@ -132,7 +132,7 @@ impl<T: MediaStreamImpl> MediaStreamImplExt for T {
                     .unsafe_cast_ref::<MediaStream>()
                     .to_glib_none()
                     .0,
-                muted.to_glib(),
+                muted.into_glib(),
                 volume,
             )
         }
@@ -172,7 +172,7 @@ unsafe extern "C" fn media_stream_play<T: MediaStreamImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<MediaStream> = from_glib_borrow(ptr);
 
-    imp.play(wrap.unsafe_cast_ref()).to_glib()
+    imp.play(wrap.unsafe_cast_ref()).into_glib()
 }
 
 unsafe extern "C" fn media_stream_realize<T: MediaStreamImpl>(

@@ -120,7 +120,7 @@ impl Event {
             let mut value = mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gdk_event_get_axis(
                 self.to_glib_none().0,
-                axis_use.to_glib(),
+                axis_use.into_glib(),
                 value.as_mut_ptr(),
             ));
             if ret {
@@ -539,8 +539,8 @@ mod key {
             unsafe {
                 from_glib(ffi::gdk_key_event_matches(
                     self.to_glib_none().0,
-                    keyval.to_glib(),
-                    modifiers.to_glib(),
+                    keyval.into_glib(),
+                    modifiers.into_glib(),
                 ))
             }
         }

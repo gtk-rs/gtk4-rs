@@ -179,7 +179,7 @@ impl<T: LayoutManagerImpl> LayoutManagerImplExt for T {
                     .to_glib_none()
                     .0,
                 widget.to_glib_none().0,
-                orientation.to_glib(),
+                orientation.into_glib(),
                 for_size,
                 &mut minimum,
                 &mut natural,
@@ -225,7 +225,7 @@ unsafe impl<T: LayoutManagerImpl> IsSubclassable<T> for LayoutManager {
         klass.allocate = Some(layout_manager_allocate::<T>);
         klass.create_layout_child = Some(layout_manager_create_layout_child::<T>);
         if let Some(type_) = T::layout_child_type() {
-            klass.layout_child_type = type_.to_glib();
+            klass.layout_child_type = type_.into_glib();
         }
         klass.get_request_mode = Some(layout_manager_get_request_mode::<T>);
         klass.measure = Some(layout_manager_measure::<T>);
@@ -278,7 +278,8 @@ unsafe extern "C" fn layout_manager_get_request_mode<T: LayoutManagerImpl>(
     let wrap: Borrowed<LayoutManager> = from_glib_borrow(ptr);
     let widget: Borrowed<Widget> = from_glib_borrow(widgetptr);
 
-    imp.request_mode(wrap.unsafe_cast_ref(), &widget).to_glib()
+    imp.request_mode(wrap.unsafe_cast_ref(), &widget)
+        .into_glib()
 }
 
 unsafe extern "C" fn layout_manager_measure<T: LayoutManagerImpl>(
