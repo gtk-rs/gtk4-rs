@@ -150,7 +150,7 @@ impl Snapshot {
     #[doc(alias = "gtk_snapshot_push_blend")]
     pub fn push_blend(&self, blend_mode: gsk::BlendMode) {
         unsafe {
-            ffi::gtk_snapshot_push_blend(self.to_glib_none().0, blend_mode.to_glib());
+            ffi::gtk_snapshot_push_blend(self.to_glib_none().0, blend_mode.into_glib());
         }
     }
 
@@ -324,7 +324,7 @@ impl Snapshot {
                 y,
                 layout.to_glib_none().0,
                 index,
-                direction.to_glib(),
+                direction.into_glib(),
             );
         }
     }

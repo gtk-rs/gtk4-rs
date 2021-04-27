@@ -1550,7 +1550,7 @@ pub trait TextTagExt: 'static {
 impl<O: IsA<TextTag>> TextTagExt for O {
     fn changed(&self, size_changed: bool) {
         unsafe {
-            ffi::gtk_text_tag_changed(self.as_ref().to_glib_none().0, size_changed.to_glib());
+            ffi::gtk_text_tag_changed(self.as_ref().to_glib_none().0, size_changed.into_glib());
         }
     }
 

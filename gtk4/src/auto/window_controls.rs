@@ -36,7 +36,7 @@ impl WindowControls {
     pub fn new(side: PackType) -> WindowControls {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_window_controls_new(side.to_glib())).unsafe_cast()
+            Widget::from_glib_none(ffi::gtk_window_controls_new(side.into_glib())).unsafe_cast()
         }
     }
 
@@ -72,7 +72,7 @@ impl WindowControls {
     #[doc(alias = "gtk_window_controls_set_side")]
     pub fn set_side(&self, side: PackType) {
         unsafe {
-            ffi::gtk_window_controls_set_side(self.to_glib_none().0, side.to_glib());
+            ffi::gtk_window_controls_set_side(self.to_glib_none().0, side.into_glib());
         }
     }
 

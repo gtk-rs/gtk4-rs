@@ -34,7 +34,7 @@ impl CallbackAction {
             let args: Borrowed<Option<glib::Variant>> = from_glib_borrow(args);
             let callback: &P = &*(user_data as *mut _);
             let res = (*callback)(&widget, args.as_ref().as_ref());
-            res.to_glib()
+            res.into_glib()
         }
         let callback = Some(callback_func::<P> as _);
         unsafe extern "C" fn destroy_func<

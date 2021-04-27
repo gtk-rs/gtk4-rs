@@ -76,7 +76,7 @@ impl Revealer {
     #[doc(alias = "gtk_revealer_set_reveal_child")]
     pub fn set_reveal_child(&self, reveal_child: bool) {
         unsafe {
-            ffi::gtk_revealer_set_reveal_child(self.to_glib_none().0, reveal_child.to_glib());
+            ffi::gtk_revealer_set_reveal_child(self.to_glib_none().0, reveal_child.into_glib());
         }
     }
 
@@ -90,7 +90,7 @@ impl Revealer {
     #[doc(alias = "gtk_revealer_set_transition_type")]
     pub fn set_transition_type(&self, transition: RevealerTransitionType) {
         unsafe {
-            ffi::gtk_revealer_set_transition_type(self.to_glib_none().0, transition.to_glib());
+            ffi::gtk_revealer_set_transition_type(self.to_glib_none().0, transition.into_glib());
         }
     }
 

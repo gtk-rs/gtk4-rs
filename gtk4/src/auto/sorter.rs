@@ -41,7 +41,7 @@ pub trait SorterExt: 'static {
 impl<O: IsA<Sorter>> SorterExt for O {
     fn changed(&self, change: SorterChange) {
         unsafe {
-            ffi::gtk_sorter_changed(self.as_ref().to_glib_none().0, change.to_glib());
+            ffi::gtk_sorter_changed(self.as_ref().to_glib_none().0, change.into_glib());
         }
     }
 

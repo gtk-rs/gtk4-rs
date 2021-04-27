@@ -118,14 +118,17 @@ impl CellView {
     #[doc(alias = "gtk_cell_view_set_draw_sensitive")]
     pub fn set_draw_sensitive(&self, draw_sensitive: bool) {
         unsafe {
-            ffi::gtk_cell_view_set_draw_sensitive(self.to_glib_none().0, draw_sensitive.to_glib());
+            ffi::gtk_cell_view_set_draw_sensitive(
+                self.to_glib_none().0,
+                draw_sensitive.into_glib(),
+            );
         }
     }
 
     #[doc(alias = "gtk_cell_view_set_fit_model")]
     pub fn set_fit_model(&self, fit_model: bool) {
         unsafe {
-            ffi::gtk_cell_view_set_fit_model(self.to_glib_none().0, fit_model.to_glib());
+            ffi::gtk_cell_view_set_fit_model(self.to_glib_none().0, fit_model.into_glib());
         }
     }
 

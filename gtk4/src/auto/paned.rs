@@ -38,7 +38,7 @@ impl Paned {
     #[doc(alias = "gtk_paned_new")]
     pub fn new(orientation: Orientation) -> Paned {
         assert_initialized_main_thread!();
-        unsafe { Widget::from_glib_none(ffi::gtk_paned_new(orientation.to_glib())).unsafe_cast() }
+        unsafe { Widget::from_glib_none(ffi::gtk_paned_new(orientation.into_glib())).unsafe_cast() }
     }
 
     #[doc(alias = "gtk_paned_get_end_child")]
@@ -98,28 +98,28 @@ impl Paned {
     #[doc(alias = "gtk_paned_set_resize_end_child")]
     pub fn set_resize_end_child(&self, resize: bool) {
         unsafe {
-            ffi::gtk_paned_set_resize_end_child(self.to_glib_none().0, resize.to_glib());
+            ffi::gtk_paned_set_resize_end_child(self.to_glib_none().0, resize.into_glib());
         }
     }
 
     #[doc(alias = "gtk_paned_set_resize_start_child")]
     pub fn set_resize_start_child(&self, resize: bool) {
         unsafe {
-            ffi::gtk_paned_set_resize_start_child(self.to_glib_none().0, resize.to_glib());
+            ffi::gtk_paned_set_resize_start_child(self.to_glib_none().0, resize.into_glib());
         }
     }
 
     #[doc(alias = "gtk_paned_set_shrink_end_child")]
     pub fn set_shrink_end_child(&self, resize: bool) {
         unsafe {
-            ffi::gtk_paned_set_shrink_end_child(self.to_glib_none().0, resize.to_glib());
+            ffi::gtk_paned_set_shrink_end_child(self.to_glib_none().0, resize.into_glib());
         }
     }
 
     #[doc(alias = "gtk_paned_set_shrink_start_child")]
     pub fn set_shrink_start_child(&self, resize: bool) {
         unsafe {
-            ffi::gtk_paned_set_shrink_start_child(self.to_glib_none().0, resize.to_glib());
+            ffi::gtk_paned_set_shrink_start_child(self.to_glib_none().0, resize.into_glib());
         }
     }
 
@@ -133,7 +133,7 @@ impl Paned {
     #[doc(alias = "gtk_paned_set_wide_handle")]
     pub fn set_wide_handle(&self, wide: bool) {
         unsafe {
-            ffi::gtk_paned_set_wide_handle(self.to_glib_none().0, wide.to_glib());
+            ffi::gtk_paned_set_wide_handle(self.to_glib_none().0, wide.into_glib());
         }
     }
 
@@ -202,7 +202,7 @@ impl Paned {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this)).to_glib()
+            f(&from_glib_borrow(this)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -237,7 +237,7 @@ impl Paned {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this)).to_glib()
+            f(&from_glib_borrow(this)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -273,7 +273,7 @@ impl Paned {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), from_glib(reversed)).to_glib()
+            f(&from_glib_borrow(this), from_glib(reversed)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -311,7 +311,7 @@ impl Paned {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), from_glib(reversed)).to_glib()
+            f(&from_glib_borrow(this), from_glib(reversed)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -347,7 +347,7 @@ impl Paned {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), from_glib(scroll_type)).to_glib()
+            f(&from_glib_borrow(this), from_glib(scroll_type)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -382,7 +382,7 @@ impl Paned {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this)).to_glib()
+            f(&from_glib_borrow(this)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

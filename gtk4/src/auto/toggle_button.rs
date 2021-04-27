@@ -467,7 +467,10 @@ impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
 
     fn set_active(&self, is_active: bool) {
         unsafe {
-            ffi::gtk_toggle_button_set_active(self.as_ref().to_glib_none().0, is_active.to_glib());
+            ffi::gtk_toggle_button_set_active(
+                self.as_ref().to_glib_none().0,
+                is_active.into_glib(),
+            );
         }
     }
 

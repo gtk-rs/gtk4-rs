@@ -45,7 +45,7 @@ impl<O: IsA<Orientable>> OrientableExt for O {
         unsafe {
             ffi::gtk_orientable_set_orientation(
                 self.as_ref().to_glib_none().0,
-                orientation.to_glib(),
+                orientation.into_glib(),
             );
         }
     }

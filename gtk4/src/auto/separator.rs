@@ -32,7 +32,7 @@ impl Separator {
     pub fn new(orientation: Orientation) -> Separator {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_separator_new(orientation.to_glib())).unsafe_cast()
+            Widget::from_glib_none(ffi::gtk_separator_new(orientation.into_glib())).unsafe_cast()
         }
     }
 }

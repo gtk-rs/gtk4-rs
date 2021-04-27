@@ -208,7 +208,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
             let face = from_glib_borrow(face);
             let callback: &P = &*(data as *mut _);
             let res = (*callback)(&family, &face);
-            res.to_glib()
+            res.into_glib()
         }
         let filter = Some(filter_func::<P> as _);
         unsafe extern "C" fn destroy_func<
@@ -268,7 +268,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
 
     fn set_level(&self, level: FontChooserLevel) {
         unsafe {
-            ffi::gtk_font_chooser_set_level(self.as_ref().to_glib_none().0, level.to_glib());
+            ffi::gtk_font_chooser_set_level(self.as_ref().to_glib_none().0, level.into_glib());
         }
     }
 
@@ -285,7 +285,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
         unsafe {
             ffi::gtk_font_chooser_set_show_preview_entry(
                 self.as_ref().to_glib_none().0,
-                show_preview_entry.to_glib(),
+                show_preview_entry.into_glib(),
             );
         }
     }

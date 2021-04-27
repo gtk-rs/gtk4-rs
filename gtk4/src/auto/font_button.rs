@@ -73,7 +73,7 @@ impl FontButton {
     #[doc(alias = "gtk_font_button_set_modal")]
     pub fn set_modal(&self, modal: bool) {
         unsafe {
-            ffi::gtk_font_button_set_modal(self.to_glib_none().0, modal.to_glib());
+            ffi::gtk_font_button_set_modal(self.to_glib_none().0, modal.into_glib());
         }
     }
 
@@ -87,14 +87,14 @@ impl FontButton {
     #[doc(alias = "gtk_font_button_set_use_font")]
     pub fn set_use_font(&self, use_font: bool) {
         unsafe {
-            ffi::gtk_font_button_set_use_font(self.to_glib_none().0, use_font.to_glib());
+            ffi::gtk_font_button_set_use_font(self.to_glib_none().0, use_font.into_glib());
         }
     }
 
     #[doc(alias = "gtk_font_button_set_use_size")]
     pub fn set_use_size(&self, use_size: bool) {
         unsafe {
-            ffi::gtk_font_button_set_use_size(self.to_glib_none().0, use_size.to_glib());
+            ffi::gtk_font_button_set_use_size(self.to_glib_none().0, use_size.into_glib());
         }
     }
 

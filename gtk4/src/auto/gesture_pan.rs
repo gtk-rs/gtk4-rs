@@ -34,7 +34,7 @@ impl GesturePan {
     pub fn new(orientation: Orientation) -> GesturePan {
         assert_initialized_main_thread!();
         unsafe {
-            Gesture::from_glib_full(ffi::gtk_gesture_pan_new(orientation.to_glib())).unsafe_cast()
+            Gesture::from_glib_full(ffi::gtk_gesture_pan_new(orientation.into_glib())).unsafe_cast()
         }
     }
 
@@ -46,7 +46,7 @@ impl GesturePan {
     #[doc(alias = "gtk_gesture_pan_set_orientation")]
     pub fn set_orientation(&self, orientation: Orientation) {
         unsafe {
-            ffi::gtk_gesture_pan_set_orientation(self.to_glib_none().0, orientation.to_glib());
+            ffi::gtk_gesture_pan_set_orientation(self.to_glib_none().0, orientation.into_glib());
         }
     }
 

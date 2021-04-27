@@ -153,14 +153,17 @@ impl Stack {
     #[doc(alias = "gtk_stack_set_hhomogeneous")]
     pub fn set_hhomogeneous(&self, hhomogeneous: bool) {
         unsafe {
-            ffi::gtk_stack_set_hhomogeneous(self.to_glib_none().0, hhomogeneous.to_glib());
+            ffi::gtk_stack_set_hhomogeneous(self.to_glib_none().0, hhomogeneous.into_glib());
         }
     }
 
     #[doc(alias = "gtk_stack_set_interpolate_size")]
     pub fn set_interpolate_size(&self, interpolate_size: bool) {
         unsafe {
-            ffi::gtk_stack_set_interpolate_size(self.to_glib_none().0, interpolate_size.to_glib());
+            ffi::gtk_stack_set_interpolate_size(
+                self.to_glib_none().0,
+                interpolate_size.into_glib(),
+            );
         }
     }
 
@@ -174,14 +177,14 @@ impl Stack {
     #[doc(alias = "gtk_stack_set_transition_type")]
     pub fn set_transition_type(&self, transition: StackTransitionType) {
         unsafe {
-            ffi::gtk_stack_set_transition_type(self.to_glib_none().0, transition.to_glib());
+            ffi::gtk_stack_set_transition_type(self.to_glib_none().0, transition.into_glib());
         }
     }
 
     #[doc(alias = "gtk_stack_set_vhomogeneous")]
     pub fn set_vhomogeneous(&self, vhomogeneous: bool) {
         unsafe {
-            ffi::gtk_stack_set_vhomogeneous(self.to_glib_none().0, vhomogeneous.to_glib());
+            ffi::gtk_stack_set_vhomogeneous(self.to_glib_none().0, vhomogeneous.into_glib());
         }
     }
 
@@ -201,7 +204,7 @@ impl Stack {
             ffi::gtk_stack_set_visible_child_full(
                 self.to_glib_none().0,
                 name.to_glib_none().0,
-                transition.to_glib(),
+                transition.into_glib(),
             );
         }
     }

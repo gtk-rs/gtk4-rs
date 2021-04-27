@@ -99,14 +99,14 @@ impl SearchBar {
     #[doc(alias = "gtk_search_bar_set_search_mode")]
     pub fn set_search_mode(&self, search_mode: bool) {
         unsafe {
-            ffi::gtk_search_bar_set_search_mode(self.to_glib_none().0, search_mode.to_glib());
+            ffi::gtk_search_bar_set_search_mode(self.to_glib_none().0, search_mode.into_glib());
         }
     }
 
     #[doc(alias = "gtk_search_bar_set_show_close_button")]
     pub fn set_show_close_button(&self, visible: bool) {
         unsafe {
-            ffi::gtk_search_bar_set_show_close_button(self.to_glib_none().0, visible.to_glib());
+            ffi::gtk_search_bar_set_show_close_button(self.to_glib_none().0, visible.into_glib());
         }
     }
 

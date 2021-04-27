@@ -188,7 +188,7 @@ impl Image {
     #[doc(alias = "gtk_image_set_icon_size")]
     pub fn set_icon_size(&self, icon_size: IconSize) {
         unsafe {
-            ffi::gtk_image_set_icon_size(self.to_glib_none().0, icon_size.to_glib());
+            ffi::gtk_image_set_icon_size(self.to_glib_none().0, icon_size.into_glib());
         }
     }
 

@@ -1204,7 +1204,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             ffi::gtk_tree_view_enable_model_drag_dest(
                 self.as_ref().to_glib_none().0,
                 formats.to_glib_none().0,
-                actions.to_glib(),
+                actions.into_glib(),
             );
         }
     }
@@ -1218,9 +1218,9 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe {
             ffi::gtk_tree_view_enable_model_drag_source(
                 self.as_ref().to_glib_none().0,
-                start_button_mask.to_glib(),
+                start_button_mask.into_glib(),
                 formats.to_glib_none().0,
-                actions.to_glib(),
+                actions.into_glib(),
             );
         }
     }
@@ -1236,7 +1236,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             from_glib(ffi::gtk_tree_view_expand_row(
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
-                open_all.to_glib(),
+                open_all.into_glib(),
             ))
         }
     }
@@ -1543,7 +1543,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
                 self.as_ref().to_glib_none().0,
                 x,
                 y,
-                keyboard_tip.to_glib(),
+                keyboard_tip.into_glib(),
                 &mut model,
                 &mut path,
                 iter.to_glib_none_mut().0,
@@ -1761,7 +1761,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 column.to_glib_none().0,
-                use_align.to_glib(),
+                use_align.into_glib(),
                 row_align,
                 col_align,
             );
@@ -1778,7 +1778,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe {
             ffi::gtk_tree_view_set_activate_on_single_click(
                 self.as_ref().to_glib_none().0,
-                single.to_glib(),
+                single.into_glib(),
             );
         }
     }
@@ -1822,7 +1822,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             } else {
                 panic!("cannot get closure...")
             };
-            res.to_glib()
+            res.into_glib()
         }
         let func = if func_data.is_some() {
             Some(func_func as _)
@@ -1869,7 +1869,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
                 focus_column.to_glib_none().0,
-                start_editing.to_glib(),
+                start_editing.into_glib(),
             );
         }
     }
@@ -1887,7 +1887,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
                 mut_override(path.to_glib_none().0),
                 focus_column.to_glib_none().0,
                 focus_cell.map(|p| p.as_ref()).to_glib_none().0,
-                start_editing.to_glib(),
+                start_editing.into_glib(),
             );
         }
     }
@@ -1897,7 +1897,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             ffi::gtk_tree_view_set_drag_dest_row(
                 self.as_ref().to_glib_none().0,
                 mut_override(path.to_glib_none().0),
-                pos.to_glib(),
+                pos.into_glib(),
             );
         }
     }
@@ -1906,7 +1906,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe {
             ffi::gtk_tree_view_set_enable_search(
                 self.as_ref().to_glib_none().0,
-                enable_search.to_glib(),
+                enable_search.into_glib(),
             );
         }
     }
@@ -1915,7 +1915,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe {
             ffi::gtk_tree_view_set_enable_tree_lines(
                 self.as_ref().to_glib_none().0,
-                enabled.to_glib(),
+                enabled.into_glib(),
             );
         }
     }
@@ -1933,14 +1933,17 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe {
             ffi::gtk_tree_view_set_fixed_height_mode(
                 self.as_ref().to_glib_none().0,
-                enable.to_glib(),
+                enable.into_glib(),
             );
         }
     }
 
     fn set_grid_lines(&self, grid_lines: TreeViewGridLines) {
         unsafe {
-            ffi::gtk_tree_view_set_grid_lines(self.as_ref().to_glib_none().0, grid_lines.to_glib());
+            ffi::gtk_tree_view_set_grid_lines(
+                self.as_ref().to_glib_none().0,
+                grid_lines.into_glib(),
+            );
         }
     }
 
@@ -1948,7 +1951,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe {
             ffi::gtk_tree_view_set_headers_clickable(
                 self.as_ref().to_glib_none().0,
-                setting.to_glib(),
+                setting.into_glib(),
             );
         }
     }
@@ -1957,20 +1960,23 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe {
             ffi::gtk_tree_view_set_headers_visible(
                 self.as_ref().to_glib_none().0,
-                headers_visible.to_glib(),
+                headers_visible.into_glib(),
             );
         }
     }
 
     fn set_hover_expand(&self, expand: bool) {
         unsafe {
-            ffi::gtk_tree_view_set_hover_expand(self.as_ref().to_glib_none().0, expand.to_glib());
+            ffi::gtk_tree_view_set_hover_expand(self.as_ref().to_glib_none().0, expand.into_glib());
         }
     }
 
     fn set_hover_selection(&self, hover: bool) {
         unsafe {
-            ffi::gtk_tree_view_set_hover_selection(self.as_ref().to_glib_none().0, hover.to_glib());
+            ffi::gtk_tree_view_set_hover_selection(
+                self.as_ref().to_glib_none().0,
+                hover.into_glib(),
+            );
         }
     }
 
@@ -1993,7 +1999,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe {
             ffi::gtk_tree_view_set_reorderable(
                 self.as_ref().to_glib_none().0,
-                reorderable.to_glib(),
+                reorderable.into_glib(),
             );
         }
     }
@@ -2009,7 +2015,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             let iter = from_glib_borrow(iter);
             let callback: &P = &*(data as *mut _);
             let res = (*callback)(&model, &iter);
-            res.to_glib()
+            res.into_glib()
         }
         let func = Some(func_func::<P> as _);
         unsafe extern "C" fn destroy_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(
@@ -2031,7 +2037,10 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
 
     fn set_rubber_banding(&self, enable: bool) {
         unsafe {
-            ffi::gtk_tree_view_set_rubber_banding(self.as_ref().to_glib_none().0, enable.to_glib());
+            ffi::gtk_tree_view_set_rubber_banding(
+                self.as_ref().to_glib_none().0,
+                enable.into_glib(),
+            );
         }
     }
 
@@ -2069,7 +2078,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             let iter = from_glib_borrow(iter);
             let callback: &P = &*(search_data as *mut _);
             let res = (*callback)(&model, column, key.as_str(), &iter);
-            res.to_glib()
+            res.into_glib()
         }
         let search_equal_func = Some(search_equal_func_func::<P> as _);
         unsafe extern "C" fn search_destroy_func<
@@ -2095,7 +2104,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         unsafe {
             ffi::gtk_tree_view_set_show_expanders(
                 self.as_ref().to_glib_none().0,
-                enabled.to_glib(),
+                enabled.into_glib(),
             );
         }
     }
@@ -2241,7 +2250,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
                 from_glib(p0),
                 from_glib(p1),
             )
-            .to_glib()
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2293,7 +2302,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
                 from_glib(extend),
                 from_glib(modify),
             )
-            .to_glib()
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2444,7 +2453,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             P: IsA<TreeView>,
         {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref()).to_glib()
+            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2482,7 +2491,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             P: IsA<TreeView>,
         {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref()).to_glib()
+            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2525,7 +2534,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
                 &TreeView::from_glib_borrow(this).unsafe_cast_ref(),
                 from_glib(object),
             )
-            .to_glib()
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2563,7 +2572,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             P: IsA<TreeView>,
         {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref()).to_glib()
+            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2613,7 +2622,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
                 &from_glib_borrow(iter),
                 &from_glib_borrow(path),
             )
-            .to_glib()
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2652,7 +2661,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
                 &from_glib_borrow(iter),
                 &from_glib_borrow(path),
             )
-            .to_glib()
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2676,7 +2685,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             P: IsA<TreeView>,
         {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref()).to_glib()
+            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2711,7 +2720,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             P: IsA<TreeView>,
         {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref()).to_glib()
+            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

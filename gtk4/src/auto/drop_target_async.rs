@@ -31,7 +31,7 @@ impl DropTargetAsync {
         unsafe {
             from_glib_full(ffi::gtk_drop_target_async_new(
                 formats.to_glib_full(),
-                actions.to_glib(),
+                actions.into_glib(),
             ))
         }
     }
@@ -64,7 +64,7 @@ impl DropTargetAsync {
     #[doc(alias = "gtk_drop_target_async_set_actions")]
     pub fn set_actions(&self, actions: gdk::DragAction) {
         unsafe {
-            ffi::gtk_drop_target_async_set_actions(self.to_glib_none().0, actions.to_glib());
+            ffi::gtk_drop_target_async_set_actions(self.to_glib_none().0, actions.into_glib());
         }
     }
 
@@ -87,7 +87,7 @@ impl DropTargetAsync {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(drop)).to_glib()
+            f(&from_glib_borrow(this), &from_glib_borrow(drop)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -118,7 +118,7 @@ impl DropTargetAsync {
             f: glib::ffi::gpointer,
         ) -> gdk::ffi::GdkDragAction {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(drop), x, y).to_glib()
+            f(&from_glib_borrow(this), &from_glib_borrow(drop), x, y).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -176,7 +176,7 @@ impl DropTargetAsync {
             f: glib::ffi::gpointer,
         ) -> gdk::ffi::GdkDragAction {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(drop), x, y).to_glib()
+            f(&from_glib_borrow(this), &from_glib_borrow(drop), x, y).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -205,7 +205,7 @@ impl DropTargetAsync {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(drop), x, y).to_glib()
+            f(&from_glib_borrow(this), &from_glib_borrow(drop), x, y).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

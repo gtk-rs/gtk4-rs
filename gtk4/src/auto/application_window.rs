@@ -602,7 +602,7 @@ impl<O: IsA<ApplicationWindow>> ApplicationWindowExt for O {
         unsafe {
             ffi::gtk_application_window_set_show_menubar(
                 self.as_ref().to_glib_none().0,
-                show_menubar.to_glib(),
+                show_menubar.into_glib(),
             );
         }
     }

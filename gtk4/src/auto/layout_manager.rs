@@ -104,7 +104,7 @@ impl<O: IsA<LayoutManager>> LayoutManagerExt for O {
             ffi::gtk_layout_manager_measure(
                 self.as_ref().to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
-                orientation.to_glib(),
+                orientation.into_glib(),
                 for_size,
                 minimum.as_mut_ptr(),
                 natural.as_mut_ptr(),

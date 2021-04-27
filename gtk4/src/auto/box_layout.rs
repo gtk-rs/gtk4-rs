@@ -30,7 +30,7 @@ impl BoxLayout {
     pub fn new(orientation: Orientation) -> BoxLayout {
         assert_initialized_main_thread!();
         unsafe {
-            LayoutManager::from_glib_full(ffi::gtk_box_layout_new(orientation.to_glib()))
+            LayoutManager::from_glib_full(ffi::gtk_box_layout_new(orientation.into_glib()))
                 .unsafe_cast()
         }
     }
@@ -57,14 +57,14 @@ impl BoxLayout {
     #[doc(alias = "gtk_box_layout_set_baseline_position")]
     pub fn set_baseline_position(&self, position: BaselinePosition) {
         unsafe {
-            ffi::gtk_box_layout_set_baseline_position(self.to_glib_none().0, position.to_glib());
+            ffi::gtk_box_layout_set_baseline_position(self.to_glib_none().0, position.into_glib());
         }
     }
 
     #[doc(alias = "gtk_box_layout_set_homogeneous")]
     pub fn set_homogeneous(&self, homogeneous: bool) {
         unsafe {
-            ffi::gtk_box_layout_set_homogeneous(self.to_glib_none().0, homogeneous.to_glib());
+            ffi::gtk_box_layout_set_homogeneous(self.to_glib_none().0, homogeneous.into_glib());
         }
     }
 

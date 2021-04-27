@@ -37,7 +37,7 @@ impl Box {
     pub fn new(orientation: Orientation, spacing: i32) -> Box {
         assert_initialized_main_thread!();
         unsafe {
-            Widget::from_glib_none(ffi::gtk_box_new(orientation.to_glib(), spacing)).unsafe_cast()
+            Widget::from_glib_none(ffi::gtk_box_new(orientation.into_glib(), spacing)).unsafe_cast()
         }
     }
 }
@@ -476,13 +476,16 @@ impl<O: IsA<Box>> BoxExt for O {
 
     fn set_baseline_position(&self, position: BaselinePosition) {
         unsafe {
-            ffi::gtk_box_set_baseline_position(self.as_ref().to_glib_none().0, position.to_glib());
+            ffi::gtk_box_set_baseline_position(
+                self.as_ref().to_glib_none().0,
+                position.into_glib(),
+            );
         }
     }
 
     fn set_homogeneous(&self, homogeneous: bool) {
         unsafe {
-            ffi::gtk_box_set_homogeneous(self.as_ref().to_glib_none().0, homogeneous.to_glib());
+            ffi::gtk_box_set_homogeneous(self.as_ref().to_glib_none().0, homogeneous.into_glib());
         }
     }
 

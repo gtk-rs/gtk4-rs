@@ -105,14 +105,17 @@ impl GLContext {
     #[doc(alias = "gdk_gl_context_set_debug_enabled")]
     pub fn set_debug_enabled(&self, enabled: bool) {
         unsafe {
-            ffi::gdk_gl_context_set_debug_enabled(self.to_glib_none().0, enabled.to_glib());
+            ffi::gdk_gl_context_set_debug_enabled(self.to_glib_none().0, enabled.into_glib());
         }
     }
 
     #[doc(alias = "gdk_gl_context_set_forward_compatible")]
     pub fn set_forward_compatible(&self, compatible: bool) {
         unsafe {
-            ffi::gdk_gl_context_set_forward_compatible(self.to_glib_none().0, compatible.to_glib());
+            ffi::gdk_gl_context_set_forward_compatible(
+                self.to_glib_none().0,
+                compatible.into_glib(),
+            );
         }
     }
 

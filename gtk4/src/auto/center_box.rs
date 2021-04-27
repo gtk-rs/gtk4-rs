@@ -67,7 +67,7 @@ impl CenterBox {
     #[doc(alias = "gtk_center_box_set_baseline_position")]
     pub fn set_baseline_position(&self, position: BaselinePosition) {
         unsafe {
-            ffi::gtk_center_box_set_baseline_position(self.to_glib_none().0, position.to_glib());
+            ffi::gtk_center_box_set_baseline_position(self.to_glib_none().0, position.into_glib());
         }
     }
 

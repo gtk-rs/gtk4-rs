@@ -81,7 +81,7 @@ impl ActionBar {
     #[doc(alias = "gtk_action_bar_set_revealed")]
     pub fn set_revealed(&self, revealed: bool) {
         unsafe {
-            ffi::gtk_action_bar_set_revealed(self.to_glib_none().0, revealed.to_glib());
+            ffi::gtk_action_bar_set_revealed(self.to_glib_none().0, revealed.into_glib());
         }
     }
 

@@ -52,9 +52,9 @@ impl CellAreaBox {
             ffi::gtk_cell_area_box_pack_end(
                 self.to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
-                expand.to_glib(),
-                align.to_glib(),
-                fixed.to_glib(),
+                expand.into_glib(),
+                align.into_glib(),
+                fixed.into_glib(),
             );
         }
     }
@@ -71,9 +71,9 @@ impl CellAreaBox {
             ffi::gtk_cell_area_box_pack_start(
                 self.to_glib_none().0,
                 renderer.as_ref().to_glib_none().0,
-                expand.to_glib(),
-                align.to_glib(),
-                fixed.to_glib(),
+                expand.into_glib(),
+                align.into_glib(),
+                fixed.into_glib(),
             );
         }
     }

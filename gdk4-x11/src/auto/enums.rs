@@ -35,11 +35,11 @@ impl fmt::Display for X11DeviceType {
 }
 
 #[doc(hidden)]
-impl ToGlib for X11DeviceType {
+impl IntoGlib for X11DeviceType {
     type GlibType = ffi::GdkX11DeviceType;
 
-    fn to_glib(&self) -> ffi::GdkX11DeviceType {
-        match *self {
+    fn into_glib(self) -> ffi::GdkX11DeviceType {
+        match self {
             X11DeviceType::Logical => ffi::GDK_X11_DEVICE_TYPE_LOGICAL,
             X11DeviceType::Physical => ffi::GDK_X11_DEVICE_TYPE_PHYSICAL,
             X11DeviceType::Floating => ffi::GDK_X11_DEVICE_TYPE_FLOATING,

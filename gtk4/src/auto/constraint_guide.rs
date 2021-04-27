@@ -75,7 +75,7 @@ impl ConstraintGuide {
     #[doc(alias = "gtk_constraint_guide_set_strength")]
     pub fn set_strength(&self, strength: ConstraintStrength) {
         unsafe {
-            ffi::gtk_constraint_guide_set_strength(self.to_glib_none().0, strength.to_glib());
+            ffi::gtk_constraint_guide_set_strength(self.to_glib_none().0, strength.into_glib());
         }
     }
 

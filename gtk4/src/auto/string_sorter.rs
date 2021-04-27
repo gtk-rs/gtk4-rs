@@ -41,7 +41,7 @@ impl StringSorter {
     #[doc(alias = "gtk_string_sorter_set_ignore_case")]
     pub fn set_ignore_case(&self, ignore_case: bool) {
         unsafe {
-            ffi::gtk_string_sorter_set_ignore_case(self.to_glib_none().0, ignore_case.to_glib());
+            ffi::gtk_string_sorter_set_ignore_case(self.to_glib_none().0, ignore_case.into_glib());
         }
     }
 

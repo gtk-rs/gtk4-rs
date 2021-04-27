@@ -124,14 +124,14 @@ impl MenuButton {
     #[doc(alias = "gtk_menu_button_set_direction")]
     pub fn set_direction(&self, direction: ArrowType) {
         unsafe {
-            ffi::gtk_menu_button_set_direction(self.to_glib_none().0, direction.to_glib());
+            ffi::gtk_menu_button_set_direction(self.to_glib_none().0, direction.into_glib());
         }
     }
 
     #[doc(alias = "gtk_menu_button_set_has_frame")]
     pub fn set_has_frame(&self, has_frame: bool) {
         unsafe {
-            ffi::gtk_menu_button_set_has_frame(self.to_glib_none().0, has_frame.to_glib());
+            ffi::gtk_menu_button_set_has_frame(self.to_glib_none().0, has_frame.into_glib());
         }
     }
 
@@ -172,7 +172,10 @@ impl MenuButton {
     #[doc(alias = "gtk_menu_button_set_use_underline")]
     pub fn set_use_underline(&self, use_underline: bool) {
         unsafe {
-            ffi::gtk_menu_button_set_use_underline(self.to_glib_none().0, use_underline.to_glib());
+            ffi::gtk_menu_button_set_use_underline(
+                self.to_glib_none().0,
+                use_underline.into_glib(),
+            );
         }
     }
 

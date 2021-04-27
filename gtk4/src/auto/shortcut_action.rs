@@ -63,7 +63,7 @@ impl<O: IsA<ShortcutAction>> ShortcutActionExt for O {
         unsafe {
             from_glib(ffi::gtk_shortcut_action_activate(
                 self.as_ref().to_glib_none().0,
-                flags.to_glib(),
+                flags.into_glib(),
                 widget.as_ref().to_glib_none().0,
                 args.to_glib_none().0,
             ))

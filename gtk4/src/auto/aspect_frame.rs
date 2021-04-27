@@ -39,7 +39,7 @@ impl AspectFrame {
                 xalign,
                 yalign,
                 ratio,
-                obey_child.to_glib(),
+                obey_child.into_glib(),
             ))
             .unsafe_cast()
         }
@@ -83,7 +83,7 @@ impl AspectFrame {
     #[doc(alias = "gtk_aspect_frame_set_obey_child")]
     pub fn set_obey_child(&self, obey_child: bool) {
         unsafe {
-            ffi::gtk_aspect_frame_set_obey_child(self.to_glib_none().0, obey_child.to_glib());
+            ffi::gtk_aspect_frame_set_obey_child(self.to_glib_none().0, obey_child.into_glib());
         }
     }
 

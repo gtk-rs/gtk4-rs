@@ -97,7 +97,7 @@ impl GridView {
         unsafe {
             ffi::gtk_grid_view_set_enable_rubberband(
                 self.to_glib_none().0,
-                enable_rubberband.to_glib(),
+                enable_rubberband.into_glib(),
             );
         }
     }
@@ -141,7 +141,7 @@ impl GridView {
         unsafe {
             ffi::gtk_grid_view_set_single_click_activate(
                 self.to_glib_none().0,
-                single_click_activate.to_glib(),
+                single_click_activate.into_glib(),
             );
         }
     }

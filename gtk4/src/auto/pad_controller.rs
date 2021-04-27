@@ -46,7 +46,7 @@ impl PadController {
         unsafe {
             ffi::gtk_pad_controller_set_action(
                 self.to_glib_none().0,
-                type_.to_glib(),
+                type_.into_glib(),
                 index,
                 mode,
                 label.to_glib_none().0,

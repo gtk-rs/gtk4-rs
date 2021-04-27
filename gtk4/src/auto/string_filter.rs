@@ -52,14 +52,14 @@ impl StringFilter {
     #[doc(alias = "gtk_string_filter_set_ignore_case")]
     pub fn set_ignore_case(&self, ignore_case: bool) {
         unsafe {
-            ffi::gtk_string_filter_set_ignore_case(self.to_glib_none().0, ignore_case.to_glib());
+            ffi::gtk_string_filter_set_ignore_case(self.to_glib_none().0, ignore_case.into_glib());
         }
     }
 
     #[doc(alias = "gtk_string_filter_set_match_mode")]
     pub fn set_match_mode(&self, mode: StringFilterMatchMode) {
         unsafe {
-            ffi::gtk_string_filter_set_match_mode(self.to_glib_none().0, mode.to_glib());
+            ffi::gtk_string_filter_set_match_mode(self.to_glib_none().0, mode.into_glib());
         }
     }
 

@@ -593,7 +593,7 @@ impl<O: IsA<Dialog>> DialogExt for O {
             ffi::gtk_dialog_add_action_widget(
                 self.as_ref().to_glib_none().0,
                 child.as_ref().to_glib_none().0,
-                response_id.to_glib(),
+                response_id.into_glib(),
             );
         }
     }
@@ -603,7 +603,7 @@ impl<O: IsA<Dialog>> DialogExt for O {
             from_glib_none(ffi::gtk_dialog_add_button(
                 self.as_ref().to_glib_none().0,
                 button_text.to_glib_none().0,
-                response_id.to_glib(),
+                response_id.into_glib(),
             ))
         }
     }
@@ -628,14 +628,14 @@ impl<O: IsA<Dialog>> DialogExt for O {
         unsafe {
             from_glib_none(ffi::gtk_dialog_get_widget_for_response(
                 self.as_ref().to_glib_none().0,
-                response_id.to_glib(),
+                response_id.into_glib(),
             ))
         }
     }
 
     fn response(&self, response_id: ResponseType) {
         unsafe {
-            ffi::gtk_dialog_response(self.as_ref().to_glib_none().0, response_id.to_glib());
+            ffi::gtk_dialog_response(self.as_ref().to_glib_none().0, response_id.into_glib());
         }
     }
 
@@ -643,7 +643,7 @@ impl<O: IsA<Dialog>> DialogExt for O {
         unsafe {
             ffi::gtk_dialog_set_default_response(
                 self.as_ref().to_glib_none().0,
-                response_id.to_glib(),
+                response_id.into_glib(),
             );
         }
     }
@@ -652,8 +652,8 @@ impl<O: IsA<Dialog>> DialogExt for O {
         unsafe {
             ffi::gtk_dialog_set_response_sensitive(
                 self.as_ref().to_glib_none().0,
-                response_id.to_glib(),
-                setting.to_glib(),
+                response_id.into_glib(),
+                setting.into_glib(),
             );
         }
     }

@@ -33,7 +33,7 @@ impl Seat {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gdk_seat_get_devices(
                 self.to_glib_none().0,
-                capabilities.to_glib(),
+                capabilities.into_glib(),
             ))
         }
     }

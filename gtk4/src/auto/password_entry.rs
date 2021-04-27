@@ -72,7 +72,7 @@ impl PasswordEntry {
         unsafe {
             ffi::gtk_password_entry_set_show_peek_icon(
                 self.to_glib_none().0,
-                show_peek_icon.to_glib(),
+                show_peek_icon.into_glib(),
             );
         }
     }

@@ -98,7 +98,7 @@ impl DirectoryList {
     #[doc(alias = "gtk_directory_list_set_monitored")]
     pub fn set_monitored(&self, monitored: bool) {
         unsafe {
-            ffi::gtk_directory_list_set_monitored(self.to_glib_none().0, monitored.to_glib());
+            ffi::gtk_directory_list_set_monitored(self.to_glib_none().0, monitored.into_glib());
         }
     }
 

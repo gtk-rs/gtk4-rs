@@ -37,7 +37,7 @@ impl Surface {
         unsafe {
             from_glib_full(ffi::gdk_surface_new_popup(
                 parent.to_glib_none().0,
-                autohide.to_glib(),
+                autohide.into_glib(),
             ))
         }
     }
@@ -258,7 +258,7 @@ impl Surface {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(event)).to_glib()
+            f(&from_glib_borrow(this), &from_glib_borrow(event)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -333,7 +333,7 @@ impl Surface {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(region)).to_glib()
+            f(&from_glib_borrow(this), &from_glib_borrow(region)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

@@ -192,8 +192,8 @@ impl Clipboard {
         unsafe {
             ffi::gdk_clipboard_read_value_async(
                 self.to_glib_none().0,
-                type_.to_glib(),
-                io_priority.to_glib(),
+                type_.into_glib(),
+                io_priority.into_glib(),
                 cancellable.map(|p| p.as_ref()).to_glib_none().0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,
@@ -276,7 +276,7 @@ impl Clipboard {
         unsafe {
             ffi::gdk_clipboard_store_async(
                 self.to_glib_none().0,
-                io_priority.to_glib(),
+                io_priority.into_glib(),
                 cancellable.map(|p| p.as_ref()).to_glib_none().0,
                 Some(callback),
                 Box_::into_raw(user_data) as *mut _,

@@ -599,7 +599,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
 
     fn set_autohide(&self, autohide: bool) {
         unsafe {
-            ffi::gtk_popover_set_autohide(self.as_ref().to_glib_none().0, autohide.to_glib());
+            ffi::gtk_popover_set_autohide(self.as_ref().to_glib_none().0, autohide.into_glib());
         }
     }
 
@@ -607,7 +607,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         unsafe {
             ffi::gtk_popover_set_cascade_popdown(
                 self.as_ref().to_glib_none().0,
-                cascade_popdown.to_glib(),
+                cascade_popdown.into_glib(),
             );
         }
     }
@@ -632,7 +632,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
 
     fn set_has_arrow(&self, has_arrow: bool) {
         unsafe {
-            ffi::gtk_popover_set_has_arrow(self.as_ref().to_glib_none().0, has_arrow.to_glib());
+            ffi::gtk_popover_set_has_arrow(self.as_ref().to_glib_none().0, has_arrow.into_glib());
         }
     }
 
@@ -640,7 +640,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         unsafe {
             ffi::gtk_popover_set_mnemonics_visible(
                 self.as_ref().to_glib_none().0,
-                mnemonics_visible.to_glib(),
+                mnemonics_visible.into_glib(),
             );
         }
     }
@@ -659,7 +659,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
 
     fn set_position(&self, position: PositionType) {
         unsafe {
-            ffi::gtk_popover_set_position(self.as_ref().to_glib_none().0, position.to_glib());
+            ffi::gtk_popover_set_position(self.as_ref().to_glib_none().0, position.into_glib());
         }
     }
 

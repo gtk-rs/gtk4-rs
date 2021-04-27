@@ -94,7 +94,7 @@ impl HeaderBar {
     #[doc(alias = "gtk_header_bar_set_show_title_buttons")]
     pub fn set_show_title_buttons(&self, setting: bool) {
         unsafe {
-            ffi::gtk_header_bar_set_show_title_buttons(self.to_glib_none().0, setting.to_glib());
+            ffi::gtk_header_bar_set_show_title_buttons(self.to_glib_none().0, setting.into_glib());
         }
     }
 

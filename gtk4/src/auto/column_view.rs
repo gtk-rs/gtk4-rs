@@ -135,7 +135,7 @@ impl ColumnView {
         unsafe {
             ffi::gtk_column_view_set_enable_rubberband(
                 self.to_glib_none().0,
-                enable_rubberband.to_glib(),
+                enable_rubberband.into_glib(),
             );
         }
     }
@@ -153,7 +153,7 @@ impl ColumnView {
     #[doc(alias = "gtk_column_view_set_reorderable")]
     pub fn set_reorderable(&self, reorderable: bool) {
         unsafe {
-            ffi::gtk_column_view_set_reorderable(self.to_glib_none().0, reorderable.to_glib());
+            ffi::gtk_column_view_set_reorderable(self.to_glib_none().0, reorderable.into_glib());
         }
     }
 
@@ -162,7 +162,7 @@ impl ColumnView {
         unsafe {
             ffi::gtk_column_view_set_show_column_separators(
                 self.to_glib_none().0,
-                show_column_separators.to_glib(),
+                show_column_separators.into_glib(),
             );
         }
     }
@@ -172,7 +172,7 @@ impl ColumnView {
         unsafe {
             ffi::gtk_column_view_set_show_row_separators(
                 self.to_glib_none().0,
-                show_row_separators.to_glib(),
+                show_row_separators.into_glib(),
             );
         }
     }
@@ -182,7 +182,7 @@ impl ColumnView {
         unsafe {
             ffi::gtk_column_view_set_single_click_activate(
                 self.to_glib_none().0,
-                single_click_activate.to_glib(),
+                single_click_activate.into_glib(),
             );
         }
     }
@@ -193,7 +193,7 @@ impl ColumnView {
             ffi::gtk_column_view_sort_by_column(
                 self.to_glib_none().0,
                 column.to_glib_none().0,
-                direction.to_glib(),
+                direction.into_glib(),
             );
         }
     }

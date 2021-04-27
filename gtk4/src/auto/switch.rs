@@ -52,14 +52,14 @@ impl Switch {
     #[doc(alias = "gtk_switch_set_active")]
     pub fn set_active(&self, is_active: bool) {
         unsafe {
-            ffi::gtk_switch_set_active(self.to_glib_none().0, is_active.to_glib());
+            ffi::gtk_switch_set_active(self.to_glib_none().0, is_active.into_glib());
         }
     }
 
     #[doc(alias = "gtk_switch_set_state")]
     pub fn set_state(&self, state: bool) {
         unsafe {
-            ffi::gtk_switch_set_state(self.to_glib_none().0, state.to_glib());
+            ffi::gtk_switch_set_state(self.to_glib_none().0, state.into_glib());
         }
     }
 
@@ -104,7 +104,7 @@ impl Switch {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), from_glib(state)).to_glib()
+            f(&from_glib_borrow(this), from_glib(state)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

@@ -71,7 +71,7 @@ impl<O: IsA<ColorChooser>> ColorChooserExt for O {
         unsafe {
             ffi::gtk_color_chooser_set_use_alpha(
                 self.as_ref().to_glib_none().0,
-                use_alpha.to_glib(),
+                use_alpha.into_glib(),
             );
         }
     }

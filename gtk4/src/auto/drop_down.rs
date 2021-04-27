@@ -82,7 +82,7 @@ impl DropDown {
     #[doc(alias = "gtk_drop_down_set_enable_search")]
     pub fn set_enable_search(&self, enable_search: bool) {
         unsafe {
-            ffi::gtk_drop_down_set_enable_search(self.to_glib_none().0, enable_search.to_glib());
+            ffi::gtk_drop_down_set_enable_search(self.to_glib_none().0, enable_search.into_glib());
         }
     }
 

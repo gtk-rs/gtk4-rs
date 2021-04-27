@@ -116,7 +116,7 @@ impl ColumnViewColumn {
     #[doc(alias = "gtk_column_view_column_set_expand")]
     pub fn set_expand(&self, expand: bool) {
         unsafe {
-            ffi::gtk_column_view_column_set_expand(self.to_glib_none().0, expand.to_glib());
+            ffi::gtk_column_view_column_set_expand(self.to_glib_none().0, expand.into_glib());
         }
     }
 
@@ -150,7 +150,7 @@ impl ColumnViewColumn {
     #[doc(alias = "gtk_column_view_column_set_resizable")]
     pub fn set_resizable(&self, resizable: bool) {
         unsafe {
-            ffi::gtk_column_view_column_set_resizable(self.to_glib_none().0, resizable.to_glib());
+            ffi::gtk_column_view_column_set_resizable(self.to_glib_none().0, resizable.into_glib());
         }
     }
 
@@ -174,7 +174,7 @@ impl ColumnViewColumn {
     #[doc(alias = "gtk_column_view_column_set_visible")]
     pub fn set_visible(&self, visible: bool) {
         unsafe {
-            ffi::gtk_column_view_column_set_visible(self.to_glib_none().0, visible.to_glib());
+            ffi::gtk_column_view_column_set_visible(self.to_glib_none().0, visible.into_glib());
         }
     }
 

@@ -82,7 +82,7 @@ impl StackPage {
     #[doc(alias = "gtk_stack_page_set_needs_attention")]
     pub fn set_needs_attention(&self, setting: bool) {
         unsafe {
-            ffi::gtk_stack_page_set_needs_attention(self.to_glib_none().0, setting.to_glib());
+            ffi::gtk_stack_page_set_needs_attention(self.to_glib_none().0, setting.into_glib());
         }
     }
 
@@ -96,14 +96,14 @@ impl StackPage {
     #[doc(alias = "gtk_stack_page_set_use_underline")]
     pub fn set_use_underline(&self, setting: bool) {
         unsafe {
-            ffi::gtk_stack_page_set_use_underline(self.to_glib_none().0, setting.to_glib());
+            ffi::gtk_stack_page_set_use_underline(self.to_glib_none().0, setting.into_glib());
         }
     }
 
     #[doc(alias = "gtk_stack_page_set_visible")]
     pub fn set_visible(&self, visible: bool) {
         unsafe {
-            ffi::gtk_stack_page_set_visible(self.to_glib_none().0, visible.to_glib());
+            ffi::gtk_stack_page_set_visible(self.to_glib_none().0, visible.into_glib());
         }
     }
 

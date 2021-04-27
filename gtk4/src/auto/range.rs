@@ -582,7 +582,7 @@ impl<O: IsA<Range>> RangeExt for O {
 
     fn set_flippable(&self, flippable: bool) {
         unsafe {
-            ffi::gtk_range_set_flippable(self.as_ref().to_glib_none().0, flippable.to_glib());
+            ffi::gtk_range_set_flippable(self.as_ref().to_glib_none().0, flippable.into_glib());
         }
     }
 
@@ -594,7 +594,7 @@ impl<O: IsA<Range>> RangeExt for O {
 
     fn set_inverted(&self, setting: bool) {
         unsafe {
-            ffi::gtk_range_set_inverted(self.as_ref().to_glib_none().0, setting.to_glib());
+            ffi::gtk_range_set_inverted(self.as_ref().to_glib_none().0, setting.into_glib());
         }
     }
 
@@ -608,7 +608,7 @@ impl<O: IsA<Range>> RangeExt for O {
         unsafe {
             ffi::gtk_range_set_restrict_to_fill_level(
                 self.as_ref().to_glib_none().0,
-                restrict_to_fill_level.to_glib(),
+                restrict_to_fill_level.into_glib(),
             );
         }
     }
@@ -623,7 +623,7 @@ impl<O: IsA<Range>> RangeExt for O {
         unsafe {
             ffi::gtk_range_set_show_fill_level(
                 self.as_ref().to_glib_none().0,
-                show_fill_level.to_glib(),
+                show_fill_level.into_glib(),
             );
         }
     }
@@ -632,7 +632,7 @@ impl<O: IsA<Range>> RangeExt for O {
         unsafe {
             ffi::gtk_range_set_slider_size_fixed(
                 self.as_ref().to_glib_none().0,
-                size_fixed.to_glib(),
+                size_fixed.into_glib(),
             );
         }
     }
@@ -689,7 +689,7 @@ impl<O: IsA<Range>> RangeExt for O {
                 from_glib(scroll),
                 value,
             )
-            .to_glib()
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

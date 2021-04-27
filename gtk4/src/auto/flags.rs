@@ -26,10 +26,10 @@ impl fmt::Display for ApplicationInhibitFlags {
 }
 
 #[doc(hidden)]
-impl ToGlib for ApplicationInhibitFlags {
+impl IntoGlib for ApplicationInhibitFlags {
     type GlibType = ffi::GtkApplicationInhibitFlags;
 
-    fn to_glib(&self) -> ffi::GtkApplicationInhibitFlags {
+    fn into_glib(self) -> ffi::GtkApplicationInhibitFlags {
         self.bits()
     }
 }
@@ -65,7 +65,7 @@ impl ToValue for ApplicationInhibitFlags {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<ApplicationInhibitFlags>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -88,10 +88,10 @@ impl fmt::Display for BuilderClosureFlags {
 }
 
 #[doc(hidden)]
-impl ToGlib for BuilderClosureFlags {
+impl IntoGlib for BuilderClosureFlags {
     type GlibType = ffi::GtkBuilderClosureFlags;
 
-    fn to_glib(&self) -> ffi::GtkBuilderClosureFlags {
+    fn into_glib(self) -> ffi::GtkBuilderClosureFlags {
         self.bits()
     }
 }
@@ -127,7 +127,7 @@ impl ToValue for BuilderClosureFlags {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<BuilderClosureFlags>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -156,10 +156,10 @@ impl fmt::Display for CellRendererState {
 }
 
 #[doc(hidden)]
-impl ToGlib for CellRendererState {
+impl IntoGlib for CellRendererState {
     type GlibType = ffi::GtkCellRendererState;
 
-    fn to_glib(&self) -> ffi::GtkCellRendererState {
+    fn into_glib(self) -> ffi::GtkCellRendererState {
         self.bits()
     }
 }
@@ -195,7 +195,7 @@ impl ToValue for CellRendererState {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<CellRendererState>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -235,10 +235,10 @@ impl fmt::Display for DebugFlags {
 }
 
 #[doc(hidden)]
-impl ToGlib for DebugFlags {
+impl IntoGlib for DebugFlags {
     type GlibType = ffi::GtkDebugFlags;
 
-    fn to_glib(&self) -> ffi::GtkDebugFlags {
+    fn into_glib(self) -> ffi::GtkDebugFlags {
         self.bits()
     }
 }
@@ -274,7 +274,7 @@ impl ToValue for DebugFlags {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<DebugFlags>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -299,10 +299,10 @@ impl fmt::Display for DialogFlags {
 }
 
 #[doc(hidden)]
-impl ToGlib for DialogFlags {
+impl IntoGlib for DialogFlags {
     type GlibType = ffi::GtkDialogFlags;
 
-    fn to_glib(&self) -> ffi::GtkDialogFlags {
+    fn into_glib(self) -> ffi::GtkDialogFlags {
         self.bits()
     }
 }
@@ -338,7 +338,7 @@ impl ToValue for DialogFlags {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<DialogFlags>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -366,10 +366,10 @@ impl fmt::Display for EventControllerScrollFlags {
 }
 
 #[doc(hidden)]
-impl ToGlib for EventControllerScrollFlags {
+impl IntoGlib for EventControllerScrollFlags {
     type GlibType = ffi::GtkEventControllerScrollFlags;
 
-    fn to_glib(&self) -> ffi::GtkEventControllerScrollFlags {
+    fn into_glib(self) -> ffi::GtkEventControllerScrollFlags {
         self.bits()
     }
 }
@@ -405,7 +405,7 @@ impl ToValue for EventControllerScrollFlags {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<EventControllerScrollFlags>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -432,10 +432,10 @@ impl fmt::Display for FontChooserLevel {
 }
 
 #[doc(hidden)]
-impl ToGlib for FontChooserLevel {
+impl IntoGlib for FontChooserLevel {
     type GlibType = ffi::GtkFontChooserLevel;
 
-    fn to_glib(&self) -> ffi::GtkFontChooserLevel {
+    fn into_glib(self) -> ffi::GtkFontChooserLevel {
         self.bits()
     }
 }
@@ -471,7 +471,7 @@ impl ToValue for FontChooserLevel {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<FontChooserLevel>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -496,10 +496,10 @@ impl fmt::Display for IconLookupFlags {
 }
 
 #[doc(hidden)]
-impl ToGlib for IconLookupFlags {
+impl IntoGlib for IconLookupFlags {
     type GlibType = ffi::GtkIconLookupFlags;
 
-    fn to_glib(&self) -> ffi::GtkIconLookupFlags {
+    fn into_glib(self) -> ffi::GtkIconLookupFlags {
         self.bits()
     }
 }
@@ -535,7 +535,7 @@ impl ToValue for IconLookupFlags {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<IconLookupFlags>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -570,10 +570,10 @@ impl fmt::Display for InputHints {
 }
 
 #[doc(hidden)]
-impl ToGlib for InputHints {
+impl IntoGlib for InputHints {
     type GlibType = ffi::GtkInputHints;
 
-    fn to_glib(&self) -> ffi::GtkInputHints {
+    fn into_glib(self) -> ffi::GtkInputHints {
         self.bits()
     }
 }
@@ -609,7 +609,7 @@ impl ToValue for InputHints {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<InputHints>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -634,10 +634,10 @@ impl fmt::Display for PickFlags {
 }
 
 #[doc(hidden)]
-impl ToGlib for PickFlags {
+impl IntoGlib for PickFlags {
     type GlibType = ffi::GtkPickFlags;
 
-    fn to_glib(&self) -> ffi::GtkPickFlags {
+    fn into_glib(self) -> ffi::GtkPickFlags {
         self.bits()
     }
 }
@@ -673,7 +673,7 @@ impl ToValue for PickFlags {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<PickFlags>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -696,10 +696,10 @@ impl fmt::Display for PopoverMenuFlags {
 }
 
 #[doc(hidden)]
-impl ToGlib for PopoverMenuFlags {
+impl IntoGlib for PopoverMenuFlags {
     type GlibType = ffi::GtkPopoverMenuFlags;
 
-    fn to_glib(&self) -> ffi::GtkPopoverMenuFlags {
+    fn into_glib(self) -> ffi::GtkPopoverMenuFlags {
         self.bits()
     }
 }
@@ -735,7 +735,7 @@ impl ToValue for PopoverMenuFlags {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<PopoverMenuFlags>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -758,10 +758,10 @@ impl fmt::Display for ShortcutActionFlags {
 }
 
 #[doc(hidden)]
-impl ToGlib for ShortcutActionFlags {
+impl IntoGlib for ShortcutActionFlags {
     type GlibType = ffi::GtkShortcutActionFlags;
 
-    fn to_glib(&self) -> ffi::GtkShortcutActionFlags {
+    fn into_glib(self) -> ffi::GtkShortcutActionFlags {
         self.bits()
     }
 }
@@ -797,7 +797,7 @@ impl ToValue for ShortcutActionFlags {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<ShortcutActionFlags>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -835,10 +835,10 @@ impl fmt::Display for StateFlags {
 }
 
 #[doc(hidden)]
-impl ToGlib for StateFlags {
+impl IntoGlib for StateFlags {
     type GlibType = ffi::GtkStateFlags;
 
-    fn to_glib(&self) -> ffi::GtkStateFlags {
+    fn into_glib(self) -> ffi::GtkStateFlags {
         self.bits()
     }
 }
@@ -874,7 +874,7 @@ impl ToValue for StateFlags {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<StateFlags>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -900,10 +900,10 @@ impl fmt::Display for StyleContextPrintFlags {
 }
 
 #[doc(hidden)]
-impl ToGlib for StyleContextPrintFlags {
+impl IntoGlib for StyleContextPrintFlags {
     type GlibType = ffi::GtkStyleContextPrintFlags;
 
-    fn to_glib(&self) -> ffi::GtkStyleContextPrintFlags {
+    fn into_glib(self) -> ffi::GtkStyleContextPrintFlags {
         self.bits()
     }
 }
@@ -939,7 +939,7 @@ impl ToValue for StyleContextPrintFlags {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<StyleContextPrintFlags>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -964,10 +964,10 @@ impl fmt::Display for TextSearchFlags {
 }
 
 #[doc(hidden)]
-impl ToGlib for TextSearchFlags {
+impl IntoGlib for TextSearchFlags {
     type GlibType = ffi::GtkTextSearchFlags;
 
-    fn to_glib(&self) -> ffi::GtkTextSearchFlags {
+    fn into_glib(self) -> ffi::GtkTextSearchFlags {
         self.bits()
     }
 }
@@ -1003,7 +1003,7 @@ impl ToValue for TextSearchFlags {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<TextSearchFlags>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }
@@ -1027,10 +1027,10 @@ impl fmt::Display for TreeModelFlags {
 }
 
 #[doc(hidden)]
-impl ToGlib for TreeModelFlags {
+impl IntoGlib for TreeModelFlags {
     type GlibType = ffi::GtkTreeModelFlags;
 
-    fn to_glib(&self) -> ffi::GtkTreeModelFlags {
+    fn into_glib(self) -> ffi::GtkTreeModelFlags {
         self.bits()
     }
 }
@@ -1066,7 +1066,7 @@ impl ToValue for TreeModelFlags {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<TreeModelFlags>();
         unsafe {
-            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib());
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
         }
         value
     }

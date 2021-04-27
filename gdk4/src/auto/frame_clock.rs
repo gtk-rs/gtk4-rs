@@ -95,7 +95,7 @@ impl FrameClock {
     #[doc(alias = "gdk_frame_clock_request_phase")]
     pub fn request_phase(&self, phase: FrameClockPhase) {
         unsafe {
-            ffi::gdk_frame_clock_request_phase(self.to_glib_none().0, phase.to_glib());
+            ffi::gdk_frame_clock_request_phase(self.to_glib_none().0, phase.into_glib());
         }
     }
 

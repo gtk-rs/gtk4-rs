@@ -55,7 +55,7 @@ impl EditableLabel {
     #[doc(alias = "gtk_editable_label_stop_editing")]
     pub fn stop_editing(&self, commit: bool) {
         unsafe {
-            ffi::gtk_editable_label_stop_editing(self.to_glib_none().0, commit.to_glib());
+            ffi::gtk_editable_label_stop_editing(self.to_glib_none().0, commit.into_glib());
         }
     }
 

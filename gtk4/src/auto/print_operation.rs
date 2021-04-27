@@ -540,7 +540,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
             let mut error = ptr::null_mut();
             let ret = ffi::gtk_print_operation_run(
                 self.as_ref().to_glib_none().0,
-                action.to_glib(),
+                action.into_glib(),
                 parent.map(|p| p.as_ref()).to_glib_none().0,
                 &mut error,
             );
@@ -556,7 +556,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         unsafe {
             ffi::gtk_print_operation_set_allow_async(
                 self.as_ref().to_glib_none().0,
-                allow_async.to_glib(),
+                allow_async.into_glib(),
             );
         }
     }
@@ -595,7 +595,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         unsafe {
             ffi::gtk_print_operation_set_embed_page_setup(
                 self.as_ref().to_glib_none().0,
-                embed.to_glib(),
+                embed.into_glib(),
             );
         }
     }
@@ -613,7 +613,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         unsafe {
             ffi::gtk_print_operation_set_has_selection(
                 self.as_ref().to_glib_none().0,
-                has_selection.to_glib(),
+                has_selection.into_glib(),
             );
         }
     }
@@ -646,7 +646,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         unsafe {
             ffi::gtk_print_operation_set_show_progress(
                 self.as_ref().to_glib_none().0,
-                show_progress.to_glib(),
+                show_progress.into_glib(),
             );
         }
     }
@@ -655,7 +655,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         unsafe {
             ffi::gtk_print_operation_set_support_selection(
                 self.as_ref().to_glib_none().0,
-                support_selection.to_glib(),
+                support_selection.into_glib(),
             );
         }
     }
@@ -664,14 +664,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         unsafe {
             ffi::gtk_print_operation_set_track_print_status(
                 self.as_ref().to_glib_none().0,
-                track_status.to_glib(),
+                track_status.into_glib(),
             );
         }
     }
 
     fn set_unit(&self, unit: Unit) {
         unsafe {
-            ffi::gtk_print_operation_set_unit(self.as_ref().to_glib_none().0, unit.to_glib());
+            ffi::gtk_print_operation_set_unit(self.as_ref().to_glib_none().0, unit.into_glib());
         }
     }
 
@@ -679,7 +679,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         unsafe {
             ffi::gtk_print_operation_set_use_full_page(
                 self.as_ref().to_glib_none().0,
-                full_page.to_glib(),
+                full_page.into_glib(),
             );
         }
     }
@@ -1016,7 +1016,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
                 &PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(context),
             )
-            .to_glib()
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1057,7 +1057,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
                 &from_glib_borrow(context),
                 Option::<Window>::from_glib_borrow(parent).as_ref().as_ref(),
             )
-            .to_glib()
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

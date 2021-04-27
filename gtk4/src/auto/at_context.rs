@@ -33,7 +33,7 @@ impl ATContext {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(ffi::gtk_at_context_create(
-                accessible_role.to_glib(),
+                accessible_role.into_glib(),
                 accessible.as_ref().to_glib_none().0,
                 display.to_glib_none().0,
             ))

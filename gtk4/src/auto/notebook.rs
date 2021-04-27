@@ -55,7 +55,7 @@ impl Notebook {
         unsafe {
             from_glib_none(ffi::gtk_notebook_get_action_widget(
                 self.to_glib_none().0,
-                pack_type.to_glib(),
+                pack_type.into_glib(),
             ))
         }
     }
@@ -194,7 +194,7 @@ impl Notebook {
             ffi::gtk_notebook_set_action_widget(
                 self.to_glib_none().0,
                 widget.as_ref().to_glib_none().0,
-                pack_type.to_glib(),
+                pack_type.into_glib(),
             );
         }
     }
@@ -235,21 +235,21 @@ impl Notebook {
     #[doc(alias = "gtk_notebook_set_scrollable")]
     pub fn set_scrollable(&self, scrollable: bool) {
         unsafe {
-            ffi::gtk_notebook_set_scrollable(self.to_glib_none().0, scrollable.to_glib());
+            ffi::gtk_notebook_set_scrollable(self.to_glib_none().0, scrollable.into_glib());
         }
     }
 
     #[doc(alias = "gtk_notebook_set_show_border")]
     pub fn set_show_border(&self, show_border: bool) {
         unsafe {
-            ffi::gtk_notebook_set_show_border(self.to_glib_none().0, show_border.to_glib());
+            ffi::gtk_notebook_set_show_border(self.to_glib_none().0, show_border.into_glib());
         }
     }
 
     #[doc(alias = "gtk_notebook_set_show_tabs")]
     pub fn set_show_tabs(&self, show_tabs: bool) {
         unsafe {
-            ffi::gtk_notebook_set_show_tabs(self.to_glib_none().0, show_tabs.to_glib());
+            ffi::gtk_notebook_set_show_tabs(self.to_glib_none().0, show_tabs.into_glib());
         }
     }
 
@@ -259,7 +259,7 @@ impl Notebook {
             ffi::gtk_notebook_set_tab_detachable(
                 self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
-                detachable.to_glib(),
+                detachable.into_glib(),
             );
         }
     }
@@ -289,7 +289,7 @@ impl Notebook {
     #[doc(alias = "gtk_notebook_set_tab_pos")]
     pub fn set_tab_pos(&self, pos: PositionType) {
         unsafe {
-            ffi::gtk_notebook_set_tab_pos(self.to_glib_none().0, pos.to_glib());
+            ffi::gtk_notebook_set_tab_pos(self.to_glib_none().0, pos.into_glib());
         }
     }
 
@@ -299,7 +299,7 @@ impl Notebook {
             ffi::gtk_notebook_set_tab_reorderable(
                 self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
-                reorderable.to_glib(),
+                reorderable.into_glib(),
             );
         }
     }
@@ -353,7 +353,7 @@ impl Notebook {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), object).to_glib()
+            f(&from_glib_borrow(this), object).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -420,7 +420,7 @@ impl Notebook {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), from_glib(object)).to_glib()
+            f(&from_glib_borrow(this), from_glib(object)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -572,7 +572,7 @@ impl Notebook {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), from_glib(object), from_glib(p0)).to_glib()
+            f(&from_glib_borrow(this), from_glib(object), from_glib(p0)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -608,7 +608,7 @@ impl Notebook {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), from_glib(object)).to_glib()
+            f(&from_glib_borrow(this), from_glib(object)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

@@ -142,7 +142,7 @@ impl EntryCompletion {
         unsafe {
             ffi::gtk_entry_completion_set_inline_completion(
                 self.to_glib_none().0,
-                inline_completion.to_glib(),
+                inline_completion.into_glib(),
             );
         }
     }
@@ -152,7 +152,7 @@ impl EntryCompletion {
         unsafe {
             ffi::gtk_entry_completion_set_inline_selection(
                 self.to_glib_none().0,
-                inline_selection.to_glib(),
+                inline_selection.into_glib(),
             );
         }
     }
@@ -176,7 +176,7 @@ impl EntryCompletion {
             let iter = from_glib_borrow(iter);
             let callback: &P = &*(user_data as *mut _);
             let res = (*callback)(&completion, key.as_str(), &iter);
-            res.to_glib()
+            res.into_glib()
         }
         let func = Some(func_func::<P> as _);
         unsafe extern "C" fn func_notify_func<
@@ -220,7 +220,7 @@ impl EntryCompletion {
         unsafe {
             ffi::gtk_entry_completion_set_popup_completion(
                 self.to_glib_none().0,
-                popup_completion.to_glib(),
+                popup_completion.into_glib(),
             );
         }
     }
@@ -230,7 +230,7 @@ impl EntryCompletion {
         unsafe {
             ffi::gtk_entry_completion_set_popup_set_width(
                 self.to_glib_none().0,
-                popup_set_width.to_glib(),
+                popup_set_width.into_glib(),
             );
         }
     }
@@ -240,7 +240,7 @@ impl EntryCompletion {
         unsafe {
             ffi::gtk_entry_completion_set_popup_single_match(
                 self.to_glib_none().0,
-                popup_single_match.to_glib(),
+                popup_single_match.into_glib(),
             );
         }
     }
@@ -287,7 +287,7 @@ impl EntryCompletion {
                 &from_glib_borrow(model),
                 &from_glib_borrow(iter),
             )
-            .to_glib()
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -320,7 +320,7 @@ impl EntryCompletion {
                 &from_glib_borrow(this),
                 &glib::GString::from_glib_borrow(prefix),
             )
-            .to_glib()
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -355,7 +355,7 @@ impl EntryCompletion {
                 &from_glib_borrow(model),
                 &from_glib_borrow(iter),
             )
-            .to_glib()
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

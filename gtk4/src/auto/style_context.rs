@@ -301,7 +301,7 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
 
     fn set_state(&self, flags: StateFlags) {
         unsafe {
-            ffi::gtk_style_context_set_state(self.as_ref().to_glib_none().0, flags.to_glib());
+            ffi::gtk_style_context_set_state(self.as_ref().to_glib_none().0, flags.into_glib());
         }
     }
 
@@ -309,7 +309,7 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
         unsafe {
             from_glib_full(ffi::gtk_style_context_to_string(
                 self.as_ref().to_glib_none().0,
-                flags.to_glib(),
+                flags.into_glib(),
             ))
         }
     }

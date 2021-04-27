@@ -37,7 +37,7 @@ impl BoolFilter {
     #[doc(alias = "gtk_bool_filter_set_invert")]
     pub fn set_invert(&self, invert: bool) {
         unsafe {
-            ffi::gtk_bool_filter_set_invert(self.to_glib_none().0, invert.to_glib());
+            ffi::gtk_bool_filter_set_invert(self.to_glib_none().0, invert.into_glib());
         }
     }
 

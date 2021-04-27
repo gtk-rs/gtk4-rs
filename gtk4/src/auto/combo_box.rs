@@ -701,7 +701,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         unsafe {
             ffi::gtk_combo_box_set_button_sensitivity(
                 self.as_ref().to_glib_none().0,
-                sensitivity.to_glib(),
+                sensitivity.into_glib(),
             );
         }
     }
@@ -740,7 +740,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         unsafe {
             ffi::gtk_combo_box_set_popup_fixed_width(
                 self.as_ref().to_glib_none().0,
-                fixed.to_glib(),
+                fixed.into_glib(),
             );
         }
     }
@@ -756,7 +756,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             let iter = from_glib_borrow(iter);
             let callback: &P = &*(data as *mut _);
             let res = (*callback)(&model, &iter);
-            res.to_glib()
+            res.into_glib()
         }
         let func = Some(func_func::<P> as _);
         unsafe extern "C" fn destroy_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(
@@ -913,7 +913,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             P: IsA<ComboBox>,
         {
             let f: &F = &*(f as *const F);
-            f(&ComboBox::from_glib_borrow(this).unsafe_cast_ref()).to_glib()
+            f(&ComboBox::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

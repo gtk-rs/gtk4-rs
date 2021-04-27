@@ -222,7 +222,7 @@ impl AboutDialog {
     #[doc(alias = "gtk_about_dialog_set_license_type")]
     pub fn set_license_type(&self, license_type: License) {
         unsafe {
-            ffi::gtk_about_dialog_set_license_type(self.to_glib_none().0, license_type.to_glib());
+            ffi::gtk_about_dialog_set_license_type(self.to_glib_none().0, license_type.into_glib());
         }
     }
 
@@ -300,7 +300,7 @@ impl AboutDialog {
     #[doc(alias = "gtk_about_dialog_set_wrap_license")]
     pub fn set_wrap_license(&self, wrap_license: bool) {
         unsafe {
-            ffi::gtk_about_dialog_set_wrap_license(self.to_glib_none().0, wrap_license.to_glib());
+            ffi::gtk_about_dialog_set_wrap_license(self.to_glib_none().0, wrap_license.into_glib());
         }
     }
 
@@ -320,7 +320,7 @@ impl AboutDialog {
                 &from_glib_borrow(this),
                 &glib::GString::from_glib_borrow(uri),
             )
-            .to_glib()
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

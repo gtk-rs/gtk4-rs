@@ -119,8 +119,8 @@ impl TreeViewColumn {
                 self.to_glib_none().0,
                 tree_model.as_ref().to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
-                is_expander.to_glib(),
-                is_expanded.to_glib(),
+                is_expander.into_glib(),
+                is_expanded.into_glib(),
             );
         }
     }
@@ -332,14 +332,14 @@ impl TreeViewColumn {
     #[doc(alias = "gtk_tree_view_column_set_clickable")]
     pub fn set_clickable(&self, clickable: bool) {
         unsafe {
-            ffi::gtk_tree_view_column_set_clickable(self.to_glib_none().0, clickable.to_glib());
+            ffi::gtk_tree_view_column_set_clickable(self.to_glib_none().0, clickable.into_glib());
         }
     }
 
     #[doc(alias = "gtk_tree_view_column_set_expand")]
     pub fn set_expand(&self, expand: bool) {
         unsafe {
-            ffi::gtk_tree_view_column_set_expand(self.to_glib_none().0, expand.to_glib());
+            ffi::gtk_tree_view_column_set_expand(self.to_glib_none().0, expand.into_glib());
         }
     }
 
@@ -367,21 +367,24 @@ impl TreeViewColumn {
     #[doc(alias = "gtk_tree_view_column_set_reorderable")]
     pub fn set_reorderable(&self, reorderable: bool) {
         unsafe {
-            ffi::gtk_tree_view_column_set_reorderable(self.to_glib_none().0, reorderable.to_glib());
+            ffi::gtk_tree_view_column_set_reorderable(
+                self.to_glib_none().0,
+                reorderable.into_glib(),
+            );
         }
     }
 
     #[doc(alias = "gtk_tree_view_column_set_resizable")]
     pub fn set_resizable(&self, resizable: bool) {
         unsafe {
-            ffi::gtk_tree_view_column_set_resizable(self.to_glib_none().0, resizable.to_glib());
+            ffi::gtk_tree_view_column_set_resizable(self.to_glib_none().0, resizable.into_glib());
         }
     }
 
     #[doc(alias = "gtk_tree_view_column_set_sizing")]
     pub fn set_sizing(&self, type_: TreeViewColumnSizing) {
         unsafe {
-            ffi::gtk_tree_view_column_set_sizing(self.to_glib_none().0, type_.to_glib());
+            ffi::gtk_tree_view_column_set_sizing(self.to_glib_none().0, type_.into_glib());
         }
     }
 
@@ -395,14 +398,17 @@ impl TreeViewColumn {
     #[doc(alias = "gtk_tree_view_column_set_sort_indicator")]
     pub fn set_sort_indicator(&self, setting: bool) {
         unsafe {
-            ffi::gtk_tree_view_column_set_sort_indicator(self.to_glib_none().0, setting.to_glib());
+            ffi::gtk_tree_view_column_set_sort_indicator(
+                self.to_glib_none().0,
+                setting.into_glib(),
+            );
         }
     }
 
     #[doc(alias = "gtk_tree_view_column_set_sort_order")]
     pub fn set_sort_order(&self, order: SortType) {
         unsafe {
-            ffi::gtk_tree_view_column_set_sort_order(self.to_glib_none().0, order.to_glib());
+            ffi::gtk_tree_view_column_set_sort_order(self.to_glib_none().0, order.into_glib());
         }
     }
 
@@ -423,7 +429,7 @@ impl TreeViewColumn {
     #[doc(alias = "gtk_tree_view_column_set_visible")]
     pub fn set_visible(&self, visible: bool) {
         unsafe {
-            ffi::gtk_tree_view_column_set_visible(self.to_glib_none().0, visible.to_glib());
+            ffi::gtk_tree_view_column_set_visible(self.to_glib_none().0, visible.into_glib());
         }
     }
 

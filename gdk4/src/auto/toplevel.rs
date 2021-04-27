@@ -173,7 +173,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         unsafe {
             ffi::gdk_toplevel_begin_resize(
                 self.as_ref().to_glib_none().0,
-                edge.to_glib(),
+                edge.into_glib(),
                 device.to_glib_none().0,
                 button,
                 x,
@@ -215,13 +215,13 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn set_decorated(&self, decorated: bool) {
         unsafe {
-            ffi::gdk_toplevel_set_decorated(self.as_ref().to_glib_none().0, decorated.to_glib());
+            ffi::gdk_toplevel_set_decorated(self.as_ref().to_glib_none().0, decorated.into_glib());
         }
     }
 
     fn set_deletable(&self, deletable: bool) {
         unsafe {
-            ffi::gdk_toplevel_set_deletable(self.as_ref().to_glib_none().0, deletable.to_glib());
+            ffi::gdk_toplevel_set_deletable(self.as_ref().to_glib_none().0, deletable.into_glib());
         }
     }
 
@@ -236,7 +236,7 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
 
     fn set_modal(&self, modal: bool) {
         unsafe {
-            ffi::gdk_toplevel_set_modal(self.as_ref().to_glib_none().0, modal.to_glib());
+            ffi::gdk_toplevel_set_modal(self.as_ref().to_glib_none().0, modal.into_glib());
         }
     }
 

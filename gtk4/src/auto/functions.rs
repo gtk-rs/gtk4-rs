@@ -40,7 +40,7 @@ pub fn accelerator_get_label(
     unsafe {
         from_glib_full(ffi::gtk_accelerator_get_label(
             accelerator_key,
-            accelerator_mods.to_glib(),
+            accelerator_mods.into_glib(),
         ))
     }
 }
@@ -58,7 +58,7 @@ pub fn accelerator_get_label_with_keycode(
             display.to_glib_none().0,
             accelerator_key,
             keycode,
-            accelerator_mods.to_glib(),
+            accelerator_mods.into_glib(),
         ))
     }
 }
@@ -72,7 +72,7 @@ pub fn accelerator_name(
     unsafe {
         from_glib_full(ffi::gtk_accelerator_name(
             accelerator_key,
-            accelerator_mods.to_glib(),
+            accelerator_mods.into_glib(),
         ))
     }
 }
@@ -90,7 +90,7 @@ pub fn accelerator_name_with_keycode(
             display.to_glib_none().0,
             accelerator_key,
             keycode,
-            accelerator_mods.to_glib(),
+            accelerator_mods.into_glib(),
         ))
     }
 }
@@ -169,7 +169,7 @@ pub fn enumerate_printers<P: Fn(&Printer) -> bool + Send + Sync + 'static>(func:
         let printer = from_glib_borrow(printer);
         let callback: &P = &*(data as *mut _);
         let res = (*callback)(&printer);
-        res.to_glib()
+        res.into_glib()
     }
     let func = Some(func_func::<P> as _);
     unsafe extern "C" fn destroy_func<P: Fn(&Printer) -> bool + Send + Sync + 'static>(
@@ -184,7 +184,7 @@ pub fn enumerate_printers<P: Fn(&Printer) -> bool + Send + Sync + 'static>(func:
             func,
             Box_::into_raw(super_callback0) as *mut _,
             destroy_call2,
-            wait.to_glib(),
+            wait.into_glib(),
         );
     }
 }
@@ -583,7 +583,7 @@ pub fn rgb_to_hsv(r: f32, g: f32, b: f32) -> (f32, f32, f32) {
 pub fn set_debug_flags(flags: DebugFlags) {
     assert_initialized_main_thread!();
     unsafe {
-        ffi::gtk_set_debug_flags(flags.to_glib());
+        ffi::gtk_set_debug_flags(flags.into_glib());
     }
 }
 
@@ -619,8 +619,8 @@ pub fn test_accessible_assertion_message_role<P: IsA<Accessible>>(
             func.to_glib_none().0,
             expr.to_glib_none().0,
             accessible.as_ref().to_glib_none().0,
-            expected_role.to_glib(),
-            actual_role.to_glib(),
+            expected_role.into_glib(),
+            actual_role.into_glib(),
         );
     }
 }
@@ -649,7 +649,7 @@ pub fn test_accessible_has_property<P: IsA<Accessible>>(
     unsafe {
         from_glib(ffi::gtk_test_accessible_has_property(
             accessible.as_ref().to_glib_none().0,
-            property.to_glib(),
+            property.into_glib(),
         ))
     }
 }
@@ -663,7 +663,7 @@ pub fn test_accessible_has_relation<P: IsA<Accessible>>(
     unsafe {
         from_glib(ffi::gtk_test_accessible_has_relation(
             accessible.as_ref().to_glib_none().0,
-            relation.to_glib(),
+            relation.into_glib(),
         ))
     }
 }
@@ -674,7 +674,7 @@ pub fn test_accessible_has_role<P: IsA<Accessible>>(accessible: &P, role: Access
     unsafe {
         from_glib(ffi::gtk_test_accessible_has_role(
             accessible.as_ref().to_glib_none().0,
-            role.to_glib(),
+            role.into_glib(),
         ))
     }
 }
@@ -688,7 +688,7 @@ pub fn test_accessible_has_state<P: IsA<Accessible>>(
     unsafe {
         from_glib(ffi::gtk_test_accessible_has_state(
             accessible.as_ref().to_glib_none().0,
-            state.to_glib(),
+            state.into_glib(),
         ))
     }
 }

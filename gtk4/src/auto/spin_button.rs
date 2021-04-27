@@ -203,7 +203,7 @@ impl SpinButton {
     #[doc(alias = "gtk_spin_button_set_numeric")]
     pub fn set_numeric(&self, numeric: bool) {
         unsafe {
-            ffi::gtk_spin_button_set_numeric(self.to_glib_none().0, numeric.to_glib());
+            ffi::gtk_spin_button_set_numeric(self.to_glib_none().0, numeric.into_glib());
         }
     }
 
@@ -217,14 +217,17 @@ impl SpinButton {
     #[doc(alias = "gtk_spin_button_set_snap_to_ticks")]
     pub fn set_snap_to_ticks(&self, snap_to_ticks: bool) {
         unsafe {
-            ffi::gtk_spin_button_set_snap_to_ticks(self.to_glib_none().0, snap_to_ticks.to_glib());
+            ffi::gtk_spin_button_set_snap_to_ticks(
+                self.to_glib_none().0,
+                snap_to_ticks.into_glib(),
+            );
         }
     }
 
     #[doc(alias = "gtk_spin_button_set_update_policy")]
     pub fn set_update_policy(&self, policy: SpinButtonUpdatePolicy) {
         unsafe {
-            ffi::gtk_spin_button_set_update_policy(self.to_glib_none().0, policy.to_glib());
+            ffi::gtk_spin_button_set_update_policy(self.to_glib_none().0, policy.into_glib());
         }
     }
 
@@ -238,14 +241,14 @@ impl SpinButton {
     #[doc(alias = "gtk_spin_button_set_wrap")]
     pub fn set_wrap(&self, wrap: bool) {
         unsafe {
-            ffi::gtk_spin_button_set_wrap(self.to_glib_none().0, wrap.to_glib());
+            ffi::gtk_spin_button_set_wrap(self.to_glib_none().0, wrap.into_glib());
         }
     }
 
     #[doc(alias = "gtk_spin_button_spin")]
     pub fn spin(&self, direction: SpinType, increment: f64) {
         unsafe {
-            ffi::gtk_spin_button_spin(self.to_glib_none().0, direction.to_glib(), increment);
+            ffi::gtk_spin_button_spin(self.to_glib_none().0, direction.into_glib(), increment);
         }
     }
 
@@ -304,7 +307,7 @@ impl SpinButton {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this)).to_glib()
+            f(&from_glib_borrow(this)).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

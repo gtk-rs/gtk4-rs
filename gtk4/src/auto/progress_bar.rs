@@ -79,7 +79,7 @@ impl ProgressBar {
     #[doc(alias = "gtk_progress_bar_set_ellipsize")]
     pub fn set_ellipsize(&self, mode: pango::EllipsizeMode) {
         unsafe {
-            ffi::gtk_progress_bar_set_ellipsize(self.to_glib_none().0, mode.to_glib());
+            ffi::gtk_progress_bar_set_ellipsize(self.to_glib_none().0, mode.into_glib());
         }
     }
 
@@ -93,7 +93,7 @@ impl ProgressBar {
     #[doc(alias = "gtk_progress_bar_set_inverted")]
     pub fn set_inverted(&self, inverted: bool) {
         unsafe {
-            ffi::gtk_progress_bar_set_inverted(self.to_glib_none().0, inverted.to_glib());
+            ffi::gtk_progress_bar_set_inverted(self.to_glib_none().0, inverted.into_glib());
         }
     }
 
@@ -107,7 +107,7 @@ impl ProgressBar {
     #[doc(alias = "gtk_progress_bar_set_show_text")]
     pub fn set_show_text(&self, show_text: bool) {
         unsafe {
-            ffi::gtk_progress_bar_set_show_text(self.to_glib_none().0, show_text.to_glib());
+            ffi::gtk_progress_bar_set_show_text(self.to_glib_none().0, show_text.into_glib());
         }
     }
 

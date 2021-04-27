@@ -39,7 +39,7 @@ pub trait FilterExt: 'static {
 impl<O: IsA<Filter>> FilterExt for O {
     fn changed(&self, change: FilterChange) {
         unsafe {
-            ffi::gtk_filter_changed(self.as_ref().to_glib_none().0, change.to_glib());
+            ffi::gtk_filter_changed(self.as_ref().to_glib_none().0, change.into_glib());
         }
     }
 

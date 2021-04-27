@@ -252,9 +252,9 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         unsafe {
             ffi::gtk_media_stream_prepared(
                 self.as_ref().to_glib_none().0,
-                has_audio.to_glib(),
-                has_video.to_glib(),
-                seekable.to_glib(),
+                has_audio.into_glib(),
+                has_video.into_glib(),
+                seekable.into_glib(),
                 duration,
             );
         }
@@ -286,19 +286,19 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
 
     fn set_loop(&self, loop_: bool) {
         unsafe {
-            ffi::gtk_media_stream_set_loop(self.as_ref().to_glib_none().0, loop_.to_glib());
+            ffi::gtk_media_stream_set_loop(self.as_ref().to_glib_none().0, loop_.into_glib());
         }
     }
 
     fn set_muted(&self, muted: bool) {
         unsafe {
-            ffi::gtk_media_stream_set_muted(self.as_ref().to_glib_none().0, muted.to_glib());
+            ffi::gtk_media_stream_set_muted(self.as_ref().to_glib_none().0, muted.into_glib());
         }
     }
 
     fn set_playing(&self, playing: bool) {
         unsafe {
-            ffi::gtk_media_stream_set_playing(self.as_ref().to_glib_none().0, playing.to_glib());
+            ffi::gtk_media_stream_set_playing(self.as_ref().to_glib_none().0, playing.into_glib());
         }
     }
 

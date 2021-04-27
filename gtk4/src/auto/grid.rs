@@ -512,7 +512,7 @@ impl<O: IsA<Grid>> GridExt for O {
                 self.as_ref().to_glib_none().0,
                 child.as_ref().to_glib_none().0,
                 sibling.map(|p| p.as_ref()).to_glib_none().0,
-                side.to_glib(),
+                side.into_glib(),
                 width,
                 height,
             );
@@ -577,7 +577,7 @@ impl<O: IsA<Grid>> GridExt for O {
             ffi::gtk_grid_insert_next_to(
                 self.as_ref().to_glib_none().0,
                 sibling.as_ref().to_glib_none().0,
-                side.to_glib(),
+                side.into_glib(),
             );
         }
     }
@@ -641,7 +641,7 @@ impl<O: IsA<Grid>> GridExt for O {
         unsafe {
             ffi::gtk_grid_set_column_homogeneous(
                 self.as_ref().to_glib_none().0,
-                homogeneous.to_glib(),
+                homogeneous.into_glib(),
             );
         }
     }
@@ -657,7 +657,7 @@ impl<O: IsA<Grid>> GridExt for O {
             ffi::gtk_grid_set_row_baseline_position(
                 self.as_ref().to_glib_none().0,
                 row,
-                pos.to_glib(),
+                pos.into_glib(),
             );
         }
     }
@@ -666,7 +666,7 @@ impl<O: IsA<Grid>> GridExt for O {
         unsafe {
             ffi::gtk_grid_set_row_homogeneous(
                 self.as_ref().to_glib_none().0,
-                homogeneous.to_glib(),
+                homogeneous.into_glib(),
             );
         }
     }

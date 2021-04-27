@@ -270,7 +270,7 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
 
     fn set_action(&self, action: FileChooserAction) {
         unsafe {
-            ffi::gtk_file_chooser_set_action(self.as_ref().to_glib_none().0, action.to_glib());
+            ffi::gtk_file_chooser_set_action(self.as_ref().to_glib_none().0, action.into_glib());
         }
     }
 
@@ -288,7 +288,7 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         unsafe {
             ffi::gtk_file_chooser_set_create_folders(
                 self.as_ref().to_glib_none().0,
-                create_folders.to_glib(),
+                create_folders.into_glib(),
             );
         }
     }
@@ -347,7 +347,7 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         unsafe {
             ffi::gtk_file_chooser_set_select_multiple(
                 self.as_ref().to_glib_none().0,
-                select_multiple.to_glib(),
+                select_multiple.into_glib(),
             );
         }
     }

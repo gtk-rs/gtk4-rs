@@ -506,7 +506,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
 
     fn set_active(&self, setting: bool) {
         unsafe {
-            ffi::gtk_check_button_set_active(self.as_ref().to_glib_none().0, setting.to_glib());
+            ffi::gtk_check_button_set_active(self.as_ref().to_glib_none().0, setting.into_glib());
         }
     }
 
@@ -523,7 +523,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         unsafe {
             ffi::gtk_check_button_set_inconsistent(
                 self.as_ref().to_glib_none().0,
-                inconsistent.to_glib(),
+                inconsistent.into_glib(),
             );
         }
     }
@@ -538,7 +538,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         unsafe {
             ffi::gtk_check_button_set_use_underline(
                 self.as_ref().to_glib_none().0,
-                setting.to_glib(),
+                setting.into_glib(),
             );
         }
     }

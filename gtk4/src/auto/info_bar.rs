@@ -47,7 +47,7 @@ impl InfoBar {
             ffi::gtk_info_bar_add_action_widget(
                 self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
-                response_id.to_glib(),
+                response_id.into_glib(),
             );
         }
     }
@@ -58,7 +58,7 @@ impl InfoBar {
             from_glib_none(ffi::gtk_info_bar_add_button(
                 self.to_glib_none().0,
                 button_text.to_glib_none().0,
-                response_id.to_glib(),
+                response_id.into_glib(),
             ))
         }
     }
@@ -109,21 +109,21 @@ impl InfoBar {
     #[doc(alias = "gtk_info_bar_response")]
     pub fn response(&self, response_id: ResponseType) {
         unsafe {
-            ffi::gtk_info_bar_response(self.to_glib_none().0, response_id.to_glib());
+            ffi::gtk_info_bar_response(self.to_glib_none().0, response_id.into_glib());
         }
     }
 
     #[doc(alias = "gtk_info_bar_set_default_response")]
     pub fn set_default_response(&self, response_id: ResponseType) {
         unsafe {
-            ffi::gtk_info_bar_set_default_response(self.to_glib_none().0, response_id.to_glib());
+            ffi::gtk_info_bar_set_default_response(self.to_glib_none().0, response_id.into_glib());
         }
     }
 
     #[doc(alias = "gtk_info_bar_set_message_type")]
     pub fn set_message_type(&self, message_type: MessageType) {
         unsafe {
-            ffi::gtk_info_bar_set_message_type(self.to_glib_none().0, message_type.to_glib());
+            ffi::gtk_info_bar_set_message_type(self.to_glib_none().0, message_type.into_glib());
         }
     }
 
@@ -132,8 +132,8 @@ impl InfoBar {
         unsafe {
             ffi::gtk_info_bar_set_response_sensitive(
                 self.to_glib_none().0,
-                response_id.to_glib(),
-                setting.to_glib(),
+                response_id.into_glib(),
+                setting.into_glib(),
             );
         }
     }
@@ -141,14 +141,14 @@ impl InfoBar {
     #[doc(alias = "gtk_info_bar_set_revealed")]
     pub fn set_revealed(&self, revealed: bool) {
         unsafe {
-            ffi::gtk_info_bar_set_revealed(self.to_glib_none().0, revealed.to_glib());
+            ffi::gtk_info_bar_set_revealed(self.to_glib_none().0, revealed.into_glib());
         }
     }
 
     #[doc(alias = "gtk_info_bar_set_show_close_button")]
     pub fn set_show_close_button(&self, setting: bool) {
         unsafe {
-            ffi::gtk_info_bar_set_show_close_button(self.to_glib_none().0, setting.to_glib());
+            ffi::gtk_info_bar_set_show_close_button(self.to_glib_none().0, setting.into_glib());
         }
     }
 

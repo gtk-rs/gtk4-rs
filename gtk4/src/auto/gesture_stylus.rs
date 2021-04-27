@@ -41,7 +41,7 @@ impl GestureStylus {
             let mut value = mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gtk_gesture_stylus_get_axis(
                 self.to_glib_none().0,
-                axis.to_glib(),
+                axis.into_glib(),
                 value.as_mut_ptr(),
             ));
             let value = value.assume_init();

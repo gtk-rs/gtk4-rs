@@ -70,7 +70,7 @@ impl TreeListRow {
     #[doc(alias = "gtk_tree_list_row_set_expanded")]
     pub fn set_expanded(&self, expanded: bool) {
         unsafe {
-            ffi::gtk_tree_list_row_set_expanded(self.to_glib_none().0, expanded.to_glib());
+            ffi::gtk_tree_list_row_set_expanded(self.to_glib_none().0, expanded.into_glib());
         }
     }
 
