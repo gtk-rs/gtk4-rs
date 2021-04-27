@@ -13,7 +13,10 @@ impl ListStore {
     pub fn new(column_types: &[Type]) -> ListStore {
         assert_initialized_main_thread!();
         unsafe {
-            let mut column_types = column_types.iter().map(|t| t.to_glib()).collect::<Vec<_>>();
+            let mut column_types = column_types
+                .iter()
+                .map(|t| t.into_glib())
+                .collect::<Vec<_>>();
             from_glib_full(ffi::gtk_list_store_newv(
                 column_types.len() as c_int,
                 column_types.as_mut_ptr(),
@@ -193,7 +196,7 @@ impl<O: IsA<ListStore>> GtkListStoreExtManual for O {
 
     fn set_column_types(&self, types: &[glib::Type]) {
         unsafe {
-            let types_ptr: Vec<glib::ffi::GType> = types.iter().map(|t| t.to_glib()).collect();
+            let types_ptr: Vec<glib::ffi::GType> = types.iter().map(|t| t.into_glib()).collect();
             ffi::gtk_list_store_set_column_types(
                 self.as_ref().to_glib_none().0,
                 types.len() as i32,

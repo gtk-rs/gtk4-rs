@@ -34,10 +34,10 @@ impl fmt::Display for PrintCapabilities {
 #[doc(hidden)]
 #[cfg(any(target_os = "linux", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
-impl ToGlib for PrintCapabilities {
+impl IntoGlib for PrintCapabilities {
     type GlibType = ffi::GtkPrintCapabilities;
 
-    fn to_glib(&self) -> ffi::GtkPrintCapabilities {
+    fn into_glib(self) -> ffi::GtkPrintCapabilities {
         self.bits()
     }
 }
@@ -82,7 +82,9 @@ unsafe impl<'a> FromValue<'a> for PrintCapabilities {
 impl ToValue for PrintCapabilities {
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<PrintCapabilities>();
-        unsafe { glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.to_glib()) }
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib())
+        }
         value
     }
 

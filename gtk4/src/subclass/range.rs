@@ -65,7 +65,7 @@ impl<T: RangeImpl> RangeImplExt for T {
                 .expect("No parent class impl for \"change_value\"");
             from_glib(f(
                 range.unsafe_cast_ref::<Range>().to_glib_none().0,
-                scroll_type.to_glib(),
+                scroll_type.into_glib(),
                 new_value,
             ))
         }
@@ -93,7 +93,7 @@ impl<T: RangeImpl> RangeImplExt for T {
             if let Some(f) = (*parent_class).move_slider {
                 f(
                     range.unsafe_cast_ref::<Range>().to_glib_none().0,
-                    scroll_type.to_glib(),
+                    scroll_type.into_glib(),
                 )
             }
         }
@@ -145,7 +145,7 @@ unsafe extern "C" fn range_change_value<T: RangeImpl>(
     let wrap: Borrowed<Range> = from_glib_borrow(ptr);
 
     imp.change_value(wrap.unsafe_cast_ref(), from_glib(scroll_type), new_value)
-        .to_glib()
+        .into_glib()
 }
 
 unsafe extern "C" fn range_get_range_border<T: RangeImpl>(

@@ -55,7 +55,7 @@ impl ShortcutTriggerExtManual for ShortcutTrigger {
             from_glib(ffi::gtk_shortcut_trigger_trigger(
                 self.to_glib_none().0,
                 event.to_glib_none().0,
-                enable_mnemonics.to_glib(),
+                enable_mnemonics.into_glib(),
             ))
         }
     }

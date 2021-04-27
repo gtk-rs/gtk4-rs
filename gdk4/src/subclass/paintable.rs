@@ -165,7 +165,7 @@ unsafe extern "C" fn paintable_get_flags<T: PaintableImpl>(
     let imp = instance.impl_();
 
     imp.flags(from_glib_borrow::<_, Paintable>(paintable).unsafe_cast_ref())
-        .to_glib()
+        .into_glib()
 }
 
 unsafe extern "C" fn paintable_get_intrinsic_width<T: PaintableImpl>(

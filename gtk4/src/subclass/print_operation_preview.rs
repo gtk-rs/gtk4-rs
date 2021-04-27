@@ -215,7 +215,7 @@ unsafe extern "C" fn print_operation_preview_is_selected<T: PrintOperationPrevie
         from_glib_borrow::<_, PrintOperationPreview>(print_operation_preview).unsafe_cast_ref(),
         page_nr,
     )
-    .to_glib()
+    .into_glib()
 }
 
 unsafe extern "C" fn print_operation_preview_end_preview<T: PrintOperationPreviewImpl>(

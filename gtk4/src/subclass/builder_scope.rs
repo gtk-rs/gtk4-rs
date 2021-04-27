@@ -137,7 +137,7 @@ impl<B: BuilderScopeImpl> BuilderScopeImplExt for B {
                     .0,
                 builder.to_glib_none().0,
                 function_name.to_glib_none().0,
-                flags.to_glib(),
+                flags.into_glib(),
                 object.to_glib_none().0,
                 &mut error,
             );
@@ -177,7 +177,7 @@ unsafe extern "C" fn builder_scope_get_type_from_name<T: BuilderScopeImpl>(
         &builder,
         &type_name,
     )
-    .to_glib()
+    .into_glib()
 }
 
 unsafe extern "C" fn builder_scope_get_type_from_function<T: BuilderScopeImpl>(
@@ -195,7 +195,7 @@ unsafe extern "C" fn builder_scope_get_type_from_function<T: BuilderScopeImpl>(
         &builder,
         &func_name,
     )
-    .to_glib()
+    .into_glib()
 }
 
 unsafe extern "C" fn builder_scope_create_closure<T: BuilderScopeImpl>(

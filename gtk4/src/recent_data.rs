@@ -37,7 +37,7 @@ impl<'a> ToGlibPtr<'a, *mut ffi::GtkRecentData> for RecentData {
             app_name: app_name.0,
             app_exec: app_exec.0,
             groups: groups.0,
-            is_private: self.is_private.to_glib(),
+            is_private: self.is_private.into_glib(),
         });
 
         Stash(

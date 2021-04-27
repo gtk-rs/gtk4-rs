@@ -65,5 +65,5 @@ unsafe extern "C" fn trampoline<F: Fn(&glib::Object) -> bool + 'static>(
     f: glib::ffi::gpointer,
 ) -> glib::ffi::gboolean {
     let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(item)).to_glib()
+    f(&from_glib_borrow(item)).into_glib()
 }

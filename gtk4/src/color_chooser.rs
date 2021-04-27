@@ -16,7 +16,7 @@ impl<O: IsA<ColorChooser>> ColorChooserExtManual for O {
         unsafe {
             ffi::gtk_color_chooser_add_palette(
                 self.as_ref().to_glib_none().0,
-                orientation.to_glib(),
+                orientation.into_glib(),
                 colors_per_line,
                 colors.len() as c_int,
                 colors.as_ptr() as *mut gdk::ffi::GdkRGBA,

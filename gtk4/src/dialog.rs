@@ -24,7 +24,7 @@ impl Dialog {
             Widget::from_glib_none(ffi::gtk_dialog_new_with_buttons(
                 title.to_glib_none().0,
                 parent.map(|p| p.as_ref()).to_glib_none().0,
-                flags.to_glib(),
+                flags.into_glib(),
                 ptr::null_mut(),
             ))
             .unsafe_cast()

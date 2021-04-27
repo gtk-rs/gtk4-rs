@@ -28,7 +28,7 @@ impl<T: DialogImpl> DialogImplExt for T {
             if let Some(f) = (*parent_class).response {
                 f(
                     dialog.unsafe_cast_ref::<Dialog>().to_glib_none().0,
-                    response.to_glib(),
+                    response.into_glib(),
                 )
             }
         }

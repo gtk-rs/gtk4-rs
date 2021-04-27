@@ -44,5 +44,5 @@ unsafe extern "C" fn change_current_page_trampoline<
     f: glib::ffi::gpointer,
 ) -> glib::ffi::gboolean {
     let f: &F = &*(f as *const F);
-    f(&from_glib_borrow(this), object).to_glib()
+    f(&from_glib_borrow(this), object).into_glib()
 }

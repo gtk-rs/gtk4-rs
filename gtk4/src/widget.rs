@@ -35,7 +35,7 @@ impl<O: IsA<Widget>> WidgetExtManual for O {
             let frame_clock = from_glib_borrow(frame_clock);
             let callback: &P = &*(user_data as *mut _);
             let res = (*callback)(&widget.unsafe_cast_ref(), &frame_clock);
-            res.to_glib()
+            res.into_glib()
         }
         let callback = Some(callback_func::<Self, P> as _);
 

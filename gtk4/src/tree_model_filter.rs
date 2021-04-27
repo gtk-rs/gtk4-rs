@@ -37,7 +37,7 @@ impl<O: IsA<TreeModelFilter>> TreeModelFilterExtManual for O {
         func: F,
     ) {
         unsafe {
-            let types_ptr: Vec<glib::ffi::GType> = types.iter().map(|t| t.to_glib()).collect();
+            let types_ptr: Vec<glib::ffi::GType> = types.iter().map(|t| t.into_glib()).collect();
 
             unsafe extern "C" fn func_trampoline<
                 F: Fn(&TreeModel, &TreeIter, i32) -> glib::Value + 'static,

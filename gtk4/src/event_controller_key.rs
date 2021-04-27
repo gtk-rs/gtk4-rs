@@ -31,7 +31,7 @@ impl EventControllerKey {
                 keycode,
                 from_glib(state),
             )
-            .to_glib()
+            .into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

@@ -20,8 +20,8 @@ impl KeyvalTrigger {
         assert_initialized_main_thread!();
         unsafe {
             ShortcutTrigger::from_glib_full(ffi::gtk_keyval_trigger_new(
-                keyval.to_glib(),
-                modifiers.to_glib(),
+                keyval.into_glib(),
+                modifiers.into_glib(),
             ))
             .unsafe_cast()
         }

@@ -10,8 +10,8 @@ pub fn accelerator_valid(keyval: gdk::keys::Key, modifiers: gdk::ModifierType) -
     assert_initialized_main_thread!();
     unsafe {
         from_glib(ffi::gtk_accelerator_valid(
-            keyval.to_glib(),
-            modifiers.to_glib(),
+            keyval.into_glib(),
+            modifiers.into_glib(),
         ))
     }
 }

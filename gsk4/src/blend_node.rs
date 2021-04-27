@@ -22,7 +22,7 @@ impl BlendNode {
             from_glib_full(ffi::gsk_blend_node_new(
                 bottom.as_ref().to_glib_none().0,
                 top.as_ref().to_glib_none().0,
-                blend_mode.to_glib(),
+                blend_mode.into_glib(),
             ))
         }
     }

@@ -20,7 +20,7 @@ impl Display {
             let ret = from_glib(ffi::gdk_display_translate_key(
                 self.to_glib_none().0,
                 keycode,
-                state.to_glib(),
+                state.into_glib(),
                 group,
                 keyval.as_mut_ptr(),
                 effective_group.as_mut_ptr(),
@@ -46,7 +46,7 @@ impl Display {
             let mut n_keys = mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gdk_display_map_keyval(
                 self.to_glib_none().0,
-                keyval.to_glib(),
+                keyval.into_glib(),
                 &mut keys,
                 n_keys.as_mut_ptr(),
             ));

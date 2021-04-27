@@ -67,7 +67,7 @@ unsafe extern "C" fn filter_get_strictness<T: FilterImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<Filter> = from_glib_borrow(ptr);
 
-    imp.strictness(wrap.unsafe_cast_ref()).to_glib()
+    imp.strictness(wrap.unsafe_cast_ref()).into_glib()
 }
 
 unsafe extern "C" fn filter_match<T: FilterImpl>(
@@ -79,5 +79,5 @@ unsafe extern "C" fn filter_match<T: FilterImpl>(
     let wrap: Borrowed<Filter> = from_glib_borrow(ptr);
 
     imp.match_(wrap.unsafe_cast_ref(), &from_glib_borrow(itemptr))
-        .to_glib()
+        .into_glib()
 }

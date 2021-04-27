@@ -163,7 +163,7 @@ impl<T: PrintOperationImpl> PrintOperationImplExt for T {
                         .unsafe_cast_ref::<PrintOperation>()
                         .to_glib_none()
                         .0,
-                    result.to_glib(),
+                    result.into_glib(),
                 );
             }
         }

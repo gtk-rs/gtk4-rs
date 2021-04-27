@@ -22,10 +22,10 @@ impl PageRange {
 }
 
 #[doc(hidden)]
-impl ToGlib for PageRange {
+impl IntoGlib for PageRange {
     type GlibType = ffi::GtkPageRange;
 
-    fn to_glib(&self) -> ffi::GtkPageRange {
+    fn into_glib(self) -> ffi::GtkPageRange {
         self.0
     }
 }

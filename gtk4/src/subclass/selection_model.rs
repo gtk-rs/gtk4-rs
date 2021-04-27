@@ -132,7 +132,7 @@ impl<T: SelectionModelImpl> SelectionModelImplExt for T {
             from_glib(func(
                 model.unsafe_cast_ref::<SelectionModel>().to_glib_none().0,
                 position,
-                unselect_rest.to_glib(),
+                unselect_rest.into_glib(),
             ))
         }
     }
@@ -157,7 +157,7 @@ impl<T: SelectionModelImpl> SelectionModelImplExt for T {
                 model.unsafe_cast_ref::<SelectionModel>().to_glib_none().0,
                 position,
                 n_items,
-                unselect_rest.to_glib(),
+                unselect_rest.into_glib(),
             ))
         }
     }
@@ -277,7 +277,7 @@ unsafe extern "C" fn model_is_selected<T: SelectionModelImpl>(
         from_glib_borrow::<_, SelectionModel>(model).unsafe_cast_ref(),
         position,
     )
-    .to_glib()
+    .into_glib()
 }
 
 unsafe extern "C" fn model_select_all<T: SelectionModelImpl>(
@@ -287,7 +287,7 @@ unsafe extern "C" fn model_select_all<T: SelectionModelImpl>(
     let imp = instance.impl_();
 
     imp.select_all(from_glib_borrow::<_, SelectionModel>(model).unsafe_cast_ref())
-        .to_glib()
+        .into_glib()
 }
 
 unsafe extern "C" fn model_select_item<T: SelectionModelImpl>(
@@ -303,7 +303,7 @@ unsafe extern "C" fn model_select_item<T: SelectionModelImpl>(
         position,
         from_glib(unselect_rest),
     )
-    .to_glib()
+    .into_glib()
 }
 
 unsafe extern "C" fn model_select_range<T: SelectionModelImpl>(
@@ -321,7 +321,7 @@ unsafe extern "C" fn model_select_range<T: SelectionModelImpl>(
         n_items,
         from_glib(unselect_rest),
     )
-    .to_glib()
+    .into_glib()
 }
 
 unsafe extern "C" fn model_set_selection<T: SelectionModelImpl>(
@@ -337,7 +337,7 @@ unsafe extern "C" fn model_set_selection<T: SelectionModelImpl>(
     let mask = from_glib_borrow(mask_ptr);
 
     imp.set_selection(wrap.unsafe_cast_ref(), &selected, &mask)
-        .to_glib()
+        .into_glib()
 }
 
 unsafe extern "C" fn model_unselect_all<T: SelectionModelImpl>(
@@ -347,7 +347,7 @@ unsafe extern "C" fn model_unselect_all<T: SelectionModelImpl>(
     let imp = instance.impl_();
 
     imp.unselect_all(from_glib_borrow::<_, SelectionModel>(model).unsafe_cast_ref())
-        .to_glib()
+        .into_glib()
 }
 
 unsafe extern "C" fn model_unselect_item<T: SelectionModelImpl>(
@@ -361,7 +361,7 @@ unsafe extern "C" fn model_unselect_item<T: SelectionModelImpl>(
         from_glib_borrow::<_, SelectionModel>(model).unsafe_cast_ref(),
         position,
     )
-    .to_glib()
+    .into_glib()
 }
 
 unsafe extern "C" fn model_unselect_range<T: SelectionModelImpl>(
@@ -377,5 +377,5 @@ unsafe extern "C" fn model_unselect_range<T: SelectionModelImpl>(
         position,
         n_items,
     )
-    .to_glib()
+    .into_glib()
 }

@@ -112,7 +112,7 @@ unsafe extern "C" fn tree_drag_dest_drag_data_received<T: TreeDragDestImpl>(
         &dest,
         value,
     )
-    .to_glib()
+    .into_glib()
 }
 
 unsafe extern "C" fn tree_drag_dest_row_drop_possible<T: TreeDragDestImpl>(
@@ -130,5 +130,5 @@ unsafe extern "C" fn tree_drag_dest_row_drop_possible<T: TreeDragDestImpl>(
         &dest,
         value,
     )
-    .to_glib()
+    .into_glib()
 }

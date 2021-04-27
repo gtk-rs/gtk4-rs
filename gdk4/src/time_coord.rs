@@ -13,7 +13,7 @@ impl TimeCoord {
         TimeCoord(ffi::GdkTimeCoord {
             time,
             axes,
-            flags: flags.to_glib(),
+            flags: flags.into_glib(),
         })
     }
 

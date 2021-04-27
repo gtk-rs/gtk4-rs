@@ -106,7 +106,7 @@ unsafe extern "C" fn gl_area_render<T: GLAreaImpl>(
     let wrap: Borrowed<GLArea> = from_glib_borrow(ptr);
 
     imp.render(wrap.unsafe_cast_ref(), &from_glib_borrow(context))
-        .to_glib()
+        .into_glib()
 }
 
 unsafe extern "C" fn gl_area_resize<T: GLAreaImpl>(

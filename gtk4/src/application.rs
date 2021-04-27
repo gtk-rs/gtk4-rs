@@ -17,7 +17,7 @@ impl Application {
         let app: Application = unsafe {
             from_glib_full(ffi::gtk_application_new(
                 application_id.to_glib_none().0,
-                flags.to_glib(),
+                flags.into_glib(),
             ))
         };
         Application::register_startup_hook(&app);

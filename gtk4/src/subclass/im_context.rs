@@ -303,7 +303,7 @@ impl<T: IMContextImpl> IMContextImplExt for T {
             if let Some(f) = (*parent_class).set_use_preedit {
                 f(
                     im_context.unsafe_cast_ref::<IMContext>().to_glib_none().0,
-                    use_preedit.to_glib(),
+                    use_preedit.into_glib(),
                 )
             }
         }
@@ -360,7 +360,7 @@ unsafe extern "C" fn im_context_delete_surrounding<T: IMContextImpl>(
     let wrap: Borrowed<IMContext> = from_glib_borrow(ptr);
 
     imp.delete_surrounding(wrap.unsafe_cast_ref(), offset, n_chars)
-        .to_glib()
+        .into_glib()
 }
 
 unsafe extern "C" fn im_context_filter_keypress<T: IMContextImpl>(
@@ -372,7 +372,7 @@ unsafe extern "C" fn im_context_filter_keypress<T: IMContextImpl>(
     let wrap: Borrowed<IMContext> = from_glib_borrow(ptr);
     let event: Borrowed<gdk::Event> = from_glib_borrow(eventptr);
     imp.filter_keypress(wrap.unsafe_cast_ref(), &event)
-        .to_glib()
+        .into_glib()
 }
 
 unsafe extern "C" fn im_context_focus_in<T: IMContextImpl>(ptr: *mut ffi::GtkIMContext) {
@@ -420,11 +420,11 @@ unsafe extern "C" fn im_context_get_surrounding<T: IMContextImpl>(
     if let Some((text, cursor_idx)) = imp.surrounding(wrap.unsafe_cast_ref()) {
         *text_ptr = text.to_glib_full();
         *cursor_index_ptr = cursor_idx;
-        true.to_glib()
+        true.into_glib()
     } else {
         *text_ptr = std::ptr::null_mut();
         *cursor_index_ptr = 0;
-        false.to_glib()
+        false.into_glib()
     }
 }
 
@@ -467,7 +467,7 @@ unsafe extern "C" fn im_context_retrieve_surrounding<T: IMContextImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<IMContext> = from_glib_borrow(ptr);
 
-    imp.retrieve_surrounding(wrap.unsafe_cast_ref()).to_glib()
+    imp.retrieve_surrounding(wrap.unsafe_cast_ref()).into_glib()
 }
 
 unsafe extern "C" fn im_context_set_client_widget<T: IMContextImpl>(

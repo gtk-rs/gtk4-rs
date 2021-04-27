@@ -2,11 +2,11 @@ use std::cell::RefCell;
 
 use gtk::glib;
 use gtk::prelude::*;
-use gtk::subclass::prelude::ObjectSubclass;
+use gtk::subclass::prelude::*;
 
 mod imp {
     use super::*;
-    use gtk::{glib::translate::ToGlib, subclass::prelude::*};
+    use glib::translate::IntoGlib;
 
     #[derive(Debug)]
     pub struct CustomOrientable {
@@ -83,7 +83,7 @@ mod imp {
                     "orientation",
                     "Orientation",
                     gtk::Orientation::static_type(),
-                    gtk::Orientation::Horizontal.to_glib(),
+                    gtk::Orientation::Horizontal.into_glib(),
                     glib::ParamFlags::READWRITE | glib::ParamFlags::CONSTRUCT,
                 )]
             });

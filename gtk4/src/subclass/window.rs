@@ -78,7 +78,7 @@ impl<T: WindowImpl> WindowImplExt for T {
                 .expect("No parent class impl for \"enable_debugging\"");
             from_glib(f(
                 window.unsafe_cast_ref::<Window>().to_glib_none().0,
-                toggle.to_glib(),
+                toggle.into_glib(),
             ))
         }
     }
@@ -149,7 +149,7 @@ unsafe extern "C" fn window_enable_debugging<T: WindowImpl>(
     let toggle: bool = from_glib(toggleptr);
 
     imp.enable_debugging(wrap.unsafe_cast_ref(), toggle)
-        .to_glib()
+        .into_glib()
 }
 
 unsafe extern "C" fn window_close_request<T: WindowImpl>(
@@ -159,5 +159,5 @@ unsafe extern "C" fn window_close_request<T: WindowImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<Window> = from_glib_borrow(ptr);
 
-    imp.close_request(wrap.unsafe_cast_ref()).to_glib()
+    imp.close_request(wrap.unsafe_cast_ref()).into_glib()
 }
