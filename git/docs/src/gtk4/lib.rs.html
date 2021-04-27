@@ -331,7 +331,6 @@
 <span id="328">328</span>
 <span id="329">329</span>
 <span id="330">330</span>
-<span id="331">331</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -553,8 +552,6 @@
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_imports</span>)]</span>
 <span class="kw">mod</span> <span class="ident">auto</span>;
 
-<span class="kw">mod</span> <span class="ident">signal</span>;
-
 <span class="attribute">#[<span class="ident">macro_use</span>]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">subclass</span>;
 
@@ -655,6 +652,7 @@
 <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">target_os</span> <span class="op">=</span> <span class="string">&quot;linux&quot;</span>)))]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">flags::PrintCapabilities</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">functions</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">glib::signal::Inhibit</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">keyval_trigger::KeyvalTrigger</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">mnemonic_trigger::MnemonicTrigger</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">pad_action_entry::PadActionEntry</span>;
