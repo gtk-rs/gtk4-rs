@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["TemplateChild",""]],"trait":[["CompositeTemplate",""],["WidgetClassSubclassExt",""],["WidgetImpl",""],["WidgetImplExt",""]]});
+initSidebarItems({"struct":[["TemplateChild",""],["WidgetAction",""],["WidgetActionIter",""]],"trait":[["CompositeTemplate",""],["WidgetClassSubclassExt",""],["WidgetImpl",""],["WidgetImplExt",""]]});
