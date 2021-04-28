@@ -4,21 +4,14 @@ use std::str::FromStr;
 use gtk::gdk;
 use gtk::prelude::*;
 
-fn create_color_button(color: &'static str) -> gtk::Button {
-    let button = gtk::Button::new();
-    let drawing_area = gtk::DrawingAreaBuilder::new()
-        .content_height(24)
-        .content_width(24)
-        .build();
+fn main() {
+    let application = gtk::Application::new(
+        Some("com.github.gtk-rs.examples.flowbox"),
+        Default::default(),
+    );
 
-    let rgba = gdk::RGBA::from_str(color).unwrap();
-    drawing_area.set_draw_func(move |_, cr, _width, _height| {
-        GdkCairoContextExt::set_source_rgba(cr, &rgba);
-        cr.paint();
-    });
-    button.set_child(Some(&drawing_area));
-
-    button
+    application.connect_activate(build_ui);
+    application.run();
 }
 
 fn build_ui(app: &gtk::Application) {
@@ -51,12 +44,19 @@ fn build_ui(app: &gtk::Application) {
     window.show();
 }
 
-fn main() {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.flowbox"),
-        Default::default(),
-    );
+fn create_color_button(color: &'static str) -> gtk::Button {
+    let button = gtk::Button::new();
+    let drawing_area = gtk::DrawingAreaBuilder::new()
+        .content_height(24)
+        .content_width(24)
+        .build();
 
-    application.connect_activate(build_ui);
-    application.run();
+    let rgba = gdk::RGBA::from_str(color).unwrap();
+    drawing_area.set_draw_func(move |_, cr, _width, _height| {
+        GdkCairoContextExt::set_source_rgba(cr, &rgba);
+        cr.paint();
+    });
+    button.set_child(Some(&drawing_area));
+
+    button
 }

@@ -1,5 +1,14 @@
 use gtk::prelude::*;
 
+fn main() {
+    let application = gtk::Application::new(
+        Some("com.github.gtk-rs.examples.entry-undo"),
+        Default::default(),
+    );
+    application.connect_activate(build_ui);
+    application.run();
+}
+
 fn build_ui(application: &gtk::Application) {
     let window = gtk::ApplicationWindow::new(application);
 
@@ -22,13 +31,4 @@ fn build_ui(application: &gtk::Application) {
     window.set_child(Some(&vbox));
 
     window.show();
-}
-
-fn main() {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.entry-undo"),
-        Default::default(),
-    );
-    application.connect_activate(build_ui);
-    application.run();
 }

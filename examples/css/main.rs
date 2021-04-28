@@ -5,34 +5,26 @@ use gtk::{
     Application, ApplicationWindow, Box as Box_, Button, ComboBoxText, CssProvider, Entry,
     Orientation, StyleContext, STYLE_PROVIDER_PRIORITY_APPLICATION,
 };
-// Basic CSS: we change background color, we set font color to black and we set it as bold.
-const STYLE: &str = "
-entry.entry1 {
-    background: linear-gradient(to right, #f00, #0f0);
-    color: blue;
-    font-weight: bold;
-}
 
-button {
-    /* If we don't put it, the yellow background won't be visible */
-    background-image: none;
-}
+fn main() {
+    let application = Application::new(Some("com.github.css"), Default::default());
+    application.connect_startup(|app| {
+        // The CSS "magic" happens here.
+        let provider = CssProvider::new();
+        provider.load_from_data(include_bytes!("style.css"));
+        // We give the CssProvided to the default screen so the CSS rules we added
+        // can be applied to our window.
+        StyleContext::add_provider_for_display(
+            &Display::default().expect("Error initializing gtk css provider."),
+            &provider,
+            STYLE_PROVIDER_PRIORITY_APPLICATION,
+        );
 
-button.button1:hover {
-    transition: 500ms;
-    color: red;
-    background-color: yellow;
+        // We build the application UI.
+        build_ui(app);
+    });
+    application.run();
 }
-
-combobox button.combo box {
-    padding: 5px;
-}
-combobox box arrow {
-    -gtk-icon-source: -gtk-icontheme('pan-down-symbolic');
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid black;
-}";
 
 fn build_ui(application: &Application) {
     let window = ApplicationWindow::new(application);
@@ -64,24 +56,4 @@ fn build_ui(application: &Application) {
     application.connect_activate(move |_| {
         window.show();
     });
-}
-
-fn main() {
-    let application = Application::new(Some("com.github.css"), Default::default());
-    application.connect_startup(|app| {
-        // The CSS "magic" happens here.
-        let provider = CssProvider::new();
-        provider.load_from_data(STYLE.as_bytes());
-        // We give the CssProvided to the default screen so the CSS rules we added
-        // can be applied to our window.
-        StyleContext::add_provider_for_display(
-            &Display::default().expect("Error initializing gtk css provider."),
-            &provider,
-            STYLE_PROVIDER_PRIORITY_APPLICATION,
-        );
-
-        // We build the application UI.
-        build_ui(app);
-    });
-    application.run();
 }

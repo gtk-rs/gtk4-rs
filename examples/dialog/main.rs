@@ -4,27 +4,13 @@ use gtk::prelude::*;
 
 use std::rc::Rc;
 
-async fn dialog<W: IsA<gtk::Window>>(window: Rc<W>) {
-    let question_dialog = gtk::MessageDialogBuilder::new()
-        .transient_for(&*window)
-        .modal(true)
-        .buttons(gtk::ButtonsType::OkCancel)
-        .text("What is your answer?")
+fn main() {
+    let application = gtk::ApplicationBuilder::new()
+        .application_id("com.github.gtk-rs.examples.dialog")
         .build();
 
-    let answer = question_dialog.run_future().await;
-    question_dialog.close();
-
-    let info_dialog = gtk::MessageDialogBuilder::new()
-        .transient_for(&*window)
-        .modal(true)
-        .buttons(gtk::ButtonsType::Close)
-        .text("You answered")
-        .secondary_text(&format!("Your answer: {:?}", answer))
-        .build();
-
-    info_dialog.run_future().await;
-    info_dialog.close();
+    application.connect_activate(build_ui);
+    application.run();
 }
 
 fn build_ui(application: &gtk::Application) {
@@ -59,11 +45,25 @@ fn build_ui(application: &gtk::Application) {
     });
 }
 
-fn main() {
-    let application = gtk::ApplicationBuilder::new()
-        .application_id("com.github.gtk-rs.examples.dialog")
+async fn dialog<W: IsA<gtk::Window>>(window: Rc<W>) {
+    let question_dialog = gtk::MessageDialogBuilder::new()
+        .transient_for(&*window)
+        .modal(true)
+        .buttons(gtk::ButtonsType::OkCancel)
+        .text("What is your answer?")
         .build();
 
-    application.connect_activate(build_ui);
-    application.run();
+    let answer = question_dialog.run_future().await;
+    question_dialog.close();
+
+    let info_dialog = gtk::MessageDialogBuilder::new()
+        .transient_for(&*window)
+        .modal(true)
+        .buttons(gtk::ButtonsType::Close)
+        .text("You answered")
+        .secondary_text(&format!("Your answer: {:?}", answer))
+        .build();
+
+    info_dialog.run_future().await;
+    info_dialog.close();
 }
