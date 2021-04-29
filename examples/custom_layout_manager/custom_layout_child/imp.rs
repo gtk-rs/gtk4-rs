@@ -9,6 +9,7 @@ use std::cell::RefCell;
 pub struct CustomLayoutChild {
     pub color: RefCell<gdk::RGBA>,
 }
+
 impl Default for CustomLayoutChild {
     fn default() -> Self {
         Self {
