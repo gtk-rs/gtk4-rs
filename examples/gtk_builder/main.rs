@@ -1,6 +1,15 @@
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Builder, Button, MessageDialog, ResponseType};
 
+fn main() {
+    let application = gtk::Application::new(
+        Some("com.github.gtk-rs.examples.builder_basics"),
+        Default::default(),
+    );
+    application.connect_activate(build_ui);
+    application.run();
+}
+
 fn build_ui(application: &Application) {
     let ui_src = include_str!("gtk_builder.ui");
     let builder = Builder::from_string(ui_src);
@@ -21,13 +30,4 @@ fn build_ui(application: &Application) {
     });
 
     window.show();
-}
-
-fn main() {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.builder_basics"),
-        Default::default(),
-    );
-    application.connect_activate(build_ui);
-    application.run();
 }

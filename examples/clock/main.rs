@@ -3,8 +3,11 @@ use gtk::glib;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Label};
 
-fn current_time() -> String {
-    return format!("{}", Local::now().format("%Y-%m-%d %H:%M:%S"));
+fn main() {
+    let application =
+        Application::new(Some("com.github.gtk-rs.examples.clock"), Default::default());
+    application.connect_activate(build_ui);
+    application.run();
 }
 
 fn build_ui(application: &Application) {
@@ -33,9 +36,6 @@ fn build_ui(application: &Application) {
     glib::timeout_add_seconds_local(1, tick);
 }
 
-fn main() {
-    let application =
-        Application::new(Some("com.github.gtk-rs.examples.clock"), Default::default());
-    application.connect_activate(build_ui);
-    application.run();
+fn current_time() -> String {
+    return format!("{}", Local::now().format("%Y-%m-%d %H:%M:%S"));
 }

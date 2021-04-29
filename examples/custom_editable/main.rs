@@ -8,37 +8,27 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use gtk::{gdk, glib};
 
-static CSS: &str = "
-tag {
-    margin: 4px 0px;
-    padding: 4px;
-    border-radius: 4px;
-    background: lightskyblue;
-  }
-  tag box {
-    border-spacing: 4px;
-  }
-  tag label,
-  tag image {
-    color: white;
-  }
-  tag button {
-    min-height: 0;
-    min-width: 0;
-    padding: 0;
-    border: 1px solid white;
-  }
-  
-  entry.tagged {
-    border-spacing: 4px;
-  }
-";
+fn main() {
+    let application = gtk::Application::new(
+        Some("com.github.gtk-rs.examples.editable"),
+        Default::default(),
+    );
+
+    application.connect_startup(|_| {
+        let provider = gtk::CssProvider::new();
+        provider.load_from_data(include_bytes!("style.css"));
+        gtk::StyleContext::add_provider_for_display(
+            &gdk::Display::default().unwrap(),
+            &provider,
+            800,
+        );
+    });
+
+    application.connect_activate(build_ui);
+    application.run();
+}
 
 fn build_ui(application: &gtk::Application) {
-    let provider = gtk::CssProvider::new();
-    provider.load_from_data(CSS.as_bytes());
-    gtk::StyleContext::add_provider_for_display(&gdk::Display::default().unwrap(), &provider, 800);
-
     let window = gtk::ApplicationWindow::new(application);
     window.set_title(Some("Custom Editable"));
     window.set_default_size(500, 500);
@@ -83,14 +73,4 @@ fn build_ui(application: &gtk::Application) {
     container.append(&horizontal_container);
     window.set_child(Some(&container));
     window.show();
-}
-
-fn main() {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.editable"),
-        Default::default(),
-    );
-
-    application.connect_activate(build_ui);
-    application.run();
 }

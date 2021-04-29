@@ -3,6 +3,16 @@ use crate::application_row::ApplicationRow;
 use gtk::gio;
 use gtk::prelude::*;
 
+fn main() {
+    let application = gtk::Application::new(
+        Some("com.github.gtk-rs.examples.apps_launcher"),
+        Default::default(),
+    );
+
+    application.connect_activate(build_ui);
+    application.run();
+}
+
 fn build_ui(app: &gtk::Application) {
     let window = gtk::ApplicationWindowBuilder::new()
         .default_width(600)
@@ -86,14 +96,4 @@ fn build_ui(app: &gtk::Application) {
 
     window.set_child(Some(&scrolled_window));
     window.show();
-}
-
-fn main() {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.apps_launcher"),
-        Default::default(),
-    );
-
-    application.connect_activate(build_ui);
-    application.run();
 }

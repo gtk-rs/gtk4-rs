@@ -10,6 +10,15 @@ use gtk::{
     ResponseType, TextView,
 };
 
+fn main() {
+    let application = Application::new(
+        Some("com.github.gtk-rs.examples.text_viewer"),
+        Default::default(),
+    );
+    application.connect_activate(build_ui);
+    application.run();
+}
+
 pub fn build_ui(application: &Application) {
     let ui_src = include_str!("text_viewer.ui");
     let builder = Builder::new();
@@ -52,13 +61,4 @@ pub fn build_ui(application: &Application) {
     }));
 
     window.show();
-}
-
-fn main() {
-    let application = Application::new(
-        Some("com.github.gtk-rs.examples.text_viewer"),
-        Default::default(),
-    );
-    application.connect_activate(build_ui);
-    application.run();
 }

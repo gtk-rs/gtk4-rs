@@ -5,32 +5,25 @@ use glib::Type;
 use gtk::gio::SimpleAction;
 use gtk::{Application, Entry, EntryCompletion, Label, ListStore, Orientation};
 
-struct Data {
-    description: String,
-}
+fn main() {
+    let application = Application::new(
+        Some("com.github.gtk-rs.examples.entry-completion"),
+        Default::default(),
+    );
+    application.connect_activate(build_ui);
 
-fn create_list_model() -> ListStore {
-    let col_types: [Type; 1] = [Type::STRING];
+    // When activated, shuts down the application
+    let quit = SimpleAction::new("quit", None);
+    quit.connect_activate(
+        glib::clone!(@weak application => move |_action, _parameter| {
+            application.quit();
+        }),
+    );
+    application.set_accels_for_action("app.quit", &["<Primary>Q"]);
+    application.add_action(&quit);
 
-    let data: [Data; 4] = [
-        Data {
-            description: "France".to_string(),
-        },
-        Data {
-            description: "Italy".to_string(),
-        },
-        Data {
-            description: "Sweden".to_string(),
-        },
-        Data {
-            description: "Switzerland".to_string(),
-        },
-    ];
-    let store = ListStore::new(&col_types);
-    for d in data.iter() {
-        store.set(&store.append(), &[(0, &d.description)]);
-    }
-    store
+    // Run the application
+    application.run();
 }
 
 fn build_ui(application: &Application) {
@@ -83,23 +76,30 @@ fn build_ui(application: &Application) {
     window.show();
 }
 
-fn main() {
-    let application = Application::new(
-        Some("com.github.gtk-rs.examples.entry-completion"),
-        Default::default(),
-    );
-    application.connect_activate(build_ui);
+struct Data {
+    description: String,
+}
 
-    // When activated, shuts down the application
-    let quit = SimpleAction::new("quit", None);
-    quit.connect_activate(
-        glib::clone!(@weak application => move |_action, _parameter| {
-            application.quit();
-        }),
-    );
-    application.set_accels_for_action("app.quit", &["<Primary>Q"]);
-    application.add_action(&quit);
+fn create_list_model() -> ListStore {
+    let col_types: [Type; 1] = [Type::STRING];
 
-    // Run the application
-    application.run();
+    let data: [Data; 4] = [
+        Data {
+            description: "France".to_string(),
+        },
+        Data {
+            description: "Italy".to_string(),
+        },
+        Data {
+            description: "Sweden".to_string(),
+        },
+        Data {
+            description: "Switzerland".to_string(),
+        },
+    ];
+    let store = ListStore::new(&col_types);
+    for d in data.iter() {
+        store.set(&store.append(), &[(0, &d.description)]);
+    }
+    store
 }
