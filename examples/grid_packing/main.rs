@@ -25,6 +25,8 @@ fn build_ui(application: &gtk::Application) {
         .margin_bottom(6)
         .halign(gtk::Align::Center)
         .valign(gtk::Align::Center)
+        .row_spacing(6)
+        .column_spacing(6)
         .build();
 
     // Add the grid in the window
