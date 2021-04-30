@@ -77,6 +77,10 @@ name = "flow_box"
 path = "flow_box/main.rs"
 
 [[bin]]
+name = "grid_packing"
+path = "grid_packing/main.rs"
+
+[[bin]]
 name = "gtk_builder"
 path = "gtk_builder/main.rs"
 
