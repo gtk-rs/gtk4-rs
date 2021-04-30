@@ -38,13 +38,13 @@ fn build_ui(application: &gtk::Application) {
 
     grid.attach(&button_1, 0, 0, 1, 1);
 
-    // Create the second button, make it expand and put it into the grid at (1, 0)
+    // Create the second button and put it into the grid at (1, 0)
     let button_2 = gtk::Button::with_label("Button 2");
     button_2.connect_clicked(move |_| println!("Hello World"));
 
     grid.attach(&button_2, 1, 0, 1, 1);
 
-    // Create the quit button, make it expand and put it into the grid at (0, 1)
+    // Create the quit button and put it into the grid at (0, 1)
     let quit_button = gtk::Button::with_label("Quit");
     quit_button.connect_clicked(clone!(@weak window => move |_| window.destroy()));
 
