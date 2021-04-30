@@ -240,6 +240,9 @@ status = "generate"
     [[object.function]]
     name = "get_gtypes"
     manual = true
+    [[object.function]]
+    name = "get_mime_types"
+    manual = true # remove once https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3488 gets merged
 
 [[object]]
 name = "Gdk.ContentFormatsBuilder"
