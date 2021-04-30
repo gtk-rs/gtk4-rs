@@ -5,14 +5,20 @@ fn build_ui(application: &gtk::Application) {
     // Create a new window, set its title and default size
     let window = gtk::ApplicationWindow::new(application);
     window.set_title(Some("Grid Packing"));
-    window.set_default_size(100, 100);
+    window.set_default_size(200, 120);
 
-    // Here we construct the grid that is going contain our buttons and add margins
+    // Here we construct the grid that is going contain our buttons.
     let grid = gtk::Grid::new();
+
+    // Add margins to the grid
     grid.set_margin_start(6);
     grid.set_margin_end(6);
     grid.set_margin_top(6);
     grid.set_margin_bottom(6);
+
+    // Align the grid in the center
+    grid.set_halign(gtk::Align::Center);
+    grid.set_valign(gtk::Align::Center);
 
     // Add the grid in the window
     window.set_child(Some(&grid));
