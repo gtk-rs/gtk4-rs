@@ -366,7 +366,7 @@ unsafe extern "C" fn content_provider_write_mime_type_async<T: ContentProviderIm
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.impl_();
     let wrap: Borrowed<ContentProvider> = from_glib_borrow(ptr);
-    let cancellable = gio::Cancellable::from_glib_borrow(cancellable_ptr);
+    let cancellable: Borrowed<Option<gio::Cancellable>> = from_glib_borrow(cancellable_ptr);
     let mime_type: Borrowed<glib::GString> = from_glib_borrow(mime_type_ptr);
     let stream: Borrowed<gio::OutputStream> = from_glib_borrow(stream_ptr);
 
@@ -379,7 +379,7 @@ unsafe extern "C" fn content_provider_write_mime_type_async<T: ContentProviderIm
     let source_object = &ContentProvider::from_glib_borrow(ptr);
     let t = gio::Task::new(
         Some(&source_object.upcast_ref::<glib::Object>()),
-        Some(cancellable.as_ref()),
+        cancellable.as_ref().as_ref(),
         closure,
     );
 
