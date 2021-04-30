@@ -118,7 +118,7 @@
             <span class="kw">let</span> <span class="ident">types</span> <span class="op">=</span>
                 <span class="ident">ffi::gtk_drop_target_get_gtypes</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">n_types</span>.<span class="ident">as_mut_ptr</span>());
 
-            <span class="ident">FromGlibContainer::from_glib_container_num</span>(<span class="ident">types</span>, <span class="ident">n_types</span>.<span class="ident">assume_init</span>() <span class="kw">as</span> <span class="ident">usize</span>)
+            <span class="ident">FromGlibContainer::from_glib_none_num</span>(<span class="ident">types</span>, <span class="ident">n_types</span>.<span class="ident">assume_init</span>() <span class="kw">as</span> <span class="ident">usize</span>)
         }
     }
 
