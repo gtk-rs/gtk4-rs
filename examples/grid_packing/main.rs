@@ -32,7 +32,7 @@ fn build_ui(application: &gtk::Application) {
     // Add the grid in the window
     window.set_child(Some(&grid));
 
-    // Create the first button, make it expand and put it into the grid at (0, 0)
+    // Create the first button and put it into the grid at (0, 0)
     let button_1 = gtk::Button::with_label("Button 1");
     button_1.connect_clicked(move |_| println!("Hello World"));
 
