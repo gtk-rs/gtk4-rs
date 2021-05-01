@@ -206,6 +206,18 @@ pub const TEXT_VIEW_PRIORITY_VALIDATE: u32 = ffi::GTK_TEXT_VIEW_PRIORITY_VALIDAT
 #[macro_use]
 mod rt;
 
+#[allow(dead_code)]
+#[cfg(test)]
+pub(crate) static TEST_THREAD_WORKER: once_cell::sync::Lazy<glib::ThreadPool> =
+    once_cell::sync::Lazy::new(|| {
+        let pool = glib::ThreadPool::new_exclusive(1).unwrap();
+        pool.push(move || {
+            crate::init().expect("Tests failed to initialize gtk");
+        })
+        .expect("Failed to schedule a test call");
+        pool
+    });
+
 #[allow(clippy::match_same_arms)]
 #[allow(clippy::let_and_return)]
 #[allow(clippy::many_single_char_names)]
