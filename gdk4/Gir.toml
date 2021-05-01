@@ -62,7 +62,6 @@ manual = [
     "Gdk.CrossingEvent",
     "Gdk.DeleteEvent",
     "Gdk.DNDEvent",
-    "Gdk.Event", # Fundemental type, manual
     "Gdk.FocusEvent",
     "Gdk.GrabBrokenEvent",
     "Gdk.KeyEvent",
@@ -402,6 +401,11 @@ status = "generate"
     [[object.function]]
     name = "read_async"
     manual = true # const ptr
+
+[[object]]
+name = "Gdk.Event"
+status = "manual" # fundemental type
+final_type = true # avoids the usage of EventExt trait
 
 [[object]]
 name = "Gdk.GLTexture"
