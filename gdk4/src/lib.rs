@@ -38,32 +38,47 @@ macro_rules! skip_assert_initialized {
 #[allow(unused_imports)]
 mod auto;
 
+#[macro_use]
+mod event;
+
 mod alias;
 pub mod prelude;
 pub mod subclass;
 
+mod button_event;
 mod cairo_interaction;
 mod clipboard;
 mod content_deserializer;
 mod content_formats;
 mod content_formats_builder;
 mod content_provider;
+mod crossing_event;
+mod delete_event;
 mod display;
+mod dnd_event;
 mod draw_context;
 mod drop;
-mod event;
+mod focus_event;
 mod functions;
 mod gl_texture;
+mod grab_broken_event;
+mod key_event;
 mod keymap_key;
 pub mod keys;
+mod motion_event;
+mod pad_event;
 mod popup_layout;
+mod proximity_event;
 mod rectangle;
 mod rgba;
+mod scroll_event;
 mod surface;
 mod texture;
 mod time_coord;
 mod toplevel;
 mod toplevel_size;
+mod touch_event;
+mod touchpad_event;
 
 pub use self::auto::functions::*;
 pub use auto::*;
@@ -71,12 +86,25 @@ pub use auto::*;
 pub use alias::*;
 pub use functions::*;
 
-pub use event::*;
+pub use button_event::ButtonEvent;
+pub use crossing_event::CrossingEvent;
+pub use delete_event::DeleteEvent;
+pub use dnd_event::DNDEvent;
+pub use event::{Event, NONE_EVENT};
+pub use focus_event::FocusEvent;
+pub use grab_broken_event::GrabBrokenEvent;
+pub use key_event::KeyEvent;
 pub use keymap_key::KeymapKey;
+pub use motion_event::MotionEvent;
+pub use pad_event::PadEvent;
+pub use proximity_event::ProximityEvent;
 pub use rectangle::Rectangle;
 pub use rgba::{RgbaParseError, RGBA};
+pub use scroll_event::ScrollEvent;
 pub use time_coord::TimeCoord;
 pub use toplevel_size::ToplevelSize;
+pub use touch_event::TouchEvent;
+pub use touchpad_event::TouchpadEvent;
 
 // This is the priority that the idle handler processing surface updates is given in the glib::MainLoop.
 #[doc(alias = "GDK_PRIORITY_REDRAW")]

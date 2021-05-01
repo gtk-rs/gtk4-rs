@@ -1,15 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-pub use self::{
-    button::ButtonEvent, crossing::CrossingEvent, delete::DeleteEvent, dnd::DNDEvent,
-    focus::FocusEvent, grab_broken::GrabBrokenEvent, key::KeyEvent, motion::MotionEvent,
-    pad::PadEvent, proximity::ProximityEvent, scroll::ScrollEvent, touch::TouchEvent,
-    touchpad::TouchpadEvent,
-};
-use crate::{
-    keys::Key, AxisUse, CrossingMode, Device, Display, Drop, EventType, KeyMatch, ModifierType,
-    NotifyType, ScrollDirection, Seat, Surface, TimeCoord, TouchpadGesturePhase,
-};
+use crate::{AxisUse, Device, Display, EventType, ModifierType, Seat, Surface, TimeCoord};
 use glib::translate::*;
 use glib::{StaticType, Type};
 use std::fmt;
@@ -248,553 +239,53 @@ macro_rules! define_event {
             }
         }
 
-        impl StaticType for $rust_type {
-            fn static_type() -> Type {
+        impl glib::StaticType for $rust_type {
+            fn static_type() -> glib::Type {
                 unsafe { from_glib($ffi_type_path()) }
             }
         }
 
-        unsafe impl EventKind for $rust_type {
-            fn event_types() -> &'static [EventType] {
+        unsafe impl crate::event::EventKind for $rust_type {
+            fn event_types() -> &'static [crate::EventType] {
                 $event_event_types
             }
         }
 
         impl std::ops::Deref for $rust_type {
-            type Target = Event;
+            type Target = crate::Event;
 
             fn deref(&self) -> &Self::Target {
-                unsafe { &*(self as *const $rust_type as *const Event) }
+                unsafe { &*(self as *const $rust_type as *const crate::Event) }
             }
         }
 
-        impl AsRef<Event> for $rust_type {
-            fn as_ref(&self) -> &Event {
+        impl AsRef<crate::Event> for $rust_type {
+            fn as_ref(&self) -> &crate::Event {
                 self.upcast_ref()
             }
         }
 
         #[doc(hidden)]
-        impl FromGlibPtrFull<*mut ffi::GdkEvent> for $rust_type {
+        impl glib::translate::FromGlibPtrFull<*mut ffi::GdkEvent> for $rust_type {
             unsafe fn from_glib_full(ptr: *mut ffi::GdkEvent) -> Self {
-                from_glib_full(ptr as *mut $ffi_type)
+                glib::translate::FromGlibPtrFull::from_glib_full(ptr as *mut $ffi_type)
             }
         }
 
         impl $rust_type {
-            pub fn upcast(self) -> Event {
-                unsafe { mem::transmute(self) }
+            pub fn upcast(self) -> crate::Event {
+                unsafe { std::mem::transmute(self) }
             }
 
-            pub fn upcast_ref(&self) -> &Event {
+            pub fn upcast_ref(&self) -> &crate::Event {
                 &*self
             }
         }
 
-        impl fmt::Debug for $rust_type {
-            fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        impl std::fmt::Debug for $rust_type {
+            fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
                 f.write_fmt(format_args!("{}", self))
             }
         }
     };
-}
-
-mod crossing {
-    use super::*;
-    define_event! {
-        CrossingEvent,
-        ffi::GdkCrossingEvent,
-        ffi::gdk_crossing_event_get_type,
-        &[EventType::EnterNotify, EventType::LeaveNotify]
-    }
-
-    impl CrossingEvent {
-        #[doc(alias = "gdk_crossing_event_get_detail")]
-        pub fn detail(&self) -> NotifyType {
-            unsafe { from_glib(ffi::gdk_crossing_event_get_detail(self.to_glib_none().0)) }
-        }
-
-        #[doc(alias = "gdk_crossing_event_get_focus")]
-        pub fn gets_focus(&self) -> bool {
-            unsafe { from_glib(ffi::gdk_crossing_event_get_focus(self.to_glib_none().0)) }
-        }
-
-        #[doc(alias = "gdk_crossing_event_get_mode")]
-        pub fn mode(&self) -> CrossingMode {
-            unsafe { from_glib(ffi::gdk_crossing_event_get_mode(self.to_glib_none().0)) }
-        }
-    }
-
-    impl fmt::Display for CrossingEvent {
-        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-            f.debug_struct("PadEvent")
-                .field("detail", &self.detail())
-                .field("focus", &self.gets_focus())
-                .field("mode", &self.mode())
-                .finish()
-        }
-    }
-}
-
-mod button {
-    use super::*;
-
-    define_event! {
-        ButtonEvent,
-        ffi::GdkButtonEvent,
-        ffi::gdk_button_event_get_type,
-        &[EventType::ButtonPress, EventType::ButtonRelease]
-    }
-
-    impl ButtonEvent {
-        #[doc(alias = "gdk_button_event_get_button")]
-        pub fn button(&self) -> u32 {
-            unsafe { ffi::gdk_button_event_get_button(self.to_glib_none().0) }
-        }
-    }
-
-    impl fmt::Display for ButtonEvent {
-        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-            f.debug_struct("ButtonEvent")
-                .field("button", &self.button())
-                .finish()
-        }
-    }
-}
-
-mod delete {
-    use super::*;
-
-    define_event! {
-        DeleteEvent,
-        ffi::GdkDeleteEvent,
-        ffi::gdk_delete_event_get_type,
-        &[EventType::Delete]
-    }
-
-    impl fmt::Display for DeleteEvent {
-        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-            f.write_str("DeleteEvent")
-        }
-    }
-}
-
-mod dnd {
-    use super::*;
-
-    define_event! {
-        DNDEvent,
-        ffi::GdkDNDEvent,
-        ffi::gdk_dnd_event_get_type,
-        &[EventType::DragEnter, EventType::DragLeave, EventType::DragMotion, EventType::DropStart]
-    }
-
-    impl DNDEvent {
-        #[doc(alias = "gdk_dnd_event_get_drop")]
-        pub fn drop(&self) -> Option<Drop> {
-            unsafe { from_glib_none(ffi::gdk_dnd_event_get_drop(self.to_glib_none().0)) }
-        }
-    }
-
-    impl fmt::Display for DNDEvent {
-        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-            f.debug_struct("DNDEvent")
-                .field("drop", &self.drop())
-                .finish()
-        }
-    }
-}
-
-mod focus {
-    use super::*;
-
-    define_event! {
-        FocusEvent,
-        ffi::GdkFocusEvent,
-        ffi::gdk_focus_event_get_type,
-        &[EventType::FocusChange]
-    }
-
-    impl FocusEvent {
-        #[doc(alias = "gdk_focus_event_get_in")]
-        pub fn is_in(&self) -> bool {
-            unsafe { from_glib(ffi::gdk_focus_event_get_in(self.to_glib_none().0)) }
-        }
-    }
-
-    impl fmt::Display for FocusEvent {
-        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-            f.debug_struct("FocusEvent")
-                .field("in", &self.is_in())
-                .finish()
-        }
-    }
-}
-
-mod grab_broken {
-    use super::*;
-
-    define_event! {
-        GrabBrokenEvent,
-        ffi::GdkGrabBrokenEvent,
-        ffi::gdk_grab_broken_event_get_type,
-        &[EventType::GrabBroken]
-    }
-
-    impl GrabBrokenEvent {
-        #[doc(alias = "gdk_grab_broken_event_get_grab_surface")]
-        pub fn grab_surface(&self) -> Option<Surface> {
-            unsafe {
-                from_glib_none(ffi::gdk_grab_broken_event_get_grab_surface(
-                    self.to_glib_none().0,
-                ))
-            }
-        }
-
-        #[doc(alias = "gdk_grab_broken_event_get_implicit")]
-        pub fn is_implicit(&self) -> bool {
-            unsafe {
-                from_glib(ffi::gdk_grab_broken_event_get_implicit(
-                    self.to_glib_none().0,
-                ))
-            }
-        }
-    }
-
-    impl fmt::Display for GrabBrokenEvent {
-        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-            f.debug_struct("GrabBrokenEvent")
-                .field("grab_surface", &self.grab_surface())
-                .field("implicit", &self.is_implicit())
-                .finish()
-        }
-    }
-}
-mod key {
-    use super::*;
-
-    define_event! {
-        KeyEvent,
-        ffi::GdkKeyEvent,
-        ffi::gdk_key_event_get_type,
-        &[EventType::KeyPress, EventType::KeyRelease]
-    }
-
-    impl KeyEvent {
-        #[doc(alias = "gdk_key_event_get_consumed_modifiers")]
-        pub fn consumed_modifiers(&self) -> ModifierType {
-            unsafe {
-                from_glib(ffi::gdk_key_event_get_consumed_modifiers(
-                    self.to_glib_none().0,
-                ))
-            }
-        }
-
-        #[doc(alias = "gdk_key_event_get_keycode")]
-        pub fn keycode(&self) -> u32 {
-            unsafe { ffi::gdk_key_event_get_keycode(self.to_glib_none().0) }
-        }
-        #[doc(alias = "gdk_key_event_get_keyval")]
-        pub fn keyval(&self) -> Key {
-            unsafe { ffi::gdk_key_event_get_keyval(self.to_glib_none().0).into() }
-        }
-
-        #[doc(alias = "gdk_key_event_get_layout")]
-        pub fn layout(&self) -> u32 {
-            unsafe { ffi::gdk_key_event_get_layout(self.to_glib_none().0) }
-        }
-
-        #[doc(alias = "gdk_key_event_get_level")]
-        pub fn level(&self) -> u32 {
-            unsafe { ffi::gdk_key_event_get_level(self.to_glib_none().0) }
-        }
-
-        #[doc(alias = "gdk_key_event_get_match")]
-        pub fn match_(&self) -> Option<(Key, ModifierType)> {
-            unsafe {
-                let mut keyval = mem::MaybeUninit::uninit();
-                let mut modifiers = mem::MaybeUninit::uninit();
-                let ret = from_glib(ffi::gdk_key_event_get_match(
-                    self.to_glib_none().0,
-                    keyval.as_mut_ptr(),
-                    modifiers.as_mut_ptr(),
-                ));
-                if ret {
-                    let keyval: Key = keyval.assume_init().into();
-                    let modifiers = modifiers.assume_init();
-                    Some((keyval, from_glib(modifiers)))
-                } else {
-                    None
-                }
-            }
-        }
-
-        #[doc(alias = "gdk_key_event_is_modifier")]
-        pub fn is_modifier(&self) -> bool {
-            unsafe { from_glib(ffi::gdk_key_event_is_modifier(self.to_glib_none().0)) }
-        }
-
-        #[doc(alias = "gdk_key_event_matches")]
-        pub fn matches(&self, keyval: Key, modifiers: ModifierType) -> KeyMatch {
-            unsafe {
-                from_glib(ffi::gdk_key_event_matches(
-                    self.to_glib_none().0,
-                    keyval.into_glib(),
-                    modifiers.into_glib(),
-                ))
-            }
-        }
-    }
-
-    impl fmt::Display for KeyEvent {
-        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-            f.debug_struct("KeyEvent")
-                .field("consumed_modifiers", &self.consumed_modifiers())
-                .field("keycode", &self.keycode())
-                .field("keyval", &self.keyval())
-                .field("layout", &self.layout())
-                .field("level", &self.level())
-                .field("match", &self.match_())
-                .field("is_modifier", &self.is_modifier())
-                .finish()
-        }
-    }
-}
-
-mod motion {
-    use super::*;
-
-    define_event! {
-        MotionEvent,
-        ffi::GdkMotionEvent,
-        ffi::gdk_motion_event_get_type,
-        &[EventType::MotionNotify]
-    }
-
-    impl fmt::Display for MotionEvent {
-        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-            f.write_str("MotionEvent")
-        }
-    }
-}
-
-mod pad {
-    use super::*;
-
-    define_event! {
-        PadEvent,
-        ffi::GdkPadEvent,
-        ffi::gdk_pad_event_get_type,
-        &[EventType::PadButtonPress, EventType::PadButtonRelease, EventType::PadRing, EventType::PadStrip, EventType::PadGroupMode]
-    }
-
-    impl PadEvent {
-        #[doc(alias = "gdk_pad_event_get_axis_value")]
-        pub fn axis_value(&self) -> (u32, f64) {
-            unsafe {
-                let mut index = mem::MaybeUninit::uninit();
-                let mut value = mem::MaybeUninit::uninit();
-                ffi::gdk_pad_event_get_axis_value(
-                    self.to_glib_none().0,
-                    index.as_mut_ptr(),
-                    value.as_mut_ptr(),
-                );
-                let index = index.assume_init();
-                let value = value.assume_init();
-                (index, value)
-            }
-        }
-
-        #[doc(alias = "gdk_pad_event_get_button")]
-        pub fn button(&self) -> u32 {
-            unsafe { ffi::gdk_pad_event_get_button(self.to_glib_none().0) }
-        }
-
-        #[doc(alias = "gdk_pad_event_get_group_mode")]
-        pub fn group_mode(&self) -> (u32, u32) {
-            unsafe {
-                let mut group = mem::MaybeUninit::uninit();
-                let mut mode = mem::MaybeUninit::uninit();
-                ffi::gdk_pad_event_get_group_mode(
-                    self.to_glib_none().0,
-                    group.as_mut_ptr(),
-                    mode.as_mut_ptr(),
-                );
-                let group = group.assume_init();
-                let mode = mode.assume_init();
-                (group, mode)
-            }
-        }
-    }
-
-    impl fmt::Display for PadEvent {
-        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-            f.debug_struct("PadEvent")
-                .field("axis_value", &self.axis_value())
-                .field("button", &self.button())
-                .field("group_mode", &self.group_mode())
-                .finish()
-        }
-    }
-}
-
-mod proximity {
-    use super::*;
-
-    define_event! {
-        ProximityEvent,
-        ffi::GdkProximityEvent,
-        ffi::gdk_proximity_event_get_type,
-        &[EventType::ProximityIn, EventType::ProximityOut]
-    }
-
-    impl fmt::Display for ProximityEvent {
-        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-            f.write_str("ProximityEvent")
-        }
-    }
-}
-
-mod scroll {
-    use super::*;
-
-    define_event! {
-        ScrollEvent,
-        ffi::GdkScrollEvent,
-        ffi::gdk_scroll_event_get_type,
-        &[EventType::Scroll]
-    }
-
-    impl ScrollEvent {
-        #[doc(alias = "gdk_scroll_event_get_deltas")]
-        pub fn deltas(&self) -> (f64, f64) {
-            unsafe {
-                let mut delta_x = mem::MaybeUninit::uninit();
-                let mut delta_y = mem::MaybeUninit::uninit();
-                ffi::gdk_scroll_event_get_deltas(
-                    self.to_glib_none().0,
-                    delta_x.as_mut_ptr(),
-                    delta_y.as_mut_ptr(),
-                );
-                let delta_x = delta_x.assume_init();
-                let delta_y = delta_y.assume_init();
-                (delta_x, delta_y)
-            }
-        }
-
-        #[doc(alias = "gdk_scroll_event_get_direction")]
-        pub fn direction(&self) -> ScrollDirection {
-            unsafe { from_glib(ffi::gdk_scroll_event_get_direction(self.to_glib_none().0)) }
-        }
-
-        #[doc(alias = "gdk_scroll_event_is_stop")]
-        pub fn is_stop(&self) -> bool {
-            unsafe { from_glib(ffi::gdk_scroll_event_is_stop(self.to_glib_none().0)) }
-        }
-    }
-
-    impl fmt::Display for ScrollEvent {
-        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-            f.debug_struct("ScrollEvent")
-                .field("deltas", &self.deltas())
-                .field("direction", &self.direction())
-                .field("is_stop", &self.is_stop())
-                .finish()
-        }
-    }
-}
-
-mod touch {
-    use super::*;
-
-    define_event! {
-        TouchEvent,
-        ffi::GdkTouchEvent,
-        ffi::gdk_touch_event_get_type,
-        &[EventType::TouchBegin, EventType::TouchUpdate, EventType::TouchEnd, EventType::TouchCancel]
-    }
-
-    impl TouchEvent {
-        #[doc(alias = "gdk_touch_event_get_emulating_pointer")]
-        pub fn emulates_pointer(&self) -> bool {
-            unsafe {
-                from_glib(ffi::gdk_touch_event_get_emulating_pointer(
-                    self.to_glib_none().0,
-                ))
-            }
-        }
-    }
-
-    impl fmt::Display for TouchEvent {
-        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-            f.debug_struct("TouchEvent")
-                .field("emulating_pointer", &self.emulates_pointer())
-                .finish()
-        }
-    }
-}
-
-mod touchpad {
-    use super::*;
-
-    define_event! {
-        TouchpadEvent,
-        ffi::GdkTouchpadEvent,
-        ffi::gdk_touchpad_event_get_type,
-        &[EventType::TouchpadSwipe, EventType::TouchpadPinch]
-    }
-
-    impl TouchpadEvent {
-        #[doc(alias = "gdk_touchpad_event_get_deltas")]
-        pub fn deltas(&self) -> (f64, f64) {
-            unsafe {
-                let mut dx = mem::MaybeUninit::uninit();
-                let mut dy = mem::MaybeUninit::uninit();
-                ffi::gdk_touchpad_event_get_deltas(
-                    self.to_glib_none().0,
-                    dx.as_mut_ptr(),
-                    dy.as_mut_ptr(),
-                );
-                let dx = dx.assume_init();
-                let dy = dy.assume_init();
-                (dx, dy)
-            }
-        }
-
-        #[doc(alias = "gdk_touchpad_event_get_gesture_phase")]
-        pub fn gesture_phase(&self) -> TouchpadGesturePhase {
-            unsafe {
-                from_glib(ffi::gdk_touchpad_event_get_gesture_phase(
-                    self.to_glib_none().0,
-                ))
-            }
-        }
-
-        #[doc(alias = "gdk_touchpad_event_get_n_fingers")]
-        pub fn n_fingers(&self) -> u32 {
-            unsafe { ffi::gdk_touchpad_event_get_n_fingers(self.to_glib_none().0) }
-        }
-
-        #[doc(alias = "gdk_touchpad_event_get_pinch_angle_delta")]
-        pub fn pinch_angle_delta(&self) -> f64 {
-            unsafe { ffi::gdk_touchpad_event_get_pinch_angle_delta(self.to_glib_none().0) }
-        }
-
-        #[doc(alias = "gdk_touchpad_event_get_pinch_scale")]
-        pub fn pinch_scale(&self) -> f64 {
-            unsafe { ffi::gdk_touchpad_event_get_pinch_scale(self.to_glib_none().0) }
-        }
-    }
-
-    impl fmt::Display for TouchpadEvent {
-        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-            f.debug_struct("TouchpadEvent")
-                .field("deltas", &self.deltas())
-                .field("gesture_phase", &self.gesture_phase())
-                .field("n_fingers", &self.n_fingers())
-                .field("pinch_angle_delta", &self.pinch_angle_delta())
-                .field("pinch_scale", &self.pinch_scale())
-                .finish()
-        }
-    }
 }
