@@ -2083,8 +2083,12 @@ status = "generate"
         name = "ancestor"
         const = true
     [[object.function]]
-    name = "get_indices"
+    name = "get_indices_with_depth"
     manual = true
+    rename = "indices"
+    [[object.function]]
+    name = "get_indices" # bindings should use get_indices_with_depth
+    ignore = true
     [[object.function]]
     name = "to_string"
         [[object.function.parameter]]

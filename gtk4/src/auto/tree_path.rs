@@ -4,7 +4,6 @@
 
 use glib::translate::*;
 use std::cmp;
-use std::mem;
 
 glib::wrapper! {
     #[derive(Debug, Hash)]
@@ -70,21 +69,6 @@ impl TreePath {
     #[doc(alias = "gtk_tree_path_get_depth")]
     pub fn depth(&self) -> i32 {
         unsafe { ffi::gtk_tree_path_get_depth(mut_override(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "gtk_tree_path_get_indices_with_depth")]
-    pub fn indices_with_depth(&mut self) -> Vec<i32> {
-        unsafe {
-            let mut depth = mem::MaybeUninit::uninit();
-            let ret = FromGlibContainer::from_glib_none_num(
-                ffi::gtk_tree_path_get_indices_with_depth(
-                    self.to_glib_none_mut().0,
-                    depth.as_mut_ptr(),
-                ),
-                depth.assume_init() as usize,
-            );
-            ret
-        }
     }
 
     #[doc(alias = "gtk_tree_path_is_ancestor")]
