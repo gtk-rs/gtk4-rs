@@ -61,7 +61,6 @@ manual = [
     "Gsk.OutsetShadowNode",
     "Gsk.ParseLocation",
     "Gsk.RadialGradientNode",
-    "Gsk.RenderNode",
     "Gsk.RepeatingLinearGradientNode",
     "Gsk.RepeatingRadialGradientNode",
     "Gsk.RepeatNode",
@@ -112,6 +111,11 @@ manual_traits = ["RendererExtManual"]
     # uses IsA<RenderNode> but RenderNode is not an Object
     manual = true
     doc_trait_name = "RendererExtManual"
+
+[[object]]
+name = "Gsk.RenderNode"
+status = "manual" # fundemental type
+final_type = true # avoids the usage of RenderNodeExt trait
 
 [[object]]
 name = "Gsk.Transform"
