@@ -877,7 +877,12 @@ status = "generate"
     # manual: FromGlibPtrBorrow<*mut GValue>` is not implemented for `Value`
     ignore = true
     [[object.function]]
-    pattern = "(get|set)_gtypes"
+    name = "get_gtypes"
+    rename = "types"
+    manual = true
+    [[object.function]]
+    name = "set_gtypes"
+    rename = "set_types"
     manual = true
 
 [[object]]
