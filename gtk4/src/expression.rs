@@ -490,38 +490,40 @@ impl ConstantExpression {
 
 #[cfg(test)]
 mod tests {
-    use glib::StaticType;
-
     use super::*;
+    use crate::TEST_THREAD_WORKER;
+    use glib::StaticType;
 
     #[test]
     fn test_expressions() {
-        crate::init().unwrap();
+        TEST_THREAD_WORKER
+            .push(move || {
+                let _pspec = glib::ParamSpec::expression(
+                    "expression",
+                    "Expression",
+                    "Some Expression",
+                    glib::ParamFlags::CONSTRUCT_ONLY | glib::ParamFlags::READABLE,
+                );
 
-        let _pspec = glib::ParamSpec::expression(
-            "expression",
-            "Expression",
-            "Some Expression",
-            glib::ParamFlags::CONSTRUCT_ONLY | glib::ParamFlags::READABLE,
-        );
+                let _prop_expr = PropertyExpression::new(
+                    crate::StringObject::static_type(),
+                    NONE_EXPRESSION,
+                    "string",
+                );
 
-        let _prop_expr = PropertyExpression::new(
-            crate::StringObject::static_type(),
-            NONE_EXPRESSION,
-            "string",
-        );
+                let obj = crate::IconTheme::new();
+                let expr = ObjectExpression::new(&obj);
+                assert_eq!(expr.object().unwrap(), obj);
 
-        let obj = crate::IconTheme::new();
-        let expr = ObjectExpression::new(&obj);
-        assert_eq!(expr.object().unwrap(), obj);
-
-        let expr1 = ConstantExpression::new(&23);
-        assert_eq!(expr1.value().get::<i32>().unwrap(), 23);
-        let expr2 = ConstantExpression::for_value(&"hello".to_value());
-        assert_eq!(expr2.value().get::<String>().unwrap(), "hello");
-        let expr1 = ConstantExpression::new(&23);
-        assert_eq!(expr1.value().get::<i32>().unwrap(), 23);
-        let expr2 = ConstantExpression::for_value(&"hello".to_value());
-        assert_eq!(expr2.value().get::<String>().unwrap(), "hello");
+                let expr1 = ConstantExpression::new(&23);
+                assert_eq!(expr1.value().get::<i32>().unwrap(), 23);
+                let expr2 = ConstantExpression::for_value(&"hello".to_value());
+                assert_eq!(expr2.value().get::<String>().unwrap(), "hello");
+                let expr1 = ConstantExpression::new(&23);
+                assert_eq!(expr1.value().get::<i32>().unwrap(), 23);
+                let expr2 = ConstantExpression::for_value(&"hello".to_value());
+                assert_eq!(expr2.value().get::<String>().unwrap(), "hello");
+            })
+            .expect("Failed to schedule a test call");
     }
 }
