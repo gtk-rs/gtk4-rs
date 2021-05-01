@@ -82,7 +82,7 @@ pub mod prelude {
     pub use super::box_::BoxImpl;
     pub use super::builder_scope::{BuilderScopeImpl, BuilderScopeImplExt};
     pub use super::button::{ButtonImpl, ButtonImplExt};
-    pub use super::cell_area::{CellAreaImpl, CellAreaImplExt};
+    pub use super::cell_area::{CellAreaClassSubclassExt, CellAreaImpl, CellAreaImplExt};
     pub use super::cell_area_context::{CellAreaContextImpl, CellAreaContextImplExt};
     pub use super::cell_editable::{CellEditableImpl, CellEditableImplExt};
     pub use super::cell_layout::{CellLayoutImpl, CellLayoutImplExt};

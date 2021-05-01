@@ -681,8 +681,20 @@ impl<T: CellAreaImpl> CellAreaImplExt for T {
 unsafe impl<T: CellAreaImpl> IsSubclassable<T> for CellArea {
     fn class_init(class: &mut glib::Class<Self>) {
         <Object as IsSubclassable<T>>::class_init(class);
-
         let klass = class.as_mut();
+
+        let pspecs = <T as CellAreaImpl>::cell_properties();
+        if !pspecs.is_empty() {
+            unsafe {
+                for (prop_id, pspec) in pspecs.iter().enumerate() {
+                    ffi::gtk_cell_area_class_install_cell_property(
+                        klass,
+                        prop_id as u32,
+                        pspec.to_glib_none().0,
+                    );
+                }
+            }
+        }
         klass.activate = Some(cell_area_activate::<T>);
         klass.add = Some(cell_area_add::<T>);
         klass.apply_attributes = Some(cell_area_apply_attributes::<T>);
@@ -1072,3 +1084,31 @@ unsafe extern "C" fn cell_area_foreach_alloc<T: CellAreaImpl>(
         &callback,
     )
 }
+
+pub unsafe trait CellAreaClassSubclassExt: ClassStruct {
+    #[doc(alias = "gtk_cell_area_class_find_cell_property")]
+    fn find_cell_property(&self, property_name: &str) -> Option<ParamSpec> {
+        unsafe {
+            let cell_area_class = self as *const _ as *mut ffi::GtkCellAreaClass;
+            from_glib_none(ffi::gtk_cell_area_class_find_cell_property(
+                cell_area_class,
+                property_name.to_glib_none().0,
+            ))
+        }
+    }
+
+    #[doc(alias = "gtk_cell_area_class_list_cell_properties")]
+    fn list_cell_properties(&self) -> Vec<ParamSpec> {
+        unsafe {
+            let cell_area_class = self as *const _ as *mut ffi::GtkCellAreaClass;
+            let mut n_properties = std::mem::MaybeUninit::uninit();
+            let props = ffi::gtk_cell_area_class_list_cell_properties(
+                cell_area_class,
+                n_properties.as_mut_ptr(),
+            );
+            FromGlibContainer::from_glib_none_num(props, n_properties.assume_init() as usize)
+        }
+    }
+}
+
+unsafe impl<T: ClassStruct> CellAreaClassSubclassExt for T where T::Type: CellAreaImpl {}
