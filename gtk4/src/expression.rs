@@ -1,6 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::{translate::*, value::ValueType, ToValue};
+use crate::ExpressionWatch;
+use glib::translate::*;
 use glib::{IsA, Object, StaticType, Type, Value};
 use std::boxed::Box as Box_;
 
@@ -192,48 +193,6 @@ impl GtkParamSpecExt for glib::ParamSpec {
     }
 }
 
-glib::wrapper! {
-    #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-    pub struct ExpressionWatch(Shared<ffi::GtkExpressionWatch>);
-
-    match fn {
-        ref => |ptr| ffi::gtk_expression_watch_ref(ptr),
-        unref => |ptr| ffi::gtk_expression_watch_unref(ptr),
-    }
-}
-
-impl ExpressionWatch {
-    #[doc(alias = "gtk_expression_watch_evaluate")]
-    pub fn evaluate(&self) -> Option<Value> {
-        assert_initialized_main_thread!();
-        unsafe {
-            let mut value = Value::uninitialized();
-            let ret = ffi::gtk_expression_watch_evaluate(
-                self.to_glib_none().0,
-                value.to_glib_none_mut().0,
-            );
-            if from_glib(ret) {
-                Some(value)
-            } else {
-                None
-            }
-        }
-    }
-
-    #[doc(alias = "gtk_expression_watch_unwatch")]
-    pub fn unwatch(&self) {
-        unsafe { ffi::gtk_expression_watch_unwatch(self.to_glib_none().0) }
-    }
-}
-
-#[cfg(any(feature = "v4_2", feature = "dox"))]
-impl glib::StaticType for ExpressionWatch {
-    #[doc(alias = "gtk_expression_watch_get_type")]
-    fn static_type() -> Type {
-        unsafe { from_glib(ffi::gtk_expression_watch_get_type()) }
-    }
-}
-
 macro_rules! define_expression {
     ($rust_type:ident, $ffi_type:path, $get_type:path) => {
         glib::wrapper! {
@@ -247,25 +206,25 @@ macro_rules! define_expression {
         }
 
         impl std::ops::Deref for $rust_type {
-            type Target = Expression;
+            type Target = crate::Expression;
 
             fn deref(&self) -> &Self::Target {
-                unsafe { &*(self as *const $rust_type as *const Expression) }
+                unsafe { &*(self as *const $rust_type as *const crate::Expression) }
             }
         }
 
-        impl AsRef<Expression> for $rust_type {
-            fn as_ref(&self) -> &Expression {
+        impl AsRef<crate::Expression> for $rust_type {
+            fn as_ref(&self) -> &crate::Expression {
                 self.upcast_ref()
             }
         }
 
         impl $rust_type {
-            pub fn upcast(self) -> Expression {
+            pub fn upcast(self) -> crate::Expression {
                 unsafe { std::mem::transmute(self) }
             }
 
-            pub fn upcast_ref(&self) -> &Expression {
+            pub fn upcast_ref(&self) -> &crate::Expression {
                 &*self
             }
         }
@@ -278,14 +237,14 @@ macro_rules! define_expression {
         }
 
         impl glib::StaticType for $rust_type {
-            fn static_type() -> Type {
+            fn static_type() -> glib::Type {
                 unsafe {
-                    from_glib($get_type())
+                    glib::translate::FromGlib::from_glib($get_type())
                 }
             }
         }
 
-        unsafe impl IsExpression for $rust_type {}
+        unsafe impl crate::expression::IsExpression for $rust_type {}
 
         impl glib::value::ValueType for $rust_type {
             type Type = Self;
@@ -310,6 +269,7 @@ macro_rules! define_expression {
             }
 
             fn value_type(&self) -> glib::Type {
+                use glib::StaticType;
                 Self::static_type()
             }
         }
@@ -327,175 +287,13 @@ macro_rules! define_expression {
     };
 }
 
-define_expression!(
-    PropertyExpression,
-    ffi::GtkPropertyExpression,
-    ffi::gtk_property_expression_get_type
-);
-
-impl PropertyExpression {
-    #[doc(alias = "gtk_property_expression_new")]
-    pub fn new<E: AsRef<Expression>>(
-        this_type: Type,
-        expression: Option<&E>,
-        property_name: &str,
-    ) -> Self {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(ffi::gtk_property_expression_new(
-                this_type.into_glib(),
-                expression.map(|e| e.as_ref()).to_glib_none().0,
-                property_name.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "gtk_property_expression_new_for_pspec")]
-    pub fn for_pspec<E: AsRef<Expression>>(expression: Option<&E>, pspec: glib::ParamSpec) -> Self {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(ffi::gtk_property_expression_new_for_pspec(
-                expression.map(|e| e.as_ref()).to_glib_none().0,
-                pspec.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "gtk_property_expression_get_expression")]
-    pub fn expression(&self) -> Option<Expression> {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_none(ffi::gtk_property_expression_get_expression(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "gtk_property_expression_get_pspec")]
-    pub fn pspec(&self) -> glib::ParamSpec {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_none(ffi::gtk_property_expression_get_pspec(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-}
-
-define_expression!(
-    ObjectExpression,
-    ffi::GtkObjectExpression,
-    ffi::gtk_object_expression_get_type
-);
-
-impl ObjectExpression {
-    #[doc(alias = "gtk_property_expression_new")]
-    pub fn new<T: IsA<Object>>(object: &T) -> Self {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(ffi::gtk_object_expression_new(
-                object.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "gtk_object_expression_get_object")]
-    pub fn object(&self) -> Option<Object> {
-        assert_initialized_main_thread!();
-        unsafe { from_glib_none(ffi::gtk_object_expression_get_object(self.to_glib_none().0)) }
-    }
-}
-
-define_expression!(
-    ClosureExpression,
-    ffi::GtkClosureExpression,
-    ffi::gtk_closure_expression_get_type
-);
-
-impl ClosureExpression {
-    #[doc(alias = "gtk_closure_expression_new")]
-    pub fn new<F, R>(callback: F, params: &[Expression]) -> Self
-    where
-        F: Fn(&[Value]) -> R + 'static,
-        R: ValueType,
-    {
-        assert_initialized_main_thread!();
-        let closure = glib::Closure::new_local(move |values| {
-            let ret = callback(values);
-            Some(ret.to_value())
-        });
-        unsafe {
-            from_glib_full(ffi::gtk_closure_expression_new(
-                R::Type::static_type().into_glib(),
-                closure.to_glib_none().0,
-                params.len() as u32,
-                params.to_glib_full(),
-            ))
-        }
-    }
-
-    #[doc(alias = "gtk_closure_expression_new")]
-    pub fn with_closure<R>(closure: glib::Closure, params: &[Expression]) -> Self
-    where
-        R: ValueType,
-    {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(ffi::gtk_closure_expression_new(
-                R::Type::static_type().into_glib(),
-                closure.to_glib_none().0,
-                params.len() as u32,
-                params.to_glib_full(),
-            ))
-        }
-    }
-}
-
-define_expression!(
-    ConstantExpression,
-    ffi::GtkConstantExpression,
-    ffi::gtk_constant_expression_get_type
-);
-
-impl ConstantExpression {
-    #[doc(alias = "gtk_constant_expression_new")]
-    pub fn new<V: ToValue>(value: &V) -> Self {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(ffi::gtk_constant_expression_new_for_value(
-                value.to_value().to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "gtk_constant_expression_new_for_value")]
-    pub fn for_value(value: &Value) -> Self {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(ffi::gtk_constant_expression_new_for_value(
-                value.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "gtk_constant_expression_get_value")]
-    pub fn value(&self) -> Value {
-        unsafe {
-            from_glib_none(ffi::gtk_constant_expression_get_value(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
     use crate::TEST_THREAD_WORKER;
-    use glib::StaticType;
 
     #[test]
-    fn test_expressions() {
+    fn test_paramspec_expression() {
         TEST_THREAD_WORKER
             .push(move || {
                 let _pspec = glib::ParamSpec::expression(
@@ -504,25 +302,6 @@ mod tests {
                     "Some Expression",
                     glib::ParamFlags::CONSTRUCT_ONLY | glib::ParamFlags::READABLE,
                 );
-
-                let _prop_expr = PropertyExpression::new(
-                    crate::StringObject::static_type(),
-                    NONE_EXPRESSION,
-                    "string",
-                );
-
-                let obj = crate::IconTheme::new();
-                let expr = ObjectExpression::new(&obj);
-                assert_eq!(expr.object().unwrap(), obj);
-
-                let expr1 = ConstantExpression::new(&23);
-                assert_eq!(expr1.value().get::<i32>().unwrap(), 23);
-                let expr2 = ConstantExpression::for_value(&"hello".to_value());
-                assert_eq!(expr2.value().get::<String>().unwrap(), "hello");
-                let expr1 = ConstantExpression::new(&23);
-                assert_eq!(expr1.value().get::<i32>().unwrap(), 23);
-                let expr2 = ConstantExpression::for_value(&"hello".to_value());
-                assert_eq!(expr2.value().get::<String>().unwrap(), "hello");
             })
             .expect("Failed to schedule a test call");
     }
