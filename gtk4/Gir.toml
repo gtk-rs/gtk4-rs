@@ -1359,6 +1359,7 @@ manual_traits = ["MediaStreamExtManual"]
     [[object.function]]
     name = "gerror"
     manual = true
+    rename = "set_error"
     doc_trait_name = "MediaStreamExtManual"
 
 [[object]]
