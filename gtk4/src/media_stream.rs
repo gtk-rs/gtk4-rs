@@ -7,11 +7,11 @@ use glib::IsA;
 pub trait MediaStreamExtManual: 'static {
     #[doc(alias = "gtk_media_stream_gerror")]
     #[doc(alias = "gtk_media_stream_error")]
-    fn error(&self, error: glib::Error);
+    fn set_error(&self, error: glib::Error);
 }
 
 impl<O: IsA<MediaStream>> MediaStreamExtManual for O {
-    fn error(&self, error: glib::Error) {
+    fn set_error(&self, error: glib::Error) {
         unsafe {
             ffi::gtk_media_stream_gerror(
                 self.as_ref().to_glib_none().0,
