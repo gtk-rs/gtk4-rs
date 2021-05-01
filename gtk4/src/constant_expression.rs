@@ -10,14 +10,6 @@ define_expression!(
 );
 
 impl ConstantExpression {
-    /// Creates a `GtkExpression` that evaluates to the
-    /// object given by the arguments.
-    /// ## `value_type`
-    /// The type of the object
-    ///
-    /// # Returns
-    ///
-    /// a new `GtkExpression`
     #[doc(alias = "gtk_constant_expression_new")]
     pub fn new<V: ToValue>(value: &V) -> Self {
         assert_initialized_main_thread!();
@@ -28,13 +20,6 @@ impl ConstantExpression {
         }
     }
 
-    /// Creates an expression that always evaluates to the given `value`.
-    /// ## `value`
-    /// a `GValue`
-    ///
-    /// # Returns
-    ///
-    /// a new `GtkExpression`
     #[doc(alias = "gtk_constant_expression_new_for_value")]
     pub fn for_value(value: &Value) -> Self {
         assert_initialized_main_thread!();
@@ -45,11 +30,6 @@ impl ConstantExpression {
         }
     }
 
-    /// Gets the value that a constant expression evaluates to.
-    ///
-    /// # Returns
-    ///
-    /// the value
     #[doc(alias = "gtk_constant_expression_get_value")]
     pub fn value(&self) -> Value {
         unsafe {
