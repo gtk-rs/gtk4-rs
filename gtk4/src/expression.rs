@@ -175,12 +175,12 @@ impl glib::value::ToValueOptional for Expression {
 
 /// Register Expression's ParamSpec support
 trait GtkParamSpecExt {
-    fn expression(name: &str, nick: &str, blurb: &str, flags: glib::ParamFlags) -> Self;
+    fn new_expression(name: &str, nick: &str, blurb: &str, flags: glib::ParamFlags) -> Self;
 }
 
 impl GtkParamSpecExt for glib::ParamSpec {
     #[doc(alias = "gtk_param_spec_expression")]
-    fn expression(name: &str, nick: &str, blurb: &str, flags: glib::ParamFlags) -> Self {
+    fn new_expression(name: &str, nick: &str, blurb: &str, flags: glib::ParamFlags) -> Self {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(ffi::gtk_param_spec_expression(
@@ -296,7 +296,7 @@ mod tests {
     fn test_paramspec_expression() {
         TEST_THREAD_WORKER
             .push(move || {
-                let _pspec = glib::ParamSpec::expression(
+                let _pspec = glib::ParamSpec::new_expression(
                     "expression",
                     "Expression",
                     "Some Expression",
