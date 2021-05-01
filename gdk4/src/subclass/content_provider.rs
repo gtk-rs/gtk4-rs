@@ -365,10 +365,10 @@ unsafe extern "C" fn content_provider_write_mime_type_async<T: ContentProviderIm
 ) {
     let instance = &*(ptr as *mut T::Instance);
     let imp = instance.impl_();
-    let wrap: Borrowed<ContentProvider> = from_glib_borrow(ptr);
-    let cancellable: Borrowed<Option<gio::Cancellable>> = from_glib_borrow(cancellable_ptr);
-    let mime_type: Borrowed<glib::GString> = from_glib_borrow(mime_type_ptr);
-    let stream: Borrowed<gio::OutputStream> = from_glib_borrow(stream_ptr);
+    let wrap: ContentProvider = from_glib_none(ptr);
+    let cancellable: Option<gio::Cancellable> = from_glib_none(cancellable_ptr);
+    let mime_type: glib::GString = from_glib_none(mime_type_ptr);
+    let stream: gio::OutputStream = from_glib_none(stream_ptr);
 
     let closure = move |result: &gio::AsyncResult, source_object: Option<&glib::Object>| {
         let result: *mut gio::ffi::GAsyncResult = result.to_glib_none().0;
@@ -376,10 +376,9 @@ unsafe extern "C" fn content_provider_write_mime_type_async<T: ContentProviderIm
         callback.unwrap()(source_object, result, user_data)
     };
 
-    let source_object = &ContentProvider::from_glib_borrow(ptr);
     let t = gio::Task::new(
-        Some(&source_object.upcast_ref::<glib::Object>()),
-        cancellable.as_ref().as_ref(),
+        Some(&wrap.upcast_ref::<glib::Object>()),
+        cancellable.as_ref(),
         closure,
     );
 
