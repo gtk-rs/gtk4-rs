@@ -232,6 +232,8 @@ mod auto;
 
 #[macro_use]
 pub mod subclass;
+#[macro_use]
+mod expression;
 
 pub mod prelude;
 
@@ -251,8 +253,10 @@ mod cell_area;
 mod cell_editable;
 mod cell_layout;
 mod cell_renderer;
+mod closure_expression;
 mod color_chooser;
 mod combo_box;
+mod constant_expression;
 mod constraint_guide;
 mod css_location;
 mod custom_filter;
@@ -267,7 +271,7 @@ mod entry_buffer;
 mod entry_completion;
 mod enums;
 mod event_controller_key;
-mod expression;
+mod expression_watch;
 mod file_chooser_dialog;
 mod flags;
 mod flow_box;
@@ -289,6 +293,7 @@ mod message_dialog;
 mod mnemonic_trigger;
 mod notebook;
 mod numeric_sorter;
+mod object_expression;
 mod overlay;
 mod pad_action_entry;
 mod pad_controller;
@@ -296,6 +301,7 @@ mod page_range;
 #[cfg(any(target_os = "linux", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 mod print_job;
+mod property_expression;
 mod recent_data;
 mod requisition;
 mod response_type;
@@ -323,11 +329,11 @@ mod widget;
 
 pub use bitset_iter::BitsetIter;
 pub use border::Border;
+pub use closure_expression::ClosureExpression;
+pub use constant_expression::ConstantExpression;
 pub use css_location::CssLocation;
-pub use expression::{
-    ClosureExpression, ConstantExpression, Expression, ExpressionWatch, ObjectExpression,
-    PropertyExpression, NONE_EXPRESSION,
-};
+pub use expression::{Expression, NONE_EXPRESSION};
+pub use expression_watch::ExpressionWatch;
 #[cfg(any(target_os = "linux", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 pub use flags::PrintCapabilities;
@@ -335,8 +341,10 @@ pub use functions::*;
 pub use glib::signal::Inhibit;
 pub use keyval_trigger::KeyvalTrigger;
 pub use mnemonic_trigger::MnemonicTrigger;
+pub use object_expression::ObjectExpression;
 pub use pad_action_entry::PadActionEntry;
 pub use page_range::PageRange;
+pub use property_expression::PropertyExpression;
 pub use recent_data::RecentData;
 pub use requisition::Requisition;
 pub use response_type::ResponseType;
