@@ -458,7 +458,18 @@ manual_traits = ["AccessibleExtManual"]
     pattern = "update_(property|state|relation)"
     ignore = true
     [[object.function]]
-    pattern = "update_(property|state|relation)_value"
+    pattern = "update_property_value"
+    rename = "update_property"
+    doc_trait_name = "AccessibleExtManual"
+    manual = true
+    [[object.function]]
+    pattern = "update_state_value"
+    rename = "update_state"
+    doc_trait_name = "AccessibleExtManual"
+    manual = true
+    [[object.function]]
+    pattern = "update_relation_value"
+    rename = "update_relation"
     doc_trait_name = "AccessibleExtManual"
     manual = true
 
