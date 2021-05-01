@@ -2265,6 +2265,7 @@ manual_traits = ["TreeStoreExtManual"]
     ignore = true
     [[object.function]]
     pattern = "insert_with_valuesv"
+    rename = "insert_with_values"
     manual = true
     doc_trait_name = "TreeStoreExtManual"
     [[object.function]]
