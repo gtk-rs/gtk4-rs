@@ -81,7 +81,7 @@ But why did we not do the same thing with our multi-threaded example?
 # fn main() {
 #     // Create a new application
 #     let app = Application::new(Some("org.gtk.example"), Default::default());
-#     app.connect_activate(on_activate);
+#     app.connect_activate(build_ui);
 # 
 #     // Get command-line arguments
 #     let args: Vec<String> = args().collect();
@@ -90,8 +90,8 @@ But why did we not do the same thing with our multi-threaded example?
 # }
 # 
 # // When the application is launched…
-# fn on_activate(application: &Application) {
-#     // … create a new window …
+# fn build_ui(application: &Application) {
+#     // Create a window
 #     let window = ApplicationWindowBuilder::new()
 #         .application(application)
 #         .title("My GTK App")

@@ -1,5 +1,6 @@
 mod imp;
 
+use glib::Object;
 use gtk::glib;
 
 glib::wrapper! {
@@ -9,11 +10,11 @@ glib::wrapper! {
 
 impl CustomButton {
     pub fn new() -> Self {
-        glib::Object::new(&[]).expect("Failed to create Button")
+        Object::new(&[]).expect("Failed to create Button")
     }
 
     pub fn with_label(label: &str) -> Self {
-        glib::Object::new(&[("label", &label)]).expect("Failed to create Button")
+        Object::new(&[("label", &label)]).expect("Failed to create Button")
     }
 }
 

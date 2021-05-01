@@ -30,7 +30,7 @@ Also, the name of the chapter suggests that the phrase "Hello World!" will be in
 <span class="filename">Filename: listings/hello_world/3/main.rs</span>
 
 ```rust ,no_run
-{{#rustdoc_include ../listings/hello_world/3/main.rs:on_activate}}
+{{#rustdoc_include ../listings/hello_world/3/main.rs:build_ui}}
 ```
 There is now a button and if we click on it, its label becomes "Hello World!".
 

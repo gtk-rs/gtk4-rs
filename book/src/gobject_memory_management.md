@@ -11,15 +11,14 @@ use gtk::{self, Application, ApplicationWindow, Button, Orientation};
 fn main() {
     // Create a new application
     let app = Application::new(Some("org.gtk.example"), Default::default());
-    app.connect_activate(on_activate);
+    app.connect_activate(build_ui);
     
     // Run the application
     app.run();
 }
 
-// When the application is launched…
-fn on_activate(application: &Application) {
-    // … create a new window …
+fn build_ui(application: &Application) {
+    // Create a window
     let window = ApplicationWindow::new(application);
 
     // Create two buttons
@@ -146,7 +145,7 @@ For more information about `glib::clone`, please have a look at the [docs](https
 
 Notice that we kept the *strong* reference to `number`.
 If we had a *weak* reference, no one would have kept `number` alive and the closure would have never been called.
-Thinking about this, `button_increase` and `button_decrease` are also dropped at the end of the scope of `on_activate`.
+Thinking about this, `button_increase` and `button_decrease` are also dropped at the end of the scope of `build_ui`.
 Who then keeps the buttons alive?
 
 <span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span>
