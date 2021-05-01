@@ -289,6 +289,21 @@
 <span id="286">286</span>
 <span id="287">287</span>
 <span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -331,6 +346,21 @@
 }
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">GtkListStoreExtManual</span>: <span class="lifetime">&#39;static</span> {
+    <span class="doccomment">/// A variant of [`ListStore::insert_with_values()`](crate::ListStore::insert_with_values()) which</span>
+    <span class="doccomment">/// takes the columns and values as two arrays, instead of</span>
+    <span class="doccomment">/// varargs.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This function is mainly intended for language-bindings.</span>
+    <span class="doccomment">/// ## `iter`</span>
+    <span class="doccomment">/// An unset [`TreeIter`](crate::TreeIter) to set to the new row</span>
+    <span class="doccomment">/// ## `position`</span>
+    <span class="doccomment">/// position to insert the new row, or -1 for last</span>
+    <span class="doccomment">/// ## `columns`</span>
+    <span class="doccomment">/// an array of column numbers</span>
+    <span class="doccomment">/// ## `values`</span>
+    <span class="doccomment">/// an array of GValues</span>
+    <span class="doccomment">/// ## `n_values`</span>
+    <span class="doccomment">/// the length of the `columns` and `values` arrays</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_insert_with_values&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_insert_with_valuesv&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">insert_with_values</span>(
