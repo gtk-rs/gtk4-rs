@@ -3,13 +3,9 @@
 use crate::PopupLayout;
 use glib::translate::*;
 
-pub trait PopupLayoutExtManual {
+impl PopupLayout {
     #[doc(alias = "gdk_popup_layout_get_offset")]
-    fn offset(&self) -> (i32, i32);
-}
-
-impl PopupLayoutExtManual for PopupLayout {
-    fn offset(&self) -> (i32, i32) {
+    pub fn offset(&self) -> (i32, i32) {
         let mut dx = 0;
         let mut dy = 0;
         unsafe {
