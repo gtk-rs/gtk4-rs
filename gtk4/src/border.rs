@@ -36,6 +36,38 @@ impl Border {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_border_new()) }
     }
+
+    pub fn left(&self) -> i16 {
+        self.left
+    }
+
+    pub fn set_left(&mut self, left: i16) {
+        self.left = left;
+    }
+
+    pub fn right(&self) -> i16 {
+        self.right
+    }
+
+    pub fn set_right(&mut self, right: i16) {
+        self.right = right;
+    }
+
+    pub fn top(&self) -> i16 {
+        self.top
+    }
+
+    pub fn set_top(&mut self, top: i16) {
+        self.top = top;
+    }
+
+    pub fn bottom(&self) -> i16 {
+        self.bottom
+    }
+
+    pub fn set_bottom(&mut self, bottom: i16) {
+        self.bottom = bottom;
+    }
 }
 
 impl Default for Border {
@@ -47,10 +79,10 @@ impl Default for Border {
 impl fmt::Debug for Border {
     fn fmt(&self, fmt: &mut fmt::Formatter) -> Result<(), fmt::Error> {
         fmt.debug_struct("Border")
-            .field("left", &self.left)
-            .field("right", &self.right)
-            .field("top", &self.top)
-            .field("bottom", &self.bottom)
+            .field("left", &self.left())
+            .field("right", &self.right())
+            .field("top", &self.top())
+            .field("bottom", &self.bottom())
             .finish()
     }
 }
