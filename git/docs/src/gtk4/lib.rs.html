@@ -331,6 +331,20 @@
 <span id="328">328</span>
 <span id="329">329</span>
 <span id="330">330</span>
+<span id="331">331</span>
+<span id="332">332</span>
+<span id="333">333</span>
+<span id="334">334</span>
+<span id="335">335</span>
+<span id="336">336</span>
+<span id="337">337</span>
+<span id="338">338</span>
+<span id="339">339</span>
+<span id="340">340</span>
+<span id="341">341</span>
+<span id="342">342</span>
+<span id="343">343</span>
+<span id="344">344</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -540,6 +554,18 @@
 <span class="attribute">#[<span class="ident">macro_use</span>]</span>
 <span class="kw">mod</span> <span class="ident">rt</span>;
 
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">static</span> <span class="ident">TEST_THREAD_WORKER</span>: <span class="ident">once_cell::sync::Lazy</span><span class="op">&lt;</span><span class="ident">glib::ThreadPool</span><span class="op">&gt;</span> <span class="op">=</span>
+    <span class="ident">once_cell::sync::Lazy::new</span>(<span class="op">|</span><span class="op">|</span> {
+        <span class="kw">let</span> <span class="ident">pool</span> <span class="op">=</span> <span class="ident">glib::ThreadPool::new_exclusive</span>(<span class="number">1</span>).<span class="ident">unwrap</span>();
+        <span class="ident">pool</span>.<span class="ident">push</span>(<span class="kw">move</span> <span class="op">|</span><span class="op">|</span> {
+            <span class="kw">crate</span><span class="ident">::init</span>().<span class="ident">expect</span>(<span class="string">&quot;Tests failed to initialize gtk&quot;</span>);
+        })
+        .<span class="ident">expect</span>(<span class="string">&quot;Failed to schedule a test call&quot;</span>);
+        <span class="ident">pool</span>
+    });
+
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::match_same_arms</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::let_and_return</span>)]</span>
 <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::many_single_char_names</span>)]</span>
@@ -565,6 +591,7 @@
 <span class="kw">mod</span> <span class="ident">actionable</span>;
 <span class="kw">mod</span> <span class="ident">application</span>;
 <span class="kw">mod</span> <span class="ident">assistant</span>;
+<span class="kw">mod</span> <span class="ident">bitset_iter</span>;
 <span class="kw">mod</span> <span class="ident">bool_filter</span>;
 <span class="kw">mod</span> <span class="ident">border</span>;
 <span class="kw">mod</span> <span class="ident">builder</span>;
@@ -642,6 +669,7 @@
 <span class="kw">mod</span> <span class="ident">tree_view_column</span>;
 <span class="kw">mod</span> <span class="ident">widget</span>;
 
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">bitset_iter::BitsetIter</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">border::Border</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">css_location::CssLocation</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">expression</span>::{

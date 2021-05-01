@@ -66,6 +66,11 @@
 <span id="63">63</span>
 <span id="64">64</span>
 <span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -128,7 +133,12 @@
         <span class="kw-2">*</span><span class="ident">borderptr</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">border</span>.<span class="ident">to_glib_full</span>();
         <span class="bool-val">true</span>.<span class="ident">into_glib</span>()
     } <span class="kw">else</span> {
-        <span class="kw-2">*</span><span class="ident">borderptr</span> <span class="op">=</span> <span class="kw-2">*</span><span class="ident">std::ptr::null</span>();
+        <span class="kw-2">*</span><span class="ident">borderptr</span> <span class="op">=</span> <span class="ident">ffi::GtkBorder</span> {
+            <span class="ident">top</span>: <span class="number">0</span>,
+            <span class="ident">right</span>: <span class="number">0</span>,
+            <span class="ident">left</span>: <span class="number">0</span>,
+            <span class="ident">bottom</span>: <span class="number">0</span>,
+        };
         <span class="bool-val">false</span>.<span class="ident">into_glib</span>()
     }
 }
