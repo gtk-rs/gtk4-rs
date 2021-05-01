@@ -8,15 +8,14 @@ fn main() {
     // Create a new application
     let app = Application::new(Some("org.gtk.example"), Default::default());
     // ANCHOR_END: application
-    app.connect_activate(on_activate);
+    app.connect_activate(build_ui);
 
     // Run the application
     app.run();
 }
 
-// When the application is launched…
-fn on_activate(application: &Application) {
-    // … create a new window …
+fn build_ui(application: &Application) {
+    // Create a window
     let window = ApplicationWindowBuilder::new()
         .application(application)
         .title("My GTK App")
@@ -49,7 +48,7 @@ fn on_activate(application: &Application) {
         settings
             .set_boolean("is-switch-enabled", is_enabled)
             .unwrap();
-        // We do not want to inhibit the the default handler
+        // Do not inhibit the the default handler
         Inhibit(false)
     });
     // ANCHOR_END: connect_state_set

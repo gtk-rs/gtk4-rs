@@ -5,6 +5,8 @@ edition = "2018"
 
 [dependencies]
 once_cell = "1"
+log = "0.4"
+pretty_env_logger = "0.4"
 
 [dependencies.gtk]
 path = "../../gtk4"
@@ -108,6 +110,11 @@ path = "main_event_loop/4/main.rs"
 [[bin]]
 name = "main_event_loop_5"
 path = "main_event_loop/5/main.rs"
+
+# saving_window_state
+[[bin]]
+name = "saving_window_state_1"
+path = "saving_window_state/1/main.rs"
 
 # settings
 [[bin]]

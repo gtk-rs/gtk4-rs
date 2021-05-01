@@ -5,13 +5,12 @@ use std::{cell::RefCell, rc::Rc};
 fn main() {
     // Create a new application
     let app = Application::new(Some("org.gtk.example"), Default::default());
-    app.connect_activate(on_activate);
+    app.connect_activate(build_ui);
 
     // Run the application
     app.run();
 }
-// When the application is launched…
-fn on_activate(application: &Application) {
+fn build_ui(application: &Application) {
     // … create a new window
     let window = ApplicationWindowBuilder::new()
         .application(application)

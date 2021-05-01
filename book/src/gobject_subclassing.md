@@ -62,7 +62,7 @@ We also override `clicked` in `ButtonImpl` so that every click increases `number
 {{#rustdoc_include ../listings/gobject_subclassing/2/main.rs:activate}}
 ```
 
-In `on_activate` we stop calling `connect_clicked`, and that was it.
+In `build_ui` we stop calling `connect_clicked`, and that was it.
 After a rebuild, the app now features our `CustomButton` with the label "0".
 Every time we click on the button, the number displayed by the label increases by 1.
 

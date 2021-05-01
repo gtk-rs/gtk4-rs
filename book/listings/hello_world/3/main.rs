@@ -4,16 +4,15 @@ use gtk::{Application, ApplicationWindow, Button};
 fn main() {
     // Create a new application
     let app = Application::new(Some("org.gtk.example"), Default::default());
-    app.connect_activate(on_activate);
+    app.connect_activate(build_ui);
 
     // Run the application
     app.run();
 }
 
-// ANCHOR: on_activate
-// When the application is launched…
-fn on_activate(application: &Application) {
-    // … create a new window …
+// ANCHOR: build_ui
+fn build_ui(application: &Application) {
+    // Create a window
     let window = ApplicationWindow::new(application);
 
     // Set the window title
@@ -38,4 +37,4 @@ fn on_activate(application: &Application) {
     window.set_child(Some(&button));
     window.present();
 }
-//ANCHOR_END: on_activate
+//ANCHOR_END: build_ui
