@@ -422,10 +422,8 @@ generate_builder = true
 [[object]]
 name = "Gdk.PopupLayout"
 status = "generate"
-manual_traits = ["PopupLayoutExtManual"]
     [[object.function]]
     name = "get_offset"
-    doc_trait_name = "PopupLayoutExtManual"
     manual = true # invalid mutability
 
 [[object]]
