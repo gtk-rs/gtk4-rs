@@ -1,6 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-use glib::{translate::*, ToValue};
+use glib::{translate::*, value::ValueType, ToValue};
 use glib::{IsA, Object, StaticType, Type, Value};
 use std::boxed::Box as Box_;
 
@@ -414,15 +414,19 @@ define_expression!(
 
 impl ClosureExpression {
     #[doc(alias = "gtk_closure_expression_new")]
-    pub fn new<F>(value_type: Type, callback: F, params: &[Expression]) -> Self
+    pub fn new<F, R>(callback: F, params: &[Expression]) -> Self
     where
-        F: Fn(&[Value]) -> Option<Value> + 'static,
+        F: Fn(&[Value]) -> R + 'static,
+        R: ValueType,
     {
         assert_initialized_main_thread!();
-        let closure = glib::Closure::new_local(move |values| callback(values));
+        let closure = glib::Closure::new_local(move |values| {
+            let ret = callback(values);
+            Some(ret.to_value())
+        });
         unsafe {
             from_glib_full(ffi::gtk_closure_expression_new(
-                value_type.into_glib(),
+                R::Type::static_type().into_glib(),
                 closure.to_glib_none().0,
                 params.len() as u32,
                 params.to_glib_full(),
@@ -431,11 +435,14 @@ impl ClosureExpression {
     }
 
     #[doc(alias = "gtk_closure_expression_new")]
-    pub fn with_closure(value_type: Type, closure: glib::Closure, params: &[Expression]) -> Self {
+    pub fn with_closure<R>(closure: glib::Closure, params: &[Expression]) -> Self
+    where
+        R: ValueType,
+    {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_closure_expression_new(
-                value_type.into_glib(),
+                R::Type::static_type().into_glib(),
                 closure.to_glib_none().0,
                 params.len() as u32,
                 params.to_glib_full(),
