@@ -328,7 +328,7 @@ mod tree_view_column;
 mod widget;
 
 pub use bitset_iter::BitsetIter;
-pub use border::Border;
+pub use border::{Border, BorderBuilder};
 pub use closure_expression::ClosureExpression;
 pub use constant_expression::ConstantExpression;
 pub use css_location::CssLocation;

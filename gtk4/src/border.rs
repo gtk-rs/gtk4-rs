@@ -86,3 +86,54 @@ impl fmt::Debug for Border {
             .finish()
     }
 }
+
+#[derive(Clone, Default)]
+pub struct BorderBuilder {
+    left: Option<i16>,
+    right: Option<i16>,
+    bottom: Option<i16>,
+    top: Option<i16>,
+}
+
+impl BorderBuilder {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn left(mut self, left: i16) -> Self {
+        self.left = Some(left);
+        self
+    }
+
+    pub fn right(mut self, right: i16) -> Self {
+        self.right = Some(right);
+        self
+    }
+
+    pub fn bottom(mut self, bottom: i16) -> Self {
+        self.bottom = Some(bottom);
+        self
+    }
+
+    pub fn top(mut self, top: i16) -> Self {
+        self.top = Some(top);
+        self
+    }
+
+    pub fn build(self) -> Border {
+        let mut border = Border::default();
+        if let Some(left) = self.left {
+            border.set_left(left);
+        }
+        if let Some(right) = self.right {
+            border.set_right(right);
+        }
+        if let Some(bottom) = self.bottom {
+            border.set_bottom(bottom);
+        }
+        if let Some(top) = self.top {
+            border.set_top(top);
+        }
+        border
+    }
+}
