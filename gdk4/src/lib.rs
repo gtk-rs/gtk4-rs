@@ -41,7 +41,6 @@ mod auto;
 #[macro_use]
 mod event;
 
-mod alias;
 pub mod prelude;
 pub mod subclass;
 
@@ -83,7 +82,6 @@ mod touchpad_event;
 pub use self::auto::functions::*;
 pub use auto::*;
 
-pub use alias::*;
 pub use functions::*;
 
 pub use button_event::ButtonEvent;
