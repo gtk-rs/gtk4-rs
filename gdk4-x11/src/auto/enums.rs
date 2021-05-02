@@ -23,11 +23,11 @@ impl fmt::Display for X11DeviceType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "X11DeviceType::{}",
+            "Self::{}",
             match *self {
-                X11DeviceType::Logical => "Logical",
-                X11DeviceType::Physical => "Physical",
-                X11DeviceType::Floating => "Floating",
+                Self::Logical => "Logical",
+                Self::Physical => "Physical",
+                Self::Floating => "Floating",
                 _ => "Unknown",
             }
         )
@@ -40,10 +40,10 @@ impl IntoGlib for X11DeviceType {
 
     fn into_glib(self) -> ffi::GdkX11DeviceType {
         match self {
-            X11DeviceType::Logical => ffi::GDK_X11_DEVICE_TYPE_LOGICAL,
-            X11DeviceType::Physical => ffi::GDK_X11_DEVICE_TYPE_PHYSICAL,
-            X11DeviceType::Floating => ffi::GDK_X11_DEVICE_TYPE_FLOATING,
-            X11DeviceType::__Unknown(value) => value,
+            Self::Logical => ffi::GDK_X11_DEVICE_TYPE_LOGICAL,
+            Self::Physical => ffi::GDK_X11_DEVICE_TYPE_PHYSICAL,
+            Self::Floating => ffi::GDK_X11_DEVICE_TYPE_FLOATING,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -53,10 +53,10 @@ impl FromGlib<ffi::GdkX11DeviceType> for X11DeviceType {
     unsafe fn from_glib(value: ffi::GdkX11DeviceType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => X11DeviceType::Logical,
-            1 => X11DeviceType::Physical,
-            2 => X11DeviceType::Floating,
-            value => X11DeviceType::__Unknown(value),
+            0 => Self::Logical,
+            1 => Self::Physical,
+            2 => Self::Floating,
+            value => Self::__Unknown(value),
         }
     }
 }

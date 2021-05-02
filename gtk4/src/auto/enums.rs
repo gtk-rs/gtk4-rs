@@ -31,12 +31,12 @@ impl fmt::Display for AccessibleAutocomplete {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "AccessibleAutocomplete::{}",
+            "Self::{}",
             match *self {
-                AccessibleAutocomplete::None => "None",
-                AccessibleAutocomplete::Inline => "Inline",
-                AccessibleAutocomplete::List => "List",
-                AccessibleAutocomplete::Both => "Both",
+                Self::None => "None",
+                Self::Inline => "Inline",
+                Self::List => "List",
+                Self::Both => "Both",
                 _ => "Unknown",
             }
         )
@@ -49,11 +49,11 @@ impl IntoGlib for AccessibleAutocomplete {
 
     fn into_glib(self) -> ffi::GtkAccessibleAutocomplete {
         match self {
-            AccessibleAutocomplete::None => ffi::GTK_ACCESSIBLE_AUTOCOMPLETE_NONE,
-            AccessibleAutocomplete::Inline => ffi::GTK_ACCESSIBLE_AUTOCOMPLETE_INLINE,
-            AccessibleAutocomplete::List => ffi::GTK_ACCESSIBLE_AUTOCOMPLETE_LIST,
-            AccessibleAutocomplete::Both => ffi::GTK_ACCESSIBLE_AUTOCOMPLETE_BOTH,
-            AccessibleAutocomplete::__Unknown(value) => value,
+            Self::None => ffi::GTK_ACCESSIBLE_AUTOCOMPLETE_NONE,
+            Self::Inline => ffi::GTK_ACCESSIBLE_AUTOCOMPLETE_INLINE,
+            Self::List => ffi::GTK_ACCESSIBLE_AUTOCOMPLETE_LIST,
+            Self::Both => ffi::GTK_ACCESSIBLE_AUTOCOMPLETE_BOTH,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -63,11 +63,11 @@ impl FromGlib<ffi::GtkAccessibleAutocomplete> for AccessibleAutocomplete {
     unsafe fn from_glib(value: ffi::GtkAccessibleAutocomplete) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => AccessibleAutocomplete::None,
-            1 => AccessibleAutocomplete::Inline,
-            2 => AccessibleAutocomplete::List,
-            3 => AccessibleAutocomplete::Both,
-            value => AccessibleAutocomplete::__Unknown(value),
+            0 => Self::None,
+            1 => Self::Inline,
+            2 => Self::List,
+            3 => Self::Both,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -93,7 +93,7 @@ unsafe impl<'a> FromValue<'a> for AccessibleAutocomplete {
 
 impl ToValue for AccessibleAutocomplete {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<AccessibleAutocomplete>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -125,12 +125,12 @@ impl fmt::Display for AccessibleInvalidState {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "AccessibleInvalidState::{}",
+            "Self::{}",
             match *self {
-                AccessibleInvalidState::False => "False",
-                AccessibleInvalidState::True => "True",
-                AccessibleInvalidState::Grammar => "Grammar",
-                AccessibleInvalidState::Spelling => "Spelling",
+                Self::False => "False",
+                Self::True => "True",
+                Self::Grammar => "Grammar",
+                Self::Spelling => "Spelling",
                 _ => "Unknown",
             }
         )
@@ -143,11 +143,11 @@ impl IntoGlib for AccessibleInvalidState {
 
     fn into_glib(self) -> ffi::GtkAccessibleInvalidState {
         match self {
-            AccessibleInvalidState::False => ffi::GTK_ACCESSIBLE_INVALID_FALSE,
-            AccessibleInvalidState::True => ffi::GTK_ACCESSIBLE_INVALID_TRUE,
-            AccessibleInvalidState::Grammar => ffi::GTK_ACCESSIBLE_INVALID_GRAMMAR,
-            AccessibleInvalidState::Spelling => ffi::GTK_ACCESSIBLE_INVALID_SPELLING,
-            AccessibleInvalidState::__Unknown(value) => value,
+            Self::False => ffi::GTK_ACCESSIBLE_INVALID_FALSE,
+            Self::True => ffi::GTK_ACCESSIBLE_INVALID_TRUE,
+            Self::Grammar => ffi::GTK_ACCESSIBLE_INVALID_GRAMMAR,
+            Self::Spelling => ffi::GTK_ACCESSIBLE_INVALID_SPELLING,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -157,11 +157,11 @@ impl FromGlib<ffi::GtkAccessibleInvalidState> for AccessibleInvalidState {
     unsafe fn from_glib(value: ffi::GtkAccessibleInvalidState) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => AccessibleInvalidState::False,
-            1 => AccessibleInvalidState::True,
-            2 => AccessibleInvalidState::Grammar,
-            3 => AccessibleInvalidState::Spelling,
-            value => AccessibleInvalidState::__Unknown(value),
+            0 => Self::False,
+            1 => Self::True,
+            2 => Self::Grammar,
+            3 => Self::Spelling,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -187,7 +187,7 @@ unsafe impl<'a> FromValue<'a> for AccessibleInvalidState {
 
 impl ToValue for AccessibleInvalidState {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<AccessibleInvalidState>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -259,27 +259,27 @@ impl fmt::Display for AccessibleProperty {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "AccessibleProperty::{}",
+            "Self::{}",
             match *self {
-                AccessibleProperty::Autocomplete => "Autocomplete",
-                AccessibleProperty::Description => "Description",
-                AccessibleProperty::HasPopup => "HasPopup",
-                AccessibleProperty::KeyShortcuts => "KeyShortcuts",
-                AccessibleProperty::Label => "Label",
-                AccessibleProperty::Level => "Level",
-                AccessibleProperty::Modal => "Modal",
-                AccessibleProperty::MultiLine => "MultiLine",
-                AccessibleProperty::MultiSelectable => "MultiSelectable",
-                AccessibleProperty::Orientation => "Orientation",
-                AccessibleProperty::Placeholder => "Placeholder",
-                AccessibleProperty::ReadOnly => "ReadOnly",
-                AccessibleProperty::Required => "Required",
-                AccessibleProperty::RoleDescription => "RoleDescription",
-                AccessibleProperty::Sort => "Sort",
-                AccessibleProperty::ValueMax => "ValueMax",
-                AccessibleProperty::ValueMin => "ValueMin",
-                AccessibleProperty::ValueNow => "ValueNow",
-                AccessibleProperty::ValueText => "ValueText",
+                Self::Autocomplete => "Autocomplete",
+                Self::Description => "Description",
+                Self::HasPopup => "HasPopup",
+                Self::KeyShortcuts => "KeyShortcuts",
+                Self::Label => "Label",
+                Self::Level => "Level",
+                Self::Modal => "Modal",
+                Self::MultiLine => "MultiLine",
+                Self::MultiSelectable => "MultiSelectable",
+                Self::Orientation => "Orientation",
+                Self::Placeholder => "Placeholder",
+                Self::ReadOnly => "ReadOnly",
+                Self::Required => "Required",
+                Self::RoleDescription => "RoleDescription",
+                Self::Sort => "Sort",
+                Self::ValueMax => "ValueMax",
+                Self::ValueMin => "ValueMin",
+                Self::ValueNow => "ValueNow",
+                Self::ValueText => "ValueText",
                 _ => "Unknown",
             }
         )
@@ -292,26 +292,26 @@ impl IntoGlib for AccessibleProperty {
 
     fn into_glib(self) -> ffi::GtkAccessibleProperty {
         match self {
-            AccessibleProperty::Autocomplete => ffi::GTK_ACCESSIBLE_PROPERTY_AUTOCOMPLETE,
-            AccessibleProperty::Description => ffi::GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
-            AccessibleProperty::HasPopup => ffi::GTK_ACCESSIBLE_PROPERTY_HAS_POPUP,
-            AccessibleProperty::KeyShortcuts => ffi::GTK_ACCESSIBLE_PROPERTY_KEY_SHORTCUTS,
-            AccessibleProperty::Label => ffi::GTK_ACCESSIBLE_PROPERTY_LABEL,
-            AccessibleProperty::Level => ffi::GTK_ACCESSIBLE_PROPERTY_LEVEL,
-            AccessibleProperty::Modal => ffi::GTK_ACCESSIBLE_PROPERTY_MODAL,
-            AccessibleProperty::MultiLine => ffi::GTK_ACCESSIBLE_PROPERTY_MULTI_LINE,
-            AccessibleProperty::MultiSelectable => ffi::GTK_ACCESSIBLE_PROPERTY_MULTI_SELECTABLE,
-            AccessibleProperty::Orientation => ffi::GTK_ACCESSIBLE_PROPERTY_ORIENTATION,
-            AccessibleProperty::Placeholder => ffi::GTK_ACCESSIBLE_PROPERTY_PLACEHOLDER,
-            AccessibleProperty::ReadOnly => ffi::GTK_ACCESSIBLE_PROPERTY_READ_ONLY,
-            AccessibleProperty::Required => ffi::GTK_ACCESSIBLE_PROPERTY_REQUIRED,
-            AccessibleProperty::RoleDescription => ffi::GTK_ACCESSIBLE_PROPERTY_ROLE_DESCRIPTION,
-            AccessibleProperty::Sort => ffi::GTK_ACCESSIBLE_PROPERTY_SORT,
-            AccessibleProperty::ValueMax => ffi::GTK_ACCESSIBLE_PROPERTY_VALUE_MAX,
-            AccessibleProperty::ValueMin => ffi::GTK_ACCESSIBLE_PROPERTY_VALUE_MIN,
-            AccessibleProperty::ValueNow => ffi::GTK_ACCESSIBLE_PROPERTY_VALUE_NOW,
-            AccessibleProperty::ValueText => ffi::GTK_ACCESSIBLE_PROPERTY_VALUE_TEXT,
-            AccessibleProperty::__Unknown(value) => value,
+            Self::Autocomplete => ffi::GTK_ACCESSIBLE_PROPERTY_AUTOCOMPLETE,
+            Self::Description => ffi::GTK_ACCESSIBLE_PROPERTY_DESCRIPTION,
+            Self::HasPopup => ffi::GTK_ACCESSIBLE_PROPERTY_HAS_POPUP,
+            Self::KeyShortcuts => ffi::GTK_ACCESSIBLE_PROPERTY_KEY_SHORTCUTS,
+            Self::Label => ffi::GTK_ACCESSIBLE_PROPERTY_LABEL,
+            Self::Level => ffi::GTK_ACCESSIBLE_PROPERTY_LEVEL,
+            Self::Modal => ffi::GTK_ACCESSIBLE_PROPERTY_MODAL,
+            Self::MultiLine => ffi::GTK_ACCESSIBLE_PROPERTY_MULTI_LINE,
+            Self::MultiSelectable => ffi::GTK_ACCESSIBLE_PROPERTY_MULTI_SELECTABLE,
+            Self::Orientation => ffi::GTK_ACCESSIBLE_PROPERTY_ORIENTATION,
+            Self::Placeholder => ffi::GTK_ACCESSIBLE_PROPERTY_PLACEHOLDER,
+            Self::ReadOnly => ffi::GTK_ACCESSIBLE_PROPERTY_READ_ONLY,
+            Self::Required => ffi::GTK_ACCESSIBLE_PROPERTY_REQUIRED,
+            Self::RoleDescription => ffi::GTK_ACCESSIBLE_PROPERTY_ROLE_DESCRIPTION,
+            Self::Sort => ffi::GTK_ACCESSIBLE_PROPERTY_SORT,
+            Self::ValueMax => ffi::GTK_ACCESSIBLE_PROPERTY_VALUE_MAX,
+            Self::ValueMin => ffi::GTK_ACCESSIBLE_PROPERTY_VALUE_MIN,
+            Self::ValueNow => ffi::GTK_ACCESSIBLE_PROPERTY_VALUE_NOW,
+            Self::ValueText => ffi::GTK_ACCESSIBLE_PROPERTY_VALUE_TEXT,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -321,26 +321,26 @@ impl FromGlib<ffi::GtkAccessibleProperty> for AccessibleProperty {
     unsafe fn from_glib(value: ffi::GtkAccessibleProperty) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => AccessibleProperty::Autocomplete,
-            1 => AccessibleProperty::Description,
-            2 => AccessibleProperty::HasPopup,
-            3 => AccessibleProperty::KeyShortcuts,
-            4 => AccessibleProperty::Label,
-            5 => AccessibleProperty::Level,
-            6 => AccessibleProperty::Modal,
-            7 => AccessibleProperty::MultiLine,
-            8 => AccessibleProperty::MultiSelectable,
-            9 => AccessibleProperty::Orientation,
-            10 => AccessibleProperty::Placeholder,
-            11 => AccessibleProperty::ReadOnly,
-            12 => AccessibleProperty::Required,
-            13 => AccessibleProperty::RoleDescription,
-            14 => AccessibleProperty::Sort,
-            15 => AccessibleProperty::ValueMax,
-            16 => AccessibleProperty::ValueMin,
-            17 => AccessibleProperty::ValueNow,
-            18 => AccessibleProperty::ValueText,
-            value => AccessibleProperty::__Unknown(value),
+            0 => Self::Autocomplete,
+            1 => Self::Description,
+            2 => Self::HasPopup,
+            3 => Self::KeyShortcuts,
+            4 => Self::Label,
+            5 => Self::Level,
+            6 => Self::Modal,
+            7 => Self::MultiLine,
+            8 => Self::MultiSelectable,
+            9 => Self::Orientation,
+            10 => Self::Placeholder,
+            11 => Self::ReadOnly,
+            12 => Self::Required,
+            13 => Self::RoleDescription,
+            14 => Self::Sort,
+            15 => Self::ValueMax,
+            16 => Self::ValueMin,
+            17 => Self::ValueNow,
+            18 => Self::ValueText,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -366,7 +366,7 @@ unsafe impl<'a> FromValue<'a> for AccessibleProperty {
 
 impl ToValue for AccessibleProperty {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<AccessibleProperty>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -436,26 +436,26 @@ impl fmt::Display for AccessibleRelation {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "AccessibleRelation::{}",
+            "Self::{}",
             match *self {
-                AccessibleRelation::ActiveDescendant => "ActiveDescendant",
-                AccessibleRelation::ColCount => "ColCount",
-                AccessibleRelation::ColIndex => "ColIndex",
-                AccessibleRelation::ColIndexText => "ColIndexText",
-                AccessibleRelation::ColSpan => "ColSpan",
-                AccessibleRelation::Controls => "Controls",
-                AccessibleRelation::DescribedBy => "DescribedBy",
-                AccessibleRelation::Details => "Details",
-                AccessibleRelation::ErrorMessage => "ErrorMessage",
-                AccessibleRelation::FlowTo => "FlowTo",
-                AccessibleRelation::LabelledBy => "LabelledBy",
-                AccessibleRelation::Owns => "Owns",
-                AccessibleRelation::PosInSet => "PosInSet",
-                AccessibleRelation::RowCount => "RowCount",
-                AccessibleRelation::RowIndex => "RowIndex",
-                AccessibleRelation::RowIndexText => "RowIndexText",
-                AccessibleRelation::RowSpan => "RowSpan",
-                AccessibleRelation::SetSize => "SetSize",
+                Self::ActiveDescendant => "ActiveDescendant",
+                Self::ColCount => "ColCount",
+                Self::ColIndex => "ColIndex",
+                Self::ColIndexText => "ColIndexText",
+                Self::ColSpan => "ColSpan",
+                Self::Controls => "Controls",
+                Self::DescribedBy => "DescribedBy",
+                Self::Details => "Details",
+                Self::ErrorMessage => "ErrorMessage",
+                Self::FlowTo => "FlowTo",
+                Self::LabelledBy => "LabelledBy",
+                Self::Owns => "Owns",
+                Self::PosInSet => "PosInSet",
+                Self::RowCount => "RowCount",
+                Self::RowIndex => "RowIndex",
+                Self::RowIndexText => "RowIndexText",
+                Self::RowSpan => "RowSpan",
+                Self::SetSize => "SetSize",
                 _ => "Unknown",
             }
         )
@@ -468,25 +468,25 @@ impl IntoGlib for AccessibleRelation {
 
     fn into_glib(self) -> ffi::GtkAccessibleRelation {
         match self {
-            AccessibleRelation::ActiveDescendant => ffi::GTK_ACCESSIBLE_RELATION_ACTIVE_DESCENDANT,
-            AccessibleRelation::ColCount => ffi::GTK_ACCESSIBLE_RELATION_COL_COUNT,
-            AccessibleRelation::ColIndex => ffi::GTK_ACCESSIBLE_RELATION_COL_INDEX,
-            AccessibleRelation::ColIndexText => ffi::GTK_ACCESSIBLE_RELATION_COL_INDEX_TEXT,
-            AccessibleRelation::ColSpan => ffi::GTK_ACCESSIBLE_RELATION_COL_SPAN,
-            AccessibleRelation::Controls => ffi::GTK_ACCESSIBLE_RELATION_CONTROLS,
-            AccessibleRelation::DescribedBy => ffi::GTK_ACCESSIBLE_RELATION_DESCRIBED_BY,
-            AccessibleRelation::Details => ffi::GTK_ACCESSIBLE_RELATION_DETAILS,
-            AccessibleRelation::ErrorMessage => ffi::GTK_ACCESSIBLE_RELATION_ERROR_MESSAGE,
-            AccessibleRelation::FlowTo => ffi::GTK_ACCESSIBLE_RELATION_FLOW_TO,
-            AccessibleRelation::LabelledBy => ffi::GTK_ACCESSIBLE_RELATION_LABELLED_BY,
-            AccessibleRelation::Owns => ffi::GTK_ACCESSIBLE_RELATION_OWNS,
-            AccessibleRelation::PosInSet => ffi::GTK_ACCESSIBLE_RELATION_POS_IN_SET,
-            AccessibleRelation::RowCount => ffi::GTK_ACCESSIBLE_RELATION_ROW_COUNT,
-            AccessibleRelation::RowIndex => ffi::GTK_ACCESSIBLE_RELATION_ROW_INDEX,
-            AccessibleRelation::RowIndexText => ffi::GTK_ACCESSIBLE_RELATION_ROW_INDEX_TEXT,
-            AccessibleRelation::RowSpan => ffi::GTK_ACCESSIBLE_RELATION_ROW_SPAN,
-            AccessibleRelation::SetSize => ffi::GTK_ACCESSIBLE_RELATION_SET_SIZE,
-            AccessibleRelation::__Unknown(value) => value,
+            Self::ActiveDescendant => ffi::GTK_ACCESSIBLE_RELATION_ACTIVE_DESCENDANT,
+            Self::ColCount => ffi::GTK_ACCESSIBLE_RELATION_COL_COUNT,
+            Self::ColIndex => ffi::GTK_ACCESSIBLE_RELATION_COL_INDEX,
+            Self::ColIndexText => ffi::GTK_ACCESSIBLE_RELATION_COL_INDEX_TEXT,
+            Self::ColSpan => ffi::GTK_ACCESSIBLE_RELATION_COL_SPAN,
+            Self::Controls => ffi::GTK_ACCESSIBLE_RELATION_CONTROLS,
+            Self::DescribedBy => ffi::GTK_ACCESSIBLE_RELATION_DESCRIBED_BY,
+            Self::Details => ffi::GTK_ACCESSIBLE_RELATION_DETAILS,
+            Self::ErrorMessage => ffi::GTK_ACCESSIBLE_RELATION_ERROR_MESSAGE,
+            Self::FlowTo => ffi::GTK_ACCESSIBLE_RELATION_FLOW_TO,
+            Self::LabelledBy => ffi::GTK_ACCESSIBLE_RELATION_LABELLED_BY,
+            Self::Owns => ffi::GTK_ACCESSIBLE_RELATION_OWNS,
+            Self::PosInSet => ffi::GTK_ACCESSIBLE_RELATION_POS_IN_SET,
+            Self::RowCount => ffi::GTK_ACCESSIBLE_RELATION_ROW_COUNT,
+            Self::RowIndex => ffi::GTK_ACCESSIBLE_RELATION_ROW_INDEX,
+            Self::RowIndexText => ffi::GTK_ACCESSIBLE_RELATION_ROW_INDEX_TEXT,
+            Self::RowSpan => ffi::GTK_ACCESSIBLE_RELATION_ROW_SPAN,
+            Self::SetSize => ffi::GTK_ACCESSIBLE_RELATION_SET_SIZE,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -496,25 +496,25 @@ impl FromGlib<ffi::GtkAccessibleRelation> for AccessibleRelation {
     unsafe fn from_glib(value: ffi::GtkAccessibleRelation) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => AccessibleRelation::ActiveDescendant,
-            1 => AccessibleRelation::ColCount,
-            2 => AccessibleRelation::ColIndex,
-            3 => AccessibleRelation::ColIndexText,
-            4 => AccessibleRelation::ColSpan,
-            5 => AccessibleRelation::Controls,
-            6 => AccessibleRelation::DescribedBy,
-            7 => AccessibleRelation::Details,
-            8 => AccessibleRelation::ErrorMessage,
-            9 => AccessibleRelation::FlowTo,
-            10 => AccessibleRelation::LabelledBy,
-            11 => AccessibleRelation::Owns,
-            12 => AccessibleRelation::PosInSet,
-            13 => AccessibleRelation::RowCount,
-            14 => AccessibleRelation::RowIndex,
-            15 => AccessibleRelation::RowIndexText,
-            16 => AccessibleRelation::RowSpan,
-            17 => AccessibleRelation::SetSize,
-            value => AccessibleRelation::__Unknown(value),
+            0 => Self::ActiveDescendant,
+            1 => Self::ColCount,
+            2 => Self::ColIndex,
+            3 => Self::ColIndexText,
+            4 => Self::ColSpan,
+            5 => Self::Controls,
+            6 => Self::DescribedBy,
+            7 => Self::Details,
+            8 => Self::ErrorMessage,
+            9 => Self::FlowTo,
+            10 => Self::LabelledBy,
+            11 => Self::Owns,
+            12 => Self::PosInSet,
+            13 => Self::RowCount,
+            14 => Self::RowIndex,
+            15 => Self::RowIndexText,
+            16 => Self::RowSpan,
+            17 => Self::SetSize,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -540,7 +540,7 @@ unsafe impl<'a> FromValue<'a> for AccessibleRelation {
 
 impl ToValue for AccessibleRelation {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<AccessibleRelation>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -720,86 +720,86 @@ impl fmt::Display for AccessibleRole {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "AccessibleRole::{}",
+            "Self::{}",
             match *self {
-                AccessibleRole::Alert => "Alert",
-                AccessibleRole::AlertDialog => "AlertDialog",
-                AccessibleRole::Banner => "Banner",
-                AccessibleRole::Button => "Button",
-                AccessibleRole::Caption => "Caption",
-                AccessibleRole::Cell => "Cell",
-                AccessibleRole::Checkbox => "Checkbox",
-                AccessibleRole::ColumnHeader => "ColumnHeader",
-                AccessibleRole::ComboBox => "ComboBox",
-                AccessibleRole::Command => "Command",
-                AccessibleRole::Composite => "Composite",
-                AccessibleRole::Dialog => "Dialog",
-                AccessibleRole::Document => "Document",
-                AccessibleRole::Feed => "Feed",
-                AccessibleRole::Form => "Form",
-                AccessibleRole::Generic => "Generic",
-                AccessibleRole::Grid => "Grid",
-                AccessibleRole::GridCell => "GridCell",
-                AccessibleRole::Group => "Group",
-                AccessibleRole::Heading => "Heading",
-                AccessibleRole::Img => "Img",
-                AccessibleRole::Input => "Input",
-                AccessibleRole::Label => "Label",
-                AccessibleRole::Landmark => "Landmark",
-                AccessibleRole::Legend => "Legend",
-                AccessibleRole::Link => "Link",
-                AccessibleRole::List => "List",
-                AccessibleRole::ListBox => "ListBox",
-                AccessibleRole::ListItem => "ListItem",
-                AccessibleRole::Log => "Log",
-                AccessibleRole::Main => "Main",
-                AccessibleRole::Marquee => "Marquee",
-                AccessibleRole::Math => "Math",
-                AccessibleRole::Meter => "Meter",
-                AccessibleRole::Menu => "Menu",
-                AccessibleRole::MenuBar => "MenuBar",
-                AccessibleRole::MenuItem => "MenuItem",
-                AccessibleRole::MenuItemCheckbox => "MenuItemCheckbox",
-                AccessibleRole::MenuItemRadio => "MenuItemRadio",
-                AccessibleRole::Navigation => "Navigation",
-                AccessibleRole::None => "None",
-                AccessibleRole::Note => "Note",
-                AccessibleRole::Option => "Option",
-                AccessibleRole::Presentation => "Presentation",
-                AccessibleRole::ProgressBar => "ProgressBar",
-                AccessibleRole::Radio => "Radio",
-                AccessibleRole::RadioGroup => "RadioGroup",
-                AccessibleRole::Range => "Range",
-                AccessibleRole::Region => "Region",
-                AccessibleRole::Row => "Row",
-                AccessibleRole::RowGroup => "RowGroup",
-                AccessibleRole::RowHeader => "RowHeader",
-                AccessibleRole::Scrollbar => "Scrollbar",
-                AccessibleRole::Search => "Search",
-                AccessibleRole::SearchBox => "SearchBox",
-                AccessibleRole::Section => "Section",
-                AccessibleRole::SectionHead => "SectionHead",
-                AccessibleRole::Select => "Select",
-                AccessibleRole::Separator => "Separator",
-                AccessibleRole::Slider => "Slider",
-                AccessibleRole::SpinButton => "SpinButton",
-                AccessibleRole::Status => "Status",
-                AccessibleRole::Structure => "Structure",
-                AccessibleRole::Switch => "Switch",
-                AccessibleRole::Tab => "Tab",
-                AccessibleRole::Table => "Table",
-                AccessibleRole::TabList => "TabList",
-                AccessibleRole::TabPanel => "TabPanel",
-                AccessibleRole::TextBox => "TextBox",
-                AccessibleRole::Time => "Time",
-                AccessibleRole::Timer => "Timer",
-                AccessibleRole::Toolbar => "Toolbar",
-                AccessibleRole::Tooltip => "Tooltip",
-                AccessibleRole::Tree => "Tree",
-                AccessibleRole::TreeGrid => "TreeGrid",
-                AccessibleRole::TreeItem => "TreeItem",
-                AccessibleRole::Widget => "Widget",
-                AccessibleRole::Window => "Window",
+                Self::Alert => "Alert",
+                Self::AlertDialog => "AlertDialog",
+                Self::Banner => "Banner",
+                Self::Button => "Button",
+                Self::Caption => "Caption",
+                Self::Cell => "Cell",
+                Self::Checkbox => "Checkbox",
+                Self::ColumnHeader => "ColumnHeader",
+                Self::ComboBox => "ComboBox",
+                Self::Command => "Command",
+                Self::Composite => "Composite",
+                Self::Dialog => "Dialog",
+                Self::Document => "Document",
+                Self::Feed => "Feed",
+                Self::Form => "Form",
+                Self::Generic => "Generic",
+                Self::Grid => "Grid",
+                Self::GridCell => "GridCell",
+                Self::Group => "Group",
+                Self::Heading => "Heading",
+                Self::Img => "Img",
+                Self::Input => "Input",
+                Self::Label => "Label",
+                Self::Landmark => "Landmark",
+                Self::Legend => "Legend",
+                Self::Link => "Link",
+                Self::List => "List",
+                Self::ListBox => "ListBox",
+                Self::ListItem => "ListItem",
+                Self::Log => "Log",
+                Self::Main => "Main",
+                Self::Marquee => "Marquee",
+                Self::Math => "Math",
+                Self::Meter => "Meter",
+                Self::Menu => "Menu",
+                Self::MenuBar => "MenuBar",
+                Self::MenuItem => "MenuItem",
+                Self::MenuItemCheckbox => "MenuItemCheckbox",
+                Self::MenuItemRadio => "MenuItemRadio",
+                Self::Navigation => "Navigation",
+                Self::None => "None",
+                Self::Note => "Note",
+                Self::Option => "Option",
+                Self::Presentation => "Presentation",
+                Self::ProgressBar => "ProgressBar",
+                Self::Radio => "Radio",
+                Self::RadioGroup => "RadioGroup",
+                Self::Range => "Range",
+                Self::Region => "Region",
+                Self::Row => "Row",
+                Self::RowGroup => "RowGroup",
+                Self::RowHeader => "RowHeader",
+                Self::Scrollbar => "Scrollbar",
+                Self::Search => "Search",
+                Self::SearchBox => "SearchBox",
+                Self::Section => "Section",
+                Self::SectionHead => "SectionHead",
+                Self::Select => "Select",
+                Self::Separator => "Separator",
+                Self::Slider => "Slider",
+                Self::SpinButton => "SpinButton",
+                Self::Status => "Status",
+                Self::Structure => "Structure",
+                Self::Switch => "Switch",
+                Self::Tab => "Tab",
+                Self::Table => "Table",
+                Self::TabList => "TabList",
+                Self::TabPanel => "TabPanel",
+                Self::TextBox => "TextBox",
+                Self::Time => "Time",
+                Self::Timer => "Timer",
+                Self::Toolbar => "Toolbar",
+                Self::Tooltip => "Tooltip",
+                Self::Tree => "Tree",
+                Self::TreeGrid => "TreeGrid",
+                Self::TreeItem => "TreeItem",
+                Self::Widget => "Widget",
+                Self::Window => "Window",
                 _ => "Unknown",
             }
         )
@@ -812,85 +812,85 @@ impl IntoGlib for AccessibleRole {
 
     fn into_glib(self) -> ffi::GtkAccessibleRole {
         match self {
-            AccessibleRole::Alert => ffi::GTK_ACCESSIBLE_ROLE_ALERT,
-            AccessibleRole::AlertDialog => ffi::GTK_ACCESSIBLE_ROLE_ALERT_DIALOG,
-            AccessibleRole::Banner => ffi::GTK_ACCESSIBLE_ROLE_BANNER,
-            AccessibleRole::Button => ffi::GTK_ACCESSIBLE_ROLE_BUTTON,
-            AccessibleRole::Caption => ffi::GTK_ACCESSIBLE_ROLE_CAPTION,
-            AccessibleRole::Cell => ffi::GTK_ACCESSIBLE_ROLE_CELL,
-            AccessibleRole::Checkbox => ffi::GTK_ACCESSIBLE_ROLE_CHECKBOX,
-            AccessibleRole::ColumnHeader => ffi::GTK_ACCESSIBLE_ROLE_COLUMN_HEADER,
-            AccessibleRole::ComboBox => ffi::GTK_ACCESSIBLE_ROLE_COMBO_BOX,
-            AccessibleRole::Command => ffi::GTK_ACCESSIBLE_ROLE_COMMAND,
-            AccessibleRole::Composite => ffi::GTK_ACCESSIBLE_ROLE_COMPOSITE,
-            AccessibleRole::Dialog => ffi::GTK_ACCESSIBLE_ROLE_DIALOG,
-            AccessibleRole::Document => ffi::GTK_ACCESSIBLE_ROLE_DOCUMENT,
-            AccessibleRole::Feed => ffi::GTK_ACCESSIBLE_ROLE_FEED,
-            AccessibleRole::Form => ffi::GTK_ACCESSIBLE_ROLE_FORM,
-            AccessibleRole::Generic => ffi::GTK_ACCESSIBLE_ROLE_GENERIC,
-            AccessibleRole::Grid => ffi::GTK_ACCESSIBLE_ROLE_GRID,
-            AccessibleRole::GridCell => ffi::GTK_ACCESSIBLE_ROLE_GRID_CELL,
-            AccessibleRole::Group => ffi::GTK_ACCESSIBLE_ROLE_GROUP,
-            AccessibleRole::Heading => ffi::GTK_ACCESSIBLE_ROLE_HEADING,
-            AccessibleRole::Img => ffi::GTK_ACCESSIBLE_ROLE_IMG,
-            AccessibleRole::Input => ffi::GTK_ACCESSIBLE_ROLE_INPUT,
-            AccessibleRole::Label => ffi::GTK_ACCESSIBLE_ROLE_LABEL,
-            AccessibleRole::Landmark => ffi::GTK_ACCESSIBLE_ROLE_LANDMARK,
-            AccessibleRole::Legend => ffi::GTK_ACCESSIBLE_ROLE_LEGEND,
-            AccessibleRole::Link => ffi::GTK_ACCESSIBLE_ROLE_LINK,
-            AccessibleRole::List => ffi::GTK_ACCESSIBLE_ROLE_LIST,
-            AccessibleRole::ListBox => ffi::GTK_ACCESSIBLE_ROLE_LIST_BOX,
-            AccessibleRole::ListItem => ffi::GTK_ACCESSIBLE_ROLE_LIST_ITEM,
-            AccessibleRole::Log => ffi::GTK_ACCESSIBLE_ROLE_LOG,
-            AccessibleRole::Main => ffi::GTK_ACCESSIBLE_ROLE_MAIN,
-            AccessibleRole::Marquee => ffi::GTK_ACCESSIBLE_ROLE_MARQUEE,
-            AccessibleRole::Math => ffi::GTK_ACCESSIBLE_ROLE_MATH,
-            AccessibleRole::Meter => ffi::GTK_ACCESSIBLE_ROLE_METER,
-            AccessibleRole::Menu => ffi::GTK_ACCESSIBLE_ROLE_MENU,
-            AccessibleRole::MenuBar => ffi::GTK_ACCESSIBLE_ROLE_MENU_BAR,
-            AccessibleRole::MenuItem => ffi::GTK_ACCESSIBLE_ROLE_MENU_ITEM,
-            AccessibleRole::MenuItemCheckbox => ffi::GTK_ACCESSIBLE_ROLE_MENU_ITEM_CHECKBOX,
-            AccessibleRole::MenuItemRadio => ffi::GTK_ACCESSIBLE_ROLE_MENU_ITEM_RADIO,
-            AccessibleRole::Navigation => ffi::GTK_ACCESSIBLE_ROLE_NAVIGATION,
-            AccessibleRole::None => ffi::GTK_ACCESSIBLE_ROLE_NONE,
-            AccessibleRole::Note => ffi::GTK_ACCESSIBLE_ROLE_NOTE,
-            AccessibleRole::Option => ffi::GTK_ACCESSIBLE_ROLE_OPTION,
-            AccessibleRole::Presentation => ffi::GTK_ACCESSIBLE_ROLE_PRESENTATION,
-            AccessibleRole::ProgressBar => ffi::GTK_ACCESSIBLE_ROLE_PROGRESS_BAR,
-            AccessibleRole::Radio => ffi::GTK_ACCESSIBLE_ROLE_RADIO,
-            AccessibleRole::RadioGroup => ffi::GTK_ACCESSIBLE_ROLE_RADIO_GROUP,
-            AccessibleRole::Range => ffi::GTK_ACCESSIBLE_ROLE_RANGE,
-            AccessibleRole::Region => ffi::GTK_ACCESSIBLE_ROLE_REGION,
-            AccessibleRole::Row => ffi::GTK_ACCESSIBLE_ROLE_ROW,
-            AccessibleRole::RowGroup => ffi::GTK_ACCESSIBLE_ROLE_ROW_GROUP,
-            AccessibleRole::RowHeader => ffi::GTK_ACCESSIBLE_ROLE_ROW_HEADER,
-            AccessibleRole::Scrollbar => ffi::GTK_ACCESSIBLE_ROLE_SCROLLBAR,
-            AccessibleRole::Search => ffi::GTK_ACCESSIBLE_ROLE_SEARCH,
-            AccessibleRole::SearchBox => ffi::GTK_ACCESSIBLE_ROLE_SEARCH_BOX,
-            AccessibleRole::Section => ffi::GTK_ACCESSIBLE_ROLE_SECTION,
-            AccessibleRole::SectionHead => ffi::GTK_ACCESSIBLE_ROLE_SECTION_HEAD,
-            AccessibleRole::Select => ffi::GTK_ACCESSIBLE_ROLE_SELECT,
-            AccessibleRole::Separator => ffi::GTK_ACCESSIBLE_ROLE_SEPARATOR,
-            AccessibleRole::Slider => ffi::GTK_ACCESSIBLE_ROLE_SLIDER,
-            AccessibleRole::SpinButton => ffi::GTK_ACCESSIBLE_ROLE_SPIN_BUTTON,
-            AccessibleRole::Status => ffi::GTK_ACCESSIBLE_ROLE_STATUS,
-            AccessibleRole::Structure => ffi::GTK_ACCESSIBLE_ROLE_STRUCTURE,
-            AccessibleRole::Switch => ffi::GTK_ACCESSIBLE_ROLE_SWITCH,
-            AccessibleRole::Tab => ffi::GTK_ACCESSIBLE_ROLE_TAB,
-            AccessibleRole::Table => ffi::GTK_ACCESSIBLE_ROLE_TABLE,
-            AccessibleRole::TabList => ffi::GTK_ACCESSIBLE_ROLE_TAB_LIST,
-            AccessibleRole::TabPanel => ffi::GTK_ACCESSIBLE_ROLE_TAB_PANEL,
-            AccessibleRole::TextBox => ffi::GTK_ACCESSIBLE_ROLE_TEXT_BOX,
-            AccessibleRole::Time => ffi::GTK_ACCESSIBLE_ROLE_TIME,
-            AccessibleRole::Timer => ffi::GTK_ACCESSIBLE_ROLE_TIMER,
-            AccessibleRole::Toolbar => ffi::GTK_ACCESSIBLE_ROLE_TOOLBAR,
-            AccessibleRole::Tooltip => ffi::GTK_ACCESSIBLE_ROLE_TOOLTIP,
-            AccessibleRole::Tree => ffi::GTK_ACCESSIBLE_ROLE_TREE,
-            AccessibleRole::TreeGrid => ffi::GTK_ACCESSIBLE_ROLE_TREE_GRID,
-            AccessibleRole::TreeItem => ffi::GTK_ACCESSIBLE_ROLE_TREE_ITEM,
-            AccessibleRole::Widget => ffi::GTK_ACCESSIBLE_ROLE_WIDGET,
-            AccessibleRole::Window => ffi::GTK_ACCESSIBLE_ROLE_WINDOW,
-            AccessibleRole::__Unknown(value) => value,
+            Self::Alert => ffi::GTK_ACCESSIBLE_ROLE_ALERT,
+            Self::AlertDialog => ffi::GTK_ACCESSIBLE_ROLE_ALERT_DIALOG,
+            Self::Banner => ffi::GTK_ACCESSIBLE_ROLE_BANNER,
+            Self::Button => ffi::GTK_ACCESSIBLE_ROLE_BUTTON,
+            Self::Caption => ffi::GTK_ACCESSIBLE_ROLE_CAPTION,
+            Self::Cell => ffi::GTK_ACCESSIBLE_ROLE_CELL,
+            Self::Checkbox => ffi::GTK_ACCESSIBLE_ROLE_CHECKBOX,
+            Self::ColumnHeader => ffi::GTK_ACCESSIBLE_ROLE_COLUMN_HEADER,
+            Self::ComboBox => ffi::GTK_ACCESSIBLE_ROLE_COMBO_BOX,
+            Self::Command => ffi::GTK_ACCESSIBLE_ROLE_COMMAND,
+            Self::Composite => ffi::GTK_ACCESSIBLE_ROLE_COMPOSITE,
+            Self::Dialog => ffi::GTK_ACCESSIBLE_ROLE_DIALOG,
+            Self::Document => ffi::GTK_ACCESSIBLE_ROLE_DOCUMENT,
+            Self::Feed => ffi::GTK_ACCESSIBLE_ROLE_FEED,
+            Self::Form => ffi::GTK_ACCESSIBLE_ROLE_FORM,
+            Self::Generic => ffi::GTK_ACCESSIBLE_ROLE_GENERIC,
+            Self::Grid => ffi::GTK_ACCESSIBLE_ROLE_GRID,
+            Self::GridCell => ffi::GTK_ACCESSIBLE_ROLE_GRID_CELL,
+            Self::Group => ffi::GTK_ACCESSIBLE_ROLE_GROUP,
+            Self::Heading => ffi::GTK_ACCESSIBLE_ROLE_HEADING,
+            Self::Img => ffi::GTK_ACCESSIBLE_ROLE_IMG,
+            Self::Input => ffi::GTK_ACCESSIBLE_ROLE_INPUT,
+            Self::Label => ffi::GTK_ACCESSIBLE_ROLE_LABEL,
+            Self::Landmark => ffi::GTK_ACCESSIBLE_ROLE_LANDMARK,
+            Self::Legend => ffi::GTK_ACCESSIBLE_ROLE_LEGEND,
+            Self::Link => ffi::GTK_ACCESSIBLE_ROLE_LINK,
+            Self::List => ffi::GTK_ACCESSIBLE_ROLE_LIST,
+            Self::ListBox => ffi::GTK_ACCESSIBLE_ROLE_LIST_BOX,
+            Self::ListItem => ffi::GTK_ACCESSIBLE_ROLE_LIST_ITEM,
+            Self::Log => ffi::GTK_ACCESSIBLE_ROLE_LOG,
+            Self::Main => ffi::GTK_ACCESSIBLE_ROLE_MAIN,
+            Self::Marquee => ffi::GTK_ACCESSIBLE_ROLE_MARQUEE,
+            Self::Math => ffi::GTK_ACCESSIBLE_ROLE_MATH,
+            Self::Meter => ffi::GTK_ACCESSIBLE_ROLE_METER,
+            Self::Menu => ffi::GTK_ACCESSIBLE_ROLE_MENU,
+            Self::MenuBar => ffi::GTK_ACCESSIBLE_ROLE_MENU_BAR,
+            Self::MenuItem => ffi::GTK_ACCESSIBLE_ROLE_MENU_ITEM,
+            Self::MenuItemCheckbox => ffi::GTK_ACCESSIBLE_ROLE_MENU_ITEM_CHECKBOX,
+            Self::MenuItemRadio => ffi::GTK_ACCESSIBLE_ROLE_MENU_ITEM_RADIO,
+            Self::Navigation => ffi::GTK_ACCESSIBLE_ROLE_NAVIGATION,
+            Self::None => ffi::GTK_ACCESSIBLE_ROLE_NONE,
+            Self::Note => ffi::GTK_ACCESSIBLE_ROLE_NOTE,
+            Self::Option => ffi::GTK_ACCESSIBLE_ROLE_OPTION,
+            Self::Presentation => ffi::GTK_ACCESSIBLE_ROLE_PRESENTATION,
+            Self::ProgressBar => ffi::GTK_ACCESSIBLE_ROLE_PROGRESS_BAR,
+            Self::Radio => ffi::GTK_ACCESSIBLE_ROLE_RADIO,
+            Self::RadioGroup => ffi::GTK_ACCESSIBLE_ROLE_RADIO_GROUP,
+            Self::Range => ffi::GTK_ACCESSIBLE_ROLE_RANGE,
+            Self::Region => ffi::GTK_ACCESSIBLE_ROLE_REGION,
+            Self::Row => ffi::GTK_ACCESSIBLE_ROLE_ROW,
+            Self::RowGroup => ffi::GTK_ACCESSIBLE_ROLE_ROW_GROUP,
+            Self::RowHeader => ffi::GTK_ACCESSIBLE_ROLE_ROW_HEADER,
+            Self::Scrollbar => ffi::GTK_ACCESSIBLE_ROLE_SCROLLBAR,
+            Self::Search => ffi::GTK_ACCESSIBLE_ROLE_SEARCH,
+            Self::SearchBox => ffi::GTK_ACCESSIBLE_ROLE_SEARCH_BOX,
+            Self::Section => ffi::GTK_ACCESSIBLE_ROLE_SECTION,
+            Self::SectionHead => ffi::GTK_ACCESSIBLE_ROLE_SECTION_HEAD,
+            Self::Select => ffi::GTK_ACCESSIBLE_ROLE_SELECT,
+            Self::Separator => ffi::GTK_ACCESSIBLE_ROLE_SEPARATOR,
+            Self::Slider => ffi::GTK_ACCESSIBLE_ROLE_SLIDER,
+            Self::SpinButton => ffi::GTK_ACCESSIBLE_ROLE_SPIN_BUTTON,
+            Self::Status => ffi::GTK_ACCESSIBLE_ROLE_STATUS,
+            Self::Structure => ffi::GTK_ACCESSIBLE_ROLE_STRUCTURE,
+            Self::Switch => ffi::GTK_ACCESSIBLE_ROLE_SWITCH,
+            Self::Tab => ffi::GTK_ACCESSIBLE_ROLE_TAB,
+            Self::Table => ffi::GTK_ACCESSIBLE_ROLE_TABLE,
+            Self::TabList => ffi::GTK_ACCESSIBLE_ROLE_TAB_LIST,
+            Self::TabPanel => ffi::GTK_ACCESSIBLE_ROLE_TAB_PANEL,
+            Self::TextBox => ffi::GTK_ACCESSIBLE_ROLE_TEXT_BOX,
+            Self::Time => ffi::GTK_ACCESSIBLE_ROLE_TIME,
+            Self::Timer => ffi::GTK_ACCESSIBLE_ROLE_TIMER,
+            Self::Toolbar => ffi::GTK_ACCESSIBLE_ROLE_TOOLBAR,
+            Self::Tooltip => ffi::GTK_ACCESSIBLE_ROLE_TOOLTIP,
+            Self::Tree => ffi::GTK_ACCESSIBLE_ROLE_TREE,
+            Self::TreeGrid => ffi::GTK_ACCESSIBLE_ROLE_TREE_GRID,
+            Self::TreeItem => ffi::GTK_ACCESSIBLE_ROLE_TREE_ITEM,
+            Self::Widget => ffi::GTK_ACCESSIBLE_ROLE_WIDGET,
+            Self::Window => ffi::GTK_ACCESSIBLE_ROLE_WINDOW,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -900,85 +900,85 @@ impl FromGlib<ffi::GtkAccessibleRole> for AccessibleRole {
     unsafe fn from_glib(value: ffi::GtkAccessibleRole) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => AccessibleRole::Alert,
-            1 => AccessibleRole::AlertDialog,
-            2 => AccessibleRole::Banner,
-            3 => AccessibleRole::Button,
-            4 => AccessibleRole::Caption,
-            5 => AccessibleRole::Cell,
-            6 => AccessibleRole::Checkbox,
-            7 => AccessibleRole::ColumnHeader,
-            8 => AccessibleRole::ComboBox,
-            9 => AccessibleRole::Command,
-            10 => AccessibleRole::Composite,
-            11 => AccessibleRole::Dialog,
-            12 => AccessibleRole::Document,
-            13 => AccessibleRole::Feed,
-            14 => AccessibleRole::Form,
-            15 => AccessibleRole::Generic,
-            16 => AccessibleRole::Grid,
-            17 => AccessibleRole::GridCell,
-            18 => AccessibleRole::Group,
-            19 => AccessibleRole::Heading,
-            20 => AccessibleRole::Img,
-            21 => AccessibleRole::Input,
-            22 => AccessibleRole::Label,
-            23 => AccessibleRole::Landmark,
-            24 => AccessibleRole::Legend,
-            25 => AccessibleRole::Link,
-            26 => AccessibleRole::List,
-            27 => AccessibleRole::ListBox,
-            28 => AccessibleRole::ListItem,
-            29 => AccessibleRole::Log,
-            30 => AccessibleRole::Main,
-            31 => AccessibleRole::Marquee,
-            32 => AccessibleRole::Math,
-            33 => AccessibleRole::Meter,
-            34 => AccessibleRole::Menu,
-            35 => AccessibleRole::MenuBar,
-            36 => AccessibleRole::MenuItem,
-            37 => AccessibleRole::MenuItemCheckbox,
-            38 => AccessibleRole::MenuItemRadio,
-            39 => AccessibleRole::Navigation,
-            40 => AccessibleRole::None,
-            41 => AccessibleRole::Note,
-            42 => AccessibleRole::Option,
-            43 => AccessibleRole::Presentation,
-            44 => AccessibleRole::ProgressBar,
-            45 => AccessibleRole::Radio,
-            46 => AccessibleRole::RadioGroup,
-            47 => AccessibleRole::Range,
-            48 => AccessibleRole::Region,
-            49 => AccessibleRole::Row,
-            50 => AccessibleRole::RowGroup,
-            51 => AccessibleRole::RowHeader,
-            52 => AccessibleRole::Scrollbar,
-            53 => AccessibleRole::Search,
-            54 => AccessibleRole::SearchBox,
-            55 => AccessibleRole::Section,
-            56 => AccessibleRole::SectionHead,
-            57 => AccessibleRole::Select,
-            58 => AccessibleRole::Separator,
-            59 => AccessibleRole::Slider,
-            60 => AccessibleRole::SpinButton,
-            61 => AccessibleRole::Status,
-            62 => AccessibleRole::Structure,
-            63 => AccessibleRole::Switch,
-            64 => AccessibleRole::Tab,
-            65 => AccessibleRole::Table,
-            66 => AccessibleRole::TabList,
-            67 => AccessibleRole::TabPanel,
-            68 => AccessibleRole::TextBox,
-            69 => AccessibleRole::Time,
-            70 => AccessibleRole::Timer,
-            71 => AccessibleRole::Toolbar,
-            72 => AccessibleRole::Tooltip,
-            73 => AccessibleRole::Tree,
-            74 => AccessibleRole::TreeGrid,
-            75 => AccessibleRole::TreeItem,
-            76 => AccessibleRole::Widget,
-            77 => AccessibleRole::Window,
-            value => AccessibleRole::__Unknown(value),
+            0 => Self::Alert,
+            1 => Self::AlertDialog,
+            2 => Self::Banner,
+            3 => Self::Button,
+            4 => Self::Caption,
+            5 => Self::Cell,
+            6 => Self::Checkbox,
+            7 => Self::ColumnHeader,
+            8 => Self::ComboBox,
+            9 => Self::Command,
+            10 => Self::Composite,
+            11 => Self::Dialog,
+            12 => Self::Document,
+            13 => Self::Feed,
+            14 => Self::Form,
+            15 => Self::Generic,
+            16 => Self::Grid,
+            17 => Self::GridCell,
+            18 => Self::Group,
+            19 => Self::Heading,
+            20 => Self::Img,
+            21 => Self::Input,
+            22 => Self::Label,
+            23 => Self::Landmark,
+            24 => Self::Legend,
+            25 => Self::Link,
+            26 => Self::List,
+            27 => Self::ListBox,
+            28 => Self::ListItem,
+            29 => Self::Log,
+            30 => Self::Main,
+            31 => Self::Marquee,
+            32 => Self::Math,
+            33 => Self::Meter,
+            34 => Self::Menu,
+            35 => Self::MenuBar,
+            36 => Self::MenuItem,
+            37 => Self::MenuItemCheckbox,
+            38 => Self::MenuItemRadio,
+            39 => Self::Navigation,
+            40 => Self::None,
+            41 => Self::Note,
+            42 => Self::Option,
+            43 => Self::Presentation,
+            44 => Self::ProgressBar,
+            45 => Self::Radio,
+            46 => Self::RadioGroup,
+            47 => Self::Range,
+            48 => Self::Region,
+            49 => Self::Row,
+            50 => Self::RowGroup,
+            51 => Self::RowHeader,
+            52 => Self::Scrollbar,
+            53 => Self::Search,
+            54 => Self::SearchBox,
+            55 => Self::Section,
+            56 => Self::SectionHead,
+            57 => Self::Select,
+            58 => Self::Separator,
+            59 => Self::Slider,
+            60 => Self::SpinButton,
+            61 => Self::Status,
+            62 => Self::Structure,
+            63 => Self::Switch,
+            64 => Self::Tab,
+            65 => Self::Table,
+            66 => Self::TabList,
+            67 => Self::TabPanel,
+            68 => Self::TextBox,
+            69 => Self::Time,
+            70 => Self::Timer,
+            71 => Self::Toolbar,
+            72 => Self::Tooltip,
+            73 => Self::Tree,
+            74 => Self::TreeGrid,
+            75 => Self::TreeItem,
+            76 => Self::Widget,
+            77 => Self::Window,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -1004,7 +1004,7 @@ unsafe impl<'a> FromValue<'a> for AccessibleRole {
 
 impl ToValue for AccessibleRole {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<AccessibleRole>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -1036,12 +1036,12 @@ impl fmt::Display for AccessibleSort {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "AccessibleSort::{}",
+            "Self::{}",
             match *self {
-                AccessibleSort::None => "None",
-                AccessibleSort::Ascending => "Ascending",
-                AccessibleSort::Descending => "Descending",
-                AccessibleSort::Other => "Other",
+                Self::None => "None",
+                Self::Ascending => "Ascending",
+                Self::Descending => "Descending",
+                Self::Other => "Other",
                 _ => "Unknown",
             }
         )
@@ -1054,11 +1054,11 @@ impl IntoGlib for AccessibleSort {
 
     fn into_glib(self) -> ffi::GtkAccessibleSort {
         match self {
-            AccessibleSort::None => ffi::GTK_ACCESSIBLE_SORT_NONE,
-            AccessibleSort::Ascending => ffi::GTK_ACCESSIBLE_SORT_ASCENDING,
-            AccessibleSort::Descending => ffi::GTK_ACCESSIBLE_SORT_DESCENDING,
-            AccessibleSort::Other => ffi::GTK_ACCESSIBLE_SORT_OTHER,
-            AccessibleSort::__Unknown(value) => value,
+            Self::None => ffi::GTK_ACCESSIBLE_SORT_NONE,
+            Self::Ascending => ffi::GTK_ACCESSIBLE_SORT_ASCENDING,
+            Self::Descending => ffi::GTK_ACCESSIBLE_SORT_DESCENDING,
+            Self::Other => ffi::GTK_ACCESSIBLE_SORT_OTHER,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -1068,11 +1068,11 @@ impl FromGlib<ffi::GtkAccessibleSort> for AccessibleSort {
     unsafe fn from_glib(value: ffi::GtkAccessibleSort) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => AccessibleSort::None,
-            1 => AccessibleSort::Ascending,
-            2 => AccessibleSort::Descending,
-            3 => AccessibleSort::Other,
-            value => AccessibleSort::__Unknown(value),
+            0 => Self::None,
+            1 => Self::Ascending,
+            2 => Self::Descending,
+            3 => Self::Other,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -1098,7 +1098,7 @@ unsafe impl<'a> FromValue<'a> for AccessibleSort {
 
 impl ToValue for AccessibleSort {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<AccessibleSort>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -1148,16 +1148,16 @@ impl fmt::Display for AccessibleState {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "AccessibleState::{}",
+            "Self::{}",
             match *self {
-                AccessibleState::Busy => "Busy",
-                AccessibleState::Checked => "Checked",
-                AccessibleState::Disabled => "Disabled",
-                AccessibleState::Expanded => "Expanded",
-                AccessibleState::Hidden => "Hidden",
-                AccessibleState::Invalid => "Invalid",
-                AccessibleState::Pressed => "Pressed",
-                AccessibleState::Selected => "Selected",
+                Self::Busy => "Busy",
+                Self::Checked => "Checked",
+                Self::Disabled => "Disabled",
+                Self::Expanded => "Expanded",
+                Self::Hidden => "Hidden",
+                Self::Invalid => "Invalid",
+                Self::Pressed => "Pressed",
+                Self::Selected => "Selected",
                 _ => "Unknown",
             }
         )
@@ -1170,15 +1170,15 @@ impl IntoGlib for AccessibleState {
 
     fn into_glib(self) -> ffi::GtkAccessibleState {
         match self {
-            AccessibleState::Busy => ffi::GTK_ACCESSIBLE_STATE_BUSY,
-            AccessibleState::Checked => ffi::GTK_ACCESSIBLE_STATE_CHECKED,
-            AccessibleState::Disabled => ffi::GTK_ACCESSIBLE_STATE_DISABLED,
-            AccessibleState::Expanded => ffi::GTK_ACCESSIBLE_STATE_EXPANDED,
-            AccessibleState::Hidden => ffi::GTK_ACCESSIBLE_STATE_HIDDEN,
-            AccessibleState::Invalid => ffi::GTK_ACCESSIBLE_STATE_INVALID,
-            AccessibleState::Pressed => ffi::GTK_ACCESSIBLE_STATE_PRESSED,
-            AccessibleState::Selected => ffi::GTK_ACCESSIBLE_STATE_SELECTED,
-            AccessibleState::__Unknown(value) => value,
+            Self::Busy => ffi::GTK_ACCESSIBLE_STATE_BUSY,
+            Self::Checked => ffi::GTK_ACCESSIBLE_STATE_CHECKED,
+            Self::Disabled => ffi::GTK_ACCESSIBLE_STATE_DISABLED,
+            Self::Expanded => ffi::GTK_ACCESSIBLE_STATE_EXPANDED,
+            Self::Hidden => ffi::GTK_ACCESSIBLE_STATE_HIDDEN,
+            Self::Invalid => ffi::GTK_ACCESSIBLE_STATE_INVALID,
+            Self::Pressed => ffi::GTK_ACCESSIBLE_STATE_PRESSED,
+            Self::Selected => ffi::GTK_ACCESSIBLE_STATE_SELECTED,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -1188,15 +1188,15 @@ impl FromGlib<ffi::GtkAccessibleState> for AccessibleState {
     unsafe fn from_glib(value: ffi::GtkAccessibleState) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => AccessibleState::Busy,
-            1 => AccessibleState::Checked,
-            2 => AccessibleState::Disabled,
-            3 => AccessibleState::Expanded,
-            4 => AccessibleState::Hidden,
-            5 => AccessibleState::Invalid,
-            6 => AccessibleState::Pressed,
-            7 => AccessibleState::Selected,
-            value => AccessibleState::__Unknown(value),
+            0 => Self::Busy,
+            1 => Self::Checked,
+            2 => Self::Disabled,
+            3 => Self::Expanded,
+            4 => Self::Hidden,
+            5 => Self::Invalid,
+            6 => Self::Pressed,
+            7 => Self::Selected,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -1222,7 +1222,7 @@ unsafe impl<'a> FromValue<'a> for AccessibleState {
 
 impl ToValue for AccessibleState {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<AccessibleState>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -1252,11 +1252,11 @@ impl fmt::Display for AccessibleTristate {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "AccessibleTristate::{}",
+            "Self::{}",
             match *self {
-                AccessibleTristate::False => "False",
-                AccessibleTristate::True => "True",
-                AccessibleTristate::Mixed => "Mixed",
+                Self::False => "False",
+                Self::True => "True",
+                Self::Mixed => "Mixed",
                 _ => "Unknown",
             }
         )
@@ -1269,10 +1269,10 @@ impl IntoGlib for AccessibleTristate {
 
     fn into_glib(self) -> ffi::GtkAccessibleTristate {
         match self {
-            AccessibleTristate::False => ffi::GTK_ACCESSIBLE_TRISTATE_FALSE,
-            AccessibleTristate::True => ffi::GTK_ACCESSIBLE_TRISTATE_TRUE,
-            AccessibleTristate::Mixed => ffi::GTK_ACCESSIBLE_TRISTATE_MIXED,
-            AccessibleTristate::__Unknown(value) => value,
+            Self::False => ffi::GTK_ACCESSIBLE_TRISTATE_FALSE,
+            Self::True => ffi::GTK_ACCESSIBLE_TRISTATE_TRUE,
+            Self::Mixed => ffi::GTK_ACCESSIBLE_TRISTATE_MIXED,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -1282,10 +1282,10 @@ impl FromGlib<ffi::GtkAccessibleTristate> for AccessibleTristate {
     unsafe fn from_glib(value: ffi::GtkAccessibleTristate) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => AccessibleTristate::False,
-            1 => AccessibleTristate::True,
-            2 => AccessibleTristate::Mixed,
-            value => AccessibleTristate::__Unknown(value),
+            0 => Self::False,
+            1 => Self::True,
+            2 => Self::Mixed,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -1311,7 +1311,7 @@ unsafe impl<'a> FromValue<'a> for AccessibleTristate {
 
 impl ToValue for AccessibleTristate {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<AccessibleTristate>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -1345,13 +1345,13 @@ impl fmt::Display for Align {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Align::{}",
+            "Self::{}",
             match *self {
-                Align::Fill => "Fill",
-                Align::Start => "Start",
-                Align::End => "End",
-                Align::Center => "Center",
-                Align::Baseline => "Baseline",
+                Self::Fill => "Fill",
+                Self::Start => "Start",
+                Self::End => "End",
+                Self::Center => "Center",
+                Self::Baseline => "Baseline",
                 _ => "Unknown",
             }
         )
@@ -1364,12 +1364,12 @@ impl IntoGlib for Align {
 
     fn into_glib(self) -> ffi::GtkAlign {
         match self {
-            Align::Fill => ffi::GTK_ALIGN_FILL,
-            Align::Start => ffi::GTK_ALIGN_START,
-            Align::End => ffi::GTK_ALIGN_END,
-            Align::Center => ffi::GTK_ALIGN_CENTER,
-            Align::Baseline => ffi::GTK_ALIGN_BASELINE,
-            Align::__Unknown(value) => value,
+            Self::Fill => ffi::GTK_ALIGN_FILL,
+            Self::Start => ffi::GTK_ALIGN_START,
+            Self::End => ffi::GTK_ALIGN_END,
+            Self::Center => ffi::GTK_ALIGN_CENTER,
+            Self::Baseline => ffi::GTK_ALIGN_BASELINE,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -1379,12 +1379,12 @@ impl FromGlib<ffi::GtkAlign> for Align {
     unsafe fn from_glib(value: ffi::GtkAlign) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => Align::Fill,
-            1 => Align::Start,
-            2 => Align::End,
-            3 => Align::Center,
-            4 => Align::Baseline,
-            value => Align::__Unknown(value),
+            0 => Self::Fill,
+            1 => Self::Start,
+            2 => Self::End,
+            3 => Self::Center,
+            4 => Self::Baseline,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -1410,7 +1410,7 @@ unsafe impl<'a> FromValue<'a> for Align {
 
 impl ToValue for Align {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<Align>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -1444,13 +1444,13 @@ impl fmt::Display for ArrowType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "ArrowType::{}",
+            "Self::{}",
             match *self {
-                ArrowType::Up => "Up",
-                ArrowType::Down => "Down",
-                ArrowType::Left => "Left",
-                ArrowType::Right => "Right",
-                ArrowType::None => "None",
+                Self::Up => "Up",
+                Self::Down => "Down",
+                Self::Left => "Left",
+                Self::Right => "Right",
+                Self::None => "None",
                 _ => "Unknown",
             }
         )
@@ -1463,12 +1463,12 @@ impl IntoGlib for ArrowType {
 
     fn into_glib(self) -> ffi::GtkArrowType {
         match self {
-            ArrowType::Up => ffi::GTK_ARROW_UP,
-            ArrowType::Down => ffi::GTK_ARROW_DOWN,
-            ArrowType::Left => ffi::GTK_ARROW_LEFT,
-            ArrowType::Right => ffi::GTK_ARROW_RIGHT,
-            ArrowType::None => ffi::GTK_ARROW_NONE,
-            ArrowType::__Unknown(value) => value,
+            Self::Up => ffi::GTK_ARROW_UP,
+            Self::Down => ffi::GTK_ARROW_DOWN,
+            Self::Left => ffi::GTK_ARROW_LEFT,
+            Self::Right => ffi::GTK_ARROW_RIGHT,
+            Self::None => ffi::GTK_ARROW_NONE,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -1478,12 +1478,12 @@ impl FromGlib<ffi::GtkArrowType> for ArrowType {
     unsafe fn from_glib(value: ffi::GtkArrowType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => ArrowType::Up,
-            1 => ArrowType::Down,
-            2 => ArrowType::Left,
-            3 => ArrowType::Right,
-            4 => ArrowType::None,
-            value => ArrowType::__Unknown(value),
+            0 => Self::Up,
+            1 => Self::Down,
+            2 => Self::Left,
+            3 => Self::Right,
+            4 => Self::None,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -1509,7 +1509,7 @@ unsafe impl<'a> FromValue<'a> for ArrowType {
 
 impl ToValue for ArrowType {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<ArrowType>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -1545,14 +1545,14 @@ impl fmt::Display for AssistantPageType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "AssistantPageType::{}",
+            "Self::{}",
             match *self {
-                AssistantPageType::Content => "Content",
-                AssistantPageType::Intro => "Intro",
-                AssistantPageType::Confirm => "Confirm",
-                AssistantPageType::Summary => "Summary",
-                AssistantPageType::Progress => "Progress",
-                AssistantPageType::Custom => "Custom",
+                Self::Content => "Content",
+                Self::Intro => "Intro",
+                Self::Confirm => "Confirm",
+                Self::Summary => "Summary",
+                Self::Progress => "Progress",
+                Self::Custom => "Custom",
                 _ => "Unknown",
             }
         )
@@ -1565,13 +1565,13 @@ impl IntoGlib for AssistantPageType {
 
     fn into_glib(self) -> ffi::GtkAssistantPageType {
         match self {
-            AssistantPageType::Content => ffi::GTK_ASSISTANT_PAGE_CONTENT,
-            AssistantPageType::Intro => ffi::GTK_ASSISTANT_PAGE_INTRO,
-            AssistantPageType::Confirm => ffi::GTK_ASSISTANT_PAGE_CONFIRM,
-            AssistantPageType::Summary => ffi::GTK_ASSISTANT_PAGE_SUMMARY,
-            AssistantPageType::Progress => ffi::GTK_ASSISTANT_PAGE_PROGRESS,
-            AssistantPageType::Custom => ffi::GTK_ASSISTANT_PAGE_CUSTOM,
-            AssistantPageType::__Unknown(value) => value,
+            Self::Content => ffi::GTK_ASSISTANT_PAGE_CONTENT,
+            Self::Intro => ffi::GTK_ASSISTANT_PAGE_INTRO,
+            Self::Confirm => ffi::GTK_ASSISTANT_PAGE_CONFIRM,
+            Self::Summary => ffi::GTK_ASSISTANT_PAGE_SUMMARY,
+            Self::Progress => ffi::GTK_ASSISTANT_PAGE_PROGRESS,
+            Self::Custom => ffi::GTK_ASSISTANT_PAGE_CUSTOM,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -1581,13 +1581,13 @@ impl FromGlib<ffi::GtkAssistantPageType> for AssistantPageType {
     unsafe fn from_glib(value: ffi::GtkAssistantPageType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => AssistantPageType::Content,
-            1 => AssistantPageType::Intro,
-            2 => AssistantPageType::Confirm,
-            3 => AssistantPageType::Summary,
-            4 => AssistantPageType::Progress,
-            5 => AssistantPageType::Custom,
-            value => AssistantPageType::__Unknown(value),
+            0 => Self::Content,
+            1 => Self::Intro,
+            2 => Self::Confirm,
+            3 => Self::Summary,
+            4 => Self::Progress,
+            5 => Self::Custom,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -1613,7 +1613,7 @@ unsafe impl<'a> FromValue<'a> for AssistantPageType {
 
 impl ToValue for AssistantPageType {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<AssistantPageType>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -1643,11 +1643,11 @@ impl fmt::Display for BaselinePosition {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "BaselinePosition::{}",
+            "Self::{}",
             match *self {
-                BaselinePosition::Top => "Top",
-                BaselinePosition::Center => "Center",
-                BaselinePosition::Bottom => "Bottom",
+                Self::Top => "Top",
+                Self::Center => "Center",
+                Self::Bottom => "Bottom",
                 _ => "Unknown",
             }
         )
@@ -1660,10 +1660,10 @@ impl IntoGlib for BaselinePosition {
 
     fn into_glib(self) -> ffi::GtkBaselinePosition {
         match self {
-            BaselinePosition::Top => ffi::GTK_BASELINE_POSITION_TOP,
-            BaselinePosition::Center => ffi::GTK_BASELINE_POSITION_CENTER,
-            BaselinePosition::Bottom => ffi::GTK_BASELINE_POSITION_BOTTOM,
-            BaselinePosition::__Unknown(value) => value,
+            Self::Top => ffi::GTK_BASELINE_POSITION_TOP,
+            Self::Center => ffi::GTK_BASELINE_POSITION_CENTER,
+            Self::Bottom => ffi::GTK_BASELINE_POSITION_BOTTOM,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -1673,10 +1673,10 @@ impl FromGlib<ffi::GtkBaselinePosition> for BaselinePosition {
     unsafe fn from_glib(value: ffi::GtkBaselinePosition) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => BaselinePosition::Top,
-            1 => BaselinePosition::Center,
-            2 => BaselinePosition::Bottom,
-            value => BaselinePosition::__Unknown(value),
+            0 => Self::Top,
+            1 => Self::Center,
+            2 => Self::Bottom,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -1702,7 +1702,7 @@ unsafe impl<'a> FromValue<'a> for BaselinePosition {
 
 impl ToValue for BaselinePosition {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<BaselinePosition>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -1746,18 +1746,18 @@ impl fmt::Display for BorderStyle {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "BorderStyle::{}",
+            "Self::{}",
             match *self {
-                BorderStyle::None => "None",
-                BorderStyle::Hidden => "Hidden",
-                BorderStyle::Solid => "Solid",
-                BorderStyle::Inset => "Inset",
-                BorderStyle::Outset => "Outset",
-                BorderStyle::Dotted => "Dotted",
-                BorderStyle::Dashed => "Dashed",
-                BorderStyle::Double => "Double",
-                BorderStyle::Groove => "Groove",
-                BorderStyle::Ridge => "Ridge",
+                Self::None => "None",
+                Self::Hidden => "Hidden",
+                Self::Solid => "Solid",
+                Self::Inset => "Inset",
+                Self::Outset => "Outset",
+                Self::Dotted => "Dotted",
+                Self::Dashed => "Dashed",
+                Self::Double => "Double",
+                Self::Groove => "Groove",
+                Self::Ridge => "Ridge",
                 _ => "Unknown",
             }
         )
@@ -1770,17 +1770,17 @@ impl IntoGlib for BorderStyle {
 
     fn into_glib(self) -> ffi::GtkBorderStyle {
         match self {
-            BorderStyle::None => ffi::GTK_BORDER_STYLE_NONE,
-            BorderStyle::Hidden => ffi::GTK_BORDER_STYLE_HIDDEN,
-            BorderStyle::Solid => ffi::GTK_BORDER_STYLE_SOLID,
-            BorderStyle::Inset => ffi::GTK_BORDER_STYLE_INSET,
-            BorderStyle::Outset => ffi::GTK_BORDER_STYLE_OUTSET,
-            BorderStyle::Dotted => ffi::GTK_BORDER_STYLE_DOTTED,
-            BorderStyle::Dashed => ffi::GTK_BORDER_STYLE_DASHED,
-            BorderStyle::Double => ffi::GTK_BORDER_STYLE_DOUBLE,
-            BorderStyle::Groove => ffi::GTK_BORDER_STYLE_GROOVE,
-            BorderStyle::Ridge => ffi::GTK_BORDER_STYLE_RIDGE,
-            BorderStyle::__Unknown(value) => value,
+            Self::None => ffi::GTK_BORDER_STYLE_NONE,
+            Self::Hidden => ffi::GTK_BORDER_STYLE_HIDDEN,
+            Self::Solid => ffi::GTK_BORDER_STYLE_SOLID,
+            Self::Inset => ffi::GTK_BORDER_STYLE_INSET,
+            Self::Outset => ffi::GTK_BORDER_STYLE_OUTSET,
+            Self::Dotted => ffi::GTK_BORDER_STYLE_DOTTED,
+            Self::Dashed => ffi::GTK_BORDER_STYLE_DASHED,
+            Self::Double => ffi::GTK_BORDER_STYLE_DOUBLE,
+            Self::Groove => ffi::GTK_BORDER_STYLE_GROOVE,
+            Self::Ridge => ffi::GTK_BORDER_STYLE_RIDGE,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -1790,17 +1790,17 @@ impl FromGlib<ffi::GtkBorderStyle> for BorderStyle {
     unsafe fn from_glib(value: ffi::GtkBorderStyle) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => BorderStyle::None,
-            1 => BorderStyle::Hidden,
-            2 => BorderStyle::Solid,
-            3 => BorderStyle::Inset,
-            4 => BorderStyle::Outset,
-            5 => BorderStyle::Dotted,
-            6 => BorderStyle::Dashed,
-            7 => BorderStyle::Double,
-            8 => BorderStyle::Groove,
-            9 => BorderStyle::Ridge,
-            value => BorderStyle::__Unknown(value),
+            0 => Self::None,
+            1 => Self::Hidden,
+            2 => Self::Solid,
+            3 => Self::Inset,
+            4 => Self::Outset,
+            5 => Self::Dotted,
+            6 => Self::Dashed,
+            7 => Self::Double,
+            8 => Self::Groove,
+            9 => Self::Ridge,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -1826,7 +1826,7 @@ unsafe impl<'a> FromValue<'a> for BorderStyle {
 
 impl ToValue for BorderStyle {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<BorderStyle>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -1880,23 +1880,23 @@ impl fmt::Display for BuilderError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "BuilderError::{}",
+            "Self::{}",
             match *self {
-                BuilderError::InvalidTypeFunction => "InvalidTypeFunction",
-                BuilderError::UnhandledTag => "UnhandledTag",
-                BuilderError::MissingAttribute => "MissingAttribute",
-                BuilderError::InvalidAttribute => "InvalidAttribute",
-                BuilderError::InvalidTag => "InvalidTag",
-                BuilderError::MissingPropertyValue => "MissingPropertyValue",
-                BuilderError::InvalidValue => "InvalidValue",
-                BuilderError::VersionMismatch => "VersionMismatch",
-                BuilderError::DuplicateId => "DuplicateId",
-                BuilderError::ObjectTypeRefused => "ObjectTypeRefused",
-                BuilderError::TemplateMismatch => "TemplateMismatch",
-                BuilderError::InvalidProperty => "InvalidProperty",
-                BuilderError::InvalidSignal => "InvalidSignal",
-                BuilderError::InvalidId => "InvalidId",
-                BuilderError::InvalidFunction => "InvalidFunction",
+                Self::InvalidTypeFunction => "InvalidTypeFunction",
+                Self::UnhandledTag => "UnhandledTag",
+                Self::MissingAttribute => "MissingAttribute",
+                Self::InvalidAttribute => "InvalidAttribute",
+                Self::InvalidTag => "InvalidTag",
+                Self::MissingPropertyValue => "MissingPropertyValue",
+                Self::InvalidValue => "InvalidValue",
+                Self::VersionMismatch => "VersionMismatch",
+                Self::DuplicateId => "DuplicateId",
+                Self::ObjectTypeRefused => "ObjectTypeRefused",
+                Self::TemplateMismatch => "TemplateMismatch",
+                Self::InvalidProperty => "InvalidProperty",
+                Self::InvalidSignal => "InvalidSignal",
+                Self::InvalidId => "InvalidId",
+                Self::InvalidFunction => "InvalidFunction",
                 _ => "Unknown",
             }
         )
@@ -1909,22 +1909,22 @@ impl IntoGlib for BuilderError {
 
     fn into_glib(self) -> ffi::GtkBuilderError {
         match self {
-            BuilderError::InvalidTypeFunction => ffi::GTK_BUILDER_ERROR_INVALID_TYPE_FUNCTION,
-            BuilderError::UnhandledTag => ffi::GTK_BUILDER_ERROR_UNHANDLED_TAG,
-            BuilderError::MissingAttribute => ffi::GTK_BUILDER_ERROR_MISSING_ATTRIBUTE,
-            BuilderError::InvalidAttribute => ffi::GTK_BUILDER_ERROR_INVALID_ATTRIBUTE,
-            BuilderError::InvalidTag => ffi::GTK_BUILDER_ERROR_INVALID_TAG,
-            BuilderError::MissingPropertyValue => ffi::GTK_BUILDER_ERROR_MISSING_PROPERTY_VALUE,
-            BuilderError::InvalidValue => ffi::GTK_BUILDER_ERROR_INVALID_VALUE,
-            BuilderError::VersionMismatch => ffi::GTK_BUILDER_ERROR_VERSION_MISMATCH,
-            BuilderError::DuplicateId => ffi::GTK_BUILDER_ERROR_DUPLICATE_ID,
-            BuilderError::ObjectTypeRefused => ffi::GTK_BUILDER_ERROR_OBJECT_TYPE_REFUSED,
-            BuilderError::TemplateMismatch => ffi::GTK_BUILDER_ERROR_TEMPLATE_MISMATCH,
-            BuilderError::InvalidProperty => ffi::GTK_BUILDER_ERROR_INVALID_PROPERTY,
-            BuilderError::InvalidSignal => ffi::GTK_BUILDER_ERROR_INVALID_SIGNAL,
-            BuilderError::InvalidId => ffi::GTK_BUILDER_ERROR_INVALID_ID,
-            BuilderError::InvalidFunction => ffi::GTK_BUILDER_ERROR_INVALID_FUNCTION,
-            BuilderError::__Unknown(value) => value,
+            Self::InvalidTypeFunction => ffi::GTK_BUILDER_ERROR_INVALID_TYPE_FUNCTION,
+            Self::UnhandledTag => ffi::GTK_BUILDER_ERROR_UNHANDLED_TAG,
+            Self::MissingAttribute => ffi::GTK_BUILDER_ERROR_MISSING_ATTRIBUTE,
+            Self::InvalidAttribute => ffi::GTK_BUILDER_ERROR_INVALID_ATTRIBUTE,
+            Self::InvalidTag => ffi::GTK_BUILDER_ERROR_INVALID_TAG,
+            Self::MissingPropertyValue => ffi::GTK_BUILDER_ERROR_MISSING_PROPERTY_VALUE,
+            Self::InvalidValue => ffi::GTK_BUILDER_ERROR_INVALID_VALUE,
+            Self::VersionMismatch => ffi::GTK_BUILDER_ERROR_VERSION_MISMATCH,
+            Self::DuplicateId => ffi::GTK_BUILDER_ERROR_DUPLICATE_ID,
+            Self::ObjectTypeRefused => ffi::GTK_BUILDER_ERROR_OBJECT_TYPE_REFUSED,
+            Self::TemplateMismatch => ffi::GTK_BUILDER_ERROR_TEMPLATE_MISMATCH,
+            Self::InvalidProperty => ffi::GTK_BUILDER_ERROR_INVALID_PROPERTY,
+            Self::InvalidSignal => ffi::GTK_BUILDER_ERROR_INVALID_SIGNAL,
+            Self::InvalidId => ffi::GTK_BUILDER_ERROR_INVALID_ID,
+            Self::InvalidFunction => ffi::GTK_BUILDER_ERROR_INVALID_FUNCTION,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -1934,22 +1934,22 @@ impl FromGlib<ffi::GtkBuilderError> for BuilderError {
     unsafe fn from_glib(value: ffi::GtkBuilderError) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => BuilderError::InvalidTypeFunction,
-            1 => BuilderError::UnhandledTag,
-            2 => BuilderError::MissingAttribute,
-            3 => BuilderError::InvalidAttribute,
-            4 => BuilderError::InvalidTag,
-            5 => BuilderError::MissingPropertyValue,
-            6 => BuilderError::InvalidValue,
-            7 => BuilderError::VersionMismatch,
-            8 => BuilderError::DuplicateId,
-            9 => BuilderError::ObjectTypeRefused,
-            10 => BuilderError::TemplateMismatch,
-            11 => BuilderError::InvalidProperty,
-            12 => BuilderError::InvalidSignal,
-            13 => BuilderError::InvalidId,
-            14 => BuilderError::InvalidFunction,
-            value => BuilderError::__Unknown(value),
+            0 => Self::InvalidTypeFunction,
+            1 => Self::UnhandledTag,
+            2 => Self::MissingAttribute,
+            3 => Self::InvalidAttribute,
+            4 => Self::InvalidTag,
+            5 => Self::MissingPropertyValue,
+            6 => Self::InvalidValue,
+            7 => Self::VersionMismatch,
+            8 => Self::DuplicateId,
+            9 => Self::ObjectTypeRefused,
+            10 => Self::TemplateMismatch,
+            11 => Self::InvalidProperty,
+            12 => Self::InvalidSignal,
+            13 => Self::InvalidId,
+            14 => Self::InvalidFunction,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -1968,22 +1968,22 @@ impl ErrorDomain for BuilderError {
     fn from(code: i32) -> Option<Self> {
         skip_assert_initialized!();
         match code {
-            0 => Some(BuilderError::InvalidTypeFunction),
-            1 => Some(BuilderError::UnhandledTag),
-            2 => Some(BuilderError::MissingAttribute),
-            3 => Some(BuilderError::InvalidAttribute),
-            4 => Some(BuilderError::InvalidTag),
-            5 => Some(BuilderError::MissingPropertyValue),
-            6 => Some(BuilderError::InvalidValue),
-            7 => Some(BuilderError::VersionMismatch),
-            8 => Some(BuilderError::DuplicateId),
-            9 => Some(BuilderError::ObjectTypeRefused),
-            10 => Some(BuilderError::TemplateMismatch),
-            11 => Some(BuilderError::InvalidProperty),
-            12 => Some(BuilderError::InvalidSignal),
-            13 => Some(BuilderError::InvalidId),
-            14 => Some(BuilderError::InvalidFunction),
-            value => Some(BuilderError::__Unknown(value)),
+            0 => Some(Self::InvalidTypeFunction),
+            1 => Some(Self::UnhandledTag),
+            2 => Some(Self::MissingAttribute),
+            3 => Some(Self::InvalidAttribute),
+            4 => Some(Self::InvalidTag),
+            5 => Some(Self::MissingPropertyValue),
+            6 => Some(Self::InvalidValue),
+            7 => Some(Self::VersionMismatch),
+            8 => Some(Self::DuplicateId),
+            9 => Some(Self::ObjectTypeRefused),
+            10 => Some(Self::TemplateMismatch),
+            11 => Some(Self::InvalidProperty),
+            12 => Some(Self::InvalidSignal),
+            13 => Some(Self::InvalidId),
+            14 => Some(Self::InvalidFunction),
+            value => Some(Self::__Unknown(value)),
         }
     }
 }
@@ -2009,7 +2009,7 @@ unsafe impl<'a> FromValue<'a> for BuilderError {
 
 impl ToValue for BuilderError {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<BuilderError>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -2045,14 +2045,14 @@ impl fmt::Display for ButtonsType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "ButtonsType::{}",
+            "Self::{}",
             match *self {
-                ButtonsType::None => "None",
-                ButtonsType::Ok => "Ok",
-                ButtonsType::Close => "Close",
-                ButtonsType::Cancel => "Cancel",
-                ButtonsType::YesNo => "YesNo",
-                ButtonsType::OkCancel => "OkCancel",
+                Self::None => "None",
+                Self::Ok => "Ok",
+                Self::Close => "Close",
+                Self::Cancel => "Cancel",
+                Self::YesNo => "YesNo",
+                Self::OkCancel => "OkCancel",
                 _ => "Unknown",
             }
         )
@@ -2065,13 +2065,13 @@ impl IntoGlib for ButtonsType {
 
     fn into_glib(self) -> ffi::GtkButtonsType {
         match self {
-            ButtonsType::None => ffi::GTK_BUTTONS_NONE,
-            ButtonsType::Ok => ffi::GTK_BUTTONS_OK,
-            ButtonsType::Close => ffi::GTK_BUTTONS_CLOSE,
-            ButtonsType::Cancel => ffi::GTK_BUTTONS_CANCEL,
-            ButtonsType::YesNo => ffi::GTK_BUTTONS_YES_NO,
-            ButtonsType::OkCancel => ffi::GTK_BUTTONS_OK_CANCEL,
-            ButtonsType::__Unknown(value) => value,
+            Self::None => ffi::GTK_BUTTONS_NONE,
+            Self::Ok => ffi::GTK_BUTTONS_OK,
+            Self::Close => ffi::GTK_BUTTONS_CLOSE,
+            Self::Cancel => ffi::GTK_BUTTONS_CANCEL,
+            Self::YesNo => ffi::GTK_BUTTONS_YES_NO,
+            Self::OkCancel => ffi::GTK_BUTTONS_OK_CANCEL,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -2081,13 +2081,13 @@ impl FromGlib<ffi::GtkButtonsType> for ButtonsType {
     unsafe fn from_glib(value: ffi::GtkButtonsType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => ButtonsType::None,
-            1 => ButtonsType::Ok,
-            2 => ButtonsType::Close,
-            3 => ButtonsType::Cancel,
-            4 => ButtonsType::YesNo,
-            5 => ButtonsType::OkCancel,
-            value => ButtonsType::__Unknown(value),
+            0 => Self::None,
+            1 => Self::Ok,
+            2 => Self::Close,
+            3 => Self::Cancel,
+            4 => Self::YesNo,
+            5 => Self::OkCancel,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -2113,7 +2113,7 @@ unsafe impl<'a> FromValue<'a> for ButtonsType {
 
 impl ToValue for ButtonsType {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<ButtonsType>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -2141,10 +2141,10 @@ impl fmt::Display for CellRendererAccelMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "CellRendererAccelMode::{}",
+            "Self::{}",
             match *self {
-                CellRendererAccelMode::Gtk => "Gtk",
-                CellRendererAccelMode::Other => "Other",
+                Self::Gtk => "Gtk",
+                Self::Other => "Other",
                 _ => "Unknown",
             }
         )
@@ -2157,9 +2157,9 @@ impl IntoGlib for CellRendererAccelMode {
 
     fn into_glib(self) -> ffi::GtkCellRendererAccelMode {
         match self {
-            CellRendererAccelMode::Gtk => ffi::GTK_CELL_RENDERER_ACCEL_MODE_GTK,
-            CellRendererAccelMode::Other => ffi::GTK_CELL_RENDERER_ACCEL_MODE_OTHER,
-            CellRendererAccelMode::__Unknown(value) => value,
+            Self::Gtk => ffi::GTK_CELL_RENDERER_ACCEL_MODE_GTK,
+            Self::Other => ffi::GTK_CELL_RENDERER_ACCEL_MODE_OTHER,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -2169,9 +2169,9 @@ impl FromGlib<ffi::GtkCellRendererAccelMode> for CellRendererAccelMode {
     unsafe fn from_glib(value: ffi::GtkCellRendererAccelMode) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => CellRendererAccelMode::Gtk,
-            1 => CellRendererAccelMode::Other,
-            value => CellRendererAccelMode::__Unknown(value),
+            0 => Self::Gtk,
+            1 => Self::Other,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -2197,7 +2197,7 @@ unsafe impl<'a> FromValue<'a> for CellRendererAccelMode {
 
 impl ToValue for CellRendererAccelMode {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<CellRendererAccelMode>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -2227,11 +2227,11 @@ impl fmt::Display for CellRendererMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "CellRendererMode::{}",
+            "Self::{}",
             match *self {
-                CellRendererMode::Inert => "Inert",
-                CellRendererMode::Activatable => "Activatable",
-                CellRendererMode::Editable => "Editable",
+                Self::Inert => "Inert",
+                Self::Activatable => "Activatable",
+                Self::Editable => "Editable",
                 _ => "Unknown",
             }
         )
@@ -2244,10 +2244,10 @@ impl IntoGlib for CellRendererMode {
 
     fn into_glib(self) -> ffi::GtkCellRendererMode {
         match self {
-            CellRendererMode::Inert => ffi::GTK_CELL_RENDERER_MODE_INERT,
-            CellRendererMode::Activatable => ffi::GTK_CELL_RENDERER_MODE_ACTIVATABLE,
-            CellRendererMode::Editable => ffi::GTK_CELL_RENDERER_MODE_EDITABLE,
-            CellRendererMode::__Unknown(value) => value,
+            Self::Inert => ffi::GTK_CELL_RENDERER_MODE_INERT,
+            Self::Activatable => ffi::GTK_CELL_RENDERER_MODE_ACTIVATABLE,
+            Self::Editable => ffi::GTK_CELL_RENDERER_MODE_EDITABLE,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -2257,10 +2257,10 @@ impl FromGlib<ffi::GtkCellRendererMode> for CellRendererMode {
     unsafe fn from_glib(value: ffi::GtkCellRendererMode) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => CellRendererMode::Inert,
-            1 => CellRendererMode::Activatable,
-            2 => CellRendererMode::Editable,
-            value => CellRendererMode::__Unknown(value),
+            0 => Self::Inert,
+            1 => Self::Activatable,
+            2 => Self::Editable,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -2286,7 +2286,7 @@ unsafe impl<'a> FromValue<'a> for CellRendererMode {
 
 impl ToValue for CellRendererMode {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<CellRendererMode>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -2334,20 +2334,20 @@ impl fmt::Display for ConstraintAttribute {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "ConstraintAttribute::{}",
+            "Self::{}",
             match *self {
-                ConstraintAttribute::None => "None",
-                ConstraintAttribute::Left => "Left",
-                ConstraintAttribute::Right => "Right",
-                ConstraintAttribute::Top => "Top",
-                ConstraintAttribute::Bottom => "Bottom",
-                ConstraintAttribute::Start => "Start",
-                ConstraintAttribute::End => "End",
-                ConstraintAttribute::Width => "Width",
-                ConstraintAttribute::Height => "Height",
-                ConstraintAttribute::CenterX => "CenterX",
-                ConstraintAttribute::CenterY => "CenterY",
-                ConstraintAttribute::Baseline => "Baseline",
+                Self::None => "None",
+                Self::Left => "Left",
+                Self::Right => "Right",
+                Self::Top => "Top",
+                Self::Bottom => "Bottom",
+                Self::Start => "Start",
+                Self::End => "End",
+                Self::Width => "Width",
+                Self::Height => "Height",
+                Self::CenterX => "CenterX",
+                Self::CenterY => "CenterY",
+                Self::Baseline => "Baseline",
                 _ => "Unknown",
             }
         )
@@ -2360,19 +2360,19 @@ impl IntoGlib for ConstraintAttribute {
 
     fn into_glib(self) -> ffi::GtkConstraintAttribute {
         match self {
-            ConstraintAttribute::None => ffi::GTK_CONSTRAINT_ATTRIBUTE_NONE,
-            ConstraintAttribute::Left => ffi::GTK_CONSTRAINT_ATTRIBUTE_LEFT,
-            ConstraintAttribute::Right => ffi::GTK_CONSTRAINT_ATTRIBUTE_RIGHT,
-            ConstraintAttribute::Top => ffi::GTK_CONSTRAINT_ATTRIBUTE_TOP,
-            ConstraintAttribute::Bottom => ffi::GTK_CONSTRAINT_ATTRIBUTE_BOTTOM,
-            ConstraintAttribute::Start => ffi::GTK_CONSTRAINT_ATTRIBUTE_START,
-            ConstraintAttribute::End => ffi::GTK_CONSTRAINT_ATTRIBUTE_END,
-            ConstraintAttribute::Width => ffi::GTK_CONSTRAINT_ATTRIBUTE_WIDTH,
-            ConstraintAttribute::Height => ffi::GTK_CONSTRAINT_ATTRIBUTE_HEIGHT,
-            ConstraintAttribute::CenterX => ffi::GTK_CONSTRAINT_ATTRIBUTE_CENTER_X,
-            ConstraintAttribute::CenterY => ffi::GTK_CONSTRAINT_ATTRIBUTE_CENTER_Y,
-            ConstraintAttribute::Baseline => ffi::GTK_CONSTRAINT_ATTRIBUTE_BASELINE,
-            ConstraintAttribute::__Unknown(value) => value,
+            Self::None => ffi::GTK_CONSTRAINT_ATTRIBUTE_NONE,
+            Self::Left => ffi::GTK_CONSTRAINT_ATTRIBUTE_LEFT,
+            Self::Right => ffi::GTK_CONSTRAINT_ATTRIBUTE_RIGHT,
+            Self::Top => ffi::GTK_CONSTRAINT_ATTRIBUTE_TOP,
+            Self::Bottom => ffi::GTK_CONSTRAINT_ATTRIBUTE_BOTTOM,
+            Self::Start => ffi::GTK_CONSTRAINT_ATTRIBUTE_START,
+            Self::End => ffi::GTK_CONSTRAINT_ATTRIBUTE_END,
+            Self::Width => ffi::GTK_CONSTRAINT_ATTRIBUTE_WIDTH,
+            Self::Height => ffi::GTK_CONSTRAINT_ATTRIBUTE_HEIGHT,
+            Self::CenterX => ffi::GTK_CONSTRAINT_ATTRIBUTE_CENTER_X,
+            Self::CenterY => ffi::GTK_CONSTRAINT_ATTRIBUTE_CENTER_Y,
+            Self::Baseline => ffi::GTK_CONSTRAINT_ATTRIBUTE_BASELINE,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -2382,19 +2382,19 @@ impl FromGlib<ffi::GtkConstraintAttribute> for ConstraintAttribute {
     unsafe fn from_glib(value: ffi::GtkConstraintAttribute) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => ConstraintAttribute::None,
-            1 => ConstraintAttribute::Left,
-            2 => ConstraintAttribute::Right,
-            3 => ConstraintAttribute::Top,
-            4 => ConstraintAttribute::Bottom,
-            5 => ConstraintAttribute::Start,
-            6 => ConstraintAttribute::End,
-            7 => ConstraintAttribute::Width,
-            8 => ConstraintAttribute::Height,
-            9 => ConstraintAttribute::CenterX,
-            10 => ConstraintAttribute::CenterY,
-            11 => ConstraintAttribute::Baseline,
-            value => ConstraintAttribute::__Unknown(value),
+            0 => Self::None,
+            1 => Self::Left,
+            2 => Self::Right,
+            3 => Self::Top,
+            4 => Self::Bottom,
+            5 => Self::Start,
+            6 => Self::End,
+            7 => Self::Width,
+            8 => Self::Height,
+            9 => Self::CenterX,
+            10 => Self::CenterY,
+            11 => Self::Baseline,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -2420,7 +2420,7 @@ unsafe impl<'a> FromValue<'a> for ConstraintAttribute {
 
 impl ToValue for ConstraintAttribute {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<ConstraintAttribute>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -2450,11 +2450,11 @@ impl fmt::Display for ConstraintRelation {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "ConstraintRelation::{}",
+            "Self::{}",
             match *self {
-                ConstraintRelation::Le => "Le",
-                ConstraintRelation::Eq => "Eq",
-                ConstraintRelation::Ge => "Ge",
+                Self::Le => "Le",
+                Self::Eq => "Eq",
+                Self::Ge => "Ge",
                 _ => "Unknown",
             }
         )
@@ -2467,10 +2467,10 @@ impl IntoGlib for ConstraintRelation {
 
     fn into_glib(self) -> ffi::GtkConstraintRelation {
         match self {
-            ConstraintRelation::Le => ffi::GTK_CONSTRAINT_RELATION_LE,
-            ConstraintRelation::Eq => ffi::GTK_CONSTRAINT_RELATION_EQ,
-            ConstraintRelation::Ge => ffi::GTK_CONSTRAINT_RELATION_GE,
-            ConstraintRelation::__Unknown(value) => value,
+            Self::Le => ffi::GTK_CONSTRAINT_RELATION_LE,
+            Self::Eq => ffi::GTK_CONSTRAINT_RELATION_EQ,
+            Self::Ge => ffi::GTK_CONSTRAINT_RELATION_GE,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -2480,10 +2480,10 @@ impl FromGlib<ffi::GtkConstraintRelation> for ConstraintRelation {
     unsafe fn from_glib(value: ffi::GtkConstraintRelation) -> Self {
         skip_assert_initialized!();
         match value {
-            -1 => ConstraintRelation::Le,
-            0 => ConstraintRelation::Eq,
-            1 => ConstraintRelation::Ge,
-            value => ConstraintRelation::__Unknown(value),
+            -1 => Self::Le,
+            0 => Self::Eq,
+            1 => Self::Ge,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -2509,7 +2509,7 @@ unsafe impl<'a> FromValue<'a> for ConstraintRelation {
 
 impl ToValue for ConstraintRelation {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<ConstraintRelation>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -2541,12 +2541,12 @@ impl fmt::Display for ConstraintStrength {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "ConstraintStrength::{}",
+            "Self::{}",
             match *self {
-                ConstraintStrength::Required => "Required",
-                ConstraintStrength::Strong => "Strong",
-                ConstraintStrength::Medium => "Medium",
-                ConstraintStrength::Weak => "Weak",
+                Self::Required => "Required",
+                Self::Strong => "Strong",
+                Self::Medium => "Medium",
+                Self::Weak => "Weak",
                 _ => "Unknown",
             }
         )
@@ -2559,11 +2559,11 @@ impl IntoGlib for ConstraintStrength {
 
     fn into_glib(self) -> ffi::GtkConstraintStrength {
         match self {
-            ConstraintStrength::Required => ffi::GTK_CONSTRAINT_STRENGTH_REQUIRED,
-            ConstraintStrength::Strong => ffi::GTK_CONSTRAINT_STRENGTH_STRONG,
-            ConstraintStrength::Medium => ffi::GTK_CONSTRAINT_STRENGTH_MEDIUM,
-            ConstraintStrength::Weak => ffi::GTK_CONSTRAINT_STRENGTH_WEAK,
-            ConstraintStrength::__Unknown(value) => value,
+            Self::Required => ffi::GTK_CONSTRAINT_STRENGTH_REQUIRED,
+            Self::Strong => ffi::GTK_CONSTRAINT_STRENGTH_STRONG,
+            Self::Medium => ffi::GTK_CONSTRAINT_STRENGTH_MEDIUM,
+            Self::Weak => ffi::GTK_CONSTRAINT_STRENGTH_WEAK,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -2573,11 +2573,11 @@ impl FromGlib<ffi::GtkConstraintStrength> for ConstraintStrength {
     unsafe fn from_glib(value: ffi::GtkConstraintStrength) -> Self {
         skip_assert_initialized!();
         match value {
-            1001001000 => ConstraintStrength::Required,
-            1000000000 => ConstraintStrength::Strong,
-            1000 => ConstraintStrength::Medium,
-            1 => ConstraintStrength::Weak,
-            value => ConstraintStrength::__Unknown(value),
+            1001001000 => Self::Required,
+            1000000000 => Self::Strong,
+            1000 => Self::Medium,
+            1 => Self::Weak,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -2603,7 +2603,7 @@ unsafe impl<'a> FromValue<'a> for ConstraintStrength {
 
 impl ToValue for ConstraintStrength {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<ConstraintStrength>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -2639,14 +2639,14 @@ impl fmt::Display for ConstraintVflParserError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "ConstraintVflParserError::{}",
+            "Self::{}",
             match *self {
-                ConstraintVflParserError::Symbol => "Symbol",
-                ConstraintVflParserError::Attribute => "Attribute",
-                ConstraintVflParserError::View => "View",
-                ConstraintVflParserError::Metric => "Metric",
-                ConstraintVflParserError::Priority => "Priority",
-                ConstraintVflParserError::Relation => "Relation",
+                Self::Symbol => "Symbol",
+                Self::Attribute => "Attribute",
+                Self::View => "View",
+                Self::Metric => "Metric",
+                Self::Priority => "Priority",
+                Self::Relation => "Relation",
                 _ => "Unknown",
             }
         )
@@ -2659,19 +2659,13 @@ impl IntoGlib for ConstraintVflParserError {
 
     fn into_glib(self) -> ffi::GtkConstraintVflParserError {
         match self {
-            ConstraintVflParserError::Symbol => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL,
-            ConstraintVflParserError::Attribute => {
-                ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_ATTRIBUTE
-            }
-            ConstraintVflParserError::View => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_VIEW,
-            ConstraintVflParserError::Metric => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_METRIC,
-            ConstraintVflParserError::Priority => {
-                ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_PRIORITY
-            }
-            ConstraintVflParserError::Relation => {
-                ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_RELATION
-            }
-            ConstraintVflParserError::__Unknown(value) => value,
+            Self::Symbol => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL,
+            Self::Attribute => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_ATTRIBUTE,
+            Self::View => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_VIEW,
+            Self::Metric => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_METRIC,
+            Self::Priority => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_PRIORITY,
+            Self::Relation => ffi::GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_RELATION,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -2681,13 +2675,13 @@ impl FromGlib<ffi::GtkConstraintVflParserError> for ConstraintVflParserError {
     unsafe fn from_glib(value: ffi::GtkConstraintVflParserError) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => ConstraintVflParserError::Symbol,
-            1 => ConstraintVflParserError::Attribute,
-            2 => ConstraintVflParserError::View,
-            3 => ConstraintVflParserError::Metric,
-            4 => ConstraintVflParserError::Priority,
-            5 => ConstraintVflParserError::Relation,
-            value => ConstraintVflParserError::__Unknown(value),
+            0 => Self::Symbol,
+            1 => Self::Attribute,
+            2 => Self::View,
+            3 => Self::Metric,
+            4 => Self::Priority,
+            5 => Self::Relation,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -2706,13 +2700,13 @@ impl ErrorDomain for ConstraintVflParserError {
     fn from(code: i32) -> Option<Self> {
         skip_assert_initialized!();
         match code {
-            0 => Some(ConstraintVflParserError::Symbol),
-            1 => Some(ConstraintVflParserError::Attribute),
-            2 => Some(ConstraintVflParserError::View),
-            3 => Some(ConstraintVflParserError::Metric),
-            4 => Some(ConstraintVflParserError::Priority),
-            5 => Some(ConstraintVflParserError::Relation),
-            value => Some(ConstraintVflParserError::__Unknown(value)),
+            0 => Some(Self::Symbol),
+            1 => Some(Self::Attribute),
+            2 => Some(Self::View),
+            3 => Some(Self::Metric),
+            4 => Some(Self::Priority),
+            5 => Some(Self::Relation),
+            value => Some(Self::__Unknown(value)),
         }
     }
 }
@@ -2738,7 +2732,7 @@ unsafe impl<'a> FromValue<'a> for ConstraintVflParserError {
 
 impl ToValue for ConstraintVflParserError {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<ConstraintVflParserError>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -2770,12 +2764,12 @@ impl fmt::Display for CornerType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "CornerType::{}",
+            "Self::{}",
             match *self {
-                CornerType::TopLeft => "TopLeft",
-                CornerType::BottomLeft => "BottomLeft",
-                CornerType::TopRight => "TopRight",
-                CornerType::BottomRight => "BottomRight",
+                Self::TopLeft => "TopLeft",
+                Self::BottomLeft => "BottomLeft",
+                Self::TopRight => "TopRight",
+                Self::BottomRight => "BottomRight",
                 _ => "Unknown",
             }
         )
@@ -2788,11 +2782,11 @@ impl IntoGlib for CornerType {
 
     fn into_glib(self) -> ffi::GtkCornerType {
         match self {
-            CornerType::TopLeft => ffi::GTK_CORNER_TOP_LEFT,
-            CornerType::BottomLeft => ffi::GTK_CORNER_BOTTOM_LEFT,
-            CornerType::TopRight => ffi::GTK_CORNER_TOP_RIGHT,
-            CornerType::BottomRight => ffi::GTK_CORNER_BOTTOM_RIGHT,
-            CornerType::__Unknown(value) => value,
+            Self::TopLeft => ffi::GTK_CORNER_TOP_LEFT,
+            Self::BottomLeft => ffi::GTK_CORNER_BOTTOM_LEFT,
+            Self::TopRight => ffi::GTK_CORNER_TOP_RIGHT,
+            Self::BottomRight => ffi::GTK_CORNER_BOTTOM_RIGHT,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -2802,11 +2796,11 @@ impl FromGlib<ffi::GtkCornerType> for CornerType {
     unsafe fn from_glib(value: ffi::GtkCornerType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => CornerType::TopLeft,
-            1 => CornerType::BottomLeft,
-            2 => CornerType::TopRight,
-            3 => CornerType::BottomRight,
-            value => CornerType::__Unknown(value),
+            0 => Self::TopLeft,
+            1 => Self::BottomLeft,
+            2 => Self::TopRight,
+            3 => Self::BottomRight,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -2832,7 +2826,7 @@ unsafe impl<'a> FromValue<'a> for CornerType {
 
 impl ToValue for CornerType {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<CornerType>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -2866,13 +2860,13 @@ impl fmt::Display for CssParserError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "CssParserError::{}",
+            "Self::{}",
             match *self {
-                CssParserError::Failed => "Failed",
-                CssParserError::Syntax => "Syntax",
-                CssParserError::Import => "Import",
-                CssParserError::Name => "Name",
-                CssParserError::UnknownValue => "UnknownValue",
+                Self::Failed => "Failed",
+                Self::Syntax => "Syntax",
+                Self::Import => "Import",
+                Self::Name => "Name",
+                Self::UnknownValue => "UnknownValue",
                 _ => "Unknown",
             }
         )
@@ -2885,12 +2879,12 @@ impl IntoGlib for CssParserError {
 
     fn into_glib(self) -> ffi::GtkCssParserError {
         match self {
-            CssParserError::Failed => ffi::GTK_CSS_PARSER_ERROR_FAILED,
-            CssParserError::Syntax => ffi::GTK_CSS_PARSER_ERROR_SYNTAX,
-            CssParserError::Import => ffi::GTK_CSS_PARSER_ERROR_IMPORT,
-            CssParserError::Name => ffi::GTK_CSS_PARSER_ERROR_NAME,
-            CssParserError::UnknownValue => ffi::GTK_CSS_PARSER_ERROR_UNKNOWN_VALUE,
-            CssParserError::__Unknown(value) => value,
+            Self::Failed => ffi::GTK_CSS_PARSER_ERROR_FAILED,
+            Self::Syntax => ffi::GTK_CSS_PARSER_ERROR_SYNTAX,
+            Self::Import => ffi::GTK_CSS_PARSER_ERROR_IMPORT,
+            Self::Name => ffi::GTK_CSS_PARSER_ERROR_NAME,
+            Self::UnknownValue => ffi::GTK_CSS_PARSER_ERROR_UNKNOWN_VALUE,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -2900,12 +2894,12 @@ impl FromGlib<ffi::GtkCssParserError> for CssParserError {
     unsafe fn from_glib(value: ffi::GtkCssParserError) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => CssParserError::Failed,
-            1 => CssParserError::Syntax,
-            2 => CssParserError::Import,
-            3 => CssParserError::Name,
-            4 => CssParserError::UnknownValue,
-            value => CssParserError::__Unknown(value),
+            0 => Self::Failed,
+            1 => Self::Syntax,
+            2 => Self::Import,
+            3 => Self::Name,
+            4 => Self::UnknownValue,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -2924,12 +2918,12 @@ impl ErrorDomain for CssParserError {
     fn from(code: i32) -> Option<Self> {
         skip_assert_initialized!();
         match code {
-            0 => Some(CssParserError::Failed),
-            1 => Some(CssParserError::Syntax),
-            2 => Some(CssParserError::Import),
-            3 => Some(CssParserError::Name),
-            4 => Some(CssParserError::UnknownValue),
-            _ => Some(CssParserError::Failed),
+            0 => Some(Self::Failed),
+            1 => Some(Self::Syntax),
+            2 => Some(Self::Import),
+            3 => Some(Self::Name),
+            4 => Some(Self::UnknownValue),
+            _ => Some(Self::Failed),
         }
     }
 }
@@ -2952,11 +2946,11 @@ impl fmt::Display for CssParserWarning {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "CssParserWarning::{}",
+            "Self::{}",
             match *self {
-                CssParserWarning::Deprecated => "Deprecated",
-                CssParserWarning::Syntax => "Syntax",
-                CssParserWarning::Unimplemented => "Unimplemented",
+                Self::Deprecated => "Deprecated",
+                Self::Syntax => "Syntax",
+                Self::Unimplemented => "Unimplemented",
                 _ => "Unknown",
             }
         )
@@ -2969,10 +2963,10 @@ impl IntoGlib for CssParserWarning {
 
     fn into_glib(self) -> ffi::GtkCssParserWarning {
         match self {
-            CssParserWarning::Deprecated => ffi::GTK_CSS_PARSER_WARNING_DEPRECATED,
-            CssParserWarning::Syntax => ffi::GTK_CSS_PARSER_WARNING_SYNTAX,
-            CssParserWarning::Unimplemented => ffi::GTK_CSS_PARSER_WARNING_UNIMPLEMENTED,
-            CssParserWarning::__Unknown(value) => value,
+            Self::Deprecated => ffi::GTK_CSS_PARSER_WARNING_DEPRECATED,
+            Self::Syntax => ffi::GTK_CSS_PARSER_WARNING_SYNTAX,
+            Self::Unimplemented => ffi::GTK_CSS_PARSER_WARNING_UNIMPLEMENTED,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -2982,10 +2976,10 @@ impl FromGlib<ffi::GtkCssParserWarning> for CssParserWarning {
     unsafe fn from_glib(value: ffi::GtkCssParserWarning) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => CssParserWarning::Deprecated,
-            1 => CssParserWarning::Syntax,
-            2 => CssParserWarning::Unimplemented,
-            value => CssParserWarning::__Unknown(value),
+            0 => Self::Deprecated,
+            1 => Self::Syntax,
+            2 => Self::Unimplemented,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -3018,16 +3012,16 @@ impl fmt::Display for DeleteType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "DeleteType::{}",
+            "Self::{}",
             match *self {
-                DeleteType::Chars => "Chars",
-                DeleteType::WordEnds => "WordEnds",
-                DeleteType::Words => "Words",
-                DeleteType::DisplayLines => "DisplayLines",
-                DeleteType::DisplayLineEnds => "DisplayLineEnds",
-                DeleteType::ParagraphEnds => "ParagraphEnds",
-                DeleteType::Paragraphs => "Paragraphs",
-                DeleteType::Whitespace => "Whitespace",
+                Self::Chars => "Chars",
+                Self::WordEnds => "WordEnds",
+                Self::Words => "Words",
+                Self::DisplayLines => "DisplayLines",
+                Self::DisplayLineEnds => "DisplayLineEnds",
+                Self::ParagraphEnds => "ParagraphEnds",
+                Self::Paragraphs => "Paragraphs",
+                Self::Whitespace => "Whitespace",
                 _ => "Unknown",
             }
         )
@@ -3040,15 +3034,15 @@ impl IntoGlib for DeleteType {
 
     fn into_glib(self) -> ffi::GtkDeleteType {
         match self {
-            DeleteType::Chars => ffi::GTK_DELETE_CHARS,
-            DeleteType::WordEnds => ffi::GTK_DELETE_WORD_ENDS,
-            DeleteType::Words => ffi::GTK_DELETE_WORDS,
-            DeleteType::DisplayLines => ffi::GTK_DELETE_DISPLAY_LINES,
-            DeleteType::DisplayLineEnds => ffi::GTK_DELETE_DISPLAY_LINE_ENDS,
-            DeleteType::ParagraphEnds => ffi::GTK_DELETE_PARAGRAPH_ENDS,
-            DeleteType::Paragraphs => ffi::GTK_DELETE_PARAGRAPHS,
-            DeleteType::Whitespace => ffi::GTK_DELETE_WHITESPACE,
-            DeleteType::__Unknown(value) => value,
+            Self::Chars => ffi::GTK_DELETE_CHARS,
+            Self::WordEnds => ffi::GTK_DELETE_WORD_ENDS,
+            Self::Words => ffi::GTK_DELETE_WORDS,
+            Self::DisplayLines => ffi::GTK_DELETE_DISPLAY_LINES,
+            Self::DisplayLineEnds => ffi::GTK_DELETE_DISPLAY_LINE_ENDS,
+            Self::ParagraphEnds => ffi::GTK_DELETE_PARAGRAPH_ENDS,
+            Self::Paragraphs => ffi::GTK_DELETE_PARAGRAPHS,
+            Self::Whitespace => ffi::GTK_DELETE_WHITESPACE,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -3058,15 +3052,15 @@ impl FromGlib<ffi::GtkDeleteType> for DeleteType {
     unsafe fn from_glib(value: ffi::GtkDeleteType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => DeleteType::Chars,
-            1 => DeleteType::WordEnds,
-            2 => DeleteType::Words,
-            3 => DeleteType::DisplayLines,
-            4 => DeleteType::DisplayLineEnds,
-            5 => DeleteType::ParagraphEnds,
-            6 => DeleteType::Paragraphs,
-            7 => DeleteType::Whitespace,
-            value => DeleteType::__Unknown(value),
+            0 => Self::Chars,
+            1 => Self::WordEnds,
+            2 => Self::Words,
+            3 => Self::DisplayLines,
+            4 => Self::DisplayLineEnds,
+            5 => Self::ParagraphEnds,
+            6 => Self::Paragraphs,
+            7 => Self::Whitespace,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -3092,7 +3086,7 @@ unsafe impl<'a> FromValue<'a> for DeleteType {
 
 impl ToValue for DeleteType {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<DeleteType>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -3128,14 +3122,14 @@ impl fmt::Display for DirectionType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "DirectionType::{}",
+            "Self::{}",
             match *self {
-                DirectionType::TabForward => "TabForward",
-                DirectionType::TabBackward => "TabBackward",
-                DirectionType::Up => "Up",
-                DirectionType::Down => "Down",
-                DirectionType::Left => "Left",
-                DirectionType::Right => "Right",
+                Self::TabForward => "TabForward",
+                Self::TabBackward => "TabBackward",
+                Self::Up => "Up",
+                Self::Down => "Down",
+                Self::Left => "Left",
+                Self::Right => "Right",
                 _ => "Unknown",
             }
         )
@@ -3148,13 +3142,13 @@ impl IntoGlib for DirectionType {
 
     fn into_glib(self) -> ffi::GtkDirectionType {
         match self {
-            DirectionType::TabForward => ffi::GTK_DIR_TAB_FORWARD,
-            DirectionType::TabBackward => ffi::GTK_DIR_TAB_BACKWARD,
-            DirectionType::Up => ffi::GTK_DIR_UP,
-            DirectionType::Down => ffi::GTK_DIR_DOWN,
-            DirectionType::Left => ffi::GTK_DIR_LEFT,
-            DirectionType::Right => ffi::GTK_DIR_RIGHT,
-            DirectionType::__Unknown(value) => value,
+            Self::TabForward => ffi::GTK_DIR_TAB_FORWARD,
+            Self::TabBackward => ffi::GTK_DIR_TAB_BACKWARD,
+            Self::Up => ffi::GTK_DIR_UP,
+            Self::Down => ffi::GTK_DIR_DOWN,
+            Self::Left => ffi::GTK_DIR_LEFT,
+            Self::Right => ffi::GTK_DIR_RIGHT,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -3164,13 +3158,13 @@ impl FromGlib<ffi::GtkDirectionType> for DirectionType {
     unsafe fn from_glib(value: ffi::GtkDirectionType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => DirectionType::TabForward,
-            1 => DirectionType::TabBackward,
-            2 => DirectionType::Up,
-            3 => DirectionType::Down,
-            4 => DirectionType::Left,
-            5 => DirectionType::Right,
-            value => DirectionType::__Unknown(value),
+            0 => Self::TabForward,
+            1 => Self::TabBackward,
+            2 => Self::Up,
+            3 => Self::Down,
+            4 => Self::Left,
+            5 => Self::Right,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -3196,7 +3190,7 @@ unsafe impl<'a> FromValue<'a> for DirectionType {
 
 impl ToValue for DirectionType {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<DirectionType>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -3238,17 +3232,17 @@ impl fmt::Display for EditableProperties {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "EditableProperties::{}",
+            "Self::{}",
             match *self {
-                EditableProperties::PropText => "PropText",
-                EditableProperties::PropCursorPosition => "PropCursorPosition",
-                EditableProperties::PropSelectionBound => "PropSelectionBound",
-                EditableProperties::PropEditable => "PropEditable",
-                EditableProperties::PropWidthChars => "PropWidthChars",
-                EditableProperties::PropMaxWidthChars => "PropMaxWidthChars",
-                EditableProperties::PropXalign => "PropXalign",
-                EditableProperties::PropEnableUndo => "PropEnableUndo",
-                EditableProperties::NumProperties => "NumProperties",
+                Self::PropText => "PropText",
+                Self::PropCursorPosition => "PropCursorPosition",
+                Self::PropSelectionBound => "PropSelectionBound",
+                Self::PropEditable => "PropEditable",
+                Self::PropWidthChars => "PropWidthChars",
+                Self::PropMaxWidthChars => "PropMaxWidthChars",
+                Self::PropXalign => "PropXalign",
+                Self::PropEnableUndo => "PropEnableUndo",
+                Self::NumProperties => "NumProperties",
                 _ => "Unknown",
             }
         )
@@ -3261,16 +3255,16 @@ impl IntoGlib for EditableProperties {
 
     fn into_glib(self) -> ffi::GtkEditableProperties {
         match self {
-            EditableProperties::PropText => ffi::GTK_EDITABLE_PROP_TEXT,
-            EditableProperties::PropCursorPosition => ffi::GTK_EDITABLE_PROP_CURSOR_POSITION,
-            EditableProperties::PropSelectionBound => ffi::GTK_EDITABLE_PROP_SELECTION_BOUND,
-            EditableProperties::PropEditable => ffi::GTK_EDITABLE_PROP_EDITABLE,
-            EditableProperties::PropWidthChars => ffi::GTK_EDITABLE_PROP_WIDTH_CHARS,
-            EditableProperties::PropMaxWidthChars => ffi::GTK_EDITABLE_PROP_MAX_WIDTH_CHARS,
-            EditableProperties::PropXalign => ffi::GTK_EDITABLE_PROP_XALIGN,
-            EditableProperties::PropEnableUndo => ffi::GTK_EDITABLE_PROP_ENABLE_UNDO,
-            EditableProperties::NumProperties => ffi::GTK_EDITABLE_NUM_PROPERTIES,
-            EditableProperties::__Unknown(value) => value,
+            Self::PropText => ffi::GTK_EDITABLE_PROP_TEXT,
+            Self::PropCursorPosition => ffi::GTK_EDITABLE_PROP_CURSOR_POSITION,
+            Self::PropSelectionBound => ffi::GTK_EDITABLE_PROP_SELECTION_BOUND,
+            Self::PropEditable => ffi::GTK_EDITABLE_PROP_EDITABLE,
+            Self::PropWidthChars => ffi::GTK_EDITABLE_PROP_WIDTH_CHARS,
+            Self::PropMaxWidthChars => ffi::GTK_EDITABLE_PROP_MAX_WIDTH_CHARS,
+            Self::PropXalign => ffi::GTK_EDITABLE_PROP_XALIGN,
+            Self::PropEnableUndo => ffi::GTK_EDITABLE_PROP_ENABLE_UNDO,
+            Self::NumProperties => ffi::GTK_EDITABLE_NUM_PROPERTIES,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -3280,16 +3274,16 @@ impl FromGlib<ffi::GtkEditableProperties> for EditableProperties {
     unsafe fn from_glib(value: ffi::GtkEditableProperties) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => EditableProperties::PropText,
-            1 => EditableProperties::PropCursorPosition,
-            2 => EditableProperties::PropSelectionBound,
-            3 => EditableProperties::PropEditable,
-            4 => EditableProperties::PropWidthChars,
-            5 => EditableProperties::PropMaxWidthChars,
-            6 => EditableProperties::PropXalign,
-            7 => EditableProperties::PropEnableUndo,
-            8 => EditableProperties::NumProperties,
-            value => EditableProperties::__Unknown(value),
+            0 => Self::PropText,
+            1 => Self::PropCursorPosition,
+            2 => Self::PropSelectionBound,
+            3 => Self::PropEditable,
+            4 => Self::PropWidthChars,
+            5 => Self::PropMaxWidthChars,
+            6 => Self::PropXalign,
+            7 => Self::PropEnableUndo,
+            8 => Self::NumProperties,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -3315,7 +3309,7 @@ unsafe impl<'a> FromValue<'a> for EditableProperties {
 
 impl ToValue for EditableProperties {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<EditableProperties>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -3343,10 +3337,10 @@ impl fmt::Display for EntryIconPosition {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "EntryIconPosition::{}",
+            "Self::{}",
             match *self {
-                EntryIconPosition::Primary => "Primary",
-                EntryIconPosition::Secondary => "Secondary",
+                Self::Primary => "Primary",
+                Self::Secondary => "Secondary",
                 _ => "Unknown",
             }
         )
@@ -3359,9 +3353,9 @@ impl IntoGlib for EntryIconPosition {
 
     fn into_glib(self) -> ffi::GtkEntryIconPosition {
         match self {
-            EntryIconPosition::Primary => ffi::GTK_ENTRY_ICON_PRIMARY,
-            EntryIconPosition::Secondary => ffi::GTK_ENTRY_ICON_SECONDARY,
-            EntryIconPosition::__Unknown(value) => value,
+            Self::Primary => ffi::GTK_ENTRY_ICON_PRIMARY,
+            Self::Secondary => ffi::GTK_ENTRY_ICON_SECONDARY,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -3371,9 +3365,9 @@ impl FromGlib<ffi::GtkEntryIconPosition> for EntryIconPosition {
     unsafe fn from_glib(value: ffi::GtkEntryIconPosition) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => EntryIconPosition::Primary,
-            1 => EntryIconPosition::Secondary,
-            value => EntryIconPosition::__Unknown(value),
+            0 => Self::Primary,
+            1 => Self::Secondary,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -3399,7 +3393,7 @@ unsafe impl<'a> FromValue<'a> for EntryIconPosition {
 
 impl ToValue for EntryIconPosition {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<EntryIconPosition>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -3429,11 +3423,11 @@ impl fmt::Display for EventSequenceState {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "EventSequenceState::{}",
+            "Self::{}",
             match *self {
-                EventSequenceState::None => "None",
-                EventSequenceState::Claimed => "Claimed",
-                EventSequenceState::Denied => "Denied",
+                Self::None => "None",
+                Self::Claimed => "Claimed",
+                Self::Denied => "Denied",
                 _ => "Unknown",
             }
         )
@@ -3446,10 +3440,10 @@ impl IntoGlib for EventSequenceState {
 
     fn into_glib(self) -> ffi::GtkEventSequenceState {
         match self {
-            EventSequenceState::None => ffi::GTK_EVENT_SEQUENCE_NONE,
-            EventSequenceState::Claimed => ffi::GTK_EVENT_SEQUENCE_CLAIMED,
-            EventSequenceState::Denied => ffi::GTK_EVENT_SEQUENCE_DENIED,
-            EventSequenceState::__Unknown(value) => value,
+            Self::None => ffi::GTK_EVENT_SEQUENCE_NONE,
+            Self::Claimed => ffi::GTK_EVENT_SEQUENCE_CLAIMED,
+            Self::Denied => ffi::GTK_EVENT_SEQUENCE_DENIED,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -3459,10 +3453,10 @@ impl FromGlib<ffi::GtkEventSequenceState> for EventSequenceState {
     unsafe fn from_glib(value: ffi::GtkEventSequenceState) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => EventSequenceState::None,
-            1 => EventSequenceState::Claimed,
-            2 => EventSequenceState::Denied,
-            value => EventSequenceState::__Unknown(value),
+            0 => Self::None,
+            1 => Self::Claimed,
+            2 => Self::Denied,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -3488,7 +3482,7 @@ unsafe impl<'a> FromValue<'a> for EventSequenceState {
 
 impl ToValue for EventSequenceState {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<EventSequenceState>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -3518,11 +3512,11 @@ impl fmt::Display for FileChooserAction {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "FileChooserAction::{}",
+            "Self::{}",
             match *self {
-                FileChooserAction::Open => "Open",
-                FileChooserAction::Save => "Save",
-                FileChooserAction::SelectFolder => "SelectFolder",
+                Self::Open => "Open",
+                Self::Save => "Save",
+                Self::SelectFolder => "SelectFolder",
                 _ => "Unknown",
             }
         )
@@ -3535,10 +3529,10 @@ impl IntoGlib for FileChooserAction {
 
     fn into_glib(self) -> ffi::GtkFileChooserAction {
         match self {
-            FileChooserAction::Open => ffi::GTK_FILE_CHOOSER_ACTION_OPEN,
-            FileChooserAction::Save => ffi::GTK_FILE_CHOOSER_ACTION_SAVE,
-            FileChooserAction::SelectFolder => ffi::GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER,
-            FileChooserAction::__Unknown(value) => value,
+            Self::Open => ffi::GTK_FILE_CHOOSER_ACTION_OPEN,
+            Self::Save => ffi::GTK_FILE_CHOOSER_ACTION_SAVE,
+            Self::SelectFolder => ffi::GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -3548,10 +3542,10 @@ impl FromGlib<ffi::GtkFileChooserAction> for FileChooserAction {
     unsafe fn from_glib(value: ffi::GtkFileChooserAction) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => FileChooserAction::Open,
-            1 => FileChooserAction::Save,
-            2 => FileChooserAction::SelectFolder,
-            value => FileChooserAction::__Unknown(value),
+            0 => Self::Open,
+            1 => Self::Save,
+            2 => Self::SelectFolder,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -3577,7 +3571,7 @@ unsafe impl<'a> FromValue<'a> for FileChooserAction {
 
 impl ToValue for FileChooserAction {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<FileChooserAction>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -3609,12 +3603,12 @@ impl fmt::Display for FileChooserError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "FileChooserError::{}",
+            "Self::{}",
             match *self {
-                FileChooserError::Nonexistent => "Nonexistent",
-                FileChooserError::BadFilename => "BadFilename",
-                FileChooserError::AlreadyExists => "AlreadyExists",
-                FileChooserError::IncompleteHostname => "IncompleteHostname",
+                Self::Nonexistent => "Nonexistent",
+                Self::BadFilename => "BadFilename",
+                Self::AlreadyExists => "AlreadyExists",
+                Self::IncompleteHostname => "IncompleteHostname",
                 _ => "Unknown",
             }
         )
@@ -3627,11 +3621,11 @@ impl IntoGlib for FileChooserError {
 
     fn into_glib(self) -> ffi::GtkFileChooserError {
         match self {
-            FileChooserError::Nonexistent => ffi::GTK_FILE_CHOOSER_ERROR_NONEXISTENT,
-            FileChooserError::BadFilename => ffi::GTK_FILE_CHOOSER_ERROR_BAD_FILENAME,
-            FileChooserError::AlreadyExists => ffi::GTK_FILE_CHOOSER_ERROR_ALREADY_EXISTS,
-            FileChooserError::IncompleteHostname => ffi::GTK_FILE_CHOOSER_ERROR_INCOMPLETE_HOSTNAME,
-            FileChooserError::__Unknown(value) => value,
+            Self::Nonexistent => ffi::GTK_FILE_CHOOSER_ERROR_NONEXISTENT,
+            Self::BadFilename => ffi::GTK_FILE_CHOOSER_ERROR_BAD_FILENAME,
+            Self::AlreadyExists => ffi::GTK_FILE_CHOOSER_ERROR_ALREADY_EXISTS,
+            Self::IncompleteHostname => ffi::GTK_FILE_CHOOSER_ERROR_INCOMPLETE_HOSTNAME,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -3641,11 +3635,11 @@ impl FromGlib<ffi::GtkFileChooserError> for FileChooserError {
     unsafe fn from_glib(value: ffi::GtkFileChooserError) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => FileChooserError::Nonexistent,
-            1 => FileChooserError::BadFilename,
-            2 => FileChooserError::AlreadyExists,
-            3 => FileChooserError::IncompleteHostname,
-            value => FileChooserError::__Unknown(value),
+            0 => Self::Nonexistent,
+            1 => Self::BadFilename,
+            2 => Self::AlreadyExists,
+            3 => Self::IncompleteHostname,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -3664,11 +3658,11 @@ impl ErrorDomain for FileChooserError {
     fn from(code: i32) -> Option<Self> {
         skip_assert_initialized!();
         match code {
-            0 => Some(FileChooserError::Nonexistent),
-            1 => Some(FileChooserError::BadFilename),
-            2 => Some(FileChooserError::AlreadyExists),
-            3 => Some(FileChooserError::IncompleteHostname),
-            value => Some(FileChooserError::__Unknown(value)),
+            0 => Some(Self::Nonexistent),
+            1 => Some(Self::BadFilename),
+            2 => Some(Self::AlreadyExists),
+            3 => Some(Self::IncompleteHostname),
+            value => Some(Self::__Unknown(value)),
         }
     }
 }
@@ -3694,7 +3688,7 @@ unsafe impl<'a> FromValue<'a> for FileChooserError {
 
 impl ToValue for FileChooserError {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<FileChooserError>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -3724,11 +3718,11 @@ impl fmt::Display for FilterChange {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "FilterChange::{}",
+            "Self::{}",
             match *self {
-                FilterChange::Different => "Different",
-                FilterChange::LessStrict => "LessStrict",
-                FilterChange::MoreStrict => "MoreStrict",
+                Self::Different => "Different",
+                Self::LessStrict => "LessStrict",
+                Self::MoreStrict => "MoreStrict",
                 _ => "Unknown",
             }
         )
@@ -3741,10 +3735,10 @@ impl IntoGlib for FilterChange {
 
     fn into_glib(self) -> ffi::GtkFilterChange {
         match self {
-            FilterChange::Different => ffi::GTK_FILTER_CHANGE_DIFFERENT,
-            FilterChange::LessStrict => ffi::GTK_FILTER_CHANGE_LESS_STRICT,
-            FilterChange::MoreStrict => ffi::GTK_FILTER_CHANGE_MORE_STRICT,
-            FilterChange::__Unknown(value) => value,
+            Self::Different => ffi::GTK_FILTER_CHANGE_DIFFERENT,
+            Self::LessStrict => ffi::GTK_FILTER_CHANGE_LESS_STRICT,
+            Self::MoreStrict => ffi::GTK_FILTER_CHANGE_MORE_STRICT,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -3754,10 +3748,10 @@ impl FromGlib<ffi::GtkFilterChange> for FilterChange {
     unsafe fn from_glib(value: ffi::GtkFilterChange) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => FilterChange::Different,
-            1 => FilterChange::LessStrict,
-            2 => FilterChange::MoreStrict,
-            value => FilterChange::__Unknown(value),
+            0 => Self::Different,
+            1 => Self::LessStrict,
+            2 => Self::MoreStrict,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -3783,7 +3777,7 @@ unsafe impl<'a> FromValue<'a> for FilterChange {
 
 impl ToValue for FilterChange {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<FilterChange>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -3813,11 +3807,11 @@ impl fmt::Display for FilterMatch {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "FilterMatch::{}",
+            "Self::{}",
             match *self {
-                FilterMatch::Some => "Some",
-                FilterMatch::None => "None",
-                FilterMatch::All => "All",
+                Self::Some => "Some",
+                Self::None => "None",
+                Self::All => "All",
                 _ => "Unknown",
             }
         )
@@ -3830,10 +3824,10 @@ impl IntoGlib for FilterMatch {
 
     fn into_glib(self) -> ffi::GtkFilterMatch {
         match self {
-            FilterMatch::Some => ffi::GTK_FILTER_MATCH_SOME,
-            FilterMatch::None => ffi::GTK_FILTER_MATCH_NONE,
-            FilterMatch::All => ffi::GTK_FILTER_MATCH_ALL,
-            FilterMatch::__Unknown(value) => value,
+            Self::Some => ffi::GTK_FILTER_MATCH_SOME,
+            Self::None => ffi::GTK_FILTER_MATCH_NONE,
+            Self::All => ffi::GTK_FILTER_MATCH_ALL,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -3843,10 +3837,10 @@ impl FromGlib<ffi::GtkFilterMatch> for FilterMatch {
     unsafe fn from_glib(value: ffi::GtkFilterMatch) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => FilterMatch::Some,
-            1 => FilterMatch::None,
-            2 => FilterMatch::All,
-            value => FilterMatch::__Unknown(value),
+            0 => Self::Some,
+            1 => Self::None,
+            2 => Self::All,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -3872,7 +3866,7 @@ unsafe impl<'a> FromValue<'a> for FilterMatch {
 
 impl ToValue for FilterMatch {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<FilterMatch>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -3902,11 +3896,11 @@ impl fmt::Display for IconSize {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "IconSize::{}",
+            "Self::{}",
             match *self {
-                IconSize::Inherit => "Inherit",
-                IconSize::Normal => "Normal",
-                IconSize::Large => "Large",
+                Self::Inherit => "Inherit",
+                Self::Normal => "Normal",
+                Self::Large => "Large",
                 _ => "Unknown",
             }
         )
@@ -3919,10 +3913,10 @@ impl IntoGlib for IconSize {
 
     fn into_glib(self) -> ffi::GtkIconSize {
         match self {
-            IconSize::Inherit => ffi::GTK_ICON_SIZE_INHERIT,
-            IconSize::Normal => ffi::GTK_ICON_SIZE_NORMAL,
-            IconSize::Large => ffi::GTK_ICON_SIZE_LARGE,
-            IconSize::__Unknown(value) => value,
+            Self::Inherit => ffi::GTK_ICON_SIZE_INHERIT,
+            Self::Normal => ffi::GTK_ICON_SIZE_NORMAL,
+            Self::Large => ffi::GTK_ICON_SIZE_LARGE,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -3932,10 +3926,10 @@ impl FromGlib<ffi::GtkIconSize> for IconSize {
     unsafe fn from_glib(value: ffi::GtkIconSize) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => IconSize::Inherit,
-            1 => IconSize::Normal,
-            2 => IconSize::Large,
-            value => IconSize::__Unknown(value),
+            0 => Self::Inherit,
+            1 => Self::Normal,
+            2 => Self::Large,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -3961,7 +3955,7 @@ unsafe impl<'a> FromValue<'a> for IconSize {
 
 impl ToValue for IconSize {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<IconSize>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -3989,10 +3983,10 @@ impl fmt::Display for IconThemeError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "IconThemeError::{}",
+            "Self::{}",
             match *self {
-                IconThemeError::NotFound => "NotFound",
-                IconThemeError::Failed => "Failed",
+                Self::NotFound => "NotFound",
+                Self::Failed => "Failed",
                 _ => "Unknown",
             }
         )
@@ -4005,9 +3999,9 @@ impl IntoGlib for IconThemeError {
 
     fn into_glib(self) -> ffi::GtkIconThemeError {
         match self {
-            IconThemeError::NotFound => ffi::GTK_ICON_THEME_NOT_FOUND,
-            IconThemeError::Failed => ffi::GTK_ICON_THEME_FAILED,
-            IconThemeError::__Unknown(value) => value,
+            Self::NotFound => ffi::GTK_ICON_THEME_NOT_FOUND,
+            Self::Failed => ffi::GTK_ICON_THEME_FAILED,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -4017,9 +4011,9 @@ impl FromGlib<ffi::GtkIconThemeError> for IconThemeError {
     unsafe fn from_glib(value: ffi::GtkIconThemeError) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => IconThemeError::NotFound,
-            1 => IconThemeError::Failed,
-            value => IconThemeError::__Unknown(value),
+            0 => Self::NotFound,
+            1 => Self::Failed,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -4038,9 +4032,9 @@ impl ErrorDomain for IconThemeError {
     fn from(code: i32) -> Option<Self> {
         skip_assert_initialized!();
         match code {
-            0 => Some(IconThemeError::NotFound),
-            1 => Some(IconThemeError::Failed),
-            _ => Some(IconThemeError::Failed),
+            0 => Some(Self::NotFound),
+            1 => Some(Self::Failed),
+            _ => Some(Self::Failed),
         }
     }
 }
@@ -4066,7 +4060,7 @@ unsafe impl<'a> FromValue<'a> for IconThemeError {
 
 impl ToValue for IconThemeError {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<IconThemeError>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -4102,14 +4096,14 @@ impl fmt::Display for IconViewDropPosition {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "IconViewDropPosition::{}",
+            "Self::{}",
             match *self {
-                IconViewDropPosition::NoDrop => "NoDrop",
-                IconViewDropPosition::DropInto => "DropInto",
-                IconViewDropPosition::DropLeft => "DropLeft",
-                IconViewDropPosition::DropRight => "DropRight",
-                IconViewDropPosition::DropAbove => "DropAbove",
-                IconViewDropPosition::DropBelow => "DropBelow",
+                Self::NoDrop => "NoDrop",
+                Self::DropInto => "DropInto",
+                Self::DropLeft => "DropLeft",
+                Self::DropRight => "DropRight",
+                Self::DropAbove => "DropAbove",
+                Self::DropBelow => "DropBelow",
                 _ => "Unknown",
             }
         )
@@ -4122,13 +4116,13 @@ impl IntoGlib for IconViewDropPosition {
 
     fn into_glib(self) -> ffi::GtkIconViewDropPosition {
         match self {
-            IconViewDropPosition::NoDrop => ffi::GTK_ICON_VIEW_NO_DROP,
-            IconViewDropPosition::DropInto => ffi::GTK_ICON_VIEW_DROP_INTO,
-            IconViewDropPosition::DropLeft => ffi::GTK_ICON_VIEW_DROP_LEFT,
-            IconViewDropPosition::DropRight => ffi::GTK_ICON_VIEW_DROP_RIGHT,
-            IconViewDropPosition::DropAbove => ffi::GTK_ICON_VIEW_DROP_ABOVE,
-            IconViewDropPosition::DropBelow => ffi::GTK_ICON_VIEW_DROP_BELOW,
-            IconViewDropPosition::__Unknown(value) => value,
+            Self::NoDrop => ffi::GTK_ICON_VIEW_NO_DROP,
+            Self::DropInto => ffi::GTK_ICON_VIEW_DROP_INTO,
+            Self::DropLeft => ffi::GTK_ICON_VIEW_DROP_LEFT,
+            Self::DropRight => ffi::GTK_ICON_VIEW_DROP_RIGHT,
+            Self::DropAbove => ffi::GTK_ICON_VIEW_DROP_ABOVE,
+            Self::DropBelow => ffi::GTK_ICON_VIEW_DROP_BELOW,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -4138,13 +4132,13 @@ impl FromGlib<ffi::GtkIconViewDropPosition> for IconViewDropPosition {
     unsafe fn from_glib(value: ffi::GtkIconViewDropPosition) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => IconViewDropPosition::NoDrop,
-            1 => IconViewDropPosition::DropInto,
-            2 => IconViewDropPosition::DropLeft,
-            3 => IconViewDropPosition::DropRight,
-            4 => IconViewDropPosition::DropAbove,
-            5 => IconViewDropPosition::DropBelow,
-            value => IconViewDropPosition::__Unknown(value),
+            0 => Self::NoDrop,
+            1 => Self::DropInto,
+            2 => Self::DropLeft,
+            3 => Self::DropRight,
+            4 => Self::DropAbove,
+            5 => Self::DropBelow,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -4170,7 +4164,7 @@ unsafe impl<'a> FromValue<'a> for IconViewDropPosition {
 
 impl ToValue for IconViewDropPosition {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<IconViewDropPosition>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -4202,12 +4196,12 @@ impl fmt::Display for ImageType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "ImageType::{}",
+            "Self::{}",
             match *self {
-                ImageType::Empty => "Empty",
-                ImageType::IconName => "IconName",
-                ImageType::Gicon => "Gicon",
-                ImageType::Paintable => "Paintable",
+                Self::Empty => "Empty",
+                Self::IconName => "IconName",
+                Self::Gicon => "Gicon",
+                Self::Paintable => "Paintable",
                 _ => "Unknown",
             }
         )
@@ -4220,11 +4214,11 @@ impl IntoGlib for ImageType {
 
     fn into_glib(self) -> ffi::GtkImageType {
         match self {
-            ImageType::Empty => ffi::GTK_IMAGE_EMPTY,
-            ImageType::IconName => ffi::GTK_IMAGE_ICON_NAME,
-            ImageType::Gicon => ffi::GTK_IMAGE_GICON,
-            ImageType::Paintable => ffi::GTK_IMAGE_PAINTABLE,
-            ImageType::__Unknown(value) => value,
+            Self::Empty => ffi::GTK_IMAGE_EMPTY,
+            Self::IconName => ffi::GTK_IMAGE_ICON_NAME,
+            Self::Gicon => ffi::GTK_IMAGE_GICON,
+            Self::Paintable => ffi::GTK_IMAGE_PAINTABLE,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -4234,11 +4228,11 @@ impl FromGlib<ffi::GtkImageType> for ImageType {
     unsafe fn from_glib(value: ffi::GtkImageType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => ImageType::Empty,
-            1 => ImageType::IconName,
-            2 => ImageType::Gicon,
-            3 => ImageType::Paintable,
-            value => ImageType::__Unknown(value),
+            0 => Self::Empty,
+            1 => Self::IconName,
+            2 => Self::Gicon,
+            3 => Self::Paintable,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -4264,7 +4258,7 @@ unsafe impl<'a> FromValue<'a> for ImageType {
 
 impl ToValue for ImageType {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<ImageType>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -4310,19 +4304,19 @@ impl fmt::Display for InputPurpose {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "InputPurpose::{}",
+            "Self::{}",
             match *self {
-                InputPurpose::FreeForm => "FreeForm",
-                InputPurpose::Alpha => "Alpha",
-                InputPurpose::Digits => "Digits",
-                InputPurpose::Number => "Number",
-                InputPurpose::Phone => "Phone",
-                InputPurpose::Url => "Url",
-                InputPurpose::Email => "Email",
-                InputPurpose::Name => "Name",
-                InputPurpose::Password => "Password",
-                InputPurpose::Pin => "Pin",
-                InputPurpose::Terminal => "Terminal",
+                Self::FreeForm => "FreeForm",
+                Self::Alpha => "Alpha",
+                Self::Digits => "Digits",
+                Self::Number => "Number",
+                Self::Phone => "Phone",
+                Self::Url => "Url",
+                Self::Email => "Email",
+                Self::Name => "Name",
+                Self::Password => "Password",
+                Self::Pin => "Pin",
+                Self::Terminal => "Terminal",
                 _ => "Unknown",
             }
         )
@@ -4335,18 +4329,18 @@ impl IntoGlib for InputPurpose {
 
     fn into_glib(self) -> ffi::GtkInputPurpose {
         match self {
-            InputPurpose::FreeForm => ffi::GTK_INPUT_PURPOSE_FREE_FORM,
-            InputPurpose::Alpha => ffi::GTK_INPUT_PURPOSE_ALPHA,
-            InputPurpose::Digits => ffi::GTK_INPUT_PURPOSE_DIGITS,
-            InputPurpose::Number => ffi::GTK_INPUT_PURPOSE_NUMBER,
-            InputPurpose::Phone => ffi::GTK_INPUT_PURPOSE_PHONE,
-            InputPurpose::Url => ffi::GTK_INPUT_PURPOSE_URL,
-            InputPurpose::Email => ffi::GTK_INPUT_PURPOSE_EMAIL,
-            InputPurpose::Name => ffi::GTK_INPUT_PURPOSE_NAME,
-            InputPurpose::Password => ffi::GTK_INPUT_PURPOSE_PASSWORD,
-            InputPurpose::Pin => ffi::GTK_INPUT_PURPOSE_PIN,
-            InputPurpose::Terminal => ffi::GTK_INPUT_PURPOSE_TERMINAL,
-            InputPurpose::__Unknown(value) => value,
+            Self::FreeForm => ffi::GTK_INPUT_PURPOSE_FREE_FORM,
+            Self::Alpha => ffi::GTK_INPUT_PURPOSE_ALPHA,
+            Self::Digits => ffi::GTK_INPUT_PURPOSE_DIGITS,
+            Self::Number => ffi::GTK_INPUT_PURPOSE_NUMBER,
+            Self::Phone => ffi::GTK_INPUT_PURPOSE_PHONE,
+            Self::Url => ffi::GTK_INPUT_PURPOSE_URL,
+            Self::Email => ffi::GTK_INPUT_PURPOSE_EMAIL,
+            Self::Name => ffi::GTK_INPUT_PURPOSE_NAME,
+            Self::Password => ffi::GTK_INPUT_PURPOSE_PASSWORD,
+            Self::Pin => ffi::GTK_INPUT_PURPOSE_PIN,
+            Self::Terminal => ffi::GTK_INPUT_PURPOSE_TERMINAL,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -4356,18 +4350,18 @@ impl FromGlib<ffi::GtkInputPurpose> for InputPurpose {
     unsafe fn from_glib(value: ffi::GtkInputPurpose) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => InputPurpose::FreeForm,
-            1 => InputPurpose::Alpha,
-            2 => InputPurpose::Digits,
-            3 => InputPurpose::Number,
-            4 => InputPurpose::Phone,
-            5 => InputPurpose::Url,
-            6 => InputPurpose::Email,
-            7 => InputPurpose::Name,
-            8 => InputPurpose::Password,
-            9 => InputPurpose::Pin,
-            10 => InputPurpose::Terminal,
-            value => InputPurpose::__Unknown(value),
+            0 => Self::FreeForm,
+            1 => Self::Alpha,
+            2 => Self::Digits,
+            3 => Self::Number,
+            4 => Self::Phone,
+            5 => Self::Url,
+            6 => Self::Email,
+            7 => Self::Name,
+            8 => Self::Password,
+            9 => Self::Pin,
+            10 => Self::Terminal,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -4393,7 +4387,7 @@ unsafe impl<'a> FromValue<'a> for InputPurpose {
 
 impl ToValue for InputPurpose {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<InputPurpose>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -4425,12 +4419,12 @@ impl fmt::Display for Justification {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Justification::{}",
+            "Self::{}",
             match *self {
-                Justification::Left => "Left",
-                Justification::Right => "Right",
-                Justification::Center => "Center",
-                Justification::Fill => "Fill",
+                Self::Left => "Left",
+                Self::Right => "Right",
+                Self::Center => "Center",
+                Self::Fill => "Fill",
                 _ => "Unknown",
             }
         )
@@ -4443,11 +4437,11 @@ impl IntoGlib for Justification {
 
     fn into_glib(self) -> ffi::GtkJustification {
         match self {
-            Justification::Left => ffi::GTK_JUSTIFY_LEFT,
-            Justification::Right => ffi::GTK_JUSTIFY_RIGHT,
-            Justification::Center => ffi::GTK_JUSTIFY_CENTER,
-            Justification::Fill => ffi::GTK_JUSTIFY_FILL,
-            Justification::__Unknown(value) => value,
+            Self::Left => ffi::GTK_JUSTIFY_LEFT,
+            Self::Right => ffi::GTK_JUSTIFY_RIGHT,
+            Self::Center => ffi::GTK_JUSTIFY_CENTER,
+            Self::Fill => ffi::GTK_JUSTIFY_FILL,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -4457,11 +4451,11 @@ impl FromGlib<ffi::GtkJustification> for Justification {
     unsafe fn from_glib(value: ffi::GtkJustification) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => Justification::Left,
-            1 => Justification::Right,
-            2 => Justification::Center,
-            3 => Justification::Fill,
-            value => Justification::__Unknown(value),
+            0 => Self::Left,
+            1 => Self::Right,
+            2 => Self::Center,
+            3 => Self::Fill,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -4487,7 +4481,7 @@ unsafe impl<'a> FromValue<'a> for Justification {
 
 impl ToValue for Justification {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<Justification>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -4515,10 +4509,10 @@ impl fmt::Display for LevelBarMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "LevelBarMode::{}",
+            "Self::{}",
             match *self {
-                LevelBarMode::Continuous => "Continuous",
-                LevelBarMode::Discrete => "Discrete",
+                Self::Continuous => "Continuous",
+                Self::Discrete => "Discrete",
                 _ => "Unknown",
             }
         )
@@ -4531,9 +4525,9 @@ impl IntoGlib for LevelBarMode {
 
     fn into_glib(self) -> ffi::GtkLevelBarMode {
         match self {
-            LevelBarMode::Continuous => ffi::GTK_LEVEL_BAR_MODE_CONTINUOUS,
-            LevelBarMode::Discrete => ffi::GTK_LEVEL_BAR_MODE_DISCRETE,
-            LevelBarMode::__Unknown(value) => value,
+            Self::Continuous => ffi::GTK_LEVEL_BAR_MODE_CONTINUOUS,
+            Self::Discrete => ffi::GTK_LEVEL_BAR_MODE_DISCRETE,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -4543,9 +4537,9 @@ impl FromGlib<ffi::GtkLevelBarMode> for LevelBarMode {
     unsafe fn from_glib(value: ffi::GtkLevelBarMode) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => LevelBarMode::Continuous,
-            1 => LevelBarMode::Discrete,
-            value => LevelBarMode::__Unknown(value),
+            0 => Self::Continuous,
+            1 => Self::Discrete,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -4571,7 +4565,7 @@ unsafe impl<'a> FromValue<'a> for LevelBarMode {
 
 impl ToValue for LevelBarMode {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<LevelBarMode>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -4631,26 +4625,26 @@ impl fmt::Display for License {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "License::{}",
+            "Self::{}",
             match *self {
-                License::Unknown => "Unknown",
-                License::Custom => "Custom",
-                License::Gpl20 => "Gpl20",
-                License::Gpl30 => "Gpl30",
-                License::Lgpl21 => "Lgpl21",
-                License::Lgpl30 => "Lgpl30",
-                License::Bsd => "Bsd",
-                License::MitX11 => "MitX11",
-                License::Artistic => "Artistic",
-                License::Gpl20Only => "Gpl20Only",
-                License::Gpl30Only => "Gpl30Only",
-                License::Lgpl21Only => "Lgpl21Only",
-                License::Lgpl30Only => "Lgpl30Only",
-                License::Agpl30 => "Agpl30",
-                License::Agpl30Only => "Agpl30Only",
-                License::Bsd3 => "Bsd3",
-                License::Apache20 => "Apache20",
-                License::Mpl20 => "Mpl20",
+                Self::Unknown => "Unknown",
+                Self::Custom => "Custom",
+                Self::Gpl20 => "Gpl20",
+                Self::Gpl30 => "Gpl30",
+                Self::Lgpl21 => "Lgpl21",
+                Self::Lgpl30 => "Lgpl30",
+                Self::Bsd => "Bsd",
+                Self::MitX11 => "MitX11",
+                Self::Artistic => "Artistic",
+                Self::Gpl20Only => "Gpl20Only",
+                Self::Gpl30Only => "Gpl30Only",
+                Self::Lgpl21Only => "Lgpl21Only",
+                Self::Lgpl30Only => "Lgpl30Only",
+                Self::Agpl30 => "Agpl30",
+                Self::Agpl30Only => "Agpl30Only",
+                Self::Bsd3 => "Bsd3",
+                Self::Apache20 => "Apache20",
+                Self::Mpl20 => "Mpl20",
                 _ => "Unknown",
             }
         )
@@ -4663,25 +4657,25 @@ impl IntoGlib for License {
 
     fn into_glib(self) -> ffi::GtkLicense {
         match self {
-            License::Unknown => ffi::GTK_LICENSE_UNKNOWN,
-            License::Custom => ffi::GTK_LICENSE_CUSTOM,
-            License::Gpl20 => ffi::GTK_LICENSE_GPL_2_0,
-            License::Gpl30 => ffi::GTK_LICENSE_GPL_3_0,
-            License::Lgpl21 => ffi::GTK_LICENSE_LGPL_2_1,
-            License::Lgpl30 => ffi::GTK_LICENSE_LGPL_3_0,
-            License::Bsd => ffi::GTK_LICENSE_BSD,
-            License::MitX11 => ffi::GTK_LICENSE_MIT_X11,
-            License::Artistic => ffi::GTK_LICENSE_ARTISTIC,
-            License::Gpl20Only => ffi::GTK_LICENSE_GPL_2_0_ONLY,
-            License::Gpl30Only => ffi::GTK_LICENSE_GPL_3_0_ONLY,
-            License::Lgpl21Only => ffi::GTK_LICENSE_LGPL_2_1_ONLY,
-            License::Lgpl30Only => ffi::GTK_LICENSE_LGPL_3_0_ONLY,
-            License::Agpl30 => ffi::GTK_LICENSE_AGPL_3_0,
-            License::Agpl30Only => ffi::GTK_LICENSE_AGPL_3_0_ONLY,
-            License::Bsd3 => ffi::GTK_LICENSE_BSD_3,
-            License::Apache20 => ffi::GTK_LICENSE_APACHE_2_0,
-            License::Mpl20 => ffi::GTK_LICENSE_MPL_2_0,
-            License::__Unknown(value) => value,
+            Self::Unknown => ffi::GTK_LICENSE_UNKNOWN,
+            Self::Custom => ffi::GTK_LICENSE_CUSTOM,
+            Self::Gpl20 => ffi::GTK_LICENSE_GPL_2_0,
+            Self::Gpl30 => ffi::GTK_LICENSE_GPL_3_0,
+            Self::Lgpl21 => ffi::GTK_LICENSE_LGPL_2_1,
+            Self::Lgpl30 => ffi::GTK_LICENSE_LGPL_3_0,
+            Self::Bsd => ffi::GTK_LICENSE_BSD,
+            Self::MitX11 => ffi::GTK_LICENSE_MIT_X11,
+            Self::Artistic => ffi::GTK_LICENSE_ARTISTIC,
+            Self::Gpl20Only => ffi::GTK_LICENSE_GPL_2_0_ONLY,
+            Self::Gpl30Only => ffi::GTK_LICENSE_GPL_3_0_ONLY,
+            Self::Lgpl21Only => ffi::GTK_LICENSE_LGPL_2_1_ONLY,
+            Self::Lgpl30Only => ffi::GTK_LICENSE_LGPL_3_0_ONLY,
+            Self::Agpl30 => ffi::GTK_LICENSE_AGPL_3_0,
+            Self::Agpl30Only => ffi::GTK_LICENSE_AGPL_3_0_ONLY,
+            Self::Bsd3 => ffi::GTK_LICENSE_BSD_3,
+            Self::Apache20 => ffi::GTK_LICENSE_APACHE_2_0,
+            Self::Mpl20 => ffi::GTK_LICENSE_MPL_2_0,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -4691,25 +4685,25 @@ impl FromGlib<ffi::GtkLicense> for License {
     unsafe fn from_glib(value: ffi::GtkLicense) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => License::Unknown,
-            1 => License::Custom,
-            2 => License::Gpl20,
-            3 => License::Gpl30,
-            4 => License::Lgpl21,
-            5 => License::Lgpl30,
-            6 => License::Bsd,
-            7 => License::MitX11,
-            8 => License::Artistic,
-            9 => License::Gpl20Only,
-            10 => License::Gpl30Only,
-            11 => License::Lgpl21Only,
-            12 => License::Lgpl30Only,
-            13 => License::Agpl30,
-            14 => License::Agpl30Only,
-            15 => License::Bsd3,
-            16 => License::Apache20,
-            17 => License::Mpl20,
-            value => License::__Unknown(value),
+            0 => Self::Unknown,
+            1 => Self::Custom,
+            2 => Self::Gpl20,
+            3 => Self::Gpl30,
+            4 => Self::Lgpl21,
+            5 => Self::Lgpl30,
+            6 => Self::Bsd,
+            7 => Self::MitX11,
+            8 => Self::Artistic,
+            9 => Self::Gpl20Only,
+            10 => Self::Gpl30Only,
+            11 => Self::Lgpl21Only,
+            12 => Self::Lgpl30Only,
+            13 => Self::Agpl30,
+            14 => Self::Agpl30Only,
+            15 => Self::Bsd3,
+            16 => Self::Apache20,
+            17 => Self::Mpl20,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -4735,7 +4729,7 @@ unsafe impl<'a> FromValue<'a> for License {
 
 impl ToValue for License {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<License>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -4769,13 +4763,13 @@ impl fmt::Display for MessageType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "MessageType::{}",
+            "Self::{}",
             match *self {
-                MessageType::Info => "Info",
-                MessageType::Warning => "Warning",
-                MessageType::Question => "Question",
-                MessageType::Error => "Error",
-                MessageType::Other => "Other",
+                Self::Info => "Info",
+                Self::Warning => "Warning",
+                Self::Question => "Question",
+                Self::Error => "Error",
+                Self::Other => "Other",
                 _ => "Unknown",
             }
         )
@@ -4788,12 +4782,12 @@ impl IntoGlib for MessageType {
 
     fn into_glib(self) -> ffi::GtkMessageType {
         match self {
-            MessageType::Info => ffi::GTK_MESSAGE_INFO,
-            MessageType::Warning => ffi::GTK_MESSAGE_WARNING,
-            MessageType::Question => ffi::GTK_MESSAGE_QUESTION,
-            MessageType::Error => ffi::GTK_MESSAGE_ERROR,
-            MessageType::Other => ffi::GTK_MESSAGE_OTHER,
-            MessageType::__Unknown(value) => value,
+            Self::Info => ffi::GTK_MESSAGE_INFO,
+            Self::Warning => ffi::GTK_MESSAGE_WARNING,
+            Self::Question => ffi::GTK_MESSAGE_QUESTION,
+            Self::Error => ffi::GTK_MESSAGE_ERROR,
+            Self::Other => ffi::GTK_MESSAGE_OTHER,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -4803,12 +4797,12 @@ impl FromGlib<ffi::GtkMessageType> for MessageType {
     unsafe fn from_glib(value: ffi::GtkMessageType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => MessageType::Info,
-            1 => MessageType::Warning,
-            2 => MessageType::Question,
-            3 => MessageType::Error,
-            4 => MessageType::Other,
-            value => MessageType::__Unknown(value),
+            0 => Self::Info,
+            1 => Self::Warning,
+            2 => Self::Question,
+            3 => Self::Error,
+            4 => Self::Other,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -4834,7 +4828,7 @@ unsafe impl<'a> FromValue<'a> for MessageType {
 
 impl ToValue for MessageType {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<MessageType>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -4878,18 +4872,18 @@ impl fmt::Display for MovementStep {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "MovementStep::{}",
+            "Self::{}",
             match *self {
-                MovementStep::LogicalPositions => "LogicalPositions",
-                MovementStep::VisualPositions => "VisualPositions",
-                MovementStep::Words => "Words",
-                MovementStep::DisplayLines => "DisplayLines",
-                MovementStep::DisplayLineEnds => "DisplayLineEnds",
-                MovementStep::Paragraphs => "Paragraphs",
-                MovementStep::ParagraphEnds => "ParagraphEnds",
-                MovementStep::Pages => "Pages",
-                MovementStep::BufferEnds => "BufferEnds",
-                MovementStep::HorizontalPages => "HorizontalPages",
+                Self::LogicalPositions => "LogicalPositions",
+                Self::VisualPositions => "VisualPositions",
+                Self::Words => "Words",
+                Self::DisplayLines => "DisplayLines",
+                Self::DisplayLineEnds => "DisplayLineEnds",
+                Self::Paragraphs => "Paragraphs",
+                Self::ParagraphEnds => "ParagraphEnds",
+                Self::Pages => "Pages",
+                Self::BufferEnds => "BufferEnds",
+                Self::HorizontalPages => "HorizontalPages",
                 _ => "Unknown",
             }
         )
@@ -4902,17 +4896,17 @@ impl IntoGlib for MovementStep {
 
     fn into_glib(self) -> ffi::GtkMovementStep {
         match self {
-            MovementStep::LogicalPositions => ffi::GTK_MOVEMENT_LOGICAL_POSITIONS,
-            MovementStep::VisualPositions => ffi::GTK_MOVEMENT_VISUAL_POSITIONS,
-            MovementStep::Words => ffi::GTK_MOVEMENT_WORDS,
-            MovementStep::DisplayLines => ffi::GTK_MOVEMENT_DISPLAY_LINES,
-            MovementStep::DisplayLineEnds => ffi::GTK_MOVEMENT_DISPLAY_LINE_ENDS,
-            MovementStep::Paragraphs => ffi::GTK_MOVEMENT_PARAGRAPHS,
-            MovementStep::ParagraphEnds => ffi::GTK_MOVEMENT_PARAGRAPH_ENDS,
-            MovementStep::Pages => ffi::GTK_MOVEMENT_PAGES,
-            MovementStep::BufferEnds => ffi::GTK_MOVEMENT_BUFFER_ENDS,
-            MovementStep::HorizontalPages => ffi::GTK_MOVEMENT_HORIZONTAL_PAGES,
-            MovementStep::__Unknown(value) => value,
+            Self::LogicalPositions => ffi::GTK_MOVEMENT_LOGICAL_POSITIONS,
+            Self::VisualPositions => ffi::GTK_MOVEMENT_VISUAL_POSITIONS,
+            Self::Words => ffi::GTK_MOVEMENT_WORDS,
+            Self::DisplayLines => ffi::GTK_MOVEMENT_DISPLAY_LINES,
+            Self::DisplayLineEnds => ffi::GTK_MOVEMENT_DISPLAY_LINE_ENDS,
+            Self::Paragraphs => ffi::GTK_MOVEMENT_PARAGRAPHS,
+            Self::ParagraphEnds => ffi::GTK_MOVEMENT_PARAGRAPH_ENDS,
+            Self::Pages => ffi::GTK_MOVEMENT_PAGES,
+            Self::BufferEnds => ffi::GTK_MOVEMENT_BUFFER_ENDS,
+            Self::HorizontalPages => ffi::GTK_MOVEMENT_HORIZONTAL_PAGES,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -4922,17 +4916,17 @@ impl FromGlib<ffi::GtkMovementStep> for MovementStep {
     unsafe fn from_glib(value: ffi::GtkMovementStep) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => MovementStep::LogicalPositions,
-            1 => MovementStep::VisualPositions,
-            2 => MovementStep::Words,
-            3 => MovementStep::DisplayLines,
-            4 => MovementStep::DisplayLineEnds,
-            5 => MovementStep::Paragraphs,
-            6 => MovementStep::ParagraphEnds,
-            7 => MovementStep::Pages,
-            8 => MovementStep::BufferEnds,
-            9 => MovementStep::HorizontalPages,
-            value => MovementStep::__Unknown(value),
+            0 => Self::LogicalPositions,
+            1 => Self::VisualPositions,
+            2 => Self::Words,
+            3 => Self::DisplayLines,
+            4 => Self::DisplayLineEnds,
+            5 => Self::Paragraphs,
+            6 => Self::ParagraphEnds,
+            7 => Self::Pages,
+            8 => Self::BufferEnds,
+            9 => Self::HorizontalPages,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -4958,7 +4952,7 @@ unsafe impl<'a> FromValue<'a> for MovementStep {
 
 impl ToValue for MovementStep {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<MovementStep>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -4986,10 +4980,10 @@ impl fmt::Display for NotebookTab {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "NotebookTab::{}",
+            "Self::{}",
             match *self {
-                NotebookTab::First => "First",
-                NotebookTab::Last => "Last",
+                Self::First => "First",
+                Self::Last => "Last",
                 _ => "Unknown",
             }
         )
@@ -5002,9 +4996,9 @@ impl IntoGlib for NotebookTab {
 
     fn into_glib(self) -> ffi::GtkNotebookTab {
         match self {
-            NotebookTab::First => ffi::GTK_NOTEBOOK_TAB_FIRST,
-            NotebookTab::Last => ffi::GTK_NOTEBOOK_TAB_LAST,
-            NotebookTab::__Unknown(value) => value,
+            Self::First => ffi::GTK_NOTEBOOK_TAB_FIRST,
+            Self::Last => ffi::GTK_NOTEBOOK_TAB_LAST,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -5014,9 +5008,9 @@ impl FromGlib<ffi::GtkNotebookTab> for NotebookTab {
     unsafe fn from_glib(value: ffi::GtkNotebookTab) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => NotebookTab::First,
-            1 => NotebookTab::Last,
-            value => NotebookTab::__Unknown(value),
+            0 => Self::First,
+            1 => Self::Last,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -5042,7 +5036,7 @@ unsafe impl<'a> FromValue<'a> for NotebookTab {
 
 impl ToValue for NotebookTab {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<NotebookTab>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -5082,16 +5076,16 @@ impl fmt::Display for NumberUpLayout {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "NumberUpLayout::{}",
+            "Self::{}",
             match *self {
-                NumberUpLayout::Lrtb => "Lrtb",
-                NumberUpLayout::Lrbt => "Lrbt",
-                NumberUpLayout::Rltb => "Rltb",
-                NumberUpLayout::Rlbt => "Rlbt",
-                NumberUpLayout::Tblr => "Tblr",
-                NumberUpLayout::Tbrl => "Tbrl",
-                NumberUpLayout::Btlr => "Btlr",
-                NumberUpLayout::Btrl => "Btrl",
+                Self::Lrtb => "Lrtb",
+                Self::Lrbt => "Lrbt",
+                Self::Rltb => "Rltb",
+                Self::Rlbt => "Rlbt",
+                Self::Tblr => "Tblr",
+                Self::Tbrl => "Tbrl",
+                Self::Btlr => "Btlr",
+                Self::Btrl => "Btrl",
                 _ => "Unknown",
             }
         )
@@ -5104,15 +5098,15 @@ impl IntoGlib for NumberUpLayout {
 
     fn into_glib(self) -> ffi::GtkNumberUpLayout {
         match self {
-            NumberUpLayout::Lrtb => ffi::GTK_NUMBER_UP_LAYOUT_LEFT_TO_RIGHT_TOP_TO_BOTTOM,
-            NumberUpLayout::Lrbt => ffi::GTK_NUMBER_UP_LAYOUT_LEFT_TO_RIGHT_BOTTOM_TO_TOP,
-            NumberUpLayout::Rltb => ffi::GTK_NUMBER_UP_LAYOUT_RIGHT_TO_LEFT_TOP_TO_BOTTOM,
-            NumberUpLayout::Rlbt => ffi::GTK_NUMBER_UP_LAYOUT_RIGHT_TO_LEFT_BOTTOM_TO_TOP,
-            NumberUpLayout::Tblr => ffi::GTK_NUMBER_UP_LAYOUT_TOP_TO_BOTTOM_LEFT_TO_RIGHT,
-            NumberUpLayout::Tbrl => ffi::GTK_NUMBER_UP_LAYOUT_TOP_TO_BOTTOM_RIGHT_TO_LEFT,
-            NumberUpLayout::Btlr => ffi::GTK_NUMBER_UP_LAYOUT_BOTTOM_TO_TOP_LEFT_TO_RIGHT,
-            NumberUpLayout::Btrl => ffi::GTK_NUMBER_UP_LAYOUT_BOTTOM_TO_TOP_RIGHT_TO_LEFT,
-            NumberUpLayout::__Unknown(value) => value,
+            Self::Lrtb => ffi::GTK_NUMBER_UP_LAYOUT_LEFT_TO_RIGHT_TOP_TO_BOTTOM,
+            Self::Lrbt => ffi::GTK_NUMBER_UP_LAYOUT_LEFT_TO_RIGHT_BOTTOM_TO_TOP,
+            Self::Rltb => ffi::GTK_NUMBER_UP_LAYOUT_RIGHT_TO_LEFT_TOP_TO_BOTTOM,
+            Self::Rlbt => ffi::GTK_NUMBER_UP_LAYOUT_RIGHT_TO_LEFT_BOTTOM_TO_TOP,
+            Self::Tblr => ffi::GTK_NUMBER_UP_LAYOUT_TOP_TO_BOTTOM_LEFT_TO_RIGHT,
+            Self::Tbrl => ffi::GTK_NUMBER_UP_LAYOUT_TOP_TO_BOTTOM_RIGHT_TO_LEFT,
+            Self::Btlr => ffi::GTK_NUMBER_UP_LAYOUT_BOTTOM_TO_TOP_LEFT_TO_RIGHT,
+            Self::Btrl => ffi::GTK_NUMBER_UP_LAYOUT_BOTTOM_TO_TOP_RIGHT_TO_LEFT,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -5122,15 +5116,15 @@ impl FromGlib<ffi::GtkNumberUpLayout> for NumberUpLayout {
     unsafe fn from_glib(value: ffi::GtkNumberUpLayout) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => NumberUpLayout::Lrtb,
-            1 => NumberUpLayout::Lrbt,
-            2 => NumberUpLayout::Rltb,
-            3 => NumberUpLayout::Rlbt,
-            4 => NumberUpLayout::Tblr,
-            5 => NumberUpLayout::Tbrl,
-            6 => NumberUpLayout::Btlr,
-            7 => NumberUpLayout::Btrl,
-            value => NumberUpLayout::__Unknown(value),
+            0 => Self::Lrtb,
+            1 => Self::Lrbt,
+            2 => Self::Rltb,
+            3 => Self::Rlbt,
+            4 => Self::Tblr,
+            5 => Self::Tbrl,
+            6 => Self::Btlr,
+            7 => Self::Btrl,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -5156,7 +5150,7 @@ unsafe impl<'a> FromValue<'a> for NumberUpLayout {
 
 impl ToValue for NumberUpLayout {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<NumberUpLayout>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -5186,11 +5180,11 @@ impl fmt::Display for Ordering {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Ordering::{}",
+            "Self::{}",
             match *self {
-                Ordering::Smaller => "Smaller",
-                Ordering::Equal => "Equal",
-                Ordering::Larger => "Larger",
+                Self::Smaller => "Smaller",
+                Self::Equal => "Equal",
+                Self::Larger => "Larger",
                 _ => "Unknown",
             }
         )
@@ -5203,10 +5197,10 @@ impl IntoGlib for Ordering {
 
     fn into_glib(self) -> ffi::GtkOrdering {
         match self {
-            Ordering::Smaller => ffi::GTK_ORDERING_SMALLER,
-            Ordering::Equal => ffi::GTK_ORDERING_EQUAL,
-            Ordering::Larger => ffi::GTK_ORDERING_LARGER,
-            Ordering::__Unknown(value) => value,
+            Self::Smaller => ffi::GTK_ORDERING_SMALLER,
+            Self::Equal => ffi::GTK_ORDERING_EQUAL,
+            Self::Larger => ffi::GTK_ORDERING_LARGER,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -5216,10 +5210,10 @@ impl FromGlib<ffi::GtkOrdering> for Ordering {
     unsafe fn from_glib(value: ffi::GtkOrdering) -> Self {
         skip_assert_initialized!();
         match value {
-            -1 => Ordering::Smaller,
-            0 => Ordering::Equal,
-            1 => Ordering::Larger,
-            value => Ordering::__Unknown(value),
+            -1 => Self::Smaller,
+            0 => Self::Equal,
+            1 => Self::Larger,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -5245,7 +5239,7 @@ unsafe impl<'a> FromValue<'a> for Ordering {
 
 impl ToValue for Ordering {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<Ordering>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -5273,10 +5267,10 @@ impl fmt::Display for Orientation {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Orientation::{}",
+            "Self::{}",
             match *self {
-                Orientation::Horizontal => "Horizontal",
-                Orientation::Vertical => "Vertical",
+                Self::Horizontal => "Horizontal",
+                Self::Vertical => "Vertical",
                 _ => "Unknown",
             }
         )
@@ -5289,9 +5283,9 @@ impl IntoGlib for Orientation {
 
     fn into_glib(self) -> ffi::GtkOrientation {
         match self {
-            Orientation::Horizontal => ffi::GTK_ORIENTATION_HORIZONTAL,
-            Orientation::Vertical => ffi::GTK_ORIENTATION_VERTICAL,
-            Orientation::__Unknown(value) => value,
+            Self::Horizontal => ffi::GTK_ORIENTATION_HORIZONTAL,
+            Self::Vertical => ffi::GTK_ORIENTATION_VERTICAL,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -5301,9 +5295,9 @@ impl FromGlib<ffi::GtkOrientation> for Orientation {
     unsafe fn from_glib(value: ffi::GtkOrientation) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => Orientation::Horizontal,
-            1 => Orientation::Vertical,
-            value => Orientation::__Unknown(value),
+            0 => Self::Horizontal,
+            1 => Self::Vertical,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -5329,7 +5323,7 @@ unsafe impl<'a> FromValue<'a> for Orientation {
 
 impl ToValue for Orientation {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<Orientation>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -5357,10 +5351,10 @@ impl fmt::Display for Overflow {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Overflow::{}",
+            "Self::{}",
             match *self {
-                Overflow::Visible => "Visible",
-                Overflow::Hidden => "Hidden",
+                Self::Visible => "Visible",
+                Self::Hidden => "Hidden",
                 _ => "Unknown",
             }
         )
@@ -5373,9 +5367,9 @@ impl IntoGlib for Overflow {
 
     fn into_glib(self) -> ffi::GtkOverflow {
         match self {
-            Overflow::Visible => ffi::GTK_OVERFLOW_VISIBLE,
-            Overflow::Hidden => ffi::GTK_OVERFLOW_HIDDEN,
-            Overflow::__Unknown(value) => value,
+            Self::Visible => ffi::GTK_OVERFLOW_VISIBLE,
+            Self::Hidden => ffi::GTK_OVERFLOW_HIDDEN,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -5385,9 +5379,9 @@ impl FromGlib<ffi::GtkOverflow> for Overflow {
     unsafe fn from_glib(value: ffi::GtkOverflow) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => Overflow::Visible,
-            1 => Overflow::Hidden,
-            value => Overflow::__Unknown(value),
+            0 => Self::Visible,
+            1 => Self::Hidden,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -5413,7 +5407,7 @@ unsafe impl<'a> FromValue<'a> for Overflow {
 
 impl ToValue for Overflow {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<Overflow>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -5441,10 +5435,10 @@ impl fmt::Display for PackType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "PackType::{}",
+            "Self::{}",
             match *self {
-                PackType::Start => "Start",
-                PackType::End => "End",
+                Self::Start => "Start",
+                Self::End => "End",
                 _ => "Unknown",
             }
         )
@@ -5457,9 +5451,9 @@ impl IntoGlib for PackType {
 
     fn into_glib(self) -> ffi::GtkPackType {
         match self {
-            PackType::Start => ffi::GTK_PACK_START,
-            PackType::End => ffi::GTK_PACK_END,
-            PackType::__Unknown(value) => value,
+            Self::Start => ffi::GTK_PACK_START,
+            Self::End => ffi::GTK_PACK_END,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -5469,9 +5463,9 @@ impl FromGlib<ffi::GtkPackType> for PackType {
     unsafe fn from_glib(value: ffi::GtkPackType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => PackType::Start,
-            1 => PackType::End,
-            value => PackType::__Unknown(value),
+            0 => Self::Start,
+            1 => Self::End,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -5497,7 +5491,7 @@ unsafe impl<'a> FromValue<'a> for PackType {
 
 impl ToValue for PackType {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<PackType>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -5527,11 +5521,11 @@ impl fmt::Display for PadActionType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "PadActionType::{}",
+            "Self::{}",
             match *self {
-                PadActionType::Button => "Button",
-                PadActionType::Ring => "Ring",
-                PadActionType::Strip => "Strip",
+                Self::Button => "Button",
+                Self::Ring => "Ring",
+                Self::Strip => "Strip",
                 _ => "Unknown",
             }
         )
@@ -5544,10 +5538,10 @@ impl IntoGlib for PadActionType {
 
     fn into_glib(self) -> ffi::GtkPadActionType {
         match self {
-            PadActionType::Button => ffi::GTK_PAD_ACTION_BUTTON,
-            PadActionType::Ring => ffi::GTK_PAD_ACTION_RING,
-            PadActionType::Strip => ffi::GTK_PAD_ACTION_STRIP,
-            PadActionType::__Unknown(value) => value,
+            Self::Button => ffi::GTK_PAD_ACTION_BUTTON,
+            Self::Ring => ffi::GTK_PAD_ACTION_RING,
+            Self::Strip => ffi::GTK_PAD_ACTION_STRIP,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -5557,10 +5551,10 @@ impl FromGlib<ffi::GtkPadActionType> for PadActionType {
     unsafe fn from_glib(value: ffi::GtkPadActionType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => PadActionType::Button,
-            1 => PadActionType::Ring,
-            2 => PadActionType::Strip,
-            value => PadActionType::__Unknown(value),
+            0 => Self::Button,
+            1 => Self::Ring,
+            2 => Self::Strip,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -5586,7 +5580,7 @@ unsafe impl<'a> FromValue<'a> for PadActionType {
 
 impl ToValue for PadActionType {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<PadActionType>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -5618,12 +5612,12 @@ impl fmt::Display for PageOrientation {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "PageOrientation::{}",
+            "Self::{}",
             match *self {
-                PageOrientation::Portrait => "Portrait",
-                PageOrientation::Landscape => "Landscape",
-                PageOrientation::ReversePortrait => "ReversePortrait",
-                PageOrientation::ReverseLandscape => "ReverseLandscape",
+                Self::Portrait => "Portrait",
+                Self::Landscape => "Landscape",
+                Self::ReversePortrait => "ReversePortrait",
+                Self::ReverseLandscape => "ReverseLandscape",
                 _ => "Unknown",
             }
         )
@@ -5636,11 +5630,11 @@ impl IntoGlib for PageOrientation {
 
     fn into_glib(self) -> ffi::GtkPageOrientation {
         match self {
-            PageOrientation::Portrait => ffi::GTK_PAGE_ORIENTATION_PORTRAIT,
-            PageOrientation::Landscape => ffi::GTK_PAGE_ORIENTATION_LANDSCAPE,
-            PageOrientation::ReversePortrait => ffi::GTK_PAGE_ORIENTATION_REVERSE_PORTRAIT,
-            PageOrientation::ReverseLandscape => ffi::GTK_PAGE_ORIENTATION_REVERSE_LANDSCAPE,
-            PageOrientation::__Unknown(value) => value,
+            Self::Portrait => ffi::GTK_PAGE_ORIENTATION_PORTRAIT,
+            Self::Landscape => ffi::GTK_PAGE_ORIENTATION_LANDSCAPE,
+            Self::ReversePortrait => ffi::GTK_PAGE_ORIENTATION_REVERSE_PORTRAIT,
+            Self::ReverseLandscape => ffi::GTK_PAGE_ORIENTATION_REVERSE_LANDSCAPE,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -5650,11 +5644,11 @@ impl FromGlib<ffi::GtkPageOrientation> for PageOrientation {
     unsafe fn from_glib(value: ffi::GtkPageOrientation) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => PageOrientation::Portrait,
-            1 => PageOrientation::Landscape,
-            2 => PageOrientation::ReversePortrait,
-            3 => PageOrientation::ReverseLandscape,
-            value => PageOrientation::__Unknown(value),
+            0 => Self::Portrait,
+            1 => Self::Landscape,
+            2 => Self::ReversePortrait,
+            3 => Self::ReverseLandscape,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -5680,7 +5674,7 @@ unsafe impl<'a> FromValue<'a> for PageOrientation {
 
 impl ToValue for PageOrientation {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<PageOrientation>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -5710,11 +5704,11 @@ impl fmt::Display for PageSet {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "PageSet::{}",
+            "Self::{}",
             match *self {
-                PageSet::All => "All",
-                PageSet::Even => "Even",
-                PageSet::Odd => "Odd",
+                Self::All => "All",
+                Self::Even => "Even",
+                Self::Odd => "Odd",
                 _ => "Unknown",
             }
         )
@@ -5727,10 +5721,10 @@ impl IntoGlib for PageSet {
 
     fn into_glib(self) -> ffi::GtkPageSet {
         match self {
-            PageSet::All => ffi::GTK_PAGE_SET_ALL,
-            PageSet::Even => ffi::GTK_PAGE_SET_EVEN,
-            PageSet::Odd => ffi::GTK_PAGE_SET_ODD,
-            PageSet::__Unknown(value) => value,
+            Self::All => ffi::GTK_PAGE_SET_ALL,
+            Self::Even => ffi::GTK_PAGE_SET_EVEN,
+            Self::Odd => ffi::GTK_PAGE_SET_ODD,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -5740,10 +5734,10 @@ impl FromGlib<ffi::GtkPageSet> for PageSet {
     unsafe fn from_glib(value: ffi::GtkPageSet) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => PageSet::All,
-            1 => PageSet::Even,
-            2 => PageSet::Odd,
-            value => PageSet::__Unknown(value),
+            0 => Self::All,
+            1 => Self::Even,
+            2 => Self::Odd,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -5769,7 +5763,7 @@ unsafe impl<'a> FromValue<'a> for PageSet {
 
 impl ToValue for PageSet {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<PageSet>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -5801,12 +5795,12 @@ impl fmt::Display for PanDirection {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "PanDirection::{}",
+            "Self::{}",
             match *self {
-                PanDirection::Left => "Left",
-                PanDirection::Right => "Right",
-                PanDirection::Up => "Up",
-                PanDirection::Down => "Down",
+                Self::Left => "Left",
+                Self::Right => "Right",
+                Self::Up => "Up",
+                Self::Down => "Down",
                 _ => "Unknown",
             }
         )
@@ -5819,11 +5813,11 @@ impl IntoGlib for PanDirection {
 
     fn into_glib(self) -> ffi::GtkPanDirection {
         match self {
-            PanDirection::Left => ffi::GTK_PAN_DIRECTION_LEFT,
-            PanDirection::Right => ffi::GTK_PAN_DIRECTION_RIGHT,
-            PanDirection::Up => ffi::GTK_PAN_DIRECTION_UP,
-            PanDirection::Down => ffi::GTK_PAN_DIRECTION_DOWN,
-            PanDirection::__Unknown(value) => value,
+            Self::Left => ffi::GTK_PAN_DIRECTION_LEFT,
+            Self::Right => ffi::GTK_PAN_DIRECTION_RIGHT,
+            Self::Up => ffi::GTK_PAN_DIRECTION_UP,
+            Self::Down => ffi::GTK_PAN_DIRECTION_DOWN,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -5833,11 +5827,11 @@ impl FromGlib<ffi::GtkPanDirection> for PanDirection {
     unsafe fn from_glib(value: ffi::GtkPanDirection) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => PanDirection::Left,
-            1 => PanDirection::Right,
-            2 => PanDirection::Up,
-            3 => PanDirection::Down,
-            value => PanDirection::__Unknown(value),
+            0 => Self::Left,
+            1 => Self::Right,
+            2 => Self::Up,
+            3 => Self::Down,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -5863,7 +5857,7 @@ unsafe impl<'a> FromValue<'a> for PanDirection {
 
 impl ToValue for PanDirection {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<PanDirection>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -5895,12 +5889,12 @@ impl fmt::Display for PolicyType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "PolicyType::{}",
+            "Self::{}",
             match *self {
-                PolicyType::Always => "Always",
-                PolicyType::Automatic => "Automatic",
-                PolicyType::Never => "Never",
-                PolicyType::External => "External",
+                Self::Always => "Always",
+                Self::Automatic => "Automatic",
+                Self::Never => "Never",
+                Self::External => "External",
                 _ => "Unknown",
             }
         )
@@ -5913,11 +5907,11 @@ impl IntoGlib for PolicyType {
 
     fn into_glib(self) -> ffi::GtkPolicyType {
         match self {
-            PolicyType::Always => ffi::GTK_POLICY_ALWAYS,
-            PolicyType::Automatic => ffi::GTK_POLICY_AUTOMATIC,
-            PolicyType::Never => ffi::GTK_POLICY_NEVER,
-            PolicyType::External => ffi::GTK_POLICY_EXTERNAL,
-            PolicyType::__Unknown(value) => value,
+            Self::Always => ffi::GTK_POLICY_ALWAYS,
+            Self::Automatic => ffi::GTK_POLICY_AUTOMATIC,
+            Self::Never => ffi::GTK_POLICY_NEVER,
+            Self::External => ffi::GTK_POLICY_EXTERNAL,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -5927,11 +5921,11 @@ impl FromGlib<ffi::GtkPolicyType> for PolicyType {
     unsafe fn from_glib(value: ffi::GtkPolicyType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => PolicyType::Always,
-            1 => PolicyType::Automatic,
-            2 => PolicyType::Never,
-            3 => PolicyType::External,
-            value => PolicyType::__Unknown(value),
+            0 => Self::Always,
+            1 => Self::Automatic,
+            2 => Self::Never,
+            3 => Self::External,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -5957,7 +5951,7 @@ unsafe impl<'a> FromValue<'a> for PolicyType {
 
 impl ToValue for PolicyType {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<PolicyType>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -5989,12 +5983,12 @@ impl fmt::Display for PositionType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "PositionType::{}",
+            "Self::{}",
             match *self {
-                PositionType::Left => "Left",
-                PositionType::Right => "Right",
-                PositionType::Top => "Top",
-                PositionType::Bottom => "Bottom",
+                Self::Left => "Left",
+                Self::Right => "Right",
+                Self::Top => "Top",
+                Self::Bottom => "Bottom",
                 _ => "Unknown",
             }
         )
@@ -6007,11 +6001,11 @@ impl IntoGlib for PositionType {
 
     fn into_glib(self) -> ffi::GtkPositionType {
         match self {
-            PositionType::Left => ffi::GTK_POS_LEFT,
-            PositionType::Right => ffi::GTK_POS_RIGHT,
-            PositionType::Top => ffi::GTK_POS_TOP,
-            PositionType::Bottom => ffi::GTK_POS_BOTTOM,
-            PositionType::__Unknown(value) => value,
+            Self::Left => ffi::GTK_POS_LEFT,
+            Self::Right => ffi::GTK_POS_RIGHT,
+            Self::Top => ffi::GTK_POS_TOP,
+            Self::Bottom => ffi::GTK_POS_BOTTOM,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -6021,11 +6015,11 @@ impl FromGlib<ffi::GtkPositionType> for PositionType {
     unsafe fn from_glib(value: ffi::GtkPositionType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => PositionType::Left,
-            1 => PositionType::Right,
-            2 => PositionType::Top,
-            3 => PositionType::Bottom,
-            value => PositionType::__Unknown(value),
+            0 => Self::Left,
+            1 => Self::Right,
+            2 => Self::Top,
+            3 => Self::Bottom,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -6051,7 +6045,7 @@ unsafe impl<'a> FromValue<'a> for PositionType {
 
 impl ToValue for PositionType {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<PositionType>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -6081,11 +6075,11 @@ impl fmt::Display for PrintDuplex {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "PrintDuplex::{}",
+            "Self::{}",
             match *self {
-                PrintDuplex::Simplex => "Simplex",
-                PrintDuplex::Horizontal => "Horizontal",
-                PrintDuplex::Vertical => "Vertical",
+                Self::Simplex => "Simplex",
+                Self::Horizontal => "Horizontal",
+                Self::Vertical => "Vertical",
                 _ => "Unknown",
             }
         )
@@ -6098,10 +6092,10 @@ impl IntoGlib for PrintDuplex {
 
     fn into_glib(self) -> ffi::GtkPrintDuplex {
         match self {
-            PrintDuplex::Simplex => ffi::GTK_PRINT_DUPLEX_SIMPLEX,
-            PrintDuplex::Horizontal => ffi::GTK_PRINT_DUPLEX_HORIZONTAL,
-            PrintDuplex::Vertical => ffi::GTK_PRINT_DUPLEX_VERTICAL,
-            PrintDuplex::__Unknown(value) => value,
+            Self::Simplex => ffi::GTK_PRINT_DUPLEX_SIMPLEX,
+            Self::Horizontal => ffi::GTK_PRINT_DUPLEX_HORIZONTAL,
+            Self::Vertical => ffi::GTK_PRINT_DUPLEX_VERTICAL,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -6111,10 +6105,10 @@ impl FromGlib<ffi::GtkPrintDuplex> for PrintDuplex {
     unsafe fn from_glib(value: ffi::GtkPrintDuplex) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => PrintDuplex::Simplex,
-            1 => PrintDuplex::Horizontal,
-            2 => PrintDuplex::Vertical,
-            value => PrintDuplex::__Unknown(value),
+            0 => Self::Simplex,
+            1 => Self::Horizontal,
+            2 => Self::Vertical,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -6140,7 +6134,7 @@ unsafe impl<'a> FromValue<'a> for PrintDuplex {
 
 impl ToValue for PrintDuplex {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<PrintDuplex>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -6172,12 +6166,12 @@ impl fmt::Display for PrintError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "PrintError::{}",
+            "Self::{}",
             match *self {
-                PrintError::General => "General",
-                PrintError::InternalError => "InternalError",
-                PrintError::Nomem => "Nomem",
-                PrintError::InvalidFile => "InvalidFile",
+                Self::General => "General",
+                Self::InternalError => "InternalError",
+                Self::Nomem => "Nomem",
+                Self::InvalidFile => "InvalidFile",
                 _ => "Unknown",
             }
         )
@@ -6190,11 +6184,11 @@ impl IntoGlib for PrintError {
 
     fn into_glib(self) -> ffi::GtkPrintError {
         match self {
-            PrintError::General => ffi::GTK_PRINT_ERROR_GENERAL,
-            PrintError::InternalError => ffi::GTK_PRINT_ERROR_INTERNAL_ERROR,
-            PrintError::Nomem => ffi::GTK_PRINT_ERROR_NOMEM,
-            PrintError::InvalidFile => ffi::GTK_PRINT_ERROR_INVALID_FILE,
-            PrintError::__Unknown(value) => value,
+            Self::General => ffi::GTK_PRINT_ERROR_GENERAL,
+            Self::InternalError => ffi::GTK_PRINT_ERROR_INTERNAL_ERROR,
+            Self::Nomem => ffi::GTK_PRINT_ERROR_NOMEM,
+            Self::InvalidFile => ffi::GTK_PRINT_ERROR_INVALID_FILE,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -6204,11 +6198,11 @@ impl FromGlib<ffi::GtkPrintError> for PrintError {
     unsafe fn from_glib(value: ffi::GtkPrintError) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => PrintError::General,
-            1 => PrintError::InternalError,
-            2 => PrintError::Nomem,
-            3 => PrintError::InvalidFile,
-            value => PrintError::__Unknown(value),
+            0 => Self::General,
+            1 => Self::InternalError,
+            2 => Self::Nomem,
+            3 => Self::InvalidFile,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -6227,11 +6221,11 @@ impl ErrorDomain for PrintError {
     fn from(code: i32) -> Option<Self> {
         skip_assert_initialized!();
         match code {
-            0 => Some(PrintError::General),
-            1 => Some(PrintError::InternalError),
-            2 => Some(PrintError::Nomem),
-            3 => Some(PrintError::InvalidFile),
-            value => Some(PrintError::__Unknown(value)),
+            0 => Some(Self::General),
+            1 => Some(Self::InternalError),
+            2 => Some(Self::Nomem),
+            3 => Some(Self::InvalidFile),
+            value => Some(Self::__Unknown(value)),
         }
     }
 }
@@ -6257,7 +6251,7 @@ unsafe impl<'a> FromValue<'a> for PrintError {
 
 impl ToValue for PrintError {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<PrintError>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -6289,12 +6283,12 @@ impl fmt::Display for PrintOperationAction {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "PrintOperationAction::{}",
+            "Self::{}",
             match *self {
-                PrintOperationAction::PrintDialog => "PrintDialog",
-                PrintOperationAction::Print => "Print",
-                PrintOperationAction::Preview => "Preview",
-                PrintOperationAction::Export => "Export",
+                Self::PrintDialog => "PrintDialog",
+                Self::Print => "Print",
+                Self::Preview => "Preview",
+                Self::Export => "Export",
                 _ => "Unknown",
             }
         )
@@ -6307,11 +6301,11 @@ impl IntoGlib for PrintOperationAction {
 
     fn into_glib(self) -> ffi::GtkPrintOperationAction {
         match self {
-            PrintOperationAction::PrintDialog => ffi::GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG,
-            PrintOperationAction::Print => ffi::GTK_PRINT_OPERATION_ACTION_PRINT,
-            PrintOperationAction::Preview => ffi::GTK_PRINT_OPERATION_ACTION_PREVIEW,
-            PrintOperationAction::Export => ffi::GTK_PRINT_OPERATION_ACTION_EXPORT,
-            PrintOperationAction::__Unknown(value) => value,
+            Self::PrintDialog => ffi::GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG,
+            Self::Print => ffi::GTK_PRINT_OPERATION_ACTION_PRINT,
+            Self::Preview => ffi::GTK_PRINT_OPERATION_ACTION_PREVIEW,
+            Self::Export => ffi::GTK_PRINT_OPERATION_ACTION_EXPORT,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -6321,11 +6315,11 @@ impl FromGlib<ffi::GtkPrintOperationAction> for PrintOperationAction {
     unsafe fn from_glib(value: ffi::GtkPrintOperationAction) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => PrintOperationAction::PrintDialog,
-            1 => PrintOperationAction::Print,
-            2 => PrintOperationAction::Preview,
-            3 => PrintOperationAction::Export,
-            value => PrintOperationAction::__Unknown(value),
+            0 => Self::PrintDialog,
+            1 => Self::Print,
+            2 => Self::Preview,
+            3 => Self::Export,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -6351,7 +6345,7 @@ unsafe impl<'a> FromValue<'a> for PrintOperationAction {
 
 impl ToValue for PrintOperationAction {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<PrintOperationAction>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -6383,12 +6377,12 @@ impl fmt::Display for PrintOperationResult {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "PrintOperationResult::{}",
+            "Self::{}",
             match *self {
-                PrintOperationResult::Error => "Error",
-                PrintOperationResult::Apply => "Apply",
-                PrintOperationResult::Cancel => "Cancel",
-                PrintOperationResult::InProgress => "InProgress",
+                Self::Error => "Error",
+                Self::Apply => "Apply",
+                Self::Cancel => "Cancel",
+                Self::InProgress => "InProgress",
                 _ => "Unknown",
             }
         )
@@ -6401,11 +6395,11 @@ impl IntoGlib for PrintOperationResult {
 
     fn into_glib(self) -> ffi::GtkPrintOperationResult {
         match self {
-            PrintOperationResult::Error => ffi::GTK_PRINT_OPERATION_RESULT_ERROR,
-            PrintOperationResult::Apply => ffi::GTK_PRINT_OPERATION_RESULT_APPLY,
-            PrintOperationResult::Cancel => ffi::GTK_PRINT_OPERATION_RESULT_CANCEL,
-            PrintOperationResult::InProgress => ffi::GTK_PRINT_OPERATION_RESULT_IN_PROGRESS,
-            PrintOperationResult::__Unknown(value) => value,
+            Self::Error => ffi::GTK_PRINT_OPERATION_RESULT_ERROR,
+            Self::Apply => ffi::GTK_PRINT_OPERATION_RESULT_APPLY,
+            Self::Cancel => ffi::GTK_PRINT_OPERATION_RESULT_CANCEL,
+            Self::InProgress => ffi::GTK_PRINT_OPERATION_RESULT_IN_PROGRESS,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -6415,11 +6409,11 @@ impl FromGlib<ffi::GtkPrintOperationResult> for PrintOperationResult {
     unsafe fn from_glib(value: ffi::GtkPrintOperationResult) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => PrintOperationResult::Error,
-            1 => PrintOperationResult::Apply,
-            2 => PrintOperationResult::Cancel,
-            3 => PrintOperationResult::InProgress,
-            value => PrintOperationResult::__Unknown(value),
+            0 => Self::Error,
+            1 => Self::Apply,
+            2 => Self::Cancel,
+            3 => Self::InProgress,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -6445,7 +6439,7 @@ unsafe impl<'a> FromValue<'a> for PrintOperationResult {
 
 impl ToValue for PrintOperationResult {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<PrintOperationResult>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -6477,12 +6471,12 @@ impl fmt::Display for PrintPages {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "PrintPages::{}",
+            "Self::{}",
             match *self {
-                PrintPages::All => "All",
-                PrintPages::Current => "Current",
-                PrintPages::Ranges => "Ranges",
-                PrintPages::Selection => "Selection",
+                Self::All => "All",
+                Self::Current => "Current",
+                Self::Ranges => "Ranges",
+                Self::Selection => "Selection",
                 _ => "Unknown",
             }
         )
@@ -6495,11 +6489,11 @@ impl IntoGlib for PrintPages {
 
     fn into_glib(self) -> ffi::GtkPrintPages {
         match self {
-            PrintPages::All => ffi::GTK_PRINT_PAGES_ALL,
-            PrintPages::Current => ffi::GTK_PRINT_PAGES_CURRENT,
-            PrintPages::Ranges => ffi::GTK_PRINT_PAGES_RANGES,
-            PrintPages::Selection => ffi::GTK_PRINT_PAGES_SELECTION,
-            PrintPages::__Unknown(value) => value,
+            Self::All => ffi::GTK_PRINT_PAGES_ALL,
+            Self::Current => ffi::GTK_PRINT_PAGES_CURRENT,
+            Self::Ranges => ffi::GTK_PRINT_PAGES_RANGES,
+            Self::Selection => ffi::GTK_PRINT_PAGES_SELECTION,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -6509,11 +6503,11 @@ impl FromGlib<ffi::GtkPrintPages> for PrintPages {
     unsafe fn from_glib(value: ffi::GtkPrintPages) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => PrintPages::All,
-            1 => PrintPages::Current,
-            2 => PrintPages::Ranges,
-            3 => PrintPages::Selection,
-            value => PrintPages::__Unknown(value),
+            0 => Self::All,
+            1 => Self::Current,
+            2 => Self::Ranges,
+            3 => Self::Selection,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -6539,7 +6533,7 @@ unsafe impl<'a> FromValue<'a> for PrintPages {
 
 impl ToValue for PrintPages {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<PrintPages>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -6571,12 +6565,12 @@ impl fmt::Display for PrintQuality {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "PrintQuality::{}",
+            "Self::{}",
             match *self {
-                PrintQuality::Low => "Low",
-                PrintQuality::Normal => "Normal",
-                PrintQuality::High => "High",
-                PrintQuality::Draft => "Draft",
+                Self::Low => "Low",
+                Self::Normal => "Normal",
+                Self::High => "High",
+                Self::Draft => "Draft",
                 _ => "Unknown",
             }
         )
@@ -6589,11 +6583,11 @@ impl IntoGlib for PrintQuality {
 
     fn into_glib(self) -> ffi::GtkPrintQuality {
         match self {
-            PrintQuality::Low => ffi::GTK_PRINT_QUALITY_LOW,
-            PrintQuality::Normal => ffi::GTK_PRINT_QUALITY_NORMAL,
-            PrintQuality::High => ffi::GTK_PRINT_QUALITY_HIGH,
-            PrintQuality::Draft => ffi::GTK_PRINT_QUALITY_DRAFT,
-            PrintQuality::__Unknown(value) => value,
+            Self::Low => ffi::GTK_PRINT_QUALITY_LOW,
+            Self::Normal => ffi::GTK_PRINT_QUALITY_NORMAL,
+            Self::High => ffi::GTK_PRINT_QUALITY_HIGH,
+            Self::Draft => ffi::GTK_PRINT_QUALITY_DRAFT,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -6603,11 +6597,11 @@ impl FromGlib<ffi::GtkPrintQuality> for PrintQuality {
     unsafe fn from_glib(value: ffi::GtkPrintQuality) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => PrintQuality::Low,
-            1 => PrintQuality::Normal,
-            2 => PrintQuality::High,
-            3 => PrintQuality::Draft,
-            value => PrintQuality::__Unknown(value),
+            0 => Self::Low,
+            1 => Self::Normal,
+            2 => Self::High,
+            3 => Self::Draft,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -6633,7 +6627,7 @@ unsafe impl<'a> FromValue<'a> for PrintQuality {
 
 impl ToValue for PrintQuality {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<PrintQuality>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -6675,17 +6669,17 @@ impl fmt::Display for PrintStatus {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "PrintStatus::{}",
+            "Self::{}",
             match *self {
-                PrintStatus::Initial => "Initial",
-                PrintStatus::Preparing => "Preparing",
-                PrintStatus::GeneratingData => "GeneratingData",
-                PrintStatus::SendingData => "SendingData",
-                PrintStatus::Pending => "Pending",
-                PrintStatus::PendingIssue => "PendingIssue",
-                PrintStatus::Printing => "Printing",
-                PrintStatus::Finished => "Finished",
-                PrintStatus::FinishedAborted => "FinishedAborted",
+                Self::Initial => "Initial",
+                Self::Preparing => "Preparing",
+                Self::GeneratingData => "GeneratingData",
+                Self::SendingData => "SendingData",
+                Self::Pending => "Pending",
+                Self::PendingIssue => "PendingIssue",
+                Self::Printing => "Printing",
+                Self::Finished => "Finished",
+                Self::FinishedAborted => "FinishedAborted",
                 _ => "Unknown",
             }
         )
@@ -6698,16 +6692,16 @@ impl IntoGlib for PrintStatus {
 
     fn into_glib(self) -> ffi::GtkPrintStatus {
         match self {
-            PrintStatus::Initial => ffi::GTK_PRINT_STATUS_INITIAL,
-            PrintStatus::Preparing => ffi::GTK_PRINT_STATUS_PREPARING,
-            PrintStatus::GeneratingData => ffi::GTK_PRINT_STATUS_GENERATING_DATA,
-            PrintStatus::SendingData => ffi::GTK_PRINT_STATUS_SENDING_DATA,
-            PrintStatus::Pending => ffi::GTK_PRINT_STATUS_PENDING,
-            PrintStatus::PendingIssue => ffi::GTK_PRINT_STATUS_PENDING_ISSUE,
-            PrintStatus::Printing => ffi::GTK_PRINT_STATUS_PRINTING,
-            PrintStatus::Finished => ffi::GTK_PRINT_STATUS_FINISHED,
-            PrintStatus::FinishedAborted => ffi::GTK_PRINT_STATUS_FINISHED_ABORTED,
-            PrintStatus::__Unknown(value) => value,
+            Self::Initial => ffi::GTK_PRINT_STATUS_INITIAL,
+            Self::Preparing => ffi::GTK_PRINT_STATUS_PREPARING,
+            Self::GeneratingData => ffi::GTK_PRINT_STATUS_GENERATING_DATA,
+            Self::SendingData => ffi::GTK_PRINT_STATUS_SENDING_DATA,
+            Self::Pending => ffi::GTK_PRINT_STATUS_PENDING,
+            Self::PendingIssue => ffi::GTK_PRINT_STATUS_PENDING_ISSUE,
+            Self::Printing => ffi::GTK_PRINT_STATUS_PRINTING,
+            Self::Finished => ffi::GTK_PRINT_STATUS_FINISHED,
+            Self::FinishedAborted => ffi::GTK_PRINT_STATUS_FINISHED_ABORTED,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -6717,16 +6711,16 @@ impl FromGlib<ffi::GtkPrintStatus> for PrintStatus {
     unsafe fn from_glib(value: ffi::GtkPrintStatus) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => PrintStatus::Initial,
-            1 => PrintStatus::Preparing,
-            2 => PrintStatus::GeneratingData,
-            3 => PrintStatus::SendingData,
-            4 => PrintStatus::Pending,
-            5 => PrintStatus::PendingIssue,
-            6 => PrintStatus::Printing,
-            7 => PrintStatus::Finished,
-            8 => PrintStatus::FinishedAborted,
-            value => PrintStatus::__Unknown(value),
+            0 => Self::Initial,
+            1 => Self::Preparing,
+            2 => Self::GeneratingData,
+            3 => Self::SendingData,
+            4 => Self::Pending,
+            5 => Self::PendingIssue,
+            6 => Self::Printing,
+            7 => Self::Finished,
+            8 => Self::FinishedAborted,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -6752,7 +6746,7 @@ unsafe impl<'a> FromValue<'a> for PrintStatus {
 
 impl ToValue for PrintStatus {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<PrintStatus>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -6780,10 +6774,10 @@ impl fmt::Display for PropagationLimit {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "PropagationLimit::{}",
+            "Self::{}",
             match *self {
-                PropagationLimit::None => "None",
-                PropagationLimit::SameNative => "SameNative",
+                Self::None => "None",
+                Self::SameNative => "SameNative",
                 _ => "Unknown",
             }
         )
@@ -6796,9 +6790,9 @@ impl IntoGlib for PropagationLimit {
 
     fn into_glib(self) -> ffi::GtkPropagationLimit {
         match self {
-            PropagationLimit::None => ffi::GTK_LIMIT_NONE,
-            PropagationLimit::SameNative => ffi::GTK_LIMIT_SAME_NATIVE,
-            PropagationLimit::__Unknown(value) => value,
+            Self::None => ffi::GTK_LIMIT_NONE,
+            Self::SameNative => ffi::GTK_LIMIT_SAME_NATIVE,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -6808,9 +6802,9 @@ impl FromGlib<ffi::GtkPropagationLimit> for PropagationLimit {
     unsafe fn from_glib(value: ffi::GtkPropagationLimit) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => PropagationLimit::None,
-            1 => PropagationLimit::SameNative,
-            value => PropagationLimit::__Unknown(value),
+            0 => Self::None,
+            1 => Self::SameNative,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -6836,7 +6830,7 @@ unsafe impl<'a> FromValue<'a> for PropagationLimit {
 
 impl ToValue for PropagationLimit {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<PropagationLimit>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -6868,12 +6862,12 @@ impl fmt::Display for PropagationPhase {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "PropagationPhase::{}",
+            "Self::{}",
             match *self {
-                PropagationPhase::None => "None",
-                PropagationPhase::Capture => "Capture",
-                PropagationPhase::Bubble => "Bubble",
-                PropagationPhase::Target => "Target",
+                Self::None => "None",
+                Self::Capture => "Capture",
+                Self::Bubble => "Bubble",
+                Self::Target => "Target",
                 _ => "Unknown",
             }
         )
@@ -6886,11 +6880,11 @@ impl IntoGlib for PropagationPhase {
 
     fn into_glib(self) -> ffi::GtkPropagationPhase {
         match self {
-            PropagationPhase::None => ffi::GTK_PHASE_NONE,
-            PropagationPhase::Capture => ffi::GTK_PHASE_CAPTURE,
-            PropagationPhase::Bubble => ffi::GTK_PHASE_BUBBLE,
-            PropagationPhase::Target => ffi::GTK_PHASE_TARGET,
-            PropagationPhase::__Unknown(value) => value,
+            Self::None => ffi::GTK_PHASE_NONE,
+            Self::Capture => ffi::GTK_PHASE_CAPTURE,
+            Self::Bubble => ffi::GTK_PHASE_BUBBLE,
+            Self::Target => ffi::GTK_PHASE_TARGET,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -6900,11 +6894,11 @@ impl FromGlib<ffi::GtkPropagationPhase> for PropagationPhase {
     unsafe fn from_glib(value: ffi::GtkPropagationPhase) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => PropagationPhase::None,
-            1 => PropagationPhase::Capture,
-            2 => PropagationPhase::Bubble,
-            3 => PropagationPhase::Target,
-            value => PropagationPhase::__Unknown(value),
+            0 => Self::None,
+            1 => Self::Capture,
+            2 => Self::Bubble,
+            3 => Self::Target,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -6930,7 +6924,7 @@ unsafe impl<'a> FromValue<'a> for PropagationPhase {
 
 impl ToValue for PropagationPhase {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<PropagationPhase>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -6968,15 +6962,15 @@ impl fmt::Display for RecentManagerError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "RecentManagerError::{}",
+            "Self::{}",
             match *self {
-                RecentManagerError::NotFound => "NotFound",
-                RecentManagerError::InvalidUri => "InvalidUri",
-                RecentManagerError::InvalidEncoding => "InvalidEncoding",
-                RecentManagerError::NotRegistered => "NotRegistered",
-                RecentManagerError::Read => "Read",
-                RecentManagerError::Write => "Write",
-                RecentManagerError::Unknown => "Unknown",
+                Self::NotFound => "NotFound",
+                Self::InvalidUri => "InvalidUri",
+                Self::InvalidEncoding => "InvalidEncoding",
+                Self::NotRegistered => "NotRegistered",
+                Self::Read => "Read",
+                Self::Write => "Write",
+                Self::Unknown => "Unknown",
                 _ => "Unknown",
             }
         )
@@ -6989,14 +6983,14 @@ impl IntoGlib for RecentManagerError {
 
     fn into_glib(self) -> ffi::GtkRecentManagerError {
         match self {
-            RecentManagerError::NotFound => ffi::GTK_RECENT_MANAGER_ERROR_NOT_FOUND,
-            RecentManagerError::InvalidUri => ffi::GTK_RECENT_MANAGER_ERROR_INVALID_URI,
-            RecentManagerError::InvalidEncoding => ffi::GTK_RECENT_MANAGER_ERROR_INVALID_ENCODING,
-            RecentManagerError::NotRegistered => ffi::GTK_RECENT_MANAGER_ERROR_NOT_REGISTERED,
-            RecentManagerError::Read => ffi::GTK_RECENT_MANAGER_ERROR_READ,
-            RecentManagerError::Write => ffi::GTK_RECENT_MANAGER_ERROR_WRITE,
-            RecentManagerError::Unknown => ffi::GTK_RECENT_MANAGER_ERROR_UNKNOWN,
-            RecentManagerError::__Unknown(value) => value,
+            Self::NotFound => ffi::GTK_RECENT_MANAGER_ERROR_NOT_FOUND,
+            Self::InvalidUri => ffi::GTK_RECENT_MANAGER_ERROR_INVALID_URI,
+            Self::InvalidEncoding => ffi::GTK_RECENT_MANAGER_ERROR_INVALID_ENCODING,
+            Self::NotRegistered => ffi::GTK_RECENT_MANAGER_ERROR_NOT_REGISTERED,
+            Self::Read => ffi::GTK_RECENT_MANAGER_ERROR_READ,
+            Self::Write => ffi::GTK_RECENT_MANAGER_ERROR_WRITE,
+            Self::Unknown => ffi::GTK_RECENT_MANAGER_ERROR_UNKNOWN,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -7006,14 +7000,14 @@ impl FromGlib<ffi::GtkRecentManagerError> for RecentManagerError {
     unsafe fn from_glib(value: ffi::GtkRecentManagerError) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => RecentManagerError::NotFound,
-            1 => RecentManagerError::InvalidUri,
-            2 => RecentManagerError::InvalidEncoding,
-            3 => RecentManagerError::NotRegistered,
-            4 => RecentManagerError::Read,
-            5 => RecentManagerError::Write,
-            6 => RecentManagerError::Unknown,
-            value => RecentManagerError::__Unknown(value),
+            0 => Self::NotFound,
+            1 => Self::InvalidUri,
+            2 => Self::InvalidEncoding,
+            3 => Self::NotRegistered,
+            4 => Self::Read,
+            5 => Self::Write,
+            6 => Self::Unknown,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -7032,14 +7026,14 @@ impl ErrorDomain for RecentManagerError {
     fn from(code: i32) -> Option<Self> {
         skip_assert_initialized!();
         match code {
-            0 => Some(RecentManagerError::NotFound),
-            1 => Some(RecentManagerError::InvalidUri),
-            2 => Some(RecentManagerError::InvalidEncoding),
-            3 => Some(RecentManagerError::NotRegistered),
-            4 => Some(RecentManagerError::Read),
-            5 => Some(RecentManagerError::Write),
-            6 => Some(RecentManagerError::Unknown),
-            value => Some(RecentManagerError::__Unknown(value)),
+            0 => Some(Self::NotFound),
+            1 => Some(Self::InvalidUri),
+            2 => Some(Self::InvalidEncoding),
+            3 => Some(Self::NotRegistered),
+            4 => Some(Self::Read),
+            5 => Some(Self::Write),
+            6 => Some(Self::Unknown),
+            value => Some(Self::__Unknown(value)),
         }
     }
 }
@@ -7065,7 +7059,7 @@ unsafe impl<'a> FromValue<'a> for RecentManagerError {
 
 impl ToValue for RecentManagerError {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<RecentManagerError>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -7109,18 +7103,18 @@ impl fmt::Display for RevealerTransitionType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "RevealerTransitionType::{}",
+            "Self::{}",
             match *self {
-                RevealerTransitionType::None => "None",
-                RevealerTransitionType::Crossfade => "Crossfade",
-                RevealerTransitionType::SlideRight => "SlideRight",
-                RevealerTransitionType::SlideLeft => "SlideLeft",
-                RevealerTransitionType::SlideUp => "SlideUp",
-                RevealerTransitionType::SlideDown => "SlideDown",
-                RevealerTransitionType::SwingRight => "SwingRight",
-                RevealerTransitionType::SwingLeft => "SwingLeft",
-                RevealerTransitionType::SwingUp => "SwingUp",
-                RevealerTransitionType::SwingDown => "SwingDown",
+                Self::None => "None",
+                Self::Crossfade => "Crossfade",
+                Self::SlideRight => "SlideRight",
+                Self::SlideLeft => "SlideLeft",
+                Self::SlideUp => "SlideUp",
+                Self::SlideDown => "SlideDown",
+                Self::SwingRight => "SwingRight",
+                Self::SwingLeft => "SwingLeft",
+                Self::SwingUp => "SwingUp",
+                Self::SwingDown => "SwingDown",
                 _ => "Unknown",
             }
         )
@@ -7133,17 +7127,17 @@ impl IntoGlib for RevealerTransitionType {
 
     fn into_glib(self) -> ffi::GtkRevealerTransitionType {
         match self {
-            RevealerTransitionType::None => ffi::GTK_REVEALER_TRANSITION_TYPE_NONE,
-            RevealerTransitionType::Crossfade => ffi::GTK_REVEALER_TRANSITION_TYPE_CROSSFADE,
-            RevealerTransitionType::SlideRight => ffi::GTK_REVEALER_TRANSITION_TYPE_SLIDE_RIGHT,
-            RevealerTransitionType::SlideLeft => ffi::GTK_REVEALER_TRANSITION_TYPE_SLIDE_LEFT,
-            RevealerTransitionType::SlideUp => ffi::GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP,
-            RevealerTransitionType::SlideDown => ffi::GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN,
-            RevealerTransitionType::SwingRight => ffi::GTK_REVEALER_TRANSITION_TYPE_SWING_RIGHT,
-            RevealerTransitionType::SwingLeft => ffi::GTK_REVEALER_TRANSITION_TYPE_SWING_LEFT,
-            RevealerTransitionType::SwingUp => ffi::GTK_REVEALER_TRANSITION_TYPE_SWING_UP,
-            RevealerTransitionType::SwingDown => ffi::GTK_REVEALER_TRANSITION_TYPE_SWING_DOWN,
-            RevealerTransitionType::__Unknown(value) => value,
+            Self::None => ffi::GTK_REVEALER_TRANSITION_TYPE_NONE,
+            Self::Crossfade => ffi::GTK_REVEALER_TRANSITION_TYPE_CROSSFADE,
+            Self::SlideRight => ffi::GTK_REVEALER_TRANSITION_TYPE_SLIDE_RIGHT,
+            Self::SlideLeft => ffi::GTK_REVEALER_TRANSITION_TYPE_SLIDE_LEFT,
+            Self::SlideUp => ffi::GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP,
+            Self::SlideDown => ffi::GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN,
+            Self::SwingRight => ffi::GTK_REVEALER_TRANSITION_TYPE_SWING_RIGHT,
+            Self::SwingLeft => ffi::GTK_REVEALER_TRANSITION_TYPE_SWING_LEFT,
+            Self::SwingUp => ffi::GTK_REVEALER_TRANSITION_TYPE_SWING_UP,
+            Self::SwingDown => ffi::GTK_REVEALER_TRANSITION_TYPE_SWING_DOWN,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -7153,17 +7147,17 @@ impl FromGlib<ffi::GtkRevealerTransitionType> for RevealerTransitionType {
     unsafe fn from_glib(value: ffi::GtkRevealerTransitionType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => RevealerTransitionType::None,
-            1 => RevealerTransitionType::Crossfade,
-            2 => RevealerTransitionType::SlideRight,
-            3 => RevealerTransitionType::SlideLeft,
-            4 => RevealerTransitionType::SlideUp,
-            5 => RevealerTransitionType::SlideDown,
-            6 => RevealerTransitionType::SwingRight,
-            7 => RevealerTransitionType::SwingLeft,
-            8 => RevealerTransitionType::SwingUp,
-            9 => RevealerTransitionType::SwingDown,
-            value => RevealerTransitionType::__Unknown(value),
+            0 => Self::None,
+            1 => Self::Crossfade,
+            2 => Self::SlideRight,
+            3 => Self::SlideLeft,
+            4 => Self::SlideUp,
+            5 => Self::SlideDown,
+            6 => Self::SwingRight,
+            7 => Self::SwingLeft,
+            8 => Self::SwingUp,
+            9 => Self::SwingDown,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -7189,7 +7183,7 @@ unsafe impl<'a> FromValue<'a> for RevealerTransitionType {
 
 impl ToValue for RevealerTransitionType {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<RevealerTransitionType>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -7225,14 +7219,14 @@ impl fmt::Display for ScrollStep {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "ScrollStep::{}",
+            "Self::{}",
             match *self {
-                ScrollStep::Steps => "Steps",
-                ScrollStep::Pages => "Pages",
-                ScrollStep::Ends => "Ends",
-                ScrollStep::HorizontalSteps => "HorizontalSteps",
-                ScrollStep::HorizontalPages => "HorizontalPages",
-                ScrollStep::HorizontalEnds => "HorizontalEnds",
+                Self::Steps => "Steps",
+                Self::Pages => "Pages",
+                Self::Ends => "Ends",
+                Self::HorizontalSteps => "HorizontalSteps",
+                Self::HorizontalPages => "HorizontalPages",
+                Self::HorizontalEnds => "HorizontalEnds",
                 _ => "Unknown",
             }
         )
@@ -7245,13 +7239,13 @@ impl IntoGlib for ScrollStep {
 
     fn into_glib(self) -> ffi::GtkScrollStep {
         match self {
-            ScrollStep::Steps => ffi::GTK_SCROLL_STEPS,
-            ScrollStep::Pages => ffi::GTK_SCROLL_PAGES,
-            ScrollStep::Ends => ffi::GTK_SCROLL_ENDS,
-            ScrollStep::HorizontalSteps => ffi::GTK_SCROLL_HORIZONTAL_STEPS,
-            ScrollStep::HorizontalPages => ffi::GTK_SCROLL_HORIZONTAL_PAGES,
-            ScrollStep::HorizontalEnds => ffi::GTK_SCROLL_HORIZONTAL_ENDS,
-            ScrollStep::__Unknown(value) => value,
+            Self::Steps => ffi::GTK_SCROLL_STEPS,
+            Self::Pages => ffi::GTK_SCROLL_PAGES,
+            Self::Ends => ffi::GTK_SCROLL_ENDS,
+            Self::HorizontalSteps => ffi::GTK_SCROLL_HORIZONTAL_STEPS,
+            Self::HorizontalPages => ffi::GTK_SCROLL_HORIZONTAL_PAGES,
+            Self::HorizontalEnds => ffi::GTK_SCROLL_HORIZONTAL_ENDS,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -7261,13 +7255,13 @@ impl FromGlib<ffi::GtkScrollStep> for ScrollStep {
     unsafe fn from_glib(value: ffi::GtkScrollStep) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => ScrollStep::Steps,
-            1 => ScrollStep::Pages,
-            2 => ScrollStep::Ends,
-            3 => ScrollStep::HorizontalSteps,
-            4 => ScrollStep::HorizontalPages,
-            5 => ScrollStep::HorizontalEnds,
-            value => ScrollStep::__Unknown(value),
+            0 => Self::Steps,
+            1 => Self::Pages,
+            2 => Self::Ends,
+            3 => Self::HorizontalSteps,
+            4 => Self::HorizontalPages,
+            5 => Self::HorizontalEnds,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -7293,7 +7287,7 @@ unsafe impl<'a> FromValue<'a> for ScrollStep {
 
 impl ToValue for ScrollStep {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<ScrollStep>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -7349,24 +7343,24 @@ impl fmt::Display for ScrollType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "ScrollType::{}",
+            "Self::{}",
             match *self {
-                ScrollType::None => "None",
-                ScrollType::Jump => "Jump",
-                ScrollType::StepBackward => "StepBackward",
-                ScrollType::StepForward => "StepForward",
-                ScrollType::PageBackward => "PageBackward",
-                ScrollType::PageForward => "PageForward",
-                ScrollType::StepUp => "StepUp",
-                ScrollType::StepDown => "StepDown",
-                ScrollType::PageUp => "PageUp",
-                ScrollType::PageDown => "PageDown",
-                ScrollType::StepLeft => "StepLeft",
-                ScrollType::StepRight => "StepRight",
-                ScrollType::PageLeft => "PageLeft",
-                ScrollType::PageRight => "PageRight",
-                ScrollType::Start => "Start",
-                ScrollType::End => "End",
+                Self::None => "None",
+                Self::Jump => "Jump",
+                Self::StepBackward => "StepBackward",
+                Self::StepForward => "StepForward",
+                Self::PageBackward => "PageBackward",
+                Self::PageForward => "PageForward",
+                Self::StepUp => "StepUp",
+                Self::StepDown => "StepDown",
+                Self::PageUp => "PageUp",
+                Self::PageDown => "PageDown",
+                Self::StepLeft => "StepLeft",
+                Self::StepRight => "StepRight",
+                Self::PageLeft => "PageLeft",
+                Self::PageRight => "PageRight",
+                Self::Start => "Start",
+                Self::End => "End",
                 _ => "Unknown",
             }
         )
@@ -7379,23 +7373,23 @@ impl IntoGlib for ScrollType {
 
     fn into_glib(self) -> ffi::GtkScrollType {
         match self {
-            ScrollType::None => ffi::GTK_SCROLL_NONE,
-            ScrollType::Jump => ffi::GTK_SCROLL_JUMP,
-            ScrollType::StepBackward => ffi::GTK_SCROLL_STEP_BACKWARD,
-            ScrollType::StepForward => ffi::GTK_SCROLL_STEP_FORWARD,
-            ScrollType::PageBackward => ffi::GTK_SCROLL_PAGE_BACKWARD,
-            ScrollType::PageForward => ffi::GTK_SCROLL_PAGE_FORWARD,
-            ScrollType::StepUp => ffi::GTK_SCROLL_STEP_UP,
-            ScrollType::StepDown => ffi::GTK_SCROLL_STEP_DOWN,
-            ScrollType::PageUp => ffi::GTK_SCROLL_PAGE_UP,
-            ScrollType::PageDown => ffi::GTK_SCROLL_PAGE_DOWN,
-            ScrollType::StepLeft => ffi::GTK_SCROLL_STEP_LEFT,
-            ScrollType::StepRight => ffi::GTK_SCROLL_STEP_RIGHT,
-            ScrollType::PageLeft => ffi::GTK_SCROLL_PAGE_LEFT,
-            ScrollType::PageRight => ffi::GTK_SCROLL_PAGE_RIGHT,
-            ScrollType::Start => ffi::GTK_SCROLL_START,
-            ScrollType::End => ffi::GTK_SCROLL_END,
-            ScrollType::__Unknown(value) => value,
+            Self::None => ffi::GTK_SCROLL_NONE,
+            Self::Jump => ffi::GTK_SCROLL_JUMP,
+            Self::StepBackward => ffi::GTK_SCROLL_STEP_BACKWARD,
+            Self::StepForward => ffi::GTK_SCROLL_STEP_FORWARD,
+            Self::PageBackward => ffi::GTK_SCROLL_PAGE_BACKWARD,
+            Self::PageForward => ffi::GTK_SCROLL_PAGE_FORWARD,
+            Self::StepUp => ffi::GTK_SCROLL_STEP_UP,
+            Self::StepDown => ffi::GTK_SCROLL_STEP_DOWN,
+            Self::PageUp => ffi::GTK_SCROLL_PAGE_UP,
+            Self::PageDown => ffi::GTK_SCROLL_PAGE_DOWN,
+            Self::StepLeft => ffi::GTK_SCROLL_STEP_LEFT,
+            Self::StepRight => ffi::GTK_SCROLL_STEP_RIGHT,
+            Self::PageLeft => ffi::GTK_SCROLL_PAGE_LEFT,
+            Self::PageRight => ffi::GTK_SCROLL_PAGE_RIGHT,
+            Self::Start => ffi::GTK_SCROLL_START,
+            Self::End => ffi::GTK_SCROLL_END,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -7405,23 +7399,23 @@ impl FromGlib<ffi::GtkScrollType> for ScrollType {
     unsafe fn from_glib(value: ffi::GtkScrollType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => ScrollType::None,
-            1 => ScrollType::Jump,
-            2 => ScrollType::StepBackward,
-            3 => ScrollType::StepForward,
-            4 => ScrollType::PageBackward,
-            5 => ScrollType::PageForward,
-            6 => ScrollType::StepUp,
-            7 => ScrollType::StepDown,
-            8 => ScrollType::PageUp,
-            9 => ScrollType::PageDown,
-            10 => ScrollType::StepLeft,
-            11 => ScrollType::StepRight,
-            12 => ScrollType::PageLeft,
-            13 => ScrollType::PageRight,
-            14 => ScrollType::Start,
-            15 => ScrollType::End,
-            value => ScrollType::__Unknown(value),
+            0 => Self::None,
+            1 => Self::Jump,
+            2 => Self::StepBackward,
+            3 => Self::StepForward,
+            4 => Self::PageBackward,
+            5 => Self::PageForward,
+            6 => Self::StepUp,
+            7 => Self::StepDown,
+            8 => Self::PageUp,
+            9 => Self::PageDown,
+            10 => Self::StepLeft,
+            11 => Self::StepRight,
+            12 => Self::PageLeft,
+            13 => Self::PageRight,
+            14 => Self::Start,
+            15 => Self::End,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -7447,7 +7441,7 @@ unsafe impl<'a> FromValue<'a> for ScrollType {
 
 impl ToValue for ScrollType {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<ScrollType>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -7475,10 +7469,10 @@ impl fmt::Display for ScrollablePolicy {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "ScrollablePolicy::{}",
+            "Self::{}",
             match *self {
-                ScrollablePolicy::Minimum => "Minimum",
-                ScrollablePolicy::Natural => "Natural",
+                Self::Minimum => "Minimum",
+                Self::Natural => "Natural",
                 _ => "Unknown",
             }
         )
@@ -7491,9 +7485,9 @@ impl IntoGlib for ScrollablePolicy {
 
     fn into_glib(self) -> ffi::GtkScrollablePolicy {
         match self {
-            ScrollablePolicy::Minimum => ffi::GTK_SCROLL_MINIMUM,
-            ScrollablePolicy::Natural => ffi::GTK_SCROLL_NATURAL,
-            ScrollablePolicy::__Unknown(value) => value,
+            Self::Minimum => ffi::GTK_SCROLL_MINIMUM,
+            Self::Natural => ffi::GTK_SCROLL_NATURAL,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -7503,9 +7497,9 @@ impl FromGlib<ffi::GtkScrollablePolicy> for ScrollablePolicy {
     unsafe fn from_glib(value: ffi::GtkScrollablePolicy) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => ScrollablePolicy::Minimum,
-            1 => ScrollablePolicy::Natural,
-            value => ScrollablePolicy::__Unknown(value),
+            0 => Self::Minimum,
+            1 => Self::Natural,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -7531,7 +7525,7 @@ unsafe impl<'a> FromValue<'a> for ScrollablePolicy {
 
 impl ToValue for ScrollablePolicy {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<ScrollablePolicy>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -7563,12 +7557,12 @@ impl fmt::Display for SelectionMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "SelectionMode::{}",
+            "Self::{}",
             match *self {
-                SelectionMode::None => "None",
-                SelectionMode::Single => "Single",
-                SelectionMode::Browse => "Browse",
-                SelectionMode::Multiple => "Multiple",
+                Self::None => "None",
+                Self::Single => "Single",
+                Self::Browse => "Browse",
+                Self::Multiple => "Multiple",
                 _ => "Unknown",
             }
         )
@@ -7581,11 +7575,11 @@ impl IntoGlib for SelectionMode {
 
     fn into_glib(self) -> ffi::GtkSelectionMode {
         match self {
-            SelectionMode::None => ffi::GTK_SELECTION_NONE,
-            SelectionMode::Single => ffi::GTK_SELECTION_SINGLE,
-            SelectionMode::Browse => ffi::GTK_SELECTION_BROWSE,
-            SelectionMode::Multiple => ffi::GTK_SELECTION_MULTIPLE,
-            SelectionMode::__Unknown(value) => value,
+            Self::None => ffi::GTK_SELECTION_NONE,
+            Self::Single => ffi::GTK_SELECTION_SINGLE,
+            Self::Browse => ffi::GTK_SELECTION_BROWSE,
+            Self::Multiple => ffi::GTK_SELECTION_MULTIPLE,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -7595,11 +7589,11 @@ impl FromGlib<ffi::GtkSelectionMode> for SelectionMode {
     unsafe fn from_glib(value: ffi::GtkSelectionMode) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => SelectionMode::None,
-            1 => SelectionMode::Single,
-            2 => SelectionMode::Browse,
-            3 => SelectionMode::Multiple,
-            value => SelectionMode::__Unknown(value),
+            0 => Self::None,
+            1 => Self::Single,
+            2 => Self::Browse,
+            3 => Self::Multiple,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -7625,7 +7619,7 @@ unsafe impl<'a> FromValue<'a> for SelectionMode {
 
 impl ToValue for SelectionMode {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<SelectionMode>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -7655,11 +7649,11 @@ impl fmt::Display for SensitivityType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "SensitivityType::{}",
+            "Self::{}",
             match *self {
-                SensitivityType::Auto => "Auto",
-                SensitivityType::On => "On",
-                SensitivityType::Off => "Off",
+                Self::Auto => "Auto",
+                Self::On => "On",
+                Self::Off => "Off",
                 _ => "Unknown",
             }
         )
@@ -7672,10 +7666,10 @@ impl IntoGlib for SensitivityType {
 
     fn into_glib(self) -> ffi::GtkSensitivityType {
         match self {
-            SensitivityType::Auto => ffi::GTK_SENSITIVITY_AUTO,
-            SensitivityType::On => ffi::GTK_SENSITIVITY_ON,
-            SensitivityType::Off => ffi::GTK_SENSITIVITY_OFF,
-            SensitivityType::__Unknown(value) => value,
+            Self::Auto => ffi::GTK_SENSITIVITY_AUTO,
+            Self::On => ffi::GTK_SENSITIVITY_ON,
+            Self::Off => ffi::GTK_SENSITIVITY_OFF,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -7685,10 +7679,10 @@ impl FromGlib<ffi::GtkSensitivityType> for SensitivityType {
     unsafe fn from_glib(value: ffi::GtkSensitivityType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => SensitivityType::Auto,
-            1 => SensitivityType::On,
-            2 => SensitivityType::Off,
-            value => SensitivityType::__Unknown(value),
+            0 => Self::Auto,
+            1 => Self::On,
+            2 => Self::Off,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -7714,7 +7708,7 @@ unsafe impl<'a> FromValue<'a> for SensitivityType {
 
 impl ToValue for SensitivityType {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<SensitivityType>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -7744,11 +7738,11 @@ impl fmt::Display for ShortcutScope {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "ShortcutScope::{}",
+            "Self::{}",
             match *self {
-                ShortcutScope::Local => "Local",
-                ShortcutScope::Managed => "Managed",
-                ShortcutScope::Global => "Global",
+                Self::Local => "Local",
+                Self::Managed => "Managed",
+                Self::Global => "Global",
                 _ => "Unknown",
             }
         )
@@ -7761,10 +7755,10 @@ impl IntoGlib for ShortcutScope {
 
     fn into_glib(self) -> ffi::GtkShortcutScope {
         match self {
-            ShortcutScope::Local => ffi::GTK_SHORTCUT_SCOPE_LOCAL,
-            ShortcutScope::Managed => ffi::GTK_SHORTCUT_SCOPE_MANAGED,
-            ShortcutScope::Global => ffi::GTK_SHORTCUT_SCOPE_GLOBAL,
-            ShortcutScope::__Unknown(value) => value,
+            Self::Local => ffi::GTK_SHORTCUT_SCOPE_LOCAL,
+            Self::Managed => ffi::GTK_SHORTCUT_SCOPE_MANAGED,
+            Self::Global => ffi::GTK_SHORTCUT_SCOPE_GLOBAL,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -7774,10 +7768,10 @@ impl FromGlib<ffi::GtkShortcutScope> for ShortcutScope {
     unsafe fn from_glib(value: ffi::GtkShortcutScope) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => ShortcutScope::Local,
-            1 => ShortcutScope::Managed,
-            2 => ShortcutScope::Global,
-            value => ShortcutScope::__Unknown(value),
+            0 => Self::Local,
+            1 => Self::Managed,
+            2 => Self::Global,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -7803,7 +7797,7 @@ unsafe impl<'a> FromValue<'a> for ShortcutScope {
 
 impl ToValue for ShortcutScope {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<ShortcutScope>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -7847,18 +7841,18 @@ impl fmt::Display for ShortcutType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "ShortcutType::{}",
+            "Self::{}",
             match *self {
-                ShortcutType::Accelerator => "Accelerator",
-                ShortcutType::GesturePinch => "GesturePinch",
-                ShortcutType::GestureStretch => "GestureStretch",
-                ShortcutType::GestureRotateClockwise => "GestureRotateClockwise",
-                ShortcutType::GestureRotateCounterclockwise => "GestureRotateCounterclockwise",
-                ShortcutType::GestureTwoFingerSwipeLeft => "GestureTwoFingerSwipeLeft",
-                ShortcutType::GestureTwoFingerSwipeRight => "GestureTwoFingerSwipeRight",
-                ShortcutType::Gesture => "Gesture",
-                ShortcutType::GestureSwipeLeft => "GestureSwipeLeft",
-                ShortcutType::GestureSwipeRight => "GestureSwipeRight",
+                Self::Accelerator => "Accelerator",
+                Self::GesturePinch => "GesturePinch",
+                Self::GestureStretch => "GestureStretch",
+                Self::GestureRotateClockwise => "GestureRotateClockwise",
+                Self::GestureRotateCounterclockwise => "GestureRotateCounterclockwise",
+                Self::GestureTwoFingerSwipeLeft => "GestureTwoFingerSwipeLeft",
+                Self::GestureTwoFingerSwipeRight => "GestureTwoFingerSwipeRight",
+                Self::Gesture => "Gesture",
+                Self::GestureSwipeLeft => "GestureSwipeLeft",
+                Self::GestureSwipeRight => "GestureSwipeRight",
                 _ => "Unknown",
             }
         )
@@ -7871,23 +7865,19 @@ impl IntoGlib for ShortcutType {
 
     fn into_glib(self) -> ffi::GtkShortcutType {
         match self {
-            ShortcutType::Accelerator => ffi::GTK_SHORTCUT_ACCELERATOR,
-            ShortcutType::GesturePinch => ffi::GTK_SHORTCUT_GESTURE_PINCH,
-            ShortcutType::GestureStretch => ffi::GTK_SHORTCUT_GESTURE_STRETCH,
-            ShortcutType::GestureRotateClockwise => ffi::GTK_SHORTCUT_GESTURE_ROTATE_CLOCKWISE,
-            ShortcutType::GestureRotateCounterclockwise => {
+            Self::Accelerator => ffi::GTK_SHORTCUT_ACCELERATOR,
+            Self::GesturePinch => ffi::GTK_SHORTCUT_GESTURE_PINCH,
+            Self::GestureStretch => ffi::GTK_SHORTCUT_GESTURE_STRETCH,
+            Self::GestureRotateClockwise => ffi::GTK_SHORTCUT_GESTURE_ROTATE_CLOCKWISE,
+            Self::GestureRotateCounterclockwise => {
                 ffi::GTK_SHORTCUT_GESTURE_ROTATE_COUNTERCLOCKWISE
             }
-            ShortcutType::GestureTwoFingerSwipeLeft => {
-                ffi::GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_LEFT
-            }
-            ShortcutType::GestureTwoFingerSwipeRight => {
-                ffi::GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_RIGHT
-            }
-            ShortcutType::Gesture => ffi::GTK_SHORTCUT_GESTURE,
-            ShortcutType::GestureSwipeLeft => ffi::GTK_SHORTCUT_GESTURE_SWIPE_LEFT,
-            ShortcutType::GestureSwipeRight => ffi::GTK_SHORTCUT_GESTURE_SWIPE_RIGHT,
-            ShortcutType::__Unknown(value) => value,
+            Self::GestureTwoFingerSwipeLeft => ffi::GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_LEFT,
+            Self::GestureTwoFingerSwipeRight => ffi::GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_RIGHT,
+            Self::Gesture => ffi::GTK_SHORTCUT_GESTURE,
+            Self::GestureSwipeLeft => ffi::GTK_SHORTCUT_GESTURE_SWIPE_LEFT,
+            Self::GestureSwipeRight => ffi::GTK_SHORTCUT_GESTURE_SWIPE_RIGHT,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -7897,17 +7887,17 @@ impl FromGlib<ffi::GtkShortcutType> for ShortcutType {
     unsafe fn from_glib(value: ffi::GtkShortcutType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => ShortcutType::Accelerator,
-            1 => ShortcutType::GesturePinch,
-            2 => ShortcutType::GestureStretch,
-            3 => ShortcutType::GestureRotateClockwise,
-            4 => ShortcutType::GestureRotateCounterclockwise,
-            5 => ShortcutType::GestureTwoFingerSwipeLeft,
-            6 => ShortcutType::GestureTwoFingerSwipeRight,
-            7 => ShortcutType::Gesture,
-            8 => ShortcutType::GestureSwipeLeft,
-            9 => ShortcutType::GestureSwipeRight,
-            value => ShortcutType::__Unknown(value),
+            0 => Self::Accelerator,
+            1 => Self::GesturePinch,
+            2 => Self::GestureStretch,
+            3 => Self::GestureRotateClockwise,
+            4 => Self::GestureRotateCounterclockwise,
+            5 => Self::GestureTwoFingerSwipeLeft,
+            6 => Self::GestureTwoFingerSwipeRight,
+            7 => Self::Gesture,
+            8 => Self::GestureSwipeLeft,
+            9 => Self::GestureSwipeRight,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -7933,7 +7923,7 @@ unsafe impl<'a> FromValue<'a> for ShortcutType {
 
 impl ToValue for ShortcutType {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<ShortcutType>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -7965,12 +7955,12 @@ impl fmt::Display for SizeGroupMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "SizeGroupMode::{}",
+            "Self::{}",
             match *self {
-                SizeGroupMode::None => "None",
-                SizeGroupMode::Horizontal => "Horizontal",
-                SizeGroupMode::Vertical => "Vertical",
-                SizeGroupMode::Both => "Both",
+                Self::None => "None",
+                Self::Horizontal => "Horizontal",
+                Self::Vertical => "Vertical",
+                Self::Both => "Both",
                 _ => "Unknown",
             }
         )
@@ -7983,11 +7973,11 @@ impl IntoGlib for SizeGroupMode {
 
     fn into_glib(self) -> ffi::GtkSizeGroupMode {
         match self {
-            SizeGroupMode::None => ffi::GTK_SIZE_GROUP_NONE,
-            SizeGroupMode::Horizontal => ffi::GTK_SIZE_GROUP_HORIZONTAL,
-            SizeGroupMode::Vertical => ffi::GTK_SIZE_GROUP_VERTICAL,
-            SizeGroupMode::Both => ffi::GTK_SIZE_GROUP_BOTH,
-            SizeGroupMode::__Unknown(value) => value,
+            Self::None => ffi::GTK_SIZE_GROUP_NONE,
+            Self::Horizontal => ffi::GTK_SIZE_GROUP_HORIZONTAL,
+            Self::Vertical => ffi::GTK_SIZE_GROUP_VERTICAL,
+            Self::Both => ffi::GTK_SIZE_GROUP_BOTH,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -7997,11 +7987,11 @@ impl FromGlib<ffi::GtkSizeGroupMode> for SizeGroupMode {
     unsafe fn from_glib(value: ffi::GtkSizeGroupMode) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => SizeGroupMode::None,
-            1 => SizeGroupMode::Horizontal,
-            2 => SizeGroupMode::Vertical,
-            3 => SizeGroupMode::Both,
-            value => SizeGroupMode::__Unknown(value),
+            0 => Self::None,
+            1 => Self::Horizontal,
+            2 => Self::Vertical,
+            3 => Self::Both,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -8027,7 +8017,7 @@ unsafe impl<'a> FromValue<'a> for SizeGroupMode {
 
 impl ToValue for SizeGroupMode {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<SizeGroupMode>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -8057,11 +8047,11 @@ impl fmt::Display for SizeRequestMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "SizeRequestMode::{}",
+            "Self::{}",
             match *self {
-                SizeRequestMode::HeightForWidth => "HeightForWidth",
-                SizeRequestMode::WidthForHeight => "WidthForHeight",
-                SizeRequestMode::ConstantSize => "ConstantSize",
+                Self::HeightForWidth => "HeightForWidth",
+                Self::WidthForHeight => "WidthForHeight",
+                Self::ConstantSize => "ConstantSize",
                 _ => "Unknown",
             }
         )
@@ -8074,10 +8064,10 @@ impl IntoGlib for SizeRequestMode {
 
     fn into_glib(self) -> ffi::GtkSizeRequestMode {
         match self {
-            SizeRequestMode::HeightForWidth => ffi::GTK_SIZE_REQUEST_HEIGHT_FOR_WIDTH,
-            SizeRequestMode::WidthForHeight => ffi::GTK_SIZE_REQUEST_WIDTH_FOR_HEIGHT,
-            SizeRequestMode::ConstantSize => ffi::GTK_SIZE_REQUEST_CONSTANT_SIZE,
-            SizeRequestMode::__Unknown(value) => value,
+            Self::HeightForWidth => ffi::GTK_SIZE_REQUEST_HEIGHT_FOR_WIDTH,
+            Self::WidthForHeight => ffi::GTK_SIZE_REQUEST_WIDTH_FOR_HEIGHT,
+            Self::ConstantSize => ffi::GTK_SIZE_REQUEST_CONSTANT_SIZE,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -8087,10 +8077,10 @@ impl FromGlib<ffi::GtkSizeRequestMode> for SizeRequestMode {
     unsafe fn from_glib(value: ffi::GtkSizeRequestMode) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => SizeRequestMode::HeightForWidth,
-            1 => SizeRequestMode::WidthForHeight,
-            2 => SizeRequestMode::ConstantSize,
-            value => SizeRequestMode::__Unknown(value),
+            0 => Self::HeightForWidth,
+            1 => Self::WidthForHeight,
+            2 => Self::ConstantSize,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -8116,7 +8106,7 @@ unsafe impl<'a> FromValue<'a> for SizeRequestMode {
 
 impl ToValue for SizeRequestMode {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<SizeRequestMode>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -8144,10 +8134,10 @@ impl fmt::Display for SortType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "SortType::{}",
+            "Self::{}",
             match *self {
-                SortType::Ascending => "Ascending",
-                SortType::Descending => "Descending",
+                Self::Ascending => "Ascending",
+                Self::Descending => "Descending",
                 _ => "Unknown",
             }
         )
@@ -8160,9 +8150,9 @@ impl IntoGlib for SortType {
 
     fn into_glib(self) -> ffi::GtkSortType {
         match self {
-            SortType::Ascending => ffi::GTK_SORT_ASCENDING,
-            SortType::Descending => ffi::GTK_SORT_DESCENDING,
-            SortType::__Unknown(value) => value,
+            Self::Ascending => ffi::GTK_SORT_ASCENDING,
+            Self::Descending => ffi::GTK_SORT_DESCENDING,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -8172,9 +8162,9 @@ impl FromGlib<ffi::GtkSortType> for SortType {
     unsafe fn from_glib(value: ffi::GtkSortType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => SortType::Ascending,
-            1 => SortType::Descending,
-            value => SortType::__Unknown(value),
+            0 => Self::Ascending,
+            1 => Self::Descending,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -8200,7 +8190,7 @@ unsafe impl<'a> FromValue<'a> for SortType {
 
 impl ToValue for SortType {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<SortType>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -8232,12 +8222,12 @@ impl fmt::Display for SorterChange {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "SorterChange::{}",
+            "Self::{}",
             match *self {
-                SorterChange::Different => "Different",
-                SorterChange::Inverted => "Inverted",
-                SorterChange::LessStrict => "LessStrict",
-                SorterChange::MoreStrict => "MoreStrict",
+                Self::Different => "Different",
+                Self::Inverted => "Inverted",
+                Self::LessStrict => "LessStrict",
+                Self::MoreStrict => "MoreStrict",
                 _ => "Unknown",
             }
         )
@@ -8250,11 +8240,11 @@ impl IntoGlib for SorterChange {
 
     fn into_glib(self) -> ffi::GtkSorterChange {
         match self {
-            SorterChange::Different => ffi::GTK_SORTER_CHANGE_DIFFERENT,
-            SorterChange::Inverted => ffi::GTK_SORTER_CHANGE_INVERTED,
-            SorterChange::LessStrict => ffi::GTK_SORTER_CHANGE_LESS_STRICT,
-            SorterChange::MoreStrict => ffi::GTK_SORTER_CHANGE_MORE_STRICT,
-            SorterChange::__Unknown(value) => value,
+            Self::Different => ffi::GTK_SORTER_CHANGE_DIFFERENT,
+            Self::Inverted => ffi::GTK_SORTER_CHANGE_INVERTED,
+            Self::LessStrict => ffi::GTK_SORTER_CHANGE_LESS_STRICT,
+            Self::MoreStrict => ffi::GTK_SORTER_CHANGE_MORE_STRICT,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -8264,11 +8254,11 @@ impl FromGlib<ffi::GtkSorterChange> for SorterChange {
     unsafe fn from_glib(value: ffi::GtkSorterChange) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => SorterChange::Different,
-            1 => SorterChange::Inverted,
-            2 => SorterChange::LessStrict,
-            3 => SorterChange::MoreStrict,
-            value => SorterChange::__Unknown(value),
+            0 => Self::Different,
+            1 => Self::Inverted,
+            2 => Self::LessStrict,
+            3 => Self::MoreStrict,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -8294,7 +8284,7 @@ unsafe impl<'a> FromValue<'a> for SorterChange {
 
 impl ToValue for SorterChange {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<SorterChange>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -8324,11 +8314,11 @@ impl fmt::Display for SorterOrder {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "SorterOrder::{}",
+            "Self::{}",
             match *self {
-                SorterOrder::Partial => "Partial",
-                SorterOrder::None => "None",
-                SorterOrder::Total => "Total",
+                Self::Partial => "Partial",
+                Self::None => "None",
+                Self::Total => "Total",
                 _ => "Unknown",
             }
         )
@@ -8341,10 +8331,10 @@ impl IntoGlib for SorterOrder {
 
     fn into_glib(self) -> ffi::GtkSorterOrder {
         match self {
-            SorterOrder::Partial => ffi::GTK_SORTER_ORDER_PARTIAL,
-            SorterOrder::None => ffi::GTK_SORTER_ORDER_NONE,
-            SorterOrder::Total => ffi::GTK_SORTER_ORDER_TOTAL,
-            SorterOrder::__Unknown(value) => value,
+            Self::Partial => ffi::GTK_SORTER_ORDER_PARTIAL,
+            Self::None => ffi::GTK_SORTER_ORDER_NONE,
+            Self::Total => ffi::GTK_SORTER_ORDER_TOTAL,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -8354,10 +8344,10 @@ impl FromGlib<ffi::GtkSorterOrder> for SorterOrder {
     unsafe fn from_glib(value: ffi::GtkSorterOrder) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => SorterOrder::Partial,
-            1 => SorterOrder::None,
-            2 => SorterOrder::Total,
-            value => SorterOrder::__Unknown(value),
+            0 => Self::Partial,
+            1 => Self::None,
+            2 => Self::Total,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -8383,7 +8373,7 @@ unsafe impl<'a> FromValue<'a> for SorterOrder {
 
 impl ToValue for SorterOrder {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<SorterOrder>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -8411,10 +8401,10 @@ impl fmt::Display for SpinButtonUpdatePolicy {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "SpinButtonUpdatePolicy::{}",
+            "Self::{}",
             match *self {
-                SpinButtonUpdatePolicy::Always => "Always",
-                SpinButtonUpdatePolicy::IfValid => "IfValid",
+                Self::Always => "Always",
+                Self::IfValid => "IfValid",
                 _ => "Unknown",
             }
         )
@@ -8427,9 +8417,9 @@ impl IntoGlib for SpinButtonUpdatePolicy {
 
     fn into_glib(self) -> ffi::GtkSpinButtonUpdatePolicy {
         match self {
-            SpinButtonUpdatePolicy::Always => ffi::GTK_UPDATE_ALWAYS,
-            SpinButtonUpdatePolicy::IfValid => ffi::GTK_UPDATE_IF_VALID,
-            SpinButtonUpdatePolicy::__Unknown(value) => value,
+            Self::Always => ffi::GTK_UPDATE_ALWAYS,
+            Self::IfValid => ffi::GTK_UPDATE_IF_VALID,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -8439,9 +8429,9 @@ impl FromGlib<ffi::GtkSpinButtonUpdatePolicy> for SpinButtonUpdatePolicy {
     unsafe fn from_glib(value: ffi::GtkSpinButtonUpdatePolicy) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => SpinButtonUpdatePolicy::Always,
-            1 => SpinButtonUpdatePolicy::IfValid,
-            value => SpinButtonUpdatePolicy::__Unknown(value),
+            0 => Self::Always,
+            1 => Self::IfValid,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -8467,7 +8457,7 @@ unsafe impl<'a> FromValue<'a> for SpinButtonUpdatePolicy {
 
 impl ToValue for SpinButtonUpdatePolicy {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<SpinButtonUpdatePolicy>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -8505,15 +8495,15 @@ impl fmt::Display for SpinType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "SpinType::{}",
+            "Self::{}",
             match *self {
-                SpinType::StepForward => "StepForward",
-                SpinType::StepBackward => "StepBackward",
-                SpinType::PageForward => "PageForward",
-                SpinType::PageBackward => "PageBackward",
-                SpinType::Home => "Home",
-                SpinType::End => "End",
-                SpinType::UserDefined => "UserDefined",
+                Self::StepForward => "StepForward",
+                Self::StepBackward => "StepBackward",
+                Self::PageForward => "PageForward",
+                Self::PageBackward => "PageBackward",
+                Self::Home => "Home",
+                Self::End => "End",
+                Self::UserDefined => "UserDefined",
                 _ => "Unknown",
             }
         )
@@ -8526,14 +8516,14 @@ impl IntoGlib for SpinType {
 
     fn into_glib(self) -> ffi::GtkSpinType {
         match self {
-            SpinType::StepForward => ffi::GTK_SPIN_STEP_FORWARD,
-            SpinType::StepBackward => ffi::GTK_SPIN_STEP_BACKWARD,
-            SpinType::PageForward => ffi::GTK_SPIN_PAGE_FORWARD,
-            SpinType::PageBackward => ffi::GTK_SPIN_PAGE_BACKWARD,
-            SpinType::Home => ffi::GTK_SPIN_HOME,
-            SpinType::End => ffi::GTK_SPIN_END,
-            SpinType::UserDefined => ffi::GTK_SPIN_USER_DEFINED,
-            SpinType::__Unknown(value) => value,
+            Self::StepForward => ffi::GTK_SPIN_STEP_FORWARD,
+            Self::StepBackward => ffi::GTK_SPIN_STEP_BACKWARD,
+            Self::PageForward => ffi::GTK_SPIN_PAGE_FORWARD,
+            Self::PageBackward => ffi::GTK_SPIN_PAGE_BACKWARD,
+            Self::Home => ffi::GTK_SPIN_HOME,
+            Self::End => ffi::GTK_SPIN_END,
+            Self::UserDefined => ffi::GTK_SPIN_USER_DEFINED,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -8543,14 +8533,14 @@ impl FromGlib<ffi::GtkSpinType> for SpinType {
     unsafe fn from_glib(value: ffi::GtkSpinType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => SpinType::StepForward,
-            1 => SpinType::StepBackward,
-            2 => SpinType::PageForward,
-            3 => SpinType::PageBackward,
-            4 => SpinType::Home,
-            5 => SpinType::End,
-            6 => SpinType::UserDefined,
-            value => SpinType::__Unknown(value),
+            0 => Self::StepForward,
+            1 => Self::StepBackward,
+            2 => Self::PageForward,
+            3 => Self::PageBackward,
+            4 => Self::Home,
+            5 => Self::End,
+            6 => Self::UserDefined,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -8576,7 +8566,7 @@ unsafe impl<'a> FromValue<'a> for SpinType {
 
 impl ToValue for SpinType {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<SpinType>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -8646,31 +8636,31 @@ impl fmt::Display for StackTransitionType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "StackTransitionType::{}",
+            "Self::{}",
             match *self {
-                StackTransitionType::None => "None",
-                StackTransitionType::Crossfade => "Crossfade",
-                StackTransitionType::SlideRight => "SlideRight",
-                StackTransitionType::SlideLeft => "SlideLeft",
-                StackTransitionType::SlideUp => "SlideUp",
-                StackTransitionType::SlideDown => "SlideDown",
-                StackTransitionType::SlideLeftRight => "SlideLeftRight",
-                StackTransitionType::SlideUpDown => "SlideUpDown",
-                StackTransitionType::OverUp => "OverUp",
-                StackTransitionType::OverDown => "OverDown",
-                StackTransitionType::OverLeft => "OverLeft",
-                StackTransitionType::OverRight => "OverRight",
-                StackTransitionType::UnderUp => "UnderUp",
-                StackTransitionType::UnderDown => "UnderDown",
-                StackTransitionType::UnderLeft => "UnderLeft",
-                StackTransitionType::UnderRight => "UnderRight",
-                StackTransitionType::OverUpDown => "OverUpDown",
-                StackTransitionType::OverDownUp => "OverDownUp",
-                StackTransitionType::OverLeftRight => "OverLeftRight",
-                StackTransitionType::OverRightLeft => "OverRightLeft",
-                StackTransitionType::RotateLeft => "RotateLeft",
-                StackTransitionType::RotateRight => "RotateRight",
-                StackTransitionType::RotateLeftRight => "RotateLeftRight",
+                Self::None => "None",
+                Self::Crossfade => "Crossfade",
+                Self::SlideRight => "SlideRight",
+                Self::SlideLeft => "SlideLeft",
+                Self::SlideUp => "SlideUp",
+                Self::SlideDown => "SlideDown",
+                Self::SlideLeftRight => "SlideLeftRight",
+                Self::SlideUpDown => "SlideUpDown",
+                Self::OverUp => "OverUp",
+                Self::OverDown => "OverDown",
+                Self::OverLeft => "OverLeft",
+                Self::OverRight => "OverRight",
+                Self::UnderUp => "UnderUp",
+                Self::UnderDown => "UnderDown",
+                Self::UnderLeft => "UnderLeft",
+                Self::UnderRight => "UnderRight",
+                Self::OverUpDown => "OverUpDown",
+                Self::OverDownUp => "OverDownUp",
+                Self::OverLeftRight => "OverLeftRight",
+                Self::OverRightLeft => "OverRightLeft",
+                Self::RotateLeft => "RotateLeft",
+                Self::RotateRight => "RotateRight",
+                Self::RotateLeftRight => "RotateLeftRight",
                 _ => "Unknown",
             }
         )
@@ -8683,32 +8673,30 @@ impl IntoGlib for StackTransitionType {
 
     fn into_glib(self) -> ffi::GtkStackTransitionType {
         match self {
-            StackTransitionType::None => ffi::GTK_STACK_TRANSITION_TYPE_NONE,
-            StackTransitionType::Crossfade => ffi::GTK_STACK_TRANSITION_TYPE_CROSSFADE,
-            StackTransitionType::SlideRight => ffi::GTK_STACK_TRANSITION_TYPE_SLIDE_RIGHT,
-            StackTransitionType::SlideLeft => ffi::GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT,
-            StackTransitionType::SlideUp => ffi::GTK_STACK_TRANSITION_TYPE_SLIDE_UP,
-            StackTransitionType::SlideDown => ffi::GTK_STACK_TRANSITION_TYPE_SLIDE_DOWN,
-            StackTransitionType::SlideLeftRight => ffi::GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT_RIGHT,
-            StackTransitionType::SlideUpDown => ffi::GTK_STACK_TRANSITION_TYPE_SLIDE_UP_DOWN,
-            StackTransitionType::OverUp => ffi::GTK_STACK_TRANSITION_TYPE_OVER_UP,
-            StackTransitionType::OverDown => ffi::GTK_STACK_TRANSITION_TYPE_OVER_DOWN,
-            StackTransitionType::OverLeft => ffi::GTK_STACK_TRANSITION_TYPE_OVER_LEFT,
-            StackTransitionType::OverRight => ffi::GTK_STACK_TRANSITION_TYPE_OVER_RIGHT,
-            StackTransitionType::UnderUp => ffi::GTK_STACK_TRANSITION_TYPE_UNDER_UP,
-            StackTransitionType::UnderDown => ffi::GTK_STACK_TRANSITION_TYPE_UNDER_DOWN,
-            StackTransitionType::UnderLeft => ffi::GTK_STACK_TRANSITION_TYPE_UNDER_LEFT,
-            StackTransitionType::UnderRight => ffi::GTK_STACK_TRANSITION_TYPE_UNDER_RIGHT,
-            StackTransitionType::OverUpDown => ffi::GTK_STACK_TRANSITION_TYPE_OVER_UP_DOWN,
-            StackTransitionType::OverDownUp => ffi::GTK_STACK_TRANSITION_TYPE_OVER_DOWN_UP,
-            StackTransitionType::OverLeftRight => ffi::GTK_STACK_TRANSITION_TYPE_OVER_LEFT_RIGHT,
-            StackTransitionType::OverRightLeft => ffi::GTK_STACK_TRANSITION_TYPE_OVER_RIGHT_LEFT,
-            StackTransitionType::RotateLeft => ffi::GTK_STACK_TRANSITION_TYPE_ROTATE_LEFT,
-            StackTransitionType::RotateRight => ffi::GTK_STACK_TRANSITION_TYPE_ROTATE_RIGHT,
-            StackTransitionType::RotateLeftRight => {
-                ffi::GTK_STACK_TRANSITION_TYPE_ROTATE_LEFT_RIGHT
-            }
-            StackTransitionType::__Unknown(value) => value,
+            Self::None => ffi::GTK_STACK_TRANSITION_TYPE_NONE,
+            Self::Crossfade => ffi::GTK_STACK_TRANSITION_TYPE_CROSSFADE,
+            Self::SlideRight => ffi::GTK_STACK_TRANSITION_TYPE_SLIDE_RIGHT,
+            Self::SlideLeft => ffi::GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT,
+            Self::SlideUp => ffi::GTK_STACK_TRANSITION_TYPE_SLIDE_UP,
+            Self::SlideDown => ffi::GTK_STACK_TRANSITION_TYPE_SLIDE_DOWN,
+            Self::SlideLeftRight => ffi::GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT_RIGHT,
+            Self::SlideUpDown => ffi::GTK_STACK_TRANSITION_TYPE_SLIDE_UP_DOWN,
+            Self::OverUp => ffi::GTK_STACK_TRANSITION_TYPE_OVER_UP,
+            Self::OverDown => ffi::GTK_STACK_TRANSITION_TYPE_OVER_DOWN,
+            Self::OverLeft => ffi::GTK_STACK_TRANSITION_TYPE_OVER_LEFT,
+            Self::OverRight => ffi::GTK_STACK_TRANSITION_TYPE_OVER_RIGHT,
+            Self::UnderUp => ffi::GTK_STACK_TRANSITION_TYPE_UNDER_UP,
+            Self::UnderDown => ffi::GTK_STACK_TRANSITION_TYPE_UNDER_DOWN,
+            Self::UnderLeft => ffi::GTK_STACK_TRANSITION_TYPE_UNDER_LEFT,
+            Self::UnderRight => ffi::GTK_STACK_TRANSITION_TYPE_UNDER_RIGHT,
+            Self::OverUpDown => ffi::GTK_STACK_TRANSITION_TYPE_OVER_UP_DOWN,
+            Self::OverDownUp => ffi::GTK_STACK_TRANSITION_TYPE_OVER_DOWN_UP,
+            Self::OverLeftRight => ffi::GTK_STACK_TRANSITION_TYPE_OVER_LEFT_RIGHT,
+            Self::OverRightLeft => ffi::GTK_STACK_TRANSITION_TYPE_OVER_RIGHT_LEFT,
+            Self::RotateLeft => ffi::GTK_STACK_TRANSITION_TYPE_ROTATE_LEFT,
+            Self::RotateRight => ffi::GTK_STACK_TRANSITION_TYPE_ROTATE_RIGHT,
+            Self::RotateLeftRight => ffi::GTK_STACK_TRANSITION_TYPE_ROTATE_LEFT_RIGHT,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -8718,30 +8706,30 @@ impl FromGlib<ffi::GtkStackTransitionType> for StackTransitionType {
     unsafe fn from_glib(value: ffi::GtkStackTransitionType) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => StackTransitionType::None,
-            1 => StackTransitionType::Crossfade,
-            2 => StackTransitionType::SlideRight,
-            3 => StackTransitionType::SlideLeft,
-            4 => StackTransitionType::SlideUp,
-            5 => StackTransitionType::SlideDown,
-            6 => StackTransitionType::SlideLeftRight,
-            7 => StackTransitionType::SlideUpDown,
-            8 => StackTransitionType::OverUp,
-            9 => StackTransitionType::OverDown,
-            10 => StackTransitionType::OverLeft,
-            11 => StackTransitionType::OverRight,
-            12 => StackTransitionType::UnderUp,
-            13 => StackTransitionType::UnderDown,
-            14 => StackTransitionType::UnderLeft,
-            15 => StackTransitionType::UnderRight,
-            16 => StackTransitionType::OverUpDown,
-            17 => StackTransitionType::OverDownUp,
-            18 => StackTransitionType::OverLeftRight,
-            19 => StackTransitionType::OverRightLeft,
-            20 => StackTransitionType::RotateLeft,
-            21 => StackTransitionType::RotateRight,
-            22 => StackTransitionType::RotateLeftRight,
-            value => StackTransitionType::__Unknown(value),
+            0 => Self::None,
+            1 => Self::Crossfade,
+            2 => Self::SlideRight,
+            3 => Self::SlideLeft,
+            4 => Self::SlideUp,
+            5 => Self::SlideDown,
+            6 => Self::SlideLeftRight,
+            7 => Self::SlideUpDown,
+            8 => Self::OverUp,
+            9 => Self::OverDown,
+            10 => Self::OverLeft,
+            11 => Self::OverRight,
+            12 => Self::UnderUp,
+            13 => Self::UnderDown,
+            14 => Self::UnderLeft,
+            15 => Self::UnderRight,
+            16 => Self::OverUpDown,
+            17 => Self::OverDownUp,
+            18 => Self::OverLeftRight,
+            19 => Self::OverRightLeft,
+            20 => Self::RotateLeft,
+            21 => Self::RotateRight,
+            22 => Self::RotateLeftRight,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -8767,7 +8755,7 @@ unsafe impl<'a> FromValue<'a> for StackTransitionType {
 
 impl ToValue for StackTransitionType {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<StackTransitionType>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -8797,11 +8785,11 @@ impl fmt::Display for StringFilterMatchMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "StringFilterMatchMode::{}",
+            "Self::{}",
             match *self {
-                StringFilterMatchMode::Exact => "Exact",
-                StringFilterMatchMode::Substring => "Substring",
-                StringFilterMatchMode::Prefix => "Prefix",
+                Self::Exact => "Exact",
+                Self::Substring => "Substring",
+                Self::Prefix => "Prefix",
                 _ => "Unknown",
             }
         )
@@ -8814,10 +8802,10 @@ impl IntoGlib for StringFilterMatchMode {
 
     fn into_glib(self) -> ffi::GtkStringFilterMatchMode {
         match self {
-            StringFilterMatchMode::Exact => ffi::GTK_STRING_FILTER_MATCH_MODE_EXACT,
-            StringFilterMatchMode::Substring => ffi::GTK_STRING_FILTER_MATCH_MODE_SUBSTRING,
-            StringFilterMatchMode::Prefix => ffi::GTK_STRING_FILTER_MATCH_MODE_PREFIX,
-            StringFilterMatchMode::__Unknown(value) => value,
+            Self::Exact => ffi::GTK_STRING_FILTER_MATCH_MODE_EXACT,
+            Self::Substring => ffi::GTK_STRING_FILTER_MATCH_MODE_SUBSTRING,
+            Self::Prefix => ffi::GTK_STRING_FILTER_MATCH_MODE_PREFIX,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -8827,10 +8815,10 @@ impl FromGlib<ffi::GtkStringFilterMatchMode> for StringFilterMatchMode {
     unsafe fn from_glib(value: ffi::GtkStringFilterMatchMode) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => StringFilterMatchMode::Exact,
-            1 => StringFilterMatchMode::Substring,
-            2 => StringFilterMatchMode::Prefix,
-            value => StringFilterMatchMode::__Unknown(value),
+            0 => Self::Exact,
+            1 => Self::Substring,
+            2 => Self::Prefix,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -8856,7 +8844,7 @@ unsafe impl<'a> FromValue<'a> for StringFilterMatchMode {
 
 impl ToValue for StringFilterMatchMode {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<StringFilterMatchMode>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -8890,13 +8878,13 @@ impl fmt::Display for SystemSetting {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "SystemSetting::{}",
+            "Self::{}",
             match *self {
-                SystemSetting::Dpi => "Dpi",
-                SystemSetting::FontName => "FontName",
-                SystemSetting::FontConfig => "FontConfig",
-                SystemSetting::Display => "Display",
-                SystemSetting::IconTheme => "IconTheme",
+                Self::Dpi => "Dpi",
+                Self::FontName => "FontName",
+                Self::FontConfig => "FontConfig",
+                Self::Display => "Display",
+                Self::IconTheme => "IconTheme",
                 _ => "Unknown",
             }
         )
@@ -8909,12 +8897,12 @@ impl IntoGlib for SystemSetting {
 
     fn into_glib(self) -> ffi::GtkSystemSetting {
         match self {
-            SystemSetting::Dpi => ffi::GTK_SYSTEM_SETTING_DPI,
-            SystemSetting::FontName => ffi::GTK_SYSTEM_SETTING_FONT_NAME,
-            SystemSetting::FontConfig => ffi::GTK_SYSTEM_SETTING_FONT_CONFIG,
-            SystemSetting::Display => ffi::GTK_SYSTEM_SETTING_DISPLAY,
-            SystemSetting::IconTheme => ffi::GTK_SYSTEM_SETTING_ICON_THEME,
-            SystemSetting::__Unknown(value) => value,
+            Self::Dpi => ffi::GTK_SYSTEM_SETTING_DPI,
+            Self::FontName => ffi::GTK_SYSTEM_SETTING_FONT_NAME,
+            Self::FontConfig => ffi::GTK_SYSTEM_SETTING_FONT_CONFIG,
+            Self::Display => ffi::GTK_SYSTEM_SETTING_DISPLAY,
+            Self::IconTheme => ffi::GTK_SYSTEM_SETTING_ICON_THEME,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -8924,12 +8912,12 @@ impl FromGlib<ffi::GtkSystemSetting> for SystemSetting {
     unsafe fn from_glib(value: ffi::GtkSystemSetting) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => SystemSetting::Dpi,
-            1 => SystemSetting::FontName,
-            2 => SystemSetting::FontConfig,
-            3 => SystemSetting::Display,
-            4 => SystemSetting::IconTheme,
-            value => SystemSetting::__Unknown(value),
+            0 => Self::Dpi,
+            1 => Self::FontName,
+            2 => Self::FontConfig,
+            3 => Self::Display,
+            4 => Self::IconTheme,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -8955,7 +8943,7 @@ unsafe impl<'a> FromValue<'a> for SystemSetting {
 
 impl ToValue for SystemSetting {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<SystemSetting>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -8985,11 +8973,11 @@ impl fmt::Display for TextDirection {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "TextDirection::{}",
+            "Self::{}",
             match *self {
-                TextDirection::None => "None",
-                TextDirection::Ltr => "Ltr",
-                TextDirection::Rtl => "Rtl",
+                Self::None => "None",
+                Self::Ltr => "Ltr",
+                Self::Rtl => "Rtl",
                 _ => "Unknown",
             }
         )
@@ -9002,10 +8990,10 @@ impl IntoGlib for TextDirection {
 
     fn into_glib(self) -> ffi::GtkTextDirection {
         match self {
-            TextDirection::None => ffi::GTK_TEXT_DIR_NONE,
-            TextDirection::Ltr => ffi::GTK_TEXT_DIR_LTR,
-            TextDirection::Rtl => ffi::GTK_TEXT_DIR_RTL,
-            TextDirection::__Unknown(value) => value,
+            Self::None => ffi::GTK_TEXT_DIR_NONE,
+            Self::Ltr => ffi::GTK_TEXT_DIR_LTR,
+            Self::Rtl => ffi::GTK_TEXT_DIR_RTL,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -9015,10 +9003,10 @@ impl FromGlib<ffi::GtkTextDirection> for TextDirection {
     unsafe fn from_glib(value: ffi::GtkTextDirection) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => TextDirection::None,
-            1 => TextDirection::Ltr,
-            2 => TextDirection::Rtl,
-            value => TextDirection::__Unknown(value),
+            0 => Self::None,
+            1 => Self::Ltr,
+            2 => Self::Rtl,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -9044,7 +9032,7 @@ unsafe impl<'a> FromValue<'a> for TextDirection {
 
 impl ToValue for TextDirection {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<TextDirection>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -9072,10 +9060,10 @@ impl fmt::Display for TextExtendSelection {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "TextExtendSelection::{}",
+            "Self::{}",
             match *self {
-                TextExtendSelection::Word => "Word",
-                TextExtendSelection::Line => "Line",
+                Self::Word => "Word",
+                Self::Line => "Line",
                 _ => "Unknown",
             }
         )
@@ -9088,9 +9076,9 @@ impl IntoGlib for TextExtendSelection {
 
     fn into_glib(self) -> ffi::GtkTextExtendSelection {
         match self {
-            TextExtendSelection::Word => ffi::GTK_TEXT_EXTEND_SELECTION_WORD,
-            TextExtendSelection::Line => ffi::GTK_TEXT_EXTEND_SELECTION_LINE,
-            TextExtendSelection::__Unknown(value) => value,
+            Self::Word => ffi::GTK_TEXT_EXTEND_SELECTION_WORD,
+            Self::Line => ffi::GTK_TEXT_EXTEND_SELECTION_LINE,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -9100,9 +9088,9 @@ impl FromGlib<ffi::GtkTextExtendSelection> for TextExtendSelection {
     unsafe fn from_glib(value: ffi::GtkTextExtendSelection) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => TextExtendSelection::Word,
-            1 => TextExtendSelection::Line,
-            value => TextExtendSelection::__Unknown(value),
+            0 => Self::Word,
+            1 => Self::Line,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -9128,7 +9116,7 @@ unsafe impl<'a> FromValue<'a> for TextExtendSelection {
 
 impl ToValue for TextExtendSelection {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<TextExtendSelection>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -9156,10 +9144,10 @@ impl fmt::Display for TextViewLayer {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "TextViewLayer::{}",
+            "Self::{}",
             match *self {
-                TextViewLayer::BelowText => "BelowText",
-                TextViewLayer::AboveText => "AboveText",
+                Self::BelowText => "BelowText",
+                Self::AboveText => "AboveText",
                 _ => "Unknown",
             }
         )
@@ -9172,9 +9160,9 @@ impl IntoGlib for TextViewLayer {
 
     fn into_glib(self) -> ffi::GtkTextViewLayer {
         match self {
-            TextViewLayer::BelowText => ffi::GTK_TEXT_VIEW_LAYER_BELOW_TEXT,
-            TextViewLayer::AboveText => ffi::GTK_TEXT_VIEW_LAYER_ABOVE_TEXT,
-            TextViewLayer::__Unknown(value) => value,
+            Self::BelowText => ffi::GTK_TEXT_VIEW_LAYER_BELOW_TEXT,
+            Self::AboveText => ffi::GTK_TEXT_VIEW_LAYER_ABOVE_TEXT,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -9184,9 +9172,9 @@ impl FromGlib<ffi::GtkTextViewLayer> for TextViewLayer {
     unsafe fn from_glib(value: ffi::GtkTextViewLayer) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => TextViewLayer::BelowText,
-            1 => TextViewLayer::AboveText,
-            value => TextViewLayer::__Unknown(value),
+            0 => Self::BelowText,
+            1 => Self::AboveText,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -9212,7 +9200,7 @@ unsafe impl<'a> FromValue<'a> for TextViewLayer {
 
 impl ToValue for TextViewLayer {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<TextViewLayer>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -9248,14 +9236,14 @@ impl fmt::Display for TextWindowType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "TextWindowType::{}",
+            "Self::{}",
             match *self {
-                TextWindowType::Widget => "Widget",
-                TextWindowType::Text => "Text",
-                TextWindowType::Left => "Left",
-                TextWindowType::Right => "Right",
-                TextWindowType::Top => "Top",
-                TextWindowType::Bottom => "Bottom",
+                Self::Widget => "Widget",
+                Self::Text => "Text",
+                Self::Left => "Left",
+                Self::Right => "Right",
+                Self::Top => "Top",
+                Self::Bottom => "Bottom",
                 _ => "Unknown",
             }
         )
@@ -9268,13 +9256,13 @@ impl IntoGlib for TextWindowType {
 
     fn into_glib(self) -> ffi::GtkTextWindowType {
         match self {
-            TextWindowType::Widget => ffi::GTK_TEXT_WINDOW_WIDGET,
-            TextWindowType::Text => ffi::GTK_TEXT_WINDOW_TEXT,
-            TextWindowType::Left => ffi::GTK_TEXT_WINDOW_LEFT,
-            TextWindowType::Right => ffi::GTK_TEXT_WINDOW_RIGHT,
-            TextWindowType::Top => ffi::GTK_TEXT_WINDOW_TOP,
-            TextWindowType::Bottom => ffi::GTK_TEXT_WINDOW_BOTTOM,
-            TextWindowType::__Unknown(value) => value,
+            Self::Widget => ffi::GTK_TEXT_WINDOW_WIDGET,
+            Self::Text => ffi::GTK_TEXT_WINDOW_TEXT,
+            Self::Left => ffi::GTK_TEXT_WINDOW_LEFT,
+            Self::Right => ffi::GTK_TEXT_WINDOW_RIGHT,
+            Self::Top => ffi::GTK_TEXT_WINDOW_TOP,
+            Self::Bottom => ffi::GTK_TEXT_WINDOW_BOTTOM,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -9284,13 +9272,13 @@ impl FromGlib<ffi::GtkTextWindowType> for TextWindowType {
     unsafe fn from_glib(value: ffi::GtkTextWindowType) -> Self {
         skip_assert_initialized!();
         match value {
-            1 => TextWindowType::Widget,
-            2 => TextWindowType::Text,
-            3 => TextWindowType::Left,
-            4 => TextWindowType::Right,
-            5 => TextWindowType::Top,
-            6 => TextWindowType::Bottom,
-            value => TextWindowType::__Unknown(value),
+            1 => Self::Widget,
+            2 => Self::Text,
+            3 => Self::Left,
+            4 => Self::Right,
+            5 => Self::Top,
+            6 => Self::Bottom,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -9316,7 +9304,7 @@ unsafe impl<'a> FromValue<'a> for TextWindowType {
 
 impl ToValue for TextWindowType {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<TextWindowType>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -9346,11 +9334,11 @@ impl fmt::Display for TreeViewColumnSizing {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "TreeViewColumnSizing::{}",
+            "Self::{}",
             match *self {
-                TreeViewColumnSizing::GrowOnly => "GrowOnly",
-                TreeViewColumnSizing::Autosize => "Autosize",
-                TreeViewColumnSizing::Fixed => "Fixed",
+                Self::GrowOnly => "GrowOnly",
+                Self::Autosize => "Autosize",
+                Self::Fixed => "Fixed",
                 _ => "Unknown",
             }
         )
@@ -9363,10 +9351,10 @@ impl IntoGlib for TreeViewColumnSizing {
 
     fn into_glib(self) -> ffi::GtkTreeViewColumnSizing {
         match self {
-            TreeViewColumnSizing::GrowOnly => ffi::GTK_TREE_VIEW_COLUMN_GROW_ONLY,
-            TreeViewColumnSizing::Autosize => ffi::GTK_TREE_VIEW_COLUMN_AUTOSIZE,
-            TreeViewColumnSizing::Fixed => ffi::GTK_TREE_VIEW_COLUMN_FIXED,
-            TreeViewColumnSizing::__Unknown(value) => value,
+            Self::GrowOnly => ffi::GTK_TREE_VIEW_COLUMN_GROW_ONLY,
+            Self::Autosize => ffi::GTK_TREE_VIEW_COLUMN_AUTOSIZE,
+            Self::Fixed => ffi::GTK_TREE_VIEW_COLUMN_FIXED,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -9376,10 +9364,10 @@ impl FromGlib<ffi::GtkTreeViewColumnSizing> for TreeViewColumnSizing {
     unsafe fn from_glib(value: ffi::GtkTreeViewColumnSizing) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => TreeViewColumnSizing::GrowOnly,
-            1 => TreeViewColumnSizing::Autosize,
-            2 => TreeViewColumnSizing::Fixed,
-            value => TreeViewColumnSizing::__Unknown(value),
+            0 => Self::GrowOnly,
+            1 => Self::Autosize,
+            2 => Self::Fixed,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -9405,7 +9393,7 @@ unsafe impl<'a> FromValue<'a> for TreeViewColumnSizing {
 
 impl ToValue for TreeViewColumnSizing {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<TreeViewColumnSizing>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -9437,12 +9425,12 @@ impl fmt::Display for TreeViewDropPosition {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "TreeViewDropPosition::{}",
+            "Self::{}",
             match *self {
-                TreeViewDropPosition::Before => "Before",
-                TreeViewDropPosition::After => "After",
-                TreeViewDropPosition::IntoOrBefore => "IntoOrBefore",
-                TreeViewDropPosition::IntoOrAfter => "IntoOrAfter",
+                Self::Before => "Before",
+                Self::After => "After",
+                Self::IntoOrBefore => "IntoOrBefore",
+                Self::IntoOrAfter => "IntoOrAfter",
                 _ => "Unknown",
             }
         )
@@ -9455,11 +9443,11 @@ impl IntoGlib for TreeViewDropPosition {
 
     fn into_glib(self) -> ffi::GtkTreeViewDropPosition {
         match self {
-            TreeViewDropPosition::Before => ffi::GTK_TREE_VIEW_DROP_BEFORE,
-            TreeViewDropPosition::After => ffi::GTK_TREE_VIEW_DROP_AFTER,
-            TreeViewDropPosition::IntoOrBefore => ffi::GTK_TREE_VIEW_DROP_INTO_OR_BEFORE,
-            TreeViewDropPosition::IntoOrAfter => ffi::GTK_TREE_VIEW_DROP_INTO_OR_AFTER,
-            TreeViewDropPosition::__Unknown(value) => value,
+            Self::Before => ffi::GTK_TREE_VIEW_DROP_BEFORE,
+            Self::After => ffi::GTK_TREE_VIEW_DROP_AFTER,
+            Self::IntoOrBefore => ffi::GTK_TREE_VIEW_DROP_INTO_OR_BEFORE,
+            Self::IntoOrAfter => ffi::GTK_TREE_VIEW_DROP_INTO_OR_AFTER,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -9469,11 +9457,11 @@ impl FromGlib<ffi::GtkTreeViewDropPosition> for TreeViewDropPosition {
     unsafe fn from_glib(value: ffi::GtkTreeViewDropPosition) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => TreeViewDropPosition::Before,
-            1 => TreeViewDropPosition::After,
-            2 => TreeViewDropPosition::IntoOrBefore,
-            3 => TreeViewDropPosition::IntoOrAfter,
-            value => TreeViewDropPosition::__Unknown(value),
+            0 => Self::Before,
+            1 => Self::After,
+            2 => Self::IntoOrBefore,
+            3 => Self::IntoOrAfter,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -9499,7 +9487,7 @@ unsafe impl<'a> FromValue<'a> for TreeViewDropPosition {
 
 impl ToValue for TreeViewDropPosition {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<TreeViewDropPosition>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -9531,12 +9519,12 @@ impl fmt::Display for TreeViewGridLines {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "TreeViewGridLines::{}",
+            "Self::{}",
             match *self {
-                TreeViewGridLines::None => "None",
-                TreeViewGridLines::Horizontal => "Horizontal",
-                TreeViewGridLines::Vertical => "Vertical",
-                TreeViewGridLines::Both => "Both",
+                Self::None => "None",
+                Self::Horizontal => "Horizontal",
+                Self::Vertical => "Vertical",
+                Self::Both => "Both",
                 _ => "Unknown",
             }
         )
@@ -9549,11 +9537,11 @@ impl IntoGlib for TreeViewGridLines {
 
     fn into_glib(self) -> ffi::GtkTreeViewGridLines {
         match self {
-            TreeViewGridLines::None => ffi::GTK_TREE_VIEW_GRID_LINES_NONE,
-            TreeViewGridLines::Horizontal => ffi::GTK_TREE_VIEW_GRID_LINES_HORIZONTAL,
-            TreeViewGridLines::Vertical => ffi::GTK_TREE_VIEW_GRID_LINES_VERTICAL,
-            TreeViewGridLines::Both => ffi::GTK_TREE_VIEW_GRID_LINES_BOTH,
-            TreeViewGridLines::__Unknown(value) => value,
+            Self::None => ffi::GTK_TREE_VIEW_GRID_LINES_NONE,
+            Self::Horizontal => ffi::GTK_TREE_VIEW_GRID_LINES_HORIZONTAL,
+            Self::Vertical => ffi::GTK_TREE_VIEW_GRID_LINES_VERTICAL,
+            Self::Both => ffi::GTK_TREE_VIEW_GRID_LINES_BOTH,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -9563,11 +9551,11 @@ impl FromGlib<ffi::GtkTreeViewGridLines> for TreeViewGridLines {
     unsafe fn from_glib(value: ffi::GtkTreeViewGridLines) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => TreeViewGridLines::None,
-            1 => TreeViewGridLines::Horizontal,
-            2 => TreeViewGridLines::Vertical,
-            3 => TreeViewGridLines::Both,
-            value => TreeViewGridLines::__Unknown(value),
+            0 => Self::None,
+            1 => Self::Horizontal,
+            2 => Self::Vertical,
+            3 => Self::Both,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -9593,7 +9581,7 @@ unsafe impl<'a> FromValue<'a> for TreeViewGridLines {
 
 impl ToValue for TreeViewGridLines {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<TreeViewGridLines>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -9625,12 +9613,12 @@ impl fmt::Display for Unit {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Unit::{}",
+            "Self::{}",
             match *self {
-                Unit::None => "None",
-                Unit::Points => "Points",
-                Unit::Inch => "Inch",
-                Unit::Mm => "Mm",
+                Self::None => "None",
+                Self::Points => "Points",
+                Self::Inch => "Inch",
+                Self::Mm => "Mm",
                 _ => "Unknown",
             }
         )
@@ -9643,11 +9631,11 @@ impl IntoGlib for Unit {
 
     fn into_glib(self) -> ffi::GtkUnit {
         match self {
-            Unit::None => ffi::GTK_UNIT_NONE,
-            Unit::Points => ffi::GTK_UNIT_POINTS,
-            Unit::Inch => ffi::GTK_UNIT_INCH,
-            Unit::Mm => ffi::GTK_UNIT_MM,
-            Unit::__Unknown(value) => value,
+            Self::None => ffi::GTK_UNIT_NONE,
+            Self::Points => ffi::GTK_UNIT_POINTS,
+            Self::Inch => ffi::GTK_UNIT_INCH,
+            Self::Mm => ffi::GTK_UNIT_MM,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -9657,11 +9645,11 @@ impl FromGlib<ffi::GtkUnit> for Unit {
     unsafe fn from_glib(value: ffi::GtkUnit) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => Unit::None,
-            1 => Unit::Points,
-            2 => Unit::Inch,
-            3 => Unit::Mm,
-            value => Unit::__Unknown(value),
+            0 => Self::None,
+            1 => Self::Points,
+            2 => Self::Inch,
+            3 => Self::Mm,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -9687,7 +9675,7 @@ unsafe impl<'a> FromValue<'a> for Unit {
 
 impl ToValue for Unit {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<Unit>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
@@ -9719,12 +9707,12 @@ impl fmt::Display for WrapMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "WrapMode::{}",
+            "Self::{}",
             match *self {
-                WrapMode::None => "None",
-                WrapMode::Char => "Char",
-                WrapMode::Word => "Word",
-                WrapMode::WordChar => "WordChar",
+                Self::None => "None",
+                Self::Char => "Char",
+                Self::Word => "Word",
+                Self::WordChar => "WordChar",
                 _ => "Unknown",
             }
         )
@@ -9737,11 +9725,11 @@ impl IntoGlib for WrapMode {
 
     fn into_glib(self) -> ffi::GtkWrapMode {
         match self {
-            WrapMode::None => ffi::GTK_WRAP_NONE,
-            WrapMode::Char => ffi::GTK_WRAP_CHAR,
-            WrapMode::Word => ffi::GTK_WRAP_WORD,
-            WrapMode::WordChar => ffi::GTK_WRAP_WORD_CHAR,
-            WrapMode::__Unknown(value) => value,
+            Self::None => ffi::GTK_WRAP_NONE,
+            Self::Char => ffi::GTK_WRAP_CHAR,
+            Self::Word => ffi::GTK_WRAP_WORD,
+            Self::WordChar => ffi::GTK_WRAP_WORD_CHAR,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -9751,11 +9739,11 @@ impl FromGlib<ffi::GtkWrapMode> for WrapMode {
     unsafe fn from_glib(value: ffi::GtkWrapMode) -> Self {
         skip_assert_initialized!();
         match value {
-            0 => WrapMode::None,
-            1 => WrapMode::Char,
-            2 => WrapMode::Word,
-            3 => WrapMode::WordChar,
-            value => WrapMode::__Unknown(value),
+            0 => Self::None,
+            1 => Self::Char,
+            2 => Self::Word,
+            3 => Self::WordChar,
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -9781,7 +9769,7 @@ unsafe impl<'a> FromValue<'a> for WrapMode {
 
 impl ToValue for WrapMode {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<WrapMode>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
         }
