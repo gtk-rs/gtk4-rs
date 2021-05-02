@@ -22,6 +22,7 @@ pub mod entry_buffer;
 pub mod filter;
 pub mod fixed;
 pub mod flow_box_child;
+pub mod font_chooser;
 pub mod frame;
 pub mod gl_area;
 pub mod grid;
@@ -90,6 +91,7 @@ pub mod prelude {
     pub use super::filter::{FilterImpl, FilterImplExt};
     pub use super::fixed::FixedImpl;
     pub use super::flow_box_child::{FlowBoxChildImpl, FlowBoxChildImplExt};
+    pub use super::font_chooser::{FontChooserImpl, FontChooserImplExt};
     pub use super::frame::{FrameImpl, FrameImplExt};
     pub use super::gl_area::{GLAreaImpl, GLAreaImplExt};
     pub use super::grid::GridImpl;
