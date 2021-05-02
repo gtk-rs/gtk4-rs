@@ -40,19 +40,19 @@ impl IntoGlib for ResponseType {
 
     fn into_glib(self) -> ffi::GtkResponseType {
         match self {
-            ResponseType::None => ffi::GTK_RESPONSE_NONE,
-            ResponseType::Reject => ffi::GTK_RESPONSE_REJECT,
-            ResponseType::Accept => ffi::GTK_RESPONSE_ACCEPT,
-            ResponseType::DeleteEvent => ffi::GTK_RESPONSE_DELETE_EVENT,
-            ResponseType::Ok => ffi::GTK_RESPONSE_OK,
-            ResponseType::Cancel => ffi::GTK_RESPONSE_CANCEL,
-            ResponseType::Close => ffi::GTK_RESPONSE_CLOSE,
-            ResponseType::Yes => ffi::GTK_RESPONSE_YES,
-            ResponseType::No => ffi::GTK_RESPONSE_NO,
-            ResponseType::Apply => ffi::GTK_RESPONSE_APPLY,
-            ResponseType::Help => ffi::GTK_RESPONSE_HELP,
-            ResponseType::Other(value) => value as ffi::GtkResponseType,
-            ResponseType::__Unknown(value) => value,
+            Self::None => ffi::GTK_RESPONSE_NONE,
+            Self::Reject => ffi::GTK_RESPONSE_REJECT,
+            Self::Accept => ffi::GTK_RESPONSE_ACCEPT,
+            Self::DeleteEvent => ffi::GTK_RESPONSE_DELETE_EVENT,
+            Self::Ok => ffi::GTK_RESPONSE_OK,
+            Self::Cancel => ffi::GTK_RESPONSE_CANCEL,
+            Self::Close => ffi::GTK_RESPONSE_CLOSE,
+            Self::Yes => ffi::GTK_RESPONSE_YES,
+            Self::No => ffi::GTK_RESPONSE_NO,
+            Self::Apply => ffi::GTK_RESPONSE_APPLY,
+            Self::Help => ffi::GTK_RESPONSE_HELP,
+            Self::Other(value) => value as ffi::GtkResponseType,
+            Self::__Unknown(value) => value,
         }
     }
 }
@@ -62,21 +62,19 @@ impl FromGlib<ffi::GtkResponseType> for ResponseType {
     unsafe fn from_glib(value: ffi::GtkResponseType) -> Self {
         skip_assert_initialized!();
         match value {
-            -1 => ResponseType::None,
-            -2 => ResponseType::Reject,
-            -3 => ResponseType::Accept,
-            -4 => ResponseType::DeleteEvent,
-            -5 => ResponseType::Ok,
-            -6 => ResponseType::Cancel,
-            -7 => ResponseType::Close,
-            -8 => ResponseType::Yes,
-            -9 => ResponseType::No,
-            -10 => ResponseType::Apply,
-            -11 => ResponseType::Help,
-            value if value >= 0 && value <= ::std::u16::MAX as i32 => {
-                ResponseType::Other(value as u16)
-            }
-            value => ResponseType::__Unknown(value),
+            -1 => Self::None,
+            -2 => Self::Reject,
+            -3 => Self::Accept,
+            -4 => Self::DeleteEvent,
+            -5 => Self::Ok,
+            -6 => Self::Cancel,
+            -7 => Self::Close,
+            -8 => Self::Yes,
+            -9 => Self::No,
+            -10 => Self::Apply,
+            -11 => Self::Help,
+            value if value >= 0 && value <= ::std::u16::MAX as i32 => Self::Other(value as u16),
+            value => Self::__Unknown(value),
         }
     }
 }
@@ -87,19 +85,19 @@ impl fmt::Display for ResponseType {
             f,
             "ResponseType::{}",
             match *self {
-                ResponseType::None => "None",
-                ResponseType::Reject => "Reject",
-                ResponseType::Accept => "Accept",
-                ResponseType::DeleteEvent => "DeleteEvent",
-                ResponseType::Ok => "Ok",
-                ResponseType::Cancel => "Cancel",
-                ResponseType::Close => "Close",
-                ResponseType::Yes => "Yes",
-                ResponseType::No => "No",
-                ResponseType::Apply => "Apply",
-                ResponseType::Help => "Help",
-                ResponseType::Other(_) => "Other",
-                ResponseType::__Unknown(_) => "Unknown",
+                Self::None => "None",
+                Self::Reject => "Reject",
+                Self::Accept => "Accept",
+                Self::DeleteEvent => "DeleteEvent",
+                Self::Ok => "Ok",
+                Self::Cancel => "Cancel",
+                Self::Close => "Close",
+                Self::Yes => "Yes",
+                Self::No => "No",
+                Self::Apply => "Apply",
+                Self::Help => "Help",
+                Self::Other(_) => "Other",
+                Self::__Unknown(_) => "Unknown",
             }
         )
     }
@@ -126,7 +124,7 @@ unsafe impl<'a> FromValue<'a> for ResponseType {
 
 impl ToValue for ResponseType {
     fn to_value(&self) -> Value {
-        let mut value = glib::Value::for_value_type::<ResponseType>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe { glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib()) }
         value
     }

@@ -7,9 +7,9 @@ impl From<cmp::Ordering> for Ordering {
     fn from(o: cmp::Ordering) -> Self {
         skip_assert_initialized!();
         match o {
-            cmp::Ordering::Equal => Ordering::Equal,
-            cmp::Ordering::Greater => Ordering::Larger,
-            cmp::Ordering::Less => Ordering::Smaller,
+            cmp::Ordering::Equal => Self::Equal,
+            cmp::Ordering::Greater => Self::Larger,
+            cmp::Ordering::Less => Self::Smaller,
         }
     }
 }
@@ -18,9 +18,9 @@ impl From<Ordering> for cmp::Ordering {
     fn from(o: Ordering) -> Self {
         skip_assert_initialized!();
         match o {
-            Ordering::Equal => cmp::Ordering::Equal,
-            Ordering::Larger => cmp::Ordering::Greater,
-            Ordering::Smaller => cmp::Ordering::Less,
+            Ordering::Equal => Self::Equal,
+            Ordering::Larger => Self::Greater,
+            Ordering::Smaller => Self::Less,
             Ordering::__Unknown(_) => unreachable!(),
         }
     }

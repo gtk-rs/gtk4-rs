@@ -46,9 +46,9 @@ impl IntoGlib for PrintCapabilities {
 #[cfg(any(target_os = "linux", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 impl FromGlib<ffi::GtkPrintCapabilities> for PrintCapabilities {
-    unsafe fn from_glib(value: ffi::GtkPrintCapabilities) -> PrintCapabilities {
+    unsafe fn from_glib(value: ffi::GtkPrintCapabilities) -> Self {
         skip_assert_initialized!();
-        PrintCapabilities::from_bits_truncate(value)
+        Self::from_bits_truncate(value)
     }
 }
 
@@ -81,7 +81,7 @@ unsafe impl<'a> FromValue<'a> for PrintCapabilities {
 #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 impl ToValue for PrintCapabilities {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<PrintCapabilities>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib())
         }
