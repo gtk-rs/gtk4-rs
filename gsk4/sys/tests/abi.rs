@@ -20,7 +20,7 @@ struct Compiler {
 }
 
 impl Compiler {
-    pub fn new() -> Result<Compiler, Box<dyn Error>> {
+    pub fn new() -> Result<Self, Box<dyn Error>> {
         let mut args = get_var("CC", "cc")?;
         args.push("-Wno-deprecated-declarations".to_owned());
         // For _Generic
@@ -30,7 +30,7 @@ impl Compiler {
         args.extend(get_var("CFLAGS", "")?);
         args.extend(get_var("CPPFLAGS", "")?);
         args.extend(pkg_config_cflags(PACKAGES)?);
-        Ok(Compiler { args })
+        Ok(Self { args })
     }
 
     pub fn compile(&self, src: &Path, out: &Path) -> Result<(), Box<dyn Error>> {
