@@ -10,7 +10,7 @@ cannot exist independently of this widget. The primary reason the
 That is, there is no conceptual reason all these functions could not be
 methods on the <a href="struct.TreeView.html"><code>TreeView</code></a> widget instead of a separate function.</p>
 <p>The <a href="struct.TreeSelection.html"><code>TreeSelection</code></a> object is gotten from a <a href="struct.TreeView.html"><code>TreeView</code></a> by calling
-<a href="crate::TreeViewExt::get_selection()"><code>TreeViewExt::get_selection()</code></a>. It can be manipulated to check the
+<a href="crate::prelude::TreeViewExt::get_selection()"><code>prelude::TreeViewExt::get_selection()</code></a>. It can be manipulated to check the
 selection status of the tree, as well as select and deselect individual
 rows. Selection is done completely view side. As a result, multiple
 views of the same model can have completely different selections.

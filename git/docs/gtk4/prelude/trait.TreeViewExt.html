@@ -618,7 +618,7 @@ useful when you want to focus the user’s attention on a particular row. If
 <code>focus_column</code> is not <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, then focus is given to the column specified by
 it. Additionally, if <code>focus_column</code> is specified, and <code>start_editing</code> is
 <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, then editing should be started in the specified cell.
-This function is often followed by [<code>crate::WidgetExt::grab_focus</code>] (XXX: @-reference does not belong to TreeViewExt!) (<code>self</code>)
+This function is often followed by <a href="trait.WidgetExt.html#tymethod.grab_focus" title="crate::prelude::WidgetExt::grab_focus"><code>crate::prelude::WidgetExt::grab_focus</code></a> (XXX: @-reference does not belong to TreeViewExt!) (<code>self</code>)
 in order to give keyboard focus to the widget. Please note that editing
 can only happen when the widget is realized.</p>
 <p>If <code>path</code> is invalid for <code>model</code>, the current cursor (if any) will be unset
@@ -637,7 +637,7 @@ contains 2 or more editable or activatable cells, then focus is given to
 the cell specified by <code>focus_cell</code>. Additionally, if <code>focus_column</code> is
 specified, and <code>start_editing</code> is <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a>, then editing should be started in
 the specified cell. This function is often followed by
-[<code>crate::WidgetExt::grab_focus</code>] (XXX: @-reference does not belong to TreeViewExt!) (<code>self</code>) in order to give keyboard focus to the
+<a href="trait.WidgetExt.html#tymethod.grab_focus" title="crate::prelude::WidgetExt::grab_focus"><code>crate::prelude::WidgetExt::grab_focus</code></a> (XXX: @-reference does not belong to TreeViewExt!) (<code>self</code>) in order to give keyboard focus to the
 widget. Please note that editing can only happen when the widget is
 realized.</p>
 <p>If <code>path</code> is invalid for <code>model</code>, the current cursor (if any) will be unset

@@ -19,7 +19,7 @@ function.</p>
 </div><h4 id="method.set_sort_func" class="method"><code>pub fn <a href="#method.set_sort_func" class="fnname">set_sort_func</a>&lt;F&gt;(&amp;self, sort_func: F) <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>, &amp;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>) -&gt; <a class="enum" href="enum.Ordering.html" title="enum gtk4::Ordering">Ordering</a> + 'static,&nbsp;</span></code><a href="#method.set_sort_func" class="anchor"></a><a class="srclink" href="../src/gtk4/custom_sorter.rs.html#54-66" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets (or unsets) the function used for sorting items.</p>
 <p>If <code>sort_func</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, all items are considered equal.</p>
 <p>If the sort func changes its sorting behavior,
-<a href="crate::SorterExt::changed()"><code>SorterExt::changed()</code></a> needs to be called.</p>
+<a href="prelude/trait.SorterExt.html#tymethod.changed"><code>prelude::SorterExt::changed()</code></a> needs to be called.</p>
 <p>If a previous function was set, its <code>user_destroy</code> will be
 called now.</p>
 <h2 id="sort_func-1" class="section-header"><a href="#sort_func-1"><code>sort_func</code></a></h2>

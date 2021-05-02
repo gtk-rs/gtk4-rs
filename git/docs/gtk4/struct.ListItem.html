@@ -47,7 +47,7 @@ and cannot be set otherwise.</p>
 <p><a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the item is selected.</p>
 </div><h4 id="method.set_activatable" class="method"><code>pub fn <a href="#method.set_activatable" class="fnname">set_activatable</a>(&amp;self, activatable: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code><a href="#method.set_activatable" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/list_item.rs.html#129-133" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets <code>self</code> to be activatable.</p>
 <p>If an item is activatable, double-clicking on the item, using
-the Return key or calling <a href="crate::WidgetExt::activate()"><code>WidgetExt::activate()</code></a> will activate
+the Return key or calling <a href="prelude/trait.WidgetExt.html#tymethod.activate"><code>prelude::WidgetExt::activate()</code></a> will activate
 the item. Activating instructs the containing view to handle
 activation. <code>GtkListView</code> for example will be emitting the
 [signal<code>Gtk.ListView</code>::activate] signal.</p>

@@ -9,7 +9,7 @@ for pairs of items.</p>
 <p>Sorters may change their sorting behavior through their lifetime.
 In that case, they will emit the [signal<code>Gtk.Sorter</code>::changed] signal
 to notify that the sort order is no longer valid and should be updated
-by calling <a href="crate::SorterExt::compare()"><code>SorterExt::compare()</code></a> again.</p>
+by calling <a href="prelude/trait.SorterExt.html#tymethod.compare"><code>prelude::SorterExt::compare()</code></a> again.</p>
 <p>GTK provides various pre-made sorter implementations for common sorting
 operations. [class<code>Gtk.ColumnView</code>] has built-in support for sorting lists
 via the [property<code>Gtk.ColumnViewColumn</code>:sorter] property, where the user can

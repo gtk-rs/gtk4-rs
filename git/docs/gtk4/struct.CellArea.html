@@ -33,7 +33,7 @@ and sizes along the way (as well as the overall largest minimum
 and natural size for all the rows which have been calculated
 with the said context).</p>
 <p>The <a href="struct.CellAreaContext.html"><code>CellAreaContext</code></a> is an opaque object specific to the
-<a href="struct.CellArea.html"><code>CellArea</code></a> which created it (see <a href="crate::CellAreaExt::create_context()"><code>CellAreaExt::create_context()</code></a>).
+<a href="struct.CellArea.html"><code>CellArea</code></a> which created it (see <a href="prelude/trait.CellAreaExt.html#tymethod.create_context"><code>prelude::CellAreaExt::create_context()</code></a>).
 The owning cell-layouting widget can create as many contexts as
 it wishes to calculate sizes of rows which should receive the
 same size in at least one orientation (horizontally or vertically),
@@ -183,7 +183,7 @@ who are interested in handling other events. Handling an event can
 trigger the <a href="crate::CellArea::focus-changed"><code>CellArea::focus-changed</code></a> signal to fire; as well as
 <a href="crate::CellArea::add-editable"><code>CellArea::add-editable</code></a> in the case that an editable cell was
 clicked and needs to start editing. You can call
-<a href="crate::CellAreaExt::stop_editing()"><code>CellAreaExt::stop_editing()</code></a> at any time to cancel any cell editing
+<a href="prelude/trait.CellAreaExt.html#tymethod.stop_editing"><code>prelude::CellAreaExt::stop_editing()</code></a> at any time to cancel any cell editing
 that is currently in progress.</p>
 <p>The <a href="struct.CellArea.html"><code>CellArea</code></a> drives keyboard focus from cell to cell in a way
 similar to <a href="struct.Widget.html"><code>Widget</code></a>. For layouting widgets that support giving

@@ -404,7 +404,7 @@
     <span class="doccomment">/// Most common shortcuts are using this controller implicitly, e.g. by</span>
     <span class="doccomment">/// adding a mnemonic underline to a `GtkLabel`, or by installing a key</span>
     <span class="doccomment">/// binding using [`WidgetClass::add_binding()`](crate::WidgetClass::add_binding()), or by adding accelerators</span>
-    <span class="doccomment">/// to global actions using [``GtkApplicationExt`::set_accels_for_action()`](crate::`GtkApplicationExt`::set_accels_for_action()).</span>
+    <span class="doccomment">/// to global actions using [`prelude::`GtkApplicationExt`::set_accels_for_action()`](crate::prelude::`GtkApplicationExt`::set_accels_for_action()).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// But it is possible to create your own shortcut controller, and add</span>
     <span class="doccomment">/// shortcuts to it.</span>
@@ -442,7 +442,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`EventControllerExt`](trait@crate::prelude::EventControllerExt), [`trait@glib::object::ObjectExt`], [`trait@gio::ListModelExt`], [`BuildableExt`](trait@crate::prelude::BuildableExt)</span>
+    <span class="doccomment">/// [`EventControllerExt`](trait@crate::prelude::EventControllerExt), [`trait@glib::object::ObjectExt`], [`trait@gio::prelude::ListModelExt`], [`BuildableExt`](trait@crate::prelude::BuildableExt)</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ShortcutController</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkShortcutController</span>, <span class="ident">ffi::GtkShortcutControllerClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">EventController</span>, @<span class="ident">implements</span> <span class="ident">gio::ListModel</span>, <span class="ident">Buildable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {

@@ -152,8 +152,6 @@
 <span id="149">149</span>
 <span id="150">150</span>
 <span id="151">151</span>
-<span id="152">152</span>
-<span id="153">153</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -162,7 +160,7 @@
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">StaticType</span>, <span class="ident">Type</span>, <span class="ident">Value</span>};
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
-<span class="doccomment">/// Predefined values for use as response ids in [`DialogExt::add_button()`](crate::DialogExt::add_button()).</span>
+<span class="doccomment">/// Predefined values for use as response ids in [`prelude::DialogExt::add_button()`](crate::prelude::DialogExt::add_button()).</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// All predefined values are negative; GTK leaves values of 0 or greater for</span>
 <span class="doccomment">/// application-defined response ids.</span>
@@ -213,19 +211,19 @@
 
     <span class="kw">fn</span> <span class="ident">into_glib</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ffi::GtkResponseType</span> {
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">ResponseType::None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GTK_RESPONSE_NONE</span>,
-            <span class="ident">ResponseType::Reject</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GTK_RESPONSE_REJECT</span>,
-            <span class="ident">ResponseType::Accept</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GTK_RESPONSE_ACCEPT</span>,
-            <span class="ident">ResponseType::DeleteEvent</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GTK_RESPONSE_DELETE_EVENT</span>,
-            <span class="ident">ResponseType::Ok</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GTK_RESPONSE_OK</span>,
-            <span class="ident">ResponseType::Cancel</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GTK_RESPONSE_CANCEL</span>,
-            <span class="ident">ResponseType::Close</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GTK_RESPONSE_CLOSE</span>,
-            <span class="ident">ResponseType::Yes</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GTK_RESPONSE_YES</span>,
-            <span class="ident">ResponseType::No</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GTK_RESPONSE_NO</span>,
-            <span class="ident">ResponseType::Apply</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GTK_RESPONSE_APPLY</span>,
-            <span class="ident">ResponseType::Help</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GTK_RESPONSE_HELP</span>,
-            <span class="ident">ResponseType::Other</span>(<span class="ident">value</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">value</span> <span class="kw">as</span> <span class="ident">ffi::GtkResponseType</span>,
-            <span class="ident">ResponseType::__Unknown</span>(<span class="ident">value</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">value</span>,
+            <span class="self">Self</span><span class="ident">::None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GTK_RESPONSE_NONE</span>,
+            <span class="self">Self</span><span class="ident">::Reject</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GTK_RESPONSE_REJECT</span>,
+            <span class="self">Self</span><span class="ident">::Accept</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GTK_RESPONSE_ACCEPT</span>,
+            <span class="self">Self</span><span class="ident">::DeleteEvent</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GTK_RESPONSE_DELETE_EVENT</span>,
+            <span class="self">Self</span><span class="ident">::Ok</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GTK_RESPONSE_OK</span>,
+            <span class="self">Self</span><span class="ident">::Cancel</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GTK_RESPONSE_CANCEL</span>,
+            <span class="self">Self</span><span class="ident">::Close</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GTK_RESPONSE_CLOSE</span>,
+            <span class="self">Self</span><span class="ident">::Yes</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GTK_RESPONSE_YES</span>,
+            <span class="self">Self</span><span class="ident">::No</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GTK_RESPONSE_NO</span>,
+            <span class="self">Self</span><span class="ident">::Apply</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GTK_RESPONSE_APPLY</span>,
+            <span class="self">Self</span><span class="ident">::Help</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ffi::GTK_RESPONSE_HELP</span>,
+            <span class="self">Self</span><span class="ident">::Other</span>(<span class="ident">value</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">value</span> <span class="kw">as</span> <span class="ident">ffi::GtkResponseType</span>,
+            <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">value</span>,
         }
     }
 }
@@ -235,21 +233,19 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GtkResponseType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="op">-</span><span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ResponseType::None</span>,
-            <span class="op">-</span><span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ResponseType::Reject</span>,
-            <span class="op">-</span><span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ResponseType::Accept</span>,
-            <span class="op">-</span><span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ResponseType::DeleteEvent</span>,
-            <span class="op">-</span><span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ResponseType::Ok</span>,
-            <span class="op">-</span><span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ResponseType::Cancel</span>,
-            <span class="op">-</span><span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ResponseType::Close</span>,
-            <span class="op">-</span><span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ResponseType::Yes</span>,
-            <span class="op">-</span><span class="number">9</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ResponseType::No</span>,
-            <span class="op">-</span><span class="number">10</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ResponseType::Apply</span>,
-            <span class="op">-</span><span class="number">11</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ResponseType::Help</span>,
-            <span class="ident">value</span> <span class="kw">if</span> <span class="ident">value</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0</span> <span class="op">&amp;&amp;</span> <span class="ident">value</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">::std::u16::MAX</span> <span class="kw">as</span> <span class="ident">i32</span> <span class="op">=</span><span class="op">&gt;</span> {
-                <span class="ident">ResponseType::Other</span>(<span class="ident">value</span> <span class="kw">as</span> <span class="ident">u16</span>)
-            }
-            <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ResponseType::__Unknown</span>(<span class="ident">value</span>),
+            <span class="op">-</span><span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::None</span>,
+            <span class="op">-</span><span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Reject</span>,
+            <span class="op">-</span><span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Accept</span>,
+            <span class="op">-</span><span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DeleteEvent</span>,
+            <span class="op">-</span><span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Ok</span>,
+            <span class="op">-</span><span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Cancel</span>,
+            <span class="op">-</span><span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Close</span>,
+            <span class="op">-</span><span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Yes</span>,
+            <span class="op">-</span><span class="number">9</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::No</span>,
+            <span class="op">-</span><span class="number">10</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Apply</span>,
+            <span class="op">-</span><span class="number">11</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Help</span>,
+            <span class="ident">value</span> <span class="kw">if</span> <span class="ident">value</span> <span class="op">&gt;</span><span class="op">=</span> <span class="number">0</span> <span class="op">&amp;&amp;</span> <span class="ident">value</span> <span class="op">&lt;</span><span class="op">=</span> <span class="ident">::std::u16::MAX</span> <span class="kw">as</span> <span class="ident">i32</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Other</span>(<span class="ident">value</span> <span class="kw">as</span> <span class="ident">u16</span>),
+            <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
 }
@@ -260,19 +256,19 @@
             <span class="ident">f</span>,
             <span class="string">&quot;ResponseType::{}&quot;</span>,
             <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
-                <span class="ident">ResponseType::None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;None&quot;</span>,
-                <span class="ident">ResponseType::Reject</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Reject&quot;</span>,
-                <span class="ident">ResponseType::Accept</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Accept&quot;</span>,
-                <span class="ident">ResponseType::DeleteEvent</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;DeleteEvent&quot;</span>,
-                <span class="ident">ResponseType::Ok</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Ok&quot;</span>,
-                <span class="ident">ResponseType::Cancel</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Cancel&quot;</span>,
-                <span class="ident">ResponseType::Close</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Close&quot;</span>,
-                <span class="ident">ResponseType::Yes</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Yes&quot;</span>,
-                <span class="ident">ResponseType::No</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;No&quot;</span>,
-                <span class="ident">ResponseType::Apply</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Apply&quot;</span>,
-                <span class="ident">ResponseType::Help</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Help&quot;</span>,
-                <span class="ident">ResponseType::Other</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Other&quot;</span>,
-                <span class="ident">ResponseType::__Unknown</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Unknown&quot;</span>,
+                <span class="self">Self</span><span class="ident">::None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;None&quot;</span>,
+                <span class="self">Self</span><span class="ident">::Reject</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Reject&quot;</span>,
+                <span class="self">Self</span><span class="ident">::Accept</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Accept&quot;</span>,
+                <span class="self">Self</span><span class="ident">::DeleteEvent</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;DeleteEvent&quot;</span>,
+                <span class="self">Self</span><span class="ident">::Ok</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Ok&quot;</span>,
+                <span class="self">Self</span><span class="ident">::Cancel</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Cancel&quot;</span>,
+                <span class="self">Self</span><span class="ident">::Close</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Close&quot;</span>,
+                <span class="self">Self</span><span class="ident">::Yes</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Yes&quot;</span>,
+                <span class="self">Self</span><span class="ident">::No</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;No&quot;</span>,
+                <span class="self">Self</span><span class="ident">::Apply</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Apply&quot;</span>,
+                <span class="self">Self</span><span class="ident">::Help</span> <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Help&quot;</span>,
+                <span class="self">Self</span><span class="ident">::Other</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Other&quot;</span>,
+                <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="string">&quot;Unknown&quot;</span>,
             }
         )
     }
@@ -299,7 +295,7 @@
 
 <span class="kw">impl</span> <span class="ident">ToValue</span> <span class="kw">for</span> <span class="ident">ResponseType</span> {
     <span class="kw">fn</span> <span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Value</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="ident">ResponseType</span><span class="op">&gt;</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">value</span> <span class="op">=</span> <span class="ident">glib::Value::for_value_type</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>();
         <span class="kw">unsafe</span> { <span class="ident">glib::gobject_ffi::g_value_set_enum</span>(<span class="ident">value</span>.<span class="ident">to_glib_none_mut</span>().<span class="number">0</span>, <span class="self">self</span>.<span class="ident">into_glib</span>()) }
         <span class="ident">value</span>
     }

@@ -269,7 +269,7 @@ the window is ready to be shown.</p>
 button or key press event) which triggered this call</p>
 </div><h3 id="tymethod.set_application" class="method"><code>fn <a href="#tymethod.set_application" class="fnname">set_application</a>&lt;P:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Application.html" title="struct gtk4::Application">Application</a>&gt;&gt;(&amp;self, application: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>P&gt;)</code><a class="srclink" href="../../src/gtk4/auto/window.rs.html#1062" title="goto source code">[src]</a></h3><div class="docblock"><p>Sets or unsets the <code>GtkApplication</code> associated with the window.</p>
 <p>The application will be kept alive for at least as long as it has
-any windows associated with it (see <a href="crate::gio::ApplicationExt::hold()"><code>gio::ApplicationExt::hold()</code></a> for a way
+any windows associated with it (see <a href="https://gtk-rs.org/gtk-rs/git/docs/gio/auto/application/trait.ApplicationExt.html#tymethod.hold"><code>gio::prelude::ApplicationExt::hold()</code></a> for a way
 to keep it alive without windows).</p>
 <p>Normally, the connection between the application and the window will
 remain until the window is destroyed, but you can explicitly remove
