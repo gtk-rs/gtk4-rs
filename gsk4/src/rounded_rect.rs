@@ -17,29 +17,29 @@ impl RoundedRect {
     ) -> RoundedRect {
         assert_initialized_main_thread!();
         unsafe {
-            let mut rounded_rect = mem::uninitialized();
+            let mut rounded_rect = mem::MaybeUninit::uninit();
             ffi::gsk_rounded_rect_init(
-                &mut rounded_rect,
+                rounded_rect.as_mut_ptr(),
                 bounds.to_glib_none().0,
                 top_left.to_glib_none().0,
                 top_right.to_glib_none().0,
                 bottom_right.to_glib_none().0,
                 bottom_left.to_glib_none().0,
             );
-            RoundedRect(rounded_rect)
+            RoundedRect(rounded_rect.assume_init())
         }
     }
 
     pub fn new_from_rect(bounds: Rect, radius: f32) -> RoundedRect {
         assert_initialized_main_thread!();
         unsafe {
-            let mut rounded_rect = mem::uninitialized();
+            let mut rounded_rect = mem::MaybeUninit::uninit();
             ffi::gsk_rounded_rect_init_from_rect(
-                &mut rounded_rect,
+                rounded_rect.as_mut_ptr(),
                 bounds.to_glib_none().0,
                 radius,
             );
-            RoundedRect(rounded_rect)
+            RoundedRect(rounded_rect.assume_init())
         }
     }
 

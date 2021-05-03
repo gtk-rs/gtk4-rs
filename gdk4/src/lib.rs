@@ -1,14 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
-#![allow(clippy::let_unit_value)]
-#![allow(clippy::new_without_default)]
 #![allow(clippy::type_complexity)]
-#![allow(clippy::trivially_copy_pass_by_ref)]
 #![allow(clippy::derive_hash_xor_eq)]
-#![allow(clippy::needless_doctest_main)]
 #![allow(clippy::too_many_arguments)]
-#![allow(deprecated)]
 
 pub use cairo;
 pub use ffi;
@@ -27,13 +22,8 @@ macro_rules! skip_assert_initialized {
     () => {};
 }
 
-#[allow(clippy::match_same_arms)]
 #[allow(clippy::let_and_return)]
-#[allow(clippy::many_single_char_names)]
 #[allow(clippy::wrong_self_convention)]
-#[allow(clippy::cognitive_complexity)]
-#[allow(clippy::clone_on_copy)]
-#[allow(clippy::cast_ptr_alignment)]
 #[allow(clippy::upper_case_acronyms)]
 #[allow(unused_imports)]
 mod auto;
