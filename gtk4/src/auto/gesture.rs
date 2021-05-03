@@ -27,33 +27,43 @@ pub const NONE_GESTURE: Option<&Gesture> = None;
 
 pub trait GestureExt: 'static {
     #[doc(alias = "gtk_gesture_get_bounding_box")]
+    #[doc(alias = "get_bounding_box")]
     fn bounding_box(&self) -> Option<gdk::Rectangle>;
 
     #[doc(alias = "gtk_gesture_get_bounding_box_center")]
+    #[doc(alias = "get_bounding_box_center")]
     fn bounding_box_center(&self) -> Option<(f64, f64)>;
 
     #[doc(alias = "gtk_gesture_get_device")]
+    #[doc(alias = "get_device")]
     fn device(&self) -> Option<gdk::Device>;
 
     #[doc(alias = "gtk_gesture_get_group")]
+    #[doc(alias = "get_group")]
     fn group(&self) -> Vec<Gesture>;
 
     #[doc(alias = "gtk_gesture_get_last_event")]
+    #[doc(alias = "get_last_event")]
     fn last_event(&self, sequence: Option<&gdk::EventSequence>) -> Option<gdk::Event>;
 
     #[doc(alias = "gtk_gesture_get_last_updated_sequence")]
+    #[doc(alias = "get_last_updated_sequence")]
     fn last_updated_sequence(&self) -> Option<gdk::EventSequence>;
 
     #[doc(alias = "gtk_gesture_get_point")]
+    #[doc(alias = "get_point")]
     fn point(&self, sequence: Option<&gdk::EventSequence>) -> Option<(f64, f64)>;
 
     #[doc(alias = "gtk_gesture_get_sequence_state")]
+    #[doc(alias = "get_sequence_state")]
     fn sequence_state(&self, sequence: &gdk::EventSequence) -> EventSequenceState;
 
     #[doc(alias = "gtk_gesture_get_sequences")]
+    #[doc(alias = "get_sequences")]
     fn sequences(&self) -> Vec<gdk::EventSequence>;
 
     #[doc(alias = "gtk_gesture_group")]
+    #[doc(alias = "group")]
     fn group_with<P: IsA<Gesture>>(&self, gesture: &P);
 
     #[doc(alias = "gtk_gesture_handles_sequence")]
@@ -77,24 +87,28 @@ pub trait GestureExt: 'static {
     #[doc(alias = "gtk_gesture_ungroup")]
     fn ungroup(&self);
 
-    #[doc(alias = "get_property_n_points")]
+    #[doc(alias = "n-points")]
     fn n_points(&self) -> u32;
 
+    #[doc(alias = "begin")]
     fn connect_begin<F: Fn(&Self, Option<&gdk::EventSequence>) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
+    #[doc(alias = "cancel")]
     fn connect_cancel<F: Fn(&Self, Option<&gdk::EventSequence>) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
+    #[doc(alias = "end")]
     fn connect_end<F: Fn(&Self, Option<&gdk::EventSequence>) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
+    #[doc(alias = "sequence-state-changed")]
     fn connect_sequence_state_changed<
         F: Fn(&Self, Option<&gdk::EventSequence>, EventSequenceState) + 'static,
     >(
@@ -102,6 +116,7 @@ pub trait GestureExt: 'static {
         f: F,
     ) -> SignalHandlerId;
 
+    #[doc(alias = "update")]
     fn connect_update<F: Fn(&Self, Option<&gdk::EventSequence>) + 'static>(
         &self,
         f: F,
@@ -287,6 +302,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         }
     }
 
+    #[doc(alias = "begin")]
     fn connect_begin<F: Fn(&Self, Option<&gdk::EventSequence>) + 'static>(
         &self,
         f: F,
@@ -319,6 +335,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         }
     }
 
+    #[doc(alias = "cancel")]
     fn connect_cancel<F: Fn(&Self, Option<&gdk::EventSequence>) + 'static>(
         &self,
         f: F,
@@ -354,6 +371,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         }
     }
 
+    #[doc(alias = "end")]
     fn connect_end<F: Fn(&Self, Option<&gdk::EventSequence>) + 'static>(
         &self,
         f: F,
@@ -386,6 +404,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         }
     }
 
+    #[doc(alias = "sequence-state-changed")]
     fn connect_sequence_state_changed<
         F: Fn(&Self, Option<&gdk::EventSequence>, EventSequenceState) + 'static,
     >(
@@ -425,6 +444,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         }
     }
 
+    #[doc(alias = "update")]
     fn connect_update<F: Fn(&Self, Option<&gdk::EventSequence>) + 'static>(
         &self,
         f: F,

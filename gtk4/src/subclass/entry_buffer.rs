@@ -15,10 +15,12 @@ pub trait EntryBufferImpl: EntryBufferImplExt + ObjectImpl {
         self.parent_deleted_text(entry_buffer, position, n_chars)
     }
 
+    #[doc(alias = "get_length")]
     fn length(&self, entry_buffer: &Self::Type) -> u32 {
         self.parent_length(entry_buffer)
     }
 
+    #[doc(alias = "get_text")]
     fn text(&self, entry_buffer: &Self::Type) -> GString {
         self.parent_text(entry_buffer)
     }
@@ -272,6 +274,7 @@ unsafe extern "C" fn entry_buffer_inserted_text<T: EntryBufferImpl>(
     imp.inserted_text(wrap.unsafe_cast_ref(), position, &chars)
 }
 
+#[doc(alias = "get_text_n_chars")]
 fn text_n_chars(text: &str, n_chars: u32) -> &str {
     if n_chars != u32::MAX && n_chars > 0 {
         let mut iter = text

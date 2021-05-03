@@ -47,11 +47,13 @@ impl EventControllerKey {
     }
 
     #[doc(alias = "gtk_event_controller_key_get_group")]
+    #[doc(alias = "get_group")]
     pub fn group(&self) -> u32 {
         unsafe { ffi::gtk_event_controller_key_get_group(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_event_controller_key_get_im_context")]
+    #[doc(alias = "get_im_context")]
     pub fn im_context(&self) -> Option<IMContext> {
         unsafe {
             from_glib_none(ffi::gtk_event_controller_key_get_im_context(
@@ -70,6 +72,7 @@ impl EventControllerKey {
         }
     }
 
+    #[doc(alias = "im-update")]
     pub fn connect_im_update<F: Fn(&EventControllerKey) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn im_update_trampoline<F: Fn(&EventControllerKey) + 'static>(
             this: *mut ffi::GtkEventControllerKey,
@@ -91,6 +94,7 @@ impl EventControllerKey {
         }
     }
 
+    #[doc(alias = "modifiers")]
     pub fn connect_modifiers<
         F: Fn(&EventControllerKey, gdk::ModifierType) -> glib::signal::Inhibit + 'static,
     >(

@@ -43,6 +43,7 @@ impl DropControllerMotion {
     }
 
     #[doc(alias = "gtk_drop_controller_motion_get_drop")]
+    #[doc(alias = "get_drop")]
     pub fn drop(&self) -> Option<gdk::Drop> {
         unsafe {
             from_glib_none(ffi::gtk_drop_controller_motion_get_drop(
@@ -60,6 +61,7 @@ impl DropControllerMotion {
         }
     }
 
+    #[doc(alias = "enter")]
     pub fn connect_enter<F: Fn(&DropControllerMotion, f64, f64) + 'static>(
         &self,
         f: F,
@@ -86,6 +88,7 @@ impl DropControllerMotion {
         }
     }
 
+    #[doc(alias = "leave")]
     pub fn connect_leave<F: Fn(&DropControllerMotion) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn leave_trampoline<F: Fn(&DropControllerMotion) + 'static>(
             this: *mut ffi::GtkDropControllerMotion,
@@ -107,6 +110,7 @@ impl DropControllerMotion {
         }
     }
 
+    #[doc(alias = "motion")]
     pub fn connect_motion<F: Fn(&DropControllerMotion, f64, f64) + 'static>(
         &self,
         f: F,
@@ -133,7 +137,8 @@ impl DropControllerMotion {
         }
     }
 
-    pub fn connect_property_contains_pointer_notify<F: Fn(&DropControllerMotion) + 'static>(
+    #[doc(alias = "contains-pointer")]
+    pub fn connect_contains_pointer_notify<F: Fn(&DropControllerMotion) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -160,7 +165,8 @@ impl DropControllerMotion {
         }
     }
 
-    pub fn connect_property_drop_notify<F: Fn(&DropControllerMotion) + 'static>(
+    #[doc(alias = "drop")]
+    pub fn connect_drop_notify<F: Fn(&DropControllerMotion) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -185,7 +191,8 @@ impl DropControllerMotion {
         }
     }
 
-    pub fn connect_property_is_pointer_notify<F: Fn(&DropControllerMotion) + 'static>(
+    #[doc(alias = "is-pointer")]
+    pub fn connect_is_pointer_notify<F: Fn(&DropControllerMotion) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

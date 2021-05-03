@@ -33,7 +33,6 @@ impl CellRendererSpin {
         unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_spin_new()).unsafe_cast() }
     }
 
-    #[doc(alias = "get_property_adjustment")]
     pub fn adjustment(&self) -> Option<Adjustment> {
         unsafe {
             let mut value = glib::Value::from_type(<Adjustment as StaticType>::static_type());
@@ -48,7 +47,6 @@ impl CellRendererSpin {
         }
     }
 
-    #[doc(alias = "set_property_adjustment")]
     pub fn set_adjustment<P: IsA<Adjustment>>(&self, adjustment: Option<&P>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -59,7 +57,7 @@ impl CellRendererSpin {
         }
     }
 
-    #[doc(alias = "get_property_climb_rate")]
+    #[doc(alias = "climb-rate")]
     pub fn climb_rate(&self) -> f64 {
         unsafe {
             let mut value = glib::Value::from_type(<f64 as StaticType>::static_type());
@@ -74,7 +72,7 @@ impl CellRendererSpin {
         }
     }
 
-    #[doc(alias = "set_property_climb_rate")]
+    #[doc(alias = "climb-rate")]
     pub fn set_climb_rate(&self, climb_rate: f64) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -85,7 +83,6 @@ impl CellRendererSpin {
         }
     }
 
-    #[doc(alias = "get_property_digits")]
     pub fn digits(&self) -> u32 {
         unsafe {
             let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
@@ -100,7 +97,6 @@ impl CellRendererSpin {
         }
     }
 
-    #[doc(alias = "set_property_digits")]
     pub fn set_digits(&self, digits: u32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -111,7 +107,8 @@ impl CellRendererSpin {
         }
     }
 
-    pub fn connect_property_adjustment_notify<F: Fn(&CellRendererSpin) + 'static>(
+    #[doc(alias = "adjustment")]
+    pub fn connect_adjustment_notify<F: Fn(&CellRendererSpin) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -136,7 +133,8 @@ impl CellRendererSpin {
         }
     }
 
-    pub fn connect_property_climb_rate_notify<F: Fn(&CellRendererSpin) + 'static>(
+    #[doc(alias = "climb-rate")]
+    pub fn connect_climb_rate_notify<F: Fn(&CellRendererSpin) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -161,7 +159,8 @@ impl CellRendererSpin {
         }
     }
 
-    pub fn connect_property_digits_notify<F: Fn(&CellRendererSpin) + 'static>(
+    #[doc(alias = "digits")]
+    pub fn connect_digits_notify<F: Fn(&CellRendererSpin) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

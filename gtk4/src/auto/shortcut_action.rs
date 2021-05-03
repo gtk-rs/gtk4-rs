@@ -50,6 +50,7 @@ pub trait ShortcutActionExt: 'static {
     fn print(&self, string: &mut glib::String);
 
     #[doc(alias = "gtk_shortcut_action_to_string")]
+    #[doc(alias = "to_string")]
     fn to_str(&self) -> glib::GString;
 }
 

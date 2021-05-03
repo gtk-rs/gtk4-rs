@@ -21,26 +21,31 @@ glib::wrapper! {
 
 impl X11Screen {
     #[doc(alias = "gdk_x11_screen_get_current_desktop")]
+    #[doc(alias = "get_current_desktop")]
     pub fn current_desktop(&self) -> u32 {
         unsafe { ffi::gdk_x11_screen_get_current_desktop(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_x11_screen_get_monitor_output")]
+    #[doc(alias = "get_monitor_output")]
     pub fn monitor_output(&self, monitor_num: i32) -> xlib::XID {
         unsafe { ffi::gdk_x11_screen_get_monitor_output(self.to_glib_none().0, monitor_num) }
     }
 
     #[doc(alias = "gdk_x11_screen_get_number_of_desktops")]
+    #[doc(alias = "get_number_of_desktops")]
     pub fn number_of_desktops(&self) -> u32 {
         unsafe { ffi::gdk_x11_screen_get_number_of_desktops(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_x11_screen_get_screen_number")]
+    #[doc(alias = "get_screen_number")]
     pub fn screen_number(&self) -> i32 {
         unsafe { ffi::gdk_x11_screen_get_screen_number(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_x11_screen_get_window_manager_name")]
+    #[doc(alias = "get_window_manager_name")]
     pub fn window_manager_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gdk_x11_screen_get_window_manager_name(
@@ -59,6 +64,7 @@ impl X11Screen {
         }
     }
 
+    #[doc(alias = "window-manager-changed")]
     pub fn connect_window_manager_changed<F: Fn(&X11Screen) + 'static>(
         &self,
         f: F,

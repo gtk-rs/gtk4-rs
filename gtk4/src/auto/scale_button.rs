@@ -376,18 +376,23 @@ pub const NONE_SCALE_BUTTON: Option<&ScaleButton> = None;
 
 pub trait ScaleButtonExt: 'static {
     #[doc(alias = "gtk_scale_button_get_adjustment")]
+    #[doc(alias = "get_adjustment")]
     fn adjustment(&self) -> Adjustment;
 
     #[doc(alias = "gtk_scale_button_get_minus_button")]
+    #[doc(alias = "get_minus_button")]
     fn minus_button(&self) -> Button;
 
     #[doc(alias = "gtk_scale_button_get_plus_button")]
+    #[doc(alias = "get_plus_button")]
     fn plus_button(&self) -> Button;
 
     #[doc(alias = "gtk_scale_button_get_popup")]
+    #[doc(alias = "get_popup")]
     fn popup(&self) -> Widget;
 
     #[doc(alias = "gtk_scale_button_get_value")]
+    #[doc(alias = "get_value")]
     fn value(&self) -> f64;
 
     #[doc(alias = "gtk_scale_button_set_adjustment")]
@@ -399,24 +404,29 @@ pub trait ScaleButtonExt: 'static {
     #[doc(alias = "gtk_scale_button_set_value")]
     fn set_value(&self, value: f64);
 
-    #[doc(alias = "get_property_icons")]
     fn icons(&self) -> Vec<glib::GString>;
 
+    #[doc(alias = "popdown")]
     fn connect_popdown<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_popdown(&self);
 
+    #[doc(alias = "popup")]
     fn connect_popup<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_popup(&self);
 
+    #[doc(alias = "value-changed")]
     fn connect_value_changed<F: Fn(&Self, f64) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_adjustment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "adjustment")]
+    fn connect_adjustment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_icons_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "icons")]
+    fn connect_icons_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "value")]
+    fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
@@ -492,6 +502,7 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         }
     }
 
+    #[doc(alias = "popdown")]
     fn connect_popdown<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn popdown_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScaleButton,
@@ -523,6 +534,7 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         };
     }
 
+    #[doc(alias = "popup")]
     fn connect_popup<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn popup_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScaleButton,
@@ -554,6 +566,7 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         };
     }
 
+    #[doc(alias = "value-changed")]
     fn connect_value_changed<F: Fn(&Self, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn value_changed_trampoline<P, F: Fn(&P, f64) + 'static>(
             this: *mut ffi::GtkScaleButton,
@@ -581,7 +594,8 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         }
     }
 
-    fn connect_property_adjustment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "adjustment")]
+    fn connect_adjustment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_adjustment_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScaleButton,
             _param_spec: glib::ffi::gpointer,
@@ -605,7 +619,8 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         }
     }
 
-    fn connect_property_icons_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "icons")]
+    fn connect_icons_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icons_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScaleButton,
             _param_spec: glib::ffi::gpointer,
@@ -629,7 +644,8 @@ impl<O: IsA<ScaleButton>> ScaleButtonExt for O {
         }
     }
 
-    fn connect_property_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "value")]
+    fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_value_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScaleButton,
             _param_spec: glib::ffi::gpointer,

@@ -25,6 +25,7 @@ impl PageSetup {
     }
 
     #[doc(alias = "gtk_page_setup_new_from_file")]
+    #[doc(alias = "new_from_file")]
     pub fn from_file<P: AsRef<std::path::Path>>(file_name: P) -> Result<PageSetup, glib::Error> {
         assert_initialized_main_thread!();
         unsafe {
@@ -40,6 +41,7 @@ impl PageSetup {
     }
 
     #[doc(alias = "gtk_page_setup_new_from_gvariant")]
+    #[doc(alias = "new_from_gvariant")]
     pub fn from_gvariant(variant: &glib::Variant) -> PageSetup {
         assert_initialized_main_thread!();
         unsafe {
@@ -50,6 +52,7 @@ impl PageSetup {
     }
 
     #[doc(alias = "gtk_page_setup_new_from_key_file")]
+    #[doc(alias = "new_from_key_file")]
     pub fn from_key_file(
         key_file: &glib::KeyFile,
         group_name: Option<&str>,
@@ -76,51 +79,61 @@ impl PageSetup {
     }
 
     #[doc(alias = "gtk_page_setup_get_bottom_margin")]
+    #[doc(alias = "get_bottom_margin")]
     pub fn bottom_margin(&self, unit: Unit) -> f64 {
         unsafe { ffi::gtk_page_setup_get_bottom_margin(self.to_glib_none().0, unit.into_glib()) }
     }
 
     #[doc(alias = "gtk_page_setup_get_left_margin")]
+    #[doc(alias = "get_left_margin")]
     pub fn left_margin(&self, unit: Unit) -> f64 {
         unsafe { ffi::gtk_page_setup_get_left_margin(self.to_glib_none().0, unit.into_glib()) }
     }
 
     #[doc(alias = "gtk_page_setup_get_orientation")]
+    #[doc(alias = "get_orientation")]
     pub fn orientation(&self) -> PageOrientation {
         unsafe { from_glib(ffi::gtk_page_setup_get_orientation(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_page_setup_get_page_height")]
+    #[doc(alias = "get_page_height")]
     pub fn page_height(&self, unit: Unit) -> f64 {
         unsafe { ffi::gtk_page_setup_get_page_height(self.to_glib_none().0, unit.into_glib()) }
     }
 
     #[doc(alias = "gtk_page_setup_get_page_width")]
+    #[doc(alias = "get_page_width")]
     pub fn page_width(&self, unit: Unit) -> f64 {
         unsafe { ffi::gtk_page_setup_get_page_width(self.to_glib_none().0, unit.into_glib()) }
     }
 
     #[doc(alias = "gtk_page_setup_get_paper_height")]
+    #[doc(alias = "get_paper_height")]
     pub fn paper_height(&self, unit: Unit) -> f64 {
         unsafe { ffi::gtk_page_setup_get_paper_height(self.to_glib_none().0, unit.into_glib()) }
     }
 
     #[doc(alias = "gtk_page_setup_get_paper_size")]
+    #[doc(alias = "get_paper_size")]
     pub fn paper_size(&self) -> PaperSize {
         unsafe { from_glib_none(ffi::gtk_page_setup_get_paper_size(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_page_setup_get_paper_width")]
+    #[doc(alias = "get_paper_width")]
     pub fn paper_width(&self, unit: Unit) -> f64 {
         unsafe { ffi::gtk_page_setup_get_paper_width(self.to_glib_none().0, unit.into_glib()) }
     }
 
     #[doc(alias = "gtk_page_setup_get_right_margin")]
+    #[doc(alias = "get_right_margin")]
     pub fn right_margin(&self, unit: Unit) -> f64 {
         unsafe { ffi::gtk_page_setup_get_right_margin(self.to_glib_none().0, unit.into_glib()) }
     }
 
     #[doc(alias = "gtk_page_setup_get_top_margin")]
+    #[doc(alias = "get_top_margin")]
     pub fn top_margin(&self, unit: Unit) -> f64 {
         unsafe { ffi::gtk_page_setup_get_top_margin(self.to_glib_none().0, unit.into_glib()) }
     }

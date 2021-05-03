@@ -24,6 +24,7 @@ glib::wrapper! {
 
 impl TreeModelSort {
     #[doc(alias = "gtk_tree_model_sort_new_with_model")]
+    #[doc(alias = "new_with_model")]
     pub fn with_model<P: IsA<TreeModel>>(child_model: &P) -> TreeModelSort {
         skip_assert_initialized!();
         unsafe {
@@ -78,6 +79,7 @@ pub trait TreeModelSortExt: 'static {
     fn convert_path_to_child_path(&self, sorted_path: &TreePath) -> Option<TreePath>;
 
     #[doc(alias = "gtk_tree_model_sort_get_model")]
+    #[doc(alias = "get_model")]
     fn model(&self) -> TreeModel;
 
     #[doc(alias = "gtk_tree_model_sort_iter_is_valid")]

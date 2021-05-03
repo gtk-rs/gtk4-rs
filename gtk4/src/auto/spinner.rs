@@ -38,6 +38,7 @@ impl Spinner {
     }
 
     #[doc(alias = "gtk_spinner_get_spinning")]
+    #[doc(alias = "get_spinning")]
     pub fn is_spinning(&self) -> bool {
         unsafe { from_glib(ffi::gtk_spinner_get_spinning(self.to_glib_none().0)) }
     }
@@ -63,10 +64,8 @@ impl Spinner {
         }
     }
 
-    pub fn connect_property_spinning_notify<F: Fn(&Spinner) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "spinning")]
+    pub fn connect_spinning_notify<F: Fn(&Spinner) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_spinning_trampoline<F: Fn(&Spinner) + 'static>(
             this: *mut ffi::GtkSpinner,
             _param_spec: glib::ffi::gpointer,

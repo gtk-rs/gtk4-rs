@@ -33,11 +33,13 @@ pub trait PrintOperationPreviewExt: 'static {
     #[doc(alias = "gtk_print_operation_preview_render_page")]
     fn render_page(&self, page_nr: i32);
 
+    #[doc(alias = "got-page-size")]
     fn connect_got_page_size<F: Fn(&Self, &PrintContext, &PageSetup) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
+    #[doc(alias = "ready")]
     fn connect_ready<F: Fn(&Self, &PrintContext) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
@@ -63,6 +65,7 @@ impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
         }
     }
 
+    #[doc(alias = "got-page-size")]
     fn connect_got_page_size<F: Fn(&Self, &PrintContext, &PageSetup) + 'static>(
         &self,
         f: F,
@@ -98,6 +101,7 @@ impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
         }
     }
 
+    #[doc(alias = "ready")]
     fn connect_ready<F: Fn(&Self, &PrintContext) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn ready_trampoline<P, F: Fn(&P, &PrintContext) + 'static>(
             this: *mut ffi::GtkPrintOperationPreview,

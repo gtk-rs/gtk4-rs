@@ -54,6 +54,7 @@ impl TreeView {
     }
 
     #[doc(alias = "gtk_tree_view_new_with_model")]
+    #[doc(alias = "new_with_model")]
     pub fn with_model<P: IsA<TreeModel>>(model: &P) -> TreeView {
         skip_assert_initialized!();
         unsafe {
@@ -603,9 +604,11 @@ pub trait TreeViewExt: 'static {
     fn expand_to_path(&self, path: &TreePath);
 
     #[doc(alias = "gtk_tree_view_get_activate_on_single_click")]
+    #[doc(alias = "get_activate_on_single_click")]
     fn activates_on_single_click(&self) -> bool;
 
     #[doc(alias = "gtk_tree_view_get_background_area")]
+    #[doc(alias = "get_background_area")]
     fn background_area(
         &self,
         path: Option<&TreePath>,
@@ -613,19 +616,24 @@ pub trait TreeViewExt: 'static {
     ) -> gdk::Rectangle;
 
     #[doc(alias = "gtk_tree_view_get_cell_area")]
+    #[doc(alias = "get_cell_area")]
     fn cell_area(&self, path: Option<&TreePath>, column: Option<&TreeViewColumn>)
         -> gdk::Rectangle;
 
     #[doc(alias = "gtk_tree_view_get_column")]
+    #[doc(alias = "get_column")]
     fn column(&self, n: i32) -> Option<TreeViewColumn>;
 
     #[doc(alias = "gtk_tree_view_get_columns")]
+    #[doc(alias = "get_columns")]
     fn columns(&self) -> Vec<TreeViewColumn>;
 
     #[doc(alias = "gtk_tree_view_get_cursor")]
+    #[doc(alias = "get_cursor")]
     fn cursor(&self) -> (Option<TreePath>, Option<TreeViewColumn>);
 
     #[doc(alias = "gtk_tree_view_get_dest_row_at_pos")]
+    #[doc(alias = "get_dest_row_at_pos")]
     fn dest_row_at_pos(
         &self,
         drag_x: i32,
@@ -633,45 +641,59 @@ pub trait TreeViewExt: 'static {
     ) -> Option<(Option<TreePath>, TreeViewDropPosition)>;
 
     #[doc(alias = "gtk_tree_view_get_drag_dest_row")]
+    #[doc(alias = "get_drag_dest_row")]
     fn drag_dest_row(&self) -> (Option<TreePath>, TreeViewDropPosition);
 
     #[doc(alias = "gtk_tree_view_get_enable_search")]
+    #[doc(alias = "get_enable_search")]
     fn enables_search(&self) -> bool;
 
     #[doc(alias = "gtk_tree_view_get_enable_tree_lines")]
+    #[doc(alias = "get_enable_tree_lines")]
     fn enables_tree_lines(&self) -> bool;
 
     #[doc(alias = "gtk_tree_view_get_expander_column")]
+    #[doc(alias = "get_expander_column")]
     fn expander_column(&self) -> Option<TreeViewColumn>;
 
     #[doc(alias = "gtk_tree_view_get_fixed_height_mode")]
+    #[doc(alias = "get_fixed_height_mode")]
     fn is_fixed_height_mode(&self) -> bool;
 
     #[doc(alias = "gtk_tree_view_get_grid_lines")]
+    #[doc(alias = "get_grid_lines")]
     fn grid_lines(&self) -> TreeViewGridLines;
 
     #[doc(alias = "gtk_tree_view_get_headers_clickable")]
+    #[doc(alias = "get_headers_clickable")]
     fn is_headers_clickable(&self) -> bool;
 
     #[doc(alias = "gtk_tree_view_get_headers_visible")]
+    #[doc(alias = "get_headers_visible")]
     fn is_headers_visible(&self) -> bool;
 
     #[doc(alias = "gtk_tree_view_get_hover_expand")]
+    #[doc(alias = "get_hover_expand")]
     fn hover_expands(&self) -> bool;
 
     #[doc(alias = "gtk_tree_view_get_hover_selection")]
+    #[doc(alias = "get_hover_selection")]
     fn is_hover_selection(&self) -> bool;
 
     #[doc(alias = "gtk_tree_view_get_level_indentation")]
+    #[doc(alias = "get_level_indentation")]
     fn level_indentation(&self) -> i32;
 
     #[doc(alias = "gtk_tree_view_get_model")]
+    #[doc(alias = "get_model")]
     fn model(&self) -> Option<TreeModel>;
 
     #[doc(alias = "gtk_tree_view_get_n_columns")]
+    #[doc(alias = "get_n_columns")]
     fn n_columns(&self) -> u32;
 
     #[doc(alias = "gtk_tree_view_get_path_at_pos")]
+    #[doc(alias = "get_path_at_pos")]
     fn path_at_pos(
         &self,
         x: i32,
@@ -679,33 +701,43 @@ pub trait TreeViewExt: 'static {
     ) -> Option<(Option<TreePath>, Option<TreeViewColumn>, i32, i32)>;
 
     #[doc(alias = "gtk_tree_view_get_reorderable")]
+    #[doc(alias = "get_reorderable")]
     fn is_reorderable(&self) -> bool;
 
     //#[doc(alias = "gtk_tree_view_get_row_separator_func")]
+    //#[doc(alias = "get_row_separator_func")]
     //fn row_separator_func(&self) -> Fn(&TreeModel, &TreeIter) -> bool + 'static;
 
     #[doc(alias = "gtk_tree_view_get_rubber_banding")]
+    #[doc(alias = "get_rubber_banding")]
     fn is_rubber_banding(&self) -> bool;
 
     #[doc(alias = "gtk_tree_view_get_search_column")]
+    #[doc(alias = "get_search_column")]
     fn search_column(&self) -> i32;
 
     #[doc(alias = "gtk_tree_view_get_search_entry")]
+    #[doc(alias = "get_search_entry")]
     fn search_entry(&self) -> Option<Editable>;
 
     //#[doc(alias = "gtk_tree_view_get_search_equal_func")]
+    //#[doc(alias = "get_search_equal_func")]
     //fn search_equal_func(&self) -> Fn(&TreeModel, i32, &str, &TreeIter) -> bool + 'static;
 
     #[doc(alias = "gtk_tree_view_get_selection")]
+    #[doc(alias = "get_selection")]
     fn selection(&self) -> TreeSelection;
 
     #[doc(alias = "gtk_tree_view_get_show_expanders")]
+    #[doc(alias = "get_show_expanders")]
     fn shows_expanders(&self) -> bool;
 
     #[doc(alias = "gtk_tree_view_get_tooltip_column")]
+    #[doc(alias = "get_tooltip_column")]
     fn tooltip_column(&self) -> i32;
 
     #[doc(alias = "gtk_tree_view_get_tooltip_context")]
+    #[doc(alias = "get_tooltip_context")]
     fn tooltip_context(
         &self,
         x: i32,
@@ -714,9 +746,11 @@ pub trait TreeViewExt: 'static {
     ) -> Option<(Option<TreeModel>, TreePath, TreeIter)>;
 
     #[doc(alias = "gtk_tree_view_get_visible_range")]
+    #[doc(alias = "get_visible_range")]
     fn visible_range(&self) -> Option<(TreePath, TreePath)>;
 
     #[doc(alias = "gtk_tree_view_get_visible_rect")]
+    #[doc(alias = "get_visible_rect")]
     fn visible_rect(&self) -> gdk::Rectangle;
 
     #[doc(alias = "gtk_tree_view_insert_column")]
@@ -887,16 +921,19 @@ pub trait TreeViewExt: 'static {
     #[doc(alias = "gtk_tree_view_unset_rows_drag_source")]
     fn unset_rows_drag_source(&self);
 
-    #[doc(alias = "get_property_enable_grid_lines")]
+    #[doc(alias = "enable-grid-lines")]
     fn enable_grid_lines(&self) -> TreeViewGridLines;
 
-    #[doc(alias = "set_property_enable_grid_lines")]
+    #[doc(alias = "enable-grid-lines")]
     fn set_enable_grid_lines(&self, enable_grid_lines: TreeViewGridLines);
 
+    #[doc(alias = "columns-changed")]
     fn connect_columns_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[doc(alias = "cursor-changed")]
     fn connect_cursor_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[doc(alias = "expand-collapse-cursor-row")]
     fn connect_expand_collapse_cursor_row<F: Fn(&Self, bool, bool, bool) -> bool + 'static>(
         &self,
         f: F,
@@ -904,6 +941,7 @@ pub trait TreeViewExt: 'static {
 
     fn emit_expand_collapse_cursor_row(&self, object: bool, p0: bool, p1: bool) -> bool;
 
+    #[doc(alias = "move-cursor")]
     fn connect_move_cursor<F: Fn(&Self, MovementStep, i32, bool, bool) -> bool + 'static>(
         &self,
         f: F,
@@ -917,6 +955,7 @@ pub trait TreeViewExt: 'static {
         modify: bool,
     ) -> bool;
 
+    #[doc(alias = "row-activated")]
     fn connect_row_activated<F: Fn(&Self, &TreePath, &TreeViewColumn) + 'static>(
         &self,
         f: F,
@@ -924,25 +963,30 @@ pub trait TreeViewExt: 'static {
 
     fn emit_row_activated(&self, path: &TreePath, column: &TreeViewColumn);
 
+    #[doc(alias = "row-collapsed")]
     fn connect_row_collapsed<F: Fn(&Self, &TreeIter, &TreePath) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
+    #[doc(alias = "row-expanded")]
     fn connect_row_expanded<F: Fn(&Self, &TreeIter, &TreePath) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
+    #[doc(alias = "select-all")]
     fn connect_select_all<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_select_all(&self) -> bool;
 
+    #[doc(alias = "select-cursor-parent")]
     fn connect_select_cursor_parent<F: Fn(&Self) -> bool + 'static>(&self, f: F)
         -> SignalHandlerId;
 
     fn emit_select_cursor_parent(&self) -> bool;
 
+    #[doc(alias = "select-cursor-row")]
     fn connect_select_cursor_row<F: Fn(&Self, bool) -> bool + 'static>(
         &self,
         f: F,
@@ -950,6 +994,7 @@ pub trait TreeViewExt: 'static {
 
     fn emit_select_cursor_row(&self, object: bool) -> bool;
 
+    #[doc(alias = "start-interactive-search")]
     fn connect_start_interactive_search<F: Fn(&Self) -> bool + 'static>(
         &self,
         f: F,
@@ -957,6 +1002,7 @@ pub trait TreeViewExt: 'static {
 
     fn emit_start_interactive_search(&self) -> bool;
 
+    #[doc(alias = "test-collapse-row")]
     fn connect_test_collapse_row<
         F: Fn(&Self, &TreeIter, &TreePath) -> glib::signal::Inhibit + 'static,
     >(
@@ -964,6 +1010,7 @@ pub trait TreeViewExt: 'static {
         f: F,
     ) -> SignalHandlerId;
 
+    #[doc(alias = "test-expand-row")]
     fn connect_test_expand_row<
         F: Fn(&Self, &TreeIter, &TreePath) -> glib::signal::Inhibit + 'static,
     >(
@@ -971,90 +1018,69 @@ pub trait TreeViewExt: 'static {
         f: F,
     ) -> SignalHandlerId;
 
+    #[doc(alias = "toggle-cursor-row")]
     fn connect_toggle_cursor_row<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_toggle_cursor_row(&self) -> bool;
 
+    #[doc(alias = "unselect-all")]
     fn connect_unselect_all<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_unselect_all(&self) -> bool;
 
-    fn connect_property_activate_on_single_click_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "activate-on-single-click")]
+    fn connect_activate_on_single_click_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
-    fn connect_property_enable_grid_lines_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "enable-grid-lines")]
+    fn connect_enable_grid_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_enable_search_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "enable-search")]
+    fn connect_enable_search_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_enable_tree_lines_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "enable-tree-lines")]
+    fn connect_enable_tree_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_expander_column_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "expander-column")]
+    fn connect_expander_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_fixed_height_mode_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "fixed-height-mode")]
+    fn connect_fixed_height_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_headers_clickable_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "headers-clickable")]
+    fn connect_headers_clickable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_headers_visible_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "headers-visible")]
+    fn connect_headers_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_hover_expand_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
+    #[doc(alias = "hover-expand")]
+    fn connect_hover_expand_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_hover_selection_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "hover-selection")]
+    fn connect_hover_selection_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_level_indentation_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "level-indentation")]
+    fn connect_level_indentation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "model")]
+    fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_reorderable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "reorderable")]
+    fn connect_reorderable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_rubber_banding_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "rubber-banding")]
+    fn connect_rubber_banding_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_search_column_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "search-column")]
+    fn connect_search_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_show_expanders_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "show-expanders")]
+    fn connect_show_expanders_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_tooltip_column_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "tooltip-column")]
+    fn connect_tooltip_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<TreeView>> TreeViewExt for O {
@@ -2180,6 +2206,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "columns-changed")]
     fn connect_columns_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn columns_changed_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTreeView,
@@ -2203,6 +2230,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "cursor-changed")]
     fn connect_cursor_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn cursor_changed_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTreeView,
@@ -2226,6 +2254,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "expand-collapse-cursor-row")]
     fn connect_expand_collapse_cursor_row<F: Fn(&Self, bool, bool, bool) -> bool + 'static>(
         &self,
         f: F,
@@ -2276,6 +2305,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             .expect("Return Value for `emit_expand_collapse_cursor_row`")
     }
 
+    #[doc(alias = "move-cursor")]
     fn connect_move_cursor<F: Fn(&Self, MovementStep, i32, bool, bool) -> bool + 'static>(
         &self,
         f: F,
@@ -2334,6 +2364,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             .expect("Return Value for `emit_move_cursor`")
     }
 
+    #[doc(alias = "row-activated")]
     fn connect_row_activated<F: Fn(&Self, &TreePath, &TreeViewColumn) + 'static>(
         &self,
         f: F,
@@ -2377,6 +2408,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         };
     }
 
+    #[doc(alias = "row-collapsed")]
     fn connect_row_collapsed<F: Fn(&Self, &TreeIter, &TreePath) + 'static>(
         &self,
         f: F,
@@ -2412,6 +2444,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "row-expanded")]
     fn connect_row_expanded<F: Fn(&Self, &TreeIter, &TreePath) + 'static>(
         &self,
         f: F,
@@ -2444,6 +2477,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "select-all")]
     fn connect_select_all<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn select_all_trampoline<P, F: Fn(&P) -> bool + 'static>(
             this: *mut ffi::GtkTreeView,
@@ -2479,6 +2513,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             .expect("Return Value for `emit_select_all`")
     }
 
+    #[doc(alias = "select-cursor-parent")]
     fn connect_select_cursor_parent<F: Fn(&Self) -> bool + 'static>(
         &self,
         f: F,
@@ -2517,6 +2552,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             .expect("Return Value for `emit_select_cursor_parent`")
     }
 
+    #[doc(alias = "select-cursor-row")]
     fn connect_select_cursor_row<F: Fn(&Self, bool) -> bool + 'static>(
         &self,
         f: F,
@@ -2560,6 +2596,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             .expect("Return Value for `emit_select_cursor_row`")
     }
 
+    #[doc(alias = "start-interactive-search")]
     fn connect_start_interactive_search<F: Fn(&Self) -> bool + 'static>(
         &self,
         f: F,
@@ -2598,6 +2635,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             .expect("Return Value for `emit_start_interactive_search`")
     }
 
+    #[doc(alias = "test-collapse-row")]
     fn connect_test_collapse_row<
         F: Fn(&Self, &TreeIter, &TreePath) -> glib::signal::Inhibit + 'static,
     >(
@@ -2637,6 +2675,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "test-expand-row")]
     fn connect_test_expand_row<
         F: Fn(&Self, &TreeIter, &TreePath) -> glib::signal::Inhibit + 'static,
     >(
@@ -2676,6 +2715,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
+    #[doc(alias = "toggle-cursor-row")]
     fn connect_toggle_cursor_row<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn toggle_cursor_row_trampoline<P, F: Fn(&P) -> bool + 'static>(
             this: *mut ffi::GtkTreeView,
@@ -2711,6 +2751,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             .expect("Return Value for `emit_toggle_cursor_row`")
     }
 
+    #[doc(alias = "unselect-all")]
     fn connect_unselect_all<F: Fn(&Self) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn unselect_all_trampoline<P, F: Fn(&P) -> bool + 'static>(
             this: *mut ffi::GtkTreeView,
@@ -2746,7 +2787,8 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             .expect("Return Value for `emit_unselect_all`")
     }
 
-    fn connect_property_activate_on_single_click_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "activate-on-single-click")]
+    fn connect_activate_on_single_click_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -2773,10 +2815,8 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn connect_property_enable_grid_lines_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "enable-grid-lines")]
+    fn connect_enable_grid_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_enable_grid_lines_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTreeView,
             _param_spec: glib::ffi::gpointer,
@@ -2800,10 +2840,8 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn connect_property_enable_search_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "enable-search")]
+    fn connect_enable_search_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_enable_search_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTreeView,
             _param_spec: glib::ffi::gpointer,
@@ -2827,10 +2865,8 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn connect_property_enable_tree_lines_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "enable-tree-lines")]
+    fn connect_enable_tree_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_enable_tree_lines_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTreeView,
             _param_spec: glib::ffi::gpointer,
@@ -2854,10 +2890,8 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn connect_property_expander_column_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "expander-column")]
+    fn connect_expander_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expander_column_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTreeView,
             _param_spec: glib::ffi::gpointer,
@@ -2881,10 +2915,8 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn connect_property_fixed_height_mode_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "fixed-height-mode")]
+    fn connect_fixed_height_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_fixed_height_mode_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTreeView,
             _param_spec: glib::ffi::gpointer,
@@ -2908,10 +2940,8 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn connect_property_headers_clickable_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "headers-clickable")]
+    fn connect_headers_clickable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_headers_clickable_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTreeView,
             _param_spec: glib::ffi::gpointer,
@@ -2935,10 +2965,8 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn connect_property_headers_visible_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "headers-visible")]
+    fn connect_headers_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_headers_visible_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTreeView,
             _param_spec: glib::ffi::gpointer,
@@ -2962,10 +2990,8 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn connect_property_hover_expand_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "hover-expand")]
+    fn connect_hover_expand_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_hover_expand_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTreeView,
             _param_spec: glib::ffi::gpointer,
@@ -2989,10 +3015,8 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn connect_property_hover_selection_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "hover-selection")]
+    fn connect_hover_selection_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_hover_selection_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTreeView,
             _param_spec: glib::ffi::gpointer,
@@ -3016,10 +3040,8 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn connect_property_level_indentation_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "level-indentation")]
+    fn connect_level_indentation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_level_indentation_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTreeView,
             _param_spec: glib::ffi::gpointer,
@@ -3043,7 +3065,8 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn connect_property_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "model")]
+    fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTreeView,
             _param_spec: glib::ffi::gpointer,
@@ -3067,7 +3090,8 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn connect_property_reorderable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "reorderable")]
+    fn connect_reorderable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_reorderable_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTreeView,
             _param_spec: glib::ffi::gpointer,
@@ -3091,10 +3115,8 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn connect_property_rubber_banding_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "rubber-banding")]
+    fn connect_rubber_banding_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rubber_banding_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTreeView,
             _param_spec: glib::ffi::gpointer,
@@ -3118,10 +3140,8 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn connect_property_search_column_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "search-column")]
+    fn connect_search_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_search_column_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTreeView,
             _param_spec: glib::ffi::gpointer,
@@ -3145,10 +3165,8 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn connect_property_show_expanders_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "show-expanders")]
+    fn connect_show_expanders_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_expanders_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTreeView,
             _param_spec: glib::ffi::gpointer,
@@ -3172,10 +3190,8 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         }
     }
 
-    fn connect_property_tooltip_column_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "tooltip-column")]
+    fn connect_tooltip_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tooltip_column_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTreeView,
             _param_spec: glib::ffi::gpointer,

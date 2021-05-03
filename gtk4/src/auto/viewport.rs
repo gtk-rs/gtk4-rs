@@ -50,11 +50,13 @@ impl Viewport {
     }
 
     #[doc(alias = "gtk_viewport_get_child")]
+    #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_viewport_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_viewport_get_scroll_to_focus")]
+    #[doc(alias = "get_scroll_to_focus")]
     pub fn is_scroll_to_focus(&self) -> bool {
         unsafe { from_glib(ffi::gtk_viewport_get_scroll_to_focus(self.to_glib_none().0)) }
     }
@@ -79,10 +81,8 @@ impl Viewport {
         }
     }
 
-    pub fn connect_property_child_notify<F: Fn(&Viewport) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "child")]
+    pub fn connect_child_notify<F: Fn(&Viewport) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&Viewport) + 'static>(
             this: *mut ffi::GtkViewport,
             _param_spec: glib::ffi::gpointer,
@@ -104,7 +104,8 @@ impl Viewport {
         }
     }
 
-    pub fn connect_property_scroll_to_focus_notify<F: Fn(&Viewport) + 'static>(
+    #[doc(alias = "scroll-to-focus")]
+    pub fn connect_scroll_to_focus_notify<F: Fn(&Viewport) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

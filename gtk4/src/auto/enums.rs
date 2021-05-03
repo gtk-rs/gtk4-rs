@@ -31,7 +31,7 @@ impl fmt::Display for AccessibleAutocomplete {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "AccessibleAutocomplete::{}",
             match *self {
                 Self::None => "None",
                 Self::Inline => "Inline",
@@ -125,7 +125,7 @@ impl fmt::Display for AccessibleInvalidState {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "AccessibleInvalidState::{}",
             match *self {
                 Self::False => "False",
                 Self::True => "True",
@@ -259,7 +259,7 @@ impl fmt::Display for AccessibleProperty {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "AccessibleProperty::{}",
             match *self {
                 Self::Autocomplete => "Autocomplete",
                 Self::Description => "Description",
@@ -436,7 +436,7 @@ impl fmt::Display for AccessibleRelation {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "AccessibleRelation::{}",
             match *self {
                 Self::ActiveDescendant => "ActiveDescendant",
                 Self::ColCount => "ColCount",
@@ -720,7 +720,7 @@ impl fmt::Display for AccessibleRole {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "AccessibleRole::{}",
             match *self {
                 Self::Alert => "Alert",
                 Self::AlertDialog => "AlertDialog",
@@ -1036,7 +1036,7 @@ impl fmt::Display for AccessibleSort {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "AccessibleSort::{}",
             match *self {
                 Self::None => "None",
                 Self::Ascending => "Ascending",
@@ -1148,7 +1148,7 @@ impl fmt::Display for AccessibleState {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "AccessibleState::{}",
             match *self {
                 Self::Busy => "Busy",
                 Self::Checked => "Checked",
@@ -1252,7 +1252,7 @@ impl fmt::Display for AccessibleTristate {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "AccessibleTristate::{}",
             match *self {
                 Self::False => "False",
                 Self::True => "True",
@@ -1345,7 +1345,7 @@ impl fmt::Display for Align {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "Align::{}",
             match *self {
                 Self::Fill => "Fill",
                 Self::Start => "Start",
@@ -1444,7 +1444,7 @@ impl fmt::Display for ArrowType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "ArrowType::{}",
             match *self {
                 Self::Up => "Up",
                 Self::Down => "Down",
@@ -1545,7 +1545,7 @@ impl fmt::Display for AssistantPageType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "AssistantPageType::{}",
             match *self {
                 Self::Content => "Content",
                 Self::Intro => "Intro",
@@ -1643,7 +1643,7 @@ impl fmt::Display for BaselinePosition {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "BaselinePosition::{}",
             match *self {
                 Self::Top => "Top",
                 Self::Center => "Center",
@@ -1746,7 +1746,7 @@ impl fmt::Display for BorderStyle {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "BorderStyle::{}",
             match *self {
                 Self::None => "None",
                 Self::Hidden => "Hidden",
@@ -1880,7 +1880,7 @@ impl fmt::Display for BuilderError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "BuilderError::{}",
             match *self {
                 Self::InvalidTypeFunction => "InvalidTypeFunction",
                 Self::UnhandledTag => "UnhandledTag",
@@ -2045,7 +2045,7 @@ impl fmt::Display for ButtonsType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "ButtonsType::{}",
             match *self {
                 Self::None => "None",
                 Self::Ok => "Ok",
@@ -2141,7 +2141,7 @@ impl fmt::Display for CellRendererAccelMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "CellRendererAccelMode::{}",
             match *self {
                 Self::Gtk => "Gtk",
                 Self::Other => "Other",
@@ -2227,7 +2227,7 @@ impl fmt::Display for CellRendererMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "CellRendererMode::{}",
             match *self {
                 Self::Inert => "Inert",
                 Self::Activatable => "Activatable",
@@ -2334,7 +2334,7 @@ impl fmt::Display for ConstraintAttribute {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "ConstraintAttribute::{}",
             match *self {
                 Self::None => "None",
                 Self::Left => "Left",
@@ -2450,7 +2450,7 @@ impl fmt::Display for ConstraintRelation {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "ConstraintRelation::{}",
             match *self {
                 Self::Le => "Le",
                 Self::Eq => "Eq",
@@ -2541,7 +2541,7 @@ impl fmt::Display for ConstraintStrength {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "ConstraintStrength::{}",
             match *self {
                 Self::Required => "Required",
                 Self::Strong => "Strong",
@@ -2639,7 +2639,7 @@ impl fmt::Display for ConstraintVflParserError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "ConstraintVflParserError::{}",
             match *self {
                 Self::Symbol => "Symbol",
                 Self::Attribute => "Attribute",
@@ -2764,7 +2764,7 @@ impl fmt::Display for CornerType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "CornerType::{}",
             match *self {
                 Self::TopLeft => "TopLeft",
                 Self::BottomLeft => "BottomLeft",
@@ -2860,7 +2860,7 @@ impl fmt::Display for CssParserError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "CssParserError::{}",
             match *self {
                 Self::Failed => "Failed",
                 Self::Syntax => "Syntax",
@@ -2946,7 +2946,7 @@ impl fmt::Display for CssParserWarning {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "CssParserWarning::{}",
             match *self {
                 Self::Deprecated => "Deprecated",
                 Self::Syntax => "Syntax",
@@ -3012,7 +3012,7 @@ impl fmt::Display for DeleteType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "DeleteType::{}",
             match *self {
                 Self::Chars => "Chars",
                 Self::WordEnds => "WordEnds",
@@ -3122,7 +3122,7 @@ impl fmt::Display for DirectionType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "DirectionType::{}",
             match *self {
                 Self::TabForward => "TabForward",
                 Self::TabBackward => "TabBackward",
@@ -3232,7 +3232,7 @@ impl fmt::Display for EditableProperties {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "EditableProperties::{}",
             match *self {
                 Self::PropText => "PropText",
                 Self::PropCursorPosition => "PropCursorPosition",
@@ -3337,7 +3337,7 @@ impl fmt::Display for EntryIconPosition {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "EntryIconPosition::{}",
             match *self {
                 Self::Primary => "Primary",
                 Self::Secondary => "Secondary",
@@ -3423,7 +3423,7 @@ impl fmt::Display for EventSequenceState {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "EventSequenceState::{}",
             match *self {
                 Self::None => "None",
                 Self::Claimed => "Claimed",
@@ -3512,7 +3512,7 @@ impl fmt::Display for FileChooserAction {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "FileChooserAction::{}",
             match *self {
                 Self::Open => "Open",
                 Self::Save => "Save",
@@ -3603,7 +3603,7 @@ impl fmt::Display for FileChooserError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "FileChooserError::{}",
             match *self {
                 Self::Nonexistent => "Nonexistent",
                 Self::BadFilename => "BadFilename",
@@ -3718,7 +3718,7 @@ impl fmt::Display for FilterChange {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "FilterChange::{}",
             match *self {
                 Self::Different => "Different",
                 Self::LessStrict => "LessStrict",
@@ -3807,7 +3807,7 @@ impl fmt::Display for FilterMatch {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "FilterMatch::{}",
             match *self {
                 Self::Some => "Some",
                 Self::None => "None",
@@ -3896,7 +3896,7 @@ impl fmt::Display for IconSize {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "IconSize::{}",
             match *self {
                 Self::Inherit => "Inherit",
                 Self::Normal => "Normal",
@@ -3983,7 +3983,7 @@ impl fmt::Display for IconThemeError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "IconThemeError::{}",
             match *self {
                 Self::NotFound => "NotFound",
                 Self::Failed => "Failed",
@@ -4096,7 +4096,7 @@ impl fmt::Display for IconViewDropPosition {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "IconViewDropPosition::{}",
             match *self {
                 Self::NoDrop => "NoDrop",
                 Self::DropInto => "DropInto",
@@ -4196,7 +4196,7 @@ impl fmt::Display for ImageType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "ImageType::{}",
             match *self {
                 Self::Empty => "Empty",
                 Self::IconName => "IconName",
@@ -4304,7 +4304,7 @@ impl fmt::Display for InputPurpose {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "InputPurpose::{}",
             match *self {
                 Self::FreeForm => "FreeForm",
                 Self::Alpha => "Alpha",
@@ -4419,7 +4419,7 @@ impl fmt::Display for Justification {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "Justification::{}",
             match *self {
                 Self::Left => "Left",
                 Self::Right => "Right",
@@ -4509,7 +4509,7 @@ impl fmt::Display for LevelBarMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "LevelBarMode::{}",
             match *self {
                 Self::Continuous => "Continuous",
                 Self::Discrete => "Discrete",
@@ -4625,7 +4625,7 @@ impl fmt::Display for License {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "License::{}",
             match *self {
                 Self::Unknown => "Unknown",
                 Self::Custom => "Custom",
@@ -4763,7 +4763,7 @@ impl fmt::Display for MessageType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "MessageType::{}",
             match *self {
                 Self::Info => "Info",
                 Self::Warning => "Warning",
@@ -4872,7 +4872,7 @@ impl fmt::Display for MovementStep {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "MovementStep::{}",
             match *self {
                 Self::LogicalPositions => "LogicalPositions",
                 Self::VisualPositions => "VisualPositions",
@@ -4980,7 +4980,7 @@ impl fmt::Display for NotebookTab {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "NotebookTab::{}",
             match *self {
                 Self::First => "First",
                 Self::Last => "Last",
@@ -5076,7 +5076,7 @@ impl fmt::Display for NumberUpLayout {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "NumberUpLayout::{}",
             match *self {
                 Self::Lrtb => "Lrtb",
                 Self::Lrbt => "Lrbt",
@@ -5180,7 +5180,7 @@ impl fmt::Display for Ordering {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "Ordering::{}",
             match *self {
                 Self::Smaller => "Smaller",
                 Self::Equal => "Equal",
@@ -5267,7 +5267,7 @@ impl fmt::Display for Orientation {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "Orientation::{}",
             match *self {
                 Self::Horizontal => "Horizontal",
                 Self::Vertical => "Vertical",
@@ -5351,7 +5351,7 @@ impl fmt::Display for Overflow {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "Overflow::{}",
             match *self {
                 Self::Visible => "Visible",
                 Self::Hidden => "Hidden",
@@ -5435,7 +5435,7 @@ impl fmt::Display for PackType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "PackType::{}",
             match *self {
                 Self::Start => "Start",
                 Self::End => "End",
@@ -5521,7 +5521,7 @@ impl fmt::Display for PadActionType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "PadActionType::{}",
             match *self {
                 Self::Button => "Button",
                 Self::Ring => "Ring",
@@ -5612,7 +5612,7 @@ impl fmt::Display for PageOrientation {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "PageOrientation::{}",
             match *self {
                 Self::Portrait => "Portrait",
                 Self::Landscape => "Landscape",
@@ -5704,7 +5704,7 @@ impl fmt::Display for PageSet {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "PageSet::{}",
             match *self {
                 Self::All => "All",
                 Self::Even => "Even",
@@ -5795,7 +5795,7 @@ impl fmt::Display for PanDirection {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "PanDirection::{}",
             match *self {
                 Self::Left => "Left",
                 Self::Right => "Right",
@@ -5889,7 +5889,7 @@ impl fmt::Display for PolicyType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "PolicyType::{}",
             match *self {
                 Self::Always => "Always",
                 Self::Automatic => "Automatic",
@@ -5983,7 +5983,7 @@ impl fmt::Display for PositionType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "PositionType::{}",
             match *self {
                 Self::Left => "Left",
                 Self::Right => "Right",
@@ -6075,7 +6075,7 @@ impl fmt::Display for PrintDuplex {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "PrintDuplex::{}",
             match *self {
                 Self::Simplex => "Simplex",
                 Self::Horizontal => "Horizontal",
@@ -6166,7 +6166,7 @@ impl fmt::Display for PrintError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "PrintError::{}",
             match *self {
                 Self::General => "General",
                 Self::InternalError => "InternalError",
@@ -6283,7 +6283,7 @@ impl fmt::Display for PrintOperationAction {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "PrintOperationAction::{}",
             match *self {
                 Self::PrintDialog => "PrintDialog",
                 Self::Print => "Print",
@@ -6377,7 +6377,7 @@ impl fmt::Display for PrintOperationResult {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "PrintOperationResult::{}",
             match *self {
                 Self::Error => "Error",
                 Self::Apply => "Apply",
@@ -6471,7 +6471,7 @@ impl fmt::Display for PrintPages {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "PrintPages::{}",
             match *self {
                 Self::All => "All",
                 Self::Current => "Current",
@@ -6565,7 +6565,7 @@ impl fmt::Display for PrintQuality {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "PrintQuality::{}",
             match *self {
                 Self::Low => "Low",
                 Self::Normal => "Normal",
@@ -6669,7 +6669,7 @@ impl fmt::Display for PrintStatus {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "PrintStatus::{}",
             match *self {
                 Self::Initial => "Initial",
                 Self::Preparing => "Preparing",
@@ -6774,7 +6774,7 @@ impl fmt::Display for PropagationLimit {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "PropagationLimit::{}",
             match *self {
                 Self::None => "None",
                 Self::SameNative => "SameNative",
@@ -6862,7 +6862,7 @@ impl fmt::Display for PropagationPhase {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "PropagationPhase::{}",
             match *self {
                 Self::None => "None",
                 Self::Capture => "Capture",
@@ -6962,7 +6962,7 @@ impl fmt::Display for RecentManagerError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "RecentManagerError::{}",
             match *self {
                 Self::NotFound => "NotFound",
                 Self::InvalidUri => "InvalidUri",
@@ -7103,7 +7103,7 @@ impl fmt::Display for RevealerTransitionType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "RevealerTransitionType::{}",
             match *self {
                 Self::None => "None",
                 Self::Crossfade => "Crossfade",
@@ -7219,7 +7219,7 @@ impl fmt::Display for ScrollStep {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "ScrollStep::{}",
             match *self {
                 Self::Steps => "Steps",
                 Self::Pages => "Pages",
@@ -7343,7 +7343,7 @@ impl fmt::Display for ScrollType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "ScrollType::{}",
             match *self {
                 Self::None => "None",
                 Self::Jump => "Jump",
@@ -7469,7 +7469,7 @@ impl fmt::Display for ScrollablePolicy {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "ScrollablePolicy::{}",
             match *self {
                 Self::Minimum => "Minimum",
                 Self::Natural => "Natural",
@@ -7557,7 +7557,7 @@ impl fmt::Display for SelectionMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "SelectionMode::{}",
             match *self {
                 Self::None => "None",
                 Self::Single => "Single",
@@ -7649,7 +7649,7 @@ impl fmt::Display for SensitivityType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "SensitivityType::{}",
             match *self {
                 Self::Auto => "Auto",
                 Self::On => "On",
@@ -7738,7 +7738,7 @@ impl fmt::Display for ShortcutScope {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "ShortcutScope::{}",
             match *self {
                 Self::Local => "Local",
                 Self::Managed => "Managed",
@@ -7841,7 +7841,7 @@ impl fmt::Display for ShortcutType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "ShortcutType::{}",
             match *self {
                 Self::Accelerator => "Accelerator",
                 Self::GesturePinch => "GesturePinch",
@@ -7955,7 +7955,7 @@ impl fmt::Display for SizeGroupMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "SizeGroupMode::{}",
             match *self {
                 Self::None => "None",
                 Self::Horizontal => "Horizontal",
@@ -8047,7 +8047,7 @@ impl fmt::Display for SizeRequestMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "SizeRequestMode::{}",
             match *self {
                 Self::HeightForWidth => "HeightForWidth",
                 Self::WidthForHeight => "WidthForHeight",
@@ -8134,7 +8134,7 @@ impl fmt::Display for SortType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "SortType::{}",
             match *self {
                 Self::Ascending => "Ascending",
                 Self::Descending => "Descending",
@@ -8222,7 +8222,7 @@ impl fmt::Display for SorterChange {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "SorterChange::{}",
             match *self {
                 Self::Different => "Different",
                 Self::Inverted => "Inverted",
@@ -8314,7 +8314,7 @@ impl fmt::Display for SorterOrder {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "SorterOrder::{}",
             match *self {
                 Self::Partial => "Partial",
                 Self::None => "None",
@@ -8401,7 +8401,7 @@ impl fmt::Display for SpinButtonUpdatePolicy {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "SpinButtonUpdatePolicy::{}",
             match *self {
                 Self::Always => "Always",
                 Self::IfValid => "IfValid",
@@ -8495,7 +8495,7 @@ impl fmt::Display for SpinType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "SpinType::{}",
             match *self {
                 Self::StepForward => "StepForward",
                 Self::StepBackward => "StepBackward",
@@ -8636,7 +8636,7 @@ impl fmt::Display for StackTransitionType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "StackTransitionType::{}",
             match *self {
                 Self::None => "None",
                 Self::Crossfade => "Crossfade",
@@ -8785,7 +8785,7 @@ impl fmt::Display for StringFilterMatchMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "StringFilterMatchMode::{}",
             match *self {
                 Self::Exact => "Exact",
                 Self::Substring => "Substring",
@@ -8878,7 +8878,7 @@ impl fmt::Display for SystemSetting {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "SystemSetting::{}",
             match *self {
                 Self::Dpi => "Dpi",
                 Self::FontName => "FontName",
@@ -8973,7 +8973,7 @@ impl fmt::Display for TextDirection {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "TextDirection::{}",
             match *self {
                 Self::None => "None",
                 Self::Ltr => "Ltr",
@@ -9060,7 +9060,7 @@ impl fmt::Display for TextExtendSelection {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "TextExtendSelection::{}",
             match *self {
                 Self::Word => "Word",
                 Self::Line => "Line",
@@ -9144,7 +9144,7 @@ impl fmt::Display for TextViewLayer {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "TextViewLayer::{}",
             match *self {
                 Self::BelowText => "BelowText",
                 Self::AboveText => "AboveText",
@@ -9236,7 +9236,7 @@ impl fmt::Display for TextWindowType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "TextWindowType::{}",
             match *self {
                 Self::Widget => "Widget",
                 Self::Text => "Text",
@@ -9334,7 +9334,7 @@ impl fmt::Display for TreeViewColumnSizing {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "TreeViewColumnSizing::{}",
             match *self {
                 Self::GrowOnly => "GrowOnly",
                 Self::Autosize => "Autosize",
@@ -9425,7 +9425,7 @@ impl fmt::Display for TreeViewDropPosition {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "TreeViewDropPosition::{}",
             match *self {
                 Self::Before => "Before",
                 Self::After => "After",
@@ -9519,7 +9519,7 @@ impl fmt::Display for TreeViewGridLines {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "TreeViewGridLines::{}",
             match *self {
                 Self::None => "None",
                 Self::Horizontal => "Horizontal",
@@ -9613,7 +9613,7 @@ impl fmt::Display for Unit {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "Unit::{}",
             match *self {
                 Self::None => "None",
                 Self::Points => "Points",
@@ -9707,7 +9707,7 @@ impl fmt::Display for WrapMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "WrapMode::{}",
             match *self {
                 Self::None => "None",
                 Self::Char => "Char",

@@ -47,16 +47,19 @@ impl Printer {
     }
 
     //#[doc(alias = "gtk_printer_get_backend")]
+    //#[doc(alias = "get_backend")]
     //pub fn backend(&self) -> /*Ignored*/PrintBackend {
     //    unsafe { TODO: call ffi:gtk_printer_get_backend() }
     //}
 
     #[doc(alias = "gtk_printer_get_capabilities")]
+    #[doc(alias = "get_capabilities")]
     pub fn capabilities(&self) -> PrintCapabilities {
         unsafe { from_glib(ffi::gtk_printer_get_capabilities(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_printer_get_default_page_size")]
+    #[doc(alias = "get_default_page_size")]
     pub fn default_page_size(&self) -> PageSetup {
         unsafe {
             from_glib_full(ffi::gtk_printer_get_default_page_size(
@@ -66,11 +69,13 @@ impl Printer {
     }
 
     #[doc(alias = "gtk_printer_get_description")]
+    #[doc(alias = "get_description")]
     pub fn description(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_printer_get_description(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_printer_get_hard_margins")]
+    #[doc(alias = "get_hard_margins")]
     pub fn hard_margins(&self) -> Option<(f64, f64, f64, f64)> {
         unsafe {
             let mut top = mem::MaybeUninit::uninit();
@@ -97,6 +102,7 @@ impl Printer {
     }
 
     #[doc(alias = "gtk_printer_get_hard_margins_for_paper_size")]
+    #[doc(alias = "get_hard_margins_for_paper_size")]
     pub fn hard_margins_for_paper_size(
         &self,
         paper_size: &mut PaperSize,
@@ -127,26 +133,31 @@ impl Printer {
     }
 
     #[doc(alias = "gtk_printer_get_icon_name")]
+    #[doc(alias = "get_icon_name")]
     pub fn icon_name(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_printer_get_icon_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_printer_get_job_count")]
+    #[doc(alias = "get_job_count")]
     pub fn job_count(&self) -> i32 {
         unsafe { ffi::gtk_printer_get_job_count(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_printer_get_location")]
+    #[doc(alias = "get_location")]
     pub fn location(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_printer_get_location(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_printer_get_name")]
+    #[doc(alias = "get_name")]
     pub fn name(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_printer_get_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_printer_get_state_message")]
+    #[doc(alias = "get_state_message")]
     pub fn state_message(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_printer_get_state_message(self.to_glib_none().0)) }
     }
@@ -197,6 +208,7 @@ impl Printer {
         }
     }
 
+    #[doc(alias = "details-acquired")]
     pub fn connect_details_acquired<F: Fn(&Printer, bool) + 'static>(
         &self,
         f: F,
@@ -222,7 +234,8 @@ impl Printer {
         }
     }
 
-    pub fn connect_property_accepting_jobs_notify<F: Fn(&Printer) + 'static>(
+    #[doc(alias = "accepting-jobs")]
+    pub fn connect_accepting_jobs_notify<F: Fn(&Printer) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -247,10 +260,8 @@ impl Printer {
         }
     }
 
-    pub fn connect_property_icon_name_notify<F: Fn(&Printer) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "icon-name")]
+    pub fn connect_icon_name_notify<F: Fn(&Printer) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<F: Fn(&Printer) + 'static>(
             this: *mut ffi::GtkPrinter,
             _param_spec: glib::ffi::gpointer,
@@ -272,10 +283,8 @@ impl Printer {
         }
     }
 
-    pub fn connect_property_job_count_notify<F: Fn(&Printer) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "job-count")]
+    pub fn connect_job_count_notify<F: Fn(&Printer) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_job_count_trampoline<F: Fn(&Printer) + 'static>(
             this: *mut ffi::GtkPrinter,
             _param_spec: glib::ffi::gpointer,
@@ -297,10 +306,8 @@ impl Printer {
         }
     }
 
-    pub fn connect_property_location_notify<F: Fn(&Printer) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "location")]
+    pub fn connect_location_notify<F: Fn(&Printer) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_location_trampoline<F: Fn(&Printer) + 'static>(
             this: *mut ffi::GtkPrinter,
             _param_spec: glib::ffi::gpointer,
@@ -322,10 +329,8 @@ impl Printer {
         }
     }
 
-    pub fn connect_property_paused_notify<F: Fn(&Printer) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "paused")]
+    pub fn connect_paused_notify<F: Fn(&Printer) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_paused_trampoline<F: Fn(&Printer) + 'static>(
             this: *mut ffi::GtkPrinter,
             _param_spec: glib::ffi::gpointer,
@@ -347,10 +352,8 @@ impl Printer {
         }
     }
 
-    pub fn connect_property_state_message_notify<F: Fn(&Printer) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "state-message")]
+    pub fn connect_state_message_notify<F: Fn(&Printer) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_state_message_trampoline<F: Fn(&Printer) + 'static>(
             this: *mut ffi::GtkPrinter,
             _param_spec: glib::ffi::gpointer,

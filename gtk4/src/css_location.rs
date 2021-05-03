@@ -24,22 +24,27 @@ impl CssLocation {
         })
     }
 
+    #[doc(alias = "get_bytes")]
     pub fn bytes(&self) -> usize {
         self.0.bytes
     }
 
+    #[doc(alias = "get_chars")]
     pub fn chars(&self) -> usize {
         self.0.chars
     }
 
+    #[doc(alias = "get_lines")]
     pub fn lines(&self) -> usize {
         self.0.lines
     }
 
+    #[doc(alias = "get_line_bytes")]
     pub fn line_bytes(&self) -> usize {
         self.0.line_bytes
     }
 
+    #[doc(alias = "get_line_chars")]
     pub fn line_chars(&self) -> usize {
         self.0.line_chars
     }

@@ -42,16 +42,19 @@ impl DragSource {
     }
 
     #[doc(alias = "gtk_drag_source_get_actions")]
+    #[doc(alias = "get_actions")]
     pub fn actions(&self) -> gdk::DragAction {
         unsafe { from_glib(ffi::gtk_drag_source_get_actions(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_drag_source_get_content")]
+    #[doc(alias = "get_content")]
     pub fn content(&self) -> Option<gdk::ContentProvider> {
         unsafe { from_glib_none(ffi::gtk_drag_source_get_content(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_drag_source_get_drag")]
+    #[doc(alias = "get_drag")]
     pub fn drag(&self) -> Option<gdk::Drag> {
         unsafe { from_glib_none(ffi::gtk_drag_source_get_drag(self.to_glib_none().0)) }
     }
@@ -85,6 +88,7 @@ impl DragSource {
         }
     }
 
+    #[doc(alias = "drag-begin")]
     pub fn connect_drag_begin<F: Fn(&DragSource, &gdk::Drag) + 'static>(
         &self,
         f: F,
@@ -110,6 +114,7 @@ impl DragSource {
         }
     }
 
+    #[doc(alias = "drag-cancel")]
     pub fn connect_drag_cancel<
         F: Fn(&DragSource, &gdk::Drag, gdk::DragCancelReason) -> bool + 'static,
     >(
@@ -145,6 +150,7 @@ impl DragSource {
         }
     }
 
+    #[doc(alias = "drag-end")]
     pub fn connect_drag_end<F: Fn(&DragSource, &gdk::Drag, bool) + 'static>(
         &self,
         f: F,
@@ -175,6 +181,7 @@ impl DragSource {
         }
     }
 
+    #[doc(alias = "prepare")]
     pub fn connect_prepare<
         F: Fn(&DragSource, f64, f64) -> Option<gdk::ContentProvider> + 'static,
     >(
@@ -205,10 +212,8 @@ impl DragSource {
         }
     }
 
-    pub fn connect_property_actions_notify<F: Fn(&DragSource) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "actions")]
+    pub fn connect_actions_notify<F: Fn(&DragSource) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_actions_trampoline<F: Fn(&DragSource) + 'static>(
             this: *mut ffi::GtkDragSource,
             _param_spec: glib::ffi::gpointer,
@@ -230,10 +235,8 @@ impl DragSource {
         }
     }
 
-    pub fn connect_property_content_notify<F: Fn(&DragSource) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "content")]
+    pub fn connect_content_notify<F: Fn(&DragSource) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_content_trampoline<F: Fn(&DragSource) + 'static>(
             this: *mut ffi::GtkDragSource,
             _param_spec: glib::ffi::gpointer,

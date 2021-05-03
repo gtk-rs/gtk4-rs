@@ -21,6 +21,7 @@ pub trait ColorChooserImpl: ObjectImpl {
         self.parent_color_activated(color_chooser, rgba);
     }
 
+    #[doc(alias = "get_rgba")]
     fn rgba(&self, color_chooser: &Self::Type) -> RGBA;
     fn set_rgba(&self, color_chooser: &Self::Type, rgba: RGBA);
 }

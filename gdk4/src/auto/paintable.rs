@@ -48,18 +48,23 @@ pub trait PaintableExt: 'static {
     ) -> (f64, f64);
 
     #[doc(alias = "gdk_paintable_get_current_image")]
+    #[doc(alias = "get_current_image")]
     fn current_image(&self) -> Option<Paintable>;
 
     #[doc(alias = "gdk_paintable_get_flags")]
+    #[doc(alias = "get_flags")]
     fn flags(&self) -> PaintableFlags;
 
     #[doc(alias = "gdk_paintable_get_intrinsic_aspect_ratio")]
+    #[doc(alias = "get_intrinsic_aspect_ratio")]
     fn intrinsic_aspect_ratio(&self) -> f64;
 
     #[doc(alias = "gdk_paintable_get_intrinsic_height")]
+    #[doc(alias = "get_intrinsic_height")]
     fn intrinsic_height(&self) -> i32;
 
     #[doc(alias = "gdk_paintable_get_intrinsic_width")]
+    #[doc(alias = "get_intrinsic_width")]
     fn intrinsic_width(&self) -> i32;
 
     #[doc(alias = "gdk_paintable_invalidate_contents")]
@@ -71,8 +76,10 @@ pub trait PaintableExt: 'static {
     #[doc(alias = "gdk_paintable_snapshot")]
     fn snapshot(&self, snapshot: &Snapshot, width: f64, height: f64);
 
+    #[doc(alias = "invalidate-contents")]
     fn connect_invalidate_contents<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[doc(alias = "invalidate-size")]
     fn connect_invalidate_size<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
@@ -149,6 +156,7 @@ impl<O: IsA<Paintable>> PaintableExt for O {
         }
     }
 
+    #[doc(alias = "invalidate-contents")]
     fn connect_invalidate_contents<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn invalidate_contents_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkPaintable,
@@ -172,6 +180,7 @@ impl<O: IsA<Paintable>> PaintableExt for O {
         }
     }
 
+    #[doc(alias = "invalidate-size")]
     fn connect_invalidate_size<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn invalidate_size_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkPaintable,

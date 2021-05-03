@@ -6,6 +6,7 @@ use glib::translate::*;
 use glib::{Cast, Object};
 
 pub trait FilterImpl: FilterImplExt + ObjectImpl {
+    #[doc(alias = "get_strictness")]
     fn strictness(&self, filter: &Self::Type) -> FilterMatch {
         self.parent_strictness(filter)
     }

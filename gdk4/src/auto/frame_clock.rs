@@ -37,6 +37,7 @@ impl FrameClock {
     }
 
     #[doc(alias = "gdk_frame_clock_get_current_timings")]
+    #[doc(alias = "get_current_timings")]
     pub fn current_timings(&self) -> Option<FrameTimings> {
         unsafe {
             from_glib_none(ffi::gdk_frame_clock_get_current_timings(
@@ -46,26 +47,31 @@ impl FrameClock {
     }
 
     #[doc(alias = "gdk_frame_clock_get_fps")]
+    #[doc(alias = "get_fps")]
     pub fn fps(&self) -> f64 {
         unsafe { ffi::gdk_frame_clock_get_fps(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_frame_clock_get_frame_counter")]
+    #[doc(alias = "get_frame_counter")]
     pub fn frame_counter(&self) -> i64 {
         unsafe { ffi::gdk_frame_clock_get_frame_counter(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_frame_clock_get_frame_time")]
+    #[doc(alias = "get_frame_time")]
     pub fn frame_time(&self) -> i64 {
         unsafe { ffi::gdk_frame_clock_get_frame_time(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_frame_clock_get_history_start")]
+    #[doc(alias = "get_history_start")]
     pub fn history_start(&self) -> i64 {
         unsafe { ffi::gdk_frame_clock_get_history_start(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_frame_clock_get_refresh_info")]
+    #[doc(alias = "get_refresh_info")]
     pub fn refresh_info(&self, base_time: i64) -> (i64, i64) {
         unsafe {
             let mut refresh_interval_return = mem::MaybeUninit::uninit();
@@ -83,6 +89,7 @@ impl FrameClock {
     }
 
     #[doc(alias = "gdk_frame_clock_get_timings")]
+    #[doc(alias = "get_timings")]
     pub fn timings(&self, frame_counter: i64) -> Option<FrameTimings> {
         unsafe {
             from_glib_none(ffi::gdk_frame_clock_get_timings(
@@ -99,6 +106,7 @@ impl FrameClock {
         }
     }
 
+    #[doc(alias = "after-paint")]
     pub fn connect_after_paint<F: Fn(&FrameClock) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn after_paint_trampoline<F: Fn(&FrameClock) + 'static>(
             this: *mut ffi::GdkFrameClock,
@@ -120,6 +128,7 @@ impl FrameClock {
         }
     }
 
+    #[doc(alias = "before-paint")]
     pub fn connect_before_paint<F: Fn(&FrameClock) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn before_paint_trampoline<F: Fn(&FrameClock) + 'static>(
             this: *mut ffi::GdkFrameClock,
@@ -141,6 +150,7 @@ impl FrameClock {
         }
     }
 
+    #[doc(alias = "flush-events")]
     pub fn connect_flush_events<F: Fn(&FrameClock) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn flush_events_trampoline<F: Fn(&FrameClock) + 'static>(
             this: *mut ffi::GdkFrameClock,
@@ -162,6 +172,7 @@ impl FrameClock {
         }
     }
 
+    #[doc(alias = "layout")]
     pub fn connect_layout<F: Fn(&FrameClock) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn layout_trampoline<F: Fn(&FrameClock) + 'static>(
             this: *mut ffi::GdkFrameClock,
@@ -183,6 +194,7 @@ impl FrameClock {
         }
     }
 
+    #[doc(alias = "paint")]
     pub fn connect_paint<F: Fn(&FrameClock) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn paint_trampoline<F: Fn(&FrameClock) + 'static>(
             this: *mut ffi::GdkFrameClock,
@@ -204,6 +216,7 @@ impl FrameClock {
         }
     }
 
+    #[doc(alias = "resume-events")]
     pub fn connect_resume_events<F: Fn(&FrameClock) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn resume_events_trampoline<F: Fn(&FrameClock) + 'static>(
             this: *mut ffi::GdkFrameClock,
@@ -225,6 +238,7 @@ impl FrameClock {
         }
     }
 
+    #[doc(alias = "update")]
     pub fn connect_update<F: Fn(&FrameClock) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn update_trampoline<F: Fn(&FrameClock) + 'static>(
             this: *mut ffi::GdkFrameClock,

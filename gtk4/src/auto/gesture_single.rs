@@ -108,18 +108,23 @@ pub const NONE_GESTURE_SINGLE: Option<&GestureSingle> = None;
 
 pub trait GestureSingleExt: 'static {
     #[doc(alias = "gtk_gesture_single_get_button")]
+    #[doc(alias = "get_button")]
     fn button(&self) -> u32;
 
     #[doc(alias = "gtk_gesture_single_get_current_button")]
+    #[doc(alias = "get_current_button")]
     fn current_button(&self) -> u32;
 
     #[doc(alias = "gtk_gesture_single_get_current_sequence")]
+    #[doc(alias = "get_current_sequence")]
     fn current_sequence(&self) -> Option<gdk::EventSequence>;
 
     #[doc(alias = "gtk_gesture_single_get_exclusive")]
+    #[doc(alias = "get_exclusive")]
     fn is_exclusive(&self) -> bool;
 
     #[doc(alias = "gtk_gesture_single_get_touch_only")]
+    #[doc(alias = "get_touch_only")]
     fn is_touch_only(&self) -> bool;
 
     #[doc(alias = "gtk_gesture_single_set_button")]
@@ -131,11 +136,14 @@ pub trait GestureSingleExt: 'static {
     #[doc(alias = "gtk_gesture_single_set_touch_only")]
     fn set_touch_only(&self, touch_only: bool);
 
-    fn connect_property_button_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "button")]
+    fn connect_button_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_exclusive_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "exclusive")]
+    fn connect_exclusive_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_touch_only_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "touch-only")]
+    fn connect_touch_only_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<GestureSingle>> GestureSingleExt for O {
@@ -195,7 +203,8 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
         }
     }
 
-    fn connect_property_button_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "button")]
+    fn connect_button_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_button_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkGestureSingle,
             _param_spec: glib::ffi::gpointer,
@@ -219,7 +228,8 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
         }
     }
 
-    fn connect_property_exclusive_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "exclusive")]
+    fn connect_exclusive_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_exclusive_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkGestureSingle,
             _param_spec: glib::ffi::gpointer,
@@ -243,7 +253,8 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
         }
     }
 
-    fn connect_property_touch_only_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "touch-only")]
+    fn connect_touch_only_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_touch_only_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkGestureSingle,
             _param_spec: glib::ffi::gpointer,

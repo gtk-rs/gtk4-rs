@@ -17,31 +17,37 @@ glib::wrapper! {
 
 impl FrameTimings {
     #[doc(alias = "gdk_frame_timings_get_complete")]
+    #[doc(alias = "get_complete")]
     pub fn is_complete(&self) -> bool {
         unsafe { from_glib(ffi::gdk_frame_timings_get_complete(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_frame_timings_get_frame_counter")]
+    #[doc(alias = "get_frame_counter")]
     pub fn frame_counter(&self) -> i64 {
         unsafe { ffi::gdk_frame_timings_get_frame_counter(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_frame_timings_get_frame_time")]
+    #[doc(alias = "get_frame_time")]
     pub fn frame_time(&self) -> i64 {
         unsafe { ffi::gdk_frame_timings_get_frame_time(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_frame_timings_get_predicted_presentation_time")]
+    #[doc(alias = "get_predicted_presentation_time")]
     pub fn predicted_presentation_time(&self) -> i64 {
         unsafe { ffi::gdk_frame_timings_get_predicted_presentation_time(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_frame_timings_get_presentation_time")]
+    #[doc(alias = "get_presentation_time")]
     pub fn presentation_time(&self) -> i64 {
         unsafe { ffi::gdk_frame_timings_get_presentation_time(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_frame_timings_get_refresh_interval")]
+    #[doc(alias = "get_refresh_interval")]
     pub fn refresh_interval(&self) -> i64 {
         unsafe { ffi::gdk_frame_timings_get_refresh_interval(self.to_glib_none().0) }
     }

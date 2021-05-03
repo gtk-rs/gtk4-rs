@@ -37,6 +37,7 @@ impl DropTargetAsync {
     }
 
     #[doc(alias = "gtk_drop_target_async_get_actions")]
+    #[doc(alias = "get_actions")]
     pub fn actions(&self) -> gdk::DragAction {
         unsafe {
             from_glib(ffi::gtk_drop_target_async_get_actions(
@@ -46,6 +47,7 @@ impl DropTargetAsync {
     }
 
     #[doc(alias = "gtk_drop_target_async_get_formats")]
+    #[doc(alias = "get_formats")]
     pub fn formats(&self) -> Option<gdk::ContentFormats> {
         unsafe {
             from_glib_full(ffi::gtk_drop_target_async_get_formats(
@@ -75,6 +77,7 @@ impl DropTargetAsync {
         }
     }
 
+    #[doc(alias = "accept")]
     pub fn connect_accept<F: Fn(&DropTargetAsync, &gdk::Drop) -> bool + 'static>(
         &self,
         f: F,
@@ -102,6 +105,7 @@ impl DropTargetAsync {
         }
     }
 
+    #[doc(alias = "drag-enter")]
     pub fn connect_drag_enter<
         F: Fn(&DropTargetAsync, &gdk::Drop, f64, f64) -> gdk::DragAction + 'static,
     >(
@@ -133,6 +137,7 @@ impl DropTargetAsync {
         }
     }
 
+    #[doc(alias = "drag-leave")]
     pub fn connect_drag_leave<F: Fn(&DropTargetAsync, &gdk::Drop) + 'static>(
         &self,
         f: F,
@@ -160,6 +165,7 @@ impl DropTargetAsync {
         }
     }
 
+    #[doc(alias = "drag-motion")]
     pub fn connect_drag_motion<
         F: Fn(&DropTargetAsync, &gdk::Drop, f64, f64) -> gdk::DragAction + 'static,
     >(
@@ -191,6 +197,7 @@ impl DropTargetAsync {
         }
     }
 
+    #[doc(alias = "drop")]
     pub fn connect_drop<F: Fn(&DropTargetAsync, &gdk::Drop, f64, f64) -> bool + 'static>(
         &self,
         f: F,
@@ -220,7 +227,8 @@ impl DropTargetAsync {
         }
     }
 
-    pub fn connect_property_actions_notify<F: Fn(&DropTargetAsync) + 'static>(
+    #[doc(alias = "actions")]
+    pub fn connect_actions_notify<F: Fn(&DropTargetAsync) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -245,7 +253,8 @@ impl DropTargetAsync {
         }
     }
 
-    pub fn connect_property_formats_notify<F: Fn(&DropTargetAsync) + 'static>(
+    #[doc(alias = "formats")]
+    pub fn connect_formats_notify<F: Fn(&DropTargetAsync) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

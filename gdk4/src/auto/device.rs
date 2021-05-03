@@ -29,71 +29,85 @@ glib::wrapper! {
 
 impl Device {
     #[doc(alias = "gdk_device_get_caps_lock_state")]
+    #[doc(alias = "get_caps_lock_state")]
     pub fn is_caps_locked(&self) -> bool {
         unsafe { from_glib(ffi::gdk_device_get_caps_lock_state(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_device_tool")]
+    #[doc(alias = "get_device_tool")]
     pub fn device_tool(&self) -> Option<DeviceTool> {
         unsafe { from_glib_none(ffi::gdk_device_get_device_tool(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_direction")]
+    #[doc(alias = "get_direction")]
     pub fn direction(&self) -> pango::Direction {
         unsafe { from_glib(ffi::gdk_device_get_direction(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_display")]
+    #[doc(alias = "get_display")]
     pub fn display(&self) -> Option<Display> {
         unsafe { from_glib_none(ffi::gdk_device_get_display(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_has_cursor")]
+    #[doc(alias = "get_has_cursor")]
     pub fn has_cursor(&self) -> bool {
         unsafe { from_glib(ffi::gdk_device_get_has_cursor(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_modifier_state")]
+    #[doc(alias = "get_modifier_state")]
     pub fn modifier_state(&self) -> ModifierType {
         unsafe { from_glib(ffi::gdk_device_get_modifier_state(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_name")]
+    #[doc(alias = "get_name")]
     pub fn name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gdk_device_get_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_num_lock_state")]
+    #[doc(alias = "get_num_lock_state")]
     pub fn is_num_locked(&self) -> bool {
         unsafe { from_glib(ffi::gdk_device_get_num_lock_state(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_num_touches")]
+    #[doc(alias = "get_num_touches")]
     pub fn num_touches(&self) -> u32 {
         unsafe { ffi::gdk_device_get_num_touches(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_device_get_product_id")]
+    #[doc(alias = "get_product_id")]
     pub fn product_id(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gdk_device_get_product_id(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_scroll_lock_state")]
+    #[doc(alias = "get_scroll_lock_state")]
     pub fn is_scroll_locked(&self) -> bool {
         unsafe { from_glib(ffi::gdk_device_get_scroll_lock_state(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_seat")]
+    #[doc(alias = "get_seat")]
     pub fn seat(&self) -> Option<Seat> {
         unsafe { from_glib_none(ffi::gdk_device_get_seat(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_source")]
+    #[doc(alias = "get_source")]
     pub fn source(&self) -> InputSource {
         unsafe { from_glib(ffi::gdk_device_get_source(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_device_get_surface_at_position")]
+    #[doc(alias = "get_surface_at_position")]
     pub fn surface_at_position(&self) -> (Option<Surface>, f64, f64) {
         unsafe {
             let mut win_x = mem::MaybeUninit::uninit();
@@ -110,6 +124,7 @@ impl Device {
     }
 
     #[doc(alias = "gdk_device_get_vendor_id")]
+    #[doc(alias = "get_vendor_id")]
     pub fn vendor_id(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gdk_device_get_vendor_id(self.to_glib_none().0)) }
     }
@@ -119,7 +134,7 @@ impl Device {
         unsafe { from_glib(ffi::gdk_device_has_bidi_layouts(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "get_property_n_axes")]
+    #[doc(alias = "n-axes")]
     pub fn n_axes(&self) -> u32 {
         unsafe {
             let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
@@ -134,7 +149,6 @@ impl Device {
         }
     }
 
-    #[doc(alias = "set_property_seat")]
     pub fn set_seat(&self, seat: Option<&Seat>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -145,7 +159,6 @@ impl Device {
         }
     }
 
-    #[doc(alias = "get_property_tool")]
     pub fn tool(&self) -> Option<DeviceTool> {
         unsafe {
             let mut value = glib::Value::from_type(<DeviceTool as StaticType>::static_type());
@@ -160,6 +173,7 @@ impl Device {
         }
     }
 
+    #[doc(alias = "changed")]
     pub fn connect_changed<F: Fn(&Device) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<F: Fn(&Device) + 'static>(
             this: *mut ffi::GdkDevice,
@@ -181,6 +195,7 @@ impl Device {
         }
     }
 
+    #[doc(alias = "tool-changed")]
     pub fn connect_tool_changed<F: Fn(&Device, &DeviceTool) + 'static>(
         &self,
         f: F,
@@ -206,7 +221,8 @@ impl Device {
         }
     }
 
-    pub fn connect_property_caps_lock_state_notify<F: Fn(&Device) + 'static>(
+    #[doc(alias = "caps-lock-state")]
+    pub fn connect_caps_lock_state_notify<F: Fn(&Device) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -231,10 +247,8 @@ impl Device {
         }
     }
 
-    pub fn connect_property_direction_notify<F: Fn(&Device) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "direction")]
+    pub fn connect_direction_notify<F: Fn(&Device) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_direction_trampoline<F: Fn(&Device) + 'static>(
             this: *mut ffi::GdkDevice,
             _param_spec: glib::ffi::gpointer,
@@ -256,7 +270,8 @@ impl Device {
         }
     }
 
-    pub fn connect_property_has_bidi_layouts_notify<F: Fn(&Device) + 'static>(
+    #[doc(alias = "has-bidi-layouts")]
+    pub fn connect_has_bidi_layouts_notify<F: Fn(&Device) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -281,10 +296,8 @@ impl Device {
         }
     }
 
-    pub fn connect_property_modifier_state_notify<F: Fn(&Device) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "modifier-state")]
+    pub fn connect_modifier_state_notify<F: Fn(&Device) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_modifier_state_trampoline<F: Fn(&Device) + 'static>(
             this: *mut ffi::GdkDevice,
             _param_spec: glib::ffi::gpointer,
@@ -306,10 +319,8 @@ impl Device {
         }
     }
 
-    pub fn connect_property_n_axes_notify<F: Fn(&Device) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "n-axes")]
+    pub fn connect_n_axes_notify<F: Fn(&Device) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_n_axes_trampoline<F: Fn(&Device) + 'static>(
             this: *mut ffi::GdkDevice,
             _param_spec: glib::ffi::gpointer,
@@ -331,10 +342,8 @@ impl Device {
         }
     }
 
-    pub fn connect_property_num_lock_state_notify<F: Fn(&Device) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "num-lock-state")]
+    pub fn connect_num_lock_state_notify<F: Fn(&Device) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_num_lock_state_trampoline<F: Fn(&Device) + 'static>(
             this: *mut ffi::GdkDevice,
             _param_spec: glib::ffi::gpointer,
@@ -356,7 +365,8 @@ impl Device {
         }
     }
 
-    pub fn connect_property_scroll_lock_state_notify<F: Fn(&Device) + 'static>(
+    #[doc(alias = "scroll-lock-state")]
+    pub fn connect_scroll_lock_state_notify<F: Fn(&Device) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -381,7 +391,8 @@ impl Device {
         }
     }
 
-    pub fn connect_property_seat_notify<F: Fn(&Device) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "seat")]
+    pub fn connect_seat_notify<F: Fn(&Device) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_seat_trampoline<F: Fn(&Device) + 'static>(
             this: *mut ffi::GdkDevice,
             _param_spec: glib::ffi::gpointer,
@@ -403,7 +414,8 @@ impl Device {
         }
     }
 
-    pub fn connect_property_tool_notify<F: Fn(&Device) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "tool")]
+    pub fn connect_tool_notify<F: Fn(&Device) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tool_trampoline<F: Fn(&Device) + 'static>(
             this: *mut ffi::GdkDevice,
             _param_spec: glib::ffi::gpointer,

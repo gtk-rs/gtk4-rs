@@ -13,6 +13,7 @@ define_event! {
 
 impl TouchEvent {
     #[doc(alias = "gdk_touch_event_get_emulating_pointer")]
+    #[doc(alias = "get_emulating_pointer")]
     pub fn emulates_pointer(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_touch_event_get_emulating_pointer(

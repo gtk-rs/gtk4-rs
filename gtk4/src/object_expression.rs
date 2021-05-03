@@ -21,6 +21,7 @@ impl ObjectExpression {
     }
 
     #[doc(alias = "gtk_object_expression_get_object")]
+    #[doc(alias = "get_object")]
     pub fn object(&self) -> Option<Object> {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_object_expression_get_object(self.to_glib_none().0)) }

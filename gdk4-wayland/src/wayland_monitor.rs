@@ -8,6 +8,7 @@ use wayland_client::Proxy;
 
 impl WaylandMonitor {
     #[doc(alias = "gdk_wayland_monitor_get_wl_output")]
+    #[doc(alias = "get_wl_output")]
     pub fn wl_output(&self) -> WlOutput {
         unsafe {
             let ptr = ffi::gdk_wayland_monitor_get_wl_output(self.to_glib_none().0);

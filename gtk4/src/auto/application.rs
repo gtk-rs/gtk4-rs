@@ -113,24 +113,31 @@ pub trait GtkApplicationExt: 'static {
     fn add_window<P: IsA<Window>>(&self, window: &P);
 
     #[doc(alias = "gtk_application_get_accels_for_action")]
+    #[doc(alias = "get_accels_for_action")]
     fn accels_for_action(&self, detailed_action_name: &str) -> Vec<glib::GString>;
 
     #[doc(alias = "gtk_application_get_actions_for_accel")]
+    #[doc(alias = "get_actions_for_accel")]
     fn actions_for_accel(&self, accel: &str) -> Vec<glib::GString>;
 
     #[doc(alias = "gtk_application_get_active_window")]
+    #[doc(alias = "get_active_window")]
     fn active_window(&self) -> Option<Window>;
 
     #[doc(alias = "gtk_application_get_menu_by_id")]
+    #[doc(alias = "get_menu_by_id")]
     fn menu_by_id(&self, id: &str) -> Option<gio::Menu>;
 
     #[doc(alias = "gtk_application_get_menubar")]
+    #[doc(alias = "get_menubar")]
     fn menubar(&self) -> Option<gio::MenuModel>;
 
     #[doc(alias = "gtk_application_get_window_by_id")]
+    #[doc(alias = "get_window_by_id")]
     fn window_by_id(&self, id: u32) -> Option<Window>;
 
     #[doc(alias = "gtk_application_get_windows")]
+    #[doc(alias = "get_windows")]
     fn windows(&self) -> Vec<Window>;
 
     #[doc(alias = "gtk_application_inhibit")]
@@ -156,37 +163,35 @@ pub trait GtkApplicationExt: 'static {
     #[doc(alias = "gtk_application_uninhibit")]
     fn uninhibit(&self, cookie: u32);
 
-    #[doc(alias = "get_property_register_session")]
+    #[doc(alias = "register-session")]
     fn is_register_session(&self) -> bool;
 
-    #[doc(alias = "set_property_register_session")]
+    #[doc(alias = "register-session")]
     fn set_register_session(&self, register_session: bool);
 
-    #[doc(alias = "get_property_screensaver_active")]
+    #[doc(alias = "screensaver-active")]
     fn is_screensaver_active(&self) -> bool;
 
+    #[doc(alias = "query-end")]
     fn connect_query_end<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[doc(alias = "window-added")]
     fn connect_window_added<F: Fn(&Self, &Window) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[doc(alias = "window-removed")]
     fn connect_window_removed<F: Fn(&Self, &Window) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_active_window_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "active-window")]
+    fn connect_active_window_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_menubar_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "menubar")]
+    fn connect_menubar_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_register_session_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "register-session")]
+    fn connect_register_session_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_screensaver_active_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "screensaver-active")]
+    fn connect_screensaver_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<Application>> GtkApplicationExt for O {
@@ -355,6 +360,7 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
         }
     }
 
+    #[doc(alias = "query-end")]
     fn connect_query_end<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn query_end_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkApplication,
@@ -378,6 +384,7 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
         }
     }
 
+    #[doc(alias = "window-added")]
     fn connect_window_added<F: Fn(&Self, &Window) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn window_added_trampoline<P, F: Fn(&P, &Window) + 'static>(
             this: *mut ffi::GtkApplication,
@@ -405,6 +412,7 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
         }
     }
 
+    #[doc(alias = "window-removed")]
     fn connect_window_removed<F: Fn(&Self, &Window) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn window_removed_trampoline<P, F: Fn(&P, &Window) + 'static>(
             this: *mut ffi::GtkApplication,
@@ -432,10 +440,8 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
         }
     }
 
-    fn connect_property_active_window_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "active-window")]
+    fn connect_active_window_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_active_window_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkApplication,
             _param_spec: glib::ffi::gpointer,
@@ -459,7 +465,8 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
         }
     }
 
-    fn connect_property_menubar_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "menubar")]
+    fn connect_menubar_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_menubar_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkApplication,
             _param_spec: glib::ffi::gpointer,
@@ -483,10 +490,8 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
         }
     }
 
-    fn connect_property_register_session_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "register-session")]
+    fn connect_register_session_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_register_session_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkApplication,
             _param_spec: glib::ffi::gpointer,
@@ -510,10 +515,8 @@ impl<O: IsA<Application>> GtkApplicationExt for O {
         }
     }
 
-    fn connect_property_screensaver_active_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "screensaver-active")]
+    fn connect_screensaver_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_screensaver_active_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkApplication,
             _param_spec: glib::ffi::gpointer,

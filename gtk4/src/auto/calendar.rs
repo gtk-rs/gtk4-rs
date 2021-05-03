@@ -45,11 +45,13 @@ impl Calendar {
     }
 
     #[doc(alias = "gtk_calendar_get_date")]
+    #[doc(alias = "get_date")]
     pub fn date(&self) -> glib::DateTime {
         unsafe { from_glib_full(ffi::gtk_calendar_get_date(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_calendar_get_day_is_marked")]
+    #[doc(alias = "get_day_is_marked")]
     pub fn day_is_marked(&self, day: u32) -> bool {
         unsafe {
             from_glib(ffi::gtk_calendar_get_day_is_marked(
@@ -60,16 +62,19 @@ impl Calendar {
     }
 
     #[doc(alias = "gtk_calendar_get_show_day_names")]
+    #[doc(alias = "get_show_day_names")]
     pub fn shows_day_names(&self) -> bool {
         unsafe { from_glib(ffi::gtk_calendar_get_show_day_names(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_calendar_get_show_heading")]
+    #[doc(alias = "get_show_heading")]
     pub fn shows_heading(&self) -> bool {
         unsafe { from_glib(ffi::gtk_calendar_get_show_heading(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_calendar_get_show_week_numbers")]
+    #[doc(alias = "get_show_week_numbers")]
     pub fn shows_week_numbers(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_calendar_get_show_week_numbers(
@@ -120,7 +125,6 @@ impl Calendar {
         }
     }
 
-    #[doc(alias = "get_property_day")]
     pub fn day(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
@@ -133,7 +137,6 @@ impl Calendar {
         }
     }
 
-    #[doc(alias = "set_property_day")]
     pub fn set_day(&self, day: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -144,7 +147,6 @@ impl Calendar {
         }
     }
 
-    #[doc(alias = "get_property_month")]
     pub fn month(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
@@ -159,7 +161,6 @@ impl Calendar {
         }
     }
 
-    #[doc(alias = "set_property_month")]
     pub fn set_month(&self, month: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -170,7 +171,6 @@ impl Calendar {
         }
     }
 
-    #[doc(alias = "get_property_year")]
     pub fn year(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
@@ -185,7 +185,6 @@ impl Calendar {
         }
     }
 
-    #[doc(alias = "set_property_year")]
     pub fn set_year(&self, year: i32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -196,6 +195,7 @@ impl Calendar {
         }
     }
 
+    #[doc(alias = "day-selected")]
     pub fn connect_day_selected<F: Fn(&Calendar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn day_selected_trampoline<F: Fn(&Calendar) + 'static>(
             this: *mut ffi::GtkCalendar,
@@ -217,6 +217,7 @@ impl Calendar {
         }
     }
 
+    #[doc(alias = "next-month")]
     pub fn connect_next_month<F: Fn(&Calendar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn next_month_trampoline<F: Fn(&Calendar) + 'static>(
             this: *mut ffi::GtkCalendar,
@@ -238,6 +239,7 @@ impl Calendar {
         }
     }
 
+    #[doc(alias = "next-year")]
     pub fn connect_next_year<F: Fn(&Calendar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn next_year_trampoline<F: Fn(&Calendar) + 'static>(
             this: *mut ffi::GtkCalendar,
@@ -259,6 +261,7 @@ impl Calendar {
         }
     }
 
+    #[doc(alias = "prev-month")]
     pub fn connect_prev_month<F: Fn(&Calendar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn prev_month_trampoline<F: Fn(&Calendar) + 'static>(
             this: *mut ffi::GtkCalendar,
@@ -280,6 +283,7 @@ impl Calendar {
         }
     }
 
+    #[doc(alias = "prev-year")]
     pub fn connect_prev_year<F: Fn(&Calendar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn prev_year_trampoline<F: Fn(&Calendar) + 'static>(
             this: *mut ffi::GtkCalendar,
@@ -301,7 +305,8 @@ impl Calendar {
         }
     }
 
-    pub fn connect_property_day_notify<F: Fn(&Calendar) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "day")]
+    pub fn connect_day_notify<F: Fn(&Calendar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_day_trampoline<F: Fn(&Calendar) + 'static>(
             this: *mut ffi::GtkCalendar,
             _param_spec: glib::ffi::gpointer,
@@ -323,10 +328,8 @@ impl Calendar {
         }
     }
 
-    pub fn connect_property_month_notify<F: Fn(&Calendar) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "month")]
+    pub fn connect_month_notify<F: Fn(&Calendar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_month_trampoline<F: Fn(&Calendar) + 'static>(
             this: *mut ffi::GtkCalendar,
             _param_spec: glib::ffi::gpointer,
@@ -348,7 +351,8 @@ impl Calendar {
         }
     }
 
-    pub fn connect_property_show_day_names_notify<F: Fn(&Calendar) + 'static>(
+    #[doc(alias = "show-day-names")]
+    pub fn connect_show_day_names_notify<F: Fn(&Calendar) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -373,10 +377,8 @@ impl Calendar {
         }
     }
 
-    pub fn connect_property_show_heading_notify<F: Fn(&Calendar) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "show-heading")]
+    pub fn connect_show_heading_notify<F: Fn(&Calendar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_heading_trampoline<F: Fn(&Calendar) + 'static>(
             this: *mut ffi::GtkCalendar,
             _param_spec: glib::ffi::gpointer,
@@ -398,7 +400,8 @@ impl Calendar {
         }
     }
 
-    pub fn connect_property_show_week_numbers_notify<F: Fn(&Calendar) + 'static>(
+    #[doc(alias = "show-week-numbers")]
+    pub fn connect_show_week_numbers_notify<F: Fn(&Calendar) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -423,10 +426,8 @@ impl Calendar {
         }
     }
 
-    pub fn connect_property_year_notify<F: Fn(&Calendar) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "year")]
+    pub fn connect_year_notify<F: Fn(&Calendar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_year_trampoline<F: Fn(&Calendar) + 'static>(
             this: *mut ffi::GtkCalendar,
             _param_spec: glib::ffi::gpointer,

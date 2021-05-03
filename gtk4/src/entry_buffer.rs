@@ -23,15 +23,19 @@ pub trait EntryBufferExtManual: 'static {
     fn delete_text(&self, position: u16, n_chars: Option<u16>) -> u16;
 
     #[doc(alias = "gtk_entry_buffer_get_bytes")]
+    #[doc(alias = "get_bytes")]
     fn bytes(&self) -> usize;
 
     #[doc(alias = "gtk_entry_buffer_get_length")]
+    #[doc(alias = "get_length")]
     fn length(&self) -> u16;
 
     #[doc(alias = "gtk_entry_buffer_get_max_length")]
+    #[doc(alias = "get_max_length")]
     fn max_length(&self) -> Option<u16>;
 
     #[doc(alias = "gtk_entry_buffer_get_text")]
+    #[doc(alias = "get_text")]
     fn text(&self) -> String;
 
     #[doc(alias = "gtk_entry_buffer_insert_text")]

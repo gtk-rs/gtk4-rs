@@ -13,6 +13,7 @@ define_event! {
 
 impl ButtonEvent {
     #[doc(alias = "gdk_button_event_get_button")]
+    #[doc(alias = "get_button")]
     pub fn button(&self) -> u32 {
         unsafe { ffi::gdk_button_event_get_button(self.to_glib_none().0) }
     }

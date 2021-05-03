@@ -36,7 +36,7 @@ glib::wrapper! {
 }
 
 impl ShortcutsGroup {
-    #[doc(alias = "set_property_accel_size_group")]
+    #[doc(alias = "accel-size-group")]
     pub fn set_accel_size_group(&self, accel_size_group: Option<&SizeGroup>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -47,7 +47,6 @@ impl ShortcutsGroup {
         }
     }
 
-    #[doc(alias = "get_property_height")]
     pub fn height(&self) -> u32 {
         unsafe {
             let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
@@ -62,7 +61,6 @@ impl ShortcutsGroup {
         }
     }
 
-    #[doc(alias = "get_property_title")]
     pub fn title(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -77,7 +75,6 @@ impl ShortcutsGroup {
         }
     }
 
-    #[doc(alias = "set_property_title")]
     pub fn set_title(&self, title: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -88,7 +85,7 @@ impl ShortcutsGroup {
         }
     }
 
-    #[doc(alias = "set_property_title_size_group")]
+    #[doc(alias = "title-size-group")]
     pub fn set_title_size_group(&self, title_size_group: Option<&SizeGroup>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -99,7 +96,6 @@ impl ShortcutsGroup {
         }
     }
 
-    #[doc(alias = "get_property_view")]
     pub fn view(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -114,7 +110,6 @@ impl ShortcutsGroup {
         }
     }
 
-    #[doc(alias = "set_property_view")]
     pub fn set_view(&self, view: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -125,7 +120,8 @@ impl ShortcutsGroup {
         }
     }
 
-    pub fn connect_property_accel_size_group_notify<F: Fn(&ShortcutsGroup) + 'static>(
+    #[doc(alias = "accel-size-group")]
+    pub fn connect_accel_size_group_notify<F: Fn(&ShortcutsGroup) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -152,10 +148,8 @@ impl ShortcutsGroup {
         }
     }
 
-    pub fn connect_property_height_notify<F: Fn(&ShortcutsGroup) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "height")]
+    pub fn connect_height_notify<F: Fn(&ShortcutsGroup) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_height_trampoline<F: Fn(&ShortcutsGroup) + 'static>(
             this: *mut ffi::GtkShortcutsGroup,
             _param_spec: glib::ffi::gpointer,
@@ -177,10 +171,8 @@ impl ShortcutsGroup {
         }
     }
 
-    pub fn connect_property_title_notify<F: Fn(&ShortcutsGroup) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "title")]
+    pub fn connect_title_notify<F: Fn(&ShortcutsGroup) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&ShortcutsGroup) + 'static>(
             this: *mut ffi::GtkShortcutsGroup,
             _param_spec: glib::ffi::gpointer,
@@ -202,7 +194,8 @@ impl ShortcutsGroup {
         }
     }
 
-    pub fn connect_property_title_size_group_notify<F: Fn(&ShortcutsGroup) + 'static>(
+    #[doc(alias = "title-size-group")]
+    pub fn connect_title_size_group_notify<F: Fn(&ShortcutsGroup) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -229,10 +222,8 @@ impl ShortcutsGroup {
         }
     }
 
-    pub fn connect_property_view_notify<F: Fn(&ShortcutsGroup) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "view")]
+    pub fn connect_view_notify<F: Fn(&ShortcutsGroup) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_view_trampoline<F: Fn(&ShortcutsGroup) + 'static>(
             this: *mut ffi::GtkShortcutsGroup,
             _param_spec: glib::ffi::gpointer,

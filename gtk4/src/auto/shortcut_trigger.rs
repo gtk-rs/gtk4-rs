@@ -46,6 +46,7 @@ pub trait ShortcutTriggerExt: 'static {
     fn to_label(&self, display: &gdk::Display) -> glib::GString;
 
     #[doc(alias = "gtk_shortcut_trigger_to_string")]
+    #[doc(alias = "to_string")]
     fn to_str(&self) -> glib::GString;
 }
 

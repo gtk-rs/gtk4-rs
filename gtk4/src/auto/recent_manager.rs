@@ -32,6 +32,7 @@ impl RecentManager {
     }
 
     #[doc(alias = "gtk_recent_manager_get_default")]
+    #[doc(alias = "get_default")]
     pub fn default() -> RecentManager {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_recent_manager_get_default()) }
@@ -79,6 +80,7 @@ pub trait RecentManagerExt: 'static {
     fn add_item(&self, uri: &str) -> bool;
 
     #[doc(alias = "gtk_recent_manager_get_items")]
+    #[doc(alias = "get_items")]
     fn items(&self) -> Vec<RecentInfo>;
 
     #[doc(alias = "gtk_recent_manager_has_item")]
@@ -96,15 +98,15 @@ pub trait RecentManagerExt: 'static {
     #[doc(alias = "gtk_recent_manager_remove_item")]
     fn remove_item(&self, uri: &str) -> Result<(), glib::Error>;
 
-    #[doc(alias = "get_property_filename")]
     fn filename(&self) -> Option<glib::GString>;
 
-    #[doc(alias = "get_property_size")]
     fn size(&self) -> i32;
 
+    #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "size")]
+    fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<RecentManager>> RecentManagerExt for O {
@@ -234,6 +236,7 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
         }
     }
 
+    #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkRecentManager,
@@ -257,7 +260,8 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
         }
     }
 
-    fn connect_property_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "size")]
+    fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_size_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkRecentManager,
             _param_spec: glib::ffi::gpointer,

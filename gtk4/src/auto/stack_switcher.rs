@@ -39,6 +39,7 @@ impl StackSwitcher {
     }
 
     #[doc(alias = "gtk_stack_switcher_get_stack")]
+    #[doc(alias = "get_stack")]
     pub fn stack(&self) -> Option<Stack> {
         unsafe { from_glib_none(ffi::gtk_stack_switcher_get_stack(self.to_glib_none().0)) }
     }
@@ -50,10 +51,8 @@ impl StackSwitcher {
         }
     }
 
-    pub fn connect_property_stack_notify<F: Fn(&StackSwitcher) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "stack")]
+    pub fn connect_stack_notify<F: Fn(&StackSwitcher) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_stack_trampoline<F: Fn(&StackSwitcher) + 'static>(
             this: *mut ffi::GtkStackSwitcher,
             _param_spec: glib::ffi::gpointer,

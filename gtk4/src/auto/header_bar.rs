@@ -38,6 +38,7 @@ impl HeaderBar {
     }
 
     #[doc(alias = "gtk_header_bar_get_decoration_layout")]
+    #[doc(alias = "get_decoration_layout")]
     pub fn decoration_layout(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_header_bar_get_decoration_layout(
@@ -47,6 +48,7 @@ impl HeaderBar {
     }
 
     #[doc(alias = "gtk_header_bar_get_show_title_buttons")]
+    #[doc(alias = "get_show_title_buttons")]
     pub fn shows_title_buttons(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_header_bar_get_show_title_buttons(
@@ -56,6 +58,7 @@ impl HeaderBar {
     }
 
     #[doc(alias = "gtk_header_bar_get_title_widget")]
+    #[doc(alias = "get_title_widget")]
     pub fn title_widget(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_header_bar_get_title_widget(self.to_glib_none().0)) }
     }
@@ -108,7 +111,8 @@ impl HeaderBar {
         }
     }
 
-    pub fn connect_property_decoration_layout_notify<F: Fn(&HeaderBar) + 'static>(
+    #[doc(alias = "decoration-layout")]
+    pub fn connect_decoration_layout_notify<F: Fn(&HeaderBar) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -133,7 +137,8 @@ impl HeaderBar {
         }
     }
 
-    pub fn connect_property_show_title_buttons_notify<F: Fn(&HeaderBar) + 'static>(
+    #[doc(alias = "show-title-buttons")]
+    pub fn connect_show_title_buttons_notify<F: Fn(&HeaderBar) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -158,7 +163,8 @@ impl HeaderBar {
         }
     }
 
-    pub fn connect_property_title_widget_notify<F: Fn(&HeaderBar) + 'static>(
+    #[doc(alias = "title-widget")]
+    pub fn connect_title_widget_notify<F: Fn(&HeaderBar) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

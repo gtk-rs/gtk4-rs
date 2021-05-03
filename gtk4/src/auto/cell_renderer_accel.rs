@@ -33,7 +33,7 @@ impl CellRendererAccel {
         unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_accel_new()).unsafe_cast() }
     }
 
-    #[doc(alias = "get_property_accel_key")]
+    #[doc(alias = "accel-key")]
     pub fn accel_key(&self) -> u32 {
         unsafe {
             let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
@@ -48,7 +48,7 @@ impl CellRendererAccel {
         }
     }
 
-    #[doc(alias = "set_property_accel_key")]
+    #[doc(alias = "accel-key")]
     pub fn set_accel_key(&self, accel_key: u32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -59,7 +59,7 @@ impl CellRendererAccel {
         }
     }
 
-    #[doc(alias = "get_property_accel_mode")]
+    #[doc(alias = "accel-mode")]
     pub fn accel_mode(&self) -> CellRendererAccelMode {
         unsafe {
             let mut value =
@@ -75,7 +75,7 @@ impl CellRendererAccel {
         }
     }
 
-    #[doc(alias = "set_property_accel_mode")]
+    #[doc(alias = "accel-mode")]
     pub fn set_accel_mode(&self, accel_mode: CellRendererAccelMode) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -86,7 +86,7 @@ impl CellRendererAccel {
         }
     }
 
-    #[doc(alias = "get_property_accel_mods")]
+    #[doc(alias = "accel-mods")]
     pub fn accel_mods(&self) -> gdk::ModifierType {
         unsafe {
             let mut value =
@@ -102,7 +102,7 @@ impl CellRendererAccel {
         }
     }
 
-    #[doc(alias = "set_property_accel_mods")]
+    #[doc(alias = "accel-mods")]
     pub fn set_accel_mods(&self, accel_mods: gdk::ModifierType) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -113,7 +113,6 @@ impl CellRendererAccel {
         }
     }
 
-    #[doc(alias = "get_property_keycode")]
     pub fn keycode(&self) -> u32 {
         unsafe {
             let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
@@ -128,7 +127,6 @@ impl CellRendererAccel {
         }
     }
 
-    #[doc(alias = "set_property_keycode")]
     pub fn set_keycode(&self, keycode: u32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -139,6 +137,7 @@ impl CellRendererAccel {
         }
     }
 
+    #[doc(alias = "accel-cleared")]
     pub fn connect_accel_cleared<F: Fn(&CellRendererAccel, TreePath) + 'static>(
         &self,
         f: F,
@@ -167,6 +166,7 @@ impl CellRendererAccel {
         }
     }
 
+    #[doc(alias = "accel-edited")]
     pub fn connect_accel_edited<
         F: Fn(&CellRendererAccel, TreePath, u32, gdk::ModifierType, u32) + 'static,
     >(
@@ -206,7 +206,8 @@ impl CellRendererAccel {
         }
     }
 
-    pub fn connect_property_accel_key_notify<F: Fn(&CellRendererAccel) + 'static>(
+    #[doc(alias = "accel-key")]
+    pub fn connect_accel_key_notify<F: Fn(&CellRendererAccel) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -231,7 +232,8 @@ impl CellRendererAccel {
         }
     }
 
-    pub fn connect_property_accel_mode_notify<F: Fn(&CellRendererAccel) + 'static>(
+    #[doc(alias = "accel-mode")]
+    pub fn connect_accel_mode_notify<F: Fn(&CellRendererAccel) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -256,7 +258,8 @@ impl CellRendererAccel {
         }
     }
 
-    pub fn connect_property_accel_mods_notify<F: Fn(&CellRendererAccel) + 'static>(
+    #[doc(alias = "accel-mods")]
+    pub fn connect_accel_mods_notify<F: Fn(&CellRendererAccel) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -281,7 +284,8 @@ impl CellRendererAccel {
         }
     }
 
-    pub fn connect_property_keycode_notify<F: Fn(&CellRendererAccel) + 'static>(
+    #[doc(alias = "keycode")]
+    pub fn connect_keycode_notify<F: Fn(&CellRendererAccel) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

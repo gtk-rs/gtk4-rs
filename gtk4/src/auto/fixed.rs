@@ -329,12 +329,15 @@ pub const NONE_FIXED: Option<&Fixed> = None;
 
 pub trait FixedExt: 'static {
     #[doc(alias = "gtk_fixed_get_child_position")]
+    #[doc(alias = "get_child_position")]
     fn child_position<P: IsA<Widget>>(&self, widget: &P) -> (f64, f64);
 
     #[doc(alias = "gtk_fixed_get_child_transform")]
+    #[doc(alias = "get_child_transform")]
     fn child_transform<P: IsA<Widget>>(&self, widget: &P) -> Option<gsk::Transform>;
 
     #[doc(alias = "gtk_fixed_move")]
+    #[doc(alias = "move")]
     fn move_<P: IsA<Widget>>(&self, widget: &P, x: f64, y: f64);
 
     #[doc(alias = "gtk_fixed_put")]

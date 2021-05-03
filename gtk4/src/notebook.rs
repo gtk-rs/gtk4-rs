@@ -22,12 +22,15 @@ pub trait NotebookExtManual: 'static {
         V: IsA<Widget>;
 
     #[doc(alias = "gtk_notebook_get_current_page")]
+    #[doc(alias = "get_current_page")]
     fn current_page(&self) -> Option<u32>;
 
     #[doc(alias = "gtk_notebook_get_n_pages")]
+    #[doc(alias = "get_n_pages")]
     fn n_pages(&self) -> u32;
 
     #[doc(alias = "gtk_notebook_get_nth_page")]
+    #[doc(alias = "get_nth_page")]
     fn nth_page(&self, page_num: Option<u32>) -> Option<Widget>;
 
     #[doc(alias = "gtk_notebook_insert_page")]

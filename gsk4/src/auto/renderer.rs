@@ -22,6 +22,7 @@ glib::wrapper! {
 
 impl Renderer {
     #[doc(alias = "gsk_renderer_new_for_surface")]
+    #[doc(alias = "new_for_surface")]
     pub fn for_surface(surface: &gdk::Surface) -> Option<Renderer> {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gsk_renderer_new_for_surface(surface.to_glib_none().0)) }
@@ -32,6 +33,7 @@ pub const NONE_RENDERER: Option<&Renderer> = None;
 
 pub trait RendererExt: 'static {
     #[doc(alias = "gsk_renderer_get_surface")]
+    #[doc(alias = "get_surface")]
     fn surface(&self) -> Option<gdk::Surface>;
 
     #[doc(alias = "gsk_renderer_is_realized")]
@@ -43,9 +45,11 @@ pub trait RendererExt: 'static {
     #[doc(alias = "gsk_renderer_unrealize")]
     fn unrealize(&self);
 
-    fn connect_property_realized_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "realized")]
+    fn connect_realized_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_surface_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "surface")]
+    fn connect_surface_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<Renderer>> RendererExt for O {
@@ -87,7 +91,8 @@ impl<O: IsA<Renderer>> RendererExt for O {
         }
     }
 
-    fn connect_property_realized_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "realized")]
+    fn connect_realized_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_realized_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GskRenderer,
             _param_spec: glib::ffi::gpointer,
@@ -111,7 +116,8 @@ impl<O: IsA<Renderer>> RendererExt for O {
         }
     }
 
-    fn connect_property_surface_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "surface")]
+    fn connect_surface_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_surface_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GskRenderer,
             _param_spec: glib::ffi::gpointer,

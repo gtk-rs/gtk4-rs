@@ -41,6 +41,7 @@ impl EmojiChooser {
         unsafe { Widget::from_glib_none(ffi::gtk_emoji_chooser_new()).unsafe_cast() }
     }
 
+    #[doc(alias = "emoji-picked")]
     pub fn connect_emoji_picked<F: Fn(&EmojiChooser, &str) + 'static>(
         &self,
         f: F,

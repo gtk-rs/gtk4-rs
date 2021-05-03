@@ -46,11 +46,13 @@ impl ScrolledWindow {
     }
 
     #[doc(alias = "gtk_scrolled_window_get_child")]
+    #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_scrolled_window_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_scrolled_window_get_hadjustment")]
+    #[doc(alias = "get_hadjustment")]
     pub fn hadjustment(&self) -> Option<Adjustment> {
         unsafe {
             from_glib_none(ffi::gtk_scrolled_window_get_hadjustment(
@@ -60,6 +62,7 @@ impl ScrolledWindow {
     }
 
     #[doc(alias = "gtk_scrolled_window_get_has_frame")]
+    #[doc(alias = "get_has_frame")]
     pub fn has_frame(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_scrolled_window_get_has_frame(
@@ -69,6 +72,7 @@ impl ScrolledWindow {
     }
 
     #[doc(alias = "gtk_scrolled_window_get_hscrollbar")]
+    #[doc(alias = "get_hscrollbar")]
     pub fn hscrollbar(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_scrolled_window_get_hscrollbar(
@@ -78,6 +82,7 @@ impl ScrolledWindow {
     }
 
     #[doc(alias = "gtk_scrolled_window_get_kinetic_scrolling")]
+    #[doc(alias = "get_kinetic_scrolling")]
     pub fn is_kinetic_scrolling(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_scrolled_window_get_kinetic_scrolling(
@@ -87,26 +92,31 @@ impl ScrolledWindow {
     }
 
     #[doc(alias = "gtk_scrolled_window_get_max_content_height")]
+    #[doc(alias = "get_max_content_height")]
     pub fn max_content_height(&self) -> i32 {
         unsafe { ffi::gtk_scrolled_window_get_max_content_height(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_scrolled_window_get_max_content_width")]
+    #[doc(alias = "get_max_content_width")]
     pub fn max_content_width(&self) -> i32 {
         unsafe { ffi::gtk_scrolled_window_get_max_content_width(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_scrolled_window_get_min_content_height")]
+    #[doc(alias = "get_min_content_height")]
     pub fn min_content_height(&self) -> i32 {
         unsafe { ffi::gtk_scrolled_window_get_min_content_height(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_scrolled_window_get_min_content_width")]
+    #[doc(alias = "get_min_content_width")]
     pub fn min_content_width(&self) -> i32 {
         unsafe { ffi::gtk_scrolled_window_get_min_content_width(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_scrolled_window_get_overlay_scrolling")]
+    #[doc(alias = "get_overlay_scrolling")]
     pub fn is_overlay_scrolling(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_scrolled_window_get_overlay_scrolling(
@@ -116,6 +126,7 @@ impl ScrolledWindow {
     }
 
     #[doc(alias = "gtk_scrolled_window_get_placement")]
+    #[doc(alias = "get_placement")]
     pub fn placement(&self) -> CornerType {
         unsafe {
             from_glib(ffi::gtk_scrolled_window_get_placement(
@@ -125,6 +136,7 @@ impl ScrolledWindow {
     }
 
     #[doc(alias = "gtk_scrolled_window_get_policy")]
+    #[doc(alias = "get_policy")]
     pub fn policy(&self) -> (PolicyType, PolicyType) {
         unsafe {
             let mut hscrollbar_policy = mem::MaybeUninit::uninit();
@@ -141,6 +153,7 @@ impl ScrolledWindow {
     }
 
     #[doc(alias = "gtk_scrolled_window_get_propagate_natural_height")]
+    #[doc(alias = "get_propagate_natural_height")]
     pub fn propagates_natural_height(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_scrolled_window_get_propagate_natural_height(
@@ -150,6 +163,7 @@ impl ScrolledWindow {
     }
 
     #[doc(alias = "gtk_scrolled_window_get_propagate_natural_width")]
+    #[doc(alias = "get_propagate_natural_width")]
     pub fn propagates_natural_width(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_scrolled_window_get_propagate_natural_width(
@@ -159,6 +173,7 @@ impl ScrolledWindow {
     }
 
     #[doc(alias = "gtk_scrolled_window_get_vadjustment")]
+    #[doc(alias = "get_vadjustment")]
     pub fn vadjustment(&self) -> Option<Adjustment> {
         unsafe {
             from_glib_none(ffi::gtk_scrolled_window_get_vadjustment(
@@ -168,6 +183,7 @@ impl ScrolledWindow {
     }
 
     #[doc(alias = "gtk_scrolled_window_get_vscrollbar")]
+    #[doc(alias = "get_vscrollbar")]
     pub fn vscrollbar(&self) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_scrolled_window_get_vscrollbar(
@@ -309,7 +325,7 @@ impl ScrolledWindow {
         }
     }
 
-    #[doc(alias = "get_property_hscrollbar_policy")]
+    #[doc(alias = "hscrollbar-policy")]
     pub fn hscrollbar_policy(&self) -> PolicyType {
         unsafe {
             let mut value = glib::Value::from_type(<PolicyType as StaticType>::static_type());
@@ -324,7 +340,7 @@ impl ScrolledWindow {
         }
     }
 
-    #[doc(alias = "set_property_hscrollbar_policy")]
+    #[doc(alias = "hscrollbar-policy")]
     pub fn set_hscrollbar_policy(&self, hscrollbar_policy: PolicyType) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -335,7 +351,7 @@ impl ScrolledWindow {
         }
     }
 
-    #[doc(alias = "get_property_vscrollbar_policy")]
+    #[doc(alias = "vscrollbar-policy")]
     pub fn vscrollbar_policy(&self) -> PolicyType {
         unsafe {
             let mut value = glib::Value::from_type(<PolicyType as StaticType>::static_type());
@@ -350,7 +366,7 @@ impl ScrolledWindow {
         }
     }
 
-    #[doc(alias = "set_property_vscrollbar_policy")]
+    #[doc(alias = "vscrollbar-policy")]
     pub fn set_vscrollbar_policy(&self, vscrollbar_policy: PolicyType) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -361,7 +377,7 @@ impl ScrolledWindow {
         }
     }
 
-    #[doc(alias = "get_property_window_placement")]
+    #[doc(alias = "window-placement")]
     pub fn window_placement(&self) -> CornerType {
         unsafe {
             let mut value = glib::Value::from_type(<CornerType as StaticType>::static_type());
@@ -376,7 +392,7 @@ impl ScrolledWindow {
         }
     }
 
-    #[doc(alias = "set_property_window_placement")]
+    #[doc(alias = "window-placement")]
     pub fn set_window_placement(&self, window_placement: CornerType) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -387,6 +403,7 @@ impl ScrolledWindow {
         }
     }
 
+    #[doc(alias = "edge-overshot")]
     pub fn connect_edge_overshot<F: Fn(&ScrolledWindow, PositionType) + 'static>(
         &self,
         f: F,
@@ -414,6 +431,7 @@ impl ScrolledWindow {
         }
     }
 
+    #[doc(alias = "edge-reached")]
     pub fn connect_edge_reached<F: Fn(&ScrolledWindow, PositionType) + 'static>(
         &self,
         f: F,
@@ -441,6 +459,7 @@ impl ScrolledWindow {
         }
     }
 
+    #[doc(alias = "move-focus-out")]
     pub fn connect_move_focus_out<F: Fn(&ScrolledWindow, DirectionType) + 'static>(
         &self,
         f: F,
@@ -476,6 +495,7 @@ impl ScrolledWindow {
         };
     }
 
+    #[doc(alias = "scroll-child")]
     pub fn connect_scroll_child<F: Fn(&ScrolledWindow, ScrollType, bool) -> bool + 'static>(
         &self,
         f: F,
@@ -520,10 +540,8 @@ impl ScrolledWindow {
             .expect("Return Value for `emit_scroll_child`")
     }
 
-    pub fn connect_property_child_notify<F: Fn(&ScrolledWindow) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "child")]
+    pub fn connect_child_notify<F: Fn(&ScrolledWindow) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&ScrolledWindow) + 'static>(
             this: *mut ffi::GtkScrolledWindow,
             _param_spec: glib::ffi::gpointer,
@@ -545,7 +563,8 @@ impl ScrolledWindow {
         }
     }
 
-    pub fn connect_property_hadjustment_notify<F: Fn(&ScrolledWindow) + 'static>(
+    #[doc(alias = "hadjustment")]
+    pub fn connect_hadjustment_notify<F: Fn(&ScrolledWindow) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -570,7 +589,8 @@ impl ScrolledWindow {
         }
     }
 
-    pub fn connect_property_has_frame_notify<F: Fn(&ScrolledWindow) + 'static>(
+    #[doc(alias = "has-frame")]
+    pub fn connect_has_frame_notify<F: Fn(&ScrolledWindow) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -595,7 +615,8 @@ impl ScrolledWindow {
         }
     }
 
-    pub fn connect_property_hscrollbar_policy_notify<F: Fn(&ScrolledWindow) + 'static>(
+    #[doc(alias = "hscrollbar-policy")]
+    pub fn connect_hscrollbar_policy_notify<F: Fn(&ScrolledWindow) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -622,7 +643,8 @@ impl ScrolledWindow {
         }
     }
 
-    pub fn connect_property_kinetic_scrolling_notify<F: Fn(&ScrolledWindow) + 'static>(
+    #[doc(alias = "kinetic-scrolling")]
+    pub fn connect_kinetic_scrolling_notify<F: Fn(&ScrolledWindow) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -649,7 +671,8 @@ impl ScrolledWindow {
         }
     }
 
-    pub fn connect_property_max_content_height_notify<F: Fn(&ScrolledWindow) + 'static>(
+    #[doc(alias = "max-content-height")]
+    pub fn connect_max_content_height_notify<F: Fn(&ScrolledWindow) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -676,7 +699,8 @@ impl ScrolledWindow {
         }
     }
 
-    pub fn connect_property_max_content_width_notify<F: Fn(&ScrolledWindow) + 'static>(
+    #[doc(alias = "max-content-width")]
+    pub fn connect_max_content_width_notify<F: Fn(&ScrolledWindow) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -703,7 +727,8 @@ impl ScrolledWindow {
         }
     }
 
-    pub fn connect_property_min_content_height_notify<F: Fn(&ScrolledWindow) + 'static>(
+    #[doc(alias = "min-content-height")]
+    pub fn connect_min_content_height_notify<F: Fn(&ScrolledWindow) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -730,7 +755,8 @@ impl ScrolledWindow {
         }
     }
 
-    pub fn connect_property_min_content_width_notify<F: Fn(&ScrolledWindow) + 'static>(
+    #[doc(alias = "min-content-width")]
+    pub fn connect_min_content_width_notify<F: Fn(&ScrolledWindow) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -757,7 +783,8 @@ impl ScrolledWindow {
         }
     }
 
-    pub fn connect_property_overlay_scrolling_notify<F: Fn(&ScrolledWindow) + 'static>(
+    #[doc(alias = "overlay-scrolling")]
+    pub fn connect_overlay_scrolling_notify<F: Fn(&ScrolledWindow) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -784,7 +811,8 @@ impl ScrolledWindow {
         }
     }
 
-    pub fn connect_property_propagate_natural_height_notify<F: Fn(&ScrolledWindow) + 'static>(
+    #[doc(alias = "propagate-natural-height")]
+    pub fn connect_propagate_natural_height_notify<F: Fn(&ScrolledWindow) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -811,7 +839,8 @@ impl ScrolledWindow {
         }
     }
 
-    pub fn connect_property_propagate_natural_width_notify<F: Fn(&ScrolledWindow) + 'static>(
+    #[doc(alias = "propagate-natural-width")]
+    pub fn connect_propagate_natural_width_notify<F: Fn(&ScrolledWindow) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -838,7 +867,8 @@ impl ScrolledWindow {
         }
     }
 
-    pub fn connect_property_vadjustment_notify<F: Fn(&ScrolledWindow) + 'static>(
+    #[doc(alias = "vadjustment")]
+    pub fn connect_vadjustment_notify<F: Fn(&ScrolledWindow) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -863,7 +893,8 @@ impl ScrolledWindow {
         }
     }
 
-    pub fn connect_property_vscrollbar_policy_notify<F: Fn(&ScrolledWindow) + 'static>(
+    #[doc(alias = "vscrollbar-policy")]
+    pub fn connect_vscrollbar_policy_notify<F: Fn(&ScrolledWindow) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -890,7 +921,8 @@ impl ScrolledWindow {
         }
     }
 
-    pub fn connect_property_window_placement_notify<F: Fn(&ScrolledWindow) + 'static>(
+    #[doc(alias = "window-placement")]
+    pub fn connect_window_placement_notify<F: Fn(&ScrolledWindow) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

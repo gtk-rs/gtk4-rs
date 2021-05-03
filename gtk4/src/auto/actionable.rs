@@ -27,9 +27,11 @@ pub const NONE_ACTIONABLE: Option<&Actionable> = None;
 
 pub trait ActionableExt: 'static {
     #[doc(alias = "gtk_actionable_get_action_name")]
+    #[doc(alias = "get_action_name")]
     fn action_name(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_actionable_get_action_target_value")]
+    #[doc(alias = "get_action_target_value")]
     fn action_target_value(&self) -> Option<glib::Variant>;
 
     #[doc(alias = "gtk_actionable_set_action_name")]
@@ -41,12 +43,11 @@ pub trait ActionableExt: 'static {
     #[doc(alias = "gtk_actionable_set_detailed_action_name")]
     fn set_detailed_action_name(&self, detailed_action_name: &str);
 
-    fn connect_property_action_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "action-name")]
+    fn connect_action_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_action_target_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "action-target")]
+    fn connect_action_target_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<Actionable>> ActionableExt for O {
@@ -93,7 +94,8 @@ impl<O: IsA<Actionable>> ActionableExt for O {
         }
     }
 
-    fn connect_property_action_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "action-name")]
+    fn connect_action_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_action_name_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkActionable,
             _param_spec: glib::ffi::gpointer,
@@ -117,10 +119,8 @@ impl<O: IsA<Actionable>> ActionableExt for O {
         }
     }
 
-    fn connect_property_action_target_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "action-target")]
+    fn connect_action_target_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_action_target_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkActionable,
             _param_spec: glib::ffi::gpointer,

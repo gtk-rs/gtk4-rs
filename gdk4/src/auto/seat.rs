@@ -24,11 +24,13 @@ glib::wrapper! {
 
 impl Seat {
     #[doc(alias = "gdk_seat_get_capabilities")]
+    #[doc(alias = "get_capabilities")]
     pub fn capabilities(&self) -> SeatCapabilities {
         unsafe { from_glib(ffi::gdk_seat_get_capabilities(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_seat_get_devices")]
+    #[doc(alias = "get_devices")]
     pub fn devices(&self, capabilities: SeatCapabilities) -> Vec<Device> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gdk_seat_get_devices(
@@ -39,21 +41,25 @@ impl Seat {
     }
 
     #[doc(alias = "gdk_seat_get_display")]
+    #[doc(alias = "get_display")]
     pub fn display(&self) -> Option<Display> {
         unsafe { from_glib_none(ffi::gdk_seat_get_display(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_seat_get_keyboard")]
+    #[doc(alias = "get_keyboard")]
     pub fn keyboard(&self) -> Option<Device> {
         unsafe { from_glib_none(ffi::gdk_seat_get_keyboard(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_seat_get_pointer")]
+    #[doc(alias = "get_pointer")]
     pub fn pointer(&self) -> Option<Device> {
         unsafe { from_glib_none(ffi::gdk_seat_get_pointer(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_seat_get_tools")]
+    #[doc(alias = "get_tools")]
     pub fn tools(&self) -> Vec<DeviceTool> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gdk_seat_get_tools(
@@ -62,6 +68,7 @@ impl Seat {
         }
     }
 
+    #[doc(alias = "device-added")]
     pub fn connect_device_added<F: Fn(&Seat, &Device) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn device_added_trampoline<F: Fn(&Seat, &Device) + 'static>(
             this: *mut ffi::GdkSeat,
@@ -84,6 +91,7 @@ impl Seat {
         }
     }
 
+    #[doc(alias = "device-removed")]
     pub fn connect_device_removed<F: Fn(&Seat, &Device) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn device_removed_trampoline<F: Fn(&Seat, &Device) + 'static>(
             this: *mut ffi::GdkSeat,
@@ -106,6 +114,7 @@ impl Seat {
         }
     }
 
+    #[doc(alias = "tool-added")]
     pub fn connect_tool_added<F: Fn(&Seat, &DeviceTool) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn tool_added_trampoline<F: Fn(&Seat, &DeviceTool) + 'static>(
             this: *mut ffi::GdkSeat,
@@ -128,6 +137,7 @@ impl Seat {
         }
     }
 
+    #[doc(alias = "tool-removed")]
     pub fn connect_tool_removed<F: Fn(&Seat, &DeviceTool) + 'static>(
         &self,
         f: F,

@@ -34,20 +34,20 @@ pub trait CellEditableExt: 'static {
     #[doc(alias = "gtk_cell_editable_remove_widget")]
     fn remove_widget(&self);
 
-    #[doc(alias = "get_property_editing_canceled")]
+    #[doc(alias = "editing-canceled")]
     fn is_editing_canceled(&self) -> bool;
 
-    #[doc(alias = "set_property_editing_canceled")]
+    #[doc(alias = "editing-canceled")]
     fn set_editing_canceled(&self, editing_canceled: bool);
 
+    #[doc(alias = "editing-done")]
     fn connect_editing_done<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
+    #[doc(alias = "remove-widget")]
     fn connect_remove_widget<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_editing_canceled_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "editing-canceled")]
+    fn connect_editing_canceled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<CellEditable>> CellEditableExt for O {
@@ -87,6 +87,7 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
         }
     }
 
+    #[doc(alias = "editing-done")]
     fn connect_editing_done<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn editing_done_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCellEditable,
@@ -110,6 +111,7 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
         }
     }
 
+    #[doc(alias = "remove-widget")]
     fn connect_remove_widget<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn remove_widget_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCellEditable,
@@ -133,10 +135,8 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
         }
     }
 
-    fn connect_property_editing_canceled_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "editing-canceled")]
+    fn connect_editing_canceled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_editing_canceled_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCellEditable,
             _param_spec: glib::ffi::gpointer,

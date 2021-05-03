@@ -32,9 +32,11 @@ pub trait CellLayoutExt: 'static {
     fn clear_attributes<P: IsA<CellRenderer>>(&self, cell: &P);
 
     #[doc(alias = "gtk_cell_layout_get_area")]
+    #[doc(alias = "get_area")]
     fn area(&self) -> Option<CellArea>;
 
     #[doc(alias = "gtk_cell_layout_get_cells")]
+    #[doc(alias = "get_cells")]
     fn cells(&self) -> Vec<CellRenderer>;
 
     #[doc(alias = "gtk_cell_layout_pack_end")]

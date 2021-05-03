@@ -26,14 +26,13 @@ impl StringObject {
     }
 
     #[doc(alias = "gtk_string_object_get_string")]
+    #[doc(alias = "get_string")]
     pub fn string(&self) -> glib::GString {
         unsafe { from_glib_none(ffi::gtk_string_object_get_string(self.to_glib_none().0)) }
     }
 
-    pub fn connect_property_string_notify<F: Fn(&StringObject) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "string")]
+    pub fn connect_string_notify<F: Fn(&StringObject) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_string_trampoline<F: Fn(&StringObject) + 'static>(
             this: *mut ffi::GtkStringObject,
             _param_spec: glib::ffi::gpointer,

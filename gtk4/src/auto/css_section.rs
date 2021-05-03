@@ -36,21 +36,25 @@ impl CssSection {
     }
 
     #[doc(alias = "gtk_css_section_get_end_location")]
+    #[doc(alias = "get_end_location")]
     pub fn end_location(&self) -> Option<CssLocation> {
         unsafe { from_glib_none(ffi::gtk_css_section_get_end_location(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_css_section_get_file")]
+    #[doc(alias = "get_file")]
     pub fn file(&self) -> Option<gio::File> {
         unsafe { from_glib_none(ffi::gtk_css_section_get_file(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_css_section_get_parent")]
+    #[doc(alias = "get_parent")]
     pub fn parent(&self) -> Option<CssSection> {
         unsafe { from_glib_none(ffi::gtk_css_section_get_parent(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_css_section_get_start_location")]
+    #[doc(alias = "get_start_location")]
     pub fn start_location(&self) -> Option<CssLocation> {
         unsafe {
             from_glib_none(ffi::gtk_css_section_get_start_location(
@@ -67,6 +71,7 @@ impl CssSection {
     }
 
     #[doc(alias = "gtk_css_section_to_string")]
+    #[doc(alias = "to_string")]
     pub fn to_str(&self) -> glib::GString {
         unsafe { from_glib_full(ffi::gtk_css_section_to_string(self.to_glib_none().0)) }
     }

@@ -44,7 +44,7 @@ impl FileChooserWidget {
         }
     }
 
-    #[doc(alias = "get_property_search_mode")]
+    #[doc(alias = "search-mode")]
     pub fn is_search_mode(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -59,7 +59,7 @@ impl FileChooserWidget {
         }
     }
 
-    #[doc(alias = "set_property_search_mode")]
+    #[doc(alias = "search-mode")]
     pub fn set_search_mode(&self, search_mode: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -70,7 +70,6 @@ impl FileChooserWidget {
         }
     }
 
-    #[doc(alias = "get_property_subtitle")]
     pub fn subtitle(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -85,6 +84,7 @@ impl FileChooserWidget {
         }
     }
 
+    #[doc(alias = "desktop-folder")]
     pub fn connect_desktop_folder<F: Fn(&FileChooserWidget) + 'static>(
         &self,
         f: F,
@@ -117,6 +117,7 @@ impl FileChooserWidget {
         };
     }
 
+    #[doc(alias = "down-folder")]
     pub fn connect_down_folder<F: Fn(&FileChooserWidget) + 'static>(
         &self,
         f: F,
@@ -149,6 +150,7 @@ impl FileChooserWidget {
         };
     }
 
+    #[doc(alias = "home-folder")]
     pub fn connect_home_folder<F: Fn(&FileChooserWidget) + 'static>(
         &self,
         f: F,
@@ -181,6 +183,7 @@ impl FileChooserWidget {
         };
     }
 
+    #[doc(alias = "location-popup")]
     pub fn connect_location_popup<F: Fn(&FileChooserWidget, &str) + 'static>(
         &self,
         f: F,
@@ -219,6 +222,7 @@ impl FileChooserWidget {
         };
     }
 
+    #[doc(alias = "location-popup-on-paste")]
     pub fn connect_location_popup_on_paste<F: Fn(&FileChooserWidget) + 'static>(
         &self,
         f: F,
@@ -253,6 +257,7 @@ impl FileChooserWidget {
         };
     }
 
+    #[doc(alias = "location-toggle-popup")]
     pub fn connect_location_toggle_popup<F: Fn(&FileChooserWidget) + 'static>(
         &self,
         f: F,
@@ -287,6 +292,7 @@ impl FileChooserWidget {
         };
     }
 
+    #[doc(alias = "places-shortcut")]
     pub fn connect_places_shortcut<F: Fn(&FileChooserWidget) + 'static>(
         &self,
         f: F,
@@ -319,6 +325,7 @@ impl FileChooserWidget {
         };
     }
 
+    #[doc(alias = "quick-bookmark")]
     pub fn connect_quick_bookmark<F: Fn(&FileChooserWidget, i32) + 'static>(
         &self,
         f: F,
@@ -352,6 +359,7 @@ impl FileChooserWidget {
         };
     }
 
+    #[doc(alias = "recent-shortcut")]
     pub fn connect_recent_shortcut<F: Fn(&FileChooserWidget) + 'static>(
         &self,
         f: F,
@@ -384,6 +392,7 @@ impl FileChooserWidget {
         };
     }
 
+    #[doc(alias = "search-shortcut")]
     pub fn connect_search_shortcut<F: Fn(&FileChooserWidget) + 'static>(
         &self,
         f: F,
@@ -416,6 +425,7 @@ impl FileChooserWidget {
         };
     }
 
+    #[doc(alias = "show-hidden")]
     pub fn connect_show_hidden<F: Fn(&FileChooserWidget) + 'static>(
         &self,
         f: F,
@@ -448,6 +458,7 @@ impl FileChooserWidget {
         };
     }
 
+    #[doc(alias = "up-folder")]
     pub fn connect_up_folder<F: Fn(&FileChooserWidget) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn up_folder_trampoline<F: Fn(&FileChooserWidget) + 'static>(
             this: *mut ffi::GtkFileChooserWidget,
@@ -477,7 +488,8 @@ impl FileChooserWidget {
         };
     }
 
-    pub fn connect_property_search_mode_notify<F: Fn(&FileChooserWidget) + 'static>(
+    #[doc(alias = "search-mode")]
+    pub fn connect_search_mode_notify<F: Fn(&FileChooserWidget) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -502,7 +514,8 @@ impl FileChooserWidget {
         }
     }
 
-    pub fn connect_property_subtitle_notify<F: Fn(&FileChooserWidget) + 'static>(
+    #[doc(alias = "subtitle")]
+    pub fn connect_subtitle_notify<F: Fn(&FileChooserWidget) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

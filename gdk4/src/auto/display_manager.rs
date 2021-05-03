@@ -24,6 +24,7 @@ glib::wrapper! {
 
 impl DisplayManager {
     #[doc(alias = "gdk_display_manager_get_default_display")]
+    #[doc(alias = "get_default_display")]
     pub fn default_display(&self) -> Option<Display> {
         unsafe {
             from_glib_none(ffi::gdk_display_manager_get_default_display(
@@ -67,6 +68,7 @@ impl DisplayManager {
         unsafe { from_glib_none(ffi::gdk_display_manager_get()) }
     }
 
+    #[doc(alias = "display-opened")]
     pub fn connect_display_opened<F: Fn(&DisplayManager, &Display) + 'static>(
         &self,
         f: F,
@@ -94,7 +96,8 @@ impl DisplayManager {
         }
     }
 
-    pub fn connect_property_default_display_notify<F: Fn(&DisplayManager) + 'static>(
+    #[doc(alias = "default-display")]
+    pub fn connect_default_display_notify<F: Fn(&DisplayManager) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

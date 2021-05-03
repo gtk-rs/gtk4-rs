@@ -40,16 +40,19 @@ impl SliceListModel {
     }
 
     #[doc(alias = "gtk_slice_list_model_get_model")]
+    #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_slice_list_model_get_model(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_slice_list_model_get_offset")]
+    #[doc(alias = "get_offset")]
     pub fn offset(&self) -> u32 {
         unsafe { ffi::gtk_slice_list_model_get_offset(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_slice_list_model_get_size")]
+    #[doc(alias = "get_size")]
     pub fn size(&self) -> u32 {
         unsafe { ffi::gtk_slice_list_model_get_size(self.to_glib_none().0) }
     }
@@ -78,10 +81,8 @@ impl SliceListModel {
         }
     }
 
-    pub fn connect_property_model_notify<F: Fn(&SliceListModel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "model")]
+    pub fn connect_model_notify<F: Fn(&SliceListModel) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<F: Fn(&SliceListModel) + 'static>(
             this: *mut ffi::GtkSliceListModel,
             _param_spec: glib::ffi::gpointer,
@@ -103,10 +104,8 @@ impl SliceListModel {
         }
     }
 
-    pub fn connect_property_offset_notify<F: Fn(&SliceListModel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "offset")]
+    pub fn connect_offset_notify<F: Fn(&SliceListModel) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_offset_trampoline<F: Fn(&SliceListModel) + 'static>(
             this: *mut ffi::GtkSliceListModel,
             _param_spec: glib::ffi::gpointer,
@@ -128,10 +127,8 @@ impl SliceListModel {
         }
     }
 
-    pub fn connect_property_size_notify<F: Fn(&SliceListModel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "size")]
+    pub fn connect_size_notify<F: Fn(&SliceListModel) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_size_trampoline<F: Fn(&SliceListModel) + 'static>(
             this: *mut ffi::GtkSliceListModel,
             _param_spec: glib::ffi::gpointer,

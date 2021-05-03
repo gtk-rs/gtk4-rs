@@ -23,11 +23,13 @@ impl OpacityNode {
     }
 
     #[doc(alias = "gsk_opacity_node_get_child")]
+    #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<RenderNode> {
         unsafe { from_glib_none(ffi::gsk_opacity_node_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_opacity_node_get_opacity")]
+    #[doc(alias = "get_opacity")]
     pub fn opacity(&self) -> f32 {
         unsafe { ffi::gsk_opacity_node_get_opacity(self.to_glib_none().0) }
     }

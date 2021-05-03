@@ -41,11 +41,13 @@ impl ATContext {
     }
 
     #[doc(alias = "gtk_at_context_get_accessible")]
+    #[doc(alias = "get_accessible")]
     pub fn accessible(&self) -> Option<Accessible> {
         unsafe { from_glib_none(ffi::gtk_at_context_get_accessible(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_at_context_get_accessible_role")]
+    #[doc(alias = "get_accessible_role")]
     pub fn accessible_role(&self) -> AccessibleRole {
         unsafe {
             from_glib(ffi::gtk_at_context_get_accessible_role(
@@ -54,7 +56,7 @@ impl ATContext {
         }
     }
 
-    #[doc(alias = "set_property_accessible_role")]
+    #[doc(alias = "accessible-role")]
     pub fn set_accessible_role(&self, accessible_role: AccessibleRole) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -65,7 +67,6 @@ impl ATContext {
         }
     }
 
-    #[doc(alias = "get_property_display")]
     pub fn display(&self) -> Option<gdk::Display> {
         unsafe {
             let mut value = glib::Value::from_type(<gdk::Display as StaticType>::static_type());
@@ -80,7 +81,6 @@ impl ATContext {
         }
     }
 
-    #[doc(alias = "set_property_display")]
     pub fn set_display(&self, display: Option<&gdk::Display>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -91,6 +91,7 @@ impl ATContext {
         }
     }
 
+    #[doc(alias = "state-change")]
     pub fn connect_state_change<F: Fn(&ATContext) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn state_change_trampoline<F: Fn(&ATContext) + 'static>(
             this: *mut ffi::GtkATContext,
@@ -112,7 +113,8 @@ impl ATContext {
         }
     }
 
-    pub fn connect_property_accessible_role_notify<F: Fn(&ATContext) + 'static>(
+    #[doc(alias = "accessible-role")]
+    pub fn connect_accessible_role_notify<F: Fn(&ATContext) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -137,10 +139,8 @@ impl ATContext {
         }
     }
 
-    pub fn connect_property_display_notify<F: Fn(&ATContext) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "display")]
+    pub fn connect_display_notify<F: Fn(&ATContext) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_display_trampoline<F: Fn(&ATContext) + 'static>(
             this: *mut ffi::GtkATContext,
             _param_spec: glib::ffi::gpointer,

@@ -23,6 +23,7 @@ glib::wrapper! {
 
 impl TreeListRow {
     #[doc(alias = "gtk_tree_list_row_get_child_row")]
+    #[doc(alias = "get_child_row")]
     pub fn child_row(&self, position: u32) -> Option<TreeListRow> {
         unsafe {
             from_glib_full(ffi::gtk_tree_list_row_get_child_row(
@@ -33,31 +34,37 @@ impl TreeListRow {
     }
 
     #[doc(alias = "gtk_tree_list_row_get_children")]
+    #[doc(alias = "get_children")]
     pub fn children(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_tree_list_row_get_children(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_list_row_get_depth")]
+    #[doc(alias = "get_depth")]
     pub fn depth(&self) -> u32 {
         unsafe { ffi::gtk_tree_list_row_get_depth(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_tree_list_row_get_expanded")]
+    #[doc(alias = "get_expanded")]
     pub fn is_expanded(&self) -> bool {
         unsafe { from_glib(ffi::gtk_tree_list_row_get_expanded(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_list_row_get_item")]
+    #[doc(alias = "get_item")]
     pub fn item(&self) -> Option<glib::Object> {
         unsafe { from_glib_full(ffi::gtk_tree_list_row_get_item(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_list_row_get_parent")]
+    #[doc(alias = "get_parent")]
     pub fn parent(&self) -> Option<TreeListRow> {
         unsafe { from_glib_full(ffi::gtk_tree_list_row_get_parent(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_tree_list_row_get_position")]
+    #[doc(alias = "get_position")]
     pub fn position(&self) -> u32 {
         unsafe { ffi::gtk_tree_list_row_get_position(self.to_glib_none().0) }
     }
@@ -74,10 +81,8 @@ impl TreeListRow {
         }
     }
 
-    pub fn connect_property_children_notify<F: Fn(&TreeListRow) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "children")]
+    pub fn connect_children_notify<F: Fn(&TreeListRow) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_children_trampoline<F: Fn(&TreeListRow) + 'static>(
             this: *mut ffi::GtkTreeListRow,
             _param_spec: glib::ffi::gpointer,
@@ -99,10 +104,8 @@ impl TreeListRow {
         }
     }
 
-    pub fn connect_property_depth_notify<F: Fn(&TreeListRow) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "depth")]
+    pub fn connect_depth_notify<F: Fn(&TreeListRow) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_depth_trampoline<F: Fn(&TreeListRow) + 'static>(
             this: *mut ffi::GtkTreeListRow,
             _param_spec: glib::ffi::gpointer,
@@ -124,7 +127,8 @@ impl TreeListRow {
         }
     }
 
-    pub fn connect_property_expandable_notify<F: Fn(&TreeListRow) + 'static>(
+    #[doc(alias = "expandable")]
+    pub fn connect_expandable_notify<F: Fn(&TreeListRow) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -149,10 +153,8 @@ impl TreeListRow {
         }
     }
 
-    pub fn connect_property_expanded_notify<F: Fn(&TreeListRow) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "expanded")]
+    pub fn connect_expanded_notify<F: Fn(&TreeListRow) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expanded_trampoline<F: Fn(&TreeListRow) + 'static>(
             this: *mut ffi::GtkTreeListRow,
             _param_spec: glib::ffi::gpointer,
@@ -174,10 +176,8 @@ impl TreeListRow {
         }
     }
 
-    pub fn connect_property_item_notify<F: Fn(&TreeListRow) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "item")]
+    pub fn connect_item_notify<F: Fn(&TreeListRow) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_item_trampoline<F: Fn(&TreeListRow) + 'static>(
             this: *mut ffi::GtkTreeListRow,
             _param_spec: glib::ffi::gpointer,

@@ -42,6 +42,7 @@ impl Text {
     }
 
     #[doc(alias = "gtk_text_new_with_buffer")]
+    #[doc(alias = "new_with_buffer")]
     pub fn with_buffer<P: IsA<EntryBuffer>>(buffer: &P) -> Text {
         skip_assert_initialized!();
         unsafe {
@@ -53,21 +54,25 @@ impl Text {
     }
 
     #[doc(alias = "gtk_text_get_activates_default")]
+    #[doc(alias = "get_activates_default")]
     pub fn activates_default(&self) -> bool {
         unsafe { from_glib(ffi::gtk_text_get_activates_default(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_get_attributes")]
+    #[doc(alias = "get_attributes")]
     pub fn attributes(&self) -> Option<pango::AttrList> {
         unsafe { from_glib_none(ffi::gtk_text_get_attributes(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_get_buffer")]
+    #[doc(alias = "get_buffer")]
     pub fn buffer(&self) -> Option<EntryBuffer> {
         unsafe { from_glib_none(ffi::gtk_text_get_buffer(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_get_enable_emoji_completion")]
+    #[doc(alias = "get_enable_emoji_completion")]
     pub fn enables_emoji_completion(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_get_enable_emoji_completion(
@@ -77,21 +82,25 @@ impl Text {
     }
 
     #[doc(alias = "gtk_text_get_extra_menu")]
+    #[doc(alias = "get_extra_menu")]
     pub fn extra_menu(&self) -> Option<gio::MenuModel> {
         unsafe { from_glib_none(ffi::gtk_text_get_extra_menu(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_get_input_hints")]
+    #[doc(alias = "get_input_hints")]
     pub fn input_hints(&self) -> InputHints {
         unsafe { from_glib(ffi::gtk_text_get_input_hints(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_get_input_purpose")]
+    #[doc(alias = "get_input_purpose")]
     pub fn input_purpose(&self) -> InputPurpose {
         unsafe { from_glib(ffi::gtk_text_get_input_purpose(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_get_invisible_char")]
+    #[doc(alias = "get_invisible_char")]
     pub fn invisible_char(&self) -> char {
         unsafe {
             std::convert::TryFrom::try_from(ffi::gtk_text_get_invisible_char(self.to_glib_none().0))
@@ -100,21 +109,25 @@ impl Text {
     }
 
     #[doc(alias = "gtk_text_get_max_length")]
+    #[doc(alias = "get_max_length")]
     pub fn max_length(&self) -> i32 {
         unsafe { ffi::gtk_text_get_max_length(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_text_get_overwrite_mode")]
+    #[doc(alias = "get_overwrite_mode")]
     pub fn is_overwrite_mode(&self) -> bool {
         unsafe { from_glib(ffi::gtk_text_get_overwrite_mode(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_get_placeholder_text")]
+    #[doc(alias = "get_placeholder_text")]
     pub fn placeholder_text(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_text_get_placeholder_text(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_get_propagate_text_width")]
+    #[doc(alias = "get_propagate_text_width")]
     pub fn propagates_text_width(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_text_get_propagate_text_width(
@@ -124,21 +137,25 @@ impl Text {
     }
 
     #[doc(alias = "gtk_text_get_tabs")]
+    #[doc(alias = "get_tabs")]
     pub fn tabs(&self) -> Option<pango::TabArray> {
         unsafe { from_glib_none(ffi::gtk_text_get_tabs(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_get_text_length")]
+    #[doc(alias = "get_text_length")]
     pub fn text_length(&self) -> u16 {
         unsafe { ffi::gtk_text_get_text_length(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_text_get_truncate_multiline")]
+    #[doc(alias = "get_truncate_multiline")]
     pub fn must_truncate_multiline(&self) -> bool {
         unsafe { from_glib(ffi::gtk_text_get_truncate_multiline(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_text_get_visibility")]
+    #[doc(alias = "get_visibility")]
     pub fn is_visible(&self) -> bool {
         unsafe { from_glib(ffi::gtk_text_get_visibility(self.to_glib_none().0)) }
     }
@@ -276,7 +293,7 @@ impl Text {
         }
     }
 
-    #[doc(alias = "get_property_im_module")]
+    #[doc(alias = "im-module")]
     pub fn im_module(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -291,7 +308,7 @@ impl Text {
         }
     }
 
-    #[doc(alias = "set_property_im_module")]
+    #[doc(alias = "im-module")]
     pub fn set_im_module(&self, im_module: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -302,7 +319,7 @@ impl Text {
         }
     }
 
-    #[doc(alias = "get_property_invisible_char_set")]
+    #[doc(alias = "invisible-char-set")]
     pub fn is_invisible_char_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -317,7 +334,7 @@ impl Text {
         }
     }
 
-    #[doc(alias = "set_property_invisible_char_set")]
+    #[doc(alias = "invisible-char-set")]
     pub fn set_invisible_char_set(&self, invisible_char_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -328,7 +345,7 @@ impl Text {
         }
     }
 
-    #[doc(alias = "get_property_scroll_offset")]
+    #[doc(alias = "scroll-offset")]
     pub fn scroll_offset(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
@@ -343,7 +360,8 @@ impl Text {
         }
     }
 
-    pub fn connect_property_activates_default_notify<F: Fn(&Text) + 'static>(
+    #[doc(alias = "activates-default")]
+    pub fn connect_activates_default_notify<F: Fn(&Text) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -368,10 +386,8 @@ impl Text {
         }
     }
 
-    pub fn connect_property_attributes_notify<F: Fn(&Text) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "attributes")]
+    pub fn connect_attributes_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_attributes_trampoline<F: Fn(&Text) + 'static>(
             this: *mut ffi::GtkText,
             _param_spec: glib::ffi::gpointer,
@@ -393,7 +409,8 @@ impl Text {
         }
     }
 
-    pub fn connect_property_buffer_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "buffer")]
+    pub fn connect_buffer_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_buffer_trampoline<F: Fn(&Text) + 'static>(
             this: *mut ffi::GtkText,
             _param_spec: glib::ffi::gpointer,
@@ -415,7 +432,8 @@ impl Text {
         }
     }
 
-    pub fn connect_property_enable_emoji_completion_notify<F: Fn(&Text) + 'static>(
+    #[doc(alias = "enable-emoji-completion")]
+    pub fn connect_enable_emoji_completion_notify<F: Fn(&Text) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -440,10 +458,8 @@ impl Text {
         }
     }
 
-    pub fn connect_property_extra_menu_notify<F: Fn(&Text) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "extra-menu")]
+    pub fn connect_extra_menu_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_extra_menu_trampoline<F: Fn(&Text) + 'static>(
             this: *mut ffi::GtkText,
             _param_spec: glib::ffi::gpointer,
@@ -465,10 +481,8 @@ impl Text {
         }
     }
 
-    pub fn connect_property_im_module_notify<F: Fn(&Text) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "im-module")]
+    pub fn connect_im_module_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_im_module_trampoline<F: Fn(&Text) + 'static>(
             this: *mut ffi::GtkText,
             _param_spec: glib::ffi::gpointer,
@@ -490,10 +504,8 @@ impl Text {
         }
     }
 
-    pub fn connect_property_input_hints_notify<F: Fn(&Text) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "input-hints")]
+    pub fn connect_input_hints_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_hints_trampoline<F: Fn(&Text) + 'static>(
             this: *mut ffi::GtkText,
             _param_spec: glib::ffi::gpointer,
@@ -515,10 +527,8 @@ impl Text {
         }
     }
 
-    pub fn connect_property_input_purpose_notify<F: Fn(&Text) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "input-purpose")]
+    pub fn connect_input_purpose_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_purpose_trampoline<F: Fn(&Text) + 'static>(
             this: *mut ffi::GtkText,
             _param_spec: glib::ffi::gpointer,
@@ -540,10 +550,8 @@ impl Text {
         }
     }
 
-    pub fn connect_property_invisible_char_notify<F: Fn(&Text) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "invisible-char")]
+    pub fn connect_invisible_char_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_invisible_char_trampoline<F: Fn(&Text) + 'static>(
             this: *mut ffi::GtkText,
             _param_spec: glib::ffi::gpointer,
@@ -565,7 +573,8 @@ impl Text {
         }
     }
 
-    pub fn connect_property_invisible_char_set_notify<F: Fn(&Text) + 'static>(
+    #[doc(alias = "invisible-char-set")]
+    pub fn connect_invisible_char_set_notify<F: Fn(&Text) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -590,10 +599,8 @@ impl Text {
         }
     }
 
-    pub fn connect_property_max_length_notify<F: Fn(&Text) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "max-length")]
+    pub fn connect_max_length_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_max_length_trampoline<F: Fn(&Text) + 'static>(
             this: *mut ffi::GtkText,
             _param_spec: glib::ffi::gpointer,
@@ -615,10 +622,8 @@ impl Text {
         }
     }
 
-    pub fn connect_property_overwrite_mode_notify<F: Fn(&Text) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "overwrite-mode")]
+    pub fn connect_overwrite_mode_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_overwrite_mode_trampoline<F: Fn(&Text) + 'static>(
             this: *mut ffi::GtkText,
             _param_spec: glib::ffi::gpointer,
@@ -640,10 +645,8 @@ impl Text {
         }
     }
 
-    pub fn connect_property_placeholder_text_notify<F: Fn(&Text) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "placeholder-text")]
+    pub fn connect_placeholder_text_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_placeholder_text_trampoline<F: Fn(&Text) + 'static>(
             this: *mut ffi::GtkText,
             _param_spec: glib::ffi::gpointer,
@@ -665,7 +668,8 @@ impl Text {
         }
     }
 
-    pub fn connect_property_propagate_text_width_notify<F: Fn(&Text) + 'static>(
+    #[doc(alias = "propagate-text-width")]
+    pub fn connect_propagate_text_width_notify<F: Fn(&Text) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -690,10 +694,8 @@ impl Text {
         }
     }
 
-    pub fn connect_property_scroll_offset_notify<F: Fn(&Text) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "scroll-offset")]
+    pub fn connect_scroll_offset_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scroll_offset_trampoline<F: Fn(&Text) + 'static>(
             this: *mut ffi::GtkText,
             _param_spec: glib::ffi::gpointer,
@@ -715,7 +717,8 @@ impl Text {
         }
     }
 
-    pub fn connect_property_tabs_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "tabs")]
+    pub fn connect_tabs_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tabs_trampoline<F: Fn(&Text) + 'static>(
             this: *mut ffi::GtkText,
             _param_spec: glib::ffi::gpointer,
@@ -737,7 +740,8 @@ impl Text {
         }
     }
 
-    pub fn connect_property_truncate_multiline_notify<F: Fn(&Text) + 'static>(
+    #[doc(alias = "truncate-multiline")]
+    pub fn connect_truncate_multiline_notify<F: Fn(&Text) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -762,10 +766,8 @@ impl Text {
         }
     }
 
-    pub fn connect_property_visibility_notify<F: Fn(&Text) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "visibility")]
+    pub fn connect_visibility_notify<F: Fn(&Text) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_visibility_trampoline<F: Fn(&Text) + 'static>(
             this: *mut ffi::GtkText,
             _param_spec: glib::ffi::gpointer,

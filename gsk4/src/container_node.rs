@@ -24,6 +24,7 @@ impl ContainerNode {
     }
 
     #[doc(alias = "gsk_container_node_get_child")]
+    #[doc(alias = "get_child")]
     pub fn child(&self, idx: u32) -> Option<RenderNode> {
         unsafe {
             from_glib_none(ffi::gsk_container_node_get_child(
@@ -34,6 +35,7 @@ impl ContainerNode {
     }
 
     #[doc(alias = "gsk_container_node_get_n_children")]
+    #[doc(alias = "get_n_children")]
     pub fn n_children(&self) -> u32 {
         unsafe { ffi::gsk_container_node_get_n_children(self.to_glib_none().0) }
     }

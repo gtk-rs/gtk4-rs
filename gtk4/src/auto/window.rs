@@ -44,12 +44,14 @@ impl Window {
     }
 
     #[doc(alias = "gtk_window_get_default_icon_name")]
+    #[doc(alias = "get_default_icon_name")]
     pub fn default_icon_name() -> Option<glib::GString> {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_window_get_default_icon_name()) }
     }
 
     #[doc(alias = "gtk_window_get_toplevels")]
+    #[doc(alias = "get_toplevels")]
     pub fn toplevels() -> gio::ListModel {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gtk_window_get_toplevels()) }
@@ -596,59 +598,77 @@ pub trait GtkWindowExt: 'static {
     fn fullscreen_on_monitor(&self, monitor: &gdk::Monitor);
 
     #[doc(alias = "gtk_window_get_application")]
+    #[doc(alias = "get_application")]
     fn application(&self) -> Option<Application>;
 
     #[doc(alias = "gtk_window_get_child")]
+    #[doc(alias = "get_child")]
     fn child(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_window_get_decorated")]
+    #[doc(alias = "get_decorated")]
     fn is_decorated(&self) -> bool;
 
     #[doc(alias = "gtk_window_get_default_size")]
+    #[doc(alias = "get_default_size")]
     fn default_size(&self) -> (i32, i32);
 
     #[doc(alias = "gtk_window_get_default_widget")]
+    #[doc(alias = "get_default_widget")]
     fn default_widget(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_window_get_deletable")]
+    #[doc(alias = "get_deletable")]
     fn is_deletable(&self) -> bool;
 
     #[doc(alias = "gtk_window_get_destroy_with_parent")]
+    #[doc(alias = "get_destroy_with_parent")]
     fn must_destroy_with_parent(&self) -> bool;
 
     #[doc(alias = "gtk_window_get_focus_visible")]
+    #[doc(alias = "get_focus_visible")]
     fn gets_focus_visible(&self) -> bool;
 
     #[doc(alias = "gtk_window_get_group")]
+    #[doc(alias = "get_group")]
     fn group(&self) -> WindowGroup;
 
     #[cfg(any(feature = "v4_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
     #[doc(alias = "gtk_window_get_handle_menubar_accel")]
+    #[doc(alias = "get_handle_menubar_accel")]
     fn is_handle_menubar_accel(&self) -> bool;
 
     #[doc(alias = "gtk_window_get_hide_on_close")]
+    #[doc(alias = "get_hide_on_close")]
     fn hides_on_close(&self) -> bool;
 
     #[doc(alias = "gtk_window_get_icon_name")]
+    #[doc(alias = "get_icon_name")]
     fn icon_name(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_window_get_mnemonics_visible")]
+    #[doc(alias = "get_mnemonics_visible")]
     fn is_mnemonics_visible(&self) -> bool;
 
     #[doc(alias = "gtk_window_get_modal")]
+    #[doc(alias = "get_modal")]
     fn is_modal(&self) -> bool;
 
     #[doc(alias = "gtk_window_get_resizable")]
+    #[doc(alias = "get_resizable")]
     fn is_resizable(&self) -> bool;
 
     #[doc(alias = "gtk_window_get_title")]
+    #[doc(alias = "get_title")]
     fn title(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_window_get_titlebar")]
+    #[doc(alias = "get_titlebar")]
     fn titlebar(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_window_get_transient_for")]
+    #[doc(alias = "get_transient_for")]
     fn transient_for(&self) -> Option<Window>;
 
     #[doc(alias = "gtk_window_has_group")]
@@ -743,46 +763,47 @@ pub trait GtkWindowExt: 'static {
     #[doc(alias = "gtk_window_unminimize")]
     fn unminimize(&self);
 
-    #[doc(alias = "get_property_default_height")]
+    #[doc(alias = "default-height")]
     fn default_height(&self) -> i32;
 
-    #[doc(alias = "set_property_default_height")]
+    #[doc(alias = "default-height")]
     fn set_default_height(&self, default_height: i32);
 
-    #[doc(alias = "get_property_default_width")]
+    #[doc(alias = "default-width")]
     fn default_width(&self) -> i32;
 
-    #[doc(alias = "set_property_default_width")]
+    #[doc(alias = "default-width")]
     fn set_default_width(&self, default_width: i32);
 
-    #[doc(alias = "get_property_focus_widget")]
+    #[doc(alias = "focus-widget")]
     fn focus_widget(&self) -> Option<Widget>;
 
-    #[doc(alias = "set_property_focus_widget")]
+    #[doc(alias = "focus-widget")]
     fn set_focus_widget<P: IsA<Widget>>(&self, focus_widget: Option<&P>);
 
-    #[doc(alias = "get_property_fullscreened")]
     fn is_fullscreened(&self) -> bool;
 
-    #[doc(alias = "set_property_fullscreened")]
     fn set_fullscreened(&self, fullscreened: bool);
 
-    #[doc(alias = "set_property_maximized")]
     fn set_maximized(&self, maximized: bool);
 
+    #[doc(alias = "activate-default")]
     fn connect_activate_default<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_activate_default(&self);
 
+    #[doc(alias = "activate-focus")]
     fn connect_activate_focus<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_activate_focus(&self);
 
+    #[doc(alias = "close-request")]
     fn connect_close_request<F: Fn(&Self) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
+    #[doc(alias = "enable-debugging")]
     fn connect_enable_debugging<F: Fn(&Self, bool) -> bool + 'static>(
         &self,
         f: F,
@@ -790,84 +811,79 @@ pub trait GtkWindowExt: 'static {
 
     fn emit_enable_debugging(&self, toggle: bool) -> bool;
 
+    #[doc(alias = "keys-changed")]
     fn connect_keys_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_application_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "application")]
+    fn connect_application_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "child")]
+    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_decorated_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "decorated")]
+    fn connect_decorated_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_default_height_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "default-height")]
+    fn connect_default_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_default_widget_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "default-widget")]
+    fn connect_default_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_default_width_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "default-width")]
+    fn connect_default_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_deletable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "deletable")]
+    fn connect_deletable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_destroy_with_parent_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "destroy-with-parent")]
+    fn connect_destroy_with_parent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "display")]
+    fn connect_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_focus_visible_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "focus-visible")]
+    fn connect_focus_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_focus_widget_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
+    #[doc(alias = "focus-widget")]
+    fn connect_focus_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_fullscreened_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
+    #[doc(alias = "fullscreened")]
+    fn connect_fullscreened_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     #[cfg(any(feature = "v4_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
-    fn connect_property_handle_menubar_accel_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "handle-menubar-accel")]
+    fn connect_handle_menubar_accel_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_hide_on_close_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "hide-on-close")]
+    fn connect_hide_on_close_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "icon-name")]
+    fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_is_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "is-active")]
+    fn connect_is_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_maximized_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "maximized")]
+    fn connect_maximized_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_mnemonics_visible_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "mnemonics-visible")]
+    fn connect_mnemonics_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "modal")]
+    fn connect_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_resizable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "resizable")]
+    fn connect_resizable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_startup_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "startup-id")]
+    fn connect_startup_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "title")]
+    fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_transient_for_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "transient-for")]
+    fn connect_transient_for_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<Window>> GtkWindowExt for O {
@@ -1342,6 +1358,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
+    #[doc(alias = "activate-default")]
     fn connect_activate_default<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_default_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
@@ -1373,6 +1390,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         };
     }
 
+    #[doc(alias = "activate-focus")]
     fn connect_activate_focus<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_focus_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
@@ -1404,6 +1422,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         };
     }
 
+    #[doc(alias = "close-request")]
     fn connect_close_request<F: Fn(&Self) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
@@ -1434,6 +1453,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
+    #[doc(alias = "enable-debugging")]
     fn connect_enable_debugging<F: Fn(&Self, bool) -> bool + 'static>(
         &self,
         f: F,
@@ -1477,6 +1497,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             .expect("Return Value for `emit_enable_debugging`")
     }
 
+    #[doc(alias = "keys-changed")]
     fn connect_keys_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn keys_changed_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
@@ -1500,7 +1521,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_application_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "application")]
+    fn connect_application_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_application_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
@@ -1524,7 +1546,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "child")]
+    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
@@ -1548,7 +1571,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_decorated_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "decorated")]
+    fn connect_decorated_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_decorated_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
@@ -1572,10 +1596,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_default_height_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "default-height")]
+    fn connect_default_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_default_height_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
@@ -1599,10 +1621,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_default_widget_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "default-widget")]
+    fn connect_default_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_default_widget_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
@@ -1626,10 +1646,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_default_width_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "default-width")]
+    fn connect_default_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_default_width_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
@@ -1653,7 +1671,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_deletable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "deletable")]
+    fn connect_deletable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_deletable_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
@@ -1677,10 +1696,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_destroy_with_parent_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "destroy-with-parent")]
+    fn connect_destroy_with_parent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_destroy_with_parent_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
@@ -1704,7 +1721,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "display")]
+    fn connect_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_display_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
@@ -1728,10 +1746,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_focus_visible_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "focus-visible")]
+    fn connect_focus_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_focus_visible_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
@@ -1755,10 +1771,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_focus_widget_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "focus-widget")]
+    fn connect_focus_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_focus_widget_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
@@ -1782,10 +1796,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_fullscreened_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "fullscreened")]
+    fn connect_fullscreened_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_fullscreened_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
@@ -1811,10 +1823,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
 
     #[cfg(any(feature = "v4_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
-    fn connect_property_handle_menubar_accel_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "handle-menubar-accel")]
+    fn connect_handle_menubar_accel_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_handle_menubar_accel_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
@@ -1838,10 +1848,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_hide_on_close_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "hide-on-close")]
+    fn connect_hide_on_close_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_hide_on_close_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
@@ -1865,7 +1873,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "icon-name")]
+    fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
@@ -1889,7 +1898,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_is_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "is-active")]
+    fn connect_is_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_is_active_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
@@ -1913,7 +1923,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_maximized_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "maximized")]
+    fn connect_maximized_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_maximized_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
@@ -1937,10 +1948,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_mnemonics_visible_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "mnemonics-visible")]
+    fn connect_mnemonics_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_mnemonics_visible_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
@@ -1964,7 +1973,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "modal")]
+    fn connect_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_modal_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
@@ -1988,7 +1998,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_resizable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "resizable")]
+    fn connect_resizable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_resizable_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
@@ -2012,7 +2023,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_startup_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "startup-id")]
+    fn connect_startup_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_startup_id_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
@@ -2036,7 +2048,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "title")]
+    fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,
@@ -2060,10 +2073,8 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn connect_property_transient_for_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "transient-for")]
+    fn connect_transient_for_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_transient_for_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
             _param_spec: glib::ffi::gpointer,

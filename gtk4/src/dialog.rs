@@ -40,6 +40,7 @@ pub trait DialogExtManual: 'static {
     fn add_buttons(&self, buttons: &[(&str, ResponseType)]);
 
     #[doc(alias = "gtk_dialog_get_response_for_widget")]
+    #[doc(alias = "get_response_for_widget")]
     fn response_for_widget<P: IsA<Widget>>(&self, widget: &P) -> ResponseType;
 
     // rustdoc-stripper-ignore-next

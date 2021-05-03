@@ -46,26 +46,31 @@ impl AspectFrame {
     }
 
     #[doc(alias = "gtk_aspect_frame_get_child")]
+    #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_aspect_frame_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_aspect_frame_get_obey_child")]
+    #[doc(alias = "get_obey_child")]
     pub fn is_obey_child(&self) -> bool {
         unsafe { from_glib(ffi::gtk_aspect_frame_get_obey_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_aspect_frame_get_ratio")]
+    #[doc(alias = "get_ratio")]
     pub fn ratio(&self) -> f32 {
         unsafe { ffi::gtk_aspect_frame_get_ratio(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_aspect_frame_get_xalign")]
+    #[doc(alias = "get_xalign")]
     pub fn xalign(&self) -> f32 {
         unsafe { ffi::gtk_aspect_frame_get_xalign(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_aspect_frame_get_yalign")]
+    #[doc(alias = "get_yalign")]
     pub fn yalign(&self) -> f32 {
         unsafe { ffi::gtk_aspect_frame_get_yalign(self.to_glib_none().0) }
     }
@@ -108,10 +113,8 @@ impl AspectFrame {
         }
     }
 
-    pub fn connect_property_child_notify<F: Fn(&AspectFrame) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "child")]
+    pub fn connect_child_notify<F: Fn(&AspectFrame) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&AspectFrame) + 'static>(
             this: *mut ffi::GtkAspectFrame,
             _param_spec: glib::ffi::gpointer,
@@ -133,7 +136,8 @@ impl AspectFrame {
         }
     }
 
-    pub fn connect_property_obey_child_notify<F: Fn(&AspectFrame) + 'static>(
+    #[doc(alias = "obey-child")]
+    pub fn connect_obey_child_notify<F: Fn(&AspectFrame) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -158,10 +162,8 @@ impl AspectFrame {
         }
     }
 
-    pub fn connect_property_ratio_notify<F: Fn(&AspectFrame) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "ratio")]
+    pub fn connect_ratio_notify<F: Fn(&AspectFrame) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_ratio_trampoline<F: Fn(&AspectFrame) + 'static>(
             this: *mut ffi::GtkAspectFrame,
             _param_spec: glib::ffi::gpointer,
@@ -183,10 +185,8 @@ impl AspectFrame {
         }
     }
 
-    pub fn connect_property_xalign_notify<F: Fn(&AspectFrame) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "xalign")]
+    pub fn connect_xalign_notify<F: Fn(&AspectFrame) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_xalign_trampoline<F: Fn(&AspectFrame) + 'static>(
             this: *mut ffi::GtkAspectFrame,
             _param_spec: glib::ffi::gpointer,
@@ -208,10 +208,8 @@ impl AspectFrame {
         }
     }
 
-    pub fn connect_property_yalign_notify<F: Fn(&AspectFrame) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "yalign")]
+    pub fn connect_yalign_notify<F: Fn(&AspectFrame) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_yalign_trampoline<F: Fn(&AspectFrame) + 'static>(
             this: *mut ffi::GtkAspectFrame,
             _param_spec: glib::ffi::gpointer,

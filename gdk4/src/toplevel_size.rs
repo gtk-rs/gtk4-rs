@@ -8,6 +8,7 @@ pub struct ToplevelSize(ffi::GdkToplevelSize);
 
 impl ToplevelSize {
     #[doc(alias = "gdk_toplevel_size_get_bounds")]
+    #[doc(alias = "get_bounds")]
     pub fn bounds(&self) -> (i32, i32) {
         unsafe {
             let bounds_width = std::ptr::null_mut();

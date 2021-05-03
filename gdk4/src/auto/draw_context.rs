@@ -31,15 +31,18 @@ pub trait DrawContextExt: 'static {
     fn end_frame(&self);
 
     #[doc(alias = "gdk_draw_context_get_display")]
+    #[doc(alias = "get_display")]
     fn display(&self) -> Option<Display>;
 
     #[doc(alias = "gdk_draw_context_get_surface")]
+    #[doc(alias = "get_surface")]
     fn surface(&self) -> Option<Surface>;
 
     #[doc(alias = "gdk_draw_context_is_in_frame")]
     fn is_in_frame(&self) -> bool;
 
-    fn connect_property_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "display")]
+    fn connect_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<DrawContext>> DrawContextExt for O {
@@ -82,7 +85,8 @@ impl<O: IsA<DrawContext>> DrawContextExt for O {
         }
     }
 
-    fn connect_property_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "display")]
+    fn connect_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_display_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDrawContext,
             _param_spec: glib::ffi::gpointer,

@@ -33,10 +33,12 @@ impl GestureRotate {
     }
 
     #[doc(alias = "gtk_gesture_rotate_get_angle_delta")]
+    #[doc(alias = "get_angle_delta")]
     pub fn angle_delta(&self) -> f64 {
         unsafe { ffi::gtk_gesture_rotate_get_angle_delta(self.to_glib_none().0) }
     }
 
+    #[doc(alias = "angle-changed")]
     pub fn connect_angle_changed<F: Fn(&GestureRotate, f64, f64) + 'static>(
         &self,
         f: F,

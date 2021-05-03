@@ -34,9 +34,11 @@ pub const NONE_TEXT_CHILD_ANCHOR: Option<&TextChildAnchor> = None;
 
 pub trait TextChildAnchorExt: 'static {
     #[doc(alias = "gtk_text_child_anchor_get_deleted")]
+    #[doc(alias = "get_deleted")]
     fn is_deleted(&self) -> bool;
 
     #[doc(alias = "gtk_text_child_anchor_get_widgets")]
+    #[doc(alias = "get_widgets")]
     fn widgets(&self) -> Vec<Widget>;
 }
 

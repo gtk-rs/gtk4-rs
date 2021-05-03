@@ -44,6 +44,7 @@ impl X11Display {
     }
 
     #[doc(alias = "gdk_x11_display_get_default_group")]
+    #[doc(alias = "get_default_group")]
     pub fn default_group(&self) -> Option<gdk::Surface> {
         unsafe {
             from_glib_none(ffi::gdk_x11_display_get_default_group(
@@ -53,6 +54,7 @@ impl X11Display {
     }
 
     #[doc(alias = "gdk_x11_display_get_glx_version")]
+    #[doc(alias = "get_glx_version")]
     pub fn glx_version(&self) -> Option<(i32, i32)> {
         unsafe {
             let mut major = mem::MaybeUninit::uninit();
@@ -73,6 +75,7 @@ impl X11Display {
     }
 
     #[doc(alias = "gdk_x11_display_get_primary_monitor")]
+    #[doc(alias = "get_primary_monitor")]
     pub fn primary_monitor(&self) -> Option<gdk::Monitor> {
         unsafe {
             from_glib_none(ffi::gdk_x11_display_get_primary_monitor(
@@ -82,11 +85,13 @@ impl X11Display {
     }
 
     #[doc(alias = "gdk_x11_display_get_screen")]
+    #[doc(alias = "get_screen")]
     pub fn screen(&self) -> Option<X11Screen> {
         unsafe { from_glib_none(ffi::gdk_x11_display_get_screen(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_x11_display_get_startup_notification_id")]
+    #[doc(alias = "get_startup_notification_id")]
     pub fn startup_notification_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gdk_x11_display_get_startup_notification_id(
@@ -96,16 +101,19 @@ impl X11Display {
     }
 
     #[doc(alias = "gdk_x11_display_get_user_time")]
+    #[doc(alias = "get_user_time")]
     pub fn user_time(&self) -> u32 {
         unsafe { ffi::gdk_x11_display_get_user_time(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_x11_display_get_xcursor")]
+    #[doc(alias = "get_xcursor")]
     pub fn xcursor(&self, cursor: &gdk::Cursor) -> xlib::Cursor {
         unsafe { ffi::gdk_x11_display_get_xcursor(self.to_glib_none().0, cursor.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_x11_display_get_xrootwindow")]
+    #[doc(alias = "get_xrootwindow")]
     pub fn xrootwindow(&self) -> xlib::Window {
         unsafe { ffi::gdk_x11_display_get_xrootwindow(self.to_glib_none().0) }
     }
@@ -222,6 +230,7 @@ impl X11Display {
         }
     }
 
+    //#[doc(alias = "xevent")]
     //pub fn connect_xevent<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
     //    Unimplemented xevent: *.Pointer
     //}

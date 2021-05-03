@@ -18,16 +18,19 @@ glib::wrapper! {
 
 impl X11Surface {
     #[doc(alias = "gdk_x11_surface_get_desktop")]
+    #[doc(alias = "get_desktop")]
     pub fn desktop(&self) -> u32 {
         unsafe { ffi::gdk_x11_surface_get_desktop(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_x11_surface_get_group")]
+    #[doc(alias = "get_group")]
     pub fn group(&self) -> Option<gdk::Surface> {
         unsafe { from_glib_none(ffi::gdk_x11_surface_get_group(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_x11_surface_get_xid")]
+    #[doc(alias = "get_xid")]
     pub fn xid(&self) -> xlib::Window {
         unsafe { ffi::gdk_x11_surface_get_xid(self.to_glib_none().0) }
     }

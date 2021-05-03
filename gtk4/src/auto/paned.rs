@@ -42,41 +42,49 @@ impl Paned {
     }
 
     #[doc(alias = "gtk_paned_get_end_child")]
+    #[doc(alias = "get_end_child")]
     pub fn end_child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_paned_get_end_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_paned_get_position")]
+    #[doc(alias = "get_position")]
     pub fn position(&self) -> i32 {
         unsafe { ffi::gtk_paned_get_position(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_paned_get_resize_end_child")]
+    #[doc(alias = "get_resize_end_child")]
     pub fn resizes_end_child(&self) -> bool {
         unsafe { from_glib(ffi::gtk_paned_get_resize_end_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_paned_get_resize_start_child")]
+    #[doc(alias = "get_resize_start_child")]
     pub fn resizes_start_child(&self) -> bool {
         unsafe { from_glib(ffi::gtk_paned_get_resize_start_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_paned_get_shrink_end_child")]
+    #[doc(alias = "get_shrink_end_child")]
     pub fn shrinks_end_child(&self) -> bool {
         unsafe { from_glib(ffi::gtk_paned_get_shrink_end_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_paned_get_shrink_start_child")]
+    #[doc(alias = "get_shrink_start_child")]
     pub fn shrinks_start_child(&self) -> bool {
         unsafe { from_glib(ffi::gtk_paned_get_shrink_start_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_paned_get_start_child")]
+    #[doc(alias = "get_start_child")]
     pub fn start_child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_paned_get_start_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_paned_get_wide_handle")]
+    #[doc(alias = "get_wide_handle")]
     pub fn is_wide_handle(&self) -> bool {
         unsafe { from_glib(ffi::gtk_paned_get_wide_handle(self.to_glib_none().0)) }
     }
@@ -137,7 +145,7 @@ impl Paned {
         }
     }
 
-    #[doc(alias = "get_property_max_position")]
+    #[doc(alias = "max-position")]
     pub fn max_position(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
@@ -152,7 +160,7 @@ impl Paned {
         }
     }
 
-    #[doc(alias = "get_property_min_position")]
+    #[doc(alias = "min-position")]
     pub fn min_position(&self) -> i32 {
         unsafe {
             let mut value = glib::Value::from_type(<i32 as StaticType>::static_type());
@@ -167,7 +175,7 @@ impl Paned {
         }
     }
 
-    #[doc(alias = "get_property_position_set")]
+    #[doc(alias = "position-set")]
     pub fn is_position_set(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -182,7 +190,7 @@ impl Paned {
         }
     }
 
-    #[doc(alias = "set_property_position_set")]
+    #[doc(alias = "position-set")]
     pub fn set_position_set(&self, position_set: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -193,6 +201,7 @@ impl Paned {
         }
     }
 
+    #[doc(alias = "accept-position")]
     pub fn connect_accept_position<F: Fn(&Paned) -> bool + 'static>(
         &self,
         f: F,
@@ -228,6 +237,7 @@ impl Paned {
             .expect("Return Value for `emit_accept_position`")
     }
 
+    #[doc(alias = "cancel-position")]
     pub fn connect_cancel_position<F: Fn(&Paned) -> bool + 'static>(
         &self,
         f: F,
@@ -263,6 +273,7 @@ impl Paned {
             .expect("Return Value for `emit_cancel_position`")
     }
 
+    #[doc(alias = "cycle-child-focus")]
     pub fn connect_cycle_child_focus<F: Fn(&Paned, bool) -> bool + 'static>(
         &self,
         f: F,
@@ -299,6 +310,7 @@ impl Paned {
             .expect("Return Value for `emit_cycle_child_focus`")
     }
 
+    #[doc(alias = "cycle-handle-focus")]
     pub fn connect_cycle_handle_focus<F: Fn(&Paned, bool) -> bool + 'static>(
         &self,
         f: F,
@@ -337,6 +349,7 @@ impl Paned {
             .expect("Return Value for `emit_cycle_handle_focus`")
     }
 
+    #[doc(alias = "move-handle")]
     pub fn connect_move_handle<F: Fn(&Paned, ScrollType) -> bool + 'static>(
         &self,
         f: F,
@@ -373,6 +386,7 @@ impl Paned {
             .expect("Return Value for `emit_move_handle`")
     }
 
+    #[doc(alias = "toggle-handle-focus")]
     pub fn connect_toggle_handle_focus<F: Fn(&Paned) -> bool + 'static>(
         &self,
         f: F,
@@ -408,10 +422,8 @@ impl Paned {
             .expect("Return Value for `emit_toggle_handle_focus`")
     }
 
-    pub fn connect_property_end_child_notify<F: Fn(&Paned) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "end-child")]
+    pub fn connect_end_child_notify<F: Fn(&Paned) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_end_child_trampoline<F: Fn(&Paned) + 'static>(
             this: *mut ffi::GtkPaned,
             _param_spec: glib::ffi::gpointer,
@@ -433,10 +445,8 @@ impl Paned {
         }
     }
 
-    pub fn connect_property_max_position_notify<F: Fn(&Paned) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "max-position")]
+    pub fn connect_max_position_notify<F: Fn(&Paned) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_max_position_trampoline<F: Fn(&Paned) + 'static>(
             this: *mut ffi::GtkPaned,
             _param_spec: glib::ffi::gpointer,
@@ -458,10 +468,8 @@ impl Paned {
         }
     }
 
-    pub fn connect_property_min_position_notify<F: Fn(&Paned) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "min-position")]
+    pub fn connect_min_position_notify<F: Fn(&Paned) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_min_position_trampoline<F: Fn(&Paned) + 'static>(
             this: *mut ffi::GtkPaned,
             _param_spec: glib::ffi::gpointer,
@@ -483,10 +491,8 @@ impl Paned {
         }
     }
 
-    pub fn connect_property_position_notify<F: Fn(&Paned) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "position")]
+    pub fn connect_position_notify<F: Fn(&Paned) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_position_trampoline<F: Fn(&Paned) + 'static>(
             this: *mut ffi::GtkPaned,
             _param_spec: glib::ffi::gpointer,
@@ -508,10 +514,8 @@ impl Paned {
         }
     }
 
-    pub fn connect_property_position_set_notify<F: Fn(&Paned) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "position-set")]
+    pub fn connect_position_set_notify<F: Fn(&Paned) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_position_set_trampoline<F: Fn(&Paned) + 'static>(
             this: *mut ffi::GtkPaned,
             _param_spec: glib::ffi::gpointer,
@@ -533,7 +537,8 @@ impl Paned {
         }
     }
 
-    pub fn connect_property_resize_end_child_notify<F: Fn(&Paned) + 'static>(
+    #[doc(alias = "resize-end-child")]
+    pub fn connect_resize_end_child_notify<F: Fn(&Paned) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -558,7 +563,8 @@ impl Paned {
         }
     }
 
-    pub fn connect_property_resize_start_child_notify<F: Fn(&Paned) + 'static>(
+    #[doc(alias = "resize-start-child")]
+    pub fn connect_resize_start_child_notify<F: Fn(&Paned) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -583,7 +589,8 @@ impl Paned {
         }
     }
 
-    pub fn connect_property_shrink_end_child_notify<F: Fn(&Paned) + 'static>(
+    #[doc(alias = "shrink-end-child")]
+    pub fn connect_shrink_end_child_notify<F: Fn(&Paned) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -608,7 +615,8 @@ impl Paned {
         }
     }
 
-    pub fn connect_property_shrink_start_child_notify<F: Fn(&Paned) + 'static>(
+    #[doc(alias = "shrink-start-child")]
+    pub fn connect_shrink_start_child_notify<F: Fn(&Paned) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -633,10 +641,8 @@ impl Paned {
         }
     }
 
-    pub fn connect_property_start_child_notify<F: Fn(&Paned) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "start-child")]
+    pub fn connect_start_child_notify<F: Fn(&Paned) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_start_child_trampoline<F: Fn(&Paned) + 'static>(
             this: *mut ffi::GtkPaned,
             _param_spec: glib::ffi::gpointer,
@@ -658,10 +664,8 @@ impl Paned {
         }
     }
 
-    pub fn connect_property_wide_handle_notify<F: Fn(&Paned) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "wide-handle")]
+    pub fn connect_wide_handle_notify<F: Fn(&Paned) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_wide_handle_trampoline<F: Fn(&Paned) + 'static>(
             this: *mut ffi::GtkPaned,
             _param_spec: glib::ffi::gpointer,

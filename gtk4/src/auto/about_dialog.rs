@@ -55,6 +55,7 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_get_artists")]
+    #[doc(alias = "get_artists")]
     pub fn artists(&self) -> Vec<glib::GString> {
         unsafe {
             FromGlibPtrContainer::from_glib_none(ffi::gtk_about_dialog_get_artists(
@@ -64,6 +65,7 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_get_authors")]
+    #[doc(alias = "get_authors")]
     pub fn authors(&self) -> Vec<glib::GString> {
         unsafe {
             FromGlibPtrContainer::from_glib_none(ffi::gtk_about_dialog_get_authors(
@@ -73,16 +75,19 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_get_comments")]
+    #[doc(alias = "get_comments")]
     pub fn comments(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_about_dialog_get_comments(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_about_dialog_get_copyright")]
+    #[doc(alias = "get_copyright")]
     pub fn copyright(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_about_dialog_get_copyright(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_about_dialog_get_documenters")]
+    #[doc(alias = "get_documenters")]
     pub fn documenters(&self) -> Vec<glib::GString> {
         unsafe {
             FromGlibPtrContainer::from_glib_none(ffi::gtk_about_dialog_get_documenters(
@@ -92,11 +97,13 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_get_license")]
+    #[doc(alias = "get_license")]
     pub fn license(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_about_dialog_get_license(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_about_dialog_get_license_type")]
+    #[doc(alias = "get_license_type")]
     pub fn license_type(&self) -> License {
         unsafe {
             from_glib(ffi::gtk_about_dialog_get_license_type(
@@ -106,11 +113,13 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_get_logo")]
+    #[doc(alias = "get_logo")]
     pub fn logo(&self) -> Option<gdk::Paintable> {
         unsafe { from_glib_none(ffi::gtk_about_dialog_get_logo(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_about_dialog_get_logo_icon_name")]
+    #[doc(alias = "get_logo_icon_name")]
     pub fn logo_icon_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_about_dialog_get_logo_icon_name(
@@ -120,6 +129,7 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_get_program_name")]
+    #[doc(alias = "get_program_name")]
     pub fn program_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_about_dialog_get_program_name(
@@ -129,6 +139,7 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_get_system_information")]
+    #[doc(alias = "get_system_information")]
     pub fn system_information(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_about_dialog_get_system_information(
@@ -138,6 +149,7 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_get_translator_credits")]
+    #[doc(alias = "get_translator_credits")]
     pub fn translator_credits(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_about_dialog_get_translator_credits(
@@ -147,16 +159,19 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_get_version")]
+    #[doc(alias = "get_version")]
     pub fn version(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_about_dialog_get_version(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_about_dialog_get_website")]
+    #[doc(alias = "get_website")]
     pub fn website(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_about_dialog_get_website(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_about_dialog_get_website_label")]
+    #[doc(alias = "get_website_label")]
     pub fn website_label(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_about_dialog_get_website_label(
@@ -166,6 +181,7 @@ impl AboutDialog {
     }
 
     #[doc(alias = "gtk_about_dialog_get_wrap_license")]
+    #[doc(alias = "get_wrap_license")]
     pub fn wraps_license(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_about_dialog_get_wrap_license(
@@ -304,6 +320,7 @@ impl AboutDialog {
         }
     }
 
+    #[doc(alias = "activate-link")]
     pub fn connect_activate_link<F: Fn(&AboutDialog, &str) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
@@ -335,10 +352,8 @@ impl AboutDialog {
         }
     }
 
-    pub fn connect_property_artists_notify<F: Fn(&AboutDialog) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "artists")]
+    pub fn connect_artists_notify<F: Fn(&AboutDialog) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_artists_trampoline<F: Fn(&AboutDialog) + 'static>(
             this: *mut ffi::GtkAboutDialog,
             _param_spec: glib::ffi::gpointer,
@@ -360,10 +375,8 @@ impl AboutDialog {
         }
     }
 
-    pub fn connect_property_authors_notify<F: Fn(&AboutDialog) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "authors")]
+    pub fn connect_authors_notify<F: Fn(&AboutDialog) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_authors_trampoline<F: Fn(&AboutDialog) + 'static>(
             this: *mut ffi::GtkAboutDialog,
             _param_spec: glib::ffi::gpointer,
@@ -385,10 +398,8 @@ impl AboutDialog {
         }
     }
 
-    pub fn connect_property_comments_notify<F: Fn(&AboutDialog) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "comments")]
+    pub fn connect_comments_notify<F: Fn(&AboutDialog) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_comments_trampoline<F: Fn(&AboutDialog) + 'static>(
             this: *mut ffi::GtkAboutDialog,
             _param_spec: glib::ffi::gpointer,
@@ -410,10 +421,8 @@ impl AboutDialog {
         }
     }
 
-    pub fn connect_property_copyright_notify<F: Fn(&AboutDialog) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "copyright")]
+    pub fn connect_copyright_notify<F: Fn(&AboutDialog) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_copyright_trampoline<F: Fn(&AboutDialog) + 'static>(
             this: *mut ffi::GtkAboutDialog,
             _param_spec: glib::ffi::gpointer,
@@ -435,7 +444,8 @@ impl AboutDialog {
         }
     }
 
-    pub fn connect_property_documenters_notify<F: Fn(&AboutDialog) + 'static>(
+    #[doc(alias = "documenters")]
+    pub fn connect_documenters_notify<F: Fn(&AboutDialog) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -460,10 +470,8 @@ impl AboutDialog {
         }
     }
 
-    pub fn connect_property_license_notify<F: Fn(&AboutDialog) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "license")]
+    pub fn connect_license_notify<F: Fn(&AboutDialog) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_license_trampoline<F: Fn(&AboutDialog) + 'static>(
             this: *mut ffi::GtkAboutDialog,
             _param_spec: glib::ffi::gpointer,
@@ -485,7 +493,8 @@ impl AboutDialog {
         }
     }
 
-    pub fn connect_property_license_type_notify<F: Fn(&AboutDialog) + 'static>(
+    #[doc(alias = "license-type")]
+    pub fn connect_license_type_notify<F: Fn(&AboutDialog) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -510,10 +519,8 @@ impl AboutDialog {
         }
     }
 
-    pub fn connect_property_logo_notify<F: Fn(&AboutDialog) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "logo")]
+    pub fn connect_logo_notify<F: Fn(&AboutDialog) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_logo_trampoline<F: Fn(&AboutDialog) + 'static>(
             this: *mut ffi::GtkAboutDialog,
             _param_spec: glib::ffi::gpointer,
@@ -535,7 +542,8 @@ impl AboutDialog {
         }
     }
 
-    pub fn connect_property_logo_icon_name_notify<F: Fn(&AboutDialog) + 'static>(
+    #[doc(alias = "logo-icon-name")]
+    pub fn connect_logo_icon_name_notify<F: Fn(&AboutDialog) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -560,7 +568,8 @@ impl AboutDialog {
         }
     }
 
-    pub fn connect_property_program_name_notify<F: Fn(&AboutDialog) + 'static>(
+    #[doc(alias = "program-name")]
+    pub fn connect_program_name_notify<F: Fn(&AboutDialog) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -585,7 +594,8 @@ impl AboutDialog {
         }
     }
 
-    pub fn connect_property_system_information_notify<F: Fn(&AboutDialog) + 'static>(
+    #[doc(alias = "system-information")]
+    pub fn connect_system_information_notify<F: Fn(&AboutDialog) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -610,7 +620,8 @@ impl AboutDialog {
         }
     }
 
-    pub fn connect_property_translator_credits_notify<F: Fn(&AboutDialog) + 'static>(
+    #[doc(alias = "translator-credits")]
+    pub fn connect_translator_credits_notify<F: Fn(&AboutDialog) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -635,10 +646,8 @@ impl AboutDialog {
         }
     }
 
-    pub fn connect_property_version_notify<F: Fn(&AboutDialog) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "version")]
+    pub fn connect_version_notify<F: Fn(&AboutDialog) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_version_trampoline<F: Fn(&AboutDialog) + 'static>(
             this: *mut ffi::GtkAboutDialog,
             _param_spec: glib::ffi::gpointer,
@@ -660,10 +669,8 @@ impl AboutDialog {
         }
     }
 
-    pub fn connect_property_website_notify<F: Fn(&AboutDialog) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "website")]
+    pub fn connect_website_notify<F: Fn(&AboutDialog) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_website_trampoline<F: Fn(&AboutDialog) + 'static>(
             this: *mut ffi::GtkAboutDialog,
             _param_spec: glib::ffi::gpointer,
@@ -685,7 +692,8 @@ impl AboutDialog {
         }
     }
 
-    pub fn connect_property_website_label_notify<F: Fn(&AboutDialog) + 'static>(
+    #[doc(alias = "website-label")]
+    pub fn connect_website_label_notify<F: Fn(&AboutDialog) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -710,7 +718,8 @@ impl AboutDialog {
         }
     }
 
-    pub fn connect_property_wrap_license_notify<F: Fn(&AboutDialog) + 'static>(
+    #[doc(alias = "wrap-license")]
+    pub fn connect_wrap_license_notify<F: Fn(&AboutDialog) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

@@ -66,6 +66,7 @@ pub trait TreeModelFilterExt: 'static {
     fn convert_path_to_child_path(&self, filter_path: &TreePath) -> Option<TreePath>;
 
     #[doc(alias = "gtk_tree_model_filter_get_model")]
+    #[doc(alias = "get_model")]
     fn model(&self) -> Option<TreeModel>;
 
     #[doc(alias = "gtk_tree_model_filter_refilter")]
@@ -77,7 +78,7 @@ pub trait TreeModelFilterExt: 'static {
     #[doc(alias = "gtk_tree_model_filter_set_visible_func")]
     fn set_visible_func<P: Fn(&TreeModel, &TreeIter) -> bool + 'static>(&self, func: P);
 
-    #[doc(alias = "get_property_child_model")]
+    #[doc(alias = "child-model")]
     fn child_model(&self) -> Option<TreeModel>;
 }
 

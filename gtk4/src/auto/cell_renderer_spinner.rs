@@ -31,7 +31,6 @@ impl CellRendererSpinner {
         unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_spinner_new()).unsafe_cast() }
     }
 
-    #[doc(alias = "get_property_active")]
     pub fn is_active(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -46,7 +45,6 @@ impl CellRendererSpinner {
         }
     }
 
-    #[doc(alias = "set_property_active")]
     pub fn set_active(&self, active: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -57,7 +55,6 @@ impl CellRendererSpinner {
         }
     }
 
-    #[doc(alias = "get_property_pulse")]
     pub fn pulse(&self) -> u32 {
         unsafe {
             let mut value = glib::Value::from_type(<u32 as StaticType>::static_type());
@@ -72,7 +69,6 @@ impl CellRendererSpinner {
         }
     }
 
-    #[doc(alias = "set_property_pulse")]
     pub fn set_pulse(&self, pulse: u32) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -83,7 +79,6 @@ impl CellRendererSpinner {
         }
     }
 
-    #[doc(alias = "get_property_size")]
     pub fn size(&self) -> IconSize {
         unsafe {
             let mut value = glib::Value::from_type(<IconSize as StaticType>::static_type());
@@ -98,7 +93,6 @@ impl CellRendererSpinner {
         }
     }
 
-    #[doc(alias = "set_property_size")]
     pub fn set_size(&self, size: IconSize) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -109,7 +103,8 @@ impl CellRendererSpinner {
         }
     }
 
-    pub fn connect_property_active_notify<F: Fn(&CellRendererSpinner) + 'static>(
+    #[doc(alias = "active")]
+    pub fn connect_active_notify<F: Fn(&CellRendererSpinner) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -134,7 +129,8 @@ impl CellRendererSpinner {
         }
     }
 
-    pub fn connect_property_pulse_notify<F: Fn(&CellRendererSpinner) + 'static>(
+    #[doc(alias = "pulse")]
+    pub fn connect_pulse_notify<F: Fn(&CellRendererSpinner) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -159,7 +155,8 @@ impl CellRendererSpinner {
         }
     }
 
-    pub fn connect_property_size_notify<F: Fn(&CellRendererSpinner) + 'static>(
+    #[doc(alias = "size")]
+    pub fn connect_size_notify<F: Fn(&CellRendererSpinner) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

@@ -36,31 +36,37 @@ impl Drop {
     }
 
     #[doc(alias = "gdk_drop_get_actions")]
+    #[doc(alias = "get_actions")]
     pub fn actions(&self) -> DragAction {
         unsafe { from_glib(ffi::gdk_drop_get_actions(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drop_get_device")]
+    #[doc(alias = "get_device")]
     pub fn device(&self) -> Option<Device> {
         unsafe { from_glib_none(ffi::gdk_drop_get_device(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drop_get_display")]
+    #[doc(alias = "get_display")]
     pub fn display(&self) -> Option<Display> {
         unsafe { from_glib_none(ffi::gdk_drop_get_display(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drop_get_drag")]
+    #[doc(alias = "get_drag")]
     pub fn drag(&self) -> Option<Drag> {
         unsafe { from_glib_none(ffi::gdk_drop_get_drag(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drop_get_formats")]
+    #[doc(alias = "get_formats")]
     pub fn formats(&self) -> Option<ContentFormats> {
         unsafe { from_glib_none(ffi::gdk_drop_get_formats(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_drop_get_surface")]
+    #[doc(alias = "get_surface")]
     pub fn surface(&self) -> Option<Surface> {
         unsafe { from_glib_none(ffi::gdk_drop_get_surface(self.to_glib_none().0)) }
     }
@@ -134,7 +140,8 @@ impl Drop {
         }
     }
 
-    pub fn connect_property_display_notify<F: Fn(&Drop) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "display")]
+    pub fn connect_display_notify<F: Fn(&Drop) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_display_trampoline<F: Fn(&Drop) + 'static>(
             this: *mut ffi::GdkDrop,
             _param_spec: glib::ffi::gpointer,

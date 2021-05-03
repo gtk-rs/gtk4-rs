@@ -20,6 +20,7 @@ glib::wrapper! {
 
 impl AppLaunchContext {
     #[doc(alias = "gdk_app_launch_context_get_display")]
+    #[doc(alias = "get_display")]
     pub fn display(&self) -> Option<Display> {
         unsafe {
             from_glib_none(ffi::gdk_app_launch_context_get_display(

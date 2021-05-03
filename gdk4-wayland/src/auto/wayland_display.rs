@@ -15,6 +15,7 @@ glib::wrapper! {
 
 impl WaylandDisplay {
     #[doc(alias = "gdk_wayland_display_get_startup_notification_id")]
+    #[doc(alias = "get_startup_notification_id")]
     pub fn startup_notification_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gdk_wayland_display_get_startup_notification_id(

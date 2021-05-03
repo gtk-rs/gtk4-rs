@@ -45,6 +45,7 @@ impl CellView {
     }
 
     #[doc(alias = "gtk_cell_view_new_with_context")]
+    #[doc(alias = "new_with_context")]
     pub fn with_context<P: IsA<CellArea>, Q: IsA<CellAreaContext>>(
         area: &P,
         context: &Q,
@@ -60,6 +61,7 @@ impl CellView {
     }
 
     #[doc(alias = "gtk_cell_view_new_with_markup")]
+    #[doc(alias = "new_with_markup")]
     pub fn with_markup(markup: &str) -> CellView {
         assert_initialized_main_thread!();
         unsafe {
@@ -69,6 +71,7 @@ impl CellView {
     }
 
     #[doc(alias = "gtk_cell_view_new_with_text")]
+    #[doc(alias = "new_with_text")]
     pub fn with_text(text: &str) -> CellView {
         assert_initialized_main_thread!();
         unsafe {
@@ -78,6 +81,7 @@ impl CellView {
     }
 
     #[doc(alias = "gtk_cell_view_new_with_texture")]
+    #[doc(alias = "new_with_texture")]
     pub fn with_texture<P: IsA<gdk::Texture>>(texture: &P) -> CellView {
         assert_initialized_main_thread!();
         unsafe {
@@ -89,21 +93,25 @@ impl CellView {
     }
 
     #[doc(alias = "gtk_cell_view_get_displayed_row")]
+    #[doc(alias = "get_displayed_row")]
     pub fn displayed_row(&self) -> Option<TreePath> {
         unsafe { from_glib_full(ffi::gtk_cell_view_get_displayed_row(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_cell_view_get_draw_sensitive")]
+    #[doc(alias = "get_draw_sensitive")]
     pub fn draws_sensitive(&self) -> bool {
         unsafe { from_glib(ffi::gtk_cell_view_get_draw_sensitive(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_cell_view_get_fit_model")]
+    #[doc(alias = "get_fit_model")]
     pub fn fits_model(&self) -> bool {
         unsafe { from_glib(ffi::gtk_cell_view_get_fit_model(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_cell_view_get_model")]
+    #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<TreeModel> {
         unsafe { from_glib_none(ffi::gtk_cell_view_get_model(self.to_glib_none().0)) }
     }
@@ -142,7 +150,7 @@ impl CellView {
         }
     }
 
-    #[doc(alias = "get_property_cell_area")]
+    #[doc(alias = "cell-area")]
     pub fn cell_area(&self) -> Option<CellArea> {
         unsafe {
             let mut value = glib::Value::from_type(<CellArea as StaticType>::static_type());
@@ -157,7 +165,7 @@ impl CellView {
         }
     }
 
-    #[doc(alias = "get_property_cell_area_context")]
+    #[doc(alias = "cell-area-context")]
     pub fn cell_area_context(&self) -> Option<CellAreaContext> {
         unsafe {
             let mut value = glib::Value::from_type(<CellAreaContext as StaticType>::static_type());
@@ -172,7 +180,8 @@ impl CellView {
         }
     }
 
-    pub fn connect_property_draw_sensitive_notify<F: Fn(&CellView) + 'static>(
+    #[doc(alias = "draw-sensitive")]
+    pub fn connect_draw_sensitive_notify<F: Fn(&CellView) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -197,10 +206,8 @@ impl CellView {
         }
     }
 
-    pub fn connect_property_fit_model_notify<F: Fn(&CellView) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "fit-model")]
+    pub fn connect_fit_model_notify<F: Fn(&CellView) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_fit_model_trampoline<F: Fn(&CellView) + 'static>(
             this: *mut ffi::GtkCellView,
             _param_spec: glib::ffi::gpointer,
@@ -222,10 +229,8 @@ impl CellView {
         }
     }
 
-    pub fn connect_property_model_notify<F: Fn(&CellView) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "model")]
+    pub fn connect_model_notify<F: Fn(&CellView) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<F: Fn(&CellView) + 'static>(
             this: *mut ffi::GtkCellView,
             _param_spec: glib::ffi::gpointer,

@@ -18,10 +18,12 @@ impl ColorStop {
         })
     }
 
+    #[doc(alias = "get_offset")]
     pub fn offset(&self) -> f32 {
         self.0.offset
     }
 
+    #[doc(alias = "get_color")]
     pub fn color(&self) -> RGBA {
         unsafe { from_glib_none(&self.0.color as *const _) }
     }

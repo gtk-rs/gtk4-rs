@@ -25,11 +25,13 @@ glib::wrapper! {
 
 impl BoolFilter {
     #[doc(alias = "gtk_bool_filter_get_expression")]
+    #[doc(alias = "get_expression")]
     pub fn expression(&self) -> Option<Expression> {
         unsafe { from_glib_none(ffi::gtk_bool_filter_get_expression(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_bool_filter_get_invert")]
+    #[doc(alias = "get_invert")]
     pub fn inverts(&self) -> bool {
         unsafe { from_glib(ffi::gtk_bool_filter_get_invert(self.to_glib_none().0)) }
     }
@@ -41,10 +43,8 @@ impl BoolFilter {
         }
     }
 
-    pub fn connect_property_expression_notify<F: Fn(&BoolFilter) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "expression")]
+    pub fn connect_expression_notify<F: Fn(&BoolFilter) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expression_trampoline<F: Fn(&BoolFilter) + 'static>(
             this: *mut ffi::GtkBoolFilter,
             _param_spec: glib::ffi::gpointer,
@@ -66,10 +66,8 @@ impl BoolFilter {
         }
     }
 
-    pub fn connect_property_invert_notify<F: Fn(&BoolFilter) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "invert")]
+    pub fn connect_invert_notify<F: Fn(&BoolFilter) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_invert_trampoline<F: Fn(&BoolFilter) + 'static>(
             this: *mut ffi::GtkBoolFilter,
             _param_spec: glib::ffi::gpointer,

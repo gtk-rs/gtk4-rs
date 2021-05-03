@@ -559,12 +559,15 @@ pub trait DialogExt: 'static {
     fn add_button(&self, button_text: &str, response_id: ResponseType) -> Widget;
 
     #[doc(alias = "gtk_dialog_get_content_area")]
+    #[doc(alias = "get_content_area")]
     fn content_area(&self) -> Box;
 
     #[doc(alias = "gtk_dialog_get_header_bar")]
+    #[doc(alias = "get_header_bar")]
     fn header_bar(&self) -> HeaderBar;
 
     #[doc(alias = "gtk_dialog_get_widget_for_response")]
+    #[doc(alias = "get_widget_for_response")]
     fn widget_for_response(&self, response_id: ResponseType) -> Option<Widget>;
 
     #[doc(alias = "gtk_dialog_response")]
@@ -576,13 +579,15 @@ pub trait DialogExt: 'static {
     #[doc(alias = "gtk_dialog_set_response_sensitive")]
     fn set_response_sensitive(&self, response_id: ResponseType, setting: bool);
 
-    #[doc(alias = "get_property_use_header_bar")]
+    #[doc(alias = "use-header-bar")]
     fn use_header_bar(&self) -> i32;
 
+    #[doc(alias = "close")]
     fn connect_close<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_close(&self);
 
+    #[doc(alias = "response")]
     fn connect_response<F: Fn(&Self, ResponseType) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
@@ -671,6 +676,7 @@ impl<O: IsA<Dialog>> DialogExt for O {
         }
     }
 
+    #[doc(alias = "close")]
     fn connect_close<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn close_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkDialog,
@@ -702,6 +708,7 @@ impl<O: IsA<Dialog>> DialogExt for O {
         };
     }
 
+    #[doc(alias = "response")]
     fn connect_response<F: Fn(&Self, ResponseType) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn response_trampoline<P, F: Fn(&P, ResponseType) + 'static>(
             this: *mut ffi::GtkDialog,

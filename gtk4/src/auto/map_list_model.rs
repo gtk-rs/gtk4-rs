@@ -64,6 +64,7 @@ impl MapListModel {
     }
 
     #[doc(alias = "gtk_map_list_model_get_model")]
+    #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_map_list_model_get_model(self.to_glib_none().0)) }
     }
@@ -113,10 +114,8 @@ impl MapListModel {
         }
     }
 
-    pub fn connect_property_has_map_notify<F: Fn(&MapListModel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "has-map")]
+    pub fn connect_has_map_notify<F: Fn(&MapListModel) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_map_trampoline<F: Fn(&MapListModel) + 'static>(
             this: *mut ffi::GtkMapListModel,
             _param_spec: glib::ffi::gpointer,

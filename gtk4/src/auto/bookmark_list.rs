@@ -34,16 +34,19 @@ impl BookmarkList {
     }
 
     #[doc(alias = "gtk_bookmark_list_get_attributes")]
+    #[doc(alias = "get_attributes")]
     pub fn attributes(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_bookmark_list_get_attributes(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_bookmark_list_get_filename")]
+    #[doc(alias = "get_filename")]
     pub fn filename(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_bookmark_list_get_filename(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_bookmark_list_get_io_priority")]
+    #[doc(alias = "get_io_priority")]
     pub fn io_priority(&self) -> i32 {
         unsafe { ffi::gtk_bookmark_list_get_io_priority(self.to_glib_none().0) }
     }
@@ -70,7 +73,8 @@ impl BookmarkList {
         }
     }
 
-    pub fn connect_property_attributes_notify<F: Fn(&BookmarkList) + 'static>(
+    #[doc(alias = "attributes")]
+    pub fn connect_attributes_notify<F: Fn(&BookmarkList) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -95,7 +99,8 @@ impl BookmarkList {
         }
     }
 
-    pub fn connect_property_io_priority_notify<F: Fn(&BookmarkList) + 'static>(
+    #[doc(alias = "io-priority")]
+    pub fn connect_io_priority_notify<F: Fn(&BookmarkList) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -120,10 +125,8 @@ impl BookmarkList {
         }
     }
 
-    pub fn connect_property_loading_notify<F: Fn(&BookmarkList) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "loading")]
+    pub fn connect_loading_notify<F: Fn(&BookmarkList) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_loading_trampoline<F: Fn(&BookmarkList) + 'static>(
             this: *mut ffi::GtkBookmarkList,
             _param_spec: glib::ffi::gpointer,

@@ -21,21 +21,27 @@ pub const NONE_POPUP: Option<&Popup> = None;
 
 pub trait PopupExt: 'static {
     #[doc(alias = "gdk_popup_get_autohide")]
+    #[doc(alias = "get_autohide")]
     fn is_autohide(&self) -> bool;
 
     #[doc(alias = "gdk_popup_get_parent")]
+    #[doc(alias = "get_parent")]
     fn parent(&self) -> Option<Surface>;
 
     #[doc(alias = "gdk_popup_get_position_x")]
+    #[doc(alias = "get_position_x")]
     fn position_x(&self) -> i32;
 
     #[doc(alias = "gdk_popup_get_position_y")]
+    #[doc(alias = "get_position_y")]
     fn position_y(&self) -> i32;
 
     #[doc(alias = "gdk_popup_get_rect_anchor")]
+    #[doc(alias = "get_rect_anchor")]
     fn rect_anchor(&self) -> Gravity;
 
     #[doc(alias = "gdk_popup_get_surface_anchor")]
+    #[doc(alias = "get_surface_anchor")]
     fn surface_anchor(&self) -> Gravity;
 
     #[doc(alias = "gdk_popup_present")]

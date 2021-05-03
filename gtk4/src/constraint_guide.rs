@@ -7,12 +7,15 @@ use std::mem::MaybeUninit;
 
 pub trait ConstraintGuideExtManual {
     #[doc(alias = "gtk_constraint_guide_get_max_size")]
+    #[doc(alias = "get_max_size")]
     fn max_size(&self) -> (i32, i32);
 
     #[doc(alias = "gtk_constraint_guide_get_min_size")]
+    #[doc(alias = "get_min_size")]
     fn min_size(&self) -> (i32, i32);
 
     #[doc(alias = "gtk_constraint_guide_get_nat_size")]
+    #[doc(alias = "get_nat_size")]
     fn nat_size(&self) -> (i32, i32);
 }
 

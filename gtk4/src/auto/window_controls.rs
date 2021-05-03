@@ -41,6 +41,7 @@ impl WindowControls {
     }
 
     #[doc(alias = "gtk_window_controls_get_decoration_layout")]
+    #[doc(alias = "get_decoration_layout")]
     pub fn decoration_layout(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_window_controls_get_decoration_layout(
@@ -50,11 +51,13 @@ impl WindowControls {
     }
 
     #[doc(alias = "gtk_window_controls_get_empty")]
+    #[doc(alias = "get_empty")]
     pub fn is_empty(&self) -> bool {
         unsafe { from_glib(ffi::gtk_window_controls_get_empty(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_window_controls_get_side")]
+    #[doc(alias = "get_side")]
     pub fn side(&self) -> PackType {
         unsafe { from_glib(ffi::gtk_window_controls_get_side(self.to_glib_none().0)) }
     }
@@ -76,7 +79,8 @@ impl WindowControls {
         }
     }
 
-    pub fn connect_property_decoration_layout_notify<F: Fn(&WindowControls) + 'static>(
+    #[doc(alias = "decoration-layout")]
+    pub fn connect_decoration_layout_notify<F: Fn(&WindowControls) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -103,10 +107,8 @@ impl WindowControls {
         }
     }
 
-    pub fn connect_property_empty_notify<F: Fn(&WindowControls) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "empty")]
+    pub fn connect_empty_notify<F: Fn(&WindowControls) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_empty_trampoline<F: Fn(&WindowControls) + 'static>(
             this: *mut ffi::GtkWindowControls,
             _param_spec: glib::ffi::gpointer,
@@ -128,10 +130,8 @@ impl WindowControls {
         }
     }
 
-    pub fn connect_property_side_notify<F: Fn(&WindowControls) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "side")]
+    pub fn connect_side_notify<F: Fn(&WindowControls) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_side_trampoline<F: Fn(&WindowControls) + 'static>(
             this: *mut ffi::GtkWindowControls,
             _param_spec: glib::ffi::gpointer,

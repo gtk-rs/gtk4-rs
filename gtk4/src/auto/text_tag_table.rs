@@ -61,6 +61,7 @@ impl TextTagTable {
     }
 
     #[doc(alias = "gtk_text_tag_table_get_size")]
+    #[doc(alias = "get_size")]
     pub fn size(&self) -> i32 {
         unsafe { ffi::gtk_text_tag_table_get_size(self.to_glib_none().0) }
     }
@@ -82,6 +83,7 @@ impl TextTagTable {
         }
     }
 
+    #[doc(alias = "tag-added")]
     pub fn connect_tag_added<F: Fn(&TextTagTable, &TextTag) + 'static>(
         &self,
         f: F,
@@ -107,6 +109,7 @@ impl TextTagTable {
         }
     }
 
+    #[doc(alias = "tag-changed")]
     pub fn connect_tag_changed<F: Fn(&TextTagTable, &TextTag, bool) + 'static>(
         &self,
         f: F,
@@ -139,6 +142,7 @@ impl TextTagTable {
         }
     }
 
+    #[doc(alias = "tag-removed")]
     pub fn connect_tag_removed<F: Fn(&TextTagTable, &TextTag) + 'static>(
         &self,
         f: F,

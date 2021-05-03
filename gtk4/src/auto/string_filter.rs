@@ -26,11 +26,13 @@ glib::wrapper! {
 
 impl StringFilter {
     #[doc(alias = "gtk_string_filter_get_expression")]
+    #[doc(alias = "get_expression")]
     pub fn expression(&self) -> Expression {
         unsafe { from_glib_none(ffi::gtk_string_filter_get_expression(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_string_filter_get_ignore_case")]
+    #[doc(alias = "get_ignore_case")]
     pub fn ignores_case(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_string_filter_get_ignore_case(
@@ -40,11 +42,13 @@ impl StringFilter {
     }
 
     #[doc(alias = "gtk_string_filter_get_match_mode")]
+    #[doc(alias = "get_match_mode")]
     pub fn match_mode(&self) -> StringFilterMatchMode {
         unsafe { from_glib(ffi::gtk_string_filter_get_match_mode(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_string_filter_get_search")]
+    #[doc(alias = "get_search")]
     pub fn search(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_string_filter_get_search(self.to_glib_none().0)) }
     }
@@ -70,7 +74,8 @@ impl StringFilter {
         }
     }
 
-    pub fn connect_property_expression_notify<F: Fn(&StringFilter) + 'static>(
+    #[doc(alias = "expression")]
+    pub fn connect_expression_notify<F: Fn(&StringFilter) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -95,7 +100,8 @@ impl StringFilter {
         }
     }
 
-    pub fn connect_property_ignore_case_notify<F: Fn(&StringFilter) + 'static>(
+    #[doc(alias = "ignore-case")]
+    pub fn connect_ignore_case_notify<F: Fn(&StringFilter) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -120,7 +126,8 @@ impl StringFilter {
         }
     }
 
-    pub fn connect_property_match_mode_notify<F: Fn(&StringFilter) + 'static>(
+    #[doc(alias = "match-mode")]
+    pub fn connect_match_mode_notify<F: Fn(&StringFilter) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -145,10 +152,8 @@ impl StringFilter {
         }
     }
 
-    pub fn connect_property_search_notify<F: Fn(&StringFilter) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "search")]
+    pub fn connect_search_notify<F: Fn(&StringFilter) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_search_trampoline<F: Fn(&StringFilter) + 'static>(
             this: *mut ffi::GtkStringFilter,
             _param_spec: glib::ffi::gpointer,

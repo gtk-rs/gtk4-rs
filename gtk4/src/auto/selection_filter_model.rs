@@ -35,6 +35,7 @@ impl SelectionFilterModel {
     }
 
     #[doc(alias = "gtk_selection_filter_model_get_model")]
+    #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<SelectionModel> {
         unsafe {
             from_glib_none(ffi::gtk_selection_filter_model_get_model(
@@ -53,7 +54,8 @@ impl SelectionFilterModel {
         }
     }
 
-    pub fn connect_property_model_notify<F: Fn(&SelectionFilterModel) + 'static>(
+    #[doc(alias = "model")]
+    pub fn connect_model_notify<F: Fn(&SelectionFilterModel) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

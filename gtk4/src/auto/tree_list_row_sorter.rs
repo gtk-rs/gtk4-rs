@@ -35,6 +35,7 @@ impl TreeListRowSorter {
     }
 
     #[doc(alias = "gtk_tree_list_row_sorter_get_sorter")]
+    #[doc(alias = "get_sorter")]
     pub fn sorter(&self) -> Option<Sorter> {
         unsafe {
             from_glib_none(ffi::gtk_tree_list_row_sorter_get_sorter(
@@ -53,7 +54,8 @@ impl TreeListRowSorter {
         }
     }
 
-    pub fn connect_property_sorter_notify<F: Fn(&TreeListRowSorter) + 'static>(
+    #[doc(alias = "sorter")]
+    pub fn connect_sorter_notify<F: Fn(&TreeListRowSorter) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

@@ -36,6 +36,7 @@ impl CellAreaBox {
     }
 
     #[doc(alias = "gtk_cell_area_box_get_spacing")]
+    #[doc(alias = "get_spacing")]
     pub fn spacing(&self) -> i32 {
         unsafe { ffi::gtk_cell_area_box_get_spacing(self.to_glib_none().0) }
     }
@@ -85,10 +86,8 @@ impl CellAreaBox {
         }
     }
 
-    pub fn connect_property_spacing_notify<F: Fn(&CellAreaBox) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "spacing")]
+    pub fn connect_spacing_notify<F: Fn(&CellAreaBox) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_spacing_trampoline<F: Fn(&CellAreaBox) + 'static>(
             this: *mut ffi::GtkCellAreaBox,
             _param_spec: glib::ffi::gpointer,

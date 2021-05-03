@@ -41,6 +41,7 @@ impl CheckButton {
     }
 
     #[doc(alias = "gtk_check_button_new_with_label")]
+    #[doc(alias = "new_with_label")]
     pub fn with_label(label: &str) -> CheckButton {
         assert_initialized_main_thread!();
         unsafe {
@@ -50,6 +51,7 @@ impl CheckButton {
     }
 
     #[doc(alias = "gtk_check_button_new_with_mnemonic")]
+    #[doc(alias = "new_with_mnemonic")]
     pub fn with_mnemonic(label: &str) -> CheckButton {
         assert_initialized_main_thread!();
         unsafe {
@@ -420,15 +422,19 @@ pub const NONE_CHECK_BUTTON: Option<&CheckButton> = None;
 
 pub trait CheckButtonExt: 'static {
     #[doc(alias = "gtk_check_button_get_active")]
+    #[doc(alias = "get_active")]
     fn is_active(&self) -> bool;
 
     #[doc(alias = "gtk_check_button_get_inconsistent")]
+    #[doc(alias = "get_inconsistent")]
     fn is_inconsistent(&self) -> bool;
 
     #[doc(alias = "gtk_check_button_get_label")]
+    #[doc(alias = "get_label")]
     fn label(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_check_button_get_use_underline")]
+    #[doc(alias = "get_use_underline")]
     fn uses_underline(&self) -> bool;
 
     #[doc(alias = "gtk_check_button_set_active")]
@@ -448,27 +454,30 @@ pub trait CheckButtonExt: 'static {
 
     #[cfg(any(feature = "v4_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[doc(alias = "activate")]
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     #[cfg(any(feature = "v4_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
     fn emit_activate(&self);
 
+    #[doc(alias = "toggled")]
     fn connect_toggled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "active")]
+    fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "group")]
+    fn connect_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_inconsistent_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
+    #[doc(alias = "inconsistent")]
+    fn connect_inconsistent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "label")]
+    fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_use_underline_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "use-underline")]
+    fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<CheckButton>> CheckButtonExt for O {
@@ -545,6 +554,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
 
     #[cfg(any(feature = "v4_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    #[doc(alias = "activate")]
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCheckButton,
@@ -578,6 +588,7 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         };
     }
 
+    #[doc(alias = "toggled")]
     fn connect_toggled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn toggled_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCheckButton,
@@ -601,7 +612,8 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
-    fn connect_property_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "active")]
+    fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_active_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCheckButton,
             _param_spec: glib::ffi::gpointer,
@@ -625,7 +637,8 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
-    fn connect_property_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "group")]
+    fn connect_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_group_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCheckButton,
             _param_spec: glib::ffi::gpointer,
@@ -649,10 +662,8 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
-    fn connect_property_inconsistent_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "inconsistent")]
+    fn connect_inconsistent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_inconsistent_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCheckButton,
             _param_spec: glib::ffi::gpointer,
@@ -676,7 +687,8 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
-    fn connect_property_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "label")]
+    fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_label_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCheckButton,
             _param_spec: glib::ffi::gpointer,
@@ -700,10 +712,8 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
-    fn connect_property_use_underline_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "use-underline")]
+    fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_underline_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCheckButton,
             _param_spec: glib::ffi::gpointer,

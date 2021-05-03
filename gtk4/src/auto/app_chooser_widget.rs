@@ -44,6 +44,7 @@ impl AppChooserWidget {
     }
 
     #[doc(alias = "gtk_app_chooser_widget_get_default_text")]
+    #[doc(alias = "get_default_text")]
     pub fn default_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::gtk_app_chooser_widget_get_default_text(
@@ -53,6 +54,7 @@ impl AppChooserWidget {
     }
 
     #[doc(alias = "gtk_app_chooser_widget_get_show_all")]
+    #[doc(alias = "get_show_all")]
     pub fn shows_all(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_widget_get_show_all(
@@ -62,6 +64,7 @@ impl AppChooserWidget {
     }
 
     #[doc(alias = "gtk_app_chooser_widget_get_show_default")]
+    #[doc(alias = "get_show_default")]
     pub fn shows_default(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_widget_get_show_default(
@@ -71,6 +74,7 @@ impl AppChooserWidget {
     }
 
     #[doc(alias = "gtk_app_chooser_widget_get_show_fallback")]
+    #[doc(alias = "get_show_fallback")]
     pub fn shows_fallback(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_widget_get_show_fallback(
@@ -80,6 +84,7 @@ impl AppChooserWidget {
     }
 
     #[doc(alias = "gtk_app_chooser_widget_get_show_other")]
+    #[doc(alias = "get_show_other")]
     pub fn shows_other(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_widget_get_show_other(
@@ -89,6 +94,7 @@ impl AppChooserWidget {
     }
 
     #[doc(alias = "gtk_app_chooser_widget_get_show_recommended")]
+    #[doc(alias = "get_show_recommended")]
     pub fn shows_recommended(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_app_chooser_widget_get_show_recommended(
@@ -151,6 +157,7 @@ impl AppChooserWidget {
         }
     }
 
+    #[doc(alias = "application-activated")]
     pub fn connect_application_activated<F: Fn(&AppChooserWidget, &gio::AppInfo) + 'static>(
         &self,
         f: F,
@@ -178,6 +185,7 @@ impl AppChooserWidget {
         }
     }
 
+    #[doc(alias = "application-selected")]
     pub fn connect_application_selected<F: Fn(&AppChooserWidget, &gio::AppInfo) + 'static>(
         &self,
         f: F,
@@ -205,7 +213,8 @@ impl AppChooserWidget {
         }
     }
 
-    pub fn connect_property_default_text_notify<F: Fn(&AppChooserWidget) + 'static>(
+    #[doc(alias = "default-text")]
+    pub fn connect_default_text_notify<F: Fn(&AppChooserWidget) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -230,7 +239,8 @@ impl AppChooserWidget {
         }
     }
 
-    pub fn connect_property_show_all_notify<F: Fn(&AppChooserWidget) + 'static>(
+    #[doc(alias = "show-all")]
+    pub fn connect_show_all_notify<F: Fn(&AppChooserWidget) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -255,7 +265,8 @@ impl AppChooserWidget {
         }
     }
 
-    pub fn connect_property_show_default_notify<F: Fn(&AppChooserWidget) + 'static>(
+    #[doc(alias = "show-default")]
+    pub fn connect_show_default_notify<F: Fn(&AppChooserWidget) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -280,7 +291,8 @@ impl AppChooserWidget {
         }
     }
 
-    pub fn connect_property_show_fallback_notify<F: Fn(&AppChooserWidget) + 'static>(
+    #[doc(alias = "show-fallback")]
+    pub fn connect_show_fallback_notify<F: Fn(&AppChooserWidget) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -305,7 +317,8 @@ impl AppChooserWidget {
         }
     }
 
-    pub fn connect_property_show_other_notify<F: Fn(&AppChooserWidget) + 'static>(
+    #[doc(alias = "show-other")]
+    pub fn connect_show_other_notify<F: Fn(&AppChooserWidget) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -330,7 +343,8 @@ impl AppChooserWidget {
         }
     }
 
-    pub fn connect_property_show_recommended_notify<F: Fn(&AppChooserWidget) + 'static>(
+    #[doc(alias = "show-recommended")]
+    pub fn connect_show_recommended_notify<F: Fn(&AppChooserWidget) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

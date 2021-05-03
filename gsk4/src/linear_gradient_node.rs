@@ -34,6 +34,7 @@ impl LinearGradientNode {
     }
 
     #[doc(alias = "gsk_linear_gradient_node_get_color_stops")]
+    #[doc(alias = "get_color_stops")]
     pub fn color_stops(&self) -> Vec<ColorStop> {
         unsafe {
             let mut n_stops = mem::MaybeUninit::uninit();
@@ -49,16 +50,19 @@ impl LinearGradientNode {
     }
 
     #[doc(alias = "gsk_linear_gradient_node_get_end")]
+    #[doc(alias = "get_end")]
     pub fn end(&self) -> graphene::Point {
         unsafe { from_glib_none(ffi::gsk_linear_gradient_node_get_end(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_linear_gradient_node_get_n_color_stops")]
+    #[doc(alias = "get_n_color_stops")]
     pub fn n_color_stops(&self) -> usize {
         unsafe { ffi::gsk_linear_gradient_node_get_n_color_stops(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gsk_linear_gradient_node_get_start")]
+    #[doc(alias = "get_start")]
     pub fn start(&self) -> graphene::Point {
         unsafe {
             from_glib_none(ffi::gsk_linear_gradient_node_get_start(

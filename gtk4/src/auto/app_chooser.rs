@@ -22,9 +22,11 @@ pub const NONE_APP_CHOOSER: Option<&AppChooser> = None;
 
 pub trait AppChooserExt: 'static {
     #[doc(alias = "gtk_app_chooser_get_app_info")]
+    #[doc(alias = "get_app_info")]
     fn app_info(&self) -> Option<gio::AppInfo>;
 
     #[doc(alias = "gtk_app_chooser_get_content_type")]
+    #[doc(alias = "get_content_type")]
     fn content_type(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_app_chooser_refresh")]

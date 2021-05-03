@@ -34,11 +34,13 @@ impl FlattenListModel {
     }
 
     #[doc(alias = "gtk_flatten_list_model_get_model")]
+    #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<gio::ListModel> {
         unsafe { from_glib_none(ffi::gtk_flatten_list_model_get_model(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_flatten_list_model_get_model_for_item")]
+    #[doc(alias = "get_model_for_item")]
     pub fn model_for_item(&self, position: u32) -> Option<gio::ListModel> {
         unsafe {
             from_glib_none(ffi::gtk_flatten_list_model_get_model_for_item(
@@ -58,7 +60,8 @@ impl FlattenListModel {
         }
     }
 
-    pub fn connect_property_model_notify<F: Fn(&FlattenListModel) + 'static>(
+    #[doc(alias = "model")]
+    pub fn connect_model_notify<F: Fn(&FlattenListModel) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

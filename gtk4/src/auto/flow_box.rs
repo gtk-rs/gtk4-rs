@@ -86,6 +86,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "gtk_flow_box_get_activate_on_single_click")]
+    #[doc(alias = "get_activate_on_single_click")]
     pub fn activates_on_single_click(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_flow_box_get_activate_on_single_click(
@@ -95,6 +96,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "gtk_flow_box_get_child_at_index")]
+    #[doc(alias = "get_child_at_index")]
     pub fn child_at_index(&self, idx: i32) -> Option<FlowBoxChild> {
         unsafe {
             from_glib_none(ffi::gtk_flow_box_get_child_at_index(
@@ -105,6 +107,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "gtk_flow_box_get_child_at_pos")]
+    #[doc(alias = "get_child_at_pos")]
     pub fn child_at_pos(&self, x: i32, y: i32) -> Option<FlowBoxChild> {
         unsafe {
             from_glib_none(ffi::gtk_flow_box_get_child_at_pos(
@@ -116,31 +119,37 @@ impl FlowBox {
     }
 
     #[doc(alias = "gtk_flow_box_get_column_spacing")]
+    #[doc(alias = "get_column_spacing")]
     pub fn column_spacing(&self) -> u32 {
         unsafe { ffi::gtk_flow_box_get_column_spacing(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_flow_box_get_homogeneous")]
+    #[doc(alias = "get_homogeneous")]
     pub fn is_homogeneous(&self) -> bool {
         unsafe { from_glib(ffi::gtk_flow_box_get_homogeneous(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_flow_box_get_max_children_per_line")]
+    #[doc(alias = "get_max_children_per_line")]
     pub fn max_children_per_line(&self) -> u32 {
         unsafe { ffi::gtk_flow_box_get_max_children_per_line(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_flow_box_get_min_children_per_line")]
+    #[doc(alias = "get_min_children_per_line")]
     pub fn min_children_per_line(&self) -> u32 {
         unsafe { ffi::gtk_flow_box_get_min_children_per_line(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_flow_box_get_row_spacing")]
+    #[doc(alias = "get_row_spacing")]
     pub fn row_spacing(&self) -> u32 {
         unsafe { ffi::gtk_flow_box_get_row_spacing(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_flow_box_get_selected_children")]
+    #[doc(alias = "get_selected_children")]
     pub fn selected_children(&self) -> Vec<FlowBoxChild> {
         unsafe {
             FromGlibPtrContainer::from_glib_container(ffi::gtk_flow_box_get_selected_children(
@@ -150,6 +159,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "gtk_flow_box_get_selection_mode")]
+    #[doc(alias = "get_selection_mode")]
     pub fn selection_mode(&self) -> SelectionMode {
         unsafe { from_glib(ffi::gtk_flow_box_get_selection_mode(self.to_glib_none().0)) }
     }
@@ -380,7 +390,7 @@ impl FlowBox {
         }
     }
 
-    #[doc(alias = "get_property_accept_unpaired_release")]
+    #[doc(alias = "accept-unpaired-release")]
     pub fn accepts_unpaired_release(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -395,7 +405,7 @@ impl FlowBox {
         }
     }
 
-    #[doc(alias = "set_property_accept_unpaired_release")]
+    #[doc(alias = "accept-unpaired-release")]
     pub fn set_accept_unpaired_release(&self, accept_unpaired_release: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -406,6 +416,7 @@ impl FlowBox {
         }
     }
 
+    #[doc(alias = "activate-cursor-child")]
     pub fn connect_activate_cursor_child<F: Fn(&FlowBox) + 'static>(
         &self,
         f: F,
@@ -438,6 +449,7 @@ impl FlowBox {
         };
     }
 
+    #[doc(alias = "child-activated")]
     pub fn connect_child_activated<F: Fn(&FlowBox, &FlowBoxChild) + 'static>(
         &self,
         f: F,
@@ -465,6 +477,7 @@ impl FlowBox {
         }
     }
 
+    #[doc(alias = "move-cursor")]
     pub fn connect_move_cursor<F: Fn(&FlowBox, MovementStep, i32, bool, bool) -> bool + 'static>(
         &self,
         f: F,
@@ -519,6 +532,7 @@ impl FlowBox {
             .expect("Return Value for `emit_move_cursor`")
     }
 
+    #[doc(alias = "select-all")]
     pub fn connect_select_all<F: Fn(&FlowBox) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn select_all_trampoline<F: Fn(&FlowBox) + 'static>(
             this: *mut ffi::GtkFlowBox,
@@ -548,6 +562,7 @@ impl FlowBox {
         };
     }
 
+    #[doc(alias = "selected-children-changed")]
     pub fn connect_selected_children_changed<F: Fn(&FlowBox) + 'static>(
         &self,
         f: F,
@@ -572,6 +587,7 @@ impl FlowBox {
         }
     }
 
+    #[doc(alias = "toggle-cursor-child")]
     pub fn connect_toggle_cursor_child<F: Fn(&FlowBox) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn toggle_cursor_child_trampoline<F: Fn(&FlowBox) + 'static>(
             this: *mut ffi::GtkFlowBox,
@@ -601,6 +617,7 @@ impl FlowBox {
         };
     }
 
+    #[doc(alias = "unselect-all")]
     pub fn connect_unselect_all<F: Fn(&FlowBox) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn unselect_all_trampoline<F: Fn(&FlowBox) + 'static>(
             this: *mut ffi::GtkFlowBox,
@@ -630,7 +647,8 @@ impl FlowBox {
         };
     }
 
-    pub fn connect_property_accept_unpaired_release_notify<F: Fn(&FlowBox) + 'static>(
+    #[doc(alias = "accept-unpaired-release")]
+    pub fn connect_accept_unpaired_release_notify<F: Fn(&FlowBox) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -657,7 +675,8 @@ impl FlowBox {
         }
     }
 
-    pub fn connect_property_activate_on_single_click_notify<F: Fn(&FlowBox) + 'static>(
+    #[doc(alias = "activate-on-single-click")]
+    pub fn connect_activate_on_single_click_notify<F: Fn(&FlowBox) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -684,7 +703,8 @@ impl FlowBox {
         }
     }
 
-    pub fn connect_property_column_spacing_notify<F: Fn(&FlowBox) + 'static>(
+    #[doc(alias = "column-spacing")]
+    pub fn connect_column_spacing_notify<F: Fn(&FlowBox) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -709,10 +729,8 @@ impl FlowBox {
         }
     }
 
-    pub fn connect_property_homogeneous_notify<F: Fn(&FlowBox) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "homogeneous")]
+    pub fn connect_homogeneous_notify<F: Fn(&FlowBox) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_homogeneous_trampoline<F: Fn(&FlowBox) + 'static>(
             this: *mut ffi::GtkFlowBox,
             _param_spec: glib::ffi::gpointer,
@@ -734,7 +752,8 @@ impl FlowBox {
         }
     }
 
-    pub fn connect_property_max_children_per_line_notify<F: Fn(&FlowBox) + 'static>(
+    #[doc(alias = "max-children-per-line")]
+    pub fn connect_max_children_per_line_notify<F: Fn(&FlowBox) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -759,7 +778,8 @@ impl FlowBox {
         }
     }
 
-    pub fn connect_property_min_children_per_line_notify<F: Fn(&FlowBox) + 'static>(
+    #[doc(alias = "min-children-per-line")]
+    pub fn connect_min_children_per_line_notify<F: Fn(&FlowBox) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -784,10 +804,8 @@ impl FlowBox {
         }
     }
 
-    pub fn connect_property_row_spacing_notify<F: Fn(&FlowBox) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "row-spacing")]
+    pub fn connect_row_spacing_notify<F: Fn(&FlowBox) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_row_spacing_trampoline<F: Fn(&FlowBox) + 'static>(
             this: *mut ffi::GtkFlowBox,
             _param_spec: glib::ffi::gpointer,
@@ -809,7 +827,8 @@ impl FlowBox {
         }
     }
 
-    pub fn connect_property_selection_mode_notify<F: Fn(&FlowBox) + 'static>(
+    #[doc(alias = "selection-mode")]
+    pub fn connect_selection_mode_notify<F: Fn(&FlowBox) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

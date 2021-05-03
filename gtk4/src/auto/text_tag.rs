@@ -783,767 +783,706 @@ pub trait TextTagExt: 'static {
     fn changed(&self, size_changed: bool);
 
     #[doc(alias = "gtk_text_tag_get_priority")]
+    #[doc(alias = "get_priority")]
     fn priority(&self) -> i32;
 
     #[doc(alias = "gtk_text_tag_set_priority")]
     fn set_priority(&self, priority: i32);
 
-    #[doc(alias = "get_property_accumulative_margin")]
+    #[doc(alias = "accumulative-margin")]
     fn is_accumulative_margin(&self) -> bool;
 
-    #[doc(alias = "set_property_accumulative_margin")]
+    #[doc(alias = "accumulative-margin")]
     fn set_accumulative_margin(&self, accumulative_margin: bool);
 
-    #[doc(alias = "get_property_allow_breaks")]
+    #[doc(alias = "allow-breaks")]
     fn allows_breaks(&self) -> bool;
 
-    #[doc(alias = "set_property_allow_breaks")]
+    #[doc(alias = "allow-breaks")]
     fn set_allow_breaks(&self, allow_breaks: bool);
 
-    #[doc(alias = "get_property_allow_breaks_set")]
+    #[doc(alias = "allow-breaks-set")]
     fn allows_breaks_set(&self) -> bool;
 
-    #[doc(alias = "set_property_allow_breaks_set")]
+    #[doc(alias = "allow-breaks-set")]
     fn set_allow_breaks_set(&self, allow_breaks_set: bool);
 
-    #[doc(alias = "set_property_background")]
     fn set_background(&self, background: Option<&str>);
 
-    #[doc(alias = "get_property_background_full_height")]
+    #[doc(alias = "background-full-height")]
     fn is_background_full_height(&self) -> bool;
 
-    #[doc(alias = "set_property_background_full_height")]
+    #[doc(alias = "background-full-height")]
     fn set_background_full_height(&self, background_full_height: bool);
 
-    #[doc(alias = "get_property_background_full_height_set")]
+    #[doc(alias = "background-full-height-set")]
     fn is_background_full_height_set(&self) -> bool;
 
-    #[doc(alias = "set_property_background_full_height_set")]
+    #[doc(alias = "background-full-height-set")]
     fn set_background_full_height_set(&self, background_full_height_set: bool);
 
-    #[doc(alias = "get_property_background_rgba")]
+    #[doc(alias = "background-rgba")]
     fn background_rgba(&self) -> Option<gdk::RGBA>;
 
-    #[doc(alias = "set_property_background_rgba")]
+    #[doc(alias = "background-rgba")]
     fn set_background_rgba(&self, background_rgba: Option<&gdk::RGBA>);
 
-    #[doc(alias = "get_property_background_set")]
+    #[doc(alias = "background-set")]
     fn is_background_set(&self) -> bool;
 
-    #[doc(alias = "set_property_background_set")]
+    #[doc(alias = "background-set")]
     fn set_background_set(&self, background_set: bool);
 
-    #[doc(alias = "get_property_direction")]
     fn direction(&self) -> TextDirection;
 
-    #[doc(alias = "set_property_direction")]
     fn set_direction(&self, direction: TextDirection);
 
-    #[doc(alias = "get_property_editable")]
     fn is_editable(&self) -> bool;
 
-    #[doc(alias = "set_property_editable")]
     fn set_editable(&self, editable: bool);
 
-    #[doc(alias = "get_property_editable_set")]
+    #[doc(alias = "editable-set")]
     fn is_editable_set(&self) -> bool;
 
-    #[doc(alias = "set_property_editable_set")]
+    #[doc(alias = "editable-set")]
     fn set_editable_set(&self, editable_set: bool);
 
-    #[doc(alias = "get_property_fallback")]
     fn is_fallback(&self) -> bool;
 
-    #[doc(alias = "set_property_fallback")]
     fn set_fallback(&self, fallback: bool);
 
-    #[doc(alias = "get_property_fallback_set")]
+    #[doc(alias = "fallback-set")]
     fn is_fallback_set(&self) -> bool;
 
-    #[doc(alias = "set_property_fallback_set")]
+    #[doc(alias = "fallback-set")]
     fn set_fallback_set(&self, fallback_set: bool);
 
-    #[doc(alias = "get_property_family")]
     fn family(&self) -> Option<glib::GString>;
 
-    #[doc(alias = "set_property_family")]
     fn set_family(&self, family: Option<&str>);
 
-    #[doc(alias = "get_property_family_set")]
+    #[doc(alias = "family-set")]
     fn is_family_set(&self) -> bool;
 
-    #[doc(alias = "set_property_family_set")]
+    #[doc(alias = "family-set")]
     fn set_family_set(&self, family_set: bool);
 
-    #[doc(alias = "get_property_font")]
     fn font(&self) -> Option<glib::GString>;
 
-    #[doc(alias = "set_property_font")]
     fn set_font(&self, font: Option<&str>);
 
-    #[doc(alias = "get_property_font_desc")]
+    #[doc(alias = "font-desc")]
     fn font_desc(&self) -> Option<pango::FontDescription>;
 
-    #[doc(alias = "set_property_font_desc")]
+    #[doc(alias = "font-desc")]
     fn set_font_desc(&self, font_desc: Option<&pango::FontDescription>);
 
-    #[doc(alias = "get_property_font_features")]
+    #[doc(alias = "font-features")]
     fn font_features(&self) -> Option<glib::GString>;
 
-    #[doc(alias = "set_property_font_features")]
+    #[doc(alias = "font-features")]
     fn set_font_features(&self, font_features: Option<&str>);
 
-    #[doc(alias = "get_property_font_features_set")]
+    #[doc(alias = "font-features-set")]
     fn is_font_features_set(&self) -> bool;
 
-    #[doc(alias = "set_property_font_features_set")]
+    #[doc(alias = "font-features-set")]
     fn set_font_features_set(&self, font_features_set: bool);
 
-    #[doc(alias = "set_property_foreground")]
     fn set_foreground(&self, foreground: Option<&str>);
 
-    #[doc(alias = "get_property_foreground_rgba")]
+    #[doc(alias = "foreground-rgba")]
     fn foreground_rgba(&self) -> Option<gdk::RGBA>;
 
-    #[doc(alias = "set_property_foreground_rgba")]
+    #[doc(alias = "foreground-rgba")]
     fn set_foreground_rgba(&self, foreground_rgba: Option<&gdk::RGBA>);
 
-    #[doc(alias = "get_property_foreground_set")]
+    #[doc(alias = "foreground-set")]
     fn is_foreground_set(&self) -> bool;
 
-    #[doc(alias = "set_property_foreground_set")]
+    #[doc(alias = "foreground-set")]
     fn set_foreground_set(&self, foreground_set: bool);
 
-    #[doc(alias = "get_property_indent")]
     fn indent(&self) -> i32;
 
-    #[doc(alias = "set_property_indent")]
     fn set_indent(&self, indent: i32);
 
-    #[doc(alias = "get_property_indent_set")]
+    #[doc(alias = "indent-set")]
     fn is_indent_set(&self) -> bool;
 
-    #[doc(alias = "set_property_indent_set")]
+    #[doc(alias = "indent-set")]
     fn set_indent_set(&self, indent_set: bool);
 
-    #[doc(alias = "get_property_insert_hyphens")]
+    #[doc(alias = "insert-hyphens")]
     fn is_insert_hyphens(&self) -> bool;
 
-    #[doc(alias = "set_property_insert_hyphens")]
+    #[doc(alias = "insert-hyphens")]
     fn set_insert_hyphens(&self, insert_hyphens: bool);
 
-    #[doc(alias = "get_property_insert_hyphens_set")]
+    #[doc(alias = "insert-hyphens-set")]
     fn is_insert_hyphens_set(&self) -> bool;
 
-    #[doc(alias = "set_property_insert_hyphens_set")]
+    #[doc(alias = "insert-hyphens-set")]
     fn set_insert_hyphens_set(&self, insert_hyphens_set: bool);
 
-    #[doc(alias = "get_property_invisible")]
     fn is_invisible(&self) -> bool;
 
-    #[doc(alias = "set_property_invisible")]
     fn set_invisible(&self, invisible: bool);
 
-    #[doc(alias = "get_property_invisible_set")]
+    #[doc(alias = "invisible-set")]
     fn is_invisible_set(&self) -> bool;
 
-    #[doc(alias = "set_property_invisible_set")]
+    #[doc(alias = "invisible-set")]
     fn set_invisible_set(&self, invisible_set: bool);
 
-    #[doc(alias = "get_property_justification")]
     fn justification(&self) -> Justification;
 
-    #[doc(alias = "set_property_justification")]
     fn set_justification(&self, justification: Justification);
 
-    #[doc(alias = "get_property_justification_set")]
+    #[doc(alias = "justification-set")]
     fn is_justification_set(&self) -> bool;
 
-    #[doc(alias = "set_property_justification_set")]
+    #[doc(alias = "justification-set")]
     fn set_justification_set(&self, justification_set: bool);
 
-    #[doc(alias = "get_property_language")]
     fn language(&self) -> Option<glib::GString>;
 
-    #[doc(alias = "set_property_language")]
     fn set_language(&self, language: Option<&str>);
 
-    #[doc(alias = "get_property_language_set")]
+    #[doc(alias = "language-set")]
     fn is_language_set(&self) -> bool;
 
-    #[doc(alias = "set_property_language_set")]
+    #[doc(alias = "language-set")]
     fn set_language_set(&self, language_set: bool);
 
-    #[doc(alias = "get_property_left_margin")]
+    #[doc(alias = "left-margin")]
     fn left_margin(&self) -> i32;
 
-    #[doc(alias = "set_property_left_margin")]
+    #[doc(alias = "left-margin")]
     fn set_left_margin(&self, left_margin: i32);
 
-    #[doc(alias = "get_property_left_margin_set")]
+    #[doc(alias = "left-margin-set")]
     fn is_left_margin_set(&self) -> bool;
 
-    #[doc(alias = "set_property_left_margin_set")]
+    #[doc(alias = "left-margin-set")]
     fn set_left_margin_set(&self, left_margin_set: bool);
 
-    #[doc(alias = "get_property_letter_spacing")]
+    #[doc(alias = "letter-spacing")]
     fn letter_spacing(&self) -> i32;
 
-    #[doc(alias = "set_property_letter_spacing")]
+    #[doc(alias = "letter-spacing")]
     fn set_letter_spacing(&self, letter_spacing: i32);
 
-    #[doc(alias = "get_property_letter_spacing_set")]
+    #[doc(alias = "letter-spacing-set")]
     fn is_letter_spacing_set(&self) -> bool;
 
-    #[doc(alias = "set_property_letter_spacing_set")]
+    #[doc(alias = "letter-spacing-set")]
     fn set_letter_spacing_set(&self, letter_spacing_set: bool);
 
-    #[doc(alias = "get_property_name")]
     fn name(&self) -> Option<glib::GString>;
 
-    #[doc(alias = "get_property_overline")]
     fn overline(&self) -> pango::Overline;
 
-    #[doc(alias = "set_property_overline")]
     fn set_overline(&self, overline: pango::Overline);
 
-    #[doc(alias = "get_property_overline_rgba")]
+    #[doc(alias = "overline-rgba")]
     fn overline_rgba(&self) -> Option<gdk::RGBA>;
 
-    #[doc(alias = "set_property_overline_rgba")]
+    #[doc(alias = "overline-rgba")]
     fn set_overline_rgba(&self, overline_rgba: Option<&gdk::RGBA>);
 
-    #[doc(alias = "get_property_overline_rgba_set")]
+    #[doc(alias = "overline-rgba-set")]
     fn is_overline_rgba_set(&self) -> bool;
 
-    #[doc(alias = "set_property_overline_rgba_set")]
+    #[doc(alias = "overline-rgba-set")]
     fn set_overline_rgba_set(&self, overline_rgba_set: bool);
 
-    #[doc(alias = "get_property_overline_set")]
+    #[doc(alias = "overline-set")]
     fn is_overline_set(&self) -> bool;
 
-    #[doc(alias = "set_property_overline_set")]
+    #[doc(alias = "overline-set")]
     fn set_overline_set(&self, overline_set: bool);
 
-    #[doc(alias = "set_property_paragraph_background")]
+    #[doc(alias = "paragraph-background")]
     fn set_paragraph_background(&self, paragraph_background: Option<&str>);
 
-    #[doc(alias = "get_property_paragraph_background_rgba")]
+    #[doc(alias = "paragraph-background-rgba")]
     fn paragraph_background_rgba(&self) -> Option<gdk::RGBA>;
 
-    #[doc(alias = "set_property_paragraph_background_rgba")]
+    #[doc(alias = "paragraph-background-rgba")]
     fn set_paragraph_background_rgba(&self, paragraph_background_rgba: Option<&gdk::RGBA>);
 
-    #[doc(alias = "get_property_paragraph_background_set")]
+    #[doc(alias = "paragraph-background-set")]
     fn is_paragraph_background_set(&self) -> bool;
 
-    #[doc(alias = "set_property_paragraph_background_set")]
+    #[doc(alias = "paragraph-background-set")]
     fn set_paragraph_background_set(&self, paragraph_background_set: bool);
 
-    #[doc(alias = "get_property_pixels_above_lines")]
+    #[doc(alias = "pixels-above-lines")]
     fn pixels_above_lines(&self) -> i32;
 
-    #[doc(alias = "set_property_pixels_above_lines")]
+    #[doc(alias = "pixels-above-lines")]
     fn set_pixels_above_lines(&self, pixels_above_lines: i32);
 
-    #[doc(alias = "get_property_pixels_above_lines_set")]
+    #[doc(alias = "pixels-above-lines-set")]
     fn is_pixels_above_lines_set(&self) -> bool;
 
-    #[doc(alias = "set_property_pixels_above_lines_set")]
+    #[doc(alias = "pixels-above-lines-set")]
     fn set_pixels_above_lines_set(&self, pixels_above_lines_set: bool);
 
-    #[doc(alias = "get_property_pixels_below_lines")]
+    #[doc(alias = "pixels-below-lines")]
     fn pixels_below_lines(&self) -> i32;
 
-    #[doc(alias = "set_property_pixels_below_lines")]
+    #[doc(alias = "pixels-below-lines")]
     fn set_pixels_below_lines(&self, pixels_below_lines: i32);
 
-    #[doc(alias = "get_property_pixels_below_lines_set")]
+    #[doc(alias = "pixels-below-lines-set")]
     fn is_pixels_below_lines_set(&self) -> bool;
 
-    #[doc(alias = "set_property_pixels_below_lines_set")]
+    #[doc(alias = "pixels-below-lines-set")]
     fn set_pixels_below_lines_set(&self, pixels_below_lines_set: bool);
 
-    #[doc(alias = "get_property_pixels_inside_wrap")]
+    #[doc(alias = "pixels-inside-wrap")]
     fn pixels_inside_wrap(&self) -> i32;
 
-    #[doc(alias = "set_property_pixels_inside_wrap")]
+    #[doc(alias = "pixels-inside-wrap")]
     fn set_pixels_inside_wrap(&self, pixels_inside_wrap: i32);
 
-    #[doc(alias = "get_property_pixels_inside_wrap_set")]
+    #[doc(alias = "pixels-inside-wrap-set")]
     fn is_pixels_inside_wrap_set(&self) -> bool;
 
-    #[doc(alias = "set_property_pixels_inside_wrap_set")]
+    #[doc(alias = "pixels-inside-wrap-set")]
     fn set_pixels_inside_wrap_set(&self, pixels_inside_wrap_set: bool);
 
-    #[doc(alias = "get_property_right_margin")]
+    #[doc(alias = "right-margin")]
     fn right_margin(&self) -> i32;
 
-    #[doc(alias = "set_property_right_margin")]
+    #[doc(alias = "right-margin")]
     fn set_right_margin(&self, right_margin: i32);
 
-    #[doc(alias = "get_property_right_margin_set")]
+    #[doc(alias = "right-margin-set")]
     fn is_right_margin_set(&self) -> bool;
 
-    #[doc(alias = "set_property_right_margin_set")]
+    #[doc(alias = "right-margin-set")]
     fn set_right_margin_set(&self, right_margin_set: bool);
 
-    #[doc(alias = "get_property_rise")]
     fn rise(&self) -> i32;
 
-    #[doc(alias = "set_property_rise")]
     fn set_rise(&self, rise: i32);
 
-    #[doc(alias = "get_property_rise_set")]
+    #[doc(alias = "rise-set")]
     fn is_rise_set(&self) -> bool;
 
-    #[doc(alias = "set_property_rise_set")]
+    #[doc(alias = "rise-set")]
     fn set_rise_set(&self, rise_set: bool);
 
-    #[doc(alias = "get_property_scale")]
     fn scale(&self) -> f64;
 
-    #[doc(alias = "set_property_scale")]
     fn set_scale(&self, scale: f64);
 
-    #[doc(alias = "get_property_scale_set")]
+    #[doc(alias = "scale-set")]
     fn is_scale_set(&self) -> bool;
 
-    #[doc(alias = "set_property_scale_set")]
+    #[doc(alias = "scale-set")]
     fn set_scale_set(&self, scale_set: bool);
 
-    #[doc(alias = "get_property_show_spaces")]
+    #[doc(alias = "show-spaces")]
     fn show_spaces(&self) -> pango::ShowFlags;
 
-    #[doc(alias = "set_property_show_spaces")]
+    #[doc(alias = "show-spaces")]
     fn set_show_spaces(&self, show_spaces: pango::ShowFlags);
 
-    #[doc(alias = "get_property_show_spaces_set")]
+    #[doc(alias = "show-spaces-set")]
     fn shows_spaces_set(&self) -> bool;
 
-    #[doc(alias = "set_property_show_spaces_set")]
+    #[doc(alias = "show-spaces-set")]
     fn set_show_spaces_set(&self, show_spaces_set: bool);
 
-    #[doc(alias = "get_property_size")]
     fn size(&self) -> i32;
 
-    #[doc(alias = "set_property_size")]
     fn set_size(&self, size: i32);
 
-    #[doc(alias = "get_property_size_points")]
+    #[doc(alias = "size-points")]
     fn size_points(&self) -> f64;
 
-    #[doc(alias = "set_property_size_points")]
+    #[doc(alias = "size-points")]
     fn set_size_points(&self, size_points: f64);
 
-    #[doc(alias = "get_property_size_set")]
+    #[doc(alias = "size-set")]
     fn is_size_set(&self) -> bool;
 
-    #[doc(alias = "set_property_size_set")]
+    #[doc(alias = "size-set")]
     fn set_size_set(&self, size_set: bool);
 
-    #[doc(alias = "get_property_stretch")]
     fn stretch(&self) -> pango::Stretch;
 
-    #[doc(alias = "set_property_stretch")]
     fn set_stretch(&self, stretch: pango::Stretch);
 
-    #[doc(alias = "get_property_stretch_set")]
+    #[doc(alias = "stretch-set")]
     fn is_stretch_set(&self) -> bool;
 
-    #[doc(alias = "set_property_stretch_set")]
+    #[doc(alias = "stretch-set")]
     fn set_stretch_set(&self, stretch_set: bool);
 
-    #[doc(alias = "get_property_strikethrough")]
     fn is_strikethrough(&self) -> bool;
 
-    #[doc(alias = "set_property_strikethrough")]
     fn set_strikethrough(&self, strikethrough: bool);
 
-    #[doc(alias = "get_property_strikethrough_rgba")]
+    #[doc(alias = "strikethrough-rgba")]
     fn strikethrough_rgba(&self) -> Option<gdk::RGBA>;
 
-    #[doc(alias = "set_property_strikethrough_rgba")]
+    #[doc(alias = "strikethrough-rgba")]
     fn set_strikethrough_rgba(&self, strikethrough_rgba: Option<&gdk::RGBA>);
 
-    #[doc(alias = "get_property_strikethrough_rgba_set")]
+    #[doc(alias = "strikethrough-rgba-set")]
     fn is_strikethrough_rgba_set(&self) -> bool;
 
-    #[doc(alias = "set_property_strikethrough_rgba_set")]
+    #[doc(alias = "strikethrough-rgba-set")]
     fn set_strikethrough_rgba_set(&self, strikethrough_rgba_set: bool);
 
-    #[doc(alias = "get_property_strikethrough_set")]
+    #[doc(alias = "strikethrough-set")]
     fn is_strikethrough_set(&self) -> bool;
 
-    #[doc(alias = "set_property_strikethrough_set")]
+    #[doc(alias = "strikethrough-set")]
     fn set_strikethrough_set(&self, strikethrough_set: bool);
 
-    #[doc(alias = "get_property_style")]
     fn style(&self) -> pango::Style;
 
-    #[doc(alias = "set_property_style")]
     fn set_style(&self, style: pango::Style);
 
-    #[doc(alias = "get_property_style_set")]
+    #[doc(alias = "style-set")]
     fn is_style_set(&self) -> bool;
 
-    #[doc(alias = "set_property_style_set")]
+    #[doc(alias = "style-set")]
     fn set_style_set(&self, style_set: bool);
 
-    #[doc(alias = "get_property_tabs")]
     fn tabs(&self) -> Option<pango::TabArray>;
 
-    #[doc(alias = "set_property_tabs")]
     fn set_tabs(&self, tabs: Option<&pango::TabArray>);
 
-    #[doc(alias = "get_property_tabs_set")]
+    #[doc(alias = "tabs-set")]
     fn is_tabs_set(&self) -> bool;
 
-    #[doc(alias = "set_property_tabs_set")]
+    #[doc(alias = "tabs-set")]
     fn set_tabs_set(&self, tabs_set: bool);
 
-    #[doc(alias = "get_property_underline")]
     fn underline(&self) -> pango::Underline;
 
-    #[doc(alias = "set_property_underline")]
     fn set_underline(&self, underline: pango::Underline);
 
-    #[doc(alias = "get_property_underline_rgba")]
+    #[doc(alias = "underline-rgba")]
     fn underline_rgba(&self) -> Option<gdk::RGBA>;
 
-    #[doc(alias = "set_property_underline_rgba")]
+    #[doc(alias = "underline-rgba")]
     fn set_underline_rgba(&self, underline_rgba: Option<&gdk::RGBA>);
 
-    #[doc(alias = "get_property_underline_rgba_set")]
+    #[doc(alias = "underline-rgba-set")]
     fn is_underline_rgba_set(&self) -> bool;
 
-    #[doc(alias = "set_property_underline_rgba_set")]
+    #[doc(alias = "underline-rgba-set")]
     fn set_underline_rgba_set(&self, underline_rgba_set: bool);
 
-    #[doc(alias = "get_property_underline_set")]
+    #[doc(alias = "underline-set")]
     fn is_underline_set(&self) -> bool;
 
-    #[doc(alias = "set_property_underline_set")]
+    #[doc(alias = "underline-set")]
     fn set_underline_set(&self, underline_set: bool);
 
-    #[doc(alias = "get_property_variant")]
     fn variant(&self) -> pango::Variant;
 
-    #[doc(alias = "set_property_variant")]
     fn set_variant(&self, variant: pango::Variant);
 
-    #[doc(alias = "get_property_variant_set")]
+    #[doc(alias = "variant-set")]
     fn is_variant_set(&self) -> bool;
 
-    #[doc(alias = "set_property_variant_set")]
+    #[doc(alias = "variant-set")]
     fn set_variant_set(&self, variant_set: bool);
 
-    #[doc(alias = "get_property_weight")]
     fn weight(&self) -> i32;
 
-    #[doc(alias = "set_property_weight")]
     fn set_weight(&self, weight: i32);
 
-    #[doc(alias = "get_property_weight_set")]
+    #[doc(alias = "weight-set")]
     fn is_weight_set(&self) -> bool;
 
-    #[doc(alias = "set_property_weight_set")]
+    #[doc(alias = "weight-set")]
     fn set_weight_set(&self, weight_set: bool);
 
-    #[doc(alias = "get_property_wrap_mode")]
+    #[doc(alias = "wrap-mode")]
     fn wrap_mode(&self) -> WrapMode;
 
-    #[doc(alias = "set_property_wrap_mode")]
+    #[doc(alias = "wrap-mode")]
     fn set_wrap_mode(&self, wrap_mode: WrapMode);
 
-    #[doc(alias = "get_property_wrap_mode_set")]
+    #[doc(alias = "wrap-mode-set")]
     fn wraps_mode_set(&self) -> bool;
 
-    #[doc(alias = "set_property_wrap_mode_set")]
+    #[doc(alias = "wrap-mode-set")]
     fn set_wrap_mode_set(&self, wrap_mode_set: bool);
 
-    fn connect_property_accumulative_margin_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "accumulative-margin")]
+    fn connect_accumulative_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "allow-breaks")]
+    fn connect_allow_breaks_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "allow-breaks-set")]
+    fn connect_allow_breaks_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "background")]
+    fn connect_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "background-full-height")]
+    fn connect_background_full_height_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
-    fn connect_property_allow_breaks_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
-
-    fn connect_property_allow_breaks_set_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "background-full-height-set")]
+    fn connect_background_full_height_set_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
-    fn connect_property_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "background-rgba")]
+    fn connect_background_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_background_full_height_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "background-set")]
+    fn connect_background_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "direction")]
+    fn connect_direction_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "editable")]
+    fn connect_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "editable-set")]
+    fn connect_editable_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "fallback")]
+    fn connect_fallback_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "fallback-set")]
+    fn connect_fallback_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "family")]
+    fn connect_family_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "family-set")]
+    fn connect_family_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "font")]
+    fn connect_font_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "font-desc")]
+    fn connect_font_desc_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "font-features")]
+    fn connect_font_features_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "font-features-set")]
+    fn connect_font_features_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "foreground")]
+    fn connect_foreground_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "foreground-rgba")]
+    fn connect_foreground_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "foreground-set")]
+    fn connect_foreground_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "indent")]
+    fn connect_indent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "indent-set")]
+    fn connect_indent_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "insert-hyphens")]
+    fn connect_insert_hyphens_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "insert-hyphens-set")]
+    fn connect_insert_hyphens_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "invisible")]
+    fn connect_invisible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "invisible-set")]
+    fn connect_invisible_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "justification")]
+    fn connect_justification_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "justification-set")]
+    fn connect_justification_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "language")]
+    fn connect_language_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "language-set")]
+    fn connect_language_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "left-margin")]
+    fn connect_left_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "left-margin-set")]
+    fn connect_left_margin_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "letter-spacing")]
+    fn connect_letter_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "letter-spacing-set")]
+    fn connect_letter_spacing_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "overline")]
+    fn connect_overline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "overline-rgba")]
+    fn connect_overline_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "overline-rgba-set")]
+    fn connect_overline_rgba_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "overline-set")]
+    fn connect_overline_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "paragraph-background")]
+    fn connect_paragraph_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "paragraph-background-rgba")]
+    fn connect_paragraph_background_rgba_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
-    fn connect_property_background_full_height_set_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "paragraph-background-set")]
+    fn connect_paragraph_background_set_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
-    fn connect_property_background_rgba_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "pixels-above-lines")]
+    fn connect_pixels_above_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "pixels-above-lines-set")]
+    fn connect_pixels_above_lines_set_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
-    fn connect_property_background_set_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "pixels-below-lines")]
+    fn connect_pixels_below_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "pixels-below-lines-set")]
+    fn connect_pixels_below_lines_set_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
-    fn connect_property_direction_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "pixels-inside-wrap")]
+    fn connect_pixels_inside_wrap_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_editable_set_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
-
-    fn connect_property_fallback_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_fallback_set_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
-
-    fn connect_property_family_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_family_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_font_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_font_desc_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_font_features_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "pixels-inside-wrap-set")]
+    fn connect_pixels_inside_wrap_set_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
-    fn connect_property_font_features_set_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "right-margin")]
+    fn connect_right_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "right-margin-set")]
+    fn connect_right_margin_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "rise")]
+    fn connect_rise_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "rise-set")]
+    fn connect_rise_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "scale")]
+    fn connect_scale_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "scale-set")]
+    fn connect_scale_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "show-spaces")]
+    fn connect_show_spaces_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "show-spaces-set")]
+    fn connect_show_spaces_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "size")]
+    fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "size-points")]
+    fn connect_size_points_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "size-set")]
+    fn connect_size_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "stretch")]
+    fn connect_stretch_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "stretch-set")]
+    fn connect_stretch_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "strikethrough")]
+    fn connect_strikethrough_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "strikethrough-rgba")]
+    fn connect_strikethrough_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "strikethrough-rgba-set")]
+    fn connect_strikethrough_rgba_set_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
 
-    fn connect_property_foreground_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "strikethrough-set")]
+    fn connect_strikethrough_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_foreground_rgba_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "style")]
+    fn connect_style_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_foreground_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "style-set")]
+    fn connect_style_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_indent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "tabs")]
+    fn connect_tabs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_indent_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "tabs-set")]
+    fn connect_tabs_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_insert_hyphens_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "underline")]
+    fn connect_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_insert_hyphens_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "underline-rgba")]
+    fn connect_underline_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_invisible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "underline-rgba-set")]
+    fn connect_underline_rgba_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_invisible_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "underline-set")]
+    fn connect_underline_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_justification_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "variant")]
+    fn connect_variant_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_justification_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "variant-set")]
+    fn connect_variant_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_language_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "weight")]
+    fn connect_weight_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_language_set_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
+    #[doc(alias = "weight-set")]
+    fn connect_weight_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_left_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "wrap-mode")]
+    fn connect_wrap_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_left_margin_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_letter_spacing_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_letter_spacing_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_overline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_overline_rgba_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_overline_rgba_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_overline_set_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
-
-    fn connect_property_paragraph_background_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_paragraph_background_rgba_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_paragraph_background_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_pixels_above_lines_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_pixels_above_lines_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_pixels_below_lines_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_pixels_below_lines_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_pixels_inside_wrap_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_pixels_inside_wrap_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_right_margin_notify<F: Fn(&Self) + 'static>(&self, f: F)
-        -> SignalHandlerId;
-
-    fn connect_property_right_margin_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_rise_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_rise_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_scale_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_scale_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_show_spaces_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_show_spaces_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_size_points_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_size_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_stretch_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_stretch_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_strikethrough_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_strikethrough_rgba_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_strikethrough_rgba_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_strikethrough_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_style_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_style_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_tabs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_tabs_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_underline_rgba_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_underline_rgba_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_underline_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    fn connect_property_variant_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_variant_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_weight_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_weight_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_wrap_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    fn connect_property_wrap_mode_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "wrap-mode-set")]
+    fn connect_wrap_mode_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<TextTag>> TextTagExt for O {
@@ -3456,10 +3395,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_accumulative_margin_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "accumulative-margin")]
+    fn connect_accumulative_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_accumulative_margin_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -3483,10 +3420,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_allow_breaks_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "allow-breaks")]
+    fn connect_allow_breaks_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_allow_breaks_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -3510,10 +3445,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_allow_breaks_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "allow-breaks-set")]
+    fn connect_allow_breaks_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_allow_breaks_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -3537,7 +3470,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "background")]
+    fn connect_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_background_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -3561,7 +3495,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_background_full_height_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "background-full-height")]
+    fn connect_background_full_height_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -3588,7 +3523,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_background_full_height_set_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "background-full-height-set")]
+    fn connect_background_full_height_set_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -3615,10 +3551,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_background_rgba_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "background-rgba")]
+    fn connect_background_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_background_rgba_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -3642,10 +3576,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_background_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "background-set")]
+    fn connect_background_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_background_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -3669,7 +3601,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_direction_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "direction")]
+    fn connect_direction_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_direction_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -3693,7 +3626,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "editable")]
+    fn connect_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_editable_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -3717,10 +3651,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_editable_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "editable-set")]
+    fn connect_editable_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_editable_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -3744,7 +3676,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_fallback_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "fallback")]
+    fn connect_fallback_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_fallback_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -3768,10 +3701,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_fallback_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "fallback-set")]
+    fn connect_fallback_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_fallback_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -3795,7 +3726,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_family_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "family")]
+    fn connect_family_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_family_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -3819,7 +3751,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_family_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "family-set")]
+    fn connect_family_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_family_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -3843,7 +3776,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_font_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "font")]
+    fn connect_font_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_font_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -3867,7 +3801,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_font_desc_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "font-desc")]
+    fn connect_font_desc_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_font_desc_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -3891,10 +3826,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_font_features_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "font-features")]
+    fn connect_font_features_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_font_features_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -3918,10 +3851,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_font_features_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "font-features-set")]
+    fn connect_font_features_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_font_features_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -3945,7 +3876,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_foreground_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "foreground")]
+    fn connect_foreground_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_foreground_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -3969,10 +3901,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_foreground_rgba_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "foreground-rgba")]
+    fn connect_foreground_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_foreground_rgba_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -3996,10 +3926,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_foreground_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "foreground-set")]
+    fn connect_foreground_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_foreground_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4023,7 +3951,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_indent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "indent")]
+    fn connect_indent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_indent_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4047,7 +3976,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_indent_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "indent-set")]
+    fn connect_indent_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_indent_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4071,10 +4001,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_insert_hyphens_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "insert-hyphens")]
+    fn connect_insert_hyphens_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_insert_hyphens_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4098,10 +4026,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_insert_hyphens_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "insert-hyphens-set")]
+    fn connect_insert_hyphens_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_insert_hyphens_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4125,7 +4051,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_invisible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "invisible")]
+    fn connect_invisible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_invisible_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4149,10 +4076,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_invisible_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "invisible-set")]
+    fn connect_invisible_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_invisible_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4176,10 +4101,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_justification_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "justification")]
+    fn connect_justification_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_justification_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4203,10 +4126,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_justification_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "justification-set")]
+    fn connect_justification_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_justification_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4230,7 +4151,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_language_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "language")]
+    fn connect_language_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_language_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4254,10 +4176,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_language_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "language-set")]
+    fn connect_language_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_language_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4281,7 +4201,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_left_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "left-margin")]
+    fn connect_left_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_left_margin_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4305,10 +4226,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_left_margin_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "left-margin-set")]
+    fn connect_left_margin_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_left_margin_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4332,10 +4251,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_letter_spacing_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "letter-spacing")]
+    fn connect_letter_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_letter_spacing_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4359,10 +4276,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_letter_spacing_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "letter-spacing-set")]
+    fn connect_letter_spacing_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_letter_spacing_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4386,7 +4301,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_overline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "overline")]
+    fn connect_overline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_overline_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4410,10 +4326,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_overline_rgba_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "overline-rgba")]
+    fn connect_overline_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_overline_rgba_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4437,10 +4351,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_overline_rgba_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "overline-rgba-set")]
+    fn connect_overline_rgba_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_overline_rgba_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4464,10 +4376,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_overline_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "overline-set")]
+    fn connect_overline_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_overline_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4491,10 +4401,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_paragraph_background_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "paragraph-background")]
+    fn connect_paragraph_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_paragraph_background_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4518,7 +4426,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_paragraph_background_rgba_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "paragraph-background-rgba")]
+    fn connect_paragraph_background_rgba_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -4545,7 +4454,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_paragraph_background_set_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "paragraph-background-set")]
+    fn connect_paragraph_background_set_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -4572,10 +4482,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_pixels_above_lines_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "pixels-above-lines")]
+    fn connect_pixels_above_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pixels_above_lines_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4599,7 +4507,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_pixels_above_lines_set_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "pixels-above-lines-set")]
+    fn connect_pixels_above_lines_set_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -4626,10 +4535,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_pixels_below_lines_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "pixels-below-lines")]
+    fn connect_pixels_below_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pixels_below_lines_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4653,7 +4560,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_pixels_below_lines_set_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "pixels-below-lines-set")]
+    fn connect_pixels_below_lines_set_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -4680,10 +4588,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_pixels_inside_wrap_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "pixels-inside-wrap")]
+    fn connect_pixels_inside_wrap_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pixels_inside_wrap_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4707,7 +4613,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_pixels_inside_wrap_set_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "pixels-inside-wrap-set")]
+    fn connect_pixels_inside_wrap_set_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -4734,10 +4641,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_right_margin_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "right-margin")]
+    fn connect_right_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_right_margin_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4761,10 +4666,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_right_margin_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "right-margin-set")]
+    fn connect_right_margin_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_right_margin_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4788,7 +4691,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_rise_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "rise")]
+    fn connect_rise_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rise_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4812,7 +4716,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_rise_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "rise-set")]
+    fn connect_rise_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rise_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4836,7 +4741,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_scale_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "scale")]
+    fn connect_scale_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scale_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4860,7 +4766,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_scale_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "scale-set")]
+    fn connect_scale_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scale_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4884,7 +4791,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_show_spaces_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "show-spaces")]
+    fn connect_show_spaces_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_spaces_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4908,10 +4816,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_show_spaces_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "show-spaces-set")]
+    fn connect_show_spaces_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_spaces_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4935,7 +4841,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "size")]
+    fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_size_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4959,7 +4866,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_size_points_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "size-points")]
+    fn connect_size_points_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_size_points_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -4983,7 +4891,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_size_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "size-set")]
+    fn connect_size_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_size_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -5007,7 +4916,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_stretch_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "stretch")]
+    fn connect_stretch_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_stretch_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -5031,7 +4941,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_stretch_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "stretch-set")]
+    fn connect_stretch_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_stretch_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -5055,10 +4966,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_strikethrough_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "strikethrough")]
+    fn connect_strikethrough_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_strikethrough_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -5082,10 +4991,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_strikethrough_rgba_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "strikethrough-rgba")]
+    fn connect_strikethrough_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_strikethrough_rgba_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -5109,7 +5016,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_strikethrough_rgba_set_notify<F: Fn(&Self) + 'static>(
+    #[doc(alias = "strikethrough-rgba-set")]
+    fn connect_strikethrough_rgba_set_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -5136,10 +5044,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_strikethrough_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "strikethrough-set")]
+    fn connect_strikethrough_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_strikethrough_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -5163,7 +5069,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_style_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "style")]
+    fn connect_style_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_style_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -5187,7 +5094,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_style_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "style-set")]
+    fn connect_style_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_style_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -5211,7 +5119,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_tabs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "tabs")]
+    fn connect_tabs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tabs_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -5235,7 +5144,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_tabs_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "tabs-set")]
+    fn connect_tabs_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tabs_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -5259,7 +5169,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "underline")]
+    fn connect_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_underline_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -5283,10 +5194,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_underline_rgba_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "underline-rgba")]
+    fn connect_underline_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_underline_rgba_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -5310,10 +5219,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_underline_rgba_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "underline-rgba-set")]
+    fn connect_underline_rgba_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_underline_rgba_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -5337,10 +5244,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_underline_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "underline-set")]
+    fn connect_underline_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_underline_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -5364,7 +5269,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_variant_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "variant")]
+    fn connect_variant_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_variant_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -5388,7 +5294,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_variant_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "variant-set")]
+    fn connect_variant_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_variant_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -5412,7 +5319,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_weight_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "weight")]
+    fn connect_weight_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_weight_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -5436,7 +5344,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_weight_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "weight-set")]
+    fn connect_weight_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_weight_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -5460,7 +5369,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_wrap_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "wrap-mode")]
+    fn connect_wrap_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_wrap_mode_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,
@@ -5484,10 +5394,8 @@ impl<O: IsA<TextTag>> TextTagExt for O {
         }
     }
 
-    fn connect_property_wrap_mode_set_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "wrap-mode-set")]
+    fn connect_wrap_mode_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_wrap_mode_set_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextTag,
             _param_spec: glib::ffi::gpointer,

@@ -92,24 +92,31 @@ pub trait StyleContextExt: 'static {
     fn add_provider<P: IsA<StyleProvider>>(&self, provider: &P, priority: u32);
 
     #[doc(alias = "gtk_style_context_get_border")]
+    #[doc(alias = "get_border")]
     fn border(&self) -> Border;
 
     #[doc(alias = "gtk_style_context_get_color")]
+    #[doc(alias = "get_color")]
     fn color(&self) -> gdk::RGBA;
 
     #[doc(alias = "gtk_style_context_get_display")]
+    #[doc(alias = "get_display")]
     fn display(&self) -> gdk::Display;
 
     #[doc(alias = "gtk_style_context_get_margin")]
+    #[doc(alias = "get_margin")]
     fn margin(&self) -> Border;
 
     #[doc(alias = "gtk_style_context_get_padding")]
+    #[doc(alias = "get_padding")]
     fn padding(&self) -> Border;
 
     #[doc(alias = "gtk_style_context_get_scale")]
+    #[doc(alias = "get_scale")]
     fn scale(&self) -> i32;
 
     #[doc(alias = "gtk_style_context_get_state")]
+    #[doc(alias = "get_state")]
     fn state(&self) -> StateFlags;
 
     #[doc(alias = "gtk_style_context_has_class")]
@@ -142,7 +149,8 @@ pub trait StyleContextExt: 'static {
     #[doc(alias = "gtk_style_context_to_string")]
     fn to_string(&self, flags: StyleContextPrintFlags) -> glib::GString;
 
-    fn connect_property_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "display")]
+    fn connect_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<StyleContext>> StyleContextExt for O {
@@ -314,7 +322,8 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
         }
     }
 
-    fn connect_property_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "display")]
+    fn connect_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_display_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkStyleContext,
             _param_spec: glib::ffi::gpointer,

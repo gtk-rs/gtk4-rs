@@ -32,7 +32,6 @@ impl CellRendererPixbuf {
         unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_pixbuf_new()).unsafe_cast() }
     }
 
-    #[doc(alias = "get_property_gicon")]
     pub fn gicon(&self) -> Option<gio::Icon> {
         unsafe {
             let mut value = glib::Value::from_type(<gio::Icon as StaticType>::static_type());
@@ -47,7 +46,6 @@ impl CellRendererPixbuf {
         }
     }
 
-    #[doc(alias = "set_property_gicon")]
     pub fn set_gicon<P: IsA<gio::Icon>>(&self, gicon: Option<&P>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -58,7 +56,7 @@ impl CellRendererPixbuf {
         }
     }
 
-    #[doc(alias = "get_property_icon_name")]
+    #[doc(alias = "icon-name")]
     pub fn icon_name(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -73,7 +71,7 @@ impl CellRendererPixbuf {
         }
     }
 
-    #[doc(alias = "set_property_icon_name")]
+    #[doc(alias = "icon-name")]
     pub fn set_icon_name(&self, icon_name: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -84,7 +82,7 @@ impl CellRendererPixbuf {
         }
     }
 
-    #[doc(alias = "get_property_icon_size")]
+    #[doc(alias = "icon-size")]
     pub fn icon_size(&self) -> IconSize {
         unsafe {
             let mut value = glib::Value::from_type(<IconSize as StaticType>::static_type());
@@ -99,7 +97,7 @@ impl CellRendererPixbuf {
         }
     }
 
-    #[doc(alias = "set_property_icon_size")]
+    #[doc(alias = "icon-size")]
     pub fn set_icon_size(&self, icon_size: IconSize) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -110,7 +108,6 @@ impl CellRendererPixbuf {
         }
     }
 
-    #[doc(alias = "set_property_pixbuf")]
     pub fn set_pixbuf(&self, pixbuf: Option<&gdk_pixbuf::Pixbuf>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -121,7 +118,7 @@ impl CellRendererPixbuf {
         }
     }
 
-    #[doc(alias = "get_property_pixbuf_expander_closed")]
+    #[doc(alias = "pixbuf-expander-closed")]
     pub fn pixbuf_expander_closed(&self) -> Option<gdk_pixbuf::Pixbuf> {
         unsafe {
             let mut value =
@@ -137,7 +134,7 @@ impl CellRendererPixbuf {
         }
     }
 
-    #[doc(alias = "set_property_pixbuf_expander_closed")]
+    #[doc(alias = "pixbuf-expander-closed")]
     pub fn set_pixbuf_expander_closed(&self, pixbuf_expander_closed: Option<&gdk_pixbuf::Pixbuf>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -148,7 +145,7 @@ impl CellRendererPixbuf {
         }
     }
 
-    #[doc(alias = "get_property_pixbuf_expander_open")]
+    #[doc(alias = "pixbuf-expander-open")]
     pub fn pixbuf_expander_open(&self) -> Option<gdk_pixbuf::Pixbuf> {
         unsafe {
             let mut value =
@@ -164,7 +161,7 @@ impl CellRendererPixbuf {
         }
     }
 
-    #[doc(alias = "set_property_pixbuf_expander_open")]
+    #[doc(alias = "pixbuf-expander-open")]
     pub fn set_pixbuf_expander_open(&self, pixbuf_expander_open: Option<&gdk_pixbuf::Pixbuf>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -175,7 +172,6 @@ impl CellRendererPixbuf {
         }
     }
 
-    #[doc(alias = "get_property_texture")]
     pub fn texture(&self) -> Option<gdk::Texture> {
         unsafe {
             let mut value = glib::Value::from_type(<gdk::Texture as StaticType>::static_type());
@@ -190,7 +186,6 @@ impl CellRendererPixbuf {
         }
     }
 
-    #[doc(alias = "set_property_texture")]
     pub fn set_texture<P: IsA<gdk::Texture>>(&self, texture: Option<&P>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -201,7 +196,8 @@ impl CellRendererPixbuf {
         }
     }
 
-    pub fn connect_property_gicon_notify<F: Fn(&CellRendererPixbuf) + 'static>(
+    #[doc(alias = "gicon")]
+    pub fn connect_gicon_notify<F: Fn(&CellRendererPixbuf) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -226,7 +222,8 @@ impl CellRendererPixbuf {
         }
     }
 
-    pub fn connect_property_icon_name_notify<F: Fn(&CellRendererPixbuf) + 'static>(
+    #[doc(alias = "icon-name")]
+    pub fn connect_icon_name_notify<F: Fn(&CellRendererPixbuf) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -251,7 +248,8 @@ impl CellRendererPixbuf {
         }
     }
 
-    pub fn connect_property_icon_size_notify<F: Fn(&CellRendererPixbuf) + 'static>(
+    #[doc(alias = "icon-size")]
+    pub fn connect_icon_size_notify<F: Fn(&CellRendererPixbuf) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -276,7 +274,8 @@ impl CellRendererPixbuf {
         }
     }
 
-    pub fn connect_property_pixbuf_notify<F: Fn(&CellRendererPixbuf) + 'static>(
+    #[doc(alias = "pixbuf")]
+    pub fn connect_pixbuf_notify<F: Fn(&CellRendererPixbuf) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -301,7 +300,8 @@ impl CellRendererPixbuf {
         }
     }
 
-    pub fn connect_property_pixbuf_expander_closed_notify<F: Fn(&CellRendererPixbuf) + 'static>(
+    #[doc(alias = "pixbuf-expander-closed")]
+    pub fn connect_pixbuf_expander_closed_notify<F: Fn(&CellRendererPixbuf) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -328,7 +328,8 @@ impl CellRendererPixbuf {
         }
     }
 
-    pub fn connect_property_pixbuf_expander_open_notify<F: Fn(&CellRendererPixbuf) + 'static>(
+    #[doc(alias = "pixbuf-expander-open")]
+    pub fn connect_pixbuf_expander_open_notify<F: Fn(&CellRendererPixbuf) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -355,7 +356,8 @@ impl CellRendererPixbuf {
         }
     }
 
-    pub fn connect_property_texture_notify<F: Fn(&CellRendererPixbuf) + 'static>(
+    #[doc(alias = "texture")]
+    pub fn connect_texture_notify<F: Fn(&CellRendererPixbuf) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

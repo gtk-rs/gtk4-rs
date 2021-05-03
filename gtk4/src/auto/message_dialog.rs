@@ -40,6 +40,7 @@ glib::wrapper! {
 
 impl MessageDialog {
     #[doc(alias = "gtk_message_dialog_get_message_area")]
+    #[doc(alias = "get_message_area")]
     pub fn message_area(&self) -> Widget {
         unsafe {
             from_glib_none(ffi::gtk_message_dialog_get_message_area(
@@ -55,7 +56,7 @@ impl MessageDialog {
         }
     }
 
-    #[doc(alias = "get_property_message_type")]
+    #[doc(alias = "message-type")]
     pub fn message_type(&self) -> MessageType {
         unsafe {
             let mut value = glib::Value::from_type(<MessageType as StaticType>::static_type());
@@ -70,7 +71,7 @@ impl MessageDialog {
         }
     }
 
-    #[doc(alias = "set_property_message_type")]
+    #[doc(alias = "message-type")]
     pub fn set_message_type(&self, message_type: MessageType) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -81,7 +82,7 @@ impl MessageDialog {
         }
     }
 
-    #[doc(alias = "get_property_secondary_text")]
+    #[doc(alias = "secondary-text")]
     pub fn secondary_text(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -96,7 +97,7 @@ impl MessageDialog {
         }
     }
 
-    #[doc(alias = "set_property_secondary_text")]
+    #[doc(alias = "secondary-text")]
     pub fn set_secondary_text(&self, secondary_text: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -107,7 +108,7 @@ impl MessageDialog {
         }
     }
 
-    #[doc(alias = "get_property_secondary_use_markup")]
+    #[doc(alias = "secondary-use-markup")]
     pub fn is_secondary_use_markup(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -122,7 +123,7 @@ impl MessageDialog {
         }
     }
 
-    #[doc(alias = "set_property_secondary_use_markup")]
+    #[doc(alias = "secondary-use-markup")]
     pub fn set_secondary_use_markup(&self, secondary_use_markup: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -133,7 +134,6 @@ impl MessageDialog {
         }
     }
 
-    #[doc(alias = "get_property_text")]
     pub fn text(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -148,7 +148,6 @@ impl MessageDialog {
         }
     }
 
-    #[doc(alias = "set_property_text")]
     pub fn set_text(&self, text: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -159,7 +158,7 @@ impl MessageDialog {
         }
     }
 
-    #[doc(alias = "get_property_use_markup")]
+    #[doc(alias = "use-markup")]
     pub fn uses_markup(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
@@ -174,7 +173,7 @@ impl MessageDialog {
         }
     }
 
-    #[doc(alias = "set_property_use_markup")]
+    #[doc(alias = "use-markup")]
     pub fn set_use_markup(&self, use_markup: bool) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -185,7 +184,8 @@ impl MessageDialog {
         }
     }
 
-    pub fn connect_property_message_area_notify<F: Fn(&MessageDialog) + 'static>(
+    #[doc(alias = "message-area")]
+    pub fn connect_message_area_notify<F: Fn(&MessageDialog) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -210,7 +210,8 @@ impl MessageDialog {
         }
     }
 
-    pub fn connect_property_message_type_notify<F: Fn(&MessageDialog) + 'static>(
+    #[doc(alias = "message-type")]
+    pub fn connect_message_type_notify<F: Fn(&MessageDialog) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -235,7 +236,8 @@ impl MessageDialog {
         }
     }
 
-    pub fn connect_property_secondary_text_notify<F: Fn(&MessageDialog) + 'static>(
+    #[doc(alias = "secondary-text")]
+    pub fn connect_secondary_text_notify<F: Fn(&MessageDialog) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -260,7 +262,8 @@ impl MessageDialog {
         }
     }
 
-    pub fn connect_property_secondary_use_markup_notify<F: Fn(&MessageDialog) + 'static>(
+    #[doc(alias = "secondary-use-markup")]
+    pub fn connect_secondary_use_markup_notify<F: Fn(&MessageDialog) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -287,10 +290,8 @@ impl MessageDialog {
         }
     }
 
-    pub fn connect_property_text_notify<F: Fn(&MessageDialog) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "text")]
+    pub fn connect_text_notify<F: Fn(&MessageDialog) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<F: Fn(&MessageDialog) + 'static>(
             this: *mut ffi::GtkMessageDialog,
             _param_spec: glib::ffi::gpointer,
@@ -312,7 +313,8 @@ impl MessageDialog {
         }
     }
 
-    pub fn connect_property_use_markup_notify<F: Fn(&MessageDialog) + 'static>(
+    #[doc(alias = "use-markup")]
+    pub fn connect_use_markup_notify<F: Fn(&MessageDialog) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

@@ -39,6 +39,7 @@ impl Button {
     }
 
     #[doc(alias = "gtk_button_new_from_icon_name")]
+    #[doc(alias = "new_from_icon_name")]
     pub fn from_icon_name(icon_name: Option<&str>) -> Button {
         assert_initialized_main_thread!();
         unsafe {
@@ -50,6 +51,7 @@ impl Button {
     }
 
     #[doc(alias = "gtk_button_new_with_label")]
+    #[doc(alias = "new_with_label")]
     pub fn with_label(label: &str) -> Button {
         assert_initialized_main_thread!();
         unsafe {
@@ -59,6 +61,7 @@ impl Button {
     }
 
     #[doc(alias = "gtk_button_new_with_mnemonic")]
+    #[doc(alias = "new_with_mnemonic")]
     pub fn with_mnemonic(label: &str) -> Button {
         assert_initialized_main_thread!();
         unsafe {
@@ -426,18 +429,23 @@ pub const NONE_BUTTON: Option<&Button> = None;
 
 pub trait ButtonExt: 'static {
     #[doc(alias = "gtk_button_get_child")]
+    #[doc(alias = "get_child")]
     fn child(&self) -> Option<Widget>;
 
     #[doc(alias = "gtk_button_get_has_frame")]
+    #[doc(alias = "get_has_frame")]
     fn has_frame(&self) -> bool;
 
     #[doc(alias = "gtk_button_get_icon_name")]
+    #[doc(alias = "get_icon_name")]
     fn icon_name(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_button_get_label")]
+    #[doc(alias = "get_label")]
     fn label(&self) -> Option<glib::GString>;
 
     #[doc(alias = "gtk_button_get_use_underline")]
+    #[doc(alias = "get_use_underline")]
     fn uses_underline(&self) -> bool;
 
     #[doc(alias = "gtk_button_set_child")]
@@ -455,26 +463,30 @@ pub trait ButtonExt: 'static {
     #[doc(alias = "gtk_button_set_use_underline")]
     fn set_use_underline(&self, use_underline: bool);
 
+    #[doc(alias = "activate")]
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_activate(&self);
 
+    #[doc(alias = "clicked")]
     fn connect_clicked<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     fn emit_clicked(&self);
 
-    fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "child")]
+    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_has_frame_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "has-frame")]
+    fn connect_has_frame_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "icon-name")]
+    fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "label")]
+    fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_use_underline_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "use-underline")]
+    fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<Button>> ButtonExt for O {
@@ -549,6 +561,7 @@ impl<O: IsA<Button>> ButtonExt for O {
         }
     }
 
+    #[doc(alias = "activate")]
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkButton,
@@ -580,6 +593,7 @@ impl<O: IsA<Button>> ButtonExt for O {
         };
     }
 
+    #[doc(alias = "clicked")]
     fn connect_clicked<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn clicked_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkButton,
@@ -611,7 +625,8 @@ impl<O: IsA<Button>> ButtonExt for O {
         };
     }
 
-    fn connect_property_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "child")]
+    fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkButton,
             _param_spec: glib::ffi::gpointer,
@@ -635,7 +650,8 @@ impl<O: IsA<Button>> ButtonExt for O {
         }
     }
 
-    fn connect_property_has_frame_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "has-frame")]
+    fn connect_has_frame_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_frame_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkButton,
             _param_spec: glib::ffi::gpointer,
@@ -659,7 +675,8 @@ impl<O: IsA<Button>> ButtonExt for O {
         }
     }
 
-    fn connect_property_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "icon-name")]
+    fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkButton,
             _param_spec: glib::ffi::gpointer,
@@ -683,7 +700,8 @@ impl<O: IsA<Button>> ButtonExt for O {
         }
     }
 
-    fn connect_property_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "label")]
+    fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_label_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkButton,
             _param_spec: glib::ffi::gpointer,
@@ -707,10 +725,8 @@ impl<O: IsA<Button>> ButtonExt for O {
         }
     }
 
-    fn connect_property_use_underline_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "use-underline")]
+    fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_underline_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkButton,
             _param_spec: glib::ffi::gpointer,

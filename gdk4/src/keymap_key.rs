@@ -20,14 +20,17 @@ impl KeymapKey {
         }
     }
 
+    #[doc(alias = "get_keycode")]
     pub fn keycode(&self) -> u32 {
         self.keycode
     }
 
+    #[doc(alias = "get_group")]
     pub fn group(&self) -> i32 {
         self.group
     }
 
+    #[doc(alias = "get_level")]
     pub fn level(&self) -> i32 {
         self.level
     }

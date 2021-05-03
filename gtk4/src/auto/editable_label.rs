@@ -41,6 +41,7 @@ impl EditableLabel {
     }
 
     #[doc(alias = "gtk_editable_label_get_editing")]
+    #[doc(alias = "get_editing")]
     pub fn is_editing(&self) -> bool {
         unsafe { from_glib(ffi::gtk_editable_label_get_editing(self.to_glib_none().0)) }
     }
@@ -59,10 +60,8 @@ impl EditableLabel {
         }
     }
 
-    pub fn connect_property_editing_notify<F: Fn(&EditableLabel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "editing")]
+    pub fn connect_editing_notify<F: Fn(&EditableLabel) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_editing_trampoline<F: Fn(&EditableLabel) + 'static>(
             this: *mut ffi::GtkEditableLabel,
             _param_spec: glib::ffi::gpointer,

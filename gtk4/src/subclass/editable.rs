@@ -20,10 +20,12 @@ pub trait EditableImpl: WidgetImpl {
         self.parent_changed(editable)
     }
 
+    #[doc(alias = "get_text")]
     fn text(&self, editable: &Self::Type) -> GString {
         self.parent_text(editable)
     }
 
+    #[doc(alias = "get_delegate")]
     fn delegate(&self, editable: &Self::Type) -> Option<Editable> {
         self.parent_delegate(editable)
     }
@@ -36,6 +38,7 @@ pub trait EditableImpl: WidgetImpl {
         self.parent_do_delete_text(editable, start_position, end_position)
     }
 
+    #[doc(alias = "get_selection_bounds")]
     fn selection_bounds(&self, editable: &Self::Type) -> Option<(i32, i32)> {
         self.parent_selection_bounds(editable)
     }

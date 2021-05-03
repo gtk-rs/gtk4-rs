@@ -14,6 +14,7 @@ define_event! {
 
 impl KeyEvent {
     #[doc(alias = "gdk_key_event_get_consumed_modifiers")]
+    #[doc(alias = "get_consumed_modifiers")]
     pub fn consumed_modifiers(&self) -> ModifierType {
         unsafe {
             from_glib(ffi::gdk_key_event_get_consumed_modifiers(
@@ -23,25 +24,30 @@ impl KeyEvent {
     }
 
     #[doc(alias = "gdk_key_event_get_keycode")]
+    #[doc(alias = "get_keycode")]
     pub fn keycode(&self) -> u32 {
         unsafe { ffi::gdk_key_event_get_keycode(self.to_glib_none().0) }
     }
     #[doc(alias = "gdk_key_event_get_keyval")]
+    #[doc(alias = "get_keyval")]
     pub fn keyval(&self) -> Key {
         unsafe { ffi::gdk_key_event_get_keyval(self.to_glib_none().0).into() }
     }
 
     #[doc(alias = "gdk_key_event_get_layout")]
+    #[doc(alias = "get_layout")]
     pub fn layout(&self) -> u32 {
         unsafe { ffi::gdk_key_event_get_layout(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_key_event_get_level")]
+    #[doc(alias = "get_level")]
     pub fn level(&self) -> u32 {
         unsafe { ffi::gdk_key_event_get_level(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_key_event_get_match")]
+    #[doc(alias = "get_match")]
     pub fn match_(&self) -> Option<(Key, ModifierType)> {
         unsafe {
             let mut keyval = mem::MaybeUninit::uninit();

@@ -38,6 +38,7 @@ impl Statusbar {
     }
 
     #[doc(alias = "gtk_statusbar_get_context_id")]
+    #[doc(alias = "get_context_id")]
     pub fn context_id(&self, context_description: &str) -> u32 {
         unsafe {
             ffi::gtk_statusbar_get_context_id(
@@ -73,6 +74,7 @@ impl Statusbar {
         }
     }
 
+    #[doc(alias = "text-popped")]
     pub fn connect_text_popped<F: Fn(&Statusbar, u32, &str) + 'static>(
         &self,
         f: F,
@@ -103,6 +105,7 @@ impl Statusbar {
         }
     }
 
+    #[doc(alias = "text-pushed")]
     pub fn connect_text_pushed<F: Fn(&Statusbar, u32, &str) + 'static>(
         &self,
         f: F,

@@ -13,16 +13,19 @@ define_event! {
 
 impl CrossingEvent {
     #[doc(alias = "gdk_crossing_event_get_detail")]
+    #[doc(alias = "get_detail")]
     pub fn detail(&self) -> NotifyType {
         unsafe { from_glib(ffi::gdk_crossing_event_get_detail(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_crossing_event_get_focus")]
+    #[doc(alias = "get_focus")]
     pub fn gets_focus(&self) -> bool {
         unsafe { from_glib(ffi::gdk_crossing_event_get_focus(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gdk_crossing_event_get_mode")]
+    #[doc(alias = "get_mode")]
     pub fn mode(&self) -> CrossingMode {
         unsafe { from_glib(ffi::gdk_crossing_event_get_mode(self.to_glib_none().0)) }
     }

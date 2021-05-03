@@ -55,21 +55,27 @@ pub trait CellAreaContextExt: 'static {
     fn allocate(&self, width: i32, height: i32);
 
     #[doc(alias = "gtk_cell_area_context_get_allocation")]
+    #[doc(alias = "get_allocation")]
     fn allocation(&self) -> (i32, i32);
 
     #[doc(alias = "gtk_cell_area_context_get_area")]
+    #[doc(alias = "get_area")]
     fn area(&self) -> Option<CellArea>;
 
     #[doc(alias = "gtk_cell_area_context_get_preferred_height")]
+    #[doc(alias = "get_preferred_height")]
     fn preferred_height(&self) -> (i32, i32);
 
     #[doc(alias = "gtk_cell_area_context_get_preferred_height_for_width")]
+    #[doc(alias = "get_preferred_height_for_width")]
     fn preferred_height_for_width(&self, width: i32) -> (i32, i32);
 
     #[doc(alias = "gtk_cell_area_context_get_preferred_width")]
+    #[doc(alias = "get_preferred_width")]
     fn preferred_width(&self) -> (i32, i32);
 
     #[doc(alias = "gtk_cell_area_context_get_preferred_width_for_height")]
+    #[doc(alias = "get_preferred_width_for_height")]
     fn preferred_width_for_height(&self, height: i32) -> (i32, i32);
 
     #[doc(alias = "gtk_cell_area_context_push_preferred_height")]
@@ -81,37 +87,29 @@ pub trait CellAreaContextExt: 'static {
     #[doc(alias = "gtk_cell_area_context_reset")]
     fn reset(&self);
 
-    #[doc(alias = "get_property_minimum_height")]
+    #[doc(alias = "minimum-height")]
     fn minimum_height(&self) -> i32;
 
-    #[doc(alias = "get_property_minimum_width")]
+    #[doc(alias = "minimum-width")]
     fn minimum_width(&self) -> i32;
 
-    #[doc(alias = "get_property_natural_height")]
+    #[doc(alias = "natural-height")]
     fn natural_height(&self) -> i32;
 
-    #[doc(alias = "get_property_natural_width")]
+    #[doc(alias = "natural-width")]
     fn natural_width(&self) -> i32;
 
-    fn connect_property_minimum_height_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "minimum-height")]
+    fn connect_minimum_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_minimum_width_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "minimum-width")]
+    fn connect_minimum_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_natural_height_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "natural-height")]
+    fn connect_natural_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    fn connect_property_natural_width_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+    #[doc(alias = "natural-width")]
+    fn connect_natural_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
@@ -288,10 +286,8 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
-    fn connect_property_minimum_height_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "minimum-height")]
+    fn connect_minimum_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_minimum_height_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCellAreaContext,
             _param_spec: glib::ffi::gpointer,
@@ -315,10 +311,8 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
-    fn connect_property_minimum_width_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "minimum-width")]
+    fn connect_minimum_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_minimum_width_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCellAreaContext,
             _param_spec: glib::ffi::gpointer,
@@ -342,10 +336,8 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
-    fn connect_property_natural_height_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "natural-height")]
+    fn connect_natural_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_natural_height_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCellAreaContext,
             _param_spec: glib::ffi::gpointer,
@@ -369,10 +361,8 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
-    fn connect_property_natural_width_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "natural-width")]
+    fn connect_natural_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_natural_width_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCellAreaContext,
             _param_spec: glib::ffi::gpointer,

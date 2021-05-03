@@ -39,7 +39,7 @@ impl FontChooserWidget {
         unsafe { Widget::from_glib_none(ffi::gtk_font_chooser_widget_new()).unsafe_cast() }
     }
 
-    #[doc(alias = "get_property_tweak_action")]
+    #[doc(alias = "tweak-action")]
     pub fn tweak_action(&self) -> Option<gio::Action> {
         unsafe {
             let mut value = glib::Value::from_type(<gio::Action as StaticType>::static_type());
@@ -54,7 +54,8 @@ impl FontChooserWidget {
         }
     }
 
-    pub fn connect_property_tweak_action_notify<F: Fn(&FontChooserWidget) + 'static>(
+    #[doc(alias = "tweak-action")]
+    pub fn connect_tweak_action_notify<F: Fn(&FontChooserWidget) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

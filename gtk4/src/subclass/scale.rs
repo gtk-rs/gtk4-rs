@@ -6,6 +6,7 @@ use glib::translate::*;
 use glib::Cast;
 
 pub trait ScaleImpl: ScaleImplExt + RangeImpl {
+    #[doc(alias = "get_layout_offsets")]
     fn layout_offsets(&self, scale: &Self::Type) -> (i32, i32) {
         self.parent_layout_offsets(scale)
     }

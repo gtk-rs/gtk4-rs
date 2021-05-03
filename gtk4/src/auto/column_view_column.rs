@@ -41,6 +41,7 @@ impl ColumnViewColumn {
     }
 
     #[doc(alias = "gtk_column_view_column_get_column_view")]
+    #[doc(alias = "get_column_view")]
     pub fn column_view(&self) -> Option<ColumnView> {
         unsafe {
             from_glib_none(ffi::gtk_column_view_column_get_column_view(
@@ -50,6 +51,7 @@ impl ColumnViewColumn {
     }
 
     #[doc(alias = "gtk_column_view_column_get_expand")]
+    #[doc(alias = "get_expand")]
     pub fn expands(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_column_get_expand(
@@ -59,6 +61,7 @@ impl ColumnViewColumn {
     }
 
     #[doc(alias = "gtk_column_view_column_get_factory")]
+    #[doc(alias = "get_factory")]
     pub fn factory(&self) -> Option<ListItemFactory> {
         unsafe {
             from_glib_none(ffi::gtk_column_view_column_get_factory(
@@ -68,11 +71,13 @@ impl ColumnViewColumn {
     }
 
     #[doc(alias = "gtk_column_view_column_get_fixed_width")]
+    #[doc(alias = "get_fixed_width")]
     pub fn fixed_width(&self) -> i32 {
         unsafe { ffi::gtk_column_view_column_get_fixed_width(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_column_view_column_get_header_menu")]
+    #[doc(alias = "get_header_menu")]
     pub fn header_menu(&self) -> Option<gio::MenuModel> {
         unsafe {
             from_glib_none(ffi::gtk_column_view_column_get_header_menu(
@@ -82,6 +87,7 @@ impl ColumnViewColumn {
     }
 
     #[doc(alias = "gtk_column_view_column_get_resizable")]
+    #[doc(alias = "get_resizable")]
     pub fn is_resizable(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_column_get_resizable(
@@ -91,6 +97,7 @@ impl ColumnViewColumn {
     }
 
     #[doc(alias = "gtk_column_view_column_get_sorter")]
+    #[doc(alias = "get_sorter")]
     pub fn sorter(&self) -> Option<Sorter> {
         unsafe {
             from_glib_none(ffi::gtk_column_view_column_get_sorter(
@@ -100,11 +107,13 @@ impl ColumnViewColumn {
     }
 
     #[doc(alias = "gtk_column_view_column_get_title")]
+    #[doc(alias = "get_title")]
     pub fn title(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_column_view_column_get_title(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_column_view_column_get_visible")]
+    #[doc(alias = "get_visible")]
     pub fn is_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_column_view_column_get_visible(
@@ -178,7 +187,8 @@ impl ColumnViewColumn {
         }
     }
 
-    pub fn connect_property_column_view_notify<F: Fn(&ColumnViewColumn) + 'static>(
+    #[doc(alias = "column-view")]
+    pub fn connect_column_view_notify<F: Fn(&ColumnViewColumn) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -203,7 +213,8 @@ impl ColumnViewColumn {
         }
     }
 
-    pub fn connect_property_expand_notify<F: Fn(&ColumnViewColumn) + 'static>(
+    #[doc(alias = "expand")]
+    pub fn connect_expand_notify<F: Fn(&ColumnViewColumn) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -228,7 +239,8 @@ impl ColumnViewColumn {
         }
     }
 
-    pub fn connect_property_factory_notify<F: Fn(&ColumnViewColumn) + 'static>(
+    #[doc(alias = "factory")]
+    pub fn connect_factory_notify<F: Fn(&ColumnViewColumn) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -253,7 +265,8 @@ impl ColumnViewColumn {
         }
     }
 
-    pub fn connect_property_fixed_width_notify<F: Fn(&ColumnViewColumn) + 'static>(
+    #[doc(alias = "fixed-width")]
+    pub fn connect_fixed_width_notify<F: Fn(&ColumnViewColumn) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -278,7 +291,8 @@ impl ColumnViewColumn {
         }
     }
 
-    pub fn connect_property_header_menu_notify<F: Fn(&ColumnViewColumn) + 'static>(
+    #[doc(alias = "header-menu")]
+    pub fn connect_header_menu_notify<F: Fn(&ColumnViewColumn) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -303,7 +317,8 @@ impl ColumnViewColumn {
         }
     }
 
-    pub fn connect_property_resizable_notify<F: Fn(&ColumnViewColumn) + 'static>(
+    #[doc(alias = "resizable")]
+    pub fn connect_resizable_notify<F: Fn(&ColumnViewColumn) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -328,7 +343,8 @@ impl ColumnViewColumn {
         }
     }
 
-    pub fn connect_property_sorter_notify<F: Fn(&ColumnViewColumn) + 'static>(
+    #[doc(alias = "sorter")]
+    pub fn connect_sorter_notify<F: Fn(&ColumnViewColumn) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -353,7 +369,8 @@ impl ColumnViewColumn {
         }
     }
 
-    pub fn connect_property_title_notify<F: Fn(&ColumnViewColumn) + 'static>(
+    #[doc(alias = "title")]
+    pub fn connect_title_notify<F: Fn(&ColumnViewColumn) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -378,7 +395,8 @@ impl ColumnViewColumn {
         }
     }
 
-    pub fn connect_property_visible_notify<F: Fn(&ColumnViewColumn) + 'static>(
+    #[doc(alias = "visible")]
+    pub fn connect_visible_notify<F: Fn(&ColumnViewColumn) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

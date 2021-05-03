@@ -38,6 +38,7 @@ impl WindowHandle {
     }
 
     #[doc(alias = "gtk_window_handle_get_child")]
+    #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {
         unsafe { from_glib_none(ffi::gtk_window_handle_get_child(self.to_glib_none().0)) }
     }
@@ -52,10 +53,8 @@ impl WindowHandle {
         }
     }
 
-    pub fn connect_property_child_notify<F: Fn(&WindowHandle) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "child")]
+    pub fn connect_child_notify<F: Fn(&WindowHandle) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&WindowHandle) + 'static>(
             this: *mut ffi::GtkWindowHandle,
             _param_spec: glib::ffi::gpointer,

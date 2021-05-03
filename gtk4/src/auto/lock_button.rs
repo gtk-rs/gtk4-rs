@@ -45,6 +45,7 @@ impl LockButton {
     }
 
     #[doc(alias = "gtk_lock_button_get_permission")]
+    #[doc(alias = "get_permission")]
     pub fn permission(&self) -> Option<gio::Permission> {
         unsafe { from_glib_none(ffi::gtk_lock_button_get_permission(self.to_glib_none().0)) }
     }
@@ -59,7 +60,7 @@ impl LockButton {
         }
     }
 
-    #[doc(alias = "get_property_text_lock")]
+    #[doc(alias = "text-lock")]
     pub fn text_lock(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -74,7 +75,7 @@ impl LockButton {
         }
     }
 
-    #[doc(alias = "set_property_text_lock")]
+    #[doc(alias = "text-lock")]
     pub fn set_text_lock(&self, text_lock: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -85,7 +86,7 @@ impl LockButton {
         }
     }
 
-    #[doc(alias = "get_property_text_unlock")]
+    #[doc(alias = "text-unlock")]
     pub fn text_unlock(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -100,7 +101,7 @@ impl LockButton {
         }
     }
 
-    #[doc(alias = "set_property_text_unlock")]
+    #[doc(alias = "text-unlock")]
     pub fn set_text_unlock(&self, text_unlock: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -111,7 +112,7 @@ impl LockButton {
         }
     }
 
-    #[doc(alias = "get_property_tooltip_lock")]
+    #[doc(alias = "tooltip-lock")]
     pub fn tooltip_lock(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -126,7 +127,7 @@ impl LockButton {
         }
     }
 
-    #[doc(alias = "set_property_tooltip_lock")]
+    #[doc(alias = "tooltip-lock")]
     pub fn set_tooltip_lock(&self, tooltip_lock: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -137,7 +138,7 @@ impl LockButton {
         }
     }
 
-    #[doc(alias = "get_property_tooltip_not_authorized")]
+    #[doc(alias = "tooltip-not-authorized")]
     pub fn tooltip_not_authorized(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -152,7 +153,7 @@ impl LockButton {
         }
     }
 
-    #[doc(alias = "set_property_tooltip_not_authorized")]
+    #[doc(alias = "tooltip-not-authorized")]
     pub fn set_tooltip_not_authorized(&self, tooltip_not_authorized: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -163,7 +164,7 @@ impl LockButton {
         }
     }
 
-    #[doc(alias = "get_property_tooltip_unlock")]
+    #[doc(alias = "tooltip-unlock")]
     pub fn tooltip_unlock(&self) -> Option<glib::GString> {
         unsafe {
             let mut value = glib::Value::from_type(<glib::GString as StaticType>::static_type());
@@ -178,7 +179,7 @@ impl LockButton {
         }
     }
 
-    #[doc(alias = "set_property_tooltip_unlock")]
+    #[doc(alias = "tooltip-unlock")]
     pub fn set_tooltip_unlock(&self, tooltip_unlock: Option<&str>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -189,10 +190,8 @@ impl LockButton {
         }
     }
 
-    pub fn connect_property_permission_notify<F: Fn(&LockButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "permission")]
+    pub fn connect_permission_notify<F: Fn(&LockButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_permission_trampoline<F: Fn(&LockButton) + 'static>(
             this: *mut ffi::GtkLockButton,
             _param_spec: glib::ffi::gpointer,
@@ -214,10 +213,8 @@ impl LockButton {
         }
     }
 
-    pub fn connect_property_text_lock_notify<F: Fn(&LockButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "text-lock")]
+    pub fn connect_text_lock_notify<F: Fn(&LockButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_lock_trampoline<F: Fn(&LockButton) + 'static>(
             this: *mut ffi::GtkLockButton,
             _param_spec: glib::ffi::gpointer,
@@ -239,7 +236,8 @@ impl LockButton {
         }
     }
 
-    pub fn connect_property_text_unlock_notify<F: Fn(&LockButton) + 'static>(
+    #[doc(alias = "text-unlock")]
+    pub fn connect_text_unlock_notify<F: Fn(&LockButton) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -264,7 +262,8 @@ impl LockButton {
         }
     }
 
-    pub fn connect_property_tooltip_lock_notify<F: Fn(&LockButton) + 'static>(
+    #[doc(alias = "tooltip-lock")]
+    pub fn connect_tooltip_lock_notify<F: Fn(&LockButton) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -289,7 +288,8 @@ impl LockButton {
         }
     }
 
-    pub fn connect_property_tooltip_not_authorized_notify<F: Fn(&LockButton) + 'static>(
+    #[doc(alias = "tooltip-not-authorized")]
+    pub fn connect_tooltip_not_authorized_notify<F: Fn(&LockButton) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -316,7 +316,8 @@ impl LockButton {
         }
     }
 
-    pub fn connect_property_tooltip_unlock_notify<F: Fn(&LockButton) + 'static>(
+    #[doc(alias = "tooltip-unlock")]
+    pub fn connect_tooltip_unlock_notify<F: Fn(&LockButton) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

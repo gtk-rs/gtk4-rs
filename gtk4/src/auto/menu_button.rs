@@ -40,36 +40,43 @@ impl MenuButton {
     }
 
     #[doc(alias = "gtk_menu_button_get_direction")]
+    #[doc(alias = "get_direction")]
     pub fn direction(&self) -> ArrowType {
         unsafe { from_glib(ffi::gtk_menu_button_get_direction(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_menu_button_get_has_frame")]
+    #[doc(alias = "get_has_frame")]
     pub fn has_frame(&self) -> bool {
         unsafe { from_glib(ffi::gtk_menu_button_get_has_frame(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_menu_button_get_icon_name")]
+    #[doc(alias = "get_icon_name")]
     pub fn icon_name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_menu_button_get_icon_name(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_menu_button_get_label")]
+    #[doc(alias = "get_label")]
     pub fn label(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::gtk_menu_button_get_label(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_menu_button_get_menu_model")]
+    #[doc(alias = "get_menu_model")]
     pub fn menu_model(&self) -> Option<gio::MenuModel> {
         unsafe { from_glib_none(ffi::gtk_menu_button_get_menu_model(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_menu_button_get_popover")]
+    #[doc(alias = "get_popover")]
     pub fn popover(&self) -> Option<Popover> {
         unsafe { from_glib_none(ffi::gtk_menu_button_get_popover(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_menu_button_get_use_underline")]
+    #[doc(alias = "get_use_underline")]
     pub fn uses_underline(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_menu_button_get_use_underline(
@@ -179,10 +186,8 @@ impl MenuButton {
         }
     }
 
-    pub fn connect_property_direction_notify<F: Fn(&MenuButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "direction")]
+    pub fn connect_direction_notify<F: Fn(&MenuButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_direction_trampoline<F: Fn(&MenuButton) + 'static>(
             this: *mut ffi::GtkMenuButton,
             _param_spec: glib::ffi::gpointer,
@@ -204,10 +209,8 @@ impl MenuButton {
         }
     }
 
-    pub fn connect_property_has_frame_notify<F: Fn(&MenuButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "has-frame")]
+    pub fn connect_has_frame_notify<F: Fn(&MenuButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_frame_trampoline<F: Fn(&MenuButton) + 'static>(
             this: *mut ffi::GtkMenuButton,
             _param_spec: glib::ffi::gpointer,
@@ -229,10 +232,8 @@ impl MenuButton {
         }
     }
 
-    pub fn connect_property_icon_name_notify<F: Fn(&MenuButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "icon-name")]
+    pub fn connect_icon_name_notify<F: Fn(&MenuButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<F: Fn(&MenuButton) + 'static>(
             this: *mut ffi::GtkMenuButton,
             _param_spec: glib::ffi::gpointer,
@@ -254,10 +255,8 @@ impl MenuButton {
         }
     }
 
-    pub fn connect_property_label_notify<F: Fn(&MenuButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "label")]
+    pub fn connect_label_notify<F: Fn(&MenuButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_label_trampoline<F: Fn(&MenuButton) + 'static>(
             this: *mut ffi::GtkMenuButton,
             _param_spec: glib::ffi::gpointer,
@@ -279,10 +278,8 @@ impl MenuButton {
         }
     }
 
-    pub fn connect_property_menu_model_notify<F: Fn(&MenuButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "menu-model")]
+    pub fn connect_menu_model_notify<F: Fn(&MenuButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_menu_model_trampoline<F: Fn(&MenuButton) + 'static>(
             this: *mut ffi::GtkMenuButton,
             _param_spec: glib::ffi::gpointer,
@@ -304,10 +301,8 @@ impl MenuButton {
         }
     }
 
-    pub fn connect_property_popover_notify<F: Fn(&MenuButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "popover")]
+    pub fn connect_popover_notify<F: Fn(&MenuButton) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_popover_trampoline<F: Fn(&MenuButton) + 'static>(
             this: *mut ffi::GtkMenuButton,
             _param_spec: glib::ffi::gpointer,
@@ -329,7 +324,8 @@ impl MenuButton {
         }
     }
 
-    pub fn connect_property_use_underline_notify<F: Fn(&MenuButton) + 'static>(
+    #[doc(alias = "use-underline")]
+    pub fn connect_use_underline_notify<F: Fn(&MenuButton) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

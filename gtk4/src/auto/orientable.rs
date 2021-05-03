@@ -24,12 +24,14 @@ pub const NONE_ORIENTABLE: Option<&Orientable> = None;
 
 pub trait OrientableExt: 'static {
     #[doc(alias = "gtk_orientable_get_orientation")]
+    #[doc(alias = "get_orientation")]
     fn orientation(&self) -> Orientation;
 
     #[doc(alias = "gtk_orientable_set_orientation")]
     fn set_orientation(&self, orientation: Orientation);
 
-    fn connect_property_orientation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+    #[doc(alias = "orientation")]
+    fn connect_orientation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<Orientable>> OrientableExt for O {
@@ -50,7 +52,8 @@ impl<O: IsA<Orientable>> OrientableExt for O {
         }
     }
 
-    fn connect_property_orientation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+    #[doc(alias = "orientation")]
+    fn connect_orientation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_orientation_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkOrientable,
             _param_spec: glib::ffi::gpointer,

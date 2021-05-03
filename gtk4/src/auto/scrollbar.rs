@@ -47,6 +47,7 @@ impl Scrollbar {
     }
 
     #[doc(alias = "gtk_scrollbar_get_adjustment")]
+    #[doc(alias = "get_adjustment")]
     pub fn adjustment(&self) -> Option<Adjustment> {
         unsafe { from_glib_none(ffi::gtk_scrollbar_get_adjustment(self.to_glib_none().0)) }
     }
@@ -61,10 +62,8 @@ impl Scrollbar {
         }
     }
 
-    pub fn connect_property_adjustment_notify<F: Fn(&Scrollbar) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    #[doc(alias = "adjustment")]
+    pub fn connect_adjustment_notify<F: Fn(&Scrollbar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_adjustment_trampoline<F: Fn(&Scrollbar) + 'static>(
             this: *mut ffi::GtkScrollbar,
             _param_spec: glib::ffi::gpointer,

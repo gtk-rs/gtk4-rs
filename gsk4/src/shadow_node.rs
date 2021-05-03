@@ -25,17 +25,20 @@ impl ShadowNode {
     }
 
     #[doc(alias = "gsk_shadow_node_get_shadow")]
+    #[doc(alias = "get_shadow")]
     pub fn shadow(&self, i: usize) -> Option<Shadow> {
         assert!(i < self.n_shadows());
         unsafe { from_glib_none(ffi::gsk_shadow_node_get_shadow(self.to_glib_none().0, i)) }
     }
 
     #[doc(alias = "gsk_shadow_node_get_child")]
+    #[doc(alias = "get_child")]
     pub fn child(&self) -> RenderNode {
         unsafe { from_glib_none(ffi::gsk_shadow_node_get_child(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gsk_shadow_node_get_n_shadows")]
+    #[doc(alias = "get_n_shadows")]
     pub fn n_shadows(&self) -> usize {
         unsafe { ffi::gsk_shadow_node_get_n_shadows(self.to_glib_none().0) }
     }

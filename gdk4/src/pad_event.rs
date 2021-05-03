@@ -14,6 +14,7 @@ define_event! {
 
 impl PadEvent {
     #[doc(alias = "gdk_pad_event_get_axis_value")]
+    #[doc(alias = "get_axis_value")]
     pub fn axis_value(&self) -> (u32, f64) {
         unsafe {
             let mut index = mem::MaybeUninit::uninit();
@@ -30,11 +31,13 @@ impl PadEvent {
     }
 
     #[doc(alias = "gdk_pad_event_get_button")]
+    #[doc(alias = "get_button")]
     pub fn button(&self) -> u32 {
         unsafe { ffi::gdk_pad_event_get_button(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gdk_pad_event_get_group_mode")]
+    #[doc(alias = "get_group_mode")]
     pub fn group_mode(&self) -> (u32, u32) {
         unsafe {
             let mut group = mem::MaybeUninit::uninit();

@@ -65,11 +65,13 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "gtk_print_unix_dialog_get_current_page")]
+    #[doc(alias = "get_current_page")]
     pub fn current_page(&self) -> i32 {
         unsafe { ffi::gtk_print_unix_dialog_get_current_page(self.to_glib_none().0) }
     }
 
     #[doc(alias = "gtk_print_unix_dialog_get_embed_page_setup")]
+    #[doc(alias = "get_embed_page_setup")]
     pub fn embeds_page_setup(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_print_unix_dialog_get_embed_page_setup(
@@ -79,6 +81,7 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "gtk_print_unix_dialog_get_has_selection")]
+    #[doc(alias = "get_has_selection")]
     pub fn has_selection(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_print_unix_dialog_get_has_selection(
@@ -88,6 +91,7 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "gtk_print_unix_dialog_get_manual_capabilities")]
+    #[doc(alias = "get_manual_capabilities")]
     pub fn manual_capabilities(&self) -> PrintCapabilities {
         unsafe {
             from_glib(ffi::gtk_print_unix_dialog_get_manual_capabilities(
@@ -97,6 +101,7 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "gtk_print_unix_dialog_get_page_setup")]
+    #[doc(alias = "get_page_setup")]
     pub fn page_setup(&self) -> PageSetup {
         unsafe {
             from_glib_none(ffi::gtk_print_unix_dialog_get_page_setup(
@@ -106,6 +111,7 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "gtk_print_unix_dialog_get_page_setup_set")]
+    #[doc(alias = "get_page_setup_set")]
     pub fn is_page_setup_set(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_print_unix_dialog_get_page_setup_set(
@@ -115,6 +121,7 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "gtk_print_unix_dialog_get_selected_printer")]
+    #[doc(alias = "get_selected_printer")]
     pub fn selected_printer(&self) -> Printer {
         unsafe {
             from_glib_none(ffi::gtk_print_unix_dialog_get_selected_printer(
@@ -124,6 +131,7 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "gtk_print_unix_dialog_get_settings")]
+    #[doc(alias = "get_settings")]
     pub fn settings(&self) -> PrintSettings {
         unsafe {
             from_glib_full(ffi::gtk_print_unix_dialog_get_settings(
@@ -133,6 +141,7 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "gtk_print_unix_dialog_get_support_selection")]
+    #[doc(alias = "get_support_selection")]
     pub fn supports_selection(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_print_unix_dialog_get_support_selection(
@@ -208,7 +217,7 @@ impl PrintUnixDialog {
         }
     }
 
-    #[doc(alias = "get_property_print_settings")]
+    #[doc(alias = "print-settings")]
     pub fn print_settings(&self) -> Option<PrintSettings> {
         unsafe {
             let mut value = glib::Value::from_type(<PrintSettings as StaticType>::static_type());
@@ -223,7 +232,7 @@ impl PrintUnixDialog {
         }
     }
 
-    #[doc(alias = "set_property_print_settings")]
+    #[doc(alias = "print-settings")]
     pub fn set_print_settings(&self, print_settings: Option<&PrintSettings>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
@@ -234,7 +243,8 @@ impl PrintUnixDialog {
         }
     }
 
-    pub fn connect_property_current_page_notify<F: Fn(&PrintUnixDialog) + 'static>(
+    #[doc(alias = "current-page")]
+    pub fn connect_current_page_notify<F: Fn(&PrintUnixDialog) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -259,7 +269,8 @@ impl PrintUnixDialog {
         }
     }
 
-    pub fn connect_property_embed_page_setup_notify<F: Fn(&PrintUnixDialog) + 'static>(
+    #[doc(alias = "embed-page-setup")]
+    pub fn connect_embed_page_setup_notify<F: Fn(&PrintUnixDialog) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -286,7 +297,8 @@ impl PrintUnixDialog {
         }
     }
 
-    pub fn connect_property_has_selection_notify<F: Fn(&PrintUnixDialog) + 'static>(
+    #[doc(alias = "has-selection")]
+    pub fn connect_has_selection_notify<F: Fn(&PrintUnixDialog) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -311,7 +323,8 @@ impl PrintUnixDialog {
         }
     }
 
-    pub fn connect_property_manual_capabilities_notify<F: Fn(&PrintUnixDialog) + 'static>(
+    #[doc(alias = "manual-capabilities")]
+    pub fn connect_manual_capabilities_notify<F: Fn(&PrintUnixDialog) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -338,7 +351,8 @@ impl PrintUnixDialog {
         }
     }
 
-    pub fn connect_property_page_setup_notify<F: Fn(&PrintUnixDialog) + 'static>(
+    #[doc(alias = "page-setup")]
+    pub fn connect_page_setup_notify<F: Fn(&PrintUnixDialog) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -363,7 +377,8 @@ impl PrintUnixDialog {
         }
     }
 
-    pub fn connect_property_print_settings_notify<F: Fn(&PrintUnixDialog) + 'static>(
+    #[doc(alias = "print-settings")]
+    pub fn connect_print_settings_notify<F: Fn(&PrintUnixDialog) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -388,7 +403,8 @@ impl PrintUnixDialog {
         }
     }
 
-    pub fn connect_property_selected_printer_notify<F: Fn(&PrintUnixDialog) + 'static>(
+    #[doc(alias = "selected-printer")]
+    pub fn connect_selected_printer_notify<F: Fn(&PrintUnixDialog) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -415,7 +431,8 @@ impl PrintUnixDialog {
         }
     }
 
-    pub fn connect_property_support_selection_notify<F: Fn(&PrintUnixDialog) + 'static>(
+    #[doc(alias = "support-selection")]
+    pub fn connect_support_selection_notify<F: Fn(&PrintUnixDialog) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

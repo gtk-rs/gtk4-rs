@@ -49,7 +49,7 @@ impl fmt::Display for AxisUse {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "AxisUse::{}",
             match *self {
                 Self::Ignore => "Ignore",
                 Self::X => "X",
@@ -180,7 +180,7 @@ impl fmt::Display for CrossingMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "CrossingMode::{}",
             match *self {
                 Self::Normal => "Normal",
                 Self::Grab => "Grab",
@@ -287,7 +287,7 @@ impl fmt::Display for DevicePadFeature {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "DevicePadFeature::{}",
             match *self {
                 Self::Button => "Button",
                 Self::Ring => "Ring",
@@ -386,7 +386,7 @@ impl fmt::Display for DeviceToolType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "DeviceToolType::{}",
             match *self {
                 Self::Unknown => "Unknown",
                 Self::Pen => "Pen",
@@ -490,7 +490,7 @@ impl fmt::Display for DragCancelReason {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "DragCancelReason::{}",
             match *self {
                 Self::NoTarget => "NoTarget",
                 Self::UserCancelled => "UserCancelled",
@@ -631,7 +631,7 @@ impl fmt::Display for EventType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "EventType::{}",
             match *self {
                 Self::Delete => "Delete",
                 Self::MotionNotify => "MotionNotify",
@@ -796,7 +796,7 @@ impl fmt::Display for FullscreenMode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "FullscreenMode::{}",
             match *self {
                 Self::CurrentMonitor => "CurrentMonitor",
                 Self::AllMonitors => "AllMonitors",
@@ -886,7 +886,7 @@ impl fmt::Display for GLError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "GLError::{}",
             match *self {
                 Self::NotAvailable => "NotAvailable",
                 Self::UnsupportedFormat => "UnsupportedFormat",
@@ -1019,7 +1019,7 @@ impl fmt::Display for Gravity {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "Gravity::{}",
             match *self {
                 Self::NorthWest => "NorthWest",
                 Self::North => "North",
@@ -1137,7 +1137,7 @@ impl fmt::Display for InputSource {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "InputSource::{}",
             match *self {
                 Self::Mouse => "Mouse",
                 Self::Pen => "Pen",
@@ -1238,7 +1238,7 @@ impl fmt::Display for KeyMatch {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "KeyMatch::{}",
             match *self {
                 Self::None => "None",
                 Self::Partial => "Partial",
@@ -1341,7 +1341,7 @@ impl fmt::Display for MemoryFormat {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "MemoryFormat::{}",
             match *self {
                 Self::B8g8r8a8Premultiplied => "B8g8r8a8Premultiplied",
                 Self::A8r8g8b8Premultiplied => "A8r8g8b8Premultiplied",
@@ -1457,7 +1457,7 @@ impl fmt::Display for NotifyType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "NotifyType::{}",
             match *self {
                 Self::Ancestor => "Ancestor",
                 Self::Virtual => "Virtual",
@@ -1559,7 +1559,7 @@ impl fmt::Display for ScrollDirection {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "ScrollDirection::{}",
             match *self {
                 Self::Up => "Up",
                 Self::Down => "Down",
@@ -1660,7 +1660,7 @@ impl fmt::Display for SubpixelLayout {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "SubpixelLayout::{}",
             match *self {
                 Self::Unknown => "Unknown",
                 Self::None => "None",
@@ -1768,7 +1768,7 @@ impl fmt::Display for SurfaceEdge {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "SurfaceEdge::{}",
             match *self {
                 Self::NorthWest => "NorthWest",
                 Self::North => "North",
@@ -1874,7 +1874,7 @@ impl fmt::Display for TouchpadGesturePhase {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "TouchpadGesturePhase::{}",
             match *self {
                 Self::Begin => "Begin",
                 Self::Update => "Update",
@@ -1964,7 +1964,7 @@ impl fmt::Display for VulkanError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "Self::{}",
+            "VulkanError::{}",
             match *self {
                 Self::Unsupported => "Unsupported",
                 Self::NotAvailable => "NotAvailable",

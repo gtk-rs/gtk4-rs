@@ -25,11 +25,13 @@ glib::wrapper! {
 
 impl StringSorter {
     #[doc(alias = "gtk_string_sorter_get_expression")]
+    #[doc(alias = "get_expression")]
     pub fn expression(&self) -> Option<Expression> {
         unsafe { from_glib_none(ffi::gtk_string_sorter_get_expression(self.to_glib_none().0)) }
     }
 
     #[doc(alias = "gtk_string_sorter_get_ignore_case")]
+    #[doc(alias = "get_ignore_case")]
     pub fn ignores_case(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_string_sorter_get_ignore_case(
@@ -45,7 +47,8 @@ impl StringSorter {
         }
     }
 
-    pub fn connect_property_expression_notify<F: Fn(&StringSorter) + 'static>(
+    #[doc(alias = "expression")]
+    pub fn connect_expression_notify<F: Fn(&StringSorter) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -70,7 +73,8 @@ impl StringSorter {
         }
     }
 
-    pub fn connect_property_ignore_case_notify<F: Fn(&StringSorter) + 'static>(
+    #[doc(alias = "ignore-case")]
+    pub fn connect_ignore_case_notify<F: Fn(&StringSorter) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

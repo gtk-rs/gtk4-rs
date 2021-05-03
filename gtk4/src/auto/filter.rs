@@ -28,11 +28,14 @@ pub trait FilterExt: 'static {
     fn changed(&self, change: FilterChange);
 
     #[doc(alias = "gtk_filter_get_strictness")]
+    #[doc(alias = "get_strictness")]
     fn strictness(&self) -> FilterMatch;
 
     #[doc(alias = "gtk_filter_match")]
+    #[doc(alias = "match")]
     fn match_<P: IsA<glib::Object>>(&self, item: &P) -> bool;
 
+    #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self, FilterChange) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
@@ -60,6 +63,7 @@ impl<O: IsA<Filter>> FilterExt for O {
         }
     }
 
+    #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self, FilterChange) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<P, F: Fn(&P, FilterChange) + 'static>(
             this: *mut ffi::GtkFilter,

@@ -22,10 +22,12 @@ glib::wrapper! {
 pub const NONE_STYLE_PROVIDER: Option<&StyleProvider> = None;
 
 pub trait StyleProviderExt: 'static {
+    #[doc(alias = "gtk-private-changed")]
     fn connect_gtk_private_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<StyleProvider>> StyleProviderExt for O {
+    #[doc(alias = "gtk-private-changed")]
     fn connect_gtk_private_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn gtk_private_changed_trampoline<P, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkStyleProvider,

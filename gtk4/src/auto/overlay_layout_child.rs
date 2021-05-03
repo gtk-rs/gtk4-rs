@@ -27,6 +27,7 @@ glib::wrapper! {
 
 impl OverlayLayoutChild {
     #[doc(alias = "gtk_overlay_layout_child_get_clip_overlay")]
+    #[doc(alias = "get_clip_overlay")]
     pub fn is_clip_overlay(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_overlay_layout_child_get_clip_overlay(
@@ -36,6 +37,7 @@ impl OverlayLayoutChild {
     }
 
     #[doc(alias = "gtk_overlay_layout_child_get_measure")]
+    #[doc(alias = "get_measure")]
     pub fn is_measure(&self) -> bool {
         unsafe {
             from_glib(ffi::gtk_overlay_layout_child_get_measure(
@@ -61,7 +63,8 @@ impl OverlayLayoutChild {
         }
     }
 
-    pub fn connect_property_clip_overlay_notify<F: Fn(&OverlayLayoutChild) + 'static>(
+    #[doc(alias = "clip-overlay")]
+    pub fn connect_clip_overlay_notify<F: Fn(&OverlayLayoutChild) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -88,7 +91,8 @@ impl OverlayLayoutChild {
         }
     }
 
-    pub fn connect_property_measure_notify<F: Fn(&OverlayLayoutChild) + 'static>(
+    #[doc(alias = "measure")]
+    pub fn connect_measure_notify<F: Fn(&OverlayLayoutChild) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
