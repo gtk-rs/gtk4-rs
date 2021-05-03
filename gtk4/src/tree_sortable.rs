@@ -113,15 +113,16 @@ impl<O: IsA<TreeSortable>> TreeSortableExtManual for O {
     #[inline]
     fn sort_column_id(&self) -> Option<(SortColumn, SortType)> {
         unsafe {
-            let mut sort_column_id = mem::uninitialized();
-            let mut order = mem::uninitialized();
+            let mut sort_column_id = mem::MaybeUninit::uninit();
+            let mut order = mem::MaybeUninit::uninit();
             ffi::gtk_tree_sortable_get_sort_column_id(
                 self.as_ref().to_glib_none().0,
-                &mut sort_column_id,
-                &mut order,
+                sort_column_id.as_mut_ptr(),
+                order.as_mut_ptr(),
             );
+            let sort_column_id = sort_column_id.assume_init();
             if sort_column_id != ffi::GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID {
-                Some((from_glib(sort_column_id), from_glib(order)))
+                Some((from_glib(sort_column_id), from_glib(order.assume_init())))
             } else {
                 None
             }

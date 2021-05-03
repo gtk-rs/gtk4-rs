@@ -13,7 +13,7 @@ pub struct Requisition {
 impl Uninitialized for Requisition {
     #[inline]
     unsafe fn uninitialized() -> Self {
-        mem::uninitialized()
+        mem::zeroed()
     }
 }
 

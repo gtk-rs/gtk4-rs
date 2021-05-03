@@ -143,14 +143,8 @@
 //! not have easy access to the latest ones. The higher the version, the fewer
 //! users will have it installed.
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
-#![allow(clippy::let_unit_value)]
-#![allow(clippy::new_without_default)]
-#![allow(clippy::type_complexity)]
-#![allow(clippy::trivially_copy_pass_by_ref)]
 #![allow(clippy::derive_hash_xor_eq)]
-#![allow(clippy::needless_doctest_main)]
 #![allow(clippy::too_many_arguments)]
-#![allow(deprecated)]
 
 pub use ffi;
 // Re-export gtk dependencies
@@ -218,15 +212,12 @@ pub(crate) static TEST_THREAD_WORKER: once_cell::sync::Lazy<glib::ThreadPool> =
         pool
     });
 
-#[allow(clippy::match_same_arms)]
 #[allow(clippy::let_and_return)]
-#[allow(clippy::many_single_char_names)]
 #[allow(clippy::wrong_self_convention)]
-#[allow(clippy::cognitive_complexity)]
 #[allow(clippy::clone_on_copy)]
 #[allow(clippy::many_single_char_names)]
-#[allow(clippy::cast_ptr_alignment)]
 #[allow(clippy::upper_case_acronyms)]
+#[allow(clippy::type_complexity)]
 #[allow(unused_imports)]
 mod auto;
 

@@ -6,8 +6,6 @@ pub use gio;
 pub use glib;
 pub use wayland_client;
 
-#[allow(unused_imports)]
-#[allow(clippy::let_and_return)]
 mod auto;
 
 pub use auto::*;

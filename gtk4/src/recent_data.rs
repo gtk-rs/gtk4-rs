@@ -15,6 +15,7 @@ pub struct RecentData {
 
 #[doc(hidden)]
 impl<'a> ToGlibPtr<'a, *mut ffi::GtkRecentData> for RecentData {
+    #[allow(clippy::type_complexity)]
     type Storage = (
         Box<ffi::GtkRecentData>,
         [Stash<'a, *mut c_char, Option<String>>; 2],
