@@ -233,6 +233,7 @@
 <span id="230">230</span>
 <span id="231">231</span>
 <span id="232">232</span>
+<span id="233">233</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -401,15 +402,16 @@
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">fn</span> <span class="ident">sort_column_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">SortColumn</span>, <span class="ident">SortType</span>)<span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sort_column_id</span> <span class="op">=</span> <span class="ident">mem::uninitialized</span>();
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">order</span> <span class="op">=</span> <span class="ident">mem::uninitialized</span>();
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sort_column_id</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">order</span> <span class="op">=</span> <span class="ident">mem::MaybeUninit::uninit</span>();
             <span class="ident">ffi::gtk_tree_sortable_get_sort_column_id</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
-                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">sort_column_id</span>,
-                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">order</span>,
+                <span class="ident">sort_column_id</span>.<span class="ident">as_mut_ptr</span>(),
+                <span class="ident">order</span>.<span class="ident">as_mut_ptr</span>(),
             );
+            <span class="kw">let</span> <span class="ident">sort_column_id</span> <span class="op">=</span> <span class="ident">sort_column_id</span>.<span class="ident">assume_init</span>();
             <span class="kw">if</span> <span class="ident">sort_column_id</span> <span class="op">!</span><span class="op">=</span> <span class="ident">ffi::GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID</span> {
-                <span class="prelude-val">Some</span>((<span class="ident">from_glib</span>(<span class="ident">sort_column_id</span>), <span class="ident">from_glib</span>(<span class="ident">order</span>)))
+                <span class="prelude-val">Some</span>((<span class="ident">from_glib</span>(<span class="ident">sort_column_id</span>), <span class="ident">from_glib</span>(<span class="ident">order</span>.<span class="ident">assume_init</span>())))
             } <span class="kw">else</span> {
                 <span class="prelude-val">None</span>
             }

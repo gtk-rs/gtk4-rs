@@ -63,7 +63,7 @@
 <span class="kw">impl</span> <span class="ident">Uninitialized</span> <span class="kw">for</span> <span class="ident">Requisition</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">uninitialized</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="ident">mem::uninitialized</span>()
+        <span class="ident">mem::zeroed</span>()
     }
 }
 
