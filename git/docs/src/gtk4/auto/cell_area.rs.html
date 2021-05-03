@@ -1832,7 +1832,7 @@
     <span class="doccomment">/// with the said context).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The [`CellAreaContext`](crate::CellAreaContext) is an opaque object specific to the</span>
-    <span class="doccomment">/// [`CellArea`](crate::CellArea) which created it (see [`prelude::CellAreaExt::create_context()`](crate::prelude::CellAreaExt::create_context())).</span>
+    <span class="doccomment">/// [`CellArea`](crate::CellArea) which created it (see [`CellAreaExt::create_context()`](crate::CellAreaExt::create_context())).</span>
     <span class="doccomment">/// The owning cell-layouting widget can create as many contexts as</span>
     <span class="doccomment">/// it wishes to calculate sizes of rows which should receive the</span>
     <span class="doccomment">/// same size in at least one orientation (horizontally or vertically),</span>
@@ -2009,7 +2009,7 @@
     <span class="doccomment">/// trigger the [`CellArea::focus-changed`](crate::CellArea::focus-changed) signal to fire; as well as</span>
     <span class="doccomment">/// [`CellArea::add-editable`](crate::CellArea::add-editable) in the case that an editable cell was</span>
     <span class="doccomment">/// clicked and needs to start editing. You can call</span>
-    <span class="doccomment">/// [`prelude::CellAreaExt::stop_editing()`](crate::prelude::CellAreaExt::stop_editing()) at any time to cancel any cell editing</span>
+    <span class="doccomment">/// [`CellAreaExt::stop_editing()`](crate::CellAreaExt::stop_editing()) at any time to cancel any cell editing</span>
     <span class="doccomment">/// that is currently in progress.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The [`CellArea`](crate::CellArea) drives keyboard focus from cell to cell in a way</span>
@@ -2449,7 +2449,7 @@
     <span class="doccomment">/// `self` will store some geometrical information in `context` along the way;</span>
     <span class="doccomment">/// when requesting sizes over an arbitrary number of rows, it’s not important</span>
     <span class="doccomment">/// to check the `minimum_height` and `natural_height` of this call but rather to</span>
-    <span class="doccomment">/// consult [`prelude::CellAreaContextExt::get_preferred_height()`](crate::prelude::CellAreaContextExt::get_preferred_height()) after a series of</span>
+    <span class="doccomment">/// consult [`CellAreaContextExt::get_preferred_height()`](crate::CellAreaContextExt::get_preferred_height()) after a series of</span>
     <span class="doccomment">/// requests.</span>
     <span class="doccomment">/// ## `context`</span>
     <span class="doccomment">/// the [`CellAreaContext`](crate::CellAreaContext) to perform this request with</span>
@@ -2479,7 +2479,7 @@
     <span class="doccomment">/// If at some point, the width of a single row changes, it should be</span>
     <span class="doccomment">/// requested with [`get_preferred_width()`](Self::get_preferred_width()) again and then</span>
     <span class="doccomment">/// the full width of the requested rows checked again with</span>
-    <span class="doccomment">/// [`prelude::CellAreaContextExt::get_preferred_width()`](crate::prelude::CellAreaContextExt::get_preferred_width()).</span>
+    <span class="doccomment">/// [`CellAreaContextExt::get_preferred_width()`](crate::CellAreaContextExt::get_preferred_width()).</span>
     <span class="doccomment">/// ## `context`</span>
     <span class="doccomment">/// the [`CellAreaContext`](crate::CellAreaContext) which has already been requested for widths.</span>
     <span class="doccomment">/// ## `widget`</span>
@@ -2503,7 +2503,7 @@
     <span class="doccomment">/// `self` will store some geometrical information in `context` along the way;</span>
     <span class="doccomment">/// when requesting sizes over an arbitrary number of rows, it’s not important</span>
     <span class="doccomment">/// to check the `minimum_width` and `natural_width` of this call but rather to</span>
-    <span class="doccomment">/// consult [`prelude::CellAreaContextExt::get_preferred_width()`](crate::prelude::CellAreaContextExt::get_preferred_width()) after a series of</span>
+    <span class="doccomment">/// consult [`CellAreaContextExt::get_preferred_width()`](crate::CellAreaContextExt::get_preferred_width()) after a series of</span>
     <span class="doccomment">/// requests.</span>
     <span class="doccomment">/// ## `context`</span>
     <span class="doccomment">/// the [`CellAreaContext`](crate::CellAreaContext) to perform this request with</span>
@@ -2533,7 +2533,7 @@
     <span class="doccomment">/// If at some point, the height of a single row changes, it should be</span>
     <span class="doccomment">/// requested with [`get_preferred_height()`](Self::get_preferred_height()) again and then</span>
     <span class="doccomment">/// the full height of the requested rows checked again with</span>
-    <span class="doccomment">/// [`prelude::CellAreaContextExt::get_preferred_height()`](crate::prelude::CellAreaContextExt::get_preferred_height()).</span>
+    <span class="doccomment">/// [`CellAreaContextExt::get_preferred_height()`](crate::CellAreaContextExt::get_preferred_height()).</span>
     <span class="doccomment">/// ## `context`</span>
     <span class="doccomment">/// the [`CellAreaContext`](crate::CellAreaContext) which has already been requested for widths.</span>
     <span class="doccomment">/// ## `widget`</span>
@@ -2665,7 +2665,7 @@
     <span class="doccomment">/// This is generally called by implementations of</span>
     <span class="doccomment">/// [``CellAreaClass`.focus()`](crate::`CellAreaClass`.focus()) or [``CellAreaClass`.event()`](crate::`CellAreaClass`.event()),</span>
     <span class="doccomment">/// however it can also be used to implement functions such</span>
-    <span class="doccomment">/// as [`prelude::TreeViewExt::set_cursor_on_cell()`](crate::prelude::TreeViewExt::set_cursor_on_cell()).</span>
+    <span class="doccomment">/// as [`TreeViewExt::set_cursor_on_cell()`](crate::TreeViewExt::set_cursor_on_cell()).</span>
     <span class="doccomment">/// ## `renderer`</span>
     <span class="doccomment">/// the [`CellRenderer`](crate::CellRenderer) to give focus to</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_set_focus_cell&quot;</span>)]</span>

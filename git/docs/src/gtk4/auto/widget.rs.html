@@ -5347,13 +5347,13 @@
     <span class="doccomment">/// For example, when queried in the normal [`SizeRequestMode::HeightForWidth`] mode:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// First, the default minimum and natural width for each widget</span>
-    <span class="doccomment">/// in the interface will be computed using [id[`crate::prelude::WidgetExt::measure`] (XXX: @-reference does not belong to Widget!)] with an</span>
+    <span class="doccomment">/// in the interface will be computed using [id[`crate::WidgetExt::measure`] (XXX: @-reference does not belong to Widget!)] with an</span>
     <span class="doccomment">/// orientation of [`Orientation::Horizontal`] and a for_size of -1.</span>
     <span class="doccomment">/// Because the preferred widths for each widget depend on the preferred</span>
     <span class="doccomment">/// widths of their children, this information propagates up the hierarchy,</span>
     <span class="doccomment">/// and finally a minimum and natural width is determined for the entire</span>
     <span class="doccomment">/// toplevel. Next, the toplevel will use the minimum width to query for the</span>
-    <span class="doccomment">/// minimum height contextual to that width using [id[`crate::prelude::WidgetExt::measure`] (XXX: @-reference does not belong to Widget!)] with an</span>
+    <span class="doccomment">/// minimum height contextual to that width using [id[`crate::WidgetExt::measure`] (XXX: @-reference does not belong to Widget!)] with an</span>
     <span class="doccomment">/// orientation of [`Orientation::Vertical`] and a for_size of the just computed</span>
     <span class="doccomment">/// width. This will also be a highly recursive operation. The minimum height</span>
     <span class="doccomment">/// for the minimum width is normally used to set the minimum size constraint</span>
@@ -5444,7 +5444,7 @@
     <span class="doccomment">/// to do it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Of course if you are getting the size request for another widget, such</span>
-    <span class="doccomment">/// as a child widget, you must use [id[`crate::prelude::WidgetExt::measure`] (XXX: @-reference does not belong to Widget!)]; otherwise, you</span>
+    <span class="doccomment">/// as a child widget, you must use [id[`crate::WidgetExt::measure`] (XXX: @-reference does not belong to Widget!)]; otherwise, you</span>
     <span class="doccomment">/// would not properly consider widget margins, [class`Gtk.SizeGroup`], and</span>
     <span class="doccomment">/// so forth.</span>
     <span class="doccomment">///</span>
@@ -5461,7 +5461,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If a widget ends up baseline aligned it will be allocated all the space in</span>
     <span class="doccomment">/// the parent as if it was [`Align::Fill`], but the selected baseline can be</span>
-    <span class="doccomment">/// found via [id[`crate::prelude::WidgetExt::get_allocated_baseline`] (XXX: @-reference does not belong to Widget!)]. If the baseline has a</span>
+    <span class="doccomment">/// found via [id[`crate::WidgetExt::get_allocated_baseline`] (XXX: @-reference does not belong to Widget!)]. If the baseline has a</span>
     <span class="doccomment">/// value other than -1 you need to align the widget such that the baseline</span>
     <span class="doccomment">/// appears at the position.</span>
     <span class="doccomment">///</span>
@@ -5607,7 +5607,7 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You can access widgets defined in the template using the</span>
-    <span class="doccomment">/// [id[`crate::prelude::WidgetExt::get_template_child`] (XXX: @-reference does not belong to Widget!)] function, but you will typically declare</span>
+    <span class="doccomment">/// [id[`crate::WidgetExt::get_template_child`] (XXX: @-reference does not belong to Widget!)] function, but you will typically declare</span>
     <span class="doccomment">/// a pointer in the instance private data structure of your type using the same</span>
     <span class="doccomment">/// name as the widget in the template definition, and call</span>
     <span class="doccomment">/// [method`Gtk.WidgetClass`.bind_template_child_full] (or one of its wrapper macros</span>

@@ -5,7 +5,7 @@
 <p>Most common shortcuts are using this controller implicitly, e.g. by
 adding a mnemonic underline to a <code>GtkLabel</code>, or by installing a key
 binding using <a href="crate::WidgetClass::add_binding()"><code>WidgetClass::add_binding()</code></a>, or by adding accelerators
-to global actions using <a href="prelude/trait.GtkApplicationExt.html#tymethod.set_accels_for_action"><code>prelude::</code>GtkApplicationExt<code>::set_accels_for_action()</code></a>.</p>
+to global actions using <a href="crate::%60GtkApplicationExt%60::set_accels_for_action()">``GtkApplicationExt<code>::set_accels_for_action()</code></a>.</p>
 <p>But it is possible to create your own shortcut controller, and add
 shortcuts to it.</p>
 <p><code>GtkShortcutController</code> implements <code>GListModel</code> for querying the
@@ -34,7 +34,7 @@ for the syntax for other kinds of <code>GtkShortcutAction</code>. See
 [ctor<code>Gtk.ShortcutTrigger</code>.parse_string] to learn more about the syntax
 for triggers.</p>
 <h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
-<p><a href="prelude/trait.EventControllerExt.html"><code>EventControllerExt</code></a>, <a href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.ObjectExt.html" title="glib::object::ObjectExt"><code>glib::object::ObjectExt</code></a>, <a href="https://gtk-rs.org/gtk-rs/git/docs/gio/auto/list_model/trait.ListModelExt.html" title="gio::prelude::ListModelExt"><code>gio::prelude::ListModelExt</code></a>, <a href="prelude/trait.BuildableExt.html"><code>BuildableExt</code></a></p>
+<p><a href="prelude/trait.EventControllerExt.html"><code>EventControllerExt</code></a>, <a href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/trait.ObjectExt.html" title="glib::object::ObjectExt"><code>glib::object::ObjectExt</code></a>, [<code>trait@gio::ListModelExt</code>], <a href="prelude/trait.BuildableExt.html"><code>BuildableExt</code></a></p>
 </div><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl" class="impl"><code class="in-band">impl <a class="struct" href="struct.ShortcutController.html" title="struct gtk4::ShortcutController">ShortcutController</a></code><a href="#impl" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/shortcut_controller.rs.html#75-292" title="goto source code">[src]</a></h3></summary><div class="impl-items"><h4 id="method.new" class="method"><code>pub fn <a href="#method.new" class="fnname">new</a>() -&gt; <a class="struct" href="struct.ShortcutController.html" title="struct gtk4::ShortcutController">ShortcutController</a></code><a href="#method.new" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/shortcut_controller.rs.html#82-85" title="goto source code">[src]</a></h4><div class="docblock"><p>Creates a new shortcut controller.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
 <p>a newly created shortcut controller</p>

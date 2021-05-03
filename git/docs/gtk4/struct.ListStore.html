@@ -80,15 +80,7 @@ keeping the iter around.</p>
 <a href="Self::insert_with_values()"><code>insert_with_values()</code></a> and <a href="Self::insert_with_valuesv()"><code>insert_with_valuesv()</code></a>
 are atomic, in the sense that the row is being appended to the store and the
 values filled in in a single operation with regard to <a href="struct.TreeModel.html"><code>TreeModel</code></a> signaling.
-In contrast, using e.g. <a href="prelude/trait.GtkListStoreExt.html#tymethod.append"><code>prelude::</code>GtkListStoreExt<code>::append()</code></a> and then <a href="Self::set()"><code>set()</code></a>
-will first create a row, which triggers the <a href="crate::TreeModel::row-inserted"><code>TreeModel::row-inserted</code></a> signal
-on <a href="struct.ListStore.html"><code>ListStore</code></a>. The row, however, is still empty, and any signal handler
-connecting to <a href="crate::TreeModel::row-inserted"><code>TreeModel::row-inserted</code></a> on this particular store should be prepared
-for the situation that the row might be empty. This is especially important
-if you are wrapping the <a href="struct.ListStore.html"><code>ListStore</code></a> inside a <a href="struct.TreeModelFilter.html"><code>TreeModelFilter</code></a> and are
-using a <code>GtkTreeModelFilterVisibleFunc</code>. Using any of the non-atomic operations
-to append rows to the <a href="struct.ListStore.html"><code>ListStore</code></a> will cause the
-<code>GtkTreeModelFilterVisibleFunc</code> to be visited with an empty row first; the
+In contrast, using e.g. [<code>GtkListStoreExt`::append()`](crate::`GtkListStoreExt`::append()) and then [`set()`](Self::set()) will first create a row, which triggers the [`TreeModel::row-inserted`](crate::TreeModel::row-inserted) signal on [`ListStore`](crate::ListStore). The row, however, is still empty, and any signal handler connecting to [`TreeModel::row-inserted`](crate::TreeModel::row-inserted) on this particular store should be prepared for the situation that the row might be empty. This is especially important if you are wrapping the [`ListStore`](crate::ListStore) inside a [`TreeModelFilter`](crate::TreeModelFilter) and are using a </code>GtkTreeModelFilterVisibleFunc<code>. Using any of the non-atomic operations to append rows to the [`ListStore`](crate::ListStore) will cause the </code>GtkTreeModelFilterVisibleFunc`` to be visited with an empty row first; the
 function must be prepared for that.</p>
 <h1 id="liststore-as-buildable" class="section-header"><a href="#liststore-as-buildable"><code>ListStore</code> as <code>Buildable</code></a></h1>
 <p>The <code>ListStore</code> implementation of the <code>Buildable</code> interface allows

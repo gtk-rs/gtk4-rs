@@ -15165,15 +15165,15 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkFilterMatch&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">FilterMatch</span> {
     <span class="doccomment">/// The filter matches some items,</span>
-    <span class="doccomment">///  [`prelude::FilterExt::match()`](crate::prelude::FilterExt::match()) may return [`true`] or [`false`]</span>
+    <span class="doccomment">///  [`FilterExt::match()`](crate::FilterExt::match()) may return [`true`] or [`false`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_FILTER_MATCH_SOME&quot;</span>)]</span>
     <span class="prelude-val">Some</span>,
     <span class="doccomment">/// The filter does not match any item,</span>
-    <span class="doccomment">///  [`prelude::FilterExt::match()`](crate::prelude::FilterExt::match()) will always return [`false`].</span>
+    <span class="doccomment">///  [`FilterExt::match()`](crate::FilterExt::match()) will always return [`false`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_FILTER_MATCH_NONE&quot;</span>)]</span>
     <span class="prelude-val">None</span>,
     <span class="doccomment">/// The filter matches all items,</span>
-    <span class="doccomment">///  [`prelude::FilterExt::match()`](crate::prelude::FilterExt::match()) will alays return [`true`].</span>
+    <span class="doccomment">///  [`FilterExt::match()`](crate::FilterExt::match()) will alays return [`true`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_FILTER_MATCH_ALL&quot;</span>)]</span>
     <span class="ident">All</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -20070,10 +20070,10 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SORTER_ORDER_PARTIAL&quot;</span>)]</span>
     <span class="ident">Partial</span>,
     <span class="doccomment">/// No order, all elements are considered equal.</span>
-    <span class="doccomment">///  [`prelude::SorterExt::compare()`](crate::prelude::SorterExt::compare()) will only return [`Ordering::Equal`].</span>
+    <span class="doccomment">///  [`SorterExt::compare()`](crate::SorterExt::compare()) will only return [`Ordering::Equal`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SORTER_ORDER_NONE&quot;</span>)]</span>
     <span class="prelude-val">None</span>,
-    <span class="doccomment">/// A total order. [`prelude::SorterExt::compare()`](crate::prelude::SorterExt::compare()) will only</span>
+    <span class="doccomment">/// A total order. [`SorterExt::compare()`](crate::SorterExt::compare()) will only</span>
     <span class="doccomment">///  return [`Ordering::Equal`] if an item is compared with itself. Two</span>
     <span class="doccomment">///  different items will never cause this value to be returned.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SORTER_ORDER_TOTAL&quot;</span>)]</span>

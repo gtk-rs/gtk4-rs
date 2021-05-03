@@ -1,9 +1,136 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `gtk4` crate."><meta name="keywords" content="rust, rustlang, rust-lang, gtk4"><title>gtk4 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings"></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Rust GTK 4 bindings"><meta name="keywords" content="rust, rustlang, rust-lang, gtk4"><title>gtk4 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings"></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../favicon-16x16.png">
 <link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../gtk4/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><p class="location">Crate gtk4</p><div class="block version"><p>Version 0.1.0</p></div><div class="sidebar-elems"><a id="all-types" href="all.html"><p>See all gtk4's items</p></a><div class="block items"><ul><li><a href="#reexports">Re-exports</a></li><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li><li><a href="#statics">Statics</a></li><li><a href="#functions">Functions</a></li><li><a href="#types">Type Definitions</a></li></ul></div><p class="location"></p><div id="sidebar-vars" data-name="gtk4" data-ty="mod" data-relpath="../"></div></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
-                <a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Crate <a class="mod" href="">gtk4</a><button id="copy-path" onclick="copy_path(this)">⎘</button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/gtk4/lib.rs.html#3-201" title="goto source code">[src]</a></span></h1><h2 id="reexports" class="section-header"><a href="#reexports">Re-exports</a></h2>
+                <a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Crate <a class="mod" href="">gtk4</a><button id="copy-path" onclick="copy_path(this)">⎘</button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/gtk4/lib.rs.html#3-343" title="goto source code">[src]</a></span></h1><div class="docblock"><h1 id="rust-gtk-4-bindings" class="section-header"><a href="#rust-gtk-4-bindings">Rust GTK 4 bindings</a></h1>
+<p>This library contains safe Rust bindings for <a href="http://www.gtk.org">GTK 4</a>, a
+multi-platform GUI toolkit. It is a part of <a href="http://gtk-rs.org/">Gtk-rs</a>.</p>
+<p>Most of this documentation is generated from the C API.
+Until all parts of the documentation have been reviewed there will be incongruities
+with the actual Rust API.</p>
+<p>For a gentle introduction to Gtk-rs we recommend the online book
+<a href="../../book/"><em>GUI development with Rust and GTK 4</em></a>.</p>
+<p>See also</p>
+<ul>
+<li>
+<p><a href="https://gtk-rs.org/docs-src/">Gtk-rs documentation overview</a></p>
+</li>
+<li>
+<p><a href="https://gtk-rs.org/gtk-rs/git/docs/glib/index.html">General <code>GLib</code> family types and object system overview</a></p>
+</li>
+<li>
+<p><a href="https://www.gtk.org/docs/">GTK documentation</a></p>
+</li>
+</ul>
+<h1 id="hello-world-example-program" class="section-header"><a href="#hello-world-example-program">“Hello, World!” example program</a></h1>
+<p>GTK needs to be initialized before use by calling <a href="fn.init.html" title="init()"><code>init()</code></a>. Creating an
+<a href="struct.Application.html" title="Application"><code>Application</code></a> will call <a href="fn.init.html" title="init()"><code>init()</code></a> for you.</p>
+<p>The <a href="index.html"><code>gtk4</code></a> crate is usually renamed to <code>gtk</code>. You can find an example in
+the <a href="#features">features</a> section for how to do this globally in your <code>Cargo.toml</code>.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">gtk::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">gtk</span>::{<span class="ident">ApplicationBuilder</span>, <span class="ident">ApplicationWindowBuilder</span>};
+
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">app</span> <span class="op">=</span> <span class="ident">ApplicationBuilder::new</span>()
+        .<span class="ident">application_id</span>(<span class="string">&quot;org.example.HelloWorld&quot;</span>)
+        .<span class="ident">build</span>();
+
+    <span class="ident">app</span>.<span class="ident">connect_activate</span>(<span class="op">|</span><span class="ident">app</span><span class="op">|</span> {
+        <span class="comment">// We create the main window.</span>
+        <span class="kw">let</span> <span class="ident">win</span> <span class="op">=</span> <span class="ident">ApplicationWindowBuilder::new</span>()
+            .<span class="ident">application</span>(<span class="ident">app</span>)
+            .<span class="ident">default_width</span>(<span class="number">320</span>)
+            .<span class="ident">default_height</span>(<span class="number">200</span>)
+            .<span class="ident">title</span>(<span class="string">&quot;Hello, World!&quot;</span>)
+            .<span class="ident">build</span>();
+
+        <span class="comment">// Show the window.</span>
+        <span class="ident">win</span>.<span class="ident">show</span>();
+    });
+
+    <span class="ident">app</span>.<span class="ident">run</span>();
+}</pre></div>
+<h1 id="the-main-loop" class="section-header"><a href="#the-main-loop">The main loop</a></h1>
+<p>In a typical GTK application you set up the UI, assign signal handlers
+and run the main event loop.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">gtk::prelude</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">gtk</span>::{<span class="ident">ApplicationBuilder</span>, <span class="ident">ApplicationWindowBuilder</span>, <span class="ident">Button</span>};
+
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="kw">let</span> <span class="ident">application</span> <span class="op">=</span> <span class="ident">ApplicationBuilder::new</span>()
+        .<span class="ident">application_id</span>(<span class="string">&quot;com.example.FirstGtkApp&quot;</span>)
+        .<span class="ident">build</span>();
+
+    <span class="ident">application</span>.<span class="ident">connect_activate</span>(<span class="op">|</span><span class="ident">app</span><span class="op">|</span> {
+        <span class="kw">let</span> <span class="ident">window</span> <span class="op">=</span> <span class="ident">ApplicationWindowBuilder::new</span>()
+            .<span class="ident">application</span>(<span class="ident">app</span>)
+            .<span class="ident">title</span>(<span class="string">&quot;First GTK Program&quot;</span>)
+            .<span class="ident">default_width</span>(<span class="number">350</span>)
+            .<span class="ident">default_height</span>(<span class="number">70</span>)
+            .<span class="ident">build</span>();
+
+        <span class="kw">let</span> <span class="ident">button</span> <span class="op">=</span> <span class="ident">Button::with_label</span>(<span class="string">&quot;Click me!&quot;</span>);
+        <span class="ident">button</span>.<span class="ident">connect_clicked</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> {
+            <span class="macro">eprintln!</span>(<span class="string">&quot;Clicked!&quot;</span>);
+        });
+        <span class="ident">window</span>.<span class="ident">set_child</span>(<span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident">button</span>));
+
+        <span class="ident">window</span>.<span class="ident">show</span>();
+    });
+
+    <span class="ident">application</span>.<span class="ident">run</span>();
+}</pre></div>
+<h1 id="threads" class="section-header"><a href="#threads">Threads</a></h1>
+<p>GTK is not thread-safe. Accordingly, none of this crate’s structs implement
+<a href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="Send"><code>Send</code></a> or <a href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="Sync"><code>Sync</code></a>.</p>
+<p>The thread where <a href="fn.init.html" title="init()"><code>init()</code></a> was called is considered the main thread. OS X has
+its own notion of the main thread and <a href="fn.init.html" title="init()"><code>init()</code></a> must be called on that thread.
+After successful initialization, calling any <a href="index.html"><code>gtk</code></a> or <a href="../gdk4/index.html" title="gdk"><code>gdk</code></a> functions
+(including <a href="fn.init.html" title="init()"><code>init()</code></a>) from other threads will <code>panic</code>.</p>
+<p>Any thread can schedule a closure to be run by the main loop on the main
+thread via <a href="https://gtk-rs.org/gtk-rs/git/docs/glib/source/fn.idle_add.html" title="glib::idle_add()"><code>glib::idle_add()</code></a> or <a href="https://gtk-rs.org/gtk-rs/git/docs/glib/source/fn.timeout_add.html" title="glib::timeout_add()"><code>glib::timeout_add()</code></a>. While
+working with GTK you might need the <a href="https://gtk-rs.org/gtk-rs/git/docs/glib/source/fn.idle_add_local.html" title="glib::idle_add_local()"><code>glib::idle_add_local()</code></a>
+or <a href="https://gtk-rs.org/gtk-rs/git/docs/glib/source/fn.timeout_add_local.html" title="glib::timeout_add_local()"><code>glib::timeout_add_local()</code></a> version without the
+<a href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="Send"><code>Send</code></a> bound. Those may only be called from the main thread.</p>
+<h1 id="panics" class="section-header"><a href="#panics">Panics</a></h1>
+<p>The <a href="index.html"><code>gtk</code></a> and <a href="../gdk4/index.html" title="gdk"><code>gdk</code></a> crates have some run-time safety and contract checks.</p>
+<ul>
+<li>
+<p>Any constructor or free function will panic if called before <a href="fn.init.html" title="init()"><code>init()</code></a> or on
+a non-main thread.</p>
+</li>
+<li>
+<p>Any <a href="https://doc.rust-lang.org/nightly/std/primitive.str.html" title="&amp;str"><code>&amp;str</code></a> or <a href="https://doc.rust-lang.org/nightly/std/path/struct.Path.html"><code>&amp;Path</code></a> parameter with an interior null (<code>\0</code>) character will
+cause a panic.</p>
+</li>
+<li>
+<p>Some functions will panic if supplied out-of-range integer parameters. All
+such cases will be documented individually but they are not yet.</p>
+</li>
+<li>
+<p>A panic in a closure that handles signals or in any other closure passed
+to a <a href="index.html"><code>gtk</code></a> function will abort the process.</p>
+</li>
+</ul>
+<h1 id="features" class="section-header"><a href="#features">Features</a></h1><h2 id="library-versions" class="section-header"><a href="#library-versions">Library versions</a></h2>
+<p>By default this crate provides only GTK 4.0 APIs. You can access additional
+functionality by selecting one of the <code>v4_2</code>, <code>v4_4</code>, etc. features.</p>
+<p><code>Cargo.toml</code> example:</p>
+<pre><code class="language-toml">[dependencies.gtk]
+package = &quot;gtk4&quot;
+version = &quot;0.x.y&quot;
+features = [&quot;v4_2&quot;]
+</code></pre>
+<p>Take care when choosing the version to target: some of your users might
+not have easy access to the latest ones. The higher the version, the fewer
+users will have it installed.</p>
+</div><h2 id="reexports" class="section-header"><a href="#reexports">Re-exports</a></h2>
 <table><tr class="import-item"><td><code>pub use <a class="mod" href="../gtk4_sys/index.html" title="mod gtk4_sys">ffi</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs/git/docs/cairo/index.html" title="mod cairo">cairo</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="../gdk4/index.html" title="mod gdk4">gdk</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs/git/docs/gdk_pixbuf/index.html" title="mod gdk_pixbuf">gdk_pixbuf</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="../gdk4_wayland/index.html" title="mod gdk4_wayland">gdk_wayland</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="../gdk4_x11/index.html" title="mod gdk4_x11">gdk_x11</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs/git/docs/gio/index.html" title="mod gio">gio</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs/git/docs/glib/index.html" title="mod glib">glib</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs/git/docs/graphene/index.html" title="mod graphene">graphene</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="../gsk4/index.html" title="mod gsk4">gsk</a>;</code></td><td class="docblock-short"></td></tr><tr class="import-item"><td><code>pub use <a class="mod" href="https://gtk-rs.org/gtk-rs/git/docs/pango/index.html" title="mod pango">pango</a>;</code></td><td class="docblock-short"></td></tr></table><h2 id="modules" class="section-header"><a href="#modules">Modules</a></h2>
-<table><tr class="module-item"><td><a class="mod" href="functions/index.html" title="gtk4::functions mod">functions</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="mod" href="prelude/index.html" title="gtk4::prelude mod">prelude</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="mod" href="subclass/index.html" title="gtk4::subclass mod">subclass</a></td><td class="docblock-short"></td></tr></table><h2 id="structs" class="section-header"><a href="#structs">Structs</a></h2>
+<table><tr class="module-item"><td><a class="mod" href="functions/index.html" title="gtk4::functions mod">functions</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="mod" href="prelude/index.html" title="gtk4::prelude mod">prelude</a></td><td class="docblock-short"><p>Traits intended for blanket imports.</p>
+</td></tr><tr class="module-item"><td><a class="mod" href="subclass/index.html" title="gtk4::subclass mod">subclass</a></td><td class="docblock-short"></td></tr></table><h2 id="structs" class="section-header"><a href="#structs">Structs</a></h2>
 <table><tr class="module-item"><td><a class="struct" href="struct.ATContext.html" title="gtk4::ATContext struct">ATContext</a></td><td class="docblock-short"><p><code>GtkATContext</code> is an abstract class provided by GTK to communicate to
 platform-specific assistive technologies API.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.AboutDialog.html" title="gtk4::AboutDialog struct">AboutDialog</a></td><td class="docblock-short"><p>The <code>GtkAboutDialog</code> offers a simple way to display information about
@@ -13,7 +140,7 @@ Assistive Technologies.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.ActionBar.html" title="gtk4::ActionBar struct">ActionBar</a></td><td class="docblock-short"><p><code>GtkActionBar</code> is designed to present contextual actions.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.ActionBarBuilder.html" title="gtk4::ActionBarBuilder struct">ActionBarBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.Actionable.html" title="gtk4::Actionable struct">Actionable</a></td><td class="docblock-short"><p>The <code>GtkActionable</code> interface provides a convenient way of asscociating
 widgets with actions.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.ActivateAction.html" title="gtk4::ActivateAction struct">ActivateAction</a></td><td class="docblock-short"><p>A <code>GtkShortcutAction</code> that calls <a href="prelude/trait.WidgetExt.html#tymethod.activate"><code>prelude::WidgetExt::activate()</code></a>.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.ActivateAction.html" title="gtk4::ActivateAction struct">ActivateAction</a></td><td class="docblock-short"><p>A <code>GtkShortcutAction</code> that calls <a href="crate::WidgetExt::activate()"><code>WidgetExt::activate()</code></a>.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.Adjustment.html" title="gtk4::Adjustment struct">Adjustment</a></td><td class="docblock-short"><p><code>GtkAdjustment</code> is a model for a numeric value.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.AdjustmentBuilder.html" title="gtk4::AdjustmentBuilder struct">AdjustmentBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.AlternativeTrigger.html" title="gtk4::AlternativeTrigger struct">AlternativeTrigger</a></td><td class="docblock-short"><p>A <code>GtkShortcutTrigger</code> that combines two triggers.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.AlternativeTriggerBuilder.html" title="gtk4::AlternativeTriggerBuilder struct">AlternativeTriggerBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.AnyFilter.html" title="gtk4::AnyFilter struct">AnyFilter</a></td><td class="docblock-short"><p><code>GtkAnyFilter</code> matches an item when at least one of its filters matches.</p>
@@ -228,7 +355,7 @@ needed to operate the controls.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.MediaStream.html" title="gtk4::MediaStream struct">MediaStream</a></td><td class="docblock-short"><p><code>GtkMediaStream</code> is the integration point for media playback inside GTK.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.MenuButton.html" title="gtk4::MenuButton struct">MenuButton</a></td><td class="docblock-short"><p>The <code>GtkMenuButton</code> widget is used to display a popup when clicked.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.MenuButtonBuilder.html" title="gtk4::MenuButtonBuilder struct">MenuButtonBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.MessageDialog.html" title="gtk4::MessageDialog struct">MessageDialog</a></td><td class="docblock-short"><p><code>GtkMessageDialog</code> presents a dialog with some message text.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.MessageDialogBuilder.html" title="gtk4::MessageDialogBuilder struct">MessageDialogBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.MnemonicAction.html" title="gtk4::MnemonicAction struct">MnemonicAction</a></td><td class="docblock-short"><p>A <code>GtkShortcutAction</code> that calls <a href="prelude/trait.WidgetExt.html#tymethod.mnemonic_activate"><code>prelude::WidgetExt::mnemonic_activate()</code></a>.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.MessageDialogBuilder.html" title="gtk4::MessageDialogBuilder struct">MessageDialogBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.MnemonicAction.html" title="gtk4::MnemonicAction struct">MnemonicAction</a></td><td class="docblock-short"><p>A <code>GtkShortcutAction</code> that calls <a href="crate::WidgetExt::mnemonic_activate()"><code>WidgetExt::mnemonic_activate()</code></a>.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.MnemonicTrigger.html" title="gtk4::MnemonicTrigger struct">MnemonicTrigger</a></td><td class="docblock-short"><p>A <code>GtkShortcutTrigger</code> that triggers when a specific mnemonic is pressed.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.MountOperation.html" title="gtk4::MountOperation struct">MountOperation</a></td><td class="docblock-short"><p><code>GtkMountOperation</code> is an implementation of <code>GMountOperation</code>.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.MountOperationBuilder.html" title="gtk4::MountOperationBuilder struct">MountOperationBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.MultiFilter.html" title="gtk4::MultiFilter struct">MultiFilter</a></td><td class="docblock-short"><p><code>GtkMultiFilter</code> is the base class for filters that combine multiple filters.</p>
@@ -264,7 +391,7 @@ which don’t provide a native page setup dialog, like Unix.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.PageSetupUnixDialogBuilder.html" title="gtk4::PageSetupUnixDialogBuilder struct">PageSetupUnixDialogBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.Paned.html" title="gtk4::Paned struct">Paned</a></td><td class="docblock-short"><p><code>GtkPaned</code> has two panes, arranged either horizontally or vertically.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.PanedBuilder.html" title="gtk4::PanedBuilder struct">PanedBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.PaperSize.html" title="gtk4::PaperSize struct">PaperSize</a></td><td class="docblock-short"><p><code>GtkPaperSize</code> handles paper sizes.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.PasswordEntry.html" title="gtk4::PasswordEntry struct">PasswordEntry</a></td><td class="docblock-short"><p><code>GtkPasswordEntry</code> is an entry that has been tailored for entering secrets.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.PasswordEntryBuilder.html" title="gtk4::PasswordEntryBuilder struct">PasswordEntryBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.PickFlags.html" title="gtk4::PickFlags struct">PickFlags</a></td><td class="docblock-short"><p>Flags that influence the behavior of <a href="prelude/trait.WidgetExt.html#tymethod.pick"><code>prelude::WidgetExt::pick()</code></a>.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.PasswordEntryBuilder.html" title="gtk4::PasswordEntryBuilder struct">PasswordEntryBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.PickFlags.html" title="gtk4::PickFlags struct">PickFlags</a></td><td class="docblock-short"><p>Flags that influence the behavior of <a href="crate::WidgetExt::pick()"><code>WidgetExt::pick()</code></a>.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.Picture.html" title="gtk4::Picture struct">Picture</a></td><td class="docblock-short"><p>The <code>GtkPicture</code> widget displays a <code>GdkPaintable</code>.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.PictureBuilder.html" title="gtk4::PictureBuilder struct">PictureBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.Popover.html" title="gtk4::Popover struct">Popover</a></td><td class="docblock-short"><p><code>GtkPopover</code> is a bubble-like context popup.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.PopoverBuilder.html" title="gtk4::PopoverBuilder struct">PopoverBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.PopoverMenu.html" title="gtk4::PopoverMenu struct">PopoverMenu</a></td><td class="docblock-short"><p><code>GtkPopoverMenu</code> is a subclass of <code>GtkPopover</code> that implements menu
@@ -289,7 +416,7 @@ which don’t provide a native print dialog, like Unix.</p>
 running operation.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.ProgressBarBuilder.html" title="gtk4::ProgressBarBuilder struct">ProgressBarBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.PropertyExpression.html" title="gtk4::PropertyExpression struct">PropertyExpression</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.Range.html" title="gtk4::Range struct">Range</a></td><td class="docblock-short"><p><code>GtkRange</code> is the common base class for widgets which visualize an
 adjustment.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.RangeBuilder.html" title="gtk4::RangeBuilder struct">RangeBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.RecentData.html" title="gtk4::RecentData struct">RecentData</a></td><td class="docblock-short"><p>Meta-data to be passed to <a href="prelude/trait.RecentManagerExt.html#tymethod.add_full"><code>prelude::RecentManagerExt::add_full()</code></a> when
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.RangeBuilder.html" title="gtk4::RangeBuilder struct">RangeBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.RecentData.html" title="gtk4::RecentData struct">RecentData</a></td><td class="docblock-short"><p>Meta-data to be passed to <a href="crate::RecentManagerExt::add_full()"><code>RecentManagerExt::add_full()</code></a> when
 registering a recently used resource.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.RecentInfo.html" title="gtk4::RecentInfo struct">RecentInfo</a></td><td class="docblock-short"><p><code>GtkRecentInfo</code> contains the metadata associated with an item in the
 recently used files list.</p>
@@ -360,7 +487,7 @@ strings to a fixed search term.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.StringObject.html" title="gtk4::StringObject struct">StringObject</a></td><td class="docblock-short"><p><code>GtkStringObject</code> is the type of items in a <code>GtkStringList</code>.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.StringSorter.html" title="gtk4::StringSorter struct">StringSorter</a></td><td class="docblock-short"><p><code>GtkStringSorter</code> is a <code>GtkSorter</code> that compares strings.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.StringSorterBuilder.html" title="gtk4::StringSorterBuilder struct">StringSorterBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.StyleContext.html" title="gtk4::StyleContext struct">StyleContext</a></td><td class="docblock-short"><p><code>GtkStyleContext</code> stores styling information affecting a widget.</p>
-</td></tr><tr class="module-item"><td><a class="struct" href="struct.StyleContextBuilder.html" title="gtk4::StyleContextBuilder struct">StyleContextBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.StyleContextPrintFlags.html" title="gtk4::StyleContextPrintFlags struct">StyleContextPrintFlags</a></td><td class="docblock-short"><p>Flags that modify the behavior of <a href="prelude/trait.StyleContextExt.html#tymethod.to_string"><code>prelude::StyleContextExt::to_string()</code></a>.</p>
+</td></tr><tr class="module-item"><td><a class="struct" href="struct.StyleContextBuilder.html" title="gtk4::StyleContextBuilder struct">StyleContextBuilder</a></td><td class="docblock-short"></td></tr><tr class="module-item"><td><a class="struct" href="struct.StyleContextPrintFlags.html" title="gtk4::StyleContextPrintFlags struct">StyleContextPrintFlags</a></td><td class="docblock-short"><p>Flags that modify the behavior of <a href="crate::StyleContextExt::to_string()"><code>StyleContextExt::to_string()</code></a>.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.StyleProvider.html" title="gtk4::StyleProvider struct">StyleProvider</a></td><td class="docblock-short"><p><code>GtkStyleProvider</code> is an interface for style information used by
 <code>GtkStyleContext</code>.</p>
 </td></tr><tr class="module-item"><td><a class="struct" href="struct.Switch.html" title="gtk4::Switch struct">Switch</a></td><td class="docblock-short"><p><code>GtkSwitch</code> is a “light switch” that has two states: on or off.</p>
@@ -498,7 +625,7 @@ print operation.</p>
 targeting other widgets.</p>
 </td></tr><tr class="module-item"><td><a class="enum" href="enum.PropagationPhase.html" title="gtk4::PropagationPhase enum">PropagationPhase</a></td><td class="docblock-short"><p>Describes the stage at which events are fed into a <code>GtkEventController</code>.</p>
 </td></tr><tr class="module-item"><td><a class="enum" href="enum.RecentManagerError.html" title="gtk4::RecentManagerError enum">RecentManagerError</a></td><td class="docblock-short"><p>Error codes for <a href="struct.RecentManager.html"><code>RecentManager</code></a> operations</p>
-</td></tr><tr class="module-item"><td><a class="enum" href="enum.ResponseType.html" title="gtk4::ResponseType enum">ResponseType</a></td><td class="docblock-short"><p>Predefined values for use as response ids in <a href="prelude/trait.DialogExt.html#tymethod.add_button"><code>prelude::DialogExt::add_button()</code></a>.</p>
+</td></tr><tr class="module-item"><td><a class="enum" href="enum.ResponseType.html" title="gtk4::ResponseType enum">ResponseType</a></td><td class="docblock-short"><p>Predefined values for use as response ids in <a href="crate::DialogExt::add_button()"><code>DialogExt::add_button()</code></a>.</p>
 </td></tr><tr class="module-item"><td><a class="enum" href="enum.RevealerTransitionType.html" title="gtk4::RevealerTransitionType enum">RevealerTransitionType</a></td><td class="docblock-short"><p>These enumeration values describe the possible transitions
 when the child of a <code>GtkRevealer</code> widget is shown or hidden.</p>
 </td></tr><tr class="module-item"><td><a class="enum" href="enum.ScrollStep.html" title="gtk4::ScrollStep enum">ScrollStep</a></td><td class="docblock-short"><p>Passed as argument to various keybinding signals.</p>

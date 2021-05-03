@@ -12,8 +12,8 @@ elements on a <a href="https://gtk-rs.org/gtk-rs/git/docs/cairo/context/struct.C
 draw many cells on the screen. To this extent, it isn’t expected that a
 CellRenderer keep any permanent state around. Instead, any state is set
 just prior to use using <code>GObjects</code> property system. Then, the
-cell is measured using <a href="crate::prelude::CellRendererExt::get_preferred_size()"><code>prelude::CellRendererExt::get_preferred_size()</code></a>. Finally, the cell
-is rendered in the correct location using <a href="prelude/trait.CellRendererExt.html#tymethod.snapshot"><code>prelude::CellRendererExt::snapshot()</code></a>.</p>
+cell is measured using <a href="crate::CellRendererExt::get_preferred_size()"><code>CellRendererExt::get_preferred_size()</code></a>. Finally, the cell
+is rendered in the correct location using <a href="crate::CellRendererExt::snapshot()"><code>CellRendererExt::snapshot()</code></a>.</p>
 <p>There are a number of rules that must be followed when writing a new
 <a href="struct.CellRenderer.html"><code>CellRenderer</code></a>. First and foremost, it’s important that a certain set
 of properties will always yield a cell renderer of the same size,

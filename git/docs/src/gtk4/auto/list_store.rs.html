@@ -500,7 +500,7 @@
     <span class="doccomment">/// [`insert_with_values()`](Self::insert_with_values()) and [`insert_with_valuesv()`](Self::insert_with_valuesv())</span>
     <span class="doccomment">/// are atomic, in the sense that the row is being appended to the store and the</span>
     <span class="doccomment">/// values filled in in a single operation with regard to [`TreeModel`](crate::TreeModel) signaling.</span>
-    <span class="doccomment">/// In contrast, using e.g. [`prelude::`GtkListStoreExt`::append()`](crate::prelude::`GtkListStoreExt`::append()) and then [`set()`](Self::set())</span>
+    <span class="doccomment">/// In contrast, using e.g. [``GtkListStoreExt`::append()`](crate::`GtkListStoreExt`::append()) and then [`set()`](Self::set())</span>
     <span class="doccomment">/// will first create a row, which triggers the [`TreeModel::row-inserted`](crate::TreeModel::row-inserted) signal</span>
     <span class="doccomment">/// on [`ListStore`](crate::ListStore). The row, however, is still empty, and any signal handler</span>
     <span class="doccomment">/// connecting to [`TreeModel::row-inserted`](crate::TreeModel::row-inserted) on this particular store should be prepared</span>

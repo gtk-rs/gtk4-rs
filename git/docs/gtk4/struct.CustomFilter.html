@@ -8,7 +8,7 @@
 items.</p>
 <p>If <code>match_func</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, the filter matches all items.</p>
 <p>If the filter func changes its filtering behavior,
-<a href="prelude/trait.FilterExt.html#tymethod.changed"><code>prelude::FilterExt::changed()</code></a> needs to be called.</p>
+<a href="crate::FilterExt::changed()"><code>FilterExt::changed()</code></a> needs to be called.</p>
 <h2 id="match_func" class="section-header"><a href="#match_func"><code>match_func</code></a></h2>
 <p>function to filter items</p>
 <h2 id="user_data" class="section-header"><a href="#user_data"><code>user_data</code></a></h2>
@@ -20,7 +20,7 @@ items.</p>
 </div><h4 id="method.set_filter_func" class="method"><code>pub fn <a href="#method.set_filter_func" class="fnname">set_filter_func</a>&lt;F&gt;(&amp;self, filter_func: F) <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;F: <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a> + 'static,&nbsp;</span></code><a href="#method.set_filter_func" class="anchor"></a><a class="srclink" href="../src/gtk4/custom_filter.rs.html#56-68" title="goto source code">[src]</a></h4><div class="docblock"><p>Sets the function used for filtering items.</p>
 <p>If <code>match_func</code> is <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a>, the filter matches all items.</p>
 <p>If the filter func changes its filtering behavior,
-<a href="prelude/trait.FilterExt.html#tymethod.changed"><code>prelude::FilterExt::changed()</code></a> needs to be called.</p>
+<a href="crate::FilterExt::changed()"><code>FilterExt::changed()</code></a> needs to be called.</p>
 <p>If a previous function was set, its <code>user_destroy</code> will be
 called now.</p>
 <h2 id="match_func-1" class="section-header"><a href="#match_func-1"><code>match_func</code></a></h2>
