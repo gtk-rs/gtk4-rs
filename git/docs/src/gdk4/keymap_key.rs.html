@@ -122,9 +122,9 @@
 }
 
 <span class="kw">impl</span> <span class="ident">KeymapKey</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">keycode</span>: <span class="ident">u32</span>, <span class="ident">group</span>: <span class="ident">i32</span>, <span class="ident">level</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">KeymapKey</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">keycode</span>: <span class="ident">u32</span>, <span class="ident">group</span>: <span class="ident">i32</span>, <span class="ident">level</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
-        <span class="ident">KeymapKey</span> {
+        <span class="self">Self</span> {
             <span class="ident">keycode</span>,
             <span class="ident">group</span>,
             <span class="ident">level</span>,

@@ -4698,14 +4698,14 @@
 <span class="kw">impl</span> <span class="ident">::std::convert::From</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Key</span> {
     <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">value</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
-        <span class="ident">Key</span>(<span class="ident">value</span>)
+        <span class="self">Self</span>(<span class="ident">value</span>)
     }
 }
 
 <span class="kw">impl</span> <span class="ident">FromGlib</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Key</span> {
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
-        <span class="ident">Key</span>(<span class="ident">value</span>)
+        <span class="self">Self</span>(<span class="ident">value</span>)
     }
 }
 
@@ -4725,14 +4725,14 @@
     }
 
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_keyval_convert_case&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">convert_case</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">Key</span>, <span class="ident">Key</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">convert_case</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="self">Self</span>, <span class="self">Self</span>) {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">lower</span> <span class="op">=</span> <span class="ident">std::mem::MaybeUninit::uninit</span>();
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">upper</span> <span class="op">=</span> <span class="ident">std::mem::MaybeUninit::uninit</span>();
             <span class="ident">ffi::gdk_keyval_convert_case</span>(<span class="kw-2">*</span><span class="kw-2">*</span><span class="self">self</span>, <span class="ident">lower</span>.<span class="ident">as_mut_ptr</span>(), <span class="ident">upper</span>.<span class="ident">as_mut_ptr</span>());
-            <span class="kw">let</span> <span class="ident">lower</span> <span class="op">=</span> <span class="ident">Key</span>(<span class="ident">lower</span>.<span class="ident">assume_init</span>());
-            <span class="kw">let</span> <span class="ident">upper</span> <span class="op">=</span> <span class="ident">Key</span>(<span class="ident">upper</span>.<span class="ident">assume_init</span>());
+            <span class="kw">let</span> <span class="ident">lower</span> <span class="op">=</span> <span class="self">Self</span>(<span class="ident">lower</span>.<span class="ident">assume_init</span>());
+            <span class="kw">let</span> <span class="ident">upper</span> <span class="op">=</span> <span class="self">Self</span>(<span class="ident">upper</span>.<span class="ident">assume_init</span>());
             (<span class="ident">lower</span>, <span class="ident">upper</span>)
         }
     }
