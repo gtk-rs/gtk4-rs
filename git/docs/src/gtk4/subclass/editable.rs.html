@@ -462,6 +462,9 @@
 <span id="459">459</span>
 <span id="460">460</span>
 <span id="461">461</span>
+<span id="462">462</span>
+<span id="463">463</span>
+<span id="464">464</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -485,10 +488,12 @@
         <span class="self">self</span>.<span class="ident">parent_changed</span>(<span class="ident">editable</span>)
     }
 
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_text&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GString</span> {
         <span class="self">self</span>.<span class="ident">parent_text</span>(<span class="ident">editable</span>)
     }
 
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_delegate&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">delegate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Editable</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">parent_delegate</span>(<span class="ident">editable</span>)
     }
@@ -501,6 +506,7 @@
         <span class="self">self</span>.<span class="ident">parent_do_delete_text</span>(<span class="ident">editable</span>, <span class="ident">start_position</span>, <span class="ident">end_position</span>)
     }
 
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_selection_bounds&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">selection_bounds</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">editable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">i32</span>, <span class="ident">i32</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">parent_selection_bounds</span>(<span class="ident">editable</span>)
     }

@@ -231,6 +231,8 @@
 <span id="228">228</span>
 <span id="229">229</span>
 <span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -240,6 +242,7 @@
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">Cast</span>, <span class="ident">GString</span>};
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">BuilderScopeImpl</span>: <span class="ident">ObjectImpl</span> {
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_type_from_name&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">type_from_name</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
@@ -249,6 +252,7 @@
         <span class="self">self</span>.<span class="ident">parent_type_from_name</span>(<span class="ident">builder_scope</span>, <span class="ident">builder</span>, <span class="ident">type_name</span>)
     }
 
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_type_from_function&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">type_from_function</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">builder_scope</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,

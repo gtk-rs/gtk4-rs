@@ -528,6 +528,8 @@
 <span id="525">525</span>
 <span id="526">526</span>
 <span id="527">527</span>
+<span id="528">528</span>
+<span id="529">529</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -554,9 +556,11 @@
     <span class="kw">fn</span> <span class="ident">focus_out</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) {
         <span class="self">self</span>.<span class="ident">parent_focus_out</span>(<span class="ident">im_context</span>)
     }
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_preedit_string&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">preedit_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">GString</span>, <span class="ident">AttrList</span>, <span class="ident">i32</span>) {
         <span class="self">self</span>.<span class="ident">parent_preedit_string</span>(<span class="ident">im_context</span>)
     }
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_surrounding&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">surrounding</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">GString</span>, <span class="ident">i32</span>)<span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">parent_surrounding</span>(<span class="ident">im_context</span>)
     }

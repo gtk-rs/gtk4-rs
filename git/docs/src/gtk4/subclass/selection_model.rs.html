@@ -382,6 +382,7 @@
 <span id="379">379</span>
 <span id="380">380</span>
 <span id="381">381</span>
+<span id="382">382</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -391,6 +392,7 @@
 <span class="kw">use</span> <span class="ident">glib::Cast</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">SelectionModelImpl</span>: <span class="ident">ListModelImpl</span> {
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_selection_in_range&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">selection_in_range</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">model</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">n_items</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Bitset</span> {
         <span class="self">self</span>.<span class="ident">parent_selection_in_range</span>(<span class="ident">model</span>, <span class="ident">position</span>, <span class="ident">n_items</span>)
     }

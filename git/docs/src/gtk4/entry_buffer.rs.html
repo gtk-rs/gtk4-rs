@@ -225,6 +225,10 @@
 <span id="222">222</span>
 <span id="223">223</span>
 <span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -288,6 +292,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The byte length of the buffer.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_buffer_get_bytes&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_bytes&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">bytes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span>;
 
     <span class="doccomment">/// Retrieves the length in characters of the buffer.</span>
@@ -296,6 +301,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The number of characters in the buffer.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_buffer_get_length&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_length&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u16</span>;
 
     <span class="doccomment">/// Retrieves the maximum allowed length of the text in `self`.</span>
@@ -305,6 +311,7 @@
     <span class="doccomment">/// the maximum allowed number of characters</span>
     <span class="doccomment">///  in [`EntryBuffer`](crate::EntryBuffer), or 0 if there is no maximum.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_buffer_get_max_length&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_max_length&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">max_length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Retrieves the contents of the buffer.</span>
@@ -318,6 +325,7 @@
     <span class="doccomment">///  string. This string points to internally allocated storage</span>
     <span class="doccomment">///  in the buffer and must not be freed, modified or stored.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_buffer_get_text&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_text&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">text</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span>;
 
     <span class="doccomment">/// Inserts `n_chars` characters of `chars` into the contents of the</span>

@@ -234,6 +234,7 @@
 <span id="231">231</span>
 <span id="232">232</span>
 <span id="233">233</span>
+<span id="234">234</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -345,6 +346,7 @@
     <span class="doccomment">/// [`true`] if the sort column is not one of the special sort</span>
     <span class="doccomment">///  column ids.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_sortable_get_sort_column_id&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_sort_column_id&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">sort_column_id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">SortColumn</span>, <span class="ident">SortType</span>)<span class="op">&gt;</span>;
     <span class="doccomment">/// Sets the current sort column to be `sort_column_id`. The `self` will</span>
     <span class="doccomment">/// resort itself to reflect this change, after emitting a</span>

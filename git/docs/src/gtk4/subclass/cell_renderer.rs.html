@@ -665,6 +665,12 @@
 <span id="662">662</span>
 <span id="663">663</span>
 <span id="664">664</span>
+<span id="665">665</span>
+<span id="666">666</span>
+<span id="667">667</span>
+<span id="668">668</span>
+<span id="669">669</span>
+<span id="670">670</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -707,6 +713,7 @@
         <span class="self">self</span>.<span class="ident">parent_editing_started</span>(<span class="ident">renderer</span>, <span class="ident">editable</span>, <span class="ident">path</span>)
     }
 
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_aligned_area&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">aligned_area</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
@@ -717,6 +724,7 @@
         <span class="self">self</span>.<span class="ident">parent_aligned_area</span>(<span class="ident">renderer</span>, <span class="ident">widget</span>, <span class="ident">flags</span>, <span class="ident">cell_area</span>)
     }
 
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_preferred_height_for_width&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">preferred_height_for_width</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
@@ -726,10 +734,12 @@
         <span class="self">self</span>.<span class="ident">parent_preferred_height_for_width</span>(<span class="ident">renderer</span>, <span class="ident">widget</span>, <span class="ident">width</span>)
     }
 
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_preferred_height&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">preferred_height</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>) {
         <span class="self">self</span>.<span class="ident">parent_preferred_height</span>(<span class="ident">renderer</span>, <span class="ident">widget</span>)
     }
 
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_preferred_width_for_height&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">preferred_width_for_height</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>,
@@ -739,10 +749,12 @@
         <span class="self">self</span>.<span class="ident">parent_preferred_width_for_height</span>(<span class="ident">renderer</span>, <span class="ident">widget</span>, <span class="ident">height</span>)
     }
 
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_preferred_width&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">preferred_width</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>) {
         <span class="self">self</span>.<span class="ident">parent_preferred_width</span>(<span class="ident">renderer</span>, <span class="ident">widget</span>)
     }
 
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_request_mode&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">request_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">renderer</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SizeRequestMode</span> {
         <span class="self">self</span>.<span class="ident">parent_request_mode</span>(<span class="ident">renderer</span>)
     }

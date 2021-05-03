@@ -71,6 +71,7 @@
 <span id="68">68</span>
 <span id="69">69</span>
 <span id="70">70</span>
+<span id="71">71</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -80,6 +81,7 @@
 <span class="kw">use</span> <span class="ident">glib::Cast</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ScrollableImpl</span>: <span class="ident">ObjectImpl</span> {
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_border&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">border</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">scrollable</span>: <span class="kw-2">&amp;</span><span class="self">Self</span><span class="ident">::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Border</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">parent_border</span>(<span class="ident">scrollable</span>)
     }
