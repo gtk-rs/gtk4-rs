@@ -134,6 +134,10 @@
 <span id="131">131</span>
 <span id="132">132</span>
 <span id="133">133</span>
+<span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -159,6 +163,7 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">filter</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">fixed</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">flow_box_child</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">font_chooser</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">frame</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">gl_area</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">grid</span>;
@@ -192,6 +197,7 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">toggle_button</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">tree_drag_dest</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">tree_drag_source</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">tree_model_filter</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">tree_view</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">widget</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">window</span>;
@@ -227,6 +233,7 @@
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::filter</span>::{<span class="ident">FilterImpl</span>, <span class="ident">FilterImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::fixed::FixedImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::flow_box_child</span>::{<span class="ident">FlowBoxChildImpl</span>, <span class="ident">FlowBoxChildImplExt</span>};
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::font_chooser</span>::{<span class="ident">FontChooserImpl</span>, <span class="ident">FontChooserImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::frame</span>::{<span class="ident">FrameImpl</span>, <span class="ident">FrameImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::gl_area</span>::{<span class="ident">GLAreaImpl</span>, <span class="ident">GLAreaImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::grid::GridImpl</span>;
@@ -260,6 +267,7 @@
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::toggle_button</span>::{<span class="ident">ToggleButtonImpl</span>, <span class="ident">ToggleButtonImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::tree_drag_dest</span>::{<span class="ident">TreeDragDestImpl</span>, <span class="ident">TreeDragDestImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::tree_drag_source</span>::{<span class="ident">TreeDragSourceImpl</span>, <span class="ident">TreeDragSourceImplExt</span>};
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::tree_model_filter</span>::{<span class="ident">TreeModelFilterImpl</span>, <span class="ident">TreeModelFilterImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::tree_view</span>::{<span class="ident">TreeViewImpl</span>, <span class="ident">TreeViewImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::widget::CompositeTemplate</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::widget::TemplateChild</span>;
