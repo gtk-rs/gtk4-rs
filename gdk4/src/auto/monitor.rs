@@ -371,8 +371,7 @@ impl MonitorBuilder {
         if let Some(ref display) = self.display {
             properties.push(("display", display));
         }
-        let ret = glib::Object::new::<Monitor>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Monitor>(&properties).expect("Failed to create an instance of Monitor")
     }
 
     pub fn display(mut self, display: &Display) -> Self {

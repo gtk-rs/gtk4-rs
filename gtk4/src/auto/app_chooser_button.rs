@@ -454,8 +454,8 @@ impl AppChooserButtonBuilder {
         if let Some(ref content_type) = self.content_type {
             properties.push(("content-type", content_type));
         }
-        let ret = glib::Object::new::<AppChooserButton>(&properties).expect("object new");
-        ret
+        glib::Object::new::<AppChooserButton>(&properties)
+            .expect("Failed to create an instance of AppChooserButton")
     }
 
     pub fn heading(mut self, heading: &str) -> Self {

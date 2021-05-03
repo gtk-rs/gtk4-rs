@@ -226,8 +226,8 @@ impl ScrollbarBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new::<Scrollbar>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Scrollbar>(&properties)
+            .expect("Failed to create an instance of Scrollbar")
     }
 
     pub fn adjustment<P: IsA<Adjustment>>(mut self, adjustment: &P) -> Self {

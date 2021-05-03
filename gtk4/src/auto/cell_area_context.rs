@@ -38,8 +38,8 @@ impl CellAreaContextBuilder {
         if let Some(ref area) = self.area {
             properties.push(("area", area));
         }
-        let ret = glib::Object::new::<CellAreaContext>(&properties).expect("object new");
-        ret
+        glib::Object::new::<CellAreaContext>(&properties)
+            .expect("Failed to create an instance of CellAreaContext")
     }
 
     pub fn area<P: IsA<CellArea>>(mut self, area: &P) -> Self {

@@ -45,8 +45,8 @@ impl NamedActionBuilder {
         if let Some(ref action_name) = self.action_name {
             properties.push(("action-name", action_name));
         }
-        let ret = glib::Object::new::<NamedAction>(&properties).expect("object new");
-        ret
+        glib::Object::new::<NamedAction>(&properties)
+            .expect("Failed to create an instance of NamedAction")
     }
 
     pub fn action_name(mut self, action_name: &str) -> Self {

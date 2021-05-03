@@ -53,8 +53,8 @@ impl IMMulticontextBuilder {
         if let Some(ref input_purpose) = self.input_purpose {
             properties.push(("input-purpose", input_purpose));
         }
-        let ret = glib::Object::new::<IMMulticontext>(&properties).expect("object new");
-        ret
+        glib::Object::new::<IMMulticontext>(&properties)
+            .expect("Failed to create an instance of IMMulticontext")
     }
 
     pub fn input_hints(mut self, input_hints: InputHints) -> Self {

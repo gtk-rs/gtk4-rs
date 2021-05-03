@@ -355,8 +355,8 @@ impl IconThemeBuilder {
         if let Some(ref theme_name) = self.theme_name {
             properties.push(("theme-name", theme_name));
         }
-        let ret = glib::Object::new::<IconTheme>(&properties).expect("object new");
-        ret
+        glib::Object::new::<IconTheme>(&properties)
+            .expect("Failed to create an instance of IconTheme")
     }
 
     pub fn display(mut self, display: &gdk::Display) -> Self {

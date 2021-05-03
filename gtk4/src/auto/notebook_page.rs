@@ -466,8 +466,8 @@ impl NotebookPageBuilder {
         if let Some(ref tab_label) = self.tab_label {
             properties.push(("tab-label", tab_label));
         }
-        let ret = glib::Object::new::<NotebookPage>(&properties).expect("object new");
-        ret
+        glib::Object::new::<NotebookPage>(&properties)
+            .expect("Failed to create an instance of NotebookPage")
     }
 
     pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {

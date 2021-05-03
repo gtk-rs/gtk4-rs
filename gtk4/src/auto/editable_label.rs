@@ -240,8 +240,8 @@ impl EditableLabelBuilder {
         if let Some(ref xalign) = self.xalign {
             properties.push(("xalign", xalign));
         }
-        let ret = glib::Object::new::<EditableLabel>(&properties).expect("object new");
-        ret
+        glib::Object::new::<EditableLabel>(&properties)
+            .expect("Failed to create an instance of EditableLabel")
     }
 
     pub fn can_focus(mut self, can_focus: bool) -> Self {

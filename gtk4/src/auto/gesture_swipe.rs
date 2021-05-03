@@ -123,8 +123,8 @@ impl GestureSwipeBuilder {
         if let Some(ref propagation_phase) = self.propagation_phase {
             properties.push(("propagation-phase", propagation_phase));
         }
-        let ret = glib::Object::new::<GestureSwipe>(&properties).expect("object new");
-        ret
+        glib::Object::new::<GestureSwipe>(&properties)
+            .expect("Failed to create an instance of GestureSwipe")
     }
 
     pub fn button(mut self, button: u32) -> Self {

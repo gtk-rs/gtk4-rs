@@ -178,8 +178,8 @@ impl BoxLayoutBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new::<BoxLayout>(&properties).expect("object new");
-        ret
+        glib::Object::new::<BoxLayout>(&properties)
+            .expect("Failed to create an instance of BoxLayout")
     }
 
     pub fn baseline_position(mut self, baseline_position: BaselinePosition) -> Self {

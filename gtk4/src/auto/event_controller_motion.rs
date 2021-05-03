@@ -210,8 +210,8 @@ impl EventControllerMotionBuilder {
         if let Some(ref propagation_phase) = self.propagation_phase {
             properties.push(("propagation-phase", propagation_phase));
         }
-        let ret = glib::Object::new::<EventControllerMotion>(&properties).expect("object new");
-        ret
+        glib::Object::new::<EventControllerMotion>(&properties)
+            .expect("Failed to create an instance of EventControllerMotion")
     }
 
     pub fn name(mut self, name: &str) -> Self {

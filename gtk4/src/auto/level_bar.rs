@@ -466,8 +466,8 @@ impl LevelBarBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new::<LevelBar>(&properties).expect("object new");
-        ret
+        glib::Object::new::<LevelBar>(&properties)
+            .expect("Failed to create an instance of LevelBar")
     }
 
     pub fn inverted(mut self, inverted: bool) -> Self {

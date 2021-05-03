@@ -212,8 +212,8 @@ impl AssistantPageBuilder {
         if let Some(ref title) = self.title {
             properties.push(("title", title));
         }
-        let ret = glib::Object::new::<AssistantPage>(&properties).expect("object new");
-        ret
+        glib::Object::new::<AssistantPage>(&properties)
+            .expect("Failed to create an instance of AssistantPage")
     }
 
     pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {

@@ -447,8 +447,8 @@ impl ColumnViewColumnBuilder {
         if let Some(ref visible) = self.visible {
             properties.push(("visible", visible));
         }
-        let ret = glib::Object::new::<ColumnViewColumn>(&properties).expect("object new");
-        ret
+        glib::Object::new::<ColumnViewColumn>(&properties)
+            .expect("Failed to create an instance of ColumnViewColumn")
     }
 
     pub fn expand(mut self, expand: bool) -> Self {

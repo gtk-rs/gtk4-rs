@@ -488,8 +488,8 @@ impl SearchEntryBuilder {
         if let Some(ref xalign) = self.xalign {
             properties.push(("xalign", xalign));
         }
-        let ret = glib::Object::new::<SearchEntry>(&properties).expect("object new");
-        ret
+        glib::Object::new::<SearchEntry>(&properties)
+            .expect("Failed to create an instance of SearchEntry")
     }
 
     pub fn activates_default(mut self, activates_default: bool) -> Self {

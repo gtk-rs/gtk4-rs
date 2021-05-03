@@ -657,8 +657,8 @@ impl EntryCompletionBuilder {
         if let Some(ref text_column) = self.text_column {
             properties.push(("text-column", text_column));
         }
-        let ret = glib::Object::new::<EntryCompletion>(&properties).expect("object new");
-        ret
+        glib::Object::new::<EntryCompletion>(&properties)
+            .expect("Failed to create an instance of EntryCompletion")
     }
 
     pub fn cell_area<P: IsA<CellArea>>(mut self, cell_area: &P) -> Self {

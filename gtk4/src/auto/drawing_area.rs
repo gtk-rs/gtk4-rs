@@ -182,8 +182,8 @@ impl DrawingAreaBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<DrawingArea>(&properties).expect("object new");
-        ret
+        glib::Object::new::<DrawingArea>(&properties)
+            .expect("Failed to create an instance of DrawingArea")
     }
 
     pub fn content_height(mut self, content_height: i32) -> Self {

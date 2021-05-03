@@ -80,8 +80,8 @@ impl GestureDragBuilder {
         if let Some(ref propagation_phase) = self.propagation_phase {
             properties.push(("propagation-phase", propagation_phase));
         }
-        let ret = glib::Object::new::<GestureDrag>(&properties).expect("object new");
-        ret
+        glib::Object::new::<GestureDrag>(&properties)
+            .expect("Failed to create an instance of GestureDrag")
     }
 
     pub fn button(mut self, button: u32) -> Self {

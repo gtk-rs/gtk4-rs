@@ -580,8 +580,8 @@ impl CellRendererAccelBuilder {
         if let Some(ref ypad) = self.ypad {
             properties.push(("ypad", ypad));
         }
-        let ret = glib::Object::new::<CellRendererAccel>(&properties).expect("object new");
-        ret
+        glib::Object::new::<CellRendererAccel>(&properties)
+            .expect("Failed to create an instance of CellRendererAccel")
     }
 
     pub fn accel_key(mut self, accel_key: u32) -> Self {

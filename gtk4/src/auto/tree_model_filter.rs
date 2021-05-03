@@ -37,8 +37,8 @@ impl TreeModelFilterBuilder {
         if let Some(ref child_model) = self.child_model {
             properties.push(("child-model", child_model));
         }
-        let ret = glib::Object::new::<TreeModelFilter>(&properties).expect("object new");
-        ret
+        glib::Object::new::<TreeModelFilter>(&properties)
+            .expect("Failed to create an instance of TreeModelFilter")
     }
 
     pub fn child_model<P: IsA<TreeModel>>(mut self, child_model: &P) -> Self {

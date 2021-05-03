@@ -407,8 +407,7 @@ impl PrinterBuilder {
         if let Some(ref name) = self.name {
             properties.push(("name", name));
         }
-        let ret = glib::Object::new::<Printer>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Printer>(&properties).expect("Failed to create an instance of Printer")
     }
 
     pub fn accepts_pdf(mut self, accepts_pdf: bool) -> Self {

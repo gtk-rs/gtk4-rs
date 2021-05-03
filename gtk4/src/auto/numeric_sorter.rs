@@ -120,8 +120,8 @@ impl NumericSorterBuilder {
         if let Some(ref sort_order) = self.sort_order {
             properties.push(("sort-order", sort_order));
         }
-        let ret = glib::Object::new::<NumericSorter>(&properties).expect("object new");
-        ret
+        glib::Object::new::<NumericSorter>(&properties)
+            .expect("Failed to create an instance of NumericSorter")
     }
 
     pub fn expression(mut self, expression: &Expression) -> Self {

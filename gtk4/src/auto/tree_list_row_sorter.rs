@@ -94,8 +94,8 @@ impl TreeListRowSorterBuilder {
         if let Some(ref sorter) = self.sorter {
             properties.push(("sorter", sorter));
         }
-        let ret = glib::Object::new::<TreeListRowSorter>(&properties).expect("object new");
-        ret
+        glib::Object::new::<TreeListRowSorter>(&properties)
+            .expect("Failed to create an instance of TreeListRowSorter")
     }
 
     pub fn sorter<P: IsA<Sorter>>(mut self, sorter: &P) -> Self {

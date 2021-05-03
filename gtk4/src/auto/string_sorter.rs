@@ -115,8 +115,8 @@ impl StringSorterBuilder {
         if let Some(ref ignore_case) = self.ignore_case {
             properties.push(("ignore-case", ignore_case));
         }
-        let ret = glib::Object::new::<StringSorter>(&properties).expect("object new");
-        ret
+        glib::Object::new::<StringSorter>(&properties)
+            .expect("Failed to create an instance of StringSorter")
     }
 
     pub fn expression(mut self, expression: &Expression) -> Self {

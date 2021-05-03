@@ -297,8 +297,8 @@ impl FontChooserDialogBuilder {
         if let Some(ref show_preview_entry) = self.show_preview_entry {
             properties.push(("show-preview-entry", show_preview_entry));
         }
-        let ret = glib::Object::new::<FontChooserDialog>(&properties).expect("object new");
-        ret
+        glib::Object::new::<FontChooserDialog>(&properties)
+            .expect("Failed to create an instance of FontChooserDialog")
     }
 
     pub fn use_header_bar(mut self, use_header_bar: i32) -> Self {

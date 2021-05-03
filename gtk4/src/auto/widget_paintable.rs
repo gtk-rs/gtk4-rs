@@ -90,8 +90,8 @@ impl WidgetPaintableBuilder {
         if let Some(ref widget) = self.widget {
             properties.push(("widget", widget));
         }
-        let ret = glib::Object::new::<WidgetPaintable>(&properties).expect("object new");
-        ret
+        glib::Object::new::<WidgetPaintable>(&properties)
+            .expect("Failed to create an instance of WidgetPaintable")
     }
 
     pub fn widget<P: IsA<Widget>>(mut self, widget: &P) -> Self {

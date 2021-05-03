@@ -403,8 +403,8 @@ impl ShortcutsSectionBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new::<ShortcutsSection>(&properties).expect("object new");
-        ret
+        glib::Object::new::<ShortcutsSection>(&properties)
+            .expect("Failed to create an instance of ShortcutsSection")
     }
 
     pub fn max_height(mut self, max_height: u32) -> Self {

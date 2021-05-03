@@ -487,8 +487,8 @@ impl CellRendererComboBuilder {
         if let Some(ref ypad) = self.ypad {
             properties.push(("ypad", ypad));
         }
-        let ret = glib::Object::new::<CellRendererCombo>(&properties).expect("object new");
-        ret
+        glib::Object::new::<CellRendererCombo>(&properties)
+            .expect("Failed to create an instance of CellRendererCombo")
     }
 
     pub fn has_entry(mut self, has_entry: bool) -> Self {

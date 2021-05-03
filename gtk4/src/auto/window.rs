@@ -314,8 +314,7 @@ impl WindowBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<Window>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Window>(&properties).expect("Failed to create an instance of Window")
     }
 
     pub fn application<P: IsA<Application>>(mut self, application: &P) -> Self {

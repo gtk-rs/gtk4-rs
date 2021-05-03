@@ -9,7 +9,6 @@ pub use x11;
 #[macro_use]
 mod rt;
 
-#[allow(clippy::let_and_return)]
 #[allow(clippy::upper_case_acronyms)]
 mod auto;
 

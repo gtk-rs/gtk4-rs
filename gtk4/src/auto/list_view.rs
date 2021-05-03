@@ -460,8 +460,8 @@ impl ListViewBuilder {
         if let Some(ref vscroll_policy) = self.vscroll_policy {
             properties.push(("vscroll-policy", vscroll_policy));
         }
-        let ret = glib::Object::new::<ListView>(&properties).expect("object new");
-        ret
+        glib::Object::new::<ListView>(&properties)
+            .expect("Failed to create an instance of ListView")
     }
 
     pub fn enable_rubberband(mut self, enable_rubberband: bool) -> Self {

@@ -99,8 +99,8 @@ impl FlattenListModelBuilder {
         if let Some(ref model) = self.model {
             properties.push(("model", model));
         }
-        let ret = glib::Object::new::<FlattenListModel>(&properties).expect("object new");
-        ret
+        glib::Object::new::<FlattenListModel>(&properties)
+            .expect("Failed to create an instance of FlattenListModel")
     }
 
     pub fn model<P: IsA<gio::ListModel>>(mut self, model: &P) -> Self {

@@ -272,8 +272,8 @@ impl CenterBoxBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new::<CenterBox>(&properties).expect("object new");
-        ret
+        glib::Object::new::<CenterBox>(&properties)
+            .expect("Failed to create an instance of CenterBox")
     }
 
     pub fn baseline_position(mut self, baseline_position: BaselinePosition) -> Self {

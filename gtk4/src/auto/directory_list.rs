@@ -280,8 +280,8 @@ impl DirectoryListBuilder {
         if let Some(ref monitored) = self.monitored {
             properties.push(("monitored", monitored));
         }
-        let ret = glib::Object::new::<DirectoryList>(&properties).expect("object new");
-        ret
+        glib::Object::new::<DirectoryList>(&properties)
+            .expect("Failed to create an instance of DirectoryList")
     }
 
     pub fn attributes(mut self, attributes: &str) -> Self {

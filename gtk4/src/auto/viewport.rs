@@ -285,8 +285,8 @@ impl ViewportBuilder {
         if let Some(ref vscroll_policy) = self.vscroll_policy {
             properties.push(("vscroll-policy", vscroll_policy));
         }
-        let ret = glib::Object::new::<Viewport>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Viewport>(&properties)
+            .expect("Failed to create an instance of Viewport")
     }
 
     pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {

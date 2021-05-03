@@ -217,8 +217,8 @@ impl StackSidebarBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<StackSidebar>(&properties).expect("object new");
-        ret
+        glib::Object::new::<StackSidebar>(&properties)
+            .expect("Failed to create an instance of StackSidebar")
     }
 
     pub fn stack(mut self, stack: &Stack) -> Self {

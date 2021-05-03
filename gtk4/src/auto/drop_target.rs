@@ -341,8 +341,8 @@ impl DropTargetBuilder {
         if let Some(ref propagation_phase) = self.propagation_phase {
             properties.push(("propagation-phase", propagation_phase));
         }
-        let ret = glib::Object::new::<DropTarget>(&properties).expect("object new");
-        ret
+        glib::Object::new::<DropTarget>(&properties)
+            .expect("Failed to create an instance of DropTarget")
     }
 
     pub fn actions(mut self, actions: gdk::DragAction) -> Self {

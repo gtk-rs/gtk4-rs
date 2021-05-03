@@ -145,8 +145,8 @@ impl GesturePanBuilder {
         if let Some(ref propagation_phase) = self.propagation_phase {
             properties.push(("propagation-phase", propagation_phase));
         }
-        let ret = glib::Object::new::<GesturePan>(&properties).expect("object new");
-        ret
+        glib::Object::new::<GesturePan>(&properties)
+            .expect("Failed to create an instance of GesturePan")
     }
 
     pub fn orientation(mut self, orientation: Orientation) -> Self {

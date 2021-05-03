@@ -467,8 +467,7 @@ impl PictureBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<Picture>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Picture>(&properties).expect("Failed to create an instance of Picture")
     }
 
     pub fn alternative_text(mut self, alternative_text: &str) -> Self {

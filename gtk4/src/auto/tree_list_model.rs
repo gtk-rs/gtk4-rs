@@ -188,8 +188,8 @@ impl TreeListModelBuilder {
         if let Some(ref passthrough) = self.passthrough {
             properties.push(("passthrough", passthrough));
         }
-        let ret = glib::Object::new::<TreeListModel>(&properties).expect("object new");
-        ret
+        glib::Object::new::<TreeListModel>(&properties)
+            .expect("Failed to create an instance of TreeListModel")
     }
 
     pub fn autoexpand(mut self, autoexpand: bool) -> Self {

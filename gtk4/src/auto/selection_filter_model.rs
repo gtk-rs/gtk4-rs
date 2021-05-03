@@ -94,8 +94,8 @@ impl SelectionFilterModelBuilder {
         if let Some(ref model) = self.model {
             properties.push(("model", model));
         }
-        let ret = glib::Object::new::<SelectionFilterModel>(&properties).expect("object new");
-        ret
+        glib::Object::new::<SelectionFilterModel>(&properties)
+            .expect("Failed to create an instance of SelectionFilterModel")
     }
 
     pub fn model<P: IsA<SelectionModel>>(mut self, model: &P) -> Self {

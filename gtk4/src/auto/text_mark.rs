@@ -50,8 +50,8 @@ impl TextMarkBuilder {
         if let Some(ref name) = self.name {
             properties.push(("name", name));
         }
-        let ret = glib::Object::new::<TextMark>(&properties).expect("object new");
-        ret
+        glib::Object::new::<TextMark>(&properties)
+            .expect("Failed to create an instance of TextMark")
     }
 
     pub fn left_gravity(mut self, left_gravity: bool) -> Self {

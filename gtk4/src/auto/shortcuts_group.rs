@@ -418,8 +418,8 @@ impl ShortcutsGroupBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new::<ShortcutsGroup>(&properties).expect("object new");
-        ret
+        glib::Object::new::<ShortcutsGroup>(&properties)
+            .expect("Failed to create an instance of ShortcutsGroup")
     }
 
     pub fn accel_size_group(mut self, accel_size_group: &SizeGroup) -> Self {

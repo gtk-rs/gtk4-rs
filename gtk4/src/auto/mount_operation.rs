@@ -87,8 +87,8 @@ impl MountOperationBuilder {
         if let Some(ref username) = self.username {
             properties.push(("username", username));
         }
-        let ret = glib::Object::new::<MountOperation>(&properties).expect("object new");
-        ret
+        glib::Object::new::<MountOperation>(&properties)
+            .expect("Failed to create an instance of MountOperation")
     }
 
     pub fn display(mut self, display: &gdk::Display) -> Self {

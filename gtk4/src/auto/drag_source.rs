@@ -309,8 +309,8 @@ impl DragSourceBuilder {
         if let Some(ref propagation_phase) = self.propagation_phase {
             properties.push(("propagation-phase", propagation_phase));
         }
-        let ret = glib::Object::new::<DragSource>(&properties).expect("object new");
-        ret
+        glib::Object::new::<DragSource>(&properties)
+            .expect("Failed to create an instance of DragSource")
     }
 
     pub fn actions(mut self, actions: gdk::DragAction) -> Self {

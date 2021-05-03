@@ -679,8 +679,8 @@ impl FileChooserWidgetBuilder {
         if let Some(ref select_multiple) = self.select_multiple {
             properties.push(("select-multiple", select_multiple));
         }
-        let ret = glib::Object::new::<FileChooserWidget>(&properties).expect("object new");
-        ret
+        glib::Object::new::<FileChooserWidget>(&properties)
+            .expect("Failed to create an instance of FileChooserWidget")
     }
 
     pub fn search_mode(mut self, search_mode: bool) -> Self {

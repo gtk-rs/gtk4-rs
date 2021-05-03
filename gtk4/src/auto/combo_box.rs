@@ -253,8 +253,8 @@ impl ComboBoxBuilder {
         if let Some(ref editing_canceled) = self.editing_canceled {
             properties.push(("editing-canceled", editing_canceled));
         }
-        let ret = glib::Object::new::<ComboBox>(&properties).expect("object new");
-        ret
+        glib::Object::new::<ComboBox>(&properties)
+            .expect("Failed to create an instance of ComboBox")
     }
 
     pub fn active(mut self, active: i32) -> Self {

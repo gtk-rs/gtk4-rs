@@ -391,8 +391,7 @@ impl BuilderBuilder {
         if let Some(ref translation_domain) = self.translation_domain {
             properties.push(("translation-domain", translation_domain));
         }
-        let ret = glib::Object::new::<Builder>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Builder>(&properties).expect("Failed to create an instance of Builder")
     }
 
     pub fn current_object<P: IsA<glib::Object>>(mut self, current_object: &P) -> Self {

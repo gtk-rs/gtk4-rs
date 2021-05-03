@@ -252,8 +252,8 @@ impl ListItemBuilder {
         if let Some(ref selectable) = self.selectable {
             properties.push(("selectable", selectable));
         }
-        let ret = glib::Object::new::<ListItem>(&properties).expect("object new");
-        ret
+        glib::Object::new::<ListItem>(&properties)
+            .expect("Failed to create an instance of ListItem")
     }
 
     pub fn activatable(mut self, activatable: bool) -> Self {

@@ -320,8 +320,7 @@ impl SwitchBuilder {
         if let Some(ref action_target) = self.action_target {
             properties.push(("action-target", action_target));
         }
-        let ret = glib::Object::new::<Switch>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Switch>(&properties).expect("Failed to create an instance of Switch")
     }
 
     pub fn active(mut self, active: bool) -> Self {

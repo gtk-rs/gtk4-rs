@@ -67,8 +67,8 @@ impl DeviceToolBuilder {
         if let Some(ref tool_type) = self.tool_type {
             properties.push(("tool-type", tool_type));
         }
-        let ret = glib::Object::new::<DeviceTool>(&properties).expect("object new");
-        ret
+        glib::Object::new::<DeviceTool>(&properties)
+            .expect("Failed to create an instance of DeviceTool")
     }
 
     pub fn axes(mut self, axes: AxisFlags) -> Self {

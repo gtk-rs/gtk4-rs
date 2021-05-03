@@ -517,8 +517,8 @@ impl AppChooserWidgetBuilder {
         if let Some(ref content_type) = self.content_type {
             properties.push(("content-type", content_type));
         }
-        let ret = glib::Object::new::<AppChooserWidget>(&properties).expect("object new");
-        ret
+        glib::Object::new::<AppChooserWidget>(&properties)
+            .expect("Failed to create an instance of AppChooserWidget")
     }
 
     pub fn default_text(mut self, default_text: &str) -> Self {

@@ -57,8 +57,8 @@ impl TextBufferBuilder {
         if let Some(ref text) = self.text {
             properties.push(("text", text));
         }
-        let ret = glib::Object::new::<TextBuffer>(&properties).expect("object new");
-        ret
+        glib::Object::new::<TextBuffer>(&properties)
+            .expect("Failed to create an instance of TextBuffer")
     }
 
     pub fn enable_undo(mut self, enable_undo: bool) -> Self {

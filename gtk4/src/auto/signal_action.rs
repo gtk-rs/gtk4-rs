@@ -49,8 +49,8 @@ impl SignalActionBuilder {
         if let Some(ref signal_name) = self.signal_name {
             properties.push(("signal-name", signal_name));
         }
-        let ret = glib::Object::new::<SignalAction>(&properties).expect("object new");
-        ret
+        glib::Object::new::<SignalAction>(&properties)
+            .expect("Failed to create an instance of SignalAction")
     }
 
     pub fn signal_name(mut self, signal_name: &str) -> Self {

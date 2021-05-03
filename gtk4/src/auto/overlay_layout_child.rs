@@ -141,8 +141,8 @@ impl OverlayLayoutChildBuilder {
         if let Some(ref layout_manager) = self.layout_manager {
             properties.push(("layout-manager", layout_manager));
         }
-        let ret = glib::Object::new::<OverlayLayoutChild>(&properties).expect("object new");
-        ret
+        glib::Object::new::<OverlayLayoutChild>(&properties)
+            .expect("Failed to create an instance of OverlayLayoutChild")
     }
 
     pub fn clip_overlay(mut self, clip_overlay: bool) -> Self {
