@@ -14,7 +14,7 @@ impl RoundedRect {
         top_right: Size,
         bottom_right: Size,
         bottom_left: Size,
-    ) -> RoundedRect {
+    ) -> Self {
         assert_initialized_main_thread!();
         unsafe {
             let mut rounded_rect = mem::MaybeUninit::uninit();
@@ -26,11 +26,11 @@ impl RoundedRect {
                 bottom_right.to_glib_none().0,
                 bottom_left.to_glib_none().0,
             );
-            RoundedRect(rounded_rect.assume_init())
+            Self(rounded_rect.assume_init())
         }
     }
 
-    pub fn new_from_rect(bounds: Rect, radius: f32) -> RoundedRect {
+    pub fn new_from_rect(bounds: Rect, radius: f32) -> Self {
         assert_initialized_main_thread!();
         unsafe {
             let mut rounded_rect = mem::MaybeUninit::uninit();
@@ -39,7 +39,7 @@ impl RoundedRect {
                 bounds.to_glib_none().0,
                 radius,
             );
-            RoundedRect(rounded_rect.assume_init())
+            Self(rounded_rect.assume_init())
         }
     }
 
@@ -131,7 +131,7 @@ impl RoundedRect {
 #[doc(hidden)]
 impl FromGlibPtrNone<*const ffi::GskRoundedRect> for RoundedRect {
     unsafe fn from_glib_none(ptr: *const ffi::GskRoundedRect) -> Self {
-        RoundedRect(*ptr)
+        Self(*ptr)
     }
 }
 

@@ -34,9 +34,9 @@ impl RGBA {
         unsafe { from_glib(ffi::gdk_rgba_is_clear(self.to_glib_none().0)) }
     }
 
-    pub fn black() -> RGBA {
+    pub fn black() -> Self {
         skip_assert_initialized!();
-        RGBA {
+        Self {
             red: 0f32,
             green: 0f32,
             blue: 0f32,
@@ -44,9 +44,9 @@ impl RGBA {
         }
     }
 
-    pub fn blue() -> RGBA {
+    pub fn blue() -> Self {
         skip_assert_initialized!();
-        RGBA {
+        Self {
             red: 0f32,
             green: 0f32,
             blue: 1f32,
@@ -54,9 +54,9 @@ impl RGBA {
         }
     }
 
-    pub fn green() -> RGBA {
+    pub fn green() -> Self {
         skip_assert_initialized!();
-        RGBA {
+        Self {
             red: 0f32,
             green: 1f32,
             blue: 0f32,
@@ -64,9 +64,9 @@ impl RGBA {
         }
     }
 
-    pub fn red() -> RGBA {
+    pub fn red() -> Self {
         skip_assert_initialized!();
-        RGBA {
+        Self {
             red: 1f32,
             green: 0f32,
             blue: 0f32,
@@ -74,9 +74,9 @@ impl RGBA {
         }
     }
 
-    pub fn white() -> RGBA {
+    pub fn white() -> Self {
         skip_assert_initialized!();
-        RGBA {
+        Self {
             red: 1f32,
             green: 1f32,
             blue: 1f32,
@@ -98,7 +98,7 @@ impl FromStr for RGBA {
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         skip_assert_initialized!();
         unsafe {
-            let mut rgba = RGBA::uninitialized();
+            let mut rgba = Self::uninitialized();
             if from_glib(ffi::gdk_rgba_parse(
                 rgba.to_glib_none_mut().0,
                 s.to_glib_none().0,
@@ -223,7 +223,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for RGBA {
 
 impl glib::value::ToValue for RGBA {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<RGBA>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_boxed(
                 value.to_glib_none_mut().0,
@@ -241,7 +241,7 @@ impl glib::value::ToValue for RGBA {
 impl glib::value::ToValueOptional for RGBA {
     fn to_value_optional(s: Option<&Self>) -> glib::Value {
         skip_assert_initialized!();
-        let mut value = glib::Value::for_value_type::<RGBA>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_boxed(
                 value.to_glib_none_mut().0,

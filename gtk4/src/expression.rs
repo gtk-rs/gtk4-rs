@@ -154,7 +154,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for Expression {
 
 impl glib::value::ToValue for Expression {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<Expression>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe { ffi::gtk_value_set_expression(value.to_glib_none_mut().0, self.to_glib_none().0) }
         value
     }
@@ -167,7 +167,7 @@ impl glib::value::ToValue for Expression {
 impl glib::value::ToValueOptional for Expression {
     fn to_value_optional(s: Option<&Self>) -> glib::Value {
         skip_assert_initialized!();
-        let mut value = glib::Value::for_value_type::<Expression>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe { ffi::gtk_value_set_expression(value.to_glib_none_mut().0, s.to_glib_none().0) }
         value
     }
@@ -261,7 +261,7 @@ macro_rules! define_expression {
 
         impl glib::value::ToValue for $rust_type {
             fn to_value(&self) -> glib::Value {
-                let mut value = glib::Value::for_value_type::<$rust_type>();
+                let mut value = glib::Value::for_value_type::<Self>();
                 unsafe {
                     ffi::gtk_value_set_expression(value.to_glib_none_mut().0, self.to_glib_none().0 as *mut _)
                 }
@@ -277,7 +277,7 @@ macro_rules! define_expression {
         impl glib::value::ToValueOptional for $rust_type {
             fn to_value_optional(s: Option<&Self>) -> glib::Value {
                 skip_assert_initialized!();
-                let mut value = glib::Value::for_value_type::<$rust_type>();
+                let mut value = glib::Value::for_value_type::<Self>();
                 unsafe {
                     ffi::gtk_value_set_expression(value.to_glib_none_mut().0, s.to_glib_none().0 as *mut _)
                 }

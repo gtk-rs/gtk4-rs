@@ -13,9 +13,9 @@ impl CssLocation {
         lines: usize,
         line_bytes: usize,
         line_chars: usize,
-    ) -> CssLocation {
+    ) -> Self {
         assert_initialized_main_thread!();
-        CssLocation(ffi::GtkCssLocation {
+        Self(ffi::GtkCssLocation {
             bytes,
             chars,
             lines,
@@ -48,7 +48,7 @@ impl CssLocation {
 #[doc(hidden)]
 impl FromGlibPtrNone<*const ffi::GtkCssLocation> for CssLocation {
     unsafe fn from_glib_none(ptr: *const ffi::GtkCssLocation) -> Self {
-        CssLocation(*ptr)
+        Self(*ptr)
     }
 }
 

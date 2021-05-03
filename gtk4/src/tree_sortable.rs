@@ -34,13 +34,13 @@ impl IntoGlib for SortColumn {
 #[doc(hidden)]
 impl FromGlib<i32> for SortColumn {
     #[inline]
-    unsafe fn from_glib(val: i32) -> SortColumn {
+    unsafe fn from_glib(val: i32) -> Self {
         skip_assert_initialized!();
         match val {
-            ffi::GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID => SortColumn::Default,
+            ffi::GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID => Self::Default,
             x => {
                 assert!(x >= 0, "invalid column index");
-                SortColumn::Index(x as u32)
+                Self::Index(x as u32)
             }
         }
     }
