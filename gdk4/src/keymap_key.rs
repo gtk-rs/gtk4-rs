@@ -11,9 +11,9 @@ pub struct KeymapKey {
 }
 
 impl KeymapKey {
-    pub fn new(keycode: u32, group: i32, level: i32) -> KeymapKey {
+    pub fn new(keycode: u32, group: i32, level: i32) -> Self {
         assert_initialized_main_thread!();
-        KeymapKey {
+        Self {
             keycode,
             group,
             level,

@@ -8,9 +8,9 @@ use std::fmt;
 pub struct TimeCoord(ffi::GdkTimeCoord);
 
 impl TimeCoord {
-    pub fn new(time: u32, axes: [f64; 12], flags: AxisFlags) -> TimeCoord {
+    pub fn new(time: u32, axes: [f64; 12], flags: AxisFlags) -> Self {
         assert_initialized_main_thread!();
-        TimeCoord(ffi::GdkTimeCoord {
+        Self(ffi::GdkTimeCoord {
             time,
             axes,
             flags: flags.into_glib(),
@@ -53,7 +53,7 @@ impl GlibPtrDefault for TimeCoord {
 #[doc(hidden)]
 impl FromGlibPtrNone<*mut ffi::GdkTimeCoord> for TimeCoord {
     unsafe fn from_glib_none(ptr: *mut ffi::GdkTimeCoord) -> Self {
-        TimeCoord(*ptr)
+        Self(*ptr)
     }
 }
 

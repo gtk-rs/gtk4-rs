@@ -30,7 +30,7 @@ impl Rectangle {
     #[doc(alias = "gdk_rectangle_intersect")]
     pub fn intersect(&self, other: &Rectangle) -> Option<Rectangle> {
         unsafe {
-            let mut ret = Rectangle::uninitialized();
+            let mut ret = Self::uninitialized();
             if from_glib(ffi::gdk_rectangle_intersect(
                 self.to_glib_none().0,
                 other.to_glib_none().0,
@@ -44,9 +44,9 @@ impl Rectangle {
     }
 
     #[doc(alias = "gdk_rectangle_union")]
-    pub fn union(&self, other: &Rectangle) -> Rectangle {
+    pub fn union(&self, other: &Rectangle) -> Self {
         unsafe {
-            let mut ret = Rectangle::uninitialized();
+            let mut ret = Self::uninitialized();
             ffi::gdk_rectangle_union(
                 self.to_glib_none().0,
                 other.to_glib_none().0,
@@ -140,7 +140,7 @@ impl AsRef<RectangleInt> for Rectangle {
 }
 
 impl From<RectangleInt> for Rectangle {
-    fn from(r: RectangleInt) -> Rectangle {
+    fn from(r: RectangleInt) -> Self {
         skip_assert_initialized!();
         unsafe { *(&r as *const _ as *const _) }
     }
@@ -170,7 +170,7 @@ unsafe impl<'a> glib::value::FromValue<'a> for Rectangle {
 
 impl glib::value::ToValue for Rectangle {
     fn to_value(&self) -> glib::Value {
-        let mut value = glib::Value::for_value_type::<Rectangle>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_boxed(
                 value.to_glib_none_mut().0,
@@ -188,7 +188,7 @@ impl glib::value::ToValue for Rectangle {
 impl glib::value::ToValueOptional for Rectangle {
     fn to_value_optional(s: Option<&Self>) -> glib::Value {
         skip_assert_initialized!();
-        let mut value = glib::Value::for_value_type::<Rectangle>();
+        let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
             glib::gobject_ffi::g_value_set_boxed(
                 value.to_glib_none_mut().0,

@@ -15,6 +15,6 @@ impl CustomButton {
 
 impl Default for CustomButton {
     fn default() -> Self {
-        CustomButton::new()
+        Self::new()
     }
 }

@@ -24,14 +24,14 @@ impl ::std::ops::DerefMut for Key {
 impl ::std::convert::From<u32> for Key {
     fn from(value: u32) -> Self {
         skip_assert_initialized!();
-        Key(value)
+        Self(value)
     }
 }
 
 impl FromGlib<u32> for Key {
     unsafe fn from_glib(value: u32) -> Self {
         skip_assert_initialized!();
-        Key(value)
+        Self(value)
     }
 }
 
@@ -51,14 +51,14 @@ impl Key {
     }
 
     #[doc(alias = "gdk_keyval_convert_case")]
-    pub fn convert_case(&self) -> (Key, Key) {
+    pub fn convert_case(&self) -> (Self, Self) {
         assert_initialized_main_thread!();
         unsafe {
             let mut lower = std::mem::MaybeUninit::uninit();
             let mut upper = std::mem::MaybeUninit::uninit();
             ffi::gdk_keyval_convert_case(**self, lower.as_mut_ptr(), upper.as_mut_ptr());
-            let lower = Key(lower.assume_init());
-            let upper = Key(upper.assume_init());
+            let lower = Self(lower.assume_init());
+            let upper = Self(upper.assume_init());
             (lower, upper)
         }
     }
