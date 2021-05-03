@@ -138,6 +138,14 @@
 <span id="135">135</span>
 <span id="136">136</span>
 <span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -149,6 +157,10 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">box_</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">builder_scope</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">button</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">cell_area</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">cell_area_context</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">cell_editable</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">cell_layout</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">cell_renderer</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">cell_renderer_text</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">check_button</span>;
@@ -219,6 +231,10 @@
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::box_::BoxImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::builder_scope</span>::{<span class="ident">BuilderScopeImpl</span>, <span class="ident">BuilderScopeImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::button</span>::{<span class="ident">ButtonImpl</span>, <span class="ident">ButtonImplExt</span>};
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::cell_area</span>::{<span class="ident">CellAreaClassSubclassExt</span>, <span class="ident">CellAreaImpl</span>, <span class="ident">CellAreaImplExt</span>};
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::cell_area_context</span>::{<span class="ident">CellAreaContextImpl</span>, <span class="ident">CellAreaContextImplExt</span>};
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::cell_editable</span>::{<span class="ident">CellEditableImpl</span>, <span class="ident">CellEditableImplExt</span>};
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::cell_layout</span>::{<span class="ident">CellLayoutImpl</span>, <span class="ident">CellLayoutImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::cell_renderer</span>::{<span class="ident">CellRendererImpl</span>, <span class="ident">CellRendererImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::cell_renderer_text</span>::{<span class="ident">CellRendererTextImpl</span>, <span class="ident">CellRendererTextImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::check_button</span>::{<span class="ident">CheckButtonImpl</span>, <span class="ident">CheckButtonImplExt</span>};
