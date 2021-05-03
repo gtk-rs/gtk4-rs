@@ -171,8 +171,7 @@ impl FixedBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<Fixed>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Fixed>(&properties).expect("Failed to create an instance of Fixed")
     }
 
     pub fn can_focus(mut self, can_focus: bool) -> Self {

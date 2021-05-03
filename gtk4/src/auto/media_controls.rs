@@ -223,8 +223,8 @@ impl MediaControlsBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<MediaControls>(&properties).expect("object new");
-        ret
+        glib::Object::new::<MediaControls>(&properties)
+            .expect("Failed to create an instance of MediaControls")
     }
 
     pub fn media_stream<P: IsA<MediaStream>>(mut self, media_stream: &P) -> Self {

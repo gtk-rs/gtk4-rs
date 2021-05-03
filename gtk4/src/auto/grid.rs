@@ -203,8 +203,7 @@ impl GridBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new::<Grid>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Grid>(&properties).expect("Failed to create an instance of Grid")
     }
 
     pub fn baseline_row(mut self, baseline_row: i32) -> Self {

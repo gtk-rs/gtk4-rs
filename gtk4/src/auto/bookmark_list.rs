@@ -169,8 +169,8 @@ impl BookmarkListBuilder {
         if let Some(ref io_priority) = self.io_priority {
             properties.push(("io-priority", io_priority));
         }
-        let ret = glib::Object::new::<BookmarkList>(&properties).expect("object new");
-        ret
+        glib::Object::new::<BookmarkList>(&properties)
+            .expect("Failed to create an instance of BookmarkList")
     }
 
     pub fn attributes(mut self, attributes: &str) -> Self {

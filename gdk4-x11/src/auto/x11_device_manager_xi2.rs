@@ -107,8 +107,8 @@ impl X11DeviceManagerXI2Builder {
         if let Some(ref opcode) = self.opcode {
             properties.push(("opcode", opcode));
         }
-        let ret = glib::Object::new::<X11DeviceManagerXI2>(&properties).expect("object new");
-        ret
+        glib::Object::new::<X11DeviceManagerXI2>(&properties)
+            .expect("Failed to create an instance of X11DeviceManagerXI2")
     }
 
     pub fn display<P: IsA<gdk::Display>>(mut self, display: &P) -> Self {

@@ -111,8 +111,8 @@ impl BoolFilterBuilder {
         if let Some(ref invert) = self.invert {
             properties.push(("invert", invert));
         }
-        let ret = glib::Object::new::<BoolFilter>(&properties).expect("object new");
-        ret
+        glib::Object::new::<BoolFilter>(&properties)
+            .expect("Failed to create an instance of BoolFilter")
     }
 
     pub fn expression(mut self, expression: &Expression) -> Self {

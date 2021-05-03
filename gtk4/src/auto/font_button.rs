@@ -397,8 +397,8 @@ impl FontButtonBuilder {
         if let Some(ref show_preview_entry) = self.show_preview_entry {
             properties.push(("show-preview-entry", show_preview_entry));
         }
-        let ret = glib::Object::new::<FontButton>(&properties).expect("object new");
-        ret
+        glib::Object::new::<FontButton>(&properties)
+            .expect("Failed to create an instance of FontButton")
     }
 
     pub fn modal(mut self, modal: bool) -> Self {

@@ -1008,8 +1008,7 @@ impl FlowBoxBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new::<FlowBox>(&properties).expect("object new");
-        ret
+        glib::Object::new::<FlowBox>(&properties).expect("Failed to create an instance of FlowBox")
     }
 
     pub fn accept_unpaired_release(mut self, accept_unpaired_release: bool) -> Self {

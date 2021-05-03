@@ -525,8 +525,8 @@ impl LockButtonBuilder {
         if let Some(ref action_target) = self.action_target {
             properties.push(("action-target", action_target));
         }
-        let ret = glib::Object::new::<LockButton>(&properties).expect("object new");
-        ret
+        glib::Object::new::<LockButton>(&properties)
+            .expect("Failed to create an instance of LockButton")
     }
 
     pub fn permission<P: IsA<gio::Permission>>(mut self, permission: &P) -> Self {

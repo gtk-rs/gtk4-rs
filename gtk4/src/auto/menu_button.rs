@@ -520,8 +520,8 @@ impl MenuButtonBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<MenuButton>(&properties).expect("object new");
-        ret
+        glib::Object::new::<MenuButton>(&properties)
+            .expect("Failed to create an instance of MenuButton")
     }
 
     pub fn direction(mut self, direction: ArrowType) -> Self {

@@ -115,8 +115,8 @@ impl PadControllerBuilder {
         if let Some(ref propagation_phase) = self.propagation_phase {
             properties.push(("propagation-phase", propagation_phase));
         }
-        let ret = glib::Object::new::<PadController>(&properties).expect("object new");
-        ret
+        glib::Object::new::<PadController>(&properties)
+            .expect("Failed to create an instance of PadController")
     }
 
     pub fn action_group<P: IsA<gio::ActionGroup>>(mut self, action_group: &P) -> Self {

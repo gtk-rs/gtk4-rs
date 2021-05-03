@@ -286,8 +286,8 @@ impl TreeViewBuilder {
         if let Some(ref vscroll_policy) = self.vscroll_policy {
             properties.push(("vscroll-policy", vscroll_policy));
         }
-        let ret = glib::Object::new::<TreeView>(&properties).expect("object new");
-        ret
+        glib::Object::new::<TreeView>(&properties)
+            .expect("Failed to create an instance of TreeView")
     }
 
     pub fn activate_on_single_click(mut self, activate_on_single_click: bool) -> Self {

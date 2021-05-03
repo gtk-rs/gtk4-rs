@@ -94,8 +94,8 @@ impl FixedLayoutChildBuilder {
         if let Some(ref layout_manager) = self.layout_manager {
             properties.push(("layout-manager", layout_manager));
         }
-        let ret = glib::Object::new::<FixedLayoutChild>(&properties).expect("object new");
-        ret
+        glib::Object::new::<FixedLayoutChild>(&properties)
+            .expect("Failed to create an instance of FixedLayoutChild")
     }
 
     pub fn transform(mut self, transform: &gsk::Transform) -> Self {

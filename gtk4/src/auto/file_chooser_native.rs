@@ -188,8 +188,8 @@ impl FileChooserNativeBuilder {
         if let Some(ref select_multiple) = self.select_multiple {
             properties.push(("select-multiple", select_multiple));
         }
-        let ret = glib::Object::new::<FileChooserNative>(&properties).expect("object new");
-        ret
+        glib::Object::new::<FileChooserNative>(&properties)
+            .expect("Failed to create an instance of FileChooserNative")
     }
 
     pub fn accept_label(mut self, accept_label: &str) -> Self {

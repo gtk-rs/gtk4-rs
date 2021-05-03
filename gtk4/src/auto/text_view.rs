@@ -303,8 +303,8 @@ impl TextViewBuilder {
         if let Some(ref vscroll_policy) = self.vscroll_policy {
             properties.push(("vscroll-policy", vscroll_policy));
         }
-        let ret = glib::Object::new::<TextView>(&properties).expect("object new");
-        ret
+        glib::Object::new::<TextView>(&properties)
+            .expect("Failed to create an instance of TextView")
     }
 
     pub fn accepts_tab(mut self, accepts_tab: bool) -> Self {

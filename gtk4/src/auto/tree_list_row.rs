@@ -215,8 +215,8 @@ impl TreeListRowBuilder {
         if let Some(ref expanded) = self.expanded {
             properties.push(("expanded", expanded));
         }
-        let ret = glib::Object::new::<TreeListRow>(&properties).expect("object new");
-        ret
+        glib::Object::new::<TreeListRow>(&properties)
+            .expect("Failed to create an instance of TreeListRow")
     }
 
     pub fn expanded(mut self, expanded: bool) -> Self {

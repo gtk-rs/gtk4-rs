@@ -177,8 +177,8 @@ impl SliceListModelBuilder {
         if let Some(ref size) = self.size {
             properties.push(("size", size));
         }
-        let ret = glib::Object::new::<SliceListModel>(&properties).expect("object new");
-        ret
+        glib::Object::new::<SliceListModel>(&properties)
+            .expect("Failed to create an instance of SliceListModel")
     }
 
     pub fn model<P: IsA<gio::ListModel>>(mut self, model: &P) -> Self {

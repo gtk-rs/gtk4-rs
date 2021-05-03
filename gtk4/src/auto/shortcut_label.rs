@@ -268,8 +268,8 @@ impl ShortcutLabelBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<ShortcutLabel>(&properties).expect("object new");
-        ret
+        glib::Object::new::<ShortcutLabel>(&properties)
+            .expect("Failed to create an instance of ShortcutLabel")
     }
 
     pub fn accelerator(mut self, accelerator: &str) -> Self {

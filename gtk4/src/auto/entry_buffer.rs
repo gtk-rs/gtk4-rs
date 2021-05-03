@@ -40,8 +40,8 @@ impl EntryBufferBuilder {
         if let Some(ref text) = self.text {
             properties.push(("text", text));
         }
-        let ret = glib::Object::new::<EntryBuffer>(&properties).expect("object new");
-        ret
+        glib::Object::new::<EntryBuffer>(&properties)
+            .expect("Failed to create an instance of EntryBuffer")
     }
 
     pub fn max_length(mut self, max_length: i32) -> Self {

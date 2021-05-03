@@ -1015,8 +1015,8 @@ impl TreeViewColumnBuilder {
         if let Some(ref widget) = self.widget {
             properties.push(("widget", widget));
         }
-        let ret = glib::Object::new::<TreeViewColumn>(&properties).expect("object new");
-        ret
+        glib::Object::new::<TreeViewColumn>(&properties)
+            .expect("Failed to create an instance of TreeViewColumn")
     }
 
     pub fn alignment(mut self, alignment: f32) -> Self {

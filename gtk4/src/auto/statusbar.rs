@@ -271,8 +271,8 @@ impl StatusbarBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<Statusbar>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Statusbar>(&properties)
+            .expect("Failed to create an instance of Statusbar")
     }
 
     pub fn can_focus(mut self, can_focus: bool) -> Self {

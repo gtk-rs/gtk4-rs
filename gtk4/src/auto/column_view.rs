@@ -596,8 +596,8 @@ impl ColumnViewBuilder {
         if let Some(ref vscroll_policy) = self.vscroll_policy {
             properties.push(("vscroll-policy", vscroll_policy));
         }
-        let ret = glib::Object::new::<ColumnView>(&properties).expect("object new");
-        ret
+        glib::Object::new::<ColumnView>(&properties)
+            .expect("Failed to create an instance of ColumnView")
     }
 
     pub fn enable_rubberband(mut self, enable_rubberband: bool) -> Self {

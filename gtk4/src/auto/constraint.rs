@@ -174,8 +174,8 @@ impl ConstraintBuilder {
         if let Some(ref target_attribute) = self.target_attribute {
             properties.push(("target-attribute", target_attribute));
         }
-        let ret = glib::Object::new::<Constraint>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Constraint>(&properties)
+            .expect("Failed to create an instance of Constraint")
     }
 
     pub fn constant(mut self, constant: f64) -> Self {

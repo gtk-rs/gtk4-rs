@@ -117,8 +117,8 @@ impl PrintOperationBuilder {
         if let Some(ref use_full_page) = self.use_full_page {
             properties.push(("use-full-page", use_full_page));
         }
-        let ret = glib::Object::new::<PrintOperation>(&properties).expect("object new");
-        ret
+        glib::Object::new::<PrintOperation>(&properties)
+            .expect("Failed to create an instance of PrintOperation")
     }
 
     pub fn allow_async(mut self, allow_async: bool) -> Self {

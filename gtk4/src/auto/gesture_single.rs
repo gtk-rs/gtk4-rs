@@ -64,8 +64,8 @@ impl GestureSingleBuilder {
         if let Some(ref propagation_phase) = self.propagation_phase {
             properties.push(("propagation-phase", propagation_phase));
         }
-        let ret = glib::Object::new::<GestureSingle>(&properties).expect("object new");
-        ret
+        glib::Object::new::<GestureSingle>(&properties)
+            .expect("Failed to create an instance of GestureSingle")
     }
 
     pub fn button(mut self, button: u32) -> Self {

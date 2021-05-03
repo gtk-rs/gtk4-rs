@@ -494,8 +494,8 @@ impl GridViewBuilder {
         if let Some(ref vscroll_policy) = self.vscroll_policy {
             properties.push(("vscroll-policy", vscroll_policy));
         }
-        let ret = glib::Object::new::<GridView>(&properties).expect("object new");
-        ret
+        glib::Object::new::<GridView>(&properties)
+            .expect("Failed to create an instance of GridView")
     }
 
     pub fn enable_rubberband(mut self, enable_rubberband: bool) -> Self {

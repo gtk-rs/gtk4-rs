@@ -416,8 +416,8 @@ impl ClipboardBuilder {
         if let Some(ref display) = self.display {
             properties.push(("display", display));
         }
-        let ret = glib::Object::new::<Clipboard>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Clipboard>(&properties)
+            .expect("Failed to create an instance of Clipboard")
     }
 
     pub fn display(mut self, display: &Display) -> Self {

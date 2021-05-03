@@ -855,8 +855,7 @@ impl PanedBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new::<Paned>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Paned>(&properties).expect("Failed to create an instance of Paned")
     }
 
     pub fn end_child<P: IsA<Widget>>(mut self, end_child: &P) -> Self {

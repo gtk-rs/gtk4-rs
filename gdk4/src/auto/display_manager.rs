@@ -135,8 +135,8 @@ impl DisplayManagerBuilder {
         if let Some(ref default_display) = self.default_display {
             properties.push(("default-display", default_display));
         }
-        let ret = glib::Object::new::<DisplayManager>(&properties).expect("object new");
-        ret
+        glib::Object::new::<DisplayManager>(&properties)
+            .expect("Failed to create an instance of DisplayManager")
     }
 
     pub fn default_display(mut self, default_display: &Display) -> Self {

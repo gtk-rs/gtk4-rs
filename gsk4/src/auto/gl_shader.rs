@@ -206,8 +206,8 @@ impl GLShaderBuilder {
         if let Some(ref source) = self.source {
             properties.push(("source", source));
         }
-        let ret = glib::Object::new::<GLShader>(&properties).expect("object new");
-        ret
+        glib::Object::new::<GLShader>(&properties)
+            .expect("Failed to create an instance of GLShader")
     }
 
     pub fn resource(mut self, resource: &str) -> Self {

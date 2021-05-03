@@ -69,8 +69,8 @@ impl IconPaintableBuilder {
         if let Some(ref is_symbolic) = self.is_symbolic {
             properties.push(("is-symbolic", is_symbolic));
         }
-        let ret = glib::Object::new::<IconPaintable>(&properties).expect("object new");
-        ret
+        glib::Object::new::<IconPaintable>(&properties)
+            .expect("Failed to create an instance of IconPaintable")
     }
 
     pub fn file<P: IsA<gio::File>>(mut self, file: &P) -> Self {

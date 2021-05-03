@@ -216,8 +216,8 @@ impl SortListModelBuilder {
         if let Some(ref sorter) = self.sorter {
             properties.push(("sorter", sorter));
         }
-        let ret = glib::Object::new::<SortListModel>(&properties).expect("object new");
-        ret
+        glib::Object::new::<SortListModel>(&properties)
+            .expect("Failed to create an instance of SortListModel")
     }
 
     pub fn incremental(mut self, incremental: bool) -> Self {

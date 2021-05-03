@@ -326,8 +326,8 @@ impl CellRendererToggleBuilder {
         if let Some(ref ypad) = self.ypad {
             properties.push(("ypad", ypad));
         }
-        let ret = glib::Object::new::<CellRendererToggle>(&properties).expect("object new");
-        ret
+        glib::Object::new::<CellRendererToggle>(&properties)
+            .expect("Failed to create an instance of CellRendererToggle")
     }
 
     pub fn activatable(mut self, activatable: bool) -> Self {

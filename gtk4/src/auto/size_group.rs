@@ -111,8 +111,8 @@ impl SizeGroupBuilder {
         if let Some(ref mode) = self.mode {
             properties.push(("mode", mode));
         }
-        let ret = glib::Object::new::<SizeGroup>(&properties).expect("object new");
-        ret
+        glib::Object::new::<SizeGroup>(&properties)
+            .expect("Failed to create an instance of SizeGroup")
     }
 
     pub fn mode(mut self, mode: SizeGroupMode) -> Self {

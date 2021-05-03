@@ -380,8 +380,8 @@ impl AppChooserDialogBuilder {
         if let Some(ref content_type) = self.content_type {
             properties.push(("content-type", content_type));
         }
-        let ret = glib::Object::new::<AppChooserDialog>(&properties).expect("object new");
-        ret
+        glib::Object::new::<AppChooserDialog>(&properties)
+            .expect("Failed to create an instance of AppChooserDialog")
     }
 
     pub fn gfile<P: IsA<gio::File>>(mut self, gfile: &P) -> Self {

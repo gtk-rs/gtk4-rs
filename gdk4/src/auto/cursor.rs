@@ -105,8 +105,7 @@ impl CursorBuilder {
         if let Some(ref texture) = self.texture {
             properties.push(("texture", texture));
         }
-        let ret = glib::Object::new::<Cursor>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Cursor>(&properties).expect("Failed to create an instance of Cursor")
     }
 
     pub fn fallback(mut self, fallback: &Cursor) -> Self {

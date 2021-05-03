@@ -313,8 +313,8 @@ impl TreeSelectionBuilder {
         if let Some(ref mode) = self.mode {
             properties.push(("mode", mode));
         }
-        let ret = glib::Object::new::<TreeSelection>(&properties).expect("object new");
-        ret
+        glib::Object::new::<TreeSelection>(&properties)
+            .expect("Failed to create an instance of TreeSelection")
     }
 
     pub fn mode(mut self, mode: SelectionMode) -> Self {

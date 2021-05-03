@@ -367,8 +367,7 @@ impl TextTagBuilder {
         if let Some(ref wrap_mode_set) = self.wrap_mode_set {
             properties.push(("wrap-mode-set", wrap_mode_set));
         }
-        let ret = glib::Object::new::<TextTag>(&properties).expect("object new");
-        ret
+        glib::Object::new::<TextTag>(&properties).expect("Failed to create an instance of TextTag")
     }
 
     pub fn accumulative_margin(mut self, accumulative_margin: bool) -> Self {

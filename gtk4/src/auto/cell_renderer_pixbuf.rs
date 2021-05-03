@@ -482,8 +482,8 @@ impl CellRendererPixbufBuilder {
         if let Some(ref ypad) = self.ypad {
             properties.push(("ypad", ypad));
         }
-        let ret = glib::Object::new::<CellRendererPixbuf>(&properties).expect("object new");
-        ret
+        glib::Object::new::<CellRendererPixbuf>(&properties)
+            .expect("Failed to create an instance of CellRendererPixbuf")
     }
 
     pub fn gicon<P: IsA<gio::Icon>>(mut self, gicon: &P) -> Self {

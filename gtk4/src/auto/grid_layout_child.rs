@@ -210,8 +210,8 @@ impl GridLayoutChildBuilder {
         if let Some(ref layout_manager) = self.layout_manager {
             properties.push(("layout-manager", layout_manager));
         }
-        let ret = glib::Object::new::<GridLayoutChild>(&properties).expect("object new");
-        ret
+        glib::Object::new::<GridLayoutChild>(&properties)
+            .expect("Failed to create an instance of GridLayoutChild")
     }
 
     pub fn column(mut self, column: i32) -> Self {

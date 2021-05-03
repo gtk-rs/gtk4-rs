@@ -697,8 +697,8 @@ impl PrintUnixDialogBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<PrintUnixDialog>(&properties).expect("object new");
-        ret
+        glib::Object::new::<PrintUnixDialog>(&properties)
+            .expect("Failed to create an instance of PrintUnixDialog")
     }
 
     pub fn current_page(mut self, current_page: i32) -> Self {

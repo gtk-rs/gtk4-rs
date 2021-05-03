@@ -59,8 +59,8 @@ impl RecentManagerBuilder {
         if let Some(ref filename) = self.filename {
             properties.push(("filename", filename));
         }
-        let ret = glib::Object::new::<RecentManager>(&properties).expect("object new");
-        ret
+        glib::Object::new::<RecentManager>(&properties)
+            .expect("Failed to create an instance of RecentManager")
     }
 
     pub fn filename(mut self, filename: &str) -> Self {

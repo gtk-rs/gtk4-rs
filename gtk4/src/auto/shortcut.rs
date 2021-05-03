@@ -185,8 +185,8 @@ impl ShortcutBuilder {
         if let Some(ref trigger) = self.trigger {
             properties.push(("trigger", trigger));
         }
-        let ret = glib::Object::new::<Shortcut>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Shortcut>(&properties)
+            .expect("Failed to create an instance of Shortcut")
     }
 
     pub fn action<P: IsA<ShortcutAction>>(mut self, action: &P) -> Self {

@@ -289,8 +289,8 @@ impl CellRendererTextBuilder {
         if let Some(ref ypad) = self.ypad {
             properties.push(("ypad", ypad));
         }
-        let ret = glib::Object::new::<CellRendererText>(&properties).expect("object new");
-        ret
+        glib::Object::new::<CellRendererText>(&properties)
+            .expect("Failed to create an instance of CellRendererText")
     }
 
     pub fn align_set(mut self, align_set: bool) -> Self {

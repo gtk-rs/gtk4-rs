@@ -434,8 +434,8 @@ impl ProgressBarBuilder {
         if let Some(ref orientation) = self.orientation {
             properties.push(("orientation", orientation));
         }
-        let ret = glib::Object::new::<ProgressBar>(&properties).expect("object new");
-        ret
+        glib::Object::new::<ProgressBar>(&properties)
+            .expect("Failed to create an instance of ProgressBar")
     }
 
     pub fn ellipsize(mut self, ellipsize: pango::EllipsizeMode) -> Self {

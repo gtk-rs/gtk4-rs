@@ -134,8 +134,8 @@ impl FileFilterBuilder {
         if let Some(ref name) = self.name {
             properties.push(("name", name));
         }
-        let ret = glib::Object::new::<FileFilter>(&properties).expect("object new");
-        ret
+        glib::Object::new::<FileFilter>(&properties)
+            .expect("Failed to create an instance of FileFilter")
     }
 
     pub fn name(mut self, name: &str) -> Self {

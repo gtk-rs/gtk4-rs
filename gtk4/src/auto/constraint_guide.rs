@@ -485,8 +485,8 @@ impl ConstraintGuideBuilder {
         if let Some(ref strength) = self.strength {
             properties.push(("strength", strength));
         }
-        let ret = glib::Object::new::<ConstraintGuide>(&properties).expect("object new");
-        ret
+        glib::Object::new::<ConstraintGuide>(&properties)
+            .expect("Failed to create an instance of ConstraintGuide")
     }
 
     pub fn max_height(mut self, max_height: i32) -> Self {

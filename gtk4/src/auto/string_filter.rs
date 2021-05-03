@@ -198,8 +198,8 @@ impl StringFilterBuilder {
         if let Some(ref search) = self.search {
             properties.push(("search", search));
         }
-        let ret = glib::Object::new::<StringFilter>(&properties).expect("object new");
-        ret
+        glib::Object::new::<StringFilter>(&properties)
+            .expect("Failed to create an instance of StringFilter")
     }
 
     pub fn expression(mut self, expression: &Expression) -> Self {

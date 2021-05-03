@@ -258,8 +258,8 @@ impl SingleSelectionBuilder {
         if let Some(ref selected) = self.selected {
             properties.push(("selected", selected));
         }
-        let ret = glib::Object::new::<SingleSelection>(&properties).expect("object new");
-        ret
+        glib::Object::new::<SingleSelection>(&properties)
+            .expect("Failed to create an instance of SingleSelection")
     }
 
     pub fn autoselect(mut self, autoselect: bool) -> Self {

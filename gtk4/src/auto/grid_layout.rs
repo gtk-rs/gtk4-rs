@@ -288,8 +288,8 @@ impl GridLayoutBuilder {
         if let Some(ref row_spacing) = self.row_spacing {
             properties.push(("row-spacing", row_spacing));
         }
-        let ret = glib::Object::new::<GridLayout>(&properties).expect("object new");
-        ret
+        glib::Object::new::<GridLayout>(&properties)
+            .expect("Failed to create an instance of GridLayout")
     }
 
     pub fn baseline_row(mut self, baseline_row: i32) -> Self {

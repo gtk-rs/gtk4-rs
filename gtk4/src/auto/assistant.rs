@@ -644,8 +644,8 @@ impl AssistantBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<Assistant>(&properties).expect("object new");
-        ret
+        glib::Object::new::<Assistant>(&properties)
+            .expect("Failed to create an instance of Assistant")
     }
 
     pub fn use_header_bar(mut self, use_header_bar: i32) -> Self {

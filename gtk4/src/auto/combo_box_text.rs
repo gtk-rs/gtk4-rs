@@ -307,8 +307,8 @@ impl ComboBoxTextBuilder {
         if let Some(ref editing_canceled) = self.editing_canceled {
             properties.push(("editing-canceled", editing_canceled));
         }
-        let ret = glib::Object::new::<ComboBoxText>(&properties).expect("object new");
-        ret
+        glib::Object::new::<ComboBoxText>(&properties)
+            .expect("Failed to create an instance of ComboBoxText")
     }
 
     pub fn active(mut self, active: i32) -> Self {

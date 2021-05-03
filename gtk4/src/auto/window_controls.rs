@@ -293,8 +293,8 @@ impl WindowControlsBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<WindowControls>(&properties).expect("object new");
-        ret
+        glib::Object::new::<WindowControls>(&properties)
+            .expect("Failed to create an instance of WindowControls")
     }
 
     pub fn decoration_layout(mut self, decoration_layout: &str) -> Self {

@@ -22,7 +22,6 @@ macro_rules! skip_assert_initialized {
     () => {};
 }
 
-#[allow(clippy::let_and_return)]
 #[allow(clippy::wrong_self_convention)]
 #[allow(clippy::upper_case_acronyms)]
 #[allow(unused_imports)]

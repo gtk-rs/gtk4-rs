@@ -270,8 +270,8 @@ impl CellRendererSpinnerBuilder {
         if let Some(ref ypad) = self.ypad {
             properties.push(("ypad", ypad));
         }
-        let ret = glib::Object::new::<CellRendererSpinner>(&properties).expect("object new");
-        ret
+        glib::Object::new::<CellRendererSpinner>(&properties)
+            .expect("Failed to create an instance of CellRendererSpinner")
     }
 
     pub fn active(mut self, active: bool) -> Self {

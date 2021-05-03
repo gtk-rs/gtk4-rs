@@ -72,8 +72,8 @@ impl AlternativeTriggerBuilder {
         if let Some(ref second) = self.second {
             properties.push(("second", second));
         }
-        let ret = glib::Object::new::<AlternativeTrigger>(&properties).expect("object new");
-        ret
+        glib::Object::new::<AlternativeTrigger>(&properties)
+            .expect("Failed to create an instance of AlternativeTrigger")
     }
 
     pub fn first<P: IsA<ShortcutTrigger>>(mut self, first: &P) -> Self {

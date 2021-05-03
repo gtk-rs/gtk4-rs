@@ -333,8 +333,8 @@ impl HeaderBarBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<HeaderBar>(&properties).expect("object new");
-        ret
+        glib::Object::new::<HeaderBar>(&properties)
+            .expect("Failed to create an instance of HeaderBar")
     }
 
     pub fn decoration_layout(mut self, decoration_layout: &str) -> Self {

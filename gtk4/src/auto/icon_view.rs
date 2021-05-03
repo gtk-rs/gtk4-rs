@@ -1559,8 +1559,8 @@ impl IconViewBuilder {
         if let Some(ref vscroll_policy) = self.vscroll_policy {
             properties.push(("vscroll-policy", vscroll_policy));
         }
-        let ret = glib::Object::new::<IconView>(&properties).expect("object new");
-        ret
+        glib::Object::new::<IconView>(&properties)
+            .expect("Failed to create an instance of IconView")
     }
 
     pub fn activate_on_single_click(mut self, activate_on_single_click: bool) -> Self {

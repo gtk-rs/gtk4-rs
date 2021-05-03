@@ -348,8 +348,8 @@ impl PrintJobBuilder {
         if let Some(ref track_print_status) = self.track_print_status {
             properties.push(("track-print-status", track_print_status));
         }
-        let ret = glib::Object::new::<PrintJob>(&properties).expect("object new");
-        ret
+        glib::Object::new::<PrintJob>(&properties)
+            .expect("Failed to create an instance of PrintJob")
     }
 
     pub fn page_setup(mut self, page_setup: &PageSetup) -> Self {

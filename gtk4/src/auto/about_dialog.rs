@@ -1028,8 +1028,8 @@ impl AboutDialogBuilder {
         if let Some(ref accessible_role) = self.accessible_role {
             properties.push(("accessible-role", accessible_role));
         }
-        let ret = glib::Object::new::<AboutDialog>(&properties).expect("object new");
-        ret
+        glib::Object::new::<AboutDialog>(&properties)
+            .expect("Failed to create an instance of AboutDialog")
     }
 
     pub fn artists(mut self, artists: Vec<String>) -> Self {

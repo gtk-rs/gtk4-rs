@@ -234,8 +234,8 @@ impl ToggleButtonBuilder {
         if let Some(ref action_target) = self.action_target {
             properties.push(("action-target", action_target));
         }
-        let ret = glib::Object::new::<ToggleButton>(&properties).expect("object new");
-        ret
+        glib::Object::new::<ToggleButton>(&properties)
+            .expect("Failed to create an instance of ToggleButton")
     }
 
     pub fn active(mut self, active: bool) -> Self {

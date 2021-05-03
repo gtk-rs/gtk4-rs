@@ -101,8 +101,8 @@ impl BuilderListItemFactoryBuilder {
         if let Some(ref scope) = self.scope {
             properties.push(("scope", scope));
         }
-        let ret = glib::Object::new::<BuilderListItemFactory>(&properties).expect("object new");
-        ret
+        glib::Object::new::<BuilderListItemFactory>(&properties)
+            .expect("Failed to create an instance of BuilderListItemFactory")
     }
 
     pub fn bytes(mut self, bytes: &glib::Bytes) -> Self {

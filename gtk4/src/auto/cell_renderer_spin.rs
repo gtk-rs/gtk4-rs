@@ -456,8 +456,8 @@ impl CellRendererSpinBuilder {
         if let Some(ref ypad) = self.ypad {
             properties.push(("ypad", ypad));
         }
-        let ret = glib::Object::new::<CellRendererSpin>(&properties).expect("object new");
-        ret
+        glib::Object::new::<CellRendererSpin>(&properties)
+            .expect("Failed to create an instance of CellRendererSpin")
     }
 
     pub fn adjustment<P: IsA<Adjustment>>(mut self, adjustment: &P) -> Self {

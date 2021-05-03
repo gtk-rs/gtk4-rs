@@ -222,8 +222,8 @@ impl ShortcutControllerBuilder {
         if let Some(ref propagation_phase) = self.propagation_phase {
             properties.push(("propagation-phase", propagation_phase));
         }
-        let ret = glib::Object::new::<ShortcutController>(&properties).expect("object new");
-        ret
+        glib::Object::new::<ShortcutController>(&properties)
+            .expect("Failed to create an instance of ShortcutController")
     }
 
     pub fn mnemonic_modifiers(mut self, mnemonic_modifiers: gdk::ModifierType) -> Self {

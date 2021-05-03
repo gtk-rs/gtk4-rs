@@ -40,8 +40,8 @@ impl ConstraintLayoutChildBuilder {
         if let Some(ref layout_manager) = self.layout_manager {
             properties.push(("layout-manager", layout_manager));
         }
-        let ret = glib::Object::new::<ConstraintLayoutChild>(&properties).expect("object new");
-        ret
+        glib::Object::new::<ConstraintLayoutChild>(&properties)
+            .expect("Failed to create an instance of ConstraintLayoutChild")
     }
 
     pub fn child_widget<P: IsA<Widget>>(mut self, child_widget: &P) -> Self {
