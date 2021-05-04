@@ -192,6 +192,10 @@ pub const STYLE_PROVIDER_PRIORITY_USER: u32 = ffi::GTK_STYLE_PROVIDER_PRIORITY_U
 #[doc(alias = "GTK_ACCESSIBLE_VALUE_UNDEFINED")]
 pub const ACCESSIBLE_VALUE_UNDEFINED: i32 = ffi::GTK_ACCESSIBLE_VALUE_UNDEFINED as i32;
 
+//TODO: replace with -sys value once https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3513 gets merged
+#[doc(alias = "GTK_INVALID_LIST_POSITION")]
+pub const INVALID_LIST_POSITION: u32 = u32::MAX;
+
 #[doc(alias = "GTK_PRIORITY_RESIZE")]
 pub const PRIORITY_RESIZE: u32 = ffi::GTK_PRIORITY_RESIZE as u32;
 #[doc(alias = "GTK_TEXT_VIEW_PRIORITY_VALIDATE")]
