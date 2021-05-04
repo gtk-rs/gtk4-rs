@@ -344,6 +344,10 @@
 <span id="341">341</span>
 <span id="342">342</span>
 <span id="343">343</span>
+<span id="344">344</span>
+<span id="345">345</span>
+<span id="346">346</span>
+<span id="347">347</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -538,6 +542,10 @@
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_VALUE_UNDEFINED&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ACCESSIBLE_VALUE_UNDEFINED</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">ffi::GTK_ACCESSIBLE_VALUE_UNDEFINED</span> <span class="kw">as</span> <span class="ident">i32</span>;
+
+<span class="comment">//TODO: replace with -sys value once https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/3513 gets merged</span>
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_INVALID_LIST_POSITION&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVALID_LIST_POSITION</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">u32::MAX</span>;
 
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRIORITY_RESIZE&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PRIORITY_RESIZE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ffi::GTK_PRIORITY_RESIZE</span> <span class="kw">as</span> <span class="ident">u32</span>;
