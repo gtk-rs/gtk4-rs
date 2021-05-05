@@ -557,19 +557,15 @@ trust_return_value_nullability = false
 [[object]]
 name = "Gtk.Builder"
 status = "generate"
-manual_traits = ["BuilderExtManual"]
     [[object.function]]
     pattern = ".+_from_file"
     manual = true # use AsRef<Path>
-    doc_trait_name = "BuilderExtManual"
     [[object.function]]
     name = "get_object"
     manual = true # add dynamic casting
-    doc_trait_name = "BuilderExtManual"
     [[object.function]]
     name = "value_from_string"
     manual = true # ParamSpec is a fundemental type
-    doc_trait_name = "BuilderExtManual"
 
 [[object]]
 name = "Gtk.BuilderListItemFactory"

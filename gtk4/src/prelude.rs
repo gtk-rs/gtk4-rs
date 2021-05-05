@@ -6,7 +6,6 @@ pub use crate::auto::traits::*;
 
 pub use crate::accessible::AccessibleExtManual;
 pub use crate::actionable::ActionableExtManual;
-pub use crate::builder::BuilderExtManual;
 pub use crate::cell_area::CellAreaExtManual;
 pub use crate::cell_editable::CellEditableExtManual;
 pub use crate::cell_layout::CellLayoutExtManual;
