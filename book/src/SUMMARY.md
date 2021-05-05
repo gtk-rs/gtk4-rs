@@ -13,7 +13,7 @@
 - [The Main Event Loop](main_event_loop.md)
 - [Settings](settings.md)
 - [Saving Window State](saving_window_state.md)
-- [Models & Views]()
+- [Scalable Lists](scalable_lists.md)
 - [Building a Simple To-Do App]()
 - [Interface Builder]()
     - [GtkBuilder]()
