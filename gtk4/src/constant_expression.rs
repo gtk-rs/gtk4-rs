@@ -21,6 +21,7 @@ impl ConstantExpression {
     }
 
     #[doc(alias = "gtk_constant_expression_new_for_value")]
+    #[doc(alias = "new_for_value")]
     pub fn for_value(value: &Value) -> Self {
         assert_initialized_main_thread!();
         unsafe {

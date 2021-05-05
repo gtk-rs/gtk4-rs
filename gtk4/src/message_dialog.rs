@@ -33,6 +33,7 @@ impl MessageDialog {
     }
 
     #[doc(alias = "gtk_message_dialog_new_with_markup")]
+    #[doc(alias = "new_with_markup")]
     pub fn with_markup<P: IsA<Window>>(
         parent: Option<&P>,
         flags: DialogFlags,

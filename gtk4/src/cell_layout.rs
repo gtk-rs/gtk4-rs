@@ -6,6 +6,7 @@ use glib::IsA;
 
 pub trait CellLayoutExtManual: 'static {
     #[doc(alias = "gtk_cell_layout_set_cell_data_func")]
+    #[doc(alias = "set_cell_data_func")]
     fn unset_cell_data_func<P: IsA<CellRenderer>>(&self, cell: &P);
 }
 
