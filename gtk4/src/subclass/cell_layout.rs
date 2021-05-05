@@ -306,16 +306,12 @@ impl<O: CellLayoutImpl> CellLayoutImplExt for O {
             let parent_iface = type_data.as_ref().parent_interface::<CellLayout>()
                 as *const ffi::GtkCellLayoutIface;
 
-            let ret = if let Some(f) = (*parent_iface).get_area {
-                Some(from_glib_none(f(cell_layout
+            (*parent_iface).get_area.map(|f| {
+                from_glib_none(f(cell_layout
                     .unsafe_cast_ref::<CellLayout>()
                     .to_glib_none()
-                    .0)))
-            } else {
-                None
-            };
-
-            ret
+                    .0))
+            })
         }
     }
 }
