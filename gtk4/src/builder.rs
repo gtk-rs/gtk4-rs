@@ -8,7 +8,8 @@ use std::path::Path;
 
 impl Builder {
     #[doc(alias = "gtk_builder_new_from_file")]
-    pub fn new_from_file<T: AsRef<Path>>(file_path: T) -> Self {
+    #[doc(alias = "new_from_file")]
+    pub fn from_file<T: AsRef<Path>>(file_path: T) -> Self {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_builder_new_from_file(

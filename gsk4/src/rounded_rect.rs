@@ -8,6 +8,7 @@ use std::mem;
 pub struct RoundedRect(ffi::GskRoundedRect);
 
 impl RoundedRect {
+    #[doc(alias = "gsk_rounded_rect_init")]
     pub fn new(
         bounds: Rect,
         top_left: Size,
@@ -30,7 +31,9 @@ impl RoundedRect {
         }
     }
 
-    pub fn new_from_rect(bounds: Rect, radius: f32) -> Self {
+    #[doc(alias = "gsk_rounded_rect_init_from_rect")]
+    #[doc(alias = "init_from_rect")]
+    pub fn from_rect(bounds: Rect, radius: f32) -> Self {
         assert_initialized_main_thread!();
         unsafe {
             let mut rounded_rect = mem::MaybeUninit::uninit();
