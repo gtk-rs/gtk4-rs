@@ -14,8 +14,8 @@ impl KeymapKey {
     pub fn new(keycode: u32, group: i32, level: i32) -> Self {
         assert_initialized_main_thread!();
         Self {
-            keycode,
             group,
+            keycode,
             level,
         }
     }
