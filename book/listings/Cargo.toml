@@ -116,6 +116,11 @@ path = "main_event_loop/5/main.rs"
 name = "saving_window_state_1"
 path = "saving_window_state/1/main.rs"
 
+# scalable_lists
+[[bin]]
+name = "scalable_lists_1"
+path = "scalable_lists/1/main.rs"
+
 # settings
 [[bin]]
 name = "settings_1"
