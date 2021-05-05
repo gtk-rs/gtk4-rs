@@ -160,6 +160,7 @@
 <span id="157">157</span>
 <span id="158">158</span>
 <span id="159">159</span>
+<span id="160">160</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -198,7 +199,7 @@
         <span class="ident">type_</span>: <span class="ident">MessageType</span>,
         <span class="ident">buttons</span>: <span class="ident">ButtonsType</span>,
         <span class="ident">message</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">MessageDialog</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">message</span>: <span class="ident">Stash</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>, <span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">message</span>.<span class="ident">to_glib_none</span>();
@@ -258,13 +259,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// a new `GtkMessageDialog`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_message_dialog_new_with_markup&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_with_markup&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_markup</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="ident">parent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>,
         <span class="ident">flags</span>: <span class="ident">DialogFlags</span>,
         <span class="ident">type_</span>: <span class="ident">MessageType</span>,
         <span class="ident">buttons</span>: <span class="ident">ButtonsType</span>,
         <span class="ident">message</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">MessageDialog</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
             <span class="ident">Widget::from_glib_none</span>(<span class="ident">ffi::gtk_message_dialog_new_with_markup</span>(

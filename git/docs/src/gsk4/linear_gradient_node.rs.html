@@ -110,11 +110,6 @@
 <span id="107">107</span>
 <span id="108">108</span>
 <span id="109">109</span>
-<span id="110">110</span>
-<span id="111">111</span>
-<span id="112">112</span>
-<span id="113">113</span>
-<span id="114">114</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -151,12 +146,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// A new `GskRenderNode`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_linear_gradient_node_new&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
-        <span class="ident">bounds</span>: <span class="kw-2">&amp;</span><span class="ident">Rect</span>,
-        <span class="ident">start</span>: <span class="kw-2">&amp;</span><span class="ident">Point</span>,
-        <span class="ident">end</span>: <span class="kw-2">&amp;</span><span class="ident">Point</span>,
-        <span class="ident">color_stops</span>: <span class="kw-2">&amp;</span>[<span class="ident">ColorStop</span>],
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LinearGradientNode</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">bounds</span>: <span class="kw-2">&amp;</span><span class="ident">Rect</span>, <span class="ident">start</span>: <span class="kw-2">&amp;</span><span class="ident">Point</span>, <span class="ident">end</span>: <span class="kw-2">&amp;</span><span class="ident">Point</span>, <span class="ident">color_stops</span>: <span class="kw-2">&amp;</span>[<span class="ident">ColorStop</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">let</span> <span class="ident">n_color_stops</span> <span class="op">=</span> <span class="ident">color_stops</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">usize</span>;
         <span class="kw">unsafe</span> {

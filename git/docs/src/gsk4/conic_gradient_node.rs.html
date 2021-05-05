@@ -160,7 +160,7 @@
         <span class="ident">center</span>: <span class="kw-2">&amp;</span><span class="ident">graphene::Point</span>,
         <span class="ident">rotation</span>: <span class="ident">f32</span>,
         <span class="ident">color_stops</span>: <span class="kw-2">&amp;</span>[<span class="ident">ColorStop</span>],
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ConicGradientNode</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">let</span> <span class="ident">n_color_stops</span> <span class="op">=</span> <span class="ident">color_stops</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">usize</span>;
         <span class="kw">unsafe</span> {

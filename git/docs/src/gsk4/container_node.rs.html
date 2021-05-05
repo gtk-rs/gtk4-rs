@@ -92,7 +92,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// the new `GskRenderNode`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_container_node_new&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">children</span>: <span class="kw-2">&amp;</span>[<span class="ident">RenderNode</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContainerNode</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">children</span>: <span class="kw-2">&amp;</span>[<span class="ident">RenderNode</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">let</span> <span class="ident">n_children</span> <span class="op">=</span> <span class="ident">children</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="kw">unsafe</span> {

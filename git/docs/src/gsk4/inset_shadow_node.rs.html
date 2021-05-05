@@ -164,7 +164,7 @@
         <span class="ident">dy</span>: <span class="ident">f32</span>,
         <span class="ident">spread</span>: <span class="ident">f32</span>,
         <span class="ident">blur_radius</span>: <span class="ident">f32</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">InsetShadowNode</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_inset_shadow_node_new</span>(
