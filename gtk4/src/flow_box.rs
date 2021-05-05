@@ -6,6 +6,7 @@ use std::ptr;
 
 impl FlowBox {
     #[doc(alias = "gtk_flow_box_bind_model")]
+    #[doc(alias = "bind_model")]
     pub fn unbind_model(&self) {
         unsafe {
             ffi::gtk_flow_box_bind_model(

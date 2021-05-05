@@ -13,7 +13,7 @@ define_render_node!(
 
 impl TextureNode {
     #[doc(alias = "gsk_texture_node_new")]
-    pub fn new<P: IsA<gdk::Texture>>(texture: &P, bounds: &graphene::Rect) -> TextureNode {
+    pub fn new<P: IsA<gdk::Texture>>(texture: &P, bounds: &graphene::Rect) -> Self {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gsk_texture_node_new(

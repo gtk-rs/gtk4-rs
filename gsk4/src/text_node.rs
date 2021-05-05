@@ -19,7 +19,7 @@ impl TextNode {
         glyphs: &mut pango::GlyphString,
         color: &gdk::RGBA,
         offset: &graphene::Point,
-    ) -> Option<TextNode> {
+    ) -> Option<Self> {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gsk_text_node_new(

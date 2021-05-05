@@ -6,7 +6,7 @@ use std::ptr;
 
 impl CustomFilter {
     #[doc(alias = "gtk_custom_filter_new")]
-    pub fn new<F>(filter_func: F) -> CustomFilter
+    pub fn new<F>(filter_func: F) -> Self
     where
         F: Fn(&glib::Object) -> bool + 'static,
     {
@@ -35,6 +35,8 @@ impl CustomFilter {
         }
     }
 
+    #[doc(alias = "gtk_custom_filter_set_filter_func")]
+    #[doc(alias = "set_filter_func")]
     pub fn unset_filter_func(&self) {
         unsafe {
             ffi::gtk_custom_filter_set_filter_func(

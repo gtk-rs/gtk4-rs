@@ -6,6 +6,7 @@ use glib::IsA;
 
 pub trait TreeViewExtManual: 'static {
     #[doc(alias = "gtk_tree_view_set_row_separator_func")]
+    #[doc(alias = "set_row_separator_func")]
     fn unset_row_separator_func(&self);
 }
 

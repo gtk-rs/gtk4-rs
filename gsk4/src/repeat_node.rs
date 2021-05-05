@@ -16,7 +16,7 @@ impl RepeatNode {
         bounds: &graphene::Rect,
         child: &P,
         child_bounds: Option<&graphene::Rect>,
-    ) -> RepeatNode {
+    ) -> Self {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(ffi::gsk_repeat_node_new(

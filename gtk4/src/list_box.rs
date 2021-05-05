@@ -6,6 +6,7 @@ use std::ptr;
 
 impl ListBox {
     #[doc(alias = "gtk_list_box_bind_model")]
+    #[doc(alias = "bind_model")]
     pub fn unbind_model(&self) {
         unsafe {
             ffi::gtk_list_box_bind_model(
@@ -19,6 +20,7 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_set_filter_func")]
+    #[doc(alias = "set_filter_func")]
     pub fn unset_filter_func(&self) {
         unsafe {
             ffi::gtk_list_box_set_filter_func(self.to_glib_none().0, None, ptr::null_mut(), None)
@@ -26,6 +28,7 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_set_header_func")]
+    #[doc(alias = "set_header_func")]
     pub fn unset_header_func(&self) {
         unsafe {
             ffi::gtk_list_box_set_header_func(self.to_glib_none().0, None, ptr::null_mut(), None)
@@ -33,6 +36,7 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_set_sort_func")]
+    #[doc(alias = "set_sort_func")]
     pub fn unset_sort_func(&self) {
         unsafe {
             ffi::gtk_list_box_set_sort_func(self.to_glib_none().0, None, ptr::null_mut(), None)

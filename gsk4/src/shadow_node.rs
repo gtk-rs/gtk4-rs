@@ -12,7 +12,7 @@ define_render_node!(
 
 impl ShadowNode {
     #[doc(alias = "gsk_shadow_node_new")]
-    pub fn new<P: IsRenderNode>(child: &P, shadows: &[Shadow]) -> ShadowNode {
+    pub fn new<P: IsRenderNode>(child: &P, shadows: &[Shadow]) -> Self {
         skip_assert_initialized!();
         let n_shadows = shadows.len() as usize;
         unsafe {

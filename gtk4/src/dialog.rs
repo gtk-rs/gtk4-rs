@@ -13,14 +13,15 @@ use std::rc::Rc;
 
 impl Dialog {
     #[doc(alias = "gtk_dialog_new_with_buttons")]
+    #[doc(alias = "new_with_buttons")]
     pub fn with_buttons<T: IsA<Window>>(
         title: Option<&str>,
         parent: Option<&T>,
         flags: DialogFlags,
         buttons: &[(&str, ResponseType)],
-    ) -> Dialog {
+    ) -> Self {
         assert_initialized_main_thread!();
-        let ret: Dialog = unsafe {
+        let ret: Self = unsafe {
             Widget::from_glib_none(ffi::gtk_dialog_new_with_buttons(
                 title.to_glib_none().0,
                 parent.map(|p| p.as_ref()).to_glib_none().0,

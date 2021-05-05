@@ -5,7 +5,7 @@ use glib::translate::*;
 
 impl StringSorter {
     #[doc(alias = "gtk_string_sorter_new")]
-    pub fn new<E: AsRef<Expression>>(expression: Option<&E>) -> StringSorter {
+    pub fn new<E: AsRef<Expression>>(expression: Option<&E>) -> Self {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_string_sorter_new(

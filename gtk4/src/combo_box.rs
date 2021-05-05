@@ -6,6 +6,7 @@ use glib::translate::*;
 
 pub trait ComboBoxExtManual: 'static {
     #[doc(alias = "gtk_combo_box_set_row_separator_func")]
+    #[doc(alias = "set_row_separator_func")]
     fn unset_row_separator_func(&self);
 
     #[doc(alias = "gtk_combo_box_set_active")]

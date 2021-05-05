@@ -6,6 +6,7 @@ use glib::IsA;
 
 impl TreeViewColumn {
     #[doc(alias = "gtk_tree_view_column_set_cell_data_func")]
+    #[doc(alias = "set_cell_data_func")]
     pub fn unset_cell_data_func<P: IsA<CellRenderer>>(&self, cell_renderer: &P) {
         unsafe {
             ffi::gtk_tree_view_column_set_cell_data_func(

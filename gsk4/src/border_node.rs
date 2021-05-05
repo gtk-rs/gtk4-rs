@@ -16,7 +16,7 @@ impl BorderNode {
         outline: &RoundedRect,
         border_width: &[f32; 4],
         border_color: &[gdk::RGBA; 4],
-    ) -> BorderNode {
+    ) -> Self {
         unsafe {
             from_glib_full(ffi::gsk_border_node_new(
                 outline.to_glib_none().0,

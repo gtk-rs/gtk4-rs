@@ -5,6 +5,8 @@ use glib::translate::*;
 use glib::IsA;
 
 pub trait FontChooserExtManual: 'static {
+    #[doc(alias = "gtk_font_chooser_set_filter_func")]
+    #[doc(alias = "set_filter_func")]
     fn unset_filter_func(&self);
 }
 

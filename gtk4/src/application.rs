@@ -12,7 +12,7 @@ use std::rc::Rc;
 
 impl Application {
     #[doc(alias = "gtk_application_new")]
-    pub fn new(application_id: Option<&str>, flags: ApplicationFlags) -> Application {
+    pub fn new(application_id: Option<&str>, flags: ApplicationFlags) -> Self {
         skip_assert_initialized!();
         let app: Application = unsafe {
             from_glib_full(ffi::gtk_application_new(
@@ -20,7 +20,7 @@ impl Application {
                 flags.into_glib(),
             ))
         };
-        Application::register_startup_hook(&app);
+        Self::register_startup_hook(&app);
         app
     }
 

@@ -18,7 +18,7 @@ impl GLShaderNode {
         bounds: &graphene::Rect,
         args: &glib::Bytes,
         children: &[RenderNode],
-    ) -> GLShaderNode {
+    ) -> Self {
         skip_assert_initialized!();
         let n_children = children.len() as u32;
         unsafe {

@@ -12,7 +12,7 @@ define_render_node!(
 
 impl ContainerNode {
     #[doc(alias = "gsk_container_node_new")]
-    pub fn new(children: &[RenderNode]) -> ContainerNode {
+    pub fn new(children: &[RenderNode]) -> Self {
         assert_initialized_main_thread!();
         let n_children = children.len() as u32;
         unsafe {

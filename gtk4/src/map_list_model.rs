@@ -19,6 +19,7 @@ impl MapListModel {
     }
 
     #[doc(alias = "gtk_map_list_model_set_map_func")]
+    #[doc(alias = "set_map_func")]
     pub fn unset_map_func(&self) {
         unsafe {
             ffi::gtk_map_list_model_set_map_func(

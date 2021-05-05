@@ -14,17 +14,16 @@ impl FileChooserDialog {
         parent: Option<&T>,
         action: FileChooserAction,
         buttons: &[(&str, ResponseType)],
-    ) -> FileChooserDialog {
+    ) -> Self {
         assert_initialized_main_thread!();
         unsafe {
-            let dialog: FileChooserDialog =
-                Widget::from_glib_none(ffi::gtk_file_chooser_dialog_new(
-                    title.to_glib_none().0,
-                    parent.map(|p| p.as_ref()).to_glib_none().0,
-                    action.into_glib(),
-                    ptr::null::<c_char>(),
-                ))
-                .unsafe_cast();
+            let dialog: Self = Widget::from_glib_none(ffi::gtk_file_chooser_dialog_new(
+                title.to_glib_none().0,
+                parent.map(|p| p.as_ref()).to_glib_none().0,
+                action.into_glib(),
+                ptr::null::<c_char>(),
+            ))
+            .unsafe_cast();
             dialog.add_buttons(buttons);
             dialog
         }

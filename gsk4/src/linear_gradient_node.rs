@@ -14,12 +14,7 @@ define_render_node!(
 
 impl LinearGradientNode {
     #[doc(alias = "gsk_linear_gradient_node_new")]
-    pub fn new(
-        bounds: &Rect,
-        start: &Point,
-        end: &Point,
-        color_stops: &[ColorStop],
-    ) -> LinearGradientNode {
+    pub fn new(bounds: &Rect, start: &Point, end: &Point, color_stops: &[ColorStop]) -> Self {
         assert_initialized_main_thread!();
         let n_color_stops = color_stops.len() as usize;
         unsafe {

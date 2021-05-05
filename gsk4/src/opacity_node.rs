@@ -12,7 +12,7 @@ define_render_node!(
 
 impl OpacityNode {
     #[doc(alias = "gsk_opacity_node_new")]
-    pub fn new<P: IsRenderNode>(child: &P, opacity: f32) -> OpacityNode {
+    pub fn new<P: IsRenderNode>(child: &P, opacity: f32) -> Self {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(ffi::gsk_opacity_node_new(

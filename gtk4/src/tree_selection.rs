@@ -5,6 +5,7 @@ use glib::translate::*;
 
 impl TreeSelection {
     #[doc(alias = "gtk_tree_selection_set_select_function")]
+    #[doc(alias = "set_select_function")]
     pub fn unset_select_function(&self) {
         unsafe {
             ffi::gtk_tree_selection_set_select_function(

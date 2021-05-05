@@ -16,7 +16,7 @@ glib::wrapper! {
 
 impl KeyvalTrigger {
     #[doc(alias = "gtk_keyval_trigger_new")]
-    pub fn new(keyval: Key, modifiers: gdk::ModifierType) -> KeyvalTrigger {
+    pub fn new(keyval: Key, modifiers: gdk::ModifierType) -> Self {
         assert_initialized_main_thread!();
         unsafe {
             ShortcutTrigger::from_glib_full(ffi::gtk_keyval_trigger_new(

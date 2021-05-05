@@ -16,7 +16,7 @@ impl ColorMatrixNode {
         child: &P,
         color_matrix: &graphene::Matrix,
         color_offset: &graphene::Vec4,
-    ) -> ColorMatrixNode {
+    ) -> Self {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(ffi::gsk_color_matrix_node_new(

@@ -16,7 +16,7 @@ impl BlendNode {
         bottom: &P,
         top: &Q,
         blend_mode: BlendMode,
-    ) -> BlendNode {
+    ) -> Self {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(ffi::gsk_blend_node_new(

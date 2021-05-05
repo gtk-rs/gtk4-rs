@@ -12,7 +12,7 @@ define_render_node!(
 
 impl ColorNode {
     #[doc(alias = "gsk_color_node_new")]
-    pub fn new(rgba: &gdk::RGBA, bounds: &graphene::Rect) -> ColorNode {
+    pub fn new(rgba: &gdk::RGBA, bounds: &graphene::Rect) -> Self {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gsk_color_node_new(

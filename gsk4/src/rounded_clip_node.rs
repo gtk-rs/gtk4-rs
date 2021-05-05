@@ -12,7 +12,7 @@ define_render_node!(
 
 impl RoundedClipNode {
     #[doc(alias = "gsk_rounded_clip_node_new")]
-    pub fn new<P: IsRenderNode>(child: &P, clip: &RoundedRect) -> RoundedClipNode {
+    pub fn new<P: IsRenderNode>(child: &P, clip: &RoundedRect) -> Self {
         skip_assert_initialized!();
         unsafe {
             from_glib_none(ffi::gsk_rounded_clip_node_new(

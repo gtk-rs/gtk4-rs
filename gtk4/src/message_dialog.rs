@@ -15,7 +15,7 @@ impl MessageDialog {
         type_: MessageType,
         buttons: ButtonsType,
         message: &str,
-    ) -> MessageDialog {
+    ) -> Self {
         assert_initialized_main_thread!();
         unsafe {
             let message: Stash<*const c_char, _> = message.to_glib_none();
@@ -39,7 +39,7 @@ impl MessageDialog {
         type_: MessageType,
         buttons: ButtonsType,
         message: Option<&str>,
-    ) -> MessageDialog {
+    ) -> Self {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_message_dialog_new_with_markup(

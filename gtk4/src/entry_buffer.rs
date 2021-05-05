@@ -7,7 +7,7 @@ use libc::{c_int, c_uint};
 
 impl EntryBuffer {
     #[doc(alias = "gtk_entry_buffer_new")]
-    pub fn new(initial_chars: Option<&str>) -> EntryBuffer {
+    pub fn new(initial_chars: Option<&str>) -> Self {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_entry_buffer_new(

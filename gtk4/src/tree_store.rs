@@ -9,7 +9,7 @@ use libc::c_int;
 impl TreeStore {
     #[doc(alias = "gtk_tree_store_newv")]
     #[doc(alias = "gtk_tree_store_new")]
-    pub fn new(column_types: &[Type]) -> TreeStore {
+    pub fn new(column_types: &[Type]) -> Self {
         assert_initialized_main_thread!();
         unsafe {
             let mut column_types = column_types
