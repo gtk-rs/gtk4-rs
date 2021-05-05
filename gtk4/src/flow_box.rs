@@ -20,6 +20,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "gtk_flow_box_set_filter_func")]
+    #[doc(alias = "set_filter_func")]
     pub fn unset_filter_func(&self) {
         unsafe {
             ffi::gtk_flow_box_set_filter_func(self.to_glib_none().0, None, ptr::null_mut(), None)
@@ -27,6 +28,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "gtk_flow_box_set_sort_func")]
+    #[doc(alias = "set_sort_func")]
     pub fn unset_sort_func(&self) {
         unsafe {
             ffi::gtk_flow_box_set_sort_func(self.to_glib_none().0, None, ptr::null_mut(), None)

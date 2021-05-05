@@ -28,6 +28,7 @@ impl PropertyExpression {
     }
 
     #[doc(alias = "gtk_property_expression_new_for_pspec")]
+    #[doc(alias = "new_for_pspec")]
     pub fn for_pspec<E: AsRef<Expression>>(expression: Option<&E>, pspec: glib::ParamSpec) -> Self {
         assert_initialized_main_thread!();
         unsafe {

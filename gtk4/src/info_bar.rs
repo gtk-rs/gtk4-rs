@@ -4,6 +4,7 @@ use crate::{InfoBar, ResponseType};
 
 impl InfoBar {
     #[doc(alias = "gtk_info_bar_new_with_buttons")]
+    #[doc(alias = "new_with_buttons")]
     pub fn with_buttons(buttons: &[(&str, ResponseType)]) -> Self {
         assert_initialized_main_thread!();
         let info_bar = InfoBar::new();

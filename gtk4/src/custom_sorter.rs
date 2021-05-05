@@ -36,7 +36,8 @@ impl CustomSorter {
         }
     }
 
-    #[doc(alias = "gtk_custom_sorter_unset_sort_func")]
+    #[doc(alias = "gtk_custom_sorter_set_sort_func")]
+    #[doc(alias = "set_sort_func")]
     pub fn unset_sort_func(&self) {
         unsafe {
             ffi::gtk_custom_sorter_set_sort_func(self.to_glib_none().0, None, ptr::null_mut(), None)
