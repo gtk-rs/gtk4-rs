@@ -7,17 +7,15 @@ use std::ptr;
 pub struct PageRange(ffi::GtkPageRange);
 
 impl PageRange {
-    pub fn new(start: i32, end: i32) -> PageRange {
+    pub fn new(start: i32, end: i32) -> Self {
         skip_assert_initialized!();
-        PageRange(ffi::GtkPageRange { start, end })
+        Self(ffi::GtkPageRange { start, end })
     }
 
-    #[doc(alias = "get_start")]
     pub fn start(&self) -> i32 {
         self.0.start
     }
 
-    #[doc(alias = "get_end")]
     pub fn end(&self) -> i32 {
         self.0.end
     }

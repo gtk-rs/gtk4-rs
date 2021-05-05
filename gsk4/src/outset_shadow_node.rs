@@ -19,7 +19,7 @@ impl OutsetShadowNode {
         dy: f32,
         spread: f32,
         blur_radius: f32,
-    ) -> OutsetShadowNode {
+    ) -> Self {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gsk_outset_shadow_node_new(

@@ -12,7 +12,7 @@ define_render_node!(
 
 impl CairoNode {
     #[doc(alias = "gsk_cairo_node_new")]
-    pub fn new(bounds: &graphene::Rect) -> CairoNode {
+    pub fn new(bounds: &graphene::Rect) -> Self {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gsk_cairo_node_new(bounds.to_glib_none().0)) }
     }

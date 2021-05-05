@@ -18,7 +18,7 @@ impl ConicGradientNode {
         center: &graphene::Point,
         rotation: f32,
         color_stops: &[ColorStop],
-    ) -> ConicGradientNode {
+    ) -> Self {
         assert_initialized_main_thread!();
         let n_color_stops = color_stops.len() as usize;
         unsafe {

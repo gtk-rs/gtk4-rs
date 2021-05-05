@@ -18,9 +18,9 @@ impl PadActionEntry {
         mode: i32,
         label: &str,
         action_name: &str,
-    ) -> PadActionEntry {
+    ) -> Self {
         assert_initialized_main_thread!();
-        PadActionEntry {
+        Self {
             type_,
             index,
             mode,
@@ -29,27 +29,22 @@ impl PadActionEntry {
         }
     }
 
-    #[doc(alias = "get_type")]
     pub fn type_(&self) -> PadActionType {
         self.type_
     }
 
-    #[doc(alias = "get_index")]
     pub fn index(&self) -> i32 {
         self.index
     }
 
-    #[doc(alias = "get_mode")]
     pub fn mode(&self) -> i32 {
         self.mode
     }
 
-    #[doc(alias = "get_label")]
     pub fn label(&self) -> &str {
         &self.label
     }
 
-    #[doc(alias = "get_action_name")]
     pub fn action_name(&self) -> &str {
         &self.action_name
     }

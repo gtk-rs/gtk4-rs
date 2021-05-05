@@ -12,7 +12,7 @@ define_render_node!(
 
 impl BlurNode {
     #[doc(alias = "gsk_blur_node_new")]
-    pub fn new<P: IsRenderNode>(child: &P, radius: f32) -> BlurNode {
+    pub fn new<P: IsRenderNode>(child: &P, radius: f32) -> Self {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(ffi::gsk_blur_node_new(

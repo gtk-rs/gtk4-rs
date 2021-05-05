@@ -10,20 +10,18 @@ use std::ptr;
 pub struct ColorStop(ffi::GskColorStop);
 
 impl ColorStop {
-    pub fn new(offset: f32, color: RGBA) -> ColorStop {
+    pub fn new(offset: f32, color: RGBA) -> Self {
         assert_initialized_main_thread!();
-        ColorStop(ffi::GskColorStop {
+        Self(ffi::GskColorStop {
             offset,
             color: unsafe { *color.to_glib_none().0 },
         })
     }
 
-    #[doc(alias = "get_offset")]
     pub fn offset(&self) -> f32 {
         self.0.offset
     }
 
-    #[doc(alias = "get_color")]
     pub fn color(&self) -> RGBA {
         unsafe { from_glib_none(&self.0.color as *const _) }
     }

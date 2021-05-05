@@ -5,6 +5,7 @@ use glib::translate::*;
 use glib::IsA;
 
 pub trait ScaleExtManual: 'static {
+    #[doc(alias = "gtk_scale_set_format_value_func")]
     #[doc(alias = "set_format_value_func")]
     fn unset_format_value_func(&self);
 }

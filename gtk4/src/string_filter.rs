@@ -5,7 +5,7 @@ use glib::translate::*;
 
 impl StringFilter {
     #[doc(alias = "gtk_string_filter_new")]
-    pub fn new<E: AsRef<Expression>>(expression: Option<&E>) -> StringFilter {
+    pub fn new<E: AsRef<Expression>>(expression: Option<&E>) -> Self {
         assert_initialized_main_thread!();
         if let Some(e) = expression {
             if !e.as_ref().value_type().is_a(glib::Type::STRING) {

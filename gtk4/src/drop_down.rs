@@ -9,7 +9,7 @@ impl DropDown {
     pub fn new<P: glib::IsA<gio::ListModel>, E: AsRef<Expression>>(
         model: Option<&P>,
         expression: Option<&E>,
-    ) -> DropDown {
+    ) -> Self {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_drop_down_new(

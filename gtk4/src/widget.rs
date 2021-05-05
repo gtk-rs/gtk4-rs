@@ -78,6 +78,7 @@ impl PartialEq for TickCallbackId {
 
 impl TickCallbackId {
     #[doc(alias = "gtk_widget_remove_tick_callback")]
+    #[doc(alias = "remove_tick_callback")]
     pub fn remove(self) {
         if let Some(widget) = self.widget.upgrade() {
             unsafe {

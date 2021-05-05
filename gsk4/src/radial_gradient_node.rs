@@ -21,7 +21,7 @@ impl RadialGradientNode {
         start: f32,
         end: f32,
         color_stops: &[ColorStop],
-    ) -> RadialGradientNode {
+    ) -> Self {
         assert_initialized_main_thread!();
         let n_color_stops = color_stops.len() as usize;
         unsafe {

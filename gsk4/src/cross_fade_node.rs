@@ -12,11 +12,7 @@ define_render_node!(
 
 impl CrossFadeNode {
     #[doc(alias = "gsk_cross_fade_node_new")]
-    pub fn new<P: IsRenderNode, Q: IsRenderNode>(
-        start: &P,
-        end: &Q,
-        progress: f32,
-    ) -> CrossFadeNode {
+    pub fn new<P: IsRenderNode, Q: IsRenderNode>(start: &P, end: &Q, progress: f32) -> Self {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(ffi::gsk_cross_fade_node_new(

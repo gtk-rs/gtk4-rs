@@ -10,7 +10,7 @@ use std::ptr;
 impl ListStore {
     #[doc(alias = "gtk_list_store_newv")]
     #[doc(alias = "gtk_list_store_new")]
-    pub fn new(column_types: &[Type]) -> ListStore {
+    pub fn new(column_types: &[Type]) -> Self {
         assert_initialized_main_thread!();
         unsafe {
             let mut column_types = column_types

@@ -27,7 +27,7 @@ impl StaticType for RenderNode {
 
 impl RenderNode {
     #[doc(alias = "gsk_render_node_deserialize")]
-    pub fn deserialize(bytes: &glib::Bytes) -> Option<RenderNode> {
+    pub fn deserialize(bytes: &glib::Bytes) -> Option<Self> {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gsk_render_node_deserialize(
@@ -42,7 +42,7 @@ impl RenderNode {
     pub fn deserialize_with_error_func<P: FnMut(&ParseLocation, &ParseLocation, &glib::Error)>(
         bytes: &glib::Bytes,
         error_func: P,
-    ) -> Option<RenderNode> {
+    ) -> Option<Self> {
         assert_initialized_main_thread!();
         let error_func_data: P = error_func;
         unsafe extern "C" fn error_func_func<
@@ -70,7 +70,7 @@ impl RenderNode {
         }
     }
 
-    pub fn downcast<T: IsRenderNode>(self) -> Result<T, RenderNode> {
+    pub fn downcast<T: IsRenderNode>(self) -> Result<T, Self> {
         unsafe {
             if self.node_type() == T::NODE_TYPE {
                 Ok(from_glib_full(self.to_glib_full()))

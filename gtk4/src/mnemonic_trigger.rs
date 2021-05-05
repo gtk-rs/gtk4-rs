@@ -15,7 +15,7 @@ glib::wrapper! {
 
 impl MnemonicTrigger {
     #[doc(alias = "gtk_mnemonic_trigger_new")]
-    pub fn new(keyval: Key) -> MnemonicTrigger {
+    pub fn new(keyval: Key) -> Self {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_mnemonic_trigger_new(keyval.into_glib())) }
     }

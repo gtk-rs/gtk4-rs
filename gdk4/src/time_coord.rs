@@ -17,17 +17,14 @@ impl TimeCoord {
         })
     }
 
-    #[doc(alias = "get_time")]
     pub fn time(&self) -> u32 {
         self.0.time
     }
 
-    #[doc(alias = "get_axes")]
     pub fn axes(&self) -> &[f64; 12] {
         &self.0.axes
     }
 
-    #[doc(alias = "get_flags")]
     pub fn flags(&self) -> AxisFlags {
         unsafe { from_glib(self.0.flags) }
     }

@@ -19,7 +19,7 @@ impl InsetShadowNode {
         dy: f32,
         spread: f32,
         blur_radius: f32,
-    ) -> InsetShadowNode {
+    ) -> Self {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gsk_inset_shadow_node_new(

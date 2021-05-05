@@ -12,7 +12,7 @@ define_render_node!(
 
 impl ClipNode {
     #[doc(alias = "gsk_clip_node_new")]
-    pub fn new<P: IsRenderNode>(child: &P, clip: &graphene::Rect) -> ClipNode {
+    pub fn new<P: IsRenderNode>(child: &P, clip: &graphene::Rect) -> Self {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(ffi::gsk_clip_node_new(

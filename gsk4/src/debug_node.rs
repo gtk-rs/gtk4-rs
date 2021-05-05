@@ -12,7 +12,7 @@ define_render_node!(
 
 impl DebugNode {
     #[doc(alias = "gsk_debug_node_new")]
-    pub fn new<P: IsRenderNode>(child: &P, message: &str) -> DebugNode {
+    pub fn new<P: IsRenderNode>(child: &P, message: &str) -> Self {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(ffi::gsk_debug_node_new(

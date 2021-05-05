@@ -7,6 +7,7 @@ use glib::IsA;
 pub trait MediaStreamExtManual: 'static {
     #[doc(alias = "gtk_media_stream_gerror")]
     #[doc(alias = "gtk_media_stream_error")]
+    #[doc(alias = "gerror")]
     fn set_error(&self, error: glib::Error);
 }
 
