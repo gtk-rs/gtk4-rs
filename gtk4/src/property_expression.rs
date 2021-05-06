@@ -21,7 +21,7 @@ impl PropertyExpression {
         unsafe {
             from_glib_full(ffi::gtk_property_expression_new(
                 this_type.into_glib(),
-                expression.map(|e| e.as_ref()).to_glib_none().0,
+                expression.map(|e| e.as_ref()).to_glib_full().0,
                 property_name.to_glib_none().0,
             ))
         }
@@ -33,7 +33,7 @@ impl PropertyExpression {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_property_expression_new_for_pspec(
-                expression.map(|e| e.as_ref()).to_glib_none().0,
+                expression.map(|e| e.as_ref()).to_glib_full().0,
                 pspec.to_glib_none().0,
             ))
         }
