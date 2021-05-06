@@ -179,7 +179,7 @@
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_property_expression_new</span>(
                 <span class="ident">this_type</span>.<span class="ident">into_glib</span>(),
-                <span class="ident">expression</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">e</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="ident">expression</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">e</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_full</span>(),
                 <span class="ident">property_name</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             ))
         }
@@ -208,7 +208,7 @@
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> {
             <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_property_expression_new_for_pspec</span>(
-                <span class="ident">expression</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">e</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="ident">expression</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> <span class="ident">e</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_full</span>(),
                 <span class="ident">pspec</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             ))
         }
