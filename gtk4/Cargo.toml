@@ -26,7 +26,7 @@ features = ["dox"]
 
 [dependencies]
 bitflags = "1.0"
-cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs", features = ["v1_14"]}
+cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs"}
 ffi = {package = "gtk4-sys", path = "./sys"}
 field-offset = "0.3"
 futures-channel = "0.3"
