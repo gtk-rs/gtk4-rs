@@ -280,6 +280,7 @@ mod media_stream;
 mod menu_button;
 mod message_dialog;
 mod mnemonic_trigger;
+mod native_dialog;
 mod notebook;
 mod numeric_sorter;
 mod object_expression;

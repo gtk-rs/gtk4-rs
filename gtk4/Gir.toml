@@ -142,7 +142,6 @@ generate = [
     "Gtk.MovementStep",
     "Gtk.MultiFilter",
     "Gtk.MultiSorter",
-    "Gtk.NativeDialog",
     "Gtk.NotebookTab",
     "Gtk.NumberUpLayout",
     "Gtk.Orientable",
@@ -1407,6 +1406,11 @@ trust_return_value_nullability = false
 name = "Gtk.Native"
 status = "generate"
 trust_return_value_nullability = false
+
+[[object]]
+name = "Gtk.NativeDialog"
+status = "generate"
+manual_traits = ["NativeDialogExtManual"]
 
 [[object]]
 name = "Gtk.NeverTrigger"
