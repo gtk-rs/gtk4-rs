@@ -4,31 +4,23 @@ use crate::subclass::prelude::*;
 use crate::EntryBuffer;
 use glib::translate::*;
 use glib::{Cast, GString, Object, ObjectExt};
+use libc::c_uint;
 use once_cell::sync::Lazy;
 
 pub trait EntryBufferImpl: EntryBufferImplExt + ObjectImpl {
-    fn delete_text(&self, entry_buffer: &Self::Type, position: u32, n_chars: Option<u32>) -> u32 {
-        self.parent_delete_text(entry_buffer, position, n_chars)
-    }
+    fn delete_text(&self, entry_buffer: &Self::Type, position: u16, n_chars: Option<u16>) -> u16;
 
-    fn deleted_text(&self, entry_buffer: &Self::Type, position: u32, n_chars: Option<u32>) {
+    fn deleted_text(&self, entry_buffer: &Self::Type, position: u16, n_chars: Option<u16>) {
         self.parent_deleted_text(entry_buffer, position, n_chars)
     }
 
-    #[doc(alias = "get_length")]
-    fn length(&self, entry_buffer: &Self::Type) -> u32 {
-        self.parent_length(entry_buffer)
-    }
+    fn length(&self, entry_buffer: &Self::Type) -> u16;
 
-    #[doc(alias = "get_text")]
-    fn text(&self, entry_buffer: &Self::Type) -> GString {
-        self.parent_text(entry_buffer)
-    }
-    fn insert_text(&self, entry_buffer: &Self::Type, position: u32, chars: &str) -> u32 {
-        self.parent_insert_text(entry_buffer, position, chars)
-    }
+    fn text(&self, entry_buffer: &Self::Type) -> GString;
 
-    fn inserted_text(&self, entry_buffer: &Self::Type, position: u32, chars: &str) {
+    fn insert_text(&self, entry_buffer: &Self::Type, position: u16, chars: &str) -> u16;
+
+    fn inserted_text(&self, entry_buffer: &Self::Type, position: u16, chars: &str) {
         self.parent_inserted_text(entry_buffer, position, chars)
     }
 }
@@ -37,41 +29,41 @@ pub trait EntryBufferImplExt: ObjectSubclass {
     fn parent_delete_text(
         &self,
         entry_buffer: &Self::Type,
-        position: u32,
-        n_chars: Option<u32>,
-    ) -> u32;
-    fn parent_deleted_text(&self, entry_buffer: &Self::Type, position: u32, n_chars: Option<u32>);
-    fn parent_length(&self, entry_buffer: &Self::Type) -> u32;
+        position: u16,
+        n_chars: Option<u16>,
+    ) -> u16;
+    fn parent_deleted_text(&self, entry_buffer: &Self::Type, position: u16, n_chars: Option<u16>);
+    fn parent_length(&self, entry_buffer: &Self::Type) -> u16;
     fn parent_text(&self, entry_buffer: &Self::Type) -> GString;
-    fn parent_insert_text(&self, entry_buffer: &Self::Type, position: u32, chars: &str) -> u32;
-    fn parent_inserted_text(&self, entry_buffer: &Self::Type, position: u32, chars: &str);
+    fn parent_insert_text(&self, entry_buffer: &Self::Type, position: u16, chars: &str) -> u16;
+    fn parent_inserted_text(&self, entry_buffer: &Self::Type, position: u16, chars: &str);
 }
 
 impl<T: EntryBufferImpl> EntryBufferImplExt for T {
     fn parent_delete_text(
         &self,
         entry_buffer: &Self::Type,
-        position: u32,
-        n_chars: Option<u32>,
-    ) -> u32 {
+        position: u16,
+        n_chars: Option<u16>,
+    ) -> u16 {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkEntryBufferClass;
             let f = (*parent_class)
                 .delete_text
                 .expect("No parent class impl for \"delete_text\"");
-            f(
+            to_u16!(f(
                 entry_buffer
                     .unsafe_cast_ref::<EntryBuffer>()
                     .to_glib_none()
                     .0,
-                position,
-                n_chars.unwrap_or(u32::MAX),
-            )
+                position as c_uint,
+                n_chars.unwrap_or(u16::MAX) as c_uint,
+            ))
         }
     }
 
-    fn parent_deleted_text(&self, entry_buffer: &Self::Type, position: u32, n_chars: Option<u32>) {
+    fn parent_deleted_text(&self, entry_buffer: &Self::Type, position: u16, n_chars: Option<u16>) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkEntryBufferClass;
@@ -81,24 +73,24 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
                         .unsafe_cast_ref::<EntryBuffer>()
                         .to_glib_none()
                         .0,
-                    position,
-                    n_chars.unwrap_or(u32::MAX),
+                    position as c_uint,
+                    n_chars.unwrap_or(u16::MAX) as c_uint,
                 )
             }
         }
     }
 
-    fn parent_length(&self, entry_buffer: &Self::Type) -> u32 {
+    fn parent_length(&self, entry_buffer: &Self::Type) -> u16 {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkEntryBufferClass;
             let f = (*parent_class)
                 .get_length
                 .expect("No parent class impl for \"get_length\"");
-            f(entry_buffer
+            to_u16!(f(entry_buffer
                 .unsafe_cast_ref::<EntryBuffer>()
                 .to_glib_none()
-                .0)
+                .0))
         }
     }
 
@@ -121,7 +113,7 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
         }
     }
 
-    fn parent_insert_text(&self, entry_buffer: &Self::Type, position: u32, text: &str) -> u32 {
+    fn parent_insert_text(&self, entry_buffer: &Self::Type, position: u16, text: &str) -> u16 {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkEntryBufferClass;
@@ -129,19 +121,19 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
                 .insert_text
                 .expect("No parent class impl for \"insert_text\"");
 
-            f(
+            to_u16!(f(
                 entry_buffer
                     .unsafe_cast_ref::<EntryBuffer>()
                     .to_glib_none()
                     .0,
-                position,
+                position as c_uint,
                 text.to_glib_none().0,
-                text.chars().count() as u32,
-            )
+                text.chars().count() as c_uint,
+            ))
         }
     }
 
-    fn parent_inserted_text(&self, entry_buffer: &Self::Type, position: u32, text: &str) {
+    fn parent_inserted_text(&self, entry_buffer: &Self::Type, position: u16, text: &str) {
         unsafe {
             let data = T::type_data();
             let parent_class = data.as_ref().parent_class() as *mut ffi::GtkEntryBufferClass;
@@ -151,9 +143,9 @@ impl<T: EntryBufferImpl> EntryBufferImplExt for T {
                         .unsafe_cast_ref::<EntryBuffer>()
                         .to_glib_none()
                         .0,
-                    position,
+                    position as c_uint,
                     text.to_glib_none().0,
-                    text.chars().count() as u32,
+                    text.chars().count() as c_uint,
                 )
             }
         }
@@ -187,13 +179,17 @@ unsafe extern "C" fn entry_buffer_delete_text<T: EntryBufferImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<EntryBuffer> = from_glib_borrow(ptr);
 
-    let n_chars = if n_chars == u32::MAX {
+    let n_chars = if n_chars == u16::MAX as c_uint {
         None
     } else {
         Some(n_chars)
     };
 
-    imp.delete_text(wrap.unsafe_cast_ref(), position, n_chars)
+    imp.delete_text(
+        wrap.unsafe_cast_ref(),
+        to_u16!(position),
+        n_chars.map(|c| to_u16!(c)),
+    ) as c_uint
 }
 
 unsafe extern "C" fn entry_buffer_deleted_text<T: EntryBufferImpl>(
@@ -205,13 +201,17 @@ unsafe extern "C" fn entry_buffer_deleted_text<T: EntryBufferImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<EntryBuffer> = from_glib_borrow(ptr);
 
-    let n_chars = if n_chars == u32::MAX {
+    let n_chars = if n_chars == u16::MAX as c_uint {
         None
     } else {
         Some(n_chars)
     };
 
-    imp.deleted_text(wrap.unsafe_cast_ref(), position, n_chars)
+    imp.deleted_text(
+        wrap.unsafe_cast_ref(),
+        to_u16!(position),
+        n_chars.map(|c| to_u16!(c)),
+    )
 }
 
 static GET_TEXT_QUARK: Lazy<glib::Quark> =
@@ -226,7 +226,9 @@ unsafe extern "C" fn entry_buffer_get_text<T: EntryBufferImpl>(
     let wrap: Borrowed<EntryBuffer> = from_glib_borrow(ptr);
 
     let ret = imp.text(wrap.unsafe_cast_ref());
-    *n_bytes = ret.len();
+    if !n_bytes.is_null() {
+        *n_bytes = ret.len();
+    }
     // Ensures that the returned text stays alive for as long as
     // the entry buffer instance
     let fullptr = ret.to_glib_full();
@@ -241,7 +243,7 @@ unsafe extern "C" fn entry_buffer_get_length<T: EntryBufferImpl>(
     let imp = instance.impl_();
     let wrap: Borrowed<EntryBuffer> = from_glib_borrow(ptr);
 
-    imp.length(wrap.unsafe_cast_ref())
+    imp.length(wrap.unsafe_cast_ref()) as c_uint
 }
 
 unsafe extern "C" fn entry_buffer_insert_text<T: EntryBufferImpl>(
@@ -255,8 +257,8 @@ unsafe extern "C" fn entry_buffer_insert_text<T: EntryBufferImpl>(
     let wrap: Borrowed<EntryBuffer> = from_glib_borrow(ptr);
     let text: Borrowed<GString> = from_glib_borrow(charsptr);
 
-    let chars = text_n_chars(&text, n_chars);
-    imp.insert_text(wrap.unsafe_cast_ref(), position, chars)
+    let chars = text_n_chars(&text, to_u16!(n_chars));
+    imp.insert_text(wrap.unsafe_cast_ref(), to_u16!(position), chars) as c_uint
 }
 
 unsafe extern "C" fn entry_buffer_inserted_text<T: EntryBufferImpl>(
@@ -270,13 +272,12 @@ unsafe extern "C" fn entry_buffer_inserted_text<T: EntryBufferImpl>(
     let wrap: Borrowed<EntryBuffer> = from_glib_borrow(ptr);
     let text: Borrowed<GString> = from_glib_borrow(charsptr);
 
-    let chars = text_n_chars(&text, length);
-    imp.inserted_text(wrap.unsafe_cast_ref(), position, &chars)
+    let chars = text_n_chars(&text, to_u16!(length));
+    imp.inserted_text(wrap.unsafe_cast_ref(), to_u16!(position), &chars)
 }
 
-#[doc(alias = "get_text_n_chars")]
-fn text_n_chars(text: &str, n_chars: u32) -> &str {
-    if n_chars != u32::MAX && n_chars > 0 {
+fn text_n_chars(text: &str, n_chars: u16) -> &str {
+    if n_chars != u16::MAX && n_chars > 0 {
         let mut iter = text
             .char_indices()
             .skip((n_chars - 1) as usize)
@@ -302,7 +303,7 @@ mod test {
     #[test]
     fn n_chars_max_length_ascii() {
         assert_eq!(text_n_chars("gtk-rs bindings", 6), "gtk-rs");
-        assert_eq!(text_n_chars("gtk-rs bindings", u32::MAX), "gtk-rs bindings");
+        assert_eq!(text_n_chars("gtk-rs bindings", u16::MAX), "gtk-rs bindings");
     }
 
     #[test]
@@ -316,7 +317,7 @@ mod test {
         assert_eq!(text_n_chars("👨👩👧👦", 2), "👨👩");
         assert_eq!(text_n_chars("👨👩👧👦", 0), "");
         assert_eq!(text_n_chars("👨👩👧👦", 4), "👨👩👧👦");
-        assert_eq!(text_n_chars("👨👩👧👦", u32::MAX), "👨👩👧👦");
+        assert_eq!(text_n_chars("👨👩👧👦", u16::MAX), "👨👩👧👦");
         assert_eq!(text_n_chars("كتاب", 2), "كت");
     }
 

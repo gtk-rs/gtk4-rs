@@ -226,9 +226,11 @@ pub(crate) static TEST_THREAD_WORKER: once_cell::sync::Lazy<glib::ThreadPool> =
 mod auto;
 
 #[macro_use]
-pub mod subclass;
+mod entry_buffer;
 #[macro_use]
 mod expression;
+#[macro_use]
+pub mod subclass;
 
 pub mod prelude;
 
@@ -262,7 +264,6 @@ mod drop_down;
 mod drop_target;
 mod editable;
 mod entry;
-mod entry_buffer;
 mod entry_completion;
 mod enums;
 mod event_controller_key;
