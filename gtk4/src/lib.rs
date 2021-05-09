@@ -288,6 +288,7 @@ mod overlay;
 mod pad_action_entry;
 mod pad_controller;
 mod page_range;
+mod param_spec_expression;
 #[cfg(any(target_os = "linux", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 mod print_job;
@@ -334,6 +335,7 @@ pub use mnemonic_trigger::MnemonicTrigger;
 pub use object_expression::ObjectExpression;
 pub use pad_action_entry::PadActionEntry;
 pub use page_range::PageRange;
+pub use param_spec_expression::ParamSpecExpression;
 pub use property_expression::PropertyExpression;
 pub use recent_data::RecentData;
 pub use requisition::Requisition;
