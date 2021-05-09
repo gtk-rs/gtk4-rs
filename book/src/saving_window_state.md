@@ -20,6 +20,10 @@ First, we create one and add methods for getting and setting the window state.
 
 ```rust,no_run
 {{#rustdoc_include ../listings/saving_window_state/1/custom_window/mod.rs:mod}}
+
+# // Please ignore this line
+# // It is only there to make rustdoc happy
+# fn main() {}
 ```
 
 The implementation struct holds the `settings`.
@@ -29,6 +33,10 @@ We also overload the `constructed` and `close_request` methods, where we load or
 
 ```rust,no_run
 {{#rustdoc_include ../listings/saving_window_state/1/custom_window/imp.rs:imp}}
+
+# // Please ignore this line
+# // It is only there to make rustdoc happy
+# fn main() {}
 ```
 
 That is it!

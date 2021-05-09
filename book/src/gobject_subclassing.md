@@ -27,6 +27,10 @@ Next, we describe our custom GObject.
 
 ```rust,no_run
 {{#rustdoc_include ../listings/gobject_subclassing/1/custom_button/mod.rs}}
+
+# // Please ignore this line
+# // It is only there to make rustdoc happy
+# fn main() {}
 ```
 
 [`glib::wrapper!`](http://gtk-rs.org/docs/glib/macro.glib_wrapper.html) does the most of the work of subclassing for us.
@@ -52,6 +56,10 @@ So let us make it a bit more interesting!
 
 ```rust,no_run
 {{#rustdoc_include ../listings/gobject_subclassing/2/custom_button/imp.rs}}
+
+# // Please ignore this line
+# // It is only there to make rustdoc happy
+# fn main() {}
 ```
 We override `constructed` in `ObjectImpl` so that the label of the button initializes with `number`.
 We also override `clicked` in `ButtonImpl` so that every click increases `number` and updates the label.
