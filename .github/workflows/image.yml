@@ -6,6 +6,7 @@ on:
       - "master"
     paths:
       - "Dockerfile"
+  workflow_dispatch:
 
 jobs:
   docker:
