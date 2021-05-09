@@ -4,10 +4,8 @@ use gtk::prelude::*;
 use gtk::{Align, Application, ApplicationWindow, Switch};
 
 fn main() {
-    // ANCHOR: application
     // Create a new application
     let app = Application::new(Some("org.gtk.example"), Default::default());
-    // ANCHOR_END: application
     app.connect_activate(build_ui);
 
     // Run the application

@@ -121,6 +121,10 @@ path = "saving_window_state/1/main.rs"
 name = "scalable_lists_1"
 path = "scalable_lists/1/main.rs"
 
+[[bin]]
+name = "scalable_lists_2"
+path = "scalable_lists/2/main.rs"
+
 # settings
 [[bin]]
 name = "settings_1"
