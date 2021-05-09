@@ -6,6 +6,7 @@ Consists of various examples to get familiar with writing GTK applications using
 - [Using the Builder pattern](./builder_pattern/)
 - [Clock example](./clock/)
 - [Composite Template](./composite_template/)
+- [Clipboard](./clipboard/)
 - [CSS](./css/)
 - [Custom Application](./custom_application/)
 - [Custom Editable](./custom_editable/)
