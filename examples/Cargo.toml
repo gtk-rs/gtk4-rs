@@ -45,6 +45,10 @@ name = "custom_editable"
 path = "custom_editable/main.rs"
 
 [[bin]]
+name = "custom_entry_buffer"
+path = "custom_entry_buffer/main.rs"
+
+[[bin]]
 name = "custom_layout_manager"
 path = "custom_layout_manager/main.rs"
 
