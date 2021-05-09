@@ -1,7 +1,8 @@
-mod application_row;
-use crate::application_row::ApplicationRow;
-use gtk::gio;
-use gtk::prelude::*;
+mod integer_object;
+
+use gtk::{gio, Label};
+use gtk::{glib::BindingFlags, prelude::*};
+use integer_object::IntegerObject;
 
 fn main() {
     let application = gtk::Application::new(
@@ -21,71 +22,67 @@ fn build_ui(app: &gtk::Application) {
         .title("ListView: Applications Launcher")
         .build();
 
-    let model = gio::ListStore::new(gio::AppInfo::static_type());
-    gio::AppInfo::all().iter().for_each(|app_info| {
-        model.append(app_info);
-    });
+    let model = gio::ListStore::new(IntegerObject::static_type());
+    for number in 0..100_000 {
+        let integer_object = IntegerObject::from_integer(number);
+        model.append(&integer_object);
+    }
 
     let factory = gtk::SignalListItemFactory::new();
     // the "setup" stage is used for creating the widgets
     factory.connect_setup(move |_factory, item| {
-        let row = ApplicationRow::new();
-        item.set_child(Some(&row));
+        let label = Label::new(None);
+        item.set_child(Some(&label));
     });
 
     // the bind stage is used for "binding" the data to the created widgets on the "setup" stage
     factory.connect_bind(move |_factory, list_item| {
-        let app_info = list_item
+        let integer_object = list_item
             .item()
             .unwrap()
-            .downcast::<gio::AppInfo>()
+            .downcast::<IntegerObject>()
             .unwrap();
 
-        let child = list_item
-            .child()
-            .unwrap()
-            .downcast::<ApplicationRow>()
-            .unwrap();
-        child.set_app_info(&app_info);
+        let label = list_item.child().unwrap().downcast::<Label>().unwrap();
+        integer_object
+            .bind_property("number", &label, "label")
+            .flags(BindingFlags::SYNC_CREATE)
+            .build();
     });
 
-    // A sorter used to sort AppInfo in the model by their name
-    let sorter = gtk::CustomSorter::new(move |obj1, obj2| {
-        let app_info1 = obj1.downcast_ref::<gio::AppInfo>().unwrap();
-        let app_info2 = obj2.downcast_ref::<gio::AppInfo>().unwrap();
+    // // A sorter used to sort AppInfo in the model by their name
+    // let sorter = gtk::CustomSorter::new(move |obj1, obj2| {
+    //     let app_info1 = obj1.downcast_ref::<gio::AppInfo>().unwrap();
+    //     let app_info2 = obj2.downcast_ref::<gio::AppInfo>().unwrap();
 
-        app_info1
-            .name()
-            .to_lowercase()
-            .cmp(&app_info2.name().to_lowercase())
-            .into()
-    });
-    let sorted_model = gtk::SortListModel::new(Some(&model), Some(&sorter));
-    let selection_model = gtk::SingleSelection::new(Some(&sorted_model));
+    //     app_info1
+    //         .name()
+    //         .to_lowercase()
+    //         .cmp(&app_info2.name().to_lowercase())
+    //         .into()
+    // });
+    // let sorted_model = gtk::SortListModel::new(Some(&model), Some(&sorter));
+    let selection_model = gtk::SingleSelection::new(Some(&model));
 
     let list_view = gtk::ListView::new(Some(&selection_model), Some(&factory));
-    // Launch the application when an item of the list is activated
+    // // Launch the application when an item of the list is activated
     list_view.connect_activate(move |list_view, position| {
         let model = list_view.model().unwrap();
-        let app_info = model
+        let integer_object = model
             .item(position)
             .unwrap()
-            .downcast::<gio::AppInfo>()
+            .downcast::<IntegerObject>()
             .unwrap();
 
-        let context = list_view.display().app_launch_context();
-        if let Err(err) = app_info.launch(&[], Some(&context)) {
-            let parent_window = list_view.root().unwrap().downcast::<gtk::Window>().unwrap();
+        let old_number = integer_object
+            .property("number")
+            .expect("The property needs to exist and be readable.")
+            .get::<i32>()
+            .expect("The property needs to be of type `i32`.");
 
-            gtk::MessageDialogBuilder::new()
-                .text(&format!("Failed to start {}", app_info.name()))
-                .secondary_text(&err.to_string())
-                .message_type(gtk::MessageType::Error)
-                .modal(true)
-                .transient_for(&parent_window)
-                .build()
-                .show();
-        }
+        integer_object
+            .set_property("number", old_number + 1)
+            .unwrap();
     });
 
     let scrolled_window = gtk::ScrolledWindowBuilder::new()
