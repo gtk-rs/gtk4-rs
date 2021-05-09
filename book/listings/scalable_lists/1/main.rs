@@ -1,42 +1,45 @@
 mod integer_object;
 
-use gtk::{gio, Label};
-use gtk::{glib::BindingFlags, prelude::*};
+use glib::BindingFlags;
+use gtk::glib;
+use gtk::prelude::*;
+use gtk::{
+    gio, Application, ApplicationWindowBuilder, Label, ListView, NoSelection, PolicyType,
+    ScrolledWindowBuilder, SignalListItemFactory,
+};
 use integer_object::IntegerObject;
 
 fn main() {
-    let application = gtk::Application::new(
-        Some("com.github.gtk-rs.examples.apps_launcher"),
-        Default::default(),
-    );
+    // Create a new application
+    let app = Application::new(Some("org.gtk.example"), Default::default());
+    app.connect_activate(build_ui);
 
-    application.connect_activate(build_ui);
-    application.run();
+    // Run the application
+    app.run();
 }
 
-fn build_ui(app: &gtk::Application) {
-    let window = gtk::ApplicationWindowBuilder::new()
-        .default_width(600)
-        .default_height(600)
-        .application(app)
-        .title("ListView: Applications Launcher")
+fn build_ui(application: &Application) {
+    // Create a window
+    let window = ApplicationWindowBuilder::new()
+        .application(application)
+        .title("My GTK App")
         .build();
 
     let model = gio::ListStore::new(IntegerObject::static_type());
-    for number in 0..100_000 {
+    for number in 0..1000 {
         let integer_object = IntegerObject::from_integer(number);
         model.append(&integer_object);
     }
 
-    let factory = gtk::SignalListItemFactory::new();
-    // the "setup" stage is used for creating the widgets
-    factory.connect_setup(move |_factory, item| {
+    let factory = SignalListItemFactory::new();
+    // The "setup" stage is used for creating the widgets
+    factory.connect_setup(move |_, list_item| {
         let label = Label::new(None);
-        item.set_child(Some(&label));
+        list_item.set_child(Some(&label));
     });
 
-    // the bind stage is used for "binding" the data to the created widgets on the "setup" stage
-    factory.connect_bind(move |_factory, list_item| {
+    // The bind stage is used for "binding" the data to the created widgets on the "setup" stage
+    factory.connect_bind(move |_, list_item| {
         let integer_object = list_item
             .item()
             .unwrap()
@@ -50,21 +53,9 @@ fn build_ui(app: &gtk::Application) {
             .build();
     });
 
-    // // A sorter used to sort AppInfo in the model by their name
-    // let sorter = gtk::CustomSorter::new(move |obj1, obj2| {
-    //     let app_info1 = obj1.downcast_ref::<gio::AppInfo>().unwrap();
-    //     let app_info2 = obj2.downcast_ref::<gio::AppInfo>().unwrap();
+    let selection_model = NoSelection::new(Some(&model));
 
-    //     app_info1
-    //         .name()
-    //         .to_lowercase()
-    //         .cmp(&app_info2.name().to_lowercase())
-    //         .into()
-    // });
-    // let sorted_model = gtk::SortListModel::new(Some(&model), Some(&sorter));
-    let selection_model = gtk::SingleSelection::new(Some(&model));
-
-    let list_view = gtk::ListView::new(Some(&selection_model), Some(&factory));
+    let list_view = ListView::new(Some(&selection_model), Some(&factory));
     // // Launch the application when an item of the list is activated
     list_view.connect_activate(move |list_view, position| {
         let model = list_view.model().unwrap();
@@ -85,8 +76,8 @@ fn build_ui(app: &gtk::Application) {
             .unwrap();
     });
 
-    let scrolled_window = gtk::ScrolledWindowBuilder::new()
-        .hscrollbar_policy(gtk::PolicyType::Never) // Disable horizontal scrolling
+    let scrolled_window = ScrolledWindowBuilder::new()
+        .hscrollbar_policy(PolicyType::Never) // Disable horizontal scrolling
         .min_content_width(360)
         .child(&list_view)
         .build();
