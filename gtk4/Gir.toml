@@ -263,7 +263,6 @@ ignore = [
     "Gtk.CClosureExpression", # not useful for rust
     "Gtk.CellAreaClass", # manual with subclassing
     "Gtk.CustomLayout", # subclass LayoutManager if you need a custom layout.
-    "Gtk.ParamSpecExpression",
     "Gtk.WidgetClass", # manual with subclassing
 ]
 
@@ -359,6 +358,7 @@ manual = [
     "Gtk.ObjectExpression",
     "Gtk.PadActionEntry",
     "Gtk.PageRange",
+    "Gtk.ParamSpecExpression",
     "Gtk.PropertyExpression",
     "Gtk.RecentData",
     "Gtk.Requisition",
