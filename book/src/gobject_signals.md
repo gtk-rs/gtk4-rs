@@ -32,6 +32,10 @@ First we override the necessary methods in `ObjectImpl`.
 
 ```rust,no_run
 {{#rustdoc_include ../listings/gobject_signals/3/custom_button/imp.rs:object_impl}}
+
+# // Please ignore this line
+# // It is only there to make rustdoc happy
+# fn main() {}
 ```
 
 The `signal` method is responsible for defining a set of signals.
@@ -47,6 +51,10 @@ After we did that, we set `number` back to 0.
 
 ```rust,no_run
 {{#rustdoc_include ../listings/gobject_signals/3/custom_button/imp.rs:button_impl}}
+
+# // Please ignore this line
+# // It is only there to make rustdoc happy
+# fn main() {}
 ```
 
 If we now press on the button, the number of its label increases until it reaches `MAX_NUMBER`.
@@ -77,6 +85,10 @@ At `clicked` we can now stop setting the property after we emitted "max-number-r
 
 ```rust,no_run
 {{#rustdoc_include ../listings/gobject_signals/4/custom_button/imp.rs:button_impl}}
+
+# // Please ignore this line
+# // It is only there to make rustdoc happy
+# fn main() {}
 ```
 
 Please also note, that we borrowed our number and bound it to `borrowed_number`.
