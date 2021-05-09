@@ -16,10 +16,8 @@ version = "0.1.0"
 name = "gtk4"
 
 [features]
-dox = ["gdk/dox", "gsk/dox", "ffi/dox", "x11", "wayland"]
+dox = ["gdk/dox", "gsk/dox", "ffi/dox"]
 v4_2 = ["ffi/v4_2", "gdk/v4_2", "gsk/v4_2"]
-wayland = ["gdk-wayland"]
-x11 = ["gdk-x11"]
 
 [package.metadata.docs.rs]
 features = ["dox"]
@@ -32,8 +30,6 @@ field-offset = "0.3"
 futures-channel = "0.3"
 gdk = {package = "gdk4", path = "../gdk4"}
 gdk-pixbuf = {git = "https://github.com/gtk-rs/gtk-rs"}
-gdk-wayland = {package = "gdk4-wayland", path = "../gdk4-wayland", optional = true}
-gdk-x11 = {package = "gdk4-x11", path = "../gdk4-x11", optional = true}
 gio = {git = "https://github.com/gtk-rs/gtk-rs", features = ["v2_66"]}
 glib = {git = "https://github.com/gtk-rs/gtk-rs", features = ["v2_66"]}
 graphene = {package = "graphene-rs", git = "https://github.com/gtk-rs/gtk-rs"}
