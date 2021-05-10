@@ -59,10 +59,6 @@ path = "gobject_signals/2/main.rs"
 name = "gobject_signals_3"
 path = "gobject_signals/3/main.rs"
 
-[[bin]]
-name = "gobject_signals_4"
-path = "gobject_signals/4/main.rs"
-
 # gobject_subclassing
 [[bin]]
 name = "gobject_subclassing_1"
