@@ -29,7 +29,7 @@ Next, we describe our custom GObject.
 {{#rustdoc_include ../listings/gobject_subclassing/1/custom_button/mod.rs}}
 
 # // Please ignore this line
-# // It is only there to make rustdoc happy
+# // It is only there to make mdbook happy
 # fn main() {}
 ```
 
@@ -58,7 +58,7 @@ So let us make it a bit more interesting!
 {{#rustdoc_include ../listings/gobject_subclassing/2/custom_button/imp.rs}}
 
 # // Please ignore this line
-# // It is only there to make rustdoc happy
+# // It is only there to make mdbook happy
 # fn main() {}
 ```
 We override `constructed` in `ObjectImpl` so that the label of the button initializes with `number`.

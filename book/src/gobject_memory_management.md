@@ -1,7 +1,6 @@
 # Memory management of GObjects
 
 A GObject (or `glib::Object` in Rust terms) is a reference-counted, mutable object.
-It therefore behaves very similar to `Rc<RefCell<T>>`.
 Let us see in a set of real life examples which consequences this has.
 
 ```rust ,no_run,compile_fail
@@ -92,9 +91,7 @@ Yes! That is exactly what the [`Rc`](https://doc.rust-lang.org/std/rc/struct.Rc.
 The `Rc` counts the number of strong references created via `Clone::clone` and released via `Drop::drop`, and only deallocates it when this number drops to zero.
 We call every object containing a strong reference a shared owner of the value.
 If we want to modify the content of our [`Rc`](https://doc.rust-lang.org/std/rc/struct.Rc.html),
-we can use the [`RefCell`](https://doc.rust-lang.org/std/cell/struct.RefCell.html) type.
-`RefCell` then checks Rust's borrow rules during run time, namely that there can only be one mutable borrow at a time or multiple immutable borrows.
-`RefCell` panics if these rules are violated.
+we can use the [`Cell`](https://doc.rust-lang.org/std/cell/struct.Cell.html) type.[^1]
 
 <span class="filename">Filename: listings/gobject_memory_management/1/main.rs</span>
 
@@ -111,7 +108,7 @@ We can improve that by using the `glib::clone!` macro.
 {{#rustdoc_include ../listings/gobject_memory_management/2/main.rs:callback}}
 ```
 
-Just like `Rc<RefCell<T>>`, GObjects are reference-counted and mutable.
+Just like `Rc<Cell<T>>`, GObjects are reference-counted and mutable.
 Therefore, we can pass the buttons the same way to the closure as we did with `number`.
 
 <span class="filename">Filename: listings/gobject_memory_management/3/main.rs</span>
@@ -128,7 +125,7 @@ Yes we did: [reference cycles](https://doc.rust-lang.org/book/ch15-06-reference-
 A strong reference keeps the referenced value from being deallocated.
 If this chain leads to a circle, none of the values in this cycle ever get deallocated.
 With weak references we can break this cycle, because they do not keep their value alive but instead provide a way to retrieve a strong reference if the value is still alive.
-Since we want our apps to free unneeded memory, we should use weak references for the buttons instead[^1].
+Since we want our apps to free unneeded memory, we should use weak references for the buttons instead[^2].
 
 <span class="filename">Filename: listings/gobject_memory_management/4/main.rs</span>
 
@@ -177,5 +174,8 @@ Because of that, `application` holds a strong reference to `window`.
 As long as you use weak references whenever possible you will find it perfectly doable to avoid memory cycles within your application.
 Then, you can fully rely on GTK to properly manage the memory of GObjects you pass to it.
 
-[^1]: In this simple example, GTK actually resolves the reference cycle on its own once you close the window.
+[^1]: Please be aware that `Cell` is only a suitable type for [`Copy`](https://doc.rust-lang.org/core/marker/trait.Copy.html) types.
+For other types, [`RefCell`](https://doc.rust-lang.org/std/cell/struct.RefCell.html) is the way to go.
+
+[^2]: In this simple example, GTK actually resolves the reference cycle on its own once you close the window.
 However, the general point to avoid strong references whenever possible remains valid.

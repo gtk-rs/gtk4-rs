@@ -1,4 +1,4 @@
-use std::{cell::RefCell, rc::Rc};
+use std::{cell::Cell, rc::Rc};
 
 use glib::clone;
 use gtk::prelude::*;
@@ -40,20 +40,20 @@ fn build_ui(application: &Application) {
         .build();
 
     // Reference-counted object with inner mutability
-    let number = Rc::new(RefCell::new(0));
+    let number = Rc::new(Cell::new(0));
 
     // ANCHOR: callback
     // Connect callbacks
     // When a button is clicked, `number` and label of the other button will be changed
     button_increase.connect_clicked(clone!(@strong number, @weak button_decrease =>
         move |_| {
-            *number.borrow_mut() += 1;
-            button_decrease.set_label(&number.borrow().to_string());
+            number.set(number.get() + 1);
+            button_decrease.set_label(&number.get().to_string());
     }));
     button_decrease.connect_clicked(clone!(@weak button_increase =>
         move |_| {
-            *number.borrow_mut() -= 1;
-            button_increase.set_label(&number.borrow().to_string());
+            number.set(number.get() - 1);
+            button_increase.set_label(&number.get().to_string());
     }));
     // ANCHOR_END: callback
 

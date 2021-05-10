@@ -5,12 +5,12 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 
 use once_cell::sync::Lazy;
-use std::cell::RefCell;
+use std::cell::Cell;
 
 // Object holding the state
 #[derive(Default)]
 pub struct CustomButton {
-    number: RefCell<i32>,
+    number: Cell<i32>,
 }
 
 // The central trait for subclassing a GObject
@@ -74,7 +74,7 @@ impl ObjectImpl for CustomButton {
 
     fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
         match pspec.name() {
-            "number" => self.number.borrow().to_value(),
+            "number" => self.number.get().to_value(),
             _ => unimplemented!(),
         }
     }
@@ -98,13 +98,12 @@ static MAX_NUMBER: i32 = 8;
 // Trait shared by all buttons
 impl ButtonImpl for CustomButton {
     fn clicked(&self, button: &Self::Type) {
-        let incremented_number = *self.number.borrow() + 1;
+        let incremented_number = self.number.get() + 1;
         // If `number` reached `MAX_NUMBER`,
         // emit "max-number-reached" signal and set `number` back to 0
         if incremented_number == MAX_NUMBER {
-            let borrowed_number = self.number.borrow();
             button
-                .emit_by_name("max-number-reached", &[&(*borrowed_number + 1)])
+                .emit_by_name("max-number-reached", &[&(self.number.get() + 1)])
                 .unwrap();
             // Only here `borrowed_number` gets dropped
         } else {
