@@ -34,7 +34,7 @@ First we override the necessary methods in `ObjectImpl`.
 {{#rustdoc_include ../listings/gobject_signals/3/custom_button/imp.rs:object_impl}}
 
 # // Please ignore this line
-# // It is only there to make rustdoc happy
+# // It is only there to make mdbook happy
 # fn main() {}
 ```
 
@@ -53,7 +53,7 @@ After we did that, we set `number` back to 0.
 {{#rustdoc_include ../listings/gobject_signals/3/custom_button/imp.rs:button_impl}}
 
 # // Please ignore this line
-# // It is only there to make rustdoc happy
+# // It is only there to make mdbook happy
 # fn main() {}
 ```
 
@@ -66,47 +66,6 @@ Whenever we now receive the "max-number-reached" signal, the accompanying number
 ```rust,no_run
 {{#rustdoc_include ../listings/gobject_signals/3/main.rs:signal_handling}}
 ```
-
-Because the signal handlers can be at completely different places of the code than the emitters, we have to be extra careful when dealing with RefCells and Mutexes.
-Let us modify our example a bit to see why.
-
-We could for example decide that after the maximum number has been reached, we reset the number at the signal handler.
-We still have our "number" property, so this can be easily done.
-
-<span class="filename">Filename: listings/gobject_signals/4/main.rs</span>
-
-```rust,no_run
-{{#rustdoc_include ../listings/gobject_signals/4/main.rs:signal_handling}}
-```
-
-At `clicked` we can now stop setting the property after we emitted "max-number-reached".
-
-<span class="filename">Filename: listings/gobject_signals/4/custom_button/imp.rs</span>
-
-```rust,no_run
-{{#rustdoc_include ../listings/gobject_signals/4/custom_button/imp.rs:button_impl}}
-
-# // Please ignore this line
-# // It is only there to make rustdoc happy
-# fn main() {}
-```
-
-Please also note, that we borrowed our number and bound it to `borrowed_number`.
-While it does not make much sense in our case, it is quite usual to bind mutex guards or borrows of RefCells to variables.
-At first glance, everything looks okay.
-We immutably borrow it, read it once and then immediately drop it.
-However, if we run it and press the button until it reaches `MAX_NUMBER`, our application panics with:
-
-```console
-thread 'main' panicked at 'already borrowed: BorrowMutError'
-```
-
-So what happened?
-The emitted signal activated the signal handler, which then tried to set "number".
-In order to do that, it would need to borrow `number` mutably.
-However, `borrowed_number` is still in scope which violates the "either one mutable OR (unlimited) immutable borrows" rule.
-The reason why this is so easily overlooked, is because the problem is not local.
-Luckily, similar situations can be easily avoided by taking care that no RefCell is borrowed or Mutex is locked while emitting signals.
 
 You now know how to connect to every kind of signal and how to create your own.
 Custom signals are especially useful, if you want to notify consumers of your GObject that a certain event occurred.

@@ -22,7 +22,7 @@ First, we create one and add methods for getting and setting the window state.
 {{#rustdoc_include ../listings/saving_window_state/1/custom_window/mod.rs:mod}}
 
 # // Please ignore this line
-# // It is only there to make rustdoc happy
+# // It is only there to make mdbook happy
 # fn main() {}
 ```
 
@@ -35,7 +35,7 @@ We also overload the `constructed` and `close_request` methods, where we load or
 {{#rustdoc_include ../listings/saving_window_state/1/custom_window/imp.rs:imp}}
 
 # // Please ignore this line
-# // It is only there to make rustdoc happy
+# // It is only there to make mdbook happy
 # fn main() {}
 ```
 

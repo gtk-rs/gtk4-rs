@@ -4,12 +4,12 @@ use gtk::prelude::*;
 use gtk::subclass::prelude::*;
 use once_cell::sync::Lazy;
 
-use std::cell::RefCell;
+use std::cell::Cell;
 
 // Object holding the state
 #[derive(Default)]
 pub struct IntegerObject {
-    number: RefCell<i32>,
+    number: Cell<i32>,
 }
 
 // The central trait for subclassing a GObject
@@ -57,7 +57,7 @@ impl ObjectImpl for IntegerObject {
 
     fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
         match pspec.name() {
-            "number" => self.number.borrow().to_value(),
+            "number" => self.number.get().to_value(),
             _ => unimplemented!(),
         }
     }

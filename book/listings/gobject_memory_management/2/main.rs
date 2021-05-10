@@ -2,7 +2,7 @@ use glib::clone;
 use gtk::prelude::*;
 use gtk::{self, ApplicationWindow, Button, Orientation};
 use gtk::{glib, Application};
-use std::{cell::RefCell, rc::Rc};
+use std::{cell::Cell, rc::Rc};
 fn main() {
     // Create a new application
     let app = Application::new(Some("org.gtk.example"), Default::default());
@@ -35,15 +35,15 @@ fn build_ui(application: &Application) {
         .build();
 
     // Reference-counted object with inner mutability
-    let number = Rc::new(RefCell::new(0));
+    let number = Rc::new(Cell::new(0));
     // Connect callbacks
     // When a button is clicked, `number` will be changed
     // ANCHOR: callback
     button_increase.connect_clicked(clone!(@strong number => move |_| {
-        *number.borrow_mut() += 1;
+        number.set(number.get() + 1);
     }));
     button_decrease.connect_clicked(move |_| {
-        *number.borrow_mut() -= 1;
+        number.set(number.get() - 1);
     });
     // ANCHOR_END: callback
 
