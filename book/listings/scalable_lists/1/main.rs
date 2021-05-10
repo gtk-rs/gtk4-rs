@@ -1,7 +1,5 @@
 mod integer_object;
 
-use glib::BindingFlags;
-use gtk::glib;
 use gtk::prelude::*;
 use gtk::{
     gio, Application, ApplicationWindowBuilder, Label, ListView, NoSelection, PolicyType,
@@ -40,41 +38,34 @@ fn build_ui(application: &Application) {
 
     // The bind stage is used for "binding" the data to the created widgets on the "setup" stage
     factory.connect_bind(move |_, list_item| {
+        // Get `IntegerObject` from `ListItem`
         let integer_object = list_item
             .item()
-            .unwrap()
+            .expect("The item has to exist.")
             .downcast::<IntegerObject>()
-            .unwrap();
+            .expect("The item has to be an `IntegerObject`");
 
-        let label = list_item.child().unwrap().downcast::<Label>().unwrap();
-        integer_object
-            .bind_property("number", &label, "label")
-            .flags(BindingFlags::SYNC_CREATE)
-            .build();
+        // Get `i32` from `IntegerObject`
+        let number = integer_object
+            .property("number")
+            .expect("The property needs to exist and be readable.")
+            .get::<i32>()
+            .expect("The property needs to be of type `bool`.");
+
+        // Get `Label` from `ListItem`
+        let label = list_item
+            .child()
+            .expect("The child has to exist.")
+            .downcast::<Label>()
+            .expect("The child has to be a `Label`");
+
+        // Setting "label" to "number"
+        label.set_label(&number.to_string());
     });
 
     let selection_model = NoSelection::new(Some(&model));
 
     let list_view = ListView::new(Some(&selection_model), Some(&factory));
-    // // Launch the application when an item of the list is activated
-    list_view.connect_activate(move |list_view, position| {
-        let model = list_view.model().unwrap();
-        let integer_object = model
-            .item(position)
-            .unwrap()
-            .downcast::<IntegerObject>()
-            .unwrap();
-
-        let old_number = integer_object
-            .property("number")
-            .expect("The property needs to exist and be readable.")
-            .get::<i32>()
-            .expect("The property needs to be of type `i32`.");
-
-        integer_object
-            .set_property("number", old_number + 1)
-            .unwrap();
-    });
 
     let scrolled_window = ScrolledWindowBuilder::new()
         .hscrollbar_policy(PolicyType::Never) // Disable horizontal scrolling
