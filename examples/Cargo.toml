@@ -93,6 +93,10 @@ name = "list_view_apps_launcher"
 path = "list_view_apps_launcher/main.rs"
 
 [[bin]]
+name = "search_bar"
+path = "search_bar/main.rs"
+
+[[bin]]
 name = "text_viewer"
 path = "text_viewer/main.rs"
 

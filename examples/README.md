@@ -21,5 +21,6 @@ Consists of various examples to get familiar with writing GTK applications using
 - [Grid Packing](./grid_packing)
 - [GtkBuilder example](./gtk_builder/)
 - [ListView: Applications Launcher](./list_view_apps_launcher/)
+- [Search Bar](./search_bar/)
 - [TextView](./text_viewer/)
 - [Video Player](./video_player/)
