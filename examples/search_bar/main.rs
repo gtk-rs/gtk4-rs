@@ -25,7 +25,7 @@ fn build_ui(application: &gtk::Application) {
     entry.set_hexpand(true);
     search_box.append(&entry);
 
-    let label = gtk::Label::new(None);
+    let label = gtk::Label::new(Some("Type to start search"));
     label.set_hexpand(true);
     search_box.append(&label);
 
