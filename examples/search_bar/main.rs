@@ -1,4 +1,5 @@
 use gtk::prelude::*;
+use gtk::glib::clone;
 
 fn main() {
     let application = gtk::Application::new(
@@ -19,7 +20,7 @@ fn build_ui(application: &gtk::Application) {
     window.set_child(Some(&search_bar));
     search_bar.set_key_capture_widget(Some(&window));
 
-    let search_box = gtk::Box::new(gtk::Orientation::Horizontal, 6);
+    let search_box = gtk::Box::new(gtk::Orientation::Vertical, 6);
     search_bar.set_child(Some(&search_box));
 
     let entry = gtk::SearchEntry::new();
@@ -27,8 +28,13 @@ fn build_ui(application: &gtk::Application) {
     search_box.append(&entry);
     search_bar.connect_entry(&entry);
 
-    let menu_button = gtk::MenuButton::new();
-    search_box.append(&menu_button);
+    let label = gtk::Label::new(None);
+    label.set_hexpand(true);
+    search_box.append(&label);
+
+    entry.connect_search_changed(clone!(@strong entry => move |_| {
+        label.set_text(&entry.text());
+    }));
 
     window.show();
 }
