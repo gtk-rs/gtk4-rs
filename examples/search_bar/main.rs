@@ -12,6 +12,7 @@ fn main() {
 fn build_ui(application: &gtk::Application) {
     let window = gtk::ApplicationWindow::new(application);
     window.set_title(Some("Search Bar"));
+    window.set_default_size(400, 400);
 
     let search_bar = gtk::SearchBar::new();
     search_bar.set_valign(gtk::Align::Start);
