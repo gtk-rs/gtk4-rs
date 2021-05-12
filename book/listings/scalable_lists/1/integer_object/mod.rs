@@ -4,6 +4,7 @@ use glib::Object;
 use gtk::glib;
 use gtk::prelude::*;
 
+// ANCHOR: integer_object
 glib::wrapper! {
     pub struct IntegerObject(ObjectSubclass<imp::IntegerObject>);
 }
@@ -19,6 +20,7 @@ impl IntegerObject {
         integer_object
     }
 }
+// ANCHOR_END: integer_object
 
 impl Default for IntegerObject {
     fn default() -> Self {

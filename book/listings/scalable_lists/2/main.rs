@@ -33,7 +33,6 @@ fn build_ui(app: &gtk::Application) {
     }
 
     let factory = SignalListItemFactory::new();
-    // the "setup" stage is used for creating the widgets
     factory.connect_setup(move |_, list_item| {
         // Create label
         let label = Label::new(None);
