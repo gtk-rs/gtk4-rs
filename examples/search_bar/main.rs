@@ -40,7 +40,10 @@ fn build_ui(application: &gtk::Application) {
     search_bar.set_child(Some(&entry));
 
     let label = gtk::Label::new(Some("Type to start search"));
-    label.set_hexpand(true);
+    label.set_vexpand(true);
+    label.set_halign(gtk::Align::Center);
+    label.set_valign(gtk::Align::Center);
+    label.add_css_class("large-title");
     container.append(&label);
 
     entry.connect_search_started(clone!(@weak search_button => move |_| {
