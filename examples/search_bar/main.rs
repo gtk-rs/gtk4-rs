@@ -29,6 +29,9 @@ fn build_ui(application: &gtk::Application) {
     container.append(&search_bar);
     search_bar.set_valign(gtk::Align::Start);
     search_bar.set_key_capture_widget(Some(&window));
+    search_button
+        .bind_property("active", &search_bar, "search-mode-enabled")
+        .build();
 
     let entry = gtk::SearchEntry::new();
     entry.set_hexpand(true);
