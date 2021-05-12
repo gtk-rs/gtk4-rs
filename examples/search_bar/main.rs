@@ -1,4 +1,5 @@
 use gtk::prelude::*;
+use gtk::glib::clone;
 
 fn main() {
     let application = gtk::Application::new(
@@ -21,29 +22,38 @@ fn build_ui(application: &gtk::Application) {
     search_button.set_icon_name("system-search-symbolic");
     header_bar.pack_end(&search_button);
 
-    let search_bar = gtk::SearchBar::new();
-    search_bar.set_valign(gtk::Align::Start);
-    window.set_child(Some(&search_bar));
+    let window_box = gtk::Box::new(gtk::Orientation::Vertical, 6);
+    window.set_child(Some(&window_box));
 
-    let search_box = gtk::Box::new(gtk::Orientation::Vertical, 6);
-    search_bar.set_child(Some(&search_box));
+    let search_bar = gtk::SearchBar::new();
+    window_box.append(&search_bar);
+    search_bar.set_valign(gtk::Align::Start);
+    search_bar.set_key_capture_widget(Some(&window));
 
     let entry = gtk::SearchEntry::new();
     entry.set_hexpand(true);
-    search_box.append(&entry);
+    search_bar.set_child(Some(&entry));
     search_bar.connect_entry(&entry);
 
     let label = gtk::Label::new(Some("Type to start search"));
     label.set_hexpand(true);
-    search_box.append(&label);
+    window_box.append(&label);
 
-    search_button.connect_toggled(move |_| {
+    search_button.connect_toggled(clone!(@weak search_bar => move |_| {
         if search_bar.is_search_mode() {
             search_bar.set_search_mode_enabled(false);
         } else {
             search_bar.set_search_mode_enabled(true);
         };
-    });
+    }));
+
+    entry.connect_search_started(clone!(@weak search_button => move |_| {
+        search_button.set_active(true);
+    }));
+
+    entry.connect_stop_search(clone!(@weak search_button => move |_| {
+        search_button.set_active(false);
+    }));
 
     entry.connect_search_changed(move |entry| {
         label.set_text(&entry.text());
