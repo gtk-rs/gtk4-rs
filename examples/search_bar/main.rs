@@ -54,13 +54,13 @@ fn build_ui(application: &gtk::Application) {
         search_button.set_active(false);
     }));
 
-    entry.connect_search_changed(move |_| {
-        if &entry.text() != "" {
+    entry.connect_search_changed(clone!(@weak label => move |entry| {
+        if entry.text() != "" {
             label.set_text(&entry.text());
         } else {
-            label.set_text("Type to start search")
-        };
-    });
+            label.set_text("Type to start search");
+        }
+    }));
 
     window.show();
 }
