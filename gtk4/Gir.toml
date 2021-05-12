@@ -181,7 +181,6 @@ generate = [
     "Gtk.ScrollablePolicy",
     "Gtk.ScrollStep",
     "Gtk.ScrollType",
-    "Gtk.SearchBar",
     "Gtk.SearchEntry",
     "Gtk.SelectionFilterModel",
     "Gtk.SelectionMode",
@@ -263,7 +262,6 @@ ignore = [
     "Gtk.CClosureExpression", # not useful for rust
     "Gtk.CellAreaClass", # manual with subclassing
     "Gtk.CustomLayout", # subclass LayoutManager if you need a custom layout.
-    "Gtk.ParamSpecExpression",
     "Gtk.WidgetClass", # manual with subclassing
 ]
 
@@ -359,6 +357,7 @@ manual = [
     "Gtk.ObjectExpression",
     "Gtk.PadActionEntry",
     "Gtk.PageRange",
+    "Gtk.ParamSpecExpression",
     "Gtk.PropertyExpression",
     "Gtk.RecentData",
     "Gtk.Requisition",
@@ -1712,6 +1711,13 @@ status = "generate"
     name = "get_vscrollbar"
         [object.function.return]
         nullable = true
+
+[[object]]
+name = "Gtk.SearchBar"
+status = "generate"
+    [[object.property]]
+    name = "search-mode-enabled"
+    generate = ["notify"] # the prop has a getter/setter already
 
 [[object]]
 name = "Gtk.ShortcutsSection"

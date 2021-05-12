@@ -114,32 +114,6 @@ impl SearchBar {
         }
     }
 
-    #[doc(alias = "search-mode-enabled")]
-    pub fn is_search_mode_enabled(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"search-mode-enabled\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `search-mode-enabled` getter")
-        }
-    }
-
-    #[doc(alias = "search-mode-enabled")]
-    pub fn set_search_mode_enabled(&self, search_mode_enabled: bool) {
-        unsafe {
-            glib::gobject_ffi::g_object_set_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"search-mode-enabled\0".as_ptr() as *const _,
-                search_mode_enabled.to_value().to_glib_none().0,
-            );
-        }
-    }
-
     #[doc(alias = "child")]
     pub fn connect_child_notify<F: Fn(&SearchBar) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&SearchBar) + 'static>(
