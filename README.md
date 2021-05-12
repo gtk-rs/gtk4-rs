@@ -10,13 +10,13 @@ A group of crates that aims to provide complete [GTK](https://gtk.org/) 4 bindin
 
 The GTK 4 crates also depends on other libraries part of the platform like:
 
-- [GLib](https://github.com/gtk-rs/gtk-rs/tree/master/glib)
-- [Gio](https://github.com/gtk-rs/gtk-rs/tree/master/gio)
-- [Graphene](https://github.com/gtk-rs/gtk-rs/tree/master/graphene)
-- [Cairo](https://github.com/gtk-rs/gtk-rs/tree/master/cairo)
-- [Pango](https://github.com/gtk-rs/gtk-rs/tree/master/pango)
+- [GLib](https://github.com/gtk-rs/gtk-rs-core/tree/master/glib)
+- [Gio](https://github.com/gtk-rs/gtk-rs-core/tree/master/gio)
+- [Graphene](https://github.com/gtk-rs/gtk-rs-core/tree/master/graphene)
+- [Cairo](https://github.com/gtk-rs/gtk-rs-core/tree/master/cairo)
+- [Pango](https://github.com/gtk-rs/gtk-rs-core/tree/master/pango)
 
-Those are common with the GTK 3 and GStreamer bindings and are part of the [gtk-rs](https://github.com/gtk-rs/gtk-rs) repository.
+Those are common with the GTK 3 and GStreamer bindings and are part of the [gtk-rs](https://github.com/gtk-rs/gtk-rs-core) repository.
 
 For more information about each crate, please refer to their `README.md` file in their directory.
 
@@ -37,7 +37,7 @@ The `gtk4-rs` repository contains Rust crates for GTK 4. However there is a larg
 libraries have Rust bindings based on the tooling included in `gtk-rs`.
 Of particular note:
 
-* [gtk-rs](https://github.com/gtk-rs/gtk-rs) - bindings for some of the core libraries such as `glib`, `gio`, `pango`, `graphene`
+* [gtk-rs](https://github.com/gtk-rs/gtk-rs-core) - bindings for some of the core libraries such as `glib`, `gio`, `pango`, `graphene`
 * [gstreamer-rs](https://gitlab.freedesktop.org/gstreamer/gstreamer-rs) - bindings for the GStreamer media framework
 
 Additionally, Rust bindings for various libraries are hosted on

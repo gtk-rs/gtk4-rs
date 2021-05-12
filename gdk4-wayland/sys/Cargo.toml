@@ -26,7 +26,7 @@ dox = []
 libc = "0.2"
 
 [dependencies.glib-sys]
-git = "https://github.com/gtk-rs/gtk-rs.git"
+git = "https://github.com/gtk-rs/gtk-rs-core.git"
 
 [build-dependencies]
 system-deps = "3"
