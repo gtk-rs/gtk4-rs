@@ -1,5 +1,5 @@
-use gtk::prelude::*;
 use gtk::glib::clone;
+use gtk::prelude::*;
 
 fn main() {
     let application = gtk::Application::new(
