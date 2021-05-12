@@ -1,8 +1,9 @@
 mod integer_object;
 
+use gtk::gio;
 use gtk::prelude::*;
 use gtk::{
-    gio, Application, ApplicationWindowBuilder, Label, ListView, NoSelection, PolicyType,
+    Application, ApplicationWindowBuilder, Label, ListView, NoSelection, PolicyType,
     ScrolledWindowBuilder, SignalListItemFactory,
 };
 use integer_object::IntegerObject;
@@ -23,20 +24,23 @@ fn build_ui(application: &Application) {
         .title("My GTK App")
         .build();
 
+    // ANCHOR: model
     let model = gio::ListStore::new(IntegerObject::static_type());
     for number in 0..1000 {
         let integer_object = IntegerObject::from_integer(number);
         model.append(&integer_object);
     }
+    // ANCHOR_END: model
 
+    // ANCHOR: factory_setup
     let factory = SignalListItemFactory::new();
-    // The "setup" stage is used for creating the widgets
     factory.connect_setup(move |_, list_item| {
         let label = Label::new(None);
         list_item.set_child(Some(&label));
     });
+    // ANCHOR_END: factory_setup
 
-    // The bind stage is used for "binding" the data to the created widgets on the "setup" stage
+    // ANCHOR: factory_bind
     factory.connect_bind(move |_, list_item| {
         // Get `IntegerObject` from `ListItem`
         let integer_object = list_item
@@ -62,17 +66,20 @@ fn build_ui(application: &Application) {
         // Setting "label" to "number"
         label.set_label(&number.to_string());
     });
+    // ANCHOR_END: factory_bind
 
+    // ANCHOR: selection_list
     let selection_model = NoSelection::new(Some(&model));
-
     let list_view = ListView::new(Some(&selection_model), Some(&factory));
+    // ANCHOR_END: selection_list
 
+    // ANCHOR: scrolled_window
     let scrolled_window = ScrolledWindowBuilder::new()
         .hscrollbar_policy(PolicyType::Never) // Disable horizontal scrolling
         .min_content_width(360)
         .child(&list_view)
         .build();
-
     window.set_child(Some(&scrolled_window));
     window.show();
+    // ANCHOR_END: scrolled_window
 }
