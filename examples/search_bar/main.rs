@@ -26,10 +26,13 @@ fn build_ui(application: &gtk::Application) {
     let container = gtk::Box::new(gtk::Orientation::Vertical, 6);
     window.set_child(Some(&container));
 
-    let search_bar = gtk::SearchBar::new();
+    let search_bar = gtk::SearchBarBuilder::new()
+        .valign(gtk::Align::Start)
+        .key_capture_widget(&window)
+        .build();
+
     container.append(&search_bar);
-    search_bar.set_valign(gtk::Align::Start);
-    search_bar.set_key_capture_widget(Some(&window));
+
     search_button
         .bind_property("active", &search_bar, "search-mode-enabled")
         .flags(glib::BindingFlags::SYNC_CREATE | glib::BindingFlags::BIDIRECTIONAL)
@@ -39,11 +42,14 @@ fn build_ui(application: &gtk::Application) {
     entry.set_hexpand(true);
     search_bar.set_child(Some(&entry));
 
-    let label = gtk::Label::new(Some("Type to start search"));
-    label.set_vexpand(true);
-    label.set_halign(gtk::Align::Center);
-    label.set_valign(gtk::Align::Center);
-    label.add_css_class("large-title");
+    let label = gtk::LabelBuilder::new()
+        .label("Type to start search")
+        .vexpand(true)
+        .halign(gtk::Align::Center)
+        .valign(gtk::Align::Center)
+        .css_classes(vec!("large-title".to_string()))
+        .build();
+
     container.append(&label);
 
     entry.connect_search_started(clone!(@weak search_button => move |_| {
