@@ -1,30 +1,29 @@
 mod integer_object;
 
-use glib::BindingFlags;
+use gtk::gio;
 use gtk::prelude::*;
-use gtk::{gio, glib};
 use gtk::{
-    Application, ApplicationWindowBuilder, Label, ListView, NoSelection, PolicyType,
+    ConstantExpression, Label, ListView, NoSelection, PolicyType, PropertyExpression,
     ScrolledWindowBuilder, SignalListItemFactory,
 };
 use integer_object::IntegerObject;
 
 fn main() {
-    // Create a new application
-    let app = Application::new(Some("org.gtk.example"), Default::default());
-    app.connect_activate(build_ui);
+    let application = gtk::Application::new(
+        Some("com.github.gtk-rs.examples.apps_launcher"),
+        Default::default(),
+    );
 
-    // Run the application
-    app.run();
+    application.connect_activate(build_ui);
+    application.run();
 }
 
-fn build_ui(application: &Application) {
-    // Create a window
-    let window = ApplicationWindowBuilder::new()
-        .application(application)
-        .title("My GTK App")
+fn build_ui(app: &gtk::Application) {
+    let window = gtk::ApplicationWindowBuilder::new()
         .default_width(600)
         .default_height(300)
+        .application(app)
+        .title("ListView: Applications Launcher")
         .build();
 
     let model = gio::ListStore::new(IntegerObject::static_type());
@@ -34,41 +33,34 @@ fn build_ui(application: &Application) {
     }
 
     let factory = SignalListItemFactory::new();
+    // ANCHOR: factory_setup
     factory.connect_setup(move |_, list_item| {
+        // Create label
         let label = Label::new(None);
         list_item.set_child(Some(&label));
+
+        // Create expressions describing `list_item->item->number`
+        let list_item_expression = ConstantExpression::new(list_item);
+        let integer_object_expression = PropertyExpression::new(
+            gtk::ListItem::static_type(),
+            Some(&list_item_expression),
+            "item",
+        );
+        let number_expression = PropertyExpression::new(
+            IntegerObject::static_type(),
+            Some(&integer_object_expression),
+            "number",
+        );
+
+        // Bind "number" to "label"
+        number_expression.bind(&label, "label", Some(&label));
     });
-
-    // ANCHOR: factory_bind
-    factory.connect_bind(move |_, list_item| {
-        // Get `IntegerObject` from `ListItem`
-        let integer_object = list_item
-            .item()
-            .expect("The item has to exist.")
-            .downcast::<IntegerObject>()
-            .expect("The item has to be an `IntegerObject`.");
-
-        // Get `Label` from `ListItem`
-        let label = list_item
-            .child()
-            .expect("The child has to exist.")
-            .downcast::<Label>()
-            .expect("The child has to be a `Label`.");
-
-        // Bind "label" to "number"
-        integer_object
-            .bind_property("number", &label, "label")
-            .flags(BindingFlags::SYNC_CREATE)
-            .build();
-    });
-    // ANCHOR_END: factory_bind
+    // ANCHOR_END: factory_setup
 
     let selection_model = NoSelection::new(Some(&model));
     let list_view = ListView::new(Some(&selection_model), Some(&factory));
 
-    // ANCHOR: list_view_activate
     list_view.connect_activate(move |list_view, position| {
-        // Get `IntegerObject` from model
         let model = list_view.model().unwrap();
         let integer_object = model
             .item(position)
@@ -76,19 +68,16 @@ fn build_ui(application: &Application) {
             .downcast::<IntegerObject>()
             .expect("The item has to be an `IntegerObject`.");
 
-        // Get "number" from `IntegerObject`
         let old_number = integer_object
             .property("number")
             .expect("The property needs to exist and be readable.")
             .get::<i32>()
             .expect("The property needs to be of type `i32`.");
 
-        // Increase "number" of `IntegerObject`
         integer_object
             .set_property("number", old_number + 1)
             .unwrap();
     });
-    // ANCHOR_END: list_view_activate
 
     let scrolled_window = ScrolledWindowBuilder::new()
         .hscrollbar_policy(PolicyType::Never) // Disable horizontal scrolling

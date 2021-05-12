@@ -121,6 +121,10 @@ path = "scalable_lists/1/main.rs"
 name = "scalable_lists_2"
 path = "scalable_lists/2/main.rs"
 
+[[bin]]
+name = "scalable_lists_3"
+path = "scalable_lists/3/main.rs"
+
 # settings
 [[bin]]
 name = "settings_1"
