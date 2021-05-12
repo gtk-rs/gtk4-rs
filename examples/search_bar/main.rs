@@ -1,4 +1,5 @@
-use gtk::glib::clone;
+use gtk::glib;
+use glib::clone;
 use gtk::prelude::*;
 
 fn main() {
@@ -31,6 +32,7 @@ fn build_ui(application: &gtk::Application) {
     search_bar.set_key_capture_widget(Some(&window));
     search_button
         .bind_property("active", &search_bar, "search-mode-enabled")
+        .flags(glib::BindingFlags::SYNC_CREATE | glib::BindingFlags::BIDIRECTIONAL)
         .build();
 
     let entry = gtk::SearchEntry::new();
@@ -41,14 +43,6 @@ fn build_ui(application: &gtk::Application) {
     label.set_hexpand(true);
     container.append(&label);
 
-    search_button.connect_toggled(clone!(@weak search_bar => move |_| {
-        if search_bar.is_search_mode() {
-            search_bar.set_search_mode(false);
-        } else {
-            search_bar.set_search_mode(true);
-        };
-    }));
-
     entry.connect_search_started(clone!(@weak search_button => move |_| {
         search_button.set_active(true);
     }));
@@ -58,7 +52,11 @@ fn build_ui(application: &gtk::Application) {
     }));
 
     entry.connect_search_changed(move |entry| {
-        label.set_text(&entry.text());
+        if &entry.text() != "" {
+            label.set_text(&entry.text());
+        } else {
+            label.set_text("Type to start search")
+        };
     });
 
     window.show();
