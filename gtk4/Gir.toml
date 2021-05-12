@@ -181,7 +181,6 @@ generate = [
     "Gtk.ScrollablePolicy",
     "Gtk.ScrollStep",
     "Gtk.ScrollType",
-    "Gtk.SearchBar",
     "Gtk.SearchEntry",
     "Gtk.SelectionFilterModel",
     "Gtk.SelectionMode",
@@ -1712,6 +1711,13 @@ status = "generate"
     name = "get_vscrollbar"
         [object.function.return]
         nullable = true
+
+[[object]]
+name = "Gtk.SearchBar"
+status = "generate"
+    [[object.property]]
+    name = "search-mode-enabled"
+    generate = ["notify"] # the prop has a getter/setter already
 
 [[object]]
 name = "Gtk.ShortcutsSection"
