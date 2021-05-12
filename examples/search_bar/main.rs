@@ -33,7 +33,6 @@ fn build_ui(application: &gtk::Application) {
     let entry = gtk::SearchEntry::new();
     entry.set_hexpand(true);
     search_bar.set_child(Some(&entry));
-    search_bar.connect_entry(&entry);
 
     let label = gtk::Label::new(Some("Type to start search"));
     label.set_hexpand(true);
