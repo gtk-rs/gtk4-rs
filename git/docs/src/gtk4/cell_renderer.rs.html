@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `gtk4/src/cell_renderer.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>cell_renderer.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
 <link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../gtk4/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
-                <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+                <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -116,7 +116,7 @@
 <span id="113">113</span>
 <span id="114">114</span>
 <span id="115">115</span>
-</pre><div class="example-wrap"><pre class="rust ">
+</pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">CellEditable</span>, <span class="ident">CellRenderer</span>, <span class="ident">CellRendererState</span>, <span class="ident">Widget</span>};
@@ -125,15 +125,15 @@
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CellRendererExtManual</span> {
     <span class="doccomment">/// Passes an activate event to the cell renderer for possible processing.</span>
-    <span class="doccomment">/// Some cell renderers may use events; for example, [`CellRendererToggle`](crate::CellRendererToggle)</span>
+    <span class="doccomment">/// Some cell renderers may use events; for example, [`crate::CellRendererToggle`]</span>
     <span class="doccomment">/// toggles when it gets a mouse click.</span>
     <span class="doccomment">/// ## `event`</span>
-    <span class="doccomment">/// a [`gdk::Event`](crate::gdk::Event)</span>
+    <span class="doccomment">/// a [`crate::gdk::Event`]</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// widget that received the event</span>
     <span class="doccomment">/// ## `path`</span>
     <span class="doccomment">/// widget-dependent string representation of the event location;</span>
-    <span class="doccomment">///  e.g. for [`TreeView`](crate::TreeView), a string representation of [`TreePath`](crate::TreePath)</span>
+    <span class="doccomment">///  e.g. for [`crate::TreeView`], a string representation of [`crate::TreePath`]</span>
     <span class="doccomment">/// ## `background_area`</span>
     <span class="doccomment">/// background area as passed to `gtk_cell_renderer_render()`</span>
     <span class="doccomment">/// ## `cell_area`</span>
@@ -155,15 +155,15 @@
         <span class="ident">flags</span>: <span class="ident">CellRendererState</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Starts editing the contents of this `self`, through a new [`CellEditable`](crate::CellEditable)</span>
-    <span class="doccomment">/// widget created by the [`CellRendererClass.start_editing`](crate::CellRendererClass.start_editing) virtual function.</span>
+    <span class="doccomment">/// Starts editing the contents of this `self`, through a new [`crate::CellEditable`]</span>
+    <span class="doccomment">/// widget created by the [`crate::CellRendererClass.start_editing`] virtual function.</span>
     <span class="doccomment">/// ## `event`</span>
-    <span class="doccomment">/// a [`gdk::Event`](crate::gdk::Event)</span>
+    <span class="doccomment">/// a [`crate::gdk::Event`]</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// widget that received the event</span>
     <span class="doccomment">/// ## `path`</span>
     <span class="doccomment">/// widget-dependent string representation of the event location;</span>
-    <span class="doccomment">///  e.g. for [`TreeView`](crate::TreeView), a string representation of [`TreePath`](crate::TreePath)</span>
+    <span class="doccomment">///  e.g. for [`crate::TreeView`], a string representation of [`crate::TreePath`]</span>
     <span class="doccomment">/// ## `background_area`</span>
     <span class="doccomment">/// background area as passed to `gtk_cell_renderer_render()`</span>
     <span class="doccomment">/// ## `cell_area`</span>
@@ -173,7 +173,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A new [`CellEditable`](crate::CellEditable) for editing this</span>
+    <span class="doccomment">/// A new [`crate::CellEditable`] for editing this</span>
     <span class="doccomment">///  `self`, or [`None`] if editing is not possible</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_renderer_start_editing&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">start_editing</span><span class="op">&lt;</span><span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">gdk::Event</span><span class="op">&gt;</span><span class="op">&gt;</span>(
