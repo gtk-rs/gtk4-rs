@@ -22,6 +22,8 @@ fn build_ui(application: &Application) {
     let window = ApplicationWindowBuilder::new()
         .application(application)
         .title("My GTK App")
+        .default_width(600)
+        .default_height(300)
         .build();
 
     // ANCHOR: model
@@ -47,21 +49,21 @@ fn build_ui(application: &Application) {
             .item()
             .expect("The item has to exist.")
             .downcast::<IntegerObject>()
-            .expect("The item has to be an `IntegerObject`");
+            .expect("The item has to be an `IntegerObject`.");
 
         // Get `i32` from `IntegerObject`
         let number = integer_object
             .property("number")
             .expect("The property needs to exist and be readable.")
             .get::<i32>()
-            .expect("The property needs to be of type `bool`.");
+            .expect("The property needs to be of type `i32`.");
 
         // Get `Label` from `ListItem`
         let label = list_item
             .child()
             .expect("The child has to exist.")
             .downcast::<Label>()
-            .expect("The child has to be a `Label`");
+            .expect("The child has to be a `Label`.");
 
         // Setting "label" to "number"
         label.set_label(&number.to_string());
