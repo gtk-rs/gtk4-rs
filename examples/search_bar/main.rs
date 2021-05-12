@@ -22,11 +22,11 @@ fn build_ui(application: &gtk::Application) {
     search_button.set_icon_name("system-search-symbolic");
     header_bar.pack_end(&search_button);
 
-    let window_box = gtk::Box::new(gtk::Orientation::Vertical, 6);
-    window.set_child(Some(&window_box));
+    let container = gtk::Box::new(gtk::Orientation::Vertical, 6);
+    window.set_child(Some(&container));
 
     let search_bar = gtk::SearchBar::new();
-    window_box.append(&search_bar);
+    container.append(&search_bar);
     search_bar.set_valign(gtk::Align::Start);
     search_bar.set_key_capture_widget(Some(&window));
 
@@ -36,13 +36,13 @@ fn build_ui(application: &gtk::Application) {
 
     let label = gtk::Label::new(Some("Type to start search"));
     label.set_hexpand(true);
-    window_box.append(&label);
+    container.append(&label);
 
     search_button.connect_toggled(clone!(@weak search_bar => move |_| {
         if search_bar.is_search_mode() {
-            search_bar.set_search_mode_enabled(false);
+            search_bar.set_search_mode(false);
         } else {
-            search_bar.set_search_mode_enabled(true);
+            search_bar.set_search_mode(true);
         };
     }));
 
