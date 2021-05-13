@@ -4,8 +4,8 @@ use glib::BindingFlags;
 use gtk::prelude::*;
 use gtk::{gio, glib};
 use gtk::{
-    Application, ApplicationWindowBuilder, Label, ListView, NoSelection, PolicyType,
-    ScrolledWindowBuilder, SignalListItemFactory,
+    Application, ApplicationWindowBuilder, Label, ListView, PolicyType, ScrolledWindowBuilder,
+    SignalListItemFactory, SingleSelection,
 };
 use integer_object::IntegerObject;
 
@@ -63,7 +63,7 @@ fn build_ui(application: &Application) {
     });
     // ANCHOR_END: factory_bind
 
-    let selection_model = NoSelection::new(Some(&model));
+    let selection_model = SingleSelection::new(Some(&model));
     let list_view = ListView::new(Some(&selection_model), Some(&factory));
 
     // ANCHOR: list_view_activate
@@ -76,17 +76,8 @@ fn build_ui(application: &Application) {
             .downcast::<IntegerObject>()
             .expect("The item has to be an `IntegerObject`.");
 
-        // Get "number" from `IntegerObject`
-        let old_number = integer_object
-            .property("number")
-            .expect("The property needs to exist and be readable.")
-            .get::<i32>()
-            .expect("The property needs to be of type `i32`.");
-
         // Increase "number" of `IntegerObject`
-        integer_object
-            .set_property("number", old_number + 1)
-            .unwrap();
+        integer_object.increase_number();
     });
     // ANCHOR_END: list_view_activate
 

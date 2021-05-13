@@ -54,8 +54,8 @@ In the "bind" step we bind the data in our model to the individual list items.
 {{#rustdoc_include ../listings/scalable_lists/1/main.rs:factory_bind}}
 ```
 
-We have do not need our items to be selectabele so we use [`NoSelection`](../docs/gtk4/struct.NoSelection.html).
-The other options would have been [`SingleSelection`](../docs/gtk4/struct.SingleSelection.html) and [`MultiSelection`](../docs/gtk4/struct.MultiSelection.html).
+We only one want single items to be selectable so we choose [`SingleSelection`](../docs/gtk4/struct.SingleSelection.html).
+The other options would have been [`MultiSelection`](../docs/gtk4/struct.MultiSelection.html) or [`NoSelection`](../docs/gtk4/struct.NoSelection.html).
 Then we pass the model and the factory to the [`ListView`](../git/docs/gtk4/struct.ListView.html).
 
 <span class="filename">Filename: listings/scalable_lists/1/main.rs</span>
@@ -77,7 +77,16 @@ We can now easily scroll through our long list of integers.
 <div style="text-align:center" width="20%"><img src="img/scalable_lists_demo_1.png"/></div>
 
 Let us see what else we can do.
-In order to interact with our `ListView`, we can connect to its "activate" signal.
+We might want to increase the number every time we activate its row.
+For that we can add the method `increase_number` to our `IntegerObject`.
+
+<span class="filename">Filename: listings/scalable_lists/2/integer_object/mod.rs</span>
+
+```rust,no_run
+{{#rustdoc_include ../listings/scalable_lists/2/integer_object/mod.rs:integer_object}}
+```
+
+In order to interact with our `ListView`, we connect to its "activate" signal.
 
 <span class="filename">Filename: listings/scalable_lists/2/main.rs</span>
 
@@ -110,3 +119,40 @@ Now let us see how the "setup" step now works.
 ```rust,no_run
 {{#rustdoc_include ../listings/scalable_lists/3/main.rs:factory_setup}}
 ```
+
+We still create a `Label` widget and set it as child of the `list_item`.
+An `Expression` provides a way to describe references to values.
+So when we we create a [`ConstantExpression`](../git/docs/gtk4/struct.ConstantExpression.html) of `list_item`, we create a reference to it.
+We then create a [`PropertyExpression`](../git/docs/gtk4/struct.PropertyExpression.html) to get a reference to the "item" property of `list_item`.
+With another `PropertyExpression` we get a reference to the "number" property of the "item" property of `list_item`.
+That already makes the first power of expressions obvious: it allows nested relationships.
+Finally, we bind "number" to "label" or in pseudo code: `list_item->item->number == label->label`.
+
+It is worth noting that at the "setup" stage there is no way of knowing which list item belongs to which label.
+Different list items will belong to the same label as we scroll through the list.
+And this is the power of expressions.
+We do not have to define a fixed relationship, the object and properties might not even exist yet.
+We just had to tell it to change the label whenever the number changes that belongs to it.
+That we way, we also do not face the problem that multiple labels are bound to the same number.
+
+Whenever we now activate a label, the number gets visibly changed.
+However, that is still not everything we can do.
+
+<span class="filename">Filename: listings/scalable_lists/4/main.rs</span>
+
+```rust,no_run
+{{#rustdoc_include ../listings/scalable_lists/4/main.rs:filter}}
+```
+
+<span class="filename">Filename: listings/scalable_lists/4/main.rs</span>
+
+```rust,no_run
+{{#rustdoc_include ../listings/scalable_lists/4/main.rs:sorter}}
+```
+
+<span class="filename">Filename: listings/scalable_lists/4/main.rs</span>
+
+```rust,no_run
+{{#rustdoc_include ../listings/scalable_lists/4/main.rs:activate}}
+```
+

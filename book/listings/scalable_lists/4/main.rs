@@ -1,7 +1,7 @@
 mod integer_object;
 
-use gtk::gio;
-use gtk::prelude::*;
+use gtk::{gio, CustomSorter, FilterChange, SorterChange};
+use gtk::{prelude::*, SortListModel};
 use gtk::{
     Application, ApplicationWindowBuilder, ConstantExpression, Label, ListView, PolicyType,
     PropertyExpression, ScrolledWindowBuilder, SignalListItemFactory, SingleSelection,
@@ -27,7 +27,7 @@ fn build_ui(application: &Application) {
         .build();
 
     let model = gio::ListStore::new(IntegerObject::static_type());
-    for number in 0..1000 {
+    for number in 0..1_000 {
         let integer_object = IntegerObject::from_integer(number);
         model.append(&integer_object);
     }
@@ -57,9 +57,48 @@ fn build_ui(application: &Application) {
     });
     // ANCHOR_END: factory_setup
 
-    let selection_model = SingleSelection::new(Some(&model));
+    // ANCHOR: filter
+    let filter = gtk::CustomFilter::new(move |obj| {
+        let integer_object = obj.downcast_ref::<IntegerObject>().unwrap();
+        let number = integer_object
+            .property("number")
+            .expect("The property needs to exist and be readable.")
+            .get::<i32>()
+            .expect("The property needs to be of type `i32`.");
+
+        // Only allow even numbers
+        number % 2 == 0
+    });
+    let filter_model = gtk::FilterListModel::new(Some(&model), Some(&filter));
+    // ANCHOR_END: filter
+
+    // ANCHOR: sorter
+    let sorter = CustomSorter::new(move |obj1, obj2| {
+        let integer_object_1 = obj1.downcast_ref::<IntegerObject>().unwrap();
+        let integer_object_2 = obj2.downcast_ref::<IntegerObject>().unwrap();
+
+        let number_1 = integer_object_1
+            .property("number")
+            .expect("The property needs to exist and be readable.")
+            .get::<i32>()
+            .expect("The property needs to be of type `i32`.");
+
+        let number_2 = integer_object_2
+            .property("number")
+            .expect("The property needs to exist and be readable.")
+            .get::<i32>()
+            .expect("The property needs to be of type `i32`.");
+
+        // Reverse sorting order, large numbers come first
+        number_2.cmp(&number_1).into()
+    });
+    let sort_model = SortListModel::new(Some(&filter_model), Some(&sorter));
+    // ANCHOR_END: sorter
+
+    let selection_model = SingleSelection::new(Some(&sort_model));
     let list_view = ListView::new(Some(&selection_model), Some(&factory));
 
+    // ANCHOR: activate
     list_view.connect_activate(move |list_view, position| {
         // Get `IntegerObject` from model
         let model = list_view.model().unwrap();
@@ -71,7 +110,12 @@ fn build_ui(application: &Application) {
 
         // Increase "number" of `IntegerObject`
         integer_object.increase_number();
+
+        // Notify that the filter and sorter has been changed
+        filter.changed(FilterChange::Different);
+        sorter.changed(SorterChange::Different);
     });
+    // ANCHOR_END: activate
 
     let scrolled_window = ScrolledWindowBuilder::new()
         .hscrollbar_policy(PolicyType::Never) // Disable horizontal scrolling
