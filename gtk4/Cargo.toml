@@ -26,7 +26,7 @@ features = ["dox"]
 bitflags = "1.0"
 cairo-rs = {git = "https://github.com/gtk-rs/gtk-rs-core"}
 ffi = {package = "gtk4-sys", path = "./sys"}
-field-offset = "0.3"
+field-offset = "0.3.4"
 futures-channel = "0.3"
 gdk = {package = "gdk4", path = "../gdk4"}
 gdk-pixbuf = {git = "https://github.com/gtk-rs/gtk-rs-core"}
