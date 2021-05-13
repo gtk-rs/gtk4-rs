@@ -4,11 +4,11 @@ use glib::Object;
 use gtk::glib;
 use gtk::prelude::*;
 
-// ANCHOR: integer_object
 glib::wrapper! {
     pub struct IntegerObject(ObjectSubclass<imp::IntegerObject>);
 }
 
+// ANCHOR: integer_object
 impl IntegerObject {
     pub fn new() -> Self {
         Object::new(&[]).expect("Failed to create IntegerObject")
@@ -18,6 +18,16 @@ impl IntegerObject {
         let integer_object = Self::new();
         integer_object.set_property("number", number).unwrap();
         integer_object
+    }
+
+    pub fn increase_number(self) {
+        let old_number = self
+            .property("number")
+            .expect("The property needs to exist and be readable.")
+            .get::<i32>()
+            .expect("The property needs to be of type `i32`.");
+
+        self.set_property("number", old_number + 1).unwrap();
     }
 }
 // ANCHOR_END: integer_object

@@ -61,9 +61,5 @@ impl ObjectImpl for IntegerObject {
             _ => unimplemented!(),
         }
     }
-
-    fn constructed(&self, obj: &Self::Type) {
-        self.parent_constructed(obj);
-    }
 }
 // ANCHOR_END: object_impl
