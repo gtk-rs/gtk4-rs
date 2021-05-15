@@ -16,7 +16,7 @@ The GTK 4 crates also depends on other libraries part of the platform like:
 - [Cairo](https://github.com/gtk-rs/gtk-rs-core/tree/master/cairo)
 - [Pango](https://github.com/gtk-rs/gtk-rs-core/tree/master/pango)
 
-Those are common with the GTK 3 and GStreamer bindings and are part of the [gtk-rs](https://github.com/gtk-rs/gtk-rs-core) repository.
+Those are common with the GTK 3 and GStreamer bindings and are part of the [gtk-rs-core](https://github.com/gtk-rs/gtk-rs-core) repository.
 
 For more information about each crate, please refer to their `README.md` file in their directory.
 
