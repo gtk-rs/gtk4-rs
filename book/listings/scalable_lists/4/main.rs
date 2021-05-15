@@ -27,8 +27,8 @@ fn build_ui(application: &Application) {
         .build();
 
     let model = gio::ListStore::new(IntegerObject::static_type());
-    for number in 0..1_000 {
-        let integer_object = IntegerObject::from_integer(number);
+    for number in 0..=1_000 {
+        let integer_object = IntegerObject::from(number);
         model.append(&integer_object);
     }
 
@@ -39,7 +39,7 @@ fn build_ui(application: &Application) {
         let label = Label::new(None);
         list_item.set_child(Some(&label));
 
-        // Create expressions describing `list_item->item->number`
+        // Create expression describing `list_item->item->number`
         let list_item_expression = ConstantExpression::new(list_item);
         let integer_object_expression = PropertyExpression::new(
             gtk::ListItem::static_type(),
@@ -59,7 +59,12 @@ fn build_ui(application: &Application) {
 
     // ANCHOR: filter
     let filter = gtk::CustomFilter::new(move |obj| {
-        let integer_object = obj.downcast_ref::<IntegerObject>().unwrap();
+        // Get `IntegerObject` from `glib::Object`
+        let integer_object = obj
+            .downcast_ref::<IntegerObject>()
+            .expect("The object needs to be of type `IntegerObject`.");
+
+        // Get property "number" from `IntegerObject`
         let number = integer_object
             .property("number")
             .expect("The property needs to exist and be readable.")
@@ -74,22 +79,27 @@ fn build_ui(application: &Application) {
 
     // ANCHOR: sorter
     let sorter = CustomSorter::new(move |obj1, obj2| {
-        let integer_object_1 = obj1.downcast_ref::<IntegerObject>().unwrap();
-        let integer_object_2 = obj2.downcast_ref::<IntegerObject>().unwrap();
+        // Get `IntegerObject` from `glib::Object`
+        let integer_object_1 = obj1
+            .downcast_ref::<IntegerObject>()
+            .expect("The object needs to be of type `IntegerObject`.");
+        let integer_object_2 = obj2
+            .downcast_ref::<IntegerObject>()
+            .expect("The object needs to be of type `IntegerObject`.");
 
+        // Get property "number" from `IntegerObject`
         let number_1 = integer_object_1
             .property("number")
             .expect("The property needs to exist and be readable.")
             .get::<i32>()
             .expect("The property needs to be of type `i32`.");
-
         let number_2 = integer_object_2
             .property("number")
             .expect("The property needs to exist and be readable.")
             .get::<i32>()
             .expect("The property needs to be of type `i32`.");
 
-        // Reverse sorting order, large numbers come first
+        // Reverse sorting order -> large numbers come first
         number_2.cmp(&number_1).into()
     });
     let sort_model = SortListModel::new(Some(&filter_model), Some(&sorter));
@@ -101,7 +111,7 @@ fn build_ui(application: &Application) {
     // ANCHOR: activate
     list_view.connect_activate(move |list_view, position| {
         // Get `IntegerObject` from model
-        let model = list_view.model().unwrap();
+        let model = list_view.model().expect("The model has to exist.");
         let integer_object = model
             .item(position)
             .expect("The item has to exist.")
