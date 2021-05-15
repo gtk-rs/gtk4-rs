@@ -28,8 +28,8 @@ fn build_ui(application: &Application) {
         .build();
 
     let model = gio::ListStore::new(IntegerObject::static_type());
-    for number in 0..1000 {
-        let integer_object = IntegerObject::from_integer(number);
+    for number in 0..=1000 {
+        let integer_object = IntegerObject::from(number);
         model.append(&integer_object);
     }
 
@@ -69,7 +69,7 @@ fn build_ui(application: &Application) {
     // ANCHOR: list_view_activate
     list_view.connect_activate(move |list_view, position| {
         // Get `IntegerObject` from model
-        let model = list_view.model().unwrap();
+        let model = list_view.model().expect("The model has to exist.");
         let integer_object = model
             .item(position)
             .expect("The item has to exist.")
