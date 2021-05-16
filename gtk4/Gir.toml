@@ -797,7 +797,7 @@ status = "generate"
     [[object.function]]
     name = "add_constraints_from_descriptionv"
     rename = "add_constraints_from_description"
-    
+    manual = true
 
 [[object]]
 name = "Gtk.CssSection"
