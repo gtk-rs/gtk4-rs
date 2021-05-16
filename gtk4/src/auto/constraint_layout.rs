@@ -35,12 +35,6 @@ impl ConstraintLayout {
         }
     }
 
-    //#[doc(alias = "gtk_constraint_layout_add_constraints_from_descriptionv")]
-    //#[doc(alias = "add_constraints_from_descriptionv")]
-    //pub fn add_constraints_from_description(&self, lines: &[&str], hspacing: i32, vspacing: i32, views: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 1, id: 6 }) -> Result<Vec<Constraint>, glib::Error> {
-    //    unsafe { TODO: call ffi:gtk_constraint_layout_add_constraints_from_descriptionv() }
-    //}
-
     #[doc(alias = "gtk_constraint_layout_add_guide")]
     pub fn add_guide(&self, guide: &ConstraintGuide) {
         unsafe {
