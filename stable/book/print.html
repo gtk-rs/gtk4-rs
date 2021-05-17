@@ -142,13 +142,15 @@
                             <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
                         
+                        
+
                     </div>
                 </div>
 
                 
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -204,7 +206,7 @@ If you are interested in contained and useful examples, we refer you to the corr
 <h2 id="license"><a class="header" href="#license">License</a></h2>
 <p>The book itself is licensed under the <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported license</a>.
 The only exception are the code snippets which are licensed under the <a href="https://gitlab.gnome.org/Hofer-Julian/gtk-rs-book/-/blob/main/LICENSE">MIT license</a>.</p>
-<h1 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h1>
+<div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h1>
 <p>There are a few recommended ways to set up your workstation in order to develop <code>gtk-rs</code> applications.
 Let us go through them one by one.</p>
 <h2 id="cargo"><a class="header" href="#cargo">Cargo</a></h2>
@@ -261,7 +263,7 @@ Then download the <a href="https://gitlab.gnome.org/bilelmoussaoui/gtk-rust-temp
 <p>That is it.
 The build dependencies can be downloaded by the IDE.
 With GNOME Builder, you only have to press the run button for that.</p>
-<h1 id="hello-world"><a class="header" href="#hello-world">Hello World!</a></h1>
+<div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="hello-world"><a class="header" href="#hello-world">Hello World!</a></h1>
 <p>Now that we have got a working installation, let us get right into it!</p>
 <p>At the very least, we need to create an <code>Application</code> instance, with an application id and the default application flags.
 <a href="https://wiki.gnome.org/HowDoI/ChooseApplicationID">This guide</a> helps you find a suitable application id for your app.</p>
@@ -351,7 +353,7 @@ Also, the name of the chapter suggests that the phrase &quot;Hello World!&quot; 
 <div style="text-align:center"><img src="img/hello_world_button.png" /></div>
 <p>Was not that hard to create our first <code>gtk-rs</code> app, right?
 Let us now get a better understanding of what we did here.</p>
-<h1 id="widgets"><a class="header" href="#widgets">Widgets</a></h1>
+<div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="widgets"><a class="header" href="#widgets">Widgets</a></h1>
 <p>Widgets are the components that make up a GTK application.
 GTK offers many-preexisting ones and if those do not fit, you can even create custom ones.
 There are display widgets, buttons, containers and windows.
@@ -498,7 +500,7 @@ We can make our button creation neater, by replacing <code>gtk::Button</code> wi
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre></pre>
-<h1 id="gobject-concepts"><a class="header" href="#gobject-concepts">GObject Concepts</a></h1>
+<div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="gobject-concepts"><a class="header" href="#gobject-concepts">GObject Concepts</a></h1>
 <p>GTK is an object-oriented framework.
 It is written in C, which does not support object-orientation out of the box.
 That is why, GTK relies on the GObject library to provide the object system.</p>
@@ -511,7 +513,7 @@ In this chapter we will additionally find out:</p>
 <li>How to use properties.</li>
 <li>How to emit and receive signals.</li>
 </ul>
-<h1 id="memory-management-of-gobjects"><a class="header" href="#memory-management-of-gobjects">Memory management of GObjects</a></h1>
+<div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="memory-management-of-gobjects"><a class="header" href="#memory-management-of-gobjects">Memory management of GObjects</a></h1>
 <p>A GObject (or <code>glib::Object</code> in Rust terms) is a reference-counted, mutable object.
 It therefore behaves very similar to <code>Rc&lt;RefCell&lt;T&gt;&gt;</code>.
 Let us see in a set of real life examples which consequences this has.</p>
@@ -1061,7 +1063,7 @@ Then, you can fully rely on GTK to properly manage the memory of GObjects you pa
 <p>In this simple example, GTK actually resolves the reference cycle on its own once you close the window.
 However, the general point to avoid strong references whenever possible remains valid.</p>
 </div>
-<h1 id="subclassing"><a class="header" href="#subclassing">Subclassing</a></h1>
+<div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="subclassing"><a class="header" href="#subclassing">Subclassing</a></h1>
 <p>GObjects rely heavily on inheritance.
 Therefore, it makes sense that if we want to create a custom GObject, this is done via subclassing.
 Let us see how this works by replacing the button in our &quot;Hello World!&quot; app with a custom one.</p>
@@ -1278,7 +1280,7 @@ Every time we click on the button, the number displayed by the label increases b
 <li>We want to pass a Rust object to a function, but the function expects a GObject.</li>
 <li>We want to add properties or signals to an object.</li>
 </ul>
-<h1 id="generic-values"><a class="header" href="#generic-values">Generic Values</a></h1>
+<div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="generic-values"><a class="header" href="#generic-values">Generic Values</a></h1>
 <p>Some GObject-related functions rely on generic values for their arguments or return parameters.
 Enums in C are not as powerful as the one in Rust, which is why <a href="http://gtk-rs.org/docs/glib/value/struct.Value.html"><code>glib::Value</code></a> is used for this.
 Conceptually though, there are similar to a Rust enum defined like this:</p>
@@ -1436,7 +1438,7 @@ You can still access it the same way as with the <code>i32</code> above.
 </span></code></pre></pre>
 <p>For now, all you need to know is how to convert a Rust type into a <code>glib::Value</code> and vice versa.
 This knowledge will be useful in the next chapters where we discuss properties, signals and models.</p>
-<h1 id="properties"><a class="header" href="#properties">Properties</a></h1>
+<div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="properties"><a class="header" href="#properties">Properties</a></h1>
 <p>Properties provide a public API for accessing state of GObjects.</p>
 <p>Let us see how this is done by experimenting with the <code>Switch</code> widget.
 One of its properties is the <a href="https://docs.gtk.org/gtk4/property.Switch.state.html">state</a>.
@@ -2005,7 +2007,7 @@ We can do this like this:</p>
 <li>to bind state of (different) GObjects or</li>
 <li>to notify consumers whenever the property value changes.</li>
 </ul>
-<h1 id="signals"><a class="header" href="#signals">Signals</a></h1>
+<div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="signals"><a class="header" href="#signals">Signals</a></h1>
 <p>GObject signals are a system for registering callbacks for specific events.
 For example, if we press on a button, the &quot;clicked&quot; signal will be emitted.
 The signal then takes care that all the registered callbacks will be executed.</p>
@@ -2586,7 +2588,7 @@ Custom signals are especially useful, if you want to notify consumers of your GO
 <div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
 <p>If you want to connect from a different thread than the main thread, make sure to use <a href="http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.connect"><code>connect</code></a> instead of <code>connect_local</code>. However, that also means that your connected closure has to implement <a href="https://doc.rust-lang.org/stable/core/marker/trait.Send.html"><code>Send</code></a> + <a href="https://doc.rust-lang.org/stable/core/marker/trait.Sync.html"><code>Sync</code></a>.</p>
 </div>
-<h1 id="the-main-event-loop"><a class="header" href="#the-main-event-loop">The main event loop</a></h1>
+<div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="the-main-event-loop"><a class="header" href="#the-main-event-loop">The main event loop</a></h1>
 <p>We now got comfortable using callbacks, but how do they actually work?
 All of this happens asynchronously, so there must be something managing the events and scheduling the responses.
 Unsurprisingly, this is called the main event loop.</p>
@@ -2945,7 +2947,7 @@ help: within `gtk4::Button`, the trait `Sync` is not implemented for `NonNull&lt
 <li>If you have <code>async</code> functions for your IO-bound operations at your disposal, feel free to spawn them on the main loop.</li>
 <li>If your operation is computation-bound or there is no <code>async</code> function available, you have to spawn threads.</li>
 </ul>
-<h1 id="settings"><a class="header" href="#settings">Settings</a></h1>
+<div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="settings"><a class="header" href="#settings">Settings</a></h1>
 <p>We have now learned multiple ways to handle states.
 However, every time we close the application all of it is gone.
 Let us learn how to use <code>GSettings</code> by storing the state of a <a href="../docs/gtk4/struct.Switch.html"><code>Switch</code></a> in it.</p>
@@ -3243,7 +3245,7 @@ Additionally, we specify <a href="https://gtk-rs.org/docs/gio/struct.SettingsBin
 </span></code></pre></pre>
 <p>Whenever you have a property which nicely correspond to a setting, you probably want to bind it to it.
 In other cases, interacting with the settings via the getter and setter methods tends to be the right choice.</p>
-<h1 id="saving-window-state"><a class="header" href="#saving-window-state">Saving Window State</a></h1>
+<div id="chapter_begin" style="break-before: page; page-break-before: always;"></div><h1 id="saving-window-state"><a class="header" href="#saving-window-state">Saving Window State</a></h1>
 <p>Quite often, we want the window state to persist between sessions.
 If the user resizes or maximizes the window, they might expect to find it in the same state the next time they open the app.
 GTK does not provide this functionality out of the box, but luckily it is not too hard to manually implement it.
