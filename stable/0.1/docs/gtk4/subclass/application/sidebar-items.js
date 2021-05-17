@@ -1,0 +1,1 @@
+initSidebarItems({"trait":[["GtkApplicationImpl",""],["GtkApplicationImplExt",""]]});
