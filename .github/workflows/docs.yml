@@ -27,7 +27,7 @@ jobs:
         run: cargo build --release
       - run: cargo install rustdoc-stripper
       - run: python3 ./generator.py --embed-docs --yes ./
-      - run: echo "DEST=$(if [ "$GITHUB_EVENT_NAME" == "release" ]; then echo 'stable'; else echo 'git'; fi)" >> ${GITHUB_ENV}
+      - run: echo "DEST=$(if [ "$GITHUB_EVENT_NAME" == "release" ]; then echo 'stable/${{ github.event.release.tag_name }}'; else echo 'git'; fi)" >> ${GITHUB_ENV}
       - uses: actions-rs/cargo@v1
         env:
           RUSTDOCFLAGS: |
