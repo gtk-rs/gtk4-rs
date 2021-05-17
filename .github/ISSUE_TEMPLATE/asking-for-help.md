@@ -1,6 +1,6 @@
 ---
 name: Asking for help
-about: You have a question on how to use one of gtk3-rs crates
+about: You have a question on how to use one of gtk4-rs crates
 title: "[HELP]"
 labels: ''
 assignees: ''
