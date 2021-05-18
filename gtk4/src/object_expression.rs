@@ -10,7 +10,7 @@ define_expression!(
 );
 
 impl ObjectExpression {
-    #[doc(alias = "gtk_property_expression_new")]
+    #[doc(alias = "gtk_object_expression_new")]
     pub fn new<T: IsA<Object>>(object: &T) -> Self {
         assert_initialized_main_thread!();
         unsafe {
