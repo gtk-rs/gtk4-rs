@@ -52,9 +52,6 @@ pub mod shortcut_manager;
 pub mod sorter;
 pub mod style_context;
 pub mod text_buffer;
-pub mod text_child_anchor;
-pub mod text_mark;
-pub mod text_tag;
 pub mod text_view;
 pub mod toggle_button;
 pub mod tree_drag_dest;
@@ -63,7 +60,6 @@ pub mod tree_model_filter;
 pub mod tree_view;
 pub mod widget;
 pub mod window;
-pub mod window_group;
 
 pub mod prelude {
     #[doc(hidden)]
@@ -125,9 +121,6 @@ pub mod prelude {
     pub use super::sorter::{SorterImpl, SorterImplExt};
     pub use super::style_context::{StyleContextImpl, StyleContextImplExt};
     pub use super::text_buffer::{TextBufferImpl, TextBufferImplExt};
-    pub use super::text_child_anchor::TextChildAnchorImpl;
-    pub use super::text_mark::TextMarkImpl;
-    pub use super::text_tag::TextTagImpl;
     pub use super::text_view::{TextViewImpl, TextViewImplExt};
     pub use super::toggle_button::{ToggleButtonImpl, ToggleButtonImplExt};
     pub use super::tree_drag_dest::{TreeDragDestImpl, TreeDragDestImplExt};
@@ -139,5 +132,4 @@ pub mod prelude {
     pub use super::widget::WidgetClassSubclassExt;
     pub use super::widget::{WidgetImpl, WidgetImplExt};
     pub use super::window::{WindowImpl, WindowImplExt};
-    pub use super::window_group::WindowGroupImpl;
 }
