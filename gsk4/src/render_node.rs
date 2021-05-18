@@ -90,6 +90,7 @@ impl RenderNode {
         }
     }
 
+    #[doc(alias = "gsk_render_node_draw")]
     pub fn draw(&self, cr: &cairo::Context) {
         unsafe {
             ffi::gsk_render_node_draw(self.to_glib_none().0, mut_override(cr.to_glib_none().0));
@@ -97,6 +98,7 @@ impl RenderNode {
     }
 
     #[doc(alias = "get_bounds")]
+    #[doc(alias = "gsk_render_node_get_bounds")]
     pub fn bounds(&self) -> graphene::Rect {
         unsafe {
             let mut bounds = graphene::Rect::uninitialized();
@@ -106,14 +108,17 @@ impl RenderNode {
     }
 
     #[doc(alias = "get_node_type")]
+    #[doc(alias = "gsk_render_node_get_node_type")]
     pub fn node_type(&self) -> RenderNodeType {
         unsafe { from_glib(ffi::gsk_render_node_get_node_type(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gsk_render_node_serialize")]
     pub fn serialize(&self) -> glib::Bytes {
         unsafe { from_glib_full(ffi::gsk_render_node_serialize(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "gsk_render_node_write_to_file")]
     pub fn write_to_file<P: AsRef<Path>>(&self, filename: P) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();

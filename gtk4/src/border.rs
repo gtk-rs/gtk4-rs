@@ -32,6 +32,7 @@ impl ops::DerefMut for Border {
 }
 
 impl Border {
+    #[doc(alias = "gtk_border_new")]
     pub fn new() -> Self {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_border_new()) }

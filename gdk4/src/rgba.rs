@@ -112,6 +112,7 @@ impl FromStr for RGBA {
 }
 
 impl Hash for RGBA {
+    #[doc(alias = "gdk_rgba_hash")]
     fn hash<H: Hasher>(&self, state: &mut H) {
         let hash = unsafe { ffi::gdk_rgba_hash(self.to_glib_none().0 as gconstpointer) };
         state.write_u32(hash);
@@ -119,6 +120,7 @@ impl Hash for RGBA {
 }
 
 impl PartialEq for RGBA {
+    #[doc(alias = "gdk_rgba_equal")]
     fn eq(&self, other: &RGBA) -> bool {
         unsafe {
             from_glib(ffi::gdk_rgba_equal(
