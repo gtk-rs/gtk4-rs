@@ -219,7 +219,7 @@
     }
     <span class="kw">unsafe</span> {
         <span class="kw">if</span> <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_init_check</span>()) {
-            <span class="kw">if</span> <span class="op">!</span><span class="ident">glib::MainContext::default</span>().<span class="ident">acquire</span>() {
+            <span class="kw">if</span> <span class="op">!</span><span class="ident">glib::MainContext::default</span>().<span class="ident">is_owner</span>() {
                 <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="macro">glib::bool_error!</span>(<span class="string">&quot;Failed to acquire default main context&quot;</span>));
             }
 

@@ -85,7 +85,7 @@ be emitted. However, since the emission of the
 [signal<code>Gtk.Adjustment</code>::changed] signal is tied to the emission
 of the ::notify signals of the changed properties, it’s possible
 to compress the [signal<code>Gtk.Adjustment</code>::changed] signals into one
-by calling [<code>crate::glib::object::ObjectExt::freeze_notify()</code>] and [<code>crate::glib::object::ObjectExt::thaw_notify()</code>]
+by calling <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.freeze_notify" title="crate::glib::object::ObjectExt::freeze_notify()"><code>crate::glib::object::ObjectExt::freeze_notify()</code></a> and [<code>crate::glib::object::ObjectExt::thaw_notify()</code>]
 around the calls to the individual setters.</p>
 <p>Alternatively, using a single [<code>crate::glib::object::ObjectExt::set()</code>] for all the properties
 to change, or using [method<code>Gtk.Adjustment</code>.configure] has the same effect.</p>

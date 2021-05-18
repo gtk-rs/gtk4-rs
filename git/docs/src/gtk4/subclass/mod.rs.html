@@ -136,20 +136,9 @@
 <span id="133">133</span>
 <span id="134">134</span>
 <span id="135">135</span>
-<span id="136">136</span>
-<span id="137">137</span>
-<span id="138">138</span>
-<span id="139">139</span>
-<span id="140">140</span>
-<span id="141">141</span>
-<span id="142">142</span>
-<span id="143">143</span>
-<span id="144">144</span>
-<span id="145">145</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">accessible</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">actionable</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">adjustment</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">application</span>;
@@ -202,9 +191,6 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sorter</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">style_context</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">text_buffer</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">text_child_anchor</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">text_mark</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">text_tag</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">text_view</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">toggle_button</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">tree_drag_dest</span>;
@@ -213,7 +199,6 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">tree_view</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">widget</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">window</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">window_group</span>;
 
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">prelude</span> {
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -223,7 +208,6 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
     <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">glib::subclass::prelude</span>::<span class="kw-2">*</span>;
 
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::accessible::AccessibleImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::actionable</span>::{<span class="ident">ActionableImpl</span>, <span class="ident">ActionableImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::adjustment</span>::{<span class="ident">AdjustmentImpl</span>, <span class="ident">AdjustmentImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::application</span>::{<span class="ident">GtkApplicationImpl</span>, <span class="ident">GtkApplicationImplExt</span>};
@@ -276,9 +260,6 @@
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::sorter</span>::{<span class="ident">SorterImpl</span>, <span class="ident">SorterImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::style_context</span>::{<span class="ident">StyleContextImpl</span>, <span class="ident">StyleContextImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::text_buffer</span>::{<span class="ident">TextBufferImpl</span>, <span class="ident">TextBufferImplExt</span>};
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::text_child_anchor::TextChildAnchorImpl</span>;
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::text_mark::TextMarkImpl</span>;
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::text_tag::TextTagImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::text_view</span>::{<span class="ident">TextViewImpl</span>, <span class="ident">TextViewImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::toggle_button</span>::{<span class="ident">ToggleButtonImpl</span>, <span class="ident">ToggleButtonImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::tree_drag_dest</span>::{<span class="ident">TreeDragDestImpl</span>, <span class="ident">TreeDragDestImplExt</span>};
@@ -290,7 +271,6 @@
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::widget::WidgetClassSubclassExt</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::widget</span>::{<span class="ident">WidgetImpl</span>, <span class="ident">WidgetImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::window</span>::{<span class="ident">WindowImpl</span>, <span class="ident">WindowImplExt</span>};
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::window_group::WindowGroupImpl</span>;
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="gtk4" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
