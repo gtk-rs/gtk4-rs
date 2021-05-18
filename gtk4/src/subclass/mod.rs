@@ -1,6 +1,5 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-pub mod accessible;
 pub mod actionable;
 pub mod adjustment;
 pub mod application;
@@ -74,7 +73,6 @@ pub mod prelude {
     #[doc(hidden)]
     pub use glib::subclass::prelude::*;
 
-    pub use super::accessible::AccessibleImpl;
     pub use super::actionable::{ActionableImpl, ActionableImplExt};
     pub use super::adjustment::{AdjustmentImpl, AdjustmentImplExt};
     pub use super::application::{GtkApplicationImpl, GtkApplicationImplExt};
