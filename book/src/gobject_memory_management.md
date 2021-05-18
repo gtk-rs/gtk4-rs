@@ -176,6 +176,7 @@ Then, you can fully rely on GTK to properly manage the memory of GObjects you pa
 
 [^1]: Please be aware that `Cell` is only a suitable type for [`Copy`](https://doc.rust-lang.org/core/marker/trait.Copy.html) types.
 For other types, [`RefCell`](https://doc.rust-lang.org/std/cell/struct.RefCell.html) is the way to go.
+You can learn more about the two cell types in this [section](https://doc.rust-lang.org/1.30.0/book/first-edition/choosing-your-guarantees.html#cell-types) of an older edition of the Rust book.
 
 [^2]: In this simple example, GTK actually resolves the reference cycle on its own once you close the window.
 However, the general point to avoid strong references whenever possible remains valid.
