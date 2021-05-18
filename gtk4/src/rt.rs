@@ -99,7 +99,7 @@ pub fn init() -> Result<(), glib::BoolError> {
     }
     unsafe {
         if from_glib(ffi::gtk_init_check()) {
-            if !glib::MainContext::default().acquire() {
+            if !glib::MainContext::default().is_owner() {
                 return Err(glib::bool_error!("Failed to acquire default main context"));
             }
 
