@@ -23,7 +23,7 @@ The model is an instance of [`gio::ListStore`](https://gtk-rs.org/docs/gio/struc
 The main limitation here is that `gio::ListStore` only accepts GObjects.
 What we want here is a custom GObject which holds an integer and exposes it as property.
 To get that we just have to slightly adapt the `CustomButton` we created in the subclassing [chapter](gobject_subclassing.html).
-The only difference is that it directly inherits from GObject instead of `Button` and that we added the method `from_integer`.
+The only difference is that it directly inherits from GObject instead of `Button` and that we implemented the `From` trait.
 
 <span class="filename">Filename: listings/scalable_lists/1/integer_object/mod.rs</span>
 
