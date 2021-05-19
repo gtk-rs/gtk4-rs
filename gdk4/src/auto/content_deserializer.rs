@@ -54,12 +54,6 @@ impl ContentDeserializer {
         }
     }
 
-    #[doc(alias = "gdk_content_deserializer_get_priority")]
-    #[doc(alias = "get_priority")]
-    pub fn priority(&self) -> i32 {
-        unsafe { ffi::gdk_content_deserializer_get_priority(self.to_glib_none().0) }
-    }
-
     #[doc(alias = "gdk_content_deserializer_get_value")]
     #[doc(alias = "get_value")]
     pub fn value(&self) -> glib::Value {
