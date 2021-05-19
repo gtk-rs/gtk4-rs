@@ -133,6 +133,7 @@ impl FromGlib<ffi::GskBlendMode> for BlendMode {
 }
 
 impl StaticType for BlendMode {
+    #[doc(alias = "gsk_blend_mode_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gsk_blend_mode_get_type()) }
     }
@@ -227,6 +228,7 @@ impl FromGlib<ffi::GskCorner> for Corner {
 }
 
 impl StaticType for Corner {
+    #[doc(alias = "gsk_corner_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gsk_corner_get_type()) }
     }
@@ -341,6 +343,7 @@ impl FromGlib<ffi::GskGLUniformType> for GLUniformType {
 }
 
 impl StaticType for GLUniformType {
+    #[doc(alias = "gsk_gl_uniform_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gsk_gl_uniform_type_get_type()) }
     }
@@ -545,6 +548,7 @@ impl FromGlib<ffi::GskRenderNodeType> for RenderNodeType {
 }
 
 impl StaticType for RenderNodeType {
+    #[doc(alias = "gsk_render_node_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gsk_render_node_type_get_type()) }
     }
@@ -634,6 +638,7 @@ impl FromGlib<ffi::GskScalingFilter> for ScalingFilter {
 }
 
 impl StaticType for ScalingFilter {
+    #[doc(alias = "gsk_scaling_filter_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gsk_scaling_filter_get_type()) }
     }
@@ -745,6 +750,7 @@ impl ErrorDomain for SerializationError {
 }
 
 impl StaticType for SerializationError {
+    #[doc(alias = "gsk_serialization_error_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gsk_serialization_error_get_type()) }
     }
@@ -854,6 +860,7 @@ impl FromGlib<ffi::GskTransformCategory> for TransformCategory {
 }
 
 impl StaticType for TransformCategory {
+    #[doc(alias = "gsk_transform_category_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gsk_transform_category_get_type()) }
     }

@@ -73,6 +73,7 @@ impl FromGlib<ffi::GtkAccessibleAutocomplete> for AccessibleAutocomplete {
 }
 
 impl StaticType for AccessibleAutocomplete {
+    #[doc(alias = "gtk_accessible_autocomplete_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_accessible_autocomplete_get_type()) }
     }
@@ -167,6 +168,7 @@ impl FromGlib<ffi::GtkAccessibleInvalidState> for AccessibleInvalidState {
 }
 
 impl StaticType for AccessibleInvalidState {
+    #[doc(alias = "gtk_accessible_invalid_state_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_accessible_invalid_state_get_type()) }
     }
@@ -346,6 +348,7 @@ impl FromGlib<ffi::GtkAccessibleProperty> for AccessibleProperty {
 }
 
 impl StaticType for AccessibleProperty {
+    #[doc(alias = "gtk_accessible_property_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_accessible_property_get_type()) }
     }
@@ -520,6 +523,7 @@ impl FromGlib<ffi::GtkAccessibleRelation> for AccessibleRelation {
 }
 
 impl StaticType for AccessibleRelation {
+    #[doc(alias = "gtk_accessible_relation_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_accessible_relation_get_type()) }
     }
@@ -984,6 +988,7 @@ impl FromGlib<ffi::GtkAccessibleRole> for AccessibleRole {
 }
 
 impl StaticType for AccessibleRole {
+    #[doc(alias = "gtk_accessible_role_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_accessible_role_get_type()) }
     }
@@ -1078,6 +1083,7 @@ impl FromGlib<ffi::GtkAccessibleSort> for AccessibleSort {
 }
 
 impl StaticType for AccessibleSort {
+    #[doc(alias = "gtk_accessible_sort_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_accessible_sort_get_type()) }
     }
@@ -1202,6 +1208,7 @@ impl FromGlib<ffi::GtkAccessibleState> for AccessibleState {
 }
 
 impl StaticType for AccessibleState {
+    #[doc(alias = "gtk_accessible_state_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_accessible_state_get_type()) }
     }
@@ -1291,6 +1298,7 @@ impl FromGlib<ffi::GtkAccessibleTristate> for AccessibleTristate {
 }
 
 impl StaticType for AccessibleTristate {
+    #[doc(alias = "gtk_accessible_tristate_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_accessible_tristate_get_type()) }
     }
@@ -1390,6 +1398,7 @@ impl FromGlib<ffi::GtkAlign> for Align {
 }
 
 impl StaticType for Align {
+    #[doc(alias = "gtk_align_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_align_get_type()) }
     }
@@ -1489,6 +1498,7 @@ impl FromGlib<ffi::GtkArrowType> for ArrowType {
 }
 
 impl StaticType for ArrowType {
+    #[doc(alias = "gtk_arrow_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_arrow_type_get_type()) }
     }
@@ -1593,6 +1603,7 @@ impl FromGlib<ffi::GtkAssistantPageType> for AssistantPageType {
 }
 
 impl StaticType for AssistantPageType {
+    #[doc(alias = "gtk_assistant_page_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_assistant_page_type_get_type()) }
     }
@@ -1682,6 +1693,7 @@ impl FromGlib<ffi::GtkBaselinePosition> for BaselinePosition {
 }
 
 impl StaticType for BaselinePosition {
+    #[doc(alias = "gtk_baseline_position_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_baseline_position_get_type()) }
     }
@@ -1806,6 +1818,7 @@ impl FromGlib<ffi::GtkBorderStyle> for BorderStyle {
 }
 
 impl StaticType for BorderStyle {
+    #[doc(alias = "gtk_border_style_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_border_style_get_type()) }
     }
@@ -1989,6 +2002,7 @@ impl ErrorDomain for BuilderError {
 }
 
 impl StaticType for BuilderError {
+    #[doc(alias = "gtk_builder_error_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_builder_error_get_type()) }
     }
@@ -2093,6 +2107,7 @@ impl FromGlib<ffi::GtkButtonsType> for ButtonsType {
 }
 
 impl StaticType for ButtonsType {
+    #[doc(alias = "gtk_buttons_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_buttons_type_get_type()) }
     }
@@ -2177,6 +2192,7 @@ impl FromGlib<ffi::GtkCellRendererAccelMode> for CellRendererAccelMode {
 }
 
 impl StaticType for CellRendererAccelMode {
+    #[doc(alias = "gtk_cell_renderer_accel_mode_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_cell_renderer_accel_mode_get_type()) }
     }
@@ -2266,6 +2282,7 @@ impl FromGlib<ffi::GtkCellRendererMode> for CellRendererMode {
 }
 
 impl StaticType for CellRendererMode {
+    #[doc(alias = "gtk_cell_renderer_mode_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_cell_renderer_mode_get_type()) }
     }
@@ -2400,6 +2417,7 @@ impl FromGlib<ffi::GtkConstraintAttribute> for ConstraintAttribute {
 }
 
 impl StaticType for ConstraintAttribute {
+    #[doc(alias = "gtk_constraint_attribute_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_constraint_attribute_get_type()) }
     }
@@ -2489,6 +2507,7 @@ impl FromGlib<ffi::GtkConstraintRelation> for ConstraintRelation {
 }
 
 impl StaticType for ConstraintRelation {
+    #[doc(alias = "gtk_constraint_relation_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_constraint_relation_get_type()) }
     }
@@ -2583,6 +2602,7 @@ impl FromGlib<ffi::GtkConstraintStrength> for ConstraintStrength {
 }
 
 impl StaticType for ConstraintStrength {
+    #[doc(alias = "gtk_constraint_strength_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_constraint_strength_get_type()) }
     }
@@ -2712,6 +2732,7 @@ impl ErrorDomain for ConstraintVflParserError {
 }
 
 impl StaticType for ConstraintVflParserError {
+    #[doc(alias = "gtk_constraint_vfl_parser_error_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_constraint_vfl_parser_error_get_type()) }
     }
@@ -2806,6 +2827,7 @@ impl FromGlib<ffi::GtkCornerType> for CornerType {
 }
 
 impl StaticType for CornerType {
+    #[doc(alias = "gtk_corner_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_corner_type_get_type()) }
     }
@@ -3066,6 +3088,7 @@ impl FromGlib<ffi::GtkDeleteType> for DeleteType {
 }
 
 impl StaticType for DeleteType {
+    #[doc(alias = "gtk_delete_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_delete_type_get_type()) }
     }
@@ -3170,6 +3193,7 @@ impl FromGlib<ffi::GtkDirectionType> for DirectionType {
 }
 
 impl StaticType for DirectionType {
+    #[doc(alias = "gtk_direction_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_direction_type_get_type()) }
     }
@@ -3289,6 +3313,7 @@ impl FromGlib<ffi::GtkEditableProperties> for EditableProperties {
 }
 
 impl StaticType for EditableProperties {
+    #[doc(alias = "gtk_editable_properties_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_editable_properties_get_type()) }
     }
@@ -3373,6 +3398,7 @@ impl FromGlib<ffi::GtkEntryIconPosition> for EntryIconPosition {
 }
 
 impl StaticType for EntryIconPosition {
+    #[doc(alias = "gtk_entry_icon_position_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_entry_icon_position_get_type()) }
     }
@@ -3462,6 +3488,7 @@ impl FromGlib<ffi::GtkEventSequenceState> for EventSequenceState {
 }
 
 impl StaticType for EventSequenceState {
+    #[doc(alias = "gtk_event_sequence_state_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_event_sequence_state_get_type()) }
     }
@@ -3551,6 +3578,7 @@ impl FromGlib<ffi::GtkFileChooserAction> for FileChooserAction {
 }
 
 impl StaticType for FileChooserAction {
+    #[doc(alias = "gtk_file_chooser_action_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_file_chooser_action_get_type()) }
     }
@@ -3668,6 +3696,7 @@ impl ErrorDomain for FileChooserError {
 }
 
 impl StaticType for FileChooserError {
+    #[doc(alias = "gtk_file_chooser_error_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_file_chooser_error_get_type()) }
     }
@@ -3757,6 +3786,7 @@ impl FromGlib<ffi::GtkFilterChange> for FilterChange {
 }
 
 impl StaticType for FilterChange {
+    #[doc(alias = "gtk_filter_change_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_filter_change_get_type()) }
     }
@@ -3846,6 +3876,7 @@ impl FromGlib<ffi::GtkFilterMatch> for FilterMatch {
 }
 
 impl StaticType for FilterMatch {
+    #[doc(alias = "gtk_filter_match_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_filter_match_get_type()) }
     }
@@ -3935,6 +3966,7 @@ impl FromGlib<ffi::GtkIconSize> for IconSize {
 }
 
 impl StaticType for IconSize {
+    #[doc(alias = "gtk_icon_size_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_icon_size_get_type()) }
     }
@@ -4040,6 +4072,7 @@ impl ErrorDomain for IconThemeError {
 }
 
 impl StaticType for IconThemeError {
+    #[doc(alias = "gtk_icon_theme_error_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_icon_theme_error_get_type()) }
     }
@@ -4144,6 +4177,7 @@ impl FromGlib<ffi::GtkIconViewDropPosition> for IconViewDropPosition {
 }
 
 impl StaticType for IconViewDropPosition {
+    #[doc(alias = "gtk_icon_view_drop_position_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_icon_view_drop_position_get_type()) }
     }
@@ -4238,6 +4272,7 @@ impl FromGlib<ffi::GtkImageType> for ImageType {
 }
 
 impl StaticType for ImageType {
+    #[doc(alias = "gtk_image_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_image_type_get_type()) }
     }
@@ -4367,6 +4402,7 @@ impl FromGlib<ffi::GtkInputPurpose> for InputPurpose {
 }
 
 impl StaticType for InputPurpose {
+    #[doc(alias = "gtk_input_purpose_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_input_purpose_get_type()) }
     }
@@ -4461,6 +4497,7 @@ impl FromGlib<ffi::GtkJustification> for Justification {
 }
 
 impl StaticType for Justification {
+    #[doc(alias = "gtk_justification_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_justification_get_type()) }
     }
@@ -4545,6 +4582,7 @@ impl FromGlib<ffi::GtkLevelBarMode> for LevelBarMode {
 }
 
 impl StaticType for LevelBarMode {
+    #[doc(alias = "gtk_level_bar_mode_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_level_bar_mode_get_type()) }
     }
@@ -4709,6 +4747,7 @@ impl FromGlib<ffi::GtkLicense> for License {
 }
 
 impl StaticType for License {
+    #[doc(alias = "gtk_license_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_license_get_type()) }
     }
@@ -4808,6 +4847,7 @@ impl FromGlib<ffi::GtkMessageType> for MessageType {
 }
 
 impl StaticType for MessageType {
+    #[doc(alias = "gtk_message_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_message_type_get_type()) }
     }
@@ -4932,6 +4972,7 @@ impl FromGlib<ffi::GtkMovementStep> for MovementStep {
 }
 
 impl StaticType for MovementStep {
+    #[doc(alias = "gtk_movement_step_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_movement_step_get_type()) }
     }
@@ -5016,6 +5057,7 @@ impl FromGlib<ffi::GtkNotebookTab> for NotebookTab {
 }
 
 impl StaticType for NotebookTab {
+    #[doc(alias = "gtk_notebook_tab_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_notebook_tab_get_type()) }
     }
@@ -5130,6 +5172,7 @@ impl FromGlib<ffi::GtkNumberUpLayout> for NumberUpLayout {
 }
 
 impl StaticType for NumberUpLayout {
+    #[doc(alias = "gtk_number_up_layout_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_number_up_layout_get_type()) }
     }
@@ -5219,6 +5262,7 @@ impl FromGlib<ffi::GtkOrdering> for Ordering {
 }
 
 impl StaticType for Ordering {
+    #[doc(alias = "gtk_ordering_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_ordering_get_type()) }
     }
@@ -5303,6 +5347,7 @@ impl FromGlib<ffi::GtkOrientation> for Orientation {
 }
 
 impl StaticType for Orientation {
+    #[doc(alias = "gtk_orientation_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_orientation_get_type()) }
     }
@@ -5387,6 +5432,7 @@ impl FromGlib<ffi::GtkOverflow> for Overflow {
 }
 
 impl StaticType for Overflow {
+    #[doc(alias = "gtk_overflow_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_overflow_get_type()) }
     }
@@ -5471,6 +5517,7 @@ impl FromGlib<ffi::GtkPackType> for PackType {
 }
 
 impl StaticType for PackType {
+    #[doc(alias = "gtk_pack_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_pack_type_get_type()) }
     }
@@ -5560,6 +5607,7 @@ impl FromGlib<ffi::GtkPadActionType> for PadActionType {
 }
 
 impl StaticType for PadActionType {
+    #[doc(alias = "gtk_pad_action_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_pad_action_type_get_type()) }
     }
@@ -5654,6 +5702,7 @@ impl FromGlib<ffi::GtkPageOrientation> for PageOrientation {
 }
 
 impl StaticType for PageOrientation {
+    #[doc(alias = "gtk_page_orientation_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_page_orientation_get_type()) }
     }
@@ -5743,6 +5792,7 @@ impl FromGlib<ffi::GtkPageSet> for PageSet {
 }
 
 impl StaticType for PageSet {
+    #[doc(alias = "gtk_page_set_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_page_set_get_type()) }
     }
@@ -5837,6 +5887,7 @@ impl FromGlib<ffi::GtkPanDirection> for PanDirection {
 }
 
 impl StaticType for PanDirection {
+    #[doc(alias = "gtk_pan_direction_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_pan_direction_get_type()) }
     }
@@ -5931,6 +5982,7 @@ impl FromGlib<ffi::GtkPolicyType> for PolicyType {
 }
 
 impl StaticType for PolicyType {
+    #[doc(alias = "gtk_policy_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_policy_type_get_type()) }
     }
@@ -6025,6 +6077,7 @@ impl FromGlib<ffi::GtkPositionType> for PositionType {
 }
 
 impl StaticType for PositionType {
+    #[doc(alias = "gtk_position_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_position_type_get_type()) }
     }
@@ -6114,6 +6167,7 @@ impl FromGlib<ffi::GtkPrintDuplex> for PrintDuplex {
 }
 
 impl StaticType for PrintDuplex {
+    #[doc(alias = "gtk_print_duplex_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_print_duplex_get_type()) }
     }
@@ -6231,6 +6285,7 @@ impl ErrorDomain for PrintError {
 }
 
 impl StaticType for PrintError {
+    #[doc(alias = "gtk_print_error_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_print_error_get_type()) }
     }
@@ -6325,6 +6380,7 @@ impl FromGlib<ffi::GtkPrintOperationAction> for PrintOperationAction {
 }
 
 impl StaticType for PrintOperationAction {
+    #[doc(alias = "gtk_print_operation_action_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_print_operation_action_get_type()) }
     }
@@ -6419,6 +6475,7 @@ impl FromGlib<ffi::GtkPrintOperationResult> for PrintOperationResult {
 }
 
 impl StaticType for PrintOperationResult {
+    #[doc(alias = "gtk_print_operation_result_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_print_operation_result_get_type()) }
     }
@@ -6513,6 +6570,7 @@ impl FromGlib<ffi::GtkPrintPages> for PrintPages {
 }
 
 impl StaticType for PrintPages {
+    #[doc(alias = "gtk_print_pages_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_print_pages_get_type()) }
     }
@@ -6607,6 +6665,7 @@ impl FromGlib<ffi::GtkPrintQuality> for PrintQuality {
 }
 
 impl StaticType for PrintQuality {
+    #[doc(alias = "gtk_print_quality_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_print_quality_get_type()) }
     }
@@ -6726,6 +6785,7 @@ impl FromGlib<ffi::GtkPrintStatus> for PrintStatus {
 }
 
 impl StaticType for PrintStatus {
+    #[doc(alias = "gtk_print_status_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_print_status_get_type()) }
     }
@@ -6810,6 +6870,7 @@ impl FromGlib<ffi::GtkPropagationLimit> for PropagationLimit {
 }
 
 impl StaticType for PropagationLimit {
+    #[doc(alias = "gtk_propagation_limit_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_propagation_limit_get_type()) }
     }
@@ -6904,6 +6965,7 @@ impl FromGlib<ffi::GtkPropagationPhase> for PropagationPhase {
 }
 
 impl StaticType for PropagationPhase {
+    #[doc(alias = "gtk_propagation_phase_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_propagation_phase_get_type()) }
     }
@@ -7039,6 +7101,7 @@ impl ErrorDomain for RecentManagerError {
 }
 
 impl StaticType for RecentManagerError {
+    #[doc(alias = "gtk_recent_manager_error_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_recent_manager_error_get_type()) }
     }
@@ -7163,6 +7226,7 @@ impl FromGlib<ffi::GtkRevealerTransitionType> for RevealerTransitionType {
 }
 
 impl StaticType for RevealerTransitionType {
+    #[doc(alias = "gtk_revealer_transition_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_revealer_transition_type_get_type()) }
     }
@@ -7267,6 +7331,7 @@ impl FromGlib<ffi::GtkScrollStep> for ScrollStep {
 }
 
 impl StaticType for ScrollStep {
+    #[doc(alias = "gtk_scroll_step_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_scroll_step_get_type()) }
     }
@@ -7421,6 +7486,7 @@ impl FromGlib<ffi::GtkScrollType> for ScrollType {
 }
 
 impl StaticType for ScrollType {
+    #[doc(alias = "gtk_scroll_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_scroll_type_get_type()) }
     }
@@ -7505,6 +7571,7 @@ impl FromGlib<ffi::GtkScrollablePolicy> for ScrollablePolicy {
 }
 
 impl StaticType for ScrollablePolicy {
+    #[doc(alias = "gtk_scrollable_policy_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_scrollable_policy_get_type()) }
     }
@@ -7599,6 +7666,7 @@ impl FromGlib<ffi::GtkSelectionMode> for SelectionMode {
 }
 
 impl StaticType for SelectionMode {
+    #[doc(alias = "gtk_selection_mode_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_selection_mode_get_type()) }
     }
@@ -7688,6 +7756,7 @@ impl FromGlib<ffi::GtkSensitivityType> for SensitivityType {
 }
 
 impl StaticType for SensitivityType {
+    #[doc(alias = "gtk_sensitivity_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_sensitivity_type_get_type()) }
     }
@@ -7777,6 +7846,7 @@ impl FromGlib<ffi::GtkShortcutScope> for ShortcutScope {
 }
 
 impl StaticType for ShortcutScope {
+    #[doc(alias = "gtk_shortcut_scope_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_shortcut_scope_get_type()) }
     }
@@ -7903,6 +7973,7 @@ impl FromGlib<ffi::GtkShortcutType> for ShortcutType {
 }
 
 impl StaticType for ShortcutType {
+    #[doc(alias = "gtk_shortcut_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_shortcut_type_get_type()) }
     }
@@ -7997,6 +8068,7 @@ impl FromGlib<ffi::GtkSizeGroupMode> for SizeGroupMode {
 }
 
 impl StaticType for SizeGroupMode {
+    #[doc(alias = "gtk_size_group_mode_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_size_group_mode_get_type()) }
     }
@@ -8086,6 +8158,7 @@ impl FromGlib<ffi::GtkSizeRequestMode> for SizeRequestMode {
 }
 
 impl StaticType for SizeRequestMode {
+    #[doc(alias = "gtk_size_request_mode_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_size_request_mode_get_type()) }
     }
@@ -8170,6 +8243,7 @@ impl FromGlib<ffi::GtkSortType> for SortType {
 }
 
 impl StaticType for SortType {
+    #[doc(alias = "gtk_sort_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_sort_type_get_type()) }
     }
@@ -8264,6 +8338,7 @@ impl FromGlib<ffi::GtkSorterChange> for SorterChange {
 }
 
 impl StaticType for SorterChange {
+    #[doc(alias = "gtk_sorter_change_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_sorter_change_get_type()) }
     }
@@ -8353,6 +8428,7 @@ impl FromGlib<ffi::GtkSorterOrder> for SorterOrder {
 }
 
 impl StaticType for SorterOrder {
+    #[doc(alias = "gtk_sorter_order_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_sorter_order_get_type()) }
     }
@@ -8437,6 +8513,7 @@ impl FromGlib<ffi::GtkSpinButtonUpdatePolicy> for SpinButtonUpdatePolicy {
 }
 
 impl StaticType for SpinButtonUpdatePolicy {
+    #[doc(alias = "gtk_spin_button_update_policy_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_spin_button_update_policy_get_type()) }
     }
@@ -8546,6 +8623,7 @@ impl FromGlib<ffi::GtkSpinType> for SpinType {
 }
 
 impl StaticType for SpinType {
+    #[doc(alias = "gtk_spin_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_spin_type_get_type()) }
     }
@@ -8735,6 +8813,7 @@ impl FromGlib<ffi::GtkStackTransitionType> for StackTransitionType {
 }
 
 impl StaticType for StackTransitionType {
+    #[doc(alias = "gtk_stack_transition_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_stack_transition_type_get_type()) }
     }
@@ -8824,6 +8903,7 @@ impl FromGlib<ffi::GtkStringFilterMatchMode> for StringFilterMatchMode {
 }
 
 impl StaticType for StringFilterMatchMode {
+    #[doc(alias = "gtk_string_filter_match_mode_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_string_filter_match_mode_get_type()) }
     }
@@ -8923,6 +9003,7 @@ impl FromGlib<ffi::GtkSystemSetting> for SystemSetting {
 }
 
 impl StaticType for SystemSetting {
+    #[doc(alias = "gtk_system_setting_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_system_setting_get_type()) }
     }
@@ -9012,6 +9093,7 @@ impl FromGlib<ffi::GtkTextDirection> for TextDirection {
 }
 
 impl StaticType for TextDirection {
+    #[doc(alias = "gtk_text_direction_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_text_direction_get_type()) }
     }
@@ -9096,6 +9178,7 @@ impl FromGlib<ffi::GtkTextExtendSelection> for TextExtendSelection {
 }
 
 impl StaticType for TextExtendSelection {
+    #[doc(alias = "gtk_text_extend_selection_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_text_extend_selection_get_type()) }
     }
@@ -9180,6 +9263,7 @@ impl FromGlib<ffi::GtkTextViewLayer> for TextViewLayer {
 }
 
 impl StaticType for TextViewLayer {
+    #[doc(alias = "gtk_text_view_layer_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_text_view_layer_get_type()) }
     }
@@ -9284,6 +9368,7 @@ impl FromGlib<ffi::GtkTextWindowType> for TextWindowType {
 }
 
 impl StaticType for TextWindowType {
+    #[doc(alias = "gtk_text_window_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_text_window_type_get_type()) }
     }
@@ -9373,6 +9458,7 @@ impl FromGlib<ffi::GtkTreeViewColumnSizing> for TreeViewColumnSizing {
 }
 
 impl StaticType for TreeViewColumnSizing {
+    #[doc(alias = "gtk_tree_view_column_sizing_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_tree_view_column_sizing_get_type()) }
     }
@@ -9467,6 +9553,7 @@ impl FromGlib<ffi::GtkTreeViewDropPosition> for TreeViewDropPosition {
 }
 
 impl StaticType for TreeViewDropPosition {
+    #[doc(alias = "gtk_tree_view_drop_position_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_tree_view_drop_position_get_type()) }
     }
@@ -9561,6 +9648,7 @@ impl FromGlib<ffi::GtkTreeViewGridLines> for TreeViewGridLines {
 }
 
 impl StaticType for TreeViewGridLines {
+    #[doc(alias = "gtk_tree_view_grid_lines_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_tree_view_grid_lines_get_type()) }
     }
@@ -9655,6 +9743,7 @@ impl FromGlib<ffi::GtkUnit> for Unit {
 }
 
 impl StaticType for Unit {
+    #[doc(alias = "gtk_unit_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_unit_get_type()) }
     }
@@ -9749,6 +9838,7 @@ impl FromGlib<ffi::GtkWrapMode> for WrapMode {
 }
 
 impl StaticType for WrapMode {
+    #[doc(alias = "gtk_wrap_mode_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gtk_wrap_mode_get_type()) }
     }

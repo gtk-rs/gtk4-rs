@@ -118,6 +118,7 @@ impl FromGlib<ffi::GdkAxisUse> for AxisUse {
 }
 
 impl StaticType for AxisUse {
+    #[doc(alias = "gdk_axis_use_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_axis_use_get_type()) }
     }
@@ -237,6 +238,7 @@ impl FromGlib<ffi::GdkCrossingMode> for CrossingMode {
 }
 
 impl StaticType for CrossingMode {
+    #[doc(alias = "gdk_crossing_mode_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_crossing_mode_get_type()) }
     }
@@ -326,6 +328,7 @@ impl FromGlib<ffi::GdkDevicePadFeature> for DevicePadFeature {
 }
 
 impl StaticType for DevicePadFeature {
+    #[doc(alias = "gdk_device_pad_feature_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_device_pad_feature_get_type()) }
     }
@@ -440,6 +443,7 @@ impl FromGlib<ffi::GdkDeviceToolType> for DeviceToolType {
 }
 
 impl StaticType for DeviceToolType {
+    #[doc(alias = "gdk_device_tool_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_device_tool_type_get_type()) }
     }
@@ -529,6 +533,7 @@ impl FromGlib<ffi::GdkDragCancelReason> for DragCancelReason {
 }
 
 impl StaticType for DragCancelReason {
+    #[doc(alias = "gdk_drag_cancel_reason_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_drag_cancel_reason_get_type()) }
     }
@@ -748,6 +753,7 @@ impl FromGlib<ffi::GdkEventType> for EventType {
 }
 
 impl StaticType for EventType {
+    #[doc(alias = "gdk_event_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_event_type_get_type()) }
     }
@@ -832,6 +838,7 @@ impl FromGlib<ffi::GdkFullscreenMode> for FullscreenMode {
 }
 
 impl StaticType for FullscreenMode {
+    #[doc(alias = "gdk_fullscreen_mode_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_fullscreen_mode_get_type()) }
     }
@@ -955,6 +962,7 @@ impl ErrorDomain for GLError {
 }
 
 impl StaticType for GLError {
+    #[doc(alias = "gdk_gl_error_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_gl_error_get_type()) }
     }
@@ -1079,6 +1087,7 @@ impl FromGlib<ffi::GdkGravity> for Gravity {
 }
 
 impl StaticType for Gravity {
+    #[doc(alias = "gdk_gravity_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_gravity_get_type()) }
     }
@@ -1188,6 +1197,7 @@ impl FromGlib<ffi::GdkInputSource> for InputSource {
 }
 
 impl StaticType for InputSource {
+    #[doc(alias = "gdk_input_source_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_input_source_get_type()) }
     }
@@ -1277,6 +1287,7 @@ impl FromGlib<ffi::GdkKeyMatch> for KeyMatch {
 }
 
 impl StaticType for KeyMatch {
+    #[doc(alias = "gdk_key_match_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_key_match_get_type()) }
     }
@@ -1401,6 +1412,7 @@ impl FromGlib<ffi::GdkMemoryFormat> for MemoryFormat {
 }
 
 impl StaticType for MemoryFormat {
+    #[doc(alias = "gdk_memory_format_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_memory_format_get_type()) }
     }
@@ -1505,6 +1517,7 @@ impl FromGlib<ffi::GdkNotifyType> for NotifyType {
 }
 
 impl StaticType for NotifyType {
+    #[doc(alias = "gdk_notify_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_notify_type_get_type()) }
     }
@@ -1604,6 +1617,7 @@ impl FromGlib<ffi::GdkScrollDirection> for ScrollDirection {
 }
 
 impl StaticType for ScrollDirection {
+    #[doc(alias = "gdk_scroll_direction_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_scroll_direction_get_type()) }
     }
@@ -1708,6 +1722,7 @@ impl FromGlib<ffi::GdkSubpixelLayout> for SubpixelLayout {
 }
 
 impl StaticType for SubpixelLayout {
+    #[doc(alias = "gdk_subpixel_layout_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_subpixel_layout_get_type()) }
     }
@@ -1822,6 +1837,7 @@ impl FromGlib<ffi::GdkSurfaceEdge> for SurfaceEdge {
 }
 
 impl StaticType for SurfaceEdge {
+    #[doc(alias = "gdk_surface_edge_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_surface_edge_get_type()) }
     }
@@ -1916,6 +1932,7 @@ impl FromGlib<ffi::GdkTouchpadGesturePhase> for TouchpadGesturePhase {
 }
 
 impl StaticType for TouchpadGesturePhase {
+    #[doc(alias = "gdk_touchpad_gesture_phase_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_touchpad_gesture_phase_get_type()) }
     }
@@ -2021,6 +2038,7 @@ impl ErrorDomain for VulkanError {
 }
 
 impl StaticType for VulkanError {
+    #[doc(alias = "gdk_vulkan_error_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_vulkan_error_get_type()) }
     }

@@ -48,6 +48,7 @@ impl FromGlib<ffi::GdkAnchorHints> for AnchorHints {
 }
 
 impl StaticType for AnchorHints {
+    #[doc(alias = "gdk_anchor_hints_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_anchor_hints_get_type()) }
     }
@@ -120,6 +121,7 @@ impl FromGlib<ffi::GdkAxisFlags> for AxisFlags {
 }
 
 impl StaticType for AxisFlags {
+    #[doc(alias = "gdk_axis_flags_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_axis_flags_get_type()) }
     }
@@ -193,6 +195,7 @@ impl FromGlib<ffi::GdkDragAction> for DragAction {
 }
 
 impl StaticType for DragAction {
+    #[doc(alias = "gdk_drag_action_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_drag_action_get_type()) }
     }
@@ -262,6 +265,7 @@ impl FromGlib<ffi::GdkFrameClockPhase> for FrameClockPhase {
 }
 
 impl StaticType for FrameClockPhase {
+    #[doc(alias = "gdk_frame_clock_phase_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_frame_clock_phase_get_type()) }
     }
@@ -335,6 +339,7 @@ impl FromGlib<ffi::GdkModifierType> for ModifierType {
 }
 
 impl StaticType for ModifierType {
+    #[doc(alias = "gdk_modifier_type_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_modifier_type_get_type()) }
     }
@@ -398,6 +403,7 @@ impl FromGlib<ffi::GdkPaintableFlags> for PaintableFlags {
 }
 
 impl StaticType for PaintableFlags {
+    #[doc(alias = "gdk_paintable_flags_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_paintable_flags_get_type()) }
     }
@@ -467,6 +473,7 @@ impl FromGlib<ffi::GdkSeatCapabilities> for SeatCapabilities {
 }
 
 impl StaticType for SeatCapabilities {
+    #[doc(alias = "gdk_seat_capabilities_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_seat_capabilities_get_type()) }
     }
@@ -544,6 +551,7 @@ impl FromGlib<ffi::GdkToplevelState> for ToplevelState {
 }
 
 impl StaticType for ToplevelState {
+    #[doc(alias = "gdk_toplevel_state_get_type")]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::gdk_toplevel_state_get_type()) }
     }
