@@ -536,6 +536,7 @@ trust_return_value_nullability = false
 [[object]]
 name = "Gtk.BookmarkList"
 status = "generate"
+generate_builder  = false # use glib::Priority
 trust_return_value_nullability = false
     [[object.function]]
     name = "get_io_priority"
@@ -848,6 +849,7 @@ manual_traits = ["DialogExtManual"]
 [[object]]
 name = "Gtk.DirectoryList"
 status = "generate"
+generate_builder  = false # use glib::Priority
     [[object.function]]
     name = "get_io_priority"
     manual = true # to use glib::Priority
