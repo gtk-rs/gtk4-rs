@@ -34,7 +34,6 @@ Currently, the minimum supported Rust version is `1.51.0`.
 
 - [Website](https://gtk-rs.org)
 - [Discourse](https://discourse.gnome.org/)
-- IRC: #rust on irc.gimp.org server.
 - Matrix: [#rust:gnome.org](https://matrix.to/#/#rust:gnome.org)
 
 ## Ecosystem
