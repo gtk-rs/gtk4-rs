@@ -235,6 +235,7 @@ mod actionable;
 mod application;
 mod assistant;
 mod bitset_iter;
+mod bookmark_list;
 mod bool_filter;
 mod border;
 mod builder;
@@ -252,6 +253,7 @@ mod css_location;
 mod custom_filter;
 mod custom_sorter;
 mod dialog;
+mod directory_list;
 mod drawing_area;
 mod drop_down;
 mod drop_target;
@@ -320,10 +322,12 @@ mod tree_view_column;
 mod widget;
 
 pub use bitset_iter::BitsetIter;
+pub use bookmark_list::BookmarkListBuilder;
 pub use border::{Border, BorderBuilder};
 pub use closure_expression::ClosureExpression;
 pub use constant_expression::ConstantExpression;
 pub use css_location::CssLocation;
+pub use directory_list::DirectoryListBuilder;
 pub use expression::{Expression, NONE_EXPRESSION};
 pub use expression_watch::ExpressionWatch;
 #[cfg(any(target_os = "linux", feature = "dox"))]

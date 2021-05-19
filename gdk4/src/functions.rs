@@ -61,7 +61,7 @@ pub fn content_deserialize_async<
     stream: &P,
     mime_type: &str,
     type_: glib::types::Type,
-    io_priority: i32,
+    io_priority: glib::Priority,
     cancellable: Option<&Q>,
     callback: R,
 ) {
@@ -91,7 +91,7 @@ pub fn content_deserialize_async<
             stream.as_ref().to_glib_none().0,
             mime_type.to_glib_none().0,
             type_.into_glib(),
-            io_priority,
+            io_priority.into_glib(),
             cancellable.map(|p| p.as_ref()).to_glib_none().0,
             Some(callback),
             Box::into_raw(user_data) as *mut _,
@@ -103,7 +103,7 @@ pub fn content_deserialize_async_future<P: IsA<gio::InputStream> + Clone + 'stat
     stream: &P,
     mime_type: &str,
     type_: glib::types::Type,
-    io_priority: i32,
+    io_priority: glib::Priority,
 ) -> Pin<Box<dyn future::Future<Output = Result<glib::Value, glib::Error>> + 'static>> {
     assert_initialized_main_thread!();
 
@@ -254,7 +254,7 @@ pub fn content_serialize_async<
     stream: &P,
     mime_type: &str,
     value: &glib::Value,
-    io_priority: i32,
+    io_priority: glib::Priority,
     cancellable: Option<&Q>,
     callback: R,
 ) {
@@ -283,7 +283,7 @@ pub fn content_serialize_async<
             stream.as_ref().to_glib_none().0,
             mime_type.to_glib_none().0,
             value.to_glib_none().0,
-            io_priority,
+            io_priority.into_glib(),
             cancellable.map(|p| p.as_ref()).to_glib_none().0,
             Some(callback),
             Box::into_raw(user_data) as *mut _,
@@ -295,7 +295,7 @@ pub fn content_serialize_async_future<P: IsA<gio::OutputStream> + Clone + 'stati
     stream: &P,
     mime_type: &str,
     value: &glib::Value,
-    io_priority: i32,
+    io_priority: glib::Priority,
 ) -> Pin<Box<dyn future::Future<Output = Result<(), glib::Error>> + 'static>> {
     assert_initialized_main_thread!();
 

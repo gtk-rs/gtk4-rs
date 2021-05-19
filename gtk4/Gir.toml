@@ -76,7 +76,6 @@ generate = [
     "Gtk.DeleteType",
     "Gtk.DialogFlags",
     "Gtk.DirectionType",
-    "Gtk.DirectoryList",
     "Gtk.DragSource",
     "Gtk.DropControllerMotion",
     "Gtk.DropTargetAsync",
@@ -537,7 +536,14 @@ trust_return_value_nullability = false
 [[object]]
 name = "Gtk.BookmarkList"
 status = "generate"
+generate_builder  = false # use glib::Priority
 trust_return_value_nullability = false
+    [[object.function]]
+    name = "get_io_priority"
+    manual = true # return glib::Priority
+    [[object.function]]
+    name = "set_io_priority"
+    manual = true # return glib::Priority
 
 [[object]]
 name = "Gtk.BoolFilter"
@@ -839,6 +845,17 @@ manual_traits = ["DialogExtManual"]
     name = "get_response_for_widget"
     manual = true # to use ResponseType
     doc_trait_name = "DialogExtManual"
+
+[[object]]
+name = "Gtk.DirectoryList"
+status = "generate"
+generate_builder  = false # use glib::Priority
+    [[object.function]]
+    name = "get_io_priority"
+    manual = true # to use glib::Priority
+    [[object.function]]
+    name = "set_io_priority"
+    manual = true # to use glib::Priority
 
 [[object]]
 name = "Gtk.DragIcon"

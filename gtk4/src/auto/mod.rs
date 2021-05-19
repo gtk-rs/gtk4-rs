@@ -73,7 +73,6 @@ pub use self::bin_layout::BinLayout;
 
 mod bookmark_list;
 pub use self::bookmark_list::BookmarkList;
-pub use self::bookmark_list::BookmarkListBuilder;
 
 mod bool_filter;
 pub use self::bool_filter::BoolFilter;
@@ -243,7 +242,6 @@ pub use self::dialog::{Dialog, NONE_DIALOG};
 
 mod directory_list;
 pub use self::directory_list::DirectoryList;
-pub use self::directory_list::DirectoryListBuilder;
 
 mod drag_icon;
 pub use self::drag_icon::DragIcon;

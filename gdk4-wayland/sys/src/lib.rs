@@ -58,7 +58,7 @@ pub struct GdkWaylandDevice(c_void);
 
 impl ::std::fmt::Debug for GdkWaylandDevice {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkWaylandDevice @ {:?}", self as *const _))
+        f.debug_struct(&format!("GdkWaylandDevice @ {:p}", self))
             .finish()
     }
 }
@@ -68,7 +68,7 @@ pub struct GdkWaylandDisplay(c_void);
 
 impl ::std::fmt::Debug for GdkWaylandDisplay {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkWaylandDisplay @ {:?}", self as *const _))
+        f.debug_struct(&format!("GdkWaylandDisplay @ {:p}", self))
             .finish()
     }
 }
@@ -78,7 +78,7 @@ pub struct GdkWaylandGLContext(c_void);
 
 impl ::std::fmt::Debug for GdkWaylandGLContext {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkWaylandGLContext @ {:?}", self as *const _))
+        f.debug_struct(&format!("GdkWaylandGLContext @ {:p}", self))
             .finish()
     }
 }
@@ -88,7 +88,7 @@ pub struct GdkWaylandMonitor(c_void);
 
 impl ::std::fmt::Debug for GdkWaylandMonitor {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkWaylandMonitor @ {:?}", self as *const _))
+        f.debug_struct(&format!("GdkWaylandMonitor @ {:p}", self))
             .finish()
     }
 }
@@ -98,7 +98,7 @@ pub struct GdkWaylandPopup(c_void);
 
 impl ::std::fmt::Debug for GdkWaylandPopup {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkWaylandPopup @ {:?}", self as *const _))
+        f.debug_struct(&format!("GdkWaylandPopup @ {:p}", self))
             .finish()
     }
 }
@@ -108,7 +108,7 @@ pub struct GdkWaylandSeat(c_void);
 
 impl ::std::fmt::Debug for GdkWaylandSeat {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkWaylandSeat @ {:?}", self as *const _))
+        f.debug_struct(&format!("GdkWaylandSeat @ {:p}", self))
             .finish()
     }
 }
@@ -118,7 +118,7 @@ pub struct GdkWaylandSurface(c_void);
 
 impl ::std::fmt::Debug for GdkWaylandSurface {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkWaylandSurface @ {:?}", self as *const _))
+        f.debug_struct(&format!("GdkWaylandSurface @ {:p}", self))
             .finish()
     }
 }
@@ -128,7 +128,7 @@ pub struct GdkWaylandToplevel(c_void);
 
 impl ::std::fmt::Debug for GdkWaylandToplevel {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GdkWaylandToplevel @ {:?}", self as *const _))
+        f.debug_struct(&format!("GdkWaylandToplevel @ {:p}", self))
             .finish()
     }
 }
