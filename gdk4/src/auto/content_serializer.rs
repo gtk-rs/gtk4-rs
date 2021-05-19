@@ -56,16 +56,6 @@ impl ContentSerializer {
         unsafe { from_glib_none(ffi::gdk_content_serializer_get_value(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "gdk_content_serializer_return_error")]
-    pub fn return_error(&self, error: &mut glib::Error) {
-        unsafe {
-            ffi::gdk_content_serializer_return_error(
-                self.to_glib_none().0,
-                error.to_glib_none_mut().0,
-            );
-        }
-    }
-
     #[doc(alias = "gdk_content_serializer_return_success")]
     pub fn return_success(&self) {
         unsafe {

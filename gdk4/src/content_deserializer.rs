@@ -23,4 +23,14 @@ impl ContentDeserializer {
             ))
         }
     }
+
+    #[doc(alias = "gdk_content_deserializer_return_error")]
+    pub fn return_error(&self, error: glib::Error) {
+        unsafe {
+            ffi::gdk_content_deserializer_return_error(
+                self.to_glib_none().0,
+                mut_override(error.to_glib_full()),
+            );
+        }
+    }
 }

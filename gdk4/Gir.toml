@@ -219,6 +219,9 @@ status = "generate"
     [[object.function]]
     name = "get_priority"
     manual = true # to use glib::Priority
+    [[object.function]]
+    name = "return_error"
+    manual = true # wrong error mutability
 
 [[object]]
 name = "Gdk.ContentFormats"
@@ -313,6 +316,9 @@ status = "generate"
     [[object.function]]
     name = "get_priority"
     manual = true # to use glib::Priority
+    [[object.function]]
+    name = "return_error"
+    manual = true # wrong error mutability
 
 [[object]]
 name = "Gdk.Cursor"
