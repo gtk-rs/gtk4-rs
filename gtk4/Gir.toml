@@ -538,6 +538,12 @@ trust_return_value_nullability = false
 name = "Gtk.BookmarkList"
 status = "generate"
 trust_return_value_nullability = false
+    [[object.function]]
+    name = "get_io_priority"
+    manual = true # return glib::Priority
+    [[object.function]]
+    name = "set_io_priority"
+    manual = true # return glib::Priority
 
 [[object]]
 name = "Gtk.BoolFilter"

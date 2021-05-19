@@ -235,6 +235,7 @@ mod actionable;
 mod application;
 mod assistant;
 mod bitset_iter;
+mod bookmark_list;
 mod bool_filter;
 mod border;
 mod builder;

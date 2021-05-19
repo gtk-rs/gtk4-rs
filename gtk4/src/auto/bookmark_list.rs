@@ -45,12 +45,6 @@ impl BookmarkList {
         unsafe { from_glib_none(ffi::gtk_bookmark_list_get_filename(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "gtk_bookmark_list_get_io_priority")]
-    #[doc(alias = "get_io_priority")]
-    pub fn io_priority(&self) -> i32 {
-        unsafe { ffi::gtk_bookmark_list_get_io_priority(self.to_glib_none().0) }
-    }
-
     #[doc(alias = "gtk_bookmark_list_is_loading")]
     pub fn is_loading(&self) -> bool {
         unsafe { from_glib(ffi::gtk_bookmark_list_is_loading(self.to_glib_none().0)) }
@@ -63,13 +57,6 @@ impl BookmarkList {
                 self.to_glib_none().0,
                 attributes.to_glib_none().0,
             );
-        }
-    }
-
-    #[doc(alias = "gtk_bookmark_list_set_io_priority")]
-    pub fn set_io_priority(&self, io_priority: i32) {
-        unsafe {
-            ffi::gtk_bookmark_list_set_io_priority(self.to_glib_none().0, io_priority);
         }
     }
 
