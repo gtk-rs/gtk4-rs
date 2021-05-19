@@ -56,12 +56,6 @@ impl DirectoryList {
         unsafe { from_glib_none(ffi::gtk_directory_list_get_file(self.to_glib_none().0)) }
     }
 
-    #[doc(alias = "gtk_directory_list_get_io_priority")]
-    #[doc(alias = "get_io_priority")]
-    pub fn io_priority(&self) -> i32 {
-        unsafe { ffi::gtk_directory_list_get_io_priority(self.to_glib_none().0) }
-    }
-
     #[doc(alias = "gtk_directory_list_get_monitored")]
     #[doc(alias = "get_monitored")]
     pub fn is_monitored(&self) -> bool {
@@ -90,13 +84,6 @@ impl DirectoryList {
                 self.to_glib_none().0,
                 file.map(|p| p.as_ref()).to_glib_none().0,
             );
-        }
-    }
-
-    #[doc(alias = "gtk_directory_list_set_io_priority")]
-    pub fn set_io_priority(&self, io_priority: i32) {
-        unsafe {
-            ffi::gtk_directory_list_set_io_priority(self.to_glib_none().0, io_priority);
         }
     }
 

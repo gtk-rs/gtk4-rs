@@ -253,6 +253,7 @@ mod css_location;
 mod custom_filter;
 mod custom_sorter;
 mod dialog;
+mod directory_list;
 mod drawing_area;
 mod drop_down;
 mod drop_target;
