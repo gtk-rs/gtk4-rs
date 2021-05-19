@@ -139,7 +139,7 @@ pub struct GskColorStop {
 
 impl ::std::fmt::Debug for GskColorStop {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskColorStop @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskColorStop @ {:p}", self))
             .field("offset", &self.offset)
             .field("color", &self.color)
             .finish()
@@ -159,7 +159,7 @@ pub struct GskGLShaderClass {
 
 impl ::std::fmt::Debug for GskGLShaderClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskGLShaderClass @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskGLShaderClass @ {:p}", self))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -182,7 +182,7 @@ pub struct GskParseLocation {
 
 impl ::std::fmt::Debug for GskParseLocation {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskParseLocation @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskParseLocation @ {:p}", self))
             .field("bytes", &self.bytes)
             .field("chars", &self.chars)
             .field("lines", &self.lines)
@@ -206,7 +206,7 @@ pub struct GskRoundedRect {
 
 impl ::std::fmt::Debug for GskRoundedRect {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskRoundedRect @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskRoundedRect @ {:p}", self))
             .field("bounds", &self.bounds)
             .field("corner", &self.corner)
             .finish()
@@ -218,7 +218,7 @@ pub struct GskShaderArgsBuilder(c_void);
 
 impl ::std::fmt::Debug for GskShaderArgsBuilder {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskShaderArgsBuilder @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskShaderArgsBuilder @ {:p}", self))
             .finish()
     }
 }
@@ -234,7 +234,7 @@ pub struct GskShadow {
 
 impl ::std::fmt::Debug for GskShadow {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskShadow @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskShadow @ {:p}", self))
             .field("color", &self.color)
             .field("dx", &self.dx)
             .field("dy", &self.dy)
@@ -248,7 +248,7 @@ pub struct GskTransform(c_void);
 
 impl ::std::fmt::Debug for GskTransform {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskTransform @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskTransform @ {:p}", self))
             .finish()
     }
 }
@@ -264,7 +264,7 @@ pub struct GskBlendNode(c_void);
 
 impl ::std::fmt::Debug for GskBlendNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskBlendNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskBlendNode @ {:p}", self))
             .finish()
     }
 }
@@ -274,7 +274,7 @@ pub struct GskBlurNode(c_void);
 
 impl ::std::fmt::Debug for GskBlurNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskBlurNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskBlurNode @ {:p}", self))
             .finish()
     }
 }
@@ -284,7 +284,7 @@ pub struct GskBorderNode(c_void);
 
 impl ::std::fmt::Debug for GskBorderNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskBorderNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskBorderNode @ {:p}", self))
             .finish()
     }
 }
@@ -294,7 +294,7 @@ pub struct GskBroadwayRenderer(c_void);
 
 impl ::std::fmt::Debug for GskBroadwayRenderer {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskBroadwayRenderer @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskBroadwayRenderer @ {:p}", self))
             .finish()
     }
 }
@@ -304,7 +304,7 @@ pub struct GskCairoNode(c_void);
 
 impl ::std::fmt::Debug for GskCairoNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskCairoNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskCairoNode @ {:p}", self))
             .finish()
     }
 }
@@ -314,7 +314,7 @@ pub struct GskCairoRenderer(c_void);
 
 impl ::std::fmt::Debug for GskCairoRenderer {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskCairoRenderer @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskCairoRenderer @ {:p}", self))
             .finish()
     }
 }
@@ -324,7 +324,7 @@ pub struct GskClipNode(c_void);
 
 impl ::std::fmt::Debug for GskClipNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskClipNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskClipNode @ {:p}", self))
             .finish()
     }
 }
@@ -334,7 +334,7 @@ pub struct GskColorMatrixNode(c_void);
 
 impl ::std::fmt::Debug for GskColorMatrixNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskColorMatrixNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskColorMatrixNode @ {:p}", self))
             .finish()
     }
 }
@@ -344,7 +344,7 @@ pub struct GskColorNode(c_void);
 
 impl ::std::fmt::Debug for GskColorNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskColorNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskColorNode @ {:p}", self))
             .finish()
     }
 }
@@ -354,7 +354,7 @@ pub struct GskConicGradientNode(c_void);
 
 impl ::std::fmt::Debug for GskConicGradientNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskConicGradientNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskConicGradientNode @ {:p}", self))
             .finish()
     }
 }
@@ -364,7 +364,7 @@ pub struct GskContainerNode(c_void);
 
 impl ::std::fmt::Debug for GskContainerNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskContainerNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskContainerNode @ {:p}", self))
             .finish()
     }
 }
@@ -374,7 +374,7 @@ pub struct GskCrossFadeNode(c_void);
 
 impl ::std::fmt::Debug for GskCrossFadeNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskCrossFadeNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskCrossFadeNode @ {:p}", self))
             .finish()
     }
 }
@@ -384,7 +384,7 @@ pub struct GskDebugNode(c_void);
 
 impl ::std::fmt::Debug for GskDebugNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskDebugNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskDebugNode @ {:p}", self))
             .finish()
     }
 }
@@ -394,7 +394,7 @@ pub struct GskGLRenderer(c_void);
 
 impl ::std::fmt::Debug for GskGLRenderer {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskGLRenderer @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskGLRenderer @ {:p}", self))
             .finish()
     }
 }
@@ -404,7 +404,7 @@ pub struct GskGLShader(c_void);
 
 impl ::std::fmt::Debug for GskGLShader {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskGLShader @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskGLShader @ {:p}", self))
             .finish()
     }
 }
@@ -414,7 +414,7 @@ pub struct GskGLShaderNode(c_void);
 
 impl ::std::fmt::Debug for GskGLShaderNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskGLShaderNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskGLShaderNode @ {:p}", self))
             .finish()
     }
 }
@@ -424,7 +424,7 @@ pub struct GskInsetShadowNode(c_void);
 
 impl ::std::fmt::Debug for GskInsetShadowNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskInsetShadowNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskInsetShadowNode @ {:p}", self))
             .finish()
     }
 }
@@ -434,7 +434,7 @@ pub struct GskLinearGradientNode(c_void);
 
 impl ::std::fmt::Debug for GskLinearGradientNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskLinearGradientNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskLinearGradientNode @ {:p}", self))
             .finish()
     }
 }
@@ -444,7 +444,7 @@ pub struct GskNglRenderer(c_void);
 
 impl ::std::fmt::Debug for GskNglRenderer {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskNglRenderer @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskNglRenderer @ {:p}", self))
             .finish()
     }
 }
@@ -454,7 +454,7 @@ pub struct GskOpacityNode(c_void);
 
 impl ::std::fmt::Debug for GskOpacityNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskOpacityNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskOpacityNode @ {:p}", self))
             .finish()
     }
 }
@@ -464,7 +464,7 @@ pub struct GskOutsetShadowNode(c_void);
 
 impl ::std::fmt::Debug for GskOutsetShadowNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskOutsetShadowNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskOutsetShadowNode @ {:p}", self))
             .finish()
     }
 }
@@ -474,7 +474,7 @@ pub struct GskRadialGradientNode(c_void);
 
 impl ::std::fmt::Debug for GskRadialGradientNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskRadialGradientNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskRadialGradientNode @ {:p}", self))
             .finish()
     }
 }
@@ -484,7 +484,7 @@ pub struct GskRenderNode(c_void);
 
 impl ::std::fmt::Debug for GskRenderNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskRenderNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskRenderNode @ {:p}", self))
             .finish()
     }
 }
@@ -494,7 +494,7 @@ pub struct GskRenderer(c_void);
 
 impl ::std::fmt::Debug for GskRenderer {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskRenderer @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskRenderer @ {:p}", self))
             .finish()
     }
 }
@@ -504,7 +504,7 @@ pub struct GskRepeatNode(c_void);
 
 impl ::std::fmt::Debug for GskRepeatNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskRepeatNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskRepeatNode @ {:p}", self))
             .finish()
     }
 }
@@ -514,11 +514,8 @@ pub struct GskRepeatingLinearGradientNode(c_void);
 
 impl ::std::fmt::Debug for GskRepeatingLinearGradientNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!(
-            "GskRepeatingLinearGradientNode @ {:?}",
-            self as *const _
-        ))
-        .finish()
+        f.debug_struct(&format!("GskRepeatingLinearGradientNode @ {:p}", self))
+            .finish()
     }
 }
 
@@ -527,11 +524,8 @@ pub struct GskRepeatingRadialGradientNode(c_void);
 
 impl ::std::fmt::Debug for GskRepeatingRadialGradientNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!(
-            "GskRepeatingRadialGradientNode @ {:?}",
-            self as *const _
-        ))
-        .finish()
+        f.debug_struct(&format!("GskRepeatingRadialGradientNode @ {:p}", self))
+            .finish()
     }
 }
 
@@ -540,7 +534,7 @@ pub struct GskRoundedClipNode(c_void);
 
 impl ::std::fmt::Debug for GskRoundedClipNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskRoundedClipNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskRoundedClipNode @ {:p}", self))
             .finish()
     }
 }
@@ -550,7 +544,7 @@ pub struct GskShadowNode(c_void);
 
 impl ::std::fmt::Debug for GskShadowNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskShadowNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskShadowNode @ {:p}", self))
             .finish()
     }
 }
@@ -560,7 +554,7 @@ pub struct GskTextNode(c_void);
 
 impl ::std::fmt::Debug for GskTextNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskTextNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskTextNode @ {:p}", self))
             .finish()
     }
 }
@@ -570,7 +564,7 @@ pub struct GskTextureNode(c_void);
 
 impl ::std::fmt::Debug for GskTextureNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskTextureNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskTextureNode @ {:p}", self))
             .finish()
     }
 }
@@ -580,7 +574,7 @@ pub struct GskTransformNode(c_void);
 
 impl ::std::fmt::Debug for GskTransformNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskTransformNode @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskTransformNode @ {:p}", self))
             .finish()
     }
 }
@@ -590,7 +584,7 @@ pub struct GskVulkanRenderer(c_void);
 
 impl ::std::fmt::Debug for GskVulkanRenderer {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("GskVulkanRenderer @ {:?}", self as *const _))
+        f.debug_struct(&format!("GskVulkanRenderer @ {:p}", self))
             .finish()
     }
 }
