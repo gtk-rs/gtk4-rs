@@ -117,6 +117,7 @@
 <span id="114">114</span>
 <span id="115">115</span>
 <span id="116">116</span>
+<span id="117">117</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -210,6 +211,7 @@
 <span class="doccomment">/// so will not cause the program to terminate if GTK could not be initialized.</span>
 <span class="doccomment">/// Instead, an Ok is returned if the windowing system was successfully</span>
 <span class="doccomment">/// initialized otherwise an Err is returned.</span>
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_init&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::BoolError</span><span class="op">&gt;</span> {
     <span class="macro">skip_assert_initialized!</span>();
     <span class="kw">if</span> <span class="ident">is_initialized_main_thread</span>() {
