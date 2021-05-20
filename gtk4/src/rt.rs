@@ -90,6 +90,7 @@ pub unsafe fn set_initialized() {
 /// so will not cause the program to terminate if GTK could not be initialized.
 /// Instead, an Ok is returned if the windowing system was successfully
 /// initialized otherwise an Err is returned.
+#[doc(alias = "gtk_init")]
 pub fn init() -> Result<(), glib::BoolError> {
     skip_assert_initialized!();
     if is_initialized_main_thread() {
