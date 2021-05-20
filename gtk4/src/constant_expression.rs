@@ -11,6 +11,7 @@ define_expression!(
 
 impl ConstantExpression {
     #[doc(alias = "gtk_constant_expression_new")]
+    #[doc(alias = "gtk_constant_expression_new_for_value")]
     pub fn new<V: ToValue>(value: &V) -> Self {
         assert_initialized_main_thread!();
         unsafe {
