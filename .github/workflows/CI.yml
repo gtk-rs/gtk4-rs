@@ -116,6 +116,11 @@ jobs:
         working-directory: checker
       - run: ./check_init_asserts ../${{matrix.crate}}
         working-directory: checker
+      - name: Check doc aliases
+        run: |
+          python3 doc_aliases.py ../${{matrix.crate}}
+          cd .. && git diff -R --exit-code
+        working-directory: checker
 
   checker-macros:
     name: gtk-rs macro checker
