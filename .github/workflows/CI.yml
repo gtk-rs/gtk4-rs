@@ -88,7 +88,7 @@ jobs:
         with:
           submodules: "recursive"
       - run: python3 ./generator.py --yes ./
-      - run: git diff -R --exit-code
+      - run: git diff --exit-code
 
   checker:
     name: gtk-rs checker
@@ -119,7 +119,7 @@ jobs:
       - name: Check doc aliases
         run: |
           python3 doc_aliases.py ../${{matrix.crate}}
-          cd .. && git diff -R --exit-code
+          cd .. && git diff --exit-code
         working-directory: checker
 
   checker-macros:
