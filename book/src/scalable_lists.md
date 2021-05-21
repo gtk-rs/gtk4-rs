@@ -2,7 +2,7 @@
 
 Sometimes you have more elements than you can display at once.
 The typical solution is to put them into a [`ScrolledWindow`](../docs/gtk/struct.ScrolledWindow.html) so you can scroll through the complete list.
-Howevee, in the most trivial case you would still create one widget per element.
+However, in the most trivial case you would still create one widget per element.
 Because creating new widgets takes a bit of time, this can become a problem if you have many element.
 Just think of the nearly infinite amount of posts in your social media timeline.
 
@@ -10,7 +10,7 @@ This is why we use scalable lists instead.
 Here, a model holds our data, filters them and describes its order.
 The list item factory defines how the data transforms into widgets.
 The view specifies how the widgets are then arranged.
-Howvever, the most important part is that GTK only has to create slightly more widgets than we can currently look at.
+However, the most important part is that GTK only has to create slightly more widgets than we can currently look at.
 As we scroll through our elements, the widgets who are not visible anymore will be reused 
 
 
@@ -174,6 +174,6 @@ After our changes, the application looks like this.
 <div style="text-align:center"><img src="img/scalable_lists_demo_2.png"/></div>
 
 
-We now know how to handle huge amount of data with the help of models such as [`gio::ListStore`](http://gtk-rs.org/docs/gio/struct.ListStore.html)and widgets like [`ListView`](../git/docs/gtk4/struct.ListView.html) or [`GridView`](../git/docs/gtk4/struct.GridView.html).
+We now know how to handle huge amount of data with the help of models such as [`gio::ListStore`](http://gtk-rs.org/docs/gio/struct.ListStore.html) and widgets like [`ListView`](../git/docs/gtk4/struct.ListView.html), [`ColumnView`](../git/docs/gtk4/struct.ColumnView.html) or [`GridView`](../git/docs/gtk4/struct.GridView.html).
 Please note that you do not have to have thousands of element until it makes sense to use this pattern.
 As soon as you feel the need to add a [`ScrolledWindow`](../docs/gtk/struct.ScrolledWindow.html), it is probably already reasonable to start using models and views.
