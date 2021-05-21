@@ -100,11 +100,7 @@ pub fn init() -> Result<(), glib::BoolError> {
     }
     unsafe {
         if from_glib(ffi::gtk_init_check()) {
-            if !glib::MainContext::default().is_owner() {
-                return Err(glib::bool_error!("Failed to acquire default main context"));
-            }
-
-            if !{ from_glib(ffi::gtk_is_initialized()) } {
+            if !from_glib::<glib::ffi::gboolean, bool>(ffi::gtk_is_initialized()) {
                 return Err(glib::bool_error!("GTK was not actually initialized"));
             }
 
