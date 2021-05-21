@@ -1,10 +1,11 @@
 mod integer_object;
 
-use gtk::{gio, CustomSorter, FilterChange, SorterChange};
-use gtk::{prelude::*, SortListModel};
+use gtk::gio;
+use gtk::prelude::*;
 use gtk::{
-    Application, ApplicationWindowBuilder, ConstantExpression, Label, ListView, PolicyType,
-    PropertyExpression, ScrolledWindowBuilder, SignalListItemFactory, SingleSelection,
+    Application, ApplicationWindowBuilder, ConstantExpression, CustomSorter, FilterChange, Label,
+    ListView, PolicyType, PropertyExpression, ScrolledWindowBuilder, SignalListItemFactory,
+    SingleSelection, SortListModel, SorterChange,
 };
 use integer_object::IntegerObject;
 
