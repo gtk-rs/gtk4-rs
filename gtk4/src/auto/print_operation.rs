@@ -47,6 +47,8 @@ impl Default for PrintOperation {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`PrintOperation`].
 pub struct PrintOperationBuilder {
     allow_async: Option<bool>,
     current_page: Option<i32>,
@@ -66,10 +68,14 @@ pub struct PrintOperationBuilder {
 }
 
 impl PrintOperationBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`PrintOperationBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`PrintOperation`].
     pub fn build(self) -> PrintOperation {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref allow_async) = self.allow_async {

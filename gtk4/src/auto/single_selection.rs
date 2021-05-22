@@ -239,6 +239,8 @@ impl SingleSelection {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`SingleSelection`].
 pub struct SingleSelectionBuilder {
     autoselect: Option<bool>,
     can_unselect: Option<bool>,
@@ -247,10 +249,14 @@ pub struct SingleSelectionBuilder {
 }
 
 impl SingleSelectionBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`SingleSelectionBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`SingleSelection`].
     pub fn build(self) -> SingleSelection {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref autoselect) = self.autoselect {

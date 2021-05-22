@@ -75,15 +75,21 @@ impl NoSelection {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`NoSelection`].
 pub struct NoSelectionBuilder {
     model: Option<gio::ListModel>,
 }
 
 impl NoSelectionBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`NoSelectionBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`NoSelection`].
     pub fn build(self) -> NoSelection {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref model) = self.model {

@@ -70,6 +70,8 @@ impl Default for ToggleButton {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ToggleButton`].
 pub struct ToggleButtonBuilder {
     active: Option<bool>,
     group: Option<ToggleButton>,
@@ -113,10 +115,14 @@ pub struct ToggleButtonBuilder {
 }
 
 impl ToggleButtonBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ToggleButtonBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ToggleButton`].
     pub fn build(self) -> ToggleButton {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref active) = self.active {

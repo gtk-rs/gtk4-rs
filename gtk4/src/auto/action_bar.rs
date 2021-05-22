@@ -118,6 +118,8 @@ impl Default for ActionBar {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ActionBar`].
 pub struct ActionBarBuilder {
     revealed: Option<bool>,
     can_focus: Option<bool>,
@@ -153,10 +155,14 @@ pub struct ActionBarBuilder {
 }
 
 impl ActionBarBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ActionBarBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ActionBar`].
     pub fn build(self) -> ActionBar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref revealed) = self.revealed {

@@ -32,16 +32,22 @@ impl TextMark {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`TextMark`].
 pub struct TextMarkBuilder {
     left_gravity: Option<bool>,
     name: Option<String>,
 }
 
 impl TextMarkBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`TextMarkBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`TextMark`].
     pub fn build(self) -> TextMark {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref left_gravity) = self.left_gravity {

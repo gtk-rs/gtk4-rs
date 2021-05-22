@@ -44,6 +44,8 @@ impl Default for DrawingArea {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`DrawingArea`].
 pub struct DrawingAreaBuilder {
     content_height: Option<i32>,
     content_width: Option<i32>,
@@ -80,10 +82,14 @@ pub struct DrawingAreaBuilder {
 }
 
 impl DrawingAreaBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`DrawingAreaBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`DrawingArea`].
     pub fn build(self) -> DrawingArea {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref content_height) = self.content_height {

@@ -41,6 +41,8 @@ impl Default for Fixed {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Fixed`].
 pub struct FixedBuilder {
     can_focus: Option<bool>,
     can_target: Option<bool>,
@@ -75,10 +77,14 @@ pub struct FixedBuilder {
 }
 
 impl FixedBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`FixedBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Fixed`].
     pub fn build(self) -> Fixed {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref can_focus) = self.can_focus {

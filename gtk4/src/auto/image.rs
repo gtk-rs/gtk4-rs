@@ -531,6 +531,8 @@ impl Default for Image {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Image`].
 pub struct ImageBuilder {
     file: Option<String>,
     gicon: Option<gio::Icon>,
@@ -573,10 +575,14 @@ pub struct ImageBuilder {
 }
 
 impl ImageBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ImageBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Image`].
     pub fn build(self) -> Image {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref file) = self.file {

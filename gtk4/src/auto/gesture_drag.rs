@@ -42,6 +42,8 @@ impl Default for GestureDrag {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`GestureDrag`].
 pub struct GestureDragBuilder {
     button: Option<u32>,
     exclusive: Option<bool>,
@@ -53,10 +55,14 @@ pub struct GestureDragBuilder {
 }
 
 impl GestureDragBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`GestureDragBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`GestureDrag`].
     pub fn build(self) -> GestureDrag {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref button) = self.button {

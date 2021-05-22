@@ -124,15 +124,21 @@ impl DisplayManager {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`DisplayManager`].
 pub struct DisplayManagerBuilder {
     default_display: Option<Display>,
 }
 
 impl DisplayManagerBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`DisplayManagerBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`DisplayManager`].
     pub fn build(self) -> DisplayManager {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref default_display) = self.default_display {

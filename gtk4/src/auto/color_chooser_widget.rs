@@ -98,6 +98,8 @@ impl Default for ColorChooserWidget {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ColorChooserWidget`].
 pub struct ColorChooserWidgetBuilder {
     show_editor: Option<bool>,
     can_focus: Option<bool>,
@@ -135,10 +137,14 @@ pub struct ColorChooserWidgetBuilder {
 }
 
 impl ColorChooserWidgetBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ColorChooserWidgetBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ColorChooserWidget`].
     pub fn build(self) -> ColorChooserWidget {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref show_editor) = self.show_editor {

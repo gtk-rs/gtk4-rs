@@ -335,6 +335,8 @@ impl Default for SearchEntry {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`SearchEntry`].
 pub struct SearchEntryBuilder {
     activates_default: Option<bool>,
     placeholder_text: Option<String>,
@@ -377,10 +379,14 @@ pub struct SearchEntryBuilder {
 }
 
 impl SearchEntryBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`SearchEntryBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`SearchEntry`].
     pub fn build(self) -> SearchEntry {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref activates_default) = self.activates_default {

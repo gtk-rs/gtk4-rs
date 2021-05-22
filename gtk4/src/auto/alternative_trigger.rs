@@ -56,16 +56,22 @@ impl AlternativeTrigger {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`AlternativeTrigger`].
 pub struct AlternativeTriggerBuilder {
     first: Option<ShortcutTrigger>,
     second: Option<ShortcutTrigger>,
 }
 
 impl AlternativeTriggerBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`AlternativeTriggerBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`AlternativeTrigger`].
     pub fn build(self) -> AlternativeTrigger {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref first) = self.first {

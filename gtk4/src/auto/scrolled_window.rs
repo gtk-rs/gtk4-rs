@@ -957,6 +957,8 @@ impl Default for ScrolledWindow {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ScrolledWindow`].
 pub struct ScrolledWindowBuilder {
     child: Option<Widget>,
     hadjustment: Option<Adjustment>,
@@ -1006,10 +1008,14 @@ pub struct ScrolledWindowBuilder {
 }
 
 impl ScrolledWindowBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ScrolledWindowBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ScrolledWindow`].
     pub fn build(self) -> ScrolledWindow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

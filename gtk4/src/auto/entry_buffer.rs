@@ -22,16 +22,22 @@ glib::wrapper! {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`EntryBuffer`].
 pub struct EntryBufferBuilder {
     max_length: Option<i32>,
     text: Option<String>,
 }
 
 impl EntryBufferBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`EntryBufferBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`EntryBuffer`].
     pub fn build(self) -> EntryBuffer {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref max_length) = self.max_length {

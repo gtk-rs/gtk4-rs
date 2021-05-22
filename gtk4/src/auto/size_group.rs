@@ -97,15 +97,21 @@ impl SizeGroup {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`SizeGroup`].
 pub struct SizeGroupBuilder {
     mode: Option<SizeGroupMode>,
 }
 
 impl SizeGroupBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`SizeGroupBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`SizeGroup`].
     pub fn build(self) -> SizeGroup {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref mode) = self.mode {

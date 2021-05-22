@@ -275,6 +275,8 @@ impl Default for PasswordEntry {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`PasswordEntry`].
 pub struct PasswordEntryBuilder {
     activates_default: Option<bool>,
     extra_menu: Option<gio::MenuModel>,
@@ -319,10 +321,14 @@ pub struct PasswordEntryBuilder {
 }
 
 impl PasswordEntryBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`PasswordEntryBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`PasswordEntry`].
     pub fn build(self) -> PasswordEntry {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref activates_default) = self.activates_default {

@@ -33,6 +33,8 @@ impl TextTag {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`TextTag`].
 pub struct TextTagBuilder {
     accumulative_margin: Option<bool>,
     allow_breaks: Option<bool>,
@@ -118,10 +120,14 @@ pub struct TextTagBuilder {
 }
 
 impl TextTagBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`TextTagBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`TextTag`].
     pub fn build(self) -> TextTag {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref accumulative_margin) = self.accumulative_margin {

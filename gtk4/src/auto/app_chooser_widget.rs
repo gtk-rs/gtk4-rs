@@ -373,6 +373,8 @@ impl AppChooserWidget {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`AppChooserWidget`].
 pub struct AppChooserWidgetBuilder {
     default_text: Option<String>,
     show_all: Option<bool>,
@@ -414,10 +416,14 @@ pub struct AppChooserWidgetBuilder {
 }
 
 impl AppChooserWidgetBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`AppChooserWidgetBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`AppChooserWidget`].
     pub fn build(self) -> AppChooserWidget {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref default_text) = self.default_text {

@@ -158,6 +158,8 @@ impl Default for GestureClick {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`GestureClick`].
 pub struct GestureClickBuilder {
     button: Option<u32>,
     exclusive: Option<bool>,
@@ -169,10 +171,14 @@ pub struct GestureClickBuilder {
 }
 
 impl GestureClickBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`GestureClickBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`GestureClick`].
     pub fn build(self) -> GestureClick {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref button) = self.button {

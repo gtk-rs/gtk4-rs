@@ -550,6 +550,8 @@ impl ShortcutsShortcut {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ShortcutsShortcut`].
 pub struct ShortcutsShortcutBuilder {
     accel_size_group: Option<SizeGroup>,
     accelerator: Option<String>,
@@ -595,10 +597,14 @@ pub struct ShortcutsShortcutBuilder {
 }
 
 impl ShortcutsShortcutBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ShortcutsShortcutBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ShortcutsShortcut`].
     pub fn build(self) -> ShortcutsShortcut {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref accel_size_group) = self.accel_size_group {

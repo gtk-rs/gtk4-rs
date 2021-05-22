@@ -74,6 +74,8 @@ impl FixedLayoutChild {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`FixedLayoutChild`].
 pub struct FixedLayoutChildBuilder {
     transform: Option<gsk::Transform>,
     child_widget: Option<Widget>,
@@ -81,10 +83,14 @@ pub struct FixedLayoutChildBuilder {
 }
 
 impl FixedLayoutChildBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`FixedLayoutChildBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`FixedLayoutChild`].
     pub fn build(self) -> FixedLayoutChild {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref transform) = self.transform {

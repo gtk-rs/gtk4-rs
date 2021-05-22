@@ -150,6 +150,8 @@ impl Default for Overlay {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Overlay`].
 pub struct OverlayBuilder {
     child: Option<Widget>,
     can_focus: Option<bool>,
@@ -185,10 +187,14 @@ pub struct OverlayBuilder {
 }
 
 impl OverlayBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`OverlayBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Overlay`].
     pub fn build(self) -> Overlay {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

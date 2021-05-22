@@ -58,15 +58,21 @@ impl StyleContext {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`StyleContext`].
 pub struct StyleContextBuilder {
     display: Option<gdk::Display>,
 }
 
 impl StyleContextBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`StyleContextBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`StyleContext`].
     pub fn build(self) -> StyleContext {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref display) = self.display {

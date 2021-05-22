@@ -376,6 +376,8 @@ impl Default for Builder {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Builder`].
 pub struct BuilderBuilder {
     current_object: Option<glib::Object>,
     scope: Option<BuilderScope>,
@@ -383,10 +385,14 @@ pub struct BuilderBuilder {
 }
 
 impl BuilderBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`BuilderBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Builder`].
     pub fn build(self) -> Builder {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref current_object) = self.current_object {

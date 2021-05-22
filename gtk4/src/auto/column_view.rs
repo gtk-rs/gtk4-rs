@@ -434,6 +434,8 @@ impl ColumnView {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ColumnView`].
 pub struct ColumnViewBuilder {
     enable_rubberband: Option<bool>,
     model: Option<SelectionModel>,
@@ -478,10 +480,14 @@ pub struct ColumnViewBuilder {
 }
 
 impl ColumnViewBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ColumnViewBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ColumnView`].
     pub fn build(self) -> ColumnView {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref enable_rubberband) = self.enable_rubberband {

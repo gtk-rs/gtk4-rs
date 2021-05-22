@@ -45,6 +45,8 @@ impl DeviceTool {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`DeviceTool`].
 pub struct DeviceToolBuilder {
     axes: Option<AxisFlags>,
     hardware_id: Option<u64>,
@@ -53,10 +55,14 @@ pub struct DeviceToolBuilder {
 }
 
 impl DeviceToolBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`DeviceToolBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`DeviceTool`].
     pub fn build(self) -> DeviceTool {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref axes) = self.axes {

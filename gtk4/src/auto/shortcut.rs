@@ -161,6 +161,8 @@ impl Shortcut {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Shortcut`].
 pub struct ShortcutBuilder {
     action: Option<ShortcutAction>,
     arguments: Option<glib::Variant>,
@@ -168,10 +170,14 @@ pub struct ShortcutBuilder {
 }
 
 impl ShortcutBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ShortcutBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Shortcut`].
     pub fn build(self) -> Shortcut {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref action) = self.action {

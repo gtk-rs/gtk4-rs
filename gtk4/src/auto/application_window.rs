@@ -49,6 +49,8 @@ impl ApplicationWindow {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ApplicationWindow`].
 pub struct ApplicationWindowBuilder {
     show_menubar: Option<bool>,
     application: Option<Application>,
@@ -108,10 +110,14 @@ pub struct ApplicationWindowBuilder {
 }
 
 impl ApplicationWindowBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ApplicationWindowBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ApplicationWindow`].
     pub fn build(self) -> ApplicationWindow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref show_menubar) = self.show_menubar {

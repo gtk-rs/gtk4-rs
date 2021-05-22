@@ -95,6 +95,8 @@ impl Default for Spinner {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Spinner`].
 pub struct SpinnerBuilder {
     spinning: Option<bool>,
     can_focus: Option<bool>,
@@ -130,10 +132,14 @@ pub struct SpinnerBuilder {
 }
 
 impl SpinnerBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`SpinnerBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Spinner`].
     pub fn build(self) -> Spinner {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref spinning) = self.spinning {

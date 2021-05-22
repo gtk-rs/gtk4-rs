@@ -225,6 +225,8 @@ impl Default for FontButton {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`FontButton`].
 pub struct FontButtonBuilder {
     modal: Option<bool>,
     title: Option<String>,
@@ -269,10 +271,14 @@ pub struct FontButtonBuilder {
 }
 
 impl FontButtonBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`FontButtonBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`FontButton`].
     pub fn build(self) -> FontButton {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref modal) = self.modal {

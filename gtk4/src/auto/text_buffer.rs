@@ -35,6 +35,8 @@ impl TextBuffer {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`TextBuffer`].
 pub struct TextBufferBuilder {
     enable_undo: Option<bool>,
     tag_table: Option<TextTagTable>,
@@ -42,10 +44,14 @@ pub struct TextBufferBuilder {
 }
 
 impl TextBufferBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`TextBufferBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`TextBuffer`].
     pub fn build(self) -> TextBuffer {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref enable_undo) = self.enable_undo {

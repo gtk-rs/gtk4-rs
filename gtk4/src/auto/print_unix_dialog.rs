@@ -461,6 +461,8 @@ impl PrintUnixDialog {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`PrintUnixDialog`].
 pub struct PrintUnixDialogBuilder {
     current_page: Option<i32>,
     embed_page_setup: Option<bool>,
@@ -527,10 +529,14 @@ pub struct PrintUnixDialogBuilder {
 }
 
 impl PrintUnixDialogBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`PrintUnixDialogBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`PrintUnixDialog`].
     pub fn build(self) -> PrintUnixDialog {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref current_page) = self.current_page {

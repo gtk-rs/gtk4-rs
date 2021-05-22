@@ -630,6 +630,8 @@ impl Default for EntryCompletion {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`EntryCompletion`].
 pub struct EntryCompletionBuilder {
     cell_area: Option<CellArea>,
     inline_completion: Option<bool>,
@@ -643,10 +645,14 @@ pub struct EntryCompletionBuilder {
 }
 
 impl EntryCompletionBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`EntryCompletionBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`EntryCompletion`].
     pub fn build(self) -> EntryCompletion {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref cell_area) = self.cell_area {

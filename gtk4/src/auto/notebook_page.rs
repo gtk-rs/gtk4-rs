@@ -410,6 +410,8 @@ impl NotebookPage {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`NotebookPage`].
 pub struct NotebookPageBuilder {
     child: Option<Widget>,
     detachable: Option<bool>,
@@ -424,10 +426,14 @@ pub struct NotebookPageBuilder {
 }
 
 impl NotebookPageBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`NotebookPageBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`NotebookPage`].
     pub fn build(self) -> NotebookPage {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

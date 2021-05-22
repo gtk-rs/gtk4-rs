@@ -32,15 +32,21 @@ impl NamedAction {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`NamedAction`].
 pub struct NamedActionBuilder {
     action_name: Option<String>,
 }
 
 impl NamedActionBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`NamedActionBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`NamedAction`].
     pub fn build(self) -> NamedAction {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref action_name) = self.action_name {

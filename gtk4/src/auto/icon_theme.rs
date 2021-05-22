@@ -328,6 +328,8 @@ impl Default for IconTheme {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`IconTheme`].
 pub struct IconThemeBuilder {
     display: Option<gdk::Display>,
     resource_path: Option<Vec<String>>,
@@ -336,10 +338,14 @@ pub struct IconThemeBuilder {
 }
 
 impl IconThemeBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`IconThemeBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`IconTheme`].
     pub fn build(self) -> IconTheme {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref display) = self.display {

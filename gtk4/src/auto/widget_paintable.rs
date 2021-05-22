@@ -78,15 +78,21 @@ impl WidgetPaintable {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`WidgetPaintable`].
 pub struct WidgetPaintableBuilder {
     widget: Option<Widget>,
 }
 
 impl WidgetPaintableBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`WidgetPaintableBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`WidgetPaintable`].
     pub fn build(self) -> WidgetPaintable {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref widget) = self.widget {

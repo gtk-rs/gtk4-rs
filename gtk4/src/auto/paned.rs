@@ -689,6 +689,8 @@ impl Paned {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Paned`].
 pub struct PanedBuilder {
     end_child: Option<Widget>,
     position: Option<i32>,
@@ -733,10 +735,14 @@ pub struct PanedBuilder {
 }
 
 impl PanedBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`PanedBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Paned`].
     pub fn build(self) -> Paned {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref end_child) = self.end_child {

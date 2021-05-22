@@ -24,15 +24,21 @@ glib::wrapper! {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`CellAreaContext`].
 pub struct CellAreaContextBuilder {
     area: Option<CellArea>,
 }
 
 impl CellAreaContextBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`CellAreaContextBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`CellAreaContext`].
     pub fn build(self) -> CellAreaContext {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref area) = self.area {

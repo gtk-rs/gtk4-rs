@@ -73,6 +73,8 @@ impl Default for GestureRotate {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`GestureRotate`].
 pub struct GestureRotateBuilder {
     n_points: Option<u32>,
     name: Option<String>,
@@ -81,10 +83,14 @@ pub struct GestureRotateBuilder {
 }
 
 impl GestureRotateBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`GestureRotateBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`GestureRotate`].
     pub fn build(self) -> GestureRotate {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref n_points) = self.n_points {

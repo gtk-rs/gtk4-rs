@@ -542,6 +542,8 @@ impl FileChooserWidget {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`FileChooserWidget`].
 pub struct FileChooserWidgetBuilder {
     search_mode: Option<bool>,
     can_focus: Option<bool>,
@@ -581,10 +583,14 @@ pub struct FileChooserWidgetBuilder {
 }
 
 impl FileChooserWidgetBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`FileChooserWidgetBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`FileChooserWidget`].
     pub fn build(self) -> FileChooserWidget {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref search_mode) = self.search_mode {

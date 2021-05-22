@@ -310,6 +310,8 @@ impl Default for LevelBar {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`LevelBar`].
 pub struct LevelBarBuilder {
     inverted: Option<bool>,
     max_value: Option<f64>,
@@ -350,10 +352,14 @@ pub struct LevelBarBuilder {
 }
 
 impl LevelBarBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`LevelBarBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`LevelBar`].
     pub fn build(self) -> LevelBar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref inverted) = self.inverted {

@@ -752,6 +752,8 @@ impl Default for AboutDialog {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`AboutDialog`].
 pub struct AboutDialogBuilder {
     artists: Option<Vec<String>>,
     authors: Option<Vec<String>>,
@@ -826,10 +828,14 @@ pub struct AboutDialogBuilder {
 }
 
 impl AboutDialogBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`AboutDialogBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`AboutDialog`].
     pub fn build(self) -> AboutDialog {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref artists) = self.artists {

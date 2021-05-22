@@ -227,6 +227,8 @@ impl Default for DropControllerMotion {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`DropControllerMotion`].
 pub struct DropControllerMotionBuilder {
     name: Option<String>,
     propagation_limit: Option<PropagationLimit>,
@@ -234,10 +236,14 @@ pub struct DropControllerMotionBuilder {
 }
 
 impl DropControllerMotionBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`DropControllerMotionBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`DropControllerMotion`].
     pub fn build(self) -> DropControllerMotion {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref name) = self.name {

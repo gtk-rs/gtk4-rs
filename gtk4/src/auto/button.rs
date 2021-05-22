@@ -78,6 +78,8 @@ impl Default for Button {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Button`].
 pub struct ButtonBuilder {
     child: Option<Widget>,
     has_frame: Option<bool>,
@@ -119,10 +121,14 @@ pub struct ButtonBuilder {
 }
 
 impl ButtonBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ButtonBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Button`].
     pub fn build(self) -> Button {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

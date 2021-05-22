@@ -70,6 +70,8 @@ impl Default for CheckButton {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`CheckButton`].
 pub struct CheckButtonBuilder {
     active: Option<bool>,
     group: Option<CheckButton>,
@@ -111,10 +113,14 @@ pub struct CheckButtonBuilder {
 }
 
 impl CheckButtonBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`CheckButtonBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`CheckButton`].
     pub fn build(self) -> CheckButton {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref active) = self.active {

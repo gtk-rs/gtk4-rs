@@ -155,6 +155,8 @@ impl WindowControls {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`WindowControls`].
 pub struct WindowControlsBuilder {
     decoration_layout: Option<String>,
     side: Option<PackType>,
@@ -191,10 +193,14 @@ pub struct WindowControlsBuilder {
 }
 
 impl WindowControlsBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`WindowControlsBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`WindowControls`].
     pub fn build(self) -> WindowControls {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref decoration_layout) = self.decoration_layout {

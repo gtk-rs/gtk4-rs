@@ -202,6 +202,8 @@ impl Default for ColorButton {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ColorButton`].
 pub struct ColorButtonBuilder {
     modal: Option<bool>,
     show_editor: Option<bool>,
@@ -241,10 +243,14 @@ pub struct ColorButtonBuilder {
 }
 
 impl ColorButtonBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ColorButtonBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ColorButton`].
     pub fn build(self) -> ColorButton {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref modal) = self.modal {

@@ -144,6 +144,8 @@ impl Default for Statusbar {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Statusbar`].
 pub struct StatusbarBuilder {
     can_focus: Option<bool>,
     can_target: Option<bool>,
@@ -178,10 +180,14 @@ pub struct StatusbarBuilder {
 }
 
 impl StatusbarBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`StatusbarBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Statusbar`].
     pub fn build(self) -> Statusbar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref can_focus) = self.can_focus {

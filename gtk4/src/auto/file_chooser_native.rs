@@ -142,6 +142,8 @@ impl FileChooserNative {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`FileChooserNative`].
 pub struct FileChooserNativeBuilder {
     accept_label: Option<String>,
     cancel_label: Option<String>,
@@ -156,10 +158,14 @@ pub struct FileChooserNativeBuilder {
 }
 
 impl FileChooserNativeBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`FileChooserNativeBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`FileChooserNative`].
     pub fn build(self) -> FileChooserNative {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref accept_label) = self.accept_label {

@@ -150,6 +150,8 @@ impl Default for TreeExpander {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`TreeExpander`].
 pub struct TreeExpanderBuilder {
     child: Option<Widget>,
     list_row: Option<TreeListRow>,
@@ -186,10 +188,14 @@ pub struct TreeExpanderBuilder {
 }
 
 impl TreeExpanderBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`TreeExpanderBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`TreeExpander`].
     pub fn build(self) -> TreeExpander {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

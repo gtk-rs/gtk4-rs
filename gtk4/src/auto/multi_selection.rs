@@ -75,15 +75,21 @@ impl MultiSelection {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`MultiSelection`].
 pub struct MultiSelectionBuilder {
     model: Option<gio::ListModel>,
 }
 
 impl MultiSelectionBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`MultiSelectionBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`MultiSelection`].
     pub fn build(self) -> MultiSelection {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref model) = self.model {

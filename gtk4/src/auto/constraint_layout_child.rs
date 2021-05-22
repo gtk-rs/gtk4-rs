@@ -22,16 +22,22 @@ glib::wrapper! {
 impl ConstraintLayoutChild {}
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ConstraintLayoutChild`].
 pub struct ConstraintLayoutChildBuilder {
     child_widget: Option<Widget>,
     layout_manager: Option<LayoutManager>,
 }
 
 impl ConstraintLayoutChildBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ConstraintLayoutChildBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ConstraintLayoutChild`].
     pub fn build(self) -> ConstraintLayoutChild {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child_widget) = self.child_widget {

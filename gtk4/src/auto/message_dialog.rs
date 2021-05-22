@@ -341,6 +341,8 @@ impl MessageDialog {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`MessageDialog`].
 pub struct MessageDialogBuilder {
     buttons: Option<ButtonsType>,
     message_type: Option<MessageType>,
@@ -406,10 +408,14 @@ pub struct MessageDialogBuilder {
 }
 
 impl MessageDialogBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`MessageDialogBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`MessageDialog`].
     pub fn build(self) -> MessageDialog {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref buttons) = self.buttons {

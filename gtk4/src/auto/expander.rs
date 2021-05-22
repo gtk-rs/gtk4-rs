@@ -349,6 +349,8 @@ impl Expander {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Expander`].
 pub struct ExpanderBuilder {
     child: Option<Widget>,
     expanded: Option<bool>,
@@ -390,10 +392,14 @@ pub struct ExpanderBuilder {
 }
 
 impl ExpanderBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ExpanderBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Expander`].
     pub fn build(self) -> Expander {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

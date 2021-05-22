@@ -34,16 +34,22 @@ impl Default for IMContextSimple {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`IMContextSimple`].
 pub struct IMContextSimpleBuilder {
     input_hints: Option<InputHints>,
     input_purpose: Option<InputPurpose>,
 }
 
 impl IMContextSimpleBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`IMContextSimpleBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`IMContextSimple`].
     pub fn build(self) -> IMContextSimple {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref input_hints) = self.input_hints {

@@ -177,6 +177,8 @@ impl StringFilter {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`StringFilter`].
 pub struct StringFilterBuilder {
     expression: Option<Expression>,
     ignore_case: Option<bool>,
@@ -185,10 +187,14 @@ pub struct StringFilterBuilder {
 }
 
 impl StringFilterBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`StringFilterBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`StringFilter`].
     pub fn build(self) -> StringFilter {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref expression) = self.expression {

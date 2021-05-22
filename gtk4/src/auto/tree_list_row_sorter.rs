@@ -82,15 +82,21 @@ impl TreeListRowSorter {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`TreeListRowSorter`].
 pub struct TreeListRowSorterBuilder {
     sorter: Option<Sorter>,
 }
 
 impl TreeListRowSorterBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`TreeListRowSorterBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`TreeListRowSorter`].
     pub fn build(self) -> TreeListRowSorter {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref sorter) = self.sorter {

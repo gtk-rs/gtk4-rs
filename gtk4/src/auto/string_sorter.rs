@@ -101,16 +101,22 @@ impl StringSorter {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`StringSorter`].
 pub struct StringSorterBuilder {
     expression: Option<Expression>,
     ignore_case: Option<bool>,
 }
 
 impl StringSorterBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`StringSorterBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`StringSorter`].
     pub fn build(self) -> StringSorter {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref expression) = self.expression {

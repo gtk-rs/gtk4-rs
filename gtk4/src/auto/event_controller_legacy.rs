@@ -71,6 +71,8 @@ impl Default for EventControllerLegacy {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`EventControllerLegacy`].
 pub struct EventControllerLegacyBuilder {
     name: Option<String>,
     propagation_limit: Option<PropagationLimit>,
@@ -78,10 +80,14 @@ pub struct EventControllerLegacyBuilder {
 }
 
 impl EventControllerLegacyBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`EventControllerLegacyBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`EventControllerLegacy`].
     pub fn build(self) -> EventControllerLegacy {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref name) = self.name {

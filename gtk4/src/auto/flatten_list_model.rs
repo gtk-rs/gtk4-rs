@@ -88,15 +88,21 @@ impl FlattenListModel {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`FlattenListModel`].
 pub struct FlattenListModelBuilder {
     model: Option<gio::ListModel>,
 }
 
 impl FlattenListModelBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`FlattenListModelBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`FlattenListModel`].
     pub fn build(self) -> FlattenListModel {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref model) = self.model {

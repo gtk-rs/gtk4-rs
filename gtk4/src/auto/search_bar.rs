@@ -223,6 +223,8 @@ impl Default for SearchBar {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`SearchBar`].
 pub struct SearchBarBuilder {
     child: Option<Widget>,
     key_capture_widget: Option<Widget>,
@@ -261,10 +263,14 @@ pub struct SearchBarBuilder {
 }
 
 impl SearchBarBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`SearchBarBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`SearchBar`].
     pub fn build(self) -> SearchBar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

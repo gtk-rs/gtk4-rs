@@ -358,6 +358,8 @@ impl Default for MenuButton {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`MenuButton`].
 pub struct MenuButtonBuilder {
     direction: Option<ArrowType>,
     has_frame: Option<bool>,
@@ -399,10 +401,14 @@ pub struct MenuButtonBuilder {
 }
 
 impl MenuButtonBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`MenuButtonBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`MenuButton`].
     pub fn build(self) -> MenuButton {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref direction) = self.direction {

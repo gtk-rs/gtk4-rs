@@ -45,6 +45,8 @@ impl Default for FlowBoxChild {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`FlowBoxChild`].
 pub struct FlowBoxChildBuilder {
     child: Option<Widget>,
     can_focus: Option<bool>,
@@ -80,10 +82,14 @@ pub struct FlowBoxChildBuilder {
 }
 
 impl FlowBoxChildBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`FlowBoxChildBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`FlowBoxChild`].
     pub fn build(self) -> FlowBoxChild {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

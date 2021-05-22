@@ -49,6 +49,8 @@ impl Default for Popover {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Popover`].
 pub struct PopoverBuilder {
     autohide: Option<bool>,
     cascade_popdown: Option<bool>,
@@ -91,10 +93,14 @@ pub struct PopoverBuilder {
 }
 
 impl PopoverBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`PopoverBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Popover`].
     pub fn build(self) -> Popover {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref autohide) = self.autohide {

@@ -72,6 +72,8 @@ impl Default for GestureZoom {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`GestureZoom`].
 pub struct GestureZoomBuilder {
     n_points: Option<u32>,
     name: Option<String>,
@@ -80,10 +82,14 @@ pub struct GestureZoomBuilder {
 }
 
 impl GestureZoomBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`GestureZoomBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`GestureZoom`].
     pub fn build(self) -> GestureZoom {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref n_points) = self.n_points {

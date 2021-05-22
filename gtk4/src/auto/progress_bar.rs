@@ -273,6 +273,8 @@ impl Default for ProgressBar {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ProgressBar`].
 pub struct ProgressBarBuilder {
     ellipsize: Option<pango::EllipsizeMode>,
     fraction: Option<f64>,
@@ -314,10 +316,14 @@ pub struct ProgressBarBuilder {
 }
 
 impl ProgressBarBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ProgressBarBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ProgressBar`].
     pub fn build(self) -> ProgressBar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref ellipsize) = self.ellipsize {

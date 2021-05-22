@@ -250,6 +250,8 @@ impl Default for CellRendererToggle {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`CellRendererToggle`].
 pub struct CellRendererToggleBuilder {
     activatable: Option<bool>,
     active: Option<bool>,
@@ -272,10 +274,14 @@ pub struct CellRendererToggleBuilder {
 }
 
 impl CellRendererToggleBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`CellRendererToggleBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`CellRendererToggle`].
     pub fn build(self) -> CellRendererToggle {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref activatable) = self.activatable {

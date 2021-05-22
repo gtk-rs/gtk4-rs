@@ -152,6 +152,8 @@ impl BoxLayout {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`BoxLayout`].
 pub struct BoxLayoutBuilder {
     baseline_position: Option<BaselinePosition>,
     homogeneous: Option<bool>,
@@ -160,10 +162,14 @@ pub struct BoxLayoutBuilder {
 }
 
 impl BoxLayoutBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`BoxLayoutBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`BoxLayout`].
     pub fn build(self) -> BoxLayout {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref baseline_position) = self.baseline_position {

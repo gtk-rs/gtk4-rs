@@ -181,6 +181,8 @@ impl GridLayoutChild {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`GridLayoutChild`].
 pub struct GridLayoutChildBuilder {
     column: Option<i32>,
     column_span: Option<i32>,
@@ -191,10 +193,14 @@ pub struct GridLayoutChildBuilder {
 }
 
 impl GridLayoutChildBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`GridLayoutChildBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`GridLayoutChild`].
     pub fn build(self) -> GridLayoutChild {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref column) = self.column {

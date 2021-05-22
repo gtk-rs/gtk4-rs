@@ -310,6 +310,8 @@ impl DropTarget {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`DropTarget`].
 pub struct DropTargetBuilder {
     actions: Option<gdk::DragAction>,
     preload: Option<bool>,
@@ -319,10 +321,14 @@ pub struct DropTargetBuilder {
 }
 
 impl DropTargetBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`DropTargetBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`DropTarget`].
     pub fn build(self) -> DropTarget {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref actions) = self.actions {

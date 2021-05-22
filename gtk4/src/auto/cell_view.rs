@@ -260,6 +260,8 @@ impl Default for CellView {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`CellView`].
 pub struct CellViewBuilder {
     cell_area: Option<CellArea>,
     cell_area_context: Option<CellAreaContext>,
@@ -300,10 +302,14 @@ pub struct CellViewBuilder {
 }
 
 impl CellViewBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`CellViewBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`CellView`].
     pub fn build(self) -> CellView {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref cell_area) = self.cell_area {

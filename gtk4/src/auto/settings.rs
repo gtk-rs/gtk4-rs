@@ -2641,6 +2641,8 @@ impl Settings {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Settings`].
 pub struct SettingsBuilder {
     gtk_alternative_button_order: Option<bool>,
     gtk_alternative_sort_arrows: Option<bool>,
@@ -2694,10 +2696,14 @@ pub struct SettingsBuilder {
 }
 
 impl SettingsBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`SettingsBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Settings`].
     pub fn build(self) -> Settings {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref gtk_alternative_button_order) = self.gtk_alternative_button_order {

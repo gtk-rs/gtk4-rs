@@ -152,6 +152,8 @@ impl SliceListModel {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`SliceListModel`].
 pub struct SliceListModelBuilder {
     model: Option<gio::ListModel>,
     offset: Option<u32>,
@@ -159,10 +161,14 @@ pub struct SliceListModelBuilder {
 }
 
 impl SliceListModelBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`SliceListModelBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`SliceListModel`].
     pub fn build(self) -> SliceListModel {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref model) = self.model {

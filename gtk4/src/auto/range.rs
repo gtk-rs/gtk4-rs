@@ -36,6 +36,8 @@ glib::wrapper! {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Range`].
 pub struct RangeBuilder {
     adjustment: Option<Adjustment>,
     fill_level: Option<f64>,
@@ -77,10 +79,14 @@ pub struct RangeBuilder {
 }
 
 impl RangeBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`RangeBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Range`].
     pub fn build(self) -> Range {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref adjustment) = self.adjustment {

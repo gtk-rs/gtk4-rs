@@ -45,6 +45,8 @@ impl Default for GLArea {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`GLArea`].
 pub struct GLAreaBuilder {
     auto_render: Option<bool>,
     has_depth_buffer: Option<bool>,
@@ -83,10 +85,14 @@ pub struct GLAreaBuilder {
 }
 
 impl GLAreaBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`GLAreaBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`GLArea`].
     pub fn build(self) -> GLArea {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref auto_render) = self.auto_render {

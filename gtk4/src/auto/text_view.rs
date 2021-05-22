@@ -74,6 +74,8 @@ impl Default for TextView {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`TextView`].
 pub struct TextViewBuilder {
     accepts_tab: Option<bool>,
     bottom_margin: Option<i32>,
@@ -133,10 +135,14 @@ pub struct TextViewBuilder {
 }
 
 impl TextViewBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`TextViewBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`TextView`].
     pub fn build(self) -> TextView {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref accepts_tab) = self.accepts_tab {

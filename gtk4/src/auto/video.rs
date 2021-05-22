@@ -258,6 +258,8 @@ impl Default for Video {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Video`].
 pub struct VideoBuilder {
     autoplay: Option<bool>,
     file: Option<gio::File>,
@@ -296,10 +298,14 @@ pub struct VideoBuilder {
 }
 
 impl VideoBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`VideoBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Video`].
     pub fn build(self) -> Video {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref autoplay) = self.autoplay {

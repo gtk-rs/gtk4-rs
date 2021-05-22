@@ -926,6 +926,8 @@ impl Label {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Label`].
 pub struct LabelBuilder {
     attributes: Option<pango::AttrList>,
     ellipsize: Option<pango::EllipsizeMode>,
@@ -977,10 +979,14 @@ pub struct LabelBuilder {
 }
 
 impl LabelBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`LabelBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Label`].
     pub fn build(self) -> Label {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref attributes) = self.attributes {

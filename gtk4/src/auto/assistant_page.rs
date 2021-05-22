@@ -183,6 +183,8 @@ impl AssistantPage {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`AssistantPage`].
 pub struct AssistantPageBuilder {
     child: Option<Widget>,
     complete: Option<bool>,
@@ -191,10 +193,14 @@ pub struct AssistantPageBuilder {
 }
 
 impl AssistantPageBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`AssistantPageBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`AssistantPage`].
     pub fn build(self) -> AssistantPage {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

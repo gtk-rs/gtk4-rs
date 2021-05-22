@@ -78,6 +78,8 @@ impl Default for EmojiChooser {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`EmojiChooser`].
 pub struct EmojiChooserBuilder {
     autohide: Option<bool>,
     cascade_popdown: Option<bool>,
@@ -120,10 +122,14 @@ pub struct EmojiChooserBuilder {
 }
 
 impl EmojiChooserBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`EmojiChooserBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`EmojiChooser`].
     pub fn build(self) -> EmojiChooser {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref autohide) = self.autohide {

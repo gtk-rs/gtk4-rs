@@ -224,6 +224,8 @@ impl ListItem {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ListItem`].
 pub struct ListItemBuilder {
     activatable: Option<bool>,
     child: Option<Widget>,
@@ -231,10 +233,14 @@ pub struct ListItemBuilder {
 }
 
 impl ListItemBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ListItemBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ListItem`].
     pub fn build(self) -> ListItem {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref activatable) = self.activatable {

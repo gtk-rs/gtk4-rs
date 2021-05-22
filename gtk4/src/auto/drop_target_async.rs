@@ -281,6 +281,8 @@ impl DropTargetAsync {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`DropTargetAsync`].
 pub struct DropTargetAsyncBuilder {
     actions: Option<gdk::DragAction>,
     formats: Option<gdk::ContentFormats>,
@@ -290,10 +292,14 @@ pub struct DropTargetAsyncBuilder {
 }
 
 impl DropTargetAsyncBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`DropTargetAsyncBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`DropTargetAsync`].
     pub fn build(self) -> DropTargetAsync {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref actions) = self.actions {

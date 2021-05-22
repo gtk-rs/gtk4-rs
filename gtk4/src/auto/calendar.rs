@@ -457,6 +457,8 @@ impl Default for Calendar {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Calendar`].
 pub struct CalendarBuilder {
     day: Option<i32>,
     month: Option<i32>,
@@ -497,10 +499,14 @@ pub struct CalendarBuilder {
 }
 
 impl CalendarBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`CalendarBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Calendar`].
     pub fn build(self) -> Calendar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref day) = self.day {

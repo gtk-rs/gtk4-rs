@@ -38,6 +38,8 @@ impl Frame {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Frame`].
 pub struct FrameBuilder {
     child: Option<Widget>,
     label: Option<String>,
@@ -76,10 +78,14 @@ pub struct FrameBuilder {
 }
 
 impl FrameBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`FrameBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Frame`].
     pub fn build(self) -> Frame {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

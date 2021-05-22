@@ -269,6 +269,8 @@ impl Default for GridLayout {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`GridLayout`].
 pub struct GridLayoutBuilder {
     baseline_row: Option<i32>,
     column_homogeneous: Option<bool>,
@@ -278,10 +280,14 @@ pub struct GridLayoutBuilder {
 }
 
 impl GridLayoutBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`GridLayoutBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`GridLayout`].
     pub fn build(self) -> GridLayout {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref baseline_row) = self.baseline_row {
