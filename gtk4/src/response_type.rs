@@ -62,17 +62,17 @@ impl FromGlib<ffi::GtkResponseType> for ResponseType {
     unsafe fn from_glib(value: ffi::GtkResponseType) -> Self {
         skip_assert_initialized!();
         match value {
-            -1 => Self::None,
-            -2 => Self::Reject,
-            -3 => Self::Accept,
-            -4 => Self::DeleteEvent,
-            -5 => Self::Ok,
-            -6 => Self::Cancel,
-            -7 => Self::Close,
-            -8 => Self::Yes,
-            -9 => Self::No,
-            -10 => Self::Apply,
-            -11 => Self::Help,
+            ffi::GTK_RESPONSE_NONE => Self::None,
+            ffi::GTK_RESPONSE_REJECT => Self::Reject,
+            ffi::GTK_RESPONSE_ACCEPT => Self::Accept,
+            ffi::GTK_RESPONSE_DELETE_EVENT => Self::DeleteEvent,
+            ffi::GTK_RESPONSE_OK => Self::Ok,
+            ffi::GTK_RESPONSE_CANCEL => Self::Cancel,
+            ffi::GTK_RESPONSE_CLOSE => Self::Close,
+            ffi::GTK_RESPONSE_YES => Self::Yes,
+            ffi::GTK_RESPONSE_NO => Self::No,
+            ffi::GTK_RESPONSE_APPLY => Self::Apply,
+            ffi::GTK_RESPONSE_HELP => Self::Help,
             value if value >= 0 && value <= ::std::u16::MAX as i32 => Self::Other(value as u16),
             value => Self::__Unknown(value),
         }
