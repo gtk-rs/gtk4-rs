@@ -10,6 +10,7 @@ thread_local! {
 
 static INITIALIZED: AtomicBool = AtomicBool::new(false);
 
+// rustdoc-stripper-ignore-next
 /// Asserts that this is the main thread and `gtk::init` has been called.
 macro_rules! assert_initialized_main_thread {
     () => {

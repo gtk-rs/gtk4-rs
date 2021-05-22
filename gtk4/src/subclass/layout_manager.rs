@@ -27,7 +27,7 @@ pub trait LayoutManagerImpl: LayoutManagerImplExt + ObjectImpl {
     ) -> LayoutChild {
         self.parent_create_layout_child(layout_manager, widget, for_child)
     }
-
+    // rustdoc-stripper-ignore-next
     /// Only set if the child implemented LayoutChildImpl
     fn layout_child_type() -> Option<glib::Type> {
         None
