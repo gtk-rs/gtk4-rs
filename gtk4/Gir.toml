@@ -458,17 +458,17 @@ manual_traits = ["AccessibleExtManual"]
     pattern = "update_(property|state|relation)"
     ignore = true
     [[object.function]]
-    pattern = "update_property_value"
+    name = "update_property_value"
     rename = "update_property"
     doc_trait_name = "AccessibleExtManual"
     manual = true
     [[object.function]]
-    pattern = "update_state_value"
+    name = "update_state_value"
     rename = "update_state"
     doc_trait_name = "AccessibleExtManual"
     manual = true
     [[object.function]]
-    pattern = "update_relation_value"
+    name = "update_relation_value"
     rename = "update_relation"
     doc_trait_name = "AccessibleExtManual"
     manual = true
@@ -609,11 +609,11 @@ trust_return_value_nullability = false
     pattern = "cell_[gs]et_property"
     manual = true
     [[object.function]]
-    pattern = "activate_cell"
+    name = "activate_cell"
     manual = true # to handlndle gdk::Event
     doc_trait_name = "CellAreaExtManual"
     [[object.function]]
-    pattern = "event"
+    name = "event"
     manual = true # to handlndle gdk::Event
     doc_trait_name = "CellAreaExtManual"
     [[object.function]]
@@ -1143,7 +1143,7 @@ name = "Gtk.GLArea"
 status = "generate"
 trust_return_value_nullability = false
     [[object.signal]]
-    pattern = "render"
+    name = "render"
     inhibit = true
     [[object.signal]]
     name = "create-context"
@@ -1319,16 +1319,16 @@ manual_traits = ["GtkListStoreExtManual"]
         name = "b"
         const = true
     [[object.function]]
-    pattern = "new"
-    ignore = true
-    [[object.function]]
-    pattern = "newv"
+    name = "new"
     manual = true
     [[object.function]]
-    pattern = "insert_with_values"
+    name = "newv"
     ignore = true
     [[object.function]]
-    pattern = "insert_with_valuesv"
+    name = "insert_with_values"
+    ignore = true
+    [[object.function]]
+    name = "insert_with_valuesv"
     rename = "insert_with_values"
     manual = true
     doc_trait_name = "GtkListStoreExtManual"
@@ -2211,11 +2211,11 @@ manual_traits = ["TreeSortableExtManual"]
     manual = true # make use of SortColumn
     doc_trait_name = "TreeSortableExtManual"
     [[object.function]]
-    pattern = "set_sort_func"
+    name = "set_sort_func"
     manual = true # return type u32 -> Ordering
     doc_trait_name = "TreeSortableExtManual"
     [[object.function]]
-    pattern = "set_default_sort_func"
+    name = "set_default_sort_func"
     manual = true # return type u32 -> Ordering
     doc_trait_name = "TreeSortableExtManual"
 
@@ -2273,11 +2273,11 @@ manual_traits = ["TreeStoreExtManual"]
     manual = true
     doc_trait_name = "TreeStoreExtManual"
     [[object.function]]
-    pattern = "new"
-    ignore = true
-    [[object.function]]
-    pattern = "newv"
+    name = "new"
     manual = true
+    [[object.function]]
+    name = "newv"
+    ignore = true
     [[object.function]]
     name = "swap"
         [[object.function.parameter]]
@@ -2287,10 +2287,10 @@ manual_traits = ["TreeStoreExtManual"]
         name = "b"
         const = true
     [[object.function]]
-    pattern = "insert_with_values"
+    name = "insert_with_values"
     ignore = true
     [[object.function]]
-    pattern = "insert_with_valuesv"
+    name = "insert_with_valuesv"
     rename = "insert_with_values"
     manual = true
     doc_trait_name = "TreeStoreExtManual"
