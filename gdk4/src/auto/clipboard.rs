@@ -176,15 +176,21 @@ impl Clipboard {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Clipboard`].
 pub struct ClipboardBuilder {
     display: Option<Display>,
 }
 
 impl ClipboardBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ClipboardBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Clipboard`].
     pub fn build(self) -> Clipboard {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref display) = self.display {

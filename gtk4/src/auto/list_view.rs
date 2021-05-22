@@ -295,6 +295,8 @@ impl ListView {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ListView`].
 pub struct ListViewBuilder {
     enable_rubberband: Option<bool>,
     factory: Option<ListItemFactory>,
@@ -339,10 +341,14 @@ pub struct ListViewBuilder {
 }
 
 impl ListViewBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ListViewBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ListView`].
     pub fn build(self) -> ListView {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref enable_rubberband) = self.enable_rubberband {

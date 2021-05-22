@@ -109,6 +109,8 @@ impl DragIcon {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`DragIcon`].
 pub struct DragIconBuilder {
     child: Option<Widget>,
     can_focus: Option<bool>,
@@ -144,10 +146,14 @@ pub struct DragIconBuilder {
 }
 
 impl DragIconBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`DragIconBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`DragIcon`].
     pub fn build(self) -> DragIcon {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

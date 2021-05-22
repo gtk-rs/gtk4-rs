@@ -36,6 +36,8 @@ impl MountOperation {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`MountOperation`].
 pub struct MountOperationBuilder {
     display: Option<gdk::Display>,
     parent: Option<Window>,
@@ -51,10 +53,14 @@ pub struct MountOperationBuilder {
 }
 
 impl MountOperationBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`MountOperationBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`MountOperation`].
     pub fn build(self) -> MountOperation {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref display) = self.display {

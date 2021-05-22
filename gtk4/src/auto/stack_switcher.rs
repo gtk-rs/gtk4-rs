@@ -82,6 +82,8 @@ impl Default for StackSwitcher {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`StackSwitcher`].
 pub struct StackSwitcherBuilder {
     stack: Option<Stack>,
     can_focus: Option<bool>,
@@ -117,10 +119,14 @@ pub struct StackSwitcherBuilder {
 }
 
 impl StackSwitcherBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`StackSwitcherBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`StackSwitcher`].
     pub fn build(self) -> StackSwitcher {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref stack) = self.stack {

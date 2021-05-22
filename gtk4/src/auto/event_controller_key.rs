@@ -132,6 +132,8 @@ impl Default for EventControllerKey {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`EventControllerKey`].
 pub struct EventControllerKeyBuilder {
     name: Option<String>,
     propagation_limit: Option<PropagationLimit>,
@@ -139,10 +141,14 @@ pub struct EventControllerKeyBuilder {
 }
 
 impl EventControllerKeyBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`EventControllerKeyBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`EventControllerKey`].
     pub fn build(self) -> EventControllerKey {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref name) = self.name {

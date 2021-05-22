@@ -65,15 +65,21 @@ impl AppLaunchContext {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`AppLaunchContext`].
 pub struct AppLaunchContextBuilder {
     display: Option<Display>,
 }
 
 impl AppLaunchContextBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`AppLaunchContextBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`AppLaunchContext`].
     pub fn build(self) -> AppLaunchContext {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref display) = self.display {

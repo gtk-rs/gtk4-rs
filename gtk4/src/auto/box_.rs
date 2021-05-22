@@ -43,6 +43,8 @@ impl Box {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Box`].
 pub struct BoxBuilder {
     baseline_position: Option<BaselinePosition>,
     homogeneous: Option<bool>,
@@ -81,10 +83,14 @@ pub struct BoxBuilder {
 }
 
 impl BoxBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`BoxBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Box`].
     pub fn build(self) -> Box {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref baseline_position) = self.baseline_position {

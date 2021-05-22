@@ -139,6 +139,8 @@ impl Default for CenterBox {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`CenterBox`].
 pub struct CenterBoxBuilder {
     baseline_position: Option<BaselinePosition>,
     can_focus: Option<bool>,
@@ -175,10 +177,14 @@ pub struct CenterBoxBuilder {
 }
 
 impl CenterBoxBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`CenterBoxBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`CenterBox`].
     pub fn build(self) -> CenterBox {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref baseline_position) = self.baseline_position {

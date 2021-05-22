@@ -65,6 +65,8 @@ impl Default for Entry {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Entry`].
 pub struct EntryBuilder {
     activates_default: Option<bool>,
     attributes: Option<pango::AttrList>,
@@ -141,10 +143,14 @@ pub struct EntryBuilder {
 }
 
 impl EntryBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`EntryBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Entry`].
     pub fn build(self) -> Entry {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref activates_default) = self.activates_default {

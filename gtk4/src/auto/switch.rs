@@ -177,6 +177,8 @@ impl Default for Switch {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Switch`].
 pub struct SwitchBuilder {
     active: Option<bool>,
     state: Option<bool>,
@@ -215,10 +217,14 @@ pub struct SwitchBuilder {
 }
 
 impl SwitchBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`SwitchBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Switch`].
     pub fn build(self) -> Switch {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref active) = self.active {

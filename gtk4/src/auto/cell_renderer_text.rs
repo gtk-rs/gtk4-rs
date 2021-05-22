@@ -39,6 +39,8 @@ impl Default for CellRendererText {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`CellRendererText`].
 pub struct CellRendererTextBuilder {
     align_set: Option<bool>,
     alignment: Option<pango::Alignment>,
@@ -103,10 +105,14 @@ pub struct CellRendererTextBuilder {
 }
 
 impl CellRendererTextBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`CellRendererTextBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`CellRendererText`].
     pub fn build(self) -> CellRendererText {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref align_set) = self.align_set {

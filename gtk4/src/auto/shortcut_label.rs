@@ -134,6 +134,8 @@ impl ShortcutLabel {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ShortcutLabel`].
 pub struct ShortcutLabelBuilder {
     accelerator: Option<String>,
     disabled_text: Option<String>,
@@ -170,10 +172,14 @@ pub struct ShortcutLabelBuilder {
 }
 
 impl ShortcutLabelBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ShortcutLabelBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ShortcutLabel`].
     pub fn build(self) -> ShortcutLabel {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref accelerator) = self.accelerator {

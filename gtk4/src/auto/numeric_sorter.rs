@@ -106,16 +106,22 @@ impl NumericSorter {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`NumericSorter`].
 pub struct NumericSorterBuilder {
     expression: Option<Expression>,
     sort_order: Option<SortType>,
 }
 
 impl NumericSorterBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`NumericSorterBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`NumericSorter`].
     pub fn build(self) -> NumericSorter {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref expression) = self.expression {

@@ -87,6 +87,8 @@ impl Scrollbar {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Scrollbar`].
 pub struct ScrollbarBuilder {
     adjustment: Option<Adjustment>,
     can_focus: Option<bool>,
@@ -123,10 +125,14 @@ pub struct ScrollbarBuilder {
 }
 
 impl ScrollbarBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ScrollbarBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Scrollbar`].
     pub fn build(self) -> Scrollbar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref adjustment) = self.adjustment {

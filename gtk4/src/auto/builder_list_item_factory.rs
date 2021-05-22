@@ -84,6 +84,8 @@ impl BuilderListItemFactory {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`BuilderListItemFactory`].
 pub struct BuilderListItemFactoryBuilder {
     bytes: Option<glib::Bytes>,
     resource: Option<String>,
@@ -91,10 +93,14 @@ pub struct BuilderListItemFactoryBuilder {
 }
 
 impl BuilderListItemFactoryBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`BuilderListItemFactoryBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`BuilderListItemFactory`].
     pub fn build(self) -> BuilderListItemFactory {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref bytes) = self.bytes {

@@ -117,6 +117,8 @@ impl Default for CellAreaBox {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`CellAreaBox`].
 pub struct CellAreaBoxBuilder {
     spacing: Option<i32>,
     focus_cell: Option<CellRenderer>,
@@ -124,10 +126,14 @@ pub struct CellAreaBoxBuilder {
 }
 
 impl CellAreaBoxBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`CellAreaBoxBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`CellAreaBox`].
     pub fn build(self) -> CellAreaBox {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref spacing) = self.spacing {

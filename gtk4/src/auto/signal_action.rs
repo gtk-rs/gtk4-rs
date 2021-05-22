@@ -36,15 +36,21 @@ impl SignalAction {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`SignalAction`].
 pub struct SignalActionBuilder {
     signal_name: Option<String>,
 }
 
 impl SignalActionBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`SignalActionBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`SignalAction`].
     pub fn build(self) -> SignalAction {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref signal_name) = self.signal_name {

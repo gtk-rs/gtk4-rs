@@ -201,15 +201,21 @@ impl TreeListRow {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`TreeListRow`].
 pub struct TreeListRowBuilder {
     expanded: Option<bool>,
 }
 
 impl TreeListRowBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`TreeListRowBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`TreeListRow`].
     pub fn build(self) -> TreeListRow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref expanded) = self.expanded {

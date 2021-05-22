@@ -291,6 +291,8 @@ impl Default for InfoBar {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`InfoBar`].
 pub struct InfoBarBuilder {
     message_type: Option<MessageType>,
     revealed: Option<bool>,
@@ -328,10 +330,14 @@ pub struct InfoBarBuilder {
 }
 
 impl InfoBarBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`InfoBarBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`InfoBar`].
     pub fn build(self) -> InfoBar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref message_type) = self.message_type {

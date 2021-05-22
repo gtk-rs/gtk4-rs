@@ -38,6 +38,8 @@ impl Separator {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Separator`].
 pub struct SeparatorBuilder {
     can_focus: Option<bool>,
     can_target: Option<bool>,
@@ -73,10 +75,14 @@ pub struct SeparatorBuilder {
 }
 
 impl SeparatorBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`SeparatorBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Separator`].
     pub fn build(self) -> Separator {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref can_focus) = self.can_focus {

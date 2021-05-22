@@ -196,6 +196,8 @@ impl Default for GestureStylus {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`GestureStylus`].
 pub struct GestureStylusBuilder {
     button: Option<u32>,
     exclusive: Option<bool>,
@@ -207,10 +209,14 @@ pub struct GestureStylusBuilder {
 }
 
 impl GestureStylusBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`GestureStylusBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`GestureStylus`].
     pub fn build(self) -> GestureStylus {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref button) = self.button {

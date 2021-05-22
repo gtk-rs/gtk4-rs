@@ -36,15 +36,21 @@ impl TreeModelSort {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`TreeModelSort`].
 pub struct TreeModelSortBuilder {
     model: Option<TreeModel>,
 }
 
 impl TreeModelSortBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`TreeModelSortBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`TreeModelSort`].
     pub fn build(self) -> TreeModelSort {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref model) = self.model {

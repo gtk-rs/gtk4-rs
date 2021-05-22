@@ -121,15 +121,21 @@ impl Default for FileFilter {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`FileFilter`].
 pub struct FileFilterBuilder {
     name: Option<String>,
 }
 
 impl FileFilterBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`FileFilterBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`FileFilter`].
     pub fn build(self) -> FileFilter {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref name) = self.name {

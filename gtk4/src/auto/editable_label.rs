@@ -85,6 +85,8 @@ impl EditableLabel {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`EditableLabel`].
 pub struct EditableLabelBuilder {
     can_focus: Option<bool>,
     can_target: Option<bool>,
@@ -125,10 +127,14 @@ pub struct EditableLabelBuilder {
 }
 
 impl EditableLabelBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`EditableLabelBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`EditableLabel`].
     pub fn build(self) -> EditableLabel {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref can_focus) = self.can_focus {

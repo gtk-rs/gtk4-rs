@@ -82,6 +82,8 @@ impl Default for StackSidebar {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`StackSidebar`].
 pub struct StackSidebarBuilder {
     stack: Option<Stack>,
     can_focus: Option<bool>,
@@ -117,10 +119,14 @@ pub struct StackSidebarBuilder {
 }
 
 impl StackSidebarBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`StackSidebarBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`StackSidebar`].
     pub fn build(self) -> StackSidebar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref stack) = self.stack {

@@ -95,6 +95,8 @@ impl Default for Window {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Window`].
 pub struct WindowBuilder {
     application: Option<Application>,
     child: Option<Widget>,
@@ -153,10 +155,14 @@ pub struct WindowBuilder {
 }
 
 impl WindowBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`WindowBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Window`].
     pub fn build(self) -> Window {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref application) = self.application {

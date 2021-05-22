@@ -106,6 +106,8 @@ impl GesturePan {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`GesturePan`].
 pub struct GesturePanBuilder {
     orientation: Option<Orientation>,
     button: Option<u32>,
@@ -118,10 +120,14 @@ pub struct GesturePanBuilder {
 }
 
 impl GesturePanBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`GesturePanBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`GesturePan`].
     pub fn build(self) -> GesturePan {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref orientation) = self.orientation {

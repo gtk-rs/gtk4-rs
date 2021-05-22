@@ -203,6 +203,8 @@ impl ShortcutsWindow {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ShortcutsWindow`].
 pub struct ShortcutsWindowBuilder {
     section_name: Option<String>,
     view_name: Option<String>,
@@ -263,10 +265,14 @@ pub struct ShortcutsWindowBuilder {
 }
 
 impl ShortcutsWindowBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ShortcutsWindowBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ShortcutsWindow`].
     pub fn build(self) -> ShortcutsWindow {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref section_name) = self.section_name {

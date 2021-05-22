@@ -197,6 +197,8 @@ impl Default for HeaderBar {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`HeaderBar`].
 pub struct HeaderBarBuilder {
     decoration_layout: Option<String>,
     show_title_buttons: Option<bool>,
@@ -234,10 +236,14 @@ pub struct HeaderBarBuilder {
 }
 
 impl HeaderBarBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`HeaderBarBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`HeaderBar`].
     pub fn build(self) -> HeaderBar {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref decoration_layout) = self.decoration_layout {

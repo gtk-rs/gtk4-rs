@@ -326,6 +326,8 @@ impl Default for Picture {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Picture`].
 pub struct PictureBuilder {
     alternative_text: Option<String>,
     can_shrink: Option<bool>,
@@ -365,10 +367,14 @@ pub struct PictureBuilder {
 }
 
 impl PictureBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`PictureBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Picture`].
     pub fn build(self) -> Picture {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref alternative_text) = self.alternative_text {

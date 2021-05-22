@@ -87,6 +87,8 @@ impl Default for GestureSwipe {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`GestureSwipe`].
 pub struct GestureSwipeBuilder {
     button: Option<u32>,
     exclusive: Option<bool>,
@@ -98,10 +100,14 @@ pub struct GestureSwipeBuilder {
 }
 
 impl GestureSwipeBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`GestureSwipeBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`GestureSwipe`].
     pub fn build(self) -> GestureSwipe {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref button) = self.button {

@@ -157,6 +157,8 @@ impl Default for EventControllerFocus {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`EventControllerFocus`].
 pub struct EventControllerFocusBuilder {
     name: Option<String>,
     propagation_limit: Option<PropagationLimit>,
@@ -164,10 +166,14 @@ pub struct EventControllerFocusBuilder {
 }
 
 impl EventControllerFocusBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`EventControllerFocusBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`EventControllerFocus`].
     pub fn build(self) -> EventControllerFocus {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref name) = self.name {

@@ -135,6 +135,8 @@ impl Default for ComboBoxText {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ComboBoxText`].
 pub struct ComboBoxTextBuilder {
     active: Option<i32>,
     active_id: Option<String>,
@@ -180,10 +182,14 @@ pub struct ComboBoxTextBuilder {
 }
 
 impl ComboBoxTextBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ComboBoxTextBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ComboBoxText`].
     pub fn build(self) -> ComboBoxText {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref active) = self.active {

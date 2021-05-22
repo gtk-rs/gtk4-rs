@@ -88,6 +88,8 @@ impl PageSetupUnixDialog {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`PageSetupUnixDialog`].
 pub struct PageSetupUnixDialogBuilder {
     use_header_bar: Option<i32>,
     application: Option<Application>,
@@ -147,10 +149,14 @@ pub struct PageSetupUnixDialogBuilder {
 }
 
 impl PageSetupUnixDialogBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`PageSetupUnixDialogBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`PageSetupUnixDialog`].
     pub fn build(self) -> PageSetupUnixDialog {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref use_header_bar) = self.use_header_bar {

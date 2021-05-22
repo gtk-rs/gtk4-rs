@@ -351,15 +351,21 @@ impl Monitor {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Monitor`].
 pub struct MonitorBuilder {
     display: Option<Display>,
 }
 
 impl MonitorBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`MonitorBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Monitor`].
     pub fn build(self) -> Monitor {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref display) = self.display {

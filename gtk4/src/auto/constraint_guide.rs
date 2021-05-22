@@ -450,6 +450,8 @@ impl Default for ConstraintGuide {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ConstraintGuide`].
 pub struct ConstraintGuideBuilder {
     max_height: Option<i32>,
     max_width: Option<i32>,
@@ -462,10 +464,14 @@ pub struct ConstraintGuideBuilder {
 }
 
 impl ConstraintGuideBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ConstraintGuideBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ConstraintGuide`].
     pub fn build(self) -> ConstraintGuide {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref max_height) = self.max_height {

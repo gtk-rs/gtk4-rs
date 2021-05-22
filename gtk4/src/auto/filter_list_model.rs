@@ -199,6 +199,8 @@ impl FilterListModel {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`FilterListModel`].
 pub struct FilterListModelBuilder {
     filter: Option<Filter>,
     incremental: Option<bool>,
@@ -206,10 +208,14 @@ pub struct FilterListModelBuilder {
 }
 
 impl FilterListModelBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`FilterListModelBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`FilterListModel`].
     pub fn build(self) -> FilterListModel {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref filter) = self.filter {

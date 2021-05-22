@@ -193,6 +193,8 @@ impl Default for EventControllerMotion {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`EventControllerMotion`].
 pub struct EventControllerMotionBuilder {
     name: Option<String>,
     propagation_limit: Option<PropagationLimit>,
@@ -200,10 +202,14 @@ pub struct EventControllerMotionBuilder {
 }
 
 impl EventControllerMotionBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`EventControllerMotionBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`EventControllerMotion`].
     pub fn build(self) -> EventControllerMotion {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref name) = self.name {

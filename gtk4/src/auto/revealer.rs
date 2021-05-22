@@ -231,6 +231,8 @@ impl Default for Revealer {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Revealer`].
 pub struct RevealerBuilder {
     child: Option<Widget>,
     reveal_child: Option<bool>,
@@ -269,10 +271,14 @@ pub struct RevealerBuilder {
 }
 
 impl RevealerBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`RevealerBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Revealer`].
     pub fn build(self) -> Revealer {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

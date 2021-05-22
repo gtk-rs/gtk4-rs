@@ -77,6 +77,8 @@ impl X11DeviceManagerXI2 {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`X11DeviceManagerXI2`].
 pub struct X11DeviceManagerXI2Builder {
     display: Option<gdk::Display>,
     major: Option<i32>,
@@ -85,10 +87,14 @@ pub struct X11DeviceManagerXI2Builder {
 }
 
 impl X11DeviceManagerXI2Builder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`X11DeviceManagerXI2Builder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`X11DeviceManagerXI2`].
     pub fn build(self) -> X11DeviceManagerXI2 {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref display) = self.display {

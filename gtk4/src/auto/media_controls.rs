@@ -91,6 +91,8 @@ impl MediaControls {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`MediaControls`].
 pub struct MediaControlsBuilder {
     media_stream: Option<MediaStream>,
     can_focus: Option<bool>,
@@ -126,10 +128,14 @@ pub struct MediaControlsBuilder {
 }
 
 impl MediaControlsBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`MediaControlsBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`MediaControls`].
     pub fn build(self) -> MediaControls {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref media_stream) = self.media_stream {

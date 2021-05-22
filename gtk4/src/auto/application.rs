@@ -24,6 +24,8 @@ glib::wrapper! {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Application`].
 pub struct ApplicationBuilder {
     menubar: Option<gio::MenuModel>,
     register_session: Option<bool>,
@@ -35,10 +37,14 @@ pub struct ApplicationBuilder {
 }
 
 impl ApplicationBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ApplicationBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Application`].
     pub fn build(self) -> Application {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref menubar) = self.menubar {

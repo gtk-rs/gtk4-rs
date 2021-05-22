@@ -119,6 +119,8 @@ impl OverlayLayoutChild {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`OverlayLayoutChild`].
 pub struct OverlayLayoutChildBuilder {
     clip_overlay: Option<bool>,
     measure: Option<bool>,
@@ -127,10 +129,14 @@ pub struct OverlayLayoutChildBuilder {
 }
 
 impl OverlayLayoutChildBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`OverlayLayoutChildBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`OverlayLayoutChild`].
     pub fn build(self) -> OverlayLayoutChild {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref clip_overlay) = self.clip_overlay {

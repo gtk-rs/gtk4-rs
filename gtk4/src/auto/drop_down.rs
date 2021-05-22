@@ -300,6 +300,8 @@ impl DropDown {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`DropDown`].
 pub struct DropDownBuilder {
     enable_search: Option<bool>,
     expression: Option<Expression>,
@@ -340,10 +342,14 @@ pub struct DropDownBuilder {
 }
 
 impl DropDownBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`DropDownBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`DropDown`].
     pub fn build(self) -> DropDown {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref enable_search) = self.enable_search {

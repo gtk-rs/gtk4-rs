@@ -227,6 +227,8 @@ impl Default for CellRendererCombo {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`CellRendererCombo`].
 pub struct CellRendererComboBuilder {
     has_entry: Option<bool>,
     model: Option<TreeModel>,
@@ -294,10 +296,14 @@ pub struct CellRendererComboBuilder {
 }
 
 impl CellRendererComboBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`CellRendererComboBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`CellRendererCombo`].
     pub fn build(self) -> CellRendererCombo {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref has_entry) = self.has_entry {

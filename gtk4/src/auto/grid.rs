@@ -49,6 +49,8 @@ impl Default for Grid {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Grid`].
 pub struct GridBuilder {
     baseline_row: Option<i32>,
     column_homogeneous: Option<bool>,
@@ -89,10 +91,14 @@ pub struct GridBuilder {
 }
 
 impl GridBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`GridBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Grid`].
     pub fn build(self) -> Grid {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref baseline_row) = self.baseline_row {

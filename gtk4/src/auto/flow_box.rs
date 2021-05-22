@@ -861,6 +861,8 @@ impl Default for FlowBox {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`FlowBox`].
 pub struct FlowBoxBuilder {
     accept_unpaired_release: Option<bool>,
     activate_on_single_click: Option<bool>,
@@ -904,10 +906,14 @@ pub struct FlowBoxBuilder {
 }
 
 impl FlowBoxBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`FlowBoxBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`FlowBox`].
     pub fn build(self) -> FlowBox {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref accept_unpaired_release) = self.accept_unpaired_release {

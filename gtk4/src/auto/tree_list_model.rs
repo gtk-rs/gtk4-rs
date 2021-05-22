@@ -174,16 +174,22 @@ impl TreeListModel {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`TreeListModel`].
 pub struct TreeListModelBuilder {
     autoexpand: Option<bool>,
     passthrough: Option<bool>,
 }
 
 impl TreeListModelBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`TreeListModelBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`TreeListModel`].
     pub fn build(self) -> TreeListModel {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref autoexpand) = self.autoexpand {

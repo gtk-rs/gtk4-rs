@@ -189,6 +189,8 @@ impl Default for CellRendererSpinner {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`CellRendererSpinner`].
 pub struct CellRendererSpinnerBuilder {
     active: Option<bool>,
     pulse: Option<u32>,
@@ -210,10 +212,14 @@ pub struct CellRendererSpinnerBuilder {
 }
 
 impl CellRendererSpinnerBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`CellRendererSpinnerBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`CellRendererSpinner`].
     pub fn build(self) -> CellRendererSpinner {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref active) = self.active {

@@ -84,6 +84,8 @@ impl Default for WindowHandle {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`WindowHandle`].
 pub struct WindowHandleBuilder {
     child: Option<Widget>,
     can_focus: Option<bool>,
@@ -119,10 +121,14 @@ pub struct WindowHandleBuilder {
 }
 
 impl WindowHandleBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`WindowHandleBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`WindowHandle`].
     pub fn build(self) -> WindowHandle {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref child) = self.child {

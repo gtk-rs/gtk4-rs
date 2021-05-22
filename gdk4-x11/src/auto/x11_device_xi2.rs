@@ -36,6 +36,8 @@ impl X11DeviceXI2 {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`X11DeviceXI2`].
 pub struct X11DeviceXI2Builder {
     device_id: Option<i32>,
     display: Option<gdk::Display>,
@@ -49,10 +51,14 @@ pub struct X11DeviceXI2Builder {
 }
 
 impl X11DeviceXI2Builder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`X11DeviceXI2Builder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`X11DeviceXI2`].
     pub fn build(self) -> X11DeviceXI2 {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref device_id) = self.device_id {

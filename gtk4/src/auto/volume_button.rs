@@ -101,6 +101,8 @@ impl Default for VolumeButton {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`VolumeButton`].
 pub struct VolumeButtonBuilder {
     use_symbolic: Option<bool>,
     adjustment: Option<Adjustment>,
@@ -140,10 +142,14 @@ pub struct VolumeButtonBuilder {
 }
 
 impl VolumeButtonBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`VolumeButtonBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`VolumeButton`].
     pub fn build(self) -> VolumeButton {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref use_symbolic) = self.use_symbolic {

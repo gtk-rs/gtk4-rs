@@ -88,6 +88,8 @@ impl Default for FontChooserWidget {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`FontChooserWidget`].
 pub struct FontChooserWidgetBuilder {
     can_focus: Option<bool>,
     can_target: Option<bool>,
@@ -128,10 +130,14 @@ pub struct FontChooserWidgetBuilder {
 }
 
 impl FontChooserWidgetBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`FontChooserWidgetBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`FontChooserWidget`].
     pub fn build(self) -> FontChooserWidget {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref can_focus) = self.can_focus {

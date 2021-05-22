@@ -805,6 +805,8 @@ impl Default for ListBox {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ListBox`].
 pub struct ListBoxBuilder {
     accept_unpaired_release: Option<bool>,
     activate_on_single_click: Option<bool>,
@@ -843,10 +845,14 @@ pub struct ListBoxBuilder {
 }
 
 impl ListBoxBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ListBoxBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ListBox`].
     pub fn build(self) -> ListBox {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref accept_unpaired_release) = self.accept_unpaired_release {

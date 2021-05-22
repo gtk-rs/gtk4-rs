@@ -314,6 +314,8 @@ impl AppChooserButton {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`AppChooserButton`].
 pub struct AppChooserButtonBuilder {
     heading: Option<String>,
     modal: Option<bool>,
@@ -353,10 +355,14 @@ pub struct AppChooserButtonBuilder {
 }
 
 impl AppChooserButtonBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`AppChooserButtonBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`AppChooserButton`].
     pub fn build(self) -> AppChooserButton {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref heading) = self.heading {

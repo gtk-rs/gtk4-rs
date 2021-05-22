@@ -205,16 +205,22 @@ impl GLShader {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`GLShader`].
 pub struct GLShaderBuilder {
     resource: Option<String>,
     source: Option<glib::Bytes>,
 }
 
 impl GLShaderBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`GLShaderBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`GLShader`].
     pub fn build(self) -> GLShader {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref resource) = self.resource {

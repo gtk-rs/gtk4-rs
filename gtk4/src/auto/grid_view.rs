@@ -321,6 +321,8 @@ impl GridView {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`GridView`].
 pub struct GridViewBuilder {
     enable_rubberband: Option<bool>,
     factory: Option<ListItemFactory>,
@@ -366,10 +368,14 @@ pub struct GridViewBuilder {
 }
 
 impl GridViewBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`GridViewBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`GridView`].
     pub fn build(self) -> GridView {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref enable_rubberband) = self.enable_rubberband {

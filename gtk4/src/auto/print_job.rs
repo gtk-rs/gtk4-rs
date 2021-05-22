@@ -336,6 +336,8 @@ impl PrintJob {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`PrintJob`].
 pub struct PrintJobBuilder {
     page_setup: Option<PageSetup>,
     printer: Option<Printer>,
@@ -345,10 +347,14 @@ pub struct PrintJobBuilder {
 }
 
 impl PrintJobBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`PrintJobBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`PrintJob`].
     pub fn build(self) -> PrintJob {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref page_setup) = self.page_setup {

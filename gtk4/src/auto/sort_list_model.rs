@@ -193,6 +193,8 @@ impl SortListModel {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`SortListModel`].
 pub struct SortListModelBuilder {
     incremental: Option<bool>,
     model: Option<gio::ListModel>,
@@ -200,10 +202,14 @@ pub struct SortListModelBuilder {
 }
 
 impl SortListModelBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`SortListModelBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`SortListModel`].
     pub fn build(self) -> SortListModel {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref incremental) = self.incremental {

@@ -454,6 +454,8 @@ impl Default for Stack {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Stack`].
 pub struct StackBuilder {
     hhomogeneous: Option<bool>,
     interpolate_size: Option<bool>,
@@ -495,10 +497,14 @@ pub struct StackBuilder {
 }
 
 impl StackBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`StackBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Stack`].
     pub fn build(self) -> Stack {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref hhomogeneous) = self.hhomogeneous {

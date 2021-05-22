@@ -35,16 +35,22 @@ impl Default for IMMulticontext {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`IMMulticontext`].
 pub struct IMMulticontextBuilder {
     input_hints: Option<InputHints>,
     input_purpose: Option<InputPurpose>,
 }
 
 impl IMMulticontextBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`IMMulticontextBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`IMMulticontext`].
     pub fn build(self) -> IMMulticontext {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref input_hints) = self.input_hints {

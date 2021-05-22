@@ -50,6 +50,8 @@ impl IconPaintable {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`IconPaintable`].
 pub struct IconPaintableBuilder {
     file: Option<gio::File>,
     icon_name: Option<String>,
@@ -57,10 +59,14 @@ pub struct IconPaintableBuilder {
 }
 
 impl IconPaintableBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`IconPaintableBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`IconPaintable`].
     pub fn build(self) -> IconPaintable {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref file) = self.file {

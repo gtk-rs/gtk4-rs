@@ -384,6 +384,8 @@ impl fmt::Display for Printer {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Printer`].
 pub struct PrinterBuilder {
     accepts_pdf: Option<bool>,
     accepts_ps: Option<bool>,
@@ -392,10 +394,14 @@ pub struct PrinterBuilder {
 }
 
 impl PrinterBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`PrinterBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Printer`].
     pub fn build(self) -> Printer {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref accepts_pdf) = self.accepts_pdf {

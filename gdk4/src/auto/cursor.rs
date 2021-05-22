@@ -82,6 +82,8 @@ impl Cursor {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`Cursor`].
 pub struct CursorBuilder {
     fallback: Option<Cursor>,
     hotspot_x: Option<i32>,
@@ -91,10 +93,14 @@ pub struct CursorBuilder {
 }
 
 impl CursorBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`CursorBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Cursor`].
     pub fn build(self) -> Cursor {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref fallback) = self.fallback {

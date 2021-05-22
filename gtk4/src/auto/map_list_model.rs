@@ -139,15 +139,21 @@ impl MapListModel {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`MapListModel`].
 pub struct MapListModelBuilder {
     model: Option<gio::ListModel>,
 }
 
 impl MapListModelBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`MapListModelBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`MapListModel`].
     pub fn build(self) -> MapListModel {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref model) = self.model {

@@ -193,6 +193,8 @@ impl Default for ShortcutController {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`ShortcutController`].
 pub struct ShortcutControllerBuilder {
     mnemonic_modifiers: Option<gdk::ModifierType>,
     model: Option<gio::ListModel>,
@@ -203,10 +205,14 @@ pub struct ShortcutControllerBuilder {
 }
 
 impl ShortcutControllerBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`ShortcutControllerBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`ShortcutController`].
     pub fn build(self) -> ShortcutController {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref mnemonic_modifiers) = self.mnemonic_modifiers {

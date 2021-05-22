@@ -181,6 +181,8 @@ impl PopoverMenu {
 }
 
 #[derive(Clone, Default)]
+// rustdoc-stripper-ignore-next
+/// A builder for generating a [`PopoverMenu`].
 pub struct PopoverMenuBuilder {
     menu_model: Option<gio::MenuModel>,
     visible_submenu: Option<String>,
@@ -225,10 +227,14 @@ pub struct PopoverMenuBuilder {
 }
 
 impl PopoverMenuBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`PopoverMenuBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`PopoverMenu`].
     pub fn build(self) -> PopoverMenu {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
         if let Some(ref menu_model) = self.menu_model {
