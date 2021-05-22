@@ -1,5 +1,6 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+// rustdoc-stripper-ignore-next
 //! # Rust GTK 4 bindings
 //!
 //! This library contains safe Rust bindings for [GTK 4](http://www.gtk.org), a

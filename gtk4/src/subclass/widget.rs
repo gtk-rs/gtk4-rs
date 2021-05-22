@@ -28,21 +28,25 @@ pub struct WidgetAction(
 );
 
 impl WidgetAction {
+    // rustdoc-stripper-ignore-next
     /// The type where the action was defined
     pub fn owner(&self) -> glib::Type {
         self.0
     }
 
+    // rustdoc-stripper-ignore-next
     /// The action name
     pub fn name(&self) -> &str {
         self.1.as_ref()
     }
 
+    // rustdoc-stripper-ignore-next
     /// The action parameter type
     pub fn parameter_type(&self) -> Option<&glib::VariantType> {
         self.2.as_ref()
     }
 
+    // rustdoc-stripper-ignore-next
     /// The action property name
     pub fn property_name(&self) -> Option<&str> {
         self.3.as_ref().map(|s| s.as_ref())
@@ -1263,6 +1267,7 @@ where
 {
     type Target = T;
 
+    // rustdoc-stripper-ignore-next
     /// # Safety
     ///
     /// Since the template child may not be properly bound,

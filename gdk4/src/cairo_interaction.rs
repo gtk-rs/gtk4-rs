@@ -21,6 +21,7 @@ impl GdkCairoSurfaceExt for cairo::Surface {
 }
 
 pub trait GdkCairoContextExt {
+    // rustdoc-stripper-ignore-next
     /// # Safety
     ///
     /// It's the responsibility of the caller to ensure that source
