@@ -2332,6 +2332,9 @@ manual_traits = ["TreeViewExtManual"]
     [[object.function]]
     name = "get_hover_expand"
     rename = "hover_expands"
+    [[object.function]]
+    name = "set_search_equal_func"
+    doc_ignore_parameters = ["search_user_data", "search_destroy"]
 
 [[object]]
 name = "Gtk.TreeViewColumn"
