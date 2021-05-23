@@ -26,7 +26,7 @@ pub fn pango_layout_line_get_clip_region(
             x_origin,
             y_origin,
             mut_override(ptr),
-            index_ranges.len() as i32,
+            (index_ranges.len() / 2) as i32,
         ))
     }
 }
@@ -47,7 +47,7 @@ pub fn pango_layout_get_clip_region(
             x_origin,
             y_origin,
             ptr,
-            index_ranges.len() as i32,
+            (index_ranges.len() / 2) as i32,
         ))
     }
 }
