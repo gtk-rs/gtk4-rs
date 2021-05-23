@@ -3,8 +3,8 @@ mod custom_button;
 use custom_button::CustomButton;
 use glib::BindingFlags;
 use gtk::{glib, Align, Orientation};
-use gtk::{prelude::*, BoxBuilder};
-use gtk::{Application, ApplicationWindowBuilder};
+use gtk::{prelude::*, Box};
+use gtk::{Application, ApplicationWindow};
 
 fn main() {
     // Create a new application
@@ -17,7 +17,7 @@ fn main() {
 
 fn build_ui(application: &Application) {
     // Create a window
-    let window = ApplicationWindowBuilder::new()
+    let window = ApplicationWindow::builder()
         .application(application)
         .title("My GTK App")
         .build();
@@ -65,7 +65,7 @@ fn build_ui(application: &Application) {
     // ANCHOR_END: connect_notify
 
     // Set up box
-    let gtk_box = BoxBuilder::new()
+    let gtk_box = Box::builder()
         .margin_top(12)
         .margin_bottom(12)
         .margin_start(12)

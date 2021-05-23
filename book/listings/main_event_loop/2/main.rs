@@ -1,7 +1,7 @@
 use std::{thread, time::Duration};
 
 use gtk::prelude::*;
-use gtk::{self, Application, ApplicationWindowBuilder, ButtonBuilder};
+use gtk::{self, Application, ApplicationWindow, Button};
 
 fn main() {
     // Create a new application
@@ -14,13 +14,13 @@ fn main() {
 
 fn build_ui(application: &Application) {
     // Create a window
-    let window = ApplicationWindowBuilder::new()
+    let window = ApplicationWindow::builder()
         .application(application)
         .title("My GTK App")
         .build();
 
     // Create a button
-    let button = ButtonBuilder::new()
+    let button = Button::builder()
         .label("Press me!")
         .margin_top(12)
         .margin_bottom(12)
