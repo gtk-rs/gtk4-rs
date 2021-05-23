@@ -8,14 +8,14 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="287.23138mm"
-   height="208.30849mm"
-   viewBox="0 0 287.23139 208.30849"
+   width="282.46887mm"
+   height="217.95332mm"
+   viewBox="0 0 282.46888 217.95333"
    version="1.1"
    id="svg8"
    inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
    sodipodi:docname="scalable_lists_concept.svg"
-   inkscape:export-filename="/var/home/julian/Projekte/GNOME/gtk4-rs/book/src/img/scalable_lists_concept.png"
+   inkscape:export-filename="/var/home/julian/Projekte/GNOME/libraries/gtk4-rs/book/src/img/scalable_lists_concept.png"
    inkscape:export-xdpi="208.5"
    inkscape:export-ydpi="208.5">
   <defs
@@ -244,9 +244,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.1694738"
-     inkscape:cx="658.9438"
-     inkscape:cy="458.60586"
+     inkscape:zoom="0.29236845"
+     inkscape:cx="535.89836"
+     inkscape:cy="198.48534"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -270,7 +270,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -278,7 +278,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(37.276063,-44.330642)">
+     transform="translate(32.513565,-34.685797)">
     <image
        y="123.4508"
        x="149.22137"
@@ -402,7 +402,7 @@
        ry="4.8108511" />
     <path
        style="fill:none;stroke:#f80000;stroke-width:0.319568;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 26.613886,63.918308 c 0,0 5.30251,-4.111445 3.225458,-6.009259 -2.519721,-2.302279 -15.123417,-1.949694 -16.664833,-4.361559 -1.026149,-1.605615 5.166651,-2.780276 6.450903,-4.36156 1.263095,-1.555231 1.075143,-4.846177 1.075143,-4.846177"
+       d="m 29.114392,54.273463 c 0,0 5.30251,-4.111445 3.225458,-6.009259 -2.519721,-2.302279 -15.123417,-1.949694 -16.664833,-4.361559 -1.026149,-1.605615 5.166651,-2.780276 6.450903,-4.36156 1.263095,-1.555231 1.075143,-4.846177 1.075143,-4.846177"
        id="path954"
        sodipodi:nodetypes="csssc" />
     <path
@@ -911,5 +911,23 @@
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 88.093856,221.93469 h 36.950824 c 0,0 1.11589,0.10959 1.11136,-0.9244 -0.005,-1.03399 0,-9.50144 0,-9.50144 0,0 -0.005,-1.21709 -0.81447,-1.22513 -0.80966,-0.008 -37.463071,0 -37.463071,0 0,0 -0.776684,-0.0446 -0.778012,0.73849 -0.0013,0.78309 0,10.07182 0,10.07182 0,0 -0.03667,0.84066 0.993369,0.84066 z"
        id="path1057-1" />
+    <ellipse
+       style="fill:none;stroke:#ff0000;stroke-width:0.264583"
+       id="path835-3"
+       cx="25.787914"
+       cy="58.775913"
+       rx="8.5526247"
+       ry="4.8108511" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="24.155615"
+       y="61.438137"
+       id="text1072-6"><tspan
+         sodipodi:role="line"
+         id="tspan1070-7"
+         x="24.155615"
+         y="61.438137"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583">0</tspan></text>
   </g>
 </svg>

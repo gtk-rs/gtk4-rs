@@ -8,7 +8,12 @@ glib::wrapper! {
     pub struct IntegerObject(ObjectSubclass<imp::IntegerObject>);
 }
 
+// ANCHOR: integer_object
 impl IntegerObject {
+    pub fn new(number: i32) -> Self {
+        Object::new(&[("number", &number)]).unwrap()
+    }
+
     pub fn increase_number(self) {
         let old_number = self
             .property("number")
@@ -19,9 +24,4 @@ impl IntegerObject {
         self.set_property("number", old_number + 1).unwrap();
     }
 }
-
-impl From<i32> for IntegerObject {
-    fn from(number: i32) -> Self {
-        Object::new(&[("number", &number)]).unwrap()
-    }
-}
+// ANCHOR_END: integer_object

@@ -9,6 +9,10 @@ glib::wrapper! {
 }
 
 impl IntegerObject {
+    pub fn new(number: i32) -> Self {
+        Object::new(&[("number", &number)]).unwrap()
+    }
+
     pub fn increase_number(self) {
         let old_number = self
             .property("number")
@@ -17,11 +21,5 @@ impl IntegerObject {
             .expect("The property needs to be of type `i32`.");
 
         self.set_property("number", old_number + 1).unwrap();
-    }
-}
-
-impl From<i32> for IntegerObject {
-    fn from(number: i32) -> Self {
-        Object::new(&[("number", &number)]).unwrap()
     }
 }

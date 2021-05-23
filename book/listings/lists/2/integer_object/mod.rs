@@ -8,8 +8,8 @@ glib::wrapper! {
     pub struct IntegerObject(ObjectSubclass<imp::IntegerObject>);
 }
 
-impl From<i32> for IntegerObject {
-    fn from(number: i32) -> Self {
+impl IntegerObject {
+    pub fn new(number: i32) -> Self {
         Object::new(&[("number", &number)]).unwrap()
     }
 }
