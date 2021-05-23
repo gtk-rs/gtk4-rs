@@ -12,6 +12,33 @@ pub use gio;
 pub use glib;
 pub use pango;
 
+#[doc(alias = "GDK_PRIORITY_REDRAW")]
+pub const PRIORITY_REDRAW: u32 = ffi::GDK_PRIORITY_REDRAW as u32;
+
+#[doc(alias = "GDK_MODIFIER_MASK")]
+pub const MODIFIER_MASK: ModifierType = ModifierType::all();
+
+#[doc(alias = "GDK_ACTION_ALL")]
+pub const ACTION_ALL: u32 = ffi::GDK_ACTION_ALL as u32;
+
+#[doc(alias = "GDK_CURRENT_TIME")]
+pub const CURRENT_TIME: u32 = ffi::GDK_CURRENT_TIME as u32;
+
+#[doc(alias = "GDK_BUTTON_PRIMARY")]
+pub const BUTTON_PRIMARY: u32 = ffi::GDK_BUTTON_PRIMARY as u32;
+
+#[doc(alias = "GDK_BUTTON_MIDDLE")]
+pub const BUTTON_MIDDLE: u32 = ffi::GDK_BUTTON_MIDDLE as u32;
+
+#[doc(alias = "GDK_BUTTON_SECONDARY")]
+pub const BUTTON_SECONDARY: u32 = ffi::GDK_BUTTON_SECONDARY as u32;
+
+#[doc(alias = "GDK_EVENT_STOP")]
+pub const EVENT_STOP: u32 = ffi::GDK_EVENT_STOP as u32;
+
+#[doc(alias = "GDK_EVENT_PROPAGATE")]
+pub const EVENT_PROPAGATE: u32 = ffi::GDK_EVENT_PROPAGATE as u32;
+
 // GDK 4 has no runtime to initialize
 macro_rules! assert_initialized_main_thread {
     () => {};
@@ -93,30 +120,3 @@ pub use time_coord::TimeCoord;
 pub use toplevel_size::ToplevelSize;
 pub use touch_event::TouchEvent;
 pub use touchpad_event::TouchpadEvent;
-
-#[doc(alias = "GDK_PRIORITY_REDRAW")]
-pub const PRIORITY_REDRAW: u32 = ffi::GDK_PRIORITY_REDRAW as u32;
-
-#[doc(alias = "GDK_MODIFIER_MASK")]
-pub const MODIFIER_MASK: ModifierType = ModifierType::all();
-
-#[doc(alias = "GDK_ACTION_ALL")]
-pub const ACTION_ALL: u32 = ffi::GDK_ACTION_ALL as u32;
-
-#[doc(alias = "GDK_CURRENT_TIME")]
-pub const CURRENT_TIME: u32 = ffi::GDK_CURRENT_TIME as u32;
-
-#[doc(alias = "GDK_BUTTON_PRIMARY")]
-pub const BUTTON_PRIMARY: u32 = ffi::GDK_BUTTON_PRIMARY as u32;
-
-#[doc(alias = "GDK_BUTTON_MIDDLE")]
-pub const BUTTON_MIDDLE: u32 = ffi::GDK_BUTTON_MIDDLE as u32;
-
-#[doc(alias = "GDK_BUTTON_SECONDARY")]
-pub const BUTTON_SECONDARY: u32 = ffi::GDK_BUTTON_SECONDARY as u32;
-
-#[doc(alias = "GDK_EVENT_STOP")]
-pub const EVENT_STOP: u32 = ffi::GDK_EVENT_STOP as u32;
-
-#[doc(alias = "GDK_EVENT_PROPAGATE")]
-pub const EVENT_PROPAGATE: u32 = ffi::GDK_EVENT_PROPAGATE as u32;
