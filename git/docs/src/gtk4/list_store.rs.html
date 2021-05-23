@@ -351,16 +351,18 @@
     <span class="doccomment">/// varargs.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is mainly intended for language-bindings.</span>
-    <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// An unset [`crate::TreeIter`] to set to the new row</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// position to insert the new row, or -1 for last</span>
     <span class="doccomment">/// ## `columns`</span>
     <span class="doccomment">/// an array of column numbers</span>
     <span class="doccomment">/// ## `values`</span>
     <span class="doccomment">/// an array of GValues</span>
-    <span class="doccomment">/// ## `n_values`</span>
-    <span class="doccomment">/// the length of the `columns` and `values` arrays</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `iter`</span>
+    <span class="doccomment">/// An unset [`crate::TreeIter`] to set to the new row</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_insert_with_values&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_insert_with_valuesv&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">insert_with_values</span>(
@@ -398,8 +400,6 @@
     <span class="doccomment">/// and should only be used when constructing a new [`crate::ListStore`]. It will not</span>
     <span class="doccomment">/// function after a row has been added, or a method on the [`crate::TreeModel`]</span>
     <span class="doccomment">/// interface is called.</span>
-    <span class="doccomment">/// ## `n_columns`</span>
-    <span class="doccomment">/// Number of columns for the list store</span>
     <span class="doccomment">/// ## `types`</span>
     <span class="doccomment">/// An array length n of `GTypes`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_set_column_types&quot;</span>)]</span>

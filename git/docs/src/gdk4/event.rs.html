@@ -400,6 +400,10 @@
 <span id="397">397</span>
 <span id="398">398</span>
 <span id="399">399</span>
+<span id="400">400</span>
+<span id="401">401</span>
+<span id="402">402</span>
+<span id="403">403</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -523,12 +527,13 @@
     <span class="doccomment">/// an event structure.</span>
     <span class="doccomment">/// ## `axis_use`</span>
     <span class="doccomment">/// the axis use to look for</span>
-    <span class="doccomment">/// ## `value`</span>
-    <span class="doccomment">/// location to store the value found</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if the specified axis was found, otherwise [`false`]</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `value`</span>
+    <span class="doccomment">/// location to store the value found</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_event_get_axis&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_axis&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">axis</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">axis_use</span>: <span class="ident">AxisUse</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> {
@@ -589,8 +594,6 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that only motion and scroll events record history, and motion</span>
     <span class="doccomment">/// events do it only if one of the mouse buttons is down.</span>
-    <span class="doccomment">/// ## `out_n_coords`</span>
-    <span class="doccomment">/// Return location for the length of the returned array</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -634,8 +637,13 @@
     }
 
     <span class="doccomment">/// Extract the event surface relative x/y coordinates from an event.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Returns</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `x`</span>
     <span class="doccomment">/// location to put event surface x coordinate</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// ## `y`</span>
     <span class="doccomment">/// location to put event surface y coordinate</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_event_get_position&quot;</span>)]</span>

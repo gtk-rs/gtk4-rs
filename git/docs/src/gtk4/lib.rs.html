@@ -351,6 +351,36 @@
 <span id="348">348</span>
 <span id="349">349</span>
 <span id="350">350</span>
+<span id="351">351</span>
+<span id="352">352</span>
+<span id="353">353</span>
+<span id="354">354</span>
+<span id="355">355</span>
+<span id="356">356</span>
+<span id="357">357</span>
+<span id="358">358</span>
+<span id="359">359</span>
+<span id="360">360</span>
+<span id="361">361</span>
+<span id="362">362</span>
+<span id="363">363</span>
+<span id="364">364</span>
+<span id="365">365</span>
+<span id="366">366</span>
+<span id="367">367</span>
+<span id="368">368</span>
+<span id="369">369</span>
+<span id="370">370</span>
+<span id="371">371</span>
+<span id="372">372</span>
+<span id="373">373</span>
+<span id="374">374</span>
+<span id="375">375</span>
+<span id="376">376</span>
+<span id="377">377</span>
+<span id="378">378</span>
+<span id="379">379</span>
+<span id="380">380</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -526,18 +556,41 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">gtk4_macros</span>::<span class="kw-2">*</span>;
 
+<span class="doccomment">/// The priority used for default style information</span>
+<span class="doccomment">/// that is used in the absence of themes.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Note that this is not very useful for providing default</span>
+<span class="doccomment">/// styling for custom style classes - themes are likely to</span>
+<span class="doccomment">/// override styling provided at this priority with</span>
+<span class="doccomment">/// catch-all `* {...}` rules.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STYLE_PROVIDER_PRIORITY_FALLBACK&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STYLE_PROVIDER_PRIORITY_FALLBACK</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ffi::GTK_STYLE_PROVIDER_PRIORITY_FALLBACK</span> <span class="kw">as</span> <span class="ident">u32</span>;
+<span class="doccomment">/// The priority used for style information provided</span>
+<span class="doccomment">/// by themes.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STYLE_PROVIDER_PRIORITY_THEME&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STYLE_PROVIDER_PRIORITY_THEME</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ffi::GTK_STYLE_PROVIDER_PRIORITY_THEME</span> <span class="kw">as</span> <span class="ident">u32</span>;
+<span class="doccomment">/// The priority used for style information provided</span>
+<span class="doccomment">/// via `GtkSettings`.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This priority is higher than `GTK_STYLE_PROVIDER_PRIORITY_THEME`</span>
+<span class="doccomment">/// to let settings override themes.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STYLE_PROVIDER_PRIORITY_SETTINGS&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STYLE_PROVIDER_PRIORITY_SETTINGS</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ffi::GTK_STYLE_PROVIDER_PRIORITY_SETTINGS</span> <span class="kw">as</span> <span class="ident">u32</span>;
+<span class="doccomment">/// A priority that can be used when adding a `GtkStyleProvider`</span>
+<span class="doccomment">/// for application-specific style information.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STYLE_PROVIDER_PRIORITY_APPLICATION&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STYLE_PROVIDER_PRIORITY_APPLICATION</span>: <span class="ident">u32</span> <span class="op">=</span>
     <span class="ident">ffi::GTK_STYLE_PROVIDER_PRIORITY_APPLICATION</span> <span class="kw">as</span> <span class="ident">u32</span>;
+<span class="doccomment">/// The priority used for the style information from</span>
+<span class="doccomment">/// `$XDG_CONFIG_HOME/gtk-4.0/gtk.css`.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// You should not use priorities higher than this, to</span>
+<span class="doccomment">/// give the user the last word.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STYLE_PROVIDER_PRIORITY_USER&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STYLE_PROVIDER_PRIORITY_USER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ffi::GTK_STYLE_PROVIDER_PRIORITY_USER</span> <span class="kw">as</span> <span class="ident">u32</span>;
 
+<span class="doccomment">/// An undefined value. The accessible attribute is either unset, or its</span>
+<span class="doccomment">/// value is undefined.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ACCESSIBLE_VALUE_UNDEFINED&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">ACCESSIBLE_VALUE_UNDEFINED</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">ffi::GTK_ACCESSIBLE_VALUE_UNDEFINED</span> <span class="kw">as</span> <span class="ident">i32</span>;
 
@@ -545,8 +598,15 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_INVALID_LIST_POSITION&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INVALID_LIST_POSITION</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">u32::MAX</span>;
 
+<span class="doccomment">/// Use this priority for functionality related to size allocation.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// It is used internally by GTK+ to compute the sizes of widgets.</span>
+<span class="doccomment">/// This priority is higher than `GDK_PRIORITY_REDRAW` to avoid</span>
+<span class="doccomment">/// resizing a widget which was just redrawn.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRIORITY_RESIZE&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PRIORITY_RESIZE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ffi::GTK_PRIORITY_RESIZE</span> <span class="kw">as</span> <span class="ident">u32</span>;
+<span class="doccomment">/// The priority at which the text view validates onscreen lines</span>
+<span class="doccomment">/// in an idle job in the background.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_TEXT_VIEW_PRIORITY_VALIDATE&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TEXT_VIEW_PRIORITY_VALIDATE</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ffi::GTK_TEXT_VIEW_PRIORITY_VALIDATE</span> <span class="kw">as</span> <span class="ident">u32</span>;
 

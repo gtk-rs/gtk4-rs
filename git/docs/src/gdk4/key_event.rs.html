@@ -158,6 +158,8 @@
 <span id="155">155</span>
 <span id="156">156</span>
 <span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -236,14 +238,16 @@
     <span class="doccomment">/// the event.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// See [method`Gdk.KeyEvent`.matches].</span>
-    <span class="doccomment">/// ## `keyval`</span>
-    <span class="doccomment">/// return location for a keyval</span>
-    <span class="doccomment">/// ## `modifiers`</span>
-    <span class="doccomment">/// return location for modifiers</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] on success</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `keyval`</span>
+    <span class="doccomment">/// return location for a keyval</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `modifiers`</span>
+    <span class="doccomment">/// return location for modifiers</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_key_event_get_match&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_match&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">match_</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">Key</span>, <span class="ident">ModifierType</span>)<span class="op">&gt;</span> {

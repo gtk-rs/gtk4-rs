@@ -2397,19 +2397,19 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkAxisUse</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Ignore</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::X</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Y</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DeltaX</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DeltaY</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Pressure</span>,
-            <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Xtilt</span>,
-            <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Ytilt</span>,
-            <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Wheel</span>,
-            <span class="number">9</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Distance</span>,
-            <span class="number">10</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Rotation</span>,
-            <span class="number">11</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Slider</span>,
-            <span class="number">12</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Last</span>,
+            <span class="ident">ffi::GDK_AXIS_IGNORE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Ignore</span>,
+            <span class="ident">ffi::GDK_AXIS_X</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::X</span>,
+            <span class="ident">ffi::GDK_AXIS_Y</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Y</span>,
+            <span class="ident">ffi::GDK_AXIS_DELTA_X</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DeltaX</span>,
+            <span class="ident">ffi::GDK_AXIS_DELTA_Y</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DeltaY</span>,
+            <span class="ident">ffi::GDK_AXIS_PRESSURE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Pressure</span>,
+            <span class="ident">ffi::GDK_AXIS_XTILT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Xtilt</span>,
+            <span class="ident">ffi::GDK_AXIS_YTILT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Ytilt</span>,
+            <span class="ident">ffi::GDK_AXIS_WHEEL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Wheel</span>,
+            <span class="ident">ffi::GDK_AXIS_DISTANCE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Distance</span>,
+            <span class="ident">ffi::GDK_AXIS_ROTATION</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Rotation</span>,
+            <span class="ident">ffi::GDK_AXIS_SLIDER</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Slider</span>,
+            <span class="ident">ffi::GDK_AXIS_LAST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Last</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -2535,15 +2535,15 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkCrossingMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Normal</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Grab</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Ungrab</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::GtkGrab</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::GtkUngrab</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::StateChanged</span>,
-            <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchBegin</span>,
-            <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchEnd</span>,
-            <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DeviceSwitch</span>,
+            <span class="ident">ffi::GDK_CROSSING_NORMAL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Normal</span>,
+            <span class="ident">ffi::GDK_CROSSING_GRAB</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Grab</span>,
+            <span class="ident">ffi::GDK_CROSSING_UNGRAB</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Ungrab</span>,
+            <span class="ident">ffi::GDK_CROSSING_GTK_GRAB</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::GtkGrab</span>,
+            <span class="ident">ffi::GDK_CROSSING_GTK_UNGRAB</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::GtkUngrab</span>,
+            <span class="ident">ffi::GDK_CROSSING_STATE_CHANGED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::StateChanged</span>,
+            <span class="ident">ffi::GDK_CROSSING_TOUCH_BEGIN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchBegin</span>,
+            <span class="ident">ffi::GDK_CROSSING_TOUCH_END</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchEnd</span>,
+            <span class="ident">ffi::GDK_CROSSING_DEVICE_SWITCH</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DeviceSwitch</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -2634,9 +2634,9 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkDevicePadFeature</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Button</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Ring</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Strip</span>,
+            <span class="ident">ffi::GDK_DEVICE_PAD_FEATURE_BUTTON</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Button</span>,
+            <span class="ident">ffi::GDK_DEVICE_PAD_FEATURE_RING</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Ring</span>,
+            <span class="ident">ffi::GDK_DEVICE_PAD_FEATURE_STRIP</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Strip</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -2753,14 +2753,14 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkDeviceToolType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Unknown</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Pen</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Eraser</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Brush</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Pencil</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Airbrush</span>,
-            <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Mouse</span>,
-            <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Lens</span>,
+            <span class="ident">ffi::GDK_DEVICE_TOOL_TYPE_UNKNOWN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Unknown</span>,
+            <span class="ident">ffi::GDK_DEVICE_TOOL_TYPE_PEN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Pen</span>,
+            <span class="ident">ffi::GDK_DEVICE_TOOL_TYPE_ERASER</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Eraser</span>,
+            <span class="ident">ffi::GDK_DEVICE_TOOL_TYPE_BRUSH</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Brush</span>,
+            <span class="ident">ffi::GDK_DEVICE_TOOL_TYPE_PENCIL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Pencil</span>,
+            <span class="ident">ffi::GDK_DEVICE_TOOL_TYPE_AIRBRUSH</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Airbrush</span>,
+            <span class="ident">ffi::GDK_DEVICE_TOOL_TYPE_MOUSE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Mouse</span>,
+            <span class="ident">ffi::GDK_DEVICE_TOOL_TYPE_LENS</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Lens</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -2851,9 +2851,9 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkDragCancelReason</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NoTarget</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::UserCancelled</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Error</span>,
+            <span class="ident">ffi::GDK_DRAG_CANCEL_NO_TARGET</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NoTarget</span>,
+            <span class="ident">ffi::GDK_DRAG_CANCEL_USER_CANCELLED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::UserCancelled</span>,
+            <span class="ident">ffi::GDK_DRAG_CANCEL_ERROR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Error</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -3081,35 +3081,35 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkEventType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Delete</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::MotionNotify</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ButtonPress</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ButtonRelease</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::KeyPress</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::KeyRelease</span>,
-            <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::EnterNotify</span>,
-            <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::LeaveNotify</span>,
-            <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::FocusChange</span>,
-            <span class="number">9</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ProximityIn</span>,
-            <span class="number">10</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ProximityOut</span>,
-            <span class="number">11</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DragEnter</span>,
-            <span class="number">12</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DragLeave</span>,
-            <span class="number">13</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DragMotion</span>,
-            <span class="number">14</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DropStart</span>,
-            <span class="number">15</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Scroll</span>,
-            <span class="number">16</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::GrabBroken</span>,
-            <span class="number">17</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchBegin</span>,
-            <span class="number">18</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchUpdate</span>,
-            <span class="number">19</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchEnd</span>,
-            <span class="number">20</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchCancel</span>,
-            <span class="number">21</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchpadSwipe</span>,
-            <span class="number">22</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchpadPinch</span>,
-            <span class="number">23</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::PadButtonPress</span>,
-            <span class="number">24</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::PadButtonRelease</span>,
-            <span class="number">25</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::PadRing</span>,
-            <span class="number">26</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::PadStrip</span>,
-            <span class="number">27</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::PadGroupMode</span>,
-            <span class="number">28</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::EventLast</span>,
+            <span class="ident">ffi::GDK_DELETE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Delete</span>,
+            <span class="ident">ffi::GDK_MOTION_NOTIFY</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::MotionNotify</span>,
+            <span class="ident">ffi::GDK_BUTTON_PRESS</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ButtonPress</span>,
+            <span class="ident">ffi::GDK_BUTTON_RELEASE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ButtonRelease</span>,
+            <span class="ident">ffi::GDK_KEY_PRESS</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::KeyPress</span>,
+            <span class="ident">ffi::GDK_KEY_RELEASE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::KeyRelease</span>,
+            <span class="ident">ffi::GDK_ENTER_NOTIFY</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::EnterNotify</span>,
+            <span class="ident">ffi::GDK_LEAVE_NOTIFY</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::LeaveNotify</span>,
+            <span class="ident">ffi::GDK_FOCUS_CHANGE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::FocusChange</span>,
+            <span class="ident">ffi::GDK_PROXIMITY_IN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ProximityIn</span>,
+            <span class="ident">ffi::GDK_PROXIMITY_OUT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::ProximityOut</span>,
+            <span class="ident">ffi::GDK_DRAG_ENTER</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DragEnter</span>,
+            <span class="ident">ffi::GDK_DRAG_LEAVE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DragLeave</span>,
+            <span class="ident">ffi::GDK_DRAG_MOTION</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DragMotion</span>,
+            <span class="ident">ffi::GDK_DROP_START</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::DropStart</span>,
+            <span class="ident">ffi::GDK_SCROLL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Scroll</span>,
+            <span class="ident">ffi::GDK_GRAB_BROKEN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::GrabBroken</span>,
+            <span class="ident">ffi::GDK_TOUCH_BEGIN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchBegin</span>,
+            <span class="ident">ffi::GDK_TOUCH_UPDATE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchUpdate</span>,
+            <span class="ident">ffi::GDK_TOUCH_END</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchEnd</span>,
+            <span class="ident">ffi::GDK_TOUCH_CANCEL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchCancel</span>,
+            <span class="ident">ffi::GDK_TOUCHPAD_SWIPE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchpadSwipe</span>,
+            <span class="ident">ffi::GDK_TOUCHPAD_PINCH</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TouchpadPinch</span>,
+            <span class="ident">ffi::GDK_PAD_BUTTON_PRESS</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::PadButtonPress</span>,
+            <span class="ident">ffi::GDK_PAD_BUTTON_RELEASE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::PadButtonRelease</span>,
+            <span class="ident">ffi::GDK_PAD_RING</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::PadRing</span>,
+            <span class="ident">ffi::GDK_PAD_STRIP</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::PadStrip</span>,
+            <span class="ident">ffi::GDK_PAD_GROUP_MODE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::PadGroupMode</span>,
+            <span class="ident">ffi::GDK_EVENT_LAST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::EventLast</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -3195,8 +3195,8 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkFullscreenMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::CurrentMonitor</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::AllMonitors</span>,
+            <span class="ident">ffi::GDK_FULLSCREEN_ON_CURRENT_MONITOR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::CurrentMonitor</span>,
+            <span class="ident">ffi::GDK_FULLSCREEN_ON_ALL_MONITORS</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::AllMonitors</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -3297,11 +3297,11 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkGLError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NotAvailable</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::UnsupportedFormat</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::UnsupportedProfile</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::CompilationFailed</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::LinkFailed</span>,
+            <span class="ident">ffi::GDK_GL_ERROR_NOT_AVAILABLE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NotAvailable</span>,
+            <span class="ident">ffi::GDK_GL_ERROR_UNSUPPORTED_FORMAT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::UnsupportedFormat</span>,
+            <span class="ident">ffi::GDK_GL_ERROR_UNSUPPORTED_PROFILE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::UnsupportedProfile</span>,
+            <span class="ident">ffi::GDK_GL_ERROR_COMPILATION_FAILED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::CompilationFailed</span>,
+            <span class="ident">ffi::GDK_GL_ERROR_LINK_FAILED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::LinkFailed</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -3321,11 +3321,11 @@
     <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">code</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">code</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::NotAvailable</span>),
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::UnsupportedFormat</span>),
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::UnsupportedProfile</span>),
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::CompilationFailed</span>),
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::LinkFailed</span>),
+            <span class="ident">ffi::GDK_GL_ERROR_NOT_AVAILABLE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::NotAvailable</span>),
+            <span class="ident">ffi::GDK_GL_ERROR_UNSUPPORTED_FORMAT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::UnsupportedFormat</span>),
+            <span class="ident">ffi::GDK_GL_ERROR_UNSUPPORTED_PROFILE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::UnsupportedProfile</span>),
+            <span class="ident">ffi::GDK_GL_ERROR_COMPILATION_FAILED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::CompilationFailed</span>),
+            <span class="ident">ffi::GDK_GL_ERROR_LINK_FAILED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::LinkFailed</span>),
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>)),
         }
     }
@@ -3452,16 +3452,16 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkGravity</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NorthWest</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::North</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NorthEast</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::West</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Center</span>,
-            <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::East</span>,
-            <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::SouthWest</span>,
-            <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::South</span>,
-            <span class="number">9</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::SouthEast</span>,
-            <span class="number">10</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Static</span>,
+            <span class="ident">ffi::GDK_GRAVITY_NORTH_WEST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NorthWest</span>,
+            <span class="ident">ffi::GDK_GRAVITY_NORTH</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::North</span>,
+            <span class="ident">ffi::GDK_GRAVITY_NORTH_EAST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NorthEast</span>,
+            <span class="ident">ffi::GDK_GRAVITY_WEST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::West</span>,
+            <span class="ident">ffi::GDK_GRAVITY_CENTER</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Center</span>,
+            <span class="ident">ffi::GDK_GRAVITY_EAST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::East</span>,
+            <span class="ident">ffi::GDK_GRAVITY_SOUTH_WEST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::SouthWest</span>,
+            <span class="ident">ffi::GDK_GRAVITY_SOUTH</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::South</span>,
+            <span class="ident">ffi::GDK_GRAVITY_SOUTH_EAST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::SouthEast</span>,
+            <span class="ident">ffi::GDK_GRAVITY_STATIC</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Static</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -3576,13 +3576,13 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkInputSource</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Mouse</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Pen</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Keyboard</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Touchscreen</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Touchpad</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Trackpoint</span>,
-            <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TabletPad</span>,
+            <span class="ident">ffi::GDK_SOURCE_MOUSE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Mouse</span>,
+            <span class="ident">ffi::GDK_SOURCE_PEN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Pen</span>,
+            <span class="ident">ffi::GDK_SOURCE_KEYBOARD</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Keyboard</span>,
+            <span class="ident">ffi::GDK_SOURCE_TOUCHSCREEN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Touchscreen</span>,
+            <span class="ident">ffi::GDK_SOURCE_TOUCHPAD</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Touchpad</span>,
+            <span class="ident">ffi::GDK_SOURCE_TRACKPOINT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Trackpoint</span>,
+            <span class="ident">ffi::GDK_SOURCE_TABLET_PAD</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::TabletPad</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -3676,9 +3676,9 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkKeyMatch</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::None</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Partial</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Exact</span>,
+            <span class="ident">ffi::GDK_KEY_MATCH_NONE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::None</span>,
+            <span class="ident">ffi::GDK_KEY_MATCH_PARTIAL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Partial</span>,
+            <span class="ident">ffi::GDK_KEY_MATCH_EXACT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Exact</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -3818,16 +3818,16 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkMemoryFormat</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::B8g8r8a8Premultiplied</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::A8r8g8b8Premultiplied</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::R8g8b8a8Premultiplied</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::B8g8r8a8</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::A8r8g8b8</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::R8g8b8a8</span>,
-            <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::A8b8g8r8</span>,
-            <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::R8g8b8</span>,
-            <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::B8g8r8</span>,
-            <span class="number">9</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NFormats</span>,
+            <span class="ident">ffi::GDK_MEMORY_B8G8R8A8_PREMULTIPLIED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::B8g8r8a8Premultiplied</span>,
+            <span class="ident">ffi::GDK_MEMORY_A8R8G8B8_PREMULTIPLIED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::A8r8g8b8Premultiplied</span>,
+            <span class="ident">ffi::GDK_MEMORY_R8G8B8A8_PREMULTIPLIED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::R8g8b8a8Premultiplied</span>,
+            <span class="ident">ffi::GDK_MEMORY_B8G8R8A8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::B8g8r8a8</span>,
+            <span class="ident">ffi::GDK_MEMORY_A8R8G8B8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::A8r8g8b8</span>,
+            <span class="ident">ffi::GDK_MEMORY_R8G8B8A8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::R8g8b8a8</span>,
+            <span class="ident">ffi::GDK_MEMORY_A8B8G8R8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::A8b8g8r8</span>,
+            <span class="ident">ffi::GDK_MEMORY_R8G8B8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::R8g8b8</span>,
+            <span class="ident">ffi::GDK_MEMORY_B8G8R8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::B8g8r8</span>,
+            <span class="ident">ffi::GDK_MEMORY_N_FORMATS</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NFormats</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -3943,12 +3943,12 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkNotifyType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Ancestor</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Virtual</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Inferior</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Nonlinear</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NonlinearVirtual</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Unknown</span>,
+            <span class="ident">ffi::GDK_NOTIFY_ANCESTOR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Ancestor</span>,
+            <span class="ident">ffi::GDK_NOTIFY_VIRTUAL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Virtual</span>,
+            <span class="ident">ffi::GDK_NOTIFY_INFERIOR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Inferior</span>,
+            <span class="ident">ffi::GDK_NOTIFY_NONLINEAR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Nonlinear</span>,
+            <span class="ident">ffi::GDK_NOTIFY_NONLINEAR_VIRTUAL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NonlinearVirtual</span>,
+            <span class="ident">ffi::GDK_NOTIFY_UNKNOWN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Unknown</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -4050,11 +4050,11 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkScrollDirection</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Up</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Down</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Left</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Right</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Smooth</span>,
+            <span class="ident">ffi::GDK_SCROLL_UP</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Up</span>,
+            <span class="ident">ffi::GDK_SCROLL_DOWN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Down</span>,
+            <span class="ident">ffi::GDK_SCROLL_LEFT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Left</span>,
+            <span class="ident">ffi::GDK_SCROLL_RIGHT</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Right</span>,
+            <span class="ident">ffi::GDK_SCROLL_SMOOTH</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Smooth</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -4161,12 +4161,12 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkSubpixelLayout</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Unknown</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::None</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::HorizontalRgb</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::HorizontalBgr</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::VerticalRgb</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::VerticalBgr</span>,
+            <span class="ident">ffi::GDK_SUBPIXEL_LAYOUT_UNKNOWN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Unknown</span>,
+            <span class="ident">ffi::GDK_SUBPIXEL_LAYOUT_NONE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::None</span>,
+            <span class="ident">ffi::GDK_SUBPIXEL_LAYOUT_HORIZONTAL_RGB</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::HorizontalRgb</span>,
+            <span class="ident">ffi::GDK_SUBPIXEL_LAYOUT_HORIZONTAL_BGR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::HorizontalBgr</span>,
+            <span class="ident">ffi::GDK_SUBPIXEL_LAYOUT_VERTICAL_RGB</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::VerticalRgb</span>,
+            <span class="ident">ffi::GDK_SUBPIXEL_LAYOUT_VERTICAL_BGR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::VerticalBgr</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -4282,14 +4282,14 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkSurfaceEdge</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NorthWest</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::North</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NorthEast</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::West</span>,
-            <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::East</span>,
-            <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::SouthWest</span>,
-            <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::South</span>,
-            <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::SouthEast</span>,
+            <span class="ident">ffi::GDK_SURFACE_EDGE_NORTH_WEST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NorthWest</span>,
+            <span class="ident">ffi::GDK_SURFACE_EDGE_NORTH</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::North</span>,
+            <span class="ident">ffi::GDK_SURFACE_EDGE_NORTH_EAST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NorthEast</span>,
+            <span class="ident">ffi::GDK_SURFACE_EDGE_WEST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::West</span>,
+            <span class="ident">ffi::GDK_SURFACE_EDGE_EAST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::East</span>,
+            <span class="ident">ffi::GDK_SURFACE_EDGE_SOUTH_WEST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::SouthWest</span>,
+            <span class="ident">ffi::GDK_SURFACE_EDGE_SOUTH</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::South</span>,
+            <span class="ident">ffi::GDK_SURFACE_EDGE_SOUTH_EAST</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::SouthEast</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -4404,10 +4404,10 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkTouchpadGesturePhase</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Begin</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Update</span>,
-            <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::End</span>,
-            <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Cancel</span>,
+            <span class="ident">ffi::GDK_TOUCHPAD_GESTURE_PHASE_BEGIN</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Begin</span>,
+            <span class="ident">ffi::GDK_TOUCHPAD_GESTURE_PHASE_UPDATE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Update</span>,
+            <span class="ident">ffi::GDK_TOUCHPAD_GESTURE_PHASE_END</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::End</span>,
+            <span class="ident">ffi::GDK_TOUCHPAD_GESTURE_PHASE_CANCEL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Cancel</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -4494,8 +4494,8 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_glib</span>(<span class="ident">value</span>: <span class="ident">ffi::GdkVulkanError</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">value</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Unsupported</span>,
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NotAvailable</span>,
+            <span class="ident">ffi::GDK_VULKAN_ERROR_UNSUPPORTED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Unsupported</span>,
+            <span class="ident">ffi::GDK_VULKAN_ERROR_NOT_AVAILABLE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::NotAvailable</span>,
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>),
         }
     }
@@ -4515,8 +4515,8 @@
     <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">code</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="macro">skip_assert_initialized!</span>();
         <span class="kw">match</span> <span class="ident">code</span> {
-            <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::Unsupported</span>),
-            <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::NotAvailable</span>),
+            <span class="ident">ffi::GDK_VULKAN_ERROR_UNSUPPORTED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::Unsupported</span>),
+            <span class="ident">ffi::GDK_VULKAN_ERROR_NOT_AVAILABLE</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::NotAvailable</span>),
             <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>)),
         }
     }

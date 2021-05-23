@@ -56,7 +56,7 @@ will be returned.</p>
 <p>an empty <code>GValue</code></p>
 <h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>
 <p><code>TRUE</code> if the expression could be evaluated</p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><h4 id="method.watch" class="method"><code>pub fn <a href="#method.watch" class="fnname">watch</a>&lt;T:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;, F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>() + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;this: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>T&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;notify: F<br>) -&gt; <a class="struct" href="struct.ExpressionWatch.html" title="struct gtk4::ExpressionWatch">ExpressionWatch</a></code><a href="#method.watch" class="anchor"></a><a class="srclink" href="../src/gtk4/expression.rs.html#331-354" title="goto source code">[src]</a></h4></summary><div class="docblock"><p>Installs a watch for the given <code>expression</code> that calls the <code>notify</code> function
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><h4 id="method.watch" class="method"><code>pub fn <a href="#method.watch" class="fnname">watch</a>&lt;T:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;, F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>() + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;this: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>T&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;notify: F<br>) -&gt; <a class="struct" href="struct.ExpressionWatch.html" title="struct gtk4::ExpressionWatch">ExpressionWatch</a></code><a href="#method.watch" class="anchor"></a><a class="srclink" href="../src/gtk4/expression.rs.html#327-350" title="goto source code">[src]</a></h4></summary><div class="docblock"><p>Installs a watch for the given <code>expression</code> that calls the <code>notify</code> function
 whenever the evaluation of <code>self</code> may have changed.</p>
 <p>GTK cannot guarantee that the evaluation did indeed change when the <code>notify</code>
 gets invoked, but it guarantees the opposite: When it did in fact change,
@@ -67,10 +67,6 @@ watch</p>
 <h2 id="notify" class="section-header"><a href="#notify"><code>notify</code></a></h2>
 <p>callback to invoke when the
 expression changes</p>
-<h2 id="user_data" class="section-header"><a href="#user_data"><code>user_data</code></a></h2>
-<p>user data to pass to the <code>notify</code> callback</p>
-<h2 id="user_destroy" class="section-header"><a href="#user_destroy"><code>user_destroy</code></a></h2>
-<p>destroy notify for <code>user_data</code></p>
 <h1 id="returns-6" class="section-header"><a href="#returns-6">Returns</a></h1>
 <p>The newly installed watch. Note that the only
 reference held to the watch will be released when the watch is unwatched

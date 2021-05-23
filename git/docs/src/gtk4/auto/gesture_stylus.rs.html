@@ -435,12 +435,13 @@
     <span class="doccomment">/// signals.</span>
     <span class="doccomment">/// ## `axis`</span>
     <span class="doccomment">/// requested device axis</span>
-    <span class="doccomment">/// ## `value`</span>
-    <span class="doccomment">/// return location for the axis value</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if there is a current value for the axis</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `value`</span>
+    <span class="doccomment">/// return location for the axis value</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_stylus_get_axis&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_axis&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">axis</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">axis</span>: <span class="ident">gdk::AxisUse</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">f64</span><span class="op">&gt;</span> {
@@ -473,14 +474,13 @@
     <span class="doccomment">/// state in motion history.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The `backlog` is provided in chronological order.</span>
-    <span class="doccomment">/// ## `backlog`</span>
-    <span class="doccomment">/// coordinates and times for the backlog events</span>
-    <span class="doccomment">/// ## `n_elems`</span>
-    <span class="doccomment">/// return location for the number of elements</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if there is a backlog to unfold in the current state.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `backlog`</span>
+    <span class="doccomment">/// coordinates and times for the backlog events</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_stylus_get_backlog&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_backlog&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">backlog</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">gdk::TimeCoord</span><span class="op">&gt;</span><span class="op">&gt;</span> {

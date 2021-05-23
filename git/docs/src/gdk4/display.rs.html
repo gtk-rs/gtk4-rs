@@ -192,6 +192,9 @@
 <span id="189">189</span>
 <span id="190">190</span>
 <span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -225,20 +228,24 @@
     <span class="doccomment">/// a modifier state</span>
     <span class="doccomment">/// ## `group`</span>
     <span class="doccomment">/// active keyboard group</span>
-    <span class="doccomment">/// ## `keyval`</span>
-    <span class="doccomment">/// return location for keyval, or [`None`]</span>
-    <span class="doccomment">/// ## `effective_group`</span>
-    <span class="doccomment">/// return location for effective</span>
-    <span class="doccomment">///  group, or [`None`]</span>
-    <span class="doccomment">/// ## `level`</span>
-    <span class="doccomment">/// return location for level, or [`None`]</span>
-    <span class="doccomment">/// ## `consumed`</span>
-    <span class="doccomment">/// return location for modifiers</span>
-    <span class="doccomment">///  that were used to determine the group or level, or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if there was a keyval bound to keycode/state/group.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `keyval`</span>
+    <span class="doccomment">/// return location for keyval, or [`None`]</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `effective_group`</span>
+    <span class="doccomment">/// return location for effective</span>
+    <span class="doccomment">///  group, or [`None`]</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `level`</span>
+    <span class="doccomment">/// return location for level, or [`None`]</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `consumed`</span>
+    <span class="doccomment">/// return location for modifiers</span>
+    <span class="doccomment">///  that were used to determine the group or level, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_translate_key&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">translate_key</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -290,15 +297,14 @@
     <span class="doccomment">/// The returned array should be freed with `g_free()`.</span>
     <span class="doccomment">/// ## `keyval`</span>
     <span class="doccomment">/// a keyval, such as `GDK_KEY_a`, `GDK_KEY_Up`, `GDK_KEY_Return`, etc.</span>
-    <span class="doccomment">/// ## `keys`</span>
-    <span class="doccomment">/// return location</span>
-    <span class="doccomment">///  for an array of `GdkKeymapKey`</span>
-    <span class="doccomment">/// ## `n_keys`</span>
-    <span class="doccomment">/// return location for number of elements in returned array</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if keys were found and returned</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `keys`</span>
+    <span class="doccomment">/// return location</span>
+    <span class="doccomment">///  for an array of `GdkKeymapKey`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_map_keyval&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">map_keyval</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">keyval</span>: <span class="ident">Key</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">KeymapKey</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -332,18 +338,18 @@
     <span class="doccomment">/// Free the returned arrays with `g_free()`.</span>
     <span class="doccomment">/// ## `keycode`</span>
     <span class="doccomment">/// a keycode</span>
-    <span class="doccomment">/// ## `keys`</span>
-    <span class="doccomment">/// return</span>
-    <span class="doccomment">///  location for array of `GdkKeymapKey`, or [`None`]</span>
-    <span class="doccomment">/// ## `keyvals`</span>
-    <span class="doccomment">/// return</span>
-    <span class="doccomment">///  location for array of keyvals, or [`None`]</span>
-    <span class="doccomment">/// ## `n_entries`</span>
-    <span class="doccomment">/// length of `keys` and `keyvals`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if there were any entries</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `keys`</span>
+    <span class="doccomment">/// return</span>
+    <span class="doccomment">///  location for array of `GdkKeymapKey`, or [`None`]</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ## `keyvals`</span>
+    <span class="doccomment">/// return</span>
+    <span class="doccomment">///  location for array of keyvals, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_display_map_keycode&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">map_keycode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">keycode</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">KeymapKey</span>, <span class="ident">Key</span>)<span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
