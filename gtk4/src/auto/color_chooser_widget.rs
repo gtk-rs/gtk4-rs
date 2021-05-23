@@ -38,6 +38,13 @@ impl ColorChooserWidget {
         unsafe { Widget::from_glib_none(ffi::gtk_color_chooser_widget_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ColorChooserWidget`]
+    /// This method returns an instance of [`ColorChooserWidgetBuilder`] which can be used to create a [`ColorChooserWidget`].
+    pub fn builder() -> ColorChooserWidgetBuilder {
+        ColorChooserWidgetBuilder::default()
+    }
+
     #[doc(alias = "show-editor")]
     pub fn shows_editor(&self) -> bool {
         unsafe {

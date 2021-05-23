@@ -38,6 +38,13 @@ impl StackSwitcher {
         unsafe { Widget::from_glib_none(ffi::gtk_stack_switcher_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`StackSwitcher`]
+    /// This method returns an instance of [`StackSwitcherBuilder`] which can be used to create a [`StackSwitcher`].
+    pub fn builder() -> StackSwitcherBuilder {
+        StackSwitcherBuilder::default()
+    }
+
     #[doc(alias = "gtk_stack_switcher_get_stack")]
     #[doc(alias = "get_stack")]
     pub fn stack(&self) -> Option<Stack> {

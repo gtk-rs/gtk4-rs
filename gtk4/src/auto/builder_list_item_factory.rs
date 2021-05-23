@@ -52,6 +52,13 @@ impl BuilderListItemFactory {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`BuilderListItemFactory`]
+    /// This method returns an instance of [`BuilderListItemFactoryBuilder`] which can be used to create a [`BuilderListItemFactory`].
+    pub fn builder() -> BuilderListItemFactoryBuilder {
+        BuilderListItemFactoryBuilder::default()
+    }
+
     #[doc(alias = "gtk_builder_list_item_factory_get_bytes")]
     #[doc(alias = "get_bytes")]
     pub fn bytes(&self) -> Option<glib::Bytes> {

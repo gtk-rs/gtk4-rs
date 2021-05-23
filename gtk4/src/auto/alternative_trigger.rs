@@ -34,6 +34,13 @@ impl AlternativeTrigger {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`AlternativeTrigger`]
+    /// This method returns an instance of [`AlternativeTriggerBuilder`] which can be used to create a [`AlternativeTrigger`].
+    pub fn builder() -> AlternativeTriggerBuilder {
+        AlternativeTriggerBuilder::default()
+    }
+
     #[doc(alias = "gtk_alternative_trigger_get_first")]
     #[doc(alias = "get_first")]
     pub fn first(&self) -> ShortcutTrigger {

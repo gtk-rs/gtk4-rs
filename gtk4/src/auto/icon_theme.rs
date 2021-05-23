@@ -32,6 +32,13 @@ impl IconTheme {
         unsafe { from_glib_full(ffi::gtk_icon_theme_new()) }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`IconTheme`]
+    /// This method returns an instance of [`IconThemeBuilder`] which can be used to create a [`IconTheme`].
+    pub fn builder() -> IconThemeBuilder {
+        IconThemeBuilder::default()
+    }
+
     #[doc(alias = "gtk_icon_theme_add_resource_path")]
     pub fn add_resource_path(&self, path: &str) {
         unsafe {

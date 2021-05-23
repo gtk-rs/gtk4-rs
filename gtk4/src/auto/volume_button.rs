@@ -41,6 +41,13 @@ impl VolumeButton {
         unsafe { Widget::from_glib_none(ffi::gtk_volume_button_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`VolumeButton`]
+    /// This method returns an instance of [`VolumeButtonBuilder`] which can be used to create a [`VolumeButton`].
+    pub fn builder() -> VolumeButtonBuilder {
+        VolumeButtonBuilder::default()
+    }
+
     #[doc(alias = "use-symbolic")]
     pub fn uses_symbolic(&self) -> bool {
         unsafe {

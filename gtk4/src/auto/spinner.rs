@@ -37,6 +37,13 @@ impl Spinner {
         unsafe { Widget::from_glib_none(ffi::gtk_spinner_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Spinner`]
+    /// This method returns an instance of [`SpinnerBuilder`] which can be used to create a [`Spinner`].
+    pub fn builder() -> SpinnerBuilder {
+        SpinnerBuilder::default()
+    }
+
     #[doc(alias = "gtk_spinner_get_spinning")]
     #[doc(alias = "get_spinning")]
     pub fn is_spinning(&self) -> bool {

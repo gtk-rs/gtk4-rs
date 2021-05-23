@@ -61,6 +61,13 @@ impl CheckButton {
             .unsafe_cast()
         }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`CheckButton`]
+    /// This method returns an instance of [`CheckButtonBuilder`] which can be used to create a [`CheckButton`].
+    pub fn builder() -> CheckButtonBuilder {
+        CheckButtonBuilder::default()
+    }
 }
 
 impl Default for CheckButton {

@@ -95,6 +95,13 @@ impl Picture {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Picture`]
+    /// This method returns an instance of [`PictureBuilder`] which can be used to create a [`Picture`].
+    pub fn builder() -> PictureBuilder {
+        PictureBuilder::default()
+    }
+
     #[doc(alias = "gtk_picture_get_alternative_text")]
     #[doc(alias = "get_alternative_text")]
     pub fn alternative_text(&self) -> Option<glib::GString> {

@@ -32,6 +32,13 @@ impl Fixed {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_fixed_new()).unsafe_cast() }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Fixed`]
+    /// This method returns an instance of [`FixedBuilder`] which can be used to create a [`Fixed`].
+    pub fn builder() -> FixedBuilder {
+        FixedBuilder::default()
+    }
 }
 
 impl Default for Fixed {

@@ -33,6 +33,13 @@ impl GestureLongPress {
         unsafe { Gesture::from_glib_full(ffi::gtk_gesture_long_press_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`GestureLongPress`]
+    /// This method returns an instance of [`GestureLongPressBuilder`] which can be used to create a [`GestureLongPress`].
+    pub fn builder() -> GestureLongPressBuilder {
+        GestureLongPressBuilder::default()
+    }
+
     #[doc(alias = "gtk_gesture_long_press_get_delay_factor")]
     #[doc(alias = "get_delay_factor")]
     pub fn delay_factor(&self) -> f64 {

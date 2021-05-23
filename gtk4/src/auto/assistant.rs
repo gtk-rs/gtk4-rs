@@ -45,6 +45,13 @@ impl Assistant {
         unsafe { Widget::from_glib_none(ffi::gtk_assistant_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Assistant`]
+    /// This method returns an instance of [`AssistantBuilder`] which can be used to create a [`Assistant`].
+    pub fn builder() -> AssistantBuilder {
+        AssistantBuilder::default()
+    }
+
     #[doc(alias = "gtk_assistant_add_action_widget")]
     pub fn add_action_widget<P: IsA<Widget>>(&self, child: &P) {
         unsafe {

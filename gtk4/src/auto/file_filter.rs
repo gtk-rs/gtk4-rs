@@ -41,6 +41,13 @@ impl FileFilter {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`FileFilter`]
+    /// This method returns an instance of [`FileFilterBuilder`] which can be used to create a [`FileFilter`].
+    pub fn builder() -> FileFilterBuilder {
+        FileFilterBuilder::default()
+    }
+
     #[doc(alias = "gtk_file_filter_add_mime_type")]
     pub fn add_mime_type(&self, mime_type: &str) {
         unsafe {

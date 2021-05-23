@@ -32,6 +32,13 @@ impl GestureRotate {
         unsafe { Gesture::from_glib_full(ffi::gtk_gesture_rotate_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`GestureRotate`]
+    /// This method returns an instance of [`GestureRotateBuilder`] which can be used to create a [`GestureRotate`].
+    pub fn builder() -> GestureRotateBuilder {
+        GestureRotateBuilder::default()
+    }
+
     #[doc(alias = "gtk_gesture_rotate_get_angle_delta")]
     #[doc(alias = "get_angle_delta")]
     pub fn angle_delta(&self) -> f64 {

@@ -39,6 +39,13 @@ impl SliceListModel {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`SliceListModel`]
+    /// This method returns an instance of [`SliceListModelBuilder`] which can be used to create a [`SliceListModel`].
+    pub fn builder() -> SliceListModelBuilder {
+        SliceListModelBuilder::default()
+    }
+
     #[doc(alias = "gtk_slice_list_model_get_model")]
     #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<gio::ListModel> {

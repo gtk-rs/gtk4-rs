@@ -34,6 +34,13 @@ impl SingleSelection {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`SingleSelection`]
+    /// This method returns an instance of [`SingleSelectionBuilder`] which can be used to create a [`SingleSelection`].
+    pub fn builder() -> SingleSelectionBuilder {
+        SingleSelectionBuilder::default()
+    }
+
     #[doc(alias = "gtk_single_selection_get_autoselect")]
     #[doc(alias = "get_autoselect")]
     pub fn is_autoselect(&self) -> bool {

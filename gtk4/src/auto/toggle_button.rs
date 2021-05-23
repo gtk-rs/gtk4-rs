@@ -61,6 +61,13 @@ impl ToggleButton {
             .unsafe_cast()
         }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ToggleButton`]
+    /// This method returns an instance of [`ToggleButtonBuilder`] which can be used to create a [`ToggleButton`].
+    pub fn builder() -> ToggleButtonBuilder {
+        ToggleButtonBuilder::default()
+    }
 }
 
 impl Default for ToggleButton {

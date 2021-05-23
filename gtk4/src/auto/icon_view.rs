@@ -78,6 +78,13 @@ impl IconView {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`IconView`]
+    /// This method returns an instance of [`IconViewBuilder`] which can be used to create a [`IconView`].
+    pub fn builder() -> IconViewBuilder {
+        IconViewBuilder::default()
+    }
+
     #[doc(alias = "gtk_icon_view_create_drag_icon")]
     pub fn create_drag_icon(&self, path: &TreePath) -> Option<gdk::Paintable> {
         unsafe {

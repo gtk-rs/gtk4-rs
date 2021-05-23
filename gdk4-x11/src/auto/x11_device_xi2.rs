@@ -19,6 +19,13 @@ glib::wrapper! {
 }
 
 impl X11DeviceXI2 {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`X11DeviceXI2`]
+    /// This method returns an instance of [`X11DeviceXI2Builder`] which can be used to create a [`X11DeviceXI2`].
+    pub fn builder() -> X11DeviceXI2Builder {
+        X11DeviceXI2Builder::default()
+    }
+
     #[doc(alias = "device-id")]
     pub fn device_id(&self) -> i32 {
         unsafe {

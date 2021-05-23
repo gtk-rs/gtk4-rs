@@ -33,6 +33,13 @@ impl GestureClick {
         unsafe { Gesture::from_glib_full(ffi::gtk_gesture_click_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`GestureClick`]
+    /// This method returns an instance of [`GestureClickBuilder`] which can be used to create a [`GestureClick`].
+    pub fn builder() -> GestureClickBuilder {
+        GestureClickBuilder::default()
+    }
+
     #[doc(alias = "pressed")]
     pub fn connect_pressed<F: Fn(&GestureClick, i32, f64, f64) + 'static>(
         &self,

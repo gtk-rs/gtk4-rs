@@ -33,6 +33,13 @@ impl EventControllerLegacy {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`EventControllerLegacy`]
+    /// This method returns an instance of [`EventControllerLegacyBuilder`] which can be used to create a [`EventControllerLegacy`].
+    pub fn builder() -> EventControllerLegacyBuilder {
+        EventControllerLegacyBuilder::default()
+    }
+
     #[doc(alias = "event")]
     pub fn connect_event<
         F: Fn(&EventControllerLegacy, &gdk::Event) -> glib::signal::Inhibit + 'static,

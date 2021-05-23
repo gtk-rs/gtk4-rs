@@ -30,6 +30,13 @@ impl GridLayout {
         unsafe { LayoutManager::from_glib_full(ffi::gtk_grid_layout_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`GridLayout`]
+    /// This method returns an instance of [`GridLayoutBuilder`] which can be used to create a [`GridLayout`].
+    pub fn builder() -> GridLayoutBuilder {
+        GridLayoutBuilder::default()
+    }
+
     #[doc(alias = "gtk_grid_layout_get_baseline_row")]
     #[doc(alias = "get_baseline_row")]
     pub fn baseline_row(&self) -> i32 {

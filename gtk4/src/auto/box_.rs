@@ -40,6 +40,13 @@ impl Box {
             Widget::from_glib_none(ffi::gtk_box_new(orientation.into_glib(), spacing)).unsafe_cast()
         }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Box`]
+    /// This method returns an instance of [`BoxBuilder`] which can be used to create a [`Box`].
+    pub fn builder() -> BoxBuilder {
+        BoxBuilder::default()
+    }
 }
 
 #[derive(Clone, Default)]

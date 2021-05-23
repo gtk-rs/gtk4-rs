@@ -62,6 +62,13 @@ impl Scale {
             .unsafe_cast()
         }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Scale`]
+    /// This method returns an instance of [`ScaleBuilder`] which can be used to create a [`Scale`].
+    pub fn builder() -> ScaleBuilder {
+        ScaleBuilder::default()
+    }
 }
 
 #[derive(Clone, Default)]

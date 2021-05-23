@@ -39,6 +39,13 @@ impl MenuButton {
         unsafe { Widget::from_glib_none(ffi::gtk_menu_button_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`MenuButton`]
+    /// This method returns an instance of [`MenuButtonBuilder`] which can be used to create a [`MenuButton`].
+    pub fn builder() -> MenuButtonBuilder {
+        MenuButtonBuilder::default()
+    }
+
     #[doc(alias = "gtk_menu_button_get_direction")]
     #[doc(alias = "get_direction")]
     pub fn direction(&self) -> ArrowType {

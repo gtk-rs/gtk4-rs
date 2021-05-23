@@ -109,6 +109,13 @@ impl Image {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Image`]
+    /// This method returns an instance of [`ImageBuilder`] which can be used to create a [`Image`].
+    pub fn builder() -> ImageBuilder {
+        ImageBuilder::default()
+    }
+
     #[doc(alias = "gtk_image_clear")]
     pub fn clear(&self) {
         unsafe {

@@ -38,6 +38,13 @@ impl SortListModel {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`SortListModel`]
+    /// This method returns an instance of [`SortListModelBuilder`] which can be used to create a [`SortListModel`].
+    pub fn builder() -> SortListModelBuilder {
+        SortListModelBuilder::default()
+    }
+
     #[doc(alias = "gtk_sort_list_model_get_incremental")]
     #[doc(alias = "get_incremental")]
     pub fn is_incremental(&self) -> bool {

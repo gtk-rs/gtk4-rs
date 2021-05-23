@@ -37,6 +37,13 @@ impl HeaderBar {
         unsafe { Widget::from_glib_none(ffi::gtk_header_bar_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`HeaderBar`]
+    /// This method returns an instance of [`HeaderBarBuilder`] which can be used to create a [`HeaderBar`].
+    pub fn builder() -> HeaderBarBuilder {
+        HeaderBarBuilder::default()
+    }
+
     #[doc(alias = "gtk_header_bar_get_decoration_layout")]
     #[doc(alias = "get_decoration_layout")]
     pub fn decoration_layout(&self) -> Option<glib::GString> {

@@ -40,6 +40,13 @@ impl EditableLabel {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`EditableLabel`]
+    /// This method returns an instance of [`EditableLabelBuilder`] which can be used to create a [`EditableLabel`].
+    pub fn builder() -> EditableLabelBuilder {
+        EditableLabelBuilder::default()
+    }
+
     #[doc(alias = "gtk_editable_label_get_editing")]
     #[doc(alias = "get_editing")]
     pub fn is_editing(&self) -> bool {

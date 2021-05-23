@@ -19,6 +19,13 @@ glib::wrapper! {
 }
 
 impl DeviceTool {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`DeviceTool`]
+    /// This method returns an instance of [`DeviceToolBuilder`] which can be used to create a [`DeviceTool`].
+    pub fn builder() -> DeviceToolBuilder {
+        DeviceToolBuilder::default()
+    }
+
     #[doc(alias = "gdk_device_tool_get_axes")]
     #[doc(alias = "get_axes")]
     pub fn axes(&self) -> AxisFlags {

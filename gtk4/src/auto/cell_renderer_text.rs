@@ -30,6 +30,13 @@ impl CellRendererText {
         assert_initialized_main_thread!();
         unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_text_new()).unsafe_cast() }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`CellRendererText`]
+    /// This method returns an instance of [`CellRendererTextBuilder`] which can be used to create a [`CellRendererText`].
+    pub fn builder() -> CellRendererTextBuilder {
+        CellRendererTextBuilder::default()
+    }
 }
 
 impl Default for CellRendererText {

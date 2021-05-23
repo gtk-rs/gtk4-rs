@@ -32,6 +32,13 @@ impl CellRendererPixbuf {
         unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_pixbuf_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`CellRendererPixbuf`]
+    /// This method returns an instance of [`CellRendererPixbufBuilder`] which can be used to create a [`CellRendererPixbuf`].
+    pub fn builder() -> CellRendererPixbufBuilder {
+        CellRendererPixbufBuilder::default()
+    }
+
     pub fn gicon(&self) -> Option<gio::Icon> {
         unsafe {
             let mut value = glib::Value::from_type(<gio::Icon as StaticType>::static_type());

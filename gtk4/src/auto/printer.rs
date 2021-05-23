@@ -31,6 +31,13 @@ impl Printer {
     //    unsafe { TODO: call ffi:gtk_printer_new() }
     //}
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Printer`]
+    /// This method returns an instance of [`PrinterBuilder`] which can be used to create a [`Printer`].
+    pub fn builder() -> PrinterBuilder {
+        PrinterBuilder::default()
+    }
+
     #[doc(alias = "gtk_printer_accepts_pdf")]
     pub fn accepts_pdf(&self) -> bool {
         unsafe { from_glib(ffi::gtk_printer_accepts_pdf(self.to_glib_none().0)) }

@@ -37,6 +37,13 @@ impl WindowHandle {
         unsafe { Widget::from_glib_none(ffi::gtk_window_handle_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`WindowHandle`]
+    /// This method returns an instance of [`WindowHandleBuilder`] which can be used to create a [`WindowHandle`].
+    pub fn builder() -> WindowHandleBuilder {
+        WindowHandleBuilder::default()
+    }
+
     #[doc(alias = "gtk_window_handle_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {

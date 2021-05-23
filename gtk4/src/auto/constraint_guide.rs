@@ -30,6 +30,13 @@ impl ConstraintGuide {
         unsafe { from_glib_full(ffi::gtk_constraint_guide_new()) }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ConstraintGuide`]
+    /// This method returns an instance of [`ConstraintGuideBuilder`] which can be used to create a [`ConstraintGuide`].
+    pub fn builder() -> ConstraintGuideBuilder {
+        ConstraintGuideBuilder::default()
+    }
+
     #[doc(alias = "gtk_constraint_guide_get_name")]
     #[doc(alias = "get_name")]
     pub fn name(&self) -> Option<glib::GString> {

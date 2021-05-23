@@ -27,6 +27,13 @@ glib::wrapper! {
 }
 
 impl Clipboard {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Clipboard`]
+    /// This method returns an instance of [`ClipboardBuilder`] which can be used to create a [`Clipboard`].
+    pub fn builder() -> ClipboardBuilder {
+        ClipboardBuilder::default()
+    }
+
     #[doc(alias = "gdk_clipboard_get_content")]
     #[doc(alias = "get_content")]
     pub fn content(&self) -> Option<ContentProvider> {

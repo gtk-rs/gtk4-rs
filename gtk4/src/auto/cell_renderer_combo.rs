@@ -35,6 +35,13 @@ impl CellRendererCombo {
         unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_combo_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`CellRendererCombo`]
+    /// This method returns an instance of [`CellRendererComboBuilder`] which can be used to create a [`CellRendererCombo`].
+    pub fn builder() -> CellRendererComboBuilder {
+        CellRendererComboBuilder::default()
+    }
+
     #[doc(alias = "has-entry")]
     pub fn has_entry(&self) -> bool {
         unsafe {

@@ -38,6 +38,13 @@ impl StackSidebar {
         unsafe { Widget::from_glib_none(ffi::gtk_stack_sidebar_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`StackSidebar`]
+    /// This method returns an instance of [`StackSidebarBuilder`] which can be used to create a [`StackSidebar`].
+    pub fn builder() -> StackSidebarBuilder {
+        StackSidebarBuilder::default()
+    }
+
     #[doc(alias = "gtk_stack_sidebar_get_stack")]
     #[doc(alias = "get_stack")]
     pub fn stack(&self) -> Option<Stack> {

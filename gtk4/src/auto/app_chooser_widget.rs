@@ -43,6 +43,13 @@ impl AppChooserWidget {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`AppChooserWidget`]
+    /// This method returns an instance of [`AppChooserWidgetBuilder`] which can be used to create a [`AppChooserWidget`].
+    pub fn builder() -> AppChooserWidgetBuilder {
+        AppChooserWidgetBuilder::default()
+    }
+
     #[doc(alias = "gtk_app_chooser_widget_get_default_text")]
     #[doc(alias = "get_default_text")]
     pub fn default_text(&self) -> Option<glib::GString> {

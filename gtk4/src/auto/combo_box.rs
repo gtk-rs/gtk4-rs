@@ -73,6 +73,13 @@ impl ComboBox {
             .unsafe_cast()
         }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ComboBox`]
+    /// This method returns an instance of [`ComboBoxBuilder`] which can be used to create a [`ComboBox`].
+    pub fn builder() -> ComboBoxBuilder {
+        ComboBoxBuilder::default()
+    }
 }
 
 impl Default for ComboBox {

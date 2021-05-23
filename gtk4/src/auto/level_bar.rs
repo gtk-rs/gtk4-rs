@@ -51,6 +51,13 @@ impl LevelBar {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`LevelBar`]
+    /// This method returns an instance of [`LevelBarBuilder`] which can be used to create a [`LevelBar`].
+    pub fn builder() -> LevelBarBuilder {
+        LevelBarBuilder::default()
+    }
+
     #[doc(alias = "gtk_level_bar_add_offset_value")]
     pub fn add_offset_value(&self, name: &str, value: f64) {
         unsafe {

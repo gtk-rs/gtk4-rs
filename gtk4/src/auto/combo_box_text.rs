@@ -44,6 +44,13 @@ impl ComboBoxText {
         unsafe { Widget::from_glib_none(ffi::gtk_combo_box_text_new_with_entry()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ComboBoxText`]
+    /// This method returns an instance of [`ComboBoxTextBuilder`] which can be used to create a [`ComboBoxText`].
+    pub fn builder() -> ComboBoxTextBuilder {
+        ComboBoxTextBuilder::default()
+    }
+
     #[doc(alias = "gtk_combo_box_text_append")]
     pub fn append(&self, id: Option<&str>, text: &str) {
         unsafe {

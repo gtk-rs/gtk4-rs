@@ -50,6 +50,13 @@ impl Expander {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Expander`]
+    /// This method returns an instance of [`ExpanderBuilder`] which can be used to create a [`Expander`].
+    pub fn builder() -> ExpanderBuilder {
+        ExpanderBuilder::default()
+    }
+
     #[doc(alias = "gtk_expander_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {

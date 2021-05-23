@@ -38,6 +38,13 @@ impl FilterListModel {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`FilterListModel`]
+    /// This method returns an instance of [`FilterListModelBuilder`] which can be used to create a [`FilterListModel`].
+    pub fn builder() -> FilterListModelBuilder {
+        FilterListModelBuilder::default()
+    }
+
     #[doc(alias = "gtk_filter_list_model_get_filter")]
     #[doc(alias = "get_filter")]
     pub fn filter(&self) -> Option<Filter> {

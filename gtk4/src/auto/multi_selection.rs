@@ -34,6 +34,13 @@ impl MultiSelection {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`MultiSelection`]
+    /// This method returns an instance of [`MultiSelectionBuilder`] which can be used to create a [`MultiSelection`].
+    pub fn builder() -> MultiSelectionBuilder {
+        MultiSelectionBuilder::default()
+    }
+
     #[doc(alias = "gtk_multi_selection_get_model")]
     #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<gio::ListModel> {

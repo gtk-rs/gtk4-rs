@@ -45,6 +45,13 @@ impl ScrolledWindow {
         unsafe { Widget::from_glib_none(ffi::gtk_scrolled_window_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ScrolledWindow`]
+    /// This method returns an instance of [`ScrolledWindowBuilder`] which can be used to create a [`ScrolledWindow`].
+    pub fn builder() -> ScrolledWindowBuilder {
+        ScrolledWindowBuilder::default()
+    }
+
     #[doc(alias = "gtk_scrolled_window_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {

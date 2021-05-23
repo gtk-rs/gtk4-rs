@@ -36,6 +36,13 @@ impl DropTarget {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`DropTarget`]
+    /// This method returns an instance of [`DropTargetBuilder`] which can be used to create a [`DropTarget`].
+    pub fn builder() -> DropTargetBuilder {
+        DropTargetBuilder::default()
+    }
+
     #[doc(alias = "gtk_drop_target_get_actions")]
     #[doc(alias = "get_actions")]
     pub fn actions(&self) -> gdk::DragAction {

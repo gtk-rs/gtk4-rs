@@ -24,6 +24,13 @@ glib::wrapper! {
 }
 
 impl BoolFilter {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`BoolFilter`]
+    /// This method returns an instance of [`BoolFilterBuilder`] which can be used to create a [`BoolFilter`].
+    pub fn builder() -> BoolFilterBuilder {
+        BoolFilterBuilder::default()
+    }
+
     #[doc(alias = "gtk_bool_filter_get_expression")]
     #[doc(alias = "get_expression")]
     pub fn expression(&self) -> Option<Expression> {

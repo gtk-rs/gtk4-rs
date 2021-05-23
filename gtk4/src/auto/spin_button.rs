@@ -68,6 +68,13 @@ impl SpinButton {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`SpinButton`]
+    /// This method returns an instance of [`SpinButtonBuilder`] which can be used to create a [`SpinButton`].
+    pub fn builder() -> SpinButtonBuilder {
+        SpinButtonBuilder::default()
+    }
+
     #[doc(alias = "gtk_spin_button_configure")]
     pub fn configure<P: IsA<Adjustment>>(
         &self,

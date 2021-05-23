@@ -40,6 +40,13 @@ impl CenterBox {
         unsafe { Widget::from_glib_none(ffi::gtk_center_box_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`CenterBox`]
+    /// This method returns an instance of [`CenterBoxBuilder`] which can be used to create a [`CenterBox`].
+    pub fn builder() -> CenterBoxBuilder {
+        CenterBoxBuilder::default()
+    }
+
     #[doc(alias = "gtk_center_box_get_baseline_position")]
     #[doc(alias = "get_baseline_position")]
     pub fn baseline_position(&self) -> BaselinePosition {

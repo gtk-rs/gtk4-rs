@@ -36,6 +36,13 @@ impl DropTargetAsync {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`DropTargetAsync`]
+    /// This method returns an instance of [`DropTargetAsyncBuilder`] which can be used to create a [`DropTargetAsync`].
+    pub fn builder() -> DropTargetAsyncBuilder {
+        DropTargetAsyncBuilder::default()
+    }
+
     #[doc(alias = "gtk_drop_target_async_get_actions")]
     #[doc(alias = "get_actions")]
     pub fn actions(&self) -> gdk::DragAction {

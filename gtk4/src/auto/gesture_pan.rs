@@ -38,6 +38,13 @@ impl GesturePan {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`GesturePan`]
+    /// This method returns an instance of [`GesturePanBuilder`] which can be used to create a [`GesturePan`].
+    pub fn builder() -> GesturePanBuilder {
+        GesturePanBuilder::default()
+    }
+
     #[doc(alias = "gtk_gesture_pan_get_orientation")]
     #[doc(alias = "get_orientation")]
     pub fn orientation(&self) -> Orientation {

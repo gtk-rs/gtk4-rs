@@ -45,6 +45,13 @@ impl DropDown {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`DropDown`]
+    /// This method returns an instance of [`DropDownBuilder`] which can be used to create a [`DropDown`].
+    pub fn builder() -> DropDownBuilder {
+        DropDownBuilder::default()
+    }
+
     #[doc(alias = "gtk_drop_down_get_enable_search")]
     #[doc(alias = "get_enable_search")]
     pub fn enables_search(&self) -> bool {

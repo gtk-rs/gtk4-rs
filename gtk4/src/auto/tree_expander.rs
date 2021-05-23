@@ -38,6 +38,13 @@ impl TreeExpander {
         unsafe { Widget::from_glib_none(ffi::gtk_tree_expander_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`TreeExpander`]
+    /// This method returns an instance of [`TreeExpanderBuilder`] which can be used to create a [`TreeExpander`].
+    pub fn builder() -> TreeExpanderBuilder {
+        TreeExpanderBuilder::default()
+    }
+
     #[doc(alias = "gtk_tree_expander_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {

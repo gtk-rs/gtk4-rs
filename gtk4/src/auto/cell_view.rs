@@ -92,6 +92,13 @@ impl CellView {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`CellView`]
+    /// This method returns an instance of [`CellViewBuilder`] which can be used to create a [`CellView`].
+    pub fn builder() -> CellViewBuilder {
+        CellViewBuilder::default()
+    }
+
     #[doc(alias = "gtk_cell_view_get_displayed_row")]
     #[doc(alias = "get_displayed_row")]
     pub fn displayed_row(&self) -> Option<TreePath> {

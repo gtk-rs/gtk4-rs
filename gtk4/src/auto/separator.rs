@@ -35,6 +35,13 @@ impl Separator {
             Widget::from_glib_none(ffi::gtk_separator_new(orientation.into_glib())).unsafe_cast()
         }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Separator`]
+    /// This method returns an instance of [`SeparatorBuilder`] which can be used to create a [`Separator`].
+    pub fn builder() -> SeparatorBuilder {
+        SeparatorBuilder::default()
+    }
 }
 
 #[derive(Clone, Default)]

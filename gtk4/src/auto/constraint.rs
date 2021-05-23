@@ -67,6 +67,13 @@ impl Constraint {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Constraint`]
+    /// This method returns an instance of [`ConstraintBuilder`] which can be used to create a [`Constraint`].
+    pub fn builder() -> ConstraintBuilder {
+        ConstraintBuilder::default()
+    }
+
     #[doc(alias = "gtk_constraint_get_constant")]
     #[doc(alias = "get_constant")]
     pub fn constant(&self) -> f64 {

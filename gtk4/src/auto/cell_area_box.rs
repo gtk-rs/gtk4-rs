@@ -35,6 +35,13 @@ impl CellAreaBox {
         unsafe { CellArea::from_glib_none(ffi::gtk_cell_area_box_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`CellAreaBox`]
+    /// This method returns an instance of [`CellAreaBoxBuilder`] which can be used to create a [`CellAreaBox`].
+    pub fn builder() -> CellAreaBoxBuilder {
+        CellAreaBoxBuilder::default()
+    }
+
     #[doc(alias = "gtk_cell_area_box_get_spacing")]
     #[doc(alias = "get_spacing")]
     pub fn spacing(&self) -> i32 {

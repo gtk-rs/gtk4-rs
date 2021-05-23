@@ -37,6 +37,13 @@ impl Overlay {
         unsafe { Widget::from_glib_none(ffi::gtk_overlay_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Overlay`]
+    /// This method returns an instance of [`OverlayBuilder`] which can be used to create a [`Overlay`].
+    pub fn builder() -> OverlayBuilder {
+        OverlayBuilder::default()
+    }
+
     #[doc(alias = "gtk_overlay_add_overlay")]
     pub fn add_overlay<P: IsA<Widget>>(&self, widget: &P) {
         unsafe {

@@ -43,6 +43,13 @@ impl PopoverMenuBar {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`PopoverMenuBar`]
+    /// This method returns an instance of [`PopoverMenuBarBuilder`] which can be used to create a [`PopoverMenuBar`].
+    pub fn builder() -> PopoverMenuBarBuilder {
+        PopoverMenuBarBuilder::default()
+    }
+
     #[doc(alias = "gtk_popover_menu_bar_add_child")]
     pub fn add_child<P: IsA<Widget>>(&self, child: &P, id: &str) -> bool {
         unsafe {

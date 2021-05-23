@@ -33,7 +33,14 @@ glib::wrapper! {
     }
 }
 
-impl FileChooserDialog {}
+impl FileChooserDialog {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`FileChooserDialog`]
+    /// This method returns an instance of [`FileChooserDialogBuilder`] which can be used to create a [`FileChooserDialog`].
+    pub fn builder() -> FileChooserDialogBuilder {
+        FileChooserDialogBuilder::default()
+    }
+}
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next

@@ -51,6 +51,13 @@ impl Label {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Label`]
+    /// This method returns an instance of [`LabelBuilder`] which can be used to create a [`Label`].
+    pub fn builder() -> LabelBuilder {
+        LabelBuilder::default()
+    }
+
     #[doc(alias = "gtk_label_get_attributes")]
     #[doc(alias = "get_attributes")]
     pub fn attributes(&self) -> Option<pango::AttrList> {

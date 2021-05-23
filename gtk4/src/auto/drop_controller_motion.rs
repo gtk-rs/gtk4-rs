@@ -33,6 +33,13 @@ impl DropControllerMotion {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`DropControllerMotion`]
+    /// This method returns an instance of [`DropControllerMotionBuilder`] which can be used to create a [`DropControllerMotion`].
+    pub fn builder() -> DropControllerMotionBuilder {
+        DropControllerMotionBuilder::default()
+    }
+
     #[doc(alias = "gtk_drop_controller_motion_contains_pointer")]
     pub fn contains_pointer(&self) -> bool {
         unsafe {

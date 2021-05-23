@@ -32,6 +32,13 @@ impl TextBuffer {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_text_buffer_new(table.to_glib_none().0)) }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`TextBuffer`]
+    /// This method returns an instance of [`TextBufferBuilder`] which can be used to create a [`TextBuffer`].
+    pub fn builder() -> TextBufferBuilder {
+        TextBufferBuilder::default()
+    }
 }
 
 #[derive(Clone, Default)]

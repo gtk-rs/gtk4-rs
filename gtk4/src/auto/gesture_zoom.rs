@@ -32,6 +32,13 @@ impl GestureZoom {
         unsafe { Gesture::from_glib_full(ffi::gtk_gesture_zoom_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`GestureZoom`]
+    /// This method returns an instance of [`GestureZoomBuilder`] which can be used to create a [`GestureZoom`].
+    pub fn builder() -> GestureZoomBuilder {
+        GestureZoomBuilder::default()
+    }
+
     #[doc(alias = "gtk_gesture_zoom_get_scale_delta")]
     #[doc(alias = "get_scale_delta")]
     pub fn scale_delta(&self) -> f64 {

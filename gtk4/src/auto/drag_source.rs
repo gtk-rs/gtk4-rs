@@ -34,6 +34,13 @@ impl DragSource {
         unsafe { from_glib_full(ffi::gtk_drag_source_new()) }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`DragSource`]
+    /// This method returns an instance of [`DragSourceBuilder`] which can be used to create a [`DragSource`].
+    pub fn builder() -> DragSourceBuilder {
+        DragSourceBuilder::default()
+    }
+
     #[doc(alias = "gtk_drag_source_drag_cancel")]
     pub fn drag_cancel(&self) {
         unsafe {

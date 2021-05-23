@@ -24,6 +24,13 @@ glib::wrapper! {
 }
 
 impl NotebookPage {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`NotebookPage`]
+    /// This method returns an instance of [`NotebookPageBuilder`] which can be used to create a [`NotebookPage`].
+    pub fn builder() -> NotebookPageBuilder {
+        NotebookPageBuilder::default()
+    }
+
     #[doc(alias = "gtk_notebook_page_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {

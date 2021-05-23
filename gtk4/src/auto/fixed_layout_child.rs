@@ -26,6 +26,13 @@ glib::wrapper! {
 }
 
 impl FixedLayoutChild {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`FixedLayoutChild`]
+    /// This method returns an instance of [`FixedLayoutChildBuilder`] which can be used to create a [`FixedLayoutChild`].
+    pub fn builder() -> FixedLayoutChildBuilder {
+        FixedLayoutChildBuilder::default()
+    }
+
     #[doc(alias = "gtk_fixed_layout_child_get_transform")]
     #[doc(alias = "get_transform")]
     pub fn transform(&self) -> Option<gsk::Transform> {

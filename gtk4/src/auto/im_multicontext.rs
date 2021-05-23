@@ -26,6 +26,13 @@ impl IMMulticontext {
         assert_initialized_main_thread!();
         unsafe { IMContext::from_glib_full(ffi::gtk_im_multicontext_new()).unsafe_cast() }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`IMMulticontext`]
+    /// This method returns an instance of [`IMMulticontextBuilder`] which can be used to create a [`IMMulticontext`].
+    pub fn builder() -> IMMulticontextBuilder {
+        IMMulticontextBuilder::default()
+    }
 }
 
 impl Default for IMMulticontext {

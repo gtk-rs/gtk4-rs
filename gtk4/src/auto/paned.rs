@@ -41,6 +41,13 @@ impl Paned {
         unsafe { Widget::from_glib_none(ffi::gtk_paned_new(orientation.into_glib())).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Paned`]
+    /// This method returns an instance of [`PanedBuilder`] which can be used to create a [`Paned`].
+    pub fn builder() -> PanedBuilder {
+        PanedBuilder::default()
+    }
+
     #[doc(alias = "gtk_paned_get_end_child")]
     #[doc(alias = "get_end_child")]
     pub fn end_child(&self) -> Option<Widget> {

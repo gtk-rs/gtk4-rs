@@ -33,6 +33,13 @@ impl TreeModelSort {
             ))
         }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`TreeModelSort`]
+    /// This method returns an instance of [`TreeModelSortBuilder`] which can be used to create a [`TreeModelSort`].
+    pub fn builder() -> TreeModelSortBuilder {
+        TreeModelSortBuilder::default()
+    }
 }
 
 #[derive(Clone, Default)]

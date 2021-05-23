@@ -26,6 +26,13 @@ glib::wrapper! {
 }
 
 impl StackPage {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`StackPage`]
+    /// This method returns an instance of [`StackPageBuilder`] which can be used to create a [`StackPage`].
+    pub fn builder() -> StackPageBuilder {
+        StackPageBuilder::default()
+    }
+
     #[doc(alias = "gtk_stack_page_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Widget {

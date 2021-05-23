@@ -69,6 +69,13 @@ impl Button {
                 .unsafe_cast()
         }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Button`]
+    /// This method returns an instance of [`ButtonBuilder`] which can be used to create a [`Button`].
+    pub fn builder() -> ButtonBuilder {
+        ButtonBuilder::default()
+    }
 }
 
 impl Default for Button {

@@ -31,6 +31,13 @@ impl CellRendererSpinner {
         unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_spinner_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`CellRendererSpinner`]
+    /// This method returns an instance of [`CellRendererSpinnerBuilder`] which can be used to create a [`CellRendererSpinner`].
+    pub fn builder() -> CellRendererSpinnerBuilder {
+        CellRendererSpinnerBuilder::default()
+    }
+
     pub fn is_active(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());

@@ -46,6 +46,13 @@ impl PageSetupUnixDialog {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`PageSetupUnixDialog`]
+    /// This method returns an instance of [`PageSetupUnixDialogBuilder`] which can be used to create a [`PageSetupUnixDialog`].
+    pub fn builder() -> PageSetupUnixDialogBuilder {
+        PageSetupUnixDialogBuilder::default()
+    }
+
     #[doc(alias = "gtk_page_setup_unix_dialog_get_page_setup")]
     #[doc(alias = "get_page_setup")]
     pub fn page_setup(&self) -> PageSetup {

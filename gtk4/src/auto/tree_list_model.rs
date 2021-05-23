@@ -68,6 +68,13 @@ impl TreeListModel {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`TreeListModel`]
+    /// This method returns an instance of [`TreeListModelBuilder`] which can be used to create a [`TreeListModel`].
+    pub fn builder() -> TreeListModelBuilder {
+        TreeListModelBuilder::default()
+    }
+
     #[doc(alias = "gtk_tree_list_model_get_autoexpand")]
     #[doc(alias = "get_autoexpand")]
     pub fn is_autoexpand(&self) -> bool {

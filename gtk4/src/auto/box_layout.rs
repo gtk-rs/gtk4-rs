@@ -35,6 +35,13 @@ impl BoxLayout {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`BoxLayout`]
+    /// This method returns an instance of [`BoxLayoutBuilder`] which can be used to create a [`BoxLayout`].
+    pub fn builder() -> BoxLayoutBuilder {
+        BoxLayoutBuilder::default()
+    }
+
     #[doc(alias = "gtk_box_layout_get_baseline_position")]
     #[doc(alias = "get_baseline_position")]
     pub fn baseline_position(&self) -> BaselinePosition {
