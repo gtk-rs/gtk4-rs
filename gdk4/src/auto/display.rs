@@ -62,7 +62,7 @@ pub trait DisplayExt: 'static {
     fn close(&self);
 
     #[doc(alias = "gdk_display_device_is_grabbed")]
-    fn device_is_grabbed<P: IsA<Device>>(&self, device: &P) -> bool;
+    fn device_is_grabbed(&self, device: &impl IsA<Device>) -> bool;
 
     #[doc(alias = "gdk_display_flush")]
     fn flush(&self);
@@ -81,7 +81,7 @@ pub trait DisplayExt: 'static {
 
     #[doc(alias = "gdk_display_get_monitor_at_surface")]
     #[doc(alias = "get_monitor_at_surface")]
-    fn monitor_at_surface<P: IsA<Surface>>(&self, surface: &P) -> Option<Monitor>;
+    fn monitor_at_surface(&self, surface: &impl IsA<Surface>) -> Option<Monitor>;
 
     #[doc(alias = "gdk_display_get_monitors")]
     #[doc(alias = "get_monitors")]
@@ -166,7 +166,7 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
-    fn device_is_grabbed<P: IsA<Device>>(&self, device: &P) -> bool {
+    fn device_is_grabbed(&self, device: &impl IsA<Device>) -> bool {
         unsafe {
             from_glib(ffi::gdk_display_device_is_grabbed(
                 self.as_ref().to_glib_none().0,
@@ -205,7 +205,7 @@ impl<O: IsA<Display>> DisplayExt for O {
         }
     }
 
-    fn monitor_at_surface<P: IsA<Surface>>(&self, surface: &P) -> Option<Monitor> {
+    fn monitor_at_surface(&self, surface: &impl IsA<Surface>) -> Option<Monitor> {
         unsafe {
             from_glib_none(ffi::gdk_display_get_monitor_at_surface(
                 self.as_ref().to_glib_none().0,

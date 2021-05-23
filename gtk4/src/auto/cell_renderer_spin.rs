@@ -467,7 +467,7 @@ impl CellRendererSpinBuilder {
             .expect("Failed to create an instance of CellRendererSpin")
     }
 
-    pub fn adjustment<P: IsA<Adjustment>>(mut self, adjustment: &P) -> Self {
+    pub fn adjustment(mut self, adjustment: &impl IsA<Adjustment>) -> Self {
         self.adjustment = Some(adjustment.clone().upcast());
         self
     }

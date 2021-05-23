@@ -37,9 +37,9 @@ pub const NONE_CELL_RENDERER: Option<&CellRenderer> = None;
 pub trait CellRendererExt: 'static {
     #[doc(alias = "gtk_cell_renderer_get_aligned_area")]
     #[doc(alias = "get_aligned_area")]
-    fn aligned_area<P: IsA<Widget>>(
+    fn aligned_area(
         &self,
-        widget: &P,
+        widget: &impl IsA<Widget>,
         flags: CellRendererState,
         cell_area: &gdk::Rectangle,
     ) -> gdk::Rectangle;
@@ -66,23 +66,23 @@ pub trait CellRendererExt: 'static {
 
     #[doc(alias = "gtk_cell_renderer_get_preferred_height")]
     #[doc(alias = "get_preferred_height")]
-    fn preferred_height<P: IsA<Widget>>(&self, widget: &P) -> (i32, i32);
+    fn preferred_height(&self, widget: &impl IsA<Widget>) -> (i32, i32);
 
     #[doc(alias = "gtk_cell_renderer_get_preferred_height_for_width")]
     #[doc(alias = "get_preferred_height_for_width")]
-    fn preferred_height_for_width<P: IsA<Widget>>(&self, widget: &P, width: i32) -> (i32, i32);
+    fn preferred_height_for_width(&self, widget: &impl IsA<Widget>, width: i32) -> (i32, i32);
 
     #[doc(alias = "gtk_cell_renderer_get_preferred_size")]
     #[doc(alias = "get_preferred_size")]
-    fn preferred_size<P: IsA<Widget>>(&self, widget: &P) -> (Requisition, Requisition);
+    fn preferred_size(&self, widget: &impl IsA<Widget>) -> (Requisition, Requisition);
 
     #[doc(alias = "gtk_cell_renderer_get_preferred_width")]
     #[doc(alias = "get_preferred_width")]
-    fn preferred_width<P: IsA<Widget>>(&self, widget: &P) -> (i32, i32);
+    fn preferred_width(&self, widget: &impl IsA<Widget>) -> (i32, i32);
 
     #[doc(alias = "gtk_cell_renderer_get_preferred_width_for_height")]
     #[doc(alias = "get_preferred_width_for_height")]
-    fn preferred_width_for_height<P: IsA<Widget>>(&self, widget: &P, height: i32) -> (i32, i32);
+    fn preferred_width_for_height(&self, widget: &impl IsA<Widget>, height: i32) -> (i32, i32);
 
     #[doc(alias = "gtk_cell_renderer_get_request_mode")]
     #[doc(alias = "get_request_mode")]
@@ -94,11 +94,8 @@ pub trait CellRendererExt: 'static {
 
     #[doc(alias = "gtk_cell_renderer_get_state")]
     #[doc(alias = "get_state")]
-    fn state<P: IsA<Widget>>(
-        &self,
-        widget: Option<&P>,
-        cell_state: CellRendererState,
-    ) -> StateFlags;
+    fn state(&self, widget: Option<&impl IsA<Widget>>, cell_state: CellRendererState)
+        -> StateFlags;
 
     #[doc(alias = "gtk_cell_renderer_get_visible")]
     #[doc(alias = "get_visible")]
@@ -129,10 +126,10 @@ pub trait CellRendererExt: 'static {
     fn set_visible(&self, visible: bool);
 
     #[doc(alias = "gtk_cell_renderer_snapshot")]
-    fn snapshot<P: IsA<Widget>>(
+    fn snapshot(
         &self,
         snapshot: &Snapshot,
-        widget: &P,
+        widget: &impl IsA<Widget>,
         background_area: &gdk::Rectangle,
         cell_area: &gdk::Rectangle,
         flags: CellRendererState,
@@ -242,9 +239,9 @@ pub trait CellRendererExt: 'static {
 }
 
 impl<O: IsA<CellRenderer>> CellRendererExt for O {
-    fn aligned_area<P: IsA<Widget>>(
+    fn aligned_area(
         &self,
-        widget: &P,
+        widget: &impl IsA<Widget>,
         flags: CellRendererState,
         cell_area: &gdk::Rectangle,
     ) -> gdk::Rectangle {
@@ -322,7 +319,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
-    fn preferred_height<P: IsA<Widget>>(&self, widget: &P) -> (i32, i32) {
+    fn preferred_height(&self, widget: &impl IsA<Widget>) -> (i32, i32) {
         unsafe {
             let mut minimum_size = mem::MaybeUninit::uninit();
             let mut natural_size = mem::MaybeUninit::uninit();
@@ -338,7 +335,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
-    fn preferred_height_for_width<P: IsA<Widget>>(&self, widget: &P, width: i32) -> (i32, i32) {
+    fn preferred_height_for_width(&self, widget: &impl IsA<Widget>, width: i32) -> (i32, i32) {
         unsafe {
             let mut minimum_height = mem::MaybeUninit::uninit();
             let mut natural_height = mem::MaybeUninit::uninit();
@@ -355,7 +352,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
-    fn preferred_size<P: IsA<Widget>>(&self, widget: &P) -> (Requisition, Requisition) {
+    fn preferred_size(&self, widget: &impl IsA<Widget>) -> (Requisition, Requisition) {
         unsafe {
             let mut minimum_size = Requisition::uninitialized();
             let mut natural_size = Requisition::uninitialized();
@@ -369,7 +366,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
-    fn preferred_width<P: IsA<Widget>>(&self, widget: &P) -> (i32, i32) {
+    fn preferred_width(&self, widget: &impl IsA<Widget>) -> (i32, i32) {
         unsafe {
             let mut minimum_size = mem::MaybeUninit::uninit();
             let mut natural_size = mem::MaybeUninit::uninit();
@@ -385,7 +382,7 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
-    fn preferred_width_for_height<P: IsA<Widget>>(&self, widget: &P, height: i32) -> (i32, i32) {
+    fn preferred_width_for_height(&self, widget: &impl IsA<Widget>, height: i32) -> (i32, i32) {
         unsafe {
             let mut minimum_width = mem::MaybeUninit::uninit();
             let mut natural_width = mem::MaybeUninit::uninit();
@@ -418,9 +415,9 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
-    fn state<P: IsA<Widget>>(
+    fn state(
         &self,
-        widget: Option<&P>,
+        widget: Option<&impl IsA<Widget>>,
         cell_state: CellRendererState,
     ) -> StateFlags {
         unsafe {
@@ -499,10 +496,10 @@ impl<O: IsA<CellRenderer>> CellRendererExt for O {
         }
     }
 
-    fn snapshot<P: IsA<Widget>>(
+    fn snapshot(
         &self,
         snapshot: &Snapshot,
-        widget: &P,
+        widget: &impl IsA<Widget>,
         background_area: &gdk::Rectangle,
         cell_area: &gdk::Rectangle,
         flags: CellRendererState,

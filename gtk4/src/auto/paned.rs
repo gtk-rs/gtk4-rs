@@ -99,7 +99,7 @@ impl Paned {
     }
 
     #[doc(alias = "gtk_paned_set_end_child")]
-    pub fn set_end_child<P: IsA<Widget>>(&self, child: &P) {
+    pub fn set_end_child(&self, child: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_paned_set_end_child(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
@@ -141,7 +141,7 @@ impl Paned {
     }
 
     #[doc(alias = "gtk_paned_set_start_child")]
-    pub fn set_start_child<P: IsA<Widget>>(&self, child: &P) {
+    pub fn set_start_child(&self, child: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_paned_set_start_child(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
@@ -874,7 +874,7 @@ impl PanedBuilder {
         glib::Object::new::<Paned>(&properties).expect("Failed to create an instance of Paned")
     }
 
-    pub fn end_child<P: IsA<Widget>>(mut self, end_child: &P) -> Self {
+    pub fn end_child(mut self, end_child: &impl IsA<Widget>) -> Self {
         self.end_child = Some(end_child.clone().upcast());
         self
     }
@@ -909,7 +909,7 @@ impl PanedBuilder {
         self
     }
 
-    pub fn start_child<P: IsA<Widget>>(mut self, start_child: &P) -> Self {
+    pub fn start_child(mut self, start_child: &impl IsA<Widget>) -> Self {
         self.start_child = Some(start_child.clone().upcast());
         self
     }
@@ -979,7 +979,7 @@ impl PanedBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

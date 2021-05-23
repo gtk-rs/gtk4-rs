@@ -263,10 +263,10 @@ pub trait PrintOperationExt: 'static {
     fn is_finished(&self) -> bool;
 
     #[doc(alias = "gtk_print_operation_run")]
-    fn run<P: IsA<Window>>(
+    fn run(
         &self,
         action: PrintOperationAction,
-        parent: Option<&P>,
+        parent: Option<&impl IsA<Window>>,
     ) -> Result<PrintOperationResult, glib::Error>;
 
     #[doc(alias = "gtk_print_operation_set_allow_async")]
@@ -288,7 +288,7 @@ pub trait PrintOperationExt: 'static {
     fn set_embed_page_setup(&self, embed: bool);
 
     #[doc(alias = "gtk_print_operation_set_export_filename")]
-    fn set_export_filename<P: AsRef<std::path::Path>>(&self, filename: P);
+    fn set_export_filename(&self, filename: impl AsRef<std::path::Path>);
 
     #[doc(alias = "gtk_print_operation_set_has_selection")]
     fn set_has_selection(&self, has_selection: bool);
@@ -548,10 +548,10 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn run<P: IsA<Window>>(
+    fn run(
         &self,
         action: PrintOperationAction,
-        parent: Option<&P>,
+        parent: Option<&impl IsA<Window>>,
     ) -> Result<PrintOperationResult, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -617,7 +617,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
-    fn set_export_filename<P: AsRef<std::path::Path>>(&self, filename: P) {
+    fn set_export_filename(&self, filename: impl AsRef<std::path::Path>) {
         unsafe {
             ffi::gtk_print_operation_set_export_filename(
                 self.as_ref().to_glib_none().0,

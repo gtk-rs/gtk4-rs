@@ -69,7 +69,7 @@ pub trait GLContextExt: 'static {
     #[cfg(any(feature = "v4_4", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
     #[doc(alias = "gdk_gl_context_is_shared")]
-    fn is_shared<P: IsA<GLContext>>(&self, other: &P) -> bool;
+    fn is_shared(&self, other: &impl IsA<GLContext>) -> bool;
 
     #[doc(alias = "gdk_gl_context_make_current")]
     fn make_current(&self);
@@ -163,7 +163,7 @@ impl<O: IsA<GLContext>> GLContextExt for O {
 
     #[cfg(any(feature = "v4_4", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_4")))]
-    fn is_shared<P: IsA<GLContext>>(&self, other: &P) -> bool {
+    fn is_shared(&self, other: &impl IsA<GLContext>) -> bool {
         unsafe {
             from_glib(ffi::gdk_gl_context_is_shared(
                 self.as_ref().to_glib_none().0,

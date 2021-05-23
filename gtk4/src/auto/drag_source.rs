@@ -76,7 +76,7 @@ impl DragSource {
     }
 
     #[doc(alias = "gtk_drag_source_set_content")]
-    pub fn set_content<P: IsA<gdk::ContentProvider>>(&self, content: Option<&P>) {
+    pub fn set_content(&self, content: Option<&impl IsA<gdk::ContentProvider>>) {
         unsafe {
             ffi::gtk_drag_source_set_content(
                 self.to_glib_none().0,
@@ -86,7 +86,7 @@ impl DragSource {
     }
 
     #[doc(alias = "gtk_drag_source_set_icon")]
-    pub fn set_icon<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>, hot_x: i32, hot_y: i32) {
+    pub fn set_icon(&self, paintable: Option<&impl IsA<gdk::Paintable>>, hot_x: i32, hot_y: i32) {
         unsafe {
             ffi::gtk_drag_source_set_icon(
                 self.to_glib_none().0,
@@ -333,7 +333,7 @@ impl DragSourceBuilder {
         self
     }
 
-    pub fn content<P: IsA<gdk::ContentProvider>>(mut self, content: &P) -> Self {
+    pub fn content(mut self, content: &impl IsA<gdk::ContentProvider>) -> Self {
         self.content = Some(content.clone().upcast());
         self
     }

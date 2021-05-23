@@ -102,7 +102,7 @@ impl Snapshot {
     }
 
     #[doc(alias = "gtk_snapshot_append_texture")]
-    pub fn append_texture<P: IsA<gdk::Texture>>(&self, texture: &P, bounds: &graphene::Rect) {
+    pub fn append_texture(&self, texture: &impl IsA<gdk::Texture>, bounds: &graphene::Rect) {
         unsafe {
             ffi::gtk_snapshot_append_texture(
                 self.to_glib_none().0,
@@ -245,9 +245,9 @@ impl Snapshot {
     }
 
     #[doc(alias = "gtk_snapshot_render_background")]
-    pub fn render_background<P: IsA<StyleContext>>(
+    pub fn render_background(
         &self,
-        context: &P,
+        context: &impl IsA<StyleContext>,
         x: f64,
         y: f64,
         width: f64,
@@ -266,9 +266,9 @@ impl Snapshot {
     }
 
     #[doc(alias = "gtk_snapshot_render_focus")]
-    pub fn render_focus<P: IsA<StyleContext>>(
+    pub fn render_focus(
         &self,
-        context: &P,
+        context: &impl IsA<StyleContext>,
         x: f64,
         y: f64,
         width: f64,
@@ -287,9 +287,9 @@ impl Snapshot {
     }
 
     #[doc(alias = "gtk_snapshot_render_frame")]
-    pub fn render_frame<P: IsA<StyleContext>>(
+    pub fn render_frame(
         &self,
-        context: &P,
+        context: &impl IsA<StyleContext>,
         x: f64,
         y: f64,
         width: f64,
@@ -308,9 +308,9 @@ impl Snapshot {
     }
 
     #[doc(alias = "gtk_snapshot_render_insertion_cursor")]
-    pub fn render_insertion_cursor<P: IsA<StyleContext>>(
+    pub fn render_insertion_cursor(
         &self,
-        context: &P,
+        context: &impl IsA<StyleContext>,
         x: f64,
         y: f64,
         layout: &pango::Layout,
@@ -331,9 +331,9 @@ impl Snapshot {
     }
 
     #[doc(alias = "gtk_snapshot_render_layout")]
-    pub fn render_layout<P: IsA<StyleContext>>(
+    pub fn render_layout(
         &self,
-        context: &P,
+        context: &impl IsA<StyleContext>,
         x: f64,
         y: f64,
         layout: &pango::Layout,

@@ -52,42 +52,36 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_append")]
-    pub fn append<P: IsA<Widget>>(&self, child: &P) {
+    pub fn append(&self, child: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_list_box_append(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
     #[doc(alias = "gtk_list_box_bind_model")]
-    pub fn bind_model<P: IsA<gio::ListModel>, Q: Fn(&glib::Object) -> Widget + 'static>(
+    pub fn bind_model<P: Fn(&glib::Object) -> Widget + 'static>(
         &self,
-        model: Option<&P>,
-        create_widget_func: Q,
+        model: Option<&impl IsA<gio::ListModel>>,
+        create_widget_func: P,
     ) {
-        let create_widget_func_data: Box_<Q> = Box_::new(create_widget_func);
-        unsafe extern "C" fn create_widget_func_func<
-            P: IsA<gio::ListModel>,
-            Q: Fn(&glib::Object) -> Widget + 'static,
-        >(
+        let create_widget_func_data: Box_<P> = Box_::new(create_widget_func);
+        unsafe extern "C" fn create_widget_func_func<P: Fn(&glib::Object) -> Widget + 'static>(
             item: *mut glib::gobject_ffi::GObject,
             user_data: glib::ffi::gpointer,
         ) -> *mut ffi::GtkWidget {
             let item = from_glib_borrow(item);
-            let callback: &Q = &*(user_data as *mut _);
+            let callback: &P = &*(user_data as *mut _);
             let res = (*callback)(&item);
             res.to_glib_full()
         }
-        let create_widget_func = Some(create_widget_func_func::<P, Q> as _);
-        unsafe extern "C" fn user_data_free_func_func<
-            P: IsA<gio::ListModel>,
-            Q: Fn(&glib::Object) -> Widget + 'static,
-        >(
+        let create_widget_func = Some(create_widget_func_func::<P> as _);
+        unsafe extern "C" fn user_data_free_func_func<P: Fn(&glib::Object) -> Widget + 'static>(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<Q> = Box_::from_raw(data as *mut _);
+            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
         }
-        let destroy_call4 = Some(user_data_free_func_func::<P, Q> as _);
-        let super_callback0: Box_<Q> = create_widget_func_data;
+        let destroy_call4 = Some(user_data_free_func_func::<P> as _);
+        let super_callback0: Box_<P> = create_widget_func_data;
         unsafe {
             ffi::gtk_list_box_bind_model(
                 self.to_glib_none().0,
@@ -100,7 +94,7 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_drag_highlight_row")]
-    pub fn drag_highlight_row<P: IsA<ListBoxRow>>(&self, row: &P) {
+    pub fn drag_highlight_row(&self, row: &impl IsA<ListBoxRow>) {
         unsafe {
             ffi::gtk_list_box_drag_highlight_row(
                 self.to_glib_none().0,
@@ -178,7 +172,7 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_insert")]
-    pub fn insert<P: IsA<Widget>>(&self, child: &P, position: i32) {
+    pub fn insert(&self, child: &impl IsA<Widget>, position: i32) {
         unsafe {
             ffi::gtk_list_box_insert(
                 self.to_glib_none().0,
@@ -210,14 +204,14 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_prepend")]
-    pub fn prepend<P: IsA<Widget>>(&self, child: &P) {
+    pub fn prepend(&self, child: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_list_box_prepend(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
     }
 
     #[doc(alias = "gtk_list_box_remove")]
-    pub fn remove<P: IsA<Widget>>(&self, child: &P) {
+    pub fn remove(&self, child: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_list_box_remove(self.to_glib_none().0, child.as_ref().to_glib_none().0);
         }
@@ -231,7 +225,7 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_select_row")]
-    pub fn select_row<P: IsA<ListBoxRow>>(&self, row: Option<&P>) {
+    pub fn select_row(&self, row: Option<&impl IsA<ListBoxRow>>) {
         unsafe {
             ffi::gtk_list_box_select_row(
                 self.to_glib_none().0,
@@ -275,7 +269,7 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_set_adjustment")]
-    pub fn set_adjustment<P: IsA<Adjustment>>(&self, adjustment: Option<&P>) {
+    pub fn set_adjustment(&self, adjustment: Option<&impl IsA<Adjustment>>) {
         unsafe {
             ffi::gtk_list_box_set_adjustment(
                 self.to_glib_none().0,
@@ -351,7 +345,7 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_set_placeholder")]
-    pub fn set_placeholder<P: IsA<Widget>>(&self, placeholder: Option<&P>) {
+    pub fn set_placeholder(&self, placeholder: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_list_box_set_placeholder(
                 self.to_glib_none().0,
@@ -417,7 +411,7 @@ impl ListBox {
     }
 
     #[doc(alias = "gtk_list_box_unselect_row")]
-    pub fn unselect_row<P: IsA<ListBoxRow>>(&self, row: &P) {
+    pub fn unselect_row(&self, row: &impl IsA<ListBoxRow>) {
         unsafe {
             ffi::gtk_list_box_unselect_row(self.to_glib_none().0, row.as_ref().to_glib_none().0);
         }
@@ -1042,7 +1036,7 @@ impl ListBoxBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

@@ -291,7 +291,7 @@ impl BoxBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
@@ -391,7 +391,7 @@ pub const NONE_BOX: Option<&Box> = None;
 
 pub trait BoxExt: 'static {
     #[doc(alias = "gtk_box_append")]
-    fn append<P: IsA<Widget>>(&self, child: &P);
+    fn append(&self, child: &impl IsA<Widget>);
 
     #[doc(alias = "gtk_box_get_baseline_position")]
     #[doc(alias = "get_baseline_position")]
@@ -406,16 +406,16 @@ pub trait BoxExt: 'static {
     fn spacing(&self) -> i32;
 
     #[doc(alias = "gtk_box_insert_child_after")]
-    fn insert_child_after<P: IsA<Widget>, Q: IsA<Widget>>(&self, child: &P, sibling: Option<&Q>);
+    fn insert_child_after(&self, child: &impl IsA<Widget>, sibling: Option<&impl IsA<Widget>>);
 
     #[doc(alias = "gtk_box_prepend")]
-    fn prepend<P: IsA<Widget>>(&self, child: &P);
+    fn prepend(&self, child: &impl IsA<Widget>);
 
     #[doc(alias = "gtk_box_remove")]
-    fn remove<P: IsA<Widget>>(&self, child: &P);
+    fn remove(&self, child: &impl IsA<Widget>);
 
     #[doc(alias = "gtk_box_reorder_child_after")]
-    fn reorder_child_after<P: IsA<Widget>, Q: IsA<Widget>>(&self, child: &P, sibling: Option<&Q>);
+    fn reorder_child_after(&self, child: &impl IsA<Widget>, sibling: Option<&impl IsA<Widget>>);
 
     #[doc(alias = "gtk_box_set_baseline_position")]
     fn set_baseline_position(&self, position: BaselinePosition);
@@ -437,7 +437,7 @@ pub trait BoxExt: 'static {
 }
 
 impl<O: IsA<Box>> BoxExt for O {
-    fn append<P: IsA<Widget>>(&self, child: &P) {
+    fn append(&self, child: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_box_append(
                 self.as_ref().to_glib_none().0,
@@ -462,7 +462,7 @@ impl<O: IsA<Box>> BoxExt for O {
         unsafe { ffi::gtk_box_get_spacing(self.as_ref().to_glib_none().0) }
     }
 
-    fn insert_child_after<P: IsA<Widget>, Q: IsA<Widget>>(&self, child: &P, sibling: Option<&Q>) {
+    fn insert_child_after(&self, child: &impl IsA<Widget>, sibling: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_box_insert_child_after(
                 self.as_ref().to_glib_none().0,
@@ -472,7 +472,7 @@ impl<O: IsA<Box>> BoxExt for O {
         }
     }
 
-    fn prepend<P: IsA<Widget>>(&self, child: &P) {
+    fn prepend(&self, child: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_box_prepend(
                 self.as_ref().to_glib_none().0,
@@ -481,7 +481,7 @@ impl<O: IsA<Box>> BoxExt for O {
         }
     }
 
-    fn remove<P: IsA<Widget>>(&self, child: &P) {
+    fn remove(&self, child: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_box_remove(
                 self.as_ref().to_glib_none().0,
@@ -490,7 +490,7 @@ impl<O: IsA<Box>> BoxExt for O {
         }
     }
 
-    fn reorder_child_after<P: IsA<Widget>, Q: IsA<Widget>>(&self, child: &P, sibling: Option<&Q>) {
+    fn reorder_child_after(&self, child: &impl IsA<Widget>, sibling: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_box_reorder_child_after(
                 self.as_ref().to_glib_none().0,

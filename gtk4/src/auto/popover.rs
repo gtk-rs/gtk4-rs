@@ -241,12 +241,12 @@ impl PopoverBuilder {
         self
     }
 
-    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+    pub fn child(mut self, child: &impl IsA<Widget>) -> Self {
         self.child = Some(child.clone().upcast());
         self
     }
 
-    pub fn default_widget<P: IsA<Widget>>(mut self, default_widget: &P) -> Self {
+    pub fn default_widget(mut self, default_widget: &impl IsA<Widget>) -> Self {
         self.default_widget = Some(default_widget.clone().upcast());
         self
     }
@@ -331,7 +331,7 @@ impl PopoverBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
@@ -473,10 +473,10 @@ pub trait PopoverExt: 'static {
     fn set_cascade_popdown(&self, cascade_popdown: bool);
 
     #[doc(alias = "gtk_popover_set_child")]
-    fn set_child<P: IsA<Widget>>(&self, child: Option<&P>);
+    fn set_child(&self, child: Option<&impl IsA<Widget>>);
 
     #[doc(alias = "gtk_popover_set_default_widget")]
-    fn set_default_widget<P: IsA<Widget>>(&self, widget: Option<&P>);
+    fn set_default_widget(&self, widget: Option<&impl IsA<Widget>>);
 
     #[doc(alias = "gtk_popover_set_has_arrow")]
     fn set_has_arrow(&self, has_arrow: bool);
@@ -637,7 +637,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
+    fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_popover_set_child(
                 self.as_ref().to_glib_none().0,
@@ -646,7 +646,7 @@ impl<O: IsA<Popover>> PopoverExt for O {
         }
     }
 
-    fn set_default_widget<P: IsA<Widget>>(&self, widget: Option<&P>) {
+    fn set_default_widget(&self, widget: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_popover_set_default_widget(
                 self.as_ref().to_glib_none().0,

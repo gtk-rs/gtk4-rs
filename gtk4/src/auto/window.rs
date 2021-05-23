@@ -336,12 +336,12 @@ impl WindowBuilder {
         glib::Object::new::<Window>(&properties).expect("Failed to create an instance of Window")
     }
 
-    pub fn application<P: IsA<Application>>(mut self, application: &P) -> Self {
+    pub fn application(mut self, application: &impl IsA<Application>) -> Self {
         self.application = Some(application.clone().upcast());
         self
     }
 
-    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+    pub fn child(mut self, child: &impl IsA<Widget>) -> Self {
         self.child = Some(child.clone().upcast());
         self
     }
@@ -356,7 +356,7 @@ impl WindowBuilder {
         self
     }
 
-    pub fn default_widget<P: IsA<Widget>>(mut self, default_widget: &P) -> Self {
+    pub fn default_widget(mut self, default_widget: &impl IsA<Widget>) -> Self {
         self.default_widget = Some(default_widget.clone().upcast());
         self
     }
@@ -376,7 +376,7 @@ impl WindowBuilder {
         self
     }
 
-    pub fn display<P: IsA<gdk::Display>>(mut self, display: &P) -> Self {
+    pub fn display(mut self, display: &impl IsA<gdk::Display>) -> Self {
         self.display = Some(display.clone().upcast());
         self
     }
@@ -386,7 +386,7 @@ impl WindowBuilder {
         self
     }
 
-    pub fn focus_widget<P: IsA<Widget>>(mut self, focus_widget: &P) -> Self {
+    pub fn focus_widget(mut self, focus_widget: &impl IsA<Widget>) -> Self {
         self.focus_widget = Some(focus_widget.clone().upcast());
         self
     }
@@ -443,7 +443,7 @@ impl WindowBuilder {
         self
     }
 
-    pub fn transient_for<P: IsA<Window>>(mut self, transient_for: &P) -> Self {
+    pub fn transient_for(mut self, transient_for: &impl IsA<Window>) -> Self {
         self.transient_for = Some(transient_for.clone().upcast());
         self
     }
@@ -508,7 +508,7 @@ impl WindowBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }
@@ -713,10 +713,10 @@ pub trait GtkWindowExt: 'static {
     fn present_with_time(&self, timestamp: u32);
 
     #[doc(alias = "gtk_window_set_application")]
-    fn set_application<P: IsA<Application>>(&self, application: Option<&P>);
+    fn set_application(&self, application: Option<&impl IsA<Application>>);
 
     #[doc(alias = "gtk_window_set_child")]
-    fn set_child<P: IsA<Widget>>(&self, child: Option<&P>);
+    fn set_child(&self, child: Option<&impl IsA<Widget>>);
 
     #[doc(alias = "gtk_window_set_decorated")]
     fn set_decorated(&self, setting: bool);
@@ -725,7 +725,7 @@ pub trait GtkWindowExt: 'static {
     fn set_default_size(&self, width: i32, height: i32);
 
     #[doc(alias = "gtk_window_set_default_widget")]
-    fn set_default_widget<P: IsA<Widget>>(&self, default_widget: Option<&P>);
+    fn set_default_widget(&self, default_widget: Option<&impl IsA<Widget>>);
 
     #[doc(alias = "gtk_window_set_deletable")]
     fn set_deletable(&self, setting: bool);
@@ -734,7 +734,7 @@ pub trait GtkWindowExt: 'static {
     fn set_destroy_with_parent(&self, setting: bool);
 
     #[doc(alias = "gtk_window_set_display")]
-    fn set_display<P: IsA<gdk::Display>>(&self, display: &P);
+    fn set_display(&self, display: &impl IsA<gdk::Display>);
 
     #[doc(alias = "gtk_window_set_focus_visible")]
     fn set_focus_visible(&self, setting: bool);
@@ -766,10 +766,10 @@ pub trait GtkWindowExt: 'static {
     fn set_title(&self, title: Option<&str>);
 
     #[doc(alias = "gtk_window_set_titlebar")]
-    fn set_titlebar<P: IsA<Widget>>(&self, titlebar: Option<&P>);
+    fn set_titlebar(&self, titlebar: Option<&impl IsA<Widget>>);
 
     #[doc(alias = "gtk_window_set_transient_for")]
-    fn set_transient_for<P: IsA<Window>>(&self, parent: Option<&P>);
+    fn set_transient_for(&self, parent: Option<&impl IsA<Window>>);
 
     #[doc(alias = "gtk_window_unfullscreen")]
     fn unfullscreen(&self);
@@ -1108,7 +1108,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn set_application<P: IsA<Application>>(&self, application: Option<&P>) {
+    fn set_application(&self, application: Option<&impl IsA<Application>>) {
         unsafe {
             ffi::gtk_window_set_application(
                 self.as_ref().to_glib_none().0,
@@ -1117,7 +1117,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
+    fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_window_set_child(
                 self.as_ref().to_glib_none().0,
@@ -1138,7 +1138,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn set_default_widget<P: IsA<Widget>>(&self, default_widget: Option<&P>) {
+    fn set_default_widget(&self, default_widget: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_window_set_default_widget(
                 self.as_ref().to_glib_none().0,
@@ -1162,7 +1162,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn set_display<P: IsA<gdk::Display>>(&self, display: &P) {
+    fn set_display(&self, display: &impl IsA<gdk::Display>) {
         unsafe {
             ffi::gtk_window_set_display(
                 self.as_ref().to_glib_none().0,
@@ -1236,7 +1236,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn set_titlebar<P: IsA<Widget>>(&self, titlebar: Option<&P>) {
+    fn set_titlebar(&self, titlebar: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_window_set_titlebar(
                 self.as_ref().to_glib_none().0,
@@ -1245,7 +1245,7 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn set_transient_for<P: IsA<Window>>(&self, parent: Option<&P>) {
+    fn set_transient_for(&self, parent: Option<&impl IsA<Window>>) {
         unsafe {
             ffi::gtk_window_set_transient_for(
                 self.as_ref().to_glib_none().0,

@@ -38,7 +38,7 @@ impl ShortcutController {
 
     #[doc(alias = "gtk_shortcut_controller_new_for_model")]
     #[doc(alias = "new_for_model")]
-    pub fn for_model<P: IsA<gio::ListModel>>(model: &P) -> ShortcutController {
+    pub fn for_model(model: &impl IsA<gio::ListModel>) -> ShortcutController {
         assert_initialized_main_thread!();
         unsafe {
             EventController::from_glib_full(ffi::gtk_shortcut_controller_new_for_model(
@@ -250,7 +250,7 @@ impl ShortcutControllerBuilder {
         self
     }
 
-    pub fn model<P: IsA<gio::ListModel>>(mut self, model: &P) -> Self {
+    pub fn model(mut self, model: &impl IsA<gio::ListModel>) -> Self {
         self.model = Some(model.clone().upcast());
         self
     }

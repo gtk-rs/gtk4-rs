@@ -43,8 +43,8 @@ glib::wrapper! {
 
 impl SpinButton {
     #[doc(alias = "gtk_spin_button_new")]
-    pub fn new<P: IsA<Adjustment>>(
-        adjustment: Option<&P>,
+    pub fn new(
+        adjustment: Option<&impl IsA<Adjustment>>,
         climb_rate: f64,
         digits: u32,
     ) -> SpinButton {
@@ -78,9 +78,9 @@ impl SpinButton {
     }
 
     #[doc(alias = "gtk_spin_button_configure")]
-    pub fn configure<P: IsA<Adjustment>>(
+    pub fn configure(
         &self,
-        adjustment: Option<&P>,
+        adjustment: Option<&impl IsA<Adjustment>>,
         climb_rate: f64,
         digits: u32,
     ) {
@@ -191,7 +191,7 @@ impl SpinButton {
     }
 
     #[doc(alias = "gtk_spin_button_set_adjustment")]
-    pub fn set_adjustment<P: IsA<Adjustment>>(&self, adjustment: &P) {
+    pub fn set_adjustment(&self, adjustment: &impl IsA<Adjustment>) {
         unsafe {
             ffi::gtk_spin_button_set_adjustment(
                 self.to_glib_none().0,
@@ -789,7 +789,7 @@ impl SpinButtonBuilder {
             .expect("Failed to create an instance of SpinButton")
     }
 
-    pub fn adjustment<P: IsA<Adjustment>>(mut self, adjustment: &P) -> Self {
+    pub fn adjustment(mut self, adjustment: &impl IsA<Adjustment>) -> Self {
         self.adjustment = Some(adjustment.clone().upcast());
         self
     }
@@ -889,7 +889,7 @@ impl SpinButtonBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

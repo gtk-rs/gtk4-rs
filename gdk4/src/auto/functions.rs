@@ -33,7 +33,7 @@ pub fn pixbuf_get_from_surface(
 }
 
 #[doc(alias = "gdk_pixbuf_get_from_texture")]
-pub fn pixbuf_get_from_texture<P: IsA<Texture>>(texture: &P) -> Option<gdk_pixbuf::Pixbuf> {
+pub fn pixbuf_get_from_texture(texture: &impl IsA<Texture>) -> Option<gdk_pixbuf::Pixbuf> {
     skip_assert_initialized!();
     unsafe {
         from_glib_full(ffi::gdk_pixbuf_get_from_texture(

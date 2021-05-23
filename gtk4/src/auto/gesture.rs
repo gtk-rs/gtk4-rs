@@ -65,7 +65,7 @@ pub trait GestureExt: 'static {
 
     #[doc(alias = "gtk_gesture_group")]
     #[doc(alias = "group")]
-    fn group_with<P: IsA<Gesture>>(&self, gesture: &P);
+    fn group_with(&self, gesture: &impl IsA<Gesture>);
 
     #[doc(alias = "gtk_gesture_handles_sequence")]
     fn handles_sequence(&self, sequence: Option<&gdk::EventSequence>) -> bool;
@@ -74,7 +74,7 @@ pub trait GestureExt: 'static {
     fn is_active(&self) -> bool;
 
     #[doc(alias = "gtk_gesture_is_grouped_with")]
-    fn is_grouped_with<P: IsA<Gesture>>(&self, other: &P) -> bool;
+    fn is_grouped_with(&self, other: &impl IsA<Gesture>) -> bool;
 
     #[doc(alias = "gtk_gesture_is_recognized")]
     fn is_recognized(&self) -> bool;
@@ -225,7 +225,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         }
     }
 
-    fn group_with<P: IsA<Gesture>>(&self, gesture: &P) {
+    fn group_with(&self, gesture: &impl IsA<Gesture>) {
         unsafe {
             ffi::gtk_gesture_group(
                 self.as_ref().to_glib_none().0,
@@ -247,7 +247,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         unsafe { from_glib(ffi::gtk_gesture_is_active(self.as_ref().to_glib_none().0)) }
     }
 
-    fn is_grouped_with<P: IsA<Gesture>>(&self, other: &P) -> bool {
+    fn is_grouped_with(&self, other: &impl IsA<Gesture>) -> bool {
         unsafe {
             from_glib(ffi::gtk_gesture_is_grouped_with(
                 self.as_ref().to_glib_none().0,

@@ -41,7 +41,7 @@ impl Video {
 
     #[doc(alias = "gtk_video_new_for_file")]
     #[doc(alias = "new_for_file")]
-    pub fn for_file<P: IsA<gio::File>>(file: Option<&P>) -> Video {
+    pub fn for_file(file: Option<&impl IsA<gio::File>>) -> Video {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_video_new_for_file(
@@ -53,7 +53,7 @@ impl Video {
 
     #[doc(alias = "gtk_video_new_for_filename")]
     #[doc(alias = "new_for_filename")]
-    pub fn for_filename<P: AsRef<std::path::Path>>(filename: P) -> Video {
+    pub fn for_filename(filename: impl AsRef<std::path::Path>) -> Video {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_video_new_for_filename(
@@ -65,7 +65,7 @@ impl Video {
 
     #[doc(alias = "gtk_video_new_for_media_stream")]
     #[doc(alias = "new_for_media_stream")]
-    pub fn for_media_stream<P: IsA<MediaStream>>(stream: Option<&P>) -> Video {
+    pub fn for_media_stream(stream: Option<&impl IsA<MediaStream>>) -> Video {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_video_new_for_media_stream(
@@ -127,7 +127,7 @@ impl Video {
     }
 
     #[doc(alias = "gtk_video_set_file")]
-    pub fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>) {
+    pub fn set_file(&self, file: Option<&impl IsA<gio::File>>) {
         unsafe {
             ffi::gtk_video_set_file(
                 self.to_glib_none().0,
@@ -137,7 +137,7 @@ impl Video {
     }
 
     #[doc(alias = "gtk_video_set_filename")]
-    pub fn set_filename<P: AsRef<std::path::Path>>(&self, filename: P) {
+    pub fn set_filename(&self, filename: impl AsRef<std::path::Path>) {
         unsafe {
             ffi::gtk_video_set_filename(self.to_glib_none().0, filename.as_ref().to_glib_none().0);
         }
@@ -151,7 +151,7 @@ impl Video {
     }
 
     #[doc(alias = "gtk_video_set_media_stream")]
-    pub fn set_media_stream<P: IsA<MediaStream>>(&self, stream: Option<&P>) {
+    pub fn set_media_stream(&self, stream: Option<&impl IsA<MediaStream>>) {
         unsafe {
             ffi::gtk_video_set_media_stream(
                 self.to_glib_none().0,
@@ -429,7 +429,7 @@ impl VideoBuilder {
         self
     }
 
-    pub fn file<P: IsA<gio::File>>(mut self, file: &P) -> Self {
+    pub fn file(mut self, file: &impl IsA<gio::File>) -> Self {
         self.file = Some(file.clone().upcast());
         self
     }
@@ -439,7 +439,7 @@ impl VideoBuilder {
         self
     }
 
-    pub fn media_stream<P: IsA<MediaStream>>(mut self, media_stream: &P) -> Self {
+    pub fn media_stream(mut self, media_stream: &impl IsA<MediaStream>) -> Self {
         self.media_stream = Some(media_stream.clone().upcast());
         self
     }
@@ -504,7 +504,7 @@ impl VideoBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

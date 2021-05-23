@@ -66,7 +66,7 @@ impl ListItem {
     }
 
     #[doc(alias = "gtk_list_item_set_child")]
-    pub fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
+    pub fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_list_item_set_child(
                 self.to_glib_none().0,

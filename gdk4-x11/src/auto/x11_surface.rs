@@ -61,7 +61,7 @@ impl X11Surface {
     }
 
     #[doc(alias = "gdk_x11_surface_set_group")]
-    pub fn set_group<P: IsA<gdk::Surface>>(&self, leader: &P) {
+    pub fn set_group(&self, leader: &impl IsA<gdk::Surface>) {
         unsafe {
             ffi::gdk_x11_surface_set_group(self.to_glib_none().0, leader.as_ref().to_glib_none().0);
         }

@@ -34,17 +34,17 @@ pub const NONE_WINDOW_GROUP: Option<&WindowGroup> = None;
 
 pub trait WindowGroupExt: 'static {
     #[doc(alias = "gtk_window_group_add_window")]
-    fn add_window<P: IsA<Window>>(&self, window: &P);
+    fn add_window(&self, window: &impl IsA<Window>);
 
     #[doc(alias = "gtk_window_group_list_windows")]
     fn list_windows(&self) -> Vec<Window>;
 
     #[doc(alias = "gtk_window_group_remove_window")]
-    fn remove_window<P: IsA<Window>>(&self, window: &P);
+    fn remove_window(&self, window: &impl IsA<Window>);
 }
 
 impl<O: IsA<WindowGroup>> WindowGroupExt for O {
-    fn add_window<P: IsA<Window>>(&self, window: &P) {
+    fn add_window(&self, window: &impl IsA<Window>) {
         unsafe {
             ffi::gtk_window_group_add_window(
                 self.as_ref().to_glib_none().0,
@@ -61,7 +61,7 @@ impl<O: IsA<WindowGroup>> WindowGroupExt for O {
         }
     }
 
-    fn remove_window<P: IsA<Window>>(&self, window: &P) {
+    fn remove_window(&self, window: &impl IsA<Window>) {
         unsafe {
             ffi::gtk_window_group_remove_window(
                 self.as_ref().to_glib_none().0,

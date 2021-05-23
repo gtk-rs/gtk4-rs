@@ -22,7 +22,7 @@ glib::wrapper! {
 
 impl DirectoryList {
     #[doc(alias = "gtk_directory_list_new")]
-    pub fn new<P: IsA<gio::File>>(attributes: Option<&str>, file: Option<&P>) -> DirectoryList {
+    pub fn new(attributes: Option<&str>, file: Option<&impl IsA<gio::File>>) -> DirectoryList {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_full(ffi::gtk_directory_list_new(
@@ -76,7 +76,7 @@ impl DirectoryList {
     }
 
     #[doc(alias = "gtk_directory_list_set_file")]
-    pub fn set_file<P: IsA<gio::File>>(&self, file: Option<&P>) {
+    pub fn set_file(&self, file: Option<&impl IsA<gio::File>>) {
         unsafe {
             ffi::gtk_directory_list_set_file(
                 self.to_glib_none().0,

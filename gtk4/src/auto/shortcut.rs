@@ -27,9 +27,9 @@ glib::wrapper! {
 
 impl Shortcut {
     #[doc(alias = "gtk_shortcut_new")]
-    pub fn new<P: IsA<ShortcutTrigger>, Q: IsA<ShortcutAction>>(
-        trigger: Option<&P>,
-        action: Option<&Q>,
+    pub fn new(
+        trigger: Option<&impl IsA<ShortcutTrigger>>,
+        action: Option<&impl IsA<ShortcutAction>>,
     ) -> Shortcut {
         assert_initialized_main_thread!();
         unsafe {
@@ -42,7 +42,7 @@ impl Shortcut {
 
     //#[doc(alias = "gtk_shortcut_new_with_arguments")]
     //#[doc(alias = "new_with_arguments")]
-    //pub fn with_arguments<P: IsA<ShortcutTrigger>, Q: IsA<ShortcutAction>>(trigger: Option<&P>, action: Option<&Q>, format_string: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Shortcut {
+    //pub fn with_arguments(trigger: Option<&impl IsA<ShortcutTrigger>>, action: Option<&impl IsA<ShortcutAction>>, format_string: Option<&str>, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Shortcut {
     //    unsafe { TODO: call ffi:gtk_shortcut_new_with_arguments() }
     //}
 
@@ -73,7 +73,7 @@ impl Shortcut {
     }
 
     #[doc(alias = "gtk_shortcut_set_action")]
-    pub fn set_action<P: IsA<ShortcutAction>>(&self, action: Option<&P>) {
+    pub fn set_action(&self, action: Option<&impl IsA<ShortcutAction>>) {
         unsafe {
             ffi::gtk_shortcut_set_action(
                 self.to_glib_none().0,
@@ -90,7 +90,7 @@ impl Shortcut {
     }
 
     #[doc(alias = "gtk_shortcut_set_trigger")]
-    pub fn set_trigger<P: IsA<ShortcutTrigger>>(&self, trigger: Option<&P>) {
+    pub fn set_trigger(&self, trigger: Option<&impl IsA<ShortcutTrigger>>) {
         unsafe {
             ffi::gtk_shortcut_set_trigger(
                 self.to_glib_none().0,
@@ -211,7 +211,7 @@ impl ShortcutBuilder {
             .expect("Failed to create an instance of Shortcut")
     }
 
-    pub fn action<P: IsA<ShortcutAction>>(mut self, action: &P) -> Self {
+    pub fn action(mut self, action: &impl IsA<ShortcutAction>) -> Self {
         self.action = Some(action.clone().upcast());
         self
     }
@@ -221,7 +221,7 @@ impl ShortcutBuilder {
         self
     }
 
-    pub fn trigger<P: IsA<ShortcutTrigger>>(mut self, trigger: &P) -> Self {
+    pub fn trigger(mut self, trigger: &impl IsA<ShortcutTrigger>) -> Self {
         self.trigger = Some(trigger.clone().upcast());
         self
     }

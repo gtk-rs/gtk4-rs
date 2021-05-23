@@ -26,37 +26,35 @@ glib::wrapper! {
 
 impl TreeListModel {
     #[doc(alias = "gtk_tree_list_model_new")]
-    pub fn new<P: IsA<gio::ListModel>, Q: Fn(&glib::Object) -> Option<gio::ListModel> + 'static>(
-        root: &P,
+    pub fn new<P: Fn(&glib::Object) -> Option<gio::ListModel> + 'static>(
+        root: &impl IsA<gio::ListModel>,
         passthrough: bool,
         autoexpand: bool,
-        create_func: Q,
+        create_func: P,
     ) -> TreeListModel {
         assert_initialized_main_thread!();
-        let create_func_data: Box_<Q> = Box_::new(create_func);
+        let create_func_data: Box_<P> = Box_::new(create_func);
         unsafe extern "C" fn create_func_func<
-            P: IsA<gio::ListModel>,
-            Q: Fn(&glib::Object) -> Option<gio::ListModel> + 'static,
+            P: Fn(&glib::Object) -> Option<gio::ListModel> + 'static,
         >(
             item: *mut glib::gobject_ffi::GObject,
             user_data: glib::ffi::gpointer,
         ) -> *mut gio::ffi::GListModel {
             let item = from_glib_borrow(item);
-            let callback: &Q = &*(user_data as *mut _);
+            let callback: &P = &*(user_data as *mut _);
             let res = (*callback)(&item);
             res.to_glib_full()
         }
-        let create_func = Some(create_func_func::<P, Q> as _);
+        let create_func = Some(create_func_func::<P> as _);
         unsafe extern "C" fn user_destroy_func<
-            P: IsA<gio::ListModel>,
-            Q: Fn(&glib::Object) -> Option<gio::ListModel> + 'static,
+            P: Fn(&glib::Object) -> Option<gio::ListModel> + 'static,
         >(
             data: glib::ffi::gpointer,
         ) {
-            let _callback: Box_<Q> = Box_::from_raw(data as *mut _);
+            let _callback: Box_<P> = Box_::from_raw(data as *mut _);
         }
-        let destroy_call5 = Some(user_destroy_func::<P, Q> as _);
-        let super_callback0: Box_<Q> = create_func_data;
+        let destroy_call5 = Some(user_destroy_func::<P> as _);
+        let super_callback0: Box_<P> = create_func_data;
         unsafe {
             from_glib_full(ffi::gtk_tree_list_model_new(
                 root.as_ref().to_glib_full(),

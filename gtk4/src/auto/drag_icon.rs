@@ -49,7 +49,7 @@ impl DragIcon {
     }
 
     #[doc(alias = "gtk_drag_icon_set_child")]
-    pub fn set_child<P: IsA<Widget>>(&self, child: Option<&P>) {
+    pub fn set_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_drag_icon_set_child(
                 self.to_glib_none().0,
@@ -76,9 +76,9 @@ impl DragIcon {
     }
 
     #[doc(alias = "gtk_drag_icon_set_from_paintable")]
-    pub fn set_from_paintable<P: IsA<gdk::Paintable>>(
+    pub fn set_from_paintable(
         drag: &gdk::Drag,
-        paintable: &P,
+        paintable: &impl IsA<gdk::Paintable>,
         hot_x: i32,
         hot_y: i32,
     ) {
@@ -264,7 +264,7 @@ impl DragIconBuilder {
             .expect("Failed to create an instance of DragIcon")
     }
 
-    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
+    pub fn child(mut self, child: &impl IsA<Widget>) -> Self {
         self.child = Some(child.clone().upcast());
         self
     }
@@ -329,7 +329,7 @@ impl DragIconBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

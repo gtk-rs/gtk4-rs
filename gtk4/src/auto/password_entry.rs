@@ -69,7 +69,7 @@ impl PasswordEntry {
     }
 
     #[doc(alias = "gtk_password_entry_set_extra_menu")]
-    pub fn set_extra_menu<P: IsA<gio::MenuModel>>(&self, model: Option<&P>) {
+    pub fn set_extra_menu(&self, model: Option<&impl IsA<gio::MenuModel>>) {
         unsafe {
             ffi::gtk_password_entry_set_extra_menu(
                 self.to_glib_none().0,
@@ -462,7 +462,7 @@ impl PasswordEntryBuilder {
         self
     }
 
-    pub fn extra_menu<P: IsA<gio::MenuModel>>(mut self, extra_menu: &P) -> Self {
+    pub fn extra_menu(mut self, extra_menu: &impl IsA<gio::MenuModel>) -> Self {
         self.extra_menu = Some(extra_menu.clone().upcast());
         self
     }
@@ -537,7 +537,7 @@ impl PasswordEntryBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

@@ -36,7 +36,7 @@ glib::wrapper! {
 
 impl Scrollbar {
     #[doc(alias = "gtk_scrollbar_new")]
-    pub fn new<P: IsA<Adjustment>>(orientation: Orientation, adjustment: Option<&P>) -> Scrollbar {
+    pub fn new(orientation: Orientation, adjustment: Option<&impl IsA<Adjustment>>) -> Scrollbar {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_scrollbar_new(
@@ -62,7 +62,7 @@ impl Scrollbar {
     }
 
     #[doc(alias = "gtk_scrollbar_set_adjustment")]
-    pub fn set_adjustment<P: IsA<Adjustment>>(&self, adjustment: Option<&P>) {
+    pub fn set_adjustment(&self, adjustment: Option<&impl IsA<Adjustment>>) {
         unsafe {
             ffi::gtk_scrollbar_set_adjustment(
                 self.to_glib_none().0,
@@ -253,7 +253,7 @@ impl ScrollbarBuilder {
             .expect("Failed to create an instance of Scrollbar")
     }
 
-    pub fn adjustment<P: IsA<Adjustment>>(mut self, adjustment: &P) -> Self {
+    pub fn adjustment(mut self, adjustment: &impl IsA<Adjustment>) -> Self {
         self.adjustment = Some(adjustment.clone().upcast());
         self
     }
@@ -318,7 +318,7 @@ impl ScrollbarBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

@@ -55,7 +55,7 @@ pub trait NativeDialogExt: 'static {
     fn set_title(&self, title: &str);
 
     #[doc(alias = "gtk_native_dialog_set_transient_for")]
-    fn set_transient_for<P: IsA<Window>>(&self, parent: Option<&P>);
+    fn set_transient_for(&self, parent: Option<&impl IsA<Window>>);
 
     #[doc(alias = "gtk_native_dialog_show")]
     fn show(&self);
@@ -138,7 +138,7 @@ impl<O: IsA<NativeDialog>> NativeDialogExt for O {
         }
     }
 
-    fn set_transient_for<P: IsA<Window>>(&self, parent: Option<&P>) {
+    fn set_transient_for(&self, parent: Option<&impl IsA<Window>>) {
         unsafe {
             ffi::gtk_native_dialog_set_transient_for(
                 self.as_ref().to_glib_none().0,

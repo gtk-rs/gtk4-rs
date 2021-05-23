@@ -86,13 +86,13 @@ pub trait WidgetExt: 'static {
     fn activate_default(&self);
 
     #[doc(alias = "gtk_widget_add_controller")]
-    fn add_controller<P: IsA<EventController>>(&self, controller: &P);
+    fn add_controller(&self, controller: &impl IsA<EventController>);
 
     #[doc(alias = "gtk_widget_add_css_class")]
     fn add_css_class(&self, css_class: &str);
 
     #[doc(alias = "gtk_widget_add_mnemonic_label")]
-    fn add_mnemonic_label<P: IsA<Widget>>(&self, label: &P);
+    fn add_mnemonic_label(&self, label: &impl IsA<Widget>);
 
     #[doc(alias = "gtk_widget_allocate")]
     fn allocate(&self, width: i32, height: i32, baseline: i32, transform: Option<&gsk::Transform>);
@@ -101,20 +101,20 @@ pub trait WidgetExt: 'static {
     fn child_focus(&self, direction: DirectionType) -> bool;
 
     #[doc(alias = "gtk_widget_compute_bounds")]
-    fn compute_bounds<P: IsA<Widget>>(&self, target: &P) -> Option<graphene::Rect>;
+    fn compute_bounds(&self, target: &impl IsA<Widget>) -> Option<graphene::Rect>;
 
     #[doc(alias = "gtk_widget_compute_expand")]
     fn compute_expand(&self, orientation: Orientation) -> bool;
 
     #[doc(alias = "gtk_widget_compute_point")]
-    fn compute_point<P: IsA<Widget>>(
+    fn compute_point(
         &self,
-        target: &P,
+        target: &impl IsA<Widget>,
         point: &graphene::Point,
     ) -> Option<graphene::Point>;
 
     #[doc(alias = "gtk_widget_compute_transform")]
-    fn compute_transform<P: IsA<Widget>>(&self, target: &P) -> Option<graphene::Matrix>;
+    fn compute_transform(&self, target: &impl IsA<Widget>) -> Option<graphene::Matrix>;
 
     #[doc(alias = "gtk_widget_contains")]
     fn contains(&self, x: f64, y: f64) -> bool;
@@ -408,20 +408,16 @@ pub trait WidgetExt: 'static {
     fn init_template(&self);
 
     #[doc(alias = "gtk_widget_insert_action_group")]
-    fn insert_action_group<P: IsA<gio::ActionGroup>>(&self, name: &str, group: Option<&P>);
+    fn insert_action_group(&self, name: &str, group: Option<&impl IsA<gio::ActionGroup>>);
 
     #[doc(alias = "gtk_widget_insert_after")]
-    fn insert_after<P: IsA<Widget>, Q: IsA<Widget>>(
-        &self,
-        parent: &P,
-        previous_sibling: Option<&Q>,
-    );
+    fn insert_after(&self, parent: &impl IsA<Widget>, previous_sibling: Option<&impl IsA<Widget>>);
 
     #[doc(alias = "gtk_widget_insert_before")]
-    fn insert_before<P: IsA<Widget>, Q: IsA<Widget>>(&self, parent: &P, next_sibling: Option<&Q>);
+    fn insert_before(&self, parent: &impl IsA<Widget>, next_sibling: Option<&impl IsA<Widget>>);
 
     #[doc(alias = "gtk_widget_is_ancestor")]
-    fn is_ancestor<P: IsA<Widget>>(&self, ancestor: &P) -> bool;
+    fn is_ancestor(&self, ancestor: &impl IsA<Widget>) -> bool;
 
     #[doc(alias = "gtk_widget_is_drawable")]
     fn is_drawable(&self) -> bool;
@@ -472,13 +468,13 @@ pub trait WidgetExt: 'static {
     fn realize(&self);
 
     #[doc(alias = "gtk_widget_remove_controller")]
-    fn remove_controller<P: IsA<EventController>>(&self, controller: &P);
+    fn remove_controller(&self, controller: &impl IsA<EventController>);
 
     #[doc(alias = "gtk_widget_remove_css_class")]
     fn remove_css_class(&self, css_class: &str);
 
     #[doc(alias = "gtk_widget_remove_mnemonic_label")]
-    fn remove_mnemonic_label<P: IsA<Widget>>(&self, label: &P);
+    fn remove_mnemonic_label(&self, label: &impl IsA<Widget>);
 
     #[doc(alias = "gtk_widget_set_can_focus")]
     fn set_can_focus(&self, can_focus: bool);
@@ -502,7 +498,7 @@ pub trait WidgetExt: 'static {
     fn set_direction(&self, dir: TextDirection);
 
     #[doc(alias = "gtk_widget_set_focus_child")]
-    fn set_focus_child<P: IsA<Widget>>(&self, child: Option<&P>);
+    fn set_focus_child(&self, child: Option<&impl IsA<Widget>>);
 
     #[doc(alias = "gtk_widget_set_focus_on_click")]
     fn set_focus_on_click(&self, focus_on_click: bool);
@@ -511,7 +507,7 @@ pub trait WidgetExt: 'static {
     fn set_focusable(&self, focusable: bool);
 
     #[doc(alias = "gtk_widget_set_font_map")]
-    fn set_font_map<P: IsA<pango::FontMap>>(&self, font_map: Option<&P>);
+    fn set_font_map(&self, font_map: Option<&impl IsA<pango::FontMap>>);
 
     #[doc(alias = "gtk_widget_set_font_options")]
     fn set_font_options(&self, options: Option<&cairo::FontOptions>);
@@ -529,7 +525,7 @@ pub trait WidgetExt: 'static {
     fn set_hexpand_set(&self, set: bool);
 
     #[doc(alias = "gtk_widget_set_layout_manager")]
-    fn set_layout_manager<P: IsA<LayoutManager>>(&self, layout_manager: Option<&P>);
+    fn set_layout_manager(&self, layout_manager: Option<&impl IsA<LayoutManager>>);
 
     #[doc(alias = "gtk_widget_set_margin_bottom")]
     fn set_margin_bottom(&self, margin: i32);
@@ -554,7 +550,7 @@ pub trait WidgetExt: 'static {
     fn set_overflow(&self, overflow: Overflow);
 
     #[doc(alias = "gtk_widget_set_parent")]
-    fn set_parent<P: IsA<Widget>>(&self, parent: &P);
+    fn set_parent(&self, parent: &impl IsA<Widget>);
 
     #[doc(alias = "gtk_widget_set_receives_default")]
     fn set_receives_default(&self, receives_default: bool);
@@ -596,12 +592,12 @@ pub trait WidgetExt: 'static {
     fn size_allocate(&self, allocation: &Allocation, baseline: i32);
 
     #[doc(alias = "gtk_widget_snapshot_child")]
-    fn snapshot_child<P: IsA<Widget>>(&self, child: &P, snapshot: &Snapshot);
+    fn snapshot_child(&self, child: &impl IsA<Widget>, snapshot: &Snapshot);
 
     #[doc(alias = "gtk_widget_translate_coordinates")]
-    fn translate_coordinates<P: IsA<Widget>>(
+    fn translate_coordinates(
         &self,
-        dest_widget: &P,
+        dest_widget: &impl IsA<Widget>,
         src_x: f64,
         src_y: f64,
     ) -> Option<(f64, f64)>;
@@ -820,7 +816,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn add_controller<P: IsA<EventController>>(&self, controller: &P) {
+    fn add_controller(&self, controller: &impl IsA<EventController>) {
         unsafe {
             ffi::gtk_widget_add_controller(
                 self.as_ref().to_glib_none().0,
@@ -838,7 +834,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn add_mnemonic_label<P: IsA<Widget>>(&self, label: &P) {
+    fn add_mnemonic_label(&self, label: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_widget_add_mnemonic_label(
                 self.as_ref().to_glib_none().0,
@@ -868,7 +864,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn compute_bounds<P: IsA<Widget>>(&self, target: &P) -> Option<graphene::Rect> {
+    fn compute_bounds(&self, target: &impl IsA<Widget>) -> Option<graphene::Rect> {
         unsafe {
             let mut out_bounds = graphene::Rect::uninitialized();
             let ret = from_glib(ffi::gtk_widget_compute_bounds(
@@ -893,9 +889,9 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn compute_point<P: IsA<Widget>>(
+    fn compute_point(
         &self,
-        target: &P,
+        target: &impl IsA<Widget>,
         point: &graphene::Point,
     ) -> Option<graphene::Point> {
         unsafe {
@@ -914,7 +910,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn compute_transform<P: IsA<Widget>>(&self, target: &P) -> Option<graphene::Matrix> {
+    fn compute_transform(&self, target: &impl IsA<Widget>) -> Option<graphene::Matrix> {
         unsafe {
             let mut out_transform = graphene::Matrix::uninitialized();
             let ret = from_glib(ffi::gtk_widget_compute_transform(
@@ -1428,7 +1424,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn insert_action_group<P: IsA<gio::ActionGroup>>(&self, name: &str, group: Option<&P>) {
+    fn insert_action_group(&self, name: &str, group: Option<&impl IsA<gio::ActionGroup>>) {
         unsafe {
             ffi::gtk_widget_insert_action_group(
                 self.as_ref().to_glib_none().0,
@@ -1438,11 +1434,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn insert_after<P: IsA<Widget>, Q: IsA<Widget>>(
-        &self,
-        parent: &P,
-        previous_sibling: Option<&Q>,
-    ) {
+    fn insert_after(&self, parent: &impl IsA<Widget>, previous_sibling: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_widget_insert_after(
                 self.as_ref().to_glib_none().0,
@@ -1452,7 +1444,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn insert_before<P: IsA<Widget>, Q: IsA<Widget>>(&self, parent: &P, next_sibling: Option<&Q>) {
+    fn insert_before(&self, parent: &impl IsA<Widget>, next_sibling: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_widget_insert_before(
                 self.as_ref().to_glib_none().0,
@@ -1462,7 +1454,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn is_ancestor<P: IsA<Widget>>(&self, ancestor: &P) -> bool {
+    fn is_ancestor(&self, ancestor: &impl IsA<Widget>) -> bool {
         unsafe {
             from_glib(ffi::gtk_widget_is_ancestor(
                 self.as_ref().to_glib_none().0,
@@ -1593,7 +1585,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn remove_controller<P: IsA<EventController>>(&self, controller: &P) {
+    fn remove_controller(&self, controller: &impl IsA<EventController>) {
         unsafe {
             ffi::gtk_widget_remove_controller(
                 self.as_ref().to_glib_none().0,
@@ -1611,7 +1603,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn remove_mnemonic_label<P: IsA<Widget>>(&self, label: &P) {
+    fn remove_mnemonic_label(&self, label: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_widget_remove_mnemonic_label(
                 self.as_ref().to_glib_none().0,
@@ -1671,7 +1663,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn set_focus_child<P: IsA<Widget>>(&self, child: Option<&P>) {
+    fn set_focus_child(&self, child: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_widget_set_focus_child(
                 self.as_ref().to_glib_none().0,
@@ -1695,7 +1687,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn set_font_map<P: IsA<pango::FontMap>>(&self, font_map: Option<&P>) {
+    fn set_font_map(&self, font_map: Option<&impl IsA<pango::FontMap>>) {
         unsafe {
             ffi::gtk_widget_set_font_map(
                 self.as_ref().to_glib_none().0,
@@ -1740,7 +1732,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn set_layout_manager<P: IsA<LayoutManager>>(&self, layout_manager: Option<&P>) {
+    fn set_layout_manager(&self, layout_manager: Option<&impl IsA<LayoutManager>>) {
         unsafe {
             ffi::gtk_widget_set_layout_manager(
                 self.as_ref().to_glib_none().0,
@@ -1791,7 +1783,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn set_parent<P: IsA<Widget>>(&self, parent: &P) {
+    fn set_parent(&self, parent: &impl IsA<Widget>) {
         unsafe {
             ffi::gtk_widget_set_parent(
                 self.as_ref().to_glib_none().0,
@@ -1894,7 +1886,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn snapshot_child<P: IsA<Widget>>(&self, child: &P, snapshot: &Snapshot) {
+    fn snapshot_child(&self, child: &impl IsA<Widget>, snapshot: &Snapshot) {
         unsafe {
             ffi::gtk_widget_snapshot_child(
                 self.as_ref().to_glib_none().0,
@@ -1904,9 +1896,9 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    fn translate_coordinates<P: IsA<Widget>>(
+    fn translate_coordinates(
         &self,
-        dest_widget: &P,
+        dest_widget: &impl IsA<Widget>,
         src_x: f64,
         src_y: f64,
     ) -> Option<(f64, f64)> {

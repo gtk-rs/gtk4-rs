@@ -21,8 +21,8 @@ glib::wrapper! {
 impl BuilderListItemFactory {
     #[doc(alias = "gtk_builder_list_item_factory_new_from_bytes")]
     #[doc(alias = "new_from_bytes")]
-    pub fn from_bytes<P: IsA<BuilderScope>>(
-        scope: Option<&P>,
+    pub fn from_bytes(
+        scope: Option<&impl IsA<BuilderScope>>,
         bytes: &glib::Bytes,
     ) -> BuilderListItemFactory {
         assert_initialized_main_thread!();
@@ -37,8 +37,8 @@ impl BuilderListItemFactory {
 
     #[doc(alias = "gtk_builder_list_item_factory_new_from_resource")]
     #[doc(alias = "new_from_resource")]
-    pub fn from_resource<P: IsA<BuilderScope>>(
-        scope: Option<&P>,
+    pub fn from_resource(
+        scope: Option<&impl IsA<BuilderScope>>,
         resource_path: &str,
     ) -> BuilderListItemFactory {
         assert_initialized_main_thread!();

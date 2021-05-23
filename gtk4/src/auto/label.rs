@@ -240,7 +240,7 @@ impl Label {
     }
 
     #[doc(alias = "gtk_label_set_extra_menu")]
-    pub fn set_extra_menu<P: IsA<gio::MenuModel>>(&self, model: Option<&P>) {
+    pub fn set_extra_menu(&self, model: Option<&impl IsA<gio::MenuModel>>) {
         unsafe {
             ffi::gtk_label_set_extra_menu(
                 self.to_glib_none().0,
@@ -292,7 +292,7 @@ impl Label {
     }
 
     #[doc(alias = "gtk_label_set_mnemonic_widget")]
-    pub fn set_mnemonic_widget<P: IsA<Widget>>(&self, widget: Option<&P>) {
+    pub fn set_mnemonic_widget(&self, widget: Option<&impl IsA<Widget>>) {
         unsafe {
             ffi::gtk_label_set_mnemonic_widget(
                 self.to_glib_none().0,
@@ -1158,7 +1158,7 @@ impl LabelBuilder {
         self
     }
 
-    pub fn extra_menu<P: IsA<gio::MenuModel>>(mut self, extra_menu: &P) -> Self {
+    pub fn extra_menu(mut self, extra_menu: &impl IsA<gio::MenuModel>) -> Self {
         self.extra_menu = Some(extra_menu.clone().upcast());
         self
     }
@@ -1183,7 +1183,7 @@ impl LabelBuilder {
         self
     }
 
-    pub fn mnemonic_widget<P: IsA<Widget>>(mut self, mnemonic_widget: &P) -> Self {
+    pub fn mnemonic_widget(mut self, mnemonic_widget: &impl IsA<Widget>) -> Self {
         self.mnemonic_widget = Some(mnemonic_widget.clone().upcast());
         self
     }
@@ -1293,7 +1293,7 @@ impl LabelBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

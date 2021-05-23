@@ -49,7 +49,7 @@ impl IconTheme {
     }
 
     #[doc(alias = "gtk_icon_theme_add_search_path")]
-    pub fn add_search_path<P: AsRef<std::path::Path>>(&self, path: P) {
+    pub fn add_search_path(&self, path: impl AsRef<std::path::Path>) {
         unsafe {
             ffi::gtk_icon_theme_add_search_path(
                 self.to_glib_none().0,
@@ -103,7 +103,7 @@ impl IconTheme {
     #[cfg(any(feature = "v4_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
     #[doc(alias = "gtk_icon_theme_has_gicon")]
-    pub fn has_gicon<P: IsA<gio::Icon>>(&self, gicon: &P) -> bool {
+    pub fn has_gicon(&self, gicon: &impl IsA<gio::Icon>) -> bool {
         unsafe {
             from_glib(ffi::gtk_icon_theme_has_gicon(
                 self.to_glib_none().0,
@@ -123,9 +123,9 @@ impl IconTheme {
     }
 
     #[doc(alias = "gtk_icon_theme_lookup_by_gicon")]
-    pub fn lookup_by_gicon<P: IsA<gio::Icon>>(
+    pub fn lookup_by_gicon(
         &self,
-        icon: &P,
+        icon: &impl IsA<gio::Icon>,
         size: i32,
         scale: i32,
         direction: TextDirection,
@@ -199,7 +199,7 @@ impl IconTheme {
 
     #[doc(alias = "gtk_icon_theme_get_for_display")]
     #[doc(alias = "get_for_display")]
-    pub fn for_display<P: IsA<gdk::Display>>(display: &P) -> Option<IconTheme> {
+    pub fn for_display(display: &impl IsA<gdk::Display>) -> Option<IconTheme> {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(ffi::gtk_icon_theme_get_for_display(
@@ -391,7 +391,7 @@ impl IconThemeBuilder {
             .expect("Failed to create an instance of IconTheme")
     }
 
-    pub fn display<P: IsA<gdk::Display>>(mut self, display: &P) -> Self {
+    pub fn display(mut self, display: &impl IsA<gdk::Display>) -> Self {
         self.display = Some(display.clone().upcast());
         self
     }

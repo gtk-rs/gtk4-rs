@@ -34,7 +34,7 @@ glib::wrapper! {
 
 impl Surface {
     #[doc(alias = "gdk_surface_new_popup")]
-    pub fn new_popup<P: IsA<Surface>>(parent: &P, autohide: bool) -> Surface {
+    pub fn new_popup(parent: &impl IsA<Surface>, autohide: bool) -> Surface {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(ffi::gdk_surface_new_popup(
@@ -45,7 +45,7 @@ impl Surface {
     }
 
     #[doc(alias = "gdk_surface_new_toplevel")]
-    pub fn new_toplevel<P: IsA<Display>>(display: &P) -> Surface {
+    pub fn new_toplevel(display: &impl IsA<Display>) -> Surface {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(ffi::gdk_surface_new_toplevel(
@@ -79,11 +79,11 @@ pub trait SurfaceExt: 'static {
 
     #[doc(alias = "gdk_surface_get_device_cursor")]
     #[doc(alias = "get_device_cursor")]
-    fn device_cursor<P: IsA<Device>>(&self, device: &P) -> Option<Cursor>;
+    fn device_cursor(&self, device: &impl IsA<Device>) -> Option<Cursor>;
 
     #[doc(alias = "gdk_surface_get_device_position")]
     #[doc(alias = "get_device_position")]
-    fn device_position<P: IsA<Device>>(&self, device: &P) -> Option<(f64, f64, ModifierType)>;
+    fn device_position(&self, device: &impl IsA<Device>) -> Option<(f64, f64, ModifierType)>;
 
     #[doc(alias = "gdk_surface_get_display")]
     #[doc(alias = "get_display")]
@@ -125,7 +125,7 @@ pub trait SurfaceExt: 'static {
     fn set_cursor(&self, cursor: Option<&Cursor>);
 
     #[doc(alias = "gdk_surface_set_device_cursor")]
-    fn set_device_cursor<P: IsA<Device>>(&self, device: &P, cursor: &Cursor);
+    fn set_device_cursor(&self, device: &impl IsA<Device>, cursor: &Cursor);
 
     #[doc(alias = "gdk_surface_set_input_region")]
     fn set_input_region(&self, region: &cairo::Region);
@@ -218,7 +218,7 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         unsafe { from_glib_none(ffi::gdk_surface_get_cursor(self.as_ref().to_glib_none().0)) }
     }
 
-    fn device_cursor<P: IsA<Device>>(&self, device: &P) -> Option<Cursor> {
+    fn device_cursor(&self, device: &impl IsA<Device>) -> Option<Cursor> {
         unsafe {
             from_glib_none(ffi::gdk_surface_get_device_cursor(
                 self.as_ref().to_glib_none().0,
@@ -227,7 +227,7 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    fn device_position<P: IsA<Device>>(&self, device: &P) -> Option<(f64, f64, ModifierType)> {
+    fn device_position(&self, device: &impl IsA<Device>) -> Option<(f64, f64, ModifierType)> {
         unsafe {
             let mut x = mem::MaybeUninit::uninit();
             let mut y = mem::MaybeUninit::uninit();
@@ -310,7 +310,7 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    fn set_device_cursor<P: IsA<Device>>(&self, device: &P, cursor: &Cursor) {
+    fn set_device_cursor(&self, device: &impl IsA<Device>, cursor: &Cursor) {
         unsafe {
             ffi::gdk_surface_set_device_cursor(
                 self.as_ref().to_glib_none().0,

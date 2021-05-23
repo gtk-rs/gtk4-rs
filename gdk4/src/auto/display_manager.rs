@@ -52,7 +52,7 @@ impl DisplayManager {
     }
 
     #[doc(alias = "gdk_display_manager_set_default_display")]
-    pub fn set_default_display<P: IsA<Display>>(&self, display: &P) {
+    pub fn set_default_display(&self, display: &impl IsA<Display>) {
         unsafe {
             ffi::gdk_display_manager_set_default_display(
                 self.to_glib_none().0,

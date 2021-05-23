@@ -34,8 +34,8 @@ impl Cursor {
 
     #[doc(alias = "gdk_cursor_new_from_texture")]
     #[doc(alias = "new_from_texture")]
-    pub fn from_texture<P: IsA<Texture>>(
-        texture: &P,
+    pub fn from_texture(
+        texture: &impl IsA<Texture>,
         hotspot_x: i32,
         hotspot_y: i32,
         fallback: Option<&Cursor>,
@@ -152,7 +152,7 @@ impl CursorBuilder {
         self
     }
 
-    pub fn texture<P: IsA<Texture>>(mut self, texture: &P) -> Self {
+    pub fn texture(mut self, texture: &impl IsA<Texture>) -> Self {
         self.texture = Some(texture.clone().upcast());
         self
     }

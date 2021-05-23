@@ -30,7 +30,7 @@ pub trait FileChooserExt: 'static {
     fn add_filter(&self, filter: &FileFilter);
 
     #[doc(alias = "gtk_file_chooser_add_shortcut_folder")]
-    fn add_shortcut_folder<P: IsA<gio::File>>(&self, folder: &P) -> Result<(), glib::Error>;
+    fn add_shortcut_folder(&self, folder: &impl IsA<gio::File>) -> Result<(), glib::Error>;
 
     #[doc(alias = "gtk_file_chooser_get_action")]
     #[doc(alias = "get_action")]
@@ -83,7 +83,7 @@ pub trait FileChooserExt: 'static {
     fn remove_filter(&self, filter: &FileFilter);
 
     #[doc(alias = "gtk_file_chooser_remove_shortcut_folder")]
-    fn remove_shortcut_folder<P: IsA<gio::File>>(&self, folder: &P) -> Result<(), glib::Error>;
+    fn remove_shortcut_folder(&self, folder: &impl IsA<gio::File>) -> Result<(), glib::Error>;
 
     #[doc(alias = "gtk_file_chooser_set_action")]
     fn set_action(&self, action: FileChooserAction);
@@ -95,13 +95,13 @@ pub trait FileChooserExt: 'static {
     fn set_create_folders(&self, create_folders: bool);
 
     #[doc(alias = "gtk_file_chooser_set_current_folder")]
-    fn set_current_folder<P: IsA<gio::File>>(&self, file: &P) -> Result<(), glib::Error>;
+    fn set_current_folder(&self, file: &impl IsA<gio::File>) -> Result<(), glib::Error>;
 
     #[doc(alias = "gtk_file_chooser_set_current_name")]
     fn set_current_name(&self, name: &str);
 
     #[doc(alias = "gtk_file_chooser_set_file")]
-    fn set_file<P: IsA<gio::File>>(&self, file: &P) -> Result<(), glib::Error>;
+    fn set_file(&self, file: &impl IsA<gio::File>) -> Result<(), glib::Error>;
 
     #[doc(alias = "gtk_file_chooser_set_filter")]
     fn set_filter(&self, filter: &FileFilter);
@@ -138,7 +138,7 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    fn add_shortcut_folder<P: IsA<gio::File>>(&self, folder: &P) -> Result<(), glib::Error> {
+    fn add_shortcut_folder(&self, folder: &impl IsA<gio::File>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let _ = ffi::gtk_file_chooser_add_shortcut_folder(
@@ -261,7 +261,7 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    fn remove_shortcut_folder<P: IsA<gio::File>>(&self, folder: &P) -> Result<(), glib::Error> {
+    fn remove_shortcut_folder(&self, folder: &impl IsA<gio::File>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let _ = ffi::gtk_file_chooser_remove_shortcut_folder(
@@ -302,7 +302,7 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    fn set_current_folder<P: IsA<gio::File>>(&self, file: &P) -> Result<(), glib::Error> {
+    fn set_current_folder(&self, file: &impl IsA<gio::File>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let _ = ffi::gtk_file_chooser_set_current_folder(
@@ -327,7 +327,7 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    fn set_file<P: IsA<gio::File>>(&self, file: &P) -> Result<(), glib::Error> {
+    fn set_file(&self, file: &impl IsA<gio::File>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
             let _ = ffi::gtk_file_chooser_set_file(

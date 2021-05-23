@@ -38,7 +38,7 @@ glib::wrapper! {
 
 impl Scale {
     #[doc(alias = "gtk_scale_new")]
-    pub fn new<P: IsA<Adjustment>>(orientation: Orientation, adjustment: Option<&P>) -> Scale {
+    pub fn new(orientation: Orientation, adjustment: Option<&impl IsA<Adjustment>>) -> Scale {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_scale_new(
@@ -286,7 +286,7 @@ impl ScaleBuilder {
         self
     }
 
-    pub fn adjustment<P: IsA<Adjustment>>(mut self, adjustment: &P) -> Self {
+    pub fn adjustment(mut self, adjustment: &impl IsA<Adjustment>) -> Self {
         self.adjustment = Some(adjustment.clone().upcast());
         self
     }
@@ -376,7 +376,7 @@ impl ScaleBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

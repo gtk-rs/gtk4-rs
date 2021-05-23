@@ -42,7 +42,7 @@ impl Image {
 
     #[doc(alias = "gtk_image_new_from_file")]
     #[doc(alias = "new_from_file")]
-    pub fn from_file<P: AsRef<std::path::Path>>(filename: P) -> Image {
+    pub fn from_file(filename: impl AsRef<std::path::Path>) -> Image {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_image_new_from_file(
@@ -54,7 +54,7 @@ impl Image {
 
     #[doc(alias = "gtk_image_new_from_gicon")]
     #[doc(alias = "new_from_gicon")]
-    pub fn from_gicon<P: IsA<gio::Icon>>(icon: &P) -> Image {
+    pub fn from_gicon(icon: &impl IsA<gio::Icon>) -> Image {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_image_new_from_gicon(
@@ -78,7 +78,7 @@ impl Image {
 
     #[doc(alias = "gtk_image_new_from_paintable")]
     #[doc(alias = "new_from_paintable")]
-    pub fn from_paintable<P: IsA<gdk::Paintable>>(paintable: Option<&P>) -> Image {
+    pub fn from_paintable(paintable: Option<&impl IsA<gdk::Paintable>>) -> Image {
         assert_initialized_main_thread!();
         unsafe {
             Widget::from_glib_none(ffi::gtk_image_new_from_paintable(
@@ -162,14 +162,14 @@ impl Image {
     }
 
     #[doc(alias = "gtk_image_set_from_file")]
-    pub fn set_from_file<P: AsRef<std::path::Path>>(&self, filename: P) {
+    pub fn set_from_file(&self, filename: impl AsRef<std::path::Path>) {
         unsafe {
             ffi::gtk_image_set_from_file(self.to_glib_none().0, filename.as_ref().to_glib_none().0);
         }
     }
 
     #[doc(alias = "gtk_image_set_from_gicon")]
-    pub fn set_from_gicon<P: IsA<gio::Icon>>(&self, icon: &P) {
+    pub fn set_from_gicon(&self, icon: &impl IsA<gio::Icon>) {
         unsafe {
             ffi::gtk_image_set_from_gicon(self.to_glib_none().0, icon.as_ref().to_glib_none().0);
         }
@@ -183,7 +183,7 @@ impl Image {
     }
 
     #[doc(alias = "gtk_image_set_from_paintable")]
-    pub fn set_from_paintable<P: IsA<gdk::Paintable>>(&self, paintable: Option<&P>) {
+    pub fn set_from_paintable(&self, paintable: Option<&impl IsA<gdk::Paintable>>) {
         unsafe {
             ffi::gtk_image_set_from_paintable(
                 self.to_glib_none().0,
@@ -718,7 +718,7 @@ impl ImageBuilder {
         self
     }
 
-    pub fn gicon<P: IsA<gio::Icon>>(mut self, gicon: &P) -> Self {
+    pub fn gicon(mut self, gicon: &impl IsA<gio::Icon>) -> Self {
         self.gicon = Some(gicon.clone().upcast());
         self
     }
@@ -733,7 +733,7 @@ impl ImageBuilder {
         self
     }
 
-    pub fn paintable<P: IsA<gdk::Paintable>>(mut self, paintable: &P) -> Self {
+    pub fn paintable(mut self, paintable: &impl IsA<gdk::Paintable>) -> Self {
         self.paintable = Some(paintable.clone().upcast());
         self
     }
@@ -813,7 +813,7 @@ impl ImageBuilder {
         self
     }
 
-    pub fn layout_manager<P: IsA<LayoutManager>>(mut self, layout_manager: &P) -> Self {
+    pub fn layout_manager(mut self, layout_manager: &impl IsA<LayoutManager>) -> Self {
         self.layout_manager = Some(layout_manager.clone().upcast());
         self
     }

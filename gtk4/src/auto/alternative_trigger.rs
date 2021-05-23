@@ -21,9 +21,9 @@ glib::wrapper! {
 
 impl AlternativeTrigger {
     #[doc(alias = "gtk_alternative_trigger_new")]
-    pub fn new<P: IsA<ShortcutTrigger>, Q: IsA<ShortcutTrigger>>(
-        first: &P,
-        second: &Q,
+    pub fn new(
+        first: &impl IsA<ShortcutTrigger>,
+        second: &impl IsA<ShortcutTrigger>,
     ) -> AlternativeTrigger {
         skip_assert_initialized!();
         unsafe {
@@ -102,12 +102,12 @@ impl AlternativeTriggerBuilder {
             .expect("Failed to create an instance of AlternativeTrigger")
     }
 
-    pub fn first<P: IsA<ShortcutTrigger>>(mut self, first: &P) -> Self {
+    pub fn first(mut self, first: &impl IsA<ShortcutTrigger>) -> Self {
         self.first = Some(first.clone().upcast());
         self
     }
 
-    pub fn second<P: IsA<ShortcutTrigger>>(mut self, second: &P) -> Self {
+    pub fn second(mut self, second: &impl IsA<ShortcutTrigger>) -> Self {
         self.second = Some(second.clone().upcast());
         self
     }
