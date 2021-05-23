@@ -43,5 +43,5 @@ If you are interested in contained and useful examples, we refer you to the corr
 
 ## License
 
-The book itself is licensed under the [Creative Commons Attribution 3.0 Unported license](https://creativecommons.org/licenses/by/3.0/).
+The book itself is licensed under the [Creative Commons Attribution 4.0 International license](https://creativecommons.org/licenses/by/4.0/).
 The only exception are the code snippets which are licensed under the [MIT license](https://gitlab.gnome.org/Hofer-Julian/gtk-rs-book/-/blob/main/LICENSE).
