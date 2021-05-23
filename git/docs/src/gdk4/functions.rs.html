@@ -428,10 +428,6 @@
 <span id="425">425</span>
 <span id="426">426</span>
 <span id="427">427</span>
-<span id="428">428</span>
-<span id="429">429</span>
-<span id="430">430</span>
-<span id="431">431</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -470,8 +466,6 @@
 <span class="doccomment">/// array of byte indexes into the layout,</span>
 <span class="doccomment">///  where even members of array are start indexes and odd elements</span>
 <span class="doccomment">///  are end indexes</span>
-<span class="doccomment">/// ## `n_ranges`</span>
-<span class="doccomment">/// number of ranges in `index_ranges`, i.e. half the size of `index_ranges`</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Returns</span>
 <span class="doccomment">///</span>
@@ -492,7 +486,7 @@
             <span class="ident">x_origin</span>,
             <span class="ident">y_origin</span>,
             <span class="ident">mut_override</span>(<span class="ident">ptr</span>),
-            <span class="ident">index_ranges</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">i32</span>,
+            (<span class="ident">index_ranges</span>.<span class="ident">len</span>() <span class="op">/</span> <span class="number">2</span>) <span class="kw">as</span> <span class="ident">i32</span>,
         ))
     }
 }
@@ -515,8 +509,6 @@
 <span class="doccomment">/// Y pixel where you intend to draw the layout with this clip</span>
 <span class="doccomment">/// ## `index_ranges`</span>
 <span class="doccomment">/// array of byte indexes into the layout, where even members of array are start indexes and odd elements are end indexes</span>
-<span class="doccomment">/// ## `n_ranges`</span>
-<span class="doccomment">/// number of ranges in `index_ranges`, i.e. half the size of `index_ranges`</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Returns</span>
 <span class="doccomment">///</span>
@@ -537,7 +529,7 @@
             <span class="ident">x_origin</span>,
             <span class="ident">y_origin</span>,
             <span class="ident">ptr</span>,
-            <span class="ident">index_ranges</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">i32</span>,
+            (<span class="ident">index_ranges</span>.<span class="ident">len</span>() <span class="op">/</span> <span class="number">2</span>) <span class="kw">as</span> <span class="ident">i32</span>,
         ))
     }
 }
