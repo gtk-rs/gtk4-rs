@@ -1,7 +1,7 @@
 use glib::BindingFlags;
 use gtk::{glib, Align, Orientation, Switch};
-use gtk::{prelude::*, BoxBuilder};
-use gtk::{Application, ApplicationWindowBuilder};
+use gtk::{prelude::*, Box};
+use gtk::{Application, ApplicationWindow};
 
 fn main() {
     // Create a new application
@@ -15,7 +15,7 @@ fn main() {
 // ANCHOR: activate
 fn build_ui(application: &Application) {
     // Create a window
-    let window = ApplicationWindowBuilder::new()
+    let window = ApplicationWindow::builder()
         .application(application)
         .title("My GTK App")
         .build();
@@ -34,7 +34,7 @@ fn build_ui(application: &Application) {
     // ANCHOR_END: bind_state
 
     // Set up box
-    let gtk_box = BoxBuilder::new()
+    let gtk_box = Box::builder()
         .margin_top(12)
         .margin_bottom(12)
         .margin_start(12)

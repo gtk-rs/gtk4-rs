@@ -2,7 +2,7 @@ mod custom_button;
 
 use custom_button::CustomButton;
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindowBuilder};
+use gtk::{Application, ApplicationWindow};
 
 fn main() {
     // Create a new application
@@ -15,7 +15,7 @@ fn main() {
 // ANCHOR: activate
 fn build_ui(application: &Application) {
     // Create a window
-    let window = ApplicationWindowBuilder::new()
+    let window = ApplicationWindow::builder()
         .application(application)
         .title("My GTK App")
         .build();

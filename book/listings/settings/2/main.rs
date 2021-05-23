@@ -1,7 +1,7 @@
 use gio::{Settings, SettingsBindFlags};
 use gtk::gio;
 use gtk::prelude::*;
-use gtk::{Align, Application, ApplicationWindowBuilder, SwitchBuilder};
+use gtk::{Align, Application, ApplicationWindow, Switch};
 
 fn main() {
     // ANCHOR: application
@@ -16,7 +16,7 @@ fn main() {
 
 fn build_ui(application: &Application) {
     // Create a window
-    let window = ApplicationWindowBuilder::new()
+    let window = ApplicationWindow::builder()
         .application(application)
         .title("My GTK App")
         .build();
@@ -25,7 +25,7 @@ fn build_ui(application: &Application) {
     let settings = Settings::new("org.gtk.example");
 
     // Create a switch
-    let switch = SwitchBuilder::new()
+    let switch = Switch::builder()
         .margin_top(48)
         .margin_bottom(48)
         .margin_start(48)

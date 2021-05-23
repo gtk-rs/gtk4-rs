@@ -2,7 +2,7 @@ use std::{cell::RefCell, rc::Rc};
 
 use glib::clone;
 use gtk::prelude::*;
-use gtk::{self, ApplicationWindowBuilder, ButtonBuilder, Orientation};
+use gtk::{self, ApplicationWindow, Button, Orientation};
 use gtk::{glib, Application};
 
 fn main() {
@@ -17,21 +17,21 @@ fn main() {
 fn build_ui(application: &Application) {
     // Create a window
     // ANCHOR: window
-    let window = ApplicationWindowBuilder::new()
+    let window = ApplicationWindow::builder()
         .application(application)
         .title("My GTK App")
         .build();
     // ANCHOR_END: window
 
     // Create two buttons
-    let button_increase = ButtonBuilder::new()
+    let button_increase = Button::builder()
         .label("Increase")
         .margin_top(12)
         .margin_bottom(12)
         .margin_start(12)
         .margin_end(12)
         .build();
-    let button_decrease = ButtonBuilder::new()
+    let button_decrease = Button::builder()
         .label("Decrease")
         .margin_top(12)
         .margin_bottom(12)

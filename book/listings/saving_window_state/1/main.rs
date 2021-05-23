@@ -2,7 +2,7 @@ mod custom_window;
 
 use custom_window::CustomWindow;
 use gtk::prelude::*;
-use gtk::{Application, ButtonBuilder};
+use gtk::{Application, Button};
 
 // ANCHOR: main
 fn main() {
@@ -24,7 +24,7 @@ fn build_ui(application: &Application) {
 
     // ANCHOR: button
     // Create a button
-    let button = ButtonBuilder::new()
+    let button = Button::builder()
         .label("Press me!")
         .margin_top(12)
         .margin_bottom(12)

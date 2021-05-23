@@ -48,7 +48,7 @@ You probably want to bring the prelude into scope in most of your source files.
 
 This is also a good moment to mention that all `gtk-rs` widgets support [the builder pattern](https://doc.rust-lang.org/1.0.0/style/ownership/builders.html).
 This is especially nice for creating widgets where multiple widget characteristics are already known during its creation.
-We can make our button creation neater, by replacing `gtk::Button` with [`gtk::ButtonBuilder`](../docs/gtk4/struct.ButtonBuilder.html).
+We can then make the construction of our button neater, by creating a [`ButtonBuilder`](../docs/gtk4/struct.ButtonBuilder.html) with the [`Button::builder`](../docs/gtk4/struct.Button.html#method.builder) method.
 
 <span class="filename">Filename: listings/widgets/2/main.rs</span>
 

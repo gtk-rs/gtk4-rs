@@ -1,5 +1,5 @@
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow, ButtonBuilder};
+use gtk::{Application, ApplicationWindow, Button};
 
 fn main() {
     // Create a new application
@@ -18,7 +18,7 @@ fn build_ui(application: &Application) {
     window.set_title(Some("My GTK App"));
 
     // Create a button
-    let button = ButtonBuilder::new()
+    let button = Button::builder()
         .label("Press me!")
         .margin_top(12)
         .margin_bottom(12)
