@@ -28,10 +28,37 @@
 <span id="25">25</span>
 <span id="26">26</span>
 <span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
-<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Ordering</span>;
+<span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">CssParserWarning</span>, <span class="ident">Ordering</span>};
+<span class="kw">use</span> <span class="ident">glib::error::ErrorDomain</span>;
+<span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">glib::Quark</span>;
 <span class="kw">use</span> <span class="ident">std::cmp</span>;
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">cmp::Ordering</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Ordering</span> {
@@ -53,6 +80,27 @@
             <span class="ident">Ordering::Larger</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Greater</span>,
             <span class="ident">Ordering::Smaller</span> <span class="op">=</span><span class="op">&gt;</span> <span class="self">Self</span><span class="ident">::Less</span>,
             <span class="ident">Ordering::__Unknown</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable!</span>(),
+        }
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">ErrorDomain</span> <span class="kw">for</span> <span class="ident">CssParserWarning</span> {
+    <span class="kw">fn</span> <span class="ident">domain</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Quark</span> {
+        <span class="macro">skip_assert_initialized!</span>();
+        <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_css_parser_warning_quark</span>()) }
+    }
+
+    <span class="kw">fn</span> <span class="ident">code</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span> {
+        <span class="self">self</span>.<span class="ident">into_glib</span>()
+    }
+
+    <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">code</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
+        <span class="macro">skip_assert_initialized!</span>();
+        <span class="kw">match</span> <span class="ident">code</span> {
+            <span class="ident">ffi::GTK_CSS_PARSER_WARNING_DEPRECATED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::Deprecated</span>),
+            <span class="ident">ffi::GTK_CSS_PARSER_WARNING_SYNTAX</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::Syntax</span>),
+            <span class="ident">ffi::GTK_CSS_PARSER_WARNING_UNIMPLEMENTED</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::Unimplemented</span>),
+            <span class="ident">value</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="self">Self</span><span class="ident">::__Unknown</span>(<span class="ident">value</span>)),
         }
     }
 }
