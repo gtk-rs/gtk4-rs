@@ -2355,11 +2355,11 @@ manual_traits = ["WidgetExtManual"]
     [[object.function]]
     name = "add_tick_callback"
     manual = true
+    doc_ignore_parameters = ["notify"]
     doc_trait_name = "WidgetExtManual"
     [[object.function]]
     name = "remove_tick_callback"
     manual = true
-    doc_trait_name = "WidgetExtManual"
     [[object.function]]
     name = "activate_action_variant"
     rename = "activate_action"
