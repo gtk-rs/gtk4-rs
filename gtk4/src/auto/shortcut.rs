@@ -45,6 +45,13 @@ impl Shortcut {
     //    unsafe { TODO: call ffi:gtk_shortcut_new_with_arguments() }
     //}
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Shortcut`]
+    /// This method returns an instance of [`ShortcutBuilder`] which can be used to create a [`Shortcut`].
+    pub fn builder() -> ShortcutBuilder {
+        ShortcutBuilder::default()
+    }
+
     #[doc(alias = "gtk_shortcut_get_action")]
     #[doc(alias = "get_action")]
     pub fn action(&self) -> Option<ShortcutAction> {

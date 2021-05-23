@@ -33,6 +33,13 @@ impl CellRendererSpin {
         unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_spin_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`CellRendererSpin`]
+    /// This method returns an instance of [`CellRendererSpinBuilder`] which can be used to create a [`CellRendererSpin`].
+    pub fn builder() -> CellRendererSpinBuilder {
+        CellRendererSpinBuilder::default()
+    }
+
     pub fn adjustment(&self) -> Option<Adjustment> {
         unsafe {
             let mut value = glib::Value::from_type(<Adjustment as StaticType>::static_type());

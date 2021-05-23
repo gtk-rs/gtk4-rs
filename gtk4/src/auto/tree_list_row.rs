@@ -22,6 +22,13 @@ glib::wrapper! {
 }
 
 impl TreeListRow {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`TreeListRow`]
+    /// This method returns an instance of [`TreeListRowBuilder`] which can be used to create a [`TreeListRow`].
+    pub fn builder() -> TreeListRowBuilder {
+        TreeListRowBuilder::default()
+    }
+
     #[doc(alias = "gtk_tree_list_row_get_child_row")]
     #[doc(alias = "get_child_row")]
     pub fn child_row(&self, position: u32) -> Option<TreeListRow> {

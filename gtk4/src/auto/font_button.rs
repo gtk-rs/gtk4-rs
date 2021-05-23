@@ -51,6 +51,13 @@ impl FontButton {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`FontButton`]
+    /// This method returns an instance of [`FontButtonBuilder`] which can be used to create a [`FontButton`].
+    pub fn builder() -> FontButtonBuilder {
+        FontButtonBuilder::default()
+    }
+
     #[doc(alias = "gtk_font_button_get_modal")]
     #[doc(alias = "get_modal")]
     pub fn is_modal(&self) -> bool {

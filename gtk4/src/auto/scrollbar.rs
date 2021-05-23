@@ -46,6 +46,13 @@ impl Scrollbar {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Scrollbar`]
+    /// This method returns an instance of [`ScrollbarBuilder`] which can be used to create a [`Scrollbar`].
+    pub fn builder() -> ScrollbarBuilder {
+        ScrollbarBuilder::default()
+    }
+
     #[doc(alias = "gtk_scrollbar_get_adjustment")]
     #[doc(alias = "get_adjustment")]
     pub fn adjustment(&self) -> Option<Adjustment> {

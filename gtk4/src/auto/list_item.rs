@@ -24,6 +24,13 @@ glib::wrapper! {
 }
 
 impl ListItem {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ListItem`]
+    /// This method returns an instance of [`ListItemBuilder`] which can be used to create a [`ListItem`].
+    pub fn builder() -> ListItemBuilder {
+        ListItemBuilder::default()
+    }
+
     #[doc(alias = "gtk_list_item_get_activatable")]
     #[doc(alias = "get_activatable")]
     pub fn is_activatable(&self) -> bool {

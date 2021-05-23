@@ -19,6 +19,13 @@ glib::wrapper! {
 }
 
 impl AppLaunchContext {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`AppLaunchContext`]
+    /// This method returns an instance of [`AppLaunchContextBuilder`] which can be used to create a [`AppLaunchContext`].
+    pub fn builder() -> AppLaunchContextBuilder {
+        AppLaunchContextBuilder::default()
+    }
+
     #[doc(alias = "gdk_app_launch_context_get_display")]
     #[doc(alias = "get_display")]
     pub fn display(&self) -> Option<Display> {

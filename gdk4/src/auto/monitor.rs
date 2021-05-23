@@ -25,6 +25,13 @@ glib::wrapper! {
 }
 
 impl Monitor {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Monitor`]
+    /// This method returns an instance of [`MonitorBuilder`] which can be used to create a [`Monitor`].
+    pub fn builder() -> MonitorBuilder {
+        MonitorBuilder::default()
+    }
+
     #[doc(alias = "gdk_monitor_get_connector")]
     #[doc(alias = "get_connector")]
     pub fn connector(&self) -> Option<glib::GString> {

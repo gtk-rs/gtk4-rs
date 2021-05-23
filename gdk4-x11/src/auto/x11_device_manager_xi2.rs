@@ -19,6 +19,13 @@ glib::wrapper! {
 }
 
 impl X11DeviceManagerXI2 {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`X11DeviceManagerXI2`]
+    /// This method returns an instance of [`X11DeviceManagerXI2Builder`] which can be used to create a [`X11DeviceManagerXI2`].
+    pub fn builder() -> X11DeviceManagerXI2Builder {
+        X11DeviceManagerXI2Builder::default()
+    }
+
     pub fn display(&self) -> Option<gdk::Display> {
         unsafe {
             let mut value = glib::Value::from_type(<gdk::Display as StaticType>::static_type());

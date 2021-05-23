@@ -38,6 +38,13 @@ impl SearchBar {
         unsafe { Widget::from_glib_none(ffi::gtk_search_bar_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`SearchBar`]
+    /// This method returns an instance of [`SearchBarBuilder`] which can be used to create a [`SearchBar`].
+    pub fn builder() -> SearchBarBuilder {
+        SearchBarBuilder::default()
+    }
+
     #[doc(alias = "gtk_search_bar_connect_entry")]
     pub fn connect_entry<P: IsA<Editable>>(&self, entry: &P) {
         unsafe {

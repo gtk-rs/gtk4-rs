@@ -35,6 +35,13 @@ impl GestureStylus {
         unsafe { Gesture::from_glib_full(ffi::gtk_gesture_stylus_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`GestureStylus`]
+    /// This method returns an instance of [`GestureStylusBuilder`] which can be used to create a [`GestureStylus`].
+    pub fn builder() -> GestureStylusBuilder {
+        GestureStylusBuilder::default()
+    }
+
     #[doc(alias = "gtk_gesture_stylus_get_axis")]
     #[doc(alias = "get_axis")]
     pub fn axis(&self, axis: gdk::AxisUse) -> Option<f64> {

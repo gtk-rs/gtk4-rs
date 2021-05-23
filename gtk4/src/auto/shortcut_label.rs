@@ -40,6 +40,13 @@ impl ShortcutLabel {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ShortcutLabel`]
+    /// This method returns an instance of [`ShortcutLabelBuilder`] which can be used to create a [`ShortcutLabel`].
+    pub fn builder() -> ShortcutLabelBuilder {
+        ShortcutLabelBuilder::default()
+    }
+
     #[doc(alias = "gtk_shortcut_label_get_accelerator")]
     #[doc(alias = "get_accelerator")]
     pub fn accelerator(&self) -> Option<glib::GString> {

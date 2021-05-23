@@ -86,6 +86,13 @@ impl Video {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Video`]
+    /// This method returns an instance of [`VideoBuilder`] which can be used to create a [`Video`].
+    pub fn builder() -> VideoBuilder {
+        VideoBuilder::default()
+    }
+
     #[doc(alias = "gtk_video_get_autoplay")]
     #[doc(alias = "get_autoplay")]
     pub fn is_autoplay(&self) -> bool {

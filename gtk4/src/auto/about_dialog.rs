@@ -43,6 +43,13 @@ impl AboutDialog {
         unsafe { Widget::from_glib_none(ffi::gtk_about_dialog_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`AboutDialog`]
+    /// This method returns an instance of [`AboutDialogBuilder`] which can be used to create a [`AboutDialog`].
+    pub fn builder() -> AboutDialogBuilder {
+        AboutDialogBuilder::default()
+    }
+
     #[doc(alias = "gtk_about_dialog_add_credit_section")]
     pub fn add_credit_section(&self, section_name: &str, people: &[&str]) {
         unsafe {

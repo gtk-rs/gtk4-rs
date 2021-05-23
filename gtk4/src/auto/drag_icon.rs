@@ -33,6 +33,13 @@ glib::wrapper! {
 }
 
 impl DragIcon {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`DragIcon`]
+    /// This method returns an instance of [`DragIconBuilder`] which can be used to create a [`DragIcon`].
+    pub fn builder() -> DragIconBuilder {
+        DragIconBuilder::default()
+    }
+
     #[doc(alias = "gtk_drag_icon_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {

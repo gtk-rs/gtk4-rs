@@ -43,6 +43,13 @@ impl GLShader {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`GLShader`]
+    /// This method returns an instance of [`GLShaderBuilder`] which can be used to create a [`GLShader`].
+    pub fn builder() -> GLShaderBuilder {
+        GLShaderBuilder::default()
+    }
+
     #[doc(alias = "gsk_gl_shader_compile")]
     pub fn compile<P: IsA<Renderer>>(&self, renderer: &P) -> Result<(), glib::Error> {
         unsafe {

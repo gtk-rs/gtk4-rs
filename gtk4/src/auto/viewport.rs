@@ -49,6 +49,13 @@ impl Viewport {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Viewport`]
+    /// This method returns an instance of [`ViewportBuilder`] which can be used to create a [`Viewport`].
+    pub fn builder() -> ViewportBuilder {
+        ViewportBuilder::default()
+    }
+
     #[doc(alias = "gtk_viewport_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {

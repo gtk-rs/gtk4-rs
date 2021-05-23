@@ -19,7 +19,14 @@ glib::wrapper! {
     }
 }
 
-impl ConstraintLayoutChild {}
+impl ConstraintLayoutChild {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ConstraintLayoutChild`]
+    /// This method returns an instance of [`ConstraintLayoutChildBuilder`] which can be used to create a [`ConstraintLayoutChild`].
+    pub fn builder() -> ConstraintLayoutChildBuilder {
+        ConstraintLayoutChildBuilder::default()
+    }
+}
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next

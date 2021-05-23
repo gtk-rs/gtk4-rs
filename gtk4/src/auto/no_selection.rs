@@ -34,6 +34,13 @@ impl NoSelection {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`NoSelection`]
+    /// This method returns an instance of [`NoSelectionBuilder`] which can be used to create a [`NoSelection`].
+    pub fn builder() -> NoSelectionBuilder {
+        NoSelectionBuilder::default()
+    }
+
     #[doc(alias = "gtk_no_selection_get_model")]
     #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<gio::ListModel> {

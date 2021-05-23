@@ -30,6 +30,13 @@ impl TextTag {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_text_tag_new(name.to_glib_none().0)) }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`TextTag`]
+    /// This method returns an instance of [`TextTagBuilder`] which can be used to create a [`TextTag`].
+    pub fn builder() -> TextTagBuilder {
+        TextTagBuilder::default()
+    }
 }
 
 #[derive(Clone, Default)]

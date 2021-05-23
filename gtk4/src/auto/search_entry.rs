@@ -39,6 +39,13 @@ impl SearchEntry {
         unsafe { Widget::from_glib_none(ffi::gtk_search_entry_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`SearchEntry`]
+    /// This method returns an instance of [`SearchEntryBuilder`] which can be used to create a [`SearchEntry`].
+    pub fn builder() -> SearchEntryBuilder {
+        SearchEntryBuilder::default()
+    }
+
     #[doc(alias = "gtk_search_entry_get_key_capture_widget")]
     #[doc(alias = "get_key_capture_widget")]
     pub fn key_capture_widget(&self) -> Widget {

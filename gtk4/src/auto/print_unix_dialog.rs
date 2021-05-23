@@ -53,6 +53,13 @@ impl PrintUnixDialog {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`PrintUnixDialog`]
+    /// This method returns an instance of [`PrintUnixDialogBuilder`] which can be used to create a [`PrintUnixDialog`].
+    pub fn builder() -> PrintUnixDialogBuilder {
+        PrintUnixDialogBuilder::default()
+    }
+
     #[doc(alias = "gtk_print_unix_dialog_add_custom_tab")]
     pub fn add_custom_tab<P: IsA<Widget>, Q: IsA<Widget>>(&self, child: &P, tab_label: &Q) {
         unsafe {

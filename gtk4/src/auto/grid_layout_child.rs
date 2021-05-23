@@ -26,6 +26,13 @@ glib::wrapper! {
 }
 
 impl GridLayoutChild {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`GridLayoutChild`]
+    /// This method returns an instance of [`GridLayoutChildBuilder`] which can be used to create a [`GridLayoutChild`].
+    pub fn builder() -> GridLayoutChildBuilder {
+        GridLayoutChildBuilder::default()
+    }
+
     #[doc(alias = "gtk_grid_layout_child_get_column")]
     #[doc(alias = "get_column")]
     pub fn column(&self) -> i32 {

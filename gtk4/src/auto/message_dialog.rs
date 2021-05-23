@@ -39,6 +39,13 @@ glib::wrapper! {
 }
 
 impl MessageDialog {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`MessageDialog`]
+    /// This method returns an instance of [`MessageDialogBuilder`] which can be used to create a [`MessageDialog`].
+    pub fn builder() -> MessageDialogBuilder {
+        MessageDialogBuilder::default()
+    }
+
     #[doc(alias = "gtk_message_dialog_get_message_area")]
     #[doc(alias = "get_message_area")]
     pub fn message_area(&self) -> Widget {

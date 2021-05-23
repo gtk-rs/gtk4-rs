@@ -42,6 +42,13 @@ impl ListBox {
         unsafe { Widget::from_glib_none(ffi::gtk_list_box_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ListBox`]
+    /// This method returns an instance of [`ListBoxBuilder`] which can be used to create a [`ListBox`].
+    pub fn builder() -> ListBoxBuilder {
+        ListBoxBuilder::default()
+    }
+
     #[doc(alias = "gtk_list_box_append")]
     pub fn append<P: IsA<Widget>>(&self, child: &P) {
         unsafe {

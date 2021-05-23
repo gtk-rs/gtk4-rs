@@ -37,6 +37,13 @@ impl Calendar {
         unsafe { Widget::from_glib_none(ffi::gtk_calendar_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Calendar`]
+    /// This method returns an instance of [`CalendarBuilder`] which can be used to create a [`Calendar`].
+    pub fn builder() -> CalendarBuilder {
+        CalendarBuilder::default()
+    }
+
     #[doc(alias = "gtk_calendar_clear_marks")]
     pub fn clear_marks(&self) {
         unsafe {

@@ -24,6 +24,13 @@ glib::wrapper! {
 }
 
 impl StringSorter {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`StringSorter`]
+    /// This method returns an instance of [`StringSorterBuilder`] which can be used to create a [`StringSorter`].
+    pub fn builder() -> StringSorterBuilder {
+        StringSorterBuilder::default()
+    }
+
     #[doc(alias = "gtk_string_sorter_get_expression")]
     #[doc(alias = "get_expression")]
     pub fn expression(&self) -> Option<Expression> {

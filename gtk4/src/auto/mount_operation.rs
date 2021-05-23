@@ -33,6 +33,13 @@ impl MountOperation {
             .unsafe_cast()
         }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`MountOperation`]
+    /// This method returns an instance of [`MountOperationBuilder`] which can be used to create a [`MountOperation`].
+    pub fn builder() -> MountOperationBuilder {
+        MountOperationBuilder::default()
+    }
 }
 
 #[derive(Clone, Default)]

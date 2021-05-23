@@ -50,6 +50,13 @@ impl ColorChooserDialog {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ColorChooserDialog`]
+    /// This method returns an instance of [`ColorChooserDialogBuilder`] which can be used to create a [`ColorChooserDialog`].
+    pub fn builder() -> ColorChooserDialogBuilder {
+        ColorChooserDialogBuilder::default()
+    }
+
     #[doc(alias = "show-editor")]
     pub fn shows_editor(&self) -> bool {
         unsafe {

@@ -35,6 +35,13 @@ impl Frame {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_frame_new(label.to_glib_none().0)).unsafe_cast() }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Frame`]
+    /// This method returns an instance of [`FrameBuilder`] which can be used to create a [`Frame`].
+    pub fn builder() -> FrameBuilder {
+        FrameBuilder::default()
+    }
 }
 
 #[derive(Clone, Default)]

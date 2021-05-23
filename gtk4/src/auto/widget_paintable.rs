@@ -34,6 +34,13 @@ impl WidgetPaintable {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`WidgetPaintable`]
+    /// This method returns an instance of [`WidgetPaintableBuilder`] which can be used to create a [`WidgetPaintable`].
+    pub fn builder() -> WidgetPaintableBuilder {
+        WidgetPaintableBuilder::default()
+    }
+
     #[doc(alias = "gtk_widget_paintable_get_widget")]
     #[doc(alias = "get_widget")]
     pub fn widget(&self) -> Option<Widget> {

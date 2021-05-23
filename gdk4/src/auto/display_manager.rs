@@ -23,6 +23,13 @@ glib::wrapper! {
 }
 
 impl DisplayManager {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`DisplayManager`]
+    /// This method returns an instance of [`DisplayManagerBuilder`] which can be used to create a [`DisplayManager`].
+    pub fn builder() -> DisplayManagerBuilder {
+        DisplayManagerBuilder::default()
+    }
+
     #[doc(alias = "gdk_display_manager_get_default_display")]
     #[doc(alias = "get_default_display")]
     pub fn default_display(&self) -> Option<Display> {

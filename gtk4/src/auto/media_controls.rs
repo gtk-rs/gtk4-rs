@@ -43,6 +43,13 @@ impl MediaControls {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`MediaControls`]
+    /// This method returns an instance of [`MediaControlsBuilder`] which can be used to create a [`MediaControls`].
+    pub fn builder() -> MediaControlsBuilder {
+        MediaControlsBuilder::default()
+    }
+
     #[doc(alias = "gtk_media_controls_get_media_stream")]
     #[doc(alias = "get_media_stream")]
     pub fn media_stream(&self) -> Option<MediaStream> {

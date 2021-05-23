@@ -36,6 +36,13 @@ impl EventControllerKey {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`EventControllerKey`]
+    /// This method returns an instance of [`EventControllerKeyBuilder`] which can be used to create a [`EventControllerKey`].
+    pub fn builder() -> EventControllerKeyBuilder {
+        EventControllerKeyBuilder::default()
+    }
+
     #[doc(alias = "gtk_event_controller_key_forward")]
     pub fn forward<P: IsA<Widget>>(&self, widget: &P) -> bool {
         unsafe {

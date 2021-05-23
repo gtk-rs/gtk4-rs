@@ -33,6 +33,13 @@ impl GestureDrag {
         assert_initialized_main_thread!();
         unsafe { Gesture::from_glib_full(ffi::gtk_gesture_drag_new()).unsafe_cast() }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`GestureDrag`]
+    /// This method returns an instance of [`GestureDragBuilder`] which can be used to create a [`GestureDrag`].
+    pub fn builder() -> GestureDragBuilder {
+        GestureDragBuilder::default()
+    }
 }
 
 impl Default for GestureDrag {

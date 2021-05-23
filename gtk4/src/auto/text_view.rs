@@ -65,6 +65,13 @@ impl TextView {
             .unsafe_cast()
         }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`TextView`]
+    /// This method returns an instance of [`TextViewBuilder`] which can be used to create a [`TextView`].
+    pub fn builder() -> TextViewBuilder {
+        TextViewBuilder::default()
+    }
 }
 
 impl Default for TextView {

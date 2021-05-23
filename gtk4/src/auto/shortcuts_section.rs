@@ -35,6 +35,13 @@ glib::wrapper! {
 }
 
 impl ShortcutsSection {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ShortcutsSection`]
+    /// This method returns an instance of [`ShortcutsSectionBuilder`] which can be used to create a [`ShortcutsSection`].
+    pub fn builder() -> ShortcutsSectionBuilder {
+        ShortcutsSectionBuilder::default()
+    }
+
     #[doc(alias = "max-height")]
     pub fn max_height(&self) -> u32 {
         unsafe {

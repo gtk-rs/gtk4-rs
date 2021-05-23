@@ -44,6 +44,13 @@ impl LockButton {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`LockButton`]
+    /// This method returns an instance of [`LockButtonBuilder`] which can be used to create a [`LockButton`].
+    pub fn builder() -> LockButtonBuilder {
+        LockButtonBuilder::default()
+    }
+
     #[doc(alias = "gtk_lock_button_get_permission")]
     #[doc(alias = "get_permission")]
     pub fn permission(&self) -> Option<gio::Permission> {

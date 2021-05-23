@@ -34,6 +34,13 @@ glib::wrapper! {
 }
 
 impl ShortcutsShortcut {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ShortcutsShortcut`]
+    /// This method returns an instance of [`ShortcutsShortcutBuilder`] which can be used to create a [`ShortcutsShortcut`].
+    pub fn builder() -> ShortcutsShortcutBuilder {
+        ShortcutsShortcutBuilder::default()
+    }
+
     #[doc(alias = "accel-size-group")]
     pub fn set_accel_size_group(&self, accel_size_group: Option<&SizeGroup>) {
         unsafe {

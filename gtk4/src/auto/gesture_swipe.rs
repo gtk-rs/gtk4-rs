@@ -34,6 +34,13 @@ impl GestureSwipe {
         unsafe { Gesture::from_glib_full(ffi::gtk_gesture_swipe_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`GestureSwipe`]
+    /// This method returns an instance of [`GestureSwipeBuilder`] which can be used to create a [`GestureSwipe`].
+    pub fn builder() -> GestureSwipeBuilder {
+        GestureSwipeBuilder::default()
+    }
+
     #[doc(alias = "gtk_gesture_swipe_get_velocity")]
     #[doc(alias = "get_velocity")]
     pub fn velocity(&self) -> Option<(f64, f64)> {

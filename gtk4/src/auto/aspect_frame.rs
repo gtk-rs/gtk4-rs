@@ -45,6 +45,13 @@ impl AspectFrame {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`AspectFrame`]
+    /// This method returns an instance of [`AspectFrameBuilder`] which can be used to create a [`AspectFrame`].
+    pub fn builder() -> AspectFrameBuilder {
+        AspectFrameBuilder::default()
+    }
+
     #[doc(alias = "gtk_aspect_frame_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {

@@ -37,6 +37,13 @@ impl ListBoxRow {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_list_box_row_new()).unsafe_cast() }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ListBoxRow`]
+    /// This method returns an instance of [`ListBoxRowBuilder`] which can be used to create a [`ListBoxRow`].
+    pub fn builder() -> ListBoxRowBuilder {
+        ListBoxRowBuilder::default()
+    }
 }
 
 impl Default for ListBoxRow {

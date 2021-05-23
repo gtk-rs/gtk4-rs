@@ -29,6 +29,13 @@ impl TextMark {
             ))
         }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`TextMark`]
+    /// This method returns an instance of [`TextMarkBuilder`] which can be used to create a [`TextMark`].
+    pub fn builder() -> TextMarkBuilder {
+        TextMarkBuilder::default()
+    }
 }
 
 #[derive(Clone, Default)]

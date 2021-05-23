@@ -44,6 +44,13 @@ impl FlowBox {
         unsafe { Widget::from_glib_none(ffi::gtk_flow_box_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`FlowBox`]
+    /// This method returns an instance of [`FlowBoxBuilder`] which can be used to create a [`FlowBox`].
+    pub fn builder() -> FlowBoxBuilder {
+        FlowBoxBuilder::default()
+    }
+
     #[doc(alias = "gtk_flow_box_bind_model")]
     pub fn bind_model<P: IsA<gio::ListModel>, Q: Fn(&glib::Object) -> Widget + 'static>(
         &self,

@@ -47,6 +47,13 @@ impl ShortcutController {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ShortcutController`]
+    /// This method returns an instance of [`ShortcutControllerBuilder`] which can be used to create a [`ShortcutController`].
+    pub fn builder() -> ShortcutControllerBuilder {
+        ShortcutControllerBuilder::default()
+    }
+
     #[doc(alias = "gtk_shortcut_controller_add_shortcut")]
     pub fn add_shortcut(&self, shortcut: &Shortcut) {
         unsafe {

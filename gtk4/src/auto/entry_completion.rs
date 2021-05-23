@@ -45,6 +45,13 @@ impl EntryCompletion {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`EntryCompletion`]
+    /// This method returns an instance of [`EntryCompletionBuilder`] which can be used to create a [`EntryCompletion`].
+    pub fn builder() -> EntryCompletionBuilder {
+        EntryCompletionBuilder::default()
+    }
+
     #[doc(alias = "gtk_entry_completion_complete")]
     pub fn complete(&self) {
         unsafe {

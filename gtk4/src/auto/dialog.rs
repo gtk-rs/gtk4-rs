@@ -44,6 +44,13 @@ impl Dialog {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_dialog_new()).unsafe_cast() }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Dialog`]
+    /// This method returns an instance of [`DialogBuilder`] which can be used to create a [`Dialog`].
+    pub fn builder() -> DialogBuilder {
+        DialogBuilder::default()
+    }
 }
 
 impl Default for Dialog {

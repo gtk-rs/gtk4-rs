@@ -40,6 +40,13 @@ impl WindowControls {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`WindowControls`]
+    /// This method returns an instance of [`WindowControlsBuilder`] which can be used to create a [`WindowControls`].
+    pub fn builder() -> WindowControlsBuilder {
+        WindowControlsBuilder::default()
+    }
+
     #[doc(alias = "gtk_window_controls_get_decoration_layout")]
     #[doc(alias = "get_decoration_layout")]
     pub fn decoration_layout(&self) -> Option<glib::GString> {

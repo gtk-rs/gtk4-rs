@@ -54,6 +54,13 @@ impl GridView {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`GridView`]
+    /// This method returns an instance of [`GridViewBuilder`] which can be used to create a [`GridView`].
+    pub fn builder() -> GridViewBuilder {
+        GridViewBuilder::default()
+    }
+
     #[doc(alias = "gtk_grid_view_get_enable_rubberband")]
     #[doc(alias = "get_enable_rubberband")]
     pub fn enables_rubberband(&self) -> bool {

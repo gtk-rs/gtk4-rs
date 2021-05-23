@@ -33,6 +33,13 @@ impl EventControllerFocus {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`EventControllerFocus`]
+    /// This method returns an instance of [`EventControllerFocusBuilder`] which can be used to create a [`EventControllerFocus`].
+    pub fn builder() -> EventControllerFocusBuilder {
+        EventControllerFocusBuilder::default()
+    }
+
     #[doc(alias = "gtk_event_controller_focus_contains_focus")]
     pub fn contains_focus(&self) -> bool {
         unsafe {

@@ -37,6 +37,13 @@ impl ActionBar {
         unsafe { Widget::from_glib_none(ffi::gtk_action_bar_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ActionBar`]
+    /// This method returns an instance of [`ActionBarBuilder`] which can be used to create a [`ActionBar`].
+    pub fn builder() -> ActionBarBuilder {
+        ActionBarBuilder::default()
+    }
+
     #[doc(alias = "gtk_action_bar_get_center_widget")]
     #[doc(alias = "get_center_widget")]
     pub fn center_widget(&self) -> Option<Widget> {

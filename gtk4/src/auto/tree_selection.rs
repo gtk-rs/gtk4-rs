@@ -28,6 +28,13 @@ glib::wrapper! {
 }
 
 impl TreeSelection {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`TreeSelection`]
+    /// This method returns an instance of [`TreeSelectionBuilder`] which can be used to create a [`TreeSelection`].
+    pub fn builder() -> TreeSelectionBuilder {
+        TreeSelectionBuilder::default()
+    }
+
     #[doc(alias = "gtk_tree_selection_count_selected_rows")]
     pub fn count_selected_rows(&self) -> i32 {
         unsafe { ffi::gtk_tree_selection_count_selected_rows(self.to_glib_none().0) }

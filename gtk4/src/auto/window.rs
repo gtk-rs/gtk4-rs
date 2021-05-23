@@ -43,6 +43,13 @@ impl Window {
         unsafe { Widget::from_glib_none(ffi::gtk_window_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Window`]
+    /// This method returns an instance of [`WindowBuilder`] which can be used to create a [`Window`].
+    pub fn builder() -> WindowBuilder {
+        WindowBuilder::default()
+    }
+
     #[doc(alias = "gtk_window_get_default_icon_name")]
     #[doc(alias = "get_default_icon_name")]
     pub fn default_icon_name() -> Option<glib::GString> {

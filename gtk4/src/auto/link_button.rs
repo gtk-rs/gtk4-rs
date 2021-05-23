@@ -54,6 +54,13 @@ impl LinkButton {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`LinkButton`]
+    /// This method returns an instance of [`LinkButtonBuilder`] which can be used to create a [`LinkButton`].
+    pub fn builder() -> LinkButtonBuilder {
+        LinkButtonBuilder::default()
+    }
+
     #[doc(alias = "gtk_link_button_get_uri")]
     #[doc(alias = "get_uri")]
     pub fn uri(&self) -> Option<glib::GString> {

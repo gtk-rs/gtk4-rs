@@ -34,6 +34,13 @@ impl PadController {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`PadController`]
+    /// This method returns an instance of [`PadControllerBuilder`] which can be used to create a [`PadController`].
+    pub fn builder() -> PadControllerBuilder {
+        PadControllerBuilder::default()
+    }
+
     #[doc(alias = "gtk_pad_controller_set_action")]
     pub fn set_action(
         &self,

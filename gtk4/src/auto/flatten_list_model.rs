@@ -33,6 +33,13 @@ impl FlattenListModel {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`FlattenListModel`]
+    /// This method returns an instance of [`FlattenListModelBuilder`] which can be used to create a [`FlattenListModel`].
+    pub fn builder() -> FlattenListModelBuilder {
+        FlattenListModelBuilder::default()
+    }
+
     #[doc(alias = "gtk_flatten_list_model_get_model")]
     #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<gio::ListModel> {

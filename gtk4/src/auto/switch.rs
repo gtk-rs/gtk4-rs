@@ -39,6 +39,13 @@ impl Switch {
         unsafe { Widget::from_glib_none(ffi::gtk_switch_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Switch`]
+    /// This method returns an instance of [`SwitchBuilder`] which can be used to create a [`Switch`].
+    pub fn builder() -> SwitchBuilder {
+        SwitchBuilder::default()
+    }
+
     #[doc(alias = "gtk_switch_get_active")]
     #[doc(alias = "get_active")]
     pub fn is_active(&self) -> bool {

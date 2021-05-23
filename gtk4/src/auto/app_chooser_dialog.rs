@@ -74,6 +74,13 @@ impl AppChooserDialog {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`AppChooserDialog`]
+    /// This method returns an instance of [`AppChooserDialogBuilder`] which can be used to create a [`AppChooserDialog`].
+    pub fn builder() -> AppChooserDialogBuilder {
+        AppChooserDialogBuilder::default()
+    }
+
     #[doc(alias = "gtk_app_chooser_dialog_get_heading")]
     #[doc(alias = "get_heading")]
     pub fn heading(&self) -> Option<glib::GString> {

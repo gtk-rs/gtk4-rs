@@ -43,6 +43,13 @@ impl Adjustment {
             ))
         }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Adjustment`]
+    /// This method returns an instance of [`AdjustmentBuilder`] which can be used to create a [`Adjustment`].
+    pub fn builder() -> AdjustmentBuilder {
+        AdjustmentBuilder::default()
+    }
 }
 
 #[derive(Clone, Default)]

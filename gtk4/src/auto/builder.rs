@@ -56,6 +56,13 @@ impl Builder {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Builder`]
+    /// This method returns an instance of [`BuilderBuilder`] which can be used to create a [`Builder`].
+    pub fn builder() -> BuilderBuilder {
+        BuilderBuilder::default()
+    }
+
     #[doc(alias = "gtk_builder_add_from_resource")]
     pub fn add_from_resource(&self, resource_path: &str) -> Result<(), glib::Error> {
         unsafe {

@@ -37,6 +37,13 @@ impl Statusbar {
         unsafe { Widget::from_glib_none(ffi::gtk_statusbar_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Statusbar`]
+    /// This method returns an instance of [`StatusbarBuilder`] which can be used to create a [`Statusbar`].
+    pub fn builder() -> StatusbarBuilder {
+        StatusbarBuilder::default()
+    }
+
     #[doc(alias = "gtk_statusbar_get_context_id")]
     #[doc(alias = "get_context_id")]
     pub fn context_id(&self, context_description: &str) -> u32 {

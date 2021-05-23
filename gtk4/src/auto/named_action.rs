@@ -24,6 +24,13 @@ impl NamedAction {
         unsafe { from_glib_full(ffi::gtk_named_action_new(name.to_glib_none().0)) }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`NamedAction`]
+    /// This method returns an instance of [`NamedActionBuilder`] which can be used to create a [`NamedAction`].
+    pub fn builder() -> NamedActionBuilder {
+        NamedActionBuilder::default()
+    }
+
     #[doc(alias = "gtk_named_action_get_action_name")]
     #[doc(alias = "get_action_name")]
     pub fn action_name(&self) -> Option<glib::GString> {

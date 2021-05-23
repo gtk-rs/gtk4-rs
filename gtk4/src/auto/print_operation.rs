@@ -38,6 +38,13 @@ impl PrintOperation {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_print_operation_new()) }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`PrintOperation`]
+    /// This method returns an instance of [`PrintOperationBuilder`] which can be used to create a [`PrintOperation`].
+    pub fn builder() -> PrintOperationBuilder {
+        PrintOperationBuilder::default()
+    }
 }
 
 impl Default for PrintOperation {

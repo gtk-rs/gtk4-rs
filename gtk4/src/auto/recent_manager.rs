@@ -31,6 +31,13 @@ impl RecentManager {
         unsafe { from_glib_full(ffi::gtk_recent_manager_new()) }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`RecentManager`]
+    /// This method returns an instance of [`RecentManagerBuilder`] which can be used to create a [`RecentManager`].
+    pub fn builder() -> RecentManagerBuilder {
+        RecentManagerBuilder::default()
+    }
+
     #[doc(alias = "gtk_recent_manager_get_default")]
     #[doc(alias = "get_default")]
     pub fn default() -> RecentManager {

@@ -26,6 +26,13 @@ glib::wrapper! {
 }
 
 impl StyleContext {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`StyleContext`]
+    /// This method returns an instance of [`StyleContextBuilder`] which can be used to create a [`StyleContext`].
+    pub fn builder() -> StyleContextBuilder {
+        StyleContextBuilder::default()
+    }
+
     #[doc(alias = "gtk_style_context_add_provider_for_display")]
     pub fn add_provider_for_display<P: IsA<StyleProvider>>(
         display: &gdk::Display,

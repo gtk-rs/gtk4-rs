@@ -39,6 +39,13 @@ impl PasswordEntry {
         unsafe { Widget::from_glib_none(ffi::gtk_password_entry_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`PasswordEntry`]
+    /// This method returns an instance of [`PasswordEntryBuilder`] which can be used to create a [`PasswordEntry`].
+    pub fn builder() -> PasswordEntryBuilder {
+        PasswordEntryBuilder::default()
+    }
+
     #[doc(alias = "gtk_password_entry_get_extra_menu")]
     #[doc(alias = "get_extra_menu")]
     pub fn extra_menu(&self) -> Option<gio::MenuModel> {

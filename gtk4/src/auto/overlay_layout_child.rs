@@ -26,6 +26,13 @@ glib::wrapper! {
 }
 
 impl OverlayLayoutChild {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`OverlayLayoutChild`]
+    /// This method returns an instance of [`OverlayLayoutChildBuilder`] which can be used to create a [`OverlayLayoutChild`].
+    pub fn builder() -> OverlayLayoutChildBuilder {
+        OverlayLayoutChildBuilder::default()
+    }
+
     #[doc(alias = "gtk_overlay_layout_child_get_clip_overlay")]
     #[doc(alias = "get_clip_overlay")]
     pub fn is_clip_overlay(&self) -> bool {

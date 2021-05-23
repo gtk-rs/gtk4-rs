@@ -40,6 +40,13 @@ impl Stack {
         unsafe { Widget::from_glib_none(ffi::gtk_stack_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Stack`]
+    /// This method returns an instance of [`StackBuilder`] which can be used to create a [`Stack`].
+    pub fn builder() -> StackBuilder {
+        StackBuilder::default()
+    }
+
     #[doc(alias = "gtk_stack_add_child")]
     pub fn add_child<P: IsA<Widget>>(&self, child: &P) -> StackPage {
         unsafe {

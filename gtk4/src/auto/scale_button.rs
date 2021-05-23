@@ -48,6 +48,13 @@ impl ScaleButton {
             .unsafe_cast()
         }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ScaleButton`]
+    /// This method returns an instance of [`ScaleButtonBuilder`] which can be used to create a [`ScaleButton`].
+    pub fn builder() -> ScaleButtonBuilder {
+        ScaleButtonBuilder::default()
+    }
 }
 
 #[derive(Clone, Default)]

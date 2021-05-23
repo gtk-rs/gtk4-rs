@@ -24,6 +24,13 @@ impl SignalAction {
         unsafe { from_glib_full(ffi::gtk_signal_action_new(signal_name.to_glib_none().0)) }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`SignalAction`]
+    /// This method returns an instance of [`SignalActionBuilder`] which can be used to create a [`SignalAction`].
+    pub fn builder() -> SignalActionBuilder {
+        SignalActionBuilder::default()
+    }
+
     #[doc(alias = "gtk_signal_action_get_signal_name")]
     #[doc(alias = "get_signal_name")]
     pub fn signal_name(&self) -> glib::GString {

@@ -45,6 +45,13 @@ impl FontChooserDialog {
             .unsafe_cast()
         }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`FontChooserDialog`]
+    /// This method returns an instance of [`FontChooserDialogBuilder`] which can be used to create a [`FontChooserDialog`].
+    pub fn builder() -> FontChooserDialogBuilder {
+        FontChooserDialogBuilder::default()
+    }
 }
 
 #[derive(Clone, Default)]

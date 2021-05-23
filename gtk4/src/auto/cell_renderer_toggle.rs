@@ -31,6 +31,13 @@ impl CellRendererToggle {
         unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_toggle_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`CellRendererToggle`]
+    /// This method returns an instance of [`CellRendererToggleBuilder`] which can be used to create a [`CellRendererToggle`].
+    pub fn builder() -> CellRendererToggleBuilder {
+        CellRendererToggleBuilder::default()
+    }
+
     #[doc(alias = "gtk_cell_renderer_toggle_get_activatable")]
     #[doc(alias = "get_activatable")]
     pub fn is_activatable(&self) -> bool {

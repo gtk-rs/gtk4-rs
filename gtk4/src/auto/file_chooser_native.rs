@@ -48,6 +48,13 @@ impl FileChooserNative {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`FileChooserNative`]
+    /// This method returns an instance of [`FileChooserNativeBuilder`] which can be used to create a [`FileChooserNative`].
+    pub fn builder() -> FileChooserNativeBuilder {
+        FileChooserNativeBuilder::default()
+    }
+
     #[doc(alias = "gtk_file_chooser_native_get_accept_label")]
     #[doc(alias = "get_accept_label")]
     pub fn accept_label(&self) -> Option<glib::GString> {

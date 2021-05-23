@@ -39,6 +39,13 @@ impl ProgressBar {
         unsafe { Widget::from_glib_none(ffi::gtk_progress_bar_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ProgressBar`]
+    /// This method returns an instance of [`ProgressBarBuilder`] which can be used to create a [`ProgressBar`].
+    pub fn builder() -> ProgressBarBuilder {
+        ProgressBarBuilder::default()
+    }
+
     #[doc(alias = "gtk_progress_bar_get_ellipsize")]
     #[doc(alias = "get_ellipsize")]
     pub fn ellipsize(&self) -> pango::EllipsizeMode {

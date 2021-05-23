@@ -37,6 +37,13 @@ glib::wrapper! {
 }
 
 impl ShortcutsWindow {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ShortcutsWindow`]
+    /// This method returns an instance of [`ShortcutsWindowBuilder`] which can be used to create a [`ShortcutsWindow`].
+    pub fn builder() -> ShortcutsWindowBuilder {
+        ShortcutsWindowBuilder::default()
+    }
+
     #[doc(alias = "section-name")]
     pub fn section_name(&self) -> Option<glib::GString> {
         unsafe {

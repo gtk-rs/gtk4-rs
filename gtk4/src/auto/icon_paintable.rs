@@ -31,6 +31,13 @@ impl IconPaintable {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`IconPaintable`]
+    /// This method returns an instance of [`IconPaintableBuilder`] which can be used to create a [`IconPaintable`].
+    pub fn builder() -> IconPaintableBuilder {
+        IconPaintableBuilder::default()
+    }
+
     #[doc(alias = "gtk_icon_paintable_get_file")]
     #[doc(alias = "get_file")]
     pub fn file(&self) -> Option<gio::File> {

@@ -48,6 +48,13 @@ impl ColorButton {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ColorButton`]
+    /// This method returns an instance of [`ColorButtonBuilder`] which can be used to create a [`ColorButton`].
+    pub fn builder() -> ColorButtonBuilder {
+        ColorButtonBuilder::default()
+    }
+
     #[doc(alias = "gtk_color_button_get_modal")]
     #[doc(alias = "get_modal")]
     pub fn is_modal(&self) -> bool {

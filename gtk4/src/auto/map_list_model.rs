@@ -63,6 +63,13 @@ impl MapListModel {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`MapListModel`]
+    /// This method returns an instance of [`MapListModelBuilder`] which can be used to create a [`MapListModel`].
+    pub fn builder() -> MapListModelBuilder {
+        MapListModelBuilder::default()
+    }
+
     #[doc(alias = "gtk_map_list_model_get_model")]
     #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<gio::ListModel> {

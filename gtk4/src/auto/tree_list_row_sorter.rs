@@ -34,6 +34,13 @@ impl TreeListRowSorter {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`TreeListRowSorter`]
+    /// This method returns an instance of [`TreeListRowSorterBuilder`] which can be used to create a [`TreeListRowSorter`].
+    pub fn builder() -> TreeListRowSorterBuilder {
+        TreeListRowSorterBuilder::default()
+    }
+
     #[doc(alias = "gtk_tree_list_row_sorter_get_sorter")]
     #[doc(alias = "get_sorter")]
     pub fn sorter(&self) -> Option<Sorter> {

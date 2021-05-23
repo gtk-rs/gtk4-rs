@@ -41,6 +41,13 @@ impl InfoBar {
         unsafe { Widget::from_glib_none(ffi::gtk_info_bar_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`InfoBar`]
+    /// This method returns an instance of [`InfoBarBuilder`] which can be used to create a [`InfoBar`].
+    pub fn builder() -> InfoBarBuilder {
+        InfoBarBuilder::default()
+    }
+
     #[doc(alias = "gtk_info_bar_add_action_widget")]
     pub fn add_action_widget<P: IsA<Widget>>(&self, child: &P, response_id: ResponseType) {
         unsafe {

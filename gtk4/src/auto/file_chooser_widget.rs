@@ -44,6 +44,13 @@ impl FileChooserWidget {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`FileChooserWidget`]
+    /// This method returns an instance of [`FileChooserWidgetBuilder`] which can be used to create a [`FileChooserWidget`].
+    pub fn builder() -> FileChooserWidgetBuilder {
+        FileChooserWidgetBuilder::default()
+    }
+
     #[doc(alias = "search-mode")]
     pub fn is_search_mode(&self) -> bool {
         unsafe {

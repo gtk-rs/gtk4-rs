@@ -64,6 +64,13 @@ impl TreeView {
             .unsafe_cast()
         }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`TreeView`]
+    /// This method returns an instance of [`TreeViewBuilder`] which can be used to create a [`TreeView`].
+    pub fn builder() -> TreeViewBuilder {
+        TreeViewBuilder::default()
+    }
 }
 
 impl Default for TreeView {

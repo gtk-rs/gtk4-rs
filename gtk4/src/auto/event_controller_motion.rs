@@ -33,6 +33,13 @@ impl EventControllerMotion {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`EventControllerMotion`]
+    /// This method returns an instance of [`EventControllerMotionBuilder`] which can be used to create a [`EventControllerMotion`].
+    pub fn builder() -> EventControllerMotionBuilder {
+        EventControllerMotionBuilder::default()
+    }
+
     #[doc(alias = "gtk_event_controller_motion_contains_pointer")]
     pub fn contains_pointer(&self) -> bool {
         unsafe {

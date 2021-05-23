@@ -38,6 +38,13 @@ impl Revealer {
         unsafe { Widget::from_glib_none(ffi::gtk_revealer_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Revealer`]
+    /// This method returns an instance of [`RevealerBuilder`] which can be used to create a [`Revealer`].
+    pub fn builder() -> RevealerBuilder {
+        RevealerBuilder::default()
+    }
+
     #[doc(alias = "gtk_revealer_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {

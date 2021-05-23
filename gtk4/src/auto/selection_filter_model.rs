@@ -34,6 +34,13 @@ impl SelectionFilterModel {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`SelectionFilterModel`]
+    /// This method returns an instance of [`SelectionFilterModelBuilder`] which can be used to create a [`SelectionFilterModel`].
+    pub fn builder() -> SelectionFilterModelBuilder {
+        SelectionFilterModelBuilder::default()
+    }
+
     #[doc(alias = "gtk_selection_filter_model_get_model")]
     #[doc(alias = "get_model")]
     pub fn model(&self) -> Option<SelectionModel> {

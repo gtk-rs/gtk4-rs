@@ -56,6 +56,13 @@ impl TreeViewColumn {
     //    unsafe { TODO: call ffi:gtk_tree_view_column_new_with_attributes() }
     //}
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`TreeViewColumn`]
+    /// This method returns an instance of [`TreeViewColumnBuilder`] which can be used to create a [`TreeViewColumn`].
+    pub fn builder() -> TreeViewColumnBuilder {
+        TreeViewColumnBuilder::default()
+    }
+
     #[doc(alias = "gtk_tree_view_column_cell_get_position")]
     pub fn cell_get_position<P: IsA<CellRenderer>>(&self, cell_renderer: &P) -> Option<(i32, i32)> {
         unsafe {

@@ -43,6 +43,13 @@ impl Notebook {
         unsafe { Widget::from_glib_none(ffi::gtk_notebook_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Notebook`]
+    /// This method returns an instance of [`NotebookBuilder`] which can be used to create a [`Notebook`].
+    pub fn builder() -> NotebookBuilder {
+        NotebookBuilder::default()
+    }
+
     #[doc(alias = "gtk_notebook_detach_tab")]
     pub fn detach_tab<P: IsA<Widget>>(&self, child: &P) {
         unsafe {

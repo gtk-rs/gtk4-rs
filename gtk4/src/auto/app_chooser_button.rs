@@ -43,6 +43,13 @@ impl AppChooserButton {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`AppChooserButton`]
+    /// This method returns an instance of [`AppChooserButtonBuilder`] which can be used to create a [`AppChooserButton`].
+    pub fn builder() -> AppChooserButtonBuilder {
+        AppChooserButtonBuilder::default()
+    }
+
     #[doc(alias = "gtk_app_chooser_button_append_custom_item")]
     pub fn append_custom_item<P: IsA<gio::Icon>>(&self, name: &str, label: &str, icon: &P) {
         unsafe {

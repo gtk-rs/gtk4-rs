@@ -53,6 +53,13 @@ impl Text {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Text`]
+    /// This method returns an instance of [`TextBuilder`] which can be used to create a [`Text`].
+    pub fn builder() -> TextBuilder {
+        TextBuilder::default()
+    }
+
     #[doc(alias = "gtk_text_get_activates_default")]
     #[doc(alias = "get_activates_default")]
     pub fn activates_default(&self) -> bool {

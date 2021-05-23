@@ -50,6 +50,13 @@ impl PrintJob {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`PrintJob`]
+    /// This method returns an instance of [`PrintJobBuilder`] which can be used to create a [`PrintJob`].
+    pub fn builder() -> PrintJobBuilder {
+        PrintJobBuilder::default()
+    }
+
     #[doc(alias = "gtk_print_job_get_collate")]
     #[doc(alias = "get_collate")]
     pub fn is_collate(&self) -> bool {

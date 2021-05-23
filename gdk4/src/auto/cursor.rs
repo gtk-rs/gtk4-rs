@@ -50,6 +50,13 @@ impl Cursor {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Cursor`]
+    /// This method returns an instance of [`CursorBuilder`] which can be used to create a [`Cursor`].
+    pub fn builder() -> CursorBuilder {
+        CursorBuilder::default()
+    }
+
     #[doc(alias = "gdk_cursor_get_fallback")]
     #[doc(alias = "get_fallback")]
     pub fn fallback(&self) -> Option<Cursor> {

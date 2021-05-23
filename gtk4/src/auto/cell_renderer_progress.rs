@@ -32,6 +32,13 @@ impl CellRendererProgress {
         unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_progress_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`CellRendererProgress`]
+    /// This method returns an instance of [`CellRendererProgressBuilder`] which can be used to create a [`CellRendererProgress`].
+    pub fn builder() -> CellRendererProgressBuilder {
+        CellRendererProgressBuilder::default()
+    }
+
     pub fn is_inverted(&self) -> bool {
         unsafe {
             let mut value = glib::Value::from_type(<bool as StaticType>::static_type());

@@ -39,6 +39,13 @@ impl FontChooserWidget {
         unsafe { Widget::from_glib_none(ffi::gtk_font_chooser_widget_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`FontChooserWidget`]
+    /// This method returns an instance of [`FontChooserWidgetBuilder`] which can be used to create a [`FontChooserWidget`].
+    pub fn builder() -> FontChooserWidgetBuilder {
+        FontChooserWidgetBuilder::default()
+    }
+
     #[doc(alias = "tweak-action")]
     pub fn tweak_action(&self) -> Option<gio::Action> {
         unsafe {

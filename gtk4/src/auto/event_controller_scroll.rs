@@ -35,6 +35,13 @@ impl EventControllerScroll {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`EventControllerScroll`]
+    /// This method returns an instance of [`EventControllerScrollBuilder`] which can be used to create a [`EventControllerScroll`].
+    pub fn builder() -> EventControllerScrollBuilder {
+        EventControllerScrollBuilder::default()
+    }
+
     #[doc(alias = "gtk_event_controller_scroll_get_flags")]
     #[doc(alias = "get_flags")]
     pub fn flags(&self) -> EventControllerScrollFlags {

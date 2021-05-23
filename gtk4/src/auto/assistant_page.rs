@@ -25,6 +25,13 @@ glib::wrapper! {
 }
 
 impl AssistantPage {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`AssistantPage`]
+    /// This method returns an instance of [`AssistantPageBuilder`] which can be used to create a [`AssistantPage`].
+    pub fn builder() -> AssistantPageBuilder {
+        AssistantPageBuilder::default()
+    }
+
     #[doc(alias = "gtk_assistant_page_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {

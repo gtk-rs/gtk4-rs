@@ -40,6 +40,13 @@ impl ColumnViewColumn {
         }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`ColumnViewColumn`]
+    /// This method returns an instance of [`ColumnViewColumnBuilder`] which can be used to create a [`ColumnViewColumn`].
+    pub fn builder() -> ColumnViewColumnBuilder {
+        ColumnViewColumnBuilder::default()
+    }
+
     #[doc(alias = "gtk_column_view_column_get_column_view")]
     #[doc(alias = "get_column_view")]
     pub fn column_view(&self) -> Option<ColumnView> {

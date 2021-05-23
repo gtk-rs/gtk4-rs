@@ -33,6 +33,13 @@ impl CellRendererAccel {
         unsafe { CellRenderer::from_glib_none(ffi::gtk_cell_renderer_accel_new()).unsafe_cast() }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`CellRendererAccel`]
+    /// This method returns an instance of [`CellRendererAccelBuilder`] which can be used to create a [`CellRendererAccel`].
+    pub fn builder() -> CellRendererAccelBuilder {
+        CellRendererAccelBuilder::default()
+    }
+
     #[doc(alias = "accel-key")]
     pub fn accel_key(&self) -> u32 {
         unsafe {

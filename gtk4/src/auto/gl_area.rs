@@ -36,6 +36,13 @@ impl GLArea {
         assert_initialized_main_thread!();
         unsafe { Widget::from_glib_none(ffi::gtk_gl_area_new()).unsafe_cast() }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`GLArea`]
+    /// This method returns an instance of [`GLAreaBuilder`] which can be used to create a [`GLArea`].
+    pub fn builder() -> GLAreaBuilder {
+        GLAreaBuilder::default()
+    }
 }
 
 impl Default for GLArea {

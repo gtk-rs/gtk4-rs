@@ -56,6 +56,13 @@ impl Entry {
             .unsafe_cast()
         }
     }
+
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Entry`]
+    /// This method returns an instance of [`EntryBuilder`] which can be used to create a [`Entry`].
+    pub fn builder() -> EntryBuilder {
+        EntryBuilder::default()
+    }
 }
 
 impl Default for Entry {

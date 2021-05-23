@@ -32,6 +32,13 @@ impl SizeGroup {
         unsafe { from_glib_full(ffi::gtk_size_group_new(mode.into_glib())) }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`SizeGroup`]
+    /// This method returns an instance of [`SizeGroupBuilder`] which can be used to create a [`SizeGroup`].
+    pub fn builder() -> SizeGroupBuilder {
+        SizeGroupBuilder::default()
+    }
+
     #[doc(alias = "gtk_size_group_add_widget")]
     pub fn add_widget<P: IsA<Widget>>(&self, widget: &P) {
         unsafe {

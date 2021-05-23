@@ -23,6 +23,13 @@ glib::wrapper! {
 }
 
 impl Settings {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Settings`]
+    /// This method returns an instance of [`SettingsBuilder`] which can be used to create a [`Settings`].
+    pub fn builder() -> SettingsBuilder {
+        SettingsBuilder::default()
+    }
+
     #[doc(alias = "gtk_settings_reset_property")]
     pub fn reset_property(&self, name: &str) {
         unsafe {
