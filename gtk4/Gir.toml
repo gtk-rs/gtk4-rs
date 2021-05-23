@@ -1324,6 +1324,7 @@ manual_traits = ["GtkListStoreExtManual"]
     [[object.function]]
     name = "new"
     manual = true
+    doc_ignore_parameters = ["n_columns"]
     [[object.function]]
     name = "newv"
     ignore = true
@@ -2278,6 +2279,7 @@ manual_traits = ["TreeStoreExtManual"]
     [[object.function]]
     name = "new"
     manual = true
+    doc_ignore_parameters = ["n_columns"]
     [[object.function]]
     name = "newv"
     ignore = true
