@@ -441,6 +441,9 @@ trust_return_value_nullability = false
     [[object.function]]
     name = "test_list_all_types"
     manual = true
+    [[object.function]]
+    name = "css_parser_warning_quark"
+    ignore = true # error-domain expect _error_quark so it can't be used as ErrorDomain automatically
 
 
 [[object]]

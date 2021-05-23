@@ -137,12 +137,6 @@ pub fn check_version(
     }
 }
 
-#[doc(alias = "gtk_css_parser_warning_quark")]
-pub fn css_parser_warning_quark() -> glib::Quark {
-    assert_initialized_main_thread!();
-    unsafe { from_glib(ffi::gtk_css_parser_warning_quark()) }
-}
-
 #[doc(alias = "gtk_disable_setlocale")]
 pub fn disable_setlocale() {
     assert_not_initialized!();
