@@ -256,7 +256,7 @@ This is because <code>glib::Object</code> is <em>always</em> the base class in t
 
 use custom_button::CustomButton;
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindowBuilder};
+use gtk::{Application, ApplicationWindow};
 
 fn main() {
     // Create a new application
@@ -269,7 +269,7 @@ fn main() {
 
 fn build_ui(application: &amp;Application) {
     // Create a window
-    let window = ApplicationWindowBuilder::new()
+    let window = ApplicationWindow::builder()
         .application(application)
         .title(&quot;My GTK App&quot;)
         .build();
@@ -347,7 +347,7 @@ We also override <code>clicked</code> in <code>ButtonImpl</code> so that every c
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
+</span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -359,7 +359,7 @@ We also override <code>clicked</code> in <code>ButtonImpl</code> so that every c
 </span><span class="boring">}
 </span>fn build_ui(application: &amp;Application) {
     // Create a window
-    let window = ApplicationWindowBuilder::new()
+    let window = ApplicationWindow::builder()
         .application(application)
         .title(&quot;My GTK App&quot;)
         .build();

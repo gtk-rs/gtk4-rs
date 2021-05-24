@@ -262,7 +262,7 @@ we can use the <a href="https://doc.rust-lang.org/std/cell/struct.RefCell.html">
 <p><span class="filename">Filename: listings/gobject_memory_management/1/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::Application;
-</span><span class="boring">use gtk::{self, ApplicationWindowBuilder, ButtonBuilder, Orientation};
+</span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
 </span><span class="boring">use std::{cell::RefCell, rc::Rc};
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -274,20 +274,20 @@ we can use the <a href="https://doc.rust-lang.org/std/cell/struct.RefCell.html">
 </span><span class="boring">}
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // … create a new window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Create two buttons
-</span><span class="boring">    let button_increase = ButtonBuilder::new()
+</span><span class="boring">    let button_increase = Button::builder()
 </span><span class="boring">        .label(&quot;Increase&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
-</span><span class="boring">    let button_decrease = ButtonBuilder::new()
+</span><span class="boring">    let button_decrease = Button::builder()
 </span><span class="boring">        .label(&quot;Decrease&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
@@ -316,7 +316,7 @@ We can improve that by using the <code>glib::clone!</code> macro.</p>
 <p><span class="filename">Filename: listings/gobject_memory_management/2/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, ApplicationWindowBuilder, ButtonBuilder, Orientation};
+</span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
 </span><span class="boring">use gtk::{glib, Application};
 </span><span class="boring">use std::{cell::RefCell, rc::Rc};
 </span><span class="boring">fn main() {
@@ -329,20 +329,20 @@ We can improve that by using the <code>glib::clone!</code> macro.</p>
 </span><span class="boring">}
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Create two buttons
-</span><span class="boring">    let button_increase = ButtonBuilder::new()
+</span><span class="boring">    let button_increase = Button::builder()
 </span><span class="boring">        .label(&quot;Increase&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
-</span><span class="boring">    let button_decrease = ButtonBuilder::new()
+</span><span class="boring">    let button_decrease = Button::builder()
 </span><span class="boring">        .label(&quot;Decrease&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
@@ -376,25 +376,25 @@ Therefore, we can pass the buttons the same way to the closure as we did with <c
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, ApplicationWindowBuilder, ButtonBuilder, Orientation};
+</span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
 </span><span class="boring">use gtk::{glib, Application};
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Create two buttons
-</span><span class="boring">    let button_increase = ButtonBuilder::new()
+</span><span class="boring">    let button_increase = Button::builder()
 </span><span class="boring">        .label(&quot;Increase&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
-</span><span class="boring">    let button_decrease = ButtonBuilder::new()
+</span><span class="boring">    let button_decrease = Button::builder()
 </span><span class="boring">        .label(&quot;Decrease&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
@@ -447,7 +447,7 @@ Since we want our apps to free unneeded memory, we should use weak references fo
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, ApplicationWindowBuilder, ButtonBuilder, Orientation};
+</span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
 </span><span class="boring">use gtk::{glib, Application};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -461,20 +461,20 @@ Since we want our apps to free unneeded memory, we should use weak references fo
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Create two buttons
-</span><span class="boring">    let button_increase = ButtonBuilder::new()
+</span><span class="boring">    let button_increase = Button::builder()
 </span><span class="boring">        .label(&quot;Increase&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
-</span><span class="boring">    let button_decrease = ButtonBuilder::new()
+</span><span class="boring">    let button_decrease = Button::builder()
 </span><span class="boring">        .label(&quot;Decrease&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
@@ -521,7 +521,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, ApplicationWindowBuilder, ButtonBuilder, Orientation};
+</span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
 </span><span class="boring">use gtk::{glib, Application};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -535,20 +535,20 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Create two buttons
-</span><span class="boring">    let button_increase = ButtonBuilder::new()
+</span><span class="boring">    let button_increase = Button::builder()
 </span><span class="boring">        .label(&quot;Increase&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
-</span><span class="boring">    let button_decrease = ButtonBuilder::new()
+</span><span class="boring">    let button_decrease = Button::builder()
 </span><span class="boring">        .label(&quot;Decrease&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
@@ -586,7 +586,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, ApplicationWindowBuilder, ButtonBuilder, Orientation};
+</span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
 </span><span class="boring">use gtk::{glib, Application};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -600,20 +600,20 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Create two buttons
-</span><span class="boring">    let button_increase = ButtonBuilder::new()
+</span><span class="boring">    let button_increase = Button::builder()
 </span><span class="boring">        .label(&quot;Increase&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
-</span><span class="boring">    let button_decrease = ButtonBuilder::new()
+</span><span class="boring">    let button_decrease = Button::builder()
 </span><span class="boring">        .label(&quot;Decrease&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
@@ -651,7 +651,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, ApplicationWindowBuilder, ButtonBuilder, Orientation};
+</span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
 </span><span class="boring">use gtk::{glib, Application};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -665,20 +665,20 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span>    let window = ApplicationWindowBuilder::new()
+</span>    let window = ApplicationWindow::builder()
         .application(application)
         .title(&quot;My GTK App&quot;)
         .build();
 <span class="boring">
 </span><span class="boring">    // Create two buttons
-</span><span class="boring">    let button_increase = ButtonBuilder::new()
+</span><span class="boring">    let button_increase = Button::builder()
 </span><span class="boring">        .label(&quot;Increase&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
-</span><span class="boring">    let button_decrease = ButtonBuilder::new()
+</span><span class="boring">    let button_decrease = Button::builder()
 </span><span class="boring">        .label(&quot;Decrease&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)

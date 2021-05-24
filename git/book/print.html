@@ -459,10 +459,10 @@ In our example we did that by adding the following line:</p>
 You probably want to bring the prelude into scope in most of your source files.</p>
 <p>This is also a good moment to mention that all <code>gtk-rs</code> widgets support <a href="https://doc.rust-lang.org/1.0.0/style/ownership/builders.html">the builder pattern</a>.
 This is especially nice for creating widgets where multiple widget characteristics are already known during its creation.
-We can make our button creation neater, by replacing <code>gtk::Button</code> with <a href="../docs/gtk4/struct.ButtonBuilder.html"><code>gtk::ButtonBuilder</code></a>.</p>
+We can then make the construction of our button neater, by creating a <a href="../docs/gtk4/struct.ButtonBuilder.html"><code>ButtonBuilder</code></a> with the <a href="../docs/gtk4/struct.Button.html#method.builder"><code>Button::builder</code></a> method.</p>
 <p><span class="filename">Filename: listings/widgets/2/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder, ButtonBuilder};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -475,13 +475,13 @@ We can make our button creation neater, by replacing <code>gtk::Button</code> wi
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span>    // Create a button
-    let button = ButtonBuilder::new()
+    let button = Button::builder()
         .label(&quot;Press me!&quot;)
         .margin_top(12)
         .margin_bottom(12)
@@ -606,7 +606,7 @@ we can use the <a href="https://doc.rust-lang.org/std/cell/struct.RefCell.html">
 <p><span class="filename">Filename: listings/gobject_memory_management/1/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::Application;
-</span><span class="boring">use gtk::{self, ApplicationWindowBuilder, ButtonBuilder, Orientation};
+</span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
 </span><span class="boring">use std::{cell::RefCell, rc::Rc};
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -618,20 +618,20 @@ we can use the <a href="https://doc.rust-lang.org/std/cell/struct.RefCell.html">
 </span><span class="boring">}
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // … create a new window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Create two buttons
-</span><span class="boring">    let button_increase = ButtonBuilder::new()
+</span><span class="boring">    let button_increase = Button::builder()
 </span><span class="boring">        .label(&quot;Increase&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
-</span><span class="boring">    let button_decrease = ButtonBuilder::new()
+</span><span class="boring">    let button_decrease = Button::builder()
 </span><span class="boring">        .label(&quot;Decrease&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
@@ -660,7 +660,7 @@ We can improve that by using the <code>glib::clone!</code> macro.</p>
 <p><span class="filename">Filename: listings/gobject_memory_management/2/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, ApplicationWindowBuilder, ButtonBuilder, Orientation};
+</span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
 </span><span class="boring">use gtk::{glib, Application};
 </span><span class="boring">use std::{cell::RefCell, rc::Rc};
 </span><span class="boring">fn main() {
@@ -673,20 +673,20 @@ We can improve that by using the <code>glib::clone!</code> macro.</p>
 </span><span class="boring">}
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Create two buttons
-</span><span class="boring">    let button_increase = ButtonBuilder::new()
+</span><span class="boring">    let button_increase = Button::builder()
 </span><span class="boring">        .label(&quot;Increase&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
-</span><span class="boring">    let button_decrease = ButtonBuilder::new()
+</span><span class="boring">    let button_decrease = Button::builder()
 </span><span class="boring">        .label(&quot;Decrease&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
@@ -720,25 +720,25 @@ Therefore, we can pass the buttons the same way to the closure as we did with <c
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, ApplicationWindowBuilder, ButtonBuilder, Orientation};
+</span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
 </span><span class="boring">use gtk::{glib, Application};
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Create two buttons
-</span><span class="boring">    let button_increase = ButtonBuilder::new()
+</span><span class="boring">    let button_increase = Button::builder()
 </span><span class="boring">        .label(&quot;Increase&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
-</span><span class="boring">    let button_decrease = ButtonBuilder::new()
+</span><span class="boring">    let button_decrease = Button::builder()
 </span><span class="boring">        .label(&quot;Decrease&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
@@ -791,7 +791,7 @@ Since we want our apps to free unneeded memory, we should use weak references fo
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, ApplicationWindowBuilder, ButtonBuilder, Orientation};
+</span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
 </span><span class="boring">use gtk::{glib, Application};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -805,20 +805,20 @@ Since we want our apps to free unneeded memory, we should use weak references fo
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Create two buttons
-</span><span class="boring">    let button_increase = ButtonBuilder::new()
+</span><span class="boring">    let button_increase = Button::builder()
 </span><span class="boring">        .label(&quot;Increase&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
-</span><span class="boring">    let button_decrease = ButtonBuilder::new()
+</span><span class="boring">    let button_decrease = Button::builder()
 </span><span class="boring">        .label(&quot;Decrease&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
@@ -865,7 +865,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, ApplicationWindowBuilder, ButtonBuilder, Orientation};
+</span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
 </span><span class="boring">use gtk::{glib, Application};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -879,20 +879,20 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Create two buttons
-</span><span class="boring">    let button_increase = ButtonBuilder::new()
+</span><span class="boring">    let button_increase = Button::builder()
 </span><span class="boring">        .label(&quot;Increase&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
-</span><span class="boring">    let button_decrease = ButtonBuilder::new()
+</span><span class="boring">    let button_decrease = Button::builder()
 </span><span class="boring">        .label(&quot;Decrease&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
@@ -930,7 +930,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, ApplicationWindowBuilder, ButtonBuilder, Orientation};
+</span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
 </span><span class="boring">use gtk::{glib, Application};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -944,20 +944,20 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Create two buttons
-</span><span class="boring">    let button_increase = ButtonBuilder::new()
+</span><span class="boring">    let button_increase = Button::builder()
 </span><span class="boring">        .label(&quot;Increase&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
-</span><span class="boring">    let button_decrease = ButtonBuilder::new()
+</span><span class="boring">    let button_decrease = Button::builder()
 </span><span class="boring">        .label(&quot;Decrease&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
@@ -995,7 +995,7 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">use glib::clone;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, ApplicationWindowBuilder, ButtonBuilder, Orientation};
+</span><span class="boring">use gtk::{self, ApplicationWindow, Button, Orientation};
 </span><span class="boring">use gtk::{glib, Application};
 </span><span class="boring">
 </span><span class="boring">fn main() {
@@ -1009,20 +1009,20 @@ Who then keeps the buttons alive?</p>
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span>    let window = ApplicationWindowBuilder::new()
+</span>    let window = ApplicationWindow::builder()
         .application(application)
         .title(&quot;My GTK App&quot;)
         .build();
 <span class="boring">
 </span><span class="boring">    // Create two buttons
-</span><span class="boring">    let button_increase = ButtonBuilder::new()
+</span><span class="boring">    let button_increase = Button::builder()
 </span><span class="boring">        .label(&quot;Increase&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
 </span><span class="boring">        .margin_end(12)
 </span><span class="boring">        .build();
-</span><span class="boring">    let button_decrease = ButtonBuilder::new()
+</span><span class="boring">    let button_decrease = Button::builder()
 </span><span class="boring">        .label(&quot;Decrease&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
@@ -1150,7 +1150,7 @@ This is because <code>glib::Object</code> is <em>always</em> the base class in t
 
 use custom_button::CustomButton;
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindowBuilder};
+use gtk::{Application, ApplicationWindow};
 
 fn main() {
     // Create a new application
@@ -1163,7 +1163,7 @@ fn main() {
 
 fn build_ui(application: &amp;Application) {
     // Create a window
-    let window = ApplicationWindowBuilder::new()
+    let window = ApplicationWindow::builder()
         .application(application)
         .title(&quot;My GTK App&quot;)
         .build();
@@ -1241,7 +1241,7 @@ We also override <code>clicked</code> in <code>ButtonImpl</code> so that every c
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
+</span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -1253,7 +1253,7 @@ We also override <code>clicked</code> in <code>ButtonImpl</code> so that every c
 </span><span class="boring">}
 </span>fn build_ui(application: &amp;Application) {
     // Create a window
-    let window = ApplicationWindowBuilder::new()
+    let window = ApplicationWindow::builder()
         .application(application)
         .title(&quot;My GTK App&quot;)
         .build();
@@ -1446,8 +1446,8 @@ According to the GTK docs, it can be read and be written to.
 That is why, <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/struct.Switch.html#method.state"><code>state</code></a> and <a href="../docs/gtk4/docs/gtk4/struct.Switch.html#method.set_state"><code>set_state</code></a> methods.</p>
 <p><span class="filename">Filename: listings/gobject_properties/1/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Align, BoxBuilder, Orientation, Switch};
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
+</span><span class="boring">use gtk::{Align, Box, Orientation, Switch};
+</span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -1460,7 +1460,7 @@ That is why, <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/st
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -1476,7 +1476,7 @@ That is why, <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/st
     println!(&quot;The current state is {}&quot;, current_state);
 <span class="boring">
 </span><span class="boring">    // Set up box
-</span><span class="boring">    let gtk_box = BoxBuilder::new()
+</span><span class="boring">    let gtk_box = Box::builder()
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
@@ -1495,8 +1495,8 @@ That is why, <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/st
 Because they can be used for properties of different types, they operate with <code>glib::Value</code>.</p>
 <p><span class="filename">Filename: listings/gobject_properties/2/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Align, BoxBuilder, Orientation, Switch};
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
+</span><span class="boring">use gtk::{Align, Box, Orientation, Switch};
+</span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -1509,7 +1509,7 @@ Because they can be used for properties of different types, they operate with <c
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -1529,7 +1529,7 @@ Because they can be used for properties of different types, they operate with <c
     println!(&quot;The current state is {}&quot;, current_state);
 <span class="boring">
 </span><span class="boring">    // Set up box
-</span><span class="boring">    let gtk_box = BoxBuilder::new()
+</span><span class="boring">    let gtk_box = Box::builder()
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
@@ -1551,8 +1551,8 @@ Let us see how that would look like for two <code>Switch</code> instances.</p>
 <p><span class="filename">Filename: listings/gobject_properties/3/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::{glib, Align, Orientation, Switch};
-</span><span class="boring">use gtk::{prelude::*, BoxBuilder};
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
+</span><span class="boring">use gtk::{prelude::*, Box};
+</span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -1565,7 +1565,7 @@ Let us see how that would look like for two <code>Switch</code> instances.</p>
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -1580,7 +1580,7 @@ Let us see how that would look like for two <code>Switch</code> instances.</p>
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Set up box
-</span><span class="boring">    let gtk_box = BoxBuilder::new()
+</span><span class="boring">    let gtk_box = Box::builder()
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
@@ -1601,8 +1601,8 @@ We also want the binding to be bidirectional, so we specify this with the <a hre
 <p><span class="filename">Filename: listings/gobject_properties/3/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::{glib, Align, Orientation, Switch};
-</span><span class="boring">use gtk::{prelude::*, BoxBuilder};
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
+</span><span class="boring">use gtk::{prelude::*, Box};
+</span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -1615,7 +1615,7 @@ We also want the binding to be bidirectional, so we specify this with the <a hre
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -1630,7 +1630,7 @@ We also want the binding to be bidirectional, so we specify this with the <a hre
         .build();
 <span class="boring">
 </span><span class="boring">    // Set up box
-</span><span class="boring">    let gtk_box = BoxBuilder::new()
+</span><span class="boring">    let gtk_box = Box::builder()
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
@@ -1766,8 +1766,8 @@ Now we do not have to adapt the label in the &quot;clicked&quot; callback anymor
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::{glib, Align, Orientation};
-</span><span class="boring">use gtk::{prelude::*, BoxBuilder};
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
+</span><span class="boring">use gtk::{prelude::*, Box};
+</span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -1780,7 +1780,7 @@ Now we do not have to adapt the label in the &quot;clicked&quot; callback anymor
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -1822,7 +1822,7 @@ Now we do not have to adapt the label in the &quot;clicked&quot; callback anymor
 </span><span class="boring">    });
 </span><span class="boring">
 </span><span class="boring">    // Set up box
-</span><span class="boring">    let gtk_box = BoxBuilder::new()
+</span><span class="boring">    let gtk_box = Box::builder()
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
@@ -1846,8 +1846,8 @@ By leveraging <a href="http://gtk-rs.org/docs/glib/object/struct.BindingBuilder.
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::{glib, Align, Orientation};
-</span><span class="boring">use gtk::{prelude::*, BoxBuilder};
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
+</span><span class="boring">use gtk::{prelude::*, Box};
+</span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -1860,7 +1860,7 @@ By leveraging <a href="http://gtk-rs.org/docs/glib/object/struct.BindingBuilder.
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -1902,7 +1902,7 @@ By leveraging <a href="http://gtk-rs.org/docs/glib/object/struct.BindingBuilder.
 </span><span class="boring">    });
 </span><span class="boring">
 </span><span class="boring">    // Set up box
-</span><span class="boring">    let gtk_box = BoxBuilder::new()
+</span><span class="boring">    let gtk_box = Box::builder()
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
@@ -1928,8 +1928,8 @@ We can do this like this:</p>
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::{glib, Align, Orientation};
-</span><span class="boring">use gtk::{prelude::*, BoxBuilder};
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
+</span><span class="boring">use gtk::{prelude::*, Box};
+</span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -1942,7 +1942,7 @@ We can do this like this:</p>
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -1984,7 +1984,7 @@ We can do this like this:</p>
     });
 <span class="boring">
 </span><span class="boring">    // Set up box
-</span><span class="boring">    let gtk_box = BoxBuilder::new()
+</span><span class="boring">    let gtk_box = Box::builder()
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
@@ -2015,7 +2015,7 @@ The signal then takes care that all the registered callbacks will be executed.</
 In our &quot;Hello World&quot; example we <a href="../docs/gtk4/trait.ButtonExt.html#tymethod.connect_clicked">connected</a> the &quot;clicked&quot; signal to a closure which sets the label of the button to &quot;Hello World&quot; as soon as it gets called.</p>
 <p><span class="filename">Filename: listings/gobject_signals/1/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ApplicationWindow, ButtonBuilder};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -2034,7 +2034,7 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/trait.ButtonExt.
 </span><span class="boring">    window.set_title(Some(&quot;My GTK App&quot;));
 </span><span class="boring">
 </span><span class="boring">    // Create a button
-</span><span class="boring">    let button = ButtonBuilder::new()
+</span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
@@ -2057,7 +2057,7 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/trait.ButtonExt.
 connected to it with the generic <a href="http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.connect_local"><code>connect_local</code></a> method.</p>
 <p><span class="filename">Filename: listings/gobject_signals/2/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, ButtonBuilder};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -2076,7 +2076,7 @@ connected to it with the generic <a href="http://gtk-rs.org/docs/glib/object/tra
 </span><span class="boring">    window.set_title(Some(&quot;My GTK App&quot;));
 </span><span class="boring">
 </span><span class="boring">    // Create a button
-</span><span class="boring">    let button = ButtonBuilder::new()
+</span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
@@ -2353,7 +2353,7 @@ Whenever we now receive the &quot;max-number-reached&quot; signal, the accompany
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
+</span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -2365,7 +2365,7 @@ Whenever we now receive the &quot;max-number-reached&quot; signal, the accompany
 </span><span class="boring">}
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -2402,7 +2402,7 @@ We still have our &quot;number&quot; property, so this can be easily done.</p>
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
+</span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -2414,7 +2414,7 @@ We still have our &quot;number&quot; property, so this can be easily done.</p>
 </span><span class="boring">}
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -2604,7 +2604,7 @@ Let us look at one example.</p>
 <pre><pre class="playground"><code class="language-rust no_run">use std::time::Duration;
 
 use gtk::prelude::*;
-use gtk::{self, Application, ApplicationWindowBuilder, ButtonBuilder};
+use gtk::{self, Application, ApplicationWindow, Button};
 
 fn main() {
     // Create a new application
@@ -2617,13 +2617,13 @@ fn main() {
 
 fn build_ui(application: &amp;Application) {
     // Create a window
-    let window = ApplicationWindowBuilder::new()
+    let window = ApplicationWindow::builder()
         .application(application)
         .title(&quot;My GTK App&quot;)
         .build();
 
     // Create a button
-    let button = ButtonBuilder::new()
+    let button = Button::builder()
         .label(&quot;Press me!&quot;)
         .margin_top(12)
         .margin_bottom(12)
@@ -2652,7 +2652,7 @@ For that we just need to spawn a new thread and let the operation run there.</p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use std::{thread, time::Duration};
 </span><span class="boring">
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{self, Application, ApplicationWindowBuilder, ButtonBuilder};
+</span><span class="boring">use gtk::{self, Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -2665,13 +2665,13 @@ For that we just need to spawn a new thread and let the operation run there.</p>
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Create a button
-</span><span class="boring">    let button = ButtonBuilder::new()
+</span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
@@ -2706,7 +2706,7 @@ We want to send a <code>bool</code> to inform, whether we want the button to rea
 </span><span class="boring">use glib::{clone, Continue, MainContext, PRIORITY_DEFAULT};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder, ButtonBuilder};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -2719,13 +2719,13 @@ We want to send a <code>bool</code> to inform, whether we want the button to rea
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Create a button
-</span><span class="boring">    let button = ButtonBuilder::new()
+</span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
@@ -2772,7 +2772,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::{clone, timeout_future_seconds, Continue, MainContext, PRIORITY_DEFAULT};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder, ButtonBuilder};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -2785,13 +2785,13 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Create a button
-</span><span class="boring">    let button = ButtonBuilder::new()
+</span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
@@ -2834,7 +2834,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::{clone, timeout_future_seconds, MainContext};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder, ButtonBuilder};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -2847,13 +2847,13 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Create a button
-</span><span class="boring">    let button = ButtonBuilder::new()
+</span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
@@ -2885,7 +2885,7 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">use glib::{clone, MainContext, PRIORITY_DEFAULT};
 </span><span class="boring">use gtk::glib;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder, ButtonBuilder};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -2901,13 +2901,13 @@ The converted code looks and behaves very similar to the multi-threaded code.</p
 </span><span class="boring">// When the application is launched…
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Create a button
-</span><span class="boring">    let button = ButtonBuilder::new()
+</span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
@@ -2969,7 +2969,7 @@ The <code>id</code> is the same application id we used when we created our appli
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::{glib::signal::Inhibit, prelude::*};
-</span><span class="boring">use gtk::{Align, Application, ApplicationWindowBuilder, SwitchBuilder};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Switch};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span>    // Create a new application
@@ -2982,7 +2982,7 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -2994,7 +2994,7 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">    let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
 </span><span class="boring">
 </span><span class="boring">    // Create a switch
-</span><span class="boring">    let switch = SwitchBuilder::new()
+</span><span class="boring">    let switch = Switch::builder()
 </span><span class="boring">        .margin_top(48)
 </span><span class="boring">        .margin_bottom(48)
 </span><span class="boring">        .margin_start(48)
@@ -3034,7 +3034,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::{glib::signal::Inhibit, prelude::*};
-</span><span class="boring">use gtk::{Align, Application, ApplicationWindowBuilder, SwitchBuilder};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Switch};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -3047,7 +3047,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -3059,7 +3059,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">    let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
 </span><span class="boring">
 </span><span class="boring">    // Create a switch
-</span><span class="boring">    let switch = SwitchBuilder::new()
+</span><span class="boring">    let switch = Switch::builder()
 </span><span class="boring">        .margin_top(48)
 </span><span class="boring">        .margin_bottom(48)
 </span><span class="boring">        .margin_start(48)
@@ -3088,7 +3088,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::{glib::signal::Inhibit, prelude::*};
-</span><span class="boring">use gtk::{Align, Application, ApplicationWindowBuilder, SwitchBuilder};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Switch};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -3101,7 +3101,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -3113,7 +3113,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
     let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
 
     // Create a switch
-    let switch = SwitchBuilder::new()
+    let switch = Switch::builder()
         .margin_top(48)
         .margin_bottom(48)
         .margin_start(48)
@@ -3142,7 +3142,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::{glib::signal::Inhibit, prelude::*};
-</span><span class="boring">use gtk::{Align, Application, ApplicationWindowBuilder, SwitchBuilder};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Switch};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -3155,7 +3155,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -3167,7 +3167,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">    let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
 </span><span class="boring">
 </span><span class="boring">    // Create a switch
-</span><span class="boring">    let switch = SwitchBuilder::new()
+</span><span class="boring">    let switch = Switch::builder()
 </span><span class="boring">        .margin_top(48)
 </span><span class="boring">        .margin_bottom(48)
 </span><span class="boring">        .margin_start(48)
@@ -3202,7 +3202,7 @@ Additionally, we specify <a href="https://gtk-rs.org/docs/gio/struct.SettingsBin
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::{Settings, SettingsBindFlags};
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Align, Application, ApplicationWindowBuilder, SwitchBuilder};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Switch};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -3215,7 +3215,7 @@ Additionally, we specify <a href="https://gtk-rs.org/docs/gio/struct.SettingsBin
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -3224,7 +3224,7 @@ Additionally, we specify <a href="https://gtk-rs.org/docs/gio/struct.SettingsBin
 </span><span class="boring">    let settings = Settings::new(&quot;org.gtk.example&quot;);
 </span><span class="boring">
 </span><span class="boring">    // Create a switch
-</span><span class="boring">    let switch = SwitchBuilder::new()
+</span><span class="boring">    let switch = Switch::builder()
 </span><span class="boring">        .margin_top(48)
 </span><span class="boring">        .margin_bottom(48)
 </span><span class="boring">        .margin_start(48)
@@ -3400,7 +3400,7 @@ pretty_env_logger = &quot;0.4&quot;
 </span><span class="boring">
 </span><span class="boring">use custom_window::CustomWindow;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ButtonBuilder};
+</span><span class="boring">use gtk::{Application, Button};
 </span><span class="boring">
 </span>fn main() {
     // Initialize logger
@@ -3419,7 +3419,7 @@ pretty_env_logger = &quot;0.4&quot;
 </span><span class="boring">    let window = CustomWindow::new(application);
 </span><span class="boring">
 </span><span class="boring">    // Create a button
-</span><span class="boring">    let button = ButtonBuilder::new()
+</span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)

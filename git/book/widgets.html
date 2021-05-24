@@ -275,10 +275,10 @@ In our example we did that by adding the following line:</p>
 You probably want to bring the prelude into scope in most of your source files.</p>
 <p>This is also a good moment to mention that all <code>gtk-rs</code> widgets support <a href="https://doc.rust-lang.org/1.0.0/style/ownership/builders.html">the builder pattern</a>.
 This is especially nice for creating widgets where multiple widget characteristics are already known during its creation.
-We can make our button creation neater, by replacing <code>gtk::Button</code> with <a href="../docs/gtk4/struct.ButtonBuilder.html"><code>gtk::ButtonBuilder</code></a>.</p>
+We can then make the construction of our button neater, by creating a <a href="../docs/gtk4/struct.ButtonBuilder.html"><code>ButtonBuilder</code></a> with the <a href="../docs/gtk4/struct.Button.html#method.builder"><code>Button::builder</code></a> method.</p>
 <p><span class="filename">Filename: listings/widgets/2/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder, ButtonBuilder};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -291,13 +291,13 @@ We can make our button creation neater, by replacing <code>gtk::Button</code> wi
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span>    // Create a button
-    let button = ButtonBuilder::new()
+    let button = Button::builder()
         .label(&quot;Press me!&quot;)
         .margin_top(12)
         .margin_bottom(12)

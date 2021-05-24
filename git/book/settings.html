@@ -191,7 +191,7 @@ The <code>id</code> is the same application id we used when we created our appli
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::{glib::signal::Inhibit, prelude::*};
-</span><span class="boring">use gtk::{Align, Application, ApplicationWindowBuilder, SwitchBuilder};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Switch};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span>    // Create a new application
@@ -204,7 +204,7 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -216,7 +216,7 @@ The <code>id</code> is the same application id we used when we created our appli
 </span><span class="boring">    let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
 </span><span class="boring">
 </span><span class="boring">    // Create a switch
-</span><span class="boring">    let switch = SwitchBuilder::new()
+</span><span class="boring">    let switch = Switch::builder()
 </span><span class="boring">        .margin_top(48)
 </span><span class="boring">        .margin_bottom(48)
 </span><span class="boring">        .margin_start(48)
@@ -256,7 +256,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::{glib::signal::Inhibit, prelude::*};
-</span><span class="boring">use gtk::{Align, Application, ApplicationWindowBuilder, SwitchBuilder};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Switch};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -269,7 +269,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -281,7 +281,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">    let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
 </span><span class="boring">
 </span><span class="boring">    // Create a switch
-</span><span class="boring">    let switch = SwitchBuilder::new()
+</span><span class="boring">    let switch = Switch::builder()
 </span><span class="boring">        .margin_top(48)
 </span><span class="boring">        .margin_bottom(48)
 </span><span class="boring">        .margin_start(48)
@@ -310,7 +310,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::{glib::signal::Inhibit, prelude::*};
-</span><span class="boring">use gtk::{Align, Application, ApplicationWindowBuilder, SwitchBuilder};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Switch};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -323,7 +323,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -335,7 +335,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
     let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
 
     // Create a switch
-    let switch = SwitchBuilder::new()
+    let switch = Switch::builder()
         .margin_top(48)
         .margin_bottom(48)
         .margin_start(48)
@@ -364,7 +364,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::Settings;
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::{glib::signal::Inhibit, prelude::*};
-</span><span class="boring">use gtk::{Align, Application, ApplicationWindowBuilder, SwitchBuilder};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Switch};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -377,7 +377,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -389,7 +389,7 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 </span><span class="boring">    let is_switch_enabled = settings.boolean(&quot;is-switch-enabled&quot;);
 </span><span class="boring">
 </span><span class="boring">    // Create a switch
-</span><span class="boring">    let switch = SwitchBuilder::new()
+</span><span class="boring">    let switch = Switch::builder()
 </span><span class="boring">        .margin_top(48)
 </span><span class="boring">        .margin_bottom(48)
 </span><span class="boring">        .margin_start(48)
@@ -424,7 +424,7 @@ Additionally, we specify <a href="https://gtk-rs.org/docs/gio/struct.SettingsBin
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::{Settings, SettingsBindFlags};
 </span><span class="boring">use gtk::gio;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Align, Application, ApplicationWindowBuilder, SwitchBuilder};
+</span><span class="boring">use gtk::{Align, Application, ApplicationWindow, Switch};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -437,7 +437,7 @@ Additionally, we specify <a href="https://gtk-rs.org/docs/gio/struct.SettingsBin
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -446,7 +446,7 @@ Additionally, we specify <a href="https://gtk-rs.org/docs/gio/struct.SettingsBin
 </span><span class="boring">    let settings = Settings::new(&quot;org.gtk.example&quot;);
 </span><span class="boring">
 </span><span class="boring">    // Create a switch
-</span><span class="boring">    let switch = SwitchBuilder::new()
+</span><span class="boring">    let switch = Switch::builder()
 </span><span class="boring">        .margin_top(48)
 </span><span class="boring">        .margin_bottom(48)
 </span><span class="boring">        .margin_start(48)

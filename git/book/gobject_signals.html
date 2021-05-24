@@ -177,7 +177,7 @@ The signal then takes care that all the registered callbacks will be executed.</
 In our &quot;Hello World&quot; example we <a href="../docs/gtk4/trait.ButtonExt.html#tymethod.connect_clicked">connected</a> the &quot;clicked&quot; signal to a closure which sets the label of the button to &quot;Hello World&quot; as soon as it gets called.</p>
 <p><span class="filename">Filename: listings/gobject_signals/1/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ApplicationWindow, ButtonBuilder};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -196,7 +196,7 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/trait.ButtonExt.
 </span><span class="boring">    window.set_title(Some(&quot;My GTK App&quot;));
 </span><span class="boring">
 </span><span class="boring">    // Create a button
-</span><span class="boring">    let button = ButtonBuilder::new()
+</span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
@@ -219,7 +219,7 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/trait.ButtonExt.
 connected to it with the generic <a href="http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.connect_local"><code>connect_local</code></a> method.</p>
 <p><span class="filename">Filename: listings/gobject_signals/2/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ApplicationWindow, Button, ButtonBuilder};
+</span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -238,7 +238,7 @@ connected to it with the generic <a href="http://gtk-rs.org/docs/glib/object/tra
 </span><span class="boring">    window.set_title(Some(&quot;My GTK App&quot;));
 </span><span class="boring">
 </span><span class="boring">    // Create a button
-</span><span class="boring">    let button = ButtonBuilder::new()
+</span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
@@ -515,7 +515,7 @@ Whenever we now receive the &quot;max-number-reached&quot; signal, the accompany
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
+</span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -527,7 +527,7 @@ Whenever we now receive the &quot;max-number-reached&quot; signal, the accompany
 </span><span class="boring">}
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -564,7 +564,7 @@ We still have our &quot;number&quot; property, so this can be easily done.</p>
 </span><span class="boring">
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
+</span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -576,7 +576,7 @@ We still have our &quot;number&quot; property, so this can be easily done.</p>
 </span><span class="boring">}
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();

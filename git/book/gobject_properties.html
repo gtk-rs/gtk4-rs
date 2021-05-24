@@ -177,8 +177,8 @@ According to the GTK docs, it can be read and be written to.
 That is why, <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/struct.Switch.html#method.state"><code>state</code></a> and <a href="../docs/gtk4/docs/gtk4/struct.Switch.html#method.set_state"><code>set_state</code></a> methods.</p>
 <p><span class="filename">Filename: listings/gobject_properties/1/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Align, BoxBuilder, Orientation, Switch};
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
+</span><span class="boring">use gtk::{Align, Box, Orientation, Switch};
+</span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -191,7 +191,7 @@ That is why, <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/st
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -207,7 +207,7 @@ That is why, <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/st
     println!(&quot;The current state is {}&quot;, current_state);
 <span class="boring">
 </span><span class="boring">    // Set up box
-</span><span class="boring">    let gtk_box = BoxBuilder::new()
+</span><span class="boring">    let gtk_box = Box::builder()
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
@@ -226,8 +226,8 @@ That is why, <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/st
 Because they can be used for properties of different types, they operate with <code>glib::Value</code>.</p>
 <p><span class="filename">Filename: listings/gobject_properties/2/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Align, BoxBuilder, Orientation, Switch};
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
+</span><span class="boring">use gtk::{Align, Box, Orientation, Switch};
+</span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -240,7 +240,7 @@ Because they can be used for properties of different types, they operate with <c
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -260,7 +260,7 @@ Because they can be used for properties of different types, they operate with <c
     println!(&quot;The current state is {}&quot;, current_state);
 <span class="boring">
 </span><span class="boring">    // Set up box
-</span><span class="boring">    let gtk_box = BoxBuilder::new()
+</span><span class="boring">    let gtk_box = Box::builder()
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
@@ -282,8 +282,8 @@ Let us see how that would look like for two <code>Switch</code> instances.</p>
 <p><span class="filename">Filename: listings/gobject_properties/3/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::{glib, Align, Orientation, Switch};
-</span><span class="boring">use gtk::{prelude::*, BoxBuilder};
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
+</span><span class="boring">use gtk::{prelude::*, Box};
+</span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -296,7 +296,7 @@ Let us see how that would look like for two <code>Switch</code> instances.</p>
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -311,7 +311,7 @@ Let us see how that would look like for two <code>Switch</code> instances.</p>
 </span><span class="boring">        .build();
 </span><span class="boring">
 </span><span class="boring">    // Set up box
-</span><span class="boring">    let gtk_box = BoxBuilder::new()
+</span><span class="boring">    let gtk_box = Box::builder()
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
@@ -332,8 +332,8 @@ We also want the binding to be bidirectional, so we specify this with the <a hre
 <p><span class="filename">Filename: listings/gobject_properties/3/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::{glib, Align, Orientation, Switch};
-</span><span class="boring">use gtk::{prelude::*, BoxBuilder};
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
+</span><span class="boring">use gtk::{prelude::*, Box};
+</span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -346,7 +346,7 @@ We also want the binding to be bidirectional, so we specify this with the <a hre
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -361,7 +361,7 @@ We also want the binding to be bidirectional, so we specify this with the <a hre
         .build();
 <span class="boring">
 </span><span class="boring">    // Set up box
-</span><span class="boring">    let gtk_box = BoxBuilder::new()
+</span><span class="boring">    let gtk_box = Box::builder()
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
@@ -497,8 +497,8 @@ Now we do not have to adapt the label in the &quot;clicked&quot; callback anymor
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::{glib, Align, Orientation};
-</span><span class="boring">use gtk::{prelude::*, BoxBuilder};
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
+</span><span class="boring">use gtk::{prelude::*, Box};
+</span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -511,7 +511,7 @@ Now we do not have to adapt the label in the &quot;clicked&quot; callback anymor
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -553,7 +553,7 @@ Now we do not have to adapt the label in the &quot;clicked&quot; callback anymor
 </span><span class="boring">    });
 </span><span class="boring">
 </span><span class="boring">    // Set up box
-</span><span class="boring">    let gtk_box = BoxBuilder::new()
+</span><span class="boring">    let gtk_box = Box::builder()
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
@@ -577,8 +577,8 @@ By leveraging <a href="http://gtk-rs.org/docs/glib/object/struct.BindingBuilder.
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::{glib, Align, Orientation};
-</span><span class="boring">use gtk::{prelude::*, BoxBuilder};
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
+</span><span class="boring">use gtk::{prelude::*, Box};
+</span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -591,7 +591,7 @@ By leveraging <a href="http://gtk-rs.org/docs/glib/object/struct.BindingBuilder.
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -633,7 +633,7 @@ By leveraging <a href="http://gtk-rs.org/docs/glib/object/struct.BindingBuilder.
 </span><span class="boring">    });
 </span><span class="boring">
 </span><span class="boring">    // Set up box
-</span><span class="boring">    let gtk_box = BoxBuilder::new()
+</span><span class="boring">    let gtk_box = Box::builder()
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)
@@ -659,8 +659,8 @@ We can do this like this:</p>
 </span><span class="boring">use custom_button::CustomButton;
 </span><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::{glib, Align, Orientation};
-</span><span class="boring">use gtk::{prelude::*, BoxBuilder};
-</span><span class="boring">use gtk::{Application, ApplicationWindowBuilder};
+</span><span class="boring">use gtk::{prelude::*, Box};
+</span><span class="boring">use gtk::{Application, ApplicationWindow};
 </span><span class="boring">
 </span><span class="boring">fn main() {
 </span><span class="boring">    // Create a new application
@@ -673,7 +673,7 @@ We can do this like this:</p>
 </span><span class="boring">
 </span><span class="boring">fn build_ui(application: &amp;Application) {
 </span><span class="boring">    // Create a window
-</span><span class="boring">    let window = ApplicationWindowBuilder::new()
+</span><span class="boring">    let window = ApplicationWindow::builder()
 </span><span class="boring">        .application(application)
 </span><span class="boring">        .title(&quot;My GTK App&quot;)
 </span><span class="boring">        .build();
@@ -715,7 +715,7 @@ We can do this like this:</p>
     });
 <span class="boring">
 </span><span class="boring">    // Set up box
-</span><span class="boring">    let gtk_box = BoxBuilder::new()
+</span><span class="boring">    let gtk_box = Box::builder()
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
 </span><span class="boring">        .margin_start(12)

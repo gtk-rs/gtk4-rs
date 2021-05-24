@@ -324,7 +324,7 @@ pretty_env_logger = &quot;0.4&quot;
 </span><span class="boring">
 </span><span class="boring">use custom_window::CustomWindow;
 </span><span class="boring">use gtk::prelude::*;
-</span><span class="boring">use gtk::{Application, ButtonBuilder};
+</span><span class="boring">use gtk::{Application, Button};
 </span><span class="boring">
 </span>fn main() {
     // Initialize logger
@@ -343,7 +343,7 @@ pretty_env_logger = &quot;0.4&quot;
 </span><span class="boring">    let window = CustomWindow::new(application);
 </span><span class="boring">
 </span><span class="boring">    // Create a button
-</span><span class="boring">    let button = ButtonBuilder::new()
+</span><span class="boring">    let button = Button::builder()
 </span><span class="boring">        .label(&quot;Press me!&quot;)
 </span><span class="boring">        .margin_top(12)
 </span><span class="boring">        .margin_bottom(12)
