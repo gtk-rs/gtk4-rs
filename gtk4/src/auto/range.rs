@@ -35,6 +35,15 @@ glib::wrapper! {
     }
 }
 
+impl Range {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Range`]
+    /// This method returns an instance of [`RangeBuilder`] which can be used to create a [`Range`].
+    pub fn builder() -> RangeBuilder {
+        RangeBuilder::default()
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A builder for generating a [`Range`].

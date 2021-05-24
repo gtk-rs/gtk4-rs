@@ -3,14 +3,11 @@
 // DO NOT EDIT
 
 use crate::Widget;
-use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -32,13 +29,6 @@ impl WidgetPaintable {
                 widget.map(|p| p.as_ref()).to_glib_none().0,
             ))
         }
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`WidgetPaintable`]
-    /// This method returns an instance of [`WidgetPaintableBuilder`] which can be used to create a [`WidgetPaintable`].
-    pub fn builder() -> WidgetPaintableBuilder {
-        WidgetPaintableBuilder::default()
     }
 
     #[doc(alias = "gtk_widget_paintable_get_widget")]
@@ -81,37 +71,6 @@ impl WidgetPaintable {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`WidgetPaintable`].
-pub struct WidgetPaintableBuilder {
-    widget: Option<Widget>,
-}
-
-impl WidgetPaintableBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`WidgetPaintableBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`WidgetPaintable`].
-    pub fn build(self) -> WidgetPaintable {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref widget) = self.widget {
-            properties.push(("widget", widget));
-        }
-        glib::Object::new::<WidgetPaintable>(&properties)
-            .expect("Failed to create an instance of WidgetPaintable")
-    }
-
-    pub fn widget<P: IsA<Widget>>(mut self, widget: &P) -> Self {
-        self.widget = Some(widget.clone().upcast());
-        self
     }
 }
 

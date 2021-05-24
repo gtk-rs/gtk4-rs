@@ -23,6 +23,15 @@ glib::wrapper! {
     }
 }
 
+impl Application {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Application`]
+    /// This method returns an instance of [`ApplicationBuilder`] which can be used to create a [`Application`].
+    pub fn builder() -> ApplicationBuilder {
+        ApplicationBuilder::default()
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A builder for generating a [`Application`].

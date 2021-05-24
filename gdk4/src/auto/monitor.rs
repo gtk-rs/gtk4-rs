@@ -5,13 +5,10 @@
 use crate::Display;
 use crate::Rectangle;
 use crate::SubpixelLayout;
-use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -25,13 +22,6 @@ glib::wrapper! {
 }
 
 impl Monitor {
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Monitor`]
-    /// This method returns an instance of [`MonitorBuilder`] which can be used to create a [`Monitor`].
-    pub fn builder() -> MonitorBuilder {
-        MonitorBuilder::default()
-    }
-
     #[doc(alias = "gdk_monitor_get_connector")]
     #[doc(alias = "get_connector")]
     pub fn connector(&self) -> Option<glib::GString> {
@@ -354,36 +344,6 @@ impl Monitor {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`Monitor`].
-pub struct MonitorBuilder {
-    display: Option<Display>,
-}
-
-impl MonitorBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`MonitorBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`Monitor`].
-    pub fn build(self) -> Monitor {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref display) = self.display {
-            properties.push(("display", display));
-        }
-        glib::Object::new::<Monitor>(&properties).expect("Failed to create an instance of Monitor")
-    }
-
-    pub fn display(mut self, display: &Display) -> Self {
-        self.display = Some(display.clone());
-        self
     }
 }
 

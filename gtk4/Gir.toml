@@ -172,7 +172,6 @@ generate = [
     "Gtk.PropagationLimit",
     "Gtk.PropagationPhase",
     "Gtk.RecentInfo",
-    "Gtk.RecentManager",
     "Gtk.RecentManagerError",
     "Gtk.Revealer",
     "Gtk.RevealerTransitionType",
@@ -181,7 +180,6 @@ generate = [
     "Gtk.ScrollStep",
     "Gtk.ScrollType",
     "Gtk.SearchEntry",
-    "Gtk.SelectionFilterModel",
     "Gtk.SelectionMode",
     "Gtk.SelectionModel",
     "Gtk.SensitivityType",
@@ -198,10 +196,8 @@ generate = [
     "Gtk.ShortcutsShortcut",
     "Gtk.ShortcutsWindow",
     "Gtk.ShortcutType",
-    "Gtk.SignalAction",
     "Gtk.SignalListItemFactory",
     "Gtk.SingleSelection",
-    "Gtk.SizeGroup",
     "Gtk.SizeGroupMode",
     "Gtk.SizeRequestMode",
     "Gtk.SliceListModel",
@@ -222,7 +218,6 @@ generate = [
     "Gtk.StringFilterMatchMode",
     "Gtk.StringList",
     "Gtk.StringObject",
-    "Gtk.StyleContext",
     "Gtk.StyleContextPrintFlags",
     "Gtk.StyleProvider",
     "Gtk.SystemSetting",
@@ -239,8 +234,6 @@ generate = [
     "Gtk.TreeDragDest",
     "Gtk.TreeDragSource",
     "Gtk.TreeExpander",
-    "Gtk.TreeListRow",
-    "Gtk.TreeListRowSorter",
     "Gtk.TreeModelFlags",
     "Gtk.TreeViewColumnSizing",
     "Gtk.TreeViewDropPosition",
@@ -249,7 +242,6 @@ generate = [
     "Gtk.Video",
     "Gtk.Viewport",
     "Gtk.VolumeButton",
-    "Gtk.WidgetPaintable",
     "Gtk.WindowControls",
     "Gtk.WindowGroup",
     "Gtk.WindowHandle",
@@ -567,6 +559,7 @@ trust_return_value_nullability = false
 [[object]]
 name = "Gtk.Builder"
 status = "generate"
+generate_builder = false
     [[object.function]]
     pattern = ".+_from_file"
     manual = true # use AsRef<Path>
@@ -641,6 +634,7 @@ trust_return_value_nullability = false
 [[object]]
 name = "Gtk.CellAreaContext"
 status = "generate"
+generate_builder = false
 trust_return_value_nullability = false
 
 [[object]]
@@ -1079,11 +1073,13 @@ status = "generate"
 [[object]]
 name = "Gtk.FileFilter"
 status = "generate"
+generate_builder = false
 trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.FlattenListModel"
 status = "generate"
+generate_builder = false
 trust_return_value_nullability = false
 
 [[object]]
@@ -1353,6 +1349,7 @@ trust_return_value_nullability = false
 [[object]]
 name = "Gtk.MapListModel"
 status = "generate"
+generate_builder = false
     [[object.function]]
     name = "new"
         [[object.function.parameter]]
@@ -1418,11 +1415,13 @@ trust_return_value_nullability = false
 [[object]]
 name = "Gtk.MultiSelection"
 status = "generate"
+generate_builder = false
 trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.NamedAction"
 status = "generate"
+generate_builder = false
 trust_return_value_nullability = false
 
 [[object]]
@@ -1443,6 +1442,7 @@ trust_return_value_nullability = false
 [[object]]
 name = "Gtk.NoSelection"
 status = "generate"
+generate_builder = false
 trust_return_value_nullability = false
 
 [[object]]
@@ -1681,6 +1681,11 @@ status = "generate"
     inhibit = true
 
 [[object]]
+name = "Gtk.RecentManager"
+status = "generate"
+generate_builder = false
+
+[[object]]
 name = "Gtk.Scale"
 status = "generate"
 manual_traits = ["ScaleExtManual"]
@@ -1744,6 +1749,11 @@ status = "generate"
     generate = ["notify"] # the prop has a getter/setter already
 
 [[object]]
+name = "Gtk.SelectionFilterModel"
+status = "generate"
+generate_builder = false
+
+[[object]]
 name = "Gtk.ShortcutsSection"
 status = "generate"
     [[object.signal]]
@@ -1770,6 +1780,16 @@ manual_traits = ["ShortcutTriggerExtManual"]
     name = "trigger"
     manual = true # to handle gdk::Event
     doc_trait_name = "ShortcutTriggerExtManual"
+
+[[object]]
+name = "Gtk.SignalAction"
+status = "generate"
+generate_builder = false
+
+[[object]]
+name = "Gtk.SizeGroup"
+status = "generate"
+generate_builder = false
 
 [[object]]
 name = "Gtk.Snapshot"
@@ -1844,6 +1864,11 @@ status = "generate"
     [[object.function]]
     name = "set_expression"
     manual = true # use AsRef<Expression>
+
+[[object]]
+name = "Gtk.StyleContext"
+status = "generate"
+generate_builder = false
 
 [[object]]
 name = "Gtk.Switch"
@@ -1969,6 +1994,16 @@ status = "generate"
 trust_return_value_nullability = false
 
 [[object]]
+name = "Gtk.TreeListRow"
+status = "generate"
+generate_builder = false
+
+[[object]]
+name = "Gtk.TreeListRowSorter"
+status = "generate"
+generate_builder = false
+
+[[object]]
 name = "Gtk.TreeModel"
 status = "generate"
 manual_traits = ["TreeModelExtManual"]
@@ -2029,6 +2064,7 @@ manual_traits = ["TreeModelExtManual"]
 [[object]]
 name = "Gtk.TreeModelFilter"
 status = "generate"
+generate_builder = false
 trust_return_value_nullability = false
 manual_traits = ["TreeModelFilterExtManual"]
     [[object.function]]
@@ -2062,6 +2098,7 @@ manual_traits = ["TreeModelFilterExtManual"]
 [[object]]
 name = "Gtk.TreeModelSort"
 status = "generate"
+generate_builder = false
     [[object.function]]
     name = "convert_child_path_to_path"
         [[object.function.parameter]]
@@ -2180,6 +2217,7 @@ status = "generate"
 [[object]]
 name = "Gtk.TreeSelection"
 status = "generate"
+generate_builder = false
 trust_return_value_nullability = false
     [[object.function]]
     pattern = ".+"
@@ -2425,6 +2463,11 @@ manual_traits = ["WidgetExtManual"]
     [[object.signal]]
     name = "mnemonic-activate"
     inhibit = true
+
+[[object]]
+name = "Gtk.WidgetPaintable"
+status = "generate"
+generate_builder = false
 
 [[object]]
 name = "Gtk.Window"

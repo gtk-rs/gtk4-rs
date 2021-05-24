@@ -171,7 +171,7 @@ status = "generate"
 [[object]]
 name = "Gdk.AppLaunchContext"
 status = "generate"
-generate_builder = true
+generate_builder = false
 
 [[object]]
 name = "Gdk.Clipboard"
@@ -397,7 +397,7 @@ status = "generate"
 [[object]]
 name = "Gdk.DisplayManager"
 status = "generate"
-generate_builder = true
+generate_builder = false
 
 [[object]]
 name = "Gdk.DrawContext"
@@ -430,7 +430,7 @@ status = "generate"
 [[object]]
 name = "Gdk.Monitor"
 status = "generate"
-generate_builder = true
+generate_builder = false
 
 [[object]]
 name = "Gdk.PopupLayout"

@@ -3,13 +3,10 @@
 // DO NOT EDIT
 
 use crate::Display;
-use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -23,13 +20,6 @@ glib::wrapper! {
 }
 
 impl DisplayManager {
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`DisplayManager`]
-    /// This method returns an instance of [`DisplayManagerBuilder`] which can be used to create a [`DisplayManager`].
-    pub fn builder() -> DisplayManagerBuilder {
-        DisplayManagerBuilder::default()
-    }
-
     #[doc(alias = "gdk_display_manager_get_default_display")]
     #[doc(alias = "get_default_display")]
     pub fn default_display(&self) -> Option<Display> {
@@ -127,37 +117,6 @@ impl DisplayManager {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`DisplayManager`].
-pub struct DisplayManagerBuilder {
-    default_display: Option<Display>,
-}
-
-impl DisplayManagerBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`DisplayManagerBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`DisplayManager`].
-    pub fn build(self) -> DisplayManager {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref default_display) = self.default_display {
-            properties.push(("default-display", default_display));
-        }
-        glib::Object::new::<DisplayManager>(&properties)
-            .expect("Failed to create an instance of DisplayManager")
-    }
-
-    pub fn default_display(mut self, default_display: &Display) -> Self {
-        self.default_display = Some(default_display.clone());
-        self
     }
 }
 
