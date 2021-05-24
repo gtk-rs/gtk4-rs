@@ -33,7 +33,7 @@ fn main() {
     );
 
     application.connect_activate(|app| {
-        let window = gtk::ApplicationWindowBuilder::new()
+        let window = gtk::ApplicationWindow::builder()
             .default_width(600)
             .default_height(600)
             .application(app)

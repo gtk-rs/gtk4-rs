@@ -26,7 +26,7 @@ fn build_ui(application: &gtk::Application) {
     let container = gtk::Box::new(gtk::Orientation::Vertical, 6);
     window.set_child(Some(&container));
 
-    let search_bar = gtk::SearchBarBuilder::new()
+    let search_bar = gtk::SearchBar::builder()
         .valign(gtk::Align::Start)
         .key_capture_widget(&window)
         .build();
@@ -42,7 +42,7 @@ fn build_ui(application: &gtk::Application) {
     entry.set_hexpand(true);
     search_bar.set_child(Some(&entry));
 
-    let label = gtk::LabelBuilder::new()
+    let label = gtk::Label::builder()
         .label("Type to start search")
         .vexpand(true)
         .halign(gtk::Align::Center)

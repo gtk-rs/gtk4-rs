@@ -61,7 +61,7 @@ fn build_ui(application: &gtk::Application) {
     }));
     horizontal_container.append(&add_tag_button);
 
-    let show_spinner = gtk::CheckButtonBuilder::new()
+    let show_spinner = gtk::CheckButton::builder()
         .halign(gtk::Align::End)
         .label("Show Spinner")
         .build();

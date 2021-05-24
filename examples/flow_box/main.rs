@@ -15,14 +15,14 @@ fn main() {
 }
 
 fn build_ui(app: &gtk::Application) {
-    let window = gtk::ApplicationWindowBuilder::new()
+    let window = gtk::ApplicationWindow::builder()
         .default_width(600)
         .default_height(600)
         .application(app)
         .title("FlowBox")
         .build();
 
-    let flow_box = gtk::FlowBoxBuilder::new()
+    let flow_box = gtk::FlowBox::builder()
         .valign(gtk::Align::Start)
         .max_children_per_line(30)
         .min_children_per_line(4)
@@ -34,7 +34,7 @@ fn build_ui(app: &gtk::Application) {
         flow_box.insert(&color_widget, -1);
     });
 
-    let scrolled_window = gtk::ScrolledWindowBuilder::new()
+    let scrolled_window = gtk::ScrolledWindow::builder()
         .hscrollbar_policy(gtk::PolicyType::Never) // Disable horizontal scrolling
         .min_content_width(360)
         .child(&flow_box)
@@ -46,7 +46,7 @@ fn build_ui(app: &gtk::Application) {
 
 fn create_color_button(color: &'static str) -> gtk::Button {
     let button = gtk::Button::new();
-    let drawing_area = gtk::DrawingAreaBuilder::new()
+    let drawing_area = gtk::DrawingArea::builder()
         .content_height(24)
         .content_width(24)
         .build();

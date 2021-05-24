@@ -18,7 +18,7 @@ fn build_ui(application: &gtk::Application) {
     window.set_default_size(200, 120);
 
     // Here we construct the grid that is going contain our buttons.
-    let grid = gtk::GridBuilder::new()
+    let grid = gtk::Grid::builder()
         .margin_start(6)
         .margin_end(6)
         .margin_top(6)

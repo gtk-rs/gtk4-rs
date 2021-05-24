@@ -14,7 +14,7 @@ fn main() {
 }
 
 fn build_ui(app: &gtk::Application) {
-    let window = gtk::ApplicationWindowBuilder::new()
+    let window = gtk::ApplicationWindow::builder()
         .default_width(600)
         .default_height(600)
         .application(app)
@@ -77,7 +77,7 @@ fn build_ui(app: &gtk::Application) {
         if let Err(err) = app_info.launch(&[], Some(&context)) {
             let parent_window = list_view.root().unwrap().downcast::<gtk::Window>().unwrap();
 
-            gtk::MessageDialogBuilder::new()
+            gtk::MessageDialog::builder()
                 .text(&format!("Failed to start {}", app_info.name()))
                 .secondary_text(&err.to_string())
                 .message_type(gtk::MessageType::Error)
@@ -88,7 +88,7 @@ fn build_ui(app: &gtk::Application) {
         }
     });
 
-    let scrolled_window = gtk::ScrolledWindowBuilder::new()
+    let scrolled_window = gtk::ScrolledWindow::builder()
         .hscrollbar_policy(gtk::PolicyType::Never) // Disable horizontal scrolling
         .min_content_width(360)
         .child(&list_view)

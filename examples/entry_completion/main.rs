@@ -28,7 +28,7 @@ fn main() {
 
 fn build_ui(application: &Application) {
     // create the main window
-    let window = gtk::ApplicationWindowBuilder::new()
+    let window = gtk::ApplicationWindow::builder()
         .application(application)
         .title("Entry with autocompletion")
         .default_width(600)
@@ -58,7 +58,7 @@ fn build_ui(application: &Application) {
     let input_field = Entry::new();
     input_field.set_completion(Some(&completion_countries));
 
-    let row = gtk::BoxBuilder::new()
+    let row = gtk::Box::builder()
         .orientation(Orientation::Vertical)
         .spacing(12)
         .margin_start(24)
