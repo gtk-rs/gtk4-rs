@@ -25,6 +25,15 @@ glib::wrapper! {
     }
 }
 
+impl GestureSingle {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`GestureSingle`]
+    /// This method returns an instance of [`GestureSingleBuilder`] which can be used to create a [`GestureSingle`].
+    pub fn builder() -> GestureSingleBuilder {
+        GestureSingleBuilder::default()
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A builder for generating a [`GestureSingle`].

@@ -9,7 +9,6 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem;
@@ -20,37 +19,6 @@ glib::wrapper! {
 
     match fn {
         type_ => || ffi::gtk_cell_area_context_get_type(),
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`CellAreaContext`].
-pub struct CellAreaContextBuilder {
-    area: Option<CellArea>,
-}
-
-impl CellAreaContextBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`CellAreaContextBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`CellAreaContext`].
-    pub fn build(self) -> CellAreaContext {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref area) = self.area {
-            properties.push(("area", area));
-        }
-        glib::Object::new::<CellAreaContext>(&properties)
-            .expect("Failed to create an instance of CellAreaContext")
-    }
-
-    pub fn area<P: IsA<CellArea>>(mut self, area: &P) -> Self {
-        self.area = Some(area.clone().upcast());
-        self
     }
 }
 

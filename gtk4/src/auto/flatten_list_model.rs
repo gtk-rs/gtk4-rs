@@ -2,14 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -31,13 +28,6 @@ impl FlattenListModel {
                 model.map(|p| p.as_ref()).to_glib_full(),
             ))
         }
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`FlattenListModel`]
-    /// This method returns an instance of [`FlattenListModelBuilder`] which can be used to create a [`FlattenListModel`].
-    pub fn builder() -> FlattenListModelBuilder {
-        FlattenListModelBuilder::default()
     }
 
     #[doc(alias = "gtk_flatten_list_model_get_model")]
@@ -91,37 +81,6 @@ impl FlattenListModel {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`FlattenListModel`].
-pub struct FlattenListModelBuilder {
-    model: Option<gio::ListModel>,
-}
-
-impl FlattenListModelBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`FlattenListModelBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`FlattenListModel`].
-    pub fn build(self) -> FlattenListModel {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref model) = self.model {
-            properties.push(("model", model));
-        }
-        glib::Object::new::<FlattenListModel>(&properties)
-            .expect("Failed to create an instance of FlattenListModel")
-    }
-
-    pub fn model<P: IsA<gio::ListModel>>(mut self, model: &P) -> Self {
-        self.model = Some(model.clone().upcast());
-        self
     }
 }
 

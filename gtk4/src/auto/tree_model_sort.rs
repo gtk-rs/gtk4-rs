@@ -7,11 +7,8 @@ use crate::TreeIter;
 use crate::TreeModel;
 use crate::TreePath;
 use crate::TreeSortable;
-use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::fmt;
 
 glib::wrapper! {
@@ -32,44 +29,6 @@ impl TreeModelSort {
                 child_model.as_ref().to_glib_none().0,
             ))
         }
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TreeModelSort`]
-    /// This method returns an instance of [`TreeModelSortBuilder`] which can be used to create a [`TreeModelSort`].
-    pub fn builder() -> TreeModelSortBuilder {
-        TreeModelSortBuilder::default()
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`TreeModelSort`].
-pub struct TreeModelSortBuilder {
-    model: Option<TreeModel>,
-}
-
-impl TreeModelSortBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`TreeModelSortBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`TreeModelSort`].
-    pub fn build(self) -> TreeModelSort {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref model) = self.model {
-            properties.push(("model", model));
-        }
-        glib::Object::new::<TreeModelSort>(&properties)
-            .expect("Failed to create an instance of TreeModelSort")
-    }
-
-    pub fn model<P: IsA<TreeModel>>(mut self, model: &P) -> Self {
-        self.model = Some(model.clone().upcast());
-        self
     }
 }
 

@@ -4,7 +4,6 @@
 
 mod app_launch_context;
 pub use self::app_launch_context::AppLaunchContext;
-pub use self::app_launch_context::AppLaunchContextBuilder;
 
 mod cairo_context;
 pub use self::cairo_context::CairoContext;
@@ -41,7 +40,6 @@ pub use self::display::Display;
 
 mod display_manager;
 pub use self::display_manager::DisplayManager;
-pub use self::display_manager::DisplayManagerBuilder;
 
 mod drag;
 pub use self::drag::Drag;
@@ -69,7 +67,6 @@ pub use self::memory_texture::MemoryTexture;
 
 mod monitor;
 pub use self::monitor::Monitor;
-pub use self::monitor::MonitorBuilder;
 
 mod paintable;
 pub use self::paintable::{Paintable, NONE_PAINTABLE};

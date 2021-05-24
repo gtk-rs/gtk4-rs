@@ -3,14 +3,11 @@
 // DO NOT EDIT
 
 use crate::SelectionModel;
-use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -32,13 +29,6 @@ impl NoSelection {
                 model.map(|p| p.as_ref()).to_glib_full(),
             ))
         }
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`NoSelection`]
-    /// This method returns an instance of [`NoSelectionBuilder`] which can be used to create a [`NoSelection`].
-    pub fn builder() -> NoSelectionBuilder {
-        NoSelectionBuilder::default()
     }
 
     #[doc(alias = "gtk_no_selection_get_model")]
@@ -78,37 +68,6 @@ impl NoSelection {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`NoSelection`].
-pub struct NoSelectionBuilder {
-    model: Option<gio::ListModel>,
-}
-
-impl NoSelectionBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`NoSelectionBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`NoSelection`].
-    pub fn build(self) -> NoSelection {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref model) = self.model {
-            properties.push(("model", model));
-        }
-        glib::Object::new::<NoSelection>(&properties)
-            .expect("Failed to create an instance of NoSelection")
-    }
-
-    pub fn model<P: IsA<gio::ListModel>>(mut self, model: &P) -> Self {
-        self.model = Some(model.clone().upcast());
-        self
     }
 }
 

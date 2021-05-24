@@ -3,11 +3,8 @@
 // DO NOT EDIT
 
 use crate::Display;
-use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::fmt;
 
 glib::wrapper! {
@@ -19,13 +16,6 @@ glib::wrapper! {
 }
 
 impl AppLaunchContext {
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`AppLaunchContext`]
-    /// This method returns an instance of [`AppLaunchContextBuilder`] which can be used to create a [`AppLaunchContext`].
-    pub fn builder() -> AppLaunchContextBuilder {
-        AppLaunchContextBuilder::default()
-    }
-
     #[doc(alias = "gdk_app_launch_context_get_display")]
     #[doc(alias = "get_display")]
     pub fn display(&self) -> Option<Display> {
@@ -68,37 +58,6 @@ impl AppLaunchContext {
         unsafe {
             ffi::gdk_app_launch_context_set_timestamp(self.to_glib_none().0, timestamp);
         }
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`AppLaunchContext`].
-pub struct AppLaunchContextBuilder {
-    display: Option<Display>,
-}
-
-impl AppLaunchContextBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`AppLaunchContextBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`AppLaunchContext`].
-    pub fn build(self) -> AppLaunchContext {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref display) = self.display {
-            properties.push(("display", display));
-        }
-        glib::Object::new::<AppLaunchContext>(&properties)
-            .expect("Failed to create an instance of AppLaunchContext")
-    }
-
-    pub fn display(mut self, display: &Display) -> Self {
-        self.display = Some(display.clone());
-        self
     }
 }
 

@@ -2,13 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // DO NOT EDIT
 
-use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -22,13 +19,6 @@ glib::wrapper! {
 }
 
 impl TreeListRow {
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TreeListRow`]
-    /// This method returns an instance of [`TreeListRowBuilder`] which can be used to create a [`TreeListRow`].
-    pub fn builder() -> TreeListRowBuilder {
-        TreeListRowBuilder::default()
-    }
-
     #[doc(alias = "gtk_tree_list_row_get_child_row")]
     #[doc(alias = "get_child_row")]
     pub fn child_row(&self, position: u32) -> Option<TreeListRow> {
@@ -204,37 +194,6 @@ impl TreeListRow {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`TreeListRow`].
-pub struct TreeListRowBuilder {
-    expanded: Option<bool>,
-}
-
-impl TreeListRowBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`TreeListRowBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`TreeListRow`].
-    pub fn build(self) -> TreeListRow {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref expanded) = self.expanded {
-            properties.push(("expanded", expanded));
-        }
-        glib::Object::new::<TreeListRow>(&properties)
-            .expect("Failed to create an instance of TreeListRow")
-    }
-
-    pub fn expanded(mut self, expanded: bool) -> Self {
-        self.expanded = Some(expanded);
-        self
     }
 }
 

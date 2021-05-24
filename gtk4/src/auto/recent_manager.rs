@@ -10,7 +10,6 @@ use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
 use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -31,13 +30,6 @@ impl RecentManager {
         unsafe { from_glib_full(ffi::gtk_recent_manager_new()) }
     }
 
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`RecentManager`]
-    /// This method returns an instance of [`RecentManagerBuilder`] which can be used to create a [`RecentManager`].
-    pub fn builder() -> RecentManagerBuilder {
-        RecentManagerBuilder::default()
-    }
-
     #[doc(alias = "gtk_recent_manager_get_default")]
     #[doc(alias = "get_default")]
     pub fn default() -> RecentManager {
@@ -49,37 +41,6 @@ impl RecentManager {
 impl Default for RecentManager {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`RecentManager`].
-pub struct RecentManagerBuilder {
-    filename: Option<String>,
-}
-
-impl RecentManagerBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`RecentManagerBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`RecentManager`].
-    pub fn build(self) -> RecentManager {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref filename) = self.filename {
-            properties.push(("filename", filename));
-        }
-        glib::Object::new::<RecentManager>(&properties)
-            .expect("Failed to create an instance of RecentManager")
-    }
-
-    pub fn filename(mut self, filename: &str) -> Self {
-        self.filename = Some(filename.to_string());
-        self
     }
 }
 

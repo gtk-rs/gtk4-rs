@@ -11,8 +11,6 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -26,13 +24,6 @@ glib::wrapper! {
 }
 
 impl StyleContext {
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`StyleContext`]
-    /// This method returns an instance of [`StyleContextBuilder`] which can be used to create a [`StyleContext`].
-    pub fn builder() -> StyleContextBuilder {
-        StyleContextBuilder::default()
-    }
-
     #[doc(alias = "gtk_style_context_add_provider_for_display")]
     pub fn add_provider_for_display<P: IsA<StyleProvider>>(
         display: &gdk::Display,
@@ -61,37 +52,6 @@ impl StyleContext {
                 provider.as_ref().to_glib_none().0,
             );
         }
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`StyleContext`].
-pub struct StyleContextBuilder {
-    display: Option<gdk::Display>,
-}
-
-impl StyleContextBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`StyleContextBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`StyleContext`].
-    pub fn build(self) -> StyleContext {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref display) = self.display {
-            properties.push(("display", display));
-        }
-        glib::Object::new::<StyleContext>(&properties)
-            .expect("Failed to create an instance of StyleContext")
-    }
-
-    pub fn display(mut self, display: &gdk::Display) -> Self {
-        self.display = Some(display.clone());
-        self
     }
 }
 

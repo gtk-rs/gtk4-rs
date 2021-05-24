@@ -5,14 +5,11 @@
 use crate::Buildable;
 use crate::SizeGroupMode;
 use crate::Widget;
-use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -30,13 +27,6 @@ impl SizeGroup {
     pub fn new(mode: SizeGroupMode) -> SizeGroup {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::gtk_size_group_new(mode.into_glib())) }
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`SizeGroup`]
-    /// This method returns an instance of [`SizeGroupBuilder`] which can be used to create a [`SizeGroup`].
-    pub fn builder() -> SizeGroupBuilder {
-        SizeGroupBuilder::default()
     }
 
     #[doc(alias = "gtk_size_group_add_widget")]
@@ -100,37 +90,6 @@ impl SizeGroup {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`SizeGroup`].
-pub struct SizeGroupBuilder {
-    mode: Option<SizeGroupMode>,
-}
-
-impl SizeGroupBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`SizeGroupBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`SizeGroup`].
-    pub fn build(self) -> SizeGroup {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref mode) = self.mode {
-            properties.push(("mode", mode));
-        }
-        glib::Object::new::<SizeGroup>(&properties)
-            .expect("Failed to create an instance of SizeGroup")
-    }
-
-    pub fn mode(mut self, mode: SizeGroupMode) -> Self {
-        self.mode = Some(mode);
-        self
     }
 }
 
