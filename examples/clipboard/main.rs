@@ -12,7 +12,7 @@ fn main() {
 }
 
 fn build_ui(application: &gtk::Application) {
-    let window = gtk::ApplicationWindowBuilder::new()
+    let window = gtk::ApplicationWindow::builder()
         .application(application)
         .title("Clipboard")
         .default_width(660)
@@ -22,7 +22,7 @@ fn build_ui(application: &gtk::Application) {
     let display = gdk::Display::default().unwrap();
     let clipboard = display.clipboard();
 
-    let container = gtk::BoxBuilder::new()
+    let container = gtk::Box::builder()
         .orientation(gtk::Orientation::Vertical)
         .margin_top(24)
         .margin_bottom(24)
@@ -34,20 +34,20 @@ fn build_ui(application: &gtk::Application) {
         .build();
 
     // The text copy/paste part
-    let title = gtk::LabelBuilder::new()
+    let title = gtk::Label::builder()
         .label("Text")
         .halign(gtk::Align::Start)
         .build();
     title.add_css_class("title-2");
     container.append(&title);
 
-    let text_container = gtk::BoxBuilder::new()
+    let text_container = gtk::Box::builder()
         .halign(gtk::Align::Center)
         .orientation(gtk::Orientation::Horizontal)
         .spacing(24)
         .build();
 
-    let from_entry = gtk::EntryBuilder::new()
+    let from_entry = gtk::Entry::builder()
         .placeholder_text("Type text to copy")
         .build();
     text_container.append(&from_entry);
@@ -74,14 +74,14 @@ fn build_ui(application: &gtk::Application) {
     container.append(&text_container);
 
     // The texture copy/paste part
-    let title = gtk::LabelBuilder::new()
+    let title = gtk::Label::builder()
         .label("Texture")
         .halign(gtk::Align::Start)
         .build();
     title.add_css_class("title-2");
     container.append(&title);
 
-    let texture_container = gtk::BoxBuilder::new()
+    let texture_container = gtk::Box::builder()
         .orientation(gtk::Orientation::Horizontal)
         .halign(gtk::Align::Center)
         .spacing(24)
@@ -90,12 +90,12 @@ fn build_ui(application: &gtk::Application) {
     let file = gio::File::for_path("./examples/clipboard/asset.png");
     let asset_paintable = gdk::Texture::from_file(&file).unwrap();
 
-    let image_from = gtk::ImageBuilder::new()
+    let image_from = gtk::Image::builder()
         .pixel_size(96)
         .paintable(&asset_paintable)
         .build();
     texture_container.append(&image_from);
-    let copy_texture_btn = gtk::ButtonBuilder::new()
+    let copy_texture_btn = gtk::Button::builder()
         .label("Copy")
         .valign(gtk::Align::Center)
         .build();
@@ -105,12 +105,12 @@ fn build_ui(application: &gtk::Application) {
     }));
     texture_container.append(&copy_texture_btn);
 
-    let image_into = gtk::ImageBuilder::new()
+    let image_into = gtk::Image::builder()
         .pixel_size(96)
         .icon_name("image-missing")
         .build();
     texture_container.append(&image_into);
-    let paste_texture_btn = gtk::ButtonBuilder::new()
+    let paste_texture_btn = gtk::Button::builder()
         .label("Paste")
         .valign(gtk::Align::Center)
         .build();

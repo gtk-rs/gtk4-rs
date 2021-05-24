@@ -1,5 +1,5 @@
 use gtk::prelude::*;
-use gtk::{Align, Application, ApplicationWindowBuilder, ButtonBuilder};
+use gtk::{Align, Application, ApplicationWindow, Button};
 
 fn main() {
     let application = Application::new(
@@ -11,14 +11,14 @@ fn main() {
 }
 
 fn build_ui(application: &Application) {
-    let window = ApplicationWindowBuilder::new()
+    let window = ApplicationWindow::builder()
         .application(application)
         .title("First GTK Program")
         .default_width(350)
         .default_height(70)
         .build();
 
-    let button = ButtonBuilder::new()
+    let button = Button::builder()
         .margin_top(10)
         .margin_bottom(10)
         .margin_start(10)

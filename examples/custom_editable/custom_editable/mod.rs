@@ -35,7 +35,7 @@ impl CustomEditable {
         }
 
         if show_spinner {
-            let spinner = gtk::SpinnerBuilder::new()
+            let spinner = gtk::Spinner::builder()
                 .halign(gtk::Align::Center)
                 .valign(gtk::Align::Center)
                 .build();

@@ -22,7 +22,7 @@ impl CustomTag {
         }
 
         if has_close_button {
-            let button = gtk::ButtonBuilder::new()
+            let button = gtk::Button::builder()
                 .halign(gtk::Align::Center)
                 .valign(gtk::Align::Center)
                 .has_frame(false)
