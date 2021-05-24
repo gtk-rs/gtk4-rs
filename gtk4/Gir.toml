@@ -561,7 +561,11 @@ name = "Gtk.Builder"
 status = "generate"
 generate_builder = false
     [[object.function]]
-    pattern = ".+_from_file"
+    name = "add_from_file"
+    manual = true # use AsRef<Path>
+    [[object.function]]
+    name = "new_from_file"
+    rename = "from_file"
     manual = true # use AsRef<Path>
     [[object.function]]
     name = "get_object"
