@@ -5,7 +5,7 @@ use gtk::prelude::*;
 use std::rc::Rc;
 
 fn main() {
-    let application = gtk::ApplicationBuilder::new()
+    let application = gtk::Application::builder()
         .application_id("com.github.gtk-rs.examples.dialog")
         .build();
 
@@ -14,14 +14,14 @@ fn main() {
 }
 
 fn build_ui(application: &gtk::Application) {
-    let button = gtk::ButtonBuilder::new()
+    let button = gtk::Button::builder()
         .label("Open Dialog")
         .halign(gtk::Align::Center)
         .valign(gtk::Align::Center)
         .build();
 
     let window = Rc::new(
-        gtk::ApplicationWindowBuilder::new()
+        gtk::ApplicationWindow::builder()
             .application(application)
             .title("Dialog Example")
             .default_width(350)
@@ -46,7 +46,7 @@ fn build_ui(application: &gtk::Application) {
 }
 
 async fn dialog<W: IsA<gtk::Window>>(window: Rc<W>) {
-    let question_dialog = gtk::MessageDialogBuilder::new()
+    let question_dialog = gtk::MessageDialog::builder()
         .transient_for(&*window)
         .modal(true)
         .buttons(gtk::ButtonsType::OkCancel)
@@ -56,7 +56,7 @@ async fn dialog<W: IsA<gtk::Window>>(window: Rc<W>) {
     let answer = question_dialog.run_future().await;
     question_dialog.close();
 
-    let info_dialog = gtk::MessageDialogBuilder::new()
+    let info_dialog = gtk::MessageDialog::builder()
         .transient_for(&*window)
         .modal(true)
         .buttons(gtk::ButtonsType::Close)
