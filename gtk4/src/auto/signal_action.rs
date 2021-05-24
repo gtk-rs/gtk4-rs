@@ -3,10 +3,7 @@
 // DO NOT EDIT
 
 use crate::ShortcutAction;
-use glib::object::Cast;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::fmt;
 
 glib::wrapper! {
@@ -24,13 +21,6 @@ impl SignalAction {
         unsafe { from_glib_full(ffi::gtk_signal_action_new(signal_name.to_glib_none().0)) }
     }
 
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`SignalAction`]
-    /// This method returns an instance of [`SignalActionBuilder`] which can be used to create a [`SignalAction`].
-    pub fn builder() -> SignalActionBuilder {
-        SignalActionBuilder::default()
-    }
-
     #[doc(alias = "gtk_signal_action_get_signal_name")]
     #[doc(alias = "get_signal_name")]
     pub fn signal_name(&self) -> glib::GString {
@@ -39,37 +29,6 @@ impl SignalAction {
                 self.to_glib_none().0,
             ))
         }
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`SignalAction`].
-pub struct SignalActionBuilder {
-    signal_name: Option<String>,
-}
-
-impl SignalActionBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`SignalActionBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`SignalAction`].
-    pub fn build(self) -> SignalAction {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref signal_name) = self.signal_name {
-            properties.push(("signal-name", signal_name));
-        }
-        glib::Object::new::<SignalAction>(&properties)
-            .expect("Failed to create an instance of SignalAction")
-    }
-
-    pub fn signal_name(mut self, signal_name: &str) -> Self {
-        self.signal_name = Some(signal_name.to_string());
-        self
     }
 }
 

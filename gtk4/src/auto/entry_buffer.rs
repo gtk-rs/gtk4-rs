@@ -21,6 +21,15 @@ glib::wrapper! {
     }
 }
 
+impl EntryBuffer {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`EntryBuffer`]
+    /// This method returns an instance of [`EntryBufferBuilder`] which can be used to create a [`EntryBuffer`].
+    pub fn builder() -> EntryBufferBuilder {
+        EntryBufferBuilder::default()
+    }
+}
+
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A builder for generating a [`EntryBuffer`].

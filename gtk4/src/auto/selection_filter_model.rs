@@ -3,14 +3,11 @@
 // DO NOT EDIT
 
 use crate::SelectionModel;
-use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -32,13 +29,6 @@ impl SelectionFilterModel {
                 model.map(|p| p.as_ref()).to_glib_none().0,
             ))
         }
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`SelectionFilterModel`]
-    /// This method returns an instance of [`SelectionFilterModelBuilder`] which can be used to create a [`SelectionFilterModel`].
-    pub fn builder() -> SelectionFilterModelBuilder {
-        SelectionFilterModelBuilder::default()
     }
 
     #[doc(alias = "gtk_selection_filter_model_get_model")]
@@ -85,37 +75,6 @@ impl SelectionFilterModel {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`SelectionFilterModel`].
-pub struct SelectionFilterModelBuilder {
-    model: Option<SelectionModel>,
-}
-
-impl SelectionFilterModelBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`SelectionFilterModelBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`SelectionFilterModel`].
-    pub fn build(self) -> SelectionFilterModel {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref model) = self.model {
-            properties.push(("model", model));
-        }
-        glib::Object::new::<SelectionFilterModel>(&properties)
-            .expect("Failed to create an instance of SelectionFilterModel")
-    }
-
-    pub fn model<P: IsA<SelectionModel>>(mut self, model: &P) -> Self {
-        self.model = Some(model.clone().upcast());
-        self
     }
 }
 

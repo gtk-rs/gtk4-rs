@@ -3,14 +3,11 @@
 // DO NOT EDIT
 
 use crate::Sorter;
-use glib::object::Cast;
 use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -32,13 +29,6 @@ impl TreeListRowSorter {
                 sorter.map(|p| p.as_ref()).to_glib_full(),
             ))
         }
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TreeListRowSorter`]
-    /// This method returns an instance of [`TreeListRowSorterBuilder`] which can be used to create a [`TreeListRowSorter`].
-    pub fn builder() -> TreeListRowSorterBuilder {
-        TreeListRowSorterBuilder::default()
     }
 
     #[doc(alias = "gtk_tree_list_row_sorter_get_sorter")]
@@ -85,37 +75,6 @@ impl TreeListRowSorter {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`TreeListRowSorter`].
-pub struct TreeListRowSorterBuilder {
-    sorter: Option<Sorter>,
-}
-
-impl TreeListRowSorterBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`TreeListRowSorterBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`TreeListRowSorter`].
-    pub fn build(self) -> TreeListRowSorter {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref sorter) = self.sorter {
-            properties.push(("sorter", sorter));
-        }
-        glib::Object::new::<TreeListRowSorter>(&properties)
-            .expect("Failed to create an instance of TreeListRowSorter")
-    }
-
-    pub fn sorter<P: IsA<Sorter>>(mut self, sorter: &P) -> Self {
-        self.sorter = Some(sorter.clone().upcast());
-        self
     }
 }
 

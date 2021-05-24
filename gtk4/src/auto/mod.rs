@@ -91,7 +91,6 @@ pub use self::buildable::{Buildable, NONE_BUILDABLE};
 
 mod builder;
 pub use self::builder::Builder;
-pub use self::builder::BuilderBuilder;
 
 mod builder_list_item_factory;
 pub use self::builder_list_item_factory::BuilderListItemFactory;
@@ -119,7 +118,6 @@ pub use self::cell_area_box::CellAreaBox;
 pub use self::cell_area_box::CellAreaBoxBuilder;
 
 mod cell_area_context;
-pub use self::cell_area_context::CellAreaContextBuilder;
 pub use self::cell_area_context::{CellAreaContext, NONE_CELL_AREA_CONTEXT};
 
 mod cell_editable;
@@ -341,7 +339,6 @@ pub use self::file_chooser_widget::FileChooserWidgetBuilder;
 
 mod file_filter;
 pub use self::file_filter::FileFilter;
-pub use self::file_filter::FileFilterBuilder;
 
 mod filter;
 pub use self::filter::{Filter, NONE_FILTER};
@@ -363,7 +360,6 @@ pub use self::fixed_layout_child::FixedLayoutChildBuilder;
 
 mod flatten_list_model;
 pub use self::flatten_list_model::FlattenListModel;
-pub use self::flatten_list_model::FlattenListModelBuilder;
 
 mod flow_box;
 pub use self::flow_box::FlowBox;
@@ -535,7 +531,6 @@ pub use self::lock_button::LockButtonBuilder;
 
 mod map_list_model;
 pub use self::map_list_model::MapListModel;
-pub use self::map_list_model::MapListModelBuilder;
 
 mod media_controls;
 pub use self::media_controls::MediaControls;
@@ -567,14 +562,12 @@ pub use self::multi_filter::{MultiFilter, NONE_MULTI_FILTER};
 
 mod multi_selection;
 pub use self::multi_selection::MultiSelection;
-pub use self::multi_selection::MultiSelectionBuilder;
 
 mod multi_sorter;
 pub use self::multi_sorter::MultiSorter;
 
 mod named_action;
 pub use self::named_action::NamedAction;
-pub use self::named_action::NamedActionBuilder;
 
 mod native;
 pub use self::native::{Native, NONE_NATIVE};
@@ -587,7 +580,6 @@ pub use self::never_trigger::NeverTrigger;
 
 mod no_selection;
 pub use self::no_selection::NoSelection;
-pub use self::no_selection::NoSelectionBuilder;
 
 mod notebook;
 pub use self::notebook::Notebook;
@@ -707,11 +699,9 @@ pub use self::progress_bar::ProgressBar;
 pub use self::progress_bar::ProgressBarBuilder;
 
 mod range;
-pub use self::range::RangeBuilder;
 pub use self::range::{Range, NONE_RANGE};
 
 mod recent_manager;
-pub use self::recent_manager::RecentManagerBuilder;
 pub use self::recent_manager::{RecentManager, NONE_RECENT_MANAGER};
 
 mod revealer;
@@ -750,7 +740,6 @@ pub use self::search_entry::SearchEntryBuilder;
 
 mod selection_filter_model;
 pub use self::selection_filter_model::SelectionFilterModel;
-pub use self::selection_filter_model::SelectionFilterModelBuilder;
 
 mod selection_model;
 pub use self::selection_model::{SelectionModel, NONE_SELECTION_MODEL};
@@ -802,7 +791,6 @@ pub use self::shortcuts_window::ShortcutsWindowBuilder;
 
 mod signal_action;
 pub use self::signal_action::SignalAction;
-pub use self::signal_action::SignalActionBuilder;
 
 mod signal_list_item_factory;
 pub use self::signal_list_item_factory::SignalListItemFactory;
@@ -813,7 +801,6 @@ pub use self::single_selection::SingleSelectionBuilder;
 
 mod size_group;
 pub use self::size_group::SizeGroup;
-pub use self::size_group::SizeGroupBuilder;
 
 mod slice_list_model;
 pub use self::slice_list_model::SliceListModel;
@@ -872,7 +859,6 @@ pub use self::string_sorter::StringSorter;
 pub use self::string_sorter::StringSorterBuilder;
 
 mod style_context;
-pub use self::style_context::StyleContextBuilder;
 pub use self::style_context::{StyleContext, NONE_STYLE_CONTEXT};
 
 mod style_provider;
@@ -931,26 +917,21 @@ pub use self::tree_list_model::TreeListModelBuilder;
 
 mod tree_list_row;
 pub use self::tree_list_row::TreeListRow;
-pub use self::tree_list_row::TreeListRowBuilder;
 
 mod tree_list_row_sorter;
 pub use self::tree_list_row_sorter::TreeListRowSorter;
-pub use self::tree_list_row_sorter::TreeListRowSorterBuilder;
 
 mod tree_model;
 pub use self::tree_model::{TreeModel, NONE_TREE_MODEL};
 
 mod tree_model_filter;
-pub use self::tree_model_filter::TreeModelFilterBuilder;
 pub use self::tree_model_filter::{TreeModelFilter, NONE_TREE_MODEL_FILTER};
 
 mod tree_model_sort;
-pub use self::tree_model_sort::TreeModelSortBuilder;
 pub use self::tree_model_sort::{TreeModelSort, NONE_TREE_MODEL_SORT};
 
 mod tree_selection;
 pub use self::tree_selection::TreeSelection;
-pub use self::tree_selection::TreeSelectionBuilder;
 
 mod tree_sortable;
 pub use self::tree_sortable::{TreeSortable, NONE_TREE_SORTABLE};
@@ -983,7 +964,6 @@ pub use self::widget::{Widget, NONE_WIDGET};
 
 mod widget_paintable;
 pub use self::widget_paintable::WidgetPaintable;
-pub use self::widget_paintable::WidgetPaintableBuilder;
 
 mod window;
 pub use self::window::WindowBuilder;

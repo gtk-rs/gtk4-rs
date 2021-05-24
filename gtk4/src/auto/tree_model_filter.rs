@@ -6,11 +6,9 @@ use crate::TreeDragSource;
 use crate::TreeIter;
 use crate::TreeModel;
 use crate::TreePath;
-use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
 use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 
@@ -19,37 +17,6 @@ glib::wrapper! {
 
     match fn {
         type_ => || ffi::gtk_tree_model_filter_get_type(),
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`TreeModelFilter`].
-pub struct TreeModelFilterBuilder {
-    child_model: Option<TreeModel>,
-}
-
-impl TreeModelFilterBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`TreeModelFilterBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`TreeModelFilter`].
-    pub fn build(self) -> TreeModelFilter {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref child_model) = self.child_model {
-            properties.push(("child-model", child_model));
-        }
-        glib::Object::new::<TreeModelFilter>(&properties)
-            .expect("Failed to create an instance of TreeModelFilter")
-    }
-
-    pub fn child_model<P: IsA<TreeModel>>(mut self, child_model: &P) -> Self {
-        self.child_model = Some(child_model.clone().upcast());
-        self
     }
 }
 

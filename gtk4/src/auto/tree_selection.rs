@@ -7,13 +7,10 @@ use crate::TreeIter;
 use crate::TreeModel;
 use crate::TreePath;
 use crate::TreeView;
-use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -28,13 +25,6 @@ glib::wrapper! {
 }
 
 impl TreeSelection {
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TreeSelection`]
-    /// This method returns an instance of [`TreeSelectionBuilder`] which can be used to create a [`TreeSelection`].
-    pub fn builder() -> TreeSelectionBuilder {
-        TreeSelectionBuilder::default()
-    }
-
     #[doc(alias = "gtk_tree_selection_count_selected_rows")]
     pub fn count_selected_rows(&self) -> i32 {
         unsafe { ffi::gtk_tree_selection_count_selected_rows(self.to_glib_none().0) }
@@ -306,37 +296,6 @@ impl TreeSelection {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`TreeSelection`].
-pub struct TreeSelectionBuilder {
-    mode: Option<SelectionMode>,
-}
-
-impl TreeSelectionBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`TreeSelectionBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`TreeSelection`].
-    pub fn build(self) -> TreeSelection {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref mode) = self.mode {
-            properties.push(("mode", mode));
-        }
-        glib::Object::new::<TreeSelection>(&properties)
-            .expect("Failed to create an instance of TreeSelection")
-    }
-
-    pub fn mode(mut self, mode: SelectionMode) -> Self {
-        self.mode = Some(mode);
-        self
     }
 }
 

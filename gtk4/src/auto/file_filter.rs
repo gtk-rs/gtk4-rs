@@ -4,13 +4,10 @@
 
 use crate::Buildable;
 use crate::Filter;
-use glib::object::Cast;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -39,13 +36,6 @@ impl FileFilter {
                 variant.to_glib_none().0,
             ))
         }
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`FileFilter`]
-    /// This method returns an instance of [`FileFilterBuilder`] which can be used to create a [`FileFilter`].
-    pub fn builder() -> FileFilterBuilder {
-        FileFilterBuilder::default()
     }
 
     #[doc(alias = "gtk_file_filter_add_mime_type")]
@@ -124,37 +114,6 @@ impl FileFilter {
 impl Default for FileFilter {
     fn default() -> Self {
         Self::new()
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`FileFilter`].
-pub struct FileFilterBuilder {
-    name: Option<String>,
-}
-
-impl FileFilterBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`FileFilterBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`FileFilter`].
-    pub fn build(self) -> FileFilter {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref name) = self.name {
-            properties.push(("name", name));
-        }
-        glib::Object::new::<FileFilter>(&properties)
-            .expect("Failed to create an instance of FileFilter")
-    }
-
-    pub fn name(mut self, name: &str) -> Self {
-        self.name = Some(name.to_string());
-        self
     }
 }
 
