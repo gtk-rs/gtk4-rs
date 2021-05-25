@@ -96,6 +96,10 @@ generate_builder = true
     [[object.function]]
     name = "format_args_va"
     ignore = true # not useful for bindings
+    [[object.function]]
+    name = "format_args"
+    ignore = true # TODO: fix me once varargs are supported
+
 
 [[object]]
 name = "Gsk.Renderer"
