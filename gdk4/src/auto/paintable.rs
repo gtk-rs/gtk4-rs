@@ -158,12 +158,13 @@ impl<O: IsA<Paintable>> PaintableExt for O {
 
     #[doc(alias = "invalidate-contents")]
     fn connect_invalidate_contents<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn invalidate_contents_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn invalidate_contents_trampoline<
+            P: IsA<Paintable>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GdkPaintable,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Paintable>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Paintable::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -182,12 +183,10 @@ impl<O: IsA<Paintable>> PaintableExt for O {
 
     #[doc(alias = "invalidate-size")]
     fn connect_invalidate_size<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn invalidate_size_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn invalidate_size_trampoline<P: IsA<Paintable>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkPaintable,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Paintable>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Paintable::from_glib_borrow(this).unsafe_cast_ref())
         }

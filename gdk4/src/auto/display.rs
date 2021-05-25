@@ -212,7 +212,7 @@ impl Display {
     }
 
     #[doc(alias = "closed")]
-    pub fn connect_closed<F: Fn(&Display, bool) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_closed<F: Fn(&Self, bool) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn closed_trampoline<F: Fn(&Display, bool) + 'static>(
             this: *mut ffi::GdkDisplay,
             is_error: glib::ffi::gboolean,
@@ -235,7 +235,7 @@ impl Display {
     }
 
     #[doc(alias = "opened")]
-    pub fn connect_opened<F: Fn(&Display) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_opened<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn opened_trampoline<F: Fn(&Display) + 'static>(
             this: *mut ffi::GdkDisplay,
             f: glib::ffi::gpointer,
@@ -257,7 +257,7 @@ impl Display {
     }
 
     #[doc(alias = "seat-added")]
-    pub fn connect_seat_added<F: Fn(&Display, &Seat) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_seat_added<F: Fn(&Self, &Seat) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn seat_added_trampoline<F: Fn(&Display, &Seat) + 'static>(
             this: *mut ffi::GdkDisplay,
             seat: *mut ffi::GdkSeat,
@@ -280,7 +280,7 @@ impl Display {
     }
 
     #[doc(alias = "seat-removed")]
-    pub fn connect_seat_removed<F: Fn(&Display, &Seat) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_seat_removed<F: Fn(&Self, &Seat) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn seat_removed_trampoline<F: Fn(&Display, &Seat) + 'static>(
             this: *mut ffi::GdkDisplay,
             seat: *mut ffi::GdkSeat,
@@ -303,10 +303,7 @@ impl Display {
     }
 
     #[doc(alias = "setting-changed")]
-    pub fn connect_setting_changed<F: Fn(&Display, &str) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_setting_changed<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn setting_changed_trampoline<F: Fn(&Display, &str) + 'static>(
             this: *mut ffi::GdkDisplay,
             setting: *mut libc::c_char,
@@ -332,7 +329,7 @@ impl Display {
     }
 
     #[doc(alias = "composited")]
-    pub fn connect_composited_notify<F: Fn(&Display) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_composited_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_composited_trampoline<F: Fn(&Display) + 'static>(
             this: *mut ffi::GdkDisplay,
             _param_spec: glib::ffi::gpointer,
@@ -355,7 +352,7 @@ impl Display {
     }
 
     #[doc(alias = "input-shapes")]
-    pub fn connect_input_shapes_notify<F: Fn(&Display) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_input_shapes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_shapes_trampoline<F: Fn(&Display) + 'static>(
             this: *mut ffi::GdkDisplay,
             _param_spec: glib::ffi::gpointer,
@@ -378,7 +375,7 @@ impl Display {
     }
 
     #[doc(alias = "rgba")]
-    pub fn connect_rgba_notify<F: Fn(&Display) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rgba_trampoline<F: Fn(&Display) + 'static>(
             this: *mut ffi::GdkDisplay,
             _param_spec: glib::ffi::gpointer,

@@ -134,7 +134,7 @@ impl Drag {
     }
 
     #[doc(alias = "cancel")]
-    pub fn connect_cancel<F: Fn(&Drag, DragCancelReason) + 'static>(
+    pub fn connect_cancel<F: Fn(&Self, DragCancelReason) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -160,7 +160,7 @@ impl Drag {
     }
 
     #[doc(alias = "dnd-finished")]
-    pub fn connect_dnd_finished<F: Fn(&Drag) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_dnd_finished<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn dnd_finished_trampoline<F: Fn(&Drag) + 'static>(
             this: *mut ffi::GdkDrag,
             f: glib::ffi::gpointer,
@@ -182,7 +182,7 @@ impl Drag {
     }
 
     #[doc(alias = "drop-performed")]
-    pub fn connect_drop_performed<F: Fn(&Drag) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_drop_performed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn drop_performed_trampoline<F: Fn(&Drag) + 'static>(
             this: *mut ffi::GdkDrag,
             f: glib::ffi::gpointer,
@@ -204,7 +204,7 @@ impl Drag {
     }
 
     #[doc(alias = "actions")]
-    pub fn connect_actions_notify<F: Fn(&Drag) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_actions_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_actions_trampoline<F: Fn(&Drag) + 'static>(
             this: *mut ffi::GdkDrag,
             _param_spec: glib::ffi::gpointer,
@@ -227,7 +227,7 @@ impl Drag {
     }
 
     #[doc(alias = "display")]
-    pub fn connect_display_notify<F: Fn(&Drag) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_display_trampoline<F: Fn(&Drag) + 'static>(
             this: *mut ffi::GdkDrag,
             _param_spec: glib::ffi::gpointer,
@@ -250,7 +250,7 @@ impl Drag {
     }
 
     #[doc(alias = "selected-action")]
-    pub fn connect_selected_action_notify<F: Fn(&Drag) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_selected_action_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_action_trampoline<F: Fn(&Drag) + 'static>(
             this: *mut ffi::GdkDrag,
             _param_spec: glib::ffi::gpointer,

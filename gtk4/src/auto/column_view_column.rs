@@ -195,10 +195,7 @@ impl ColumnViewColumn {
     }
 
     #[doc(alias = "column-view")]
-    pub fn connect_column_view_notify<F: Fn(&ColumnViewColumn) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_column_view_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_column_view_trampoline<F: Fn(&ColumnViewColumn) + 'static>(
             this: *mut ffi::GtkColumnViewColumn,
             _param_spec: glib::ffi::gpointer,
@@ -221,10 +218,7 @@ impl ColumnViewColumn {
     }
 
     #[doc(alias = "expand")]
-    pub fn connect_expand_notify<F: Fn(&ColumnViewColumn) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_expand_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expand_trampoline<F: Fn(&ColumnViewColumn) + 'static>(
             this: *mut ffi::GtkColumnViewColumn,
             _param_spec: glib::ffi::gpointer,
@@ -247,10 +241,7 @@ impl ColumnViewColumn {
     }
 
     #[doc(alias = "factory")]
-    pub fn connect_factory_notify<F: Fn(&ColumnViewColumn) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_factory_trampoline<F: Fn(&ColumnViewColumn) + 'static>(
             this: *mut ffi::GtkColumnViewColumn,
             _param_spec: glib::ffi::gpointer,
@@ -273,10 +264,7 @@ impl ColumnViewColumn {
     }
 
     #[doc(alias = "fixed-width")]
-    pub fn connect_fixed_width_notify<F: Fn(&ColumnViewColumn) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_fixed_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_fixed_width_trampoline<F: Fn(&ColumnViewColumn) + 'static>(
             this: *mut ffi::GtkColumnViewColumn,
             _param_spec: glib::ffi::gpointer,
@@ -299,10 +287,7 @@ impl ColumnViewColumn {
     }
 
     #[doc(alias = "header-menu")]
-    pub fn connect_header_menu_notify<F: Fn(&ColumnViewColumn) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_header_menu_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_header_menu_trampoline<F: Fn(&ColumnViewColumn) + 'static>(
             this: *mut ffi::GtkColumnViewColumn,
             _param_spec: glib::ffi::gpointer,
@@ -325,10 +310,7 @@ impl ColumnViewColumn {
     }
 
     #[doc(alias = "resizable")]
-    pub fn connect_resizable_notify<F: Fn(&ColumnViewColumn) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_resizable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_resizable_trampoline<F: Fn(&ColumnViewColumn) + 'static>(
             this: *mut ffi::GtkColumnViewColumn,
             _param_spec: glib::ffi::gpointer,
@@ -351,10 +333,7 @@ impl ColumnViewColumn {
     }
 
     #[doc(alias = "sorter")]
-    pub fn connect_sorter_notify<F: Fn(&ColumnViewColumn) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_sorter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_sorter_trampoline<F: Fn(&ColumnViewColumn) + 'static>(
             this: *mut ffi::GtkColumnViewColumn,
             _param_spec: glib::ffi::gpointer,
@@ -377,10 +356,7 @@ impl ColumnViewColumn {
     }
 
     #[doc(alias = "title")]
-    pub fn connect_title_notify<F: Fn(&ColumnViewColumn) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&ColumnViewColumn) + 'static>(
             this: *mut ffi::GtkColumnViewColumn,
             _param_spec: glib::ffi::gpointer,
@@ -403,10 +379,7 @@ impl ColumnViewColumn {
     }
 
     #[doc(alias = "visible")]
-    pub fn connect_visible_notify<F: Fn(&ColumnViewColumn) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_visible_trampoline<F: Fn(&ColumnViewColumn) + 'static>(
             this: *mut ffi::GtkColumnViewColumn,
             _param_spec: glib::ffi::gpointer,

@@ -72,7 +72,7 @@ impl Spinner {
     }
 
     #[doc(alias = "spinning")]
-    pub fn connect_spinning_notify<F: Fn(&Spinner) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_spinning_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_spinning_trampoline<F: Fn(&Spinner) + 'static>(
             this: *mut ffi::GtkSpinner,
             _param_spec: glib::ffi::gpointer,

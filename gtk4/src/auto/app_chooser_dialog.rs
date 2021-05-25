@@ -126,10 +126,7 @@ impl AppChooserDialog {
     }
 
     #[doc(alias = "heading")]
-    pub fn connect_heading_notify<F: Fn(&AppChooserDialog) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_heading_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_heading_trampoline<F: Fn(&AppChooserDialog) + 'static>(
             this: *mut ffi::GtkAppChooserDialog,
             _param_spec: glib::ffi::gpointer,

@@ -107,7 +107,7 @@ impl FrameClock {
     }
 
     #[doc(alias = "after-paint")]
-    pub fn connect_after_paint<F: Fn(&FrameClock) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_after_paint<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn after_paint_trampoline<F: Fn(&FrameClock) + 'static>(
             this: *mut ffi::GdkFrameClock,
             f: glib::ffi::gpointer,
@@ -129,7 +129,7 @@ impl FrameClock {
     }
 
     #[doc(alias = "before-paint")]
-    pub fn connect_before_paint<F: Fn(&FrameClock) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_before_paint<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn before_paint_trampoline<F: Fn(&FrameClock) + 'static>(
             this: *mut ffi::GdkFrameClock,
             f: glib::ffi::gpointer,
@@ -151,7 +151,7 @@ impl FrameClock {
     }
 
     #[doc(alias = "flush-events")]
-    pub fn connect_flush_events<F: Fn(&FrameClock) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_flush_events<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn flush_events_trampoline<F: Fn(&FrameClock) + 'static>(
             this: *mut ffi::GdkFrameClock,
             f: glib::ffi::gpointer,
@@ -173,7 +173,7 @@ impl FrameClock {
     }
 
     #[doc(alias = "layout")]
-    pub fn connect_layout<F: Fn(&FrameClock) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_layout<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn layout_trampoline<F: Fn(&FrameClock) + 'static>(
             this: *mut ffi::GdkFrameClock,
             f: glib::ffi::gpointer,
@@ -195,7 +195,7 @@ impl FrameClock {
     }
 
     #[doc(alias = "paint")]
-    pub fn connect_paint<F: Fn(&FrameClock) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_paint<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn paint_trampoline<F: Fn(&FrameClock) + 'static>(
             this: *mut ffi::GdkFrameClock,
             f: glib::ffi::gpointer,
@@ -217,7 +217,7 @@ impl FrameClock {
     }
 
     #[doc(alias = "resume-events")]
-    pub fn connect_resume_events<F: Fn(&FrameClock) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_resume_events<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn resume_events_trampoline<F: Fn(&FrameClock) + 'static>(
             this: *mut ffi::GdkFrameClock,
             f: glib::ffi::gpointer,
@@ -239,7 +239,7 @@ impl FrameClock {
     }
 
     #[doc(alias = "update")]
-    pub fn connect_update<F: Fn(&FrameClock) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_update<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn update_trampoline<F: Fn(&FrameClock) + 'static>(
             this: *mut ffi::GdkFrameClock,
             f: glib::ffi::gpointer,

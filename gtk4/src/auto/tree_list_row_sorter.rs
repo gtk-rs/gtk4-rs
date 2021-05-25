@@ -52,10 +52,7 @@ impl TreeListRowSorter {
     }
 
     #[doc(alias = "sorter")]
-    pub fn connect_sorter_notify<F: Fn(&TreeListRowSorter) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_sorter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_sorter_trampoline<F: Fn(&TreeListRowSorter) + 'static>(
             this: *mut ffi::GtkTreeListRowSorter,
             _param_spec: glib::ffi::gpointer,

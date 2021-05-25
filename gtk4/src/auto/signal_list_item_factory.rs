@@ -31,10 +31,7 @@ impl SignalListItemFactory {
     }
 
     #[doc(alias = "bind")]
-    pub fn connect_bind<F: Fn(&SignalListItemFactory, &ListItem) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_bind<F: Fn(&Self, &ListItem) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn bind_trampoline<F: Fn(&SignalListItemFactory, &ListItem) + 'static>(
             this: *mut ffi::GtkSignalListItemFactory,
             listitem: *mut ffi::GtkListItem,
@@ -57,10 +54,7 @@ impl SignalListItemFactory {
     }
 
     #[doc(alias = "setup")]
-    pub fn connect_setup<F: Fn(&SignalListItemFactory, &ListItem) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_setup<F: Fn(&Self, &ListItem) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn setup_trampoline<
             F: Fn(&SignalListItemFactory, &ListItem) + 'static,
         >(
@@ -85,10 +79,7 @@ impl SignalListItemFactory {
     }
 
     #[doc(alias = "teardown")]
-    pub fn connect_teardown<F: Fn(&SignalListItemFactory, &ListItem) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_teardown<F: Fn(&Self, &ListItem) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn teardown_trampoline<
             F: Fn(&SignalListItemFactory, &ListItem) + 'static,
         >(
@@ -113,10 +104,7 @@ impl SignalListItemFactory {
     }
 
     #[doc(alias = "unbind")]
-    pub fn connect_unbind<F: Fn(&SignalListItemFactory, &ListItem) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_unbind<F: Fn(&Self, &ListItem) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn unbind_trampoline<
             F: Fn(&SignalListItemFactory, &ListItem) + 'static,
         >(

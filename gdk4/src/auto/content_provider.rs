@@ -201,12 +201,13 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
 
     #[doc(alias = "content-changed")]
     fn connect_content_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn content_changed_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn content_changed_trampoline<
+            P: IsA<ContentProvider>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GdkContentProvider,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<ContentProvider>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&ContentProvider::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -225,13 +226,14 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
 
     #[doc(alias = "formats")]
     fn connect_formats_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_formats_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_formats_trampoline<
+            P: IsA<ContentProvider>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GdkContentProvider,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<ContentProvider>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&ContentProvider::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -250,13 +252,14 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
 
     #[doc(alias = "storable-formats")]
     fn connect_storable_formats_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_storable_formats_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_storable_formats_trampoline<
+            P: IsA<ContentProvider>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GdkContentProvider,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<ContentProvider>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&ContentProvider::from_glib_borrow(this).unsafe_cast_ref())
         }

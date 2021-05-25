@@ -114,10 +114,7 @@ impl AssistantPage {
     }
 
     #[doc(alias = "complete")]
-    pub fn connect_complete_notify<F: Fn(&AssistantPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_complete_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_complete_trampoline<F: Fn(&AssistantPage) + 'static>(
             this: *mut ffi::GtkAssistantPage,
             _param_spec: glib::ffi::gpointer,
@@ -140,10 +137,7 @@ impl AssistantPage {
     }
 
     #[doc(alias = "page-type")]
-    pub fn connect_page_type_notify<F: Fn(&AssistantPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_page_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_page_type_trampoline<F: Fn(&AssistantPage) + 'static>(
             this: *mut ffi::GtkAssistantPage,
             _param_spec: glib::ffi::gpointer,
@@ -166,7 +160,7 @@ impl AssistantPage {
     }
 
     #[doc(alias = "title")]
-    pub fn connect_title_notify<F: Fn(&AssistantPage) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&AssistantPage) + 'static>(
             this: *mut ffi::GtkAssistantPage,
             _param_spec: glib::ffi::gpointer,

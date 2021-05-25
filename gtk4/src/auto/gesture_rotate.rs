@@ -46,10 +46,7 @@ impl GestureRotate {
     }
 
     #[doc(alias = "angle-changed")]
-    pub fn connect_angle_changed<F: Fn(&GestureRotate, f64, f64) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_angle_changed<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn angle_changed_trampoline<F: Fn(&GestureRotate, f64, f64) + 'static>(
             this: *mut ffi::GtkGestureRotate,
             angle: libc::c_double,

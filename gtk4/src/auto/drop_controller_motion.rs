@@ -69,10 +69,7 @@ impl DropControllerMotion {
     }
 
     #[doc(alias = "enter")]
-    pub fn connect_enter<F: Fn(&DropControllerMotion, f64, f64) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_enter<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn enter_trampoline<F: Fn(&DropControllerMotion, f64, f64) + 'static>(
             this: *mut ffi::GtkDropControllerMotion,
             x: libc::c_double,
@@ -96,7 +93,7 @@ impl DropControllerMotion {
     }
 
     #[doc(alias = "leave")]
-    pub fn connect_leave<F: Fn(&DropControllerMotion) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_leave<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn leave_trampoline<F: Fn(&DropControllerMotion) + 'static>(
             this: *mut ffi::GtkDropControllerMotion,
             f: glib::ffi::gpointer,
@@ -118,10 +115,7 @@ impl DropControllerMotion {
     }
 
     #[doc(alias = "motion")]
-    pub fn connect_motion<F: Fn(&DropControllerMotion, f64, f64) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_motion<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn motion_trampoline<F: Fn(&DropControllerMotion, f64, f64) + 'static>(
             this: *mut ffi::GtkDropControllerMotion,
             x: libc::c_double,
@@ -145,10 +139,7 @@ impl DropControllerMotion {
     }
 
     #[doc(alias = "contains-pointer")]
-    pub fn connect_contains_pointer_notify<F: Fn(&DropControllerMotion) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_contains_pointer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_contains_pointer_trampoline<
             F: Fn(&DropControllerMotion) + 'static,
         >(
@@ -173,10 +164,7 @@ impl DropControllerMotion {
     }
 
     #[doc(alias = "drop")]
-    pub fn connect_drop_notify<F: Fn(&DropControllerMotion) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_drop_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_drop_trampoline<F: Fn(&DropControllerMotion) + 'static>(
             this: *mut ffi::GtkDropControllerMotion,
             _param_spec: glib::ffi::gpointer,
@@ -199,10 +187,7 @@ impl DropControllerMotion {
     }
 
     #[doc(alias = "is-pointer")]
-    pub fn connect_is_pointer_notify<F: Fn(&DropControllerMotion) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_is_pointer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_is_pointer_trampoline<
             F: Fn(&DropControllerMotion) + 'static,
         >(

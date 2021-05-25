@@ -70,7 +70,7 @@ impl SizeGroup {
     }
 
     #[doc(alias = "mode")]
-    pub fn connect_mode_notify<F: Fn(&SizeGroup) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_mode_trampoline<F: Fn(&SizeGroup) + 'static>(
             this: *mut ffi::GtkSizeGroup,
             _param_spec: glib::ffi::gpointer,

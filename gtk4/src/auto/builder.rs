@@ -89,6 +89,28 @@ impl Builder {
         }
     }
 
+    #[doc(alias = "gtk_builder_add_objects_from_file")]
+    pub fn add_objects_from_file(
+        &self,
+        filename: &str,
+        object_ids: &[&str],
+    ) -> Result<(), glib::Error> {
+        unsafe {
+            let mut error = ptr::null_mut();
+            let _ = ffi::gtk_builder_add_objects_from_file(
+                self.to_glib_none().0,
+                filename.to_glib_none().0,
+                object_ids.to_glib_none().0,
+                &mut error,
+            );
+            if error.is_null() {
+                Ok(())
+            } else {
+                Err(from_glib_full(error))
+            }
+        }
+    }
+
     #[doc(alias = "gtk_builder_add_objects_from_resource")]
     pub fn add_objects_from_resource(
         &self,
@@ -291,10 +313,7 @@ impl Builder {
     }
 
     #[doc(alias = "current-object")]
-    pub fn connect_current_object_notify<F: Fn(&Builder) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_current_object_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_current_object_trampoline<F: Fn(&Builder) + 'static>(
             this: *mut ffi::GtkBuilder,
             _param_spec: glib::ffi::gpointer,
@@ -317,7 +336,7 @@ impl Builder {
     }
 
     #[doc(alias = "scope")]
-    pub fn connect_scope_notify<F: Fn(&Builder) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_scope_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scope_trampoline<F: Fn(&Builder) + 'static>(
             this: *mut ffi::GtkBuilder,
             _param_spec: glib::ffi::gpointer,
@@ -340,7 +359,7 @@ impl Builder {
     }
 
     #[doc(alias = "translation-domain")]
-    pub fn connect_translation_domain_notify<F: Fn(&Builder) + 'static>(
+    pub fn connect_translation_domain_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

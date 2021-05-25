@@ -245,10 +245,7 @@ impl ConstraintGuide {
     }
 
     #[doc(alias = "max-height")]
-    pub fn connect_max_height_notify<F: Fn(&ConstraintGuide) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_max_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_max_height_trampoline<F: Fn(&ConstraintGuide) + 'static>(
             this: *mut ffi::GtkConstraintGuide,
             _param_spec: glib::ffi::gpointer,
@@ -271,10 +268,7 @@ impl ConstraintGuide {
     }
 
     #[doc(alias = "max-width")]
-    pub fn connect_max_width_notify<F: Fn(&ConstraintGuide) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_max_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_max_width_trampoline<F: Fn(&ConstraintGuide) + 'static>(
             this: *mut ffi::GtkConstraintGuide,
             _param_spec: glib::ffi::gpointer,
@@ -297,10 +291,7 @@ impl ConstraintGuide {
     }
 
     #[doc(alias = "min-height")]
-    pub fn connect_min_height_notify<F: Fn(&ConstraintGuide) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_min_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_min_height_trampoline<F: Fn(&ConstraintGuide) + 'static>(
             this: *mut ffi::GtkConstraintGuide,
             _param_spec: glib::ffi::gpointer,
@@ -323,10 +314,7 @@ impl ConstraintGuide {
     }
 
     #[doc(alias = "min-width")]
-    pub fn connect_min_width_notify<F: Fn(&ConstraintGuide) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_min_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_min_width_trampoline<F: Fn(&ConstraintGuide) + 'static>(
             this: *mut ffi::GtkConstraintGuide,
             _param_spec: glib::ffi::gpointer,
@@ -349,7 +337,7 @@ impl ConstraintGuide {
     }
 
     #[doc(alias = "name")]
-    pub fn connect_name_notify<F: Fn(&ConstraintGuide) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<F: Fn(&ConstraintGuide) + 'static>(
             this: *mut ffi::GtkConstraintGuide,
             _param_spec: glib::ffi::gpointer,
@@ -372,10 +360,7 @@ impl ConstraintGuide {
     }
 
     #[doc(alias = "nat-height")]
-    pub fn connect_nat_height_notify<F: Fn(&ConstraintGuide) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_nat_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_nat_height_trampoline<F: Fn(&ConstraintGuide) + 'static>(
             this: *mut ffi::GtkConstraintGuide,
             _param_spec: glib::ffi::gpointer,
@@ -398,10 +383,7 @@ impl ConstraintGuide {
     }
 
     #[doc(alias = "nat-width")]
-    pub fn connect_nat_width_notify<F: Fn(&ConstraintGuide) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_nat_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_nat_width_trampoline<F: Fn(&ConstraintGuide) + 'static>(
             this: *mut ffi::GtkConstraintGuide,
             _param_spec: glib::ffi::gpointer,
@@ -424,10 +406,7 @@ impl ConstraintGuide {
     }
 
     #[doc(alias = "strength")]
-    pub fn connect_strength_notify<F: Fn(&ConstraintGuide) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_strength_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_strength_trampoline<F: Fn(&ConstraintGuide) + 'static>(
             this: *mut ffi::GtkConstraintGuide,
             _param_spec: glib::ffi::gpointer,

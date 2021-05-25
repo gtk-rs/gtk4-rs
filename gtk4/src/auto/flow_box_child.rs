@@ -419,12 +419,10 @@ impl<O: IsA<FlowBoxChild>> FlowBoxChildExt for O {
 
     #[doc(alias = "activate")]
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn activate_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn activate_trampoline<P: IsA<FlowBoxChild>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkFlowBoxChild,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<FlowBoxChild>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&FlowBoxChild::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -451,13 +449,11 @@ impl<O: IsA<FlowBoxChild>> FlowBoxChildExt for O {
 
     #[doc(alias = "child")]
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_child_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_child_trampoline<P: IsA<FlowBoxChild>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkFlowBoxChild,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<FlowBoxChild>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&FlowBoxChild::from_glib_borrow(this).unsafe_cast_ref())
         }

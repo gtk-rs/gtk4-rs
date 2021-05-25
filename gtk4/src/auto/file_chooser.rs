@@ -362,13 +362,11 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
 
     #[doc(alias = "action")]
     fn connect_action_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_action_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_action_trampoline<P: IsA<FileChooser>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkFileChooser,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<FileChooser>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&FileChooser::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -387,13 +385,14 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
 
     #[doc(alias = "create-folders")]
     fn connect_create_folders_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_create_folders_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_create_folders_trampoline<
+            P: IsA<FileChooser>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkFileChooser,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<FileChooser>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&FileChooser::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -412,13 +411,11 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
 
     #[doc(alias = "filter")]
     fn connect_filter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_filter_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_filter_trampoline<P: IsA<FileChooser>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkFileChooser,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<FileChooser>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&FileChooser::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -437,13 +434,11 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
 
     #[doc(alias = "filters")]
     fn connect_filters_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_filters_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_filters_trampoline<P: IsA<FileChooser>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkFileChooser,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<FileChooser>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&FileChooser::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -462,13 +457,14 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
 
     #[doc(alias = "select-multiple")]
     fn connect_select_multiple_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_select_multiple_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_select_multiple_trampoline<
+            P: IsA<FileChooser>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkFileChooser,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<FileChooser>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&FileChooser::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -487,13 +483,14 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
 
     #[doc(alias = "shortcut-folders")]
     fn connect_shortcut_folders_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_shortcut_folders_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_shortcut_folders_trampoline<
+            P: IsA<FileChooser>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkFileChooser,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<FileChooser>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&FileChooser::from_glib_borrow(this).unsafe_cast_ref())
         }

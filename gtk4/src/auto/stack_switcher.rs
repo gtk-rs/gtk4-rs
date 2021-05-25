@@ -59,7 +59,7 @@ impl StackSwitcher {
     }
 
     #[doc(alias = "stack")]
-    pub fn connect_stack_notify<F: Fn(&StackSwitcher) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_stack_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_stack_trampoline<F: Fn(&StackSwitcher) + 'static>(
             this: *mut ffi::GtkStackSwitcher,
             _param_spec: glib::ffi::gpointer,

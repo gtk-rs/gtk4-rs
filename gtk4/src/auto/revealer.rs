@@ -107,7 +107,7 @@ impl Revealer {
     }
 
     #[doc(alias = "child")]
-    pub fn connect_child_notify<F: Fn(&Revealer) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&Revealer) + 'static>(
             this: *mut ffi::GtkRevealer,
             _param_spec: glib::ffi::gpointer,
@@ -130,10 +130,7 @@ impl Revealer {
     }
 
     #[doc(alias = "child-revealed")]
-    pub fn connect_child_revealed_notify<F: Fn(&Revealer) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_child_revealed_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_revealed_trampoline<F: Fn(&Revealer) + 'static>(
             this: *mut ffi::GtkRevealer,
             _param_spec: glib::ffi::gpointer,
@@ -156,7 +153,7 @@ impl Revealer {
     }
 
     #[doc(alias = "reveal-child")]
-    pub fn connect_reveal_child_notify<F: Fn(&Revealer) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_reveal_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_reveal_child_trampoline<F: Fn(&Revealer) + 'static>(
             this: *mut ffi::GtkRevealer,
             _param_spec: glib::ffi::gpointer,
@@ -179,7 +176,7 @@ impl Revealer {
     }
 
     #[doc(alias = "transition-duration")]
-    pub fn connect_transition_duration_notify<F: Fn(&Revealer) + 'static>(
+    pub fn connect_transition_duration_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -205,10 +202,7 @@ impl Revealer {
     }
 
     #[doc(alias = "transition-type")]
-    pub fn connect_transition_type_notify<F: Fn(&Revealer) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_transition_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_transition_type_trampoline<F: Fn(&Revealer) + 'static>(
             this: *mut ffi::GtkRevealer,
             _param_spec: glib::ffi::gpointer,

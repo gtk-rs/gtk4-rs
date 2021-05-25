@@ -216,10 +216,7 @@ impl Printer {
     }
 
     #[doc(alias = "details-acquired")]
-    pub fn connect_details_acquired<F: Fn(&Printer, bool) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_details_acquired<F: Fn(&Self, bool) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn details_acquired_trampoline<F: Fn(&Printer, bool) + 'static>(
             this: *mut ffi::GtkPrinter,
             success: glib::ffi::gboolean,
@@ -242,10 +239,7 @@ impl Printer {
     }
 
     #[doc(alias = "accepting-jobs")]
-    pub fn connect_accepting_jobs_notify<F: Fn(&Printer) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_accepting_jobs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_accepting_jobs_trampoline<F: Fn(&Printer) + 'static>(
             this: *mut ffi::GtkPrinter,
             _param_spec: glib::ffi::gpointer,
@@ -268,7 +262,7 @@ impl Printer {
     }
 
     #[doc(alias = "icon-name")]
-    pub fn connect_icon_name_notify<F: Fn(&Printer) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<F: Fn(&Printer) + 'static>(
             this: *mut ffi::GtkPrinter,
             _param_spec: glib::ffi::gpointer,
@@ -291,7 +285,7 @@ impl Printer {
     }
 
     #[doc(alias = "job-count")]
-    pub fn connect_job_count_notify<F: Fn(&Printer) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_job_count_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_job_count_trampoline<F: Fn(&Printer) + 'static>(
             this: *mut ffi::GtkPrinter,
             _param_spec: glib::ffi::gpointer,
@@ -314,7 +308,7 @@ impl Printer {
     }
 
     #[doc(alias = "location")]
-    pub fn connect_location_notify<F: Fn(&Printer) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_location_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_location_trampoline<F: Fn(&Printer) + 'static>(
             this: *mut ffi::GtkPrinter,
             _param_spec: glib::ffi::gpointer,
@@ -337,7 +331,7 @@ impl Printer {
     }
 
     #[doc(alias = "paused")]
-    pub fn connect_paused_notify<F: Fn(&Printer) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_paused_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_paused_trampoline<F: Fn(&Printer) + 'static>(
             this: *mut ffi::GtkPrinter,
             _param_spec: glib::ffi::gpointer,
@@ -360,7 +354,7 @@ impl Printer {
     }
 
     #[doc(alias = "state-message")]
-    pub fn connect_state_message_notify<F: Fn(&Printer) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_state_message_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_state_message_trampoline<F: Fn(&Printer) + 'static>(
             this: *mut ffi::GtkPrinter,
             _param_spec: glib::ffi::gpointer,

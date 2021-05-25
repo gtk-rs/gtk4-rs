@@ -240,10 +240,7 @@ impl NotebookPage {
     }
 
     #[doc(alias = "detachable")]
-    pub fn connect_detachable_notify<F: Fn(&NotebookPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_detachable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_detachable_trampoline<F: Fn(&NotebookPage) + 'static>(
             this: *mut ffi::GtkNotebookPage,
             _param_spec: glib::ffi::gpointer,
@@ -266,10 +263,7 @@ impl NotebookPage {
     }
 
     #[doc(alias = "menu-label")]
-    pub fn connect_menu_label_notify<F: Fn(&NotebookPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_menu_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_menu_label_trampoline<F: Fn(&NotebookPage) + 'static>(
             this: *mut ffi::GtkNotebookPage,
             _param_spec: glib::ffi::gpointer,
@@ -292,7 +286,7 @@ impl NotebookPage {
     }
 
     #[doc(alias = "position")]
-    pub fn connect_position_notify<F: Fn(&NotebookPage) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_position_trampoline<F: Fn(&NotebookPage) + 'static>(
             this: *mut ffi::GtkNotebookPage,
             _param_spec: glib::ffi::gpointer,
@@ -315,10 +309,7 @@ impl NotebookPage {
     }
 
     #[doc(alias = "reorderable")]
-    pub fn connect_reorderable_notify<F: Fn(&NotebookPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_reorderable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_reorderable_trampoline<F: Fn(&NotebookPage) + 'static>(
             this: *mut ffi::GtkNotebookPage,
             _param_spec: glib::ffi::gpointer,
@@ -341,10 +332,7 @@ impl NotebookPage {
     }
 
     #[doc(alias = "tab-expand")]
-    pub fn connect_tab_expand_notify<F: Fn(&NotebookPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_tab_expand_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tab_expand_trampoline<F: Fn(&NotebookPage) + 'static>(
             this: *mut ffi::GtkNotebookPage,
             _param_spec: glib::ffi::gpointer,
@@ -367,7 +355,7 @@ impl NotebookPage {
     }
 
     #[doc(alias = "tab-fill")]
-    pub fn connect_tab_fill_notify<F: Fn(&NotebookPage) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_tab_fill_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tab_fill_trampoline<F: Fn(&NotebookPage) + 'static>(
             this: *mut ffi::GtkNotebookPage,
             _param_spec: glib::ffi::gpointer,
@@ -390,10 +378,7 @@ impl NotebookPage {
     }
 
     #[doc(alias = "tab-label")]
-    pub fn connect_tab_label_notify<F: Fn(&NotebookPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_tab_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tab_label_trampoline<F: Fn(&NotebookPage) + 'static>(
             this: *mut ffi::GtkNotebookPage,
             _param_spec: glib::ffi::gpointer,

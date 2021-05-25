@@ -324,7 +324,7 @@ impl Image {
     }
 
     #[doc(alias = "file")]
-    pub fn connect_file_notify<F: Fn(&Image) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_file_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_file_trampoline<F: Fn(&Image) + 'static>(
             this: *mut ffi::GtkImage,
             _param_spec: glib::ffi::gpointer,
@@ -347,7 +347,7 @@ impl Image {
     }
 
     #[doc(alias = "gicon")]
-    pub fn connect_gicon_notify<F: Fn(&Image) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_gicon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_gicon_trampoline<F: Fn(&Image) + 'static>(
             this: *mut ffi::GtkImage,
             _param_spec: glib::ffi::gpointer,
@@ -370,7 +370,7 @@ impl Image {
     }
 
     #[doc(alias = "icon-name")]
-    pub fn connect_icon_name_notify<F: Fn(&Image) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<F: Fn(&Image) + 'static>(
             this: *mut ffi::GtkImage,
             _param_spec: glib::ffi::gpointer,
@@ -393,7 +393,7 @@ impl Image {
     }
 
     #[doc(alias = "icon-size")]
-    pub fn connect_icon_size_notify<F: Fn(&Image) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_icon_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_size_trampoline<F: Fn(&Image) + 'static>(
             this: *mut ffi::GtkImage,
             _param_spec: glib::ffi::gpointer,
@@ -416,7 +416,7 @@ impl Image {
     }
 
     #[doc(alias = "paintable")]
-    pub fn connect_paintable_notify<F: Fn(&Image) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_paintable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_paintable_trampoline<F: Fn(&Image) + 'static>(
             this: *mut ffi::GtkImage,
             _param_spec: glib::ffi::gpointer,
@@ -439,7 +439,7 @@ impl Image {
     }
 
     #[doc(alias = "pixel-size")]
-    pub fn connect_pixel_size_notify<F: Fn(&Image) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_pixel_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pixel_size_trampoline<F: Fn(&Image) + 'static>(
             this: *mut ffi::GtkImage,
             _param_spec: glib::ffi::gpointer,
@@ -462,7 +462,7 @@ impl Image {
     }
 
     #[doc(alias = "resource")]
-    pub fn connect_resource_notify<F: Fn(&Image) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_resource_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_resource_trampoline<F: Fn(&Image) + 'static>(
             this: *mut ffi::GtkImage,
             _param_spec: glib::ffi::gpointer,
@@ -485,7 +485,7 @@ impl Image {
     }
 
     #[doc(alias = "storage-type")]
-    pub fn connect_storage_type_notify<F: Fn(&Image) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_storage_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_storage_type_trampoline<F: Fn(&Image) + 'static>(
             this: *mut ffi::GtkImage,
             _param_spec: glib::ffi::gpointer,
@@ -508,7 +508,7 @@ impl Image {
     }
 
     #[doc(alias = "use-fallback")]
-    pub fn connect_use_fallback_notify<F: Fn(&Image) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_use_fallback_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_fallback_trampoline<F: Fn(&Image) + 'static>(
             this: *mut ffi::GtkImage,
             _param_spec: glib::ffi::gpointer,

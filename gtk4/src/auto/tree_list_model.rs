@@ -131,10 +131,7 @@ impl TreeListModel {
     }
 
     #[doc(alias = "autoexpand")]
-    pub fn connect_autoexpand_notify<F: Fn(&TreeListModel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_autoexpand_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_autoexpand_trampoline<F: Fn(&TreeListModel) + 'static>(
             this: *mut ffi::GtkTreeListModel,
             _param_spec: glib::ffi::gpointer,
@@ -157,7 +154,7 @@ impl TreeListModel {
     }
 
     #[doc(alias = "model")]
-    pub fn connect_model_notify<F: Fn(&TreeListModel) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<F: Fn(&TreeListModel) + 'static>(
             this: *mut ffi::GtkTreeListModel,
             _param_spec: glib::ffi::gpointer,

@@ -118,10 +118,7 @@ impl SingleSelection {
     }
 
     #[doc(alias = "autoselect")]
-    pub fn connect_autoselect_notify<F: Fn(&SingleSelection) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_autoselect_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_autoselect_trampoline<F: Fn(&SingleSelection) + 'static>(
             this: *mut ffi::GtkSingleSelection,
             _param_spec: glib::ffi::gpointer,
@@ -144,10 +141,7 @@ impl SingleSelection {
     }
 
     #[doc(alias = "can-unselect")]
-    pub fn connect_can_unselect_notify<F: Fn(&SingleSelection) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_can_unselect_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_can_unselect_trampoline<F: Fn(&SingleSelection) + 'static>(
             this: *mut ffi::GtkSingleSelection,
             _param_spec: glib::ffi::gpointer,
@@ -170,7 +164,7 @@ impl SingleSelection {
     }
 
     #[doc(alias = "model")]
-    pub fn connect_model_notify<F: Fn(&SingleSelection) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<F: Fn(&SingleSelection) + 'static>(
             this: *mut ffi::GtkSingleSelection,
             _param_spec: glib::ffi::gpointer,
@@ -193,10 +187,7 @@ impl SingleSelection {
     }
 
     #[doc(alias = "selected")]
-    pub fn connect_selected_notify<F: Fn(&SingleSelection) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_selected_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_trampoline<F: Fn(&SingleSelection) + 'static>(
             this: *mut ffi::GtkSingleSelection,
             _param_spec: glib::ffi::gpointer,
@@ -219,10 +210,7 @@ impl SingleSelection {
     }
 
     #[doc(alias = "selected-item")]
-    pub fn connect_selected_item_notify<F: Fn(&SingleSelection) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_selected_item_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_item_trampoline<F: Fn(&SingleSelection) + 'static>(
             this: *mut ffi::GtkSingleSelection,
             _param_spec: glib::ffi::gpointer,

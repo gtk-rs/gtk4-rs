@@ -48,10 +48,7 @@ impl WidgetPaintable {
     }
 
     #[doc(alias = "widget")]
-    pub fn connect_widget_notify<F: Fn(&WidgetPaintable) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_widget_trampoline<F: Fn(&WidgetPaintable) + 'static>(
             this: *mut ffi::GtkWidgetPaintable,
             _param_spec: glib::ffi::gpointer,

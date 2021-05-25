@@ -80,7 +80,7 @@ impl EventControllerKey {
     }
 
     #[doc(alias = "im-update")]
-    pub fn connect_im_update<F: Fn(&EventControllerKey) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_im_update<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn im_update_trampoline<F: Fn(&EventControllerKey) + 'static>(
             this: *mut ffi::GtkEventControllerKey,
             f: glib::ffi::gpointer,
@@ -102,9 +102,7 @@ impl EventControllerKey {
     }
 
     #[doc(alias = "modifiers")]
-    pub fn connect_modifiers<
-        F: Fn(&EventControllerKey, gdk::ModifierType) -> glib::signal::Inhibit + 'static,
-    >(
+    pub fn connect_modifiers<F: Fn(&Self, gdk::ModifierType) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

@@ -122,7 +122,7 @@ impl StackPage {
     }
 
     #[doc(alias = "icon-name")]
-    pub fn connect_icon_name_notify<F: Fn(&StackPage) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<F: Fn(&StackPage) + 'static>(
             this: *mut ffi::GtkStackPage,
             _param_spec: glib::ffi::gpointer,
@@ -145,10 +145,7 @@ impl StackPage {
     }
 
     #[doc(alias = "needs-attention")]
-    pub fn connect_needs_attention_notify<F: Fn(&StackPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_needs_attention_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_needs_attention_trampoline<F: Fn(&StackPage) + 'static>(
             this: *mut ffi::GtkStackPage,
             _param_spec: glib::ffi::gpointer,
@@ -171,7 +168,7 @@ impl StackPage {
     }
 
     #[doc(alias = "title")]
-    pub fn connect_title_notify<F: Fn(&StackPage) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&StackPage) + 'static>(
             this: *mut ffi::GtkStackPage,
             _param_spec: glib::ffi::gpointer,
@@ -194,10 +191,7 @@ impl StackPage {
     }
 
     #[doc(alias = "use-underline")]
-    pub fn connect_use_underline_notify<F: Fn(&StackPage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_underline_trampoline<F: Fn(&StackPage) + 'static>(
             this: *mut ffi::GtkStackPage,
             _param_spec: glib::ffi::gpointer,
@@ -220,7 +214,7 @@ impl StackPage {
     }
 
     #[doc(alias = "visible")]
-    pub fn connect_visible_notify<F: Fn(&StackPage) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_visible_trampoline<F: Fn(&StackPage) + 'static>(
             this: *mut ffi::GtkStackPage,
             _param_spec: glib::ffi::gpointer,

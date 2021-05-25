@@ -160,7 +160,7 @@ impl GridView {
     }
 
     #[doc(alias = "activate")]
-    pub fn connect_activate<F: Fn(&GridView, u32) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_activate<F: Fn(&Self, u32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<F: Fn(&GridView, u32) + 'static>(
             this: *mut ffi::GtkGridView,
             position: libc::c_uint,
@@ -183,7 +183,7 @@ impl GridView {
     }
 
     #[doc(alias = "enable-rubberband")]
-    pub fn connect_enable_rubberband_notify<F: Fn(&GridView) + 'static>(
+    pub fn connect_enable_rubberband_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -209,7 +209,7 @@ impl GridView {
     }
 
     #[doc(alias = "factory")]
-    pub fn connect_factory_notify<F: Fn(&GridView) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_factory_trampoline<F: Fn(&GridView) + 'static>(
             this: *mut ffi::GtkGridView,
             _param_spec: glib::ffi::gpointer,
@@ -232,7 +232,7 @@ impl GridView {
     }
 
     #[doc(alias = "max-columns")]
-    pub fn connect_max_columns_notify<F: Fn(&GridView) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_max_columns_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_max_columns_trampoline<F: Fn(&GridView) + 'static>(
             this: *mut ffi::GtkGridView,
             _param_spec: glib::ffi::gpointer,
@@ -255,7 +255,7 @@ impl GridView {
     }
 
     #[doc(alias = "min-columns")]
-    pub fn connect_min_columns_notify<F: Fn(&GridView) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_min_columns_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_min_columns_trampoline<F: Fn(&GridView) + 'static>(
             this: *mut ffi::GtkGridView,
             _param_spec: glib::ffi::gpointer,
@@ -278,7 +278,7 @@ impl GridView {
     }
 
     #[doc(alias = "model")]
-    pub fn connect_model_notify<F: Fn(&GridView) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<F: Fn(&GridView) + 'static>(
             this: *mut ffi::GtkGridView,
             _param_spec: glib::ffi::gpointer,
@@ -301,7 +301,7 @@ impl GridView {
     }
 
     #[doc(alias = "single-click-activate")]
-    pub fn connect_single_click_activate_notify<F: Fn(&GridView) + 'static>(
+    pub fn connect_single_click_activate_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

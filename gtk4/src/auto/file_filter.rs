@@ -88,7 +88,7 @@ impl FileFilter {
     }
 
     #[doc(alias = "name")]
-    pub fn connect_name_notify<F: Fn(&FileFilter) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<F: Fn(&FileFilter) + 'static>(
             this: *mut ffi::GtkFileFilter,
             _param_spec: glib::ffi::gpointer,

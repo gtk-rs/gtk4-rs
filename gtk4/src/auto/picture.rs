@@ -205,10 +205,7 @@ impl Picture {
     }
 
     #[doc(alias = "alternative-text")]
-    pub fn connect_alternative_text_notify<F: Fn(&Picture) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_alternative_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_alternative_text_trampoline<F: Fn(&Picture) + 'static>(
             this: *mut ffi::GtkPicture,
             _param_spec: glib::ffi::gpointer,
@@ -231,7 +228,7 @@ impl Picture {
     }
 
     #[doc(alias = "can-shrink")]
-    pub fn connect_can_shrink_notify<F: Fn(&Picture) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_can_shrink_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_can_shrink_trampoline<F: Fn(&Picture) + 'static>(
             this: *mut ffi::GtkPicture,
             _param_spec: glib::ffi::gpointer,
@@ -254,7 +251,7 @@ impl Picture {
     }
 
     #[doc(alias = "file")]
-    pub fn connect_file_notify<F: Fn(&Picture) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_file_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_file_trampoline<F: Fn(&Picture) + 'static>(
             this: *mut ffi::GtkPicture,
             _param_spec: glib::ffi::gpointer,
@@ -277,7 +274,7 @@ impl Picture {
     }
 
     #[doc(alias = "keep-aspect-ratio")]
-    pub fn connect_keep_aspect_ratio_notify<F: Fn(&Picture) + 'static>(
+    pub fn connect_keep_aspect_ratio_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -303,7 +300,7 @@ impl Picture {
     }
 
     #[doc(alias = "paintable")]
-    pub fn connect_paintable_notify<F: Fn(&Picture) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_paintable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_paintable_trampoline<F: Fn(&Picture) + 'static>(
             this: *mut ffi::GtkPicture,
             _param_spec: glib::ffi::gpointer,

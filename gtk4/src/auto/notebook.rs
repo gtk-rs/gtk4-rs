@@ -362,7 +362,7 @@ impl Notebook {
     }
 
     #[doc(alias = "change-current-page")]
-    pub fn connect_change_current_page<F: Fn(&Notebook, i32) -> bool + 'static>(
+    pub fn connect_change_current_page<F: Fn(&Self, i32) -> bool + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -401,7 +401,7 @@ impl Notebook {
     }
 
     #[doc(alias = "create-window")]
-    pub fn connect_create_window<F: Fn(&Notebook, &Widget) -> Notebook + 'static>(
+    pub fn connect_create_window<F: Fn(&Self, &Widget) -> Notebook + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -431,7 +431,7 @@ impl Notebook {
     }
 
     #[doc(alias = "focus-tab")]
-    pub fn connect_focus_tab<F: Fn(&Notebook, NotebookTab) -> bool + 'static>(
+    pub fn connect_focus_tab<F: Fn(&Self, NotebookTab) -> bool + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -470,7 +470,7 @@ impl Notebook {
     }
 
     #[doc(alias = "move-focus-out")]
-    pub fn connect_move_focus_out<F: Fn(&Notebook, DirectionType) + 'static>(
+    pub fn connect_move_focus_out<F: Fn(&Self, DirectionType) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -506,7 +506,7 @@ impl Notebook {
     }
 
     #[doc(alias = "page-added")]
-    pub fn connect_page_added<F: Fn(&Notebook, &Widget, u32) + 'static>(
+    pub fn connect_page_added<F: Fn(&Self, &Widget, u32) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -533,7 +533,7 @@ impl Notebook {
     }
 
     #[doc(alias = "page-removed")]
-    pub fn connect_page_removed<F: Fn(&Notebook, &Widget, u32) + 'static>(
+    pub fn connect_page_removed<F: Fn(&Self, &Widget, u32) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -560,7 +560,7 @@ impl Notebook {
     }
 
     #[doc(alias = "page-reordered")]
-    pub fn connect_page_reordered<F: Fn(&Notebook, &Widget, u32) + 'static>(
+    pub fn connect_page_reordered<F: Fn(&Self, &Widget, u32) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -587,7 +587,7 @@ impl Notebook {
     }
 
     #[doc(alias = "reorder-tab")]
-    pub fn connect_reorder_tab<F: Fn(&Notebook, DirectionType, bool) -> bool + 'static>(
+    pub fn connect_reorder_tab<F: Fn(&Self, DirectionType, bool) -> bool + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -627,7 +627,7 @@ impl Notebook {
     }
 
     #[doc(alias = "select-page")]
-    pub fn connect_select_page<F: Fn(&Notebook, bool) -> bool + 'static>(
+    pub fn connect_select_page<F: Fn(&Self, bool) -> bool + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -664,7 +664,7 @@ impl Notebook {
     }
 
     #[doc(alias = "switch-page")]
-    pub fn connect_switch_page<F: Fn(&Notebook, &Widget, u32) + 'static>(
+    pub fn connect_switch_page<F: Fn(&Self, &Widget, u32) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -691,7 +691,7 @@ impl Notebook {
     }
 
     #[doc(alias = "enable-popup")]
-    pub fn connect_enable_popup_notify<F: Fn(&Notebook) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_enable_popup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_enable_popup_trampoline<F: Fn(&Notebook) + 'static>(
             this: *mut ffi::GtkNotebook,
             _param_spec: glib::ffi::gpointer,
@@ -714,7 +714,7 @@ impl Notebook {
     }
 
     #[doc(alias = "group-name")]
-    pub fn connect_group_name_notify<F: Fn(&Notebook) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_group_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_group_name_trampoline<F: Fn(&Notebook) + 'static>(
             this: *mut ffi::GtkNotebook,
             _param_spec: glib::ffi::gpointer,
@@ -737,7 +737,7 @@ impl Notebook {
     }
 
     #[doc(alias = "page")]
-    pub fn connect_page_notify<F: Fn(&Notebook) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_page_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_page_trampoline<F: Fn(&Notebook) + 'static>(
             this: *mut ffi::GtkNotebook,
             _param_spec: glib::ffi::gpointer,
@@ -760,7 +760,7 @@ impl Notebook {
     }
 
     #[doc(alias = "pages")]
-    pub fn connect_pages_notify<F: Fn(&Notebook) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_pages_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pages_trampoline<F: Fn(&Notebook) + 'static>(
             this: *mut ffi::GtkNotebook,
             _param_spec: glib::ffi::gpointer,
@@ -783,7 +783,7 @@ impl Notebook {
     }
 
     #[doc(alias = "scrollable")]
-    pub fn connect_scrollable_notify<F: Fn(&Notebook) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_scrollable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scrollable_trampoline<F: Fn(&Notebook) + 'static>(
             this: *mut ffi::GtkNotebook,
             _param_spec: glib::ffi::gpointer,
@@ -806,7 +806,7 @@ impl Notebook {
     }
 
     #[doc(alias = "show-border")]
-    pub fn connect_show_border_notify<F: Fn(&Notebook) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_show_border_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_border_trampoline<F: Fn(&Notebook) + 'static>(
             this: *mut ffi::GtkNotebook,
             _param_spec: glib::ffi::gpointer,
@@ -829,7 +829,7 @@ impl Notebook {
     }
 
     #[doc(alias = "show-tabs")]
-    pub fn connect_show_tabs_notify<F: Fn(&Notebook) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_show_tabs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_tabs_trampoline<F: Fn(&Notebook) + 'static>(
             this: *mut ffi::GtkNotebook,
             _param_spec: glib::ffi::gpointer,
@@ -852,7 +852,7 @@ impl Notebook {
     }
 
     #[doc(alias = "tab-pos")]
-    pub fn connect_tab_pos_notify<F: Fn(&Notebook) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_tab_pos_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tab_pos_trampoline<F: Fn(&Notebook) + 'static>(
             this: *mut ffi::GtkNotebook,
             _param_spec: glib::ffi::gpointer,

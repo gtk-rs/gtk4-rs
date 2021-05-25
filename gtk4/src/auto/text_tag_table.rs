@@ -84,10 +84,7 @@ impl TextTagTable {
     }
 
     #[doc(alias = "tag-added")]
-    pub fn connect_tag_added<F: Fn(&TextTagTable, &TextTag) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_tag_added<F: Fn(&Self, &TextTag) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn tag_added_trampoline<F: Fn(&TextTagTable, &TextTag) + 'static>(
             this: *mut ffi::GtkTextTagTable,
             tag: *mut ffi::GtkTextTag,
@@ -110,7 +107,7 @@ impl TextTagTable {
     }
 
     #[doc(alias = "tag-changed")]
-    pub fn connect_tag_changed<F: Fn(&TextTagTable, &TextTag, bool) + 'static>(
+    pub fn connect_tag_changed<F: Fn(&Self, &TextTag, bool) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -143,10 +140,7 @@ impl TextTagTable {
     }
 
     #[doc(alias = "tag-removed")]
-    pub fn connect_tag_removed<F: Fn(&TextTagTable, &TextTag) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_tag_removed<F: Fn(&Self, &TextTag) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn tag_removed_trampoline<F: Fn(&TextTagTable, &TextTag) + 'static>(
             this: *mut ffi::GtkTextTagTable,
             tag: *mut ffi::GtkTextTag,

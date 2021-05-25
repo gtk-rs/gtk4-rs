@@ -82,10 +82,7 @@ impl StringFilter {
     }
 
     #[doc(alias = "expression")]
-    pub fn connect_expression_notify<F: Fn(&StringFilter) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_expression_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expression_trampoline<F: Fn(&StringFilter) + 'static>(
             this: *mut ffi::GtkStringFilter,
             _param_spec: glib::ffi::gpointer,
@@ -108,10 +105,7 @@ impl StringFilter {
     }
 
     #[doc(alias = "ignore-case")]
-    pub fn connect_ignore_case_notify<F: Fn(&StringFilter) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_ignore_case_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_ignore_case_trampoline<F: Fn(&StringFilter) + 'static>(
             this: *mut ffi::GtkStringFilter,
             _param_spec: glib::ffi::gpointer,
@@ -134,10 +128,7 @@ impl StringFilter {
     }
 
     #[doc(alias = "match-mode")]
-    pub fn connect_match_mode_notify<F: Fn(&StringFilter) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_match_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_match_mode_trampoline<F: Fn(&StringFilter) + 'static>(
             this: *mut ffi::GtkStringFilter,
             _param_spec: glib::ffi::gpointer,
@@ -160,7 +151,7 @@ impl StringFilter {
     }
 
     #[doc(alias = "search")]
-    pub fn connect_search_notify<F: Fn(&StringFilter) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_search_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_search_trampoline<F: Fn(&StringFilter) + 'static>(
             this: *mut ffi::GtkStringFilter,
             _param_spec: glib::ffi::gpointer,

@@ -59,7 +59,7 @@ impl StackSidebar {
     }
 
     #[doc(alias = "stack")]
-    pub fn connect_stack_notify<F: Fn(&StackSidebar) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_stack_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_stack_trampoline<F: Fn(&StackSidebar) + 'static>(
             this: *mut ffi::GtkStackSidebar,
             _param_spec: glib::ffi::gpointer,

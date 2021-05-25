@@ -93,13 +93,11 @@ impl<O: IsA<Renderer>> RendererExt for O {
 
     #[doc(alias = "realized")]
     fn connect_realized_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_realized_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_realized_trampoline<P: IsA<Renderer>, F: Fn(&P) + 'static>(
             this: *mut ffi::GskRenderer,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Renderer>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Renderer::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -118,13 +116,11 @@ impl<O: IsA<Renderer>> RendererExt for O {
 
     #[doc(alias = "surface")]
     fn connect_surface_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_surface_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_surface_trampoline<P: IsA<Renderer>, F: Fn(&P) + 'static>(
             this: *mut ffi::GskRenderer,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Renderer>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Renderer::from_glib_borrow(this).unsafe_cast_ref())
         }

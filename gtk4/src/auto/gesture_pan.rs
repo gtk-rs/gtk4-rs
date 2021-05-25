@@ -59,10 +59,7 @@ impl GesturePan {
     }
 
     #[doc(alias = "pan")]
-    pub fn connect_pan<F: Fn(&GesturePan, PanDirection, f64) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_pan<F: Fn(&Self, PanDirection, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn pan_trampoline<F: Fn(&GesturePan, PanDirection, f64) + 'static>(
             this: *mut ffi::GtkGesturePan,
             direction: ffi::GtkPanDirection,
@@ -86,10 +83,7 @@ impl GesturePan {
     }
 
     #[doc(alias = "orientation")]
-    pub fn connect_orientation_notify<F: Fn(&GesturePan) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_orientation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_orientation_trampoline<F: Fn(&GesturePan) + 'static>(
             this: *mut ffi::GtkGesturePan,
             _param_spec: glib::ffi::gpointer,

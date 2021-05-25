@@ -59,7 +59,7 @@ impl EventControllerFocus {
     }
 
     #[doc(alias = "enter")]
-    pub fn connect_enter<F: Fn(&EventControllerFocus) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_enter<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn enter_trampoline<F: Fn(&EventControllerFocus) + 'static>(
             this: *mut ffi::GtkEventControllerFocus,
             f: glib::ffi::gpointer,
@@ -81,7 +81,7 @@ impl EventControllerFocus {
     }
 
     #[doc(alias = "leave")]
-    pub fn connect_leave<F: Fn(&EventControllerFocus) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_leave<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn leave_trampoline<F: Fn(&EventControllerFocus) + 'static>(
             this: *mut ffi::GtkEventControllerFocus,
             f: glib::ffi::gpointer,
@@ -103,10 +103,7 @@ impl EventControllerFocus {
     }
 
     #[doc(alias = "contains-focus")]
-    pub fn connect_contains_focus_notify<F: Fn(&EventControllerFocus) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_contains_focus_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_contains_focus_trampoline<
             F: Fn(&EventControllerFocus) + 'static,
         >(
@@ -131,10 +128,7 @@ impl EventControllerFocus {
     }
 
     #[doc(alias = "is-focus")]
-    pub fn connect_is_focus_notify<F: Fn(&EventControllerFocus) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_is_focus_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_is_focus_trampoline<F: Fn(&EventControllerFocus) + 'static>(
             this: *mut ffi::GtkEventControllerFocus,
             _param_spec: glib::ffi::gpointer,

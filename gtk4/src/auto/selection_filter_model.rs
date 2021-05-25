@@ -52,10 +52,7 @@ impl SelectionFilterModel {
     }
 
     #[doc(alias = "model")]
-    pub fn connect_model_notify<F: Fn(&SelectionFilterModel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<F: Fn(&SelectionFilterModel) + 'static>(
             this: *mut ffi::GtkSelectionFilterModel,
             _param_spec: glib::ffi::gpointer,

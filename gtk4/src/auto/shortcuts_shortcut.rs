@@ -264,10 +264,7 @@ impl ShortcutsShortcut {
     }
 
     #[doc(alias = "accel-size-group")]
-    pub fn connect_accel_size_group_notify<F: Fn(&ShortcutsShortcut) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_accel_size_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_accel_size_group_trampoline<
             F: Fn(&ShortcutsShortcut) + 'static,
         >(
@@ -292,10 +289,7 @@ impl ShortcutsShortcut {
     }
 
     #[doc(alias = "accelerator")]
-    pub fn connect_accelerator_notify<F: Fn(&ShortcutsShortcut) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_accelerator_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_accelerator_trampoline<F: Fn(&ShortcutsShortcut) + 'static>(
             this: *mut ffi::GtkShortcutsShortcut,
             _param_spec: glib::ffi::gpointer,
@@ -318,10 +312,7 @@ impl ShortcutsShortcut {
     }
 
     #[doc(alias = "action-name")]
-    pub fn connect_action_name_notify<F: Fn(&ShortcutsShortcut) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_action_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_action_name_trampoline<F: Fn(&ShortcutsShortcut) + 'static>(
             this: *mut ffi::GtkShortcutsShortcut,
             _param_spec: glib::ffi::gpointer,
@@ -344,10 +335,7 @@ impl ShortcutsShortcut {
     }
 
     #[doc(alias = "direction")]
-    pub fn connect_direction_notify<F: Fn(&ShortcutsShortcut) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_direction_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_direction_trampoline<F: Fn(&ShortcutsShortcut) + 'static>(
             this: *mut ffi::GtkShortcutsShortcut,
             _param_spec: glib::ffi::gpointer,
@@ -370,10 +358,7 @@ impl ShortcutsShortcut {
     }
 
     #[doc(alias = "icon")]
-    pub fn connect_icon_notify<F: Fn(&ShortcutsShortcut) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_icon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_trampoline<F: Fn(&ShortcutsShortcut) + 'static>(
             this: *mut ffi::GtkShortcutsShortcut,
             _param_spec: glib::ffi::gpointer,
@@ -396,10 +381,7 @@ impl ShortcutsShortcut {
     }
 
     #[doc(alias = "icon-set")]
-    pub fn connect_icon_set_notify<F: Fn(&ShortcutsShortcut) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_icon_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_set_trampoline<F: Fn(&ShortcutsShortcut) + 'static>(
             this: *mut ffi::GtkShortcutsShortcut,
             _param_spec: glib::ffi::gpointer,
@@ -422,10 +404,7 @@ impl ShortcutsShortcut {
     }
 
     #[doc(alias = "shortcut-type")]
-    pub fn connect_shortcut_type_notify<F: Fn(&ShortcutsShortcut) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_shortcut_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_shortcut_type_trampoline<
             F: Fn(&ShortcutsShortcut) + 'static,
         >(
@@ -450,10 +429,7 @@ impl ShortcutsShortcut {
     }
 
     #[doc(alias = "subtitle")]
-    pub fn connect_subtitle_notify<F: Fn(&ShortcutsShortcut) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_subtitle_trampoline<F: Fn(&ShortcutsShortcut) + 'static>(
             this: *mut ffi::GtkShortcutsShortcut,
             _param_spec: glib::ffi::gpointer,
@@ -476,10 +452,7 @@ impl ShortcutsShortcut {
     }
 
     #[doc(alias = "subtitle-set")]
-    pub fn connect_subtitle_set_notify<F: Fn(&ShortcutsShortcut) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_subtitle_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_subtitle_set_trampoline<F: Fn(&ShortcutsShortcut) + 'static>(
             this: *mut ffi::GtkShortcutsShortcut,
             _param_spec: glib::ffi::gpointer,
@@ -502,10 +475,7 @@ impl ShortcutsShortcut {
     }
 
     #[doc(alias = "title")]
-    pub fn connect_title_notify<F: Fn(&ShortcutsShortcut) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&ShortcutsShortcut) + 'static>(
             this: *mut ffi::GtkShortcutsShortcut,
             _param_spec: glib::ffi::gpointer,
@@ -528,10 +498,7 @@ impl ShortcutsShortcut {
     }
 
     #[doc(alias = "title-size-group")]
-    pub fn connect_title_size_group_notify<F: Fn(&ShortcutsShortcut) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_title_size_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_size_group_trampoline<
             F: Fn(&ShortcutsShortcut) + 'static,
         >(

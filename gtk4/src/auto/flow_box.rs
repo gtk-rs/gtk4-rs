@@ -424,10 +424,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "activate-cursor-child")]
-    pub fn connect_activate_cursor_child<F: Fn(&FlowBox) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_activate_cursor_child<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_cursor_child_trampoline<F: Fn(&FlowBox) + 'static>(
             this: *mut ffi::GtkFlowBox,
             f: glib::ffi::gpointer,
@@ -457,7 +454,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "child-activated")]
-    pub fn connect_child_activated<F: Fn(&FlowBox, &FlowBoxChild) + 'static>(
+    pub fn connect_child_activated<F: Fn(&Self, &FlowBoxChild) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -485,7 +482,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "move-cursor")]
-    pub fn connect_move_cursor<F: Fn(&FlowBox, MovementStep, i32, bool, bool) -> bool + 'static>(
+    pub fn connect_move_cursor<F: Fn(&Self, MovementStep, i32, bool, bool) -> bool + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -540,7 +537,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "select-all")]
-    pub fn connect_select_all<F: Fn(&FlowBox) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_select_all<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn select_all_trampoline<F: Fn(&FlowBox) + 'static>(
             this: *mut ffi::GtkFlowBox,
             f: glib::ffi::gpointer,
@@ -570,7 +567,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "selected-children-changed")]
-    pub fn connect_selected_children_changed<F: Fn(&FlowBox) + 'static>(
+    pub fn connect_selected_children_changed<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -595,7 +592,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "toggle-cursor-child")]
-    pub fn connect_toggle_cursor_child<F: Fn(&FlowBox) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_toggle_cursor_child<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn toggle_cursor_child_trampoline<F: Fn(&FlowBox) + 'static>(
             this: *mut ffi::GtkFlowBox,
             f: glib::ffi::gpointer,
@@ -625,7 +622,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "unselect-all")]
-    pub fn connect_unselect_all<F: Fn(&FlowBox) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_unselect_all<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn unselect_all_trampoline<F: Fn(&FlowBox) + 'static>(
             this: *mut ffi::GtkFlowBox,
             f: glib::ffi::gpointer,
@@ -655,7 +652,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "accept-unpaired-release")]
-    pub fn connect_accept_unpaired_release_notify<F: Fn(&FlowBox) + 'static>(
+    pub fn connect_accept_unpaired_release_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -683,7 +680,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "activate-on-single-click")]
-    pub fn connect_activate_on_single_click_notify<F: Fn(&FlowBox) + 'static>(
+    pub fn connect_activate_on_single_click_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -711,10 +708,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "column-spacing")]
-    pub fn connect_column_spacing_notify<F: Fn(&FlowBox) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_column_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_column_spacing_trampoline<F: Fn(&FlowBox) + 'static>(
             this: *mut ffi::GtkFlowBox,
             _param_spec: glib::ffi::gpointer,
@@ -737,7 +731,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "homogeneous")]
-    pub fn connect_homogeneous_notify<F: Fn(&FlowBox) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_homogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_homogeneous_trampoline<F: Fn(&FlowBox) + 'static>(
             this: *mut ffi::GtkFlowBox,
             _param_spec: glib::ffi::gpointer,
@@ -760,7 +754,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "max-children-per-line")]
-    pub fn connect_max_children_per_line_notify<F: Fn(&FlowBox) + 'static>(
+    pub fn connect_max_children_per_line_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -786,7 +780,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "min-children-per-line")]
-    pub fn connect_min_children_per_line_notify<F: Fn(&FlowBox) + 'static>(
+    pub fn connect_min_children_per_line_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -812,7 +806,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "row-spacing")]
-    pub fn connect_row_spacing_notify<F: Fn(&FlowBox) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_row_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_row_spacing_trampoline<F: Fn(&FlowBox) + 'static>(
             this: *mut ffi::GtkFlowBox,
             _param_spec: glib::ffi::gpointer,
@@ -835,10 +829,7 @@ impl FlowBox {
     }
 
     #[doc(alias = "selection-mode")]
-    pub fn connect_selection_mode_notify<F: Fn(&FlowBox) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_selection_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selection_mode_trampoline<F: Fn(&FlowBox) + 'static>(
             this: *mut ffi::GtkFlowBox,
             _param_spec: glib::ffi::gpointer,

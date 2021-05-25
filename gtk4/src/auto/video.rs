@@ -166,7 +166,7 @@ impl Video {
     }
 
     #[doc(alias = "autoplay")]
-    pub fn connect_autoplay_notify<F: Fn(&Video) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_autoplay_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_autoplay_trampoline<F: Fn(&Video) + 'static>(
             this: *mut ffi::GtkVideo,
             _param_spec: glib::ffi::gpointer,
@@ -189,7 +189,7 @@ impl Video {
     }
 
     #[doc(alias = "file")]
-    pub fn connect_file_notify<F: Fn(&Video) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_file_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_file_trampoline<F: Fn(&Video) + 'static>(
             this: *mut ffi::GtkVideo,
             _param_spec: glib::ffi::gpointer,
@@ -212,7 +212,7 @@ impl Video {
     }
 
     #[doc(alias = "loop")]
-    pub fn connect_loop_notify<F: Fn(&Video) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_loop_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_loop_trampoline<F: Fn(&Video) + 'static>(
             this: *mut ffi::GtkVideo,
             _param_spec: glib::ffi::gpointer,
@@ -235,7 +235,7 @@ impl Video {
     }
 
     #[doc(alias = "media-stream")]
-    pub fn connect_media_stream_notify<F: Fn(&Video) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_media_stream_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_media_stream_trampoline<F: Fn(&Video) + 'static>(
             this: *mut ffi::GtkVideo,
             _param_spec: glib::ffi::gpointer,

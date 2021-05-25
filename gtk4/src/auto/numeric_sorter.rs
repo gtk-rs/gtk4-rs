@@ -60,10 +60,7 @@ impl NumericSorter {
     }
 
     #[doc(alias = "expression")]
-    pub fn connect_expression_notify<F: Fn(&NumericSorter) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_expression_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expression_trampoline<F: Fn(&NumericSorter) + 'static>(
             this: *mut ffi::GtkNumericSorter,
             _param_spec: glib::ffi::gpointer,
@@ -86,10 +83,7 @@ impl NumericSorter {
     }
 
     #[doc(alias = "sort-order")]
-    pub fn connect_sort_order_notify<F: Fn(&NumericSorter) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_sort_order_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_sort_order_trampoline<F: Fn(&NumericSorter) + 'static>(
             this: *mut ffi::GtkNumericSorter,
             _param_spec: glib::ffi::gpointer,

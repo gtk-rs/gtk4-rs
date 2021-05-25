@@ -235,7 +235,7 @@ impl Stack {
     }
 
     #[doc(alias = "hhomogeneous")]
-    pub fn connect_hhomogeneous_notify<F: Fn(&Stack) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_hhomogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_hhomogeneous_trampoline<F: Fn(&Stack) + 'static>(
             this: *mut ffi::GtkStack,
             _param_spec: glib::ffi::gpointer,
@@ -258,10 +258,7 @@ impl Stack {
     }
 
     #[doc(alias = "interpolate-size")]
-    pub fn connect_interpolate_size_notify<F: Fn(&Stack) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_interpolate_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_interpolate_size_trampoline<F: Fn(&Stack) + 'static>(
             this: *mut ffi::GtkStack,
             _param_spec: glib::ffi::gpointer,
@@ -284,7 +281,7 @@ impl Stack {
     }
 
     #[doc(alias = "pages")]
-    pub fn connect_pages_notify<F: Fn(&Stack) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_pages_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pages_trampoline<F: Fn(&Stack) + 'static>(
             this: *mut ffi::GtkStack,
             _param_spec: glib::ffi::gpointer,
@@ -307,7 +304,7 @@ impl Stack {
     }
 
     #[doc(alias = "transition-duration")]
-    pub fn connect_transition_duration_notify<F: Fn(&Stack) + 'static>(
+    pub fn connect_transition_duration_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -333,7 +330,7 @@ impl Stack {
     }
 
     #[doc(alias = "transition-running")]
-    pub fn connect_transition_running_notify<F: Fn(&Stack) + 'static>(
+    pub fn connect_transition_running_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -359,7 +356,7 @@ impl Stack {
     }
 
     #[doc(alias = "transition-type")]
-    pub fn connect_transition_type_notify<F: Fn(&Stack) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_transition_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_transition_type_trampoline<F: Fn(&Stack) + 'static>(
             this: *mut ffi::GtkStack,
             _param_spec: glib::ffi::gpointer,
@@ -382,7 +379,7 @@ impl Stack {
     }
 
     #[doc(alias = "vhomogeneous")]
-    pub fn connect_vhomogeneous_notify<F: Fn(&Stack) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_vhomogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_vhomogeneous_trampoline<F: Fn(&Stack) + 'static>(
             this: *mut ffi::GtkStack,
             _param_spec: glib::ffi::gpointer,
@@ -405,7 +402,7 @@ impl Stack {
     }
 
     #[doc(alias = "visible-child")]
-    pub fn connect_visible_child_notify<F: Fn(&Stack) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_visible_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_visible_child_trampoline<F: Fn(&Stack) + 'static>(
             this: *mut ffi::GtkStack,
             _param_spec: glib::ffi::gpointer,
@@ -428,7 +425,7 @@ impl Stack {
     }
 
     #[doc(alias = "visible-child-name")]
-    pub fn connect_visible_child_name_notify<F: Fn(&Stack) + 'static>(
+    pub fn connect_visible_child_name_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

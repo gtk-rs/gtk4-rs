@@ -168,14 +168,15 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
 
     #[doc(alias = "selection-changed")]
     fn connect_selection_changed<F: Fn(&Self, u32, u32) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn selection_changed_trampoline<P, F: Fn(&P, u32, u32) + 'static>(
+        unsafe extern "C" fn selection_changed_trampoline<
+            P: IsA<SelectionModel>,
+            F: Fn(&P, u32, u32) + 'static,
+        >(
             this: *mut ffi::GtkSelectionModel,
             position: libc::c_uint,
             n_items: libc::c_uint,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<SelectionModel>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &SelectionModel::from_glib_borrow(this).unsafe_cast_ref(),

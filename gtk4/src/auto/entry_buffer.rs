@@ -113,13 +113,11 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
 
     #[doc(alias = "length")]
     fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_length_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_length_trampoline<P: IsA<EntryBuffer>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEntryBuffer,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<EntryBuffer>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&EntryBuffer::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -138,13 +136,14 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
 
     #[doc(alias = "max-length")]
     fn connect_max_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_max_length_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_max_length_trampoline<
+            P: IsA<EntryBuffer>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkEntryBuffer,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<EntryBuffer>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&EntryBuffer::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -163,13 +162,11 @@ impl<O: IsA<EntryBuffer>> EntryBufferExt for O {
 
     #[doc(alias = "text")]
     fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_text_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_text_trampoline<P: IsA<EntryBuffer>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEntryBuffer,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<EntryBuffer>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&EntryBuffer::from_glib_borrow(this).unsafe_cast_ref())
         }

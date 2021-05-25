@@ -262,13 +262,14 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
 
     #[doc(alias = "minimum-height")]
     fn connect_minimum_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_minimum_height_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_minimum_height_trampoline<
+            P: IsA<CellAreaContext>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellAreaContext,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellAreaContext>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellAreaContext::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -287,13 +288,14 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
 
     #[doc(alias = "minimum-width")]
     fn connect_minimum_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_minimum_width_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_minimum_width_trampoline<
+            P: IsA<CellAreaContext>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellAreaContext,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellAreaContext>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellAreaContext::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -312,13 +314,14 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
 
     #[doc(alias = "natural-height")]
     fn connect_natural_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_natural_height_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_natural_height_trampoline<
+            P: IsA<CellAreaContext>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellAreaContext,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellAreaContext>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellAreaContext::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -337,13 +340,14 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
 
     #[doc(alias = "natural-width")]
     fn connect_natural_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_natural_width_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_natural_width_trampoline<
+            P: IsA<CellAreaContext>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellAreaContext,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellAreaContext>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellAreaContext::from_glib_borrow(this).unsafe_cast_ref())
         }

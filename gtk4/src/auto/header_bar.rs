@@ -119,7 +119,7 @@ impl HeaderBar {
     }
 
     #[doc(alias = "decoration-layout")]
-    pub fn connect_decoration_layout_notify<F: Fn(&HeaderBar) + 'static>(
+    pub fn connect_decoration_layout_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -145,7 +145,7 @@ impl HeaderBar {
     }
 
     #[doc(alias = "show-title-buttons")]
-    pub fn connect_show_title_buttons_notify<F: Fn(&HeaderBar) + 'static>(
+    pub fn connect_show_title_buttons_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -171,10 +171,7 @@ impl HeaderBar {
     }
 
     #[doc(alias = "title-widget")]
-    pub fn connect_title_widget_notify<F: Fn(&HeaderBar) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_title_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_widget_trampoline<F: Fn(&HeaderBar) + 'static>(
             this: *mut ffi::GtkHeaderBar,
             _param_spec: glib::ffi::gpointer,

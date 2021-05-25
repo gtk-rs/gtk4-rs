@@ -67,13 +67,14 @@ impl<O: IsA<Sorter>> SorterExt for O {
 
     #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self, SorterChange) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn changed_trampoline<P, F: Fn(&P, SorterChange) + 'static>(
+        unsafe extern "C" fn changed_trampoline<
+            P: IsA<Sorter>,
+            F: Fn(&P, SorterChange) + 'static,
+        >(
             this: *mut ffi::GtkSorter,
             change: ffi::GtkSorterChange,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Sorter>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &Sorter::from_glib_borrow(this).unsafe_cast_ref(),

@@ -89,7 +89,7 @@ impl SliceListModel {
     }
 
     #[doc(alias = "model")]
-    pub fn connect_model_notify<F: Fn(&SliceListModel) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<F: Fn(&SliceListModel) + 'static>(
             this: *mut ffi::GtkSliceListModel,
             _param_spec: glib::ffi::gpointer,
@@ -112,7 +112,7 @@ impl SliceListModel {
     }
 
     #[doc(alias = "offset")]
-    pub fn connect_offset_notify<F: Fn(&SliceListModel) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_offset_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_offset_trampoline<F: Fn(&SliceListModel) + 'static>(
             this: *mut ffi::GtkSliceListModel,
             _param_spec: glib::ffi::gpointer,
@@ -135,7 +135,7 @@ impl SliceListModel {
     }
 
     #[doc(alias = "size")]
-    pub fn connect_size_notify<F: Fn(&SliceListModel) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_size_trampoline<F: Fn(&SliceListModel) + 'static>(
             this: *mut ffi::GtkSliceListModel,
             _param_spec: glib::ffi::gpointer,

@@ -61,7 +61,7 @@ impl WindowHandle {
     }
 
     #[doc(alias = "child")]
-    pub fn connect_child_notify<F: Fn(&WindowHandle) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&WindowHandle) + 'static>(
             this: *mut ffi::GtkWindowHandle,
             _param_spec: glib::ffi::gpointer,

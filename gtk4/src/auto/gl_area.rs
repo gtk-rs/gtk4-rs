@@ -588,15 +588,12 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn create_context_trampoline<
-            P,
+            P: IsA<GLArea>,
             F: Fn(&P) -> Option<gdk::GLContext> + 'static,
         >(
             this: *mut ffi::GtkGLArea,
             f: glib::ffi::gpointer,
-        ) -> *mut gdk::ffi::GdkGLContext
-        where
-            P: IsA<GLArea>,
-        {
+        ) -> *mut gdk::ffi::GdkGLContext {
             let f: &F = &*(f as *const F);
             f(&GLArea::from_glib_borrow(this).unsafe_cast_ref()).to_glib_full()
         }
@@ -619,16 +616,13 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn render_trampoline<
-            P,
+            P: IsA<GLArea>,
             F: Fn(&P, &gdk::GLContext) -> glib::signal::Inhibit + 'static,
         >(
             this: *mut ffi::GtkGLArea,
             context: *mut gdk::ffi::GdkGLContext,
             f: glib::ffi::gpointer,
-        ) -> glib::ffi::gboolean
-        where
-            P: IsA<GLArea>,
-        {
+        ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(
                 &GLArea::from_glib_borrow(this).unsafe_cast_ref(),
@@ -651,14 +645,12 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
 
     #[doc(alias = "resize")]
     fn connect_resize<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn resize_trampoline<P, F: Fn(&P, i32, i32) + 'static>(
+        unsafe extern "C" fn resize_trampoline<P: IsA<GLArea>, F: Fn(&P, i32, i32) + 'static>(
             this: *mut ffi::GtkGLArea,
             width: libc::c_int,
             height: libc::c_int,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<GLArea>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &GLArea::from_glib_borrow(this).unsafe_cast_ref(),
@@ -681,13 +673,11 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
 
     #[doc(alias = "auto-render")]
     fn connect_auto_render_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_auto_render_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_auto_render_trampoline<P: IsA<GLArea>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkGLArea,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<GLArea>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&GLArea::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -706,13 +696,11 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
 
     #[doc(alias = "context")]
     fn connect_context_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_context_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_context_trampoline<P: IsA<GLArea>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkGLArea,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<GLArea>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&GLArea::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -731,13 +719,14 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
 
     #[doc(alias = "has-depth-buffer")]
     fn connect_has_depth_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_has_depth_buffer_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_has_depth_buffer_trampoline<
+            P: IsA<GLArea>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkGLArea,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<GLArea>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&GLArea::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -756,13 +745,14 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
 
     #[doc(alias = "has-stencil-buffer")]
     fn connect_has_stencil_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_has_stencil_buffer_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_has_stencil_buffer_trampoline<
+            P: IsA<GLArea>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkGLArea,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<GLArea>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&GLArea::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -781,13 +771,11 @@ impl<O: IsA<GLArea>> GLAreaExt for O {
 
     #[doc(alias = "use-es")]
     fn connect_use_es_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_use_es_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_use_es_trampoline<P: IsA<GLArea>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkGLArea,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<GLArea>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&GLArea::from_glib_borrow(this).unsafe_cast_ref())
         }

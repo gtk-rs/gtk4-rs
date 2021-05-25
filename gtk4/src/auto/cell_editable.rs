@@ -89,12 +89,10 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
 
     #[doc(alias = "editing-done")]
     fn connect_editing_done<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn editing_done_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn editing_done_trampoline<P: IsA<CellEditable>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCellEditable,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellEditable>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellEditable::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -113,12 +111,10 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
 
     #[doc(alias = "remove-widget")]
     fn connect_remove_widget<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn remove_widget_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn remove_widget_trampoline<P: IsA<CellEditable>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCellEditable,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellEditable>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellEditable::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -137,13 +133,14 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
 
     #[doc(alias = "editing-canceled")]
     fn connect_editing_canceled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_editing_canceled_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_editing_canceled_trampoline<
+            P: IsA<CellEditable>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellEditable,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellEditable>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellEditable::from_glib_borrow(this).unsafe_cast_ref())
         }

@@ -364,12 +364,10 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn changed_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn changed_trampoline<P: IsA<Editable>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEditable,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Editable>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -388,14 +386,15 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     #[doc(alias = "delete-text")]
     fn connect_delete_text<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn delete_text_trampoline<P, F: Fn(&P, i32, i32) + 'static>(
+        unsafe extern "C" fn delete_text_trampoline<
+            P: IsA<Editable>,
+            F: Fn(&P, i32, i32) + 'static,
+        >(
             this: *mut ffi::GtkEditable,
             start_pos: libc::c_int,
             end_pos: libc::c_int,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Editable>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &Editable::from_glib_borrow(this).unsafe_cast_ref(),
@@ -418,13 +417,14 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     #[doc(alias = "cursor-position")]
     fn connect_cursor_position_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_cursor_position_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_cursor_position_trampoline<
+            P: IsA<Editable>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkEditable,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Editable>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -443,13 +443,11 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     #[doc(alias = "editable")]
     fn connect_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_editable_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_editable_trampoline<P: IsA<Editable>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEditable,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Editable>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -468,13 +466,14 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     #[doc(alias = "enable-undo")]
     fn connect_enable_undo_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_enable_undo_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_enable_undo_trampoline<
+            P: IsA<Editable>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkEditable,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Editable>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -493,13 +492,14 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     #[doc(alias = "max-width-chars")]
     fn connect_max_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_max_width_chars_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_max_width_chars_trampoline<
+            P: IsA<Editable>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkEditable,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Editable>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -518,13 +518,14 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     #[doc(alias = "selection-bound")]
     fn connect_selection_bound_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_selection_bound_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_selection_bound_trampoline<
+            P: IsA<Editable>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkEditable,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Editable>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -543,13 +544,11 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     #[doc(alias = "text")]
     fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_text_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_text_trampoline<P: IsA<Editable>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEditable,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Editable>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -568,13 +567,14 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     #[doc(alias = "width-chars")]
     fn connect_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_width_chars_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_width_chars_trampoline<
+            P: IsA<Editable>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkEditable,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Editable>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -593,13 +593,11 @@ impl<O: IsA<Editable>> EditableExt for O {
 
     #[doc(alias = "xalign")]
     fn connect_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_xalign_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_xalign_trampoline<P: IsA<Editable>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkEditable,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Editable>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
         }

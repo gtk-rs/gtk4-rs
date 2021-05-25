@@ -75,10 +75,7 @@ impl VolumeButton {
     }
 
     #[doc(alias = "use-symbolic")]
-    pub fn connect_use_symbolic_notify<F: Fn(&VolumeButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_use_symbolic_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_symbolic_trampoline<F: Fn(&VolumeButton) + 'static>(
             this: *mut ffi::GtkVolumeButton,
             _param_spec: glib::ffi::gpointer,

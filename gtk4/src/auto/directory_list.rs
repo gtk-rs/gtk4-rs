@@ -92,10 +92,7 @@ impl DirectoryList {
     }
 
     #[doc(alias = "attributes")]
-    pub fn connect_attributes_notify<F: Fn(&DirectoryList) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_attributes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_attributes_trampoline<F: Fn(&DirectoryList) + 'static>(
             this: *mut ffi::GtkDirectoryList,
             _param_spec: glib::ffi::gpointer,
@@ -118,7 +115,7 @@ impl DirectoryList {
     }
 
     #[doc(alias = "error")]
-    pub fn connect_error_notify<F: Fn(&DirectoryList) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_error_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_error_trampoline<F: Fn(&DirectoryList) + 'static>(
             this: *mut ffi::GtkDirectoryList,
             _param_spec: glib::ffi::gpointer,
@@ -141,7 +138,7 @@ impl DirectoryList {
     }
 
     #[doc(alias = "file")]
-    pub fn connect_file_notify<F: Fn(&DirectoryList) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_file_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_file_trampoline<F: Fn(&DirectoryList) + 'static>(
             this: *mut ffi::GtkDirectoryList,
             _param_spec: glib::ffi::gpointer,
@@ -164,10 +161,7 @@ impl DirectoryList {
     }
 
     #[doc(alias = "io-priority")]
-    pub fn connect_io_priority_notify<F: Fn(&DirectoryList) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_io_priority_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_io_priority_trampoline<F: Fn(&DirectoryList) + 'static>(
             this: *mut ffi::GtkDirectoryList,
             _param_spec: glib::ffi::gpointer,
@@ -190,7 +184,7 @@ impl DirectoryList {
     }
 
     #[doc(alias = "loading")]
-    pub fn connect_loading_notify<F: Fn(&DirectoryList) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_loading_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_loading_trampoline<F: Fn(&DirectoryList) + 'static>(
             this: *mut ffi::GtkDirectoryList,
             _param_spec: glib::ffi::gpointer,
@@ -213,10 +207,7 @@ impl DirectoryList {
     }
 
     #[doc(alias = "monitored")]
-    pub fn connect_monitored_notify<F: Fn(&DirectoryList) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_monitored_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_monitored_trampoline<F: Fn(&DirectoryList) + 'static>(
             this: *mut ffi::GtkDirectoryList,
             _param_spec: glib::ffi::gpointer,

@@ -62,10 +62,7 @@ impl FontChooserWidget {
     }
 
     #[doc(alias = "tweak-action")]
-    pub fn connect_tweak_action_notify<F: Fn(&FontChooserWidget) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_tweak_action_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tweak_action_trampoline<F: Fn(&FontChooserWidget) + 'static>(
             this: *mut ffi::GtkFontChooserWidget,
             _param_spec: glib::ffi::gpointer,

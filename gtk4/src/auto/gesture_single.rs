@@ -220,13 +220,14 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
 
     #[doc(alias = "button")]
     fn connect_button_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_button_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_button_trampoline<
+            P: IsA<GestureSingle>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkGestureSingle,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<GestureSingle>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&GestureSingle::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -245,13 +246,14 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
 
     #[doc(alias = "exclusive")]
     fn connect_exclusive_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_exclusive_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_exclusive_trampoline<
+            P: IsA<GestureSingle>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkGestureSingle,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<GestureSingle>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&GestureSingle::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -270,13 +272,14 @@ impl<O: IsA<GestureSingle>> GestureSingleExt for O {
 
     #[doc(alias = "touch-only")]
     fn connect_touch_only_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_touch_only_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_touch_only_trampoline<
+            P: IsA<GestureSingle>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkGestureSingle,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<GestureSingle>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&GestureSingle::from_glib_borrow(this).unsafe_cast_ref())
         }

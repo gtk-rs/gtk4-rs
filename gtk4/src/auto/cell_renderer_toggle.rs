@@ -117,10 +117,7 @@ impl CellRendererToggle {
     }
 
     #[doc(alias = "toggled")]
-    pub fn connect_toggled<F: Fn(&CellRendererToggle, TreePath) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_toggled<F: Fn(&Self, TreePath) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn toggled_trampoline<F: Fn(&CellRendererToggle, TreePath) + 'static>(
             this: *mut ffi::GtkCellRendererToggle,
             path: *mut libc::c_char,
@@ -144,10 +141,7 @@ impl CellRendererToggle {
     }
 
     #[doc(alias = "activatable")]
-    pub fn connect_activatable_notify<F: Fn(&CellRendererToggle) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_activatable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_activatable_trampoline<F: Fn(&CellRendererToggle) + 'static>(
             this: *mut ffi::GtkCellRendererToggle,
             _param_spec: glib::ffi::gpointer,
@@ -170,10 +164,7 @@ impl CellRendererToggle {
     }
 
     #[doc(alias = "active")]
-    pub fn connect_active_notify<F: Fn(&CellRendererToggle) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_active_trampoline<F: Fn(&CellRendererToggle) + 'static>(
             this: *mut ffi::GtkCellRendererToggle,
             _param_spec: glib::ffi::gpointer,
@@ -196,10 +187,7 @@ impl CellRendererToggle {
     }
 
     #[doc(alias = "inconsistent")]
-    pub fn connect_inconsistent_notify<F: Fn(&CellRendererToggle) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_inconsistent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_inconsistent_trampoline<
             F: Fn(&CellRendererToggle) + 'static,
         >(
@@ -224,10 +212,7 @@ impl CellRendererToggle {
     }
 
     #[doc(alias = "radio")]
-    pub fn connect_radio_notify<F: Fn(&CellRendererToggle) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_radio_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_radio_trampoline<F: Fn(&CellRendererToggle) + 'static>(
             this: *mut ffi::GtkCellRendererToggle,
             _param_spec: glib::ffi::gpointer,

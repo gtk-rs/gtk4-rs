@@ -82,10 +82,7 @@ impl Statusbar {
     }
 
     #[doc(alias = "text-popped")]
-    pub fn connect_text_popped<F: Fn(&Statusbar, u32, &str) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_text_popped<F: Fn(&Self, u32, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn text_popped_trampoline<F: Fn(&Statusbar, u32, &str) + 'static>(
             this: *mut ffi::GtkStatusbar,
             context_id: libc::c_uint,
@@ -113,10 +110,7 @@ impl Statusbar {
     }
 
     #[doc(alias = "text-pushed")]
-    pub fn connect_text_pushed<F: Fn(&Statusbar, u32, &str) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_text_pushed<F: Fn(&Self, u32, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn text_pushed_trampoline<F: Fn(&Statusbar, u32, &str) + 'static>(
             this: *mut ffi::GtkStatusbar,
             context_id: libc::c_uint,

@@ -127,7 +127,7 @@ impl Overlay {
     //}
 
     #[doc(alias = "child")]
-    pub fn connect_child_notify<F: Fn(&Overlay) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&Overlay) + 'static>(
             this: *mut ffi::GtkOverlay,
             _param_spec: glib::ffi::gpointer,

@@ -1329,7 +1329,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-alternative-button-order")]
-    pub fn connect_gtk_alternative_button_order_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_alternative_button_order_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -1357,7 +1357,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-alternative-sort-arrows")]
-    pub fn connect_gtk_alternative_sort_arrows_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_alternative_sort_arrows_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -1385,7 +1385,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-application-prefer-dark-theme")]
-    pub fn connect_gtk_application_prefer_dark_theme_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_application_prefer_dark_theme_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -1413,7 +1413,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-cursor-aspect-ratio")]
-    pub fn connect_gtk_cursor_aspect_ratio_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_cursor_aspect_ratio_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -1441,10 +1441,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-cursor-blink")]
-    pub fn connect_gtk_cursor_blink_notify<F: Fn(&Settings) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_gtk_cursor_blink_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_gtk_cursor_blink_trampoline<F: Fn(&Settings) + 'static>(
             this: *mut ffi::GtkSettings,
             _param_spec: glib::ffi::gpointer,
@@ -1467,7 +1464,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-cursor-blink-time")]
-    pub fn connect_gtk_cursor_blink_time_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_cursor_blink_time_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -1493,7 +1490,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-cursor-blink-timeout")]
-    pub fn connect_gtk_cursor_blink_timeout_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_cursor_blink_timeout_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -1521,7 +1518,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-cursor-theme-name")]
-    pub fn connect_gtk_cursor_theme_name_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_cursor_theme_name_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -1547,7 +1544,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-cursor-theme-size")]
-    pub fn connect_gtk_cursor_theme_size_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_cursor_theme_size_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -1573,7 +1570,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-decoration-layout")]
-    pub fn connect_gtk_decoration_layout_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_decoration_layout_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -1599,7 +1596,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-dialogs-use-header")]
-    pub fn connect_gtk_dialogs_use_header_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_dialogs_use_header_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -1627,7 +1624,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-dnd-drag-threshold")]
-    pub fn connect_gtk_dnd_drag_threshold_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_dnd_drag_threshold_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -1655,7 +1652,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-double-click-distance")]
-    pub fn connect_gtk_double_click_distance_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_double_click_distance_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -1683,7 +1680,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-double-click-time")]
-    pub fn connect_gtk_double_click_time_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_double_click_time_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -1709,7 +1706,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-enable-accels")]
-    pub fn connect_gtk_enable_accels_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_enable_accels_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -1735,7 +1732,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-enable-animations")]
-    pub fn connect_gtk_enable_animations_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_enable_animations_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -1761,7 +1758,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-enable-event-sounds")]
-    pub fn connect_gtk_enable_event_sounds_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_enable_event_sounds_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -1789,7 +1786,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-enable-input-feedback-sounds")]
-    pub fn connect_gtk_enable_input_feedback_sounds_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_enable_input_feedback_sounds_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -1817,7 +1814,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-enable-primary-paste")]
-    pub fn connect_gtk_enable_primary_paste_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_enable_primary_paste_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -1845,7 +1842,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-entry-password-hint-timeout")]
-    pub fn connect_gtk_entry_password_hint_timeout_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_entry_password_hint_timeout_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -1873,7 +1870,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-entry-select-on-focus")]
-    pub fn connect_gtk_entry_select_on_focus_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_entry_select_on_focus_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -1901,10 +1898,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-error-bell")]
-    pub fn connect_gtk_error_bell_notify<F: Fn(&Settings) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_gtk_error_bell_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_gtk_error_bell_trampoline<F: Fn(&Settings) + 'static>(
             this: *mut ffi::GtkSettings,
             _param_spec: glib::ffi::gpointer,
@@ -1927,10 +1921,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-font-name")]
-    pub fn connect_gtk_font_name_notify<F: Fn(&Settings) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_gtk_font_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_gtk_font_name_trampoline<F: Fn(&Settings) + 'static>(
             this: *mut ffi::GtkSettings,
             _param_spec: glib::ffi::gpointer,
@@ -1953,7 +1944,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-fontconfig-timestamp")]
-    pub fn connect_gtk_fontconfig_timestamp_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_fontconfig_timestamp_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -1981,7 +1972,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-icon-theme-name")]
-    pub fn connect_gtk_icon_theme_name_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_icon_theme_name_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -2007,10 +1998,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-im-module")]
-    pub fn connect_gtk_im_module_notify<F: Fn(&Settings) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_gtk_im_module_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_gtk_im_module_trampoline<F: Fn(&Settings) + 'static>(
             this: *mut ffi::GtkSettings,
             _param_spec: glib::ffi::gpointer,
@@ -2033,7 +2021,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-keynav-use-caret")]
-    pub fn connect_gtk_keynav_use_caret_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_keynav_use_caret_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -2059,7 +2047,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-label-select-on-focus")]
-    pub fn connect_gtk_label_select_on_focus_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_label_select_on_focus_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -2087,7 +2075,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-long-press-time")]
-    pub fn connect_gtk_long_press_time_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_long_press_time_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -2113,7 +2101,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-overlay-scrolling")]
-    pub fn connect_gtk_overlay_scrolling_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_overlay_scrolling_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -2139,7 +2127,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-primary-button-warps-slider")]
-    pub fn connect_gtk_primary_button_warps_slider_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_primary_button_warps_slider_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -2167,7 +2155,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-print-backends")]
-    pub fn connect_gtk_print_backends_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_print_backends_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -2193,7 +2181,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-print-preview-command")]
-    pub fn connect_gtk_print_preview_command_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_print_preview_command_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -2221,7 +2209,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-recent-files-enabled")]
-    pub fn connect_gtk_recent_files_enabled_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_recent_files_enabled_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -2249,7 +2237,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-recent-files-max-age")]
-    pub fn connect_gtk_recent_files_max_age_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_recent_files_max_age_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -2277,7 +2265,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-shell-shows-app-menu")]
-    pub fn connect_gtk_shell_shows_app_menu_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_shell_shows_app_menu_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -2305,7 +2293,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-shell-shows-desktop")]
-    pub fn connect_gtk_shell_shows_desktop_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_shell_shows_desktop_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -2333,7 +2321,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-shell-shows-menubar")]
-    pub fn connect_gtk_shell_shows_menubar_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_shell_shows_menubar_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -2361,7 +2349,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-sound-theme-name")]
-    pub fn connect_gtk_sound_theme_name_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_sound_theme_name_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -2387,10 +2375,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-split-cursor")]
-    pub fn connect_gtk_split_cursor_notify<F: Fn(&Settings) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_gtk_split_cursor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_gtk_split_cursor_trampoline<F: Fn(&Settings) + 'static>(
             this: *mut ffi::GtkSettings,
             _param_spec: glib::ffi::gpointer,
@@ -2413,10 +2398,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-theme-name")]
-    pub fn connect_gtk_theme_name_notify<F: Fn(&Settings) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_gtk_theme_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_gtk_theme_name_trampoline<F: Fn(&Settings) + 'static>(
             this: *mut ffi::GtkSettings,
             _param_spec: glib::ffi::gpointer,
@@ -2439,7 +2421,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-titlebar-double-click")]
-    pub fn connect_gtk_titlebar_double_click_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_titlebar_double_click_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -2467,7 +2449,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-titlebar-middle-click")]
-    pub fn connect_gtk_titlebar_middle_click_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_titlebar_middle_click_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -2495,7 +2477,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-titlebar-right-click")]
-    pub fn connect_gtk_titlebar_right_click_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_titlebar_right_click_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -2523,7 +2505,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-xft-antialias")]
-    pub fn connect_gtk_xft_antialias_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_xft_antialias_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -2549,7 +2531,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-xft-dpi")]
-    pub fn connect_gtk_xft_dpi_notify<F: Fn(&Settings) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_gtk_xft_dpi_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_gtk_xft_dpi_trampoline<F: Fn(&Settings) + 'static>(
             this: *mut ffi::GtkSettings,
             _param_spec: glib::ffi::gpointer,
@@ -2572,10 +2554,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-xft-hinting")]
-    pub fn connect_gtk_xft_hinting_notify<F: Fn(&Settings) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_gtk_xft_hinting_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_gtk_xft_hinting_trampoline<F: Fn(&Settings) + 'static>(
             this: *mut ffi::GtkSettings,
             _param_spec: glib::ffi::gpointer,
@@ -2598,7 +2577,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-xft-hintstyle")]
-    pub fn connect_gtk_xft_hintstyle_notify<F: Fn(&Settings) + 'static>(
+    pub fn connect_gtk_xft_hintstyle_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -2624,7 +2603,7 @@ impl Settings {
     }
 
     #[doc(alias = "gtk-xft-rgba")]
-    pub fn connect_gtk_xft_rgba_notify<F: Fn(&Settings) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_gtk_xft_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_gtk_xft_rgba_trampoline<F: Fn(&Settings) + 'static>(
             this: *mut ffi::GtkSettings,
             _param_spec: glib::ffi::gpointer,

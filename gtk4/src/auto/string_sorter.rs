@@ -55,10 +55,7 @@ impl StringSorter {
     }
 
     #[doc(alias = "expression")]
-    pub fn connect_expression_notify<F: Fn(&StringSorter) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_expression_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expression_trampoline<F: Fn(&StringSorter) + 'static>(
             this: *mut ffi::GtkStringSorter,
             _param_spec: glib::ffi::gpointer,
@@ -81,10 +78,7 @@ impl StringSorter {
     }
 
     #[doc(alias = "ignore-case")]
-    pub fn connect_ignore_case_notify<F: Fn(&StringSorter) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_ignore_case_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_ignore_case_trampoline<F: Fn(&StringSorter) + 'static>(
             this: *mut ffi::GtkStringSorter,
             _param_spec: glib::ffi::gpointer,

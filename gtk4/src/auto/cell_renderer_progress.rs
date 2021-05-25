@@ -188,10 +188,7 @@ impl CellRendererProgress {
     }
 
     #[doc(alias = "inverted")]
-    pub fn connect_inverted_notify<F: Fn(&CellRendererProgress) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_inverted_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_inverted_trampoline<F: Fn(&CellRendererProgress) + 'static>(
             this: *mut ffi::GtkCellRendererProgress,
             _param_spec: glib::ffi::gpointer,
@@ -214,10 +211,7 @@ impl CellRendererProgress {
     }
 
     #[doc(alias = "pulse")]
-    pub fn connect_pulse_notify<F: Fn(&CellRendererProgress) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_pulse_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pulse_trampoline<F: Fn(&CellRendererProgress) + 'static>(
             this: *mut ffi::GtkCellRendererProgress,
             _param_spec: glib::ffi::gpointer,
@@ -240,10 +234,7 @@ impl CellRendererProgress {
     }
 
     #[doc(alias = "text")]
-    pub fn connect_text_notify<F: Fn(&CellRendererProgress) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<F: Fn(&CellRendererProgress) + 'static>(
             this: *mut ffi::GtkCellRendererProgress,
             _param_spec: glib::ffi::gpointer,
@@ -266,10 +257,7 @@ impl CellRendererProgress {
     }
 
     #[doc(alias = "text-xalign")]
-    pub fn connect_text_xalign_notify<F: Fn(&CellRendererProgress) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_text_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_xalign_trampoline<
             F: Fn(&CellRendererProgress) + 'static,
         >(
@@ -294,10 +282,7 @@ impl CellRendererProgress {
     }
 
     #[doc(alias = "text-yalign")]
-    pub fn connect_text_yalign_notify<F: Fn(&CellRendererProgress) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_text_yalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_yalign_trampoline<
             F: Fn(&CellRendererProgress) + 'static,
         >(
@@ -322,10 +307,7 @@ impl CellRendererProgress {
     }
 
     #[doc(alias = "value")]
-    pub fn connect_value_notify<F: Fn(&CellRendererProgress) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_value_trampoline<F: Fn(&CellRendererProgress) + 'static>(
             this: *mut ffi::GtkCellRendererProgress,
             _param_spec: glib::ffi::gpointer,

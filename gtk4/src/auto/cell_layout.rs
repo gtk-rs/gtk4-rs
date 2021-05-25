@@ -48,9 +48,6 @@ pub trait CellLayoutExt: 'static {
     #[doc(alias = "gtk_cell_layout_reorder")]
     fn reorder<P: IsA<CellRenderer>>(&self, cell: &P, position: i32);
 
-    //#[doc(alias = "gtk_cell_layout_set_attributes")]
-    //fn set_attributes<P: IsA<CellRenderer>>(&self, cell: &P, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
-
     #[doc(alias = "gtk_cell_layout_set_cell_data_func")]
     fn set_cell_data_func<
         P: IsA<CellRenderer>,
@@ -134,10 +131,6 @@ impl<O: IsA<CellLayout>> CellLayoutExt for O {
             );
         }
     }
-
-    //fn set_attributes<P: IsA<CellRenderer>>(&self, cell: &P, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
-    //    unsafe { TODO: call ffi:gtk_cell_layout_set_attributes() }
-    //}
 
     fn set_cell_data_func<
         P: IsA<CellRenderer>,

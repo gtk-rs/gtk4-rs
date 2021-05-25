@@ -233,10 +233,7 @@ impl Surface {
     }
 
     #[doc(alias = "enter-monitor")]
-    pub fn connect_enter_monitor<F: Fn(&Surface, &Monitor) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_enter_monitor<F: Fn(&Self, &Monitor) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn enter_monitor_trampoline<F: Fn(&Surface, &Monitor) + 'static>(
             this: *mut ffi::GdkSurface,
             monitor: *mut ffi::GdkMonitor,
@@ -259,10 +256,7 @@ impl Surface {
     }
 
     #[doc(alias = "event")]
-    pub fn connect_event<F: Fn(&Surface, &Event) -> bool + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_event<F: Fn(&Self, &Event) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn event_trampoline<F: Fn(&Surface, &Event) -> bool + 'static>(
             this: *mut ffi::GdkSurface,
             event: *mut ffi::GdkEvent,
@@ -285,7 +279,7 @@ impl Surface {
     }
 
     #[doc(alias = "layout")]
-    pub fn connect_layout<F: Fn(&Surface, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_layout<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn layout_trampoline<F: Fn(&Surface, i32, i32) + 'static>(
             this: *mut ffi::GdkSurface,
             width: libc::c_int,
@@ -309,10 +303,7 @@ impl Surface {
     }
 
     #[doc(alias = "leave-monitor")]
-    pub fn connect_leave_monitor<F: Fn(&Surface, &Monitor) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_leave_monitor<F: Fn(&Self, &Monitor) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn leave_monitor_trampoline<F: Fn(&Surface, &Monitor) + 'static>(
             this: *mut ffi::GdkSurface,
             monitor: *mut ffi::GdkMonitor,
@@ -335,7 +326,7 @@ impl Surface {
     }
 
     #[doc(alias = "render")]
-    pub fn connect_render<F: Fn(&Surface, &cairo::Region) -> bool + 'static>(
+    pub fn connect_render<F: Fn(&Self, &cairo::Region) -> bool + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -363,7 +354,7 @@ impl Surface {
     }
 
     #[doc(alias = "cursor")]
-    pub fn connect_cursor_notify<F: Fn(&Surface) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_cursor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cursor_trampoline<F: Fn(&Surface) + 'static>(
             this: *mut ffi::GdkSurface,
             _param_spec: glib::ffi::gpointer,
@@ -386,7 +377,7 @@ impl Surface {
     }
 
     #[doc(alias = "height")]
-    pub fn connect_height_notify<F: Fn(&Surface) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_height_trampoline<F: Fn(&Surface) + 'static>(
             this: *mut ffi::GdkSurface,
             _param_spec: glib::ffi::gpointer,
@@ -409,7 +400,7 @@ impl Surface {
     }
 
     #[doc(alias = "mapped")]
-    pub fn connect_mapped_notify<F: Fn(&Surface) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_mapped_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_mapped_trampoline<F: Fn(&Surface) + 'static>(
             this: *mut ffi::GdkSurface,
             _param_spec: glib::ffi::gpointer,
@@ -432,7 +423,7 @@ impl Surface {
     }
 
     #[doc(alias = "scale-factor")]
-    pub fn connect_scale_factor_notify<F: Fn(&Surface) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_scale_factor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scale_factor_trampoline<F: Fn(&Surface) + 'static>(
             this: *mut ffi::GdkSurface,
             _param_spec: glib::ffi::gpointer,
@@ -455,7 +446,7 @@ impl Surface {
     }
 
     #[doc(alias = "width")]
-    pub fn connect_width_notify<F: Fn(&Surface) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_trampoline<F: Fn(&Surface) + 'static>(
             this: *mut ffi::GdkSurface,
             _param_spec: glib::ffi::gpointer,

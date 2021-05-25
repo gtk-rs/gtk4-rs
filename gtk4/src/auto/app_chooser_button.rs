@@ -153,7 +153,7 @@ impl AppChooserButton {
     }
 
     #[doc(alias = "changed")]
-    pub fn connect_changed<F: Fn(&AppChooserButton) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<F: Fn(&AppChooserButton) + 'static>(
             this: *mut ffi::GtkAppChooserButton,
             f: glib::ffi::gpointer,
@@ -175,7 +175,7 @@ impl AppChooserButton {
     }
 
     #[doc(alias = "custom-item-activated")]
-    pub fn connect_custom_item_activated<F: Fn(&AppChooserButton, &str) + 'static>(
+    pub fn connect_custom_item_activated<F: Fn(&Self, &str) + 'static>(
         &self,
         detail: Option<&str>,
         f: F,
@@ -212,10 +212,7 @@ impl AppChooserButton {
     }
 
     #[doc(alias = "heading")]
-    pub fn connect_heading_notify<F: Fn(&AppChooserButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_heading_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_heading_trampoline<F: Fn(&AppChooserButton) + 'static>(
             this: *mut ffi::GtkAppChooserButton,
             _param_spec: glib::ffi::gpointer,
@@ -238,10 +235,7 @@ impl AppChooserButton {
     }
 
     #[doc(alias = "modal")]
-    pub fn connect_modal_notify<F: Fn(&AppChooserButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_modal_trampoline<F: Fn(&AppChooserButton) + 'static>(
             this: *mut ffi::GtkAppChooserButton,
             _param_spec: glib::ffi::gpointer,
@@ -264,7 +258,7 @@ impl AppChooserButton {
     }
 
     #[doc(alias = "show-default-item")]
-    pub fn connect_show_default_item_notify<F: Fn(&AppChooserButton) + 'static>(
+    pub fn connect_show_default_item_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -292,10 +286,7 @@ impl AppChooserButton {
     }
 
     #[doc(alias = "show-dialog-item")]
-    pub fn connect_show_dialog_item_notify<F: Fn(&AppChooserButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_show_dialog_item_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_dialog_item_trampoline<
             F: Fn(&AppChooserButton) + 'static,
         >(

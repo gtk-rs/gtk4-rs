@@ -95,7 +95,7 @@ impl ActionBar {
     }
 
     #[doc(alias = "revealed")]
-    pub fn connect_revealed_notify<F: Fn(&ActionBar) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_revealed_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_revealed_trampoline<F: Fn(&ActionBar) + 'static>(
             this: *mut ffi::GtkActionBar,
             _param_spec: glib::ffi::gpointer,
