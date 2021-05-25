@@ -18,7 +18,6 @@ generate = [
     "Gdk.DevicePad",
     "Gdk.DevicePadFeature",
     "Gdk.DeviceToolType",
-    "Gdk.Drag",
     "Gdk.DragAction",
     "Gdk.DragCancelReason",
     "Gdk.DragSurface",
@@ -28,7 +27,6 @@ generate = [
     "Gdk.FrameClockPhase",
     "Gdk.FrameTimings",
     "Gdk.FullscreenMode",
-    "Gdk.GLContext",
     "Gdk.GLError",
     "Gdk.Gravity",
     "Gdk.InputSource",
@@ -41,7 +39,6 @@ generate = [
     "Gdk.PaintableFlags",
     "Gdk.Popup",
     "Gdk.ScrollDirection",
-    "Gdk.Seat",
     "Gdk.SeatCapabilities",
     "Gdk.Snapshot",
     "Gdk.SubpixelLayout",
@@ -172,6 +169,7 @@ status = "generate"
 name = "Gdk.AppLaunchContext"
 status = "generate"
 generate_builder = false
+final_type = false
 
 [[object]]
 name = "Gdk.Clipboard"
@@ -330,6 +328,7 @@ generate_builder = true
 [[object]]
 name = "Gdk.Device"
 status = "generate"
+final_type = false
     [[object.function]]
     name = "get_caps_lock_state"
     rename = "is_caps_locked"
@@ -348,6 +347,8 @@ generate_builder = true
 [[object]]
 name = "Gdk.Display"
 status = "generate"
+final_type = false
+manual_traits = ["DisplayExtManual"]
     [[object.function]]
     name = "get_setting"
     # Actually retrieves the setting in the provided argument
@@ -400,6 +401,11 @@ status = "generate"
 generate_builder = false
 
 [[object]]
+name = "Gdk.Drag"
+status = "generate"
+final_type = false
+
+[[object]]
 name = "Gdk.DrawContext"
 status = "generate"
 manual_traits = ["DrawContextExtManual"]
@@ -421,6 +427,11 @@ status = "manual" # fundemental type
 final_type = true # avoids the usage of EventExt trait
 
 [[object]]
+name = "Gdk.GLContext"
+status = "generate"
+final_type = false
+
+[[object]]
 name = "Gdk.GLTexture"
 status = "generate"
     [[object.function]]
@@ -430,6 +441,7 @@ status = "generate"
 [[object]]
 name = "Gdk.Monitor"
 status = "generate"
+final_type = false
 generate_builder = false
 
 [[object]]
@@ -440,8 +452,14 @@ status = "generate"
     manual = true # invalid mutability
 
 [[object]]
+name = "Gdk.Seat"
+status = "generate"
+final_type = false
+
+[[object]]
 name = "Gdk.Surface"
 status = "generate"
+final_type = false
 manual_traits = ["SurfaceExtManual"]
     [[object.function]]
     name = "create_similar_surface"

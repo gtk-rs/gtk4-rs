@@ -3,7 +3,7 @@
 // DO NOT EDIT
 
 mod app_launch_context;
-pub use self::app_launch_context::AppLaunchContext;
+pub use self::app_launch_context::{AppLaunchContext, NONE_APP_LAUNCH_CONTEXT};
 
 mod cairo_context;
 pub use self::cairo_context::CairoContext;
@@ -26,7 +26,7 @@ pub use self::cursor::Cursor;
 pub use self::cursor::CursorBuilder;
 
 mod device;
-pub use self::device::Device;
+pub use self::device::{Device, NONE_DEVICE};
 
 mod device_pad;
 pub use self::device_pad::{DevicePad, NONE_DEVICE_PAD};
@@ -36,13 +36,13 @@ pub use self::device_tool::DeviceTool;
 pub use self::device_tool::DeviceToolBuilder;
 
 mod display;
-pub use self::display::Display;
+pub use self::display::{Display, NONE_DISPLAY};
 
 mod display_manager;
 pub use self::display_manager::DisplayManager;
 
 mod drag;
-pub use self::drag::Drag;
+pub use self::drag::{Drag, NONE_DRAG};
 
 mod drag_surface;
 pub use self::drag_surface::{DragSurface, NONE_DRAG_SURFACE};
@@ -57,7 +57,7 @@ mod frame_clock;
 pub use self::frame_clock::FrameClock;
 
 mod gl_context;
-pub use self::gl_context::GLContext;
+pub use self::gl_context::{GLContext, NONE_GL_CONTEXT};
 
 mod gl_texture;
 pub use self::gl_texture::GLTexture;
@@ -66,7 +66,7 @@ mod memory_texture;
 pub use self::memory_texture::MemoryTexture;
 
 mod monitor;
-pub use self::monitor::Monitor;
+pub use self::monitor::{Monitor, NONE_MONITOR};
 
 mod paintable;
 pub use self::paintable::{Paintable, NONE_PAINTABLE};
@@ -75,13 +75,13 @@ mod popup;
 pub use self::popup::{Popup, NONE_POPUP};
 
 mod seat;
-pub use self::seat::Seat;
+pub use self::seat::{Seat, NONE_SEAT};
 
 mod snapshot;
 pub use self::snapshot::Snapshot;
 
 mod surface;
-pub use self::surface::Surface;
+pub use self::surface::{Surface, NONE_SURFACE};
 
 mod texture;
 pub use self::texture::{Texture, NONE_TEXTURE};
@@ -144,12 +144,20 @@ pub mod functions;
 
 #[doc(hidden)]
 pub mod traits {
+    pub use super::app_launch_context::AppLaunchContextExt;
     pub use super::content_provider::ContentProviderExt;
+    pub use super::device::DeviceExt;
     pub use super::device_pad::DevicePadExt;
+    pub use super::display::DisplayExt;
+    pub use super::drag::DragExt;
     pub use super::drag_surface::DragSurfaceExt;
     pub use super::draw_context::DrawContextExt;
+    pub use super::gl_context::GLContextExt;
+    pub use super::monitor::MonitorExt;
     pub use super::paintable::PaintableExt;
     pub use super::popup::PopupExt;
+    pub use super::seat::SeatExt;
+    pub use super::surface::SurfaceExt;
     pub use super::texture::TextureExt;
     pub use super::toplevel::ToplevelExt;
 }

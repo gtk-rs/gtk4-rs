@@ -2,11 +2,30 @@
 
 use crate::{keys::Key, Display, Event, KeymapKey, ModifierType};
 use glib::translate::*;
+use glib::IsA;
 use std::{mem, ptr};
 
-impl Display {
+pub trait DisplayExtManual: 'static {
     #[doc(alias = "gdk_display_translate_key")]
-    pub fn translate_key(
+    fn translate_key(
+        &self,
+        keycode: u32,
+        state: ModifierType,
+        group: i32,
+    ) -> Option<(Key, i32, i32, ModifierType)>;
+
+    #[doc(alias = "gdk_display_map_keyval")]
+    fn map_keyval(&self, keyval: Key) -> Option<Vec<KeymapKey>>;
+
+    #[doc(alias = "gdk_display_map_keycode")]
+    fn map_keycode(&self, keycode: u32) -> Option<Vec<(KeymapKey, Key)>>;
+
+    #[doc(alias = "gdk_display_put_event")]
+    fn put_event<P: AsRef<Event>>(&self, event: &P);
+}
+
+impl<O: IsA<Display>> DisplayExtManual for O {
+    fn translate_key(
         &self,
         keycode: u32,
         state: ModifierType,
@@ -18,7 +37,7 @@ impl Display {
             let mut level = mem::MaybeUninit::uninit();
             let mut consumed = mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gdk_display_translate_key(
-                self.to_glib_none().0,
+                self.as_ref().to_glib_none().0,
                 keycode,
                 state.into_glib(),
                 group,
@@ -39,13 +58,12 @@ impl Display {
         }
     }
 
-    #[doc(alias = "gdk_display_map_keyval")]
-    pub fn map_keyval(&self, keyval: Key) -> Option<Vec<KeymapKey>> {
+    fn map_keyval(&self, keyval: Key) -> Option<Vec<KeymapKey>> {
         unsafe {
             let mut keys = ptr::null_mut();
             let mut n_keys = mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gdk_display_map_keyval(
-                self.to_glib_none().0,
+                self.as_ref().to_glib_none().0,
                 keyval.into_glib(),
                 &mut keys,
                 n_keys.as_mut_ptr(),
@@ -61,14 +79,13 @@ impl Display {
         }
     }
 
-    #[doc(alias = "gdk_display_map_keycode")]
-    pub fn map_keycode(&self, keycode: u32) -> Option<Vec<(KeymapKey, Key)>> {
+    fn map_keycode(&self, keycode: u32) -> Option<Vec<(KeymapKey, Key)>> {
         unsafe {
             let mut keys = ptr::null_mut();
             let mut keyvals = ptr::null_mut();
             let mut n_entries = mem::MaybeUninit::uninit();
             let ret = from_glib(ffi::gdk_display_map_keycode(
-                self.to_glib_none().0,
+                self.as_ref().to_glib_none().0,
                 keycode,
                 &mut keys,
                 &mut keyvals,
@@ -87,10 +104,12 @@ impl Display {
         }
     }
 
-    #[doc(alias = "gdk_display_put_event")]
-    pub fn put_event<P: AsRef<Event>>(&self, event: &P) {
+    fn put_event<P: AsRef<Event>>(&self, event: &P) {
         unsafe {
-            ffi::gdk_display_put_event(self.to_glib_none().0, event.as_ref().to_glib_none().0);
+            ffi::gdk_display_put_event(
+                self.as_ref().to_glib_none().0,
+                event.as_ref().to_glib_none().0,
+            );
         }
     }
 }

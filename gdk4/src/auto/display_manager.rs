@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use crate::Display;
+use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
@@ -50,11 +51,11 @@ impl DisplayManager {
     }
 
     #[doc(alias = "gdk_display_manager_set_default_display")]
-    pub fn set_default_display(&self, display: &Display) {
+    pub fn set_default_display<P: IsA<Display>>(&self, display: &P) {
         unsafe {
             ffi::gdk_display_manager_set_default_display(
                 self.to_glib_none().0,
-                display.to_glib_none().0,
+                display.as_ref().to_glib_none().0,
             );
         }
     }

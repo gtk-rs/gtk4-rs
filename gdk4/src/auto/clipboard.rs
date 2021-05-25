@@ -207,8 +207,8 @@ impl ClipboardBuilder {
             .expect("Failed to create an instance of Clipboard")
     }
 
-    pub fn display(mut self, display: &Display) -> Self {
-        self.display = Some(display.clone());
+    pub fn display<P: IsA<Display>>(mut self, display: &P) -> Self {
+        self.display = Some(display.clone().upcast());
         self
     }
 }

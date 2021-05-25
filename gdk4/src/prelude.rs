@@ -7,6 +7,7 @@ pub use crate::auto::traits::*;
 
 pub use crate::cairo_interaction::{GdkCairoContextExt, GdkCairoSurfaceExt};
 pub use crate::content_provider::ContentProviderExtManual;
+pub use crate::display::DisplayExtManual;
 pub use crate::draw_context::DrawContextExtManual;
 pub use crate::surface::SurfaceExtManual;
 pub use crate::texture::TextureExtManual;
