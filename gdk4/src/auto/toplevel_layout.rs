@@ -3,6 +3,7 @@
 // DO NOT EDIT
 
 use crate::Monitor;
+use glib::object::IsA;
 use glib::translate::*;
 use std::mem;
 
@@ -96,12 +97,12 @@ impl ToplevelLayout {
     }
 
     #[doc(alias = "gdk_toplevel_layout_set_fullscreen")]
-    pub fn set_fullscreen(&self, fullscreen: bool, monitor: Option<&Monitor>) {
+    pub fn set_fullscreen<P: IsA<Monitor>>(&self, fullscreen: bool, monitor: Option<&P>) {
         unsafe {
             ffi::gdk_toplevel_layout_set_fullscreen(
                 self.to_glib_none().0,
                 fullscreen.into_glib(),
-                monitor.to_glib_none().0,
+                monitor.map(|p| p.as_ref()).to_glib_none().0,
             );
         }
     }

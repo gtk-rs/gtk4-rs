@@ -8,7 +8,8 @@ use crate::Device;
 use crate::Monitor;
 use crate::Seat;
 use crate::Surface;
-use glib::object::ObjectType as ObjectType_;
+use glib::object::Cast;
+use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
@@ -26,178 +27,6 @@ glib::wrapper! {
 }
 
 impl Display {
-    #[doc(alias = "gdk_display_beep")]
-    pub fn beep(&self) {
-        unsafe {
-            ffi::gdk_display_beep(self.to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "gdk_display_close")]
-    pub fn close(&self) {
-        unsafe {
-            ffi::gdk_display_close(self.to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "gdk_display_device_is_grabbed")]
-    pub fn device_is_grabbed(&self, device: &Device) -> bool {
-        unsafe {
-            from_glib(ffi::gdk_display_device_is_grabbed(
-                self.to_glib_none().0,
-                device.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "gdk_display_flush")]
-    pub fn flush(&self) {
-        unsafe {
-            ffi::gdk_display_flush(self.to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "gdk_display_get_app_launch_context")]
-    #[doc(alias = "get_app_launch_context")]
-    pub fn app_launch_context(&self) -> AppLaunchContext {
-        unsafe {
-            from_glib_full(ffi::gdk_display_get_app_launch_context(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "gdk_display_get_clipboard")]
-    #[doc(alias = "get_clipboard")]
-    pub fn clipboard(&self) -> Clipboard {
-        unsafe { from_glib_none(ffi::gdk_display_get_clipboard(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "gdk_display_get_default_seat")]
-    #[doc(alias = "get_default_seat")]
-    pub fn default_seat(&self) -> Seat {
-        unsafe { from_glib_none(ffi::gdk_display_get_default_seat(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "gdk_display_get_monitor_at_surface")]
-    #[doc(alias = "get_monitor_at_surface")]
-    pub fn monitor_at_surface(&self, surface: &Surface) -> Option<Monitor> {
-        unsafe {
-            from_glib_none(ffi::gdk_display_get_monitor_at_surface(
-                self.to_glib_none().0,
-                surface.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "gdk_display_get_monitors")]
-    #[doc(alias = "get_monitors")]
-    pub fn monitors(&self) -> Option<gio::ListModel> {
-        unsafe { from_glib_none(ffi::gdk_display_get_monitors(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "gdk_display_get_name")]
-    #[doc(alias = "get_name")]
-    pub fn name(&self) -> glib::GString {
-        unsafe { from_glib_none(ffi::gdk_display_get_name(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "gdk_display_get_primary_clipboard")]
-    #[doc(alias = "get_primary_clipboard")]
-    pub fn primary_clipboard(&self) -> Clipboard {
-        unsafe {
-            from_glib_none(ffi::gdk_display_get_primary_clipboard(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "gdk_display_get_setting")]
-    pub fn get_setting(&self, name: &str, value: &mut glib::Value) -> bool {
-        unsafe {
-            from_glib(ffi::gdk_display_get_setting(
-                self.to_glib_none().0,
-                name.to_glib_none().0,
-                value.to_glib_none_mut().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "gdk_display_get_startup_notification_id")]
-    #[doc(alias = "get_startup_notification_id")]
-    pub fn startup_notification_id(&self) -> Option<glib::GString> {
-        unsafe {
-            from_glib_none(ffi::gdk_display_get_startup_notification_id(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "gdk_display_is_closed")]
-    pub fn is_closed(&self) -> bool {
-        unsafe { from_glib(ffi::gdk_display_is_closed(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "gdk_display_is_composited")]
-    pub fn is_composited(&self) -> bool {
-        unsafe { from_glib(ffi::gdk_display_is_composited(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "gdk_display_is_rgba")]
-    pub fn is_rgba(&self) -> bool {
-        unsafe { from_glib(ffi::gdk_display_is_rgba(self.to_glib_none().0)) }
-    }
-
-    #[doc(alias = "gdk_display_list_seats")]
-    pub fn list_seats(&self) -> Vec<Seat> {
-        unsafe {
-            FromGlibPtrContainer::from_glib_container(ffi::gdk_display_list_seats(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "gdk_display_notify_startup_complete")]
-    pub fn notify_startup_complete(&self, startup_id: &str) {
-        unsafe {
-            ffi::gdk_display_notify_startup_complete(
-                self.to_glib_none().0,
-                startup_id.to_glib_none().0,
-            );
-        }
-    }
-
-    #[doc(alias = "gdk_display_supports_input_shapes")]
-    pub fn supports_input_shapes(&self) -> bool {
-        unsafe {
-            from_glib(ffi::gdk_display_supports_input_shapes(
-                self.to_glib_none().0,
-            ))
-        }
-    }
-
-    #[doc(alias = "gdk_display_sync")]
-    pub fn sync(&self) {
-        unsafe {
-            ffi::gdk_display_sync(self.to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "input-shapes")]
-    pub fn is_input_shapes(&self) -> bool {
-        unsafe {
-            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
-            glib::gobject_ffi::g_object_get_property(
-                self.as_ptr() as *mut glib::gobject_ffi::GObject,
-                b"input-shapes\0".as_ptr() as *const _,
-                value.to_glib_none_mut().0,
-            );
-            value
-                .get()
-                .expect("Return Value for property `input-shapes` getter")
-        }
-    }
-
     #[doc(alias = "gdk_display_get_default")]
     #[doc(alias = "get_default")]
     pub fn default() -> Option<Display> {
@@ -210,16 +39,286 @@ impl Display {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::gdk_display_open(display_name.to_glib_none().0)) }
     }
+}
+
+impl fmt::Display for Display {
+    #[inline]
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        f.write_str(&DisplayExt::name(self))
+    }
+}
+
+pub const NONE_DISPLAY: Option<&Display> = None;
+
+pub trait DisplayExt: 'static {
+    #[doc(alias = "gdk_display_beep")]
+    fn beep(&self);
+
+    #[doc(alias = "gdk_display_close")]
+    fn close(&self);
+
+    #[doc(alias = "gdk_display_device_is_grabbed")]
+    fn device_is_grabbed<P: IsA<Device>>(&self, device: &P) -> bool;
+
+    #[doc(alias = "gdk_display_flush")]
+    fn flush(&self);
+
+    #[doc(alias = "gdk_display_get_app_launch_context")]
+    #[doc(alias = "get_app_launch_context")]
+    fn app_launch_context(&self) -> AppLaunchContext;
+
+    #[doc(alias = "gdk_display_get_clipboard")]
+    #[doc(alias = "get_clipboard")]
+    fn clipboard(&self) -> Clipboard;
+
+    #[doc(alias = "gdk_display_get_default_seat")]
+    #[doc(alias = "get_default_seat")]
+    fn default_seat(&self) -> Seat;
+
+    #[doc(alias = "gdk_display_get_monitor_at_surface")]
+    #[doc(alias = "get_monitor_at_surface")]
+    fn monitor_at_surface<P: IsA<Surface>>(&self, surface: &P) -> Option<Monitor>;
+
+    #[doc(alias = "gdk_display_get_monitors")]
+    #[doc(alias = "get_monitors")]
+    fn monitors(&self) -> Option<gio::ListModel>;
+
+    #[doc(alias = "gdk_display_get_name")]
+    #[doc(alias = "get_name")]
+    fn name(&self) -> glib::GString;
+
+    #[doc(alias = "gdk_display_get_primary_clipboard")]
+    #[doc(alias = "get_primary_clipboard")]
+    fn primary_clipboard(&self) -> Clipboard;
+
+    #[doc(alias = "gdk_display_get_setting")]
+    fn get_setting(&self, name: &str, value: &mut glib::Value) -> bool;
+
+    #[doc(alias = "gdk_display_get_startup_notification_id")]
+    #[doc(alias = "get_startup_notification_id")]
+    fn startup_notification_id(&self) -> Option<glib::GString>;
+
+    #[doc(alias = "gdk_display_is_closed")]
+    fn is_closed(&self) -> bool;
+
+    #[doc(alias = "gdk_display_is_composited")]
+    fn is_composited(&self) -> bool;
+
+    #[doc(alias = "gdk_display_is_rgba")]
+    fn is_rgba(&self) -> bool;
+
+    #[doc(alias = "gdk_display_list_seats")]
+    fn list_seats(&self) -> Vec<Seat>;
+
+    #[doc(alias = "gdk_display_notify_startup_complete")]
+    fn notify_startup_complete(&self, startup_id: &str);
+
+    #[doc(alias = "gdk_display_supports_input_shapes")]
+    fn supports_input_shapes(&self) -> bool;
+
+    #[doc(alias = "gdk_display_sync")]
+    fn sync(&self);
+
+    #[doc(alias = "input-shapes")]
+    fn is_input_shapes(&self) -> bool;
 
     #[doc(alias = "closed")]
-    pub fn connect_closed<F: Fn(&Self, bool) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn closed_trampoline<F: Fn(&Display, bool) + 'static>(
+    fn connect_closed<F: Fn(&Self, bool) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "opened")]
+    fn connect_opened<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "seat-added")]
+    fn connect_seat_added<F: Fn(&Self, &Seat) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "seat-removed")]
+    fn connect_seat_removed<F: Fn(&Self, &Seat) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "setting-changed")]
+    fn connect_setting_changed<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "composited")]
+    fn connect_composited_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "input-shapes")]
+    fn connect_input_shapes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+
+    #[doc(alias = "rgba")]
+    fn connect_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+}
+
+impl<O: IsA<Display>> DisplayExt for O {
+    fn beep(&self) {
+        unsafe {
+            ffi::gdk_display_beep(self.as_ref().to_glib_none().0);
+        }
+    }
+
+    fn close(&self) {
+        unsafe {
+            ffi::gdk_display_close(self.as_ref().to_glib_none().0);
+        }
+    }
+
+    fn device_is_grabbed<P: IsA<Device>>(&self, device: &P) -> bool {
+        unsafe {
+            from_glib(ffi::gdk_display_device_is_grabbed(
+                self.as_ref().to_glib_none().0,
+                device.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn flush(&self) {
+        unsafe {
+            ffi::gdk_display_flush(self.as_ref().to_glib_none().0);
+        }
+    }
+
+    fn app_launch_context(&self) -> AppLaunchContext {
+        unsafe {
+            from_glib_full(ffi::gdk_display_get_app_launch_context(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn clipboard(&self) -> Clipboard {
+        unsafe {
+            from_glib_none(ffi::gdk_display_get_clipboard(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn default_seat(&self) -> Seat {
+        unsafe {
+            from_glib_none(ffi::gdk_display_get_default_seat(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn monitor_at_surface<P: IsA<Surface>>(&self, surface: &P) -> Option<Monitor> {
+        unsafe {
+            from_glib_none(ffi::gdk_display_get_monitor_at_surface(
+                self.as_ref().to_glib_none().0,
+                surface.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn monitors(&self) -> Option<gio::ListModel> {
+        unsafe {
+            from_glib_none(ffi::gdk_display_get_monitors(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn name(&self) -> glib::GString {
+        unsafe { from_glib_none(ffi::gdk_display_get_name(self.as_ref().to_glib_none().0)) }
+    }
+
+    fn primary_clipboard(&self) -> Clipboard {
+        unsafe {
+            from_glib_none(ffi::gdk_display_get_primary_clipboard(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn get_setting(&self, name: &str, value: &mut glib::Value) -> bool {
+        unsafe {
+            from_glib(ffi::gdk_display_get_setting(
+                self.as_ref().to_glib_none().0,
+                name.to_glib_none().0,
+                value.to_glib_none_mut().0,
+            ))
+        }
+    }
+
+    fn startup_notification_id(&self) -> Option<glib::GString> {
+        unsafe {
+            from_glib_none(ffi::gdk_display_get_startup_notification_id(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn is_closed(&self) -> bool {
+        unsafe { from_glib(ffi::gdk_display_is_closed(self.as_ref().to_glib_none().0)) }
+    }
+
+    fn is_composited(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gdk_display_is_composited(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn is_rgba(&self) -> bool {
+        unsafe { from_glib(ffi::gdk_display_is_rgba(self.as_ref().to_glib_none().0)) }
+    }
+
+    fn list_seats(&self) -> Vec<Seat> {
+        unsafe {
+            FromGlibPtrContainer::from_glib_container(ffi::gdk_display_list_seats(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn notify_startup_complete(&self, startup_id: &str) {
+        unsafe {
+            ffi::gdk_display_notify_startup_complete(
+                self.as_ref().to_glib_none().0,
+                startup_id.to_glib_none().0,
+            );
+        }
+    }
+
+    fn supports_input_shapes(&self) -> bool {
+        unsafe {
+            from_glib(ffi::gdk_display_supports_input_shapes(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    fn sync(&self) {
+        unsafe {
+            ffi::gdk_display_sync(self.as_ref().to_glib_none().0);
+        }
+    }
+
+    fn is_input_shapes(&self) -> bool {
+        unsafe {
+            let mut value = glib::Value::from_type(<bool as StaticType>::static_type());
+            glib::gobject_ffi::g_object_get_property(
+                self.to_glib_none().0 as *mut glib::gobject_ffi::GObject,
+                b"input-shapes\0".as_ptr() as *const _,
+                value.to_glib_none_mut().0,
+            );
+            value
+                .get()
+                .expect("Return Value for property `input-shapes` getter")
+        }
+    }
+
+    #[doc(alias = "closed")]
+    fn connect_closed<F: Fn(&Self, bool) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn closed_trampoline<P: IsA<Display>, F: Fn(&P, bool) + 'static>(
             this: *mut ffi::GdkDisplay,
             is_error: glib::ffi::gboolean,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), from_glib(is_error))
+            f(
+                &Display::from_glib_borrow(this).unsafe_cast_ref(),
+                from_glib(is_error),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -227,7 +326,7 @@ impl Display {
                 self.as_ptr() as *mut _,
                 b"closed\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    closed_trampoline::<F> as *const (),
+                    closed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -235,13 +334,13 @@ impl Display {
     }
 
     #[doc(alias = "opened")]
-    pub fn connect_opened<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn opened_trampoline<F: Fn(&Display) + 'static>(
+    fn connect_opened<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn opened_trampoline<P: IsA<Display>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDisplay,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
+            f(&Display::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -249,7 +348,7 @@ impl Display {
                 self.as_ptr() as *mut _,
                 b"opened\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    opened_trampoline::<F> as *const (),
+                    opened_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -257,14 +356,17 @@ impl Display {
     }
 
     #[doc(alias = "seat-added")]
-    pub fn connect_seat_added<F: Fn(&Self, &Seat) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn seat_added_trampoline<F: Fn(&Display, &Seat) + 'static>(
+    fn connect_seat_added<F: Fn(&Self, &Seat) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn seat_added_trampoline<P: IsA<Display>, F: Fn(&P, &Seat) + 'static>(
             this: *mut ffi::GdkDisplay,
             seat: *mut ffi::GdkSeat,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(seat))
+            f(
+                &Display::from_glib_borrow(this).unsafe_cast_ref(),
+                &from_glib_borrow(seat),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -272,7 +374,7 @@ impl Display {
                 self.as_ptr() as *mut _,
                 b"seat-added\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    seat_added_trampoline::<F> as *const (),
+                    seat_added_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -280,14 +382,20 @@ impl Display {
     }
 
     #[doc(alias = "seat-removed")]
-    pub fn connect_seat_removed<F: Fn(&Self, &Seat) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn seat_removed_trampoline<F: Fn(&Display, &Seat) + 'static>(
+    fn connect_seat_removed<F: Fn(&Self, &Seat) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn seat_removed_trampoline<
+            P: IsA<Display>,
+            F: Fn(&P, &Seat) + 'static,
+        >(
             this: *mut ffi::GdkDisplay,
             seat: *mut ffi::GdkSeat,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this), &from_glib_borrow(seat))
+            f(
+                &Display::from_glib_borrow(this).unsafe_cast_ref(),
+                &from_glib_borrow(seat),
+            )
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -295,7 +403,7 @@ impl Display {
                 self.as_ptr() as *mut _,
                 b"seat-removed\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    seat_removed_trampoline::<F> as *const (),
+                    seat_removed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -303,15 +411,18 @@ impl Display {
     }
 
     #[doc(alias = "setting-changed")]
-    pub fn connect_setting_changed<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn setting_changed_trampoline<F: Fn(&Display, &str) + 'static>(
+    fn connect_setting_changed<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn setting_changed_trampoline<
+            P: IsA<Display>,
+            F: Fn(&P, &str) + 'static,
+        >(
             this: *mut ffi::GdkDisplay,
             setting: *mut libc::c_char,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &from_glib_borrow(this),
+                &Display::from_glib_borrow(this).unsafe_cast_ref(),
                 &glib::GString::from_glib_borrow(setting),
             )
         }
@@ -321,7 +432,7 @@ impl Display {
                 self.as_ptr() as *mut _,
                 b"setting-changed\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    setting_changed_trampoline::<F> as *const (),
+                    setting_changed_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -329,14 +440,14 @@ impl Display {
     }
 
     #[doc(alias = "composited")]
-    pub fn connect_composited_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_composited_trampoline<F: Fn(&Display) + 'static>(
+    fn connect_composited_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_composited_trampoline<P: IsA<Display>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDisplay,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
+            f(&Display::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -344,7 +455,7 @@ impl Display {
                 self.as_ptr() as *mut _,
                 b"notify::composited\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_composited_trampoline::<F> as *const (),
+                    notify_composited_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -352,14 +463,17 @@ impl Display {
     }
 
     #[doc(alias = "input-shapes")]
-    pub fn connect_input_shapes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_input_shapes_trampoline<F: Fn(&Display) + 'static>(
+    fn connect_input_shapes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_input_shapes_trampoline<
+            P: IsA<Display>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GdkDisplay,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
+            f(&Display::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -367,7 +481,7 @@ impl Display {
                 self.as_ptr() as *mut _,
                 b"notify::input-shapes\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_input_shapes_trampoline::<F> as *const (),
+                    notify_input_shapes_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
@@ -375,14 +489,14 @@ impl Display {
     }
 
     #[doc(alias = "rgba")]
-    pub fn connect_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_rgba_trampoline<F: Fn(&Display) + 'static>(
+    fn connect_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_rgba_trampoline<P: IsA<Display>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDisplay,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
+            f(&Display::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -390,17 +504,10 @@ impl Display {
                 self.as_ptr() as *mut _,
                 b"notify::rgba\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_rgba_trampoline::<F> as *const (),
+                    notify_rgba_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-impl fmt::Display for Display {
-    #[inline]
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str(&self.name())
     }
 }
