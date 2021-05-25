@@ -1453,28 +1453,22 @@ trust_return_value_nullability = false
 name = "Gtk.Notebook"
 status = "generate"
 trust_return_value_nullability = false
-manual_traits = ["NotebookExtManual"]
     # The following functions need integer type adjustments
     [[object.function]]
     name = "append_page"
     manual = true
-    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "append_page_menu"
     manual = true
-    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "get_current_page"
     manual = true
-    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "get_n_pages"
     manual = true
-    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "get_nth_page"
     manual = true
-    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "get_property_tab_expand"
     rename = "tab_expands"
@@ -1490,35 +1484,27 @@ manual_traits = ["NotebookExtManual"]
     [[object.function]]
     name = "insert_page"
     manual = true
-    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "insert_page_menu"
     manual = true
-    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "page_num"
     manual = true
-    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "prepend_page"
     manual = true
-    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "prepend_page_menu"
     manual = true
-    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "remove_page"
     manual = true
-    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "reorder_child"
     manual = true
-    doc_trait_name = "NotebookExtManual"
     [[object.function]]
     name = "set_current_page"
     manual = true
-    doc_trait_name = "NotebookExtManual"
 
 [[object]]
 name = "Gtk.NotebookPage"
