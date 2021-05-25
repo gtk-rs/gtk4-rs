@@ -273,7 +273,6 @@ manual = [
     "Gdk.Cursor",
     "Gdk.Device",
     "Gdk.DeviceTool",
-    "Gdk.Display",
     "Gdk.Drag",
     "Gdk.DragAction",
     "Gdk.DragCancelReason",
@@ -291,7 +290,6 @@ manual = [
     "Gdk.Rectangle",
     "Gdk.RGBA",
     "Gdk.Snapshot",
-    "Gdk.Surface",
     "Gdk.SurfaceEdge",
     "Gdk.Texture",
     "Gdk.TimeCoord",
@@ -300,16 +298,15 @@ manual = [
     "Gio.ActionGroup",
     "Gio.ActionMap",
     "Gio.AppInfo",
-    "Gio.Application",
     "Gio.ApplicationFlags",
     "Gio.Cancellable",
     "Gio.File",
     "Gio.Icon",
     "Gio.InputStream",
-    "Gio.ListModel",
     "Gio.Menu",
     "Gio.MenuModel",
     "Gio.MountOperation",
+    "Gio.PasswordSave",
     "Gio.Permission",
     "GLib.Bytes",
     "GLib.DateTime",
@@ -318,12 +315,9 @@ manual = [
     "GLib.MarkupParser",
     "GLib.Quark",
     "GLib.String",
-    "GLib.Variant",
     "GLib.VariantType",
     "GObject.Closure",
-    "GObject.Object",
     "GObject.ParamFlags",
-    "GObject.Value",
     "Graphene.Matrix",
     "Graphene.Point",
     "Graphene.Point3D",
@@ -332,8 +326,9 @@ manual = [
     "Graphene.Vec3",
     "Graphene.Vec4",
     "Gsk.BlendMode",
+    "Gsk.CairoNode", # docs only
     "Gsk.ColorStop",
-    "Gsk.GLShader",
+    "Gsk.GLShaderNode", # docs only
     "Gsk.Renderer",
     "Gsk.RenderNode",
     "Gsk.RoundedRect",
@@ -373,6 +368,76 @@ manual = [
     "Pango.Variant",
     "Pango.WrapMode",
 ]
+
+[[object]]
+name = "Gdk.Display"
+status = "manual"
+final_type = false
+    [[object.function]]
+    name = "is_composited"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+    [[object.function]]
+    name = "notify_startup_complete"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+
+[[object]]
+name = "Gdk.Surface"
+status = "manual"
+final_type = false
+    [[object.function]]
+    name = "beep"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+    [[object.function]]
+    name = "get_scale_factor"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+
+[[object]]
+name = "Gio.Application"
+status = "manual"
+    [[object.function]]
+    name = "hold"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+
+[[object]]
+name = "Gio.ListModel"
+status = "manual"
+    [[object.function]]
+    name = "get_item"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+
+[[object]]
+name = "GLib.Variant"
+status = "manual"
+    [[object.function]]
+    name = "new"
+    ignore = true
+
+[[object]]
+name = "GObject.Object"
+status = "manual"
+    [[object.function]]
+    name = "set"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+    [[object.function]]
+    name = "freeze_notify"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+    [[object.function]]
+    name = "thaw_notify"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+
+[[object]]
+name = "GObject.Value"
+status = "manual"
+    [[object.function]]
+    name = "init"
+    rename = "from_type"
+
+[[object]]
+name = "Gsk.GLShader"
+status = "manual"
+    [[object.function]]
+    name = "format_args"
+    ignore = true
 
 [[object]]
 name = "Gtk.*"
@@ -682,6 +747,10 @@ manual_traits = ["CellRendererExtManual"]
     name = "start_editing"
     manual = true # to handle gdk::Event
     doc_trait_name = "CellRendererExtManual"
+    [[object.function]]
+    name = "render"
+    ignore = true # docs only
+    
 
 [[object]]
 name = "Gtk.CellRendererAccel"
@@ -2390,6 +2459,12 @@ trust_return_value_nullability = false
         [[object.function.parameter]]
         name = "func"
         nullable = false
+    [[object.function]]
+    name = "add_attribute"
+    ignore = true # docs only
+    [[object.function]]
+    name = "pack_start"
+    ignore = true # docs only
 
 [[object]]
 name = "Gtk.Widget"
