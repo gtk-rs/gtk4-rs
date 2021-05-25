@@ -66,7 +66,7 @@ impl DisplayManager {
     }
 
     #[doc(alias = "display-opened")]
-    pub fn connect_display_opened<F: Fn(&DisplayManager, &Display) + 'static>(
+    pub fn connect_display_opened<F: Fn(&Self, &Display) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -94,10 +94,7 @@ impl DisplayManager {
     }
 
     #[doc(alias = "default-display")]
-    pub fn connect_default_display_notify<F: Fn(&DisplayManager) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_default_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_default_display_trampoline<F: Fn(&DisplayManager) + 'static>(
             this: *mut ffi::GdkDisplayManager,
             _param_spec: glib::ffi::gpointer,

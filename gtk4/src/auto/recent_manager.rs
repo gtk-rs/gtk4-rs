@@ -212,12 +212,10 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
 
     #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn changed_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn changed_trampoline<P: IsA<RecentManager>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkRecentManager,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<RecentManager>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&RecentManager::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -236,13 +234,11 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
 
     #[doc(alias = "size")]
     fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_size_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_size_trampoline<P: IsA<RecentManager>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkRecentManager,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<RecentManager>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&RecentManager::from_glib_borrow(this).unsafe_cast_ref())
         }

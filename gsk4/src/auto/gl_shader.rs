@@ -74,11 +74,6 @@ impl GLShader {
         }
     }
 
-    //#[doc(alias = "gsk_gl_shader_format_args")]
-    //pub fn format_args(&self, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<glib::Bytes> {
-    //    unsafe { TODO: call ffi:gsk_gl_shader_format_args() }
-    //}
-
     #[doc(alias = "gsk_gl_shader_get_arg_bool")]
     #[doc(alias = "get_arg_bool")]
     pub fn arg_bool(&self, args: &glib::Bytes, idx: i32) -> bool {

@@ -188,10 +188,7 @@ impl CellView {
     }
 
     #[doc(alias = "draw-sensitive")]
-    pub fn connect_draw_sensitive_notify<F: Fn(&CellView) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_draw_sensitive_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_draw_sensitive_trampoline<F: Fn(&CellView) + 'static>(
             this: *mut ffi::GtkCellView,
             _param_spec: glib::ffi::gpointer,
@@ -214,7 +211,7 @@ impl CellView {
     }
 
     #[doc(alias = "fit-model")]
-    pub fn connect_fit_model_notify<F: Fn(&CellView) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_fit_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_fit_model_trampoline<F: Fn(&CellView) + 'static>(
             this: *mut ffi::GtkCellView,
             _param_spec: glib::ffi::gpointer,
@@ -237,7 +234,7 @@ impl CellView {
     }
 
     #[doc(alias = "model")]
-    pub fn connect_model_notify<F: Fn(&CellView) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<F: Fn(&CellView) + 'static>(
             this: *mut ffi::GtkCellView,
             _param_spec: glib::ffi::gpointer,

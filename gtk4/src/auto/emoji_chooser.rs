@@ -49,10 +49,7 @@ impl EmojiChooser {
     }
 
     #[doc(alias = "emoji-picked")]
-    pub fn connect_emoji_picked<F: Fn(&EmojiChooser, &str) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_emoji_picked<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn emoji_picked_trampoline<F: Fn(&EmojiChooser, &str) + 'static>(
             this: *mut ffi::GtkEmojiChooser,
             text: *mut libc::c_char,

@@ -230,13 +230,14 @@ impl<O: IsA<MountOperation>> MountOperationExt for O {
 
     #[doc(alias = "display")]
     fn connect_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_display_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_display_trampoline<
+            P: IsA<MountOperation>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkMountOperation,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<MountOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&MountOperation::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -255,13 +256,14 @@ impl<O: IsA<MountOperation>> MountOperationExt for O {
 
     #[doc(alias = "is-showing")]
     fn connect_is_showing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_is_showing_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_is_showing_trampoline<
+            P: IsA<MountOperation>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkMountOperation,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<MountOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&MountOperation::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -280,13 +282,14 @@ impl<O: IsA<MountOperation>> MountOperationExt for O {
 
     #[doc(alias = "parent")]
     fn connect_parent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_parent_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_parent_trampoline<
+            P: IsA<MountOperation>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkMountOperation,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<MountOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&MountOperation::from_glib_borrow(this).unsafe_cast_ref())
         }

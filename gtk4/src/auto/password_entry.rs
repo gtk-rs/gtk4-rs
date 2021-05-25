@@ -139,7 +139,7 @@ impl PasswordEntry {
     }
 
     #[doc(alias = "activate")]
-    pub fn connect_activate<F: Fn(&PasswordEntry) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<F: Fn(&PasswordEntry) + 'static>(
             this: *mut ffi::GtkPasswordEntry,
             f: glib::ffi::gpointer,
@@ -169,7 +169,7 @@ impl PasswordEntry {
     }
 
     #[doc(alias = "activates-default")]
-    pub fn connect_activates_default_notify<F: Fn(&PasswordEntry) + 'static>(
+    pub fn connect_activates_default_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -197,10 +197,7 @@ impl PasswordEntry {
     }
 
     #[doc(alias = "extra-menu")]
-    pub fn connect_extra_menu_notify<F: Fn(&PasswordEntry) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_extra_menu_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_extra_menu_trampoline<F: Fn(&PasswordEntry) + 'static>(
             this: *mut ffi::GtkPasswordEntry,
             _param_spec: glib::ffi::gpointer,
@@ -223,10 +220,7 @@ impl PasswordEntry {
     }
 
     #[doc(alias = "placeholder-text")]
-    pub fn connect_placeholder_text_notify<F: Fn(&PasswordEntry) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_placeholder_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_placeholder_text_trampoline<F: Fn(&PasswordEntry) + 'static>(
             this: *mut ffi::GtkPasswordEntry,
             _param_spec: glib::ffi::gpointer,
@@ -249,10 +243,7 @@ impl PasswordEntry {
     }
 
     #[doc(alias = "show-peek-icon")]
-    pub fn connect_show_peek_icon_notify<F: Fn(&PasswordEntry) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_show_peek_icon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_peek_icon_trampoline<F: Fn(&PasswordEntry) + 'static>(
             this: *mut ffi::GtkPasswordEntry,
             _param_spec: glib::ffi::gpointer,

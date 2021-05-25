@@ -89,7 +89,7 @@ impl Viewport {
     }
 
     #[doc(alias = "child")]
-    pub fn connect_child_notify<F: Fn(&Viewport) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&Viewport) + 'static>(
             this: *mut ffi::GtkViewport,
             _param_spec: glib::ffi::gpointer,
@@ -112,10 +112,7 @@ impl Viewport {
     }
 
     #[doc(alias = "scroll-to-focus")]
-    pub fn connect_scroll_to_focus_notify<F: Fn(&Viewport) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_scroll_to_focus_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scroll_to_focus_trampoline<F: Fn(&Viewport) + 'static>(
             this: *mut ffi::GtkViewport,
             _param_spec: glib::ffi::gpointer,

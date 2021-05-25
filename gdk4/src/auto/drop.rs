@@ -141,7 +141,7 @@ impl Drop {
     }
 
     #[doc(alias = "display")]
-    pub fn connect_display_notify<F: Fn(&Drop) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_display_trampoline<F: Fn(&Drop) + 'static>(
             this: *mut ffi::GdkDrop,
             _param_spec: glib::ffi::gpointer,

@@ -839,13 +839,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     #[doc(alias = "begin-print")]
     fn connect_begin_print<F: Fn(&Self, &PrintContext) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn begin_print_trampoline<P, F: Fn(&P, &PrintContext) + 'static>(
+        unsafe extern "C" fn begin_print_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P, &PrintContext) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             context: *mut ffi::GtkPrintContext,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
@@ -871,15 +872,12 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn create_custom_widget_trampoline<
-            P,
+            P: IsA<PrintOperation>,
             F: Fn(&P) -> glib::Object + 'static,
         >(
             this: *mut ffi::GtkPrintOperation,
             f: glib::ffi::gpointer,
-        ) -> *mut glib::gobject_ffi::GObject
-        where
-            P: IsA<PrintOperation>,
-        {
+        ) -> *mut glib::gobject_ffi::GObject {
             let f: &F = &*(f as *const F);
             f(&PrintOperation::from_glib_borrow(this).unsafe_cast_ref()) /*Not checked*/
                 .to_glib_none()
@@ -903,13 +901,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn custom_widget_apply_trampoline<P, F: Fn(&P, &Widget) + 'static>(
+        unsafe extern "C" fn custom_widget_apply_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P, &Widget) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             widget: *mut ffi::GtkWidget,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
@@ -931,13 +930,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     #[doc(alias = "done")]
     fn connect_done<F: Fn(&Self, PrintOperationResult) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn done_trampoline<P, F: Fn(&P, PrintOperationResult) + 'static>(
+        unsafe extern "C" fn done_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P, PrintOperationResult) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             result: ffi::GtkPrintOperationResult,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
@@ -962,14 +962,15 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn draw_page_trampoline<P, F: Fn(&P, &PrintContext, i32) + 'static>(
+        unsafe extern "C" fn draw_page_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P, &PrintContext, i32) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             context: *mut ffi::GtkPrintContext,
             page_nr: libc::c_int,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
@@ -992,13 +993,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     #[doc(alias = "end-print")]
     fn connect_end_print<F: Fn(&Self, &PrintContext) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn end_print_trampoline<P, F: Fn(&P, &PrintContext) + 'static>(
+        unsafe extern "C" fn end_print_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P, &PrintContext) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             context: *mut ffi::GtkPrintContext,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
@@ -1023,14 +1025,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn paginate_trampoline<P, F: Fn(&P, &PrintContext) -> bool + 'static>(
+        unsafe extern "C" fn paginate_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P, &PrintContext) -> bool + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             context: *mut ffi::GtkPrintContext,
             f: glib::ffi::gpointer,
-        ) -> glib::ffi::gboolean
-        where
-            P: IsA<PrintOperation>,
-        {
+        ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(
                 &PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
@@ -1059,7 +1061,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn preview_trampoline<
-            P,
+            P: IsA<PrintOperation>,
             F: Fn(&P, &PrintOperationPreview, &PrintContext, Option<&Window>) -> bool + 'static,
         >(
             this: *mut ffi::GtkPrintOperation,
@@ -1067,10 +1069,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
             context: *mut ffi::GtkPrintContext,
             parent: *mut ffi::GtkWindow,
             f: glib::ffi::gpointer,
-        ) -> glib::ffi::gboolean
-        where
-            P: IsA<PrintOperation>,
-        {
+        ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(
                 &PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
@@ -1099,7 +1098,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn request_page_setup_trampoline<
-            P,
+            P: IsA<PrintOperation>,
             F: Fn(&P, &PrintContext, i32, &PageSetup) + 'static,
         >(
             this: *mut ffi::GtkPrintOperation,
@@ -1107,9 +1106,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
             page_nr: libc::c_int,
             setup: *mut ffi::GtkPageSetup,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
@@ -1133,12 +1130,13 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     #[doc(alias = "status-changed")]
     fn connect_status_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn status_changed_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn status_changed_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1161,7 +1159,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn update_custom_widget_trampoline<
-            P,
+            P: IsA<PrintOperation>,
             F: Fn(&P, &Widget, &PageSetup, &PrintSettings) + 'static,
         >(
             this: *mut ffi::GtkPrintOperation,
@@ -1169,9 +1167,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
             setup: *mut ffi::GtkPageSetup,
             settings: *mut ffi::GtkPrintSettings,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &PrintOperation::from_glib_borrow(this).unsafe_cast_ref(),
@@ -1195,13 +1191,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     #[doc(alias = "allow-async")]
     fn connect_allow_async_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_allow_async_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_allow_async_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1220,13 +1217,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     #[doc(alias = "current-page")]
     fn connect_current_page_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_current_page_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_current_page_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1245,13 +1243,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     #[doc(alias = "custom-tab-label")]
     fn connect_custom_tab_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_custom_tab_label_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_custom_tab_label_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1270,13 +1269,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     #[doc(alias = "default-page-setup")]
     fn connect_default_page_setup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_default_page_setup_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_default_page_setup_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1295,13 +1295,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     #[doc(alias = "embed-page-setup")]
     fn connect_embed_page_setup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_embed_page_setup_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_embed_page_setup_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1320,13 +1321,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     #[doc(alias = "export-filename")]
     fn connect_export_filename_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_export_filename_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_export_filename_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1345,13 +1347,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     #[doc(alias = "has-selection")]
     fn connect_has_selection_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_has_selection_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_has_selection_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1370,13 +1373,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     #[doc(alias = "job-name")]
     fn connect_job_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_job_name_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_job_name_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1395,13 +1399,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     #[doc(alias = "n-pages")]
     fn connect_n_pages_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_n_pages_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_n_pages_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1420,13 +1425,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     #[doc(alias = "n-pages-to-print")]
     fn connect_n_pages_to_print_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_n_pages_to_print_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_n_pages_to_print_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1445,13 +1451,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     #[doc(alias = "print-settings")]
     fn connect_print_settings_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_print_settings_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_print_settings_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1470,13 +1477,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     #[doc(alias = "show-progress")]
     fn connect_show_progress_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_show_progress_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_show_progress_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1495,13 +1503,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     #[doc(alias = "status")]
     fn connect_status_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_status_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_status_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1520,13 +1529,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     #[doc(alias = "status-string")]
     fn connect_status_string_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_status_string_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_status_string_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1545,13 +1555,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     #[doc(alias = "support-selection")]
     fn connect_support_selection_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_support_selection_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_support_selection_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1570,13 +1581,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     #[doc(alias = "track-print-status")]
     fn connect_track_print_status_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_track_print_status_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_track_print_status_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1595,13 +1607,11 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     #[doc(alias = "unit")]
     fn connect_unit_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_unit_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_unit_trampoline<P: IsA<PrintOperation>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkPrintOperation,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1620,13 +1630,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
 
     #[doc(alias = "use-full-page")]
     fn connect_use_full_page_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_use_full_page_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_use_full_page_trampoline<
+            P: IsA<PrintOperation>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperation,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperation>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&PrintOperation::from_glib_borrow(this).unsafe_cast_ref())
         }

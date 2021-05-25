@@ -2062,14 +2062,15 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "edited")]
     fn connect_edited<F: Fn(&Self, TreePath, &str) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn edited_trampoline<P, F: Fn(&P, TreePath, &str) + 'static>(
+        unsafe extern "C" fn edited_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P, TreePath, &str) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             path: *mut libc::c_char,
             new_text: *mut libc::c_char,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             let path = from_glib_full(crate::ffi::gtk_tree_path_new_from_string(path));
             f(
@@ -2093,13 +2094,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "align-set")]
     fn connect_align_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_align_set_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_align_set_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2118,13 +2120,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "alignment")]
     fn connect_alignment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_alignment_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_alignment_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2143,13 +2146,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "attributes")]
     fn connect_attributes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_attributes_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_attributes_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2168,13 +2172,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "background")]
     fn connect_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_background_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_background_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2193,13 +2198,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "background-rgba")]
     fn connect_background_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_background_rgba_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_background_rgba_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2218,13 +2224,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "background-set")]
     fn connect_background_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_background_set_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_background_set_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2243,13 +2250,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "editable")]
     fn connect_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_editable_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_editable_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2268,13 +2276,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "editable-set")]
     fn connect_editable_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_editable_set_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_editable_set_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2293,13 +2302,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "ellipsize")]
     fn connect_ellipsize_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_ellipsize_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_ellipsize_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2318,13 +2328,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "ellipsize-set")]
     fn connect_ellipsize_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_ellipsize_set_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_ellipsize_set_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2343,13 +2354,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "family")]
     fn connect_family_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_family_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_family_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2368,13 +2380,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "family-set")]
     fn connect_family_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_family_set_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_family_set_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2393,13 +2406,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "font")]
     fn connect_font_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_font_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_font_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2418,13 +2432,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "font-desc")]
     fn connect_font_desc_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_font_desc_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_font_desc_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2443,13 +2458,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "foreground")]
     fn connect_foreground_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_foreground_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_foreground_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2468,13 +2484,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "foreground-rgba")]
     fn connect_foreground_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_foreground_rgba_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_foreground_rgba_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2493,13 +2510,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "foreground-set")]
     fn connect_foreground_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_foreground_set_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_foreground_set_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2518,13 +2536,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "language")]
     fn connect_language_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_language_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_language_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2543,13 +2562,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "language-set")]
     fn connect_language_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_language_set_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_language_set_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2568,13 +2588,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "markup")]
     fn connect_markup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_markup_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_markup_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2593,13 +2614,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "max-width-chars")]
     fn connect_max_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_max_width_chars_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_max_width_chars_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2618,13 +2640,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "placeholder-text")]
     fn connect_placeholder_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_placeholder_text_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_placeholder_text_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2643,13 +2666,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "rise")]
     fn connect_rise_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_rise_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_rise_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2668,13 +2692,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "rise-set")]
     fn connect_rise_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_rise_set_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_rise_set_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2693,13 +2718,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "scale")]
     fn connect_scale_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_scale_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_scale_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2718,13 +2744,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "scale-set")]
     fn connect_scale_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_scale_set_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_scale_set_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2746,13 +2773,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn notify_single_paragraph_mode_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_single_paragraph_mode_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2771,13 +2799,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "size")]
     fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_size_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_size_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2796,13 +2825,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "size-points")]
     fn connect_size_points_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_size_points_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_size_points_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2821,13 +2851,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "size-set")]
     fn connect_size_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_size_set_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_size_set_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2846,13 +2877,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "stretch")]
     fn connect_stretch_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_stretch_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_stretch_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2871,13 +2903,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "stretch-set")]
     fn connect_stretch_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_stretch_set_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_stretch_set_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2896,13 +2929,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "strikethrough")]
     fn connect_strikethrough_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_strikethrough_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_strikethrough_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2921,13 +2955,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "strikethrough-set")]
     fn connect_strikethrough_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_strikethrough_set_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_strikethrough_set_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2946,13 +2981,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "style")]
     fn connect_style_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_style_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_style_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2971,13 +3007,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "style-set")]
     fn connect_style_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_style_set_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_style_set_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2996,13 +3033,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "text")]
     fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_text_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_text_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -3021,13 +3059,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "underline")]
     fn connect_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_underline_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_underline_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -3046,13 +3085,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "underline-set")]
     fn connect_underline_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_underline_set_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_underline_set_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -3071,13 +3111,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "variant")]
     fn connect_variant_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_variant_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_variant_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -3096,13 +3137,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "variant-set")]
     fn connect_variant_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_variant_set_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_variant_set_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -3121,13 +3163,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "weight")]
     fn connect_weight_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_weight_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_weight_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -3146,13 +3189,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "weight-set")]
     fn connect_weight_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_weight_set_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_weight_set_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -3171,13 +3215,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "width-chars")]
     fn connect_width_chars_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_width_chars_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_width_chars_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -3196,13 +3241,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "wrap-mode")]
     fn connect_wrap_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_wrap_mode_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_wrap_mode_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -3221,13 +3267,14 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
 
     #[doc(alias = "wrap-width")]
     fn connect_wrap_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_wrap_width_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_wrap_width_trampoline<
+            P: IsA<CellRendererText>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellRendererText,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellRendererText>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }

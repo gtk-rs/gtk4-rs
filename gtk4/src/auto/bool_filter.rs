@@ -51,7 +51,7 @@ impl BoolFilter {
     }
 
     #[doc(alias = "expression")]
-    pub fn connect_expression_notify<F: Fn(&BoolFilter) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_expression_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_expression_trampoline<F: Fn(&BoolFilter) + 'static>(
             this: *mut ffi::GtkBoolFilter,
             _param_spec: glib::ffi::gpointer,
@@ -74,7 +74,7 @@ impl BoolFilter {
     }
 
     #[doc(alias = "invert")]
-    pub fn connect_invert_notify<F: Fn(&BoolFilter) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_invert_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_invert_trampoline<F: Fn(&BoolFilter) + 'static>(
             this: *mut ffi::GtkBoolFilter,
             _param_spec: glib::ffi::gpointer,

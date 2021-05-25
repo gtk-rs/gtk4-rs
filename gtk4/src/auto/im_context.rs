@@ -341,13 +341,11 @@ impl<O: IsA<IMContext>> IMContextExt for O {
 
     #[doc(alias = "commit")]
     fn connect_commit<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn commit_trampoline<P, F: Fn(&P, &str) + 'static>(
+        unsafe extern "C" fn commit_trampoline<P: IsA<IMContext>, F: Fn(&P, &str) + 'static>(
             this: *mut ffi::GtkIMContext,
             str: *mut libc::c_char,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<IMContext>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &IMContext::from_glib_borrow(this).unsafe_cast_ref(),
@@ -373,17 +371,14 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn delete_surrounding_trampoline<
-            P,
+            P: IsA<IMContext>,
             F: Fn(&P, i32, i32) -> bool + 'static,
         >(
             this: *mut ffi::GtkIMContext,
             offset: libc::c_int,
             n_chars: libc::c_int,
             f: glib::ffi::gpointer,
-        ) -> glib::ffi::gboolean
-        where
-            P: IsA<IMContext>,
-        {
+        ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(
                 &IMContext::from_glib_borrow(this).unsafe_cast_ref(),
@@ -407,12 +402,10 @@ impl<O: IsA<IMContext>> IMContextExt for O {
 
     #[doc(alias = "preedit-changed")]
     fn connect_preedit_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn preedit_changed_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn preedit_changed_trampoline<P: IsA<IMContext>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkIMContext,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<IMContext>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&IMContext::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -431,12 +424,10 @@ impl<O: IsA<IMContext>> IMContextExt for O {
 
     #[doc(alias = "preedit-end")]
     fn connect_preedit_end<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn preedit_end_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn preedit_end_trampoline<P: IsA<IMContext>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkIMContext,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<IMContext>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&IMContext::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -455,12 +446,10 @@ impl<O: IsA<IMContext>> IMContextExt for O {
 
     #[doc(alias = "preedit-start")]
     fn connect_preedit_start<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn preedit_start_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn preedit_start_trampoline<P: IsA<IMContext>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkIMContext,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<IMContext>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&IMContext::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -482,13 +471,13 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn retrieve_surrounding_trampoline<P, F: Fn(&P) -> bool + 'static>(
+        unsafe extern "C" fn retrieve_surrounding_trampoline<
+            P: IsA<IMContext>,
+            F: Fn(&P) -> bool + 'static,
+        >(
             this: *mut ffi::GtkIMContext,
             f: glib::ffi::gpointer,
-        ) -> glib::ffi::gboolean
-        where
-            P: IsA<IMContext>,
-        {
+        ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(&IMContext::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
         }
@@ -507,13 +496,14 @@ impl<O: IsA<IMContext>> IMContextExt for O {
 
     #[doc(alias = "input-hints")]
     fn connect_input_hints_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_input_hints_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_input_hints_trampoline<
+            P: IsA<IMContext>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkIMContext,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<IMContext>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&IMContext::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -532,13 +522,14 @@ impl<O: IsA<IMContext>> IMContextExt for O {
 
     #[doc(alias = "input-purpose")]
     fn connect_input_purpose_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_input_purpose_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_input_purpose_trampoline<
+            P: IsA<IMContext>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkIMContext,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<IMContext>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&IMContext::from_glib_borrow(this).unsafe_cast_ref())
         }

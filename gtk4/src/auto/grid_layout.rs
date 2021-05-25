@@ -139,10 +139,7 @@ impl GridLayout {
     }
 
     #[doc(alias = "baseline-row")]
-    pub fn connect_baseline_row_notify<F: Fn(&GridLayout) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_baseline_row_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_baseline_row_trampoline<F: Fn(&GridLayout) + 'static>(
             this: *mut ffi::GtkGridLayout,
             _param_spec: glib::ffi::gpointer,
@@ -165,7 +162,7 @@ impl GridLayout {
     }
 
     #[doc(alias = "column-homogeneous")]
-    pub fn connect_column_homogeneous_notify<F: Fn(&GridLayout) + 'static>(
+    pub fn connect_column_homogeneous_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -191,10 +188,7 @@ impl GridLayout {
     }
 
     #[doc(alias = "column-spacing")]
-    pub fn connect_column_spacing_notify<F: Fn(&GridLayout) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_column_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_column_spacing_trampoline<F: Fn(&GridLayout) + 'static>(
             this: *mut ffi::GtkGridLayout,
             _param_spec: glib::ffi::gpointer,
@@ -217,10 +211,7 @@ impl GridLayout {
     }
 
     #[doc(alias = "row-homogeneous")]
-    pub fn connect_row_homogeneous_notify<F: Fn(&GridLayout) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_row_homogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_row_homogeneous_trampoline<F: Fn(&GridLayout) + 'static>(
             this: *mut ffi::GtkGridLayout,
             _param_spec: glib::ffi::gpointer,
@@ -243,10 +234,7 @@ impl GridLayout {
     }
 
     #[doc(alias = "row-spacing")]
-    pub fn connect_row_spacing_notify<F: Fn(&GridLayout) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_row_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_row_spacing_trampoline<F: Fn(&GridLayout) + 'static>(
             this: *mut ffi::GtkGridLayout,
             _param_spec: glib::ffi::gpointer,

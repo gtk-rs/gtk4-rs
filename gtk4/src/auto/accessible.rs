@@ -92,13 +92,14 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
 
     #[doc(alias = "accessible-role")]
     fn connect_accessible_role_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_accessible_role_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_accessible_role_trampoline<
+            P: IsA<Accessible>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkAccessible,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Accessible>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Accessible::from_glib_borrow(this).unsafe_cast_ref())
         }

@@ -29,12 +29,13 @@ pub trait StyleProviderExt: 'static {
 impl<O: IsA<StyleProvider>> StyleProviderExt for O {
     #[doc(alias = "gtk-private-changed")]
     fn connect_gtk_private_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn gtk_private_changed_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn gtk_private_changed_trampoline<
+            P: IsA<StyleProvider>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkStyleProvider,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<StyleProvider>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&StyleProvider::from_glib_borrow(this).unsafe_cast_ref())
         }

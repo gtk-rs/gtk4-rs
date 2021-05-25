@@ -204,10 +204,7 @@ impl CellRendererPixbuf {
     }
 
     #[doc(alias = "gicon")]
-    pub fn connect_gicon_notify<F: Fn(&CellRendererPixbuf) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_gicon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_gicon_trampoline<F: Fn(&CellRendererPixbuf) + 'static>(
             this: *mut ffi::GtkCellRendererPixbuf,
             _param_spec: glib::ffi::gpointer,
@@ -230,10 +227,7 @@ impl CellRendererPixbuf {
     }
 
     #[doc(alias = "icon-name")]
-    pub fn connect_icon_name_notify<F: Fn(&CellRendererPixbuf) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<F: Fn(&CellRendererPixbuf) + 'static>(
             this: *mut ffi::GtkCellRendererPixbuf,
             _param_spec: glib::ffi::gpointer,
@@ -256,10 +250,7 @@ impl CellRendererPixbuf {
     }
 
     #[doc(alias = "icon-size")]
-    pub fn connect_icon_size_notify<F: Fn(&CellRendererPixbuf) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_icon_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_size_trampoline<F: Fn(&CellRendererPixbuf) + 'static>(
             this: *mut ffi::GtkCellRendererPixbuf,
             _param_spec: glib::ffi::gpointer,
@@ -282,10 +273,7 @@ impl CellRendererPixbuf {
     }
 
     #[doc(alias = "pixbuf")]
-    pub fn connect_pixbuf_notify<F: Fn(&CellRendererPixbuf) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_pixbuf_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pixbuf_trampoline<F: Fn(&CellRendererPixbuf) + 'static>(
             this: *mut ffi::GtkCellRendererPixbuf,
             _param_spec: glib::ffi::gpointer,
@@ -308,7 +296,7 @@ impl CellRendererPixbuf {
     }
 
     #[doc(alias = "pixbuf-expander-closed")]
-    pub fn connect_pixbuf_expander_closed_notify<F: Fn(&CellRendererPixbuf) + 'static>(
+    pub fn connect_pixbuf_expander_closed_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -336,7 +324,7 @@ impl CellRendererPixbuf {
     }
 
     #[doc(alias = "pixbuf-expander-open")]
-    pub fn connect_pixbuf_expander_open_notify<F: Fn(&CellRendererPixbuf) + 'static>(
+    pub fn connect_pixbuf_expander_open_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -364,10 +352,7 @@ impl CellRendererPixbuf {
     }
 
     #[doc(alias = "texture")]
-    pub fn connect_texture_notify<F: Fn(&CellRendererPixbuf) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_texture_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_texture_trampoline<F: Fn(&CellRendererPixbuf) + 'static>(
             this: *mut ffi::GtkCellRendererPixbuf,
             _param_spec: glib::ffi::gpointer,

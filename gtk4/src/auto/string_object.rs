@@ -32,7 +32,7 @@ impl StringObject {
     }
 
     #[doc(alias = "string")]
-    pub fn connect_string_notify<F: Fn(&StringObject) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_string_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_string_trampoline<F: Fn(&StringObject) + 'static>(
             this: *mut ffi::GtkStringObject,
             _param_spec: glib::ffi::gpointer,

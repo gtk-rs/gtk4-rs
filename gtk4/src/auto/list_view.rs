@@ -154,7 +154,7 @@ impl ListView {
     }
 
     #[doc(alias = "activate")]
-    pub fn connect_activate<F: Fn(&ListView, u32) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_activate<F: Fn(&Self, u32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<F: Fn(&ListView, u32) + 'static>(
             this: *mut ffi::GtkListView,
             position: libc::c_uint,
@@ -177,7 +177,7 @@ impl ListView {
     }
 
     #[doc(alias = "enable-rubberband")]
-    pub fn connect_enable_rubberband_notify<F: Fn(&ListView) + 'static>(
+    pub fn connect_enable_rubberband_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -203,7 +203,7 @@ impl ListView {
     }
 
     #[doc(alias = "factory")]
-    pub fn connect_factory_notify<F: Fn(&ListView) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_factory_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_factory_trampoline<F: Fn(&ListView) + 'static>(
             this: *mut ffi::GtkListView,
             _param_spec: glib::ffi::gpointer,
@@ -226,7 +226,7 @@ impl ListView {
     }
 
     #[doc(alias = "model")]
-    pub fn connect_model_notify<F: Fn(&ListView) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<F: Fn(&ListView) + 'static>(
             this: *mut ffi::GtkListView,
             _param_spec: glib::ffi::gpointer,
@@ -249,10 +249,7 @@ impl ListView {
     }
 
     #[doc(alias = "show-separators")]
-    pub fn connect_show_separators_notify<F: Fn(&ListView) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_show_separators_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_separators_trampoline<F: Fn(&ListView) + 'static>(
             this: *mut ffi::GtkListView,
             _param_spec: glib::ffi::gpointer,
@@ -275,7 +272,7 @@ impl ListView {
     }
 
     #[doc(alias = "single-click-activate")]
-    pub fn connect_single_click_activate_notify<F: Fn(&ListView) + 'static>(
+    pub fn connect_single_click_activate_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

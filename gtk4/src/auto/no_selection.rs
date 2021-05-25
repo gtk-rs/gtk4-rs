@@ -48,7 +48,7 @@ impl NoSelection {
     }
 
     #[doc(alias = "model")]
-    pub fn connect_model_notify<F: Fn(&NoSelection) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<F: Fn(&NoSelection) + 'static>(
             this: *mut ffi::GtkNoSelection,
             _param_spec: glib::ffi::gpointer,

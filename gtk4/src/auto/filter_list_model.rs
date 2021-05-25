@@ -104,10 +104,7 @@ impl FilterListModel {
     }
 
     #[doc(alias = "filter")]
-    pub fn connect_filter_notify<F: Fn(&FilterListModel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_filter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_filter_trampoline<F: Fn(&FilterListModel) + 'static>(
             this: *mut ffi::GtkFilterListModel,
             _param_spec: glib::ffi::gpointer,
@@ -130,10 +127,7 @@ impl FilterListModel {
     }
 
     #[doc(alias = "incremental")]
-    pub fn connect_incremental_notify<F: Fn(&FilterListModel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_incremental_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_incremental_trampoline<F: Fn(&FilterListModel) + 'static>(
             this: *mut ffi::GtkFilterListModel,
             _param_spec: glib::ffi::gpointer,
@@ -156,7 +150,7 @@ impl FilterListModel {
     }
 
     #[doc(alias = "model")]
-    pub fn connect_model_notify<F: Fn(&FilterListModel) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<F: Fn(&FilterListModel) + 'static>(
             this: *mut ffi::GtkFilterListModel,
             _param_spec: glib::ffi::gpointer,
@@ -179,10 +173,7 @@ impl FilterListModel {
     }
 
     #[doc(alias = "pending")]
-    pub fn connect_pending_notify<F: Fn(&FilterListModel) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_pending_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pending_trampoline<F: Fn(&FilterListModel) + 'static>(
             this: *mut ffi::GtkFilterListModel,
             _param_spec: glib::ffi::gpointer,

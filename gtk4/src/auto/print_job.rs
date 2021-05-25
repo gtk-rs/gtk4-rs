@@ -294,7 +294,7 @@ impl PrintJob {
     }
 
     #[doc(alias = "status-changed")]
-    pub fn connect_status_changed<F: Fn(&PrintJob) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_status_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn status_changed_trampoline<F: Fn(&PrintJob) + 'static>(
             this: *mut ffi::GtkPrintJob,
             f: glib::ffi::gpointer,
@@ -316,7 +316,7 @@ impl PrintJob {
     }
 
     #[doc(alias = "track-print-status")]
-    pub fn connect_track_print_status_notify<F: Fn(&PrintJob) + 'static>(
+    pub fn connect_track_print_status_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

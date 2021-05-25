@@ -85,7 +85,7 @@ impl CssProvider {
     }
 
     #[doc(alias = "parsing-error")]
-    pub fn connect_parsing_error<F: Fn(&CssProvider, &CssSection, &glib::Error) + 'static>(
+    pub fn connect_parsing_error<F: Fn(&Self, &CssSection, &glib::Error) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

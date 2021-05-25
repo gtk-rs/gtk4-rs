@@ -71,10 +71,7 @@ impl OverlayLayoutChild {
     }
 
     #[doc(alias = "clip-overlay")]
-    pub fn connect_clip_overlay_notify<F: Fn(&OverlayLayoutChild) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_clip_overlay_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_clip_overlay_trampoline<
             F: Fn(&OverlayLayoutChild) + 'static,
         >(
@@ -99,10 +96,7 @@ impl OverlayLayoutChild {
     }
 
     #[doc(alias = "measure")]
-    pub fn connect_measure_notify<F: Fn(&OverlayLayoutChild) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_measure_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_measure_trampoline<F: Fn(&OverlayLayoutChild) + 'static>(
             this: *mut ffi::GtkOverlayLayoutChild,
             _param_spec: glib::ffi::gpointer,

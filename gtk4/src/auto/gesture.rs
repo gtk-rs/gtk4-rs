@@ -307,13 +307,14 @@ impl<O: IsA<Gesture>> GestureExt for O {
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn begin_trampoline<P, F: Fn(&P, Option<&gdk::EventSequence>) + 'static>(
+        unsafe extern "C" fn begin_trampoline<
+            P: IsA<Gesture>,
+            F: Fn(&P, Option<&gdk::EventSequence>) + 'static,
+        >(
             this: *mut ffi::GtkGesture,
             sequence: *mut gdk::ffi::GdkEventSequence,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Gesture>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &Gesture::from_glib_borrow(this).unsafe_cast_ref(),
@@ -341,15 +342,13 @@ impl<O: IsA<Gesture>> GestureExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn cancel_trampoline<
-            P,
+            P: IsA<Gesture>,
             F: Fn(&P, Option<&gdk::EventSequence>) + 'static,
         >(
             this: *mut ffi::GtkGesture,
             sequence: *mut gdk::ffi::GdkEventSequence,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Gesture>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &Gesture::from_glib_borrow(this).unsafe_cast_ref(),
@@ -376,13 +375,14 @@ impl<O: IsA<Gesture>> GestureExt for O {
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn end_trampoline<P, F: Fn(&P, Option<&gdk::EventSequence>) + 'static>(
+        unsafe extern "C" fn end_trampoline<
+            P: IsA<Gesture>,
+            F: Fn(&P, Option<&gdk::EventSequence>) + 'static,
+        >(
             this: *mut ffi::GtkGesture,
             sequence: *mut gdk::ffi::GdkEventSequence,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Gesture>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &Gesture::from_glib_borrow(this).unsafe_cast_ref(),
@@ -412,16 +412,14 @@ impl<O: IsA<Gesture>> GestureExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn sequence_state_changed_trampoline<
-            P,
+            P: IsA<Gesture>,
             F: Fn(&P, Option<&gdk::EventSequence>, EventSequenceState) + 'static,
         >(
             this: *mut ffi::GtkGesture,
             sequence: *mut gdk::ffi::GdkEventSequence,
             state: ffi::GtkEventSequenceState,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Gesture>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &Gesture::from_glib_borrow(this).unsafe_cast_ref(),
@@ -450,15 +448,13 @@ impl<O: IsA<Gesture>> GestureExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn update_trampoline<
-            P,
+            P: IsA<Gesture>,
             F: Fn(&P, Option<&gdk::EventSequence>) + 'static,
         >(
             this: *mut ffi::GtkGesture,
             sequence: *mut gdk::ffi::GdkEventSequence,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Gesture>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &Gesture::from_glib_borrow(this).unsafe_cast_ref(),

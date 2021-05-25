@@ -81,7 +81,7 @@ impl TreeExpander {
     }
 
     #[doc(alias = "child")]
-    pub fn connect_child_notify<F: Fn(&TreeExpander) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&TreeExpander) + 'static>(
             this: *mut ffi::GtkTreeExpander,
             _param_spec: glib::ffi::gpointer,
@@ -104,7 +104,7 @@ impl TreeExpander {
     }
 
     #[doc(alias = "item")]
-    pub fn connect_item_notify<F: Fn(&TreeExpander) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_item_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_item_trampoline<F: Fn(&TreeExpander) + 'static>(
             this: *mut ffi::GtkTreeExpander,
             _param_spec: glib::ffi::gpointer,
@@ -127,7 +127,7 @@ impl TreeExpander {
     }
 
     #[doc(alias = "list-row")]
-    pub fn connect_list_row_notify<F: Fn(&TreeExpander) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_list_row_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_list_row_trampoline<F: Fn(&TreeExpander) + 'static>(
             this: *mut ffi::GtkTreeExpander,
             _param_spec: glib::ffi::gpointer,

@@ -72,10 +72,7 @@ impl ColorChooserWidget {
     }
 
     #[doc(alias = "show-editor")]
-    pub fn connect_show_editor_notify<F: Fn(&ColorChooserWidget) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_show_editor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_editor_trampoline<F: Fn(&ColorChooserWidget) + 'static>(
             this: *mut ffi::GtkColorChooserWidget,
             _param_spec: glib::ffi::gpointer,

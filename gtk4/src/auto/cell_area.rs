@@ -803,7 +803,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn add_editable_trampoline<
-            P,
+            P: IsA<CellArea>,
             F: Fn(&P, &CellRenderer, &CellEditable, &gdk::Rectangle, TreePath) + 'static,
         >(
             this: *mut ffi::GtkCellArea,
@@ -812,9 +812,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             cell_area: *mut gdk::ffi::GdkRectangle,
             path: *mut libc::c_char,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellArea>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             let path = from_glib_full(crate::ffi::gtk_tree_path_new_from_string(path));
             f(
@@ -844,7 +842,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn apply_attributes_trampoline<
-            P,
+            P: IsA<CellArea>,
             F: Fn(&P, &TreeModel, &TreeIter, bool, bool) + 'static,
         >(
             this: *mut ffi::GtkCellArea,
@@ -853,9 +851,7 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
             is_expander: glib::ffi::gboolean,
             is_expanded: glib::ffi::gboolean,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellArea>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &CellArea::from_glib_borrow(this).unsafe_cast_ref(),
@@ -884,16 +880,14 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn focus_changed_trampoline<
-            P,
+            P: IsA<CellArea>,
             F: Fn(&P, &CellRenderer, TreePath) + 'static,
         >(
             this: *mut ffi::GtkCellArea,
             renderer: *mut ffi::GtkCellRenderer,
             path: *mut libc::c_char,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellArea>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             let path = from_glib_full(crate::ffi::gtk_tree_path_new_from_string(path));
             f(
@@ -921,16 +915,14 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn remove_editable_trampoline<
-            P,
+            P: IsA<CellArea>,
             F: Fn(&P, &CellRenderer, &CellEditable) + 'static,
         >(
             this: *mut ffi::GtkCellArea,
             renderer: *mut ffi::GtkCellRenderer,
             editable: *mut ffi::GtkCellEditable,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellArea>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &CellArea::from_glib_borrow(this).unsafe_cast_ref(),
@@ -953,13 +945,14 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     #[doc(alias = "edit-widget")]
     fn connect_edit_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_edit_widget_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_edit_widget_trampoline<
+            P: IsA<CellArea>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellArea,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellArea>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellArea::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -978,13 +971,14 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     #[doc(alias = "edited-cell")]
     fn connect_edited_cell_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_edited_cell_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_edited_cell_trampoline<
+            P: IsA<CellArea>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkCellArea,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellArea>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellArea::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1003,13 +997,11 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
 
     #[doc(alias = "focus-cell")]
     fn connect_focus_cell_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_focus_cell_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_focus_cell_trampoline<P: IsA<CellArea>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCellArea,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<CellArea>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&CellArea::from_glib_borrow(this).unsafe_cast_ref())
         }

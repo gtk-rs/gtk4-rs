@@ -254,7 +254,7 @@ impl TreeSelection {
     }
 
     #[doc(alias = "changed")]
-    pub fn connect_changed<F: Fn(&TreeSelection) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<F: Fn(&TreeSelection) + 'static>(
             this: *mut ffi::GtkTreeSelection,
             f: glib::ffi::gpointer,
@@ -276,7 +276,7 @@ impl TreeSelection {
     }
 
     #[doc(alias = "mode")]
-    pub fn connect_mode_notify<F: Fn(&TreeSelection) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_mode_trampoline<F: Fn(&TreeSelection) + 'static>(
             this: *mut ffi::GtkTreeSelection,
             _param_spec: glib::ffi::gpointer,

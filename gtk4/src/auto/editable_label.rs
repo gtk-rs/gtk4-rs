@@ -68,7 +68,7 @@ impl EditableLabel {
     }
 
     #[doc(alias = "editing")]
-    pub fn connect_editing_notify<F: Fn(&EditableLabel) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_editing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_editing_trampoline<F: Fn(&EditableLabel) + 'static>(
             this: *mut ffi::GtkEditableLabel,
             _param_spec: glib::ffi::gpointer,

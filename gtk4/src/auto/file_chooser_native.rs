@@ -96,10 +96,7 @@ impl FileChooserNative {
     }
 
     #[doc(alias = "accept-label")]
-    pub fn connect_accept_label_notify<F: Fn(&FileChooserNative) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_accept_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_accept_label_trampoline<F: Fn(&FileChooserNative) + 'static>(
             this: *mut ffi::GtkFileChooserNative,
             _param_spec: glib::ffi::gpointer,
@@ -122,10 +119,7 @@ impl FileChooserNative {
     }
 
     #[doc(alias = "cancel-label")]
-    pub fn connect_cancel_label_notify<F: Fn(&FileChooserNative) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_cancel_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cancel_label_trampoline<F: Fn(&FileChooserNative) + 'static>(
             this: *mut ffi::GtkFileChooserNative,
             _param_spec: glib::ffi::gpointer,

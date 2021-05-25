@@ -97,7 +97,7 @@ impl ShortcutsWindow {
     }
 
     #[doc(alias = "close")]
-    pub fn connect_close<F: Fn(&ShortcutsWindow) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_close<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn close_trampoline<F: Fn(&ShortcutsWindow) + 'static>(
             this: *mut ffi::GtkShortcutsWindow,
             f: glib::ffi::gpointer,
@@ -127,7 +127,7 @@ impl ShortcutsWindow {
     }
 
     #[doc(alias = "search")]
-    pub fn connect_search<F: Fn(&ShortcutsWindow) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_search<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn search_trampoline<F: Fn(&ShortcutsWindow) + 'static>(
             this: *mut ffi::GtkShortcutsWindow,
             f: glib::ffi::gpointer,
@@ -157,10 +157,7 @@ impl ShortcutsWindow {
     }
 
     #[doc(alias = "section-name")]
-    pub fn connect_section_name_notify<F: Fn(&ShortcutsWindow) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_section_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_section_name_trampoline<F: Fn(&ShortcutsWindow) + 'static>(
             this: *mut ffi::GtkShortcutsWindow,
             _param_spec: glib::ffi::gpointer,
@@ -183,10 +180,7 @@ impl ShortcutsWindow {
     }
 
     #[doc(alias = "view-name")]
-    pub fn connect_view_name_notify<F: Fn(&ShortcutsWindow) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_view_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_view_name_trampoline<F: Fn(&ShortcutsWindow) + 'static>(
             this: *mut ffi::GtkShortcutsWindow,
             _param_spec: glib::ffi::gpointer,

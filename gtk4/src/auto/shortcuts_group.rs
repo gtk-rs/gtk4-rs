@@ -128,10 +128,7 @@ impl ShortcutsGroup {
     }
 
     #[doc(alias = "accel-size-group")]
-    pub fn connect_accel_size_group_notify<F: Fn(&ShortcutsGroup) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_accel_size_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_accel_size_group_trampoline<
             F: Fn(&ShortcutsGroup) + 'static,
         >(
@@ -156,7 +153,7 @@ impl ShortcutsGroup {
     }
 
     #[doc(alias = "height")]
-    pub fn connect_height_notify<F: Fn(&ShortcutsGroup) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_height_trampoline<F: Fn(&ShortcutsGroup) + 'static>(
             this: *mut ffi::GtkShortcutsGroup,
             _param_spec: glib::ffi::gpointer,
@@ -179,7 +176,7 @@ impl ShortcutsGroup {
     }
 
     #[doc(alias = "title")]
-    pub fn connect_title_notify<F: Fn(&ShortcutsGroup) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&ShortcutsGroup) + 'static>(
             this: *mut ffi::GtkShortcutsGroup,
             _param_spec: glib::ffi::gpointer,
@@ -202,10 +199,7 @@ impl ShortcutsGroup {
     }
 
     #[doc(alias = "title-size-group")]
-    pub fn connect_title_size_group_notify<F: Fn(&ShortcutsGroup) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_title_size_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_size_group_trampoline<
             F: Fn(&ShortcutsGroup) + 'static,
         >(
@@ -230,7 +224,7 @@ impl ShortcutsGroup {
     }
 
     #[doc(alias = "view")]
-    pub fn connect_view_notify<F: Fn(&ShortcutsGroup) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_view_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_view_trampoline<F: Fn(&ShortcutsGroup) + 'static>(
             this: *mut ffi::GtkShortcutsGroup,
             _param_spec: glib::ffi::gpointer,

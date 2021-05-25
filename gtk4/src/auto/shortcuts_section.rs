@@ -145,10 +145,7 @@ impl ShortcutsSection {
     }
 
     #[doc(alias = "max-height")]
-    pub fn connect_max_height_notify<F: Fn(&ShortcutsSection) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_max_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_max_height_trampoline<F: Fn(&ShortcutsSection) + 'static>(
             this: *mut ffi::GtkShortcutsSection,
             _param_spec: glib::ffi::gpointer,
@@ -171,10 +168,7 @@ impl ShortcutsSection {
     }
 
     #[doc(alias = "section-name")]
-    pub fn connect_section_name_notify<F: Fn(&ShortcutsSection) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_section_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_section_name_trampoline<F: Fn(&ShortcutsSection) + 'static>(
             this: *mut ffi::GtkShortcutsSection,
             _param_spec: glib::ffi::gpointer,
@@ -197,10 +191,7 @@ impl ShortcutsSection {
     }
 
     #[doc(alias = "title")]
-    pub fn connect_title_notify<F: Fn(&ShortcutsSection) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&ShortcutsSection) + 'static>(
             this: *mut ffi::GtkShortcutsSection,
             _param_spec: glib::ffi::gpointer,
@@ -223,10 +214,7 @@ impl ShortcutsSection {
     }
 
     #[doc(alias = "view-name")]
-    pub fn connect_view_name_notify<F: Fn(&ShortcutsSection) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_view_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_view_name_trampoline<F: Fn(&ShortcutsSection) + 'static>(
             this: *mut ffi::GtkShortcutsSection,
             _param_spec: glib::ffi::gpointer,

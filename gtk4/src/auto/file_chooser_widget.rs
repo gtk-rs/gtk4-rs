@@ -92,10 +92,7 @@ impl FileChooserWidget {
     }
 
     #[doc(alias = "desktop-folder")]
-    pub fn connect_desktop_folder<F: Fn(&FileChooserWidget) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_desktop_folder<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn desktop_folder_trampoline<F: Fn(&FileChooserWidget) + 'static>(
             this: *mut ffi::GtkFileChooserWidget,
             f: glib::ffi::gpointer,
@@ -125,10 +122,7 @@ impl FileChooserWidget {
     }
 
     #[doc(alias = "down-folder")]
-    pub fn connect_down_folder<F: Fn(&FileChooserWidget) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_down_folder<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn down_folder_trampoline<F: Fn(&FileChooserWidget) + 'static>(
             this: *mut ffi::GtkFileChooserWidget,
             f: glib::ffi::gpointer,
@@ -158,10 +152,7 @@ impl FileChooserWidget {
     }
 
     #[doc(alias = "home-folder")]
-    pub fn connect_home_folder<F: Fn(&FileChooserWidget) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_home_folder<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn home_folder_trampoline<F: Fn(&FileChooserWidget) + 'static>(
             this: *mut ffi::GtkFileChooserWidget,
             f: glib::ffi::gpointer,
@@ -191,10 +182,7 @@ impl FileChooserWidget {
     }
 
     #[doc(alias = "location-popup")]
-    pub fn connect_location_popup<F: Fn(&FileChooserWidget, &str) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_location_popup<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn location_popup_trampoline<
             F: Fn(&FileChooserWidget, &str) + 'static,
         >(
@@ -230,10 +218,7 @@ impl FileChooserWidget {
     }
 
     #[doc(alias = "location-popup-on-paste")]
-    pub fn connect_location_popup_on_paste<F: Fn(&FileChooserWidget) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_location_popup_on_paste<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn location_popup_on_paste_trampoline<
             F: Fn(&FileChooserWidget) + 'static,
         >(
@@ -265,10 +250,7 @@ impl FileChooserWidget {
     }
 
     #[doc(alias = "location-toggle-popup")]
-    pub fn connect_location_toggle_popup<F: Fn(&FileChooserWidget) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_location_toggle_popup<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn location_toggle_popup_trampoline<
             F: Fn(&FileChooserWidget) + 'static,
         >(
@@ -300,10 +282,7 @@ impl FileChooserWidget {
     }
 
     #[doc(alias = "places-shortcut")]
-    pub fn connect_places_shortcut<F: Fn(&FileChooserWidget) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_places_shortcut<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn places_shortcut_trampoline<F: Fn(&FileChooserWidget) + 'static>(
             this: *mut ffi::GtkFileChooserWidget,
             f: glib::ffi::gpointer,
@@ -333,10 +312,7 @@ impl FileChooserWidget {
     }
 
     #[doc(alias = "quick-bookmark")]
-    pub fn connect_quick_bookmark<F: Fn(&FileChooserWidget, i32) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_quick_bookmark<F: Fn(&Self, i32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn quick_bookmark_trampoline<F: Fn(&FileChooserWidget, i32) + 'static>(
             this: *mut ffi::GtkFileChooserWidget,
             bookmark_index: libc::c_int,
@@ -367,10 +343,7 @@ impl FileChooserWidget {
     }
 
     #[doc(alias = "recent-shortcut")]
-    pub fn connect_recent_shortcut<F: Fn(&FileChooserWidget) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_recent_shortcut<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn recent_shortcut_trampoline<F: Fn(&FileChooserWidget) + 'static>(
             this: *mut ffi::GtkFileChooserWidget,
             f: glib::ffi::gpointer,
@@ -400,10 +373,7 @@ impl FileChooserWidget {
     }
 
     #[doc(alias = "search-shortcut")]
-    pub fn connect_search_shortcut<F: Fn(&FileChooserWidget) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_search_shortcut<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn search_shortcut_trampoline<F: Fn(&FileChooserWidget) + 'static>(
             this: *mut ffi::GtkFileChooserWidget,
             f: glib::ffi::gpointer,
@@ -433,10 +403,7 @@ impl FileChooserWidget {
     }
 
     #[doc(alias = "show-hidden")]
-    pub fn connect_show_hidden<F: Fn(&FileChooserWidget) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_show_hidden<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn show_hidden_trampoline<F: Fn(&FileChooserWidget) + 'static>(
             this: *mut ffi::GtkFileChooserWidget,
             f: glib::ffi::gpointer,
@@ -466,7 +433,7 @@ impl FileChooserWidget {
     }
 
     #[doc(alias = "up-folder")]
-    pub fn connect_up_folder<F: Fn(&FileChooserWidget) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_up_folder<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn up_folder_trampoline<F: Fn(&FileChooserWidget) + 'static>(
             this: *mut ffi::GtkFileChooserWidget,
             f: glib::ffi::gpointer,
@@ -496,10 +463,7 @@ impl FileChooserWidget {
     }
 
     #[doc(alias = "search-mode")]
-    pub fn connect_search_mode_notify<F: Fn(&FileChooserWidget) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_search_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_search_mode_trampoline<F: Fn(&FileChooserWidget) + 'static>(
             this: *mut ffi::GtkFileChooserWidget,
             _param_spec: glib::ffi::gpointer,
@@ -522,10 +486,7 @@ impl FileChooserWidget {
     }
 
     #[doc(alias = "subtitle")]
-    pub fn connect_subtitle_notify<F: Fn(&FileChooserWidget) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_subtitle_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_subtitle_trampoline<F: Fn(&FileChooserWidget) + 'static>(
             this: *mut ffi::GtkFileChooserWidget,
             _param_spec: glib::ffi::gpointer,

@@ -91,7 +91,7 @@ impl Clipboard {
     }
 
     #[doc(alias = "changed")]
-    pub fn connect_changed<F: Fn(&Clipboard) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<F: Fn(&Clipboard) + 'static>(
             this: *mut ffi::GdkClipboard,
             f: glib::ffi::gpointer,
@@ -113,7 +113,7 @@ impl Clipboard {
     }
 
     #[doc(alias = "content")]
-    pub fn connect_content_notify<F: Fn(&Clipboard) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_content_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_content_trampoline<F: Fn(&Clipboard) + 'static>(
             this: *mut ffi::GdkClipboard,
             _param_spec: glib::ffi::gpointer,
@@ -136,7 +136,7 @@ impl Clipboard {
     }
 
     #[doc(alias = "formats")]
-    pub fn connect_formats_notify<F: Fn(&Clipboard) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_formats_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_formats_trampoline<F: Fn(&Clipboard) + 'static>(
             this: *mut ffi::GdkClipboard,
             _param_spec: glib::ffi::gpointer,
@@ -159,7 +159,7 @@ impl Clipboard {
     }
 
     #[doc(alias = "local")]
-    pub fn connect_local_notify<F: Fn(&Clipboard) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_local_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_local_trampoline<F: Fn(&Clipboard) + 'static>(
             this: *mut ffi::GdkClipboard,
             _param_spec: glib::ffi::gpointer,

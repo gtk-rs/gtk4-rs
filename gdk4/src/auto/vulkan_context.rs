@@ -21,7 +21,7 @@ glib::wrapper! {
 
 impl VulkanContext {
     #[doc(alias = "images-updated")]
-    pub fn connect_images_updated<F: Fn(&VulkanContext) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_images_updated<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn images_updated_trampoline<F: Fn(&VulkanContext) + 'static>(
             this: *mut ffi::GdkVulkanContext,
             f: glib::ffi::gpointer,

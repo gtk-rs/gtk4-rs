@@ -71,10 +71,7 @@ impl MediaControls {
     }
 
     #[doc(alias = "media-stream")]
-    pub fn connect_media_stream_notify<F: Fn(&MediaControls) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_media_stream_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_media_stream_trampoline<F: Fn(&MediaControls) + 'static>(
             this: *mut ffi::GtkMediaControls,
             _param_spec: glib::ffi::gpointer,

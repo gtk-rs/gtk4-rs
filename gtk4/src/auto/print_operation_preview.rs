@@ -71,16 +71,14 @@ impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn got_page_size_trampoline<
-            P,
+            P: IsA<PrintOperationPreview>,
             F: Fn(&P, &PrintContext, &PageSetup) + 'static,
         >(
             this: *mut ffi::GtkPrintOperationPreview,
             context: *mut ffi::GtkPrintContext,
             page_setup: *mut ffi::GtkPageSetup,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperationPreview>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &PrintOperationPreview::from_glib_borrow(this).unsafe_cast_ref(),
@@ -103,13 +101,14 @@ impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
 
     #[doc(alias = "ready")]
     fn connect_ready<F: Fn(&Self, &PrintContext) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn ready_trampoline<P, F: Fn(&P, &PrintContext) + 'static>(
+        unsafe extern "C" fn ready_trampoline<
+            P: IsA<PrintOperationPreview>,
+            F: Fn(&P, &PrintContext) + 'static,
+        >(
             this: *mut ffi::GtkPrintOperationPreview,
             context: *mut ffi::GtkPrintContext,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<PrintOperationPreview>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &PrintOperationPreview::from_glib_borrow(this).unsafe_cast_ref(),

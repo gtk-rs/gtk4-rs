@@ -41,9 +41,7 @@ impl EventControllerLegacy {
     }
 
     #[doc(alias = "event")]
-    pub fn connect_event<
-        F: Fn(&EventControllerLegacy, &gdk::Event) -> glib::signal::Inhibit + 'static,
-    >(
+    pub fn connect_event<F: Fn(&Self, &gdk::Event) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

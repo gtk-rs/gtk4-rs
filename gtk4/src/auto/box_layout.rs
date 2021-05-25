@@ -86,7 +86,7 @@ impl BoxLayout {
     }
 
     #[doc(alias = "baseline-position")]
-    pub fn connect_baseline_position_notify<F: Fn(&BoxLayout) + 'static>(
+    pub fn connect_baseline_position_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -112,7 +112,7 @@ impl BoxLayout {
     }
 
     #[doc(alias = "homogeneous")]
-    pub fn connect_homogeneous_notify<F: Fn(&BoxLayout) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_homogeneous_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_homogeneous_trampoline<F: Fn(&BoxLayout) + 'static>(
             this: *mut ffi::GtkBoxLayout,
             _param_spec: glib::ffi::gpointer,
@@ -135,7 +135,7 @@ impl BoxLayout {
     }
 
     #[doc(alias = "spacing")]
-    pub fn connect_spacing_notify<F: Fn(&BoxLayout) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_spacing_trampoline<F: Fn(&BoxLayout) + 'static>(
             this: *mut ffi::GtkBoxLayout,
             _param_spec: glib::ffi::gpointer,

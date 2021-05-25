@@ -116,11 +116,6 @@ pub fn accelerator_parse(accelerator: &str) -> Option<(u32, gdk::ModifierType)> 
     }
 }
 
-//#[doc(alias = "gtk_accelerator_parse_with_keycode")]
-//pub fn accelerator_parse_with_keycode(accelerator: &str, display: Option<&gdk::Display>, accelerator_codes: Vec<u32>) -> Option<(u32, gdk::ModifierType)> {
-//    unsafe { TODO: call ffi:gtk_accelerator_parse_with_keycode() }
-//}
-
 #[doc(alias = "gtk_check_version")]
 pub fn check_version(
     required_major: u32,

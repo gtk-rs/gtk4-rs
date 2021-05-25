@@ -448,7 +448,7 @@ impl ListBox {
     }
 
     #[doc(alias = "activate-cursor-row")]
-    pub fn connect_activate_cursor_row<F: Fn(&ListBox) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_activate_cursor_row<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_cursor_row_trampoline<F: Fn(&ListBox) + 'static>(
             this: *mut ffi::GtkListBox,
             f: glib::ffi::gpointer,
@@ -478,7 +478,7 @@ impl ListBox {
     }
 
     #[doc(alias = "move-cursor")]
-    pub fn connect_move_cursor<F: Fn(&ListBox, MovementStep, i32, bool, bool) + 'static>(
+    pub fn connect_move_cursor<F: Fn(&Self, MovementStep, i32, bool, bool) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -523,7 +523,7 @@ impl ListBox {
     }
 
     #[doc(alias = "row-activated")]
-    pub fn connect_row_activated<F: Fn(&ListBox, &ListBoxRow) + 'static>(
+    pub fn connect_row_activated<F: Fn(&Self, &ListBoxRow) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -549,7 +549,7 @@ impl ListBox {
     }
 
     #[doc(alias = "row-selected")]
-    pub fn connect_row_selected<F: Fn(&ListBox, Option<&ListBoxRow>) + 'static>(
+    pub fn connect_row_selected<F: Fn(&Self, Option<&ListBoxRow>) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -582,7 +582,7 @@ impl ListBox {
     }
 
     #[doc(alias = "select-all")]
-    pub fn connect_select_all<F: Fn(&ListBox) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_select_all<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn select_all_trampoline<F: Fn(&ListBox) + 'static>(
             this: *mut ffi::GtkListBox,
             f: glib::ffi::gpointer,
@@ -612,10 +612,7 @@ impl ListBox {
     }
 
     #[doc(alias = "selected-rows-changed")]
-    pub fn connect_selected_rows_changed<F: Fn(&ListBox) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_selected_rows_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn selected_rows_changed_trampoline<F: Fn(&ListBox) + 'static>(
             this: *mut ffi::GtkListBox,
             f: glib::ffi::gpointer,
@@ -637,7 +634,7 @@ impl ListBox {
     }
 
     #[doc(alias = "toggle-cursor-row")]
-    pub fn connect_toggle_cursor_row<F: Fn(&ListBox) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_toggle_cursor_row<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn toggle_cursor_row_trampoline<F: Fn(&ListBox) + 'static>(
             this: *mut ffi::GtkListBox,
             f: glib::ffi::gpointer,
@@ -667,7 +664,7 @@ impl ListBox {
     }
 
     #[doc(alias = "unselect-all")]
-    pub fn connect_unselect_all<F: Fn(&ListBox) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_unselect_all<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn unselect_all_trampoline<F: Fn(&ListBox) + 'static>(
             this: *mut ffi::GtkListBox,
             f: glib::ffi::gpointer,
@@ -697,7 +694,7 @@ impl ListBox {
     }
 
     #[doc(alias = "accept-unpaired-release")]
-    pub fn connect_accept_unpaired_release_notify<F: Fn(&ListBox) + 'static>(
+    pub fn connect_accept_unpaired_release_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -725,7 +722,7 @@ impl ListBox {
     }
 
     #[doc(alias = "activate-on-single-click")]
-    pub fn connect_activate_on_single_click_notify<F: Fn(&ListBox) + 'static>(
+    pub fn connect_activate_on_single_click_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -753,10 +750,7 @@ impl ListBox {
     }
 
     #[doc(alias = "selection-mode")]
-    pub fn connect_selection_mode_notify<F: Fn(&ListBox) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_selection_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selection_mode_trampoline<F: Fn(&ListBox) + 'static>(
             this: *mut ffi::GtkListBox,
             _param_spec: glib::ffi::gpointer,
@@ -779,10 +773,7 @@ impl ListBox {
     }
 
     #[doc(alias = "show-separators")]
-    pub fn connect_show_separators_notify<F: Fn(&ListBox) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_show_separators_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_separators_trampoline<F: Fn(&ListBox) + 'static>(
             this: *mut ffi::GtkListBox,
             _param_spec: glib::ffi::gpointer,

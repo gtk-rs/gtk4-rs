@@ -452,14 +452,15 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
 
     #[doc(alias = "resize")]
     fn connect_resize<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn resize_trampoline<P, F: Fn(&P, i32, i32) + 'static>(
+        unsafe extern "C" fn resize_trampoline<
+            P: IsA<DrawingArea>,
+            F: Fn(&P, i32, i32) + 'static,
+        >(
             this: *mut ffi::GtkDrawingArea,
             width: libc::c_int,
             height: libc::c_int,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<DrawingArea>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &DrawingArea::from_glib_borrow(this).unsafe_cast_ref(),
@@ -482,13 +483,14 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
 
     #[doc(alias = "content-height")]
     fn connect_content_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_content_height_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_content_height_trampoline<
+            P: IsA<DrawingArea>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkDrawingArea,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<DrawingArea>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&DrawingArea::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -507,13 +509,14 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
 
     #[doc(alias = "content-width")]
     fn connect_content_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_content_width_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_content_width_trampoline<
+            P: IsA<DrawingArea>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkDrawingArea,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<DrawingArea>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&DrawingArea::from_glib_borrow(this).unsafe_cast_ref())
         }

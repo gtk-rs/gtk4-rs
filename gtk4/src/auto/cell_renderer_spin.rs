@@ -115,10 +115,7 @@ impl CellRendererSpin {
     }
 
     #[doc(alias = "adjustment")]
-    pub fn connect_adjustment_notify<F: Fn(&CellRendererSpin) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_adjustment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_adjustment_trampoline<F: Fn(&CellRendererSpin) + 'static>(
             this: *mut ffi::GtkCellRendererSpin,
             _param_spec: glib::ffi::gpointer,
@@ -141,10 +138,7 @@ impl CellRendererSpin {
     }
 
     #[doc(alias = "climb-rate")]
-    pub fn connect_climb_rate_notify<F: Fn(&CellRendererSpin) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_climb_rate_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_climb_rate_trampoline<F: Fn(&CellRendererSpin) + 'static>(
             this: *mut ffi::GtkCellRendererSpin,
             _param_spec: glib::ffi::gpointer,
@@ -167,10 +161,7 @@ impl CellRendererSpin {
     }
 
     #[doc(alias = "digits")]
-    pub fn connect_digits_notify<F: Fn(&CellRendererSpin) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_digits_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_digits_trampoline<F: Fn(&CellRendererSpin) + 'static>(
             this: *mut ffi::GtkCellRendererSpin,
             _param_spec: glib::ffi::gpointer,

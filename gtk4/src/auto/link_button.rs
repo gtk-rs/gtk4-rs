@@ -88,7 +88,7 @@ impl LinkButton {
     }
 
     #[doc(alias = "activate-link")]
-    pub fn connect_activate_link<F: Fn(&LinkButton) -> glib::signal::Inhibit + 'static>(
+    pub fn connect_activate_link<F: Fn(&Self) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -115,7 +115,7 @@ impl LinkButton {
     }
 
     #[doc(alias = "uri")]
-    pub fn connect_uri_notify<F: Fn(&LinkButton) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_uri_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_uri_trampoline<F: Fn(&LinkButton) + 'static>(
             this: *mut ffi::GtkLinkButton,
             _param_spec: glib::ffi::gpointer,
@@ -138,7 +138,7 @@ impl LinkButton {
     }
 
     #[doc(alias = "visited")]
-    pub fn connect_visited_notify<F: Fn(&LinkButton) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_visited_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_visited_trampoline<F: Fn(&LinkButton) + 'static>(
             this: *mut ffi::GtkLinkButton,
             _param_spec: glib::ffi::gpointer,

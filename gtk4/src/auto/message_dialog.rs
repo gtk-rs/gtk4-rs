@@ -192,10 +192,7 @@ impl MessageDialog {
     }
 
     #[doc(alias = "message-area")]
-    pub fn connect_message_area_notify<F: Fn(&MessageDialog) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_message_area_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_message_area_trampoline<F: Fn(&MessageDialog) + 'static>(
             this: *mut ffi::GtkMessageDialog,
             _param_spec: glib::ffi::gpointer,
@@ -218,10 +215,7 @@ impl MessageDialog {
     }
 
     #[doc(alias = "message-type")]
-    pub fn connect_message_type_notify<F: Fn(&MessageDialog) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_message_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_message_type_trampoline<F: Fn(&MessageDialog) + 'static>(
             this: *mut ffi::GtkMessageDialog,
             _param_spec: glib::ffi::gpointer,
@@ -244,10 +238,7 @@ impl MessageDialog {
     }
 
     #[doc(alias = "secondary-text")]
-    pub fn connect_secondary_text_notify<F: Fn(&MessageDialog) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_secondary_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_secondary_text_trampoline<F: Fn(&MessageDialog) + 'static>(
             this: *mut ffi::GtkMessageDialog,
             _param_spec: glib::ffi::gpointer,
@@ -270,7 +261,7 @@ impl MessageDialog {
     }
 
     #[doc(alias = "secondary-use-markup")]
-    pub fn connect_secondary_use_markup_notify<F: Fn(&MessageDialog) + 'static>(
+    pub fn connect_secondary_use_markup_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -298,7 +289,7 @@ impl MessageDialog {
     }
 
     #[doc(alias = "text")]
-    pub fn connect_text_notify<F: Fn(&MessageDialog) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<F: Fn(&MessageDialog) + 'static>(
             this: *mut ffi::GtkMessageDialog,
             _param_spec: glib::ffi::gpointer,
@@ -321,10 +312,7 @@ impl MessageDialog {
     }
 
     #[doc(alias = "use-markup")]
-    pub fn connect_use_markup_notify<F: Fn(&MessageDialog) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_use_markup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_markup_trampoline<F: Fn(&MessageDialog) + 'static>(
             this: *mut ffi::GtkMessageDialog,
             _param_spec: glib::ffi::gpointer,

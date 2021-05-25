@@ -65,13 +65,14 @@ impl<O: IsA<Filter>> FilterExt for O {
 
     #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self, FilterChange) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn changed_trampoline<P, F: Fn(&P, FilterChange) + 'static>(
+        unsafe extern "C" fn changed_trampoline<
+            P: IsA<Filter>,
+            F: Fn(&P, FilterChange) + 'static,
+        >(
             this: *mut ffi::GtkFilter,
             change: ffi::GtkFilterChange,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Filter>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &Filter::from_glib_borrow(this).unsafe_cast_ref(),

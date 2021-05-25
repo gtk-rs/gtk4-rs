@@ -96,13 +96,14 @@ impl<O: IsA<Actionable>> ActionableExt for O {
 
     #[doc(alias = "action-name")]
     fn connect_action_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_action_name_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_action_name_trampoline<
+            P: IsA<Actionable>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkActionable,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Actionable>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Actionable::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -121,13 +122,14 @@ impl<O: IsA<Actionable>> ActionableExt for O {
 
     #[doc(alias = "action-target")]
     fn connect_action_target_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_action_target_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_action_target_trampoline<
+            P: IsA<Actionable>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkActionable,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Actionable>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Actionable::from_glib_borrow(this).unsafe_cast_ref())
         }

@@ -122,7 +122,7 @@ impl SearchBar {
     }
 
     #[doc(alias = "child")]
-    pub fn connect_child_notify<F: Fn(&SearchBar) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&SearchBar) + 'static>(
             this: *mut ffi::GtkSearchBar,
             _param_spec: glib::ffi::gpointer,
@@ -145,7 +145,7 @@ impl SearchBar {
     }
 
     #[doc(alias = "key-capture-widget")]
-    pub fn connect_key_capture_widget_notify<F: Fn(&SearchBar) + 'static>(
+    pub fn connect_key_capture_widget_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -171,7 +171,7 @@ impl SearchBar {
     }
 
     #[doc(alias = "search-mode-enabled")]
-    pub fn connect_search_mode_enabled_notify<F: Fn(&SearchBar) + 'static>(
+    pub fn connect_search_mode_enabled_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -197,7 +197,7 @@ impl SearchBar {
     }
 
     #[doc(alias = "show-close-button")]
-    pub fn connect_show_close_button_notify<F: Fn(&SearchBar) + 'static>(
+    pub fn connect_show_close_button_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

@@ -111,7 +111,7 @@ impl FontButton {
     }
 
     #[doc(alias = "font-set")]
-    pub fn connect_font_set<F: Fn(&FontButton) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_font_set<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn font_set_trampoline<F: Fn(&FontButton) + 'static>(
             this: *mut ffi::GtkFontButton,
             f: glib::ffi::gpointer,
@@ -133,7 +133,7 @@ impl FontButton {
     }
 
     #[doc(alias = "modal")]
-    pub fn connect_modal_notify<F: Fn(&FontButton) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_modal_trampoline<F: Fn(&FontButton) + 'static>(
             this: *mut ffi::GtkFontButton,
             _param_spec: glib::ffi::gpointer,
@@ -156,7 +156,7 @@ impl FontButton {
     }
 
     #[doc(alias = "title")]
-    pub fn connect_title_notify<F: Fn(&FontButton) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<F: Fn(&FontButton) + 'static>(
             this: *mut ffi::GtkFontButton,
             _param_spec: glib::ffi::gpointer,
@@ -179,7 +179,7 @@ impl FontButton {
     }
 
     #[doc(alias = "use-font")]
-    pub fn connect_use_font_notify<F: Fn(&FontButton) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_use_font_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_font_trampoline<F: Fn(&FontButton) + 'static>(
             this: *mut ffi::GtkFontButton,
             _param_spec: glib::ffi::gpointer,
@@ -202,7 +202,7 @@ impl FontButton {
     }
 
     #[doc(alias = "use-size")]
-    pub fn connect_use_size_notify<F: Fn(&FontButton) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_use_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_size_trampoline<F: Fn(&FontButton) + 'static>(
             this: *mut ffi::GtkFontButton,
             _param_spec: glib::ffi::gpointer,

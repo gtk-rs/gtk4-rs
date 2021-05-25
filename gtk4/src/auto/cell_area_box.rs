@@ -94,7 +94,7 @@ impl CellAreaBox {
     }
 
     #[doc(alias = "spacing")]
-    pub fn connect_spacing_notify<F: Fn(&CellAreaBox) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_spacing_trampoline<F: Fn(&CellAreaBox) + 'static>(
             this: *mut ffi::GtkCellAreaBox,
             _param_spec: glib::ffi::gpointer,

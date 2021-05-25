@@ -121,7 +121,7 @@ impl AspectFrame {
     }
 
     #[doc(alias = "child")]
-    pub fn connect_child_notify<F: Fn(&AspectFrame) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<F: Fn(&AspectFrame) + 'static>(
             this: *mut ffi::GtkAspectFrame,
             _param_spec: glib::ffi::gpointer,
@@ -144,10 +144,7 @@ impl AspectFrame {
     }
 
     #[doc(alias = "obey-child")]
-    pub fn connect_obey_child_notify<F: Fn(&AspectFrame) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_obey_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_obey_child_trampoline<F: Fn(&AspectFrame) + 'static>(
             this: *mut ffi::GtkAspectFrame,
             _param_spec: glib::ffi::gpointer,
@@ -170,7 +167,7 @@ impl AspectFrame {
     }
 
     #[doc(alias = "ratio")]
-    pub fn connect_ratio_notify<F: Fn(&AspectFrame) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_ratio_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_ratio_trampoline<F: Fn(&AspectFrame) + 'static>(
             this: *mut ffi::GtkAspectFrame,
             _param_spec: glib::ffi::gpointer,
@@ -193,7 +190,7 @@ impl AspectFrame {
     }
 
     #[doc(alias = "xalign")]
-    pub fn connect_xalign_notify<F: Fn(&AspectFrame) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_xalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_xalign_trampoline<F: Fn(&AspectFrame) + 'static>(
             this: *mut ffi::GtkAspectFrame,
             _param_spec: glib::ffi::gpointer,
@@ -216,7 +213,7 @@ impl AspectFrame {
     }
 
     #[doc(alias = "yalign")]
-    pub fn connect_yalign_notify<F: Fn(&AspectFrame) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_yalign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_yalign_trampoline<F: Fn(&AspectFrame) + 'static>(
             this: *mut ffi::GtkAspectFrame,
             _param_spec: glib::ffi::gpointer,

@@ -214,7 +214,7 @@ impl ColumnView {
     }
 
     #[doc(alias = "activate")]
-    pub fn connect_activate<F: Fn(&ColumnView, u32) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_activate<F: Fn(&Self, u32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<F: Fn(&ColumnView, u32) + 'static>(
             this: *mut ffi::GtkColumnView,
             position: libc::c_uint,
@@ -237,7 +237,7 @@ impl ColumnView {
     }
 
     #[doc(alias = "columns")]
-    pub fn connect_columns_notify<F: Fn(&ColumnView) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_columns_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_columns_trampoline<F: Fn(&ColumnView) + 'static>(
             this: *mut ffi::GtkColumnView,
             _param_spec: glib::ffi::gpointer,
@@ -260,7 +260,7 @@ impl ColumnView {
     }
 
     #[doc(alias = "enable-rubberband")]
-    pub fn connect_enable_rubberband_notify<F: Fn(&ColumnView) + 'static>(
+    pub fn connect_enable_rubberband_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -286,7 +286,7 @@ impl ColumnView {
     }
 
     #[doc(alias = "model")]
-    pub fn connect_model_notify<F: Fn(&ColumnView) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<F: Fn(&ColumnView) + 'static>(
             this: *mut ffi::GtkColumnView,
             _param_spec: glib::ffi::gpointer,
@@ -309,10 +309,7 @@ impl ColumnView {
     }
 
     #[doc(alias = "reorderable")]
-    pub fn connect_reorderable_notify<F: Fn(&ColumnView) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_reorderable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_reorderable_trampoline<F: Fn(&ColumnView) + 'static>(
             this: *mut ffi::GtkColumnView,
             _param_spec: glib::ffi::gpointer,
@@ -335,7 +332,7 @@ impl ColumnView {
     }
 
     #[doc(alias = "show-column-separators")]
-    pub fn connect_show_column_separators_notify<F: Fn(&ColumnView) + 'static>(
+    pub fn connect_show_column_separators_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -363,7 +360,7 @@ impl ColumnView {
     }
 
     #[doc(alias = "show-row-separators")]
-    pub fn connect_show_row_separators_notify<F: Fn(&ColumnView) + 'static>(
+    pub fn connect_show_row_separators_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -389,7 +386,7 @@ impl ColumnView {
     }
 
     #[doc(alias = "single-click-activate")]
-    pub fn connect_single_click_activate_notify<F: Fn(&ColumnView) + 'static>(
+    pub fn connect_single_click_activate_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -417,7 +414,7 @@ impl ColumnView {
     }
 
     #[doc(alias = "sorter")]
-    pub fn connect_sorter_notify<F: Fn(&ColumnView) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_sorter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_sorter_trampoline<F: Fn(&ColumnView) + 'static>(
             this: *mut ffi::GtkColumnView,
             _param_spec: glib::ffi::gpointer,

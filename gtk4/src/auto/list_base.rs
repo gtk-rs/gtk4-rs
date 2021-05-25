@@ -35,13 +35,14 @@ pub trait ListBaseExt: 'static {
 impl<O: IsA<ListBase>> ListBaseExt for O {
     #[doc(alias = "orientation")]
     fn connect_orientation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_orientation_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_orientation_trampoline<
+            P: IsA<ListBase>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkListBase,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<ListBase>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&ListBase::from_glib_borrow(this).unsafe_cast_ref())
         }

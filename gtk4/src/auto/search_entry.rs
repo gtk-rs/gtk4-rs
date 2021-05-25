@@ -119,7 +119,7 @@ impl SearchEntry {
     }
 
     #[doc(alias = "activate")]
-    pub fn connect_activate<F: Fn(&SearchEntry) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<F: Fn(&SearchEntry) + 'static>(
             this: *mut ffi::GtkSearchEntry,
             f: glib::ffi::gpointer,
@@ -149,7 +149,7 @@ impl SearchEntry {
     }
 
     #[doc(alias = "next-match")]
-    pub fn connect_next_match<F: Fn(&SearchEntry) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_next_match<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn next_match_trampoline<F: Fn(&SearchEntry) + 'static>(
             this: *mut ffi::GtkSearchEntry,
             f: glib::ffi::gpointer,
@@ -179,7 +179,7 @@ impl SearchEntry {
     }
 
     #[doc(alias = "previous-match")]
-    pub fn connect_previous_match<F: Fn(&SearchEntry) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_previous_match<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn previous_match_trampoline<F: Fn(&SearchEntry) + 'static>(
             this: *mut ffi::GtkSearchEntry,
             f: glib::ffi::gpointer,
@@ -209,7 +209,7 @@ impl SearchEntry {
     }
 
     #[doc(alias = "search-changed")]
-    pub fn connect_search_changed<F: Fn(&SearchEntry) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_search_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn search_changed_trampoline<F: Fn(&SearchEntry) + 'static>(
             this: *mut ffi::GtkSearchEntry,
             f: glib::ffi::gpointer,
@@ -231,7 +231,7 @@ impl SearchEntry {
     }
 
     #[doc(alias = "search-started")]
-    pub fn connect_search_started<F: Fn(&SearchEntry) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_search_started<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn search_started_trampoline<F: Fn(&SearchEntry) + 'static>(
             this: *mut ffi::GtkSearchEntry,
             f: glib::ffi::gpointer,
@@ -253,7 +253,7 @@ impl SearchEntry {
     }
 
     #[doc(alias = "stop-search")]
-    pub fn connect_stop_search<F: Fn(&SearchEntry) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_stop_search<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn stop_search_trampoline<F: Fn(&SearchEntry) + 'static>(
             this: *mut ffi::GtkSearchEntry,
             f: glib::ffi::gpointer,
@@ -283,7 +283,7 @@ impl SearchEntry {
     }
 
     #[doc(alias = "activates-default")]
-    pub fn connect_activates_default_notify<F: Fn(&SearchEntry) + 'static>(
+    pub fn connect_activates_default_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -309,10 +309,7 @@ impl SearchEntry {
     }
 
     #[doc(alias = "placeholder-text")]
-    pub fn connect_placeholder_text_notify<F: Fn(&SearchEntry) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_placeholder_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_placeholder_text_trampoline<F: Fn(&SearchEntry) + 'static>(
             this: *mut ffi::GtkSearchEntry,
             _param_spec: glib::ffi::gpointer,

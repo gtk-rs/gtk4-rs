@@ -60,10 +60,7 @@ impl EventControllerScroll {
     }
 
     #[doc(alias = "decelerate")]
-    pub fn connect_decelerate<F: Fn(&EventControllerScroll, f64, f64) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_decelerate<F: Fn(&Self, f64, f64) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn decelerate_trampoline<
             F: Fn(&EventControllerScroll, f64, f64) + 'static,
         >(
@@ -89,9 +86,7 @@ impl EventControllerScroll {
     }
 
     #[doc(alias = "scroll")]
-    pub fn connect_scroll<
-        F: Fn(&EventControllerScroll, f64, f64) -> glib::signal::Inhibit + 'static,
-    >(
+    pub fn connect_scroll<F: Fn(&Self, f64, f64) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -120,10 +115,7 @@ impl EventControllerScroll {
     }
 
     #[doc(alias = "scroll-begin")]
-    pub fn connect_scroll_begin<F: Fn(&EventControllerScroll) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_scroll_begin<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn scroll_begin_trampoline<F: Fn(&EventControllerScroll) + 'static>(
             this: *mut ffi::GtkEventControllerScroll,
             f: glib::ffi::gpointer,
@@ -145,10 +137,7 @@ impl EventControllerScroll {
     }
 
     #[doc(alias = "scroll-end")]
-    pub fn connect_scroll_end<F: Fn(&EventControllerScroll) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_scroll_end<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn scroll_end_trampoline<F: Fn(&EventControllerScroll) + 'static>(
             this: *mut ffi::GtkEventControllerScroll,
             f: glib::ffi::gpointer,
@@ -170,10 +159,7 @@ impl EventControllerScroll {
     }
 
     #[doc(alias = "flags")]
-    pub fn connect_flags_notify<F: Fn(&EventControllerScroll) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_flags_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_flags_trampoline<F: Fn(&EventControllerScroll) + 'static>(
             this: *mut ffi::GtkEventControllerScroll,
             _param_spec: glib::ffi::gpointer,

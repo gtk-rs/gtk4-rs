@@ -163,7 +163,7 @@ impl InfoBar {
     }
 
     #[doc(alias = "close")]
-    pub fn connect_close<F: Fn(&InfoBar) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_close<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn close_trampoline<F: Fn(&InfoBar) + 'static>(
             this: *mut ffi::GtkInfoBar,
             f: glib::ffi::gpointer,
@@ -193,10 +193,7 @@ impl InfoBar {
     }
 
     #[doc(alias = "response")]
-    pub fn connect_response<F: Fn(&InfoBar, ResponseType) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_response<F: Fn(&Self, ResponseType) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn response_trampoline<F: Fn(&InfoBar, ResponseType) + 'static>(
             this: *mut ffi::GtkInfoBar,
             response_id: ffi::GtkResponseType,
@@ -219,7 +216,7 @@ impl InfoBar {
     }
 
     #[doc(alias = "message-type")]
-    pub fn connect_message_type_notify<F: Fn(&InfoBar) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_message_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_message_type_trampoline<F: Fn(&InfoBar) + 'static>(
             this: *mut ffi::GtkInfoBar,
             _param_spec: glib::ffi::gpointer,
@@ -242,7 +239,7 @@ impl InfoBar {
     }
 
     #[doc(alias = "revealed")]
-    pub fn connect_revealed_notify<F: Fn(&InfoBar) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_revealed_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_revealed_trampoline<F: Fn(&InfoBar) + 'static>(
             this: *mut ffi::GtkInfoBar,
             _param_spec: glib::ffi::gpointer,
@@ -265,7 +262,7 @@ impl InfoBar {
     }
 
     #[doc(alias = "show-close-button")]
-    pub fn connect_show_close_button_notify<F: Fn(&InfoBar) + 'static>(
+    pub fn connect_show_close_button_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

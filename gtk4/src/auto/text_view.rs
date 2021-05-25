@@ -1659,12 +1659,10 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "backspace")]
     fn connect_backspace<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn backspace_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn backspace_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1691,12 +1689,10 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "copy-clipboard")]
     fn connect_copy_clipboard<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn copy_clipboard_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn copy_clipboard_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1723,12 +1719,10 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "cut-clipboard")]
     fn connect_cut_clipboard<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn cut_clipboard_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn cut_clipboard_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1759,16 +1753,14 @@ impl<O: IsA<TextView>> TextViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn delete_from_cursor_trampoline<
-            P,
+            P: IsA<TextView>,
             F: Fn(&P, DeleteType, i32) + 'static,
         >(
             this: *mut ffi::GtkTextView,
             type_: ffi::GtkDeleteType,
             count: libc::c_int,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &TextView::from_glib_borrow(this).unsafe_cast_ref(),
@@ -1806,7 +1798,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn extend_selection_trampoline<
-            P,
+            P: IsA<TextView>,
             F: Fn(
                     &P,
                     TextExtendSelection,
@@ -1822,10 +1814,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
             start: *mut ffi::GtkTextIter,
             end: *mut ffi::GtkTextIter,
             f: glib::ffi::gpointer,
-        ) -> glib::ffi::gboolean
-        where
-            P: IsA<TextView>,
-        {
+        ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(
                 &TextView::from_glib_borrow(this).unsafe_cast_ref(),
@@ -1851,13 +1840,14 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "insert-at-cursor")]
     fn connect_insert_at_cursor<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn insert_at_cursor_trampoline<P, F: Fn(&P, &str) + 'static>(
+        unsafe extern "C" fn insert_at_cursor_trampoline<
+            P: IsA<TextView>,
+            F: Fn(&P, &str) + 'static,
+        >(
             this: *mut ffi::GtkTextView,
             string: *mut libc::c_char,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &TextView::from_glib_borrow(this).unsafe_cast_ref(),
@@ -1887,12 +1877,10 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "insert-emoji")]
     fn connect_insert_emoji<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn insert_emoji_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn insert_emoji_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -1923,7 +1911,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn move_cursor_trampoline<
-            P,
+            P: IsA<TextView>,
             F: Fn(&P, MovementStep, i32, bool) + 'static,
         >(
             this: *mut ffi::GtkTextView,
@@ -1931,9 +1919,7 @@ impl<O: IsA<TextView>> TextViewExt for O {
             count: libc::c_int,
             extend_selection: glib::ffi::gboolean,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &TextView::from_glib_borrow(this).unsafe_cast_ref(),
@@ -1968,14 +1954,15 @@ impl<O: IsA<TextView>> TextViewExt for O {
         &self,
         f: F,
     ) -> SignalHandlerId {
-        unsafe extern "C" fn move_viewport_trampoline<P, F: Fn(&P, ScrollStep, i32) + 'static>(
+        unsafe extern "C" fn move_viewport_trampoline<
+            P: IsA<TextView>,
+            F: Fn(&P, ScrollStep, i32) + 'static,
+        >(
             this: *mut ffi::GtkTextView,
             step: ffi::GtkScrollStep,
             count: libc::c_int,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &TextView::from_glib_borrow(this).unsafe_cast_ref(),
@@ -2006,12 +1993,10 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "paste-clipboard")]
     fn connect_paste_clipboard<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn paste_clipboard_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn paste_clipboard_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2038,13 +2023,14 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "preedit-changed")]
     fn connect_preedit_changed<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn preedit_changed_trampoline<P, F: Fn(&P, &str) + 'static>(
+        unsafe extern "C" fn preedit_changed_trampoline<
+            P: IsA<TextView>,
+            F: Fn(&P, &str) + 'static,
+        >(
             this: *mut ffi::GtkTextView,
             preedit: *mut libc::c_char,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &TextView::from_glib_borrow(this).unsafe_cast_ref(),
@@ -2074,13 +2060,11 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "select-all")]
     fn connect_select_all<F: Fn(&Self, bool) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn select_all_trampoline<P, F: Fn(&P, bool) + 'static>(
+        unsafe extern "C" fn select_all_trampoline<P: IsA<TextView>, F: Fn(&P, bool) + 'static>(
             this: *mut ffi::GtkTextView,
             select: glib::ffi::gboolean,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &TextView::from_glib_borrow(this).unsafe_cast_ref(),
@@ -2110,12 +2094,10 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "set-anchor")]
     fn connect_set_anchor<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn set_anchor_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn set_anchor_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2142,12 +2124,13 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "toggle-cursor-visible")]
     fn connect_toggle_cursor_visible<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn toggle_cursor_visible_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn toggle_cursor_visible_trampoline<
+            P: IsA<TextView>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkTextView,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2174,12 +2157,10 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "toggle-overwrite")]
     fn connect_toggle_overwrite<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn toggle_overwrite_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn toggle_overwrite_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2206,13 +2187,14 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "accepts-tab")]
     fn connect_accepts_tab_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_accepts_tab_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_accepts_tab_trampoline<
+            P: IsA<TextView>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2231,13 +2213,14 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "bottom-margin")]
     fn connect_bottom_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_bottom_margin_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_bottom_margin_trampoline<
+            P: IsA<TextView>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2256,13 +2239,11 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "buffer")]
     fn connect_buffer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_buffer_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_buffer_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2281,13 +2262,14 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "cursor-visible")]
     fn connect_cursor_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_cursor_visible_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_cursor_visible_trampoline<
+            P: IsA<TextView>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2306,13 +2288,11 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "editable")]
     fn connect_editable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_editable_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_editable_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2331,13 +2311,11 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "extra-menu")]
     fn connect_extra_menu_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_extra_menu_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_extra_menu_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2356,13 +2334,11 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "im-module")]
     fn connect_im_module_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_im_module_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_im_module_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2381,13 +2357,11 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "indent")]
     fn connect_indent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_indent_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_indent_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2406,13 +2380,14 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "input-hints")]
     fn connect_input_hints_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_input_hints_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_input_hints_trampoline<
+            P: IsA<TextView>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2431,13 +2406,14 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "input-purpose")]
     fn connect_input_purpose_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_input_purpose_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_input_purpose_trampoline<
+            P: IsA<TextView>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2456,13 +2432,14 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "justification")]
     fn connect_justification_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_justification_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_justification_trampoline<
+            P: IsA<TextView>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2481,13 +2458,14 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "left-margin")]
     fn connect_left_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_left_margin_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_left_margin_trampoline<
+            P: IsA<TextView>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2506,13 +2484,11 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "monospace")]
     fn connect_monospace_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_monospace_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_monospace_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2531,13 +2507,11 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "overwrite")]
     fn connect_overwrite_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_overwrite_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_overwrite_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2556,13 +2530,14 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "pixels-above-lines")]
     fn connect_pixels_above_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_pixels_above_lines_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_pixels_above_lines_trampoline<
+            P: IsA<TextView>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2581,13 +2556,14 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "pixels-below-lines")]
     fn connect_pixels_below_lines_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_pixels_below_lines_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_pixels_below_lines_trampoline<
+            P: IsA<TextView>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2606,13 +2582,14 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "pixels-inside-wrap")]
     fn connect_pixels_inside_wrap_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_pixels_inside_wrap_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_pixels_inside_wrap_trampoline<
+            P: IsA<TextView>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2631,13 +2608,14 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "right-margin")]
     fn connect_right_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_right_margin_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_right_margin_trampoline<
+            P: IsA<TextView>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2656,13 +2634,11 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "tabs")]
     fn connect_tabs_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_tabs_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_tabs_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2681,13 +2657,11 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "top-margin")]
     fn connect_top_margin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_top_margin_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_top_margin_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -2706,13 +2680,11 @@ impl<O: IsA<TextView>> TextViewExt for O {
 
     #[doc(alias = "wrap-mode")]
     fn connect_wrap_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_wrap_mode_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_wrap_mode_trampoline<P: IsA<TextView>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkTextView,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<TextView>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&TextView::from_glib_borrow(this).unsafe_cast_ref())
         }

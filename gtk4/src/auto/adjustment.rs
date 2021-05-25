@@ -311,12 +311,10 @@ impl<O: IsA<Adjustment>> AdjustmentExt for O {
 
     #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn changed_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn changed_trampoline<P: IsA<Adjustment>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkAdjustment,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Adjustment>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Adjustment::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -335,12 +333,10 @@ impl<O: IsA<Adjustment>> AdjustmentExt for O {
 
     #[doc(alias = "value-changed")]
     fn connect_value_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn value_changed_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn value_changed_trampoline<P: IsA<Adjustment>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkAdjustment,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Adjustment>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Adjustment::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -359,13 +355,11 @@ impl<O: IsA<Adjustment>> AdjustmentExt for O {
 
     #[doc(alias = "lower")]
     fn connect_lower_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_lower_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_lower_trampoline<P: IsA<Adjustment>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkAdjustment,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Adjustment>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Adjustment::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -384,13 +378,14 @@ impl<O: IsA<Adjustment>> AdjustmentExt for O {
 
     #[doc(alias = "page-increment")]
     fn connect_page_increment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_page_increment_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_page_increment_trampoline<
+            P: IsA<Adjustment>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkAdjustment,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Adjustment>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Adjustment::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -409,13 +404,14 @@ impl<O: IsA<Adjustment>> AdjustmentExt for O {
 
     #[doc(alias = "page-size")]
     fn connect_page_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_page_size_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_page_size_trampoline<
+            P: IsA<Adjustment>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkAdjustment,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Adjustment>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Adjustment::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -434,13 +430,14 @@ impl<O: IsA<Adjustment>> AdjustmentExt for O {
 
     #[doc(alias = "step-increment")]
     fn connect_step_increment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_step_increment_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_step_increment_trampoline<
+            P: IsA<Adjustment>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkAdjustment,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Adjustment>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Adjustment::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -459,13 +456,11 @@ impl<O: IsA<Adjustment>> AdjustmentExt for O {
 
     #[doc(alias = "upper")]
     fn connect_upper_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_upper_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_upper_trampoline<P: IsA<Adjustment>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkAdjustment,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Adjustment>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Adjustment::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -484,13 +479,11 @@ impl<O: IsA<Adjustment>> AdjustmentExt for O {
 
     #[doc(alias = "value")]
     fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_value_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_value_trampoline<P: IsA<Adjustment>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkAdjustment,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Adjustment>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Adjustment::from_glib_borrow(this).unsafe_cast_ref())
         }

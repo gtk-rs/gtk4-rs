@@ -639,13 +639,11 @@ impl<O: IsA<Scale>> ScaleExt for O {
 
     #[doc(alias = "digits")]
     fn connect_digits_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_digits_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_digits_trampoline<P: IsA<Scale>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScale,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Scale>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Scale::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -664,13 +662,11 @@ impl<O: IsA<Scale>> ScaleExt for O {
 
     #[doc(alias = "draw-value")]
     fn connect_draw_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_draw_value_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_draw_value_trampoline<P: IsA<Scale>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScale,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Scale>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Scale::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -689,13 +685,11 @@ impl<O: IsA<Scale>> ScaleExt for O {
 
     #[doc(alias = "has-origin")]
     fn connect_has_origin_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_has_origin_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_has_origin_trampoline<P: IsA<Scale>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScale,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Scale>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Scale::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -714,13 +708,11 @@ impl<O: IsA<Scale>> ScaleExt for O {
 
     #[doc(alias = "value-pos")]
     fn connect_value_pos_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_value_pos_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_value_pos_trampoline<P: IsA<Scale>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkScale,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<Scale>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&Scale::from_glib_borrow(this).unsafe_cast_ref())
         }

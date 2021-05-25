@@ -119,7 +119,7 @@ impl CellRendererCombo {
     }
 
     #[doc(alias = "changed")]
-    pub fn connect_changed<F: Fn(&CellRendererCombo, TreePath, &TreeIter) + 'static>(
+    pub fn connect_changed<F: Fn(&Self, TreePath, &TreeIter) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -149,10 +149,7 @@ impl CellRendererCombo {
     }
 
     #[doc(alias = "has-entry")]
-    pub fn connect_has_entry_notify<F: Fn(&CellRendererCombo) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_has_entry_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_entry_trampoline<F: Fn(&CellRendererCombo) + 'static>(
             this: *mut ffi::GtkCellRendererCombo,
             _param_spec: glib::ffi::gpointer,
@@ -175,10 +172,7 @@ impl CellRendererCombo {
     }
 
     #[doc(alias = "model")]
-    pub fn connect_model_notify<F: Fn(&CellRendererCombo) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<F: Fn(&CellRendererCombo) + 'static>(
             this: *mut ffi::GtkCellRendererCombo,
             _param_spec: glib::ffi::gpointer,
@@ -201,10 +195,7 @@ impl CellRendererCombo {
     }
 
     #[doc(alias = "text-column")]
-    pub fn connect_text_column_notify<F: Fn(&CellRendererCombo) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_text_column_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_column_trampoline<F: Fn(&CellRendererCombo) + 'static>(
             this: *mut ffi::GtkCellRendererCombo,
             _param_spec: glib::ffi::gpointer,

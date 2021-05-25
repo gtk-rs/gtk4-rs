@@ -83,13 +83,14 @@ impl<O: IsA<ColorChooser>> ColorChooserExt for O {
 
     #[doc(alias = "color-activated")]
     fn connect_color_activated<F: Fn(&Self, &gdk::RGBA) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn color_activated_trampoline<P, F: Fn(&P, &gdk::RGBA) + 'static>(
+        unsafe extern "C" fn color_activated_trampoline<
+            P: IsA<ColorChooser>,
+            F: Fn(&P, &gdk::RGBA) + 'static,
+        >(
             this: *mut ffi::GtkColorChooser,
             color: *mut gdk::ffi::GdkRGBA,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<ColorChooser>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(
                 &ColorChooser::from_glib_borrow(this).unsafe_cast_ref(),
@@ -111,13 +112,11 @@ impl<O: IsA<ColorChooser>> ColorChooserExt for O {
 
     #[doc(alias = "rgba")]
     fn connect_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_rgba_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_rgba_trampoline<P: IsA<ColorChooser>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkColorChooser,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<ColorChooser>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&ColorChooser::from_glib_borrow(this).unsafe_cast_ref())
         }
@@ -136,13 +135,14 @@ impl<O: IsA<ColorChooser>> ColorChooserExt for O {
 
     #[doc(alias = "use-alpha")]
     fn connect_use_alpha_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_use_alpha_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_use_alpha_trampoline<
+            P: IsA<ColorChooser>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkColorChooser,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<ColorChooser>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&ColorChooser::from_glib_borrow(this).unsafe_cast_ref())
         }

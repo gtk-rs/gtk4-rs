@@ -92,10 +92,7 @@ impl PopoverMenuBar {
     }
 
     #[doc(alias = "menu-model")]
-    pub fn connect_menu_model_notify<F: Fn(&PopoverMenuBar) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_menu_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_menu_model_trampoline<F: Fn(&PopoverMenuBar) + 'static>(
             this: *mut ffi::GtkPopoverMenuBar,
             _param_spec: glib::ffi::gpointer,

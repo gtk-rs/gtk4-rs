@@ -54,10 +54,7 @@ impl FixedLayoutChild {
     }
 
     #[doc(alias = "transform")]
-    pub fn connect_transform_notify<F: Fn(&FixedLayoutChild) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_transform_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_transform_trampoline<F: Fn(&FixedLayoutChild) + 'static>(
             this: *mut ffi::GtkFixedLayoutChild,
             _param_spec: glib::ffi::gpointer,

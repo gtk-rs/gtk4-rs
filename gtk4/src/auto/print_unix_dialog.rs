@@ -251,10 +251,7 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "current-page")]
-    pub fn connect_current_page_notify<F: Fn(&PrintUnixDialog) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_current_page_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_current_page_trampoline<F: Fn(&PrintUnixDialog) + 'static>(
             this: *mut ffi::GtkPrintUnixDialog,
             _param_spec: glib::ffi::gpointer,
@@ -277,10 +274,7 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "embed-page-setup")]
-    pub fn connect_embed_page_setup_notify<F: Fn(&PrintUnixDialog) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_embed_page_setup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_embed_page_setup_trampoline<
             F: Fn(&PrintUnixDialog) + 'static,
         >(
@@ -305,10 +299,7 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "has-selection")]
-    pub fn connect_has_selection_notify<F: Fn(&PrintUnixDialog) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_has_selection_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_selection_trampoline<F: Fn(&PrintUnixDialog) + 'static>(
             this: *mut ffi::GtkPrintUnixDialog,
             _param_spec: glib::ffi::gpointer,
@@ -331,7 +322,7 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "manual-capabilities")]
-    pub fn connect_manual_capabilities_notify<F: Fn(&PrintUnixDialog) + 'static>(
+    pub fn connect_manual_capabilities_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -359,10 +350,7 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "page-setup")]
-    pub fn connect_page_setup_notify<F: Fn(&PrintUnixDialog) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_page_setup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_page_setup_trampoline<F: Fn(&PrintUnixDialog) + 'static>(
             this: *mut ffi::GtkPrintUnixDialog,
             _param_spec: glib::ffi::gpointer,
@@ -385,10 +373,7 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "print-settings")]
-    pub fn connect_print_settings_notify<F: Fn(&PrintUnixDialog) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_print_settings_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_print_settings_trampoline<F: Fn(&PrintUnixDialog) + 'static>(
             this: *mut ffi::GtkPrintUnixDialog,
             _param_spec: glib::ffi::gpointer,
@@ -411,10 +396,7 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "selected-printer")]
-    pub fn connect_selected_printer_notify<F: Fn(&PrintUnixDialog) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_selected_printer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_printer_trampoline<
             F: Fn(&PrintUnixDialog) + 'static,
         >(
@@ -439,7 +421,7 @@ impl PrintUnixDialog {
     }
 
     #[doc(alias = "support-selection")]
-    pub fn connect_support_selection_notify<F: Fn(&PrintUnixDialog) + 'static>(
+    pub fn connect_support_selection_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

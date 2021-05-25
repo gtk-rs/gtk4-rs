@@ -198,7 +198,7 @@ impl LockButton {
     }
 
     #[doc(alias = "permission")]
-    pub fn connect_permission_notify<F: Fn(&LockButton) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_permission_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_permission_trampoline<F: Fn(&LockButton) + 'static>(
             this: *mut ffi::GtkLockButton,
             _param_spec: glib::ffi::gpointer,
@@ -221,7 +221,7 @@ impl LockButton {
     }
 
     #[doc(alias = "text-lock")]
-    pub fn connect_text_lock_notify<F: Fn(&LockButton) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_text_lock_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_lock_trampoline<F: Fn(&LockButton) + 'static>(
             this: *mut ffi::GtkLockButton,
             _param_spec: glib::ffi::gpointer,
@@ -244,10 +244,7 @@ impl LockButton {
     }
 
     #[doc(alias = "text-unlock")]
-    pub fn connect_text_unlock_notify<F: Fn(&LockButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_text_unlock_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_unlock_trampoline<F: Fn(&LockButton) + 'static>(
             this: *mut ffi::GtkLockButton,
             _param_spec: glib::ffi::gpointer,
@@ -270,10 +267,7 @@ impl LockButton {
     }
 
     #[doc(alias = "tooltip-lock")]
-    pub fn connect_tooltip_lock_notify<F: Fn(&LockButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_tooltip_lock_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tooltip_lock_trampoline<F: Fn(&LockButton) + 'static>(
             this: *mut ffi::GtkLockButton,
             _param_spec: glib::ffi::gpointer,
@@ -296,7 +290,7 @@ impl LockButton {
     }
 
     #[doc(alias = "tooltip-not-authorized")]
-    pub fn connect_tooltip_not_authorized_notify<F: Fn(&LockButton) + 'static>(
+    pub fn connect_tooltip_not_authorized_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -324,10 +318,7 @@ impl LockButton {
     }
 
     #[doc(alias = "tooltip-unlock")]
-    pub fn connect_tooltip_unlock_notify<F: Fn(&LockButton) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_tooltip_unlock_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tooltip_unlock_trampoline<F: Fn(&LockButton) + 'static>(
             this: *mut ffi::GtkLockButton,
             _param_spec: glib::ffi::gpointer,

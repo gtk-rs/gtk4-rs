@@ -70,7 +70,7 @@ impl Scrollbar {
     }
 
     #[doc(alias = "adjustment")]
-    pub fn connect_adjustment_notify<F: Fn(&Scrollbar) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_adjustment_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_adjustment_trampoline<F: Fn(&Scrollbar) + 'static>(
             this: *mut ffi::GtkScrollbar,
             _param_spec: glib::ffi::gpointer,

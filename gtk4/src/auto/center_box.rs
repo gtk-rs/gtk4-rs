@@ -113,7 +113,7 @@ impl CenterBox {
     }
 
     #[doc(alias = "baseline-position")]
-    pub fn connect_baseline_position_notify<F: Fn(&CenterBox) + 'static>(
+    pub fn connect_baseline_position_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {

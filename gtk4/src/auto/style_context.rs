@@ -297,13 +297,14 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
 
     #[doc(alias = "display")]
     fn connect_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_display_trampoline<P, F: Fn(&P) + 'static>(
+        unsafe extern "C" fn notify_display_trampoline<
+            P: IsA<StyleContext>,
+            F: Fn(&P) + 'static,
+        >(
             this: *mut ffi::GtkStyleContext,
             _param_spec: glib::ffi::gpointer,
             f: glib::ffi::gpointer,
-        ) where
-            P: IsA<StyleContext>,
-        {
+        ) {
             let f: &F = &*(f as *const F);
             f(&StyleContext::from_glib_borrow(this).unsafe_cast_ref())
         }

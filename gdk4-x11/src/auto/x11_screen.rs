@@ -65,10 +65,7 @@ impl X11Screen {
     }
 
     #[doc(alias = "window-manager-changed")]
-    pub fn connect_window_manager_changed<F: Fn(&X11Screen) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_window_manager_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn window_manager_changed_trampoline<F: Fn(&X11Screen) + 'static>(
             this: *mut ffi::GdkX11Screen,
             f: glib::ffi::gpointer,

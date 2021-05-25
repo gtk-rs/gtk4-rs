@@ -111,10 +111,7 @@ impl CellRendererSpinner {
     }
 
     #[doc(alias = "active")]
-    pub fn connect_active_notify<F: Fn(&CellRendererSpinner) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_active_trampoline<F: Fn(&CellRendererSpinner) + 'static>(
             this: *mut ffi::GtkCellRendererSpinner,
             _param_spec: glib::ffi::gpointer,
@@ -137,10 +134,7 @@ impl CellRendererSpinner {
     }
 
     #[doc(alias = "pulse")]
-    pub fn connect_pulse_notify<F: Fn(&CellRendererSpinner) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_pulse_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pulse_trampoline<F: Fn(&CellRendererSpinner) + 'static>(
             this: *mut ffi::GtkCellRendererSpinner,
             _param_spec: glib::ffi::gpointer,
@@ -163,10 +157,7 @@ impl CellRendererSpinner {
     }
 
     #[doc(alias = "size")]
-    pub fn connect_size_notify<F: Fn(&CellRendererSpinner) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_size_trampoline<F: Fn(&CellRendererSpinner) + 'static>(
             this: *mut ffi::GtkCellRendererSpinner,
             _param_spec: glib::ffi::gpointer,

@@ -139,7 +139,7 @@ impl ShortcutController {
     }
 
     #[doc(alias = "mnemonic-modifiers")]
-    pub fn connect_mnemonic_modifiers_notify<F: Fn(&ShortcutController) + 'static>(
+    pub fn connect_mnemonic_modifiers_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -167,10 +167,7 @@ impl ShortcutController {
     }
 
     #[doc(alias = "scope")]
-    pub fn connect_scope_notify<F: Fn(&ShortcutController) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_scope_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scope_trampoline<F: Fn(&ShortcutController) + 'static>(
             this: *mut ffi::GtkShortcutController,
             _param_spec: glib::ffi::gpointer,

@@ -58,10 +58,7 @@ impl BookmarkList {
     }
 
     #[doc(alias = "attributes")]
-    pub fn connect_attributes_notify<F: Fn(&BookmarkList) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_attributes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_attributes_trampoline<F: Fn(&BookmarkList) + 'static>(
             this: *mut ffi::GtkBookmarkList,
             _param_spec: glib::ffi::gpointer,
@@ -84,10 +81,7 @@ impl BookmarkList {
     }
 
     #[doc(alias = "io-priority")]
-    pub fn connect_io_priority_notify<F: Fn(&BookmarkList) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_io_priority_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_io_priority_trampoline<F: Fn(&BookmarkList) + 'static>(
             this: *mut ffi::GtkBookmarkList,
             _param_spec: glib::ffi::gpointer,
@@ -110,7 +104,7 @@ impl BookmarkList {
     }
 
     #[doc(alias = "loading")]
-    pub fn connect_loading_notify<F: Fn(&BookmarkList) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_loading_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_loading_trampoline<F: Fn(&BookmarkList) + 'static>(
             this: *mut ffi::GtkBookmarkList,
             _param_spec: glib::ffi::gpointer,

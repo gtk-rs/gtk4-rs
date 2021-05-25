@@ -95,7 +95,7 @@ impl DropTarget {
     }
 
     #[doc(alias = "accept")]
-    pub fn connect_accept<F: Fn(&DropTarget, &gdk::Drop) -> bool + 'static>(
+    pub fn connect_accept<F: Fn(&Self, &gdk::Drop) -> bool + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -121,7 +121,7 @@ impl DropTarget {
     }
 
     #[doc(alias = "enter")]
-    pub fn connect_enter<F: Fn(&DropTarget, f64, f64) -> gdk::DragAction + 'static>(
+    pub fn connect_enter<F: Fn(&Self, f64, f64) -> gdk::DragAction + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -150,7 +150,7 @@ impl DropTarget {
     }
 
     #[doc(alias = "leave")]
-    pub fn connect_leave<F: Fn(&DropTarget) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_leave<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn leave_trampoline<F: Fn(&DropTarget) + 'static>(
             this: *mut ffi::GtkDropTarget,
             f: glib::ffi::gpointer,
@@ -172,7 +172,7 @@ impl DropTarget {
     }
 
     #[doc(alias = "motion")]
-    pub fn connect_motion<F: Fn(&DropTarget, f64, f64) -> gdk::DragAction + 'static>(
+    pub fn connect_motion<F: Fn(&Self, f64, f64) -> gdk::DragAction + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId {
@@ -201,7 +201,7 @@ impl DropTarget {
     }
 
     #[doc(alias = "actions")]
-    pub fn connect_actions_notify<F: Fn(&DropTarget) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_actions_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_actions_trampoline<F: Fn(&DropTarget) + 'static>(
             this: *mut ffi::GtkDropTarget,
             _param_spec: glib::ffi::gpointer,
@@ -224,7 +224,7 @@ impl DropTarget {
     }
 
     #[doc(alias = "drop")]
-    pub fn connect_drop_notify<F: Fn(&DropTarget) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_drop_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_drop_trampoline<F: Fn(&DropTarget) + 'static>(
             this: *mut ffi::GtkDropTarget,
             _param_spec: glib::ffi::gpointer,
@@ -247,7 +247,7 @@ impl DropTarget {
     }
 
     #[doc(alias = "formats")]
-    pub fn connect_formats_notify<F: Fn(&DropTarget) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_formats_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_formats_trampoline<F: Fn(&DropTarget) + 'static>(
             this: *mut ffi::GtkDropTarget,
             _param_spec: glib::ffi::gpointer,
@@ -270,7 +270,7 @@ impl DropTarget {
     }
 
     #[doc(alias = "preload")]
-    pub fn connect_preload_notify<F: Fn(&DropTarget) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_preload_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_preload_trampoline<F: Fn(&DropTarget) + 'static>(
             this: *mut ffi::GtkDropTarget,
             _param_spec: glib::ffi::gpointer,
@@ -293,7 +293,7 @@ impl DropTarget {
     }
 
     #[doc(alias = "value")]
-    pub fn connect_value_notify<F: Fn(&DropTarget) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_value_trampoline<F: Fn(&DropTarget) + 'static>(
             this: *mut ffi::GtkDropTarget,
             _param_spec: glib::ffi::gpointer,

@@ -112,7 +112,7 @@ impl MapListModel {
     }
 
     #[doc(alias = "has-map")]
-    pub fn connect_has_map_notify<F: Fn(&MapListModel) + 'static>(&self, f: F) -> SignalHandlerId {
+    pub fn connect_has_map_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_map_trampoline<F: Fn(&MapListModel) + 'static>(
             this: *mut ffi::GtkMapListModel,
             _param_spec: glib::ffi::gpointer,

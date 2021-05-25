@@ -135,10 +135,7 @@ impl PopoverMenu {
     }
 
     #[doc(alias = "menu-model")]
-    pub fn connect_menu_model_notify<F: Fn(&PopoverMenu) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_menu_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_menu_model_trampoline<F: Fn(&PopoverMenu) + 'static>(
             this: *mut ffi::GtkPopoverMenu,
             _param_spec: glib::ffi::gpointer,
@@ -161,10 +158,7 @@ impl PopoverMenu {
     }
 
     #[doc(alias = "visible-submenu")]
-    pub fn connect_visible_submenu_notify<F: Fn(&PopoverMenu) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId {
+    pub fn connect_visible_submenu_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_visible_submenu_trampoline<F: Fn(&PopoverMenu) + 'static>(
             this: *mut ffi::GtkPopoverMenu,
             _param_spec: glib::ffi::gpointer,
