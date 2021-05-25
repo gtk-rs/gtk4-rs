@@ -26,7 +26,6 @@ pub use crate::im_context_simple::IMContextSimpleExtManual;
 pub use crate::list_store::GtkListStoreExtManual;
 pub use crate::media_stream::MediaStreamExtManual;
 pub use crate::native_dialog::NativeDialogExtManual;
-pub use crate::notebook::NotebookExtManual;
 pub use crate::overlay::OverlayExtManual;
 pub use crate::scale::ScaleExtManual;
 pub use crate::shortcut_trigger::ShortcutTriggerExtManual;

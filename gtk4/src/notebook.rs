@@ -5,89 +5,16 @@ use glib::translate::*;
 use glib::IsA;
 use libc::c_int;
 
-pub trait NotebookExtManual: 'static {
+impl Notebook {
     #[doc(alias = "gtk_notebook_append_page")]
-    fn append_page<T: IsA<Widget>, U: IsA<Widget>>(&self, child: &T, tab_label: Option<&U>) -> u32;
-
-    #[doc(alias = "gtk_notebook_append_page_menu")]
-    fn append_page_menu<T, U, V>(
+    pub fn append_page<T: IsA<Widget>, U: IsA<Widget>>(
         &self,
         child: &T,
         tab_label: Option<&U>,
-        menu_label: Option<&V>,
-    ) -> u32
-    where
-        T: IsA<Widget>,
-        U: IsA<Widget>,
-        V: IsA<Widget>;
-
-    #[doc(alias = "gtk_notebook_get_current_page")]
-    #[doc(alias = "get_current_page")]
-    fn current_page(&self) -> Option<u32>;
-
-    #[doc(alias = "gtk_notebook_get_n_pages")]
-    #[doc(alias = "get_n_pages")]
-    fn n_pages(&self) -> u32;
-
-    #[doc(alias = "gtk_notebook_get_nth_page")]
-    #[doc(alias = "get_nth_page")]
-    fn nth_page(&self, page_num: Option<u32>) -> Option<Widget>;
-
-    #[doc(alias = "gtk_notebook_insert_page")]
-    fn insert_page<T, U>(&self, child: &T, tab_label: Option<&U>, position: Option<u32>) -> u32
-    where
-        T: IsA<Widget>,
-        U: IsA<Widget>;
-
-    #[doc(alias = "gtk_notebook_insert_page_menu")]
-    fn insert_page_menu<T, U, V>(
-        &self,
-        child: &T,
-        tab_label: Option<&U>,
-        menu_label: Option<&V>,
-        position: Option<u32>,
-    ) -> u32
-    where
-        T: IsA<Widget>,
-        U: IsA<Widget>,
-        V: IsA<Widget>;
-
-    #[doc(alias = "gtk_notebook_page_num")]
-    fn page_num<T: IsA<Widget>>(&self, child: &T) -> Option<u32>;
-
-    #[doc(alias = "gtk_notebook_prepend_page")]
-    fn prepend_page<T, U>(&self, child: &T, tab_label: Option<&U>) -> u32
-    where
-        T: IsA<Widget>,
-        U: IsA<Widget>;
-
-    #[doc(alias = "gtk_notebook_prepend_page_menu")]
-    fn prepend_page_menu<T, U, V>(
-        &self,
-        child: &T,
-        tab_label: Option<&U>,
-        menu_label: Option<&V>,
-    ) -> u32
-    where
-        T: IsA<Widget>,
-        U: IsA<Widget>,
-        V: IsA<Widget>;
-
-    #[doc(alias = "gtk_notebook_remove_page")]
-    fn remove_page(&self, page_num: Option<u32>);
-
-    #[doc(alias = "gtk_notebook_reorder_child")]
-    fn reorder_child<T: IsA<Widget>>(&self, child: &T, position: Option<u32>);
-
-    #[doc(alias = "gtk_notebook_set_current_page")]
-    fn set_current_page(&self, page_num: Option<u32>);
-}
-
-impl<O: IsA<Notebook>> NotebookExtManual for O {
-    fn append_page<T: IsA<Widget>, U: IsA<Widget>>(&self, child: &T, tab_label: Option<&U>) -> u32 {
+    ) -> u32 {
         unsafe {
             let ret = ffi::gtk_notebook_append_page(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
                 tab_label.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -96,7 +23,8 @@ impl<O: IsA<Notebook>> NotebookExtManual for O {
         }
     }
 
-    fn append_page_menu<T, U, V>(
+    #[doc(alias = "gtk_notebook_append_page_menu")]
+    pub fn append_page_menu<T, U, V>(
         &self,
         child: &T,
         tab_label: Option<&U>,
@@ -109,7 +37,7 @@ impl<O: IsA<Notebook>> NotebookExtManual for O {
     {
         unsafe {
             let ret = ffi::gtk_notebook_append_page_menu(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
                 tab_label.map(|p| p.as_ref()).to_glib_none().0,
                 menu_label.map(|p| p.as_ref()).to_glib_none().0,
@@ -119,9 +47,11 @@ impl<O: IsA<Notebook>> NotebookExtManual for O {
         }
     }
 
-    fn current_page(&self) -> Option<u32> {
+    #[doc(alias = "gtk_notebook_get_current_page")]
+    #[doc(alias = "get_current_page")]
+    pub fn current_page(&self) -> Option<u32> {
         unsafe {
-            let ret = ffi::gtk_notebook_get_current_page(self.as_ref().to_glib_none().0);
+            let ret = ffi::gtk_notebook_get_current_page(self.to_glib_none().0);
             if ret >= 0 {
                 Some(ret as u32)
             } else {
@@ -130,31 +60,36 @@ impl<O: IsA<Notebook>> NotebookExtManual for O {
         }
     }
 
-    fn n_pages(&self) -> u32 {
+    #[doc(alias = "gtk_notebook_get_n_pages")]
+    #[doc(alias = "get_n_pages")]
+    pub fn n_pages(&self) -> u32 {
         unsafe {
-            let ret = ffi::gtk_notebook_get_n_pages(self.as_ref().to_glib_none().0);
+            let ret = ffi::gtk_notebook_get_n_pages(self.to_glib_none().0);
             assert!(ret >= 0);
             ret as u32
         }
     }
 
-    fn nth_page(&self, page_num: Option<u32>) -> Option<Widget> {
+    #[doc(alias = "gtk_notebook_get_nth_page")]
+    #[doc(alias = "get_nth_page")]
+    pub fn nth_page(&self, page_num: Option<u32>) -> Option<Widget> {
         unsafe {
             from_glib_none(ffi::gtk_notebook_get_nth_page(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 page_num.map_or(-1, |n| n as c_int),
             ))
         }
     }
 
-    fn insert_page<T, U>(&self, child: &T, tab_label: Option<&U>, position: Option<u32>) -> u32
+    #[doc(alias = "gtk_notebook_insert_page")]
+    pub fn insert_page<T, U>(&self, child: &T, tab_label: Option<&U>, position: Option<u32>) -> u32
     where
         T: IsA<Widget>,
         U: IsA<Widget>,
     {
         unsafe {
             let ret = ffi::gtk_notebook_insert_page(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
                 tab_label.map(|p| p.as_ref()).to_glib_none().0,
                 position.map_or(-1, |n| n as c_int),
@@ -164,7 +99,8 @@ impl<O: IsA<Notebook>> NotebookExtManual for O {
         }
     }
 
-    fn insert_page_menu<T, U, V>(
+    #[doc(alias = "gtk_notebook_insert_page_menu")]
+    pub fn insert_page_menu<T, U, V>(
         &self,
         child: &T,
         tab_label: Option<&U>,
@@ -178,7 +114,7 @@ impl<O: IsA<Notebook>> NotebookExtManual for O {
     {
         unsafe {
             let ret = ffi::gtk_notebook_insert_page_menu(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
                 tab_label.map(|p| p.as_ref()).to_glib_none().0,
                 menu_label.map(|p| p.as_ref()).to_glib_none().0,
@@ -188,13 +124,11 @@ impl<O: IsA<Notebook>> NotebookExtManual for O {
             ret as u32
         }
     }
-
-    fn page_num<T: IsA<Widget>>(&self, child: &T) -> Option<u32> {
+    #[doc(alias = "gtk_notebook_page_num")]
+    pub fn page_num<T: IsA<Widget>>(&self, child: &T) -> Option<u32> {
         unsafe {
-            let ret = ffi::gtk_notebook_page_num(
-                self.as_ref().to_glib_none().0,
-                child.as_ref().to_glib_none().0,
-            );
+            let ret =
+                ffi::gtk_notebook_page_num(self.to_glib_none().0, child.as_ref().to_glib_none().0);
             if ret >= 0 {
                 Some(ret as u32)
             } else {
@@ -202,15 +136,15 @@ impl<O: IsA<Notebook>> NotebookExtManual for O {
             }
         }
     }
-
-    fn prepend_page<T, U>(&self, child: &T, tab_label: Option<&U>) -> u32
+    #[doc(alias = "gtk_notebook_prepend_page")]
+    pub fn prepend_page<T, U>(&self, child: &T, tab_label: Option<&U>) -> u32
     where
         T: IsA<Widget>,
         U: IsA<Widget>,
     {
         unsafe {
             let ret = ffi::gtk_notebook_prepend_page(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
                 tab_label.map(|p| p.as_ref()).to_glib_none().0,
             );
@@ -219,7 +153,8 @@ impl<O: IsA<Notebook>> NotebookExtManual for O {
         }
     }
 
-    fn prepend_page_menu<T, U, V>(
+    #[doc(alias = "gtk_notebook_prepend_page_menu")]
+    pub fn prepend_page_menu<T, U, V>(
         &self,
         child: &T,
         tab_label: Option<&U>,
@@ -232,7 +167,7 @@ impl<O: IsA<Notebook>> NotebookExtManual for O {
     {
         unsafe {
             let ret = ffi::gtk_notebook_prepend_page_menu(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
                 tab_label.map(|p| p.as_ref()).to_glib_none().0,
                 menu_label.map(|p| p.as_ref()).to_glib_none().0,
@@ -242,29 +177,32 @@ impl<O: IsA<Notebook>> NotebookExtManual for O {
         }
     }
 
-    fn remove_page(&self, page_num: Option<u32>) {
+    #[doc(alias = "gtk_notebook_remove_page")]
+    pub fn remove_page(&self, page_num: Option<u32>) {
         unsafe {
             ffi::gtk_notebook_remove_page(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 page_num.map_or(-1, |n| n as c_int),
             );
         }
     }
 
-    fn reorder_child<T: IsA<Widget>>(&self, child: &T, position: Option<u32>) {
+    #[doc(alias = "gtk_notebook_reorder_child")]
+    pub fn reorder_child<T: IsA<Widget>>(&self, child: &T, position: Option<u32>) {
         unsafe {
             ffi::gtk_notebook_reorder_child(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 child.as_ref().to_glib_none().0,
                 position.map_or(-1, |n| n as c_int),
             );
         }
     }
 
-    fn set_current_page(&self, page_num: Option<u32>) {
+    #[doc(alias = "gtk_notebook_set_current_page")]
+    pub fn set_current_page(&self, page_num: Option<u32>) {
         unsafe {
             ffi::gtk_notebook_set_current_page(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 page_num.map_or(-1, |n| n as c_int),
             );
         }
