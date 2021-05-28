@@ -17,16 +17,44 @@ generate = [
 ]
 
 manual = [
-    "Gdk.Device",
-    "Gdk.Display",
     "Gdk.DrawContext",
-    "Gdk.GLContext",
-    "Gdk.Monitor",
+    "Gdk.InputSource", # docs only
     "Gdk.Popup",
-    "Gdk.Seat",
-    "Gdk.Surface",
     "Gdk.Toplevel",
 ]
+
+[[object]]
+name = "Gdk.Device"
+status = "manual"
+final_type = false
+
+[[object]]
+name = "Gdk.Display"
+status = "manual"
+final_type = false
+    [[object.function]]
+    name = "notify_startup_complete"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+
+[[object]]
+name = "Gdk.GLContext"
+status = "manual"
+final_type = false
+
+[[object]]
+name = "Gdk.Monitor"
+status = "manual"
+final_type = false
+
+[[object]]
+name = "Gdk.Seat"
+status = "manual"
+final_type = false
+
+[[object]]
+name = "Gdk.Surface"
+status = "manual"
+final_type = false
 
 [[object]]
 name = "GdkWayland.WaylandDevice"

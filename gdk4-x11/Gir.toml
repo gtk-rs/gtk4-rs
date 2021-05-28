@@ -19,16 +19,12 @@ generate = [
 ]
 
 manual = [
-    "Gdk.AppLaunchContext",
     "Gdk.Cursor",
-    "Gdk.Device",
-    "Gdk.Display",
-    "Gdk.Drag",
+    "Gdk.DeviceTool", # docs only
     "Gdk.DrawContext",
-    "Gdk.GLContext",
-    "Gdk.Monitor",
+    "Gdk.InputSource",
     "Gdk.Rectangle",
-    "Gdk.Surface",
+    "Gdk.Seat", # docs only
     "Gio.AppLaunchContext",
     "xlib.Atom",
     "xlib.Cursor",
@@ -37,6 +33,61 @@ manual = [
     "xlib.Window",
     "xlib.XID",
 ]
+
+[[object]]
+name = "Gdk.AppLaunchContext"
+status = "manual"
+final_type = false
+
+[[object]]
+name = "Gdk.Device"
+status = "manual"
+final_type = false
+    [[object.function]]
+    name = "get_vendor_id"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+    [[object.function]]
+    name = "get_product_id"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+
+[[object]]
+name = "Gdk.Display"
+status = "manual"
+final_type = false
+    [[object.function]]
+    name = "notify_startup_complete"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+    [[object.function]]
+    name = "get_product_id"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+
+[[object]]
+name = "Gdk.Drag"
+status = "manual"
+final_type = false
+
+[[object]]
+name = "Gdk.Event" # docs only
+status = "manual"
+final_type = false
+
+[[object]]
+name = "Gdk.GLContext"
+status = "manual"
+final_type = false
+
+[[object]]
+name = "Gdk.Monitor"
+status = "manual"
+final_type = false
+    [[object.function]]
+    name = "get_scale_factor"
+    ignore = true # docs only, otherwise it gets picked as ExtManual
+
+[[object]]
+name = "Gdk.Surface"
+status = "manual"
+final_type = false
 
 [[object]]
 name = "GdkX11.X11DeviceManagerXI2"
