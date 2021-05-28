@@ -30,6 +30,7 @@ manual = [
     "Gdk.RGBA",
     "Gdk.Surface",
     "Gdk.Texture",
+    "Gio.File", # docs specific
     "GLib.Bytes",
     "GLib.Error",
     "GLib.Quark",
@@ -71,6 +72,7 @@ manual = [
     "Gsk.TextNode",
     "Gsk.TextureNode",
     "Gsk.TransformNode",
+    "Gtk.Snapshot", # docs specific
     "Pango.Font",
     "Pango.GlyphInfo",
     "Pango.GlyphString",
