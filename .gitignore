@@ -14,3 +14,4 @@ book/book
 .vscode
 *.log
 **/**/docs.md
+**~
