@@ -588,7 +588,7 @@ unsafe impl<T: WidgetImpl> IsSubclassable<T> for Widget {
             let mut data = T::type_data();
             let data = data.as_mut();
             // Used to store actions for `install_action`
-            data.set_class_data(Widget::static_type(), Actions::default());
+            data.set_class_data(<T as ObjectSubclassType>::type_(), Actions::default());
         }
 
         klass.compute_expand = Some(widget_compute_expand::<T>);
@@ -964,7 +964,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
             let f: Box_<F> = Box_::new(activate);
 
             let actions = data
-                .class_data_mut::<Actions>(Widget::static_type())
+                .class_data_mut::<Actions>(<Self::Type as ObjectSubclassType>::type_())
                 .expect("Something bad happened at class_init, the actions class_data is missing");
             let callback_ptr = Box_::into_raw(f) as glib::ffi::gpointer;
             actions.0.insert(action_name.to_string(), callback_ptr);
@@ -984,7 +984,7 @@ pub unsafe trait WidgetClassSubclassExt: ClassStruct {
                 let data = <S::Type as ObjectSubclassType>::type_data();
                 let actions = data
                     .as_ref()
-                    .class_data::<Actions>(Widget::static_type())
+                    .class_data::<Actions>(<S::Type as ObjectSubclassType>::type_())
                     .unwrap();
                 let activate_callback =
                     *actions.0.get(&action_name.to_string()).unwrap_or_else(|| {
