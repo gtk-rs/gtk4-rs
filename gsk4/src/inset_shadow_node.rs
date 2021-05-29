@@ -3,6 +3,16 @@
 use crate::{RenderNodeType, RoundedRect};
 use glib::translate::*;
 
+glib::wrapper! {
+    #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+    pub struct InsetShadowNode(Shared<ffi::GskInsetShadowNode>);
+
+    match fn {
+        ref => |ptr| ffi::gsk_render_node_ref(ptr as *mut ffi::GskRenderNode),
+        unref => |ptr| ffi::gsk_render_node_unref(ptr as *mut ffi::GskRenderNode),
+    }
+}
+
 define_render_node!(
     InsetShadowNode,
     ffi::GskInsetShadowNode,

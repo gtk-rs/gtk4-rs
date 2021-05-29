@@ -3,6 +3,16 @@
 use crate::{ColorStop, RenderNodeType};
 use glib::translate::*;
 
+glib::wrapper! {
+    #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+    pub struct RepeatingRadialGradientNode(Shared<ffi::GskRepeatingRadialGradientNode>);
+
+    match fn {
+        ref => |ptr| ffi::gsk_render_node_ref(ptr as *mut ffi::GskRenderNode),
+        unref => |ptr| ffi::gsk_render_node_unref(ptr as *mut ffi::GskRenderNode),
+    }
+}
+
 define_render_node!(
     RepeatingRadialGradientNode,
     ffi::GskRepeatingRadialGradientNode,
