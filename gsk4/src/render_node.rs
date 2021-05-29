@@ -157,17 +157,6 @@ impl fmt::Display for RenderNode {
 
 macro_rules! define_render_node {
     ($rust_type:ident, $ffi_type:path, $get_type:path, $node_type:path) => {
-        // Can't use get_type here as this is not a boxed type but another fundamental type
-        glib::wrapper! {
-            #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-            pub struct $rust_type(Shared<$ffi_type>);
-
-            match fn {
-                ref => |ptr| ffi::gsk_render_node_ref(ptr as *mut ffi::GskRenderNode) as *mut $ffi_type,
-                unref => |ptr| ffi::gsk_render_node_unref(ptr as *mut ffi::GskRenderNode),
-            }
-        }
-
         impl ::glib::StaticType for $rust_type {
             fn static_type() -> ::glib::Type {
                 unsafe { from_glib($get_type()) }
@@ -184,9 +173,7 @@ macro_rules! define_render_node {
             type Target = crate::RenderNode;
 
             fn deref(&self) -> &Self::Target {
-                unsafe {
-                    &*(self as *const $rust_type as *const crate::RenderNode)
-                }
+                unsafe { &*(self as *const $rust_type as *const crate::RenderNode) }
             }
         }
 
