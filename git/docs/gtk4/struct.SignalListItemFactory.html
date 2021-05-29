@@ -40,7 +40,7 @@ was emitted on a listitem, the listitem will be destroyed and not be used again.
 </ol>
 <p>Note that during the signal emissions, changing properties on the
 <code>GtkListItems</code> passed will not trigger notify signals as the listitem’s
-notifications are frozen. See <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.freeze_notify" title="crate::glib::object::ObjectExt::freeze_notify()"><code>crate::glib::object::ObjectExt::freeze_notify()</code></a> for details.</p>
+notifications are frozen. See [<code>crate::glib::object::Object::freeze_notify()</code>] for details.</p>
 <p>For tracking changes in other properties in the <code>GtkListItem</code>, the
 ::notify signal is recommended. The signal can be connected in the
 [signal<code>Gtk.SignalListItemFactory</code>::setup] signal and removed again during

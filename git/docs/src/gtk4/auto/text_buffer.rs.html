@@ -2717,7 +2717,7 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NONE_TEXT_BUFFER</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-<span class="doccomment">/// Trait containing all `TextBuffer` methods.</span>
+<span class="doccomment">/// Trait containing all [`struct@TextBuffer`] methods.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
@@ -2949,7 +2949,7 @@
     <span class="doccomment">/// buffer.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Removes the reference the buffer holds to the mark, so if</span>
-    <span class="doccomment">/// you haven’t called [`crate::glib::object::ObjectExt::ref()`] on the mark, it will be freed.</span>
+    <span class="doccomment">/// you haven’t called [`crate::glib::object::Object::ref()`] on the mark, it will be freed.</span>
     <span class="doccomment">/// Even if the mark isn’t freed, most operations on `mark` become</span>
     <span class="doccomment">/// invalid, until it gets added to a buffer again with</span>
     <span class="doccomment">/// [method`Gtk.TextBuffer`.add_mark]. Use [method`Gtk.TextMark`.get_deleted]</span>

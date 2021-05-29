@@ -913,7 +913,7 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NONE_IM_CONTEXT</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">IMContext</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-<span class="doccomment">/// Trait containing all `IMContext` methods.</span>
+<span class="doccomment">/// Trait containing all [`struct@IMContext`] methods.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
@@ -970,10 +970,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if the input method handled the key event.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_im_context_filter_key&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">filter_key</span>(
+    <span class="kw">fn</span> <span class="ident">filter_key</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Surface</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">press</span>: <span class="ident">bool</span>,
-        <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Surface</span>,
+        <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Device</span>,
         <span class="ident">time</span>: <span class="ident">u32</span>,
         <span class="ident">keycode</span>: <span class="ident">u32</span>,
@@ -1264,10 +1264,10 @@
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">filter_key</span>(
+    <span class="kw">fn</span> <span class="ident">filter_key</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Surface</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">press</span>: <span class="ident">bool</span>,
-        <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Surface</span>,
+        <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
         <span class="ident">device</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Device</span>,
         <span class="ident">time</span>: <span class="ident">u32</span>,
         <span class="ident">keycode</span>: <span class="ident">u32</span>,
@@ -1278,7 +1278,7 @@
             <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_im_context_filter_key</span>(
                 <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">press</span>.<span class="ident">into_glib</span>(),
-                <span class="ident">surface</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="ident">surface</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">device</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">time</span>,
                 <span class="ident">keycode</span>,

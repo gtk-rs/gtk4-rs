@@ -891,7 +891,7 @@
     <span class="doccomment">/// builder (in which case you should not have to worry about their lifecycle),</span>
     <span class="doccomment">/// or without a parent, in which case they have to be added to some container</span>
     <span class="doccomment">/// to make use of them. Non-widget objects need to be reffed with</span>
-    <span class="doccomment">/// [`crate::glib::object::ObjectExt::ref()`] to keep them beyond the lifespan of the builder.</span>
+    <span class="doccomment">/// [`crate::glib::object::Object::ref()`] to keep them beyond the lifespan of the builder.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # `Builder` UI Definitions</span>
     <span class="doccomment">///</span>
@@ -969,7 +969,7 @@
     <span class="doccomment">/// source object of the binding, and optionally, &quot;bind-property&quot; and</span>
     <span class="doccomment">/// &quot;bind-flags&quot; to specify the source property and source binding flags</span>
     <span class="doccomment">/// respectively. Internally, `GtkBuilder` implements this using `GBinding`</span>
-    <span class="doccomment">/// objects. For more information see [`crate::glib::object::ObjectExt::bind_property()`].</span>
+    <span class="doccomment">/// objects. For more information see [`crate::glib::object::Object::bind_property()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Sometimes it is necessary to refer to widgets which have implicitly</span>
     <span class="doccomment">/// been constructed by GTK as part of a composite widget, to set</span>

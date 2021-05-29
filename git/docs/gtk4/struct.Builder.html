@@ -28,7 +28,7 @@ widgets will either be part of a larger hierarchy constructed by the
 builder (in which case you should not have to worry about their lifecycle),
 or without a parent, in which case they have to be added to some container
 to make use of them. Non-widget objects need to be reffed with
-[<code>crate::glib::object::ObjectExt::ref()</code>] to keep them beyond the lifespan of the builder.</p>
+[<code>crate::glib::object::Object::ref()</code>] to keep them beyond the lifespan of the builder.</p>
 <h1 id="builder-ui-definitions" class="section-header"><a href="#builder-ui-definitions"><code>Builder</code> UI Definitions</a></h1>
 <p><code>GtkBuilder</code> parses textual descriptions of user interfaces which are
 specified in XML format. We refer to these descriptions as “<code>Builder</code>
@@ -94,7 +94,7 @@ property value using the attributes “bind-source” to specify the
 source object of the binding, and optionally, “bind-property” and
 “bind-flags” to specify the source property and source binding flags
 respectively. Internally, <code>GtkBuilder</code> implements this using <code>GBinding</code>
-objects. For more information see <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html#tymethod.bind_property" title="crate::glib::object::ObjectExt::bind_property()"><code>crate::glib::object::ObjectExt::bind_property()</code></a>.</p>
+objects. For more information see [<code>crate::glib::object::Object::bind_property()</code>].</p>
 <p>Sometimes it is necessary to refer to widgets which have implicitly
 been constructed by GTK as part of a composite widget, to set
 properties on them or to add further children (e.g. the content area

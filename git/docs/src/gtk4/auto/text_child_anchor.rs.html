@@ -170,7 +170,7 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NONE_TEXT_CHILD_ANCHOR</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">TextChildAnchor</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-<span class="doccomment">/// Trait containing all `TextChildAnchor` methods.</span>
+<span class="doccomment">/// Trait containing all [`struct@TextChildAnchor`] methods.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
@@ -181,7 +181,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Keep in mind that the child anchor will be unreferenced</span>
     <span class="doccomment">/// when removed from the buffer, so you need to hold your own</span>
-    <span class="doccomment">/// reference (with [`crate::glib::object::ObjectExt::ref()`]) if you plan to use this</span>
+    <span class="doccomment">/// reference (with [`crate::glib::object::Object::ref()`]) if you plan to use this</span>
     <span class="doccomment">/// function — otherwise all deleted child anchors will also</span>
     <span class="doccomment">/// be finalized.</span>
     <span class="doccomment">///</span>

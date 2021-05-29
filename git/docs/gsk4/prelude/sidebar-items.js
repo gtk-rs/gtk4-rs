@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["RendererExt","Trait containing all `Renderer` methods."],["RendererExtManual",""]]});
+initSidebarItems({"trait":[["RendererExt","Trait containing all [`struct@Renderer`] methods."],["RendererExtManual",""]]});

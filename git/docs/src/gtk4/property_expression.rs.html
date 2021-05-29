@@ -145,10 +145,6 @@
 <span id="142">142</span>
 <span id="143">143</span>
 <span id="144">144</span>
-<span id="145">145</span>
-<span id="146">146</span>
-<span id="147">147</span>
-<span id="148">148</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -158,10 +154,6 @@
 
 <span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// A `GObject` property value in a `GtkExpression`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Implements</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::ExpressionExt`]</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PropertyExpression</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GtkPropertyExpression</span><span class="op">&gt;</span>);
 

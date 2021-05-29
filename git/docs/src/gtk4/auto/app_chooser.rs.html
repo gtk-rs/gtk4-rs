@@ -153,7 +153,7 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NONE_APP_CHOOSER</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">AppChooser</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-<span class="doccomment">/// Trait containing all `AppChooser` methods.</span>
+<span class="doccomment">/// Trait containing all [`struct@AppChooser`] methods.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
@@ -165,7 +165,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// a `GAppInfo` for the</span>
     <span class="doccomment">///  currently selected application, or [`None`] if none is selected.</span>
-    <span class="doccomment">///  Free with [`crate::glib::object::ObjectExt::unref()`]</span>
+    <span class="doccomment">///  Free with [`crate::glib::object::Object::unref()`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_app_chooser_get_app_info&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_app_info&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">app_info</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::AppInfo</span><span class="op">&gt;</span>;

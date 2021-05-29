@@ -276,14 +276,14 @@ the given factors.</p>
 by <code>self</code>.</p>
 <p>After calling this function, it is no longer possible to
 add more nodes to <code>self</code>. The only function that should
-be called after this is [<code>crate::glib::object::ObjectExt::unref()</code>].</p>
+be called after this is [<code>crate::glib::object::Object::unref()</code>].</p>
 <h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
 <p>the constructed <code>GskRenderNode</code></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><h4 id="method.to_paintable" class="method"><code>pub fn <a href="#method.to_paintable" class="fnname">to_paintable</a>(&amp;self, size: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;&amp;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/graphene/auto/size/struct.Size.html" title="struct graphene::auto::size::Size">Size</a>&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../gdk4/auto/paintable/struct.Paintable.html" title="struct gdk4::auto::paintable::Paintable">Paintable</a>&gt;</code><a href="#method.to_paintable" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/snapshot.rs.html#733-740" title="goto source code">[src]</a></h4></summary><div class="docblock"><p>Returns a paintable encapsulating the render node
 that was constructed by <code>self</code>.</p>
 <p>After calling this function, it is no longer possible to
 add more nodes to <code>self</code>. The only function that should
-be called after this is [<code>crate::glib::object::ObjectExt::unref()</code>].</p>
+be called after this is [<code>crate::glib::object::Object::unref()</code>].</p>
 <h2 id="size-1" class="section-header"><a href="#size-1"><code>size</code></a></h2>
 <p>The size of the resulting paintable
 or <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> to use the bounds of the snapshot</p>

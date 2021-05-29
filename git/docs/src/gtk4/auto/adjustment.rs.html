@@ -867,7 +867,7 @@
 
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NONE_ADJUSTMENT</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Adjustment</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
 
-<span class="doccomment">/// Trait containing all `Adjustment` methods.</span>
+<span class="doccomment">/// Trait containing all [`struct@Adjustment`] methods.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
@@ -990,10 +990,10 @@
     <span class="doccomment">/// [signal`Gtk.Adjustment`::changed] signal is tied to the emission</span>
     <span class="doccomment">/// of the ::notify signals of the changed properties, it’s possible</span>
     <span class="doccomment">/// to compress the [signal`Gtk.Adjustment`::changed] signals into one</span>
-    <span class="doccomment">/// by calling [`crate::glib::object::ObjectExt::freeze_notify()`] and [`crate::glib::object::ObjectExt::thaw_notify()`]</span>
+    <span class="doccomment">/// by calling [`crate::glib::object::Object::freeze_notify()`] and [`crate::glib::object::Object::thaw_notify()`]</span>
     <span class="doccomment">/// around the calls to the individual setters.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Alternatively, using a single [`crate::glib::object::ObjectExt::set()`] for all the properties</span>
+    <span class="doccomment">/// Alternatively, using a single [`crate::glib::object::Object::set()`] for all the properties</span>
     <span class="doccomment">/// to change, or using [method`Gtk.Adjustment`.configure] has the same effect.</span>
     <span class="doccomment">/// ## `lower`</span>
     <span class="doccomment">/// the new minimum value</span>

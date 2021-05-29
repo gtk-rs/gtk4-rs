@@ -1453,8 +1453,8 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// a newly-allocated string representing the accelerator.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_accelerator_get_label_with_keycode&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accelerator_get_label_with_keycode</span>(
-    <span class="ident">display</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk::Display</span><span class="op">&gt;</span>,
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accelerator_get_label_with_keycode</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Display</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+    <span class="ident">display</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>,
     <span class="ident">accelerator_key</span>: <span class="ident">u32</span>,
     <span class="ident">keycode</span>: <span class="ident">u32</span>,
     <span class="ident">accelerator_mods</span>: <span class="ident">gdk::ModifierType</span>,
@@ -1462,7 +1462,7 @@
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> {
         <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_accelerator_get_label_with_keycode</span>(
-            <span class="ident">display</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+            <span class="ident">display</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">accelerator_key</span>,
             <span class="ident">keycode</span>,
             <span class="ident">accelerator_mods</span>.<span class="ident">into_glib</span>(),
@@ -1519,8 +1519,8 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// a newly allocated accelerator name.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_accelerator_name_with_keycode&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accelerator_name_with_keycode</span>(
-    <span class="ident">display</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk::Display</span><span class="op">&gt;</span>,
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accelerator_name_with_keycode</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gdk::Display</span><span class="op">&gt;</span><span class="op">&gt;</span>(
+    <span class="ident">display</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>,
     <span class="ident">accelerator_key</span>: <span class="ident">u32</span>,
     <span class="ident">keycode</span>: <span class="ident">u32</span>,
     <span class="ident">accelerator_mods</span>: <span class="ident">gdk::ModifierType</span>,
@@ -1528,7 +1528,7 @@
     <span class="macro">assert_initialized_main_thread!</span>();
     <span class="kw">unsafe</span> {
         <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_accelerator_name_with_keycode</span>(
-            <span class="ident">display</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+            <span class="ident">display</span>.<span class="ident">map</span>(<span class="op">|</span><span class="ident">p</span><span class="op">|</span> <span class="ident">p</span>.<span class="ident">as_ref</span>()).<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             <span class="ident">accelerator_key</span>,
             <span class="ident">keycode</span>,
             <span class="ident">accelerator_mods</span>.<span class="ident">into_glib</span>(),
