@@ -7,6 +7,7 @@ use std::ptr;
 
 #[repr(transparent)]
 #[derive(Clone, Debug)]
+#[doc(alias = "GskColorStop")]
 pub struct ColorStop(ffi::GskColorStop);
 
 impl ColorStop {

@@ -5,6 +5,7 @@ use graphene::{Point, Rect, Size};
 use std::mem;
 
 #[derive(Clone, Debug)]
+#[doc(alias = "GskRoundedRect")]
 pub struct RoundedRect(ffi::GskRoundedRect);
 
 impl RoundedRect {

@@ -4,6 +4,7 @@ use glib::translate::*;
 
 #[derive(Copy, Clone)]
 #[repr(transparent)]
+#[doc(alias = "GskParseLocation")]
 pub struct ParseLocation(ffi::GskParseLocation);
 
 impl ParseLocation {

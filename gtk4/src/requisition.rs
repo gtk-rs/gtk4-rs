@@ -4,6 +4,7 @@ use glib::translate::*;
 use std::mem;
 
 #[repr(C)]
+#[doc(alias = "GtkRequisition")]
 pub struct Requisition {
     pub width: i32,
     pub height: i32,
