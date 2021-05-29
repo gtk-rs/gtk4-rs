@@ -114,6 +114,17 @@
 <span id="111">111</span>
 <span id="112">112</span>
 <span id="113">113</span>
+<span id="114">114</span>
+<span id="115">115</span>
+<span id="116">116</span>
+<span id="117">117</span>
+<span id="118">118</span>
+<span id="119">119</span>
+<span id="120">120</span>
+<span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
+<span id="124">124</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -131,30 +142,41 @@
     <span class="doccomment">/// If neither [`Self::GeneratePdf`] nor</span>
     <span class="doccomment">/// [`Self::GeneratePs`] is specified, GTK assumes that all</span>
     <span class="doccomment">/// formats are supported.</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkPrintCapabilities&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintCapabilities</span>: <span class="ident">u32</span> {
         <span class="doccomment">/// Print dialog will offer printing even/odd pages.</span>
+        <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_CAPABILITY_PAGE_SET&quot;</span>)]</span>
         <span class="kw">const</span> <span class="ident">PAGE_SET</span> <span class="op">=</span> <span class="number">1</span>;
         <span class="doccomment">/// Print dialog will allow to print multiple copies.</span>
+        <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_CAPABILITY_COPIES&quot;</span>)]</span>
         <span class="kw">const</span> <span class="ident">COPIES</span> <span class="op">=</span> <span class="number">2</span>;
         <span class="doccomment">/// Print dialog will allow to collate multiple copies.</span>
+        <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_CAPABILITY_COLLATE&quot;</span>)]</span>
         <span class="kw">const</span> <span class="ident">COLLATE</span> <span class="op">=</span> <span class="number">4</span>;
         <span class="doccomment">/// Print dialog will allow to print pages in reverse order.</span>
+        <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_CAPABILITY_REVERSE&quot;</span>)]</span>
         <span class="kw">const</span> <span class="ident">REVERSE</span> <span class="op">=</span> <span class="number">8</span>;
         <span class="doccomment">/// Print dialog will allow to scale the output.</span>
+        <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_CAPABILITY_SCALE&quot;</span>)]</span>
         <span class="kw">const</span> <span class="ident">SCALE</span> <span class="op">=</span> <span class="number">16</span>;
         <span class="doccomment">/// The program will send the document to</span>
         <span class="doccomment">///  the printer in PDF format</span>
+        <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_CAPABILITY_GENERATE_PDF&quot;</span>)]</span>
         <span class="kw">const</span> <span class="ident">GENERATE_PDF</span> <span class="op">=</span> <span class="number">32</span>;
         <span class="doccomment">/// The program will send the document to</span>
         <span class="doccomment">///  the printer in Postscript format</span>
+        <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_CAPABILITY_GENERATE_PS&quot;</span>)]</span>
         <span class="kw">const</span> <span class="ident">GENERATE_PS</span> <span class="op">=</span> <span class="number">64</span>;
         <span class="doccomment">/// Print dialog will offer a preview</span>
+        <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_CAPABILITY_PREVIEW&quot;</span>)]</span>
         <span class="kw">const</span> <span class="ident">PREVIEW</span> <span class="op">=</span> <span class="number">128</span>;
         <span class="doccomment">/// Print dialog will offer printing multiple</span>
         <span class="doccomment">///  pages per sheet</span>
+        <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_CAPABILITY_NUMBER_UP&quot;</span>)]</span>
         <span class="kw">const</span> <span class="ident">NUMBER_UP</span> <span class="op">=</span> <span class="number">256</span>;
         <span class="doccomment">/// Print dialog will allow to rearrange</span>
         <span class="doccomment">///  pages when printing multiple pages per sheet</span>
+        <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PRINT_CAPABILITY_NUMBER_UP_LAYOUT&quot;</span>)]</span>
         <span class="kw">const</span> <span class="ident">NUMBER_UP_LAYOUT</span> <span class="op">=</span> <span class="number">512</span>;
     }
 }
