@@ -3,6 +3,7 @@
 use glib::translate::*;
 use libc::c_char;
 
+#[doc(alias = "GtkRecentData")]
 pub struct RecentData {
     pub display_name: Option<String>,
     pub description: Option<String>,

@@ -13,6 +13,7 @@ pub struct RgbaParseError;
 
 #[derive(Clone, Copy, Debug)]
 #[repr(C)]
+#[doc(alias = "GdkRGBA")]
 #[allow(clippy::upper_case_acronyms)]
 pub struct RGBA {
     pub red: f32,

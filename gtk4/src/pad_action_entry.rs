@@ -3,6 +3,7 @@
 use crate::PadActionType;
 
 #[derive(Debug, Clone)]
+#[doc(alias = "GtkPadActionEntry")]
 pub struct PadActionEntry {
     type_: PadActionType,
     index: i32,

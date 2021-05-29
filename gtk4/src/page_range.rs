@@ -4,6 +4,7 @@ use glib::translate::*;
 use std::ptr;
 
 #[repr(C)]
+#[doc(alias = "GtkPageRange")]
 pub struct PageRange(ffi::GtkPageRange);
 
 impl PageRange {

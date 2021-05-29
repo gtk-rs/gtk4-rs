@@ -9,16 +9,27 @@ use std::fmt;
 #[cfg(any(target_os = "linux", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
 bitflags! {
+    #[doc(alias = "GtkPrintCapabilities")]
     pub struct PrintCapabilities: u32 {
+        #[doc(alias = "GTK_PRINT_CAPABILITY_PAGE_SET")]
         const PAGE_SET = 1;
+        #[doc(alias = "GTK_PRINT_CAPABILITY_COPIES")]
         const COPIES = 2;
+        #[doc(alias = "GTK_PRINT_CAPABILITY_COLLATE")]
         const COLLATE = 4;
+        #[doc(alias = "GTK_PRINT_CAPABILITY_REVERSE")]
         const REVERSE = 8;
+        #[doc(alias = "GTK_PRINT_CAPABILITY_SCALE")]
         const SCALE = 16;
+        #[doc(alias = "GTK_PRINT_CAPABILITY_GENERATE_PDF")]
         const GENERATE_PDF = 32;
+        #[doc(alias = "GTK_PRINT_CAPABILITY_GENERATE_PS")]
         const GENERATE_PS = 64;
+        #[doc(alias = "GTK_PRINT_CAPABILITY_PREVIEW")]
         const PREVIEW = 128;
+        #[doc(alias = "GTK_PRINT_CAPABILITY_NUMBER_UP")]
         const NUMBER_UP = 256;
+        #[doc(alias = "GTK_PRINT_CAPABILITY_NUMBER_UP_LAYOUT")]
         const NUMBER_UP_LAYOUT = 512;
     }
 }

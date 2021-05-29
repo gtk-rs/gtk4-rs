@@ -8,6 +8,7 @@ use std::mem;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 #[repr(C)]
+#[doc(alias = "GdkRectangle")]
 pub struct Rectangle {
     pub x: i32,
     pub y: i32,

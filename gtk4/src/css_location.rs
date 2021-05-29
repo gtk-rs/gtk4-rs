@@ -4,6 +4,7 @@ use glib::translate::*;
 
 #[repr(C)]
 #[derive(Clone)]
+#[doc(alias = "GtkCssLocation")]
 pub struct CssLocation(ffi::GtkCssLocation);
 
 impl CssLocation {
