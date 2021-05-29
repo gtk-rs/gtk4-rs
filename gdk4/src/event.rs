@@ -243,16 +243,6 @@ pub unsafe trait EventKind:
 
 macro_rules! define_event {
     ($rust_type:ident, $ffi_type:path, $ffi_type_path:path, $event_event_types:expr) => {
-        // Can't use get_type here as this is not a boxed type but another fundamental type
-        glib::wrapper! {
-            pub struct $rust_type(Shared<$ffi_type>);
-
-            match fn {
-                ref => |ptr| ffi::gdk_event_ref(ptr as *mut ffi::GdkEvent) as *mut $ffi_type,
-                unref => |ptr| ffi::gdk_event_unref(ptr as *mut ffi::GdkEvent),
-            }
-        }
-
         impl glib::StaticType for $rust_type {
             fn static_type() -> glib::Type {
                 unsafe { from_glib($ffi_type_path()) }

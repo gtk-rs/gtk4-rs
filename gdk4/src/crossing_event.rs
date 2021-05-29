@@ -4,6 +4,15 @@ use crate::{CrossingMode, EventType, NotifyType};
 use glib::translate::*;
 use std::fmt;
 
+glib::wrapper! {
+    pub struct CrossingEvent(Shared<ffi::GdkCrossingEvent>);
+
+    match fn {
+        ref => |ptr| ffi::gdk_event_ref(ptr as *mut ffi::GdkEvent),
+        unref => |ptr| ffi::gdk_event_unref(ptr as *mut ffi::GdkEvent),
+    }
+}
+
 define_event! {
     CrossingEvent,
     ffi::GdkCrossingEvent,
