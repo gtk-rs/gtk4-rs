@@ -4,6 +4,7 @@
 
 use crate::StyleProvider;
 use glib::object::Cast;
+use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
@@ -1323,9 +1324,13 @@ impl Settings {
 
     #[doc(alias = "gtk_settings_get_for_display")]
     #[doc(alias = "get_for_display")]
-    pub fn for_display(display: &gdk::Display) -> Settings {
+    pub fn for_display<P: IsA<gdk::Display>>(display: &P) -> Settings {
         assert_initialized_main_thread!();
-        unsafe { from_glib_none(ffi::gtk_settings_get_for_display(display.to_glib_none().0)) }
+        unsafe {
+            from_glib_none(ffi::gtk_settings_get_for_display(
+                display.as_ref().to_glib_none().0,
+            ))
+        }
     }
 
     #[doc(alias = "gtk-alternative-button-order")]

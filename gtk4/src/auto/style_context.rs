@@ -25,15 +25,15 @@ glib::wrapper! {
 
 impl StyleContext {
     #[doc(alias = "gtk_style_context_add_provider_for_display")]
-    pub fn add_provider_for_display<P: IsA<StyleProvider>>(
-        display: &gdk::Display,
-        provider: &P,
+    pub fn add_provider_for_display<P: IsA<gdk::Display>, Q: IsA<StyleProvider>>(
+        display: &P,
+        provider: &Q,
         priority: u32,
     ) {
         skip_assert_initialized!();
         unsafe {
             ffi::gtk_style_context_add_provider_for_display(
-                display.to_glib_none().0,
+                display.as_ref().to_glib_none().0,
                 provider.as_ref().to_glib_none().0,
                 priority,
             );
@@ -41,14 +41,14 @@ impl StyleContext {
     }
 
     #[doc(alias = "gtk_style_context_remove_provider_for_display")]
-    pub fn remove_provider_for_display<P: IsA<StyleProvider>>(
-        display: &gdk::Display,
-        provider: &P,
+    pub fn remove_provider_for_display<P: IsA<gdk::Display>, Q: IsA<StyleProvider>>(
+        display: &P,
+        provider: &Q,
     ) {
         skip_assert_initialized!();
         unsafe {
             ffi::gtk_style_context_remove_provider_for_display(
-                display.to_glib_none().0,
+                display.as_ref().to_glib_none().0,
                 provider.as_ref().to_glib_none().0,
             );
         }
@@ -111,7 +111,7 @@ pub trait StyleContextExt: 'static {
     fn save(&self);
 
     #[doc(alias = "gtk_style_context_set_display")]
-    fn set_display(&self, display: &gdk::Display);
+    fn set_display<P: IsA<gdk::Display>>(&self, display: &P);
 
     #[doc(alias = "gtk_style_context_set_scale")]
     fn set_scale(&self, scale: i32);
@@ -265,11 +265,11 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
         }
     }
 
-    fn set_display(&self, display: &gdk::Display) {
+    fn set_display<P: IsA<gdk::Display>>(&self, display: &P) {
         unsafe {
             ffi::gtk_style_context_set_display(
                 self.as_ref().to_glib_none().0,
-                display.to_glib_none().0,
+                display.as_ref().to_glib_none().0,
             );
         }
     }

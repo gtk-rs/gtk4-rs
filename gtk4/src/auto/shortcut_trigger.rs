@@ -40,10 +40,10 @@ pub trait ShortcutTriggerExt: 'static {
     fn print(&self, string: &mut glib::String);
 
     #[doc(alias = "gtk_shortcut_trigger_print_label")]
-    fn print_label(&self, display: &gdk::Display, string: &mut glib::String) -> bool;
+    fn print_label<P: IsA<gdk::Display>>(&self, display: &P, string: &mut glib::String) -> bool;
 
     #[doc(alias = "gtk_shortcut_trigger_to_label")]
-    fn to_label(&self, display: &gdk::Display) -> glib::GString;
+    fn to_label<P: IsA<gdk::Display>>(&self, display: &P) -> glib::GString;
 
     #[doc(alias = "gtk_shortcut_trigger_to_string")]
     #[doc(alias = "to_string")]
@@ -60,21 +60,21 @@ impl<O: IsA<ShortcutTrigger>> ShortcutTriggerExt for O {
         }
     }
 
-    fn print_label(&self, display: &gdk::Display, string: &mut glib::String) -> bool {
+    fn print_label<P: IsA<gdk::Display>>(&self, display: &P, string: &mut glib::String) -> bool {
         unsafe {
             from_glib(ffi::gtk_shortcut_trigger_print_label(
                 self.as_ref().to_glib_none().0,
-                display.to_glib_none().0,
+                display.as_ref().to_glib_none().0,
                 string.to_glib_none_mut().0,
             ))
         }
     }
 
-    fn to_label(&self, display: &gdk::Display) -> glib::GString {
+    fn to_label<P: IsA<gdk::Display>>(&self, display: &P) -> glib::GString {
         unsafe {
             from_glib_full(ffi::gtk_shortcut_trigger_to_label(
                 self.as_ref().to_glib_none().0,
-                display.to_glib_none().0,
+                display.as_ref().to_glib_none().0,
             ))
         }
     }

@@ -83,7 +83,7 @@ pub trait MediaStreamExt: 'static {
     fn prepared(&self, has_audio: bool, has_video: bool, seekable: bool, duration: i64);
 
     #[doc(alias = "gtk_media_stream_realize")]
-    fn realize(&self, surface: &gdk::Surface);
+    fn realize<P: IsA<gdk::Surface>>(&self, surface: &P);
 
     #[doc(alias = "gtk_media_stream_seek")]
     fn seek(&self, timestamp: i64);
@@ -110,7 +110,7 @@ pub trait MediaStreamExt: 'static {
     fn unprepared(&self);
 
     #[doc(alias = "gtk_media_stream_unrealize")]
-    fn unrealize(&self, surface: &gdk::Surface);
+    fn unrealize<P: IsA<gdk::Surface>>(&self, surface: &P);
 
     #[doc(alias = "gtk_media_stream_update")]
     fn update(&self, timestamp: i64);
@@ -280,9 +280,12 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn realize(&self, surface: &gdk::Surface) {
+    fn realize<P: IsA<gdk::Surface>>(&self, surface: &P) {
         unsafe {
-            ffi::gtk_media_stream_realize(self.as_ref().to_glib_none().0, surface.to_glib_none().0);
+            ffi::gtk_media_stream_realize(
+                self.as_ref().to_glib_none().0,
+                surface.as_ref().to_glib_none().0,
+            );
         }
     }
 
@@ -334,11 +337,11 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    fn unrealize(&self, surface: &gdk::Surface) {
+    fn unrealize<P: IsA<gdk::Surface>>(&self, surface: &P) {
         unsafe {
             ffi::gtk_media_stream_unrealize(
                 self.as_ref().to_glib_none().0,
-                surface.to_glib_none().0,
+                surface.as_ref().to_glib_none().0,
             );
         }
     }

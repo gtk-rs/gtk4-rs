@@ -25,17 +25,17 @@ glib::wrapper! {
 
 impl ATContext {
     #[doc(alias = "gtk_at_context_create")]
-    pub fn create<P: IsA<Accessible>>(
+    pub fn create<P: IsA<Accessible>, Q: IsA<gdk::Display>>(
         accessible_role: AccessibleRole,
         accessible: &P,
-        display: &gdk::Display,
+        display: &Q,
     ) -> Option<ATContext> {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(ffi::gtk_at_context_create(
                 accessible_role.into_glib(),
                 accessible.as_ref().to_glib_none().0,
-                display.to_glib_none().0,
+                display.as_ref().to_glib_none().0,
             ))
         }
     }
@@ -81,7 +81,7 @@ impl ATContext {
         }
     }
 
-    pub fn set_display(&self, display: Option<&gdk::Display>) {
+    pub fn set_display<P: IsA<gdk::Display>>(&self, display: Option<&P>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,

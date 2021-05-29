@@ -54,7 +54,7 @@ pub struct MountOperationBuilder {
     is_tcrypt_hidden_volume: Option<bool>,
     is_tcrypt_system_volume: Option<bool>,
     password: Option<String>,
-    //password-save: /*Unknown type*/,
+    password_save: Option<gio::PasswordSave>,
     pim: Option<u32>,
     username: Option<String>,
 }
@@ -94,6 +94,9 @@ impl MountOperationBuilder {
         if let Some(ref password) = self.password {
             properties.push(("password", password));
         }
+        if let Some(ref password_save) = self.password_save {
+            properties.push(("password-save", password_save));
+        }
         if let Some(ref pim) = self.pim {
             properties.push(("pim", pim));
         }
@@ -104,8 +107,8 @@ impl MountOperationBuilder {
             .expect("Failed to create an instance of MountOperation")
     }
 
-    pub fn display(mut self, display: &gdk::Display) -> Self {
-        self.display = Some(display.clone());
+    pub fn display<P: IsA<gdk::Display>>(mut self, display: &P) -> Self {
+        self.display = Some(display.clone().upcast());
         self
     }
 
@@ -144,6 +147,11 @@ impl MountOperationBuilder {
         self
     }
 
+    pub fn password_save(mut self, password_save: gio::PasswordSave) -> Self {
+        self.password_save = Some(password_save);
+        self
+    }
+
     pub fn pim(mut self, pim: u32) -> Self {
         self.pim = Some(pim);
         self
@@ -170,7 +178,7 @@ pub trait MountOperationExt: 'static {
     fn is_showing(&self) -> bool;
 
     #[doc(alias = "gtk_mount_operation_set_display")]
-    fn set_display(&self, display: &gdk::Display);
+    fn set_display<P: IsA<gdk::Display>>(&self, display: &P);
 
     #[doc(alias = "gtk_mount_operation_set_parent")]
     fn set_parent<P: IsA<Window>>(&self, parent: Option<&P>);
@@ -210,11 +218,11 @@ impl<O: IsA<MountOperation>> MountOperationExt for O {
         }
     }
 
-    fn set_display(&self, display: &gdk::Display) {
+    fn set_display<P: IsA<gdk::Display>>(&self, display: &P) {
         unsafe {
             ffi::gtk_mount_operation_set_display(
                 self.as_ref().to_glib_none().0,
-                display.to_glib_none().0,
+                display.as_ref().to_glib_none().0,
             );
         }
     }
