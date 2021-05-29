@@ -372,8 +372,8 @@ impl WindowBuilder {
         self
     }
 
-    pub fn display(mut self, display: &gdk::Display) -> Self {
-        self.display = Some(display.clone());
+    pub fn display<P: IsA<gdk::Display>>(mut self, display: &P) -> Self {
+        self.display = Some(display.clone().upcast());
         self
     }
 
@@ -730,7 +730,7 @@ pub trait GtkWindowExt: 'static {
     fn set_destroy_with_parent(&self, setting: bool);
 
     #[doc(alias = "gtk_window_set_display")]
-    fn set_display(&self, display: &gdk::Display);
+    fn set_display<P: IsA<gdk::Display>>(&self, display: &P);
 
     #[doc(alias = "gtk_window_set_focus_visible")]
     fn set_focus_visible(&self, setting: bool);
@@ -1158,9 +1158,12 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    fn set_display(&self, display: &gdk::Display) {
+    fn set_display<P: IsA<gdk::Display>>(&self, display: &P) {
         unsafe {
-            ffi::gtk_window_set_display(self.as_ref().to_glib_none().0, display.to_glib_none().0);
+            ffi::gtk_window_set_display(
+                self.as_ref().to_glib_none().0,
+                display.as_ref().to_glib_none().0,
+            );
         }
     }
 

@@ -33,10 +33,10 @@ pub trait IMContextExt: 'static {
     fn delete_surrounding(&self, offset: i32, n_chars: i32) -> bool;
 
     #[doc(alias = "gtk_im_context_filter_key")]
-    fn filter_key(
+    fn filter_key<P: IsA<gdk::Surface>>(
         &self,
         press: bool,
-        surface: &gdk::Surface,
+        surface: &P,
         device: &gdk::Device,
         time: u32,
         keycode: u32,
@@ -138,10 +138,10 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    fn filter_key(
+    fn filter_key<P: IsA<gdk::Surface>>(
         &self,
         press: bool,
-        surface: &gdk::Surface,
+        surface: &P,
         device: &gdk::Device,
         time: u32,
         keycode: u32,
@@ -152,7 +152,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
             from_glib(ffi::gtk_im_context_filter_key(
                 self.as_ref().to_glib_none().0,
                 press.into_glib(),
-                surface.to_glib_none().0,
+                surface.as_ref().to_glib_none().0,
                 device.to_glib_none().0,
                 time,
                 keycode,

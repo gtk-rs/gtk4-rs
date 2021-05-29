@@ -52,8 +52,8 @@ pub struct X11DeviceXI2Builder {
     name: Option<String>,
     num_touches: Option<u32>,
     product_id: Option<String>,
-    //seat: /*Unknown type*/,
-    //source: /*Unknown type*/,
+    seat: Option<gdk::Seat>,
+    source: Option<gdk::InputSource>,
     vendor_id: Option<String>,
 }
 
@@ -85,6 +85,12 @@ impl X11DeviceXI2Builder {
         }
         if let Some(ref product_id) = self.product_id {
             properties.push(("product-id", product_id));
+        }
+        if let Some(ref seat) = self.seat {
+            properties.push(("seat", seat));
+        }
+        if let Some(ref source) = self.source {
+            properties.push(("source", source));
         }
         if let Some(ref vendor_id) = self.vendor_id {
             properties.push(("vendor-id", vendor_id));
@@ -120,6 +126,16 @@ impl X11DeviceXI2Builder {
 
     pub fn product_id(mut self, product_id: &str) -> Self {
         self.product_id = Some(product_id.to_string());
+        self
+    }
+
+    pub fn seat(mut self, seat: &gdk::Seat) -> Self {
+        self.seat = Some(seat.clone());
+        self
+    }
+
+    pub fn source(mut self, source: gdk::InputSource) -> Self {
+        self.source = Some(source);
         self
     }
 

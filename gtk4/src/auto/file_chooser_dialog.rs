@@ -339,8 +339,8 @@ impl FileChooserDialogBuilder {
         self
     }
 
-    pub fn display(mut self, display: &gdk::Display) -> Self {
-        self.display = Some(display.clone());
+    pub fn display<P: IsA<gdk::Display>>(mut self, display: &P) -> Self {
+        self.display = Some(display.clone().upcast());
         self
     }
 

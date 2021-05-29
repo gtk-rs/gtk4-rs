@@ -46,8 +46,8 @@ pub fn accelerator_get_label(
 }
 
 #[doc(alias = "gtk_accelerator_get_label_with_keycode")]
-pub fn accelerator_get_label_with_keycode(
-    display: Option<&gdk::Display>,
+pub fn accelerator_get_label_with_keycode<P: IsA<gdk::Display>>(
+    display: Option<&P>,
     accelerator_key: u32,
     keycode: u32,
     accelerator_mods: gdk::ModifierType,
@@ -55,7 +55,7 @@ pub fn accelerator_get_label_with_keycode(
     assert_initialized_main_thread!();
     unsafe {
         from_glib_full(ffi::gtk_accelerator_get_label_with_keycode(
-            display.to_glib_none().0,
+            display.map(|p| p.as_ref()).to_glib_none().0,
             accelerator_key,
             keycode,
             accelerator_mods.into_glib(),
@@ -78,8 +78,8 @@ pub fn accelerator_name(
 }
 
 #[doc(alias = "gtk_accelerator_name_with_keycode")]
-pub fn accelerator_name_with_keycode(
-    display: Option<&gdk::Display>,
+pub fn accelerator_name_with_keycode<P: IsA<gdk::Display>>(
+    display: Option<&P>,
     accelerator_key: u32,
     keycode: u32,
     accelerator_mods: gdk::ModifierType,
@@ -87,7 +87,7 @@ pub fn accelerator_name_with_keycode(
     assert_initialized_main_thread!();
     unsafe {
         from_glib_full(ffi::gtk_accelerator_name_with_keycode(
-            display.to_glib_none().0,
+            display.map(|p| p.as_ref()).to_glib_none().0,
             accelerator_key,
             keycode,
             accelerator_mods.into_glib(),

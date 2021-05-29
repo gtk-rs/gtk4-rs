@@ -166,7 +166,7 @@ impl IconTheme {
         }
     }
 
-    pub fn set_display(&self, display: Option<&gdk::Display>) {
+    pub fn set_display<P: IsA<gdk::Display>>(&self, display: Option<&P>) {
         unsafe {
             glib::gobject_ffi::g_object_set_property(
                 self.as_ptr() as *mut glib::gobject_ffi::GObject,
@@ -178,11 +178,11 @@ impl IconTheme {
 
     #[doc(alias = "gtk_icon_theme_get_for_display")]
     #[doc(alias = "get_for_display")]
-    pub fn for_display(display: &gdk::Display) -> Option<IconTheme> {
+    pub fn for_display<P: IsA<gdk::Display>>(display: &P) -> Option<IconTheme> {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(ffi::gtk_icon_theme_get_for_display(
-                display.to_glib_none().0,
+                display.as_ref().to_glib_none().0,
             ))
         }
     }
@@ -368,8 +368,8 @@ impl IconThemeBuilder {
             .expect("Failed to create an instance of IconTheme")
     }
 
-    pub fn display(mut self, display: &gdk::Display) -> Self {
-        self.display = Some(display.clone());
+    pub fn display<P: IsA<gdk::Display>>(mut self, display: &P) -> Self {
+        self.display = Some(display.clone().upcast());
         self
     }
 
