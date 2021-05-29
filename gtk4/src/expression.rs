@@ -177,16 +177,6 @@ impl glib::value::ToValueOptional for Expression {
 
 macro_rules! define_expression {
     ($rust_type:ident, $ffi_type:path, $get_type:path) => {
-        glib::wrapper! {
-            #[derive(Debug)]
-            pub struct $rust_type(Shared<$ffi_type>);
-
-            match fn {
-                ref => |ptr| ffi::gtk_expression_ref(ptr as *mut ffi::GtkExpression) as *mut $ffi_type,
-                unref => |ptr| ffi::gtk_expression_unref(ptr as *mut ffi::GtkExpression),
-            }
-        }
-
         impl std::ops::Deref for $rust_type {
             type Target = crate::Expression;
 
@@ -220,9 +210,7 @@ macro_rules! define_expression {
 
         impl glib::StaticType for $rust_type {
             fn static_type() -> glib::Type {
-                unsafe {
-                    glib::translate::FromGlib::from_glib($get_type())
-                }
+                unsafe { glib::translate::FromGlib::from_glib($get_type()) }
             }
         }
 
@@ -245,7 +233,10 @@ macro_rules! define_expression {
             fn to_value(&self) -> glib::Value {
                 let mut value = glib::Value::for_value_type::<Self>();
                 unsafe {
-                    ffi::gtk_value_set_expression(value.to_glib_none_mut().0, self.to_glib_none().0 as *mut _)
+                    ffi::gtk_value_set_expression(
+                        value.to_glib_none_mut().0,
+                        self.to_glib_none().0 as *mut _,
+                    )
                 }
                 value
             }
@@ -261,7 +252,10 @@ macro_rules! define_expression {
                 skip_assert_initialized!();
                 let mut value = glib::Value::for_value_type::<Self>();
                 unsafe {
-                    ffi::gtk_value_set_expression(value.to_glib_none_mut().0, s.to_glib_none().0 as *mut _)
+                    ffi::gtk_value_set_expression(
+                        value.to_glib_none_mut().0,
+                        s.to_glib_none().0 as *mut _,
+                    )
                 }
                 value
             }

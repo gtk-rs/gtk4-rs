@@ -4,6 +4,16 @@ use crate::expression::Expression;
 use glib::translate::*;
 use glib::{Type, Value};
 
+glib::wrapper! {
+    #[derive(Debug)]
+    pub struct PropertyExpression(Shared<ffi::GtkPropertyExpression>);
+
+    match fn {
+        ref => |ptr| ffi::gtk_expression_ref(ptr as *mut ffi::GtkExpression),
+        unref => |ptr| ffi::gtk_expression_unref(ptr as *mut ffi::GtkExpression),
+    }
+}
+
 define_expression!(
     PropertyExpression,
     ffi::GtkPropertyExpression,

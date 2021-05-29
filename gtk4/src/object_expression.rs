@@ -3,6 +3,16 @@
 use glib::translate::*;
 use glib::{IsA, Object, Value};
 
+glib::wrapper! {
+    #[derive(Debug)]
+    pub struct ObjectExpression(Shared<ffi::GtkObjectExpression>);
+
+    match fn {
+        ref => |ptr| ffi::gtk_expression_ref(ptr as *mut ffi::GtkExpression),
+        unref => |ptr| ffi::gtk_expression_unref(ptr as *mut ffi::GtkExpression),
+    }
+}
+
 define_expression!(
     ObjectExpression,
     ffi::GtkObjectExpression,

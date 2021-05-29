@@ -3,6 +3,16 @@
 use glib::translate::*;
 use glib::{ToValue, Value};
 
+glib::wrapper! {
+    #[derive(Debug)]
+    pub struct ConstantExpression(Shared<ffi::GtkConstantExpression>);
+
+    match fn {
+        ref => |ptr| ffi::gtk_expression_ref(ptr as *mut ffi::GtkExpression),
+        unref => |ptr| ffi::gtk_expression_unref(ptr as *mut ffi::GtkExpression),
+    }
+}
+
 define_expression!(
     ConstantExpression,
     ffi::GtkConstantExpression,
