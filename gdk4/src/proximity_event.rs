@@ -4,6 +4,15 @@ use crate::EventType;
 use glib::translate::*;
 use std::fmt;
 
+glib::wrapper! {
+    pub struct ProximityEvent(Shared<ffi::GdkProximityEvent>);
+
+    match fn {
+        ref => |ptr| ffi::gdk_event_ref(ptr as *mut ffi::GdkEvent),
+        unref => |ptr| ffi::gdk_event_unref(ptr as *mut ffi::GdkEvent),
+    }
+}
+
 define_event! {
     ProximityEvent,
     ffi::GdkProximityEvent,
