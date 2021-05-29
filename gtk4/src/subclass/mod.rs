@@ -5,6 +5,7 @@ pub mod adjustment;
 pub mod application;
 pub mod application_window;
 pub mod box_;
+pub mod buildable;
 pub mod builder_scope;
 pub mod button;
 pub mod cell_area;
@@ -74,6 +75,7 @@ pub mod prelude {
     pub use super::application::{GtkApplicationImpl, GtkApplicationImplExt};
     pub use super::application_window::ApplicationWindowImpl;
     pub use super::box_::BoxImpl;
+    pub use super::buildable::{BuildableImpl, BuildableImplExt};
     pub use super::builder_scope::{BuilderScopeImpl, BuilderScopeImplExt};
     pub use super::button::{ButtonImpl, ButtonImplExt};
     pub use super::cell_area::{CellAreaClassSubclassExt, CellAreaImpl, CellAreaImplExt};
