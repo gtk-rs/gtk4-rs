@@ -78,6 +78,10 @@ unsafe impl<T: ShortcutManagerImpl> IsImplementable<T> for ShortcutManager {
     fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
+        if !crate::rt::is_initialized() {
+            panic!("GTK has to be initialized first");
+        }
+
         iface.add_controller = Some(shortcut_manager_add_controller::<T>);
         iface.remove_controller = Some(shortcut_manager_remove_controller::<T>);
     }

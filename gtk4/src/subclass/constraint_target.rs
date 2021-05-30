@@ -6,7 +6,11 @@ use crate::ConstraintTarget;
 pub trait ConstraintTargetImpl: ObjectImpl {}
 
 unsafe impl<T: ConstraintTargetImpl> IsImplementable<T> for ConstraintTarget {
-    fn interface_init(_iface: &mut glib::Interface<Self>) {}
+    fn interface_init(_iface: &mut glib::Interface<Self>) {
+        if !crate::rt::is_initialized() {
+            panic!("GTK has to be initialized first");
+        }
+    }
 
     fn instance_init(_instance: &mut glib::subclass::InitializingObject<T>) {}
 }

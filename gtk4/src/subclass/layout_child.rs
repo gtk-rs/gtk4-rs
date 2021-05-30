@@ -9,6 +9,10 @@ pub trait LayoutChildImpl: ObjectImpl {}
 unsafe impl<T: LayoutChildImpl> IsSubclassable<T> for LayoutChild {
     fn class_init(class: &mut glib::Class<Self>) {
         <Object as IsSubclassable<T>>::class_init(class);
+
+        if !crate::rt::is_initialized() {
+            panic!("GTK has to be initialized first");
+        }
     }
 
     fn instance_init(instance: &mut glib::subclass::InitializingObject<T>) {

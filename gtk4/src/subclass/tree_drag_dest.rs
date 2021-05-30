@@ -89,6 +89,10 @@ unsafe impl<T: TreeDragDestImpl> IsImplementable<T> for TreeDragDest {
     fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
+        if !crate::rt::is_initialized() {
+            panic!("GTK has to be initialized first");
+        }
+
         iface.drag_data_received = Some(tree_drag_dest_drag_data_received::<T>);
         iface.row_drop_possible = Some(tree_drag_dest_row_drop_possible::<T>);
     }

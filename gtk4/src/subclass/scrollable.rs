@@ -41,6 +41,10 @@ unsafe impl<T: ScrollableImpl> IsImplementable<T> for Scrollable {
     fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
+        if !crate::rt::is_initialized() {
+            panic!("GTK has to be initialized first");
+        }
+
         iface.get_border = Some(scrollable_get_border::<T>);
     }
 
