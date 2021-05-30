@@ -46,7 +46,7 @@
             </style>
             <section class="popup" id="gir_docs_popup">
                 <a class="close" href="#" onclick="document.getElementById('gir_docs_popup').remove(); return false">×</a>
-                <a class="version" href="None/stable/latest/docs">
+                <a class="version" href="https://gtk-rs.org/gtk4-rs//stable/latest/docs">
                     ⚠ ${msg}
                 </a>
             </section>
@@ -58,7 +58,7 @@
                 popup("This is the development version. Go to latest stable version.", "stable/latest")
             );
         } else {
-            fetch('None/LATEST_RELEASE_BRANCH')
+            fetch('https://gtk-rs.org/gtk4-rs//LATEST_RELEASE_BRANCH')
                 .then(response => response.text())
                 .then(latest_branch => {
                     if (latest_branch.trim() != "master") {
