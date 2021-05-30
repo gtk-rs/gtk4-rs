@@ -21,36 +21,57 @@ use syn::{parse_macro_input, DeriveInput};
 /// Specify that `MyWidget` is using a composite template and load the
 /// template file the `composite_template.ui` file.
 ///
-/// ```
-/// use gtk::prelude::*;
-/// use gtk::CompositeTemplate;
-///
-/// #[derive(Debug, Default, CompositeTemplate)]
-/// #[template(file = "composite_template.ui")]
-/// struct MyWidget {
-///     #[template_child]
-///     pub label: TemplateChild<gtk::Label>,
-/// }
-/// ```
-///
 /// Then, in the `ObjectSubclass` implementation you will need to call
 /// `bind_template` in the `class_init` function, and `init_template` in
 /// `instance_init` function.
 ///
 ///
-/// ```compile_fail
-/// #[glib::object_subclass]
-/// impl ObjectSubclass for MyWidget {
-///     const NAME: &'static str = "MyWidget";
-///     type Type = super::MyWidget;
-///     type ParentType = gtk::Widget;
+/// ```no_run
+/// # fn main() {}
+/// use gtk::prelude::*;
+/// use gtk::glib;
+/// use gtk::CompositeTemplate;
+/// use gtk::subclass::prelude::*;
 ///
-///     fn class_init(klass: &mut Self::Class) {
-///         Self::bind_template(klass);
+/// mod imp {
+///     use super::*;
+///
+///     #[derive(Debug, Default, CompositeTemplate)]
+///     #[template(file = "test/template.ui")]
+///     pub struct MyWidget {
+///         #[template_child]
+///         pub label: TemplateChild<gtk::Label>,
+///         #[template_child(id = "my_button_id")]
+///         pub button: TemplateChild<gtk::Button>,
 ///     }
 ///
-///     fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
-///         obj.init_template();
+///     #[glib::object_subclass]
+///     impl ObjectSubclass for MyWidget {
+///         const NAME: &'static str = "MyWidget";
+///         type Type = super::MyWidget;
+///         type ParentType = gtk::Box;
+///
+///         fn class_init(klass: &mut Self::Class) {
+///             Self::bind_template(klass);
+///         }
+///
+///         fn instance_init(obj: &glib::subclass::InitializingObject<Self>) {
+///             obj.init_template();
+///         }
+///     }
+///
+///     impl ObjectImpl for MyWidget {}
+///     impl WidgetImpl for MyWidget {}
+///     impl BoxImpl for MyWidget {}
+/// }
+///
+/// glib::wrapper! {
+///     pub struct MyWidget(ObjectSubclass<imp::MyWidget>) @extends gtk::Widget, gtk::Box;
+/// }
+///
+/// impl MyWidget {
+///     pub fn new() -> Self {
+///         glib::Object::new(&[]).expect("Failed to create an instance of MyWidget")
 ///     }
 /// }
 /// ```
