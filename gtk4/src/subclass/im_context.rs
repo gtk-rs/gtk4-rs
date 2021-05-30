@@ -316,6 +316,10 @@ unsafe impl<T: IMContextImpl> IsSubclassable<T> for IMContext {
     fn class_init(class: &mut glib::Class<Self>) {
         <Object as IsSubclassable<T>>::class_init(class);
 
+        if !crate::rt::is_initialized() {
+            panic!("GTK has to be initialized first");
+        }
+
         let klass = class.as_mut();
         klass.commit = Some(im_context_commit::<T>);
         klass.delete_surrounding = Some(im_context_delete_surrounding::<T>);

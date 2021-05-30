@@ -237,6 +237,10 @@ unsafe impl<T: SelectionModelImpl> IsImplementable<T> for SelectionModel {
     fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
+        if !crate::rt::is_initialized() {
+            panic!("GTK has to be initialized first");
+        }
+
         iface.get_selection_in_range = Some(model_get_selection_in_range::<T>);
         iface.is_selected = Some(model_is_selected::<T>);
         iface.select_all = Some(model_select_all::<T>);

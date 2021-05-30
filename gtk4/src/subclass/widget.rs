@@ -583,6 +583,10 @@ unsafe impl<T: WidgetImpl> IsSubclassable<T> for Widget {
     fn class_init(class: &mut ::glib::Class<Self>) {
         <Object as IsSubclassable<T>>::class_init(class);
 
+        if !crate::rt::is_initialized() {
+            panic!("GTK has to be initialized first");
+        }
+
         let klass = class.as_mut();
         unsafe {
             let mut data = T::type_data();

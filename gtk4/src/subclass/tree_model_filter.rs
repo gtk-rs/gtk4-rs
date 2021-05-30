@@ -101,6 +101,10 @@ unsafe impl<T: TreeModelFilterImpl> IsSubclassable<T> for TreeModelFilter {
     fn class_init(class: &mut glib::Class<Self>) {
         <Object as IsSubclassable<T>>::class_init(class);
 
+        if !crate::rt::is_initialized() {
+            panic!("GTK has to be initialized first");
+        }
+
         let klass = class.as_mut();
         klass.visible = Some(tree_model_filter_visible::<T>);
         klass.modify = Some(tree_model_filter_modify::<T>);

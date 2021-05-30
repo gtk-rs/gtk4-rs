@@ -79,6 +79,10 @@ unsafe impl<T: CellEditableImpl> IsImplementable<T> for CellEditable {
     fn interface_init(iface: &mut glib::Interface<Self>) {
         let iface = iface.as_mut();
 
+        if !crate::rt::is_initialized() {
+            panic!("GTK has to be initialized first");
+        }
+
         iface.editing_done = Some(cell_editable_editing_done::<T>);
         iface.remove_widget = Some(cell_editable_remove_widget::<T>);
         iface.start_editing = Some(cell_editable_start_editing::<T>);
