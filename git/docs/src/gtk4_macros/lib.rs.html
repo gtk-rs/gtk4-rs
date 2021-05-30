@@ -64,6 +64,27 @@
 <span id="61">61</span>
 <span id="62">62</span>
 <span id="63">63</span>
+<span id="64">64</span>
+<span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -88,36 +109,57 @@
 <span class="doccomment">/// Specify that `MyWidget` is using a composite template and load the</span>
 <span class="doccomment">/// template file the `composite_template.ui` file.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">/// use gtk::prelude::*;</span>
-<span class="doccomment">/// use gtk::CompositeTemplate;</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// #[derive(Debug, Default, CompositeTemplate)]</span>
-<span class="doccomment">/// #[template(file = &quot;composite_template.ui&quot;)]</span>
-<span class="doccomment">/// struct MyWidget {</span>
-<span class="doccomment">///     #[template_child]</span>
-<span class="doccomment">///     pub label: TemplateChild&lt;gtk::Label&gt;,</span>
-<span class="doccomment">/// }</span>
-<span class="doccomment">/// ```</span>
-<span class="doccomment">///</span>
 <span class="doccomment">/// Then, in the `ObjectSubclass` implementation you will need to call</span>
 <span class="doccomment">/// `bind_template` in the `class_init` function, and `init_template` in</span>
 <span class="doccomment">/// `instance_init` function.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// ```compile_fail</span>
-<span class="doccomment">/// #[glib::object_subclass]</span>
-<span class="doccomment">/// impl ObjectSubclass for MyWidget {</span>
-<span class="doccomment">///     const NAME: &amp;&#39;static str = &quot;MyWidget&quot;;</span>
-<span class="doccomment">///     type Type = super::MyWidget;</span>
-<span class="doccomment">///     type ParentType = gtk::Widget;</span>
+<span class="doccomment">/// ```no_run</span>
+<span class="doccomment">/// # fn main() {}</span>
+<span class="doccomment">/// use gtk::prelude::*;</span>
+<span class="doccomment">/// use gtk::glib;</span>
+<span class="doccomment">/// use gtk::CompositeTemplate;</span>
+<span class="doccomment">/// use gtk::subclass::prelude::*;</span>
 <span class="doccomment">///</span>
-<span class="doccomment">///     fn class_init(klass: &amp;mut Self::Class) {</span>
-<span class="doccomment">///         Self::bind_template(klass);</span>
+<span class="doccomment">/// mod imp {</span>
+<span class="doccomment">///     use super::*;</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///     #[derive(Debug, Default, CompositeTemplate)]</span>
+<span class="doccomment">///     #[template(file = &quot;test/template.ui&quot;)]</span>
+<span class="doccomment">///     pub struct MyWidget {</span>
+<span class="doccomment">///         #[template_child]</span>
+<span class="doccomment">///         pub label: TemplateChild&lt;gtk::Label&gt;,</span>
+<span class="doccomment">///         #[template_child(id = &quot;my_button_id&quot;)]</span>
+<span class="doccomment">///         pub button: TemplateChild&lt;gtk::Button&gt;,</span>
 <span class="doccomment">///     }</span>
 <span class="doccomment">///</span>
-<span class="doccomment">///     fn instance_init(obj: &amp;glib::subclass::InitializingObject&lt;Self&gt;) {</span>
-<span class="doccomment">///         obj.init_template();</span>
+<span class="doccomment">///     #[glib::object_subclass]</span>
+<span class="doccomment">///     impl ObjectSubclass for MyWidget {</span>
+<span class="doccomment">///         const NAME: &amp;&#39;static str = &quot;MyWidget&quot;;</span>
+<span class="doccomment">///         type Type = super::MyWidget;</span>
+<span class="doccomment">///         type ParentType = gtk::Box;</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///         fn class_init(klass: &amp;mut Self::Class) {</span>
+<span class="doccomment">///             Self::bind_template(klass);</span>
+<span class="doccomment">///         }</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///         fn instance_init(obj: &amp;glib::subclass::InitializingObject&lt;Self&gt;) {</span>
+<span class="doccomment">///             obj.init_template();</span>
+<span class="doccomment">///         }</span>
+<span class="doccomment">///     }</span>
+<span class="doccomment">///</span>
+<span class="doccomment">///     impl ObjectImpl for MyWidget {}</span>
+<span class="doccomment">///     impl WidgetImpl for MyWidget {}</span>
+<span class="doccomment">///     impl BoxImpl for MyWidget {}</span>
+<span class="doccomment">/// }</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// glib::wrapper! {</span>
+<span class="doccomment">///     pub struct MyWidget(ObjectSubclass&lt;imp::MyWidget&gt;) @extends gtk::Widget, gtk::Box;</span>
+<span class="doccomment">/// }</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// impl MyWidget {</span>
+<span class="doccomment">///     pub fn new() -&gt; Self {</span>
+<span class="doccomment">///         glib::Object::new(&amp;[]).expect(&quot;Failed to create an instance of MyWidget&quot;)</span>
 <span class="doccomment">///     }</span>
 <span class="doccomment">/// }</span>
 <span class="doccomment">/// ```</span>
