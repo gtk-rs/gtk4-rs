@@ -26,12 +26,16 @@ jobs:
       - working-directory: gir
         run: cargo build --release
       - run: cargo install rustdoc-stripper
+      - run: git clone https://gitlab.gnome.org/World/Rust/gir-rustdoc/ # checkout action doesn't support random urls
+      - run: python3 ./gir-rustdoc/gir-rustdoc.py --default-branch 'master' --branch 'master' pre-docs
       - run: python3 ./generator.py --embed-docs --yes ./
+      - run: python3 ./gir-rustdoc/gir-rustdoc.py --project-title 'GTK 4 Rust bindings' html-index --early-section 'Book' '<ul><li><a href="stable/book">Stable</a></li><li><a href="git/book">Development</a></li></ul>'
       - run: echo "DEST=$(if [ "$GITHUB_EVENT_NAME" == "release" ]; then echo 'stable/${{ github.event.release.tag_name }}'; else echo 'git'; fi)" >> ${GITHUB_ENV}
       - uses: actions-rs/cargo@v1
         env:
           RUSTDOCFLAGS: |
             -Z unstable-options --enable-index-page 
+            --html-before-content ./_rustdoc-html-before-content.html 
             --extern-html-root-url=glib=https://gtk-rs.org/gtk-rs-core/${{ env.DEST }}/docs/ 
             --extern-html-root-url=gio=https://gtk-rs.org/gtk-rs-core/${{ env.DEST }}/docs/ 
             --extern-html-root-url=cairo=https://gtk-rs.org/gtk-rs-core/${{ env.DEST }}/docs/ 
@@ -62,3 +66,12 @@ jobs:
           publish_dir: ./target/doc/
           keep_files: false
           destination_dir: ${{ env.DEST }}/docs
+
+      - name: deploy index page
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'release' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public/
+          keep_files: true
+          destination_dir: ./
