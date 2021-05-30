@@ -5,9 +5,9 @@ RUN dnf install git xorg-x11-server-Xvfb procps-ng 'dnf-command(builddep)' -y
 RUN dnf builddep gtk4 -y
 
 # build gtk4 from the latest release
-ADD https://download.gnome.org/sources/gtk/4.2/gtk-4.2.0.tar.xz /tmp/gtk-4.2.0.tar.xz
-RUN tar -xf /tmp/gtk-4.2.0.tar.xz --directory /tmp
-WORKDIR /tmp/gtk-4.2.0
+ADD https://download.gnome.org/sources/gtk/4.2/gtk-4.2.1.tar.xz /tmp/gtk-4.2.1.tar.xz
+RUN tar -xf /tmp/gtk-4.2.1.tar.xz --directory /tmp
+WORKDIR /tmp/gtk-4.2.1
 RUN meson _build --prefix=/usr
 RUN ninja -C _build
 RUN ninja -C _build install
