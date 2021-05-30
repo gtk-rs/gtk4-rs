@@ -24,6 +24,7 @@ jobs:
           - { name: "gdk4", features: "v4_2", test_sys: true }
           - { name: "gdk4-wayland", features: "", test_sys: true }
           - { name: "gdk4-x11", features: "", test_sys: false }
+          - { name: "gtk4-macros", features: "", test_sys: false }
     steps:
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
@@ -96,11 +97,12 @@ jobs:
     strategy:
       matrix:
         crate:
-          - gdk4
-          - gdk4-x11
-          - gdk4-wayland
-          - gsk4
-          - gtk4
+          - { name: "gtk4", is_macros_crate: false }
+          - { name: "gdk4", is_macros_crate: false }
+          - { name: "gsk4", is_macros_crate: false }
+          - { name: "gdk4-x11", is_macros_crate: false }
+          - { name: "gdk4-wayland", is_macros_crate: false }
+          - { name: "gtk4-macros", is_macros_crate: true }
     steps:
       - uses: actions/checkout@v2
       - uses: actions/checkout@v2
@@ -110,33 +112,21 @@ jobs:
           path: checker
       - working-directory: checker
         run: cargo build --release
-      - run: cargo run -- ../${{matrix.crate}}
+      - run: cargo run -- ../${{matrix.crate.name}}
         working-directory: checker
-      - run: cargo run -- ../${{matrix.crate}}/sys
+        if: ${{ ! matrix.crate.is_macros_crate }}
+      - run: cargo run -- ../${{matrix.crate.name}}/sys
         working-directory: checker
-      - run: ./check_init_asserts ../${{matrix.crate}}
+        if: ${{ ! matrix.crate.is_macros_crate }}
+      - run: ./check_init_asserts ../${{matrix.crate.name}}
         working-directory: checker
+        if: ${{ ! matrix.crate.is_macros_crate }}
+      - run: cargo run -- --no-manual-traits ../${{matrix.crate.name}}
+        working-directory: checker
+        if: matrix.crate.is_macros_crate
       - name: Check doc aliases
         run: |
-          python3 doc_aliases.py ../${{matrix.crate}}
+          python3 doc_aliases.py ../${{matrix.crate.name}}
           cd .. && git diff --exit-code
         working-directory: checker
-
-  checker-macros:
-    name: gtk-rs macro checker
-    runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        crate:
-          - gtk4-macros
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/checkout@v2
-        with:
-          repository: gtk-rs/checker
-          ref: master
-          path: checker
-      - working-directory: checker
-        run: cargo build --release
-      - run: cargo run -- --no-manual-traits ../${{matrix.crate}}
-        working-directory: checker
+        if: ${{ ! matrix.crate.is_macros_crate }}
