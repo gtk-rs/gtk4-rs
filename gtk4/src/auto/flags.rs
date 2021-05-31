@@ -11,10 +11,15 @@ use glib::Type;
 use std::fmt;
 
 bitflags! {
+    #[doc(alias = "GtkApplicationInhibitFlags")]
     pub struct ApplicationInhibitFlags: u32 {
+        #[doc(alias = "GTK_APPLICATION_INHIBIT_LOGOUT")]
         const LOGOUT = 1;
+        #[doc(alias = "GTK_APPLICATION_INHIBIT_SWITCH")]
         const SWITCH = 2;
+        #[doc(alias = "GTK_APPLICATION_INHIBIT_SUSPEND")]
         const SUSPEND = 4;
+        #[doc(alias = "GTK_APPLICATION_INHIBIT_IDLE")]
         const IDLE = 8;
     }
 }
@@ -76,7 +81,9 @@ impl ToValue for ApplicationInhibitFlags {
 }
 
 bitflags! {
+    #[doc(alias = "GtkBuilderClosureFlags")]
     pub struct BuilderClosureFlags: u32 {
+        #[doc(alias = "GTK_BUILDER_CLOSURE_SWAPPED")]
         const SWAPPED = 1;
     }
 }
@@ -138,13 +145,21 @@ impl ToValue for BuilderClosureFlags {
 }
 
 bitflags! {
+    #[doc(alias = "GtkCellRendererState")]
     pub struct CellRendererState: u32 {
+        #[doc(alias = "GTK_CELL_RENDERER_SELECTED")]
         const SELECTED = 1;
+        #[doc(alias = "GTK_CELL_RENDERER_PRELIT")]
         const PRELIT = 2;
+        #[doc(alias = "GTK_CELL_RENDERER_INSENSITIVE")]
         const INSENSITIVE = 4;
+        #[doc(alias = "GTK_CELL_RENDERER_SORTED")]
         const SORTED = 8;
+        #[doc(alias = "GTK_CELL_RENDERER_FOCUSED")]
         const FOCUSED = 16;
+        #[doc(alias = "GTK_CELL_RENDERER_EXPANDABLE")]
         const EXPANDABLE = 32;
+        #[doc(alias = "GTK_CELL_RENDERER_EXPANDED")]
         const EXPANDED = 64;
     }
 }
@@ -206,24 +221,43 @@ impl ToValue for CellRendererState {
 }
 
 bitflags! {
+    #[doc(alias = "GtkDebugFlags")]
     pub struct DebugFlags: u32 {
+        #[doc(alias = "GTK_DEBUG_TEXT")]
         const TEXT = 1;
+        #[doc(alias = "GTK_DEBUG_TREE")]
         const TREE = 2;
+        #[doc(alias = "GTK_DEBUG_KEYBINDINGS")]
         const KEYBINDINGS = 4;
+        #[doc(alias = "GTK_DEBUG_MODULES")]
         const MODULES = 8;
+        #[doc(alias = "GTK_DEBUG_GEOMETRY")]
         const GEOMETRY = 16;
+        #[doc(alias = "GTK_DEBUG_ICONTHEME")]
         const ICONTHEME = 32;
+        #[doc(alias = "GTK_DEBUG_PRINTING")]
         const PRINTING = 64;
+        #[doc(alias = "GTK_DEBUG_BUILDER")]
         const BUILDER = 128;
+        #[doc(alias = "GTK_DEBUG_SIZE_REQUEST")]
         const SIZE_REQUEST = 256;
+        #[doc(alias = "GTK_DEBUG_NO_CSS_CACHE")]
         const NO_CSS_CACHE = 512;
+        #[doc(alias = "GTK_DEBUG_INTERACTIVE")]
         const INTERACTIVE = 1024;
+        #[doc(alias = "GTK_DEBUG_TOUCHSCREEN")]
         const TOUCHSCREEN = 2048;
+        #[doc(alias = "GTK_DEBUG_ACTIONS")]
         const ACTIONS = 4096;
+        #[doc(alias = "GTK_DEBUG_LAYOUT")]
         const LAYOUT = 8192;
+        #[doc(alias = "GTK_DEBUG_SNAPSHOT")]
         const SNAPSHOT = 16384;
+        #[doc(alias = "GTK_DEBUG_CONSTRAINTS")]
         const CONSTRAINTS = 32768;
+        #[doc(alias = "GTK_DEBUG_BUILDER_OBJECTS")]
         const BUILDER_OBJECTS = 65536;
+        #[doc(alias = "GTK_DEBUG_A11Y")]
         const A11Y = 131072;
     }
 }
@@ -285,9 +319,13 @@ impl ToValue for DebugFlags {
 }
 
 bitflags! {
+    #[doc(alias = "GtkDialogFlags")]
     pub struct DialogFlags: u32 {
+        #[doc(alias = "GTK_DIALOG_MODAL")]
         const MODAL = 1;
+        #[doc(alias = "GTK_DIALOG_DESTROY_WITH_PARENT")]
         const DESTROY_WITH_PARENT = 2;
+        #[doc(alias = "GTK_DIALOG_USE_HEADER_BAR")]
         const USE_HEADER_BAR = 4;
     }
 }
@@ -349,12 +387,19 @@ impl ToValue for DialogFlags {
 }
 
 bitflags! {
+    #[doc(alias = "GtkEventControllerScrollFlags")]
     pub struct EventControllerScrollFlags: u32 {
+        #[doc(alias = "GTK_EVENT_CONTROLLER_SCROLL_NONE")]
         const NONE = 0;
+        #[doc(alias = "GTK_EVENT_CONTROLLER_SCROLL_VERTICAL")]
         const VERTICAL = 1;
+        #[doc(alias = "GTK_EVENT_CONTROLLER_SCROLL_HORIZONTAL")]
         const HORIZONTAL = 2;
+        #[doc(alias = "GTK_EVENT_CONTROLLER_SCROLL_DISCRETE")]
         const DISCRETE = 4;
+        #[doc(alias = "GTK_EVENT_CONTROLLER_SCROLL_KINETIC")]
         const KINETIC = 8;
+        #[doc(alias = "GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES")]
         const BOTH_AXES = 3;
     }
 }
@@ -416,11 +461,17 @@ impl ToValue for EventControllerScrollFlags {
 }
 
 bitflags! {
+    #[doc(alias = "GtkFontChooserLevel")]
     pub struct FontChooserLevel: u32 {
+        #[doc(alias = "GTK_FONT_CHOOSER_LEVEL_FAMILY")]
         const FAMILY = 0;
+        #[doc(alias = "GTK_FONT_CHOOSER_LEVEL_STYLE")]
         const STYLE = 1;
+        #[doc(alias = "GTK_FONT_CHOOSER_LEVEL_SIZE")]
         const SIZE = 2;
+        #[doc(alias = "GTK_FONT_CHOOSER_LEVEL_VARIATIONS")]
         const VARIATIONS = 4;
+        #[doc(alias = "GTK_FONT_CHOOSER_LEVEL_FEATURES")]
         const FEATURES = 8;
     }
 }
@@ -482,9 +533,13 @@ impl ToValue for FontChooserLevel {
 }
 
 bitflags! {
+    #[doc(alias = "GtkIconLookupFlags")]
     pub struct IconLookupFlags: u32 {
+        #[doc(alias = "GTK_ICON_LOOKUP_FORCE_REGULAR")]
         const FORCE_REGULAR = 1;
+        #[doc(alias = "GTK_ICON_LOOKUP_FORCE_SYMBOLIC")]
         const FORCE_SYMBOLIC = 2;
+        #[doc(alias = "GTK_ICON_LOOKUP_PRELOAD")]
         const PRELOAD = 4;
     }
 }
@@ -546,19 +601,33 @@ impl ToValue for IconLookupFlags {
 }
 
 bitflags! {
+    #[doc(alias = "GtkInputHints")]
     pub struct InputHints: u32 {
+        #[doc(alias = "GTK_INPUT_HINT_NONE")]
         const NONE = 0;
+        #[doc(alias = "GTK_INPUT_HINT_SPELLCHECK")]
         const SPELLCHECK = 1;
+        #[doc(alias = "GTK_INPUT_HINT_NO_SPELLCHECK")]
         const NO_SPELLCHECK = 2;
+        #[doc(alias = "GTK_INPUT_HINT_WORD_COMPLETION")]
         const WORD_COMPLETION = 4;
+        #[doc(alias = "GTK_INPUT_HINT_LOWERCASE")]
         const LOWERCASE = 8;
+        #[doc(alias = "GTK_INPUT_HINT_UPPERCASE_CHARS")]
         const UPPERCASE_CHARS = 16;
+        #[doc(alias = "GTK_INPUT_HINT_UPPERCASE_WORDS")]
         const UPPERCASE_WORDS = 32;
+        #[doc(alias = "GTK_INPUT_HINT_UPPERCASE_SENTENCES")]
         const UPPERCASE_SENTENCES = 64;
+        #[doc(alias = "GTK_INPUT_HINT_INHIBIT_OSK")]
         const INHIBIT_OSK = 128;
+        #[doc(alias = "GTK_INPUT_HINT_VERTICAL_WRITING")]
         const VERTICAL_WRITING = 256;
+        #[doc(alias = "GTK_INPUT_HINT_EMOJI")]
         const EMOJI = 512;
+        #[doc(alias = "GTK_INPUT_HINT_NO_EMOJI")]
         const NO_EMOJI = 1024;
+        #[doc(alias = "GTK_INPUT_HINT_PRIVATE")]
         const PRIVATE = 2048;
     }
 }
@@ -620,9 +689,13 @@ impl ToValue for InputHints {
 }
 
 bitflags! {
+    #[doc(alias = "GtkPickFlags")]
     pub struct PickFlags: u32 {
+        #[doc(alias = "GTK_PICK_DEFAULT")]
         const DEFAULT = 0;
+        #[doc(alias = "GTK_PICK_INSENSITIVE")]
         const INSENSITIVE = 1;
+        #[doc(alias = "GTK_PICK_NON_TARGETABLE")]
         const NON_TARGETABLE = 2;
     }
 }
@@ -684,7 +757,9 @@ impl ToValue for PickFlags {
 }
 
 bitflags! {
+    #[doc(alias = "GtkPopoverMenuFlags")]
     pub struct PopoverMenuFlags: u32 {
+        #[doc(alias = "GTK_POPOVER_MENU_NESTED")]
         const NESTED = 1;
     }
 }
@@ -746,7 +821,9 @@ impl ToValue for PopoverMenuFlags {
 }
 
 bitflags! {
+    #[doc(alias = "GtkShortcutActionFlags")]
     pub struct ShortcutActionFlags: u32 {
+        #[doc(alias = "GTK_SHORTCUT_ACTION_EXCLUSIVE")]
         const EXCLUSIVE = 1;
     }
 }
@@ -808,22 +885,39 @@ impl ToValue for ShortcutActionFlags {
 }
 
 bitflags! {
+    #[doc(alias = "GtkStateFlags")]
     pub struct StateFlags: u32 {
+        #[doc(alias = "GTK_STATE_FLAG_NORMAL")]
         const NORMAL = 0;
+        #[doc(alias = "GTK_STATE_FLAG_ACTIVE")]
         const ACTIVE = 1;
+        #[doc(alias = "GTK_STATE_FLAG_PRELIGHT")]
         const PRELIGHT = 2;
+        #[doc(alias = "GTK_STATE_FLAG_SELECTED")]
         const SELECTED = 4;
+        #[doc(alias = "GTK_STATE_FLAG_INSENSITIVE")]
         const INSENSITIVE = 8;
+        #[doc(alias = "GTK_STATE_FLAG_INCONSISTENT")]
         const INCONSISTENT = 16;
+        #[doc(alias = "GTK_STATE_FLAG_FOCUSED")]
         const FOCUSED = 32;
+        #[doc(alias = "GTK_STATE_FLAG_BACKDROP")]
         const BACKDROP = 64;
+        #[doc(alias = "GTK_STATE_FLAG_DIR_LTR")]
         const DIR_LTR = 128;
+        #[doc(alias = "GTK_STATE_FLAG_DIR_RTL")]
         const DIR_RTL = 256;
+        #[doc(alias = "GTK_STATE_FLAG_LINK")]
         const LINK = 512;
+        #[doc(alias = "GTK_STATE_FLAG_VISITED")]
         const VISITED = 1024;
+        #[doc(alias = "GTK_STATE_FLAG_CHECKED")]
         const CHECKED = 2048;
+        #[doc(alias = "GTK_STATE_FLAG_DROP_ACTIVE")]
         const DROP_ACTIVE = 4096;
+        #[doc(alias = "GTK_STATE_FLAG_FOCUS_VISIBLE")]
         const FOCUS_VISIBLE = 8192;
+        #[doc(alias = "GTK_STATE_FLAG_FOCUS_WITHIN")]
         const FOCUS_WITHIN = 16384;
     }
 }
@@ -885,10 +979,15 @@ impl ToValue for StateFlags {
 }
 
 bitflags! {
+    #[doc(alias = "GtkStyleContextPrintFlags")]
     pub struct StyleContextPrintFlags: u32 {
+        #[doc(alias = "GTK_STYLE_CONTEXT_PRINT_NONE")]
         const NONE = 0;
+        #[doc(alias = "GTK_STYLE_CONTEXT_PRINT_RECURSE")]
         const RECURSE = 1;
+        #[doc(alias = "GTK_STYLE_CONTEXT_PRINT_SHOW_STYLE")]
         const SHOW_STYLE = 2;
+        #[doc(alias = "GTK_STYLE_CONTEXT_PRINT_SHOW_CHANGE")]
         const SHOW_CHANGE = 4;
     }
 }
@@ -950,9 +1049,13 @@ impl ToValue for StyleContextPrintFlags {
 }
 
 bitflags! {
+    #[doc(alias = "GtkTextSearchFlags")]
     pub struct TextSearchFlags: u32 {
+        #[doc(alias = "GTK_TEXT_SEARCH_VISIBLE_ONLY")]
         const VISIBLE_ONLY = 1;
+        #[doc(alias = "GTK_TEXT_SEARCH_TEXT_ONLY")]
         const TEXT_ONLY = 2;
+        #[doc(alias = "GTK_TEXT_SEARCH_CASE_INSENSITIVE")]
         const CASE_INSENSITIVE = 4;
     }
 }
@@ -1014,8 +1117,11 @@ impl ToValue for TextSearchFlags {
 }
 
 bitflags! {
+    #[doc(alias = "GtkTreeModelFlags")]
     pub struct TreeModelFlags: u32 {
+        #[doc(alias = "GTK_TREE_MODEL_ITERS_PERSIST")]
         const ITERS_PERSIST = 1;
+        #[doc(alias = "GTK_TREE_MODEL_LIST_ONLY")]
         const LIST_ONLY = 2;
     }
 }
