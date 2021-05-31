@@ -32,16 +32,16 @@
 //! ```no_run
 //! # use gtk4 as gtk;
 //! use gtk::prelude::*;
-//! use gtk::{ApplicationBuilder, ApplicationWindowBuilder};
+//! use gtk::{Application, ApplicationWindow};
 //!
 //! fn main() {
-//!     let app = ApplicationBuilder::new()
+//!     let app = Application::builder()
 //!         .application_id("org.example.HelloWorld")
 //!         .build();
 //!
 //!     app.connect_activate(|app| {
 //!         // We create the main window.
-//!         let win = ApplicationWindowBuilder::new()
+//!         let window = ApplicationWindow::builder()
 //!             .application(app)
 //!             .default_width(320)
 //!             .default_height(200)
@@ -49,7 +49,7 @@
 //!             .build();
 //!
 //!         // Show the window.
-//!         win.show();
+//!         window.show();
 //!     });
 //!
 //!     app.run();
@@ -64,15 +64,15 @@
 //! ```no_run
 //! # use gtk4 as gtk;
 //! use gtk::prelude::*;
-//! use gtk::{ApplicationBuilder, ApplicationWindowBuilder, Button};
+//! use gtk::{Application, ApplicationWindow, Button};
 //!
 //! fn main() {
-//!     let application = ApplicationBuilder::new()
+//!     let application = Application::builder()
 //!         .application_id("com.example.FirstGtkApp")
 //!         .build();
 //!
 //!     application.connect_activate(|app| {
-//!         let window = ApplicationWindowBuilder::new()
+//!         let window = ApplicationWindow::builder()
 //!             .application(app)
 //!             .title("First GTK Program")
 //!             .default_width(350)
