@@ -138,6 +138,8 @@
 <span id="133">133</span>
 <span id="134">134</span>
 <span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -146,6 +148,7 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">application</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">application_window</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">box_</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">buildable</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">builder_scope</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">button</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">cell_area</span>;
@@ -215,6 +218,7 @@
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::application</span>::{<span class="ident">GtkApplicationImpl</span>, <span class="ident">GtkApplicationImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::application_window::ApplicationWindowImpl</span>;
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::box_::BoxImpl</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::buildable</span>::{<span class="ident">BuildableImpl</span>, <span class="ident">BuildableImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::builder_scope</span>::{<span class="ident">BuilderScopeImpl</span>, <span class="ident">BuilderScopeImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::button</span>::{<span class="ident">ButtonImpl</span>, <span class="ident">ButtonImplExt</span>};
     <span class="kw">pub</span> <span class="kw">use</span> <span class="kw">super</span><span class="ident">::cell_area</span>::{<span class="ident">CellAreaClassSubclassExt</span>, <span class="ident">CellAreaImpl</span>, <span class="ident">CellAreaImplExt</span>};
