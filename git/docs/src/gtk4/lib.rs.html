@@ -572,13 +572,13 @@
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STYLE_PROVIDER_PRIORITY_THEME&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STYLE_PROVIDER_PRIORITY_THEME</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ffi::GTK_STYLE_PROVIDER_PRIORITY_THEME</span> <span class="kw">as</span> <span class="ident">u32</span>;
 <span class="doccomment">/// The priority used for style information provided</span>
-<span class="doccomment">/// via `GtkSettings`.</span>
+<span class="doccomment">/// via [`Settings`][crate::Settings].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This priority is higher than `GTK_STYLE_PROVIDER_PRIORITY_THEME`</span>
 <span class="doccomment">/// to let settings override themes.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STYLE_PROVIDER_PRIORITY_SETTINGS&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STYLE_PROVIDER_PRIORITY_SETTINGS</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">ffi::GTK_STYLE_PROVIDER_PRIORITY_SETTINGS</span> <span class="kw">as</span> <span class="ident">u32</span>;
-<span class="doccomment">/// A priority that can be used when adding a `GtkStyleProvider`</span>
+<span class="doccomment">/// A priority that can be used when adding a [`StyleProvider`][crate::StyleProvider]</span>
 <span class="doccomment">/// for application-specific style information.</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STYLE_PROVIDER_PRIORITY_APPLICATION&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">STYLE_PROVIDER_PRIORITY_APPLICATION</span>: <span class="ident">u32</span> <span class="op">=</span>

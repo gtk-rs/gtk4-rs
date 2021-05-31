@@ -428,7 +428,7 @@
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A `GtkBitset` represents a set of unsigned integers.</span>
+    <span class="doccomment">/// A [`Bitset`][crate::Bitset] represents a set of unsigned integers.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Another name for this data structure is &quot;bitmap&quot;.</span>
     <span class="doccomment">///</span>
@@ -436,13 +436,13 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// A bitset allows adding a set of integers and provides support for set operations</span>
     <span class="doccomment">/// like unions, intersections and checks for equality or if a value is contained</span>
-    <span class="doccomment">/// in the set. `GtkBitset` also contains various functions to query metadata about</span>
+    <span class="doccomment">/// in the set. [`Bitset`][crate::Bitset] also contains various functions to query metadata about</span>
     <span class="doccomment">/// the bitset, such as the minimum or maximum values or its size.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The fastest way to iterate values in a bitset is [struct`Gtk.BitsetIter`].</span>
+    <span class="doccomment">/// The fastest way to iterate values in a bitset is [`BitsetIter`][crate::BitsetIter].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The main use case for `GtkBitset` is implementing complex selections for</span>
-    <span class="doccomment">/// [iface`Gtk.SelectionModel`].</span>
+    <span class="doccomment">/// The main use case for [`Bitset`][crate::Bitset] is implementing complex selections for</span>
+    <span class="doccomment">/// [`SelectionModel`][crate::SelectionModel].</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Bitset</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GtkBitset</span><span class="op">&gt;</span>);
 
@@ -568,7 +568,7 @@
     <span class="doccomment">/// It is allowed for `self` and `other` to be the same bitset. The bitset</span>
     <span class="doccomment">/// will be emptied in that case.</span>
     <span class="doccomment">/// ## `other`</span>
-    <span class="doccomment">/// the `GtkBitset` to compute the difference from</span>
+    <span class="doccomment">/// the [`Bitset`][crate::Bitset] to compute the difference from</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_bitset_difference&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">difference</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">Bitset</span>) {
         <span class="kw">unsafe</span> {
@@ -578,7 +578,7 @@
 
     <span class="doccomment">/// Returns [`true`] if `self` and `other` contain the same values.</span>
     <span class="doccomment">/// ## `other`</span>
-    <span class="doccomment">/// another `GtkBitset`</span>
+    <span class="doccomment">/// another [`Bitset`][crate::Bitset]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -679,7 +679,7 @@
     <span class="doccomment">/// It is allowed for `self` and `other` to be the same bitset. Nothing will</span>
     <span class="doccomment">/// happen in that case.</span>
     <span class="doccomment">/// ## `other`</span>
-    <span class="doccomment">/// the `GtkBitset` to intersect with</span>
+    <span class="doccomment">/// the [`Bitset`][crate::Bitset] to intersect with</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_bitset_intersect&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">intersect</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">Bitset</span>) {
         <span class="kw">unsafe</span> {
@@ -815,7 +815,7 @@
     <span class="doccomment">/// It is allowed for `self` and `other` to be the same bitset. The bitset</span>
     <span class="doccomment">/// will be emptied in that case.</span>
     <span class="doccomment">/// ## `other`</span>
-    <span class="doccomment">/// the `GtkBitset` to subtract</span>
+    <span class="doccomment">/// the [`Bitset`][crate::Bitset] to subtract</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_bitset_subtract&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">subtract</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">Bitset</span>) {
         <span class="kw">unsafe</span> {
@@ -830,7 +830,7 @@
     <span class="doccomment">/// It is allowed for `self` and `other` to be the same bitset. Nothing will</span>
     <span class="doccomment">/// happen in that case.</span>
     <span class="doccomment">/// ## `other`</span>
-    <span class="doccomment">/// the `GtkBitset` to union with</span>
+    <span class="doccomment">/// the [`Bitset`][crate::Bitset] to union with</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_bitset_union&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">union</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">Bitset</span>) {
         <span class="kw">unsafe</span> {

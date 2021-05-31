@@ -1805,7 +1805,7 @@
 <span class="kw">use</span> <span class="ident">std::cmp</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// An iterator for the contents of a `GtkTextBuffer`.</span>
+    <span class="doccomment">/// An iterator for the contents of a [`TextBuffer`][crate::TextBuffer].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You may wish to begin by reading the</span>
     <span class="doccomment">/// [text widget conceptual overview](section-text-widget.html),</span>
@@ -1831,7 +1831,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The function is used by language bindings.</span>
     <span class="doccomment">/// ## `other`</span>
-    <span class="doccomment">/// another `GtkTextIter`</span>
+    <span class="doccomment">/// another [`TextIter`][crate::TextIter]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_iter_assign&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">assign</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">other</span>: <span class="kw-2">&amp;</span><span class="ident">TextIter</span>) {
         <span class="kw">unsafe</span> {
@@ -1878,7 +1878,7 @@
         }
     }
 
-    <span class="doccomment">/// Like [`Self::forward_cursor_position()`], but moves backward.</span>
+    <span class="doccomment">/// Like [`forward_cursor_position()`][Self::forward_cursor_position()], but moves backward.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1894,7 +1894,7 @@
 
     <span class="doccomment">/// Moves up to `count` cursor positions.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.TextIter`.forward_cursor_position] for details.</span>
+    <span class="doccomment">/// See [``forward_cursor_position()``][`Self::forward_cursor_position()`] for details.</span>
     <span class="doccomment">/// ## `count`</span>
     <span class="doccomment">/// number of positions to move</span>
     <span class="doccomment">///</span>
@@ -1911,7 +1911,7 @@
         }
     }
 
-    <span class="doccomment">/// Same as [`Self::forward_find_char()`],</span>
+    <span class="doccomment">/// Same as [`forward_find_char()`][Self::forward_find_char()],</span>
     <span class="doccomment">/// but goes backward from `self`.</span>
     <span class="doccomment">/// ## `pred`</span>
     <span class="doccomment">/// function to be called on each character</span>
@@ -1994,9 +1994,9 @@
         }
     }
 
-    <span class="doccomment">/// Same as [`Self::forward_search()`], but moves backward.</span>
+    <span class="doccomment">/// Same as [`forward_search()`][Self::forward_search()], but moves backward.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `match_end` will never be set to a `GtkTextIter` located after `self`,</span>
+    <span class="doccomment">/// `match_end` will never be set to a [`TextIter`][crate::TextIter] located after `self`,</span>
     <span class="doccomment">/// even if there is a possible `match_start` before or at `self`.</span>
     <span class="doccomment">/// ## `str`</span>
     <span class="doccomment">/// search string</span>
@@ -2060,7 +2060,7 @@
         }
     }
 
-    <span class="doccomment">/// Calls [`Self::backward_sentence_start()`] up to `count` times.</span>
+    <span class="doccomment">/// Calls [`backward_sentence_start()`][Self::backward_sentence_start()] up to `count` times.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `count` is negative, moves forward instead of backward.</span>
     <span class="doccomment">/// ## `count`</span>
@@ -2089,7 +2089,7 @@
     <span class="doccomment">/// to the location of the toggle, or the start of the buffer</span>
     <span class="doccomment">/// if no toggle is found.</span>
     <span class="doccomment">/// ## `tag`</span>
-    <span class="doccomment">/// a `GtkTextTag`, or [`None`]</span>
+    <span class="doccomment">/// a [`TextTag`][crate::TextTag], or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2106,7 +2106,7 @@
 
     <span class="doccomment">/// Moves `self` forward to the previous visible cursor position.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.TextIter`.backward_cursor_position] for details.</span>
+    <span class="doccomment">/// See [``backward_cursor_position()``][`Self::backward_cursor_position()`] for details.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2122,7 +2122,7 @@
 
     <span class="doccomment">/// Moves up to `count` visible cursor positions.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.TextIter`.backward_cursor_position] for details.</span>
+    <span class="doccomment">/// See [``backward_cursor_position()``][`Self::backward_cursor_position()`] for details.</span>
     <span class="doccomment">/// ## `count`</span>
     <span class="doccomment">/// number of positions to move</span>
     <span class="doccomment">///</span>
@@ -2207,7 +2207,7 @@
         }
     }
 
-    <span class="doccomment">/// Calls [`Self::backward_visible_word_start()`] up to `count` times.</span>
+    <span class="doccomment">/// Calls [`backward_visible_word_start()`][Self::backward_visible_word_start()] up to `count` times.</span>
     <span class="doccomment">/// ## `count`</span>
     <span class="doccomment">/// number of times to move</span>
     <span class="doccomment">///</span>
@@ -2244,7 +2244,7 @@
         }
     }
 
-    <span class="doccomment">/// Calls [`Self::backward_word_start()`] up to `count` times.</span>
+    <span class="doccomment">/// Calls [`backward_word_start()`][Self::backward_word_start()] up to `count` times.</span>
     <span class="doccomment">/// ## `count`</span>
     <span class="doccomment">/// number of times to move</span>
     <span class="doccomment">///</span>
@@ -2267,7 +2267,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If text inserted at `self` would be editable then the</span>
     <span class="doccomment">/// user should be allowed to insert text at `self`.</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.insert_interactive] uses this function</span>
+    <span class="doccomment">/// [``TextBufferExt::insert_interactive()``][crate::prelude::`TextBufferExt::insert_interactive()`] uses this function</span>
     <span class="doccomment">/// to decide whether insertions are allowed at a given position.</span>
     <span class="doccomment">/// ## `default_editability`</span>
     <span class="doccomment">/// [`true`] if text is editable by default</span>
@@ -2291,7 +2291,7 @@
     <span class="doccomment">/// Ordering is in character offset order, i.e. the first character</span>
     <span class="doccomment">/// in the buffer is less than the second character in the buffer.</span>
     <span class="doccomment">/// ## `rhs`</span>
-    <span class="doccomment">/// another `GtkTextIter`</span>
+    <span class="doccomment">/// another [`TextIter`][crate::TextIter]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2305,14 +2305,14 @@
     <span class="doccomment">/// of text.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Non-editable text is “locked” and can’t be changed by the</span>
-    <span class="doccomment">/// user via [`crate::TextView`]. If no tags applied to this text affect</span>
+    <span class="doccomment">/// user via [`TextView`][crate::TextView]. If no tags applied to this text affect</span>
     <span class="doccomment">/// editability, `default_setting` will be returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You don’t want to use this function to decide whether text can be</span>
     <span class="doccomment">/// inserted at `self`, because for insertion you don’t want to know</span>
     <span class="doccomment">/// whether the char at `self` is inside an editable range, you want to</span>
     <span class="doccomment">/// know whether a new character inserted at `self` would be inside an</span>
-    <span class="doccomment">/// editable range. Use [method`Gtk.TextIter`.can_insert] to handle this</span>
+    <span class="doccomment">/// editable range. Use [``can_insert()``][`Self::can_insert()`] to handle this</span>
     <span class="doccomment">/// case.</span>
     <span class="doccomment">/// ## `default_setting`</span>
     <span class="doccomment">/// [`true`] if text is editable by default</span>
@@ -2370,11 +2370,11 @@
     <span class="doccomment">/// Note that if this function returns [`true`], it means that</span>
     <span class="doccomment">/// `self` is at the end of the tagged range, but that the character</span>
     <span class="doccomment">/// at `self` is outside the tagged range. In other words,</span>
-    <span class="doccomment">/// unlike [method`Gtk.TextIter`.starts_tag], if this function</span>
-    <span class="doccomment">/// returns [`true`], [method`Gtk.TextIter`.has_tag] will return</span>
+    <span class="doccomment">/// unlike [``starts_tag()``][`Self::starts_tag()`], if this function</span>
+    <span class="doccomment">/// returns [`true`], [``has_tag()``][`Self::has_tag()`] will return</span>
     <span class="doccomment">/// [`false`] for the same parameters.</span>
     <span class="doccomment">/// ## `tag`</span>
-    <span class="doccomment">/// a `GtkTextTag`, or [`None`]</span>
+    <span class="doccomment">/// a [`TextTag`][crate::TextTag], or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2408,9 +2408,9 @@
     <span class="doccomment">/// This function is very fast; you can expect it to perform</span>
     <span class="doccomment">/// better than e.g. getting the character offset for each</span>
     <span class="doccomment">/// iterator and comparing the offsets yourself. Also, it’s a</span>
-    <span class="doccomment">/// bit faster than [method`Gtk.TextIter`.compare].</span>
+    <span class="doccomment">/// bit faster than `Gtk::`TextIter::compare()``.</span>
     <span class="doccomment">/// ## `rhs`</span>
-    <span class="doccomment">/// another `GtkTextIter`</span>
+    <span class="doccomment">/// another [`TextIter`][crate::TextIter]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2479,7 +2479,7 @@
     <span class="doccomment">/// the letter then a &quot;combining mark&quot; that causes the accent to be</span>
     <span class="doccomment">/// rendered; so the cursor can’t go between those two characters.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See also the [struct`Pango.LogAttr`] struct and the [func`Pango.break`]</span>
+    <span class="doccomment">/// See also the `Pango::LogAttr` struct and the ``break()``</span>
     <span class="doccomment">/// function.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -2496,7 +2496,7 @@
 
     <span class="doccomment">/// Moves up to `count` cursor positions.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.TextIter`.forward_cursor_position] for details.</span>
+    <span class="doccomment">/// See [``forward_cursor_position()``][`Self::forward_cursor_position()`] for details.</span>
     <span class="doccomment">/// ## `count`</span>
     <span class="doccomment">/// number of positions to move</span>
     <span class="doccomment">///</span>
@@ -2604,7 +2604,7 @@
     <span class="doccomment">/// linear or O(n) operation, so you may wish to use `limit` to avoid</span>
     <span class="doccomment">/// locking up your UI on large buffers.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `match_start` will never be set to a `GtkTextIter` located before `self`,</span>
+    <span class="doccomment">/// `match_start` will never be set to a [`TextIter`][crate::TextIter] located before `self`,</span>
     <span class="doccomment">/// even if there is a possible `match_end` after or at `self`.</span>
     <span class="doccomment">/// ## `str`</span>
     <span class="doccomment">/// a search string</span>
@@ -2668,7 +2668,7 @@
         }
     }
 
-    <span class="doccomment">/// Calls [`Self::forward_sentence_end()`] `count` times.</span>
+    <span class="doccomment">/// Calls [`forward_sentence_end()`][Self::forward_sentence_end()] `count` times.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `count` is negative, moves backward instead of forward.</span>
     <span class="doccomment">/// ## `count`</span>
@@ -2690,7 +2690,7 @@
     <span class="doccomment">/// Moves `self` forward to the “end iterator”, which points</span>
     <span class="doccomment">/// one past the last valid character in the buffer.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`Self::get_char()`] called on the end iterator</span>
+    <span class="doccomment">/// [`char()`][Self::char()] called on the end iterator</span>
     <span class="doccomment">/// returns 0, which is convenient for writing loops.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_iter_forward_to_end&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">forward_to_end</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
@@ -2733,7 +2733,7 @@
     <span class="doccomment">/// the location of the toggle, or to the end of the buffer</span>
     <span class="doccomment">/// if no toggle is found.</span>
     <span class="doccomment">/// ## `tag`</span>
-    <span class="doccomment">/// a `GtkTextTag`, or [`None`]</span>
+    <span class="doccomment">/// a [`TextTag`][crate::TextTag], or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2750,7 +2750,7 @@
 
     <span class="doccomment">/// Moves `self` forward to the next visible cursor position.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.TextIter`.forward_cursor_position] for details.</span>
+    <span class="doccomment">/// See [``forward_cursor_position()``][`Self::forward_cursor_position()`] for details.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2766,7 +2766,7 @@
 
     <span class="doccomment">/// Moves up to `count` visible cursor positions.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.TextIter`.forward_cursor_position] for details.</span>
+    <span class="doccomment">/// See [``forward_cursor_position()``][`Self::forward_cursor_position()`] for details.</span>
     <span class="doccomment">/// ## `count`</span>
     <span class="doccomment">/// number of positions to move</span>
     <span class="doccomment">///</span>
@@ -2848,7 +2848,7 @@
         }
     }
 
-    <span class="doccomment">/// Calls [`Self::forward_visible_word_end()`] up to `count` times.</span>
+    <span class="doccomment">/// Calls [`forward_visible_word_end()`][Self::forward_visible_word_end()] up to `count` times.</span>
     <span class="doccomment">/// ## `count`</span>
     <span class="doccomment">/// number of times to move</span>
     <span class="doccomment">///</span>
@@ -2885,7 +2885,7 @@
         }
     }
 
-    <span class="doccomment">/// Calls [`Self::forward_word_end()`] up to `count` times.</span>
+    <span class="doccomment">/// Calls [`forward_word_end()`][Self::forward_word_end()] up to `count` times.</span>
     <span class="doccomment">/// ## `count`</span>
     <span class="doccomment">/// number of times to move</span>
     <span class="doccomment">///</span>
@@ -2902,7 +2902,7 @@
         }
     }
 
-    <span class="doccomment">/// Returns the `GtkTextBuffer` this iterator is associated with.</span>
+    <span class="doccomment">/// Returns the [`TextBuffer`][crate::TextBuffer] this iterator is associated with.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2976,7 +2976,7 @@
     <span class="doccomment">/// Returns the language in effect at `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If no tags affecting language apply to `self`, the return</span>
-    <span class="doccomment">/// value is identical to that of [func`Gtk.get_default_language`].</span>
+    <span class="doccomment">/// value is identical to that of [``default_language()``][`crate::default_language()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -2989,7 +2989,7 @@
 
     <span class="doccomment">/// Returns the line number containing the iterator.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Lines in a `GtkTextBuffer` are numbered beginning</span>
+    <span class="doccomment">/// Lines in a [`TextBuffer`][crate::TextBuffer] are numbered beginning</span>
     <span class="doccomment">/// with 0 for the first line in the buffer.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -3004,7 +3004,7 @@
     <span class="doccomment">/// Returns the byte index of the iterator, counting</span>
     <span class="doccomment">/// from the start of a newline-terminated line.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Remember that `GtkTextBuffer` encodes text in</span>
+    <span class="doccomment">/// Remember that [`TextBuffer`][crate::TextBuffer] encodes text in</span>
     <span class="doccomment">/// UTF-8, and that characters can require a variable</span>
     <span class="doccomment">/// number of bytes to represent.</span>
     <span class="doccomment">///</span>
@@ -3031,7 +3031,7 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_text_iter_get_line_offset</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Returns a list of all `GtkTextMark` at this location.</span>
+    <span class="doccomment">/// Returns a list of all [`TextMark`][crate::TextMark] at this location.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Because marks are not iterable (they don’t take up any &quot;space&quot;</span>
     <span class="doccomment">/// in the buffer, they are just marks in between iterable locations),</span>
@@ -3042,7 +3042,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  list of `GtkTextMark`</span>
+    <span class="doccomment">///  list of [`TextMark`][crate::TextMark]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_iter_get_marks&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_marks&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">marks</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">TextMark</span><span class="op">&gt;</span> {
@@ -3055,7 +3055,7 @@
 
     <span class="doccomment">/// Returns the character offset of an iterator.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Each character in a `GtkTextBuffer` has an offset,</span>
+    <span class="doccomment">/// Each character in a [`TextBuffer`][crate::TextBuffer] has an offset,</span>
     <span class="doccomment">/// starting with 0 for the first character in the buffer.</span>
     <span class="doccomment">/// Use [method`Gtk`,TextBuffer.get_iter_at_offset] to convert</span>
     <span class="doccomment">/// an offset back into an iterator.</span>
@@ -3114,13 +3114,13 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The highest-priority tags are last.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GtkTextTag`s in the list don’t have a reference added,</span>
+    <span class="doccomment">/// The [`TextTag`][crate::TextTag]s in the list don’t have a reference added,</span>
     <span class="doccomment">/// but you have to free the list itself.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// list of</span>
-    <span class="doccomment">///  `GtkTextTag`</span>
+    <span class="doccomment">///  [`TextTag`][crate::TextTag]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_iter_get_tags&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_tags&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tags</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">TextTag</span><span class="op">&gt;</span> {
@@ -3137,7 +3137,7 @@
     <span class="doccomment">/// contains non-text elements such as images, the character and byte</span>
     <span class="doccomment">/// offsets in the returned string will not correspond to character and</span>
     <span class="doccomment">/// byte offsets in the buffer. If you want offsets to correspond, see</span>
-    <span class="doccomment">/// [method`Gtk.TextIter`.get_slice].</span>
+    <span class="doccomment">/// [``slice()``][`Self::slice()`].</span>
     <span class="doccomment">/// ## `end`</span>
     <span class="doccomment">/// iterator at end of a range</span>
     <span class="doccomment">///</span>
@@ -3155,7 +3155,7 @@
         }
     }
 
-    <span class="doccomment">/// Returns a list of `GtkTextTag` that are toggled on or off at this</span>
+    <span class="doccomment">/// Returns a list of [`TextTag`][crate::TextTag] that are toggled on or off at this</span>
     <span class="doccomment">/// point.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `toggled_on` is [`true`], the list contains tags that are</span>
@@ -3211,9 +3211,9 @@
 
     <span class="doccomment">/// Returns visible text in the given range.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Like [method`Gtk.TextIter`.get_slice], but invisible text</span>
+    <span class="doccomment">/// Like [``slice()``][`Self::slice()`], but invisible text</span>
     <span class="doccomment">/// is not included. Invisible text is usually invisible because</span>
-    <span class="doccomment">/// a `GtkTextTag` with the “invisible” attribute turned on has</span>
+    <span class="doccomment">/// a [`TextTag`][crate::TextTag] with the “invisible” attribute turned on has</span>
     <span class="doccomment">/// been applied to it.</span>
     <span class="doccomment">/// ## `end`</span>
     <span class="doccomment">/// iterator at end of range</span>
@@ -3234,9 +3234,9 @@
 
     <span class="doccomment">/// Returns visible text in the given range.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Like [method`Gtk.TextIter`.get_text], but invisible text</span>
+    <span class="doccomment">/// Like [``text()``][`Self::text()`], but invisible text</span>
     <span class="doccomment">/// is not included. Invisible text is usually invisible because</span>
-    <span class="doccomment">/// a `GtkTextTag` with the “invisible” attribute turned on has</span>
+    <span class="doccomment">/// a [`TextTag`][crate::TextTag] with the “invisible” attribute turned on has</span>
     <span class="doccomment">/// been applied to it.</span>
     <span class="doccomment">/// ## `end`</span>
     <span class="doccomment">/// iterator at end of range</span>
@@ -3259,10 +3259,10 @@
     <span class="doccomment">/// Returns [`true`] if `self` points to a character that is part</span>
     <span class="doccomment">/// of a range tagged with `tag`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See also [method`Gtk.TextIter`.starts_tag] and</span>
-    <span class="doccomment">/// [method`Gtk.TextIter`.ends_tag].</span>
+    <span class="doccomment">/// See also [``starts_tag()``][`Self::starts_tag()`] and</span>
+    <span class="doccomment">/// [``ends_tag()``][`Self::ends_tag()`].</span>
     <span class="doccomment">/// ## `tag`</span>
-    <span class="doccomment">/// a `GtkTextTag`</span>
+    <span class="doccomment">/// a [`TextTag`][crate::TextTag]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -3320,7 +3320,7 @@
     <span class="doccomment">/// Word breaks are determined by Pango and should be correct</span>
     <span class="doccomment">/// for nearly any language.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if [method`Gtk.TextIter`.starts_word] returns [`true`],</span>
+    <span class="doccomment">/// Note that if [``starts_word()``][`Self::starts_word()`] returns [`true`],</span>
     <span class="doccomment">/// then this function returns [`true`] too, since `self` points to</span>
     <span class="doccomment">/// the first character of the word.</span>
     <span class="doccomment">///</span>
@@ -3334,8 +3334,8 @@
 
     <span class="doccomment">/// Determine if `self` is at a cursor position.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.TextIter`.forward_cursor_position] or</span>
-    <span class="doccomment">/// [struct`Pango.LogAttr`] or [func`Pango.break`] for details</span>
+    <span class="doccomment">/// See [``forward_cursor_position()``][`Self::forward_cursor_position()`] or</span>
+    <span class="doccomment">/// `Pango::LogAttr` or ``break()`` for details</span>
     <span class="doccomment">/// on what a cursor position is.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -3349,7 +3349,7 @@
     <span class="doccomment">/// Returns [`true`] if `self` is the end iterator.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This means it is one past the last dereferenceable iterator</span>
-    <span class="doccomment">/// in the buffer. [`Self::is_end()`] is the most efficient</span>
+    <span class="doccomment">/// in the buffer. [`is_end()`][Self::is_end()] is the most efficient</span>
     <span class="doccomment">/// way to check whether an iterator is the end iterator.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -3377,10 +3377,10 @@
     <span class="doccomment">/// Most text buffer functions that take a range call this</span>
     <span class="doccomment">/// automatically on your behalf, so there’s no real reason to</span>
     <span class="doccomment">/// call it yourself in those cases. There are some exceptions,</span>
-    <span class="doccomment">/// such as [method`Gtk.TextIter`.in_range], that expect a</span>
+    <span class="doccomment">/// such as [``in_range()``][`Self::in_range()`], that expect a</span>
     <span class="doccomment">/// pre-sorted range.</span>
     <span class="doccomment">/// ## `second`</span>
-    <span class="doccomment">/// another `GtkTextIter`</span>
+    <span class="doccomment">/// another [`TextIter`][crate::TextIter]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_iter_order&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">order</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">second</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">TextIter</span>) {
         <span class="kw">unsafe</span> {
@@ -3401,7 +3401,7 @@
         }
     }
 
-    <span class="doccomment">/// Same as [`Self::set_line_offset()`], but works with a</span>
+    <span class="doccomment">/// Same as [`set_line_offset()`][Self::set_line_offset()], but works with a</span>
     <span class="doccomment">/// byte index. The given byte index must be at</span>
     <span class="doccomment">/// the start of a character, it can’t be in the middle of a UTF-8</span>
     <span class="doccomment">/// encoded character.</span>
@@ -3418,7 +3418,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The given character offset must be less than or equal to the number</span>
     <span class="doccomment">/// of characters in the line; if equal, `self` moves to the start of the</span>
-    <span class="doccomment">/// next line. See [method`Gtk.TextIter`.set_line_index] if you have a byte</span>
+    <span class="doccomment">/// next line. See [``set_line_index()``][`Self::set_line_index()`] if you have a byte</span>
     <span class="doccomment">/// index rather than a character offset.</span>
     <span class="doccomment">/// ## `char_on_line`</span>
     <span class="doccomment">/// a character offset relative to the start of `self`’s current line</span>
@@ -3442,7 +3442,7 @@
         }
     }
 
-    <span class="doccomment">/// Like [`Self::set_line_index()`], but the index is in visible</span>
+    <span class="doccomment">/// Like [`set_line_index()`][Self::set_line_index()], but the index is in visible</span>
     <span class="doccomment">/// bytes, i.e. text with a tag making it invisible is not counted</span>
     <span class="doccomment">/// in the index.</span>
     <span class="doccomment">/// ## `byte_on_line`</span>
@@ -3454,7 +3454,7 @@
         }
     }
 
-    <span class="doccomment">/// Like [`Self::set_line_offset()`], but the offset is in visible</span>
+    <span class="doccomment">/// Like [`set_line_offset()`][Self::set_line_offset()], but the offset is in visible</span>
     <span class="doccomment">/// characters, i.e. text with a tag making it invisible is not</span>
     <span class="doccomment">/// counted in the offset.</span>
     <span class="doccomment">/// ## `char_on_line`</span>
@@ -3468,9 +3468,9 @@
 
     <span class="doccomment">/// Returns [`true`] if `self` begins a paragraph.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is the case if [method`Gtk.TextIter`.get_line_offset]</span>
+    <span class="doccomment">/// This is the case if [``line_offset()``][`Self::line_offset()`]</span>
     <span class="doccomment">/// would return 0. However this function is potentially more</span>
-    <span class="doccomment">/// efficient than [method`Gtk.TextIter`.get_line_offset], because</span>
+    <span class="doccomment">/// efficient than [``line_offset()``][`Self::line_offset()`], because</span>
     <span class="doccomment">/// it doesn’t have to compute the offset, it just has to see</span>
     <span class="doccomment">/// whether it’s 0.</span>
     <span class="doccomment">///</span>
@@ -3502,11 +3502,11 @@
     <span class="doccomment">/// Note that if this function returns [`true`], it means that</span>
     <span class="doccomment">/// `self` is at the beginning of the tagged range, and that the</span>
     <span class="doccomment">/// character at `self` is inside the tagged range. In other</span>
-    <span class="doccomment">/// words, unlike [method`Gtk.TextIter`.ends_tag], if</span>
-    <span class="doccomment">/// this function returns [`true`], [method`Gtk.TextIter`.has_tag</span>
+    <span class="doccomment">/// words, unlike [``ends_tag()``][`Self::ends_tag()`], if</span>
+    <span class="doccomment">/// this function returns [`true`], [``has_tag()``][`Self::has_tag()`]</span>
     <span class="doccomment">/// will also return [`true`] for the same parameters.</span>
     <span class="doccomment">/// ## `tag`</span>
-    <span class="doccomment">/// a `GtkTextTag`, or [`None`]</span>
+    <span class="doccomment">/// a [`TextTag`][crate::TextTag], or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -3537,10 +3537,10 @@
     <span class="doccomment">/// Gets whether a range with `tag` applied to it begins</span>
     <span class="doccomment">/// or ends at `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is equivalent to ([`Self::starts_tag()`] ||</span>
-    <span class="doccomment">/// [`Self::ends_tag()`])</span>
+    <span class="doccomment">/// This is equivalent to ([`starts_tag()`][Self::starts_tag()] ||</span>
+    <span class="doccomment">/// [`ends_tag()`][Self::ends_tag()])</span>
     <span class="doccomment">/// ## `tag`</span>
-    <span class="doccomment">/// a `GtkTextTag`, or [`None`]</span>
+    <span class="doccomment">/// a [`TextTag`][crate::TextTag], or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

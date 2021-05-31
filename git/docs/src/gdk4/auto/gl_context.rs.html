@@ -417,42 +417,42 @@
 <span class="kw">use</span> <span class="ident">std::ptr</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GdkGLContext` is an object representing a platform-specific</span>
+    <span class="doccomment">/// [`GLContext`][crate::GLContext] is an object representing a platform-specific</span>
     <span class="doccomment">/// OpenGL draw context.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GdkGLContext`s are created for a surface using</span>
-    <span class="doccomment">/// [method`Gdk.Surface`.create_gl_context], and the context will match</span>
+    <span class="doccomment">/// [`GLContext`][crate::GLContext]s are created for a surface using</span>
+    <span class="doccomment">/// [``SurfaceExt::create_gl_context()``][crate::prelude::`SurfaceExt::create_gl_context()`], and the context will match</span>
     <span class="doccomment">/// the the characteristics of the surface.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GdkGLContext` is not tied to any particular normal framebuffer.</span>
+    <span class="doccomment">/// A [`GLContext`][crate::GLContext] is not tied to any particular normal framebuffer.</span>
     <span class="doccomment">/// For instance, it cannot draw to the surface back buffer. The GDK</span>
     <span class="doccomment">/// repaint system is in full control of the painting to that. Instead,</span>
-    <span class="doccomment">/// you can create render buffers or textures and use [func`cairo_draw_from_gl`]</span>
+    <span class="doccomment">/// you can create render buffers or textures and use ``cairo_draw_from_gl()``</span>
     <span class="doccomment">/// in the draw function of your widget to draw them. Then GDK will handle</span>
     <span class="doccomment">/// the integration of your rendering with that of other widgets.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Support for `GdkGLContext` is platform-specific and context creation</span>
+    <span class="doccomment">/// Support for [`GLContext`][crate::GLContext] is platform-specific and context creation</span>
     <span class="doccomment">/// can fail, returning [`None`] context.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GdkGLContext` has to be made &quot;current&quot; in order to start using</span>
+    <span class="doccomment">/// A [`GLContext`][crate::GLContext] has to be made &quot;current&quot; in order to start using</span>
     <span class="doccomment">/// it, otherwise any OpenGL call will be ignored.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## Creating a new OpenGL context</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// In order to create a new `GdkGLContext` instance you need a `GdkSurface`,</span>
+    <span class="doccomment">/// In order to create a new [`GLContext`][crate::GLContext] instance you need a [`Surface`][crate::Surface],</span>
     <span class="doccomment">/// which you typically get during the realize call of a widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GdkGLContext` is not realized until either [method`Gdk.GLContext`.make_current]</span>
-    <span class="doccomment">/// or [method`Gdk.GLContext`.realize] is called. It is possible to specify</span>
+    <span class="doccomment">/// A [`GLContext`][crate::GLContext] is not realized until either [``GLContextExt::make_current()``][crate::prelude::`GLContextExt::make_current()`]</span>
+    <span class="doccomment">/// or [``GLContextExt::realize()``][crate::prelude::`GLContextExt::realize()`] is called. It is possible to specify</span>
     <span class="doccomment">/// details of the GL context like the OpenGL version to be used, or whether</span>
     <span class="doccomment">/// the GL context should have extra state validation enabled after calling</span>
-    <span class="doccomment">/// [method`Gdk.Surface`.create_gl_context] by calling [method`Gdk.GLContext`.realize].</span>
+    <span class="doccomment">/// [``SurfaceExt::create_gl_context()``][crate::prelude::`SurfaceExt::create_gl_context()`] by calling [``GLContextExt::realize()``][crate::prelude::`GLContextExt::realize()`].</span>
     <span class="doccomment">/// If the realization fails you have the option to change the settings of</span>
-    <span class="doccomment">/// the `GdkGLContext` and try again.</span>
+    <span class="doccomment">/// the [`GLContext`][crate::GLContext] and try again.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ## Using a `GLContext`</span>
+    <span class="doccomment">/// ## Using a GdkGLContext</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// You will need to make the `GdkGLContext` the current context before issuing</span>
+    <span class="doccomment">/// You will need to make the [`GLContext`][crate::GLContext] the current context before issuing</span>
     <span class="doccomment">/// OpenGL calls; the system sends OpenGL commands to whichever context is current.</span>
     <span class="doccomment">/// It is possible to have multiple contexts, so you always need to ensure that</span>
     <span class="doccomment">/// the one which you want to draw with is the current one before issuing commands:</span>
@@ -463,15 +463,15 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// You can now perform your drawing using OpenGL commands.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// You can check which `GdkGLContext` is the current one by using</span>
-    <span class="doccomment">/// [func`Gdk.GLContext`.get_current]; you can also unset any `GdkGLContext`</span>
-    <span class="doccomment">/// that is currently set by calling [func`Gdk.GLContext`.clear_current].</span>
+    <span class="doccomment">/// You can check which [`GLContext`][crate::GLContext] is the current one by using</span>
+    <span class="doccomment">/// [``current()``][`Self::current()`]; you can also unset any [`GLContext`][crate::GLContext]</span>
+    <span class="doccomment">/// that is currently set by calling [``clear_current()``][`Self::clear_current()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is an Abstract Base Class, you cannot instantiate it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::GLContextExt`], [`trait@crate::prelude::DrawContextExt`], [`trait@crate::prelude::DrawContextExtManual`]</span>
+    <span class="doccomment">/// [`GLContextExt`][trait@crate::prelude::GLContextExt], [`DrawContextExt`][trait@crate::prelude::DrawContextExt], [`DrawContextExtManual`][trait@crate::prelude::DrawContextExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GLContext</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GdkGLContext</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">DrawContext</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -480,10 +480,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">GLContext</span> {
-    <span class="doccomment">/// Clears the current `GdkGLContext`.</span>
+    <span class="doccomment">/// Clears the current [`GLContext`][crate::GLContext].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Any OpenGL call after this function returns will be ignored</span>
-    <span class="doccomment">/// until [method`Gdk.GLContext`.make_current] is called.</span>
+    <span class="doccomment">/// until [``GLContextExt::make_current()``][crate::prelude::`GLContextExt::make_current()`] is called.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_gl_context_clear_current&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clear_current</span>() {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -492,11 +492,11 @@
         }
     }
 
-    <span class="doccomment">/// Retrieves the current `GdkGLContext`.</span>
+    <span class="doccomment">/// Retrieves the current [`GLContext`][crate::GLContext].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the current `GdkGLContext`, or [`None`]</span>
+    <span class="doccomment">/// the current [`GLContext`][crate::GLContext], or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_gl_context_get_current&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_current&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">current</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GLContext</span><span class="op">&gt;</span> {
@@ -511,11 +511,11 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::GLContext`]</span>
+<span class="doccomment">/// [`GLContext`][struct@crate::GLContext]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">GLContextExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Retrieves whether the context is doing extra validations and runtime checking.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gdk.GLContext`.set_debug_enabled].</span>
+    <span class="doccomment">/// See [``set_debug_enabled()``][`Self::set_debug_enabled()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -526,7 +526,7 @@
 
     <span class="doccomment">/// Retrieves whether the context is forward-compatible.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gdk.GLContext`.set_forward_compatible].</span>
+    <span class="doccomment">/// See [``set_forward_compatible()``][`Self::set_forward_compatible()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -537,7 +537,7 @@
 
     <span class="doccomment">/// Retrieves required OpenGL version.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gdk.GLContext`.set_required_version].</span>
+    <span class="doccomment">/// See [``set_required_version()``][`Self::set_required_version()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -551,11 +551,11 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_required_version&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">required_version</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
 
-    <span class="doccomment">/// Retrieves the `GdkGLContext` that this `self` share data with.</span>
+    <span class="doccomment">/// Retrieves the [`GLContext`][crate::GLContext] that this `self` share data with.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GdkGLContext` or [`None`]</span>
+    <span class="doccomment">/// a [`GLContext`][crate::GLContext] or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_gl_context_get_shared_context&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_shared_context&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">shared_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">GLContext</span><span class="op">&gt;</span>;
@@ -564,7 +564,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if the `GdkGLContext` is using an OpenGL ES profile</span>
+    <span class="doccomment">/// [`true`] if the [`GLContext`][crate::GLContext] is using an OpenGL ES profile</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_gl_context_get_use_es&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_use_es&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">uses_es</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
@@ -585,9 +585,9 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_version&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">version</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
 
-    <span class="doccomment">/// Whether the `GdkGLContext` is in legacy mode or not.</span>
+    <span class="doccomment">/// Whether the [`GLContext`][crate::GLContext] is in legacy mode or not.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GdkGLContext` must be realized before calling this function.</span>
+    <span class="doccomment">/// The [`GLContext`][crate::GLContext] must be realized before calling this function.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When realizing a GL context, GDK will try to use the OpenGL 3.2 core</span>
     <span class="doccomment">/// profile; this profile removes all the OpenGL API that was deprecated</span>
@@ -612,9 +612,9 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_gl_context_make_current&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">make_current</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Realizes the given `GdkGLContext`.</span>
+    <span class="doccomment">/// Realizes the given [`GLContext`][crate::GLContext].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// It is safe to call this function on a realized `GdkGLContext`.</span>
+    <span class="doccomment">/// It is safe to call this function on a realized [`GLContext`][crate::GLContext].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -622,26 +622,26 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_gl_context_realize&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">realize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Sets whether the `GdkGLContext` should perform extra validations and</span>
+    <span class="doccomment">/// Sets whether the [`GLContext`][crate::GLContext] should perform extra validations and</span>
     <span class="doccomment">/// runtime checking.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is useful during development, but has additional overhead.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GdkGLContext` must not be realized or made current prior to</span>
+    <span class="doccomment">/// The [`GLContext`][crate::GLContext] must not be realized or made current prior to</span>
     <span class="doccomment">/// calling this function.</span>
     <span class="doccomment">/// ## `enabled`</span>
     <span class="doccomment">/// whether to enable debugging in the context</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_gl_context_set_debug_enabled&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_debug_enabled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">enabled</span>: <span class="ident">bool</span>);
 
-    <span class="doccomment">/// Sets whether the `GdkGLContext` should be forward-compatible.</span>
+    <span class="doccomment">/// Sets whether the [`GLContext`][crate::GLContext] should be forward-compatible.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Forward-compatible contexts must not support OpenGL functionality that</span>
     <span class="doccomment">/// has been marked as deprecated in the requested version; non-forward</span>
     <span class="doccomment">/// compatible contexts, on the other hand, must support both deprecated and</span>
     <span class="doccomment">/// non deprecated functionality.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GdkGLContext` must not be realized or made current prior to calling</span>
+    <span class="doccomment">/// The [`GLContext`][crate::GLContext] must not be realized or made current prior to calling</span>
     <span class="doccomment">/// this function.</span>
     <span class="doccomment">/// ## `compatible`</span>
     <span class="doccomment">/// whether the context should be forward-compatible</span>
@@ -652,7 +652,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Setting `major` and `minor` to zero will use the default values.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GdkGLContext` must not be realized or made current prior to calling</span>
+    <span class="doccomment">/// The [`GLContext`][crate::GLContext] must not be realized or made current prior to calling</span>
     <span class="doccomment">/// this function.</span>
     <span class="doccomment">/// ## `major`</span>
     <span class="doccomment">/// the major version to request</span>
@@ -671,8 +671,8 @@
     <span class="doccomment">/// underlying GL implementation is OpenGL or OpenGL ES once the `self`</span>
     <span class="doccomment">/// is realized.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// You should check the return value of [method`Gdk.GLContext`.get_use_es]</span>
-    <span class="doccomment">/// after calling [method`Gdk.GLContext`.realize] to decide whether to use</span>
+    <span class="doccomment">/// You should check the return value of [``uses_es()``][`Self::uses_es()`]</span>
+    <span class="doccomment">/// after calling [``realize()``][`Self::realize()`] to decide whether to use</span>
     <span class="doccomment">/// the OpenGL or OpenGL ES API, extensions, or shaders.</span>
     <span class="doccomment">/// ## `use_es`</span>
     <span class="doccomment">/// whether the context should use OpenGL ES instead of OpenGL,</span>

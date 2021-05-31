@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Values that can be passed to the `WidgetClass`.system_setting_changed vfunc."><meta name="keywords" content="rust, rustlang, rust-lang, SystemSetting"><title>SystemSetting in gtk4 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings"></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Values that can be passed to the GtkWidgetClass.system_setting_changed vfunc."><meta name="keywords" content="rust, rustlang, rust-lang, SystemSetting"><title>SystemSetting in gtk4 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings"></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../favicon-16x16.png">
 <link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc enum"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 
@@ -11,21 +11,21 @@ pub enum SystemSetting {
     Display,
     IconTheme,
     // some variants omitted
-}</pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Values that can be passed to the <code>WidgetClass</code>.system_setting_changed
+}</pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Values that can be passed to the GtkWidgetClass.system_setting_changed
 vfunc.</p>
 <p>The values indicate which system setting has changed.
 Widgets may need to drop caches, or react otherwise.</p>
-<p>Most of the values correspond to <code>GtkSettings</code> properties.</p>
+<p>Most of the values correspond to <a href="struct.Settings.html" title="crate::Settings"><code>Settings</code></a> properties.</p>
 <p>More values may be added over time.</p>
 </div></details><h2 id="variants" class="variants small-section-header">
                    Variants (Non-exhaustive)<a href="#variants" class="anchor"></a></h2>
-<details class="rustdoc-toggle non-exhaustive"><summary class="hideme"><span>This enum is marked as non-exhaustive</span></summary><div class="docblock">Non-exhaustive enums could have additional variants added in future. Therefore, when matching against variants of non-exhaustive enums, an extra wildcard arm must be added to account for any future variants.</div></details><div id="variant.Dpi" class="variant small-section-header"><a href="#variant.Dpi" class="anchor field"></a><code>Dpi</code></div><div class="docblock"><p>the [<code>crate::Settings:gtk-xft-dpi</code>] setting has changed</p>
-</div><div id="variant.FontName" class="variant small-section-header"><a href="#variant.FontName" class="anchor field"></a><code>FontName</code></div><div class="docblock"><p>The [<code>crate::Settings:gtk-font-name</code>] setting has changed</p>
+<details class="rustdoc-toggle non-exhaustive"><summary class="hideme"><span>This enum is marked as non-exhaustive</span></summary><div class="docblock">Non-exhaustive enums could have additional variants added in future. Therefore, when matching against variants of non-exhaustive enums, an extra wildcard arm must be added to account for any future variants.</div></details><div id="variant.Dpi" class="variant small-section-header"><a href="#variant.Dpi" class="anchor field"></a><code>Dpi</code></div><div class="docblock"><p>the <code>property::Settings::gtk-xft-dpi</code> setting has changed</p>
+</div><div id="variant.FontName" class="variant small-section-header"><a href="#variant.FontName" class="anchor field"></a><code>FontName</code></div><div class="docblock"><p>The <code>property::Settings::gtk-font-name</code> setting has changed</p>
 </div><div id="variant.FontConfig" class="variant small-section-header"><a href="#variant.FontConfig" class="anchor field"></a><code>FontConfig</code></div><div class="docblock"><p>The font configuration has changed in a way that
 requires text to be redrawn. This can be any of the
-[<code>crate::Settings:gtk-xft-antialias</code>], [<code>crate::Settings:gtk-xft-hinting</code>],
-[<code>crate::Settings:gtk-xft-hintstyle</code>], [<code>crate::Settings:gtk-xft-rgba</code>] or
-[<code>crate::Settings:gtk-fontconfig-timestamp</code>] settings</p>
+<code>property::Settings::gtk-xft-antialias</code>, <code>property::Settings::gtk-xft-hinting</code>,
+<code>property::Settings::gtk-xft-hintstyle</code>, <code>property::Settings::gtk-xft-rgba</code> or
+<code>property::Settings::gtk-fontconfig-timestamp</code> settings</p>
 </div><div id="variant.Display" class="variant small-section-header"><a href="#variant.Display" class="anchor field"></a><code>Display</code></div><div class="docblock"><p>The display has changed</p>
 </div><div id="variant.IconTheme" class="variant small-section-header"><a href="#variant.IconTheme" class="anchor field"></a><code>IconTheme</code></div><div class="docblock"><p>The icon theme has changed in a way that requires
 icons to be looked up again</p>

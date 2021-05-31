@@ -403,7 +403,7 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkSingleSelection` is a `GtkSelectionModel` that allows selecting a single</span>
+    <span class="doccomment">/// [`SingleSelection`][crate::SingleSelection] is a [`SelectionModel`][crate::SelectionModel] that allows selecting a single</span>
     <span class="doccomment">/// item.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the selection is *persistent* -- if the selected item is removed</span>
@@ -413,7 +413,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`trait@gio::prelude::ListModelExt`], [`trait@crate::prelude::SelectionModelExt`]</span>
+    <span class="doccomment">/// [`trait@glib::ObjectExt`], [`trait@gio::prelude::ListModelExt`], [`SelectionModelExt`][trait@crate::prelude::SelectionModelExt]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SingleSelection</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkSingleSelection</span>, <span class="ident">ffi::GtkSingleSelectionClass</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">gio::ListModel</span>, <span class="ident">SelectionModel</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -428,7 +428,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkSingleSelection`</span>
+    <span class="doccomment">/// a new [`SingleSelection`][crate::SingleSelection]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_single_selection_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::ListModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">model</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SingleSelection</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -447,7 +447,7 @@
     }
 
     <span class="doccomment">/// Checks if autoselect has been enabled or disabled via</span>
-    <span class="doccomment">/// [`Self::set_autoselect()`].</span>
+    <span class="doccomment">/// [`set_autoselect()`][Self::set_autoselect()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -462,7 +462,7 @@
         }
     }
 
-    <span class="doccomment">/// If [`true`], [`crate::SelectionModel::unselect_item()`] is supported and allows</span>
+    <span class="doccomment">/// If [`true`], [`SelectionModelExt::unselect_item()`][crate::prelude::SelectionModelExt::unselect_item()] is supported and allows</span>
     <span class="doccomment">/// unselecting the selected item.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -534,9 +534,9 @@
     }
 
     <span class="doccomment">/// If [`true`], unselecting the current item via</span>
-    <span class="doccomment">/// [`crate::SelectionModel::unselect_item()`] is supported.</span>
+    <span class="doccomment">/// [`SelectionModelExt::unselect_item()`][crate::prelude::SelectionModelExt::unselect_item()] is supported.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that setting [property`Gtk.SingleSelection`:autoselect] will</span>
+    <span class="doccomment">/// Note that setting `property::SingleSelection::autoselect` will</span>
     <span class="doccomment">/// cause unselecting to not work, so it practically makes no sense</span>
     <span class="doccomment">/// to set both at the same time the same time.</span>
     <span class="doccomment">/// ## `can_unselect`</span>
@@ -570,7 +570,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the list does not have an item at `position` or</span>
     <span class="doccomment">/// `GTK_INVALID_LIST_POSITION` is given, the behavior depends on the</span>
-    <span class="doccomment">/// value of the [property`Gtk.SingleSelection`:autoselect] property:</span>
+    <span class="doccomment">/// value of the `property::SingleSelection::autoselect` property:</span>
     <span class="doccomment">/// If it is set, no change will occur and the old item will stay</span>
     <span class="doccomment">/// selected. If it is unset, the selection will be unset and no item</span>
     <span class="doccomment">/// will be selected.</span>

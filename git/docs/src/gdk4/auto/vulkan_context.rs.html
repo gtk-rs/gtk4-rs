@@ -87,21 +87,21 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GdkVulkanContext` is an object representing the platform-specific</span>
+    <span class="doccomment">/// [`VulkanContext`][crate::VulkanContext] is an object representing the platform-specific</span>
     <span class="doccomment">/// Vulkan draw context.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GdkVulkanContext`s are created for a surface using</span>
-    <span class="doccomment">/// [method`Gdk.Surface`.create_vulkan_context], and the context will match</span>
+    <span class="doccomment">/// [`VulkanContext`][crate::VulkanContext]s are created for a surface using</span>
+    <span class="doccomment">/// [``SurfaceExt::create_vulkan_context()``][crate::prelude::`SurfaceExt::create_vulkan_context()`], and the context will match</span>
     <span class="doccomment">/// the the characteristics of the surface.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Support for `GdkVulkanContext` is platform-specific and context creation</span>
+    <span class="doccomment">/// Support for [`VulkanContext`][crate::VulkanContext] is platform-specific and context creation</span>
     <span class="doccomment">/// can fail, returning [`None`] context.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is an Abstract Base Class, you cannot instantiate it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::DrawContextExt`], [`trait@crate::prelude::DrawContextExtManual`]</span>
+    <span class="doccomment">/// [`DrawContextExt`][trait@crate::prelude::DrawContextExt], [`DrawContextExtManual`][trait@crate::prelude::DrawContextExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">VulkanContext</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GdkVulkanContext</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">DrawContext</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {

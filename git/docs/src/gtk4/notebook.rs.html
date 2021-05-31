@@ -375,9 +375,9 @@
 <span class="kw">impl</span> <span class="ident">Notebook</span> {
     <span class="doccomment">/// Appends a page to `self`.</span>
     <span class="doccomment">/// ## `child`</span>
-    <span class="doccomment">/// the `GtkWidget` to use as the contents of the page</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] to use as the contents of the page</span>
     <span class="doccomment">/// ## `tab_label`</span>
-    <span class="doccomment">/// the `GtkWidget` to be used as the label</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] to be used as the label</span>
     <span class="doccomment">///  for the page, or [`None`] to use the default label, “page N”</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -404,16 +404,16 @@
     <span class="doccomment">/// Appends a page to `self`, specifying the widget to use as the</span>
     <span class="doccomment">/// label in the popup menu.</span>
     <span class="doccomment">/// ## `child`</span>
-    <span class="doccomment">/// the `GtkWidget` to use as the contents of the page</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] to use as the contents of the page</span>
     <span class="doccomment">/// ## `tab_label`</span>
-    <span class="doccomment">/// the `GtkWidget` to be used as the label</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] to be used as the label</span>
     <span class="doccomment">///  for the page, or [`None`] to use the default label, “page N”</span>
     <span class="doccomment">/// ## `menu_label`</span>
     <span class="doccomment">/// the widget to use as a label for the</span>
     <span class="doccomment">///  page-switch menu, if that is enabled. If [`None`], and `tab_label`</span>
-    <span class="doccomment">///  is a [`crate::Label`] or [`None`], then the menu label will be a newly</span>
+    <span class="doccomment">///  is a [`Label`][crate::Label] or [`None`], then the menu label will be a newly</span>
     <span class="doccomment">///  created label with the same text as `tab_label`; if `tab_label`</span>
-    <span class="doccomment">///  is not a `GtkLabel`, `menu_label` must be specified if the</span>
+    <span class="doccomment">///  is not a [`Label`][crate::Label], `menu_label` must be specified if the</span>
     <span class="doccomment">///  page-switch menu is to be used.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -501,9 +501,9 @@
 
     <span class="doccomment">/// Insert a page into `self` at the given position.</span>
     <span class="doccomment">/// ## `child`</span>
-    <span class="doccomment">/// the `GtkWidget` to use as the contents of the page</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] to use as the contents of the page</span>
     <span class="doccomment">/// ## `tab_label`</span>
-    <span class="doccomment">/// the `GtkWidget` to be used as the label</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] to be used as the label</span>
     <span class="doccomment">///  for the page, or [`None`] to use the default label, “page N”</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// the index (starting at 0) at which to insert the page,</span>
@@ -534,16 +534,16 @@
     <span class="doccomment">/// Insert a page into `self` at the given position, specifying</span>
     <span class="doccomment">/// the widget to use as the label in the popup menu.</span>
     <span class="doccomment">/// ## `child`</span>
-    <span class="doccomment">/// the `GtkWidget` to use as the contents of the page</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] to use as the contents of the page</span>
     <span class="doccomment">/// ## `tab_label`</span>
-    <span class="doccomment">/// the `GtkWidget` to be used as the label</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] to be used as the label</span>
     <span class="doccomment">///  for the page, or [`None`] to use the default label, “page N”</span>
     <span class="doccomment">/// ## `menu_label`</span>
     <span class="doccomment">/// the widget to use as a label for the</span>
     <span class="doccomment">///  page-switch menu, if that is enabled. If [`None`], and `tab_label`</span>
-    <span class="doccomment">///  is a [`crate::Label`] or [`None`], then the menu label will be a newly</span>
+    <span class="doccomment">///  is a [`Label`][crate::Label] or [`None`], then the menu label will be a newly</span>
     <span class="doccomment">///  created label with the same text as `tab_label`; if `tab_label`</span>
-    <span class="doccomment">///  is not a [`crate::Label`], `menu_label` must be specified if the</span>
+    <span class="doccomment">///  is not a [`Label`][crate::Label], `menu_label` must be specified if the</span>
     <span class="doccomment">///  page-switch menu is to be used.</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// the index (starting at 0) at which to insert the page,</span>
@@ -581,7 +581,7 @@
     <span class="doccomment">/// Finds the index of the page which contains the given child</span>
     <span class="doccomment">/// widget.</span>
     <span class="doccomment">/// ## `child`</span>
-    <span class="doccomment">/// a `GtkWidget`</span>
+    <span class="doccomment">/// a [`Widget`][crate::Widget]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -601,9 +601,9 @@
     }
     <span class="doccomment">/// Prepends a page to `self`.</span>
     <span class="doccomment">/// ## `child`</span>
-    <span class="doccomment">/// the `GtkWidget` to use as the contents of the page</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] to use as the contents of the page</span>
     <span class="doccomment">/// ## `tab_label`</span>
-    <span class="doccomment">/// the [`crate::Widget`] to be used as the label</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] to be used as the label</span>
     <span class="doccomment">///  for the page, or [`None`] to use the default label, “page N”</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -630,16 +630,16 @@
     <span class="doccomment">/// Prepends a page to `self`, specifying the widget to use as the</span>
     <span class="doccomment">/// label in the popup menu.</span>
     <span class="doccomment">/// ## `child`</span>
-    <span class="doccomment">/// the `GtkWidget` to use as the contents of the page</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] to use as the contents of the page</span>
     <span class="doccomment">/// ## `tab_label`</span>
-    <span class="doccomment">/// the `GtkWidget` to be used as the label</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] to be used as the label</span>
     <span class="doccomment">///  for the page, or [`None`] to use the default label, “page N”</span>
     <span class="doccomment">/// ## `menu_label`</span>
     <span class="doccomment">/// the widget to use as a label for the</span>
     <span class="doccomment">///  page-switch menu, if that is enabled. If [`None`], and `tab_label`</span>
-    <span class="doccomment">///  is a [`crate::Label`] or [`None`], then the menu label will be a newly</span>
+    <span class="doccomment">///  is a [`Label`][crate::Label] or [`None`], then the menu label will be a newly</span>
     <span class="doccomment">///  created label with the same text as `tab_label`; if `tab_label`</span>
-    <span class="doccomment">///  is not a [`crate::Label`], `menu_label` must be specified if the</span>
+    <span class="doccomment">///  is not a [`Label`][crate::Label], `menu_label` must be specified if the</span>
     <span class="doccomment">///  page-switch menu is to be used.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -707,7 +707,7 @@
 
     <span class="doccomment">/// Switches to the page number `page_num`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that due to historical reasons, `Notebook` refuses</span>
+    <span class="doccomment">/// Note that due to historical reasons, GtkNotebook refuses</span>
     <span class="doccomment">/// to switch to a page unless the child widget is visible.</span>
     <span class="doccomment">/// Therefore, it is recommended to show child widgets before</span>
     <span class="doccomment">/// adding them to a notebook.</span>

@@ -122,9 +122,9 @@
     <span class="doccomment">/// The types of `self` and `trigger2` are `gconstpointer` only to allow</span>
     <span class="doccomment">/// use of this function as a `GCompareFunc`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// They must each be a `GtkShortcutTrigger`.</span>
+    <span class="doccomment">/// They must each be a [`ShortcutTrigger`][crate::ShortcutTrigger].</span>
     <span class="doccomment">/// ## `trigger2`</span>
-    <span class="doccomment">/// a `GtkShortcutTrigger`</span>
+    <span class="doccomment">/// a [`ShortcutTrigger`][crate::ShortcutTrigger]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -137,9 +137,9 @@
     <span class="doccomment">/// Checks if `self` and `trigger2` trigger under the same conditions.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The types of `one` and `two` are `gconstpointer` only to allow use of this</span>
-    <span class="doccomment">/// function with [`crate::glib::HashTable`]. They must each be a `GtkShortcutTrigger`.</span>
+    <span class="doccomment">/// function with `GHashTable`. They must each be a [`ShortcutTrigger`][crate::ShortcutTrigger].</span>
     <span class="doccomment">/// ## `trigger2`</span>
-    <span class="doccomment">/// a `GtkShortcutTrigger`</span>
+    <span class="doccomment">/// a [`ShortcutTrigger`][crate::ShortcutTrigger]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -147,7 +147,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_shortcut_trigger_equal&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">equal</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ShortcutTrigger</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">trigger2</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Generates a hash value for a `GtkShortcutTrigger`.</span>
+    <span class="doccomment">/// Generates a hash value for a [`ShortcutTrigger`][crate::ShortcutTrigger].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The output of this function is guaranteed to be the same for a given</span>
     <span class="doccomment">/// value only per-process. It may change between different processor</span>
@@ -155,7 +155,7 @@
     <span class="doccomment">/// function as a basis for building protocols or file formats.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The types of `self` is `gconstpointer` only to allow use of this</span>
-    <span class="doccomment">/// function with [`crate::glib::HashTable`]. They must each be a `GtkShortcutTrigger`.</span>
+    <span class="doccomment">/// function with `GHashTable`. They must each be a [`ShortcutTrigger`][crate::ShortcutTrigger].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

@@ -198,14 +198,14 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkGestureRotate` is a `GtkGesture` for 2-finger rotations.</span>
+    <span class="doccomment">/// [`GestureRotate`][crate::GestureRotate] is a [`Gesture`][crate::Gesture] for 2-finger rotations.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Whenever the angle between both handled sequences changes, the</span>
-    <span class="doccomment">/// [signal`Gtk.GestureRotate`::angle-changed] signal is emitted.</span>
+    <span class="doccomment">/// `signal::GestureRotate::angle-changed` signal is emitted.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::GestureExt`], [`trait@crate::prelude::EventControllerExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`GestureExt`][trait@crate::prelude::GestureExt], [`EventControllerExt`][trait@crate::prelude::EventControllerExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GestureRotate</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkGestureRotate</span>, <span class="ident">ffi::GtkGestureRotateClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Gesture</span>, <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -214,12 +214,12 @@
 }
 
 <span class="kw">impl</span> <span class="ident">GestureRotate</span> {
-    <span class="doccomment">/// Returns a newly created `GtkGesture` that recognizes 2-touch</span>
+    <span class="doccomment">/// Returns a newly created [`Gesture`][crate::Gesture] that recognizes 2-touch</span>
     <span class="doccomment">/// rotation gestures.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly created `GtkGestureRotate`</span>
+    <span class="doccomment">/// a newly created [`GestureRotate`][crate::GestureRotate]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_rotate_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GestureRotate</span> {
         <span class="macro">assert_initialized_main_thread!</span>();

@@ -173,9 +173,9 @@
     <span class="doccomment">/// Note that `color` may not be used if the font contains</span>
     <span class="doccomment">/// color glyphs.</span>
     <span class="doccomment">/// ## `font`</span>
-    <span class="doccomment">/// the [`crate::pango::Font`] containing the glyphs</span>
+    <span class="doccomment">/// the [`pango::Font`][crate::pango::Font] containing the glyphs</span>
     <span class="doccomment">/// ## `glyphs`</span>
-    <span class="doccomment">/// the [`crate::pango::GlyphString`] to render</span>
+    <span class="doccomment">/// the [`pango::GlyphString`][crate::pango::GlyphString] to render</span>
     <span class="doccomment">/// ## `color`</span>
     <span class="doccomment">/// the foreground color to render with</span>
     <span class="doccomment">/// ## `offset`</span>
@@ -183,7 +183,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GskRenderNode`</span>
+    <span class="doccomment">/// a new [`RenderNode`][crate::RenderNode]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_text_node_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">pango::Font</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="ident">font</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,

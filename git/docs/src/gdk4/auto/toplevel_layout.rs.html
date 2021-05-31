@@ -231,11 +231,11 @@
 <span class="kw">use</span> <span class="ident">std::mem</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// The `GdkToplevelLayout` struct contains information that</span>
+    <span class="doccomment">/// The [`ToplevelLayout`][crate::ToplevelLayout] struct contains information that</span>
     <span class="doccomment">/// is necessary to present a sovereign window on screen.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GdkToplevelLayout` struct is necessary for using</span>
-    <span class="doccomment">/// [method`Gdk.Toplevel`.present].</span>
+    <span class="doccomment">/// The [`ToplevelLayout`][crate::ToplevelLayout] struct is necessary for using</span>
+    <span class="doccomment">/// [``ToplevelExt::present()``][crate::prelude::`ToplevelExt::present()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Toplevel surfaces are sovereign windows that can be presented</span>
     <span class="doccomment">/// to the user in various states (maximized, on all workspaces,</span>
@@ -253,22 +253,22 @@
 <span class="kw">impl</span> <span class="ident">ToplevelLayout</span> {
     <span class="doccomment">/// Create a toplevel layout description.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Used together with [`crate::Toplevel::present()`] to describe</span>
+    <span class="doccomment">/// Used together with [`ToplevelExt::present()`][crate::prelude::ToplevelExt::present()] to describe</span>
     <span class="doccomment">/// how a toplevel surface should be placed and behave on-screen.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The size is in ”application pixels”, not</span>
-    <span class="doccomment">/// ”device pixels” (see [`crate::prelude::SurfaceExt::get_scale_factor()`]).</span>
+    <span class="doccomment">/// ”device pixels” (see [`SurfaceExt::scale_factor()`][crate::prelude::SurfaceExt::scale_factor()]).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// newly created instance of [`crate::ToplevelLayout`]</span>
+    <span class="doccomment">/// newly created instance of [`ToplevelLayout`][crate::ToplevelLayout]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_toplevel_layout_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ToplevelLayout</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gdk_toplevel_layout_new</span>()) }
     }
 
-    <span class="doccomment">/// Create a new [`crate::ToplevelLayout`] and copy the contents of `self` into it.</span>
+    <span class="doccomment">/// Create a new [`ToplevelLayout`][crate::ToplevelLayout] and copy the contents of `self` into it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -280,7 +280,7 @@
 
     <span class="doccomment">/// Check whether `self` and `other` has identical layout properties.</span>
     <span class="doccomment">/// ## `other`</span>
-    <span class="doccomment">/// another [`crate::ToplevelLayout`]</span>
+    <span class="doccomment">/// another [`ToplevelLayout`][crate::ToplevelLayout]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

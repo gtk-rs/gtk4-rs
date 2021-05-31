@@ -195,9 +195,9 @@
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A `TreeRowReference` tracks model changes so that it always refers to the</span>
-    <span class="doccomment">/// same row (a [`crate::TreePath`] refers to a position, not a fixed row). Create a</span>
-    <span class="doccomment">/// new `TreeRowReference` with [`Self::new()`].</span>
+    <span class="doccomment">/// A GtkTreeRowReference tracks model changes so that it always refers to the</span>
+    <span class="doccomment">/// same row (a [`TreePath`][crate::TreePath] refers to a position, not a fixed row). Create a</span>
+    <span class="doccomment">/// new GtkTreeRowReference with [`new()`][Self::new()].</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TreeRowReference</span>(<span class="ident">Boxed</span><span class="op">&lt;</span><span class="ident">ffi::GtkTreeRowReference</span><span class="op">&gt;</span>);
 
@@ -216,13 +216,13 @@
     <span class="doccomment">/// propagated, and the path is updated appropriately. If</span>
     <span class="doccomment">/// `path` isn’t a valid path in `model`, then [`None`] is returned.</span>
     <span class="doccomment">/// ## `model`</span>
-    <span class="doccomment">/// a [`crate::TreeModel`]</span>
+    <span class="doccomment">/// a [`TreeModel`][crate::TreeModel]</span>
     <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// a valid [`crate::TreePath`]-struct to monitor</span>
+    <span class="doccomment">/// a valid [`TreePath`][crate::TreePath]-struct to monitor</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly allocated [`crate::TreeRowReference`], or [`None`]</span>
+    <span class="doccomment">/// a newly allocated [`TreeRowReference`][crate::TreeRowReference], or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_row_reference_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">model</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreeRowReference</span><span class="op">&gt;</span> {
         <span class="macro">skip_assert_initialized!</span>();
@@ -241,16 +241,16 @@
     <span class="doccomment">/// This reference will keep pointing to the node pointed to</span>
     <span class="doccomment">/// by `path`, so long as it exists. If `path` isn’t a valid</span>
     <span class="doccomment">/// path in `model`, then [`None`] is returned. However, unlike</span>
-    <span class="doccomment">/// references created with [`Self::new()`], it</span>
+    <span class="doccomment">/// references created with [`new()`][Self::new()], it</span>
     <span class="doccomment">/// does not listen to the model for changes. The creator of</span>
     <span class="doccomment">/// the row reference must do this explicitly using</span>
-    <span class="doccomment">/// [`Self::inserted()`], [`Self::deleted()`],</span>
-    <span class="doccomment">/// [`Self::reordered()`].</span>
+    <span class="doccomment">/// [`inserted()`][Self::inserted()], [`deleted()`][Self::deleted()],</span>
+    <span class="doccomment">/// [`reordered()`][Self::reordered()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// These functions must be called exactly once per proxy when the</span>
     <span class="doccomment">/// corresponding signal on the model is emitted. This single call</span>
     <span class="doccomment">/// updates all row references for that proxy. Since built-in GTK</span>
-    <span class="doccomment">/// objects like [`crate::TreeView`] already use this mechanism internally,</span>
+    <span class="doccomment">/// objects like [`TreeView`][crate::TreeView] already use this mechanism internally,</span>
     <span class="doccomment">/// using them as the proxy object will produce unpredictable results.</span>
     <span class="doccomment">/// Further more, passing the same object as `model` and `proxy`</span>
     <span class="doccomment">/// doesn’t work for reasons of internal implementation.</span>
@@ -259,15 +259,15 @@
     <span class="doccomment">/// need to carefully monitor exactly when a row reference updates</span>
     <span class="doccomment">/// itself, and is not generally needed by most applications.</span>
     <span class="doccomment">/// ## `proxy`</span>
-    <span class="doccomment">/// a proxy [`crate::glib::object::Object`]</span>
+    <span class="doccomment">/// a proxy [`glib::Object`][crate::glib::Object]</span>
     <span class="doccomment">/// ## `model`</span>
-    <span class="doccomment">/// a [`crate::TreeModel`]</span>
+    <span class="doccomment">/// a [`TreeModel`][crate::TreeModel]</span>
     <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// a valid [`crate::TreePath`]-struct to monitor</span>
+    <span class="doccomment">/// a valid [`TreePath`][crate::TreePath]-struct to monitor</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly allocated [`crate::TreeRowReference`], or [`None`]</span>
+    <span class="doccomment">/// a newly allocated [`TreeRowReference`][crate::TreeRowReference], or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_row_reference_new_proxy&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_proxy</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">glib::Object</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="ident">proxy</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
@@ -331,10 +331,10 @@
     }
 
     <span class="doccomment">/// Lets a set of row reference created by</span>
-    <span class="doccomment">/// [`Self::new_proxy()`] know that the</span>
-    <span class="doccomment">/// model emitted the [`crate::TreeModel::row-deleted`] signal.</span>
+    <span class="doccomment">/// [`new_proxy()`][Self::new_proxy()] know that the</span>
+    <span class="doccomment">/// model emitted the `signal::TreeModel::row-deleted` signal.</span>
     <span class="doccomment">/// ## `proxy`</span>
-    <span class="doccomment">/// a [`crate::glib::object::Object`]</span>
+    <span class="doccomment">/// a [`glib::Object`][crate::glib::Object]</span>
     <span class="doccomment">/// ## `path`</span>
     <span class="doccomment">/// the path position that was deleted</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_row_reference_deleted&quot;</span>)]</span>
@@ -349,10 +349,10 @@
     }
 
     <span class="doccomment">/// Lets a set of row reference created by</span>
-    <span class="doccomment">/// [`Self::new_proxy()`] know that the</span>
-    <span class="doccomment">/// model emitted the [`crate::TreeModel::row-inserted`] signal.</span>
+    <span class="doccomment">/// [`new_proxy()`][Self::new_proxy()] know that the</span>
+    <span class="doccomment">/// model emitted the `signal::TreeModel::row-inserted` signal.</span>
     <span class="doccomment">/// ## `proxy`</span>
-    <span class="doccomment">/// a [`crate::glib::object::Object`]</span>
+    <span class="doccomment">/// a [`glib::Object`][crate::glib::Object]</span>
     <span class="doccomment">/// ## `path`</span>
     <span class="doccomment">/// the row position that was inserted</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_row_reference_inserted&quot;</span>)]</span>

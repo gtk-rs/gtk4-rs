@@ -136,7 +136,7 @@
 
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 
-<span class="doccomment">/// The `GdkToplevelSize` struct contains information that is useful</span>
+<span class="doccomment">/// The [`ToplevelSize`][crate::ToplevelSize] struct contains information that is useful</span>
 <span class="doccomment">/// to compute the size of a toplevel.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">transparent</span>)]</span>
@@ -178,12 +178,12 @@
     <span class="doccomment">/// Sets the minimum size of the toplevel.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The minimum size corresponds to the limitations the toplevel can be shrunk</span>
-    <span class="doccomment">/// to, without resulting in incorrect painting. A user of a `GdkToplevel` should</span>
+    <span class="doccomment">/// to, without resulting in incorrect painting. A user of a [`Toplevel`][crate::Toplevel] should</span>
     <span class="doccomment">/// calculate these given both the existing size, and the bounds retrieved from</span>
-    <span class="doccomment">/// the `GdkToplevelSize` object.</span>
+    <span class="doccomment">/// the [`ToplevelSize`][crate::ToplevelSize] object.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The minimum size should be within the bounds (see</span>
-    <span class="doccomment">/// [method`Gdk.ToplevelSize`.get_bounds]).</span>
+    <span class="doccomment">/// [``bounds()``][`Self::bounds()`]).</span>
     <span class="doccomment">/// ## `min_width`</span>
     <span class="doccomment">/// the minimum width</span>
     <span class="doccomment">/// ## `min_height`</span>
@@ -224,7 +224,7 @@
     <span class="doccomment">/// Sets the size the toplevel prefers to be resized to.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The size should be within the bounds (see</span>
-    <span class="doccomment">/// [method`Gdk.ToplevelSize`.get_bounds]). The set size should</span>
+    <span class="doccomment">/// [``bounds()``][`Self::bounds()`]). The set size should</span>
     <span class="doccomment">/// be considered as a hint, and should not be assumed to be</span>
     <span class="doccomment">/// respected by the windowing system, or backend.</span>
     <span class="doccomment">/// ## `width`</span>

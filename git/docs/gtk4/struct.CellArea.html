@@ -1,49 +1,49 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="An abstract class for laying out `GtkCellRenderers`"><meta name="keywords" content="rust, rustlang, rust-lang, CellArea"><title>CellArea in gtk4 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings"></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="An abstract class for laying out GtkCellRenderers"><meta name="keywords" content="rust, rustlang, rust-lang, CellArea"><title>CellArea in gtk4 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings"></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../favicon-16x16.png">
 <link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc struct"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 
 <nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../gtk4/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><p class="location">Struct CellArea</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#trait-implementations">Trait Implementations</a><div class="sidebar-links"><a href="#impl-Clone">Clone</a><a href="#impl-Debug">Debug</a><a href="#impl-Display">Display</a><a href="#impl-Eq">Eq</a><a href="#impl-Hash">Hash</a><a href="#impl-IsA%3CBuildable%3E">IsA&lt;Buildable&gt;</a><a href="#impl-IsA%3CCellArea%3E">IsA&lt;CellArea&gt;</a><a href="#impl-IsA%3CCellLayout%3E">IsA&lt;CellLayout&gt;</a><a href="#impl-IsSubclassable%3CT%3E">IsSubclassable&lt;T&gt;</a><a href="#impl-Ord">Ord</a><a href="#impl-ParentClassIs">ParentClassIs</a><a href="#impl-PartialEq%3CT%3E">PartialEq&lt;T&gt;</a><a href="#impl-PartialOrd%3CT%3E">PartialOrd&lt;T&gt;</a><a href="#impl-StaticType">StaticType</a><a href="#impl-StructuralEq">StructuralEq</a></div><a class="sidebar-title" href="#synthetic-implementations">Auto Trait Implementations</a><div class="sidebar-links"><a href="#impl-RefUnwindSafe">RefUnwindSafe</a><a href="#impl-Send">!Send</a><a href="#impl-Sync">!Sync</a><a href="#impl-Unpin">Unpin</a><a href="#impl-UnwindSafe">UnwindSafe</a></div><a class="sidebar-title" href="#blanket-implementations">Blanket Implementations</a><div class="sidebar-links"><a href="#impl-Any">Any</a><a href="#impl-Borrow%3CT%3E">Borrow&lt;T&gt;</a><a href="#impl-BorrowMut%3CT%3E">BorrowMut&lt;T&gt;</a><a href="#impl-CanDowncast%3CSub%3E">CanDowncast&lt;Sub&gt;</a><a href="#impl-Cast">Cast</a><a href="#impl-From%3CT%3E">From&lt;T&gt;</a><a href="#impl-FromValueOptional%3C%27a%3E">FromValueOptional&lt;&#39;a&gt;</a><a href="#impl-Into%3CU%3E">Into&lt;U&gt;</a><a href="#impl-ObjectExt">ObjectExt</a><a href="#impl-ToOwned">ToOwned</a><a href="#impl-ToSendValue">ToSendValue</a><a href="#impl-ToString">ToString</a><a href="#impl-TryFrom%3CU%3E">TryFrom&lt;U&gt;</a><a href="#impl-TryInto%3CU%3E">TryInto&lt;U&gt;</a></div></div><p class="location"><a href="index.html">gtk4</a></p><div id="sidebar-vars" data-name="CellArea" data-ty="struct" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Struct <a href="index.html">gtk4</a>::<wbr><a class="struct" href="">CellArea</a><button id="copy-path" onclick="copy_path(this)"><img src="../clipboard.svg" width="19" height="18" alt="Copy item import"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/gtk4/auto/cell_area.rs.html#29-359" title="goto source code">[src]</a></span></h1><div class="docblock type-decl"><pre class="rust struct">pub struct CellArea(_);</pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>An abstract class for laying out <code>GtkCellRenderers</code></p>
-<p>The <a href="struct.CellArea.html" title="crate::CellArea"><code>crate::CellArea</code></a> is an abstract class for <a href="struct.CellLayout.html" title="crate::CellLayout"><code>crate::CellLayout</code></a> widgets
+                <a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Struct <a href="index.html">gtk4</a>::<wbr><a class="struct" href="">CellArea</a><button id="copy-path" onclick="copy_path(this)"><img src="../clipboard.svg" width="19" height="18" alt="Copy item import"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/gtk4/auto/cell_area.rs.html#29-359" title="goto source code">[src]</a></span></h1><div class="docblock type-decl"><pre class="rust struct">pub struct CellArea(_);</pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>An abstract class for laying out GtkCellRenderers</p>
+<p>The <a href="struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a> is an abstract class for <a href="struct.CellLayout.html" title="crate::CellLayout"><code>CellLayout</code></a> widgets
 (also referred to as “layouting widgets”) to interface with an
 arbitrary number of <code>GtkCellRenderers</code> and interact with the user
-for a given <a href="struct.TreeModel.html" title="crate::TreeModel"><code>crate::TreeModel</code></a> row.</p>
+for a given <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a> row.</p>
 <p>The cell area handles events, focus navigation, drawing and
 size requests and allocations for a given row of data.</p>
-<p>Usually users dont have to interact with the <a href="struct.CellArea.html" title="crate::CellArea"><code>crate::CellArea</code></a> directly
+<p>Usually users dont have to interact with the <a href="struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a> directly
 unless they are implementing a cell-layouting widget themselves.</p>
 <h1 id="requesting-area-sizes" class="section-header"><a href="#requesting-area-sizes">Requesting area sizes</a></h1>
 <p>As outlined in
-[<code>Widget</code>’s geometry management section][geometry-management],
+[GtkWidget’s geometry management section][geometry-management],
 GTK uses a height-for-width
 geometry management system to compute the sizes of widgets and user
-interfaces. <a href="struct.CellArea.html" title="crate::CellArea"><code>crate::CellArea</code></a> uses the same semantics to calculate the
-size of an area for an arbitrary number of <a href="struct.TreeModel.html" title="crate::TreeModel"><code>crate::TreeModel</code></a> rows.</p>
+interfaces. <a href="struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a> uses the same semantics to calculate the
+size of an area for an arbitrary number of <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a> rows.</p>
 <p>When requesting the size of a cell area one needs to calculate
 the size for a handful of rows, and this will be done differently by
-different layouting widgets. For instance a <a href="struct.TreeViewColumn.html" title="crate::TreeViewColumn"><code>crate::TreeViewColumn</code></a>
-always lines up the areas from top to bottom while a <a href="struct.IconView.html" title="crate::IconView"><code>crate::IconView</code></a>
+different layouting widgets. For instance a <a href="struct.TreeViewColumn.html" title="crate::TreeViewColumn"><code>TreeViewColumn</code></a>
+always lines up the areas from top to bottom while a <a href="struct.IconView.html" title="crate::IconView"><code>IconView</code></a>
 on the other hand might enforce that all areas received the same
 width and wrap the areas around, requesting height for more cell
 areas when allocated less width.</p>
 <p>It’s also important for areas to maintain some cell
 alignments with areas rendered for adjacent rows (cells can
 appear “columnized” inside an area even when the size of
-cells are different in each row). For this reason the <a href="struct.CellArea.html" title="crate::CellArea"><code>crate::CellArea</code></a>
-uses a <a href="struct.CellAreaContext.html" title="crate::CellAreaContext"><code>crate::CellAreaContext</code></a> object to store the alignments
+cells are different in each row). For this reason the <a href="struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a>
+uses a <a href="struct.CellAreaContext.html" title="crate::CellAreaContext"><code>CellAreaContext</code></a> object to store the alignments
 and sizes along the way (as well as the overall largest minimum
 and natural size for all the rows which have been calculated
 with the said context).</p>
-<p>The <a href="struct.CellAreaContext.html" title="crate::CellAreaContext"><code>crate::CellAreaContext</code></a> is an opaque object specific to the
-<a href="struct.CellArea.html" title="crate::CellArea"><code>crate::CellArea</code></a> which created it (see <a href="prelude/trait.CellAreaExt.html#tymethod.create_context" title="crate::prelude::CellAreaExt::create_context()"><code>crate::prelude::CellAreaExt::create_context()</code></a>).
+<p>The <a href="struct.CellAreaContext.html" title="crate::CellAreaContext"><code>CellAreaContext</code></a> is an opaque object specific to the
+<a href="struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a> which created it (see <a href="prelude/trait.CellAreaExt.html#tymethod.create_context" title="crate::prelude::CellAreaExt::create_context()"><code>CellAreaExt::create_context()</code></a>).
 The owning cell-layouting widget can create as many contexts as
 it wishes to calculate sizes of rows which should receive the
 same size in at least one orientation (horizontally or vertically),
-However, it’s important that the same <a href="struct.CellAreaContext.html" title="crate::CellAreaContext"><code>crate::CellAreaContext</code></a> which
-was used to request the sizes for a given <a href="struct.TreeModel.html" title="crate::TreeModel"><code>crate::TreeModel</code></a> row be
+However, it’s important that the same <a href="struct.CellAreaContext.html" title="crate::CellAreaContext"><code>CellAreaContext</code></a> which
+was used to request the sizes for a given <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a> row be
 used when rendering or processing events for that row.</p>
 <p>In order to request the width of all the rows at the root level
-of a <a href="struct.TreeModel.html" title="crate::TreeModel"><code>crate::TreeModel</code></a> one would do the following:</p>
+of a <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a> one would do the following:</p>
 <pre><code class="language-C">GtkTreeIter iter;
 int         minimum_width;
 int         natural_width;
@@ -62,16 +62,16 @@ gtk_cell_area_context_get_preferred_width (context, &amp;minimum_width, &amp;nat
 returned minimum and natural width of the area for each row
 unless the cell-layouting object is actually interested in the
 widths of individual rows. The overall width is however stored
-in the accompanying <a href="struct.CellAreaContext.html" title="crate::CellAreaContext"><code>crate::CellAreaContext</code></a> object and can be consulted
+in the accompanying <a href="struct.CellAreaContext.html" title="crate::CellAreaContext"><code>CellAreaContext</code></a> object and can be consulted
 at any time.</p>
-<p>This can be useful since <a href="struct.CellLayout.html" title="crate::CellLayout"><code>crate::CellLayout</code></a> widgets usually have to
+<p>This can be useful since <a href="struct.CellLayout.html" title="crate::CellLayout"><code>CellLayout</code></a> widgets usually have to
 support requesting and rendering rows in treemodels with an
-exceedingly large amount of rows. The <a href="struct.CellLayout.html" title="crate::CellLayout"><code>crate::CellLayout</code></a> widget in
+exceedingly large amount of rows. The <a href="struct.CellLayout.html" title="crate::CellLayout"><code>CellLayout</code></a> widget in
 that case would calculate the required width of the rows in an
 idle or timeout source (see <code>g_timeout_add()</code>) and when the widget
-is requested its actual width in [<code>crate::</code>WidgetClass<code>.measure()</code>]
+is requested its actual width in <code>GtkWidgetClass.measure()</code>
 it can simply consult the width accumulated so far in the
-<a href="struct.CellAreaContext.html" title="crate::CellAreaContext"><code>crate::CellAreaContext</code></a> object.</p>
+<a href="struct.CellAreaContext.html" title="crate::CellAreaContext"><code>CellAreaContext</code></a> object.</p>
 <p>A simple example where rows are rendered from top to bottom and
 take up the full width of the layouting widget would look like:</p>
 <pre><code class="language-C">static void
@@ -91,15 +91,15 @@ foo_get_preferred_width (GtkWidget       *widget,
 row sizes have been calculated (the amount of rows that Foo judged
 was appropriate to request space for in a single timeout iteration)
 before simply returning the amount of space required by the area via
-the <a href="struct.CellAreaContext.html" title="crate::CellAreaContext"><code>crate::CellAreaContext</code></a>.</p>
+the <a href="struct.CellAreaContext.html" title="crate::CellAreaContext"><code>CellAreaContext</code></a>.</p>
 <p>Requesting the height for width (or width for height) of an area is
-a similar task except in this case the <a href="struct.CellAreaContext.html" title="crate::CellAreaContext"><code>crate::CellAreaContext</code></a> does not
+a similar task except in this case the <a href="struct.CellAreaContext.html" title="crate::CellAreaContext"><code>CellAreaContext</code></a> does not
 store the data (actually, it does not know how much space the layouting
 widget plans to allocate it for every row. It’s up to the layouting
 widget to render each row of data with the appropriate height and
-width which was requested by the <a href="struct.CellArea.html" title="crate::CellArea"><code>crate::CellArea</code></a>).</p>
+width which was requested by the <a href="struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a>).</p>
 <p>In order to request the height for width of all the rows at the
-root level of a <a href="struct.TreeModel.html" title="crate::TreeModel"><code>crate::TreeModel</code></a> one would do the following:</p>
+root level of a <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a> one would do the following:</p>
 <pre><code class="language-C">GtkTreeIter iter;
 int         minimum_height;
 int         natural_height;
@@ -135,7 +135,7 @@ one reasonably sized chunk of rows and return that height
 synchronously. The reasoning here is that any layouting widget is
 at least capable of synchronously calculating enough height to fill
 the screen height (or scrolled window height) in response to a single
-call to [<code>crate::</code>WidgetClass<code>.measure()</code>]. Returning
+call to <code>GtkWidgetClass.measure()</code>. Returning
 a perfect height for width that is larger than the screen area is
 inconsequential since after the layouting receives an allocation
 from a scrolled window it simply continues to drive the scrollbar
@@ -144,7 +144,7 @@ that are calculated in the background.</p>
 <h1 id="rendering-areas" class="section-header"><a href="#rendering-areas">Rendering Areas</a></h1>
 <p>Once area sizes have been acquired at least for the rows in the
 visible area of the layouting widget they can be rendered at
-[<code>crate::</code>WidgetClass<code>.snapshot()</code>] time.</p>
+<code>GtkWidgetClass.snapshot()</code> time.</p>
 <p>A crude example of how to render all the rows at the root level
 runs as follows:</p>
 <pre><code class="language-C">GtkAllocation allocation;
@@ -175,31 +175,31 @@ the layouting widget works. The layouting widget might decide to
 give every row its minimum or natural height or, if the model content
 is expected to fit inside the layouting widget without scrolling, it
 would make sense to calculate the allocation for each row at
-the time the widget is allocated using <code>gtk_distribute_natural_allocation()</code>.</p>
+the time the widget is allocated using [<code>distribute_natural_allocation()</code>][crate::distribute_natural_allocation()].</p>
 <h1 id="handling-events-and-driving-keyboard-focus" class="section-header"><a href="#handling-events-and-driving-keyboard-focus">Handling Events and Driving Keyboard Focus</a></h1>
 <p>Passing events to the area is as simple as handling events on any
-normal widget and then passing them to the [<code>Self::event()</code>]
-API as they come in. Usually <a href="struct.CellArea.html" title="crate::CellArea"><code>crate::CellArea</code></a> is only interested in
+normal widget and then passing them to the <a href="prelude/trait.CellAreaExtManual.html#tymethod.event" title="crate::prelude::CellAreaExtManual::event()"><code>CellAreaExtManual::event()</code></a>
+API as they come in. Usually <a href="struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a> is only interested in
 button events, however some customized derived areas can be implemented
 who are interested in handling other events. Handling an event can
-trigger the [<code>crate::CellArea::focus-changed</code>] signal to fire; as well as
-[<code>crate::CellArea::add-editable</code>] in the case that an editable cell was
+trigger the <code>signal::CellArea::focus-changed</code> signal to fire; as well as
+<code>signal::CellArea::add-editable</code> in the case that an editable cell was
 clicked and needs to start editing. You can call
-<a href="prelude/trait.CellAreaExt.html#tymethod.stop_editing" title="crate::prelude::CellAreaExt::stop_editing()"><code>crate::prelude::CellAreaExt::stop_editing()</code></a> at any time to cancel any cell editing
+<a href="prelude/trait.CellAreaExt.html#tymethod.stop_editing" title="crate::prelude::CellAreaExt::stop_editing()"><code>CellAreaExt::stop_editing()</code></a> at any time to cancel any cell editing
 that is currently in progress.</p>
-<p>The <a href="struct.CellArea.html" title="crate::CellArea"><code>crate::CellArea</code></a> drives keyboard focus from cell to cell in a way
-similar to <a href="struct.Widget.html" title="crate::Widget"><code>crate::Widget</code></a>. For layouting widgets that support giving
-focus to cells it’s important to remember to pass [<code>crate::CellRendererState::Focused</code>]
+<p>The <a href="struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a> drives keyboard focus from cell to cell in a way
+similar to <a href="struct.Widget.html" title="crate::Widget"><code>Widget</code></a>. For layouting widgets that support giving
+focus to cells it’s important to remember to pass <a href="struct.CellRendererState.html#associatedconstant.FOCUSED" title="crate::CellRendererState::FOCUSED"><code>CellRendererState::FOCUSED</code></a>
 to the area functions for the row that has focus and to tell the
 area to paint the focus at render time.</p>
 <p>Layouting widgets that accept focus on cells should implement the
-[<code>crate::</code>WidgetClass<code>.focus()</code>] virtual method. The layouting widget is always
-responsible for knowing where <a href="struct.TreeModel.html" title="crate::TreeModel"><code>crate::TreeModel</code></a> rows are rendered inside
-the widget, so at [<code>crate::</code>WidgetClass<code>.focus()</code>] time the layouting widget
-should use the <a href="struct.CellArea.html" title="crate::CellArea"><code>crate::CellArea</code></a> methods to navigate focus inside the area
-and then observe the <code>DirectionType</code> to pass the focus to adjacent
+<code>GtkWidgetClass.focus()</code> virtual method. The layouting widget is always
+responsible for knowing where <a href="struct.TreeModel.html" title="crate::TreeModel"><code>TreeModel</code></a> rows are rendered inside
+the widget, so at <code>GtkWidgetClass.focus()</code> time the layouting widget
+should use the <a href="struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a> methods to navigate focus inside the area
+and then observe the GtkDirectionType to pass the focus to adjacent
 rows and areas.</p>
-<p>A basic example of how the [<code>crate::</code>WidgetClass<code>.focus()</code>] virtual method
+<p>A basic example of how the <code>GtkWidgetClass.focus()</code> virtual method
 should be implemented:</p>
 <pre><code class="language-C">static gboolean
 foo_focus (GtkWidget       *widget,
@@ -258,26 +258,26 @@ foo_focus (GtkWidget       *widget,
 }
 </code></pre>
 <p>Note that the layouting widget is responsible for matching the
-<code>DirectionType</code> values to the way it lays out its cells.</p>
+GtkDirectionType values to the way it lays out its cells.</p>
 <h1 id="cell-properties" class="section-header"><a href="#cell-properties">Cell Properties</a></h1>
-<p>The <a href="struct.CellArea.html" title="crate::CellArea"><code>crate::CellArea</code></a> introduces cell properties for <code>GtkCellRenderers</code>.
+<p>The <a href="struct.CellArea.html" title="crate::CellArea"><code>CellArea</code></a> introduces cell properties for <code>GtkCellRenderers</code>.
 This provides some general interfaces for defining the relationship
-cell areas have with their cells. For instance in a <a href="struct.CellAreaBox.html" title="crate::CellAreaBox"><code>crate::CellAreaBox</code></a>
+cell areas have with their cells. For instance in a <a href="struct.CellAreaBox.html" title="crate::CellAreaBox"><code>CellAreaBox</code></a>
 a cell might “expand” and receive extra space when the area is allocated
 more than its full natural request, or a cell might be configured to “align”
 with adjacent rows which were requested and rendered with the same
-<a href="struct.CellAreaContext.html" title="crate::CellAreaContext"><code>crate::CellAreaContext</code></a>.</p>
-<p>Use [<code>crate::CellAreaClass::install_cell_property()</code>] to install cell
-properties for a cell area class and [<code>crate::CellAreaClass::find_cell_property()</code>]
-or [<code>crate::CellAreaClass::list_cell_properties()</code>] to get information about
+<a href="struct.CellAreaContext.html" title="crate::CellAreaContext"><code>CellAreaContext</code></a>.</p>
+<p>Use <code>gtk_cell_area_class_install_cell_property()</code> to install cell
+properties for a cell area class and <code>gtk_cell_area_class_find_cell_property()</code>
+or <code>gtk_cell_area_class_list_cell_properties()</code> to get information about
 existing cell properties.</p>
-<p>To set the value of a cell property, use [<code>Self::cell_set_property()</code>],
-[<code>Self::cell_set()</code>] or [<code>Self::cell_set_valist()</code>]. To obtain
-the value of a cell property, use [<code>Self::cell_get_property()</code>],
-[<code>Self::cell_get()</code>] or [<code>Self::cell_get_valist()</code>].</p>
+<p>To set the value of a cell property, use [<code>CellAreaExtManual::cell_set_property()</code>][crate::prelude::CellAreaExtManual::cell_set_property()],
+<code>gtk_cell_area_cell_set()</code> or <code>gtk_cell_area_cell_set_valist()</code>. To obtain
+the value of a cell property, use [<code>CellAreaExtManual::cell_get_property()</code>][crate::prelude::CellAreaExtManual::cell_get_property()],
+<code>gtk_cell_area_cell_get()</code> or <code>gtk_cell_area_cell_get_valist()</code>.</p>
 <p>This is an Abstract Base Class, you cannot instantiate it.</p>
 <h1 id="implements" class="section-header"><a href="#implements">Implements</a></h1>
-<p><a href="prelude/trait.CellAreaExt.html" title="crate::prelude::CellAreaExt"><code>crate::prelude::CellAreaExt</code></a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html" title="glib::object::ObjectExt"><code>glib::object::ObjectExt</code></a>, <a href="prelude/trait.BuildableExt.html" title="crate::prelude::BuildableExt"><code>crate::prelude::BuildableExt</code></a>, <a href="prelude/trait.CellLayoutExt.html" title="crate::prelude::CellLayoutExt"><code>crate::prelude::CellLayoutExt</code></a>, <a href="prelude/trait.CellAreaExtManual.html" title="crate::prelude::CellAreaExtManual"><code>crate::prelude::CellAreaExtManual</code></a>, <a href="prelude/trait.CellLayoutExtManual.html" title="crate::prelude::CellLayoutExtManual"><code>crate::prelude::CellLayoutExtManual</code></a></p>
+<p><a href="prelude/trait.CellAreaExt.html" title="crate::prelude::CellAreaExt"><code>CellAreaExt</code></a>, <a href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.ObjectExt.html" title="glib::ObjectExt"><code>glib::ObjectExt</code></a>, <a href="prelude/trait.BuildableExt.html" title="crate::prelude::BuildableExt"><code>BuildableExt</code></a>, <a href="prelude/trait.CellLayoutExt.html" title="crate::prelude::CellLayoutExt"><code>CellLayoutExt</code></a>, <a href="prelude/trait.CellAreaExtManual.html" title="crate::prelude::CellAreaExtManual"><code>CellAreaExtManual</code></a>, <a href="prelude/trait.CellLayoutExtManual.html" title="crate::prelude::CellLayoutExtManual"><code>CellLayoutExtManual</code></a></p>
 </div></details><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor"></a></h2><div id="trait-implementations-list"><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl-Clone" class="impl"><code class="in-band">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="struct.CellArea.html" title="struct gtk4::CellArea">CellArea</a></code><a href="#impl-Clone" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/cell_area.rs.html#29-359" title="goto source code">[src]</a></h3></summary><div class="impl-items"><details class="undocumented"><summary></summary><details class="rustdoc-toggle method-toggle" open><summary><h4 id="method.clone" class="method trait-impl"><code>fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone" class="fnname">clone</a>(&amp;self) -&gt; <a class="struct" href="struct.CellArea.html" title="struct gtk4::CellArea">CellArea</a></code><a href="#method.clone" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/cell_area.rs.html#29-359" title="goto source code">[src]</a></h4></summary><div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><h4 id="method.clone_from" class="method trait-impl"><code>fn <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from" class="fnname">clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</code><span class="since" title="Stable since Rust version 1.0.0">1.0.0</span><a href="#method.clone_from" class="anchor"></a><a class="srclink" href="https://doc.rust-lang.org/nightly/src/core/clone.rs.html#130" title="goto source code">[src]</a></h4></summary><div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
 </div></details></div></details></details><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl-Debug" class="impl"><code class="in-band">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="struct.CellArea.html" title="struct gtk4::CellArea">CellArea</a></code><a href="#impl-Debug" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/cell_area.rs.html#29-359" title="goto source code">[src]</a></h3></summary><div class="impl-items"><details class="undocumented"><summary></summary><details class="rustdoc-toggle method-toggle" open><summary><h4 id="method.fmt" class="method trait-impl"><code>fn <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt" class="fnname">fmt</a>(&amp;self, f: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>&lt;'_&gt;) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code><a href="#method.fmt" class="anchor"></a><a class="srclink" href="../src/gtk4/auto/cell_area.rs.html#29-359" title="goto source code">[src]</a></h4></summary><div class='docblock'><p>Formats the value using the given formatter. <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt">Read more</a></p>

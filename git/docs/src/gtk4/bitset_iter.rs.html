@@ -183,11 +183,11 @@
 <span class="kw">use</span> <span class="ident">std::marker::PhantomData</span>;
 
 <span class="doccomment">/// An opaque, stack-allocated struct for iterating</span>
-<span class="doccomment">/// over the elements of a `GtkBitset`.</span>
+<span class="doccomment">/// over the elements of a [`Bitset`][crate::Bitset].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// Before a `GtkBitsetIter` can be used, it needs to be initialized with</span>
-<span class="doccomment">/// [func`Gtk.BitsetIter`.init_first], [func`Gtk.BitsetIter`.init_last]</span>
-<span class="doccomment">/// or [func`Gtk.BitsetIter`.init_at].</span>
+<span class="doccomment">/// Before a [`BitsetIter`][crate::BitsetIter] can be used, it needs to be initialized with</span>
+<span class="doccomment">/// [``init_first()``][`Self::init_first()`], [``init_last()``][`Self::init_last()`]</span>
+<span class="doccomment">/// or [``init_at()``][`Self::init_at()`].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkBitsetIter&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BitsetIter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="ident">ffi::GtkBitsetIter</span>, <span class="ident">PhantomData</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">Bitset</span><span class="op">&gt;</span>);

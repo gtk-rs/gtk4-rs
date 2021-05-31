@@ -7,7 +7,7 @@
 <p>The default I/O priority is <code>G_PRIORITY_DEFAULT</code> (i.e. 0), and lower numbers
 indicate a higher priority.</p>
 <p>When the operation is finished, <code>callback</code> will be called. You must then
-call [func<code>content_serialize_finish</code>] to get the result of the operation.</p>
+call <code>content_serialize_finish()</code> to get the result of the operation.</p>
 <h2 id="stream" class="section-header"><a href="#stream"><code>stream</code></a></h2>
 <p>a <code>GOutputStream</code> to write the serialized content to</p>
 <h2 id="mime_type" class="section-header"><a href="#mime_type"><code>mime_type</code></a></h2>
@@ -17,7 +17,7 @@ call [func<code>content_serialize_finish</code>] to get the result of the operat
 <h2 id="io_priority" class="section-header"><a href="#io_priority"><code>io_priority</code></a></h2>
 <p>the I/O priority of the operation</p>
 <h2 id="cancellable" class="section-header"><a href="#cancellable"><code>cancellable</code></a></h2>
-<p>optional <a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/cancellable/struct.Cancellable.html" title="crate::gio::Cancellable"><code>crate::gio::Cancellable</code></a> object</p>
+<p>optional <a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/cancellable/struct.Cancellable.html" title="crate::gio::Cancellable"><code>gio::Cancellable</code></a> object</p>
 <h2 id="callback" class="section-header"><a href="#callback"><code>callback</code></a></h2>
 <p>callback to call when the operation is done</p>
 </div></details></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../" data-current-crate="gdk4" data-search-index-js="../search-index.js" data-search-js="../search.js"></div>

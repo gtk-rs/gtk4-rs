@@ -193,10 +193,10 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkShortcutTrigger` tracks how a `GtkShortcut` should be activated.</span>
+    <span class="doccomment">/// [`ShortcutTrigger`][crate::ShortcutTrigger] tracks how a [`Shortcut`][crate::Shortcut] should be activated.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To find out if a `GtkShortcutTrigger` triggers, you can call</span>
-    <span class="doccomment">/// [method`Gtk.ShortcutTrigger`.trigger] on a `GdkEvent`.</span>
+    <span class="doccomment">/// To find out if a [`ShortcutTrigger`][crate::ShortcutTrigger] triggers, you can call</span>
+    <span class="doccomment">/// [``ShortcutTriggerExtManual::trigger()``][crate::prelude::`ShortcutTriggerExtManual::trigger()`] on a [`gdk::Event`][crate::gdk::Event].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `GtkShortcutTriggers` contain functions that allow easy presentation</span>
     <span class="doccomment">/// to end users as well as being printed for debugging.</span>
@@ -209,7 +209,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::ShortcutTriggerExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::ShortcutTriggerExtManual`]</span>
+    <span class="doccomment">/// [`ShortcutTriggerExt`][trait@crate::prelude::ShortcutTriggerExt], [`trait@glib::ObjectExt`], [`ShortcutTriggerExtManual`][trait@crate::prelude::ShortcutTriggerExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ShortcutTrigger</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkShortcutTrigger</span>, <span class="ident">ffi::GtkShortcutTriggerClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -225,21 +225,21 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The accepted strings are:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  - `never`, for `GtkNeverTrigger`</span>
-    <span class="doccomment">///  - a string parsed by `gtk_accelerator_parse()`, for a `GtkKeyvalTrigger`, e.g. `&lt;Control&gt;C`</span>
-    <span class="doccomment">///  - underscore, followed by a single character, for `GtkMnemonicTrigger`, e.g. `_l`</span>
+    <span class="doccomment">///  - `never`, for [`NeverTrigger`][crate::NeverTrigger]</span>
+    <span class="doccomment">///  - a string parsed by [`accelerator_parse()`][crate::accelerator_parse()], for a [`KeyvalTrigger`][crate::KeyvalTrigger], e.g. ``&lt;Control&gt;`C`</span>
+    <span class="doccomment">///  - underscore, followed by a single character, for [`MnemonicTrigger`][crate::MnemonicTrigger], e.g. `_l`</span>
     <span class="doccomment">///  - two valid trigger strings, separated by a `|` character, for a</span>
-    <span class="doccomment">///  `GtkAlternativeTrigger`: `&lt;Control&gt;q|&lt;Control&gt;w`</span>
+    <span class="doccomment">///  [`AlternativeTrigger`][crate::AlternativeTrigger]: ``&lt;Control&gt;`q|`&lt;Control&gt;`w`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that you will have to escape the `&lt;` and `&gt;` characters when specifying</span>
-    <span class="doccomment">/// triggers in XML files, such as `Builder` ui files. Use `&amp;lt;` instead of</span>
+    <span class="doccomment">/// triggers in XML files, such as GtkBuilder ui files. Use `&amp;lt;` instead of</span>
     <span class="doccomment">/// `&lt;` and `&amp;gt;` instead of `&gt;`.</span>
     <span class="doccomment">/// ## `string`</span>
     <span class="doccomment">/// the string to parse</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkShortcutTrigger`</span>
+    <span class="doccomment">/// a new [`ShortcutTrigger`][crate::ShortcutTrigger]</span>
     <span class="doccomment">///  or [`None`] on error</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_shortcut_trigger_parse_string&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse_string</span>(<span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ShortcutTrigger</span><span class="op">&gt;</span> {
@@ -265,7 +265,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::AlternativeTrigger`], [`struct@crate::KeyvalTrigger`], [`struct@crate::MnemonicTrigger`], [`struct@crate::NeverTrigger`], [`struct@crate::ShortcutTrigger`]</span>
+<span class="doccomment">/// [`AlternativeTrigger`][struct@crate::AlternativeTrigger], [`KeyvalTrigger`][struct@crate::KeyvalTrigger], [`MnemonicTrigger`][struct@crate::MnemonicTrigger], [`NeverTrigger`][struct@crate::NeverTrigger], [`ShortcutTrigger`][struct@crate::ShortcutTrigger]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ShortcutTriggerExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Prints the given trigger into a string for the developer.</span>
     <span class="doccomment">/// This is meant for debugging and logging.</span>
@@ -289,7 +289,7 @@
     <span class="doccomment">/// The form of the representation may change at any time and is</span>
     <span class="doccomment">/// not guaranteed to stay identical.</span>
     <span class="doccomment">/// ## `display`</span>
-    <span class="doccomment">/// `GdkDisplay` to print for</span>
+    <span class="doccomment">/// [`gdk::Display`][crate::gdk::Display] to print for</span>
     <span class="doccomment">/// ## `string`</span>
     <span class="doccomment">/// a `GString` to print into</span>
     <span class="doccomment">///</span>
@@ -314,7 +314,7 @@
     <span class="doccomment">/// The form of the representation may change at any time and is</span>
     <span class="doccomment">/// not guaranteed to stay identical.</span>
     <span class="doccomment">/// ## `display`</span>
-    <span class="doccomment">/// `GdkDisplay` to print for</span>
+    <span class="doccomment">/// [`gdk::Display`][crate::gdk::Display] to print for</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

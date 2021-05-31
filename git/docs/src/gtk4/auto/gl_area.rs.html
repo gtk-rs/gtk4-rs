@@ -1219,28 +1219,28 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkGLArea` is a widget that allows drawing with OpenGL.</span>
+    <span class="doccomment">/// [`GLArea`][crate::GLArea] is a widget that allows drawing with OpenGL.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ![An example `GLArea`](glarea.png)</span>
+    <span class="doccomment">/// ![An example GtkGLArea](glarea.png)</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkGLArea` sets up its own [class`Gdk.GLContext`], and creates a custom</span>
+    <span class="doccomment">/// [`GLArea`][crate::GLArea] sets up its own [`gdk::GLContext`][crate::gdk::GLContext], and creates a custom</span>
     <span class="doccomment">/// GL framebuffer that the widget will do GL rendering onto. It also ensures</span>
     <span class="doccomment">/// that this framebuffer is the default GL rendering target when rendering.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// In order to draw, you have to connect to the [signal`Gtk.GLArea`::render]</span>
-    <span class="doccomment">/// signal, or subclass `GtkGLArea` and override the `GLAreaClass`.render</span>
+    <span class="doccomment">/// In order to draw, you have to connect to the `signal::GLArea::render`</span>
+    <span class="doccomment">/// signal, or subclass [`GLArea`][crate::GLArea] and override the GtkGLAreaClass.render</span>
     <span class="doccomment">/// virtual function.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GtkGLArea` widget ensures that the `GdkGLContext` is associated with</span>
+    <span class="doccomment">/// The [`GLArea`][crate::GLArea] widget ensures that the [`gdk::GLContext`][crate::gdk::GLContext] is associated with</span>
     <span class="doccomment">/// the widget&#39;s drawing area, and it is kept updated when the size and</span>
     <span class="doccomment">/// position of the drawing area changes.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ## Drawing with `GLArea`</span>
+    <span class="doccomment">/// ## Drawing with GtkGLArea</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The simplest way to draw using OpenGL commands in a `GtkGLArea` is to</span>
-    <span class="doccomment">/// create a widget instance and connect to the [signal`Gtk.GLArea`::render] signal:</span>
+    <span class="doccomment">/// The simplest way to draw using OpenGL commands in a [`GLArea`][crate::GLArea] is to</span>
+    <span class="doccomment">/// create a widget instance and connect to the `signal::GLArea::render` signal:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `render()` function will be called when the `GtkGLArea` is ready</span>
+    <span class="doccomment">/// The ``render()`` function will be called when the [`GLArea`][crate::GLArea] is ready</span>
     <span class="doccomment">/// for you to draw its content:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```c</span>
@@ -1249,7 +1249,7 @@
     <span class="doccomment">/// {</span>
     <span class="doccomment">///   // inside this function it&#39;s safe to use GL; the given</span>
     <span class="doccomment">///   // #GdkGLContext has been made current to the drawable</span>
-    <span class="doccomment">///   // surface used by the ``GLArea`` and the viewport has</span>
+    <span class="doccomment">///   // surface used by the `GtkGLArea` and the viewport has</span>
     <span class="doccomment">///   // already been set to be the size of the allocation</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///   // we can start by clearing the buffer</span>
@@ -1276,10 +1276,10 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you need to initialize OpenGL state, e.g. buffer objects or</span>
-    <span class="doccomment">/// shaders, you should use the [signal`Gtk.Widget`::realize] signal;</span>
-    <span class="doccomment">/// you can use the [signal`Gtk.Widget`::unrealize] signal to clean up.</span>
-    <span class="doccomment">/// Since the `GdkGLContext` creation and initialization may fail, you</span>
-    <span class="doccomment">/// will need to check for errors, using [method`Gtk.GLArea`.get_error].</span>
+    <span class="doccomment">/// shaders, you should use the `signal::Widget::realize` signal;</span>
+    <span class="doccomment">/// you can use the `signal::Widget::unrealize` signal to clean up.</span>
+    <span class="doccomment">/// Since the [`gdk::GLContext`][crate::gdk::GLContext] creation and initialization may fail, you</span>
+    <span class="doccomment">/// will need to check for errors, using [``GLAreaExt::error()``][crate::prelude::`GLAreaExt::error()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// An example of how to safely initialize the GL state is:</span>
     <span class="doccomment">///</span>
@@ -1319,12 +1319,12 @@
     <span class="doccomment">/// }</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If you need to change the options for creating the `GdkGLContext`</span>
-    <span class="doccomment">/// you should use the [signal`Gtk.GLArea`::create-context] signal.</span>
+    <span class="doccomment">/// If you need to change the options for creating the [`gdk::GLContext`][crate::gdk::GLContext]</span>
+    <span class="doccomment">/// you should use the `signal::GLArea::create-context` signal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::GLAreaExt`], [`trait@crate::prelude::WidgetExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::AccessibleExt`], [`trait@crate::prelude::BuildableExt`], [`trait@crate::prelude::ConstraintTargetExt`], [`trait@crate::prelude::WidgetExtManual`], [`trait@crate::prelude::AccessibleExtManual`]</span>
+    <span class="doccomment">/// [`GLAreaExt`][trait@crate::prelude::GLAreaExt], [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GLArea</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkGLArea</span>, <span class="ident">ffi::GtkGLAreaClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1333,11 +1333,11 @@
 }
 
 <span class="kw">impl</span> <span class="ident">GLArea</span> {
-    <span class="doccomment">/// Creates a new `GtkGLArea` widget.</span>
+    <span class="doccomment">/// Creates a new [`GLArea`][crate::GLArea] widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkGLArea`</span>
+    <span class="doccomment">/// a new [`GLArea`][crate::GLArea]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gl_area_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GLArea</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -1521,7 +1521,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If set to [`false`] the data from previous rendering is kept around and will</span>
     <span class="doccomment">/// be used for drawing the widget the next time, unless the window is resized.</span>
-    <span class="doccomment">/// In order to force a rendering [method`Gtk.GLArea`.queue_render] must be called.</span>
+    <span class="doccomment">/// In order to force a rendering [``GLAreaExt::queue_render()``][crate::prelude::`GLAreaExt::queue_render()`] must be called.</span>
     <span class="doccomment">/// This mode is useful when the scene changes seldom, but takes a long time</span>
     <span class="doccomment">/// to redraw.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">auto_render</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">auto_render</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
@@ -1543,7 +1543,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// If set to [`true`] the widget will try to create a `GdkGLContext` using</span>
+    <span class="doccomment">/// If set to [`true`] the widget will try to create a [`gdk::GLContext`][crate::gdk::GLContext] using</span>
     <span class="doccomment">/// OpenGL ES instead of OpenGL.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">use_es</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">use_es</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">use_es</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">use_es</span>);
@@ -1610,7 +1610,7 @@
     <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
-    <span class="doccomment">/// the widget will be queried using [signal`Gtk.Widget`::query-tooltip] to</span>
+    <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">has_tooltip</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">has_tooltip</span>);
@@ -1637,7 +1637,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The `GtkLayoutManager` instance to use to compute the preferred size</span>
+    <span class="doccomment">/// The [`LayoutManager`][crate::LayoutManager] instance to use to compute the preferred size</span>
     <span class="doccomment">/// of the widget, and allocate its children.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
@@ -1651,7 +1651,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -1664,7 +1664,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -1677,7 +1677,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -1687,7 +1687,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -1729,16 +1729,16 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_markup].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_markup</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_markup</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_markup</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_markup</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1746,16 +1746,16 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_text].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_text</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1793,7 +1793,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The accessible role of the given `GtkAccessible` implementation.</span>
+    <span class="doccomment">/// The accessible role of the given [`Accessible`][crate::Accessible] implementation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The accessible role cannot be changed once set.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accessible_role</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">accessible_role</span>: <span class="ident">AccessibleRole</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
@@ -1808,7 +1808,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::GLArea`]</span>
+<span class="doccomment">/// [`GLArea`][struct@crate::GLArea]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">GLAreaExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Binds buffers to the framebuffer.</span>
     <span class="doccomment">///</span>
@@ -1817,7 +1817,7 @@
     <span class="doccomment">/// are created and bound to the framebuffer.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is automatically called before emitting the</span>
-    <span class="doccomment">/// [signal`Gtk.GLArea`::render] signal, and doesn&#39;t normally need to be</span>
+    <span class="doccomment">/// `signal::GLArea::render` signal, and doesn&#39;t normally need to be</span>
     <span class="doccomment">/// called by application code.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gl_area_attach_buffers&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">attach_buffers</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
@@ -1831,11 +1831,11 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_auto_render&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_auto_render</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Retrieves the `GdkGLContext` used by `self`.</span>
+    <span class="doccomment">/// Retrieves the [`gdk::GLContext`][crate::gdk::GLContext] used by `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the `GdkGLContext`</span>
+    <span class="doccomment">/// the [`gdk::GLContext`][crate::gdk::GLContext]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gl_area_get_context&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_context&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::GLContext</span><span class="op">&gt;</span>;
@@ -1844,7 +1844,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the [`crate::glib::Error`] or [`None`]</span>
+    <span class="doccomment">/// the [`glib::Error`][crate::glib::Error] or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gl_area_get_error&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_error&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">error</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::Error</span><span class="op">&gt;</span>;
@@ -1869,7 +1869,7 @@
 
     <span class="doccomment">/// Retrieves the required version of OpenGL.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.GLArea`.set_required_version].</span>
+    <span class="doccomment">/// See [``set_required_version()``][`Self::set_required_version()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1883,23 +1883,23 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_required_version&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">required_version</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
 
-    <span class="doccomment">/// Returns whether the `GtkGLArea` should use OpenGL ES.</span>
+    <span class="doccomment">/// Returns whether the [`GLArea`][crate::GLArea] should use OpenGL ES.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.GLArea`.set_use_es].</span>
+    <span class="doccomment">/// See [``set_use_es()``][`Self::set_use_es()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if the `GtkGLArea` should create an OpenGL ES context</span>
+    <span class="doccomment">/// [`true`] if the [`GLArea`][crate::GLArea] should create an OpenGL ES context</span>
     <span class="doccomment">///  and [`false`] otherwise</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gl_area_get_use_es&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_use_es&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">uses_es</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Ensures that the `GdkGLContext` used by `self` is associated with</span>
-    <span class="doccomment">/// the `GtkGLArea`.</span>
+    <span class="doccomment">/// Ensures that the [`gdk::GLContext`][crate::gdk::GLContext] used by `self` is associated with</span>
+    <span class="doccomment">/// the [`GLArea`][crate::GLArea].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is automatically called before emitting the</span>
-    <span class="doccomment">/// [signal`Gtk.GLArea`::render] signal, and doesn&#39;t normally need</span>
+    <span class="doccomment">/// `signal::GLArea::render` signal, and doesn&#39;t normally need</span>
     <span class="doccomment">/// to be called by application code.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gl_area_make_current&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">make_current</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
@@ -1907,25 +1907,25 @@
     <span class="doccomment">/// Marks the currently rendered data (if any) as invalid, and queues</span>
     <span class="doccomment">/// a redraw of the widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This ensures that the [signal`Gtk.GLArea`::render] signal</span>
+    <span class="doccomment">/// This ensures that the `signal::GLArea::render` signal</span>
     <span class="doccomment">/// is emitted during the draw.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is only needed when [method`Gtk.GLArea`.set_auto_render] has</span>
+    <span class="doccomment">/// This is only needed when [``set_auto_render()``][`Self::set_auto_render()`] has</span>
     <span class="doccomment">/// been called with a [`false`] value. The default behaviour is to</span>
-    <span class="doccomment">/// emit [signal`Gtk.GLArea`::render] on each draw.</span>
+    <span class="doccomment">/// emit `signal::GLArea::render` on each draw.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gl_area_queue_render&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">queue_render</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Sets whether the `GtkGLArea` is in auto render mode.</span>
+    <span class="doccomment">/// Sets whether the [`GLArea`][crate::GLArea] is in auto render mode.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `auto_render` is [`true`] the [signal`Gtk.GLArea`::render] signal will</span>
+    <span class="doccomment">/// If `auto_render` is [`true`] the `signal::GLArea::render` signal will</span>
     <span class="doccomment">/// be emitted every time the widget draws. This is the default and is</span>
     <span class="doccomment">/// useful if drawing the widget is faster.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `auto_render` is [`false`] the data from previous rendering is kept</span>
     <span class="doccomment">/// around and will be used for drawing the widget the next time,</span>
     <span class="doccomment">/// unless the window is resized. In order to force a rendering</span>
-    <span class="doccomment">/// [method`Gtk.GLArea`.queue_render] must be called. This mode is</span>
+    <span class="doccomment">/// [``queue_render()``][`Self::queue_render()`] must be called. This mode is</span>
     <span class="doccomment">/// useful when the scene changes seldom, but takes a long time to redraw.</span>
     <span class="doccomment">/// ## `auto_render`</span>
     <span class="doccomment">/// a boolean</span>
@@ -1935,14 +1935,14 @@
     <span class="doccomment">/// Sets an error on the area which will be shown instead of the</span>
     <span class="doccomment">/// GL rendering.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is useful in the [signal`Gtk.GLArea`::create-context]</span>
+    <span class="doccomment">/// This is useful in the `signal::GLArea::create-context`</span>
     <span class="doccomment">/// signal if GL context creation fails.</span>
     <span class="doccomment">/// ## `error`</span>
     <span class="doccomment">/// a new `GError`, or [`None`] to unset the error</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gl_area_set_error&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_error</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">error</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">glib::Error</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Sets whether the `GtkGLArea` should use a depth buffer.</span>
+    <span class="doccomment">/// Sets whether the [`GLArea`][crate::GLArea] should use a depth buffer.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `has_depth_buffer` is [`true`] the widget will allocate and</span>
     <span class="doccomment">/// enable a depth buffer for the target framebuffer. Otherwise</span>
@@ -1952,7 +1952,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gl_area_set_has_depth_buffer&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_has_depth_buffer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">has_depth_buffer</span>: <span class="ident">bool</span>);
 
-    <span class="doccomment">/// Sets whether the `GtkGLArea` should use a stencil buffer.</span>
+    <span class="doccomment">/// Sets whether the [`GLArea`][crate::GLArea] should use a stencil buffer.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `has_stencil_buffer` is [`true`] the widget will allocate and</span>
     <span class="doccomment">/// enable a stencil buffer for the target framebuffer. Otherwise</span>
@@ -1975,7 +1975,7 @@
 
     <span class="doccomment">/// Sets whether the `self` should create an OpenGL or an OpenGL ES context.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// You should check the capabilities of the [`crate::gdk::GLContext`] before drawing</span>
+    <span class="doccomment">/// You should check the capabilities of the [`gdk::GLContext`][crate::gdk::GLContext] before drawing</span>
     <span class="doccomment">/// with either API.</span>
     <span class="doccomment">/// ## `use_es`</span>
     <span class="doccomment">/// whether to use OpenGL or OpenGL ES</span>
@@ -1989,25 +1989,25 @@
     <span class="doccomment">/// or if you want to try creating different kinds of GL options.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If context creation fails then the signal handler can use</span>
-    <span class="doccomment">/// [method`Gtk.GLArea`.set_error] to register a more detailed error</span>
+    <span class="doccomment">/// [``set_error()``][`Self::set_error()`] to register a more detailed error</span>
     <span class="doccomment">/// of how the construction failed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly created `GdkGLContext`;</span>
-    <span class="doccomment">///  the `GtkGLArea` widget will take ownership of the returned value.</span>
+    <span class="doccomment">/// a newly created [`gdk::GLContext`][crate::gdk::GLContext];</span>
+    <span class="doccomment">///  the [`GLArea`][crate::GLArea] widget will take ownership of the returned value.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;create-context&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_create_context</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::GLContext</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">f</span>: <span class="ident">F</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 
-    <span class="doccomment">/// Emitted every time the contents of the `GtkGLArea` should be redrawn.</span>
+    <span class="doccomment">/// Emitted every time the contents of the [`GLArea`][crate::GLArea] should be redrawn.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The `context` is bound to the `area` prior to emitting this function,</span>
     <span class="doccomment">/// and the buffers are painted to the window once the emission terminates.</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the `GdkGLContext` used by `area`</span>
+    <span class="doccomment">/// the [`gdk::GLContext`][crate::gdk::GLContext] used by `area`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

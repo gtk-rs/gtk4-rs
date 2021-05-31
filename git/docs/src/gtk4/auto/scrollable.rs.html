@@ -376,11 +376,11 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkScrollable` is an interface for widgets with native scrolling ability.</span>
+    <span class="doccomment">/// [`Scrollable`][crate::Scrollable] is an interface for widgets with native scrolling ability.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To implement this interface you should override the</span>
-    <span class="doccomment">/// [property`Gtk.Scrollable`:hadjustment] and</span>
-    <span class="doccomment">/// [property`Gtk.Scrollable`:vadjustment] properties.</span>
+    <span class="doccomment">/// `property::Scrollable::hadjustment` and</span>
+    <span class="doccomment">/// `property::Scrollable::vadjustment` properties.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## Creating a scrollable widget</span>
     <span class="doccomment">///</span>
@@ -388,27 +388,27 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// - When a parent widget sets the scrollable child widget’s adjustments,</span>
     <span class="doccomment">///  the widget should populate the adjustments’</span>
-    <span class="doccomment">///  [property`Gtk.Adjustment`:lower],</span>
-    <span class="doccomment">///  [property`Gtk.Adjustment`:upper],</span>
-    <span class="doccomment">///  [property`Gtk.Adjustment`:step-increment],</span>
-    <span class="doccomment">///  [property`Gtk.Adjustment`:page-increment] and</span>
-    <span class="doccomment">///  [property`Gtk.Adjustment`:page-size] properties and connect to the</span>
-    <span class="doccomment">///  [signal`Gtk.Adjustment`::value-changed] signal.</span>
+    <span class="doccomment">///  `property::Adjustment::lower`,</span>
+    <span class="doccomment">///  `property::Adjustment::upper`,</span>
+    <span class="doccomment">///  `property::Adjustment::step-increment`,</span>
+    <span class="doccomment">///  `property::Adjustment::page-increment` and</span>
+    <span class="doccomment">///  `property::Adjustment::page-size` properties and connect to the</span>
+    <span class="doccomment">///  `signal::Adjustment::value-changed` signal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - Because its preferred size is the size for a fully expanded widget,</span>
     <span class="doccomment">///  the scrollable widget must be able to cope with underallocations.</span>
     <span class="doccomment">///  This means that it must accept any value passed to its</span>
-    <span class="doccomment">///  [`crate::`WidgetClass`.size_allocate()`] function.</span>
+    <span class="doccomment">///  `GtkWidgetClass.size_allocate()` function.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// - When the parent allocates space to the scrollable child widget,</span>
     <span class="doccomment">///  the widget should update the adjustments’ properties with new values.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// - When any of the adjustments emits the [signal`Gtk.Adjustment`::value-changed]</span>
+    <span class="doccomment">/// - When any of the adjustments emits the `signal::Adjustment::value-changed`</span>
     <span class="doccomment">///  signal, the scrollable widget should scroll its contents.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::ScrollableExt`]</span>
+    <span class="doccomment">/// [`ScrollableExt`][trait@crate::prelude::ScrollableExt]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Scrollable</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GtkScrollable</span>, <span class="ident">ffi::GtkScrollableInterface</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -422,7 +422,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::ColumnView`], [`struct@crate::GridView`], [`struct@crate::IconView`], [`struct@crate::ListBase`], [`struct@crate::ListView`], [`struct@crate::Scrollable`], [`struct@crate::TextView`], [`struct@crate::TreeView`], [`struct@crate::Viewport`]</span>
+<span class="doccomment">/// [`ColumnView`][struct@crate::ColumnView], [`GridView`][struct@crate::GridView], [`IconView`][struct@crate::IconView], [`ListBase`][struct@crate::ListBase], [`ListView`][struct@crate::ListView], [`Scrollable`][struct@crate::Scrollable], [`TextView`][struct@crate::TextView], [`TreeView`][struct@crate::TreeView], [`Viewport`][struct@crate::Viewport]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ScrollableExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Returns the size of a non-scrolling border around the</span>
     <span class="doccomment">/// outside of the scrollable.</span>
@@ -441,69 +441,69 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_border&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">border</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Border</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Retrieves the `GtkAdjustment` used for horizontal scrolling.</span>
+    <span class="doccomment">/// Retrieves the [`Adjustment`][crate::Adjustment] used for horizontal scrolling.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// horizontal `GtkAdjustment`.</span>
+    <span class="doccomment">/// horizontal [`Adjustment`][crate::Adjustment].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_scrollable_get_hadjustment&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_hadjustment&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">hadjustment</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Adjustment</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Gets the horizontal `GtkScrollablePolicy`.</span>
+    <span class="doccomment">/// Gets the horizontal [`ScrollablePolicy`][crate::ScrollablePolicy].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The horizontal `GtkScrollablePolicy`.</span>
+    <span class="doccomment">/// The horizontal [`ScrollablePolicy`][crate::ScrollablePolicy].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_scrollable_get_hscroll_policy&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_hscroll_policy&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">hscroll_policy</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ScrollablePolicy</span>;
 
-    <span class="doccomment">/// Retrieves the `GtkAdjustment` used for vertical scrolling.</span>
+    <span class="doccomment">/// Retrieves the [`Adjustment`][crate::Adjustment] used for vertical scrolling.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// vertical `GtkAdjustment`.</span>
+    <span class="doccomment">/// vertical [`Adjustment`][crate::Adjustment].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_scrollable_get_vadjustment&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_vadjustment&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">vadjustment</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Adjustment</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Gets the vertical `GtkScrollablePolicy`.</span>
+    <span class="doccomment">/// Gets the vertical [`ScrollablePolicy`][crate::ScrollablePolicy].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The vertical `GtkScrollablePolicy`.</span>
+    <span class="doccomment">/// The vertical [`ScrollablePolicy`][crate::ScrollablePolicy].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_scrollable_get_vscroll_policy&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_vscroll_policy&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">vscroll_policy</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ScrollablePolicy</span>;
 
-    <span class="doccomment">/// Sets the horizontal adjustment of the `GtkScrollable`.</span>
+    <span class="doccomment">/// Sets the horizontal adjustment of the [`Scrollable`][crate::Scrollable].</span>
     <span class="doccomment">/// ## `hadjustment`</span>
-    <span class="doccomment">/// a `GtkAdjustment`</span>
+    <span class="doccomment">/// a [`Adjustment`][crate::Adjustment]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_scrollable_set_hadjustment&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_hadjustment</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Adjustment</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">hadjustment</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Sets the `GtkScrollablePolicy`.</span>
+    <span class="doccomment">/// Sets the [`ScrollablePolicy`][crate::ScrollablePolicy].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The policy determines whether horizontal scrolling should start</span>
     <span class="doccomment">/// below the minimum width or below the natural width.</span>
     <span class="doccomment">/// ## `policy`</span>
-    <span class="doccomment">/// the horizontal `GtkScrollablePolicy`</span>
+    <span class="doccomment">/// the horizontal [`ScrollablePolicy`][crate::ScrollablePolicy]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_scrollable_set_hscroll_policy&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_hscroll_policy</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">policy</span>: <span class="ident">ScrollablePolicy</span>);
 
-    <span class="doccomment">/// Sets the vertical adjustment of the `GtkScrollable`.</span>
+    <span class="doccomment">/// Sets the vertical adjustment of the [`Scrollable`][crate::Scrollable].</span>
     <span class="doccomment">/// ## `vadjustment`</span>
-    <span class="doccomment">/// a `GtkAdjustment`</span>
+    <span class="doccomment">/// a [`Adjustment`][crate::Adjustment]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_scrollable_set_vadjustment&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_vadjustment</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Adjustment</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">vadjustment</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Sets the `GtkScrollablePolicy`.</span>
+    <span class="doccomment">/// Sets the [`ScrollablePolicy`][crate::ScrollablePolicy].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The policy determines whether vertical scrolling should start</span>
     <span class="doccomment">/// below the minimum height or below the natural height.</span>
     <span class="doccomment">/// ## `policy`</span>
-    <span class="doccomment">/// the vertical `GtkScrollablePolicy`</span>
+    <span class="doccomment">/// the vertical [`ScrollablePolicy`][crate::ScrollablePolicy]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_scrollable_set_vscroll_policy&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_vscroll_policy</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">policy</span>: <span class="ident">ScrollablePolicy</span>);
 

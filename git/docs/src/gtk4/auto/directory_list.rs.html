@@ -353,32 +353,32 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkDirectoryList` is a list model that wraps [`crate::gio::File::enumerate_children_async()`].</span>
+    <span class="doccomment">/// [`DirectoryList`][crate::DirectoryList] is a list model that wraps [`FileExtManual::enumerate_children_async()`][crate::gio::prelude::FileExtManual::enumerate_children_async()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It presents a `GListModel` and fills it asynchronously with the `GFileInfo`s</span>
     <span class="doccomment">/// returned from that function.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Enumeration will start automatically when a the</span>
-    <span class="doccomment">/// [property`Gtk.DirectoryList`:file] property is set.</span>
+    <span class="doccomment">/// `property::DirectoryList::file` property is set.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// While the `GtkDirectoryList` is being filled, the</span>
-    <span class="doccomment">/// [property`Gtk.DirectoryList`:loading] property will be set to [`true`]. You can</span>
-    <span class="doccomment">/// listen to that property if you want to show information like a `GtkSpinner`</span>
+    <span class="doccomment">/// While the [`DirectoryList`][crate::DirectoryList] is being filled, the</span>
+    <span class="doccomment">/// `property::DirectoryList::loading` property will be set to [`true`]. You can</span>
+    <span class="doccomment">/// listen to that property if you want to show information like a [`Spinner`][crate::Spinner]</span>
     <span class="doccomment">/// or a &quot;Loading...&quot; text.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If loading fails at any point, the [property`Gtk.DirectoryList`:error]</span>
+    <span class="doccomment">/// If loading fails at any point, the `property::DirectoryList::error`</span>
     <span class="doccomment">/// property will be set to give more indication about the failure.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GFileInfo`s returned from a `GtkDirectoryList` have the &quot;standard::file&quot;</span>
+    <span class="doccomment">/// The `GFileInfo`s returned from a [`DirectoryList`][crate::DirectoryList] have the &quot;standard::file&quot;</span>
     <span class="doccomment">/// attribute set to the `GFile` they refer to. This way you can get at the file</span>
-    <span class="doccomment">/// that is referred to in the same way you would via [`crate::gio::FileEnumerator::get_child()`].</span>
-    <span class="doccomment">/// This means you do not need access to the `GtkDirectoryList`, but can access</span>
-    <span class="doccomment">/// the `GFile` directly from the `GFileInfo` when operating with a `GtkListView`</span>
+    <span class="doccomment">/// that is referred to in the same way you would via `g_file_enumerator_get_child()`.</span>
+    <span class="doccomment">/// This means you do not need access to the [`DirectoryList`][crate::DirectoryList], but can access</span>
+    <span class="doccomment">/// the `GFile` directly from the `GFileInfo` when operating with a [`ListView`][crate::ListView]</span>
     <span class="doccomment">/// or similar.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`trait@gio::prelude::ListModelExt`]</span>
+    <span class="doccomment">/// [`trait@glib::ObjectExt`], [`trait@gio::prelude::ListModelExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DirectoryList</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkDirectoryList</span>, <span class="ident">ffi::GtkDirectoryListClass</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">gio::ListModel</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -387,9 +387,9 @@
 }
 
 <span class="kw">impl</span> <span class="ident">DirectoryList</span> {
-    <span class="doccomment">/// Creates a new `GtkDirectoryList`.</span>
+    <span class="doccomment">/// Creates a new [`DirectoryList`][crate::DirectoryList].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GtkDirectoryList` is querying the given `file`</span>
+    <span class="doccomment">/// The [`DirectoryList`][crate::DirectoryList] is querying the given `file`</span>
     <span class="doccomment">/// with the given `attributes`.</span>
     <span class="doccomment">/// ## `attributes`</span>
     <span class="doccomment">/// The attributes to query with</span>
@@ -398,7 +398,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkDirectoryList`</span>
+    <span class="doccomment">/// a new [`DirectoryList`][crate::DirectoryList]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_directory_list_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::File</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">attributes</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>, <span class="ident">file</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DirectoryList</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -502,7 +502,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `file` is [`None`], the result will be an empty list.</span>
     <span class="doccomment">/// ## `file`</span>
-    <span class="doccomment">/// the [`crate::gio::File`] to be enumerated</span>
+    <span class="doccomment">/// the [`gio::File`][crate::gio::File] to be enumerated</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_directory_list_set_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::File</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">file</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) {
         <span class="kw">unsafe</span> {

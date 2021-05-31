@@ -87,13 +87,13 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkMultiFilter` is the base class for filters that combine multiple filters.</span>
+    <span class="doccomment">/// [`MultiFilter`][crate::MultiFilter] is the base class for filters that combine multiple filters.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is an Abstract Base Class, you cannot instantiate it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::MultiFilterExt`], [`trait@crate::prelude::FilterExt`], [`trait@glib::object::ObjectExt`], [`trait@gio::prelude::ListModelExt`], [`trait@crate::prelude::BuildableExt`]</span>
+    <span class="doccomment">/// [`MultiFilterExt`][trait@crate::prelude::MultiFilterExt], [`FilterExt`][trait@crate::prelude::FilterExt], [`trait@glib::ObjectExt`], [`trait@gio::prelude::ListModelExt`], [`BuildableExt`][trait@crate::prelude::BuildableExt]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MultiFilter</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkMultiFilter</span>, <span class="ident">ffi::GtkMultiFilterClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Filter</span>, @<span class="ident">implements</span> <span class="ident">gio::ListModel</span>, <span class="ident">Buildable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -107,7 +107,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::AnyFilter`], [`struct@crate::EveryFilter`], [`struct@crate::MultiFilter`]</span>
+<span class="doccomment">/// [`AnyFilter`][struct@crate::AnyFilter], [`EveryFilter`][struct@crate::EveryFilter], [`MultiFilter`][struct@crate::MultiFilter]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">MultiFilterExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Adds a `filter` to `self` to use for matching.</span>
     <span class="doccomment">/// ## `filter`</span>

@@ -415,24 +415,24 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkGestureSingle` is a `GtkGestures` subclass optimized for singe-touch</span>
+    <span class="doccomment">/// [`GestureSingle`][crate::GestureSingle] is a `GtkGestures` subclass optimized for singe-touch</span>
     <span class="doccomment">/// and mouse gestures.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Under interaction, these gestures stick to the first interacting sequence,</span>
-    <span class="doccomment">/// which is accessible through [method`Gtk.GestureSingle`.get_current_sequence]</span>
+    <span class="doccomment">/// which is accessible through [``GestureSingleExt::current_sequence()``][crate::prelude::`GestureSingleExt::current_sequence()`]</span>
     <span class="doccomment">/// while the gesture is being interacted with.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// By default gestures react to both `GDK_BUTTON_PRIMARY` and touch events.</span>
-    <span class="doccomment">/// [method`Gtk.GestureSingle`.set_touch_only] can be used to change the</span>
+    <span class="doccomment">/// [``GestureSingleExt::set_touch_only()``][crate::prelude::`GestureSingleExt::set_touch_only()`] can be used to change the</span>
     <span class="doccomment">/// touch behavior. Callers may also specify a different mouse button number</span>
-    <span class="doccomment">/// to interact with through [method`Gtk.GestureSingle`.set_button], or react</span>
+    <span class="doccomment">/// to interact with through [``GestureSingleExt::set_button()``][crate::prelude::`GestureSingleExt::set_button()`], or react</span>
     <span class="doccomment">/// to any mouse button by setting it to 0. While the gesture is active, the</span>
     <span class="doccomment">/// button being currently pressed can be known through</span>
-    <span class="doccomment">/// [method`Gtk.GestureSingle`.get_current_button].</span>
+    <span class="doccomment">/// [``GestureSingleExt::current_button()``][crate::prelude::`GestureSingleExt::current_button()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::GestureSingleExt`], [`trait@crate::prelude::GestureExt`], [`trait@crate::prelude::EventControllerExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`GestureSingleExt`][trait@crate::prelude::GestureSingleExt], [`GestureExt`][trait@crate::prelude::GestureExt], [`EventControllerExt`][trait@crate::prelude::EventControllerExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GestureSingle</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkGestureSingle</span>, <span class="ident">ffi::GtkGestureSingleClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Gesture</span>, <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -550,7 +550,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::DragSource`], [`struct@crate::GestureClick`], [`struct@crate::GestureDrag`], [`struct@crate::GestureLongPress`], [`struct@crate::GestureSingle`], [`struct@crate::GestureStylus`], [`struct@crate::GestureSwipe`]</span>
+<span class="doccomment">/// [`DragSource`][struct@crate::DragSource], [`GestureClick`][struct@crate::GestureClick], [`GestureDrag`][struct@crate::GestureDrag], [`GestureLongPress`][struct@crate::GestureLongPress], [`GestureSingle`][struct@crate::GestureSingle], [`GestureStylus`][struct@crate::GestureStylus], [`GestureSwipe`][struct@crate::GestureSwipe]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">GestureSingleExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Returns the button number `self` listens for.</span>
     <span class="doccomment">///</span>
@@ -575,7 +575,7 @@
 
     <span class="doccomment">/// Returns the event sequence currently interacting with `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is only meaningful if [method`Gtk.Gesture`.is_active]</span>
+    <span class="doccomment">/// This is only meaningful if [``GestureExt::is_active()``][crate::prelude::`GestureExt::is_active()`]</span>
     <span class="doccomment">/// returns [`true`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -587,7 +587,7 @@
 
     <span class="doccomment">/// Gets whether a gesture is exclusive.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// For more information, see [method`Gtk.GestureSingle`.set_exclusive].</span>
+    <span class="doccomment">/// For more information, see [``set_exclusive()``][`Self::set_exclusive()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -628,7 +628,7 @@
     <span class="doccomment">/// Sets whether to handle only touch events.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `touch_only` is [`true`], `self` will only handle events of type</span>
-    <span class="doccomment">/// [`crate::gdk::EventType::TouchBegin`], [`crate::gdk::EventType::TouchUpdate`] or [`crate::gdk::EventType::TouchEnd`]. If [`false`],</span>
+    <span class="doccomment">/// `GDK_TOUCH_BEGIN`, `GDK_TOUCH_UPDATE` or `GDK_TOUCH_END`. If [`false`],</span>
     <span class="doccomment">/// mouse events will be handled too.</span>
     <span class="doccomment">/// ## `touch_only`</span>
     <span class="doccomment">/// whether `self` handles only touch events</span>

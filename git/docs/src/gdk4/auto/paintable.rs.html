@@ -447,55 +447,55 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GdkPaintable` is a simple interface used by GTK to represent content that</span>
+    <span class="doccomment">/// [`Paintable`][crate::Paintable] is a simple interface used by GTK to represent content that</span>
     <span class="doccomment">/// can be painted.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The content of a `GdkPaintable` can be painted anywhere at any size</span>
+    <span class="doccomment">/// The content of a [`Paintable`][crate::Paintable] can be painted anywhere at any size</span>
     <span class="doccomment">/// without requiring any sort of layout. The interface is inspired by</span>
     <span class="doccomment">/// similar concepts elsewhere, such as</span>
     <span class="doccomment">/// [ClutterContent](https://developer.gnome.org/clutter/stable/ClutterContent.html),</span>
     <span class="doccomment">/// [HTML/CSS Paint Sources](https://www.w3.org/TR/css-images-4/`paint`-source),</span>
     <span class="doccomment">/// or [SVG Paint Servers](https://www.w3.org/TR/SVG2/pservers.html).</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GdkPaintable` can be snapshot at any time and size using</span>
-    <span class="doccomment">/// [method`Gdk.Paintable`.snapshot]. How the paintable interprets that size and</span>
+    <span class="doccomment">/// A [`Paintable`][crate::Paintable] can be snapshot at any time and size using</span>
+    <span class="doccomment">/// [``PaintableExt::snapshot()``][crate::prelude::`PaintableExt::snapshot()`]. How the paintable interprets that size and</span>
     <span class="doccomment">/// if it scales or centers itself into the given rectangle is implementation</span>
-    <span class="doccomment">/// defined, though if you are implementing a `GdkPaintable` and don&#39;t know what</span>
+    <span class="doccomment">/// defined, though if you are implementing a [`Paintable`][crate::Paintable] and don&#39;t know what</span>
     <span class="doccomment">/// to do, it is suggested that you scale your paintable ignoring any potential</span>
     <span class="doccomment">/// aspect ratio.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The contents that a `GdkPaintable` produces may depend on the [class[`crate::Snapshot`] (XXX: @-reference does not belong to Paintable!)]</span>
+    <span class="doccomment">/// The contents that a [`Paintable`][crate::Paintable] produces may depend on the [`Snapshot`][crate::Snapshot]</span>
     <span class="doccomment">/// passed to it. For example, paintables may decide to use more detailed images</span>
-    <span class="doccomment">/// on higher resolution screens or when OpenGL is available. A `GdkPaintable`</span>
+    <span class="doccomment">/// on higher resolution screens or when OpenGL is available. A [`Paintable`][crate::Paintable]</span>
     <span class="doccomment">/// will however always produce the same output for the same snapshot.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GdkPaintable` may change its contents, meaning that it will now produce</span>
+    <span class="doccomment">/// A [`Paintable`][crate::Paintable] may change its contents, meaning that it will now produce</span>
     <span class="doccomment">/// a different output with the same snapshot. Once that happens, it will call</span>
-    <span class="doccomment">/// [method`Gdk.Paintable`.invalidate_contents] which will emit the</span>
-    <span class="doccomment">/// [signal[`crate::Paintable::invalidate-contents`] (XXX: @-reference does not belong to Paintable!)] signal. If a paintable is known</span>
-    <span class="doccomment">/// to never change its contents, it will set the [`crate::PaintableFlags::Contents`]</span>
+    <span class="doccomment">/// [``PaintableExt::invalidate_contents()``][crate::prelude::`PaintableExt::invalidate_contents()`] which will emit the</span>
+    <span class="doccomment">/// `signal::GdkPaintable::invalidate-contents` signal. If a paintable is known</span>
+    <span class="doccomment">/// to never change its contents, it will set the [`PaintableFlags::CONTENTS`][crate::PaintableFlags::CONTENTS]</span>
     <span class="doccomment">/// flag. If a consumer cannot deal with changing contents, it may call</span>
-    <span class="doccomment">/// [method`Gdk.Paintable`.get_current_image] which will return a static</span>
+    <span class="doccomment">/// [``PaintableExt::current_image()``][crate::prelude::`PaintableExt::current_image()`] which will return a static</span>
     <span class="doccomment">/// paintable and use that.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A paintable can report an intrinsic (or preferred) size or aspect ratio it</span>
     <span class="doccomment">/// wishes to be rendered at, though it doesn&#39;t have to. Consumers of the interface</span>
     <span class="doccomment">/// can use this information to layout thepaintable appropriately. Just like the</span>
     <span class="doccomment">/// contents, the size of a paintable can change. A paintable will indicate this</span>
-    <span class="doccomment">/// by calling [method`Gdk.Paintable`.invalidate_size] which will emit the</span>
-    <span class="doccomment">/// [signal[`crate::Paintable::invalidate-size`] (XXX: @-reference does not belong to Paintable!)] signal. And just like for contents,</span>
+    <span class="doccomment">/// by calling [``PaintableExt::invalidate_size()``][crate::prelude::`PaintableExt::invalidate_size()`] which will emit the</span>
+    <span class="doccomment">/// `signal::GdkPaintable::invalidate-size` signal. And just like for contents,</span>
     <span class="doccomment">/// if a paintable is known to never change its size, it will set the</span>
-    <span class="doccomment">/// [`crate::PaintableFlags::Size`] flag.</span>
+    <span class="doccomment">/// [`PaintableFlags::SIZE`][crate::PaintableFlags::SIZE] flag.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Besides API for applications, there are some functions that are only</span>
     <span class="doccomment">/// useful for implementing subclasses and should not be used by applications:</span>
-    <span class="doccomment">/// [method`Gdk.Paintable`.invalidate_contents],</span>
-    <span class="doccomment">/// [method`Gdk.Paintable`.invalidate_size],</span>
-    <span class="doccomment">/// [func`Gdk.Paintable`.new_empty].</span>
+    <span class="doccomment">/// [``PaintableExt::invalidate_contents()``][crate::prelude::`PaintableExt::invalidate_contents()`],</span>
+    <span class="doccomment">/// [``PaintableExt::invalidate_size()``][crate::prelude::`PaintableExt::invalidate_size()`],</span>
+    <span class="doccomment">/// [``new_empty()``][`Self::new_empty()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::PaintableExt`]</span>
+    <span class="doccomment">/// [`PaintableExt`][trait@crate::prelude::PaintableExt]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Paintable</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GdkPaintable</span>, <span class="ident">ffi::GdkPaintableInterface</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -507,9 +507,9 @@
     <span class="doccomment">/// Returns a paintable that has the given intrinsic size and draws nothing.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is often useful for implementing the</span>
-    <span class="doccomment">/// [`crate::`PaintableInterface`.get_current_image()`] virtual function</span>
+    <span class="doccomment">/// `GdkPaintableInterface.get_current_image()` virtual function</span>
     <span class="doccomment">/// when the paintable is in an incomplete state (like a</span>
-    <span class="doccomment">/// [class`Gtk.MediaStream`] before receiving the first frame).</span>
+    <span class="doccomment">/// `Gtk::MediaStream` before receiving the first frame).</span>
     <span class="doccomment">/// ## `intrinsic_width`</span>
     <span class="doccomment">/// The intrinsic width to report. Can be 0 for no width.</span>
     <span class="doccomment">/// ## `intrinsic_height`</span>
@@ -517,7 +517,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GdkPaintable`</span>
+    <span class="doccomment">/// a [`Paintable`][crate::Paintable]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_paintable_new_empty&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_empty</span>(<span class="ident">intrinsic_width</span>: <span class="ident">i32</span>, <span class="ident">intrinsic_height</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Paintable</span><span class="op">&gt;</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -536,9 +536,9 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::GLTexture`], [`struct@crate::MemoryTexture`], [`struct@crate::Paintable`], [`struct@crate::Texture`]</span>
+<span class="doccomment">/// [`GLTexture`][struct@crate::GLTexture], [`MemoryTexture`][struct@crate::MemoryTexture], [`Paintable`][struct@crate::Paintable], [`Texture`][struct@crate::Texture]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">PaintableExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Compute a concrete size for the `GdkPaintable`.</span>
+    <span class="doccomment">/// Compute a concrete size for the [`Paintable`][crate::Paintable].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Applies the sizing algorithm outlined in the</span>
     <span class="doccomment">/// [CSS Image spec](https://drafts.csswg.org/css-images-3/`default`-sizing)</span>
@@ -546,7 +546,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is not necessary to call this function when both `specified_width`</span>
     <span class="doccomment">/// and `specified_height` are known, but it is useful to call this</span>
-    <span class="doccomment">/// function in `GtkWidget`:measure implementations to compute the</span>
+    <span class="doccomment">/// function in GtkWidget:measure implementations to compute the</span>
     <span class="doccomment">/// other dimension when only one dimension is given.</span>
     <span class="doccomment">/// ## `specified_width`</span>
     <span class="doccomment">/// the width `self` could be drawn into or</span>
@@ -599,11 +599,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is oftentimes useful for optimizations.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [flags`Gdk.PaintableFlags`] for the flags and what they mean.</span>
+    <span class="doccomment">/// See [`PaintableFlags`][crate::PaintableFlags] for the flags and what they mean.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GdkPaintableFlags` for this paintable</span>
+    <span class="doccomment">/// The [`PaintableFlags`][crate::PaintableFlags] for this paintable</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_paintable_get_flags&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_flags&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">flags</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PaintableFlags</span>;
@@ -616,11 +616,11 @@
     <span class="doccomment">/// ratio when displaying the paintable.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a purely informational value and does not in any way limit the</span>
-    <span class="doccomment">/// values that may be passed to [method`Gdk.Paintable`.snapshot].</span>
+    <span class="doccomment">/// values that may be passed to [``snapshot()``][`Self::snapshot()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Usually when a `self` returns nonzero values from</span>
-    <span class="doccomment">/// [method`Gdk.Paintable`.get_intrinsic_width] and</span>
-    <span class="doccomment">/// [method`Gdk.Paintable`.get_intrinsic_height] the aspect ratio</span>
+    <span class="doccomment">/// [``intrinsic_width()``][`Self::intrinsic_width()`] and</span>
+    <span class="doccomment">/// [``intrinsic_height()``][`Self::intrinsic_height()`] the aspect ratio</span>
     <span class="doccomment">/// should conform to those values, though that is not required.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the `self` does not have a preferred aspect ratio,</span>
@@ -639,7 +639,7 @@
     <span class="doccomment">/// the paintable.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a purely informational value and does not in any way limit the</span>
-    <span class="doccomment">/// values that may be passed to [method`Gdk.Paintable`.snapshot].</span>
+    <span class="doccomment">/// values that may be passed to [``snapshot()``][`Self::snapshot()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the `self` does not have a preferred height, it returns 0.</span>
     <span class="doccomment">/// Negative values are never returned.</span>
@@ -657,7 +657,7 @@
     <span class="doccomment">/// the paintable.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a purely informational value and does not in any way limit the</span>
-    <span class="doccomment">/// values that may be passed to [method`Gdk.Paintable`.snapshot].</span>
+    <span class="doccomment">/// values that may be passed to [``snapshot()``][`Self::snapshot()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the `self` does not have a preferred width, it returns 0.</span>
     <span class="doccomment">/// Negative values are never returned.</span>
@@ -669,28 +669,28 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_intrinsic_width&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">intrinsic_width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
 
-    <span class="doccomment">/// Called by implementations of `GdkPaintable` to invalidate their contents.</span>
+    <span class="doccomment">/// Called by implementations of [`Paintable`][crate::Paintable] to invalidate their contents.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Unless the contents are invalidated, implementations must guarantee that</span>
-    <span class="doccomment">/// multiple calls of [method`Gdk.Paintable`.snapshot] produce the same output.</span>
+    <span class="doccomment">/// multiple calls of [``snapshot()``][`Self::snapshot()`] produce the same output.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This function will emit the [signal`Gdk.Paintable`::invalidate-contents]</span>
+    <span class="doccomment">/// This function will emit the `signal::Paintable::invalidate-contents`</span>
     <span class="doccomment">/// signal.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If a `self` reports the [`crate::PaintableFlags::Contents`] flag,</span>
+    <span class="doccomment">/// If a `self` reports the [`PaintableFlags::CONTENTS`][crate::PaintableFlags::CONTENTS] flag,</span>
     <span class="doccomment">/// it must not call this function.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_paintable_invalidate_contents&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">invalidate_contents</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Called by implementations of `GdkPaintable` to invalidate their size.</span>
+    <span class="doccomment">/// Called by implementations of [`Paintable`][crate::Paintable] to invalidate their size.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// As long as the size is not invalidated, `self` must return the same</span>
     <span class="doccomment">/// values for its intrinsic width, height and aspect ratio.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This function will emit the [signal`Gdk.Paintable`::invalidate-size]</span>
+    <span class="doccomment">/// This function will emit the `signal::Paintable::invalidate-size`</span>
     <span class="doccomment">/// signal.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If a `self` reports the [`crate::PaintableFlags::Size`] flag,</span>
+    <span class="doccomment">/// If a `self` reports the [`PaintableFlags::SIZE`][crate::PaintableFlags::SIZE] flag,</span>
     <span class="doccomment">/// it must not call this function.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_paintable_invalidate_size&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">invalidate_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
@@ -701,7 +701,7 @@
     <span class="doccomment">/// If `width` and `height` are not larger than zero, this function will</span>
     <span class="doccomment">/// do nothing.</span>
     <span class="doccomment">/// ## `snapshot`</span>
-    <span class="doccomment">/// a `GdkSnapshot` to snapshot to</span>
+    <span class="doccomment">/// a [`Snapshot`][crate::Snapshot] to snapshot to</span>
     <span class="doccomment">/// ## `width`</span>
     <span class="doccomment">/// width to snapshot in</span>
     <span class="doccomment">/// ## `height`</span>
@@ -719,9 +719,9 @@
     <span class="doccomment">/// Emitted when the intrinsic size of the `paintable` changes.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This means the values reported by at least one of</span>
-    <span class="doccomment">/// [method`Gdk.Paintable`.get_intrinsic_width],</span>
-    <span class="doccomment">/// [method`Gdk.Paintable`.get_intrinsic_height] or</span>
-    <span class="doccomment">/// [method`Gdk.Paintable`.get_intrinsic_aspect_ratio]</span>
+    <span class="doccomment">/// [``intrinsic_width()``][`Self::intrinsic_width()`],</span>
+    <span class="doccomment">/// [``intrinsic_height()``][`Self::intrinsic_height()`] or</span>
+    <span class="doccomment">/// [``intrinsic_aspect_ratio()``][`Self::intrinsic_aspect_ratio()`]</span>
     <span class="doccomment">/// has changed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Examples for such an event would be a paintable displaying</span>

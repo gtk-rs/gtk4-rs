@@ -189,27 +189,27 @@
 <span class="kw">use</span> <span class="ident">std::ptr</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GdkTexture` is the basic element used to refer to pixel data.</span>
+    <span class="doccomment">/// [`Texture`][crate::Texture] is the basic element used to refer to pixel data.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is primarily meant for pixel data that will not change over</span>
     <span class="doccomment">/// multiple frames, and will be used for a long time.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// There are various ways to create `GdkTexture` objects from a</span>
-    <span class="doccomment">/// `GdkPixbuf`, or a Cairo surface, or other pixel data.</span>
+    <span class="doccomment">/// There are various ways to create [`Texture`][crate::Texture] objects from a</span>
+    <span class="doccomment">/// [`gdk_pixbuf::Pixbuf`][crate::gdk_pixbuf::Pixbuf], or a Cairo surface, or other pixel data.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The ownership of the pixel data is transferred to the `GdkTexture`</span>
+    <span class="doccomment">/// The ownership of the pixel data is transferred to the [`Texture`][crate::Texture]</span>
     <span class="doccomment">/// instance; you can only make a copy of it, via</span>
-    <span class="doccomment">/// [method`Gdk.Texture`.download].</span>
+    <span class="doccomment">/// [``TextureExtManual::download()``][crate::prelude::`TextureExtManual::download()`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GdkTexture` is an immutable object: That means you cannot change</span>
+    <span class="doccomment">/// [`Texture`][crate::Texture] is an immutable object: That means you cannot change</span>
     <span class="doccomment">/// anything about it other than increasing the reference count via</span>
-    <span class="doccomment">/// [`crate::glib::object::Object::ref()`].</span>
+    <span class="doccomment">/// `g_object_ref()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is an Abstract Base Class, you cannot instantiate it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::TextureExt`], [`trait@crate::prelude::PaintableExt`], [`trait@crate::prelude::TextureExtManual`]</span>
+    <span class="doccomment">/// [`TextureExt`][trait@crate::prelude::TextureExt], [`PaintableExt`][trait@crate::prelude::PaintableExt], [`TextureExtManual`][trait@crate::prelude::TextureExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Texture</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GdkTexture</span>, <span class="ident">ffi::GdkTextureClass</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">Paintable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -218,13 +218,13 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Texture</span> {
-    <span class="doccomment">/// Creates a new texture object representing the `GdkPixbuf`.</span>
+    <span class="doccomment">/// Creates a new texture object representing the [`gdk_pixbuf::Pixbuf`][crate::gdk_pixbuf::Pixbuf].</span>
     <span class="doccomment">/// ## `pixbuf`</span>
-    <span class="doccomment">/// a `GdkPixbuf`</span>
+    <span class="doccomment">/// a [`gdk_pixbuf::Pixbuf`][crate::gdk_pixbuf::Pixbuf]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GdkTexture`</span>
+    <span class="doccomment">/// a new [`Texture`][crate::Texture]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_texture_new_for_pixbuf&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_for_pixbuf&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_pixbuf</span>(<span class="ident">pixbuf</span>: <span class="kw-2">&amp;</span><span class="ident">gdk_pixbuf::Pixbuf</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Texture</span> {
@@ -243,7 +243,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A newly-created `GdkTexture` or [`None`] if an error occurred.</span>
+    <span class="doccomment">/// A newly-created [`Texture`][crate::Texture] or [`None`] if an error occurred.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_texture_new_from_file&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_from_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::File</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">file</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Texture</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span> {
@@ -267,13 +267,13 @@
     <span class="doccomment">/// It is a fatal error if `resource_path` does not specify a valid</span>
     <span class="doccomment">/// image resource and the program will abort if that happens.</span>
     <span class="doccomment">/// If you are unsure about the validity of a resource, use</span>
-    <span class="doccomment">/// [ctor`Gdk.Texture`.new_from_file] to load it.</span>
+    <span class="doccomment">/// [``from_file()``][`Self::from_file()`] to load it.</span>
     <span class="doccomment">/// ## `resource_path`</span>
     <span class="doccomment">/// the path of the resource file</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A newly-created `GdkTexture`</span>
+    <span class="doccomment">/// A newly-created [`Texture`][crate::Texture]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_texture_new_from_resource&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_from_resource&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_resource</span>(<span class="ident">resource_path</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Texture</span> {
@@ -292,13 +292,13 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::GLTexture`], [`struct@crate::MemoryTexture`], [`struct@crate::Texture`]</span>
+<span class="doccomment">/// [`GLTexture`][struct@crate::GLTexture], [`MemoryTexture`][struct@crate::MemoryTexture], [`Texture`][struct@crate::Texture]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TextureExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Returns the height of the `self`, in pixels.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the height of the `GdkTexture`</span>
+    <span class="doccomment">/// the height of the [`Texture`][crate::Texture]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_texture_get_height&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_height&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">height</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;
@@ -307,7 +307,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the width of the `GdkTexture`</span>
+    <span class="doccomment">/// the width of the [`Texture`][crate::Texture]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_texture_get_width&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_width&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">width</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i32</span>;

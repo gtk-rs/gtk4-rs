@@ -17,14 +17,14 @@
 <div class="item-spacer"></div>    fn <a href="#tymethod.connect_invalidate_size" class="fnname">connect_invalidate_size</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
 }</pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.Paintable.html" title="Paintable"><code>Paintable</code></a> methods.</p>
 <h1 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h1>
-<p><a href="../struct.GLTexture.html" title="crate::GLTexture"><code>crate::GLTexture</code></a>, <a href="../struct.MemoryTexture.html" title="crate::MemoryTexture"><code>crate::MemoryTexture</code></a>, <a href="../struct.Paintable.html" title="crate::Paintable"><code>struct@crate::Paintable</code></a>, <a href="../struct.Texture.html" title="crate::Texture"><code>crate::Texture</code></a></p>
-</div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><h3 id="tymethod.compute_concrete_size" class="method"><code>fn <a href="#tymethod.compute_concrete_size" class="fnname">compute_concrete_size</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;specified_width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;specified_height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;default_width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;default_height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a><br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></code><a class="srclink" href="../../src/gdk4/auto/paintable.rs.html#143-149" title="goto source code">[src]</a></h3></summary><div class="docblock"><p>Compute a concrete size for the <code>GdkPaintable</code>.</p>
+<p><a href="../struct.GLTexture.html" title="crate::GLTexture"><code>GLTexture</code></a>, <a href="../struct.MemoryTexture.html" title="crate::MemoryTexture"><code>MemoryTexture</code></a>, <a href="../struct.Paintable.html" title="crate::Paintable"><code>Paintable</code></a>, <a href="../struct.Texture.html" title="crate::Texture"><code>Texture</code></a></p>
+</div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><h3 id="tymethod.compute_concrete_size" class="method"><code>fn <a href="#tymethod.compute_concrete_size" class="fnname">compute_concrete_size</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;specified_width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;specified_height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;default_width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;default_height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a><br>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></code><a class="srclink" href="../../src/gdk4/auto/paintable.rs.html#143-149" title="goto source code">[src]</a></h3></summary><div class="docblock"><p>Compute a concrete size for the <a href="../struct.Paintable.html" title="crate::Paintable"><code>Paintable</code></a>.</p>
 <p>Applies the sizing algorithm outlined in the
 <a href="https://drafts.csswg.org/css-images-3/%60default%60-sizing">CSS Image spec</a>
 to the given <code>self</code>. See that link for more details.</p>
 <p>It is not necessary to call this function when both <code>specified_width</code>
 and <code>specified_height</code> are known, but it is useful to call this
-function in <code>GtkWidget</code>:measure implementations to compute the
+function in GtkWidget:measure implementations to compute the
 other dimension when only one dimension is given.</p>
 <h2 id="specified_width" class="section-header"><a href="#specified_width"><code>specified_width</code></a></h2>
 <p>the width <code>self</code> could be drawn into or
@@ -53,19 +53,19 @@ for example to take a screenshot of a running animation.</p>
 contents of <code>self</code>.</p>
 </div></details><details class="rustdoc-toggle" open><summary><h3 id="tymethod.flags" class="method"><code>fn <a href="#tymethod.flags" class="fnname">flags</a>(&amp;self) -&gt; <a class="struct" href="../struct.PaintableFlags.html" title="struct gdk4::PaintableFlags">PaintableFlags</a></code><a class="srclink" href="../../src/gdk4/auto/paintable.rs.html#177" title="goto source code">[src]</a></h3></summary><div class="docblock"><p>Get flags for the paintable.</p>
 <p>This is oftentimes useful for optimizations.</p>
-<p>See [flags<code>Gdk.PaintableFlags</code>] for the flags and what they mean.</p>
+<p>See <a href="../struct.PaintableFlags.html" title="crate::PaintableFlags"><code>PaintableFlags</code></a> for the flags and what they mean.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
-<p>The <code>GdkPaintableFlags</code> for this paintable</p>
+<p>The <a href="../struct.PaintableFlags.html" title="crate::PaintableFlags"><code>PaintableFlags</code></a> for this paintable</p>
 </div></details><details class="rustdoc-toggle" open><summary><h3 id="tymethod.intrinsic_aspect_ratio" class="method"><code>fn <a href="#tymethod.intrinsic_aspect_ratio" class="fnname">intrinsic_aspect_ratio</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a></code><a class="srclink" href="../../src/gdk4/auto/paintable.rs.html#202" title="goto source code">[src]</a></h3></summary><div class="docblock"><p>Gets the preferred aspect ratio the <code>self</code> would like to be displayed at.</p>
 <p>The aspect ratio is the width divided by the height, so a value of 0.5
 means that the <code>self</code> prefers to be displayed twice as high as it
 is wide. Consumers of this interface can use this to preserve aspect
 ratio when displaying the paintable.</p>
 <p>This is a purely informational value and does not in any way limit the
-values that may be passed to [method<code>Gdk.Paintable</code>.snapshot].</p>
+values that may be passed to <a href="trait.PaintableExt.html#tymethod.snapshot" title="Self::snapshot()"><code>snapshot()</code></a>.</p>
 <p>Usually when a <code>self</code> returns nonzero values from
-[method<code>Gdk.Paintable</code>.get_intrinsic_width] and
-[method<code>Gdk.Paintable</code>.get_intrinsic_height] the aspect ratio
+<a href="trait.PaintableExt.html#tymethod.intrinsic_width" title="Self::intrinsic_width()"><code>intrinsic_width()</code></a> and
+<a href="trait.PaintableExt.html#tymethod.intrinsic_height" title="Self::intrinsic_height()"><code>intrinsic_height()</code></a> the aspect ratio
 should conform to those values, though that is not required.</p>
 <p>If the <code>self</code> does not have a preferred aspect ratio,
 it returns 0. Negative values are never returned.</p>
@@ -75,7 +75,7 @@ it returns 0. Negative values are never returned.</p>
 <p>Consumers of this interface can use this to reserve enough space to draw
 the paintable.</p>
 <p>This is a purely informational value and does not in any way limit the
-values that may be passed to [method<code>Gdk.Paintable</code>.snapshot].</p>
+values that may be passed to <a href="trait.PaintableExt.html#tymethod.snapshot" title="Self::snapshot()"><code>snapshot()</code></a>.</p>
 <p>If the <code>self</code> does not have a preferred height, it returns 0.
 Negative values are never returned.</p>
 <h1 id="returns-4" class="section-header"><a href="#returns-4">Returns</a></h1>
@@ -84,31 +84,31 @@ Negative values are never returned.</p>
 <p>Consumers of this interface can use this to reserve enough space to draw
 the paintable.</p>
 <p>This is a purely informational value and does not in any way limit the
-values that may be passed to [method<code>Gdk.Paintable</code>.snapshot].</p>
+values that may be passed to <a href="trait.PaintableExt.html#tymethod.snapshot" title="Self::snapshot()"><code>snapshot()</code></a>.</p>
 <p>If the <code>self</code> does not have a preferred width, it returns 0.
 Negative values are never returned.</p>
 <h1 id="returns-5" class="section-header"><a href="#returns-5">Returns</a></h1>
 <p>the intrinsic width of <code>self</code> or 0 if none.</p>
-</div></details><details class="rustdoc-toggle" open><summary><h3 id="tymethod.invalidate_contents" class="method"><code>fn <a href="#tymethod.invalidate_contents" class="fnname">invalidate_contents</a>(&amp;self)</code><a class="srclink" href="../../src/gdk4/auto/paintable.rs.html#251" title="goto source code">[src]</a></h3></summary><div class="docblock"><p>Called by implementations of <code>GdkPaintable</code> to invalidate their contents.</p>
+</div></details><details class="rustdoc-toggle" open><summary><h3 id="tymethod.invalidate_contents" class="method"><code>fn <a href="#tymethod.invalidate_contents" class="fnname">invalidate_contents</a>(&amp;self)</code><a class="srclink" href="../../src/gdk4/auto/paintable.rs.html#251" title="goto source code">[src]</a></h3></summary><div class="docblock"><p>Called by implementations of <a href="../struct.Paintable.html" title="crate::Paintable"><code>Paintable</code></a> to invalidate their contents.</p>
 <p>Unless the contents are invalidated, implementations must guarantee that
-multiple calls of [method<code>Gdk.Paintable</code>.snapshot] produce the same output.</p>
-<p>This function will emit the [signal<code>Gdk.Paintable</code>::invalidate-contents]
+multiple calls of <a href="trait.PaintableExt.html#tymethod.snapshot" title="Self::snapshot()"><code>snapshot()</code></a> produce the same output.</p>
+<p>This function will emit the <code>signal::Paintable::invalidate-contents</code>
 signal.</p>
-<p>If a <code>self</code> reports the [<code>crate::PaintableFlags::Contents</code>] flag,
+<p>If a <code>self</code> reports the <a href="../struct.PaintableFlags.html#associatedconstant.CONTENTS" title="crate::PaintableFlags::CONTENTS"><code>PaintableFlags::CONTENTS</code></a> flag,
 it must not call this function.</p>
-</div></details><details class="rustdoc-toggle" open><summary><h3 id="tymethod.invalidate_size" class="method"><code>fn <a href="#tymethod.invalidate_size" class="fnname">invalidate_size</a>(&amp;self)</code><a class="srclink" href="../../src/gdk4/auto/paintable.rs.html#264" title="goto source code">[src]</a></h3></summary><div class="docblock"><p>Called by implementations of <code>GdkPaintable</code> to invalidate their size.</p>
+</div></details><details class="rustdoc-toggle" open><summary><h3 id="tymethod.invalidate_size" class="method"><code>fn <a href="#tymethod.invalidate_size" class="fnname">invalidate_size</a>(&amp;self)</code><a class="srclink" href="../../src/gdk4/auto/paintable.rs.html#264" title="goto source code">[src]</a></h3></summary><div class="docblock"><p>Called by implementations of <a href="../struct.Paintable.html" title="crate::Paintable"><code>Paintable</code></a> to invalidate their size.</p>
 <p>As long as the size is not invalidated, <code>self</code> must return the same
 values for its intrinsic width, height and aspect ratio.</p>
-<p>This function will emit the [signal<code>Gdk.Paintable</code>::invalidate-size]
+<p>This function will emit the <code>signal::Paintable::invalidate-size</code>
 signal.</p>
-<p>If a <code>self</code> reports the [<code>crate::PaintableFlags::Size</code>] flag,
+<p>If a <code>self</code> reports the <a href="../struct.PaintableFlags.html#associatedconstant.SIZE" title="crate::PaintableFlags::SIZE"><code>PaintableFlags::SIZE</code></a> flag,
 it must not call this function.</p>
 </div></details><details class="rustdoc-toggle" open><summary><h3 id="tymethod.snapshot" class="method"><code>fn <a href="#tymethod.snapshot" class="fnname">snapshot</a>(&amp;self, snapshot: &amp;<a class="struct" href="../struct.Snapshot.html" title="struct gdk4::Snapshot">Snapshot</a>, width: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.f64.html">f64</a>)</code><a class="srclink" href="../../src/gdk4/auto/paintable.rs.html#278" title="goto source code">[src]</a></h3></summary><div class="docblock"><p>Snapshots the given paintable with the given <code>width</code> and <code>height</code>.</p>
 <p>The paintable is drawn at the current (0,0) offset of the <code>snapshot</code>.
 If <code>width</code> and <code>height</code> are not larger than zero, this function will
 do nothing.</p>
 <h2 id="snapshot" class="section-header"><a href="#snapshot"><code>snapshot</code></a></h2>
-<p>a <code>GdkSnapshot</code> to snapshot to</p>
+<p>a <a href="../struct.Snapshot.html" title="crate::Snapshot"><code>Snapshot</code></a> to snapshot to</p>
 <h2 id="width" class="section-header"><a href="#width"><code>width</code></a></h2>
 <p>width to snapshot in</p>
 <h2 id="height" class="section-header"><a href="#height"><code>height</code></a></h2>
@@ -118,9 +118,9 @@ do nothing.</p>
 the icon theme for an icon changing.</p>
 </div></details><details class="rustdoc-toggle" open><summary><h3 id="tymethod.connect_invalidate_size" class="method"><code>fn <a href="#tymethod.connect_invalidate_size" class="fnname">connect_invalidate_size</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a></code><a class="srclink" href="../../src/gdk4/auto/paintable.rs.html#298" title="goto source code">[src]</a></h3></summary><div class="docblock"><p>Emitted when the intrinsic size of the <code>paintable</code> changes.</p>
 <p>This means the values reported by at least one of
-[method<code>Gdk.Paintable</code>.get_intrinsic_width],
-[method<code>Gdk.Paintable</code>.get_intrinsic_height] or
-[method<code>Gdk.Paintable</code>.get_intrinsic_aspect_ratio]
+<a href="trait.PaintableExt.html#tymethod.intrinsic_width" title="Self::intrinsic_width()"><code>intrinsic_width()</code></a>,
+<a href="trait.PaintableExt.html#tymethod.intrinsic_height" title="Self::intrinsic_height()"><code>intrinsic_height()</code></a> or
+<a href="trait.PaintableExt.html#tymethod.intrinsic_aspect_ratio" title="Self::intrinsic_aspect_ratio()"><code>intrinsic_aspect_ratio()</code></a>
 has changed.</p>
 <p>Examples for such an event would be a paintable displaying
 the contents of a toplevel surface being resized.</p>

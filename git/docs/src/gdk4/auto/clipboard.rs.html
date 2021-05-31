@@ -319,23 +319,23 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// The `GdkClipboard` object represents data shared between applications or</span>
+    <span class="doccomment">/// The [`Clipboard`][crate::Clipboard] object represents data shared between applications or</span>
     <span class="doccomment">/// inside an application.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To get a `GdkClipboard` object, use [method`Gdk.Display`.get_clipboard] or</span>
-    <span class="doccomment">/// [method`Gdk.Display`.get_primary_clipboard]. You can find out about the data</span>
+    <span class="doccomment">/// To get a [`Clipboard`][crate::Clipboard] object, use [``DisplayExt::clipboard()``][crate::prelude::`DisplayExt::clipboard()`] or</span>
+    <span class="doccomment">/// [``DisplayExt::primary_clipboard()``][crate::prelude::`DisplayExt::primary_clipboard()`]. You can find out about the data</span>
     <span class="doccomment">/// that is currently available in a clipboard using</span>
-    <span class="doccomment">/// [method`Gdk.Clipboard`.get_formats].</span>
+    <span class="doccomment">/// [``formats()``][`Self::formats()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To make text or image data available in a clipboard, use</span>
-    <span class="doccomment">/// [method`Gdk.Clipboard`.set_text] or [method`Gdk.Clipboard`.set_texture].</span>
-    <span class="doccomment">/// For other data, you can use [method`Gdk.Clipboard`.set_content], which</span>
-    <span class="doccomment">/// takes a [class`Gdk.ContentProvider`] object.</span>
+    <span class="doccomment">/// [``set_text()``][`Self::set_text()`] or [``set_texture()``][`Self::set_texture()`].</span>
+    <span class="doccomment">/// For other data, you can use [``set_content()``][`Self::set_content()`], which</span>
+    <span class="doccomment">/// takes a [`ContentProvider`][crate::ContentProvider] object.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To read textual or image data from a clipboard, use</span>
-    <span class="doccomment">/// [method`Gdk.Clipboard`.read_text_async] or</span>
-    <span class="doccomment">/// [method`Gdk.Clipboard`.read_texture_async]. For other data, use</span>
-    <span class="doccomment">/// [method`Gdk.Clipboard`.read_async], which provides a `GInputStream` object.</span>
+    <span class="doccomment">/// [``read_text_async()``][`Self::read_text_async()`] or</span>
+    <span class="doccomment">/// [``read_texture_async()``][`Self::read_texture_async()`]. For other data, use</span>
+    <span class="doccomment">/// [``read_async()``][`Self::read_async()`], which provides a `GInputStream` object.</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Clipboard</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GdkClipboard</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -351,7 +351,7 @@
         <span class="ident">ClipboardBuilder::default</span>()
     }
 
-    <span class="doccomment">/// Returns the `GdkContentProvider` currently set on `self`.</span>
+    <span class="doccomment">/// Returns the [`ContentProvider`][crate::ContentProvider] currently set on `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the `self` is empty or its contents are not owned by the</span>
     <span class="doccomment">/// current process, [`None`] will be returned.</span>
@@ -366,11 +366,11 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gdk_clipboard_get_content</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Gets the `GdkDisplay` that the clipboard was created for.</span>
+    <span class="doccomment">/// Gets the [`Display`][crate::Display] that the clipboard was created for.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GdkDisplay`</span>
+    <span class="doccomment">/// a [`Display`][crate::Display]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_clipboard_get_display&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_display&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">display</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Display</span><span class="op">&gt;</span> {
@@ -393,7 +393,7 @@
     <span class="doccomment">/// A clipboard is considered local if it was last claimed</span>
     <span class="doccomment">/// by the running application.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that [method`Gdk.Clipboard`.get_content] may return [`None`]</span>
+    <span class="doccomment">/// Note that [``content()``][`Self::content()`] may return [`None`]</span>
     <span class="doccomment">/// even on a local clipboard. In this case the clipboard is empty.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -406,7 +406,7 @@
 
     <span class="doccomment">/// Sets a new content provider on `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The clipboard will claim the `GdkDisplay`&#39;s resources and advertise</span>
+    <span class="doccomment">/// The clipboard will claim the [`Display`][crate::Display]&#39;s resources and advertise</span>
     <span class="doccomment">/// these new contents to other applications.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In the rare case of a failure, this function will return [`false`]. The</span>
@@ -451,7 +451,7 @@
 
     <span class="doccomment">/// Puts the given `texture` into the clipboard.</span>
     <span class="doccomment">/// ## `texture`</span>
-    <span class="doccomment">/// a `GdkTexture` to put into the clipboard</span>
+    <span class="doccomment">/// a [`Texture`][crate::Texture] to put into the clipboard</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_clipboard_set_texture&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_texture</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Texture</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">texture</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
         <span class="kw">unsafe</span> {
@@ -580,7 +580,7 @@
             .<span class="ident">expect</span>(<span class="string">&quot;Failed to create an instance of Clipboard&quot;</span>)
     }
 
-    <span class="doccomment">/// The `GdkDisplay` that the clipboard belongs to.</span>
+    <span class="doccomment">/// The [`Display`][crate::Display] that the clipboard belongs to.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">display</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Display</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">display</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">display</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">display</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>

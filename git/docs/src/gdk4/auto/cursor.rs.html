@@ -312,36 +312,36 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GdkCursor` is used to create and destroy cursors.</span>
+    <span class="doccomment">/// [`Cursor`][crate::Cursor] is used to create and destroy cursors.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Cursors are immutable objects, so once you created them, there is no way</span>
     <span class="doccomment">/// to modify them later. You should create a new cursor when you want to change</span>
     <span class="doccomment">/// something about it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Cursors by themselves are not very interesting: they must be bound to a</span>
-    <span class="doccomment">/// window for users to see them. This is done with [method`Gdk.Surface`.set_cursor]</span>
-    <span class="doccomment">/// or [method`Gdk.Surface`.set_device_cursor]. Applications will typically</span>
-    <span class="doccomment">/// use higher-level GTK functions such as [method`Gtk.Widget`.set_cursor]`</span>
+    <span class="doccomment">/// window for users to see them. This is done with [``SurfaceExt::set_cursor()``][crate::prelude::`SurfaceExt::set_cursor()`]</span>
+    <span class="doccomment">/// or [``SurfaceExt::set_device_cursor()``][crate::prelude::`SurfaceExt::set_device_cursor()`]. Applications will typically</span>
+    <span class="doccomment">/// use higher-level GTK functions such as `Gtk::`Widget::set_cursor()```</span>
     <span class="doccomment">/// instead.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Cursors are not bound to a given [class@Gdk.Display], so they can be shared.</span>
+    <span class="doccomment">/// Cursors are not bound to a given [`Display`][crate::Display], so they can be shared.</span>
     <span class="doccomment">/// However, the appearance of cursors may vary when used on different</span>
     <span class="doccomment">/// platforms.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## Named and texture cursors</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// There are multiple ways to create cursors. The platform&#39;s own cursors</span>
-    <span class="doccomment">/// can be created with [ctor@Gdk.Cursor.new_from_name]. That function lists</span>
+    <span class="doccomment">/// can be created with [``from_name()``][`Self::from_name()`]. That function lists</span>
     <span class="doccomment">/// the commonly available names that are shared with the CSS specification.</span>
     <span class="doccomment">/// Other names may be available, depending on the platform in use. On some</span>
     <span class="doccomment">/// platforms, what images are used for named cursors may be influenced by</span>
     <span class="doccomment">/// the cursor theme.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Another option to create a cursor is to use [ctor@Gdk.Cursor.new_from_texture]</span>
+    <span class="doccomment">/// Another option to create a cursor is to use [``from_texture()``][`Self::from_texture()`]</span>
     <span class="doccomment">/// and provide an image to use for the cursor.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To ease work with unsupported cursors, a fallback cursor can be provided.</span>
-    <span class="doccomment">/// If a [class@Gdk.Surface] cannot use a cursor because of the reasons mentioned</span>
+    <span class="doccomment">/// If a [`Surface`][crate::Surface] cannot use a cursor because of the reasons mentioned</span>
     <span class="doccomment">/// above, it will try the fallback cursor. Fallback cursors can themselves have</span>
     <span class="doccomment">/// fallback cursors again, so it is possible to provide a chain of progressively</span>
     <span class="doccomment">/// easier to support cursors. If none of the provided cursors can be supported,</span>
@@ -374,12 +374,12 @@
     <span class="doccomment">/// ## `name`</span>
     <span class="doccomment">/// the name of the cursor</span>
     <span class="doccomment">/// ## `fallback`</span>
-    <span class="doccomment">/// [`None`] or the `GdkCursor` to fall back to when</span>
+    <span class="doccomment">/// [`None`] or the [`Cursor`][crate::Cursor] to fall back to when</span>
     <span class="doccomment">///  this one cannot be supported</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GdkCursor`, or [`None`] if there is no</span>
+    <span class="doccomment">/// a new [`Cursor`][crate::Cursor], or [`None`] if there is no</span>
     <span class="doccomment">///  cursor with the given name</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_cursor_new_from_name&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_from_name&quot;</span>)]</span>
@@ -393,7 +393,7 @@
         }
     }
 
-    <span class="doccomment">/// Creates a new cursor from a `GdkTexture`.</span>
+    <span class="doccomment">/// Creates a new cursor from a [`Texture`][crate::Texture].</span>
     <span class="doccomment">/// ## `texture`</span>
     <span class="doccomment">/// the texture providing the pixel data</span>
     <span class="doccomment">/// ## `hotspot_x`</span>
@@ -401,12 +401,12 @@
     <span class="doccomment">/// ## `hotspot_y`</span>
     <span class="doccomment">/// the vertical offset of the “hotspot” of the cursor</span>
     <span class="doccomment">/// ## `fallback`</span>
-    <span class="doccomment">/// [`None`] or the `GdkCursor` to fall back to when</span>
+    <span class="doccomment">/// [`None`] or the [`Cursor`][crate::Cursor] to fall back to when</span>
     <span class="doccomment">///  this one cannot be supported</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GdkCursor`</span>
+    <span class="doccomment">/// a new [`Cursor`][crate::Cursor]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_cursor_new_from_texture&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_from_texture&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_texture</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Texture</span><span class="op">&gt;</span><span class="op">&gt;</span>(
@@ -436,9 +436,9 @@
     <span class="doccomment">/// Returns the fallback for this `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The fallback will be used if this cursor is not available on a given</span>
-    <span class="doccomment">/// `GdkDisplay`. For named cursors, this can happen when using nonstandard</span>
+    <span class="doccomment">/// [`Display`][crate::Display]. For named cursors, this can happen when using nonstandard</span>
     <span class="doccomment">/// names or when using an incomplete cursor theme. For textured cursors,</span>
-    <span class="doccomment">/// this can happen when the texture is too large or when the `GdkDisplay`</span>
+    <span class="doccomment">/// this can happen when the texture is too large or when the [`Display`][crate::Display]</span>
     <span class="doccomment">/// it is used on does not support textured cursors.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -457,7 +457,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that named cursors may have a nonzero hotspot, but this function</span>
     <span class="doccomment">/// will only return the hotspot position for cursors created with</span>
-    <span class="doccomment">/// [ctor`Gdk.Cursor`.new_from_texture].</span>
+    <span class="doccomment">/// [``from_texture()``][`Self::from_texture()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -474,7 +474,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that named cursors may have a nonzero hotspot, but this function</span>
     <span class="doccomment">/// will only return the hotspot position for cursors created with</span>
-    <span class="doccomment">/// [ctor`Gdk.Cursor`.new_from_texture].</span>
+    <span class="doccomment">/// [``from_texture()``][`Self::from_texture()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

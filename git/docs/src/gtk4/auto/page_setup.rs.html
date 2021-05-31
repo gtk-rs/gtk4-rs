@@ -539,11 +539,11 @@
 <span class="kw">use</span> <span class="ident">std::ptr</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A `GtkPageSetup` object stores the page size, orientation and margins.</span>
+    <span class="doccomment">/// A [`PageSetup`][crate::PageSetup] object stores the page size, orientation and margins.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The idea is that you can get one of these from the page setup dialog</span>
-    <span class="doccomment">/// and then pass it to the `GtkPrintOperation` when printing.</span>
-    <span class="doccomment">/// The benefit of splitting this out of the `GtkPrintSettings` is that</span>
+    <span class="doccomment">/// and then pass it to the [`PrintOperation`][crate::PrintOperation] when printing.</span>
+    <span class="doccomment">/// The benefit of splitting this out of the [`PrintSettings`][crate::PrintSettings] is that</span>
     <span class="doccomment">/// these affect the actual layout of the page, and thus need to be set</span>
     <span class="doccomment">/// long before user prints.</span>
     <span class="doccomment">///</span>
@@ -554,8 +554,8 @@
     <span class="doccomment">/// from the layout margins that a word processor uses; they are typically</span>
     <span class="doccomment">/// used to determine the minimal size for the layout margins.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To obtain a `GtkPageSetup` use [ctor`Gtk.PageSetup`.new] to get the defaults,</span>
-    <span class="doccomment">/// or use [func`Gtk.print_run_page_setup_dialog`] to show the page setup dialog</span>
+    <span class="doccomment">/// To obtain a [`PageSetup`][crate::PageSetup] use [``new()``][`Self::new()`] to get the defaults,</span>
+    <span class="doccomment">/// or use [``print_run_page_setup_dialog()``][`crate::print_run_page_setup_dialog()`] to show the page setup dialog</span>
     <span class="doccomment">/// and receive the resulting page setup.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## A page setup dialog</span>
@@ -584,7 +584,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PageSetup</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkPageSetup</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -593,11 +593,11 @@
 }
 
 <span class="kw">impl</span> <span class="ident">PageSetup</span> {
-    <span class="doccomment">/// Creates a new `GtkPageSetup`.</span>
+    <span class="doccomment">/// Creates a new [`PageSetup`][crate::PageSetup].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkPageSetup`.</span>
+    <span class="doccomment">/// a new [`PageSetup`][crate::PageSetup].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PageSetup</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -606,15 +606,15 @@
 
     <span class="doccomment">/// Reads the page setup from the file `file_name`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns a new `GtkPageSetup` object with the restored</span>
+    <span class="doccomment">/// Returns a new [`PageSetup`][crate::PageSetup] object with the restored</span>
     <span class="doccomment">/// page setup, or [`None`] if an error occurred.</span>
-    <span class="doccomment">/// See [method`Gtk.PageSetup`.to_file].</span>
+    <span class="doccomment">/// See [``to_file()``][`Self::to_file()`].</span>
     <span class="doccomment">/// ## `file_name`</span>
     <span class="doccomment">/// the filename to read the page setup from</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the restored `GtkPageSetup`</span>
+    <span class="doccomment">/// the restored [`PageSetup`][crate::PageSetup]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_new_from_file&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_from_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">std::path::Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">file_name</span>: <span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">PageSetup</span>, <span class="ident">glib::Error</span><span class="op">&gt;</span> {
@@ -634,13 +634,13 @@
     <span class="doccomment">/// Desrialize a page setup from an a{sv} variant.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The variant must be in the format produced by</span>
-    <span class="doccomment">/// [method`Gtk.PageSetup`.to_gvariant].</span>
+    <span class="doccomment">/// [``to_gvariant()``][`Self::to_gvariant()`].</span>
     <span class="doccomment">/// ## `variant`</span>
     <span class="doccomment">/// an a{sv} `GVariant`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkPageSetup` object</span>
+    <span class="doccomment">/// a new [`PageSetup`][crate::PageSetup] object</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_new_from_gvariant&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_from_gvariant&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_gvariant</span>(<span class="ident">variant</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Variant</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PageSetup</span> {
@@ -655,7 +655,7 @@
     <span class="doccomment">/// Reads the page setup from the group `group_name` in the key file</span>
     <span class="doccomment">/// `key_file`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Returns a new `GtkPageSetup` object with the restored</span>
+    <span class="doccomment">/// Returns a new [`PageSetup`][crate::PageSetup] object with the restored</span>
     <span class="doccomment">/// page setup, or [`None`] if an error occurred.</span>
     <span class="doccomment">/// ## `key_file`</span>
     <span class="doccomment">/// the `GKeyFile` to retrieve the page_setup from</span>
@@ -665,7 +665,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the restored `GtkPageSetup`</span>
+    <span class="doccomment">/// the restored [`PageSetup`][crate::PageSetup]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_new_from_key_file&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_from_key_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_key_file</span>(
@@ -688,7 +688,7 @@
         }
     }
 
-    <span class="doccomment">/// Copies a `GtkPageSetup`.</span>
+    <span class="doccomment">/// Copies a [`PageSetup`][crate::PageSetup].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -724,7 +724,7 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_page_setup_get_left_margin</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">unit</span>.<span class="ident">into_glib</span>()) }
     }
 
-    <span class="doccomment">/// Gets the page orientation of the `GtkPageSetup`.</span>
+    <span class="doccomment">/// Gets the page orientation of the [`PageSetup`][crate::PageSetup].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -739,7 +739,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this function takes orientation</span>
     <span class="doccomment">/// and margins into consideration.</span>
-    <span class="doccomment">/// See [method`Gtk.PageSetup`.get_paper_height].</span>
+    <span class="doccomment">/// See [``paper_height()``][`Self::paper_height()`].</span>
     <span class="doccomment">/// ## `unit`</span>
     <span class="doccomment">/// the unit for the return value</span>
     <span class="doccomment">///</span>
@@ -756,7 +756,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this function takes orientation</span>
     <span class="doccomment">/// and margins into consideration.</span>
-    <span class="doccomment">/// See [method`Gtk.PageSetup`.get_paper_width].</span>
+    <span class="doccomment">/// See [``paper_width()``][`Self::paper_width()`].</span>
     <span class="doccomment">/// ## `unit`</span>
     <span class="doccomment">/// the unit for the return value</span>
     <span class="doccomment">///</span>
@@ -773,7 +773,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this function takes orientation,</span>
     <span class="doccomment">/// but not margins into consideration.</span>
-    <span class="doccomment">/// See [method`Gtk.PageSetup`.get_page_height].</span>
+    <span class="doccomment">/// See [``page_height()``][`Self::page_height()`].</span>
     <span class="doccomment">/// ## `unit`</span>
     <span class="doccomment">/// the unit for the return value</span>
     <span class="doccomment">///</span>
@@ -786,7 +786,7 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_page_setup_get_paper_height</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>, <span class="ident">unit</span>.<span class="ident">into_glib</span>()) }
     }
 
-    <span class="doccomment">/// Gets the paper size of the `GtkPageSetup`.</span>
+    <span class="doccomment">/// Gets the paper size of the [`PageSetup`][crate::PageSetup].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -801,7 +801,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this function takes orientation,</span>
     <span class="doccomment">/// but not margins into consideration.</span>
-    <span class="doccomment">/// See [method`Gtk.PageSetup`.get_page_width].</span>
+    <span class="doccomment">/// See [``page_width()``][`Self::page_width()`].</span>
     <span class="doccomment">/// ## `unit`</span>
     <span class="doccomment">/// the unit for the return value</span>
     <span class="doccomment">///</span>
@@ -842,7 +842,7 @@
 
     <span class="doccomment">/// Reads the page setup from the file `file_name`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.PageSetup`.to_file].</span>
+    <span class="doccomment">/// See [``to_file()``][`Self::to_file()`].</span>
     <span class="doccomment">/// ## `file_name`</span>
     <span class="doccomment">/// the filename to read the page setup from</span>
     <span class="doccomment">///</span>
@@ -899,7 +899,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the bottom margin of the `GtkPageSetup`.</span>
+    <span class="doccomment">/// Sets the bottom margin of the [`PageSetup`][crate::PageSetup].</span>
     <span class="doccomment">/// ## `margin`</span>
     <span class="doccomment">/// the new bottom margin in units of `unit`</span>
     <span class="doccomment">/// ## `unit`</span>
@@ -911,7 +911,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the left margin of the `GtkPageSetup`.</span>
+    <span class="doccomment">/// Sets the left margin of the [`PageSetup`][crate::PageSetup].</span>
     <span class="doccomment">/// ## `margin`</span>
     <span class="doccomment">/// the new left margin in units of `unit`</span>
     <span class="doccomment">/// ## `unit`</span>
@@ -923,9 +923,9 @@
         }
     }
 
-    <span class="doccomment">/// Sets the page orientation of the `GtkPageSetup`.</span>
+    <span class="doccomment">/// Sets the page orientation of the [`PageSetup`][crate::PageSetup].</span>
     <span class="doccomment">/// ## `orientation`</span>
-    <span class="doccomment">/// a [`crate::PageOrientation`] value</span>
+    <span class="doccomment">/// a [`PageOrientation`][crate::PageOrientation] value</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_set_orientation&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_orientation</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">orientation</span>: <span class="ident">PageOrientation</span>) {
         <span class="kw">unsafe</span> {
@@ -933,12 +933,12 @@
         }
     }
 
-    <span class="doccomment">/// Sets the paper size of the `GtkPageSetup` without</span>
+    <span class="doccomment">/// Sets the paper size of the [`PageSetup`][crate::PageSetup] without</span>
     <span class="doccomment">/// changing the margins.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.PageSetup`.set_paper_size_and_default_margins].</span>
+    <span class="doccomment">/// See [``set_paper_size_and_default_margins()``][`Self::set_paper_size_and_default_margins()`].</span>
     <span class="doccomment">/// ## `size`</span>
-    <span class="doccomment">/// a [`crate::PaperSize`]</span>
+    <span class="doccomment">/// a [`PaperSize`][crate::PaperSize]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_set_paper_size&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_paper_size</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">size</span>: <span class="kw-2">&amp;</span><span class="ident">PaperSize</span>) {
         <span class="kw">unsafe</span> {
@@ -949,10 +949,10 @@
         }
     }
 
-    <span class="doccomment">/// Sets the paper size of the `GtkPageSetup` and modifies</span>
+    <span class="doccomment">/// Sets the paper size of the [`PageSetup`][crate::PageSetup] and modifies</span>
     <span class="doccomment">/// the margins according to the new paper size.</span>
     <span class="doccomment">/// ## `size`</span>
-    <span class="doccomment">/// a [`crate::PaperSize`]</span>
+    <span class="doccomment">/// a [`PaperSize`][crate::PaperSize]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_set_paper_size_and_default_margins&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_paper_size_and_default_margins</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">size</span>: <span class="kw-2">&amp;</span><span class="ident">PaperSize</span>) {
         <span class="kw">unsafe</span> {
@@ -963,7 +963,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the right margin of the `GtkPageSetup`.</span>
+    <span class="doccomment">/// Sets the right margin of the [`PageSetup`][crate::PageSetup].</span>
     <span class="doccomment">/// ## `margin`</span>
     <span class="doccomment">/// the new right margin in units of `unit`</span>
     <span class="doccomment">/// ## `unit`</span>
@@ -975,7 +975,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the top margin of the `GtkPageSetup`.</span>
+    <span class="doccomment">/// Sets the top margin of the [`PageSetup`][crate::PageSetup].</span>
     <span class="doccomment">/// ## `margin`</span>
     <span class="doccomment">/// the new top margin in units of `unit`</span>
     <span class="doccomment">/// ## `unit`</span>
@@ -1015,7 +1015,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new, floating, [`crate::glib::Variant`]</span>
+    <span class="doccomment">/// a new, floating, [`glib::Variant`][crate::glib::Variant]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_page_setup_to_gvariant&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_gvariant</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">glib::Variant</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_page_setup_to_gvariant</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }

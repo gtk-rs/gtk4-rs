@@ -807,22 +807,22 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkSnapshot` assists in creating `GskRenderNodes` for widgets.</span>
+    <span class="doccomment">/// [`Snapshot`][crate::Snapshot] assists in creating `GskRenderNodes` for widgets.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It functions in a similar way to a cairo context, and maintains a stack</span>
     <span class="doccomment">/// of render nodes and their associated transformations.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The node at the top of the stack is the the one that gtk_snapshot_append_…</span>
     <span class="doccomment">/// functions operate on. Use the gtk_snapshot_push_… functions and</span>
-    <span class="doccomment">/// [`Self::pop()`] to change the current node.</span>
+    <span class="doccomment">/// [`pop()`][Self::pop()] to change the current node.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The typical way to obtain a `GtkSnapshot` object is as an argument to</span>
-    <span class="doccomment">/// the [`crate::`WidgetClass`.snapshot()`] vfunc. If you need to create your own</span>
-    <span class="doccomment">/// `GtkSnapshot`, use [ctor`Gtk.Snapshot`.new].</span>
+    <span class="doccomment">/// The typical way to obtain a [`Snapshot`][crate::Snapshot] object is as an argument to</span>
+    <span class="doccomment">/// the `GtkWidgetClass.snapshot()` vfunc. If you need to create your own</span>
+    <span class="doccomment">/// [`Snapshot`][crate::Snapshot], use [``new()``][`Self::new()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@gdk::prelude::SnapshotExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`trait@gdk::prelude::SnapshotExt`], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Snapshot</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkSnapshot</span>, <span class="ident">ffi::GtkSnapshotClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">gdk::Snapshot</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -831,18 +831,18 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Snapshot</span> {
-    <span class="doccomment">/// Creates a new `GtkSnapshot`.</span>
+    <span class="doccomment">/// Creates a new [`Snapshot`][crate::Snapshot].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly-allocated `GtkSnapshot`</span>
+    <span class="doccomment">/// a newly-allocated [`Snapshot`][crate::Snapshot]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Snapshot</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_snapshot_new</span>()) }
     }
 
-    <span class="doccomment">/// Creates a new `GskCairoNode` and appends it to the current</span>
+    <span class="doccomment">/// Creates a new [`gsk::CairoNode`][crate::gsk::CairoNode] and appends it to the current</span>
     <span class="doccomment">/// render node of `self`, without changing the current node.</span>
     <span class="doccomment">/// ## `bounds`</span>
     <span class="doccomment">/// the bounds for the new node</span>
@@ -868,7 +868,7 @@
     <span class="doccomment">/// You should try to avoid calling this function if</span>
     <span class="doccomment">/// `color` is transparent.</span>
     <span class="doccomment">/// ## `color`</span>
-    <span class="doccomment">/// the `GdkRGBA` to draw</span>
+    <span class="doccomment">/// the [`gdk::RGBA`][crate::gdk::RGBA] to draw</span>
     <span class="doccomment">/// ## `bounds`</span>
     <span class="doccomment">/// the bounds for the new node</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_color&quot;</span>)]</span>
@@ -969,7 +969,7 @@
     <span class="doccomment">/// into the given `bounds` and appends it to the</span>
     <span class="doccomment">/// current render node of `self`.</span>
     <span class="doccomment">/// ## `texture`</span>
-    <span class="doccomment">/// the `GdkTexture` to render</span>
+    <span class="doccomment">/// the [`gdk::Texture`][crate::gdk::Texture] to render</span>
     <span class="doccomment">/// ## `bounds`</span>
     <span class="doccomment">/// the bounds for the new node</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_append_texture&quot;</span>)]</span>
@@ -988,7 +988,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly-created `GskRenderNode`</span>
+    <span class="doccomment">/// a newly-created [`gsk::RenderNode`][crate::gsk::RenderNode]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_free_to_node&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">free_to_node</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gsk::RenderNode</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_snapshot_free_to_node</span>(<span class="self">self</span>.<span class="ident">to_glib_full</span>())) }
@@ -1002,7 +1002,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly-created `GdkPaintable`</span>
+    <span class="doccomment">/// a newly-created [`gdk::Paintable`][crate::gdk::Paintable]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_free_to_paintable&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">free_to_paintable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">size</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">graphene::Size</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Paintable</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -1014,11 +1014,11 @@
     }
 
     <span class="doccomment">/// Removes the top element from the stack of render nodes and</span>
-    <span class="doccomment">/// adds it to the nearest `GskGLShaderNode` below it.</span>
+    <span class="doccomment">/// adds it to the nearest [`gsk::GLShaderNode`][crate::gsk::GLShaderNode] below it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This must be called the same number of times as the number</span>
     <span class="doccomment">/// of textures is needed for the shader in</span>
-    <span class="doccomment">/// [method`Gtk.Snapshot`.push_gl_shader].</span>
+    <span class="doccomment">/// [``push_gl_shader()``][`Self::push_gl_shader()`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_gl_shader_pop_texture&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gl_shader_pop_texture</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="kw">unsafe</span> {
@@ -1028,7 +1028,7 @@
 
     <span class="doccomment">/// Applies a perspective projection transform.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gsk.Transform`.perspective] for a discussion on the details.</span>
+    <span class="doccomment">/// See [`gsk::`Transform::perspective()``][crate::gsk::`Transform::perspective()`] for a discussion on the details.</span>
     <span class="doccomment">/// ## `depth`</span>
     <span class="doccomment">/// distance of the z=0 plane</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_perspective&quot;</span>)]</span>
@@ -1049,13 +1049,13 @@
 
     <span class="doccomment">/// Blends together two images with the given blend mode.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Until the first call to [method`Gtk.Snapshot`.pop], the</span>
+    <span class="doccomment">/// Until the first call to [``pop()``][`Self::pop()`], the</span>
     <span class="doccomment">/// bottom image for the blend operation will be recorded.</span>
     <span class="doccomment">/// After that call, the top image to be blended will be</span>
-    <span class="doccomment">/// recorded until the second call to [method`Gtk.Snapshot`.pop].</span>
+    <span class="doccomment">/// recorded until the second call to [``pop()``][`Self::pop()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Calling this function requires two subsequent calls</span>
-    <span class="doccomment">/// to [method`Gtk.Snapshot`.pop].</span>
+    <span class="doccomment">/// to [``pop()``][`Self::pop()`].</span>
     <span class="doccomment">/// ## `blend_mode`</span>
     <span class="doccomment">/// blend mode to use</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_push_blend&quot;</span>)]</span>
@@ -1067,7 +1067,7 @@
 
     <span class="doccomment">/// Blurs an image.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The image is recorded until the next call to [method`Gtk.Snapshot`.pop].</span>
+    <span class="doccomment">/// The image is recorded until the next call to [``pop()``][`Self::pop()`].</span>
     <span class="doccomment">/// ## `radius`</span>
     <span class="doccomment">/// the blur radius to use</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_push_blur&quot;</span>)]</span>
@@ -1079,7 +1079,7 @@
 
     <span class="doccomment">/// Clips an image to a rectangle.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The image is recorded until the next call to [method`Gtk.Snapshot`.pop].</span>
+    <span class="doccomment">/// The image is recorded until the next call to [``pop()``][`Self::pop()`].</span>
     <span class="doccomment">/// ## `bounds`</span>
     <span class="doccomment">/// the rectangle to clip to</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_push_clip&quot;</span>)]</span>
@@ -1092,7 +1092,7 @@
     <span class="doccomment">/// Modifies the colors of an image by applying an affine transformation</span>
     <span class="doccomment">/// in RGB space.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The image is recorded until the next call to [method`Gtk.Snapshot`.pop].</span>
+    <span class="doccomment">/// The image is recorded until the next call to [``pop()``][`Self::pop()`].</span>
     <span class="doccomment">/// ## `color_matrix`</span>
     <span class="doccomment">/// the color matrix to use</span>
     <span class="doccomment">/// ## `color_offset`</span>
@@ -1115,12 +1115,12 @@
     <span class="doccomment">/// Snapshots a cross-fade operation between two images with the</span>
     <span class="doccomment">/// given `progress`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Until the first call to [method`Gtk.Snapshot`.pop], the start image</span>
+    <span class="doccomment">/// Until the first call to [``pop()``][`Self::pop()`], the start image</span>
     <span class="doccomment">/// will be snapshot. After that call, the end image will be recorded</span>
-    <span class="doccomment">/// until the second call to [method`Gtk.Snapshot`.pop].</span>
+    <span class="doccomment">/// until the second call to [``pop()``][`Self::pop()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Calling this function requires two subsequent calls</span>
-    <span class="doccomment">/// to [method`Gtk.Snapshot`.pop].</span>
+    <span class="doccomment">/// to [``pop()``][`Self::pop()`].</span>
     <span class="doccomment">/// ## `progress`</span>
     <span class="doccomment">/// progress between 0.0 and 1.0</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_push_cross_fade&quot;</span>)]</span>
@@ -1130,40 +1130,40 @@
         }
     }
 
-    <span class="doccomment">/// Push a `GskGLShaderNode`.</span>
+    <span class="doccomment">/// Push a [`gsk::GLShaderNode`][crate::gsk::GLShaderNode].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The node uses the given [class`Gsk.GLShader`] and uniform values</span>
+    <span class="doccomment">/// The node uses the given [`gsk::GLShader`][crate::gsk::GLShader] and uniform values</span>
     <span class="doccomment">/// Additionally this takes a list of `n_children` other nodes</span>
-    <span class="doccomment">/// which will be passed to the `GskGLShaderNode`.</span>
+    <span class="doccomment">/// which will be passed to the [`gsk::GLShaderNode`][crate::gsk::GLShaderNode].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The `take_args` argument is a block of data to use for uniform</span>
     <span class="doccomment">/// arguments, as per types and offsets defined by the `shader`.</span>
-    <span class="doccomment">/// Normally this is generated by [method`Gsk.GLShader`.format_args]</span>
-    <span class="doccomment">/// or [struct`Gsk.ShaderArgsBuilder`].</span>
+    <span class="doccomment">/// Normally this is generated by `Gsk::`GLShader::format_args()``</span>
+    <span class="doccomment">/// or `Gsk::ShaderArgsBuilder`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The snapshotter takes ownership of `take_args`, so the caller should</span>
     <span class="doccomment">/// not free it after this.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the renderer doesn&#39;t support GL shaders, or if there is any</span>
     <span class="doccomment">/// problem when compiling the shader, then the node will draw pink.</span>
-    <span class="doccomment">/// You should use [method`Gsk.GLShader`.compile] to ensure the `shader`</span>
+    <span class="doccomment">/// You should use [``GLShader::compile()``][crate::gsk::`GLShader::compile()`] to ensure the `shader`</span>
     <span class="doccomment">/// will work for the renderer before using it.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If the shader requires textures (see [method`Gsk.GLShader`.get_n_textures]),</span>
-    <span class="doccomment">/// then it is expected that you call [method`Gtk.Snapshot`.gl_shader_pop_texture]</span>
+    <span class="doccomment">/// If the shader requires textures (see [``GLShader::n_textures()``][crate::gsk::`GLShader::n_textures()`]),</span>
+    <span class="doccomment">/// then it is expected that you call [``gl_shader_pop_texture()``][`Self::gl_shader_pop_texture()`]</span>
     <span class="doccomment">/// the number of times that are required. Each of these calls will generate</span>
-    <span class="doccomment">/// a node that is added as a child to the `GskGLShaderNode`, which in turn</span>
+    <span class="doccomment">/// a node that is added as a child to the [`gsk::GLShaderNode`][crate::gsk::GLShaderNode], which in turn</span>
     <span class="doccomment">/// will render these offscreen and pass as a texture to the shader.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Once all textures (if any) are pop:ed, you must call the regular</span>
-    <span class="doccomment">/// [method`Gtk.Snapshot`.pop].</span>
+    <span class="doccomment">/// [``pop()``][`Self::pop()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you want to use pre-existing textures as input to the shader rather</span>
-    <span class="doccomment">/// than rendering new ones, use [method`Gtk.Snapshot`.append_texture] to</span>
+    <span class="doccomment">/// than rendering new ones, use [``append_texture()``][`Self::append_texture()`] to</span>
     <span class="doccomment">/// push a texture node. These will be used directly rather than being</span>
     <span class="doccomment">/// re-rendered.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// For details on how to write shaders, see [class`Gsk.GLShader`].</span>
+    <span class="doccomment">/// For details on how to write shaders, see [`gsk::GLShader`][crate::gsk::GLShader].</span>
     <span class="doccomment">/// ## `shader`</span>
     <span class="doccomment">/// The code to run</span>
     <span class="doccomment">/// ## `bounds`</span>
@@ -1189,7 +1189,7 @@
 
     <span class="doccomment">/// Modifies the opacity of an image.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The image is recorded until the next call to [method`Gtk.Snapshot`.pop].</span>
+    <span class="doccomment">/// The image is recorded until the next call to [``pop()``][`Self::pop()`].</span>
     <span class="doccomment">/// ## `opacity`</span>
     <span class="doccomment">/// the opacity to use</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_push_opacity&quot;</span>)]</span>
@@ -1201,7 +1201,7 @@
 
     <span class="doccomment">/// Creates a node that repeats the child node.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The child is recorded until the next call to [method`Gtk.Snapshot`.pop].</span>
+    <span class="doccomment">/// The child is recorded until the next call to [``pop()``][`Self::pop()`].</span>
     <span class="doccomment">/// ## `bounds`</span>
     <span class="doccomment">/// the bounds within which to repeat</span>
     <span class="doccomment">/// ## `child_bounds`</span>
@@ -1220,7 +1220,7 @@
 
     <span class="doccomment">/// Clips an image to a rounded rectangle.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The image is recorded until the next call to [method`Gtk.Snapshot`.pop].</span>
+    <span class="doccomment">/// The image is recorded until the next call to [``pop()``][`Self::pop()`].</span>
     <span class="doccomment">/// ## `bounds`</span>
     <span class="doccomment">/// the rounded rectangle to clip to</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_push_rounded_clip&quot;</span>)]</span>
@@ -1232,7 +1232,7 @@
 
     <span class="doccomment">/// Applies a shadow to an image.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The image is recorded until the next call to [method`Gtk.Snapshot`.pop].</span>
+    <span class="doccomment">/// The image is recorded until the next call to [``pop()``][`Self::pop()`].</span>
     <span class="doccomment">/// ## `shadow`</span>
     <span class="doccomment">/// the first shadow specification</span>
     <span class="doccomment">/// ## `n_shadows`</span>
@@ -1252,7 +1252,7 @@
     <span class="doccomment">/// and appends it to the current node of `self`, without changing</span>
     <span class="doccomment">/// the current node.</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the `GtkStyleContext` to use</span>
+    <span class="doccomment">/// the [`StyleContext`][crate::StyleContext] to use</span>
     <span class="doccomment">/// ## `x`</span>
     <span class="doccomment">/// X origin of the rectangle</span>
     <span class="doccomment">/// ## `y`</span>
@@ -1286,7 +1286,7 @@
     <span class="doccomment">/// and appends it to the current node of `self`, without changing</span>
     <span class="doccomment">/// the current node.</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the `GtkStyleContext` to use</span>
+    <span class="doccomment">/// the [`StyleContext`][crate::StyleContext] to use</span>
     <span class="doccomment">/// ## `x`</span>
     <span class="doccomment">/// X origin of the rectangle</span>
     <span class="doccomment">/// ## `y`</span>
@@ -1320,7 +1320,7 @@
     <span class="doccomment">/// and appends it to the current node of `self`, without changing</span>
     <span class="doccomment">/// the current node.</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the `GtkStyleContext` to use</span>
+    <span class="doccomment">/// the [`StyleContext`][crate::StyleContext] to use</span>
     <span class="doccomment">/// ## `x`</span>
     <span class="doccomment">/// X origin of the rectangle</span>
     <span class="doccomment">/// ## `y`</span>
@@ -1352,17 +1352,17 @@
 
     <span class="doccomment">/// Draws a text caret using `self` at the specified index of `layout`.</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// a `GtkStyleContext`</span>
+    <span class="doccomment">/// a [`StyleContext`][crate::StyleContext]</span>
     <span class="doccomment">/// ## `x`</span>
     <span class="doccomment">/// X origin</span>
     <span class="doccomment">/// ## `y`</span>
     <span class="doccomment">/// Y origin</span>
     <span class="doccomment">/// ## `layout`</span>
-    <span class="doccomment">/// the `PangoLayout` of the text</span>
+    <span class="doccomment">/// the [`pango::Layout`][crate::pango::Layout] of the text</span>
     <span class="doccomment">/// ## `index`</span>
-    <span class="doccomment">/// the index in the [`crate::pango::Layout`]</span>
+    <span class="doccomment">/// the index in the [`pango::Layout`][crate::pango::Layout]</span>
     <span class="doccomment">/// ## `direction`</span>
-    <span class="doccomment">/// the [`crate::pango::Direction`] of the text</span>
+    <span class="doccomment">/// the [`pango::Direction`][crate::pango::Direction] of the text</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_render_insertion_cursor&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_insertion_cursor</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -1390,13 +1390,13 @@
     <span class="doccomment">/// information in `context`, and appends it to the current node of `self`,</span>
     <span class="doccomment">/// without changing the current node.</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the `GtkStyleContext` to use</span>
+    <span class="doccomment">/// the [`StyleContext`][crate::StyleContext] to use</span>
     <span class="doccomment">/// ## `x`</span>
     <span class="doccomment">/// X origin of the rectangle</span>
     <span class="doccomment">/// ## `y`</span>
     <span class="doccomment">/// Y origin of the rectangle</span>
     <span class="doccomment">/// ## `layout`</span>
-    <span class="doccomment">/// the [`crate::pango::Layout`] to render</span>
+    <span class="doccomment">/// the [`pango::Layout`][crate::pango::Layout] to render</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_render_layout&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_layout</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -1417,7 +1417,7 @@
     }
 
     <span class="doccomment">/// Restores `self` to the state saved by a preceding call to</span>
-    <span class="doccomment">/// [`Self::save()`] and removes that state from the stack of</span>
+    <span class="doccomment">/// [`save()`][Self::save()] and removes that state from the stack of</span>
     <span class="doccomment">/// saved states.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_restore&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">restore</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
@@ -1429,7 +1429,7 @@
     <span class="doccomment">/// Rotates @`self`&#39;s coordinate system by `angle` degrees in 2D space -</span>
     <span class="doccomment">/// or in 3D speak, rotates around the Z axis.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To rotate around other axes, use [method`Gsk.Transform`.rotate_3d].</span>
+    <span class="doccomment">/// To rotate around other axes, use [`gsk::`Transform::rotate_3d()``][crate::gsk::`Transform::rotate_3d()`].</span>
     <span class="doccomment">/// ## `angle`</span>
     <span class="doccomment">/// the rotation angle, in degrees (clockwise)</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_rotate&quot;</span>)]</span>
@@ -1441,7 +1441,7 @@
 
     <span class="doccomment">/// Rotates `self`&#39;s coordinate system by `angle` degrees around `axis`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// For a rotation in 2D space, use [method`Gsk.Transform`.rotate].</span>
+    <span class="doccomment">/// For a rotation in 2D space, use [`gsk::`Transform::rotate()``][crate::gsk::`Transform::rotate()`].</span>
     <span class="doccomment">/// ## `angle`</span>
     <span class="doccomment">/// the rotation angle, in degrees (clockwise)</span>
     <span class="doccomment">/// ## `axis`</span>
@@ -1456,14 +1456,14 @@
     <span class="doccomment">/// Makes a copy of the current state of `self` and saves it</span>
     <span class="doccomment">/// on an internal stack.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// When [method`Gtk.Snapshot`.restore] is called, `self` will</span>
+    <span class="doccomment">/// When [``restore()``][`Self::restore()`] is called, `self` will</span>
     <span class="doccomment">/// be restored to the saved state. Multiple calls to</span>
-    <span class="doccomment">/// [`Self::save()`] and [`Self::restore()`] can be nested;</span>
-    <span class="doccomment">/// each call to [`Self::restore()`] restores the state from</span>
-    <span class="doccomment">/// the matching paired [`Self::save()`].</span>
+    <span class="doccomment">/// [`save()`][Self::save()] and [`restore()`][Self::restore()] can be nested;</span>
+    <span class="doccomment">/// each call to [`restore()`][Self::restore()] restores the state from</span>
+    <span class="doccomment">/// the matching paired [`save()`][Self::save()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is necessary to clear all saved states with corresponding</span>
-    <span class="doccomment">/// calls to [`Self::restore()`].</span>
+    <span class="doccomment">/// calls to [`restore()`][Self::restore()].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_save&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">save</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="kw">unsafe</span> {
@@ -1474,7 +1474,7 @@
     <span class="doccomment">/// Scales `self`&#39;s coordinate system in 2-dimensional space by</span>
     <span class="doccomment">/// the given factors.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [method`Gtk.Snapshot`.scale_3d] to scale in all 3 dimensions.</span>
+    <span class="doccomment">/// Use [``scale_3d()``][`Self::scale_3d()`] to scale in all 3 dimensions.</span>
     <span class="doccomment">/// ## `factor_x`</span>
     <span class="doccomment">/// scaling factor on the X axis</span>
     <span class="doccomment">/// ## `factor_y`</span>
@@ -1505,11 +1505,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// After calling this function, it is no longer possible to</span>
     <span class="doccomment">/// add more nodes to `self`. The only function that should</span>
-    <span class="doccomment">/// be called after this is [`crate::glib::object::Object::unref()`].</span>
+    <span class="doccomment">/// be called after this is `g_object_unref()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the constructed `GskRenderNode`</span>
+    <span class="doccomment">/// the constructed [`gsk::RenderNode`][crate::gsk::RenderNode]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_to_node&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_node</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gsk::RenderNode</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_snapshot_to_node</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
@@ -1520,14 +1520,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// After calling this function, it is no longer possible to</span>
     <span class="doccomment">/// add more nodes to `self`. The only function that should</span>
-    <span class="doccomment">/// be called after this is [`crate::glib::object::Object::unref()`].</span>
+    <span class="doccomment">/// be called after this is `g_object_unref()`.</span>
     <span class="doccomment">/// ## `size`</span>
     <span class="doccomment">/// The size of the resulting paintable</span>
     <span class="doccomment">///  or [`None`] to use the bounds of the snapshot</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new [`crate::gdk::Paintable`]</span>
+    <span class="doccomment">/// a new [`gdk::Paintable`][crate::gdk::Paintable]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_snapshot_to_paintable&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_paintable</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">size</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">graphene::Size</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Paintable</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {

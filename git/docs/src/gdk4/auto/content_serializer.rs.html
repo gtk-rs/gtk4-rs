@@ -125,18 +125,18 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A `GdkContentSerializer` is used to serialize content for</span>
+    <span class="doccomment">/// A [`ContentSerializer`][crate::ContentSerializer] is used to serialize content for</span>
     <span class="doccomment">/// inter-application data transfers.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GdkContentSerializer` transforms an object that is identified</span>
+    <span class="doccomment">/// The [`ContentSerializer`][crate::ContentSerializer] transforms an object that is identified</span>
     <span class="doccomment">/// by a GType into a serialized form (i.e. a byte stream) that is</span>
     <span class="doccomment">/// identified by a mime type.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// GTK provides serializers and deserializers for common data types</span>
     <span class="doccomment">/// such as text, colors, images or file lists. To register your own</span>
-    <span class="doccomment">/// serialization functions, use [func`content_register_serializer`].</span>
+    <span class="doccomment">/// serialization functions, use [``content_register_serializer()``][`crate::content_register_serializer()`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [class`Gdk.ContentDeserializer`].</span>
+    <span class="doccomment">/// Also see [`ContentDeserializer`][crate::ContentDeserializer].</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ContentSerializer</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GdkContentSerializer</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -190,7 +190,7 @@
 
     <span class="doccomment">/// Gets the output stream for the current operation.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is the stream that was passed to [func`content_serialize_async`].</span>
+    <span class="doccomment">/// This is the stream that was passed to [``content_serialize_async()``][`crate::content_serialize_async()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

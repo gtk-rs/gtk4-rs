@@ -70,13 +70,13 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkAnyFilter` matches an item when at least one of its filters matches.</span>
+    <span class="doccomment">/// [`AnyFilter`][crate::AnyFilter] matches an item when at least one of its filters matches.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To add filters to a `GtkAnyFilter`, use [method`Gtk.MultiFilter`.append].</span>
+    <span class="doccomment">/// To add filters to a [`AnyFilter`][crate::AnyFilter], use [``MultiFilterExt::append()``][crate::prelude::`MultiFilterExt::append()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::MultiFilterExt`], [`trait@crate::prelude::FilterExt`], [`trait@glib::object::ObjectExt`], [`trait@gio::prelude::ListModelExt`], [`trait@crate::prelude::BuildableExt`]</span>
+    <span class="doccomment">/// [`MultiFilterExt`][trait@crate::prelude::MultiFilterExt], [`FilterExt`][trait@crate::prelude::FilterExt], [`trait@glib::ObjectExt`], [`trait@gio::prelude::ListModelExt`], [`BuildableExt`][trait@crate::prelude::BuildableExt]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AnyFilter</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkAnyFilter</span>, <span class="ident">ffi::GtkAnyFilterClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">MultiFilter</span>, <span class="ident">Filter</span>, @<span class="ident">implements</span> <span class="ident">gio::ListModel</span>, <span class="ident">Buildable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -87,7 +87,7 @@
 <span class="kw">impl</span> <span class="ident">AnyFilter</span> {
     <span class="doccomment">/// Creates a new empty &quot;any&quot; filter.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [method`Gtk.MultiFilter`.append] to add filters to it.</span>
+    <span class="doccomment">/// Use [``MultiFilterExt::append()``][crate::prelude::`MultiFilterExt::append()`] to add filters to it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This filter matches an item if any of the filters added to it</span>
     <span class="doccomment">/// matches the item. In particular, this means that if no filter</span>
@@ -95,7 +95,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkAnyFilter`</span>
+    <span class="doccomment">/// a new [`AnyFilter`][crate::AnyFilter]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_any_filter_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">AnyFilter</span> {
         <span class="macro">assert_initialized_main_thread!</span>();

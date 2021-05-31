@@ -118,12 +118,12 @@
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">AccessibleExtManual</span> {
     <span class="doccomment">/// Updates an array of accessible properties.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This function should be called by `GtkWidget` types whenever an accessible</span>
+    <span class="doccomment">/// This function should be called by [`Widget`][crate::Widget] types whenever an accessible</span>
     <span class="doccomment">/// property change must be communicated to assistive technologies.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is meant to be used by language bindings.</span>
     <span class="doccomment">/// ## `properties`</span>
-    <span class="doccomment">/// an array of `GtkAccessibleProperty`</span>
+    <span class="doccomment">/// an array of [`AccessibleProperty`][crate::AccessibleProperty]</span>
     <span class="doccomment">/// ## `values`</span>
     <span class="doccomment">/// an array of `GValues`, one for each property</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_accessible_update_property&quot;</span>)]</span>
@@ -132,12 +132,12 @@
 
     <span class="doccomment">/// Updates an array of accessible relations.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This function should be called by `GtkWidget` types whenever an accessible</span>
+    <span class="doccomment">/// This function should be called by [`Widget`][crate::Widget] types whenever an accessible</span>
     <span class="doccomment">/// relation change must be communicated to assistive technologies.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is meant to be used by language bindings.</span>
     <span class="doccomment">/// ## `relations`</span>
-    <span class="doccomment">/// an array of `GtkAccessibleRelation`</span>
+    <span class="doccomment">/// an array of [`AccessibleRelation`][crate::AccessibleRelation]</span>
     <span class="doccomment">/// ## `values`</span>
     <span class="doccomment">/// an array of `GValues`, one for each relation</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_accessible_update_relation&quot;</span>)]</span>
@@ -146,12 +146,12 @@
 
     <span class="doccomment">/// Updates an array of accessible states.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This function should be called by `GtkWidget` types whenever an accessible</span>
+    <span class="doccomment">/// This function should be called by [`Widget`][crate::Widget] types whenever an accessible</span>
     <span class="doccomment">/// state change must be communicated to assistive technologies.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is meant to be used by language bindings.</span>
     <span class="doccomment">/// ## `states`</span>
-    <span class="doccomment">/// an array of `GtkAccessibleState`</span>
+    <span class="doccomment">/// an array of [`AccessibleState`][crate::AccessibleState]</span>
     <span class="doccomment">/// ## `values`</span>
     <span class="doccomment">/// an array of `GValues`, one for each state</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_accessible_update_state&quot;</span>)]</span>

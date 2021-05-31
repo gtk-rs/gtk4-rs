@@ -8,12 +8,12 @@
 <div class="item-spacer"></div>    fn <a href="#tymethod.widgets" class="fnname">widgets</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;;
 }</pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.TextChildAnchor.html" title="TextChildAnchor"><code>TextChildAnchor</code></a> methods.</p>
 <h1 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h1>
-<p><a href="../struct.TextChildAnchor.html" title="crate::TextChildAnchor"><code>struct@crate::TextChildAnchor</code></a></p>
+<p><a href="../struct.TextChildAnchor.html" title="crate::TextChildAnchor"><code>TextChildAnchor</code></a></p>
 </div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><h3 id="tymethod.is_deleted" class="method"><code>fn <a href="#tymethod.is_deleted" class="fnname">is_deleted</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/text_child_anchor.rs.html#73" title="goto source code">[src]</a></h3></summary><div class="docblock"><p>Determines whether a child anchor has been deleted from
 the buffer.</p>
 <p>Keep in mind that the child anchor will be unreferenced
 when removed from the buffer, so you need to hold your own
-reference (with [<code>crate::glib::object::Object::ref()</code>]) if you plan to use this
+reference (with <code>g_object_ref()</code>) if you plan to use this
 function — otherwise all deleted child anchors will also
 be finalized.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>

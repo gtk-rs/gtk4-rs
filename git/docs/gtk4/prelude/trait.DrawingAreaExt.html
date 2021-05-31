@@ -14,18 +14,18 @@
 <div class="item-spacer"></div>    fn <a href="#tymethod.connect_content_width_notify" class="fnname">connect_content_width_notify</a>&lt;F:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self) + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f: F<br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/signal/struct.SignalHandlerId.html" title="struct glib::signal::SignalHandlerId">SignalHandlerId</a>;
 }</pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.DrawingArea.html" title="DrawingArea"><code>DrawingArea</code></a> methods.</p>
 <h1 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h1>
-<p><a href="../struct.DrawingArea.html" title="crate::DrawingArea"><code>struct@crate::DrawingArea</code></a></p>
-</div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><h3 id="tymethod.content_height" class="method"><code>fn <a href="#tymethod.content_height" class="fnname">content_height</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a class="srclink" href="../../src/gtk4/auto/drawing_area.rs.html#570" title="goto source code">[src]</a></h3></summary><div class="docblock"><p>Retrieves the content height of the <code>GtkDrawingArea</code>.</p>
+<p><a href="../struct.DrawingArea.html" title="crate::DrawingArea"><code>DrawingArea</code></a></p>
+</div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><h3 id="tymethod.content_height" class="method"><code>fn <a href="#tymethod.content_height" class="fnname">content_height</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a class="srclink" href="../../src/gtk4/auto/drawing_area.rs.html#570" title="goto source code">[src]</a></h3></summary><div class="docblock"><p>Retrieves the content height of the <a href="../struct.DrawingArea.html" title="crate::DrawingArea"><code>DrawingArea</code></a>.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
 <p>The height requested for content of the drawing area</p>
-</div></details><details class="rustdoc-toggle" open><summary><h3 id="tymethod.content_width" class="method"><code>fn <a href="#tymethod.content_width" class="fnname">content_width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a class="srclink" href="../../src/gtk4/auto/drawing_area.rs.html#579" title="goto source code">[src]</a></h3></summary><div class="docblock"><p>Retrieves the content width of the <code>GtkDrawingArea</code>.</p>
+</div></details><details class="rustdoc-toggle" open><summary><h3 id="tymethod.content_width" class="method"><code>fn <a href="#tymethod.content_width" class="fnname">content_width</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a class="srclink" href="../../src/gtk4/auto/drawing_area.rs.html#579" title="goto source code">[src]</a></h3></summary><div class="docblock"><p>Retrieves the content width of the <a href="../struct.DrawingArea.html" title="crate::DrawingArea"><code>DrawingArea</code></a>.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
 <p>The width requested for content of the drawing area</p>
 </div></details><details class="rustdoc-toggle" open><summary><h3 id="tymethod.set_content_height" class="method"><code>fn <a href="#tymethod.set_content_height" class="fnname">set_content_height</a>(&amp;self, height: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a>)</code><a class="srclink" href="../../src/gtk4/auto/drawing_area.rs.html#592" title="goto source code">[src]</a></h3></summary><div class="docblock"><p>Sets the desired height of the contents of the drawing area.</p>
 <p>Note that because widgets may be allocated larger sizes than they
 requested, it is possible that the actual height passed to your draw
 function is larger than the height set here. You can use
-[method<code>Gtk.Widget</code>.set_valign] to avoid that.</p>
+<a href="trait.WidgetExt.html#tymethod.set_valign" title="crate::prelude::WidgetExt::set_valign()"><code>WidgetExt::set_valign()</code></a> to avoid that.</p>
 <p>If the height is set to 0 (the default), the drawing area may disappear.</p>
 <h2 id="height" class="section-header"><a href="#height"><code>height</code></a></h2>
 <p>the height of contents</p>
@@ -33,7 +33,7 @@ function is larger than the height set here. You can use
 <p>Note that because widgets may be allocated larger sizes than they
 requested, it is possible that the actual width passed to your draw
 function is larger than the width set here. You can use
-[method<code>Gtk.Widget</code>.set_halign] to avoid that.</p>
+<a href="trait.WidgetExt.html#tymethod.set_halign" title="crate::prelude::WidgetExt::set_halign()"><code>WidgetExt::set_halign()</code></a> to avoid that.</p>
 <p>If the width is set to 0 (the default), the drawing area may disappear.</p>
 <h2 id="width" class="section-header"><a href="#width"><code>width</code></a></h2>
 <p>the width of contents</p>
@@ -46,7 +46,7 @@ In the drawing stage it is not allowed to change properties of any
 GTK widgets or call any functions that would cause any properties
 to be changed. You should restrict yourself exclusively to drawing
 your contents in the draw function.</p>
-<p>If what you are drawing does change, call [method<code>Gtk.Widget</code>.queue_draw]
+<p>If what you are drawing does change, call <a href="trait.WidgetExt.html#tymethod.queue_draw" title="crate::prelude::WidgetExt::queue_draw()"><code>WidgetExt::queue_draw()</code></a>
 on the drawing area. This will cause a redraw and will call <code>draw_func</code> again.</p>
 <h2 id="draw_func" class="section-header"><a href="#draw_func"><code>draw_func</code></a></h2>
 <p>callback that lets you draw

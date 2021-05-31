@@ -173,7 +173,7 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A physical tool associated to a `GdkDevice`.</span>
+    <span class="doccomment">/// A physical tool associated to a [`Device`][crate::Device].</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DeviceTool</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GdkDeviceTool</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -205,12 +205,12 @@
     <span class="doccomment">/// When non-zero, the identificator is unique for the given tool model,</span>
     <span class="doccomment">/// meaning that two identical tools will share the same `hardware_id`,</span>
     <span class="doccomment">/// but will have different serial numbers (see</span>
-    <span class="doccomment">/// [method`Gdk.DeviceTool`.get_serial]).</span>
+    <span class="doccomment">/// [``serial()``][`Self::serial()`]).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a more concrete (and device specific) method to identify</span>
-    <span class="doccomment">/// a `GdkDeviceTool` than [method`Gdk.DeviceTool`.get_tool_type],</span>
+    <span class="doccomment">/// a [`DeviceTool`][crate::DeviceTool] than [``tool_type()``][`Self::tool_type()`],</span>
     <span class="doccomment">/// as a tablet may support multiple devices with the same</span>
-    <span class="doccomment">/// `GdkDeviceToolType`, but different hardware identificators.</span>
+    <span class="doccomment">/// [`DeviceToolType`][crate::DeviceToolType], but different hardware identificators.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -235,7 +235,7 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gdk_device_tool_get_serial</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Gets the `GdkDeviceToolType` of the tool.</span>
+    <span class="doccomment">/// Gets the [`DeviceToolType`][crate::DeviceToolType] of the tool.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

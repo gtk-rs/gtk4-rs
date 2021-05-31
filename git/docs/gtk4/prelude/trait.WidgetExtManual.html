@@ -14,21 +14,21 @@ reason, is most suitable for handling graphics that change every
 frame or every few frames. The tick callback does not automatically
 imply a relayout or repaint. If you want a repaint or relayout, and
 aren’t changing widget properties that would trigger that (for example,
-changing the text of a <a href="../struct.Label.html" title="crate::Label"><code>crate::Label</code></a>), then you will have to call
-[method<code>Gtk.Widget</code>.queue_resize] or [method<code>Gtk.Widget</code>.queue_draw]
+changing the text of a <a href="../struct.Label.html" title="crate::Label"><code>Label</code></a>), then you will have to call
+<a href="trait.WidgetExt.html#tymethod.queue_resize" title="crate::prelude::WidgetExt::queue_resize()"><code>WidgetExt::queue_resize()</code></a> or <a href="trait.WidgetExt.html#tymethod.queue_draw" title="crate::prelude::WidgetExt::queue_draw()"><code>WidgetExt::queue_draw()</code></a>
 yourself.</p>
-<p>[method<code>Gdk.FrameClock</code>.get_frame_time] should generally be used
+<p><a href="../../gdk4/auto/frame_clock/struct.FrameClock.html#method.frame_time" title="crate::gdk::FrameClock::frame_time()"><code>FrameClock::frame_time()</code></a> should generally be used
 for timing continuous animations and
-[method<code>Gdk.FrameTimings</code>.get_predicted_presentation_time] if you are
+<code>Gdk::</code>FrameTimings::get_predicted_presentation_time()`` if you are
 trying to display isolated frames at particular times.</p>
 <p>This is a more convenient alternative to connecting directly to the
-[signal<code>Gdk.FrameClock</code>::update] signal of <code>GdkFrameClock</code>, since you
-don’t have to worry about when a <code>GdkFrameClock</code> is assigned to a widget.</p>
+<code>signal::gdk::FrameClock::update</code> signal of <a href="../../gdk4/auto/frame_clock/struct.FrameClock.html" title="crate::gdk::FrameClock"><code>gdk::FrameClock</code></a>, since you
+don’t have to worry about when a <a href="../../gdk4/auto/frame_clock/struct.FrameClock.html" title="crate::gdk::FrameClock"><code>gdk::FrameClock</code></a> is assigned to a widget.</p>
 <h2 id="callback" class="section-header"><a href="#callback"><code>callback</code></a></h2>
 <p>function to call for updating animations</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
 <p>an id for the connection of this callback. Remove the callback
 by passing the id returned from this function to
-[method<code>Gtk.Widget</code>.remove_tick_callback]</p>
+<code>Gtk::</code>Widget::remove_tick_callback()``</p>
 </div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor"></a></h2><div class="item-list" id="implementors-list"><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl-WidgetExtManual" class="impl"><code class="in-band">impl&lt;O:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="../struct.Widget.html" title="struct gtk4::Widget">Widget</a>&gt;&gt; <a class="trait" href="trait.WidgetExtManual.html" title="trait gtk4::prelude::WidgetExtManual">WidgetExtManual</a> for O</code><a href="#impl-WidgetExtManual" class="anchor"></a><a class="srclink" href="../../src/gtk4/widget.rs.html#49-95" title="goto source code">[src]</a></h3></summary><div class="impl-items"><details class="undocumented"><summary></summary><h4 id="method.add_tick_callback" class="method trait-impl"><code>fn <a href="#tymethod.add_tick_callback" class="fnname">add_tick_callback</a>&lt;P:&nbsp;<a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/function/trait.Fn.html" title="trait core::ops::function::Fn">Fn</a>(<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self, &amp;<a class="struct" href="../../gdk4/auto/frame_clock/struct.FrameClock.html" title="struct gdk4::auto::frame_clock::FrameClock">FrameClock</a>) -&gt; <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/source/struct.Continue.html" title="struct glib::source::Continue">Continue</a> + 'static&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;callback: P<br>) -&gt; <a class="struct" href="../struct.TickCallbackId.html" title="struct gtk4::TickCallbackId">TickCallbackId</a></code><a href="#method.add_tick_callback" class="anchor"></a><a class="srclink" href="../../src/gtk4/widget.rs.html#50-94" title="goto source code">[src]</a></h4></div></details></details></div><script type="text/javascript" src="../../implementors/gtk4/prelude/trait.WidgetExtManual.js" async></script></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
     <script src="../../main.js"></script></body></html>

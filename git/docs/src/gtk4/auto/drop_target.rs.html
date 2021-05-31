@@ -613,12 +613,12 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkDropTarget` is an event controller to receive Drag-and-Drop operations.</span>
+    <span class="doccomment">/// [`DropTarget`][crate::DropTarget] is an event controller to receive Drag-and-Drop operations.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The most basic way to use a `GtkDropTarget` to receive drops on a</span>
-    <span class="doccomment">/// widget is to create it via [ctor`Gtk.DropTarget`.new], passing in the</span>
+    <span class="doccomment">/// The most basic way to use a [`DropTarget`][crate::DropTarget] to receive drops on a</span>
+    <span class="doccomment">/// widget is to create it via [``new()``][`Self::new()`], passing in the</span>
     <span class="doccomment">/// `GType` of the data you want to receive and connect to the</span>
-    <span class="doccomment">/// [signal`Gtk.DropTarget`::drop] signal to receive the data:</span>
+    <span class="doccomment">/// `signal::DropTarget::drop` signal to receive the data:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```c</span>
     <span class="doccomment">/// static gboolean</span>
@@ -659,34 +659,34 @@
     <span class="doccomment">/// }</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkDropTarget` supports more options, such as:</span>
+    <span class="doccomment">/// [`DropTarget`][crate::DropTarget] supports more options, such as:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  * rejecting potential drops via the [signal`Gtk.DropTarget`::accept] signal</span>
-    <span class="doccomment">///  and the [method`Gtk.DropTarget`.reject] function to let other drop</span>
+    <span class="doccomment">///  * rejecting potential drops via the `signal::DropTarget::accept` signal</span>
+    <span class="doccomment">///  and the [``reject()``][`Self::reject()`] function to let other drop</span>
     <span class="doccomment">///  targets handle the drop</span>
     <span class="doccomment">///  * tracking an ongoing drag operation before the drop via the</span>
-    <span class="doccomment">///  [signal`Gtk.DropTarget`::enter], [signal`Gtk.DropTarget`::motion] and</span>
-    <span class="doccomment">///  [signal`Gtk.DropTarget`::leave] signals</span>
+    <span class="doccomment">///  `signal::DropTarget::enter`, `signal::DropTarget::motion` and</span>
+    <span class="doccomment">///  `signal::DropTarget::leave` signals</span>
     <span class="doccomment">///  * configuring how to receive data by setting the</span>
-    <span class="doccomment">///  [property`Gtk.DropTarget`:preload] property and listening for its</span>
-    <span class="doccomment">///  availability via the [property`Gtk.DropTarget`:value] property</span>
+    <span class="doccomment">///  `property::DropTarget::preload` property and listening for its</span>
+    <span class="doccomment">///  availability via the `property::DropTarget::value` property</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// However, `GtkDropTarget` is ultimately modeled in a synchronous way</span>
+    <span class="doccomment">/// However, [`DropTarget`][crate::DropTarget] is ultimately modeled in a synchronous way</span>
     <span class="doccomment">/// and only supports data transferred via `GType`. If you want full control</span>
-    <span class="doccomment">/// over an ongoing drop, the [class`Gtk.DropTargetAsync`] object gives you</span>
+    <span class="doccomment">/// over an ongoing drop, the [`DropTargetAsync`][crate::DropTargetAsync] object gives you</span>
     <span class="doccomment">/// this ability.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// While a pointer is dragged over the drop target&#39;s widget and the drop</span>
     <span class="doccomment">/// has not been rejected, that widget will receive the</span>
-    <span class="doccomment">/// [`crate::StateFlags::DropActive`] state, which can be used to style the widget.</span>
+    <span class="doccomment">/// [`StateFlags::DROP_ACTIVE`][crate::StateFlags::DROP_ACTIVE] state, which can be used to style the widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you are not interested in receiving the drop, but just want to update</span>
     <span class="doccomment">/// UI state during a Drag-and-Drop operation (e.g. switching tabs), you can</span>
-    <span class="doccomment">/// use [class`Gtk.DropControllerMotion`].</span>
+    <span class="doccomment">/// use [`DropControllerMotion`][crate::DropControllerMotion].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::EventControllerExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`EventControllerExt`][trait@crate::prelude::EventControllerExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DropTarget</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkDropTarget</span>, <span class="ident">ffi::GtkDropTargetClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -695,11 +695,11 @@
 }
 
 <span class="kw">impl</span> <span class="ident">DropTarget</span> {
-    <span class="doccomment">/// Creates a new `GtkDropTarget` object.</span>
+    <span class="doccomment">/// Creates a new [`DropTarget`][crate::DropTarget] object.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the drop target should support more than 1 type, pass</span>
     <span class="doccomment">/// `G_TYPE_INVALID` for `type_` and then call</span>
-    <span class="doccomment">/// [method`Gtk.DropTarget`.set_gtypes].</span>
+    <span class="doccomment">/// [``set_types()``][`Self::set_types()`].</span>
     <span class="doccomment">/// ## `type_`</span>
     <span class="doccomment">/// The supported type or `G_TYPE_INVALID`</span>
     <span class="doccomment">/// ## `actions`</span>
@@ -707,7 +707,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the new `GtkDropTarget`</span>
+    <span class="doccomment">/// the new [`DropTarget`][crate::DropTarget]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_drop_target_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">type_</span>: <span class="ident">glib::types::Type</span>, <span class="ident">actions</span>: <span class="ident">gdk::DragAction</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DropTarget</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -787,7 +787,7 @@
 
     <span class="doccomment">/// Rejects the ongoing drop operation.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If no drop operation is ongoing, i.e when [property`Gtk.DropTarget`:drop]</span>
+    <span class="doccomment">/// If no drop operation is ongoing, i.e when `property::DropTarget::drop`</span>
     <span class="doccomment">/// is [`None`], this function does nothing.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function should be used when delaying the decision</span>
@@ -824,8 +824,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the drop is not accepted, [`false`] will be returned and the drop target</span>
     <span class="doccomment">/// will ignore the drop. If [`true`] is returned, the drop is accepted for now</span>
-    <span class="doccomment">/// but may be rejected later via a call to [method`Gtk.DropTarget`.reject]</span>
-    <span class="doccomment">/// or ultimately by returning [`false`] from a [signal`Gtk.DropTarget`::drop]</span>
+    <span class="doccomment">/// but may be rejected later via a call to [``reject()``][`Self::reject()`]</span>
+    <span class="doccomment">/// or ultimately by returning [`false`] from a `signal::DropTarget::drop`</span>
     <span class="doccomment">/// handler.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default handler for this signal decides whether to accept the drop</span>
@@ -833,11 +833,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the decision whether the drop will be accepted or rejected depends</span>
     <span class="doccomment">/// on the data, this function should return [`true`], the</span>
-    <span class="doccomment">/// [property`Gtk.DropTarget`:preload] property should be set and the value</span>
+    <span class="doccomment">/// `property::DropTarget::preload` property should be set and the value</span>
     <span class="doccomment">/// should be inspected via the ::notify:value signal, calling</span>
-    <span class="doccomment">/// [method`Gtk.DropTarget`.reject] if required.</span>
+    <span class="doccomment">/// [``reject()``][`Self::reject()`] if required.</span>
     <span class="doccomment">/// ## `drop`</span>
-    <span class="doccomment">/// the `GdkDrop`</span>
+    <span class="doccomment">/// the [`gdk::Drop`][crate::gdk::Drop]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -912,7 +912,7 @@
     <span class="doccomment">/// Emitted on the drop site when the pointer leaves the widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Its main purpose it to undo things done in</span>
-    <span class="doccomment">/// [signal`Gtk.DropTarget`::enter].</span>
+    <span class="doccomment">/// `signal::DropTarget::enter`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;leave&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_leave</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">leave_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">DropTarget</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(

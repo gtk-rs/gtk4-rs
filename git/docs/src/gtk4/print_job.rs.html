@@ -107,7 +107,7 @@
     <span class="doccomment">/// Sets the page ranges for this job.</span>
     <span class="doccomment">/// ## `ranges`</span>
     <span class="doccomment">/// pointer to an array of</span>
-    <span class="doccomment">///  `GtkPageRange` structs</span>
+    <span class="doccomment">///  [`PageRange`][crate::PageRange] structs</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_job_set_page_ranges&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_page_ranges</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ranges</span>: <span class="kw-2">&amp;</span>[<span class="ident">PageRange</span>]) {
         <span class="kw">let</span> <span class="ident">n_ranges</span> <span class="op">=</span> <span class="ident">ranges</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">i32</span>;

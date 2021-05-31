@@ -274,7 +274,7 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A `GtkTextMark` is a position in a `GtkTextbuffer` that is preserved</span>
+    <span class="doccomment">/// A [`TextMark`][crate::TextMark] is a position in a `GtkTextbuffer` that is preserved</span>
     <span class="doccomment">/// across modifications.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You may wish to begin by reading the</span>
@@ -282,9 +282,9 @@
     <span class="doccomment">/// which gives an overview of all the objects and data types</span>
     <span class="doccomment">/// related to the text widget and how they work together.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GtkTextMark` is like a bookmark in a text buffer; it preserves</span>
+    <span class="doccomment">/// A [`TextMark`][crate::TextMark] is like a bookmark in a text buffer; it preserves</span>
     <span class="doccomment">/// a position in the text. You can convert the mark to an iterator using</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.get_iter_at_mark]. Unlike iterators, marks remain</span>
+    <span class="doccomment">/// [``TextBufferExt::iter_at_mark()``][crate::prelude::`TextBufferExt::iter_at_mark()`]. Unlike iterators, marks remain</span>
     <span class="doccomment">/// valid across buffer mutations, because their behavior is defined when</span>
     <span class="doccomment">/// text is inserted or deleted. When text containing a mark is deleted,</span>
     <span class="doccomment">/// the mark remains in the position originally occupied by the deleted</span>
@@ -299,18 +299,18 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Marks are reference counted, but the reference count only controls</span>
     <span class="doccomment">/// the validity of the memory; marks can be deleted from the buffer at</span>
-    <span class="doccomment">/// any time with [method`Gtk.TextBuffer`.delete_mark]. Once deleted from</span>
+    <span class="doccomment">/// any time with [``TextBufferExt::delete_mark()``][crate::prelude::`TextBufferExt::delete_mark()`]. Once deleted from</span>
     <span class="doccomment">/// the buffer, a mark is essentially useless.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Marks optionally have names; these can be convenient to avoid passing</span>
-    <span class="doccomment">/// the `GtkTextMark` object around.</span>
+    <span class="doccomment">/// the [`TextMark`][crate::TextMark] object around.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Marks are typically created using the [method`Gtk.TextBuffer`.create_mark]</span>
+    <span class="doccomment">/// Marks are typically created using the [``TextBufferExt::create_mark()``][crate::prelude::`TextBufferExt::create_mark()`]</span>
     <span class="doccomment">/// function.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::TextMarkExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`TextMarkExt`][trait@crate::prelude::TextMarkExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TextMark</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkTextMark</span>, <span class="ident">ffi::GtkTextMarkClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -321,9 +321,9 @@
 <span class="kw">impl</span> <span class="ident">TextMark</span> {
     <span class="doccomment">/// Creates a text mark.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Add it to a buffer using [method`Gtk.TextBuffer`.add_mark].</span>
+    <span class="doccomment">/// Add it to a buffer using [``TextBufferExt::add_mark()``][crate::prelude::`TextBufferExt::add_mark()`].</span>
     <span class="doccomment">/// If `name` is [`None`], the mark is anonymous; otherwise, the mark can be</span>
-    <span class="doccomment">/// retrieved by name using [method`Gtk.TextBuffer`.get_mark]. If a mark</span>
+    <span class="doccomment">/// retrieved by name using [``TextBufferExt::mark()``][crate::prelude::`TextBufferExt::mark()`]. If a mark</span>
     <span class="doccomment">/// has left gravity, and text is inserted at the mark’s current location,</span>
     <span class="doccomment">/// the mark will be moved to the left of the newly-inserted text. If the</span>
     <span class="doccomment">/// mark has right gravity (`left_gravity` = [`false`]), the mark will end up</span>
@@ -337,7 +337,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// new `GtkTextMark`</span>
+    <span class="doccomment">/// new [`TextMark`][crate::TextMark]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_mark_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">name</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>, <span class="ident">left_gravity</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextMark</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -409,7 +409,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::TextMark`]</span>
+<span class="doccomment">/// [`TextMark`][struct@crate::TextMark]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TextMarkExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Gets the buffer this mark is located inside.</span>
     <span class="doccomment">///</span>
@@ -417,14 +417,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the mark’s `GtkTextBuffer`</span>
+    <span class="doccomment">/// the mark’s [`TextBuffer`][crate::TextBuffer]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_mark_get_buffer&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_buffer&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">buffer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TextBuffer</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// Returns [`true`] if the mark has been removed from its buffer.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.TextBuffer`.add_mark] for a way to add it</span>
+    <span class="doccomment">/// See [``TextBufferExt::add_mark()``][crate::prelude::`TextBufferExt::add_mark()`] for a way to add it</span>
     <span class="doccomment">/// to a buffer again.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>

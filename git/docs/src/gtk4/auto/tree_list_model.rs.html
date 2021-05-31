@@ -343,11 +343,11 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkTreeListModel` is a list model that can create child models on demand.</span>
+    <span class="doccomment">/// [`TreeListModel`][crate::TreeListModel] is a list model that can create child models on demand.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`trait@gio::prelude::ListModelExt`]</span>
+    <span class="doccomment">/// [`trait@glib::ObjectExt`], [`trait@gio::prelude::ListModelExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TreeListModel</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkTreeListModel</span>, <span class="ident">ffi::GtkTreeListModelClass</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">gio::ListModel</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -356,7 +356,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">TreeListModel</span> {
-    <span class="doccomment">/// Creates a new empty `GtkTreeListModel` displaying `root`</span>
+    <span class="doccomment">/// Creates a new empty [`TreeListModel`][crate::TreeListModel] displaying `root`</span>
     <span class="doccomment">/// with all rows collapsed.</span>
     <span class="doccomment">/// ## `root`</span>
     <span class="doccomment">/// The `GListModel` to use as root</span>
@@ -370,7 +370,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly created `GtkTreeListModel`.</span>
+    <span class="doccomment">/// a newly created [`TreeListModel`][crate::TreeListModel].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_list_model_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::ListModel</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">glib::Object</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::ListModel</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="ident">root</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
@@ -426,7 +426,7 @@
     <span class="doccomment">/// that get added.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This can be either rows added by changes to the underlying</span>
-    <span class="doccomment">/// models or via [method`Gtk.TreeListRow`.set_expanded].</span>
+    <span class="doccomment">/// models or via [``TreeListRow::set_expanded()``][crate::`TreeListRow::set_expanded()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -447,7 +447,7 @@
     <span class="doccomment">/// If `position` is greater than the number of children in the root model,</span>
     <span class="doccomment">/// [`None`] is returned.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Do not confuse this function with [method`Gtk.TreeListModel`.get_row].</span>
+    <span class="doccomment">/// Do not confuse this function with [``row()``][`Self::row()`].</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// position of the child to get</span>
     <span class="doccomment">///</span>
@@ -479,13 +479,13 @@
     <span class="doccomment">/// Gets whether the model is passing through original row items.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If this function returns [`false`], the `GListModel` functions for `self`</span>
-    <span class="doccomment">/// return custom `GtkTreeListRow` objects. You need to call</span>
-    <span class="doccomment">/// [method`Gtk.TreeListRow`.get_item] on these objects to get the original</span>
+    <span class="doccomment">/// return custom [`TreeListRow`][crate::TreeListRow] objects. You need to call</span>
+    <span class="doccomment">/// [``TreeListRow::item()``][crate::`TreeListRow::item()`] on these objects to get the original</span>
     <span class="doccomment">/// item.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If [`true`], the values of the child models are passed through in their</span>
-    <span class="doccomment">/// original state. You then need to call [method`Gtk.TreeListModel`.get_row]</span>
-    <span class="doccomment">/// to get the custom `GtkTreeListRow`s.</span>
+    <span class="doccomment">/// original state. You then need to call [``row()``][`Self::row()`]</span>
+    <span class="doccomment">/// to get the custom [`TreeListRow`][crate::TreeListRow]s.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -514,9 +514,9 @@
     <span class="doccomment">/// other rows being added or removed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `self` is set to not be passthrough, this function is</span>
-    <span class="doccomment">/// equivalent to calling [`crate::gio::ListModel::get_item()`].</span>
+    <span class="doccomment">/// equivalent to calling `g_list_model_get_item()`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Do not confuse this function with [method`Gtk.TreeListModel`.get_child_row].</span>
+    <span class="doccomment">/// Do not confuse this function with [``child_row()``][`Self::child_row()`].</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// the position of the row to fetch</span>
     <span class="doccomment">///</span>
@@ -538,7 +538,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If set to [`true`], the model will recursively expand all rows that</span>
     <span class="doccomment">/// get added to the model. This can be either rows added by changes</span>
-    <span class="doccomment">/// to the underlying models or via [method`Gtk.TreeListRow`.set_expanded].</span>
+    <span class="doccomment">/// to the underlying models or via [``TreeListRow::set_expanded()``][crate::`TreeListRow::set_expanded()`].</span>
     <span class="doccomment">/// ## `autoexpand`</span>
     <span class="doccomment">/// [`true`] to make the model autoexpand its rows</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_list_model_set_autoexpand&quot;</span>)]</span>
@@ -633,7 +633,7 @@
     <span class="doccomment">/// Gets whether the model is in passthrough mode.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If [`false`], the `GListModel` functions for this object return custom</span>
-    <span class="doccomment">/// [class`Gtk.TreeListRow`] objects. If [`true`], the values of the child</span>
+    <span class="doccomment">/// [`TreeListRow`][crate::TreeListRow] objects. If [`true`], the values of the child</span>
     <span class="doccomment">/// models are pass through unmodified.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">passthrough</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">passthrough</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">passthrough</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">passthrough</span>);

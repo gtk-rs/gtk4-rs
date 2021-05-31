@@ -334,17 +334,17 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkGestureClick` is a `GtkGesture` implementation for clicks.</span>
+    <span class="doccomment">/// [`GestureClick`][crate::GestureClick] is a [`Gesture`][crate::Gesture] implementation for clicks.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is able to recognize multiple clicks on a nearby zone, which</span>
-    <span class="doccomment">/// can be listened for through the [signal`Gtk.GestureClick`::pressed]</span>
+    <span class="doccomment">/// can be listened for through the `signal::GestureClick::pressed`</span>
     <span class="doccomment">/// signal. Whenever time or distance between clicks exceed the GTK</span>
-    <span class="doccomment">/// defaults, [signal`Gtk.GestureClick`::stopped] is emitted, and the</span>
+    <span class="doccomment">/// defaults, `signal::GestureClick::stopped` is emitted, and the</span>
     <span class="doccomment">/// click counter is reset.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::GestureSingleExt`], [`trait@crate::prelude::GestureExt`], [`trait@crate::prelude::EventControllerExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`GestureSingleExt`][trait@crate::prelude::GestureSingleExt], [`GestureExt`][trait@crate::prelude::GestureExt], [`EventControllerExt`][trait@crate::prelude::EventControllerExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GestureClick</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkGestureClick</span>, <span class="ident">ffi::GtkGestureClickClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">GestureSingle</span>, <span class="ident">Gesture</span>, <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -353,12 +353,12 @@
 }
 
 <span class="kw">impl</span> <span class="ident">GestureClick</span> {
-    <span class="doccomment">/// Returns a newly created `GtkGesture` that recognizes</span>
+    <span class="doccomment">/// Returns a newly created [`Gesture`][crate::Gesture] that recognizes</span>
     <span class="doccomment">/// single and multiple presses.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly created `GtkGestureClick`</span>
+    <span class="doccomment">/// a newly created [`GestureClick`][crate::GestureClick]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_click_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GestureClick</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -407,7 +407,7 @@
     <span class="doccomment">/// Emitted when a button or touch is released.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `n_press` will report the number of press that is paired to</span>
-    <span class="doccomment">/// this event, note that [signal`Gtk.GestureClick`::stopped] may</span>
+    <span class="doccomment">/// this event, note that `signal::GestureClick::stopped` may</span>
     <span class="doccomment">/// have been emitted between the press and its release, `n_press`</span>
     <span class="doccomment">/// will only start over at the next press.</span>
     <span class="doccomment">/// ## `n_press`</span>

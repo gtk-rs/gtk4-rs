@@ -123,15 +123,15 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkNoSelection` is a `GtkSelectionModel` that does not allow selecting</span>
+    <span class="doccomment">/// [`NoSelection`][crate::NoSelection] is a [`SelectionModel`][crate::SelectionModel] that does not allow selecting</span>
     <span class="doccomment">/// anything.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This model is meant to be used as a simple wrapper around a `GListModel`</span>
-    <span class="doccomment">/// when a `GtkSelectionModel` is required.</span>
+    <span class="doccomment">/// when a [`SelectionModel`][crate::SelectionModel] is required.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`trait@gio::prelude::ListModelExt`], [`trait@crate::prelude::SelectionModelExt`]</span>
+    <span class="doccomment">/// [`trait@glib::ObjectExt`], [`trait@gio::prelude::ListModelExt`], [`SelectionModelExt`][trait@crate::prelude::SelectionModelExt]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">NoSelection</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkNoSelection</span>, <span class="ident">ffi::GtkNoSelectionClass</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">gio::ListModel</span>, <span class="ident">SelectionModel</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -146,7 +146,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkNoSelection`</span>
+    <span class="doccomment">/// a new [`NoSelection`][crate::NoSelection]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_no_selection_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::ListModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">model</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">NoSelection</span> {
         <span class="macro">assert_initialized_main_thread!</span>();

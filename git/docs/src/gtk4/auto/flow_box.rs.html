@@ -1716,7 +1716,7 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A `GtkFlowBox` puts child widgets in reflowing grid.</span>
+    <span class="doccomment">/// A [`FlowBox`][crate::FlowBox] puts child widgets in reflowing grid.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// For instance, with the horizontal orientation, the widgets will be</span>
     <span class="doccomment">/// arranged from left to right, starting a new row under the previous</span>
@@ -1728,23 +1728,23 @@
     <span class="doccomment">/// Reducing the height will require more columns, so a larger width will</span>
     <span class="doccomment">/// be requested.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The size request of a `GtkFlowBox` alone may not be what you expect;</span>
+    <span class="doccomment">/// The size request of a [`FlowBox`][crate::FlowBox] alone may not be what you expect;</span>
     <span class="doccomment">/// if you need to be able to shrink it along both axes and dynamically</span>
-    <span class="doccomment">/// reflow its children, you may have to wrap it in a `GtkScrolledWindow`</span>
+    <span class="doccomment">/// reflow its children, you may have to wrap it in a [`ScrolledWindow`][crate::ScrolledWindow]</span>
     <span class="doccomment">/// to enable that.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The children of a `GtkFlowBox` can be dynamically sorted and filtered.</span>
+    <span class="doccomment">/// The children of a [`FlowBox`][crate::FlowBox] can be dynamically sorted and filtered.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Although a `GtkFlowBox` must have only `GtkFlowBoxChild` children, you</span>
-    <span class="doccomment">/// can add any kind of widget to it via [method`Gtk.FlowBox`.insert], and a</span>
-    <span class="doccomment">/// `GtkFlowBoxChild` widget will automatically be inserted between the box</span>
+    <span class="doccomment">/// Although a [`FlowBox`][crate::FlowBox] must have only [`FlowBoxChild`][crate::FlowBoxChild] children, you</span>
+    <span class="doccomment">/// can add any kind of widget to it via [``insert()``][`Self::insert()`], and a</span>
+    <span class="doccomment">/// [`FlowBoxChild`][crate::FlowBoxChild] widget will automatically be inserted between the box</span>
     <span class="doccomment">/// and the widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [class`Gtk.ListBox`].</span>
+    <span class="doccomment">/// Also see [`ListBox`][crate::ListBox].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # CSS nodes</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
+    <span class="doccomment">/// ```text</span>
     <span class="doccomment">/// flowbox</span>
     <span class="doccomment">/// ├── flowboxchild</span>
     <span class="doccomment">/// │   ╰── &lt;child&gt;</span>
@@ -1754,18 +1754,18 @@
     <span class="doccomment">/// ╰── [rubberband]</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkFlowBox` uses a single CSS node with name flowbox. `GtkFlowBoxChild`</span>
+    <span class="doccomment">/// [`FlowBox`][crate::FlowBox] uses a single CSS node with name flowbox. [`FlowBoxChild`][crate::FlowBoxChild]</span>
     <span class="doccomment">/// uses a single CSS node with name flowboxchild. For rubberband selection,</span>
     <span class="doccomment">/// a subnode with name rubberband is used.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkFlowBox` uses the [`crate::AccessibleRole::Grid`] role, and `GtkFlowBoxChild`</span>
-    <span class="doccomment">/// uses the [`crate::AccessibleRole::GridCell`] role.</span>
+    <span class="doccomment">/// [`FlowBox`][crate::FlowBox] uses the [`AccessibleRole::Grid`][crate::AccessibleRole::Grid] role, and [`FlowBoxChild`][crate::FlowBoxChild]</span>
+    <span class="doccomment">/// uses the [`AccessibleRole::GridCell`][crate::AccessibleRole::GridCell] role.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::WidgetExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::AccessibleExt`], [`trait@crate::prelude::BuildableExt`], [`trait@crate::prelude::ConstraintTargetExt`], [`trait@crate::prelude::OrientableExt`], [`trait@crate::prelude::WidgetExtManual`], [`trait@crate::prelude::AccessibleExtManual`]</span>
+    <span class="doccomment">/// [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`OrientableExt`][trait@crate::prelude::OrientableExt], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FlowBox</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkFlowBox</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Orientable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1774,11 +1774,11 @@
 }
 
 <span class="kw">impl</span> <span class="ident">FlowBox</span> {
-    <span class="doccomment">/// Creates a `GtkFlowBox`.</span>
+    <span class="doccomment">/// Creates a [`FlowBox`][crate::FlowBox].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkFlowBox`</span>
+    <span class="doccomment">/// a new [`FlowBox`][crate::FlowBox]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_flow_box_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FlowBox</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -1802,10 +1802,10 @@
     <span class="doccomment">/// If `model` is [`None`], `self` is left empty.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is undefined to add or remove widgets directly (for example, with</span>
-    <span class="doccomment">/// [method`Gtk.FlowBox`.insert]) while `self` is bound to a model.</span>
+    <span class="doccomment">/// [``insert()``][`Self::insert()`]) while `self` is bound to a model.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that using a model is incompatible with the filtering and sorting</span>
-    <span class="doccomment">/// functionality in `GtkFlowBox`. When using a model, filtering and sorting</span>
+    <span class="doccomment">/// functionality in [`FlowBox`][crate::FlowBox]. When using a model, filtering and sorting</span>
     <span class="doccomment">/// should be implemented by the model.</span>
     <span class="doccomment">/// ## `model`</span>
     <span class="doccomment">/// the `GListModel` to be bound to `self`</span>
@@ -1875,7 +1875,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the child widget, which will</span>
-    <span class="doccomment">///  always be a `GtkFlowBoxChild` or [`None`] in case no child widget</span>
+    <span class="doccomment">///  always be a [`FlowBoxChild`][crate::FlowBoxChild] or [`None`] in case no child widget</span>
     <span class="doccomment">///  with the given index exists.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_flow_box_get_child_at_index&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_child_at_index&quot;</span>)]</span>
@@ -1899,7 +1899,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the child widget, which will</span>
-    <span class="doccomment">///  always be a `GtkFlowBoxChild` or [`None`] in case no child widget</span>
+    <span class="doccomment">///  always be a [`FlowBoxChild`][crate::FlowBoxChild] or [`None`] in case no child widget</span>
     <span class="doccomment">///  exists for the given x and y coordinates.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_flow_box_get_child_at_pos&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_child_at_pos&quot;</span>)]</span>
@@ -1973,8 +1973,8 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  A `GList` containing the `GtkWidget` for each selected child.</span>
-    <span class="doccomment">///  Free with [`crate::glib::List::free()`] when done.</span>
+    <span class="doccomment">///  A `GList` containing the [`Widget`][crate::Widget] for each selected child.</span>
+    <span class="doccomment">///  Free with `g_list_free()` when done.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_flow_box_get_selected_children&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_selected_children&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">selected_children</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">FlowBoxChild</span><span class="op">&gt;</span> {
@@ -1989,7 +1989,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the `GtkSelectionMode`</span>
+    <span class="doccomment">/// the [`SelectionMode`][crate::SelectionMode]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_flow_box_get_selection_mode&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_selection_mode&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">selection_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SelectionMode</span> {
@@ -2004,7 +2004,7 @@
     <span class="doccomment">/// If `position` is -1, or larger than the total number of children</span>
     <span class="doccomment">/// in the `self`, then the `widget` will be appended to the end.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// the `GtkWidget` to add</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] to add</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// the position to insert `child` in</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_flow_box_insert&quot;</span>)]</span>
@@ -2135,11 +2135,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The `filter_func` will be called for each child after the call, and</span>
     <span class="doccomment">/// it will continue to be called each time a child changes (via</span>
-    <span class="doccomment">/// [method`Gtk.FlowBoxChild`.changed]) or when</span>
-    <span class="doccomment">/// [method`Gtk.FlowBox`.invalidate_filter] is called.</span>
+    <span class="doccomment">/// [``FlowBoxChildExt::changed()``][crate::prelude::`FlowBoxChildExt::changed()`]) or when</span>
+    <span class="doccomment">/// [``invalidate_filter()``][`Self::invalidate_filter()`] is called.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that using a filter function is incompatible with using a model</span>
-    <span class="doccomment">/// (see [method`Gtk.FlowBox`.bind_model]).</span>
+    <span class="doccomment">/// (see [``bind_model()``][`Self::bind_model()`]).</span>
     <span class="doccomment">/// ## `filter_func`</span>
     <span class="doccomment">/// callback that</span>
     <span class="doccomment">///  lets you filter which children to show</span>
@@ -2176,9 +2176,9 @@
     <span class="doccomment">/// Hooks up an adjustment to focus handling in `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The adjustment is also used for autoscrolling during</span>
-    <span class="doccomment">/// rubberband selection. See [method`Gtk.ScrolledWindow`.get_hadjustment]</span>
+    <span class="doccomment">/// rubberband selection. See [``ScrolledWindow::hadjustment()``][crate::`ScrolledWindow::hadjustment()`]</span>
     <span class="doccomment">/// for a typical way of obtaining the adjustment, and</span>
-    <span class="doccomment">/// [method`Gtk.FlowBox`.set_vadjustment] for setting the vertical</span>
+    <span class="doccomment">/// [``set_vadjustment()``][`Self::set_vadjustment()`] for setting the vertical</span>
     <span class="doccomment">/// adjustment.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The adjustments have to be in pixel units and in the same</span>
@@ -2261,11 +2261,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The `sort_func` will be called for each child after the call,</span>
     <span class="doccomment">/// and will continue to be called each time a child changes (via</span>
-    <span class="doccomment">/// [method`Gtk.FlowBoxChild`.changed]) and when</span>
-    <span class="doccomment">/// [method`Gtk.FlowBox`.invalidate_sort] is called.</span>
+    <span class="doccomment">/// [``FlowBoxChildExt::changed()``][crate::prelude::`FlowBoxChildExt::changed()`]) and when</span>
+    <span class="doccomment">/// [``invalidate_sort()``][`Self::invalidate_sort()`] is called.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that using a sort function is incompatible with using a model</span>
-    <span class="doccomment">/// (see [method`Gtk.FlowBox`.bind_model]).</span>
+    <span class="doccomment">/// (see [``bind_model()``][`Self::bind_model()`]).</span>
     <span class="doccomment">/// ## `sort_func`</span>
     <span class="doccomment">/// the sort function</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_flow_box_set_sort_func&quot;</span>)]</span>
@@ -2308,9 +2308,9 @@
     <span class="doccomment">/// Hooks up an adjustment to focus handling in `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The adjustment is also used for autoscrolling during</span>
-    <span class="doccomment">/// rubberband selection. See [method`Gtk.ScrolledWindow`.get_vadjustment]</span>
+    <span class="doccomment">/// rubberband selection. See [``ScrolledWindow::vadjustment()``][crate::`ScrolledWindow::vadjustment()`]</span>
     <span class="doccomment">/// for a typical way of obtaining the adjustment, and</span>
-    <span class="doccomment">/// [method`Gtk.FlowBox`.set_hadjustment] for setting the horizontal</span>
+    <span class="doccomment">/// [``set_hadjustment()``][`Self::set_hadjustment()`] for setting the horizontal</span>
     <span class="doccomment">/// adjustment.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The adjustments have to be in pixel units and in the same</span>
@@ -2459,7 +2459,7 @@
     <span class="doccomment">/// - `&lt;kbd&gt;`Home`&lt;/kbd&gt;`, `&lt;kbd&gt;`End`&lt;/kbd&gt;` move to the ends of the box</span>
     <span class="doccomment">/// - `&lt;kbd&gt;`PgUp`&lt;/kbd&gt;`, `&lt;kbd&gt;`PgDn`&lt;/kbd&gt;` move vertically by pages</span>
     <span class="doccomment">/// ## `step`</span>
-    <span class="doccomment">/// the granularity fo the move, as a [`crate::MovementStep`]</span>
+    <span class="doccomment">/// the granularity fo the move, as a [`MovementStep`][crate::MovementStep]</span>
     <span class="doccomment">/// ## `count`</span>
     <span class="doccomment">/// the number of `step` units to move</span>
     <span class="doccomment">/// ## `extend`</span>
@@ -2564,8 +2564,8 @@
 
     <span class="doccomment">/// Emitted when the set of selected children changes.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [method`Gtk.FlowBox`.selected_foreach] or</span>
-    <span class="doccomment">/// [method`Gtk.FlowBox`.get_selected_children] to obtain the</span>
+    <span class="doccomment">/// Use [``selected_foreach()``][`Self::selected_foreach()`] or</span>
+    <span class="doccomment">/// [``selected_children()``][`Self::selected_children()`] to obtain the</span>
     <span class="doccomment">/// selected children.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;selected-children-changed&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_selected_children_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
@@ -3161,7 +3161,7 @@
     <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
-    <span class="doccomment">/// the widget will be queried using [signal`Gtk.Widget`::query-tooltip] to</span>
+    <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">has_tooltip</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">has_tooltip</span>);
@@ -3188,7 +3188,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The `GtkLayoutManager` instance to use to compute the preferred size</span>
+    <span class="doccomment">/// The [`LayoutManager`][crate::LayoutManager] instance to use to compute the preferred size</span>
     <span class="doccomment">/// of the widget, and allocate its children.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
@@ -3202,7 +3202,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -3215,7 +3215,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -3228,7 +3228,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -3238,7 +3238,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -3280,16 +3280,16 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_markup].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_markup</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_markup</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_markup</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_markup</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -3297,16 +3297,16 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_text].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_text</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -3344,7 +3344,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The accessible role of the given `GtkAccessible` implementation.</span>
+    <span class="doccomment">/// The accessible role of the given [`Accessible`][crate::Accessible] implementation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The accessible role cannot be changed once set.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accessible_role</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">accessible_role</span>: <span class="ident">AccessibleRole</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {

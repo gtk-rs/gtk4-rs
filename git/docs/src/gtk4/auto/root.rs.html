@@ -114,23 +114,23 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkRoot` is the interface implemented by all widgets that can act as a toplevel</span>
+    <span class="doccomment">/// [`Root`][crate::Root] is the interface implemented by all widgets that can act as a toplevel</span>
     <span class="doccomment">/// widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The root widget takes care of providing the connection to the windowing system</span>
     <span class="doccomment">/// and manages layout, drawing and event delivery for its widget hierarchy.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The obvious example of a `GtkRoot` is `GtkWindow`.</span>
+    <span class="doccomment">/// The obvious example of a [`Root`][crate::Root] is [`Window`][crate::Window].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To get the display to which a `GtkRoot` belongs, use</span>
-    <span class="doccomment">/// [method`Gtk.Root`.get_display].</span>
+    <span class="doccomment">/// To get the display to which a [`Root`][crate::Root] belongs, use</span>
+    <span class="doccomment">/// `Gtk::`Root::get_display()``.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkRoot` also maintains the location of keyboard focus inside its widget</span>
-    <span class="doccomment">/// hierarchy, with [method`Gtk.Root`.set_focus] and [method`Gtk.Root`.get_focus].</span>
+    <span class="doccomment">/// [`Root`][crate::Root] also maintains the location of keyboard focus inside its widget</span>
+    <span class="doccomment">/// hierarchy, with [``RootExt::set_focus()``][crate::prelude::`RootExt::set_focus()`] and [``RootExt::focus()``][crate::prelude::`RootExt::focus()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::RootExt`], [`trait@crate::prelude::NativeExt`], [`trait@crate::prelude::WidgetExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::AccessibleExt`], [`trait@crate::prelude::BuildableExt`], [`trait@crate::prelude::ConstraintTargetExt`], [`trait@crate::prelude::WidgetExtManual`], [`trait@crate::prelude::AccessibleExtManual`]</span>
+    <span class="doccomment">/// [`RootExt`][trait@crate::prelude::RootExt], [`NativeExt`][trait@crate::prelude::NativeExt], [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Root</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GtkRoot</span>, <span class="ident">ffi::GtkRootInterface</span><span class="op">&gt;</span>) @<span class="ident">requires</span> <span class="ident">Native</span>, <span class="ident">Widget</span>, <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -144,7 +144,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::AboutDialog`], [`struct@crate::AppChooserDialog`], [`struct@crate::ApplicationWindow`], [`struct@crate::Assistant`], [`struct@crate::ColorChooserDialog`], [`struct@crate::Dialog`], [`struct@crate::DragIcon`], [`struct@crate::FileChooserDialog`], [`struct@crate::FontChooserDialog`], [`struct@crate::MessageDialog`], [`struct@crate::PageSetupUnixDialog`], [`struct@crate::PrintUnixDialog`], [`struct@crate::Root`], [`struct@crate::ShortcutsWindow`], [`struct@crate::Window`]</span>
+<span class="doccomment">/// [`AboutDialog`][struct@crate::AboutDialog], [`AppChooserDialog`][struct@crate::AppChooserDialog], [`ApplicationWindow`][struct@crate::ApplicationWindow], [`Assistant`][struct@crate::Assistant], [`ColorChooserDialog`][struct@crate::ColorChooserDialog], [`Dialog`][struct@crate::Dialog], [`DragIcon`][struct@crate::DragIcon], [`FileChooserDialog`][struct@crate::FileChooserDialog], [`FontChooserDialog`][struct@crate::FontChooserDialog], [`MessageDialog`][struct@crate::MessageDialog], [`PageSetupUnixDialog`][struct@crate::PageSetupUnixDialog], [`PrintUnixDialog`][struct@crate::PrintUnixDialog], [`Root`][struct@crate::Root], [`ShortcutsWindow`][struct@crate::ShortcutsWindow], [`Window`][struct@crate::Window]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">RootExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Retrieves the current focused widget within the root.</span>
     <span class="doccomment">///</span>
@@ -167,7 +167,7 @@
     <span class="doccomment">/// If `focus` is [`None`], unsets the focus widget for the root.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To set the focus to a particular widget in the root, it is usually</span>
-    <span class="doccomment">/// more convenient to use [method`Gtk.Widget`.grab_focus] instead of</span>
+    <span class="doccomment">/// more convenient to use [``WidgetExt::grab_focus()``][crate::prelude::`WidgetExt::grab_focus()`] instead of</span>
     <span class="doccomment">/// this function.</span>
     <span class="doccomment">/// ## `focus`</span>
     <span class="doccomment">/// widget to be the new focus widget, or [`None`]</span>

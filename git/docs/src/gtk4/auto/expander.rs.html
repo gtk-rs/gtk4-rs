@@ -1045,15 +1045,15 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkExpander` allows the user to reveal its child by clicking</span>
+    <span class="doccomment">/// [`Expander`][crate::Expander] allows the user to reveal its child by clicking</span>
     <span class="doccomment">/// on an expander triangle.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ![An example `Expander`](expander.png)</span>
+    <span class="doccomment">/// ![An example GtkExpander](expander.png)</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is similar to the triangles used in a `GtkTreeView`.</span>
+    <span class="doccomment">/// This is similar to the triangles used in a [`TreeView`][crate::TreeView].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Normally you use an expander as you would use a frame; you create</span>
-    <span class="doccomment">/// the child widget and use [method`Gtk.Expander`.set_child] to add it</span>
+    <span class="doccomment">/// the child widget and use [``set_child()``][`Self::set_child()`] to add it</span>
     <span class="doccomment">/// to the expander. When the expander is toggled, it will take care of</span>
     <span class="doccomment">/// showing and hiding the child automatically.</span>
     <span class="doccomment">///</span>
@@ -1061,9 +1061,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// There are situations in which you may prefer to show and hide the</span>
     <span class="doccomment">/// expanded widget yourself, such as when you want to actually create</span>
-    <span class="doccomment">/// the widget at expansion time. In this case, create a `GtkExpander`</span>
+    <span class="doccomment">/// the widget at expansion time. In this case, create a [`Expander`][crate::Expander]</span>
     <span class="doccomment">/// but do not add a child to it. The expander widget has an</span>
-    <span class="doccomment">/// [property`Gtk.Expander`:expanded[ property which can be used to</span>
+    <span class="doccomment">/// `property::Expander::expanded`[ property which can be used to</span>
     <span class="doccomment">/// monitor its expansion state. You should watch this property with</span>
     <span class="doccomment">/// a signal connection as follows:</span>
     <span class="doccomment">///</span>
@@ -1098,14 +1098,14 @@
     <span class="doccomment">/// }</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// # `Expander` as `Buildable`</span>
+    <span class="doccomment">/// # GtkExpander as GtkBuildable</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GtkExpander` implementation of the `GtkBuildable` interface supports</span>
+    <span class="doccomment">/// The [`Expander`][crate::Expander] implementation of the [`Buildable`][crate::Buildable] interface supports</span>
     <span class="doccomment">/// placing a child in the label position by specifying “label” as the</span>
     <span class="doccomment">/// “type” attribute of a `&lt;child&gt;` element. A normal content child can be</span>
     <span class="doccomment">/// specified without specifying a `&lt;child&gt;` type attribute.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// An example of a UI definition fragment with `Expander`:</span>
+    <span class="doccomment">/// An example of a UI definition fragment with GtkExpander:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```xml</span>
     <span class="doccomment">/// &lt;object class=&quot;GtkExpander&quot;&gt;</span>
@@ -1120,7 +1120,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # CSS nodes</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
+    <span class="doccomment">/// ```text</span>
     <span class="doccomment">/// expander</span>
     <span class="doccomment">/// ╰── box</span>
     <span class="doccomment">///     ├── title</span>
@@ -1129,17 +1129,17 @@
     <span class="doccomment">///     ╰── &lt;child&gt;</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkExpander` has three CSS nodes, the main node with the name expander,</span>
+    <span class="doccomment">/// [`Expander`][crate::Expander] has three CSS nodes, the main node with the name expander,</span>
     <span class="doccomment">/// a subnode with name title and node below it with name arrow. The arrow of an</span>
     <span class="doccomment">/// expander that is showing its child gets the :checked pseudoclass added to it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkExpander` uses the [`crate::AccessibleRole::Button`] role.</span>
+    <span class="doccomment">/// [`Expander`][crate::Expander] uses the [`AccessibleRole::Button`][crate::AccessibleRole::Button] role.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::WidgetExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::AccessibleExt`], [`trait@crate::prelude::BuildableExt`], [`trait@crate::prelude::ConstraintTargetExt`], [`trait@crate::prelude::WidgetExtManual`], [`trait@crate::prelude::AccessibleExtManual`]</span>
+    <span class="doccomment">/// [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Expander</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkExpander</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1154,7 +1154,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkExpander` widget.</span>
+    <span class="doccomment">/// a new [`Expander`][crate::Expander] widget.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_expander_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">label</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Expander</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -1177,7 +1177,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkExpander` widget.</span>
+    <span class="doccomment">/// a new [`Expander`][crate::Expander] widget.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_expander_new_with_mnemonic&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_with_mnemonic&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_mnemonic</span>(<span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Expander</span> {
@@ -1206,7 +1206,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_expander_get_child</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Queries a [`crate::Expander`] and returns its current state.</span>
+    <span class="doccomment">/// Queries a [`Expander`][crate::Expander] and returns its current state.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Returns [`true`] if the child widget is revealed.</span>
     <span class="doccomment">///</span>
@@ -1222,9 +1222,9 @@
     <span class="doccomment">/// Fetches the text from a label widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is including any embedded underlines indicating mnemonics and</span>
-    <span class="doccomment">/// Pango markup, as set by [method`Gtk.Expander`.set_label]. If the label</span>
+    <span class="doccomment">/// Pango markup, as set by [``set_label()``][`Self::set_label()`]. If the label</span>
     <span class="doccomment">/// text has not been set the return value will be [`None`]. This will be the</span>
-    <span class="doccomment">/// case if you create an empty button with [`crate::Button::new()`] to use as a</span>
+    <span class="doccomment">/// case if you create an empty button with [`Button::new()`][crate::Button::new()] to use as a</span>
     <span class="doccomment">/// container.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -1372,7 +1372,7 @@
         }
     }
 
-    <span class="doccomment">/// Activates the `GtkExpander`.</span>
+    <span class="doccomment">/// Activates the [`Expander`][crate::Expander].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;activate&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_activate</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">activate_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">Expander</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
@@ -1837,7 +1837,7 @@
     <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
-    <span class="doccomment">/// the widget will be queried using [signal`Gtk.Widget`::query-tooltip] to</span>
+    <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">has_tooltip</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">has_tooltip</span>);
@@ -1864,7 +1864,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The `GtkLayoutManager` instance to use to compute the preferred size</span>
+    <span class="doccomment">/// The [`LayoutManager`][crate::LayoutManager] instance to use to compute the preferred size</span>
     <span class="doccomment">/// of the widget, and allocate its children.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
@@ -1878,7 +1878,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -1891,7 +1891,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -1904,7 +1904,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -1914,7 +1914,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -1956,16 +1956,16 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_markup].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_markup</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_markup</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_markup</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_markup</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1973,16 +1973,16 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_text].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_text</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -2020,7 +2020,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The accessible role of the given `GtkAccessible` implementation.</span>
+    <span class="doccomment">/// The accessible role of the given [`Accessible`][crate::Accessible] implementation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The accessible role cannot be changed once set.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accessible_role</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">accessible_role</span>: <span class="ident">AccessibleRole</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {

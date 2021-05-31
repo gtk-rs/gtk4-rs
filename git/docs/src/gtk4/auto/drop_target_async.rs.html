@@ -524,44 +524,44 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkDropTargetAsync` is an event controller to receive Drag-and-Drop</span>
+    <span class="doccomment">/// [`DropTargetAsync`][crate::DropTargetAsync] is an event controller to receive Drag-and-Drop</span>
     <span class="doccomment">/// operations, asynchronously.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is the more complete but also more complex method of handling drop</span>
-    <span class="doccomment">/// operations compared to [class`Gtk.DropTarget`], and you should only use</span>
-    <span class="doccomment">/// it if `GtkDropTarget` doesn&#39;t provide all the features you need.</span>
+    <span class="doccomment">/// operations compared to [`DropTarget`][crate::DropTarget], and you should only use</span>
+    <span class="doccomment">/// it if [`DropTarget`][crate::DropTarget] doesn&#39;t provide all the features you need.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To use a `GtkDropTargetAsync` to receive drops on a widget, you create</span>
-    <span class="doccomment">/// a `GtkDropTargetAsync` object, configure which data formats and actions</span>
+    <span class="doccomment">/// To use a [`DropTargetAsync`][crate::DropTargetAsync] to receive drops on a widget, you create</span>
+    <span class="doccomment">/// a [`DropTargetAsync`][crate::DropTargetAsync] object, configure which data formats and actions</span>
     <span class="doccomment">/// you support, connect to its signals, and then attach it to the widget</span>
-    <span class="doccomment">/// with [method`Gtk.Widget`.add_controller].</span>
+    <span class="doccomment">/// with [``WidgetExt::add_controller()``][crate::prelude::`WidgetExt::add_controller()`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// During a drag operation, the first signal that a `GtkDropTargetAsync`</span>
-    <span class="doccomment">/// emits is [signal`Gtk.DropTargetAsync`::accept], which is meant to determine</span>
+    <span class="doccomment">/// During a drag operation, the first signal that a [`DropTargetAsync`][crate::DropTargetAsync]</span>
+    <span class="doccomment">/// emits is `signal::DropTargetAsync::accept`, which is meant to determine</span>
     <span class="doccomment">/// whether the target is a possible drop site for the ongoing drop. The</span>
     <span class="doccomment">/// default handler for the ::accept signal accepts the drop if it finds</span>
     <span class="doccomment">/// a compatible data format and an action that is supported on both sides.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If it is, and the widget becomes a target, you will receive a</span>
-    <span class="doccomment">/// [signal`Gtk.DropTargetAsync`::drag-enter] signal, followed by</span>
-    <span class="doccomment">/// [signal`Gtk.DropTargetAsync`::drag-motion] signals as the pointer moves,</span>
-    <span class="doccomment">/// optionally a [signal`Gtk.DropTargetAsync`::drop] signal when a drop happens,</span>
-    <span class="doccomment">/// and finally a [signal`Gtk.DropTargetAsync`::drag-leave] signal when the</span>
+    <span class="doccomment">/// `signal::DropTargetAsync::drag-enter` signal, followed by</span>
+    <span class="doccomment">/// `signal::DropTargetAsync::drag-motion` signals as the pointer moves,</span>
+    <span class="doccomment">/// optionally a `signal::DropTargetAsync::drop` signal when a drop happens,</span>
+    <span class="doccomment">/// and finally a `signal::DropTargetAsync::drag-leave` signal when the</span>
     <span class="doccomment">/// pointer moves off the widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The ::drag-enter and ::drag-motion handler return a `GdkDragAction`</span>
+    <span class="doccomment">/// The ::drag-enter and ::drag-motion handler return a [`gdk::DragAction`][crate::gdk::DragAction]</span>
     <span class="doccomment">/// to update the status of the ongoing operation. The ::drop handler</span>
     <span class="doccomment">/// should decide if it ultimately accepts the drop and if it does, it</span>
     <span class="doccomment">/// should initiate the data transfer and finish the operation by calling</span>
-    <span class="doccomment">/// [method`Gdk.Drop`.finish].</span>
+    <span class="doccomment">/// [``Drop::finish()``][crate::gdk::`Drop::finish()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Between the ::drag-enter and ::drag-leave signals the widget is a</span>
-    <span class="doccomment">/// current drop target, and will receive the [`crate::StateFlags::DropActive`]</span>
+    <span class="doccomment">/// current drop target, and will receive the [`StateFlags::DROP_ACTIVE`][crate::StateFlags::DROP_ACTIVE]</span>
     <span class="doccomment">/// state, which can be used by themes to style the widget as a drop target.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::EventControllerExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`EventControllerExt`][trait@crate::prelude::EventControllerExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DropTargetAsync</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkDropTargetAsync</span>, <span class="ident">ffi::GtkDropTargetAsyncClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -570,7 +570,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">DropTargetAsync</span> {
-    <span class="doccomment">/// Creates a new `GtkDropTargetAsync` object.</span>
+    <span class="doccomment">/// Creates a new [`DropTargetAsync`][crate::DropTargetAsync] object.</span>
     <span class="doccomment">/// ## `formats`</span>
     <span class="doccomment">/// the supported data formats</span>
     <span class="doccomment">/// ## `actions`</span>
@@ -578,7 +578,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the new `GtkDropTargetAsync`</span>
+    <span class="doccomment">/// the new [`DropTargetAsync`][crate::DropTargetAsync]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_drop_target_async_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">formats</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">gdk::ContentFormats</span><span class="op">&gt;</span>, <span class="ident">actions</span>: <span class="ident">gdk::DragAction</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DropTargetAsync</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -635,7 +635,7 @@
     <span class="doccomment">/// on whether to accept a drag or not until after reading</span>
     <span class="doccomment">/// the data.</span>
     <span class="doccomment">/// ## `drop`</span>
-    <span class="doccomment">/// the [`crate::gdk::Drop`] of an ongoing drag operation</span>
+    <span class="doccomment">/// the [`gdk::Drop`][crate::gdk::Drop] of an ongoing drag operation</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_drop_target_async_reject_drop&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reject_drop</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">drop</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Drop</span>) {
         <span class="kw">unsafe</span> {
@@ -668,8 +668,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the drop is not accepted, [`false`] will be returned and the drop target</span>
     <span class="doccomment">/// will ignore the drop. If [`true`] is returned, the drop is accepted for now</span>
-    <span class="doccomment">/// but may be rejected later via a call to [method`Gtk.DropTargetAsync`.reject_drop]</span>
-    <span class="doccomment">/// or ultimately by returning [`false`] from a [signal`Gtk.DropTargetAsync`::drop]</span>
+    <span class="doccomment">/// but may be rejected later via a call to [``reject_drop()``][`Self::reject_drop()`]</span>
+    <span class="doccomment">/// or ultimately by returning [`false`] from a `signal::DropTargetAsync::drop`</span>
     <span class="doccomment">/// handler.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default handler for this signal decides whether to accept the drop</span>
@@ -678,9 +678,9 @@
     <span class="doccomment">/// If the decision whether the drop will be accepted or rejected needs</span>
     <span class="doccomment">/// further processing, such as inspecting the data, this function should</span>
     <span class="doccomment">/// return [`true`] and proceed as is `drop` was accepted and if it decides to</span>
-    <span class="doccomment">/// reject the drop later, it should call [method`Gtk.DropTargetAsync`.reject_drop].</span>
+    <span class="doccomment">/// reject the drop later, it should call [``reject_drop()``][`Self::reject_drop()`].</span>
     <span class="doccomment">/// ## `drop`</span>
-    <span class="doccomment">/// the [`crate::gdk::Drop`]</span>
+    <span class="doccomment">/// the [`gdk::Drop`][crate::gdk::Drop]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -717,7 +717,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// It can be used to set up custom highlighting.</span>
     <span class="doccomment">/// ## `drop`</span>
-    <span class="doccomment">/// the [`crate::gdk::Drop`]</span>
+    <span class="doccomment">/// the [`gdk::Drop`][crate::gdk::Drop]</span>
     <span class="doccomment">/// ## `x`</span>
     <span class="doccomment">/// the x coordinate of the current pointer position</span>
     <span class="doccomment">/// ## `y`</span>
@@ -759,9 +759,9 @@
     <span class="doccomment">/// Emitted on the drop site when the pointer leaves the widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Its main purpose it to undo things done in</span>
-    <span class="doccomment">/// `GtkDropTargetAsync`::drag-enter.</span>
+    <span class="doccomment">/// [`DropTargetAsync`][crate::DropTargetAsync]::drag-enter.</span>
     <span class="doccomment">/// ## `drop`</span>
-    <span class="doccomment">/// the [`crate::gdk::Drop`]</span>
+    <span class="doccomment">/// the [`gdk::Drop`][crate::gdk::Drop]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;drag-leave&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_drag_leave</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">gdk::Drop</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">drag_leave_trampoline</span><span class="op">&lt;</span>
@@ -789,7 +789,7 @@
 
     <span class="doccomment">/// Emitted while the pointer is moving over the drop target.</span>
     <span class="doccomment">/// ## `drop`</span>
-    <span class="doccomment">/// the [`crate::gdk::Drop`]</span>
+    <span class="doccomment">/// the [`gdk::Drop`][crate::gdk::Drop]</span>
     <span class="doccomment">/// ## `x`</span>
     <span class="doccomment">/// the x coordinate of the current pointer position</span>
     <span class="doccomment">/// ## `y`</span>
@@ -835,15 +835,15 @@
     <span class="doccomment">/// further processing is necessary.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Otherwise, the handler returns [`true`]. In this case, this handler will</span>
-    <span class="doccomment">/// accept the drop. The handler must ensure that [method`Gdk.Drop`.finish]</span>
+    <span class="doccomment">/// accept the drop. The handler must ensure that [``Drop::finish()``][crate::gdk::`Drop::finish()`]</span>
     <span class="doccomment">/// is called to let the source know that the drop is done. The call to</span>
-    <span class="doccomment">/// [method`Gdk.Drop`.finish] must only be done when all data has been received.</span>
+    <span class="doccomment">/// [``Drop::finish()``][crate::gdk::`Drop::finish()`] must only be done when all data has been received.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To receive the data, use one of the read functions provided by</span>
-    <span class="doccomment">/// [class`Gdk.Drop`] such as [method`Gdk.Drop`.read_async] or</span>
-    <span class="doccomment">/// [method`Gdk.Drop`.read_value_async].</span>
+    <span class="doccomment">/// [`gdk::Drop`][crate::gdk::Drop] such as [``Drop::read_async()``][crate::gdk::`Drop::read_async()`] or</span>
+    <span class="doccomment">/// [``Drop::read_value_async()``][crate::gdk::`Drop::read_value_async()`].</span>
     <span class="doccomment">/// ## `drop`</span>
-    <span class="doccomment">/// the [`crate::gdk::Drop`]</span>
+    <span class="doccomment">/// the [`gdk::Drop`][crate::gdk::Drop]</span>
     <span class="doccomment">/// ## `x`</span>
     <span class="doccomment">/// the x coordinate of the current pointer position</span>
     <span class="doccomment">/// ## `y`</span>
@@ -976,7 +976,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The `GdkContentFormats` that determines the supported data formats.</span>
+    <span class="doccomment">/// The [`gdk::ContentFormats`][crate::gdk::ContentFormats] that determines the supported data formats.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">formats</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">formats</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::ContentFormats</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">formats</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">formats</span>.<span class="ident">clone</span>());
         <span class="self">self</span>

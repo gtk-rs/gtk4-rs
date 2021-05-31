@@ -213,7 +213,7 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkCenterLayout` is a layout manager that manages up to three children.</span>
+    <span class="doccomment">/// [`CenterLayout`][crate::CenterLayout] is a layout manager that manages up to three children.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The start widget is allocated at the start of the layout (left in</span>
     <span class="doccomment">/// left-to-right locales and right in right-to-left ones), and the end</span>
@@ -223,7 +223,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::LayoutManagerExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`LayoutManagerExt`][trait@crate::prelude::LayoutManagerExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CenterLayout</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkCenterLayout</span>, <span class="ident">ffi::GtkCenterLayoutClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">LayoutManager</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -232,11 +232,11 @@
 }
 
 <span class="kw">impl</span> <span class="ident">CenterLayout</span> {
-    <span class="doccomment">/// Creates a new `GtkCenterLayout`.</span>
+    <span class="doccomment">/// Creates a new [`CenterLayout`][crate::CenterLayout].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the newly created `GtkCenterLayout`</span>
+    <span class="doccomment">/// the newly created [`CenterLayout`][crate::CenterLayout]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_center_layout_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CenterLayout</span> {
         <span class="macro">assert_initialized_main_thread!</span>();

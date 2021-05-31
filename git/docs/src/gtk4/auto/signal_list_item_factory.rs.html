@@ -247,50 +247,50 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkSignalListItemFactory` is a `GtkListItemFactory` that emits signals</span>
+    <span class="doccomment">/// [`SignalListItemFactory`][crate::SignalListItemFactory] is a [`ListItemFactory`][crate::ListItemFactory] that emits signals</span>
     <span class="doccomment">/// to to manage listitems.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Signals are emitted for every listitem in the same order:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  1. [signal`Gtk.SignalListItemFactory`::setup] is emitted to set up permanent</span>
+    <span class="doccomment">///  1. `signal::SignalListItemFactory::setup` is emitted to set up permanent</span>
     <span class="doccomment">///  things on the listitem. This usually means constructing the widgets used in</span>
     <span class="doccomment">///  the row and adding them to the listitem.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  2. [signal`Gtk.SignalListItemFactory`::bind] is emitted to bind the item passed</span>
-    <span class="doccomment">///  via [property`Gtk.ListItem`:item] to the widgets that have been created in</span>
+    <span class="doccomment">///  2. `signal::SignalListItemFactory::bind` is emitted to bind the item passed</span>
+    <span class="doccomment">///  via `property::ListItem::item` to the widgets that have been created in</span>
     <span class="doccomment">///  step 1 or to add item-specific widgets. Signals are connected to listen to</span>
     <span class="doccomment">///  changes - both to changes in the item to update the widgets or to changes</span>
     <span class="doccomment">///  in the widgets to update the item. After this signal has been called, the</span>
     <span class="doccomment">///  listitem may be shown in a list widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  3. [signal`Gtk.SignalListItemFactory`::unbind] is emitted to undo everything</span>
+    <span class="doccomment">///  3. `signal::SignalListItemFactory::unbind` is emitted to undo everything</span>
     <span class="doccomment">///  done in step 2. Usually this means disconnecting signal handlers. Once this</span>
     <span class="doccomment">///  signal has been called, the listitem will no longer be used in a list</span>
     <span class="doccomment">///  widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  4. [signal`Gtk.SignalListItemFactory`::bind] and</span>
-    <span class="doccomment">///  [signal`Gtk.SignalListItemFactory`::unbind] may be emitted multiple times</span>
+    <span class="doccomment">///  4. `signal::SignalListItemFactory::bind` and</span>
+    <span class="doccomment">///  `signal::SignalListItemFactory::unbind` may be emitted multiple times</span>
     <span class="doccomment">///  again to bind the listitem for use with new items. By reusing listitems,</span>
     <span class="doccomment">///  potentially costly setup can be avoided. However, it means code needs to</span>
     <span class="doccomment">///  make sure to properly clean up the listitem in step 3 so that no information</span>
     <span class="doccomment">///  from the previous use leaks into the next use.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// 5. [signal`Gtk.SignalListItemFactory`::teardown] is emitted to allow undoing</span>
-    <span class="doccomment">/// the effects of [signal`Gtk.SignalListItemFactory`::setup]. After this signal</span>
+    <span class="doccomment">/// 5. `signal::SignalListItemFactory::teardown` is emitted to allow undoing</span>
+    <span class="doccomment">/// the effects of `signal::SignalListItemFactory::setup`. After this signal</span>
     <span class="doccomment">/// was emitted on a listitem, the listitem will be destroyed and not be used again.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that during the signal emissions, changing properties on the</span>
-    <span class="doccomment">/// ``GtkListItems`` passed will not trigger notify signals as the listitem&#39;s</span>
-    <span class="doccomment">/// notifications are frozen. See [`crate::glib::object::Object::freeze_notify()`] for details.</span>
+    <span class="doccomment">/// `GtkListItems` passed will not trigger notify signals as the listitem&#39;s</span>
+    <span class="doccomment">/// notifications are frozen. See `g_object_freeze_notify()` for details.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// For tracking changes in other properties in the `GtkListItem`, the</span>
+    <span class="doccomment">/// For tracking changes in other properties in the [`ListItem`][crate::ListItem], the</span>
     <span class="doccomment">/// ::notify signal is recommended. The signal can be connected in the</span>
-    <span class="doccomment">/// [signal`Gtk.SignalListItemFactory`::setup] signal and removed again during</span>
-    <span class="doccomment">/// [signal`Gtk.SignalListItemFactory`::teardown].</span>
+    <span class="doccomment">/// `signal::SignalListItemFactory::setup` signal and removed again during</span>
+    <span class="doccomment">/// `signal::SignalListItemFactory::teardown`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::ListItemFactoryExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`ListItemFactoryExt`][trait@crate::prelude::ListItemFactoryExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SignalListItemFactory</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkSignalListItemFactory</span>, <span class="ident">ffi::GtkSignalListItemFactoryClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">ListItemFactory</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -299,13 +299,13 @@
 }
 
 <span class="kw">impl</span> <span class="ident">SignalListItemFactory</span> {
-    <span class="doccomment">/// Creates a new `GtkSignalListItemFactory`.</span>
+    <span class="doccomment">/// Creates a new [`SignalListItemFactory`][crate::SignalListItemFactory].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You need to connect signal handlers before you use it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkSignalListItemFactory`</span>
+    <span class="doccomment">/// a new [`SignalListItemFactory`][crate::SignalListItemFactory]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_signal_list_item_factory_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalListItemFactory</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -314,17 +314,17 @@
         }
     }
 
-    <span class="doccomment">/// Emitted when a new [property`Gtk.ListItem`:item] has been set</span>
+    <span class="doccomment">/// Emitted when a new `property::ListItem::item` has been set</span>
     <span class="doccomment">/// on the `listitem` and should be bound for use.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// After this signal was emitted, the listitem might be shown in</span>
-    <span class="doccomment">/// a [class`Gtk.ListView`] or other list widget.</span>
+    <span class="doccomment">/// a [`ListView`][crate::ListView] or other list widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The [signal`Gtk.SignalListItemFactory`::unbind] signal is the</span>
+    <span class="doccomment">/// The `signal::SignalListItemFactory::unbind` signal is the</span>
     <span class="doccomment">/// opposite of this signal and can be used to undo everything done</span>
     <span class="doccomment">/// in this signal.</span>
     <span class="doccomment">/// ## `listitem`</span>
-    <span class="doccomment">/// The [`crate::ListItem`] to bind</span>
+    <span class="doccomment">/// The [`ListItem`][crate::ListItem] to bind</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;bind&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_bind</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">ListItem</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">bind_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">SignalListItemFactory</span>, <span class="kw-2">&amp;</span><span class="ident">ListItem</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
@@ -352,10 +352,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is the first signal emitted for every listitem.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The [signal`Gtk.SignalListItemFactory`::teardown] signal is the opposite</span>
+    <span class="doccomment">/// The `signal::SignalListItemFactory::teardown` signal is the opposite</span>
     <span class="doccomment">/// of this signal and can be used to undo everything done in this signal.</span>
     <span class="doccomment">/// ## `listitem`</span>
-    <span class="doccomment">/// The [`crate::ListItem`] to set up</span>
+    <span class="doccomment">/// The [`ListItem`][crate::ListItem] to set up</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;setup&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_setup</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">ListItem</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">setup_trampoline</span><span class="op">&lt;</span>
@@ -385,10 +385,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is the last signal ever emitted for this `listitem`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This signal is the opposite of the [signal`Gtk.SignalListItemFactory`::setup]</span>
+    <span class="doccomment">/// This signal is the opposite of the `signal::SignalListItemFactory::setup`</span>
     <span class="doccomment">/// signal and should be used to undo everything done in that signal.</span>
     <span class="doccomment">/// ## `listitem`</span>
-    <span class="doccomment">/// The [`crate::ListItem`] to teardown</span>
+    <span class="doccomment">/// The [`ListItem`][crate::ListItem] to teardown</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;teardown&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_teardown</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">ListItem</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">teardown_trampoline</span><span class="op">&lt;</span>
@@ -415,12 +415,12 @@
     }
 
     <span class="doccomment">/// Emitted when a listitem has been removed from use in a list widget</span>
-    <span class="doccomment">/// and its new [property`Gtk.ListItem`:item] is about to be unset.</span>
+    <span class="doccomment">/// and its new `property::ListItem::item` is about to be unset.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This signal is the opposite of the [signal`Gtk.SignalListItemFactory`::bind]</span>
+    <span class="doccomment">/// This signal is the opposite of the `signal::SignalListItemFactory::bind`</span>
     <span class="doccomment">/// signal and should be used to undo everything done in that signal.</span>
     <span class="doccomment">/// ## `listitem`</span>
-    <span class="doccomment">/// The [`crate::ListItem`] to unbind</span>
+    <span class="doccomment">/// The [`ListItem`][crate::ListItem] to unbind</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;unbind&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_unbind</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">ListItem</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">unbind_trampoline</span><span class="op">&lt;</span>

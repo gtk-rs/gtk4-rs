@@ -55,11 +55,11 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A `GtkShortcutAction` that calls [`crate::prelude::WidgetExt::activate()`].</span>
+    <span class="doccomment">/// A [`ShortcutAction`][crate::ShortcutAction] that calls [`WidgetExt::activate()`][crate::prelude::WidgetExt::activate()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::ShortcutActionExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`ShortcutActionExt`][trait@crate::prelude::ShortcutActionExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ActivateAction</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkActivateAction</span>, <span class="ident">ffi::GtkActivateActionClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">ShortcutAction</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -70,7 +70,7 @@
 <span class="kw">impl</span> <span class="ident">ActivateAction</span> {
     <span class="doccomment">/// Gets the activate action.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is an action that calls [`crate::prelude::WidgetExt::activate()`]</span>
+    <span class="doccomment">/// This is an action that calls [`WidgetExt::activate()`][crate::prelude::WidgetExt::activate()]</span>
     <span class="doccomment">/// on the given widget upon activation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>

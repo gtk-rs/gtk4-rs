@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="`GtkExpression` provides a way to describe references to values."><meta name="keywords" content="rust, rustlang, rust-lang, Expression"><title>Expression in gtk4 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings"></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="[`Expression`][crate::Expression] provides a way to describe references to values."><meta name="keywords" content="rust, rustlang, rust-lang, Expression"><title>Expression in gtk4 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings"></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../favicon-16x16.png">
 <link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc struct"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 
 <nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../gtk4/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><p class="location">Struct Expression</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#implementations">Methods</a><div class="sidebar-links"><a href="#method.bind">bind</a><a href="#method.downcast">downcast</a><a href="#method.downcast_ref">downcast_ref</a><a href="#method.evaluate">evaluate</a><a href="#method.is_static">is_static</a><a href="#method.type_">type_</a><a href="#method.value_type">value_type</a><a href="#method.watch">watch</a></div><a class="sidebar-title" href="#trait-implementations">Trait Implementations</a><div class="sidebar-links"><a href="#impl-AsRef%3CExpression%3E">AsRef&lt;Expression&gt;</a><a href="#impl-Clone">Clone</a><a href="#impl-Debug">Debug</a><a href="#impl-Eq">Eq</a><a href="#impl-FromValue%3C%27a%3E">FromValue&lt;&#39;a&gt;</a><a href="#impl-Hash">Hash</a><a href="#impl-Ord">Ord</a><a href="#impl-PartialEq%3CExpression%3E">PartialEq&lt;Expression&gt;</a><a href="#impl-PartialOrd%3CExpression%3E">PartialOrd&lt;Expression&gt;</a><a href="#impl-StaticType">StaticType</a><a href="#impl-StructuralEq">StructuralEq</a><a href="#impl-StructuralPartialEq">StructuralPartialEq</a><a href="#impl-ToValue">ToValue</a><a href="#impl-ToValueOptional">ToValueOptional</a><a href="#impl-ValueType">ValueType</a></div><a class="sidebar-title" href="#synthetic-implementations">Auto Trait Implementations</a><div class="sidebar-links"><a href="#impl-RefUnwindSafe">RefUnwindSafe</a><a href="#impl-Send">!Send</a><a href="#impl-Sync">!Sync</a><a href="#impl-Unpin">Unpin</a><a href="#impl-UnwindSafe">UnwindSafe</a></div><a class="sidebar-title" href="#blanket-implementations">Blanket Implementations</a><div class="sidebar-links"><a href="#impl-Any">Any</a><a href="#impl-Borrow%3CT%3E">Borrow&lt;T&gt;</a><a href="#impl-BorrowMut%3CT%3E">BorrowMut&lt;T&gt;</a><a href="#impl-From%3CT%3E">From&lt;T&gt;</a><a href="#impl-FromValueOptional%3C%27a%3E">FromValueOptional&lt;&#39;a&gt;</a><a href="#impl-Into%3CU%3E">Into&lt;U&gt;</a><a href="#impl-ToOwned">ToOwned</a><a href="#impl-TryFrom%3CU%3E">TryFrom&lt;U&gt;</a><a href="#impl-TryInto%3CU%3E">TryInto&lt;U&gt;</a></div></div><p class="location"><a href="index.html">gtk4</a></p><div id="sidebar-vars" data-name="Expression" data-ty="struct" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button">?</button>
-                <a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Struct <a href="index.html">gtk4</a>::<wbr><a class="struct" href="">Expression</a><button id="copy-path" onclick="copy_path(this)"><img src="../clipboard.svg" width="19" height="18" alt="Copy item import"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/gtk4/expression.rs.html#8-145" title="goto source code">[src]</a></span></h1><div class="docblock type-decl"><pre class="rust struct">pub struct Expression(_);</pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p><code>GtkExpression</code> provides a way to describe references to values.</p>
+                <a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Struct <a href="index.html">gtk4</a>::<wbr><a class="struct" href="">Expression</a><button id="copy-path" onclick="copy_path(this)"><img src="../clipboard.svg" width="19" height="18" alt="Copy item import"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/gtk4/expression.rs.html#8-145" title="goto source code">[src]</a></span></h1><div class="docblock type-decl"><pre class="rust struct">pub struct Expression(_);</pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p><a href="struct.Expression.html" title="crate::Expression"><code>Expression</code></a> provides a way to describe references to values.</p>
 <p>An important aspect of expressions is that the value can be obtained
 from a source that is several steps away. For example, an expression
 may describe ‘the value of property A of <code>object1</code>, which is itself the
@@ -16,41 +16,40 @@ of the binding.</p>
 refers to. An evaluation always happens in the context of a current object
 called <code>this</code> (it mirrors the behavior of object-oriented languages),
 which may or may not influence the result of the evaluation. Use
-[method<code>Gtk.Expression</code>.evaluate] for evaluating an expression.</p>
+<a href="struct.Expression.html#method.evaluate" title="Self::evaluate()"><code>evaluate()</code></a> for evaluating an expression.</p>
 <p>Various methods for defining expressions exist, from simple constants via
-[ctor<code>Gtk.ConstantExpression</code>.new] to looking up properties in a <code>GObject</code>
-(even recursively) via [ctor<code>Gtk.PropertyExpression</code>.new] or providing
+<a href="struct.ConstantExpression.html#method.new" title="crate::ConstantExpression::new()"><code>ConstantExpression::new()</code></a> to looking up properties in a <code>GObject</code>
+(even recursively) via <a href="struct.PropertyExpression.html#method.new" title="crate::PropertyExpression::new()"><code>PropertyExpression::new()</code></a> or providing
 custom functions to transform and combine expressions via
-[ctor<code>Gtk.ClosureExpression</code>.new].</p>
+<a href="struct.ClosureExpression.html#method.new" title="crate::ClosureExpression::new()"><code>ClosureExpression::new()</code></a>.</p>
 <p>Here is an example of a complex expression:</p>
 <pre><code class="language-c">  color_expr = gtk_property_expression_new (GTK_TYPE_LIST_ITEM,
                                             NULL, &quot;item&quot;);
   expression = gtk_property_expression_new (GTK_TYPE_COLOR,
                                             color_expr, &quot;name&quot;);
 </code></pre>
-<p>when evaluated with <code>this</code> being a <code>GtkListItem</code>, it will obtain the
-“item” property from the <code>GtkListItem</code>, and then obtain the “name” property
+<p>when evaluated with <code>this</code> being a <a href="struct.ListItem.html" title="crate::ListItem"><code>ListItem</code></a>, it will obtain the
+“item” property from the <a href="struct.ListItem.html" title="crate::ListItem"><code>ListItem</code></a>, and then obtain the “name” property
 from the resulting object (which is assumed to be of type <code>GTK_TYPE_COLOR</code>).</p>
 <p>A more concise way to describe this would be</p>
-
-<div class="example-wrap"><pre class="rust rust-example-rendered">
-  <span class="ident">this</span><span class="op">-</span><span class="op">&gt;</span><span class="ident">item</span><span class="op">-</span><span class="op">&gt;</span><span class="ident">name</span></pre></div>
+<pre><code class="language-text">  this-&gt;item-&gt;name
+</code></pre>
 <p>The most likely place where you will encounter expressions is in the context
-of list models and list widgets using them. For example, <code>GtkDropDown</code> is
-evaluating a <code>GtkExpression</code> to obtain strings from the items in its model
+of list models and list widgets using them. For example, <a href="struct.DropDown.html" title="crate::DropDown"><code>DropDown</code></a> is
+evaluating a <a href="struct.Expression.html" title="crate::Expression"><code>Expression</code></a> to obtain strings from the items in its model
 that it can then use to match against the contents of its search entry.
-<code>GtkStringFilter</code> is using a <code>GtkExpression</code> for similar reasons.</p>
+<a href="struct.StringFilter.html" title="crate::StringFilter"><code>StringFilter</code></a> is using a <a href="struct.Expression.html" title="crate::Expression"><code>Expression</code></a> for similar reasons.</p>
 <p>By default, expressions are not paying attention to changes and evaluation is
 just a snapshot of the current state at a given time. To get informed about
-changes, an expression needs to be “watched” via a [struct<code>Gtk.ExpressionWatch</code>],
+changes, an expression needs to be “watched” via a <a href="struct.ExpressionWatch.html" title="crate::ExpressionWatch"><code>ExpressionWatch</code></a>,
 which will cause a callback to be called whenever the value of the expression may
-have changed; [method<code>Gtk.Expression</code>.watch] starts watching an expression, and
-[method<code>Gtk.ExpressionWatch</code>.unwatch] stops.</p>
+have changed; <a href="struct.Expression.html#method.watch" title="Self::watch()"><code>watch()</code></a> starts watching an expression, and
+<a href="struct.ExpressionWatch.html#method.unwatch" title="crate::ExpressionWatch::unwatch()"><code>ExpressionWatch::unwatch()</code></a> stops.</p>
 <p>Watches can be created for automatically updating the property of an object,
-similar to GObject’s <code>GBinding</code> mechanism, by using [method<code>Gtk.Expression</code>.bind].</p>
-<h2 id="expression-in-gobject-properties" class="section-header"><a href="#expression-in-gobject-properties"><code>Expression</code> in GObject properties</a></h2>
-<p>In order to use a <code>GtkExpression</code> as a <code>GObject</code> property, you must use the
-[id<code>gtk_param_spec_expression</code>] when creating a <code>GParamSpec</code> to install in the
+similar to GObject’s <code>GBinding</code> mechanism, by using <a href="struct.Expression.html#method.bind" title="Self::bind()"><code>bind()</code></a>.</p>
+<h2 id="gtkexpression-in-gobject-properties" class="section-header"><a href="#gtkexpression-in-gobject-properties">GtkExpression in GObject properties</a></h2>
+<p>In order to use a <a href="struct.Expression.html" title="crate::Expression"><code>Expression</code></a> as a <code>GObject</code> property, you must use the
+<code>gtk_param_spec_expression</code> when creating a <code>GParamSpec</code> to install in the
 <code>GObject</code> class being defined; for instance:</p>
 <pre><code class="language-c">obj_props[PROP_EXPRESSION] =
   gtk_param_spec_expression (&quot;expression&quot;,
@@ -61,9 +60,9 @@ similar to GObject’s <code>GBinding</code> mechanism, by using [method<code>Gt
                              G_PARAM_EXPLICIT_NOTIFY);
 </code></pre>
 <p>When implementing the <code>GObjectClass.set_property</code> and <code>GObjectClass.get_property</code>
-virtual functions, you must use [id<code>gtk_value_get_expression</code>], to retrieve the
-stored <code>GtkExpression</code> from the <code>GValue</code> container, and [id<code>gtk_value_set_expression</code>],
-to store the <code>GtkExpression</code> into the <code>GValue</code>; for instance:</p>
+virtual functions, you must use <code>gtk_value_get_expression</code>, to retrieve the
+stored <a href="struct.Expression.html" title="crate::Expression"><code>Expression</code></a> from the <code>GValue</code> container, and <code>gtk_value_set_expression</code>,
+to store the <a href="struct.Expression.html" title="crate::Expression"><code>Expression</code></a> into the <code>GValue</code>; for instance:</p>
 <pre><code class="language-c">  // in set_property()...
   case PROP_EXPRESSION:
     foo_widget_set_expression (foo, gtk_value_get_expression (value));
@@ -74,9 +73,9 @@ to store the <code>GtkExpression</code> into the <code>GValue</code>; for instan
     gtk_value_set_expression (value, foo-&gt;expression);
     break;
 </code></pre>
-<h2 id="expression-in-ui-files" class="section-header"><a href="#expression-in-ui-files"><code>Expression</code> in .ui files</a></h2>
-<p><code>GtkBuilder</code> has support for creating expressions. The syntax here can be used where
-a <code>GtkExpression</code> object is needed like in a <code>&lt;property&gt;</code> tag for an expression
+<h2 id="gtkexpression-in-ui-files" class="section-header"><a href="#gtkexpression-in-ui-files">GtkExpression in .ui files</a></h2>
+<p><a href="struct.Builder.html" title="crate::Builder"><code>Builder</code></a> has support for creating expressions. The syntax here can be used where
+a <a href="struct.Expression.html" title="crate::Expression"><code>Expression</code></a> object is needed like in a <code>&lt;property&gt;</code> tag for an expression
 property, or in a <code>&lt;binding&gt;</code> tag to bind a property to an expression.</p>
 <p>To create an property expression, use the <code>&lt;lookup&gt;</code> element. It can have a <code>type</code>
 attribute to specify the object type, and a <code>name</code> attribute to specify the property
@@ -104,11 +103,11 @@ contains the expressions for the parameters. For instance:</p>
 <p>This type is constant and will not change over the lifetime
 of this expression.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
-<p>The type returned from [method<code>Gtk.Expression</code>.evaluate]</p>
+<p>The type returned from <a href="struct.Expression.html#method.evaluate" title="Self::evaluate()"><code>evaluate()</code></a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><h4 id="method.is_static" class="method"><code>pub fn <a href="#method.is_static" class="fnname">is_static</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a href="#method.is_static" class="anchor"></a><a class="srclink" href="../src/gtk4/expression.rs.html#224-227" title="goto source code">[src]</a></h4></summary><div class="docblock"><p>Checks if the expression is static.</p>
 <p>A static expression will never change its result when
-[method<code>Gtk.Expression</code>.evaluate] is called on it with the same arguments.</p>
-<p>That means a call to [method<code>Gtk.Expression</code>.watch] is not necessary because
+<a href="struct.Expression.html#method.evaluate" title="Self::evaluate()"><code>evaluate()</code></a> is called on it with the same arguments.</p>
+<p>That means a call to <a href="struct.Expression.html#method.watch" title="Self::watch()"><code>watch()</code></a> is not necessary because
 it will never trigger a notify.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
 <p><code>TRUE</code> if the expression is static</p>
@@ -120,7 +119,7 @@ the object’s property stays synchronized with <code>self</code>.</p>
 You can ensure that this doesn’t happen by using a fallback
 expression.</p>
 <p>Note that this function takes ownership of <code>self</code>. If you want
-to keep it around, you should [method<code>Gtk.Expression</code>.ref] it beforehand.</p>
+to keep it around, you should <code>Gtk::</code>Expression::ref()`` it beforehand.</p>
 <h2 id="target" class="section-header"><a href="#target"><code>target</code></a></h2>
 <p>the target object to bind to</p>
 <h2 id="property" class="section-header"><a href="#property"><code>property</code></a></h2>
@@ -129,11 +128,11 @@ to keep it around, you should [method<code>Gtk.Expression</code>.ref] it beforeh
 <p>the this argument for
 the evaluation of <code>self</code></p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
-<p>a <code>GtkExpressionWatch</code></p>
+<p>a <a href="struct.ExpressionWatch.html" title="crate::ExpressionWatch"><code>ExpressionWatch</code></a></p>
 </div></details><details class="rustdoc-toggle method-toggle" open><summary><h4 id="method.evaluate" class="method"><code>pub fn <a href="#method.evaluate" class="fnname">evaluate</a>&lt;T:&nbsp;<a class="trait" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/trait.IsA.html" title="trait glib::object::IsA">IsA</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/object/struct.Object.html" title="struct glib::object::Object">Object</a>&gt;&gt;(&amp;self, this: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>T&gt;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html" title="struct glib::value::Value">Value</a>&gt;</code><a href="#method.evaluate" class="anchor"></a><a class="srclink" href="../src/gtk4/expression.rs.html#289-304" title="goto source code">[src]</a></h4></summary><div class="docblock"><p>Evaluates the given expression and on success stores the result
 in <code>value</code>.</p>
 <p>The <code>GType</code> of <code>value</code> will be the type given by
-[method<code>Gtk.Expression</code>.get_value_type].</p>
+<a href="struct.Expression.html#method.value_type" title="Self::value_type()"><code>value_type()</code></a>.</p>
 <p>It is possible that expressions cannot be evaluated - for example
 when the expression references objects that have been destroyed or
 set to <code>NULL</code>. In that case <code>value</code> will remain empty and <code>FALSE</code>
@@ -159,7 +158,7 @@ expression changes</p>
 <p>The newly installed watch. Note that the only
 reference held to the watch will be released when the watch is unwatched
 which can happen automatically, and not just via
-[method<code>Gtk.ExpressionWatch</code>.unwatch]. You should call [method<code>Gtk.ExpressionWatch</code>.ref]
+<a href="struct.ExpressionWatch.html#method.unwatch" title="crate::ExpressionWatch::unwatch()"><code>ExpressionWatch::unwatch()</code></a>. You should call <code>Gtk::</code>ExpressionWatch::ref()``
 if you want to keep the watch around.</p>
 </div></details></div></details><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor"></a></h2><div id="trait-implementations-list"><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl-AsRef%3CExpression%3E" class="impl"><code class="in-band">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="struct.Expression.html" title="struct gtk4::Expression">Expression</a>&gt; for <a class="struct" href="struct.ClosureExpression.html" title="struct gtk4::ClosureExpression">ClosureExpression</a></code><a href="#impl-AsRef%3CExpression%3E" class="anchor"></a><a class="srclink" href="../src/gtk4/closure_expression.rs.html#19-23" title="goto source code">[src]</a></h3></summary><div class="impl-items"><details class="undocumented"><summary></summary><details class="rustdoc-toggle method-toggle" open><summary><h4 id="method.as_ref" class="method trait-impl"><code>fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref" class="fnname">as_ref</a>(&amp;self) -&gt; &amp;<a class="struct" href="struct.Expression.html" title="struct gtk4::Expression">Expression</a></code><a href="#method.as_ref" class="anchor"></a><a class="srclink" href="../src/gtk4/closure_expression.rs.html#19-23" title="goto source code">[src]</a></h4></summary><div class='docblock'><p>Performs the conversion.</p>
 </div></details></div></details></details><details class="rustdoc-toggle implementors-toggle"><summary><h3 id="impl-AsRef%3CExpression%3E-1" class="impl"><code class="in-band">impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html" title="trait core::convert::AsRef">AsRef</a>&lt;<a class="struct" href="struct.Expression.html" title="struct gtk4::Expression">Expression</a>&gt; for <a class="struct" href="struct.ConstantExpression.html" title="struct gtk4::ConstantExpression">ConstantExpression</a></code><a href="#impl-AsRef%3CExpression%3E-1" class="anchor"></a><a class="srclink" href="../src/gtk4/constant_expression.rs.html#17-21" title="goto source code">[src]</a></h3></summary><div class="impl-items"><details class="undocumented"><summary></summary><details class="rustdoc-toggle method-toggle" open><summary><h4 id="method.as_ref-1" class="method trait-impl"><code>fn <a href="https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html#tymethod.as_ref" class="fnname">as_ref</a>(&amp;self) -&gt; &amp;<a class="struct" href="struct.Expression.html" title="struct gtk4::Expression">Expression</a></code><a href="#method.as_ref-1" class="anchor"></a><a class="srclink" href="../src/gtk4/constant_expression.rs.html#17-21" title="goto source code">[src]</a></h4></summary><div class='docblock'><p>Performs the conversion.</p>

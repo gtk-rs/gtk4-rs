@@ -684,42 +684,42 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkOverlay` is a container which contains a single main child, on top</span>
+    <span class="doccomment">/// [`Overlay`][crate::Overlay] is a container which contains a single main child, on top</span>
     <span class="doccomment">/// of which it can place “overlay” widgets.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ![An example `Overlay`](overlay.png)</span>
+    <span class="doccomment">/// ![An example GtkOverlay](overlay.png)</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The position of each overlay widget is determined by its</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:halign] and [property`Gtk.Widget`:valign]</span>
-    <span class="doccomment">/// properties. E.g. a widget with both alignments set to [`crate::Align::Start`]</span>
-    <span class="doccomment">/// will be placed at the top left corner of the `GtkOverlay` container,</span>
-    <span class="doccomment">/// whereas an overlay with halign set to [`crate::Align::Center`] and valign set</span>
-    <span class="doccomment">/// to [`crate::Align::End`] will be placed a the bottom edge of the `GtkOverlay`,</span>
+    <span class="doccomment">/// `property::Widget::halign` and `property::Widget::valign`</span>
+    <span class="doccomment">/// properties. E.g. a widget with both alignments set to [`Align::Start`][crate::Align::Start]</span>
+    <span class="doccomment">/// will be placed at the top left corner of the [`Overlay`][crate::Overlay] container,</span>
+    <span class="doccomment">/// whereas an overlay with halign set to [`Align::Center`][crate::Align::Center] and valign set</span>
+    <span class="doccomment">/// to [`Align::End`][crate::Align::End] will be placed a the bottom edge of the [`Overlay`][crate::Overlay],</span>
     <span class="doccomment">/// horizontally centered. The position can be adjusted by setting the margin</span>
     <span class="doccomment">/// properties of the child to non-zero values.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// More complicated placement of overlays is possible by connecting</span>
-    <span class="doccomment">/// to the [signal`Gtk.Overlay`::get-child-position] signal.</span>
+    <span class="doccomment">/// to the `signal::Overlay::get-child-position` signal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// An overlay’s minimum and natural sizes are those of its main child.</span>
     <span class="doccomment">/// The sizes of overlay children are not considered when measuring these</span>
     <span class="doccomment">/// preferred sizes.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// # `Overlay` as `Buildable`</span>
+    <span class="doccomment">/// # GtkOverlay as GtkBuildable</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GtkOverlay` implementation of the `GtkBuildable` interface</span>
+    <span class="doccomment">/// The [`Overlay`][crate::Overlay] implementation of the [`Buildable`][crate::Buildable] interface</span>
     <span class="doccomment">/// supports placing a child as an overlay by specifying “overlay” as</span>
-    <span class="doccomment">/// the “type” attribute of a `&lt;child&gt;` element.</span>
+    <span class="doccomment">/// the “type” attribute of a ``&lt;child&gt;`` element.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # CSS nodes</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkOverlay` has a single CSS node with the name “overlay”. Overlay children</span>
+    <span class="doccomment">/// [`Overlay`][crate::Overlay] has a single CSS node with the name “overlay”. Overlay children</span>
     <span class="doccomment">/// whose alignments cause them to be positioned at an edge get the style classes</span>
     <span class="doccomment">/// “.left”, “.right”, “.top”, and/or “.bottom” according to their position.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::WidgetExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::AccessibleExt`], [`trait@crate::prelude::BuildableExt`], [`trait@crate::prelude::ConstraintTargetExt`], [`trait@crate::prelude::OverlayExtManual`], [`trait@crate::prelude::WidgetExtManual`], [`trait@crate::prelude::AccessibleExtManual`]</span>
+    <span class="doccomment">/// [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`OverlayExtManual`][trait@crate::prelude::OverlayExtManual], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Overlay</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkOverlay</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -728,11 +728,11 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Overlay</span> {
-    <span class="doccomment">/// Creates a new `GtkOverlay`.</span>
+    <span class="doccomment">/// Creates a new [`Overlay`][crate::Overlay].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkOverlay` object.</span>
+    <span class="doccomment">/// a new [`Overlay`][crate::Overlay] object.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_overlay_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Overlay</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -749,13 +749,13 @@
     <span class="doccomment">/// Adds `widget` to `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The widget will be stacked on top of the main widget</span>
-    <span class="doccomment">/// added with [method`Gtk.Overlay`.set_child].</span>
+    <span class="doccomment">/// added with [``set_child()``][`Self::set_child()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The position at which `widget` is placed is determined</span>
-    <span class="doccomment">/// from its [property`Gtk.Widget`:halign] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:valign] properties.</span>
+    <span class="doccomment">/// from its `property::Widget::halign` and</span>
+    <span class="doccomment">/// `property::Widget::valign` properties.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// a `GtkWidget` to be added to the container</span>
+    <span class="doccomment">/// a [`Widget`][crate::Widget] to be added to the container</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_overlay_add_overlay&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_overlay</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
         <span class="kw">unsafe</span> {
@@ -776,7 +776,7 @@
 
     <span class="doccomment">/// Gets whether `widget` should be clipped within the parent.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// an overlay child of `GtkOverlay`</span>
+    <span class="doccomment">/// an overlay child of [`Overlay`][crate::Overlay]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -795,7 +795,7 @@
     <span class="doccomment">/// Gets whether `widget`&#39;s size is included in the measurement of</span>
     <span class="doccomment">/// `self`.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// an overlay child of `GtkOverlay`</span>
+    <span class="doccomment">/// an overlay child of [`Overlay`][crate::Overlay]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -811,9 +811,9 @@
         }
     }
 
-    <span class="doccomment">/// Removes an overlay that was added with [`Self::add_overlay()`].</span>
+    <span class="doccomment">/// Removes an overlay that was added with [`add_overlay()`][Self::add_overlay()].</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// a `GtkWidget` to be removed</span>
+    <span class="doccomment">/// a [`Widget`][crate::Widget] to be removed</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_overlay_remove_overlay&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove_overlay</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
         <span class="kw">unsafe</span> {
@@ -839,7 +839,7 @@
 
     <span class="doccomment">/// Sets whether `widget` should be clipped within the parent.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// an overlay child of `GtkOverlay`</span>
+    <span class="doccomment">/// an overlay child of [`Overlay`][crate::Overlay]</span>
     <span class="doccomment">/// ## `clip_overlay`</span>
     <span class="doccomment">/// whether the child should be clipped</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_overlay_set_clip_overlay&quot;</span>)]</span>
@@ -859,7 +859,7 @@
     <span class="doccomment">/// this property set to [`true`]. Children who are not included may</span>
     <span class="doccomment">/// be drawn outside of `self`&#39;s allocation if they are too large.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// an overlay child of `GtkOverlay`</span>
+    <span class="doccomment">/// an overlay child of [`Overlay`][crate::Overlay]</span>
     <span class="doccomment">/// ## `measure`</span>
     <span class="doccomment">/// whether the child should be measured</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_overlay_set_measure_overlay&quot;</span>)]</span>
@@ -1117,7 +1117,7 @@
     <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
-    <span class="doccomment">/// the widget will be queried using [signal`Gtk.Widget`::query-tooltip] to</span>
+    <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">has_tooltip</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">has_tooltip</span>);
@@ -1144,7 +1144,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The `GtkLayoutManager` instance to use to compute the preferred size</span>
+    <span class="doccomment">/// The [`LayoutManager`][crate::LayoutManager] instance to use to compute the preferred size</span>
     <span class="doccomment">/// of the widget, and allocate its children.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
@@ -1158,7 +1158,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -1171,7 +1171,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -1184,7 +1184,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -1194,7 +1194,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -1236,16 +1236,16 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_markup].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_markup</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_markup</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_markup</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_markup</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1253,16 +1253,16 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_text].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_text</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1300,7 +1300,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The accessible role of the given `GtkAccessible` implementation.</span>
+    <span class="doccomment">/// The accessible role of the given [`Accessible`][crate::Accessible] implementation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The accessible role cannot be changed once set.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accessible_role</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">accessible_role</span>: <span class="ident">AccessibleRole</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {

@@ -1397,7 +1397,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// The modifier mask determines which modifiers are considered significant</span>
 <span class="doccomment">/// for keyboard accelerators. This includes all keyboard modifiers except</span>
-<span class="doccomment">/// for [`crate::gdk::ModifierType::LockMask`].</span>
+<span class="doccomment">/// for [`gdk::ModifierType::LOCK_MASK`][crate::gdk::ModifierType::LOCK_MASK].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Returns</span>
 <span class="doccomment">///</span>
@@ -1437,13 +1437,13 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// The string may be translated.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This function is similar to [func`Gtk.accelerator_get_label`],</span>
+<span class="doccomment">/// This function is similar to [``accelerator_get_label()``][`crate::accelerator_get_label()`],</span>
 <span class="doccomment">/// but handling keycodes.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This is only useful for system-level components, applications</span>
-<span class="doccomment">/// should use `gtk_accelerator_parse()` instead.</span>
+<span class="doccomment">/// should use [`accelerator_parse()`][crate::accelerator_parse()] instead.</span>
 <span class="doccomment">/// ## `display`</span>
-<span class="doccomment">/// a [`crate::gdk::Display`] or [`None`] to use the default display</span>
+<span class="doccomment">/// a [`gdk::Display`][crate::gdk::Display] or [`None`] to use the default display</span>
 <span class="doccomment">/// ## `accelerator_key`</span>
 <span class="doccomment">/// accelerator keyval</span>
 <span class="doccomment">/// ## `keycode`</span>
@@ -1473,13 +1473,13 @@
 }
 
 <span class="doccomment">/// Converts an accelerator keyval and modifier mask into a string</span>
-<span class="doccomment">/// parseable by `gtk_accelerator_parse()`.</span>
+<span class="doccomment">/// parseable by [`accelerator_parse()`][crate::accelerator_parse()].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// For example, if you pass in `GDK_KEY_q` and [`crate::gdk::ModifierType::ControlMask`],</span>
-<span class="doccomment">/// this function returns `&lt;Control&gt;q`.</span>
+<span class="doccomment">/// For example, if you pass in `GDK_KEY_q` and [`gdk::ModifierType::CONTROL_MASK`][crate::gdk::ModifierType::CONTROL_MASK],</span>
+<span class="doccomment">/// this function returns ``&lt;Control&gt;`q`.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// If you need to display accelerators in the user interface,</span>
-<span class="doccomment">/// see [func`Gtk.accelerator_get_label`].</span>
+<span class="doccomment">/// see [``accelerator_get_label()``][`crate::accelerator_get_label()`].</span>
 <span class="doccomment">/// ## `accelerator_key`</span>
 <span class="doccomment">/// accelerator keyval</span>
 <span class="doccomment">/// ## `accelerator_mods`</span>
@@ -1505,11 +1505,11 @@
 <span class="doccomment">/// Converts an accelerator keyval and modifier mask</span>
 <span class="doccomment">/// into a string parseable by `gtk_accelerator_parse_with_keycode()`.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This is similar to [func`Gtk.accelerator_name`] but handling keycodes.</span>
+<span class="doccomment">/// This is similar to [``accelerator_name()``][`crate::accelerator_name()`] but handling keycodes.</span>
 <span class="doccomment">/// This is only useful for system-level components, applications</span>
-<span class="doccomment">/// should use `gtk_accelerator_parse()` instead.</span>
+<span class="doccomment">/// should use [`accelerator_parse()`][crate::accelerator_parse()] instead.</span>
 <span class="doccomment">/// ## `display`</span>
-<span class="doccomment">/// a [`crate::gdk::Display`] or [`None`] to use the default display</span>
+<span class="doccomment">/// a [`gdk::Display`][crate::gdk::Display] or [`None`] to use the default display</span>
 <span class="doccomment">/// ## `accelerator_key`</span>
 <span class="doccomment">/// accelerator keyval</span>
 <span class="doccomment">/// ## `keycode`</span>
@@ -1544,7 +1544,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// The parser is fairly liberal and allows lower or upper case, and also</span>
 <span class="doccomment">/// abbreviations such as “`&lt;Ctl&gt;`” and “`&lt;Ctrl&gt;`”. Key names are parsed using</span>
-<span class="doccomment">/// [func`Gdk.keyval_from_name`]. For character keys the name is not the symbol,</span>
+<span class="doccomment">/// ``keyval_from_name()``. For character keys the name is not the symbol,</span>
 <span class="doccomment">/// but the lowercase name, e.g. one would use “`&lt;Ctrl&gt;`minus” instead of</span>
 <span class="doccomment">/// “`&lt;Ctrl&gt;`-”.</span>
 <span class="doccomment">///</span>
@@ -1595,9 +1595,9 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// Compatibility is defined by two things: first the version</span>
 <span class="doccomment">/// of the running library is newer than the version</span>
-<span class="doccomment">/// `required_major.required_minor`.`required_micro`. Second</span>
+<span class="doccomment">/// `required_major`.`required_micro`. Second</span>
 <span class="doccomment">/// the running library must be binary compatible with the</span>
-<span class="doccomment">/// version `required_major.required_minor`.`required_micro`</span>
+<span class="doccomment">/// version `required_major`.`required_micro`</span>
 <span class="doccomment">/// (same major version.)</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This function is primarily for GTK modules; the module</span>
@@ -1605,7 +1605,7 @@
 <span class="doccomment">/// into an incompatible version of GTK. However, such a</span>
 <span class="doccomment">/// check isn’t completely reliable, since the module may be</span>
 <span class="doccomment">/// linked against an old version of GTK and calling the</span>
-<span class="doccomment">/// old version of `gtk_check_version()`, but still get loaded</span>
+<span class="doccomment">/// old version of [`check_version()`][crate::check_version()], but still get loaded</span>
 <span class="doccomment">/// into an application using a newer version of GTK.</span>
 <span class="doccomment">/// ## `required_major`</span>
 <span class="doccomment">/// the required major version</span>
@@ -1636,7 +1636,7 @@
     }
 }
 
-<span class="doccomment">/// Prevents [id`gtk_init`] and [id`gtk_init_check`] from automatically calling</span>
+<span class="doccomment">/// Prevents `gtk_init` and `gtk_init_check` from automatically calling</span>
 <span class="doccomment">/// `setlocale (LC_ALL, &quot;&quot;)`.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// You would want to use this function if you wanted to set the locale for</span>
@@ -1657,7 +1657,7 @@
 <span class="comment">//    unsafe { TODO: call ffi:gtk_distribute_natural_allocation() }</span>
 <span class="comment">//}</span>
 
-<span class="doccomment">/// Calls a function for all `GtkPrinter`s.</span>
+<span class="doccomment">/// Calls a function for all [`Printer`][crate::Printer]s.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// If `func` returns [`true`], the enumeration is stopped.</span>
 <span class="doccomment">/// ## `func`</span>
@@ -1727,18 +1727,18 @@
     <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_get_debug_flags</span>()) }
 }
 
-<span class="doccomment">/// Returns the [`crate::pango::Language`] for the default language currently in</span>
+<span class="doccomment">/// Returns the [`pango::Language`][crate::pango::Language] for the default language currently in</span>
 <span class="doccomment">/// effect. (Note that this can change over the life of an</span>
 <span class="doccomment">/// application.) The default language is derived from the current</span>
 <span class="doccomment">/// locale. It determines, for example, whether GTK uses the</span>
 <span class="doccomment">/// right-to-left or left-to-right text direction.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This function is equivalent to [`crate::pango::Language::get_default()`].</span>
+<span class="doccomment">/// This function is equivalent to [`pango::Language::default()`][crate::pango::Language::default()].</span>
 <span class="doccomment">/// See that function for details.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Returns</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// the default language as a [`crate::pango::Language`],</span>
+<span class="doccomment">/// the default language as a [`pango::Language`][crate::pango::Language],</span>
 <span class="doccomment">///  must not be freed</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_get_default_language&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_default_language&quot;</span>)]</span>
@@ -1765,12 +1765,12 @@
 <span class="doccomment">/// reading direction for text and UI.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This function depends on the current locale being set with</span>
-<span class="doccomment">/// `setlocale()` and will default to setting the [`crate::TextDirection::Ltr`]</span>
-<span class="doccomment">/// direction otherwise. [`crate::TextDirection::None`] will never be returned.</span>
+<span class="doccomment">/// `setlocale()` and will default to setting the [`TextDirection::Ltr`][crate::TextDirection::Ltr]</span>
+<span class="doccomment">/// direction otherwise. [`TextDirection::None`][crate::TextDirection::None] will never be returned.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// GTK sets the default text direction according to the locale</span>
-<span class="doccomment">/// during `gtk_init()`, and you should normally use</span>
-<span class="doccomment">/// [`crate::prelude::WidgetExt::get_direction()`] or [`crate::Widget::get_default_direction()`]</span>
+<span class="doccomment">/// during [`init()`][crate::init()], and you should normally use</span>
+<span class="doccomment">/// [`WidgetExt::direction()`][crate::prelude::WidgetExt::direction()] or [`Widget::default_direction()`][crate::Widget::default_direction()]</span>
 <span class="doccomment">/// to obtain the current direction.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This function is only needed rare cases when the locale is</span>
@@ -1786,7 +1786,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Returns</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// the [`crate::TextDirection`] of the current locale</span>
+<span class="doccomment">/// the [`TextDirection`][crate::TextDirection] of the current locale</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_get_locale_direction&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_locale_direction&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">locale_direction</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextDirection</span> {
@@ -1889,23 +1889,23 @@
 }
 
 <span class="doccomment">/// Runs a page setup dialog, letting the user modify the values from</span>
-<span class="doccomment">/// `page_setup`. If the user cancels the dialog, the returned [`crate::PageSetup`]</span>
+<span class="doccomment">/// `page_setup`. If the user cancels the dialog, the returned [`PageSetup`][crate::PageSetup]</span>
 <span class="doccomment">/// is identical to the passed in `page_setup`, otherwise it contains the</span>
 <span class="doccomment">/// modifications done in the dialog.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Note that this function may use a recursive mainloop to show the page</span>
-<span class="doccomment">/// setup dialog. See `gtk_print_run_page_setup_dialog_async()` if this is</span>
+<span class="doccomment">/// setup dialog. See [`print_run_page_setup_dialog_async()`][crate::print_run_page_setup_dialog_async()] if this is</span>
 <span class="doccomment">/// a problem.</span>
 <span class="doccomment">/// ## `parent`</span>
 <span class="doccomment">/// transient parent</span>
 <span class="doccomment">/// ## `page_setup`</span>
-<span class="doccomment">/// an existing [`crate::PageSetup`]</span>
+<span class="doccomment">/// an existing [`PageSetup`][crate::PageSetup]</span>
 <span class="doccomment">/// ## `settings`</span>
-<span class="doccomment">/// a [`crate::PrintSettings`]</span>
+<span class="doccomment">/// a [`PrintSettings`][crate::PrintSettings]</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Returns</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// a new [`crate::PageSetup`]</span>
+<span class="doccomment">/// a new [`PageSetup`][crate::PageSetup]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_print_run_page_setup_dialog&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">print_run_page_setup_dialog</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">parent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>,
@@ -1924,15 +1924,15 @@
 
 <span class="doccomment">/// Runs a page setup dialog, letting the user modify the values from `page_setup`.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// In contrast to `gtk_print_run_page_setup_dialog()`, this function returns after</span>
+<span class="doccomment">/// In contrast to [`print_run_page_setup_dialog()`][crate::print_run_page_setup_dialog()], this function returns after</span>
 <span class="doccomment">/// showing the page setup dialog on platforms that support this, and calls `done_cb`</span>
 <span class="doccomment">/// from a signal handler for the ::response signal of the dialog.</span>
 <span class="doccomment">/// ## `parent`</span>
 <span class="doccomment">/// transient parent, or [`None`]</span>
 <span class="doccomment">/// ## `page_setup`</span>
-<span class="doccomment">/// an existing [`crate::PageSetup`], or [`None`]</span>
+<span class="doccomment">/// an existing [`PageSetup`][crate::PageSetup], or [`None`]</span>
 <span class="doccomment">/// ## `settings`</span>
-<span class="doccomment">/// a [`crate::PrintSettings`]</span>
+<span class="doccomment">/// a [`PrintSettings`][crate::PrintSettings]</span>
 <span class="doccomment">/// ## `done_cb`</span>
 <span class="doccomment">/// a function to call when the user saves</span>
 <span class="doccomment">///  the modified page setup</span>
@@ -1972,13 +1972,13 @@
     }
 }
 
-<span class="doccomment">/// Renders an activity indicator (such as in [`crate::Spinner`]).</span>
-<span class="doccomment">/// The state [`crate::StateFlags::Checked`] determines whether there is</span>
+<span class="doccomment">/// Renders an activity indicator (such as in [`Spinner`][crate::Spinner]).</span>
+<span class="doccomment">/// The state [`StateFlags::CHECKED`][crate::StateFlags::CHECKED] determines whether there is</span>
 <span class="doccomment">/// activity going on.</span>
 <span class="doccomment">/// ## `context`</span>
-<span class="doccomment">/// a [`crate::StyleContext`]</span>
+<span class="doccomment">/// a [`StyleContext`][crate::StyleContext]</span>
 <span class="doccomment">/// ## `cr`</span>
-<span class="doccomment">/// a [`crate::cairo::Context`]</span>
+<span class="doccomment">/// a [`cairo::Context`][crate::cairo::Context]</span>
 <span class="doccomment">/// ## `x`</span>
 <span class="doccomment">/// X origin of the rectangle</span>
 <span class="doccomment">/// ## `y`</span>
@@ -2015,9 +2015,9 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// ![](arrows.png)</span>
 <span class="doccomment">/// ## `context`</span>
-<span class="doccomment">/// a [`crate::StyleContext`]</span>
+<span class="doccomment">/// a [`StyleContext`][crate::StyleContext]</span>
 <span class="doccomment">/// ## `cr`</span>
-<span class="doccomment">/// a [`crate::cairo::Context`]</span>
+<span class="doccomment">/// a [`cairo::Context`][crate::cairo::Context]</span>
 <span class="doccomment">/// ## `angle`</span>
 <span class="doccomment">/// arrow angle from 0 to 2 * `G_PI`, being 0 the arrow pointing to the north</span>
 <span class="doccomment">/// ## `x`</span>
@@ -2055,9 +2055,9 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// ![](background.png)</span>
 <span class="doccomment">/// ## `context`</span>
-<span class="doccomment">/// a [`crate::StyleContext`]</span>
+<span class="doccomment">/// a [`StyleContext`][crate::StyleContext]</span>
 <span class="doccomment">/// ## `cr`</span>
-<span class="doccomment">/// a [`crate::cairo::Context`]</span>
+<span class="doccomment">/// a [`cairo::Context`][crate::cairo::Context]</span>
 <span class="doccomment">/// ## `x`</span>
 <span class="doccomment">/// X origin of the rectangle</span>
 <span class="doccomment">/// ## `y`</span>
@@ -2088,19 +2088,19 @@
     }
 }
 
-<span class="doccomment">/// Renders a checkmark (as in a [`crate::CheckButton`]).</span>
+<span class="doccomment">/// Renders a checkmark (as in a [`CheckButton`][crate::CheckButton]).</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// The [`crate::StateFlags::Checked`] state determines whether the check is</span>
-<span class="doccomment">/// on or off, and [`crate::StateFlags::Inconsistent`] determines whether it</span>
+<span class="doccomment">/// The [`StateFlags::CHECKED`][crate::StateFlags::CHECKED] state determines whether the check is</span>
+<span class="doccomment">/// on or off, and [`StateFlags::INCONSISTENT`][crate::StateFlags::INCONSISTENT] determines whether it</span>
 <span class="doccomment">/// should be marked as undefined.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Typical checkmark rendering:</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// ![](checks.png)</span>
 <span class="doccomment">/// ## `context`</span>
-<span class="doccomment">/// a [`crate::StyleContext`]</span>
+<span class="doccomment">/// a [`StyleContext`][crate::StyleContext]</span>
 <span class="doccomment">/// ## `cr`</span>
-<span class="doccomment">/// a [`crate::cairo::Context`]</span>
+<span class="doccomment">/// a [`cairo::Context`][crate::cairo::Context]</span>
 <span class="doccomment">/// ## `x`</span>
 <span class="doccomment">/// X origin of the rectangle</span>
 <span class="doccomment">/// ## `y`</span>
@@ -2131,17 +2131,17 @@
     }
 }
 
-<span class="doccomment">/// Renders an expander (as used in [`crate::TreeView`] and [`crate::Expander`]) in the area</span>
-<span class="doccomment">/// defined by `x`, `y`, `width`, `height`. The state [`crate::StateFlags::Checked`]</span>
+<span class="doccomment">/// Renders an expander (as used in [`TreeView`][crate::TreeView] and [`Expander`][crate::Expander]) in the area</span>
+<span class="doccomment">/// defined by `x`, `y`, `width`, `height`. The state [`StateFlags::CHECKED`][crate::StateFlags::CHECKED]</span>
 <span class="doccomment">/// determines whether the expander is collapsed or expanded.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Typical expander rendering:</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// ![](expanders.png)</span>
 <span class="doccomment">/// ## `context`</span>
-<span class="doccomment">/// a [`crate::StyleContext`]</span>
+<span class="doccomment">/// a [`StyleContext`][crate::StyleContext]</span>
 <span class="doccomment">/// ## `cr`</span>
-<span class="doccomment">/// a [`crate::cairo::Context`]</span>
+<span class="doccomment">/// a [`cairo::Context`][crate::cairo::Context]</span>
 <span class="doccomment">/// ## `x`</span>
 <span class="doccomment">/// X origin of the rectangle</span>
 <span class="doccomment">/// ## `y`</span>
@@ -2178,9 +2178,9 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// ![](focus.png)</span>
 <span class="doccomment">/// ## `context`</span>
-<span class="doccomment">/// a [`crate::StyleContext`]</span>
+<span class="doccomment">/// a [`StyleContext`][crate::StyleContext]</span>
 <span class="doccomment">/// ## `cr`</span>
-<span class="doccomment">/// a [`crate::cairo::Context`]</span>
+<span class="doccomment">/// a [`cairo::Context`][crate::cairo::Context]</span>
 <span class="doccomment">/// ## `x`</span>
 <span class="doccomment">/// X origin of the rectangle</span>
 <span class="doccomment">/// ## `y`</span>
@@ -2218,9 +2218,9 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// ![](frames.png)</span>
 <span class="doccomment">/// ## `context`</span>
-<span class="doccomment">/// a [`crate::StyleContext`]</span>
+<span class="doccomment">/// a [`StyleContext`][crate::StyleContext]</span>
 <span class="doccomment">/// ## `cr`</span>
-<span class="doccomment">/// a [`crate::cairo::Context`]</span>
+<span class="doccomment">/// a [`cairo::Context`][crate::cairo::Context]</span>
 <span class="doccomment">/// ## `x`</span>
 <span class="doccomment">/// X origin of the rectangle</span>
 <span class="doccomment">/// ## `y`</span>
@@ -2251,17 +2251,17 @@
     }
 }
 
-<span class="doccomment">/// Renders a handle (as in [`crate::Paned`] and</span>
-<span class="doccomment">/// [`crate::Window`]’s resize grip), in the rectangle</span>
+<span class="doccomment">/// Renders a handle (as in [`Paned`][crate::Paned] and</span>
+<span class="doccomment">/// [`Window`][crate::Window]’s resize grip), in the rectangle</span>
 <span class="doccomment">/// determined by `x`, `y`, `width`, `height`.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Handles rendered for the paned and grip classes:</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// ![](handles.png)</span>
 <span class="doccomment">/// ## `context`</span>
-<span class="doccomment">/// a [`crate::StyleContext`]</span>
+<span class="doccomment">/// a [`StyleContext`][crate::StyleContext]</span>
 <span class="doccomment">/// ## `cr`</span>
-<span class="doccomment">/// a [`crate::cairo::Context`]</span>
+<span class="doccomment">/// a [`cairo::Context`][crate::cairo::Context]</span>
 <span class="doccomment">/// ## `x`</span>
 <span class="doccomment">/// X origin of the rectangle</span>
 <span class="doccomment">/// ## `y`</span>
@@ -2298,11 +2298,11 @@
 <span class="doccomment">/// regardless of scaling factors, which may not be appropriate when</span>
 <span class="doccomment">/// drawing on displays with high pixel densities.</span>
 <span class="doccomment">/// ## `context`</span>
-<span class="doccomment">/// a [`crate::StyleContext`]</span>
+<span class="doccomment">/// a [`StyleContext`][crate::StyleContext]</span>
 <span class="doccomment">/// ## `cr`</span>
-<span class="doccomment">/// a [`crate::cairo::Context`]</span>
+<span class="doccomment">/// a [`cairo::Context`][crate::cairo::Context]</span>
 <span class="doccomment">/// ## `texture`</span>
-<span class="doccomment">/// a [`crate::gdk::Texture`] containing the icon to draw</span>
+<span class="doccomment">/// a [`gdk::Texture`][crate::gdk::Texture] containing the icon to draw</span>
 <span class="doccomment">/// ## `x`</span>
 <span class="doccomment">/// X position for the `texture`</span>
 <span class="doccomment">/// ## `y`</span>
@@ -2329,15 +2329,15 @@
 
 <span class="doccomment">/// Renders `layout` on the coordinates `x`, `y`</span>
 <span class="doccomment">/// ## `context`</span>
-<span class="doccomment">/// a [`crate::StyleContext`]</span>
+<span class="doccomment">/// a [`StyleContext`][crate::StyleContext]</span>
 <span class="doccomment">/// ## `cr`</span>
-<span class="doccomment">/// a [`crate::cairo::Context`]</span>
+<span class="doccomment">/// a [`cairo::Context`][crate::cairo::Context]</span>
 <span class="doccomment">/// ## `x`</span>
 <span class="doccomment">/// X origin</span>
 <span class="doccomment">/// ## `y`</span>
 <span class="doccomment">/// Y origin</span>
 <span class="doccomment">/// ## `layout`</span>
-<span class="doccomment">/// the [`crate::pango::Layout`] to render</span>
+<span class="doccomment">/// the [`pango::Layout`][crate::pango::Layout] to render</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_render_layout&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">render_layout</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">StyleContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
@@ -2360,9 +2360,9 @@
 
 <span class="doccomment">/// Renders a line from (x0, y0) to (x1, y1).</span>
 <span class="doccomment">/// ## `context`</span>
-<span class="doccomment">/// a [`crate::StyleContext`]</span>
+<span class="doccomment">/// a [`StyleContext`][crate::StyleContext]</span>
 <span class="doccomment">/// ## `cr`</span>
-<span class="doccomment">/// a [`crate::cairo::Context`]</span>
+<span class="doccomment">/// a [`cairo::Context`][crate::cairo::Context]</span>
 <span class="doccomment">/// ## `x0`</span>
 <span class="doccomment">/// X coordinate for the origin of the line</span>
 <span class="doccomment">/// ## `y0`</span>
@@ -2393,17 +2393,17 @@
     }
 }
 
-<span class="doccomment">/// Renders an option mark (as in a radio button), the [`crate::StateFlags::Checked`]</span>
+<span class="doccomment">/// Renders an option mark (as in a radio button), the [`StateFlags::CHECKED`][crate::StateFlags::CHECKED]</span>
 <span class="doccomment">/// state will determine whether the option is on or off, and</span>
-<span class="doccomment">/// [`crate::StateFlags::Inconsistent`] whether it should be marked as undefined.</span>
+<span class="doccomment">/// [`StateFlags::INCONSISTENT`][crate::StateFlags::INCONSISTENT] whether it should be marked as undefined.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Typical option mark rendering:</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// ![](options.png)</span>
 <span class="doccomment">/// ## `context`</span>
-<span class="doccomment">/// a [`crate::StyleContext`]</span>
+<span class="doccomment">/// a [`StyleContext`][crate::StyleContext]</span>
 <span class="doccomment">/// ## `cr`</span>
-<span class="doccomment">/// a [`crate::cairo::Context`]</span>
+<span class="doccomment">/// a [`cairo::Context`][crate::cairo::Context]</span>
 <span class="doccomment">/// ## `x`</span>
 <span class="doccomment">/// X origin of the rectangle</span>
 <span class="doccomment">/// ## `y`</span>
@@ -2543,11 +2543,11 @@
 <span class="comment">//    unsafe { TODO: call ffi:gtk_test_accessible_check_state() }</span>
 <span class="comment">//}</span>
 
-<span class="doccomment">/// Checks whether the [`crate::Accessible`] has `property` set.</span>
+<span class="doccomment">/// Checks whether the [`Accessible`][crate::Accessible] has `property` set.</span>
 <span class="doccomment">/// ## `accessible`</span>
-<span class="doccomment">/// a [`crate::Accessible`]</span>
+<span class="doccomment">/// a [`Accessible`][crate::Accessible]</span>
 <span class="doccomment">/// ## `property`</span>
-<span class="doccomment">/// a [`crate::AccessibleProperty`]</span>
+<span class="doccomment">/// a [`AccessibleProperty`][crate::AccessibleProperty]</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Returns</span>
 <span class="doccomment">///</span>
@@ -2566,11 +2566,11 @@
     }
 }
 
-<span class="doccomment">/// Checks whether the [`crate::Accessible`] has `relation` set.</span>
+<span class="doccomment">/// Checks whether the [`Accessible`][crate::Accessible] has `relation` set.</span>
 <span class="doccomment">/// ## `accessible`</span>
-<span class="doccomment">/// a [`crate::Accessible`]</span>
+<span class="doccomment">/// a [`Accessible`][crate::Accessible]</span>
 <span class="doccomment">/// ## `relation`</span>
-<span class="doccomment">/// a [`crate::AccessibleRelation`]</span>
+<span class="doccomment">/// a [`AccessibleRelation`][crate::AccessibleRelation]</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Returns</span>
 <span class="doccomment">///</span>
@@ -2589,12 +2589,12 @@
     }
 }
 
-<span class="doccomment">/// Checks whether the [`crate::Accessible:accessible-role`] of the accessible</span>
+<span class="doccomment">/// Checks whether the `property::Accessible::accessible-role` of the accessible</span>
 <span class="doccomment">/// is `role`.</span>
 <span class="doccomment">/// ## `accessible`</span>
-<span class="doccomment">/// a [`crate::Accessible`]</span>
+<span class="doccomment">/// a [`Accessible`][crate::Accessible]</span>
 <span class="doccomment">/// ## `role`</span>
-<span class="doccomment">/// a [`crate::AccessibleRole`]</span>
+<span class="doccomment">/// a [`AccessibleRole`][crate::AccessibleRole]</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Returns</span>
 <span class="doccomment">///</span>
@@ -2610,11 +2610,11 @@
     }
 }
 
-<span class="doccomment">/// Checks whether the [`crate::Accessible`] has `state` set.</span>
+<span class="doccomment">/// Checks whether the [`Accessible`][crate::Accessible] has `state` set.</span>
 <span class="doccomment">/// ## `accessible`</span>
-<span class="doccomment">/// a [`crate::Accessible`]</span>
+<span class="doccomment">/// a [`Accessible`][crate::Accessible]</span>
 <span class="doccomment">/// ## `state`</span>
-<span class="doccomment">/// a [`crate::AccessibleState`]</span>
+<span class="doccomment">/// a [`AccessibleState`][crate::AccessibleState]</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Returns</span>
 <span class="doccomment">///</span>
@@ -2670,13 +2670,13 @@
 
 <span class="doccomment">/// Creates a content provider for dragging `path` from `tree_model`.</span>
 <span class="doccomment">/// ## `tree_model`</span>
-<span class="doccomment">/// a [`crate::TreeModel`]</span>
+<span class="doccomment">/// a [`TreeModel`][crate::TreeModel]</span>
 <span class="doccomment">/// ## `path`</span>
 <span class="doccomment">/// a row in `tree_model`</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Returns</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// a new [`crate::gdk::ContentProvider`]</span>
+<span class="doccomment">/// a new [`gdk::ContentProvider`][crate::gdk::ContentProvider]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_create_row_drag_content&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tree_create_row_drag_content</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TreeModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(
     <span class="ident">tree_model</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>,
@@ -2694,9 +2694,9 @@
 <span class="doccomment">/// Obtains a `tree_model` and `path` from value of target type</span>
 <span class="doccomment">/// `GTK_TYPE_TREE_ROW_DATA`.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// The returned path must be freed with [`crate::TreePath::free()`].</span>
+<span class="doccomment">/// The returned path must be freed with `gtk_tree_path_free()`.</span>
 <span class="doccomment">/// ## `value`</span>
-<span class="doccomment">/// a [`crate::glib::object::Value`]</span>
+<span class="doccomment">/// a [`glib::Value`][crate::glib::Value]</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Returns</span>
 <span class="doccomment">///</span>
@@ -2704,7 +2704,7 @@
 <span class="doccomment">///  is otherwise valid</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// ## `tree_model`</span>
-<span class="doccomment">/// a [`crate::TreeModel`]</span>
+<span class="doccomment">/// a [`TreeModel`][crate::TreeModel]</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// ## `path`</span>
 <span class="doccomment">/// row in `tree_model`</span>

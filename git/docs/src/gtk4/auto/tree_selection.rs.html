@@ -470,18 +470,18 @@
 <span class="kw">use</span> <span class="ident">std::ptr</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// The selection object for `TreeView`</span>
+    <span class="doccomment">/// The selection object for GtkTreeView</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The [`crate::TreeSelection`] object is a helper object to manage the selection</span>
-    <span class="doccomment">/// for a [`crate::TreeView`] widget. The [`crate::TreeSelection`] object is</span>
-    <span class="doccomment">/// automatically created when a new [`crate::TreeView`] widget is created, and</span>
+    <span class="doccomment">/// The [`TreeSelection`][crate::TreeSelection] object is a helper object to manage the selection</span>
+    <span class="doccomment">/// for a [`TreeView`][crate::TreeView] widget. The [`TreeSelection`][crate::TreeSelection] object is</span>
+    <span class="doccomment">/// automatically created when a new [`TreeView`][crate::TreeView] widget is created, and</span>
     <span class="doccomment">/// cannot exist independently of this widget. The primary reason the</span>
-    <span class="doccomment">/// [`crate::TreeSelection`] objects exists is for cleanliness of code and API.</span>
+    <span class="doccomment">/// [`TreeSelection`][crate::TreeSelection] objects exists is for cleanliness of code and API.</span>
     <span class="doccomment">/// That is, there is no conceptual reason all these functions could not be</span>
-    <span class="doccomment">/// methods on the [`crate::TreeView`] widget instead of a separate function.</span>
+    <span class="doccomment">/// methods on the [`TreeView`][crate::TreeView] widget instead of a separate function.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The [`crate::TreeSelection`] object is gotten from a [`crate::TreeView`] by calling</span>
-    <span class="doccomment">/// [`crate::prelude::TreeViewExt::get_selection()`]. It can be manipulated to check the</span>
+    <span class="doccomment">/// The [`TreeSelection`][crate::TreeSelection] object is gotten from a [`TreeView`][crate::TreeView] by calling</span>
+    <span class="doccomment">/// [`TreeViewExt::selection()`][crate::prelude::TreeViewExt::selection()]. It can be manipulated to check the</span>
     <span class="doccomment">/// selection status of the tree, as well as select and deselect individual</span>
     <span class="doccomment">/// rows. Selection is done completely view side. As a result, multiple</span>
     <span class="doccomment">/// views of the same model can have completely different selections.</span>
@@ -490,15 +490,15 @@
     <span class="doccomment">/// first.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// One of the important things to remember when monitoring the selection of</span>
-    <span class="doccomment">/// a view is that the [`crate::TreeSelection::changed`] signal is mostly a hint.</span>
+    <span class="doccomment">/// a view is that the `signal::TreeSelection::changed` signal is mostly a hint.</span>
     <span class="doccomment">/// That is, it may only emit one signal when a range of rows is selected.</span>
-    <span class="doccomment">/// Additionally, it may on occasion emit a [`crate::TreeSelection::changed`] signal</span>
+    <span class="doccomment">/// Additionally, it may on occasion emit a `signal::TreeSelection::changed` signal</span>
     <span class="doccomment">/// when nothing has happened (mostly as a result of programmers calling</span>
     <span class="doccomment">/// select_row on an already selected row).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TreeSelection</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkTreeSelection</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -518,7 +518,7 @@
     }
 
     <span class="doccomment">/// Gets the selection mode for `self`. See</span>
-    <span class="doccomment">/// [`Self::set_mode()`].</span>
+    <span class="doccomment">/// [`set_mode()`][Self::set_mode()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -536,20 +536,20 @@
     <span class="comment">//}</span>
 
     <span class="doccomment">/// Sets `iter` to the currently selected node if `self` is set to</span>
-    <span class="doccomment">/// [`crate::SelectionMode::Single`] or [`crate::SelectionMode::Browse`]. `iter` may be NULL if you</span>
+    <span class="doccomment">/// [`SelectionMode::Single`][crate::SelectionMode::Single] or [`SelectionMode::Browse`][crate::SelectionMode::Browse]. `iter` may be NULL if you</span>
     <span class="doccomment">/// just want to test if `self` has any selected nodes. `model` is filled</span>
     <span class="doccomment">/// with the current model as a convenience. This function will not work if you</span>
-    <span class="doccomment">/// use `self` is [`crate::SelectionMode::Multiple`].</span>
+    <span class="doccomment">/// use `self` is [`SelectionMode::Multiple`][crate::SelectionMode::Multiple].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// TRUE, if there is a selected node.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `model`</span>
-    <span class="doccomment">/// A pointer to set to the [`crate::TreeModel`], or NULL.</span>
+    <span class="doccomment">/// A pointer to set to the [`TreeModel`][crate::TreeModel], or NULL.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// The [`crate::TreeIter`], or NULL.</span>
+    <span class="doccomment">/// The [`TreeIter`][crate::TreeIter], or NULL.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_selection_get_selected&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_selected&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">selected</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">TreeModel</span>, <span class="ident">TreeIter</span>)<span class="op">&gt;</span> {
@@ -571,8 +571,8 @@
 
     <span class="doccomment">/// Creates a list of path of all selected rows. Additionally, if you are</span>
     <span class="doccomment">/// planning on modifying the model after calling this function, you may</span>
-    <span class="doccomment">/// want to convert the returned list into a list of ``GtkTreeRowReferences``.</span>
-    <span class="doccomment">/// To do this, you can use [`crate::TreeRowReference::new()`].</span>
+    <span class="doccomment">/// want to convert the returned list into a list of `GtkTreeRowReferences`.</span>
+    <span class="doccomment">/// To do this, you can use [`TreeRowReference::new()`][crate::TreeRowReference::new()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To free the return value, use:</span>
     <span class="doccomment">///</span>
@@ -582,10 +582,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A [`crate::glib::List`] containing a [`crate::TreePath`] for each selected row.</span>
+    <span class="doccomment">/// A `GList` containing a [`TreePath`][crate::TreePath] for each selected row.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `model`</span>
-    <span class="doccomment">/// A pointer to set to the [`crate::TreeModel`], or [`None`].</span>
+    <span class="doccomment">/// A pointer to set to the [`TreeModel`][crate::TreeModel], or [`None`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_selection_get_selected_rows&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_selected_rows&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">selected_rows</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">TreePath</span><span class="op">&gt;</span>, <span class="ident">TreeModel</span>) {
@@ -602,7 +602,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A [`crate::TreeView`]</span>
+    <span class="doccomment">/// A [`TreeView`][crate::TreeView]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_selection_get_tree_view&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_tree_view&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tree_view</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">TreeView</span><span class="op">&gt;</span> {
@@ -611,7 +611,7 @@
 
     <span class="doccomment">/// Returns [`true`] if the row at `iter` is currently selected.</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// A valid [`crate::TreeIter`]</span>
+    <span class="doccomment">/// A valid [`TreeIter`][crate::TreeIter]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -629,7 +629,7 @@
     <span class="doccomment">/// Returns [`true`] if the row pointed to by `path` is currently selected. If `path`</span>
     <span class="doccomment">/// does not point to a valid location, [`false`] is returned</span>
     <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// A [`crate::TreePath`] to check selection on.</span>
+    <span class="doccomment">/// A [`TreePath`][crate::TreePath] to check selection on.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -644,7 +644,7 @@
         }
     }
 
-    <span class="doccomment">/// Selects all the nodes. `self` must be set to [`crate::SelectionMode::Multiple`]</span>
+    <span class="doccomment">/// Selects all the nodes. `self` must be set to [`SelectionMode::Multiple`][crate::SelectionMode::Multiple]</span>
     <span class="doccomment">/// mode.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_selection_select_all&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">select_all</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
@@ -655,7 +655,7 @@
 
     <span class="doccomment">/// Selects the specified iterator.</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// The [`crate::TreeIter`] to be selected.</span>
+    <span class="doccomment">/// The [`TreeIter`][crate::TreeIter] to be selected.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_selection_select_iter&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">select_iter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) {
         <span class="kw">unsafe</span> {
@@ -668,7 +668,7 @@
 
     <span class="doccomment">/// Select the row at `path`.</span>
     <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// The [`crate::TreePath`] to be selected.</span>
+    <span class="doccomment">/// The [`TreePath`][crate::TreePath] to be selected.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_selection_select_path&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">select_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>) {
         <span class="kw">unsafe</span> {
@@ -680,7 +680,7 @@
     }
 
     <span class="doccomment">/// Selects a range of nodes, determined by `start_path` and `end_path` inclusive.</span>
-    <span class="doccomment">/// `self` must be set to [`crate::SelectionMode::Multiple`] mode.</span>
+    <span class="doccomment">/// `self` must be set to [`SelectionMode::Multiple`][crate::SelectionMode::Multiple] mode.</span>
     <span class="doccomment">/// ## `start_path`</span>
     <span class="doccomment">/// The initial node of the range.</span>
     <span class="doccomment">/// ## `end_path`</span>
@@ -698,7 +698,7 @@
 
     <span class="doccomment">/// Calls a function for each selected node. Note that you cannot modify</span>
     <span class="doccomment">/// the tree or selection from within this function. As a result,</span>
-    <span class="doccomment">/// [`Self::get_selected_rows()`] might be more useful.</span>
+    <span class="doccomment">/// [`selected_rows()`][Self::selected_rows()] might be more useful.</span>
     <span class="doccomment">/// ## `func`</span>
     <span class="doccomment">/// The function to call for each selected node.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_selection_selected_foreach&quot;</span>)]</span>
@@ -728,7 +728,7 @@
     }
 
     <span class="doccomment">/// Sets the selection mode of the `self`. If the previous type was</span>
-    <span class="doccomment">/// [`crate::SelectionMode::Multiple`], then the anchor is kept selected, if it was</span>
+    <span class="doccomment">/// [`SelectionMode::Multiple`][crate::SelectionMode::Multiple], then the anchor is kept selected, if it was</span>
     <span class="doccomment">/// previously selected.</span>
     <span class="doccomment">/// ## `type_`</span>
     <span class="doccomment">/// The selection mode</span>
@@ -802,7 +802,7 @@
 
     <span class="doccomment">/// Unselects the specified iterator.</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// The [`crate::TreeIter`] to be unselected.</span>
+    <span class="doccomment">/// The [`TreeIter`][crate::TreeIter] to be unselected.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_selection_unselect_iter&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unselect_iter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>) {
         <span class="kw">unsafe</span> {
@@ -815,7 +815,7 @@
 
     <span class="doccomment">/// Unselects the row at `path`.</span>
     <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// The [`crate::TreePath`] to be unselected.</span>
+    <span class="doccomment">/// The [`TreePath`][crate::TreePath] to be unselected.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_tree_selection_unselect_path&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unselect_path</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">TreePath</span>) {
         <span class="kw">unsafe</span> {

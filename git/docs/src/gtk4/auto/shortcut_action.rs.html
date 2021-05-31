@@ -187,7 +187,7 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkShortcutAction` encodes an action that can be triggered by a</span>
+    <span class="doccomment">/// [`ShortcutAction`][crate::ShortcutAction] encodes an action that can be triggered by a</span>
     <span class="doccomment">/// keyboard shortcut.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `GtkShortcutActions` contain functions that allow easy presentation</span>
@@ -196,30 +196,30 @@
     <span class="doccomment">/// All `GtkShortcutActions` are immutable, you can only specify their</span>
     <span class="doccomment">/// properties during construction. If you want to change a action, you</span>
     <span class="doccomment">/// have to replace it with a new one. If you need to pass arguments to</span>
-    <span class="doccomment">/// an action, these are specified by the higher-level `GtkShortcut` object.</span>
+    <span class="doccomment">/// an action, these are specified by the higher-level [`Shortcut`][crate::Shortcut] object.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To activate a `GtkShortcutAction` manually, [method`Gtk.ShortcutAction`.activate]</span>
+    <span class="doccomment">/// To activate a [`ShortcutAction`][crate::ShortcutAction] manually, [``ShortcutActionExt::activate()``][crate::prelude::`ShortcutActionExt::activate()`]</span>
     <span class="doccomment">/// can be called.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// GTK provides various actions:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  - [class`Gtk.MnemonicAction`]: a shortcut action that calls</span>
-    <span class="doccomment">///  [`crate::prelude::WidgetExt::mnemonic_activate()`]</span>
-    <span class="doccomment">///  - [class`Gtk.CallbackAction`]: a shortcut action that invokes</span>
+    <span class="doccomment">///  - [`MnemonicAction`][crate::MnemonicAction]: a shortcut action that calls</span>
+    <span class="doccomment">///  [`WidgetExt::mnemonic_activate()`][crate::prelude::WidgetExt::mnemonic_activate()]</span>
+    <span class="doccomment">///  - [`CallbackAction`][crate::CallbackAction]: a shortcut action that invokes</span>
     <span class="doccomment">///  a given callback</span>
-    <span class="doccomment">///  - [class`Gtk.SignalAction`]: a shortcut action that emits a</span>
+    <span class="doccomment">///  - [`SignalAction`][crate::SignalAction]: a shortcut action that emits a</span>
     <span class="doccomment">///  given signal</span>
-    <span class="doccomment">///  - [class`Gtk.ActivateAction`]: a shortcut action that calls</span>
-    <span class="doccomment">///  [`crate::prelude::WidgetExt::activate()`]</span>
-    <span class="doccomment">///  - [class`Gtk.NamedAction`]: a shortcut action that calls</span>
-    <span class="doccomment">///  [`crate::Widget::activate_action()`]</span>
-    <span class="doccomment">///  - [class`Gtk.NothingAction`]: a shortcut action that does nothing</span>
+    <span class="doccomment">///  - [`ActivateAction`][crate::ActivateAction]: a shortcut action that calls</span>
+    <span class="doccomment">///  [`WidgetExt::activate()`][crate::prelude::WidgetExt::activate()]</span>
+    <span class="doccomment">///  - [`NamedAction`][crate::NamedAction]: a shortcut action that calls</span>
+    <span class="doccomment">///  `gtk_widget_activate_action()`</span>
+    <span class="doccomment">///  - [`NothingAction`][crate::NothingAction]: a shortcut action that does nothing</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is an Abstract Base Class, you cannot instantiate it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::ShortcutActionExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`ShortcutActionExt`][trait@crate::prelude::ShortcutActionExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ShortcutAction</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkShortcutAction</span>, <span class="ident">ffi::GtkShortcutActionClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -235,17 +235,17 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The accepted strings are:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// - `nothing`, for `GtkNothingAction`</span>
-    <span class="doccomment">/// - `activate`, for `GtkActivateAction`</span>
-    <span class="doccomment">/// - `mnemonic-activate`, for `GtkMnemonicAction`</span>
-    <span class="doccomment">/// - `action(NAME)`, for a `GtkNamedAction` for the action named `NAME`</span>
-    <span class="doccomment">/// - `signal(NAME)`, for a `GtkSignalAction` for the signal `NAME`</span>
+    <span class="doccomment">/// - `nothing`, for [`NothingAction`][crate::NothingAction]</span>
+    <span class="doccomment">/// - `activate`, for [`ActivateAction`][crate::ActivateAction]</span>
+    <span class="doccomment">/// - `mnemonic-activate`, for [`MnemonicAction`][crate::MnemonicAction]</span>
+    <span class="doccomment">/// - `action(NAME)`, for a [`NamedAction`][crate::NamedAction] for the action named `NAME`</span>
+    <span class="doccomment">/// - `signal(NAME)`, for a [`SignalAction`][crate::SignalAction] for the signal `NAME`</span>
     <span class="doccomment">/// ## `string`</span>
     <span class="doccomment">/// the string to parse</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkShortcutAction`</span>
+    <span class="doccomment">/// a new [`ShortcutAction`][crate::ShortcutAction]</span>
     <span class="doccomment">///  or [`None`] on error</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_shortcut_action_parse_string&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse_string</span>(<span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ShortcutAction</span><span class="op">&gt;</span> {
@@ -271,7 +271,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::ActivateAction`], [`struct@crate::CallbackAction`], [`struct@crate::MnemonicAction`], [`struct@crate::NamedAction`], [`struct@crate::NothingAction`], [`struct@crate::ShortcutAction`], [`struct@crate::SignalAction`]</span>
+<span class="doccomment">/// [`ActivateAction`][struct@crate::ActivateAction], [`CallbackAction`][struct@crate::CallbackAction], [`MnemonicAction`][struct@crate::MnemonicAction], [`NamedAction`][struct@crate::NamedAction], [`NothingAction`][struct@crate::NothingAction], [`ShortcutAction`][struct@crate::ShortcutAction], [`SignalAction`][struct@crate::SignalAction]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ShortcutActionExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Activates the action on the `widget` with the given `args`.</span>
     <span class="doccomment">///</span>

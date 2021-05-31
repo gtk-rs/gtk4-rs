@@ -96,19 +96,19 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkStyleProvider` is an interface for style information used by</span>
-    <span class="doccomment">/// `GtkStyleContext`.</span>
+    <span class="doccomment">/// [`StyleProvider`][crate::StyleProvider] is an interface for style information used by</span>
+    <span class="doccomment">/// [`StyleContext`][crate::StyleContext].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.StyleContext`.add_provider] and</span>
-    <span class="doccomment">/// [func`Gtk.StyleContext`.add_provider_for_display] for</span>
+    <span class="doccomment">/// See [``StyleContextExt::add_provider()``][crate::prelude::`StyleContextExt::add_provider()`] and</span>
+    <span class="doccomment">/// [``StyleContext::add_provider_for_display()``][crate::`StyleContext::add_provider_for_display()`] for</span>
     <span class="doccomment">/// adding `GtkStyleProviders`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// GTK uses the `GtkStyleProvider` implementation for CSS in</span>
-    <span class="doccomment">/// [iface`Gtk.CssProvider`].</span>
+    <span class="doccomment">/// GTK uses the [`StyleProvider`][crate::StyleProvider] implementation for CSS in</span>
+    <span class="doccomment">/// [`CssProvider`][crate::CssProvider].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::StyleProviderExt`]</span>
+    <span class="doccomment">/// [`StyleProviderExt`][trait@crate::prelude::StyleProviderExt]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StyleProvider</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GtkStyleProvider</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -122,7 +122,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::CssProvider`], [`struct@crate::Settings`], [`struct@crate::StyleProvider`]</span>
+<span class="doccomment">/// [`CssProvider`][struct@crate::CssProvider], [`Settings`][struct@crate::Settings], [`StyleProvider`][struct@crate::StyleProvider]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">StyleProviderExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk-private-changed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_gtk_private_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;

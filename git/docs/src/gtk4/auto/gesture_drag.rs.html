@@ -398,19 +398,19 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkGestureDrag` is a `GtkGesture` implementation for drags.</span>
+    <span class="doccomment">/// [`GestureDrag`][crate::GestureDrag] is a [`Gesture`][crate::Gesture] implementation for drags.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The drag operation itself can be tracked throughout the</span>
-    <span class="doccomment">/// [signal`Gtk.GestureDrag`::drag-begin],</span>
-    <span class="doccomment">/// [signal`Gtk.GestureDrag`::drag-update] and</span>
-    <span class="doccomment">/// [signal`Gtk.GestureDrag`::drag-end] signals, and the relevant</span>
+    <span class="doccomment">/// `signal::GestureDrag::drag-begin`,</span>
+    <span class="doccomment">/// `signal::GestureDrag::drag-update` and</span>
+    <span class="doccomment">/// `signal::GestureDrag::drag-end` signals, and the relevant</span>
     <span class="doccomment">/// coordinates can be extracted through</span>
-    <span class="doccomment">/// [method`Gtk.GestureDrag`.get_offset] and</span>
-    <span class="doccomment">/// [method`Gtk.GestureDrag`.get_start_point].</span>
+    <span class="doccomment">/// [``GestureDragExt::offset()``][crate::prelude::`GestureDragExt::offset()`] and</span>
+    <span class="doccomment">/// [``GestureDragExt::start_point()``][crate::prelude::`GestureDragExt::start_point()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::GestureDragExt`], [`trait@crate::prelude::GestureSingleExt`], [`trait@crate::prelude::GestureExt`], [`trait@crate::prelude::EventControllerExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`GestureDragExt`][trait@crate::prelude::GestureDragExt], [`GestureSingleExt`][trait@crate::prelude::GestureSingleExt], [`GestureExt`][trait@crate::prelude::GestureExt], [`EventControllerExt`][trait@crate::prelude::EventControllerExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GestureDrag</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkGestureDrag</span>, <span class="ident">ffi::GtkGestureDragClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">GestureSingle</span>, <span class="ident">Gesture</span>, <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -419,11 +419,11 @@
 }
 
 <span class="kw">impl</span> <span class="ident">GestureDrag</span> {
-    <span class="doccomment">/// Returns a newly created `GtkGesture` that recognizes drags.</span>
+    <span class="doccomment">/// Returns a newly created [`Gesture`][crate::Gesture] that recognizes drags.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly created `GtkGestureDrag`</span>
+    <span class="doccomment">/// a newly created [`GestureDrag`][crate::GestureDrag]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_drag_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GestureDrag</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -545,7 +545,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::GestureDrag`], [`struct@crate::GesturePan`]</span>
+<span class="doccomment">/// [`GestureDrag`][struct@crate::GestureDrag], [`GesturePan`][struct@crate::GesturePan]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">GestureDragExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Gets the offset from the start point.</span>
     <span class="doccomment">///</span>

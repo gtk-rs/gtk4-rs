@@ -55,11 +55,11 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A `Texture` representing a GL texture object.</span>
+    <span class="doccomment">/// A GdkTexture representing a GL texture object.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::TextureExt`], [`trait@crate::prelude::PaintableExt`], [`trait@crate::prelude::TextureExtManual`]</span>
+    <span class="doccomment">/// [`TextureExt`][trait@crate::prelude::TextureExt], [`PaintableExt`][trait@crate::prelude::PaintableExt], [`TextureExtManual`][trait@crate::prelude::TextureExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GLTexture</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GdkGLTexture</span>, <span class="ident">ffi::GdkGLTextureClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Texture</span>, @<span class="ident">implements</span> <span class="ident">Paintable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -68,10 +68,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">GLTexture</span> {
-    <span class="doccomment">/// Releases the GL resources held by a `GdkGLTexture`.</span>
+    <span class="doccomment">/// Releases the GL resources held by a [`GLTexture`][crate::GLTexture].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The texture contents are still available via the</span>
-    <span class="doccomment">/// [method`Gdk.Texture`.download] function, after this</span>
+    <span class="doccomment">/// [``TextureExtManual::download()``][crate::prelude::`TextureExtManual::download()`] function, after this</span>
     <span class="doccomment">/// function has been called.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_gl_texture_release&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">release</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {

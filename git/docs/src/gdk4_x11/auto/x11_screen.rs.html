@@ -221,7 +221,7 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gdk_x11_screen_get_number_of_desktops</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Returns the index of a [`crate::X11Screen`].</span>
+    <span class="doccomment">/// Returns the index of a [`X11Screen`][crate::X11Screen].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -259,8 +259,8 @@
     <span class="doccomment">/// a way that impacts persistent application state. A common bug</span>
     <span class="doccomment">/// is that your application can start up before the window manager</span>
     <span class="doccomment">/// does when the user logs in, and before the window manager starts</span>
-    <span class="doccomment">/// [`Self::supports_net_wm_hint()`] will return [`false`] for every property.</span>
-    <span class="doccomment">/// You can monitor the window_manager_changed signal on [`crate::X11Screen`] to detect</span>
+    <span class="doccomment">/// [`supports_net_wm_hint()`][Self::supports_net_wm_hint()] will return [`false`] for every property.</span>
+    <span class="doccomment">/// You can monitor the window_manager_changed signal on [`X11Screen`][crate::X11Screen] to detect</span>
     <span class="doccomment">/// a window manager change.</span>
     <span class="doccomment">/// ## `property_name`</span>
     <span class="doccomment">/// name of the WM property</span>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="The possible accessible states of a `GtkAccessible`."><meta name="keywords" content="rust, rustlang, rust-lang, AccessibleState"><title>AccessibleState in gtk4 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings"></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="The possible accessible states of a [`Accessible`][crate::Accessible]."><meta name="keywords" content="rust, rustlang, rust-lang, AccessibleState"><title>AccessibleState in gtk4 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings"></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../favicon-16x16.png">
 <link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc enum"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 
@@ -14,27 +14,27 @@ pub enum AccessibleState {
     Pressed,
     Selected,
     // some variants omitted
-}</pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>The possible accessible states of a <code>GtkAccessible</code>.</p>
+}</pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>The possible accessible states of a <a href="struct.Accessible.html" title="crate::Accessible"><code>Accessible</code></a>.</p>
 </div></details><h2 id="variants" class="variants small-section-header">
                    Variants (Non-exhaustive)<a href="#variants" class="anchor"></a></h2>
 <details class="rustdoc-toggle non-exhaustive"><summary class="hideme"><span>This enum is marked as non-exhaustive</span></summary><div class="docblock">Non-exhaustive enums could have additional variants added in future. Therefore, when matching against variants of non-exhaustive enums, an extra wildcard arm must be added to account for any future variants.</div></details><div id="variant.Busy" class="variant small-section-header"><a href="#variant.Busy" class="anchor field"></a><code>Busy</code></div><div class="docblock"><p>A “busy” state. This state has boolean values</p>
 </div><div id="variant.Checked" class="variant small-section-header"><a href="#variant.Checked" class="anchor field"></a><code>Checked</code></div><div class="docblock"><p>A “checked” state; indicates the current
-state of a <a href="struct.CheckButton.html" title="crate::CheckButton"><code>crate::CheckButton</code></a>. Value type: <a href="enum.AccessibleTristate.html" title="crate::AccessibleTristate"><code>crate::AccessibleTristate</code></a></p>
+state of a <a href="struct.CheckButton.html" title="crate::CheckButton"><code>CheckButton</code></a>. Value type: <a href="enum.AccessibleTristate.html" title="crate::AccessibleTristate"><code>AccessibleTristate</code></a></p>
 </div><div id="variant.Disabled" class="variant small-section-header"><a href="#variant.Disabled" class="anchor field"></a><code>Disabled</code></div><div class="docblock"><p>A “disabled” state; corresponds to the
-[<code>crate::Widget:sensitive</code>] property on <a href="struct.Widget.html" title="crate::Widget"><code>crate::Widget</code></a>. It indicates a UI element
+<code>property::Widget::sensitive</code> property on <a href="struct.Widget.html" title="crate::Widget"><code>Widget</code></a>. It indicates a UI element
 that is perceivable, but not editable or operable. Value type: boolean</p>
 </div><div id="variant.Expanded" class="variant small-section-header"><a href="#variant.Expanded" class="anchor field"></a><code>Expanded</code></div><div class="docblock"><p>An “expanded” state; corresponds to the
-[<code>crate::Expander:expanded</code>] property on <a href="struct.Expander.html" title="crate::Expander"><code>crate::Expander</code></a>. Value type: boolean
+<code>property::Expander::expanded</code> property on <a href="struct.Expander.html" title="crate::Expander"><code>Expander</code></a>. Value type: boolean
 or undefined</p>
 </div><div id="variant.Hidden" class="variant small-section-header"><a href="#variant.Hidden" class="anchor field"></a><code>Hidden</code></div><div class="docblock"><p>A “hidden” state; corresponds to the
-[<code>crate::Widget:visible</code>] property on <a href="struct.Widget.html" title="crate::Widget"><code>crate::Widget</code></a>. You can use this state
+<code>property::Widget::visible</code> property on <a href="struct.Widget.html" title="crate::Widget"><code>Widget</code></a>. You can use this state
 explicitly on UI elements that should not be exposed to an assistive
 technology. Value type: boolean
-See also: <a href="enum.AccessibleState.html#variant.Disabled" title="Self::Disabled"><code>Self::Disabled</code></a></p>
+See also: <a href="enum.AccessibleState.html#variant.Disabled" title="Self::Disabled"><code>Disabled</code></a></p>
 </div><div id="variant.Invalid" class="variant small-section-header"><a href="#variant.Invalid" class="anchor field"></a><code>Invalid</code></div><div class="docblock"><p>An “invalid” state; set when a widget
-is showing an error. Value type: <a href="enum.AccessibleInvalidState.html" title="crate::AccessibleInvalidState"><code>crate::AccessibleInvalidState</code></a></p>
+is showing an error. Value type: <a href="enum.AccessibleInvalidState.html" title="crate::AccessibleInvalidState"><code>AccessibleInvalidState</code></a></p>
 </div><div id="variant.Pressed" class="variant small-section-header"><a href="#variant.Pressed" class="anchor field"></a><code>Pressed</code></div><div class="docblock"><p>A “pressed” state; indicates the current
-state of a <a href="struct.ToggleButton.html" title="crate::ToggleButton"><code>crate::ToggleButton</code></a>. Value type: <a href="enum.AccessibleTristate.html" title="crate::AccessibleTristate"><code>crate::AccessibleTristate</code></a>
+state of a <a href="struct.ToggleButton.html" title="crate::ToggleButton"><code>ToggleButton</code></a>. Value type: <a href="enum.AccessibleTristate.html" title="crate::AccessibleTristate"><code>AccessibleTristate</code></a>
 enumeration</p>
 </div><div id="variant.Selected" class="variant small-section-header"><a href="#variant.Selected" class="anchor field"></a><code>Selected</code></div><div class="docblock"><p>A “selected” state; set when a widget
 is selected. Value type: boolean or undefined</p>

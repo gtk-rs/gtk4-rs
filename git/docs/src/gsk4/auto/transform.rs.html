@@ -549,13 +549,13 @@
 <span class="kw">use</span> <span class="ident">std::ptr</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GskTransform` is an object to describe transform matrices.</span>
+    <span class="doccomment">/// [`Transform`][crate::Transform] is an object to describe transform matrices.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Unlike `graphene_matrix_t`, `GskTransform` retains the steps in how</span>
+    <span class="doccomment">/// Unlike `graphene_matrix_t`, [`Transform`][crate::Transform] retains the steps in how</span>
     <span class="doccomment">/// a transform was constructed, and allows inspecting them. It is modeled</span>
     <span class="doccomment">/// after the way CSS describes transforms.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GskTransform` objects are immutable and cannot be changed after creation.</span>
+    <span class="doccomment">/// [`Transform`][crate::Transform] objects are immutable and cannot be changed after creation.</span>
     <span class="doccomment">/// This means code can safely expose them as properties of objects without</span>
     <span class="doccomment">/// having to worry about others changing them.</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
@@ -660,7 +660,7 @@
     <span class="doccomment">/// for printing.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The result of this function can later be parsed with</span>
-    <span class="doccomment">/// [func`Gsk.Transform`.parse].</span>
+    <span class="doccomment">/// [``parse()``][`Self::parse()`].</span>
     <span class="doccomment">/// ## `string`</span>
     <span class="doccomment">/// The string to print into</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_transform_print&quot;</span>)]</span>
@@ -684,7 +684,7 @@
 
     <span class="doccomment">/// Rotates `self` `angle` degrees around `axis`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// For a rotation in 2D space, use [method`Gsk.Transform`.rotate]</span>
+    <span class="doccomment">/// For a rotation in 2D space, use [``rotate()``][`Self::rotate()`]</span>
     <span class="doccomment">/// ## `angle`</span>
     <span class="doccomment">/// the rotation angle, in degrees (clockwise)</span>
     <span class="doccomment">/// ## `axis`</span>
@@ -706,7 +706,7 @@
 
     <span class="doccomment">/// Scales `self` in 2-dimensional space by the given factors.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [method`Gsk.Transform`.scale_3d] to scale in all 3 dimensions.</span>
+    <span class="doccomment">/// Use [``scale_3d()``][`Self::scale_3d()`] to scale in all 3 dimensions.</span>
     <span class="doccomment">/// ## `factor_x`</span>
     <span class="doccomment">/// scaling factor on the X axis</span>
     <span class="doccomment">/// ## `factor_y`</span>
@@ -749,21 +749,21 @@
         }
     }
 
-    <span class="doccomment">/// Converts a `GskTransform` to a 2D transformation matrix.</span>
+    <span class="doccomment">/// Converts a [`Transform`][crate::Transform] to a 2D transformation matrix.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `self` must be a 2D transformation. If you are not</span>
-    <span class="doccomment">/// sure, use [`Self::get_category()`] &gt;=</span>
-    <span class="doccomment">/// [`crate::TransformCategory::2d`] to check.</span>
+    <span class="doccomment">/// sure, use [`category()`][Self::category()] &gt;=</span>
+    <span class="doccomment">/// [`TransformCategory::_2d`][crate::TransformCategory::_2d] to check.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The returned values have the following layout:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
+    <span class="doccomment">/// ```text</span>
     <span class="doccomment">///   | xx yx |   |  a  b  0 |</span>
     <span class="doccomment">///   | xy yy | = |  c  d  0 |</span>
     <span class="doccomment">///   | dx dy |   | tx ty  1 |</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This function can be used to convert between a `GskTransform`</span>
+    <span class="doccomment">/// This function can be used to convert between a [`Transform`][crate::Transform]</span>
     <span class="doccomment">/// and a matrix type from other 2D drawing libraries, in particular</span>
     <span class="doccomment">/// Cairo.</span>
     <span class="doccomment">///</span>
@@ -815,11 +815,11 @@
         }
     }
 
-    <span class="doccomment">/// Converts a `GskTransform` to 2D affine transformation factors.</span>
+    <span class="doccomment">/// Converts a [`Transform`][crate::Transform] to 2D affine transformation factors.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `self` must be a 2D transformation. If you are not</span>
-    <span class="doccomment">/// sure, use [`Self::get_category()`] &gt;=</span>
-    <span class="doccomment">/// [`crate::TransformCategory::2dAffine`] to check.</span>
+    <span class="doccomment">/// sure, use [`category()`][Self::category()] &gt;=</span>
+    <span class="doccomment">/// [`TransformCategory::_2dAffine`][crate::TransformCategory::_2dAffine] to check.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -885,11 +885,11 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gsk_transform_to_string</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Converts a `GskTransform` to a translation operation.</span>
+    <span class="doccomment">/// Converts a [`Transform`][crate::Transform] to a translation operation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `self` must be a 2D transformation. If you are not</span>
-    <span class="doccomment">/// sure, use [`Self::get_category()`] &gt;=</span>
-    <span class="doccomment">/// [`crate::TransformCategory::2dTranslate`] to check.</span>
+    <span class="doccomment">/// sure, use [`category()`][Self::category()] &gt;=</span>
+    <span class="doccomment">/// [`TransformCategory::_2dTranslate`][crate::TransformCategory::_2dTranslate] to check.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1019,7 +1019,7 @@
     <span class="doccomment">/// Parses the given `string` into a transform and puts it in</span>
     <span class="doccomment">/// `out_transform`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Strings printed via [method`Gsk.Transform`.to_string]</span>
+    <span class="doccomment">/// Strings printed via `Gsk::`Transform::to_string()``</span>
     <span class="doccomment">/// can be read in again successfully using this function.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `string` does not describe a valid transform, [`false`] is</span>

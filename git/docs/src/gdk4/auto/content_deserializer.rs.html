@@ -132,17 +132,17 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A `GdkContentDeserializer` is used to deserialize content received via</span>
+    <span class="doccomment">/// A [`ContentDeserializer`][crate::ContentDeserializer] is used to deserialize content received via</span>
     <span class="doccomment">/// inter-application data transfers.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GdkContentDeserializer` transforms serialized content that is</span>
+    <span class="doccomment">/// The [`ContentDeserializer`][crate::ContentDeserializer] transforms serialized content that is</span>
     <span class="doccomment">/// identified by a mime type into an object identified by a GType.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// GTK provides serializers and deserializers for common data types</span>
     <span class="doccomment">/// such as text, colors, images or file lists. To register your own</span>
-    <span class="doccomment">/// deserialization functions, use [func`content_register_deserializer`].</span>
+    <span class="doccomment">/// deserialization functions, use [``content_register_deserializer()``][`crate::content_register_deserializer()`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [class`Gdk.ContentSerializer`].</span>
+    <span class="doccomment">/// Also see [`ContentSerializer`][crate::ContentSerializer].</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ContentDeserializer</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GdkContentDeserializer</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -153,7 +153,7 @@
 <span class="kw">impl</span> <span class="ident">ContentDeserializer</span> {
     <span class="doccomment">/// Gets the cancellable for the current operation.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is the `GCancellable` that was passed to [func`content_deserialize_async`].</span>
+    <span class="doccomment">/// This is the `GCancellable` that was passed to [``content_deserialize_async()``][`crate::content_deserialize_async()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -185,7 +185,7 @@
 
     <span class="doccomment">/// Gets the input stream for the current operation.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is the stream that was passed to [func`content_deserialize_async`].</span>
+    <span class="doccomment">/// This is the stream that was passed to [``content_deserialize_async()``][`crate::content_deserialize_async()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

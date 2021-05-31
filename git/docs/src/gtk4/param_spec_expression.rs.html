@@ -102,7 +102,7 @@
 <span class="kw">use</span> <span class="ident">glib::ParamSpec</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A [`crate::glib::object::ParamSpec`] for properties holding a [`crate::Expression`].</span>
+    <span class="doccomment">/// A `GParamSpec` for properties holding a [`Expression`][crate::Expression].</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ParamSpecExpression</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GtkParamSpecExpression</span><span class="op">&gt;</span>);
 

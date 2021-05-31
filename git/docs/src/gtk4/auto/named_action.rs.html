@@ -71,11 +71,11 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A `GtkShortcutAction` that activates an action by name.</span>
+    <span class="doccomment">/// A [`ShortcutAction`][crate::ShortcutAction] that activates an action by name.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::ShortcutActionExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`ShortcutActionExt`][trait@crate::prelude::ShortcutActionExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">NamedAction</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkNamedAction</span>, <span class="ident">ffi::GtkNamedActionClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">ShortcutAction</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -89,14 +89,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// It also passes the given arguments to it.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.Widget`.insert_action_group] for</span>
+    <span class="doccomment">/// See [``WidgetExt::insert_action_group()``][crate::prelude::`WidgetExt::insert_action_group()`] for</span>
     <span class="doccomment">/// how to add actions to widgets.</span>
     <span class="doccomment">/// ## `name`</span>
     <span class="doccomment">/// the detailed name of the action</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkShortcutAction`</span>
+    <span class="doccomment">/// a new [`ShortcutAction`][crate::ShortcutAction]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_named_action_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">NamedAction</span> {
         <span class="macro">assert_initialized_main_thread!</span>();

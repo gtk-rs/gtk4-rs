@@ -216,15 +216,15 @@
 <span class="kw">use</span> <span class="ident">std::ptr</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GskRenderer` is a class that renders a scene graph defined via a</span>
-    <span class="doccomment">/// tree of [class`Gsk.RenderNode`] instances.</span>
+    <span class="doccomment">/// [`Renderer`][crate::Renderer] is a class that renders a scene graph defined via a</span>
+    <span class="doccomment">/// tree of [`RenderNode`][crate::RenderNode] instances.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Typically you will use a `GskRenderer` instance to repeatedly call</span>
-    <span class="doccomment">/// [method`Gsk.Renderer`.render] to update the contents of its associated</span>
-    <span class="doccomment">/// [class`Gdk.Surface`].</span>
+    <span class="doccomment">/// Typically you will use a [`Renderer`][crate::Renderer] instance to repeatedly call</span>
+    <span class="doccomment">/// [``RendererExtManual::render()``][crate::prelude::`RendererExtManual::render()`] to update the contents of its associated</span>
+    <span class="doccomment">/// [`gdk::Surface`][crate::gdk::Surface].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// It is necessary to realize a `GskRenderer` instance using</span>
-    <span class="doccomment">/// [method`Gsk.Renderer`.realize] before calling [method`Gsk.Renderer`.render],</span>
+    <span class="doccomment">/// It is necessary to realize a [`Renderer`][crate::Renderer] instance using</span>
+    <span class="doccomment">/// [``RendererExt::realize()``][crate::prelude::`RendererExt::realize()`] before calling [``RendererExtManual::render()``][crate::prelude::`RendererExtManual::render()`],</span>
     <span class="doccomment">/// in order to create the appropriate windowing system resources needed</span>
     <span class="doccomment">/// to render the scene.</span>
     <span class="doccomment">///</span>
@@ -232,7 +232,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::RendererExt`], [`trait@crate::prelude::RendererExtManual`]</span>
+    <span class="doccomment">/// [`RendererExt`][trait@crate::prelude::RendererExt], [`RendererExtManual`][trait@crate::prelude::RendererExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Renderer</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GskRenderer</span>, <span class="ident">ffi::GskRendererClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -241,7 +241,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Renderer</span> {
-    <span class="doccomment">/// Creates an appropriate `GskRenderer` instance for the given `surface`.</span>
+    <span class="doccomment">/// Creates an appropriate [`Renderer`][crate::Renderer] instance for the given `surface`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the `GSK_RENDERER` environment variable is set, GSK will</span>
     <span class="doccomment">/// try that renderer first, before trying the backend-specific</span>
@@ -249,11 +249,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The renderer will be realized before it is returned.</span>
     <span class="doccomment">/// ## `surface`</span>
-    <span class="doccomment">/// a `GdkSurface`</span>
+    <span class="doccomment">/// a [`gdk::Surface`][crate::gdk::Surface]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GskRenderer`</span>
+    <span class="doccomment">/// a [`Renderer`][crate::Renderer]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_renderer_new_for_surface&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_for_surface&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_surface</span>(<span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Surface</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Renderer</span><span class="op">&gt;</span> {
@@ -268,15 +268,15 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::BroadwayRenderer`], [`struct@crate::CairoRenderer`], [`struct@crate::GLRenderer`], [`struct@crate::NglRenderer`], [`struct@crate::Renderer`], [`struct@crate::VulkanRenderer`]</span>
+<span class="doccomment">/// [`BroadwayRenderer`][struct@crate::BroadwayRenderer], [`CairoRenderer`][struct@crate::CairoRenderer], [`GLRenderer`][struct@crate::GLRenderer], [`NglRenderer`][struct@crate::NglRenderer], [`Renderer`][struct@crate::Renderer], [`VulkanRenderer`][struct@crate::VulkanRenderer]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">RendererExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Retrieves the `GdkSurface` set using `gsk_enderer_realize()`.</span>
+    <span class="doccomment">/// Retrieves the [`gdk::Surface`][crate::gdk::Surface] set using `gsk_enderer_realize()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the renderer has not been realized yet, [`None`] will be returned.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GdkSurface`</span>
+    <span class="doccomment">/// a [`gdk::Surface`][crate::gdk::Surface]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_renderer_get_surface&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_surface&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">surface</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk::Surface</span><span class="op">&gt;</span>;
@@ -285,18 +285,18 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if the `GskRenderer` was realized, and [`false`] otherwise</span>
+    <span class="doccomment">/// [`true`] if the [`Renderer`][crate::Renderer] was realized, and [`false`] otherwise</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_renderer_is_realized&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">is_realized</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
     <span class="doccomment">/// Creates the resources needed by the `self` to render the scene</span>
     <span class="doccomment">/// graph.</span>
     <span class="doccomment">/// ## `surface`</span>
-    <span class="doccomment">/// the `GdkSurface` renderer will be used on</span>
+    <span class="doccomment">/// the [`gdk::Surface`][crate::gdk::Surface] renderer will be used on</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_renderer_realize&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">realize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">surface</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::Surface</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">glib::Error</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Releases all the resources created by [`Self::realize()`].</span>
+    <span class="doccomment">/// Releases all the resources created by [`realize()`][Self::realize()].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_renderer_unrealize&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">unrealize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 

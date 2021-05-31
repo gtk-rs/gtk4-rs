@@ -417,20 +417,20 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkSelectionModel` is an interface that add support for selection to list models.</span>
+    <span class="doccomment">/// [`SelectionModel`][crate::SelectionModel] is an interface that add support for selection to list models.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This support is then used by widgets using list models to add the ability</span>
     <span class="doccomment">/// to select and unselect various items.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// GTK provides default implementations of the most common selection modes such</span>
-    <span class="doccomment">/// as [class`Gtk.SingleSelection`], so you will only need to implement this</span>
+    <span class="doccomment">/// as [`SingleSelection`][crate::SingleSelection], so you will only need to implement this</span>
     <span class="doccomment">/// interface if you want detailed control about how selections should be handled.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GtkSelectionModel` supports a single boolean per item indicating if an item is</span>
-    <span class="doccomment">/// selected or not. This can be queried via [method`Gtk.SelectionModel`.is_selected].</span>
+    <span class="doccomment">/// A [`SelectionModel`][crate::SelectionModel] supports a single boolean per item indicating if an item is</span>
+    <span class="doccomment">/// selected or not. This can be queried via [``SelectionModelExt::is_selected()``][crate::prelude::`SelectionModelExt::is_selected()`].</span>
     <span class="doccomment">/// When the selected state of one or more items changes, the model will emit the</span>
-    <span class="doccomment">/// [signal`Gtk.SelectionModel`::selection-changed] signal by calling the</span>
-    <span class="doccomment">/// [method`Gtk.SelectionModel`.selection_changed] function. The positions given</span>
+    <span class="doccomment">/// `signal::SelectionModel::selection-changed` signal by calling the</span>
+    <span class="doccomment">/// [``SelectionModelExt::selection_changed()``][crate::prelude::`SelectionModelExt::selection_changed()`] function. The positions given</span>
     <span class="doccomment">/// in that signal may have their selection state changed, though that is not a</span>
     <span class="doccomment">/// requirement. If new items added to the model via the ::items-changed signal</span>
     <span class="doccomment">/// are selected or not is up to the implementation.</span>
@@ -441,7 +441,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Additionally, the interface can expose functionality to select and unselect</span>
     <span class="doccomment">/// items. If these functions are implemented, GTK&#39;s list widgets will allow users</span>
-    <span class="doccomment">/// to select and unselect items. However, `GtkSelectionModel`s are free to only</span>
+    <span class="doccomment">/// to select and unselect items. However, [`SelectionModel`][crate::SelectionModel]s are free to only</span>
     <span class="doccomment">/// implement them partially or not at all. In that case the widgets will not</span>
     <span class="doccomment">/// support the unimplemented operations.</span>
     <span class="doccomment">///</span>
@@ -455,7 +455,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::SelectionModelExt`], [`trait@gio::prelude::ListModelExt`]</span>
+    <span class="doccomment">/// [`SelectionModelExt`][trait@crate::prelude::SelectionModelExt], [`trait@gio::prelude::ListModelExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SelectionModel</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GtkSelectionModel</span>, <span class="ident">ffi::GtkSelectionModelInterface</span><span class="op">&gt;</span>) @<span class="ident">requires</span> <span class="ident">gio::ListModel</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -469,17 +469,17 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::MultiSelection`], [`struct@crate::NoSelection`], [`struct@crate::SelectionModel`], [`struct@crate::SingleSelection`]</span>
+<span class="doccomment">/// [`MultiSelection`][struct@crate::MultiSelection], [`NoSelection`][struct@crate::NoSelection], [`SelectionModel`][struct@crate::SelectionModel], [`SingleSelection`][struct@crate::SingleSelection]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">SelectionModelExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Gets the set containing all currently selected items in the model.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function may be slow, so if you are only interested in single item,</span>
-    <span class="doccomment">/// consider using [method`Gtk.SelectionModel`.is_selected] or if you are only</span>
-    <span class="doccomment">/// interested in a few, consider [method`Gtk.SelectionModel`.get_selection_in_range].</span>
+    <span class="doccomment">/// consider using [``is_selected()``][`Self::is_selected()`] or if you are only</span>
+    <span class="doccomment">/// interested in a few, consider [``selection_in_range()``][`Self::selection_in_range()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GtkBitset` containing all the values currently</span>
+    <span class="doccomment">/// a [`Bitset`][crate::Bitset] containing all the values currently</span>
     <span class="doccomment">///  selected in `self`. If no items are selected, the bitset is empty.</span>
     <span class="doccomment">///  The bitset must not be modified.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_selection_model_get_selection&quot;</span>)]</span>
@@ -489,9 +489,9 @@
     <span class="doccomment">/// Gets the set of selected items in a range.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is an optimization for</span>
-    <span class="doccomment">/// [method`Gtk.SelectionModel`.get_selection] when you are only</span>
+    <span class="doccomment">/// [``selection()``][`Self::selection()`] when you are only</span>
     <span class="doccomment">/// interested in part of the model&#39;s selected state. A common use</span>
-    <span class="doccomment">/// case is in response to the [signal`Gtk.SelectionModel`::selection-changed]</span>
+    <span class="doccomment">/// case is in response to the `signal::SelectionModel::selection-changed`</span>
     <span class="doccomment">/// signal.</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// start of the queired range</span>
@@ -500,7 +500,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GtkBitset` that matches the selection state</span>
+    <span class="doccomment">/// A [`Bitset`][crate::Bitset] that matches the selection state</span>
     <span class="doccomment">///  for the given range with all other values being undefined.</span>
     <span class="doccomment">///  The bitset must not be modified.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_selection_model_get_selection_in_range&quot;</span>)]</span>
@@ -554,10 +554,10 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_selection_model_select_range&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">select_range</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">position</span>: <span class="ident">u32</span>, <span class="ident">n_items</span>: <span class="ident">u32</span>, <span class="ident">unselect_rest</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Helper function for implementations of `GtkSelectionModel`.</span>
+    <span class="doccomment">/// Helper function for implementations of [`SelectionModel`][crate::SelectionModel].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Call this when a the selection changes to emit the</span>
-    <span class="doccomment">/// [signal`Gtk.SelectionModel`::selection-changed] signal.</span>
+    <span class="doccomment">/// `signal::SelectionModel::selection-changed` signal.</span>
     <span class="doccomment">/// ## `position`</span>
     <span class="doccomment">/// the first changed item</span>
     <span class="doccomment">/// ## `n_items`</span>

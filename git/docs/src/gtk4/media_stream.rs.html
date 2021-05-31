@@ -51,15 +51,15 @@
     <span class="doccomment">/// Sets `self` into an error state.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This will pause the stream (you can check for an error</span>
-    <span class="doccomment">/// via [method`Gtk.MediaStream`.get_error] in your</span>
-    <span class="doccomment">/// [`crate::`MediaStream`.pause()`] implementation), abort pending</span>
+    <span class="doccomment">/// via [``MediaStreamExt::error()``][crate::prelude::`MediaStreamExt::error()`] in your</span>
+    <span class="doccomment">/// `GtkMediaStream.pause()` implementation), abort pending</span>
     <span class="doccomment">/// seeks and mark the stream as prepared.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// if the stream is already in an error state, this call</span>
     <span class="doccomment">/// will be ignored and the existing error will be retained.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To unset an error, the stream must be reset via a call to</span>
-    <span class="doccomment">/// [method`Gtk.MediaStream`.unprepared].</span>
+    <span class="doccomment">/// [``MediaStreamExt::unprepared()``][crate::prelude::`MediaStreamExt::unprepared()`].</span>
     <span class="doccomment">/// ## `error`</span>
     <span class="doccomment">/// the `GError` to set</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_stream_gerror&quot;</span>)]</span>

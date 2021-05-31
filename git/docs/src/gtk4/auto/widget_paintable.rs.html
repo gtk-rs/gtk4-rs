@@ -136,30 +136,30 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkWidgetPaintable` is a `GdkPaintable` that displays the contents</span>
+    <span class="doccomment">/// [`WidgetPaintable`][crate::WidgetPaintable] is a [`gdk::Paintable`][crate::gdk::Paintable] that displays the contents</span>
     <span class="doccomment">/// of a widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkWidgetPaintable` will also take care of the widget not being in a</span>
+    <span class="doccomment">/// [`WidgetPaintable`][crate::WidgetPaintable] will also take care of the widget not being in a</span>
     <span class="doccomment">/// state where it can be drawn (like when it isn&#39;t shown) and just draw</span>
     <span class="doccomment">/// nothing or where it does not have a size (like when it is hidden) and</span>
     <span class="doccomment">/// report no size in that case.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Of course, `GtkWidgetPaintable` allows you to monitor widgets for size</span>
-    <span class="doccomment">/// changes by emitting the [signal`Gdk.Paintable`::invalidate-size] signal</span>
+    <span class="doccomment">/// Of course, [`WidgetPaintable`][crate::WidgetPaintable] allows you to monitor widgets for size</span>
+    <span class="doccomment">/// changes by emitting the `signal::gdk::Paintable::invalidate-size` signal</span>
     <span class="doccomment">/// whenever the size of the widget changes as well as for visual changes by</span>
-    <span class="doccomment">/// emitting the [signal`Gdk.Paintable`::invalidate-contents] signal whenever</span>
+    <span class="doccomment">/// emitting the `signal::gdk::Paintable::invalidate-contents` signal whenever</span>
     <span class="doccomment">/// the widget changes.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// You can use a `GtkWidgetPaintable` everywhere a `GdkPaintable` is allowed,</span>
-    <span class="doccomment">/// including using it on a `GtkPicture` (or one of its parents) that it was</span>
-    <span class="doccomment">/// set on itself via [`crate::Picture::set_paintable()`]. The paintable will take care</span>
+    <span class="doccomment">/// You can use a [`WidgetPaintable`][crate::WidgetPaintable] everywhere a [`gdk::Paintable`][crate::gdk::Paintable] is allowed,</span>
+    <span class="doccomment">/// including using it on a [`Picture`][crate::Picture] (or one of its parents) that it was</span>
+    <span class="doccomment">/// set on itself via [`Picture::set_paintable()`][crate::Picture::set_paintable()]. The paintable will take care</span>
     <span class="doccomment">/// of recursion when this happens. If you do this however, ensure that the</span>
-    <span class="doccomment">/// [property`Gtk.Picture`:can-shrink] property is set to [`true`] or you might</span>
+    <span class="doccomment">/// `property::Picture::can-shrink` property is set to [`true`] or you might</span>
     <span class="doccomment">/// end up with an infinitely growing widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`trait@gdk::prelude::PaintableExt`]</span>
+    <span class="doccomment">/// [`trait@glib::ObjectExt`], [`trait@gdk::prelude::PaintableExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WidgetPaintable</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkWidgetPaintable</span>, <span class="ident">ffi::GtkWidgetPaintableClass</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">gdk::Paintable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -170,11 +170,11 @@
 <span class="kw">impl</span> <span class="ident">WidgetPaintable</span> {
     <span class="doccomment">/// Creates a new widget paintable observing the given widget.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// a `GtkWidget` or [`None`]</span>
+    <span class="doccomment">/// a [`Widget`][crate::Widget] or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkWidgetPaintable`</span>
+    <span class="doccomment">/// a new [`WidgetPaintable`][crate::WidgetPaintable]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_widget_paintable_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">widget</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WidgetPaintable</span> {
         <span class="macro">assert_initialized_main_thread!</span>();

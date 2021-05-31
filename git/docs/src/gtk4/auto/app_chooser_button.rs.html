@@ -908,37 +908,37 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// The `GtkAppChooserButton` lets the user select an application.</span>
+    <span class="doccomment">/// The [`AppChooserButton`][crate::AppChooserButton] lets the user select an application.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ![An example `AppChooserButton`](appchooserbutton.png)</span>
+    <span class="doccomment">/// ![An example GtkAppChooserButton](appchooserbutton.png)</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Initially, a `GtkAppChooserButton` selects the first application</span>
+    <span class="doccomment">/// Initially, a [`AppChooserButton`][crate::AppChooserButton] selects the first application</span>
     <span class="doccomment">/// in its list, which will either be the most-recently used application</span>
-    <span class="doccomment">/// or, if [property`Gtk.AppChooserButton`:show-default-item] is [`true`], the</span>
+    <span class="doccomment">/// or, if `property::AppChooserButton::show-default-item` is [`true`], the</span>
     <span class="doccomment">/// default application.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The list of applications shown in a `GtkAppChooserButton` includes</span>
+    <span class="doccomment">/// The list of applications shown in a [`AppChooserButton`][crate::AppChooserButton] includes</span>
     <span class="doccomment">/// the recommended applications for the given content type. When</span>
-    <span class="doccomment">/// [property`Gtk.AppChooserButton`:show-default-item] is set, the default</span>
+    <span class="doccomment">/// `property::AppChooserButton::show-default-item` is set, the default</span>
     <span class="doccomment">/// application is also included. To let the user chooser other applications,</span>
-    <span class="doccomment">/// you can set the [property`Gtk.AppChooserButton`:show-dialog-item] property,</span>
-    <span class="doccomment">/// which allows to open a full [class`Gtk.AppChooserDialog`].</span>
+    <span class="doccomment">/// you can set the `property::AppChooserButton::show-dialog-item` property,</span>
+    <span class="doccomment">/// which allows to open a full [`AppChooserDialog`][crate::AppChooserDialog].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is possible to add custom items to the list, using</span>
-    <span class="doccomment">/// [method`Gtk.AppChooserButton`.append_custom_item]. These items cause</span>
-    <span class="doccomment">/// the [signal`Gtk.AppChooserButton`::custom-item-activated] signal to be</span>
+    <span class="doccomment">/// [``append_custom_item()``][`Self::append_custom_item()`]. These items cause</span>
+    <span class="doccomment">/// the `signal::AppChooserButton::custom-item-activated` signal to be</span>
     <span class="doccomment">/// emitted when they are selected.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To track changes in the selected application, use the</span>
-    <span class="doccomment">/// [signal`Gtk.AppChooserButton`::changed] signal.</span>
+    <span class="doccomment">/// `signal::AppChooserButton::changed` signal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # CSS nodes</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkAppChooserButton` has a single CSS node with the name “appchooserbutton”.</span>
+    <span class="doccomment">/// [`AppChooserButton`][crate::AppChooserButton] has a single CSS node with the name “appchooserbutton”.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::WidgetExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::AccessibleExt`], [`trait@crate::prelude::BuildableExt`], [`trait@crate::prelude::ConstraintTargetExt`], [`trait@crate::prelude::AppChooserExt`], [`trait@crate::prelude::WidgetExtManual`], [`trait@crate::prelude::AccessibleExtManual`]</span>
+    <span class="doccomment">/// [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`AppChooserExt`][trait@crate::prelude::AppChooserExt], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AppChooserButton</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkAppChooserButton</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">AppChooser</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -947,14 +947,14 @@
 }
 
 <span class="kw">impl</span> <span class="ident">AppChooserButton</span> {
-    <span class="doccomment">/// Creates a new `GtkAppChooserButton` for applications</span>
+    <span class="doccomment">/// Creates a new [`AppChooserButton`][crate::AppChooserButton] for applications</span>
     <span class="doccomment">/// that can handle content of the given type.</span>
     <span class="doccomment">/// ## `content_type`</span>
     <span class="doccomment">/// the content type to show applications for</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly created `GtkAppChooserButton`</span>
+    <span class="doccomment">/// a newly created [`AppChooserButton`][crate::AppChooserButton]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_app_chooser_button_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">content_type</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">AppChooserButton</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -978,10 +978,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The item name must be unique per-widget. Clients can use the</span>
     <span class="doccomment">/// provided name as a detail for the</span>
-    <span class="doccomment">/// [signal`Gtk.AppChooserButton`::custom-item-activated] signal, to add a</span>
+    <span class="doccomment">/// `signal::AppChooserButton::custom-item-activated` signal, to add a</span>
     <span class="doccomment">/// callback for the activation of a particular custom item in the list.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See also [method`Gtk.AppChooserButton`.append_separator].</span>
+    <span class="doccomment">/// See also [``append_separator()``][`Self::append_separator()`].</span>
     <span class="doccomment">/// ## `name`</span>
     <span class="doccomment">/// the name of the custom item</span>
     <span class="doccomment">/// ## `label`</span>
@@ -1041,7 +1041,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the value of [property`Gtk.AppChooserButton`:show-default-item]</span>
+    <span class="doccomment">/// the value of `property::AppChooserButton::show-default-item`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_app_chooser_button_get_show_default_item&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_show_default_item&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">shows_default_item</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
@@ -1053,11 +1053,11 @@
     }
 
     <span class="doccomment">/// Returns whether the dropdown menu shows an item</span>
-    <span class="doccomment">/// for a `GtkAppChooserDialog`.</span>
+    <span class="doccomment">/// for a [`AppChooserDialog`][crate::AppChooserDialog].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the value of [property`Gtk.AppChooserButton`:show-dialog-item]</span>
+    <span class="doccomment">/// the value of `property::AppChooserButton::show-dialog-item`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_app_chooser_button_get_show_dialog_item&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_show_dialog_item&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">shows_dialog_item</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
@@ -1070,9 +1070,9 @@
 
     <span class="doccomment">/// Selects a custom item.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.AppChooserButton`.append_custom_item].</span>
+    <span class="doccomment">/// See [``append_custom_item()``][`Self::append_custom_item()`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [method`Gtk.AppChooser`.refresh] to bring the selection</span>
+    <span class="doccomment">/// Use [``AppChooserExt::refresh()``][crate::prelude::`AppChooserExt::refresh()`] to bring the selection</span>
     <span class="doccomment">/// to its initial state.</span>
     <span class="doccomment">/// ## `name`</span>
     <span class="doccomment">/// the name of the custom item</span>
@@ -1114,7 +1114,7 @@
     <span class="doccomment">/// Sets whether the dropdown menu of this button should show the</span>
     <span class="doccomment">/// default application for the given content type at top.</span>
     <span class="doccomment">/// ## `setting`</span>
-    <span class="doccomment">/// the new value for [property`Gtk.AppChooserButton`:show-default-item]</span>
+    <span class="doccomment">/// the new value for `property::AppChooserButton::show-default-item`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_app_chooser_button_set_show_default_item&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_show_default_item</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">setting</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -1126,9 +1126,9 @@
     }
 
     <span class="doccomment">/// Sets whether the dropdown menu of this button should show an</span>
-    <span class="doccomment">/// entry to trigger a `GtkAppChooserDialog`.</span>
+    <span class="doccomment">/// entry to trigger a [`AppChooserDialog`][crate::AppChooserDialog].</span>
     <span class="doccomment">/// ## `setting`</span>
-    <span class="doccomment">/// the new value for [property`Gtk.AppChooserButton`:show-dialog-item]</span>
+    <span class="doccomment">/// the new value for `property::AppChooserButton::show-dialog-item`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_app_chooser_button_set_show_dialog_item&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_show_dialog_item</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">setting</span>: <span class="ident">bool</span>) {
         <span class="kw">unsafe</span> {
@@ -1164,7 +1164,7 @@
 
     <span class="doccomment">/// Emitted when a custom item is activated.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [method`Gtk.AppChooserButton`.append_custom_item],</span>
+    <span class="doccomment">/// Use [``append_custom_item()``][`Self::append_custom_item()`],</span>
     <span class="doccomment">/// to add custom items.</span>
     <span class="doccomment">/// ## `item_name`</span>
     <span class="doccomment">/// the name of the activated item</span>
@@ -1489,7 +1489,7 @@
     }
 
     <span class="doccomment">/// Determines whether the dropdown menu shows an item to open</span>
-    <span class="doccomment">/// a `GtkAppChooserDialog`.</span>
+    <span class="doccomment">/// a [`AppChooserDialog`][crate::AppChooserDialog].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_dialog_item</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">show_dialog_item</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">show_dialog_item</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">show_dialog_item</span>);
         <span class="self">self</span>
@@ -1555,7 +1555,7 @@
     <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
-    <span class="doccomment">/// the widget will be queried using [signal`Gtk.Widget`::query-tooltip] to</span>
+    <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">has_tooltip</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">has_tooltip</span>);
@@ -1582,7 +1582,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The `GtkLayoutManager` instance to use to compute the preferred size</span>
+    <span class="doccomment">/// The [`LayoutManager`][crate::LayoutManager] instance to use to compute the preferred size</span>
     <span class="doccomment">/// of the widget, and allocate its children.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
@@ -1596,7 +1596,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -1609,7 +1609,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -1622,7 +1622,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -1632,7 +1632,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -1674,16 +1674,16 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_markup].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_markup</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_markup</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_markup</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_markup</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1691,16 +1691,16 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_text].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_text</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1738,7 +1738,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The accessible role of the given `GtkAccessible` implementation.</span>
+    <span class="doccomment">/// The accessible role of the given [`Accessible`][crate::Accessible] implementation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The accessible role cannot be changed once set.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accessible_role</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">accessible_role</span>: <span class="ident">AccessibleRole</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
@@ -1746,7 +1746,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The content type of the `GtkAppChooser` object.</span>
+    <span class="doccomment">/// The content type of the [`AppChooser`][crate::AppChooser] object.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// See `GContentType` for more information about content types.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">content_type</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">content_type</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {

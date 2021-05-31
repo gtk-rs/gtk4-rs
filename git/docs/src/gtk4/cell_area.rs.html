@@ -194,21 +194,21 @@
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">IsA</span>, <span class="ident">ToValue</span>};
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CellAreaExtManual</span> {
-    <span class="doccomment">/// This is used by [`crate::CellArea`] subclasses when handling events</span>
-    <span class="doccomment">/// to activate cells, the base [`crate::CellArea`] class activates cells</span>
-    <span class="doccomment">/// for keyboard events for free in its own `CellArea`-&gt;`activate()`</span>
+    <span class="doccomment">/// This is used by [`CellArea`][crate::CellArea] subclasses when handling events</span>
+    <span class="doccomment">/// to activate cells, the base [`CellArea`][crate::CellArea] class activates cells</span>
+    <span class="doccomment">/// for keyboard events for free in its own GtkCellArea-&gt;`activate()`</span>
     <span class="doccomment">/// implementation.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// the [`crate::Widget`] that `self` is rendering onto</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] that `self` is rendering onto</span>
     <span class="doccomment">/// ## `renderer`</span>
-    <span class="doccomment">/// the [`crate::CellRenderer`] in `self` to activate</span>
+    <span class="doccomment">/// the [`CellRenderer`][crate::CellRenderer] in `self` to activate</span>
     <span class="doccomment">/// ## `event`</span>
-    <span class="doccomment">/// the [`crate::gdk::Event`] for which cell activation should occur</span>
+    <span class="doccomment">/// the [`gdk::Event`][crate::gdk::Event] for which cell activation should occur</span>
     <span class="doccomment">/// ## `cell_area`</span>
-    <span class="doccomment">/// the [`crate::gdk::Rectangle`] in `widget` relative coordinates</span>
+    <span class="doccomment">/// the [`gdk::Rectangle`][crate::gdk::Rectangle] in `widget` relative coordinates</span>
     <span class="doccomment">///  of `renderer` for the current row.</span>
     <span class="doccomment">/// ## `flags`</span>
-    <span class="doccomment">/// the [`crate::CellRendererState`] for `renderer`</span>
+    <span class="doccomment">/// the [`CellRendererState`][crate::CellRendererState] for `renderer`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -223,17 +223,17 @@
         <span class="ident">flags</span>: <span class="ident">CellRendererState</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Delegates event handling to a [`crate::CellArea`].</span>
+    <span class="doccomment">/// Delegates event handling to a [`CellArea`][crate::CellArea].</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// the [`crate::CellAreaContext`] for this row of data.</span>
+    <span class="doccomment">/// the [`CellAreaContext`][crate::CellAreaContext] for this row of data.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// the [`crate::Widget`] that `self` is rendering to</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] that `self` is rendering to</span>
     <span class="doccomment">/// ## `event`</span>
-    <span class="doccomment">/// the [`crate::gdk::Event`] to handle</span>
+    <span class="doccomment">/// the [`gdk::Event`][crate::gdk::Event] to handle</span>
     <span class="doccomment">/// ## `cell_area`</span>
     <span class="doccomment">/// the `widget` relative coordinates for `self`</span>
     <span class="doccomment">/// ## `flags`</span>
-    <span class="doccomment">/// the [`crate::CellRendererState`] for `self` in this row.</span>
+    <span class="doccomment">/// the [`CellRendererState`][crate::CellRendererState] for `self` in this row.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -250,7 +250,7 @@
 
     <span class="doccomment">/// Gets the values of one or more cell properties for `renderer` in `self`.</span>
     <span class="doccomment">/// ## `renderer`</span>
-    <span class="doccomment">/// a [`crate::CellRenderer`] which is inside `self`</span>
+    <span class="doccomment">/// a [`CellRenderer`][crate::CellRenderer] which is inside `self`</span>
     <span class="doccomment">/// ## `first_prop_name`</span>
     <span class="doccomment">/// the name of the first cell property to get</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_cell_get_valist&quot;</span>)]</span>
@@ -259,7 +259,7 @@
 
     <span class="doccomment">/// Sets one or more cell properties for `cell` in `self`.</span>
     <span class="doccomment">/// ## `renderer`</span>
-    <span class="doccomment">/// a [`crate::CellRenderer`] which is a cell inside `self`</span>
+    <span class="doccomment">/// a [`CellRenderer`][crate::CellRenderer] which is a cell inside `self`</span>
     <span class="doccomment">/// ## `first_prop_name`</span>
     <span class="doccomment">/// the name of the first cell property to set</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_area_cell_set_valist&quot;</span>)]</span>

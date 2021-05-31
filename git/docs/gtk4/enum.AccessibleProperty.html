@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="The possible accessible properties of a `GtkAccessible`."><meta name="keywords" content="rust, rustlang, rust-lang, AccessibleProperty"><title>AccessibleProperty in gtk4 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings"></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="The possible accessible properties of a [`Accessible`][crate::Accessible]."><meta name="keywords" content="rust, rustlang, rust-lang, AccessibleProperty"><title>AccessibleProperty in gtk4 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings"></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../favicon-16x16.png">
 <link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc enum"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 
@@ -25,13 +25,13 @@ pub enum AccessibleProperty {
     ValueNow,
     ValueText,
     // some variants omitted
-</details>}</pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>The possible accessible properties of a <code>GtkAccessible</code>.</p>
+</details>}</pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>The possible accessible properties of a <a href="struct.Accessible.html" title="crate::Accessible"><code>Accessible</code></a>.</p>
 </div></details><h2 id="variants" class="variants small-section-header">
                    Variants (Non-exhaustive)<a href="#variants" class="anchor"></a></h2>
 <details class="rustdoc-toggle non-exhaustive"><summary class="hideme"><span>This enum is marked as non-exhaustive</span></summary><div class="docblock">Non-exhaustive enums could have additional variants added in future. Therefore, when matching against variants of non-exhaustive enums, an extra wildcard arm must be added to account for any future variants.</div></details><div id="variant.Autocomplete" class="variant small-section-header"><a href="#variant.Autocomplete" class="anchor field"></a><code>Autocomplete</code></div><div class="docblock"><p>Indicates whether inputting text
 could trigger display of one or more predictions of the user’s intended
 value for a combobox, searchbox, or textbox and specifies how predictions
-would be presented if they were made. Value type: <a href="enum.AccessibleAutocomplete.html" title="crate::AccessibleAutocomplete"><code>crate::AccessibleAutocomplete</code></a></p>
+would be presented if they were made. Value type: <a href="enum.AccessibleAutocomplete.html" title="crate::AccessibleAutocomplete"><code>AccessibleAutocomplete</code></a></p>
 </div><div id="variant.Description" class="variant small-section-header"><a href="#variant.Description" class="anchor field"></a><code>Description</code></div><div class="docblock"><p>Defines a string value that describes
 or annotates the current element. Value type: string</p>
 </div><div id="variant.HasPopup" class="variant small-section-header"><a href="#variant.HasPopup" class="anchor field"></a><code>HasPopup</code></div><div class="docblock"><p>Indicates the availability and type of
@@ -53,7 +53,7 @@ more than one item from the current selectable descendants. Value type:
 boolean</p>
 </div><div id="variant.Orientation" class="variant small-section-header"><a href="#variant.Orientation" class="anchor field"></a><code>Orientation</code></div><div class="docblock"><p>Indicates whether the element’s
 orientation is horizontal, vertical, or unknown/ambiguous. Value type:
-<a href="enum.Orientation.html" title="crate::Orientation"><code>crate::Orientation</code></a></p>
+<a href="enum.Orientation.html" title="crate::Orientation"><code>Orientation</code></a></p>
 </div><div id="variant.Placeholder" class="variant small-section-header"><a href="#variant.Placeholder" class="anchor field"></a><code>Placeholder</code></div><div class="docblock"><p>Defines a short hint (a word or short
 phrase) intended to aid the user with data entry when the control has no
 value. A hint could be a sample value or a brief description of the expected
@@ -66,7 +66,7 @@ the element before a form may be submitted. Value type: boolean</p>
 author-localized description for the role of an element. Value type: string</p>
 </div><div id="variant.Sort" class="variant small-section-header"><a href="#variant.Sort" class="anchor field"></a><code>Sort</code></div><div class="docblock"><p>Indicates if items in a table or grid are
 sorted in ascending or descending order. Possible property values are in
-the <a href="enum.AccessibleSort.html" title="crate::AccessibleSort"><code>crate::AccessibleSort</code></a> enumeration. Value type: <a href="enum.AccessibleSort.html" title="crate::AccessibleSort"><code>crate::AccessibleSort</code></a></p>
+the <a href="enum.AccessibleSort.html" title="crate::AccessibleSort"><code>AccessibleSort</code></a> enumeration. Value type: <a href="enum.AccessibleSort.html" title="crate::AccessibleSort"><code>AccessibleSort</code></a></p>
 </div><div id="variant.ValueMax" class="variant small-section-header"><a href="#variant.ValueMax" class="anchor field"></a><code>ValueMax</code></div><div class="docblock"><p>Defines the maximum allowed value for a
 range widget. Value type: double</p>
 </div><div id="variant.ValueMin" class="variant small-section-header"><a href="#variant.ValueMin" class="anchor field"></a><code>ValueMin</code></div><div class="docblock"><p>Defines the minimum allowed value for a

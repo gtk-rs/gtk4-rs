@@ -347,11 +347,11 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkMediaFile` implements `GtkMediaStream` for files.</span>
+    <span class="doccomment">/// [`MediaFile`][crate::MediaFile] implements [`MediaStream`][crate::MediaStream] for files.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This provides a simple way to play back video files with GTK.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// GTK provides a GIO extension point for `GtkMediaFile` implementations</span>
+    <span class="doccomment">/// GTK provides a GIO extension point for [`MediaFile`][crate::MediaFile] implementations</span>
     <span class="doccomment">/// to allow for external implementations using various media frameworks.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// GTK itself includes implementations using GStreamer and ffmpeg.</span>
@@ -360,7 +360,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::MediaFileExt`], [`trait@crate::prelude::MediaStreamExt`], [`trait@glib::object::ObjectExt`], [`trait@gdk::prelude::PaintableExt`], [`trait@crate::prelude::MediaStreamExtManual`]</span>
+    <span class="doccomment">/// [`MediaFileExt`][trait@crate::prelude::MediaFileExt], [`MediaStreamExt`][trait@crate::prelude::MediaStreamExt], [`trait@glib::ObjectExt`], [`trait@gdk::prelude::PaintableExt`], [`MediaStreamExtManual`][trait@crate::prelude::MediaStreamExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MediaFile</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkMediaFile</span>, <span class="ident">ffi::GtkMediaFileClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">MediaStream</span>, @<span class="ident">implements</span> <span class="ident">gdk::Paintable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -373,7 +373,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkMediaFile`</span>
+    <span class="doccomment">/// a new [`MediaFile`][crate::MediaFile]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_file_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">MediaFile</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -386,7 +386,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkMediaFile` playing `file`</span>
+    <span class="doccomment">/// a new [`MediaFile`][crate::MediaFile] playing `file`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_file_new_for_file&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_for_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::File</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">file</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">MediaFile</span> {
@@ -401,13 +401,13 @@
     <span class="doccomment">/// Creates a new media file for the given filename.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a utility function that converts the given `filename`</span>
-    <span class="doccomment">/// to a `GFile` and calls [ctor`Gtk.MediaFile`.new_for_file].</span>
+    <span class="doccomment">/// to a `GFile` and calls [``for_file()``][`Self::for_file()`].</span>
     <span class="doccomment">/// ## `filename`</span>
     <span class="doccomment">/// filename to open</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkMediaFile` playing `filename`</span>
+    <span class="doccomment">/// a new [`MediaFile`][crate::MediaFile] playing `filename`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_file_new_for_filename&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_for_filename&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_filename</span>(<span class="ident">filename</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">MediaFile</span> {
@@ -428,7 +428,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkMediaFile`</span>
+    <span class="doccomment">/// a new [`MediaFile`][crate::MediaFile]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_file_new_for_input_stream&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_for_input_stream&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_input_stream</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::InputStream</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">stream</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">MediaFile</span> {
@@ -443,13 +443,13 @@
     <span class="doccomment">/// Creates a new new media file for the given resource.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a utility function that converts the given `resource`</span>
-    <span class="doccomment">/// to a `GFile` and calls [ctor`Gtk.MediaFile`.new_for_file].</span>
+    <span class="doccomment">/// to a `GFile` and calls [``for_file()``][`Self::for_file()`].</span>
     <span class="doccomment">/// ## `resource_path`</span>
     <span class="doccomment">/// resource path to open</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkMediaFile` playing `resource_path`</span>
+    <span class="doccomment">/// a new [`MediaFile`][crate::MediaFile] playing `resource_path`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_file_new_for_resource&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_for_resource&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_resource</span>(<span class="ident">resource_path</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">MediaFile</span> {
@@ -474,7 +474,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::MediaFile`]</span>
+<span class="doccomment">/// [`MediaFile`][struct@crate::MediaFile]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">MediaFileExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Resets the media file to be empty.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_file_clear&quot;</span>)]</span>
@@ -506,7 +506,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_input_stream&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">input_stream</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::InputStream</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Sets the `GtkMediaFile` to play the given file.</span>
+    <span class="doccomment">/// Sets the [`MediaFile`][crate::MediaFile] to play the given file.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If any file is still playing, stop playing it.</span>
     <span class="doccomment">/// ## `file`</span>
@@ -516,14 +516,14 @@
 
     <span class="doccomment">/// Sets the `GtkMediaFile to play the given file.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is a utility function that converts the given @filename</span>
-    <span class="doccomment">/// to a `GFile` and calls [method@Gtk.MediaFile.set_file].</span>
+    <span class="doccomment">/// This is a utility function that converts the given `filename`</span>
+    <span class="doccomment">/// to a `GFile` and calls [``set_file()``][`Self::set_file()`].</span>
     <span class="doccomment">/// ## `filename`</span>
     <span class="doccomment">/// name of file to play</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_file_set_filename&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_filename</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">filename</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Sets the `GtkMediaFile` to play the given stream.</span>
+    <span class="doccomment">/// Sets the [`MediaFile`][crate::MediaFile] to play the given stream.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If anything is still playing, stop playing it.</span>
     <span class="doccomment">///</span>
@@ -536,8 +536,8 @@
 
     <span class="doccomment">/// Sets the `GtkMediaFile to play the given resource.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is a utility function that converts the given @resource_path</span>
-    <span class="doccomment">/// to a `GFile` and calls [method@Gtk.MediaFile.set_file].</span>
+    <span class="doccomment">/// This is a utility function that converts the given `resource_path`</span>
+    <span class="doccomment">/// to a `GFile` and calls [``set_file()``][`Self::set_file()`].</span>
     <span class="doccomment">/// ## `resource_path`</span>
     <span class="doccomment">/// path to resource to play</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_media_file_set_resource&quot;</span>)]</span>

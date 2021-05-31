@@ -105,7 +105,7 @@
 <span class="kw">use</span> <span class="ident">std::ptr</span>;
 
 <span class="kw">impl</span> <span class="ident">CustomSorter</span> {
-    <span class="doccomment">/// Creates a new `GtkSorter` that works by calling</span>
+    <span class="doccomment">/// Creates a new [`Sorter`][crate::Sorter] that works by calling</span>
     <span class="doccomment">/// `sort_func` to compare items.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `sort_func` is [`None`], all items are considered equal.</span>
@@ -114,7 +114,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkCustomSorter`</span>
+    <span class="doccomment">/// a new [`CustomSorter`][crate::CustomSorter]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_custom_sorter_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="ident">sort_func</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
     <span class="kw">where</span>
@@ -135,7 +135,7 @@
     <span class="doccomment">/// If `sort_func` is [`None`], all items are considered equal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the sort func changes its sorting behavior,</span>
-    <span class="doccomment">/// [`crate::prelude::SorterExt::changed()`] needs to be called.</span>
+    <span class="doccomment">/// [`SorterExt::changed()`][crate::prelude::SorterExt::changed()] needs to be called.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If a previous function was set, its `user_destroy` will be</span>
     <span class="doccomment">/// called now.</span>

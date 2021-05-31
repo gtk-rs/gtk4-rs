@@ -284,24 +284,24 @@
     <span class="doccomment">/// Layout managers are delegate classes that handle the preferred size</span>
     <span class="doccomment">/// and the allocation of a widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// You typically subclass `GtkLayoutManager` if you want to implement a</span>
+    <span class="doccomment">/// You typically subclass [`LayoutManager`][crate::LayoutManager] if you want to implement a</span>
     <span class="doccomment">/// layout policy for the children of a widget, or if you want to determine</span>
     <span class="doccomment">/// the size of a widget depending on its contents.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Each `GtkWidget` can only have a `GtkLayoutManager` instance associated</span>
+    <span class="doccomment">/// Each [`Widget`][crate::Widget] can only have a [`LayoutManager`][crate::LayoutManager] instance associated</span>
     <span class="doccomment">/// to it at any given time; it is possible, though, to replace the layout</span>
-    <span class="doccomment">/// manager instance using [method`Gtk.Widget`.set_layout_manager].</span>
+    <span class="doccomment">/// manager instance using [``WidgetExt::set_layout_manager()``][crate::prelude::`WidgetExt::set_layout_manager()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## Layout properties</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A layout manager can expose properties for controlling the layout of</span>
-    <span class="doccomment">/// each child, by creating an object type derived from [class`Gtk.LayoutChild`]</span>
+    <span class="doccomment">/// each child, by creating an object type derived from [`LayoutChild`][crate::LayoutChild]</span>
     <span class="doccomment">/// and installing the properties on it as normal `GObject` properties.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Each `GtkLayoutChild` instance storing the layout properties for a</span>
-    <span class="doccomment">/// specific child is created through the [method`Gtk.LayoutManager`.get_layout_child]</span>
-    <span class="doccomment">/// method; a `GtkLayoutManager` controls the creation of its `GtkLayoutChild`</span>
-    <span class="doccomment">/// instances by overriding the [`crate::`LayoutManagerClass`.create_layout_child()`]</span>
+    <span class="doccomment">/// Each [`LayoutChild`][crate::LayoutChild] instance storing the layout properties for a</span>
+    <span class="doccomment">/// specific child is created through the [``LayoutManagerExt::layout_child()``][crate::prelude::`LayoutManagerExt::layout_child()`]</span>
+    <span class="doccomment">/// method; a [`LayoutManager`][crate::LayoutManager] controls the creation of its [`LayoutChild`][crate::LayoutChild]</span>
+    <span class="doccomment">/// instances by overriding the `GtkLayoutManagerClass.create_layout_child()`</span>
     <span class="doccomment">/// virtual function. The typical implementation should look like:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```c</span>
@@ -317,24 +317,24 @@
     <span class="doccomment">/// }</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The [property`Gtk.LayoutChild`:layout-manager] and</span>
-    <span class="doccomment">/// [property`Gtk.LayoutChild`:child-widget] properties</span>
-    <span class="doccomment">/// on the newly created `GtkLayoutChild` instance are mandatory. The</span>
-    <span class="doccomment">/// `GtkLayoutManager` will cache the newly created `GtkLayoutChild` instance</span>
+    <span class="doccomment">/// The `property::LayoutChild::layout-manager` and</span>
+    <span class="doccomment">/// `property::LayoutChild::child-widget` properties</span>
+    <span class="doccomment">/// on the newly created [`LayoutChild`][crate::LayoutChild] instance are mandatory. The</span>
+    <span class="doccomment">/// [`LayoutManager`][crate::LayoutManager] will cache the newly created [`LayoutChild`][crate::LayoutChild] instance</span>
     <span class="doccomment">/// until the widget is removed from its parent, or the parent removes the</span>
     <span class="doccomment">/// layout manager.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Each `GtkLayoutManager` instance creating a `GtkLayoutChild` should use</span>
-    <span class="doccomment">/// [method`Gtk.LayoutManager`.get_layout_child] every time it needs to query</span>
-    <span class="doccomment">/// the layout properties; each `GtkLayoutChild` instance should call</span>
-    <span class="doccomment">/// [method`Gtk.LayoutManager`.layout_changed] every time a property is</span>
+    <span class="doccomment">/// Each [`LayoutManager`][crate::LayoutManager] instance creating a [`LayoutChild`][crate::LayoutChild] should use</span>
+    <span class="doccomment">/// [``LayoutManagerExt::layout_child()``][crate::prelude::`LayoutManagerExt::layout_child()`] every time it needs to query</span>
+    <span class="doccomment">/// the layout properties; each [`LayoutChild`][crate::LayoutChild] instance should call</span>
+    <span class="doccomment">/// [``LayoutManagerExt::layout_changed()``][crate::prelude::`LayoutManagerExt::layout_changed()`] every time a property is</span>
     <span class="doccomment">/// updated, in order to queue a new size measuring and allocation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is an Abstract Base Class, you cannot instantiate it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::LayoutManagerExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`LayoutManagerExt`][trait@crate::prelude::LayoutManagerExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LayoutManager</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkLayoutManager</span>, <span class="ident">ffi::GtkLayoutManagerClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -348,13 +348,13 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::BinLayout`], [`struct@crate::BoxLayout`], [`struct@crate::CenterLayout`], [`struct@crate::ConstraintLayout`], [`struct@crate::FixedLayout`], [`struct@crate::GridLayout`], [`struct@crate::LayoutManager`], [`struct@crate::OverlayLayout`]</span>
+<span class="doccomment">/// [`BinLayout`][struct@crate::BinLayout], [`BoxLayout`][struct@crate::BoxLayout], [`CenterLayout`][struct@crate::CenterLayout], [`ConstraintLayout`][struct@crate::ConstraintLayout], [`FixedLayout`][struct@crate::FixedLayout], [`GridLayout`][struct@crate::GridLayout], [`LayoutManager`][struct@crate::LayoutManager], [`OverlayLayout`][struct@crate::OverlayLayout]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">LayoutManagerExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Assigns the given `width`, `height`, and `baseline` to</span>
     <span class="doccomment">/// a `widget`, and computes the position and sizes of the children of</span>
     <span class="doccomment">/// the `widget` using the layout management policy of `self`.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// the `GtkWidget` using `self`</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] using `self`</span>
     <span class="doccomment">/// ## `width`</span>
     <span class="doccomment">/// the new width of the `widget`</span>
     <span class="doccomment">/// ## `height`</span>
@@ -364,20 +364,20 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_layout_manager_allocate&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">allocate</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">width</span>: <span class="ident">i32</span>, <span class="ident">height</span>: <span class="ident">i32</span>, <span class="ident">baseline</span>: <span class="ident">i32</span>);
 
-    <span class="doccomment">/// Retrieves a `GtkLayoutChild` instance for the `GtkLayoutManager`,</span>
+    <span class="doccomment">/// Retrieves a [`LayoutChild`][crate::LayoutChild] instance for the [`LayoutManager`][crate::LayoutManager],</span>
     <span class="doccomment">/// creating one if necessary.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The `child` widget must be a child of the widget using `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GtkLayoutChild` instance is owned by the `GtkLayoutManager`,</span>
+    <span class="doccomment">/// The [`LayoutChild`][crate::LayoutChild] instance is owned by the [`LayoutManager`][crate::LayoutManager],</span>
     <span class="doccomment">/// and is guaranteed to exist as long as `child` is a child of the</span>
-    <span class="doccomment">/// `GtkWidget` using the given `GtkLayoutManager`.</span>
+    <span class="doccomment">/// [`Widget`][crate::Widget] using the given [`LayoutManager`][crate::LayoutManager].</span>
     <span class="doccomment">/// ## `child`</span>
-    <span class="doccomment">/// a `GtkWidget`</span>
+    <span class="doccomment">/// a [`Widget`][crate::Widget]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GtkLayoutChild`</span>
+    <span class="doccomment">/// a [`LayoutChild`][crate::LayoutChild]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_layout_manager_get_layout_child&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_layout_child&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">layout_child</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">child</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">LayoutChild</span><span class="op">&gt;</span>;
@@ -386,23 +386,23 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GtkSizeRequestMode`</span>
+    <span class="doccomment">/// a [`SizeRequestMode`][crate::SizeRequestMode]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_layout_manager_get_request_mode&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_request_mode&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">request_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SizeRequestMode</span>;
 
-    <span class="doccomment">/// Retrieves the `GtkWidget` using the given `GtkLayoutManager`.</span>
+    <span class="doccomment">/// Retrieves the [`Widget`][crate::Widget] using the given [`LayoutManager`][crate::LayoutManager].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GtkWidget`</span>
+    <span class="doccomment">/// a [`Widget`][crate::Widget]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_layout_manager_get_widget&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_widget&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Queues a resize on the `GtkWidget` using `self`, if any.</span>
+    <span class="doccomment">/// Queues a resize on the [`Widget`][crate::Widget] using `self`, if any.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This function should be called by subclasses of `GtkLayoutManager`</span>
+    <span class="doccomment">/// This function should be called by subclasses of [`LayoutManager`][crate::LayoutManager]</span>
     <span class="doccomment">/// in response to changes to their layout management policies.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_layout_manager_layout_changed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">layout_changed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
@@ -410,16 +410,16 @@
     <span class="doccomment">/// Measures the size of the `widget` using `self`, for the</span>
     <span class="doccomment">/// given `orientation` and size.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See the [class`Gtk.Widget`] documentation on layout management for</span>
+    <span class="doccomment">/// See the [`Widget`][crate::Widget] documentation on layout management for</span>
     <span class="doccomment">/// more details.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// the `GtkWidget` using `self`</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] using `self`</span>
     <span class="doccomment">/// ## `orientation`</span>
     <span class="doccomment">/// the orientation to measure</span>
     <span class="doccomment">/// ## `for_size`</span>
     <span class="doccomment">/// Size for the opposite of `orientation`; for instance, if</span>
-    <span class="doccomment">///  the `orientation` is [`crate::Orientation::Horizontal`], this is the height</span>
-    <span class="doccomment">///  of the widget; if the `orientation` is [`crate::Orientation::Vertical`], this</span>
+    <span class="doccomment">///  the `orientation` is [`Orientation::Horizontal`][crate::Orientation::Horizontal], this is the height</span>
+    <span class="doccomment">///  of the widget; if the `orientation` is [`Orientation::Vertical`][crate::Orientation::Vertical], this</span>
     <span class="doccomment">///  is the width of the widget. This allows to measure the height for the</span>
     <span class="doccomment">///  given width, and the width for the given height. Use -1 if the size</span>
     <span class="doccomment">///  is not known</span>

@@ -75,9 +75,9 @@
 <span class="kw">use</span> <span class="ident">glib::Value</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// An opaque structure representing a watched `GtkExpression`.</span>
+    <span class="doccomment">/// An opaque structure representing a watched [`Expression`][crate::Expression].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The contents of `GtkExpressionWatch` should only be accessed through the</span>
+    <span class="doccomment">/// The contents of [`ExpressionWatch`][crate::ExpressionWatch] should only be accessed through the</span>
     <span class="doccomment">/// provided API.</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExpressionWatch</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GtkExpressionWatch</span><span class="op">&gt;</span>);
@@ -92,7 +92,7 @@
     <span class="doccomment">/// Evaluates the watched expression and on success stores the result</span>
     <span class="doccomment">/// in `value`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is equivalent to calling [method`Gtk.Expression`.evaluate] with the</span>
+    <span class="doccomment">/// This is equivalent to calling [``Expression::evaluate()``][crate::`Expression::evaluate()`] with the</span>
     <span class="doccomment">/// expression and this pointer originally used to create `watch`.</span>
     <span class="doccomment">/// ## `value`</span>
     <span class="doccomment">/// an empty `GValue` to be set</span>
@@ -119,7 +119,7 @@
 
     <span class="doccomment">/// Stops watching an expression.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.Expression`.watch] for how the watch</span>
+    <span class="doccomment">/// See [``Expression::watch()``][crate::`Expression::watch()`] for how the watch</span>
     <span class="doccomment">/// was established.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_expression_watch_unwatch&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">unwatch</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {

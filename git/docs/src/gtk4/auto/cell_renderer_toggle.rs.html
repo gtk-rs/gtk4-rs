@@ -519,14 +519,14 @@
 <span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// Renders a toggle button in a cell</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`crate::CellRendererToggle`] renders a toggle button in a cell. The</span>
+    <span class="doccomment">/// [`CellRendererToggle`][crate::CellRendererToggle] renders a toggle button in a cell. The</span>
     <span class="doccomment">/// button is drawn as a radio or a checkbutton, depending on the</span>
-    <span class="doccomment">/// [`crate::CellRendererToggle:radio`] property.</span>
-    <span class="doccomment">/// When activated, it emits the [`crate::CellRendererToggle::toggled`] signal.</span>
+    <span class="doccomment">/// `property::CellRendererToggle::radio` property.</span>
+    <span class="doccomment">/// When activated, it emits the `signal::CellRendererToggle::toggled` signal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::CellRendererExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::CellRendererExtManual`]</span>
+    <span class="doccomment">/// [`CellRendererExt`][trait@crate::prelude::CellRendererExt], [`trait@glib::ObjectExt`], [`CellRendererExtManual`][trait@crate::prelude::CellRendererExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CellRendererToggle</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkCellRendererToggle</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">CellRenderer</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -535,10 +535,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">CellRendererToggle</span> {
-    <span class="doccomment">/// Creates a new [`crate::CellRendererToggle`]. Adjust rendering</span>
+    <span class="doccomment">/// Creates a new [`CellRendererToggle`][crate::CellRendererToggle]. Adjust rendering</span>
     <span class="doccomment">/// parameters using object properties. Object properties can be set</span>
-    <span class="doccomment">/// globally (with [`crate::glib::object::Object::set()`]). Also, with [`crate::TreeViewColumn`], you</span>
-    <span class="doccomment">/// can bind a property to a value in a [`crate::TreeModel`]. For example, you</span>
+    <span class="doccomment">/// globally (with `g_object_set()`). Also, with [`TreeViewColumn`][crate::TreeViewColumn], you</span>
+    <span class="doccomment">/// can bind a property to a value in a [`TreeModel`][crate::TreeModel]. For example, you</span>
     <span class="doccomment">/// can bind the “active” property on the cell renderer to a boolean value</span>
     <span class="doccomment">/// in the model, thus causing the check button to reflect the state of</span>
     <span class="doccomment">/// the model.</span>
@@ -560,7 +560,7 @@
     }
 
     <span class="doccomment">/// Returns whether the cell renderer is activatable. See</span>
-    <span class="doccomment">/// [`Self::set_activatable()`].</span>
+    <span class="doccomment">/// [`set_activatable()`][Self::set_activatable()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -576,7 +576,7 @@
     }
 
     <span class="doccomment">/// Returns whether the cell renderer is active. See</span>
-    <span class="doccomment">/// [`Self::set_active()`].</span>
+    <span class="doccomment">/// [`set_active()`][Self::set_active()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -633,8 +633,8 @@
     <span class="doccomment">/// (i.e. a toggle in a group of mutually-exclusive toggles).</span>
     <span class="doccomment">/// If [`false`], it renders a check toggle (a standalone boolean option).</span>
     <span class="doccomment">/// This can be set globally for the cell renderer, or changed just</span>
-    <span class="doccomment">/// before rendering each cell in the model (for [`crate::TreeView`], you set</span>
-    <span class="doccomment">/// up a per-row setting using [`crate::TreeViewColumn`] to associate model</span>
+    <span class="doccomment">/// before rendering each cell in the model (for [`TreeView`][crate::TreeView], you set</span>
+    <span class="doccomment">/// up a per-row setting using [`TreeViewColumn`][crate::TreeViewColumn] to associate model</span>
     <span class="doccomment">/// columns with cell renderer properties).</span>
     <span class="doccomment">/// ## `radio`</span>
     <span class="doccomment">/// [`true`] to make the toggle look like a radio button</span>
@@ -675,7 +675,7 @@
     <span class="doccomment">/// with the correct value to store at `path`. Often this is simply the</span>
     <span class="doccomment">/// opposite of the value currently stored at `path`.</span>
     <span class="doccomment">/// ## `path`</span>
-    <span class="doccomment">/// string representation of [`crate::TreePath`] describing the</span>
+    <span class="doccomment">/// string representation of [`TreePath`][crate::TreePath] describing the</span>
     <span class="doccomment">///  event location</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;toggled&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_toggled</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">TreePath</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
@@ -920,7 +920,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Cell background as a [`crate::gdk::RGBA`]</span>
+    <span class="doccomment">/// Cell background as a [`gdk::RGBA`][crate::gdk::RGBA]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cell_background_rgba</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">cell_background_rgba</span>: <span class="kw-2">&amp;</span><span class="ident">gdk::RGBA</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">cell_background_rgba</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">cell_background_rgba</span>.<span class="ident">clone</span>());
         <span class="self">self</span>

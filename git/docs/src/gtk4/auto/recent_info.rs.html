@@ -399,7 +399,7 @@
 <span class="kw">use</span> <span class="ident">std::ptr</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkRecentInfo` contains the metadata associated with an item in the</span>
+    <span class="doccomment">/// [`RecentInfo`][crate::RecentInfo] contains the metadata associated with an item in the</span>
     <span class="doccomment">/// recently used files list.</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RecentInfo</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GtkRecentInfo</span><span class="op">&gt;</span>);
@@ -412,7 +412,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">RecentInfo</span> {
-    <span class="doccomment">/// Creates a `GAppInfo` for the specified `GtkRecentInfo`</span>
+    <span class="doccomment">/// Creates a `GAppInfo` for the specified [`RecentInfo`][crate::RecentInfo]</span>
     <span class="doccomment">/// ## `app_name`</span>
     <span class="doccomment">/// the name of the application that should</span>
     <span class="doccomment">///  be mapped to a `GAppInfo`; if [`None`] is used then the default</span>
@@ -460,7 +460,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a [`crate::glib::DateTime`] for the time</span>
+    <span class="doccomment">/// a [`glib::DateTime`][crate::glib::DateTime] for the time</span>
     <span class="doccomment">///  when the resource was added</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_get_added&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_added&quot;</span>)]</span>
@@ -493,7 +493,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// [`true`] if an application with `app_name` has registered this</span>
     <span class="doccomment">///  resource inside the recently used list, or [`false`] otherwise. The</span>
-    <span class="doccomment">///  `app_exec` string is owned by the `GtkRecentInfo` and should not be</span>
+    <span class="doccomment">///  `app_exec` string is owned by the [`RecentInfo`][crate::RecentInfo] and should not be</span>
     <span class="doccomment">///  modified or freed</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `app_exec`</span>
@@ -579,8 +579,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a [`crate::gio::Icon`] containing the icon, or [`None`].</span>
-    <span class="doccomment">///  Use [`crate::glib::object::Object::unref()`] when finished using the icon</span>
+    <span class="doccomment">/// a [`gio::Icon`][crate::gio::Icon] containing the icon, or [`None`].</span>
+    <span class="doccomment">///  Use `g_object_unref()` when finished using the icon</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_get_gicon&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_gicon&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gicon</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::Icon</span><span class="op">&gt;</span> {
@@ -627,7 +627,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a [`crate::glib::DateTime`] for the time</span>
+    <span class="doccomment">/// a [`glib::DateTime`][crate::glib::DateTime] for the time</span>
     <span class="doccomment">///  when the resource was last modified</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_get_modified&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_modified&quot;</span>)]</span>
@@ -682,7 +682,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the resource is local, it returns a local path; if the</span>
     <span class="doccomment">/// resource is not local, it returns the UTF-8 encoded content</span>
-    <span class="doccomment">/// of [method`Gtk.RecentInfo`.get_uri].</span>
+    <span class="doccomment">/// of [``uri()``][`Self::uri()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -699,7 +699,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a [`crate::glib::DateTime`] for the time</span>
+    <span class="doccomment">/// a [`glib::DateTime`][crate::glib::DateTime] for the time</span>
     <span class="doccomment">///  when the resource was last visited</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_recent_info_get_visited&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_visited&quot;</span>)]</span>

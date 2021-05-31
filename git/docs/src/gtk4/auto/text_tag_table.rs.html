@@ -281,16 +281,16 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// The collection of tags in a `GtkTextBuffer`</span>
+    <span class="doccomment">/// The collection of tags in a [`TextBuffer`][crate::TextBuffer]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You may wish to begin by reading the</span>
     <span class="doccomment">/// [text widget conceptual overview](section-text-widget.html),</span>
     <span class="doccomment">/// which gives an overview of all the objects and data types</span>
     <span class="doccomment">/// related to the text widget and how they work together.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// # `GtkTextTagTables` as `Buildable`</span>
+    <span class="doccomment">/// # GtkTextTagTables as GtkBuildable</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GtkTextTagTable` implementation of the `GtkBuildable` interface</span>
+    <span class="doccomment">/// The [`TextTagTable`][crate::TextTagTable] implementation of the [`Buildable`][crate::Buildable] interface</span>
     <span class="doccomment">/// supports adding tags by specifying “tag” as the “type” attribute</span>
     <span class="doccomment">/// of a `&lt;child&gt;` element.</span>
     <span class="doccomment">///</span>
@@ -305,7 +305,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::BuildableExt`]</span>
+    <span class="doccomment">/// [`trait@glib::ObjectExt`], [`BuildableExt`][trait@crate::prelude::BuildableExt]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TextTagTable</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkTextTagTable</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">Buildable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -314,13 +314,13 @@
 }
 
 <span class="kw">impl</span> <span class="ident">TextTagTable</span> {
-    <span class="doccomment">/// Creates a new `GtkTextTagTable`.</span>
+    <span class="doccomment">/// Creates a new [`TextTagTable`][crate::TextTagTable].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The table contains no tags by default.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkTextTagTable`</span>
+    <span class="doccomment">/// a new [`TextTagTable`][crate::TextTagTable]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_tag_table_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TextTagTable</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -334,7 +334,7 @@
     <span class="doccomment">/// `tag` must not be in a tag table already, and may not have</span>
     <span class="doccomment">/// the same name as an already-added tag.</span>
     <span class="doccomment">/// ## `tag`</span>
-    <span class="doccomment">/// a `GtkTextTag`</span>
+    <span class="doccomment">/// a [`TextTag`][crate::TextTag]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -408,12 +408,12 @@
 
     <span class="doccomment">/// Remove a tag from the table.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If a `GtkTextBuffer` has `self` as its tag table, the tag is</span>
+    <span class="doccomment">/// If a [`TextBuffer`][crate::TextBuffer] has `self` as its tag table, the tag is</span>
     <span class="doccomment">/// removed from the buffer. The table’s reference to the tag is</span>
     <span class="doccomment">/// removed, so the tag will end up destroyed if you don’t have</span>
     <span class="doccomment">/// a reference to it.</span>
     <span class="doccomment">/// ## `tag`</span>
-    <span class="doccomment">/// a `GtkTextTag`</span>
+    <span class="doccomment">/// a [`TextTag`][crate::TextTag]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_text_tag_table_remove&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">TextTag</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">tag</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
         <span class="kw">unsafe</span> {
@@ -421,7 +421,7 @@
         }
     }
 
-    <span class="doccomment">/// Emitted every time a new tag is added in the `GtkTextTagTable`.</span>
+    <span class="doccomment">/// Emitted every time a new tag is added in the [`TextTagTable`][crate::TextTagTable].</span>
     <span class="doccomment">/// ## `tag`</span>
     <span class="doccomment">/// the added tag.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;tag-added&quot;</span>)]</span>
@@ -447,11 +447,11 @@
         }
     }
 
-    <span class="doccomment">/// Emitted every time a tag in the `GtkTextTagTable` changes.</span>
+    <span class="doccomment">/// Emitted every time a tag in the [`TextTagTable`][crate::TextTagTable] changes.</span>
     <span class="doccomment">/// ## `tag`</span>
     <span class="doccomment">/// the changed tag.</span>
     <span class="doccomment">/// ## `size_changed`</span>
-    <span class="doccomment">/// whether the change affects the `GtkTextView` layout.</span>
+    <span class="doccomment">/// whether the change affects the [`TextView`][crate::TextView] layout.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;tag-changed&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_tag_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="kw-2">&amp;</span><span class="ident">TextTag</span>, <span class="ident">bool</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -485,7 +485,7 @@
         }
     }
 
-    <span class="doccomment">/// Emitted every time a tag is removed from the `GtkTextTagTable`.</span>
+    <span class="doccomment">/// Emitted every time a tag is removed from the [`TextTagTable`][crate::TextTagTable].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The `tag` is still valid by the time the signal is emitted, but</span>
     <span class="doccomment">/// it is not associated with a tag table any more.</span>

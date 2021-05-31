@@ -355,44 +355,44 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkEventControllerScroll` is an event controller that handles scroll</span>
+    <span class="doccomment">/// [`EventControllerScroll`][crate::EventControllerScroll] is an event controller that handles scroll</span>
     <span class="doccomment">/// events.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is capable of handling both discrete and continuous scroll</span>
     <span class="doccomment">/// events from mice or touchpads, abstracting them both with the</span>
-    <span class="doccomment">/// [signal`Gtk.EventControllerScroll`::scroll] signal. Deltas in</span>
+    <span class="doccomment">/// `signal::EventControllerScroll::scroll` signal. Deltas in</span>
     <span class="doccomment">/// the discrete case are multiples of 1.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// In the case of continuous scroll events, `GtkEventControllerScroll`</span>
-    <span class="doccomment">/// encloses all [signal`Gtk.EventControllerScroll`::scroll] emissions</span>
-    <span class="doccomment">/// between two [signal`Gtk.EventControllerScroll`::scroll-begin] and</span>
-    <span class="doccomment">/// [signal`Gtk.EventControllerScroll`::scroll-end] signals.</span>
+    <span class="doccomment">/// In the case of continuous scroll events, [`EventControllerScroll`][crate::EventControllerScroll]</span>
+    <span class="doccomment">/// encloses all `signal::EventControllerScroll::scroll` emissions</span>
+    <span class="doccomment">/// between two `signal::EventControllerScroll::scroll-begin` and</span>
+    <span class="doccomment">/// `signal::EventControllerScroll::scroll-end` signals.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The behavior of the event controller can be modified by the flags</span>
     <span class="doccomment">/// given at creation time, or modified at a later point through</span>
-    <span class="doccomment">/// [method`Gtk.EventControllerScroll`.set_flags] (e.g. because the scrolling</span>
+    <span class="doccomment">/// [``set_flags()``][`Self::set_flags()`] (e.g. because the scrolling</span>
     <span class="doccomment">/// conditions of the widget changed).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The controller can be set up to emit motion for either/both vertical</span>
-    <span class="doccomment">/// and horizontal scroll events through [`crate::EventControllerScrollFlags::Vertical`],</span>
-    <span class="doccomment">/// [`crate::EventControllerScrollFlags::Horizontal`] and [`crate::EventControllerScrollFlags::BothAxes`].</span>
-    <span class="doccomment">/// If any axis is disabled, the respective [signal`Gtk.EventControllerScroll`::scroll]</span>
+    <span class="doccomment">/// and horizontal scroll events through [`EventControllerScrollFlags::VERTICAL`][crate::EventControllerScrollFlags::VERTICAL],</span>
+    <span class="doccomment">/// [`EventControllerScrollFlags::HORIZONTAL`][crate::EventControllerScrollFlags::HORIZONTAL] and [`EventControllerScrollFlags::BOTH_AXES`][crate::EventControllerScrollFlags::BOTH_AXES].</span>
+    <span class="doccomment">/// If any axis is disabled, the respective `signal::EventControllerScroll::scroll`</span>
     <span class="doccomment">/// delta will be 0. Vertical scroll events will be translated to horizontal</span>
     <span class="doccomment">/// motion for the devices incapable of horizontal scrolling.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The event controller can also be forced to emit discrete events on all</span>
-    <span class="doccomment">/// devices through [`crate::EventControllerScrollFlags::Discrete`]. This can be used</span>
+    <span class="doccomment">/// devices through [`EventControllerScrollFlags::DISCRETE`][crate::EventControllerScrollFlags::DISCRETE]. This can be used</span>
     <span class="doccomment">/// to implement discrete actions triggered through scroll events (e.g.</span>
     <span class="doccomment">/// switching across combobox options).</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The [`crate::EventControllerScrollFlags::Kinetic`] flag toggles the emission of the</span>
-    <span class="doccomment">/// [signal`Gtk.EventControllerScroll`::decelerate] signal, emitted at the end</span>
+    <span class="doccomment">/// The [`EventControllerScrollFlags::KINETIC`][crate::EventControllerScrollFlags::KINETIC] flag toggles the emission of the</span>
+    <span class="doccomment">/// `signal::EventControllerScroll::decelerate` signal, emitted at the end</span>
     <span class="doccomment">/// of scrolling with two X/Y velocity arguments that are consistent with the</span>
     <span class="doccomment">/// motion that was received.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::EventControllerExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`EventControllerExt`][trait@crate::prelude::EventControllerExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EventControllerScroll</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkEventControllerScroll</span>, <span class="ident">ffi::GtkEventControllerScrollClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -407,7 +407,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkEventControllerScroll`</span>
+    <span class="doccomment">/// a new [`EventControllerScroll`][crate::EventControllerScroll]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_event_controller_scroll_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">flags</span>: <span class="ident">EventControllerScrollFlags</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EventControllerScroll</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -450,7 +450,7 @@
     }
 
     <span class="doccomment">/// Emitted after scroll is finished if the</span>
-    <span class="doccomment">/// [`crate::EventControllerScrollFlags::Kinetic`] flag is set.</span>
+    <span class="doccomment">/// [`EventControllerScrollFlags::KINETIC`][crate::EventControllerScrollFlags::KINETIC] flag is set.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `vel_x` and `vel_y` express the initial velocity that was</span>
     <span class="doccomment">/// imprinted by the scroll events. `vel_x` and `vel_y` are expressed in</span>

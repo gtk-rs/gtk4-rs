@@ -826,19 +826,19 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkRange` is the common base class for widgets which visualize an</span>
+    <span class="doccomment">/// [`Range`][crate::Range] is the common base class for widgets which visualize an</span>
     <span class="doccomment">/// adjustment.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Widgets that are derived from `GtkRange` include</span>
-    <span class="doccomment">/// [class`Gtk.Scale`] and [class`Gtk.Scrollbar`].</span>
+    <span class="doccomment">/// Widgets that are derived from [`Range`][crate::Range] include</span>
+    <span class="doccomment">/// [`Scale`][crate::Scale] and [`Scrollbar`][crate::Scrollbar].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Apart from signals for monitoring the parameters of the adjustment,</span>
-    <span class="doccomment">/// `GtkRange` provides properties and methods for setting a</span>
-    <span class="doccomment">/// “fill level” on range widgets. See [method`Gtk.Range`.set_fill_level].</span>
+    <span class="doccomment">/// [`Range`][crate::Range] provides properties and methods for setting a</span>
+    <span class="doccomment">/// “fill level” on range widgets. See [``RangeExt::set_fill_level()``][crate::prelude::`RangeExt::set_fill_level()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::RangeExt`], [`trait@crate::prelude::WidgetExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::AccessibleExt`], [`trait@crate::prelude::BuildableExt`], [`trait@crate::prelude::ConstraintTargetExt`], [`trait@crate::prelude::OrientableExt`], [`trait@crate::prelude::WidgetExtManual`], [`trait@crate::prelude::AccessibleExtManual`]</span>
+    <span class="doccomment">/// [`RangeExt`][trait@crate::prelude::RangeExt], [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`OrientableExt`][trait@crate::prelude::OrientableExt], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Range</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkRange</span>, <span class="ident">ffi::GtkRangeClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Orientable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -852,13 +852,13 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::Range`], [`struct@crate::Scale`]</span>
+<span class="doccomment">/// [`Range`][struct@crate::Range], [`Scale`][struct@crate::Scale]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">RangeExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Get the adjustment which is the “model” object for `GtkRange`.</span>
+    <span class="doccomment">/// Get the adjustment which is the “model” object for [`Range`][crate::Range].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GtkAdjustment`</span>
+    <span class="doccomment">/// a [`Adjustment`][crate::Adjustment]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_range_get_adjustment&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_adjustment&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">adjustment</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Adjustment</span>;
@@ -872,9 +872,9 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_fill_level&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">fill_level</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span>;
 
-    <span class="doccomment">/// Gets whether the `GtkRange` respects text direction.</span>
+    <span class="doccomment">/// Gets whether the [`Range`][crate::Range] respects text direction.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.Range`.set_flippable].</span>
+    <span class="doccomment">/// See [``set_flippable()``][`Self::set_flippable()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -885,7 +885,7 @@
 
     <span class="doccomment">/// Gets whether the range is inverted.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.Range`.set_inverted].</span>
+    <span class="doccomment">/// See [``set_inverted()``][`Self::set_inverted()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -897,7 +897,7 @@
     <span class="doccomment">/// This function returns the area that contains the range’s trough,</span>
     <span class="doccomment">/// in coordinates relative to `self`&#39;s origin.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This function is useful mainly for `GtkRange` subclasses.</span>
+    <span class="doccomment">/// This function is useful mainly for [`Range`][crate::Range] subclasses.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -920,7 +920,7 @@
     <span class="doccomment">/// Gets the number of digits to round the value to when</span>
     <span class="doccomment">/// it changes.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [signal`Gtk.Range`::change-value].</span>
+    <span class="doccomment">/// See `signal::Range::change-value`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -941,7 +941,7 @@
     <span class="doccomment">/// This function returns sliders range along the long dimension,</span>
     <span class="doccomment">/// in widget-&gt;window coordinates.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This function is useful mainly for `GtkRange` subclasses.</span>
+    <span class="doccomment">/// This function is useful mainly for [`Range`][crate::Range] subclasses.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -957,9 +957,9 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_slider_range&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">slider_range</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> (<span class="ident">i32</span>, <span class="ident">i32</span>);
 
-    <span class="doccomment">/// This function is useful mainly for `GtkRange` subclasses.</span>
+    <span class="doccomment">/// This function is useful mainly for [`Range`][crate::Range] subclasses.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.Range`.set_slider_size_fixed].</span>
+    <span class="doccomment">/// See [``set_slider_size_fixed()``][`Self::set_slider_size_fixed()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -977,17 +977,17 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_value&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span>;
 
-    <span class="doccomment">/// Sets the adjustment to be used as the “model” object for the `GtkRange`</span>
+    <span class="doccomment">/// Sets the adjustment to be used as the “model” object for the [`Range`][crate::Range]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The adjustment indicates the current range value, the minimum and</span>
     <span class="doccomment">/// maximum range values, the step/page increments used for keybindings</span>
     <span class="doccomment">/// and scrolling, and the page size.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The page size is normally 0 for `GtkScale` and nonzero for `GtkScrollbar`,</span>
+    <span class="doccomment">/// The page size is normally 0 for [`Scale`][crate::Scale] and nonzero for [`Scrollbar`][crate::Scrollbar],</span>
     <span class="doccomment">/// and indicates the size of the visible area of the widget being scrolled.</span>
     <span class="doccomment">/// The page size affects the size of the scrollbar slider.</span>
     <span class="doccomment">/// ## `adjustment`</span>
-    <span class="doccomment">/// a `GtkAdjustment`</span>
+    <span class="doccomment">/// a [`Adjustment`][crate::Adjustment]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_range_set_adjustment&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_adjustment</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Adjustment</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">adjustment</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>);
 
@@ -1001,24 +1001,24 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This amount of prebuffering can be displayed on the range’s trough</span>
     <span class="doccomment">/// and is themeable separately from the trough. To enable fill level</span>
-    <span class="doccomment">/// display, use [method`Gtk.Range`.set_show_fill_level]. The range defaults</span>
+    <span class="doccomment">/// display, use [``set_show_fill_level()``][`Self::set_show_fill_level()`]. The range defaults</span>
     <span class="doccomment">/// to not showing the fill level.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Additionally, it’s possible to restrict the range’s slider position</span>
     <span class="doccomment">/// to values which are smaller than the fill level. This is controlled</span>
-    <span class="doccomment">/// by [method`Gtk.Range`.set_restrict_to_fill_level] and is by default</span>
+    <span class="doccomment">/// by [``set_restrict_to_fill_level()``][`Self::set_restrict_to_fill_level()`] and is by default</span>
     <span class="doccomment">/// enabled.</span>
     <span class="doccomment">/// ## `fill_level`</span>
     <span class="doccomment">/// the new position of the fill level indicator</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_range_set_fill_level&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_fill_level</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fill_level</span>: <span class="ident">f64</span>);
 
-    <span class="doccomment">/// Sets whether the `GtkRange` respects text direction.</span>
+    <span class="doccomment">/// Sets whether the [`Range`][crate::Range] respects text direction.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If a range is flippable, it will switch its direction</span>
-    <span class="doccomment">/// if it is horizontal and its direction is [`crate::TextDirection::Rtl`].</span>
+    <span class="doccomment">/// if it is horizontal and its direction is [`TextDirection::Rtl`][crate::TextDirection::Rtl].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.Widget`.get_direction].</span>
+    <span class="doccomment">/// See [``WidgetExt::direction()``][crate::prelude::`WidgetExt::direction()`].</span>
     <span class="doccomment">/// ## `flippable`</span>
     <span class="doccomment">/// [`true`] to make the range flippable</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_range_set_flippable&quot;</span>)]</span>
@@ -1026,8 +1026,8 @@
 
     <span class="doccomment">/// Sets the step and page sizes for the range.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The step size is used when the user clicks the `GtkScrollbar`</span>
-    <span class="doccomment">/// arrows or moves a `GtkScale` via arrow keys. The page size</span>
+    <span class="doccomment">/// The step size is used when the user clicks the [`Scrollbar`][crate::Scrollbar]</span>
+    <span class="doccomment">/// arrows or moves a [`Scale`][crate::Scale] via arrow keys. The page size</span>
     <span class="doccomment">/// is used for example when moving via Page Up or Page Down keys.</span>
     <span class="doccomment">/// ## `step`</span>
     <span class="doccomment">/// step size</span>
@@ -1047,7 +1047,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_range_set_inverted&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_inverted</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">setting</span>: <span class="ident">bool</span>);
 
-    <span class="doccomment">/// Sets the allowable values in the `GtkRange`.</span>
+    <span class="doccomment">/// Sets the allowable values in the [`Range`][crate::Range].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The range value is clamped to be between `min` and `max`.</span>
     <span class="doccomment">/// (If the range has a non-zero page size, it is clamped</span>
@@ -1061,7 +1061,7 @@
 
     <span class="doccomment">/// Sets whether the slider is restricted to the fill level.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.Range`.set_fill_level] for a general description</span>
+    <span class="doccomment">/// See [``set_fill_level()``][`Self::set_fill_level()`] for a general description</span>
     <span class="doccomment">/// of the fill level concept.</span>
     <span class="doccomment">/// ## `restrict_to_fill_level`</span>
     <span class="doccomment">/// Whether the fill level restricts slider movement.</span>
@@ -1071,7 +1071,7 @@
     <span class="doccomment">/// Sets the number of digits to round the value to when</span>
     <span class="doccomment">/// it changes.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [signal`Gtk.Range`::change-value].</span>
+    <span class="doccomment">/// See `signal::Range::change-value`.</span>
     <span class="doccomment">/// ## `round_digits`</span>
     <span class="doccomment">/// the precision in digits, or -1</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_range_set_round_digits&quot;</span>)]</span>
@@ -1079,7 +1079,7 @@
 
     <span class="doccomment">/// Sets whether a graphical fill level is show on the trough.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.Range`.set_fill_level] for a general description</span>
+    <span class="doccomment">/// See [``set_fill_level()``][`Self::set_fill_level()`] for a general description</span>
     <span class="doccomment">/// of the fill level concept.</span>
     <span class="doccomment">/// ## `show_fill_level`</span>
     <span class="doccomment">/// Whether a fill level indicator graphics is shown.</span>
@@ -1089,7 +1089,7 @@
     <span class="doccomment">/// Sets whether the range’s slider has a fixed size, or a size that</span>
     <span class="doccomment">/// depends on its adjustment’s page size.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This function is useful mainly for `GtkRange` subclasses.</span>
+    <span class="doccomment">/// This function is useful mainly for [`Range`][crate::Range] subclasses.</span>
     <span class="doccomment">/// ## `size_fixed`</span>
     <span class="doccomment">/// [`true`] to make the slider size constant</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_range_set_slider_size_fixed&quot;</span>)]</span>
@@ -1099,7 +1099,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the value is outside the minimum or maximum range values,</span>
     <span class="doccomment">/// it will be clamped to fit inside them. The range emits the</span>
-    <span class="doccomment">/// [signal`Gtk.Range`::value-changed] signal if the value changes.</span>
+    <span class="doccomment">/// `signal::Range::value-changed` signal if the value changes.</span>
     <span class="doccomment">/// ## `value`</span>
     <span class="doccomment">/// new value of the range</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_range_set_value&quot;</span>)]</span>
@@ -1123,7 +1123,7 @@
     <span class="doccomment">/// The value parameter is unrounded. An application that overrides</span>
     <span class="doccomment">/// the ::change-value signal is responsible for clamping the value</span>
     <span class="doccomment">/// to the desired number of decimal digits; the default GTK</span>
-    <span class="doccomment">/// handler clamps the value based on [property`Gtk.Range`:round-digits].</span>
+    <span class="doccomment">/// handler clamps the value based on `property::Range::round-digits`.</span>
     <span class="doccomment">/// ## `scroll`</span>
     <span class="doccomment">/// the type of scroll action that was performed</span>
     <span class="doccomment">/// ## `value`</span>

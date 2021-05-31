@@ -450,24 +450,24 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkGridLayout` is a layout manager which arranges child widgets in</span>
+    <span class="doccomment">/// [`GridLayout`][crate::GridLayout] is a layout manager which arranges child widgets in</span>
     <span class="doccomment">/// rows and columns.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Children have an &quot;attach point&quot; defined by the horizontal and vertical</span>
     <span class="doccomment">/// index of the cell they occupy; children can span multiple rows or columns.</span>
     <span class="doccomment">/// The layout properties for setting the attach points and spans are set</span>
-    <span class="doccomment">/// using the [class`Gtk.GridLayoutChild`] associated to each child widget.</span>
+    <span class="doccomment">/// using the [`GridLayoutChild`][crate::GridLayoutChild] associated to each child widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The behaviour of `GtkGridLayout` when several children occupy the same</span>
+    <span class="doccomment">/// The behaviour of [`GridLayout`][crate::GridLayout] when several children occupy the same</span>
     <span class="doccomment">/// grid cell is undefined.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkGridLayout` can be used like a `GtkBoxLayout` if all children are</span>
+    <span class="doccomment">/// [`GridLayout`][crate::GridLayout] can be used like a [`BoxLayout`][crate::BoxLayout] if all children are</span>
     <span class="doccomment">/// attached to the same row or column; however, if you only ever need a</span>
-    <span class="doccomment">/// single row or column, you should consider using `GtkBoxLayout`.</span>
+    <span class="doccomment">/// single row or column, you should consider using [`BoxLayout`][crate::BoxLayout].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::LayoutManagerExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`LayoutManagerExt`][trait@crate::prelude::LayoutManagerExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GridLayout</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkGridLayout</span>, <span class="ident">ffi::GtkGridLayoutClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">LayoutManager</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -476,11 +476,11 @@
 }
 
 <span class="kw">impl</span> <span class="ident">GridLayout</span> {
-    <span class="doccomment">/// Creates a new `GtkGridLayout`.</span>
+    <span class="doccomment">/// Creates a new [`GridLayout`][crate::GridLayout].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the newly created `GtkGridLayout`</span>
+    <span class="doccomment">/// the newly created [`GridLayout`][crate::GridLayout]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_grid_layout_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GridLayout</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -494,7 +494,7 @@
         <span class="ident">GridLayoutBuilder::default</span>()
     }
 
-    <span class="doccomment">/// Retrieves the row set with [`Self::set_baseline_row()`].</span>
+    <span class="doccomment">/// Retrieves the row set with [`set_baseline_row()`][Self::set_baseline_row()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -520,7 +520,7 @@
         }
     }
 
-    <span class="doccomment">/// Retrieves the spacing set with [`Self::set_column_spacing()`].</span>
+    <span class="doccomment">/// Retrieves the spacing set with [`set_column_spacing()`][Self::set_column_spacing()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -534,8 +534,8 @@
     <span class="doccomment">/// Returns the baseline position of `row`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If no value has been set with</span>
-    <span class="doccomment">/// [method`Gtk.GridLayout`.set_row_baseline_position],</span>
-    <span class="doccomment">/// the default value of [`crate::BaselinePosition::Center`]</span>
+    <span class="doccomment">/// [``set_row_baseline_position()``][`Self::set_row_baseline_position()`],</span>
+    <span class="doccomment">/// the default value of [`BaselinePosition::Center`][crate::BaselinePosition::Center]</span>
     <span class="doccomment">/// is returned.</span>
     <span class="doccomment">/// ## `row`</span>
     <span class="doccomment">/// a row index</span>
@@ -569,7 +569,7 @@
         }
     }
 
-    <span class="doccomment">/// Retrieves the spacing set with [`Self::set_row_spacing()`].</span>
+    <span class="doccomment">/// Retrieves the spacing set with [`set_row_spacing()`][Self::set_row_spacing()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -622,7 +622,7 @@
     <span class="doccomment">/// ## `row`</span>
     <span class="doccomment">/// a row index</span>
     <span class="doccomment">/// ## `pos`</span>
-    <span class="doccomment">/// a `GtkBaselinePosition`</span>
+    <span class="doccomment">/// a [`BaselinePosition`][crate::BaselinePosition]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_grid_layout_set_row_baseline_position&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_row_baseline_position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">row</span>: <span class="ident">i32</span>, <span class="ident">pos</span>: <span class="ident">BaselinePosition</span>) {
         <span class="kw">unsafe</span> {
@@ -823,8 +823,8 @@
             .<span class="ident">expect</span>(<span class="string">&quot;Failed to create an instance of GridLayout&quot;</span>)
     }
 
-    <span class="doccomment">/// The row to align to the baseline, when [`crate::Widget:valign`] is set</span>
-    <span class="doccomment">/// to [`crate::Align::Baseline`].</span>
+    <span class="doccomment">/// The row to align to the baseline, when `property::Widget::valign` is set</span>
+    <span class="doccomment">/// to [`Align::Baseline`][crate::Align::Baseline].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">baseline_row</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">baseline_row</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">baseline_row</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">baseline_row</span>);
         <span class="self">self</span>

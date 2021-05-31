@@ -118,15 +118,15 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// The Wayland implementation of `GdkDisplay`.</span>
+    <span class="doccomment">/// The Wayland implementation of [`gdk::Display`][crate::gdk::Display].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Beyond the regular [class`Gdk.Display`] API, the Wayland implementation</span>
+    <span class="doccomment">/// Beyond the regular [`gdk::Display`][crate::gdk::Display] API, the Wayland implementation</span>
     <span class="doccomment">/// provides access to Wayland objects such as the `wl_display` with</span>
-    <span class="doccomment">/// [method``GdkWayland`.WaylandDisplay`.get_wl_display], the `wl_compositor` with</span>
-    <span class="doccomment">/// [method``GdkWayland`.WaylandDisplay`.get_wl_compositor].</span>
+    <span class="doccomment">/// [``wl_display()``][`Self::wl_display()`], the `wl_compositor` with</span>
+    <span class="doccomment">/// [``wl_compositor()``][`Self::wl_compositor()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You can find out what Wayland globals are supported by a display</span>
-    <span class="doccomment">/// with [method``GdkWayland`.WaylandDisplay`.query_registry].</span>
+    <span class="doccomment">/// with [``query_registry()``][`Self::query_registry()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
@@ -197,7 +197,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The startup ID is also what is used to signal that the startup is</span>
     <span class="doccomment">/// complete (for example, when opening a window or when calling</span>
-    <span class="doccomment">/// [method`Gdk.Display`.notify_startup_complete]).</span>
+    <span class="doccomment">/// `Gdk::`Display::notify_startup_complete()``).</span>
     <span class="doccomment">/// ## `startup_id`</span>
     <span class="doccomment">/// the startup notification ID (must be valid utf8)</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_wayland_display_set_startup_notification_id&quot;</span>)]</span>

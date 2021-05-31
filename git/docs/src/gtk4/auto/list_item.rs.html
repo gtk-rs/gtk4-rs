@@ -403,24 +403,24 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkListItem` is used by list widgets to represent items in a `GListModel`.</span>
+    <span class="doccomment">/// [`ListItem`][crate::ListItem] is used by list widgets to represent items in a `GListModel`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GtkListItem`s are managed by the list widget (with its factory)</span>
+    <span class="doccomment">/// The [`ListItem`][crate::ListItem]s are managed by the list widget (with its factory)</span>
     <span class="doccomment">/// and cannot be created by applications, but they need to be populated</span>
-    <span class="doccomment">/// by application code. This is done by calling [method`Gtk.ListItem`.set_child].</span>
+    <span class="doccomment">/// by application code. This is done by calling [``set_child()``][`Self::set_child()`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkListItem`s exist in 2 stages:</span>
+    <span class="doccomment">/// [`ListItem`][crate::ListItem]s exist in 2 stages:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// 1. The unbound stage where the listitem is not currently connected to</span>
-    <span class="doccomment">///  an item in the list. In that case, the [property`Gtk.ListItem`:item]</span>
+    <span class="doccomment">///  an item in the list. In that case, the `property::ListItem::item`</span>
     <span class="doccomment">///  property is set to [`None`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// 2. The bound stage where the listitem references an item from the list.</span>
-    <span class="doccomment">///  The [property`Gtk.ListItem`:item] property is not [`None`].</span>
+    <span class="doccomment">///  The `property::ListItem::item` property is not [`None`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ListItem</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkListItem</span>, <span class="ident">ffi::GtkListItemClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -437,7 +437,7 @@
     }
 
     <span class="doccomment">/// Checks if a list item has been set to be activatable via</span>
-    <span class="doccomment">/// [`Self::set_activatable()`].</span>
+    <span class="doccomment">/// [`set_activatable()`][Self::set_activatable()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -448,7 +448,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_list_item_get_activatable</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Gets the child previously set via [`Self::set_child()`] or</span>
+    <span class="doccomment">/// Gets the child previously set via [`set_child()`][Self::set_child()] or</span>
     <span class="doccomment">/// [`None`] if none was set.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -487,9 +487,9 @@
     }
 
     <span class="doccomment">/// Checks if a list item has been set to be selectable via</span>
-    <span class="doccomment">/// [`Self::set_selectable()`].</span>
+    <span class="doccomment">/// [`set_selectable()`][Self::set_selectable()].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Do not confuse this function with [method`Gtk.ListItem`.get_selected].</span>
+    <span class="doccomment">/// Do not confuse this function with [``is_selected()``][`Self::is_selected()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -517,10 +517,10 @@
     <span class="doccomment">/// Sets `self` to be activatable.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If an item is activatable, double-clicking on the item, using</span>
-    <span class="doccomment">/// the Return key or calling [`crate::prelude::WidgetExt::activate()`] will activate</span>
+    <span class="doccomment">/// the Return key or calling [`WidgetExt::activate()`][crate::prelude::WidgetExt::activate()] will activate</span>
     <span class="doccomment">/// the item. Activating instructs the containing view to handle</span>
-    <span class="doccomment">/// activation. `GtkListView` for example will be emitting the</span>
-    <span class="doccomment">/// [signal`Gtk.ListView`::activate] signal.</span>
+    <span class="doccomment">/// activation. [`ListView`][crate::ListView] for example will be emitting the</span>
+    <span class="doccomment">/// `signal::ListView::activate` signal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// By default, list items are activatable.</span>
     <span class="doccomment">/// ## `activatable`</span>

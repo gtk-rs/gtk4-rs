@@ -156,16 +156,16 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// The Wayland implementation of `GdkToplevel`.</span>
+    <span class="doccomment">/// The Wayland implementation of [`gdk::Toplevel`][crate::gdk::Toplevel].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Beyond the [interface`Gdk.Toplevel`] API, the Wayland implementation</span>
+    <span class="doccomment">/// Beyond the [interface`Gdk`] API, the Wayland implementation</span>
     <span class="doccomment">/// has API to set up cross-process parent-child relationships between</span>
-    <span class="doccomment">/// surfaces with [method``GdkWayland`.WaylandToplevel`.export_handle] and</span>
-    <span class="doccomment">/// [method``GdkWayland`.WaylandToplevel`.set_transient_for_exported].</span>
+    <span class="doccomment">/// surfaces with [``export_handle()``][`Self::export_handle()`] and</span>
+    <span class="doccomment">/// [``set_transient_for_exported()``][`Self::set_transient_for_exported()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::WaylandSurfaceExt`], [`trait@gdk::prelude::SurfaceExt`], [`trait@gdk::prelude::ToplevelExt`]</span>
+    <span class="doccomment">/// [`WaylandSurfaceExt`][trait@crate::prelude::WaylandSurfaceExt], [`trait@gdk::prelude::SurfaceExt`], [`trait@gdk::prelude::ToplevelExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WaylandToplevel</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GdkWaylandToplevel</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">WaylandSurface</span>, <span class="ident">gdk::Surface</span>, @<span class="ident">implements</span> <span class="ident">gdk::Toplevel</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -182,12 +182,12 @@
     <span class="doccomment">/// It is an error to call this function on a surface that is already</span>
     <span class="doccomment">/// exported.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// When the handle is no longer needed, [method``GdkWayland`.WaylandToplevel`.unexport_handle]</span>
+    <span class="doccomment">/// When the handle is no longer needed, [``unexport_handle()``][`Self::unexport_handle()`]</span>
     <span class="doccomment">/// should be called to clean up resources.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The main purpose for obtaining a handle is to mark a surface</span>
     <span class="doccomment">/// from another surface as transient for this one, see</span>
-    <span class="doccomment">/// [method``GdkWayland`.WaylandToplevel`.set_transient_for_exported].</span>
+    <span class="doccomment">/// [``set_transient_for_exported()``][`Self::set_transient_for_exported()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this API depends on an unstable Wayland protocol,</span>
     <span class="doccomment">/// and thus may require changes in the future.</span>
@@ -229,7 +229,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the application id on a `GdkToplevel`.</span>
+    <span class="doccomment">/// Sets the application id on a [`gdk::Toplevel`][crate::gdk::Toplevel].</span>
     <span class="doccomment">/// ## `application_id`</span>
     <span class="doccomment">/// the application id for the `self`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_wayland_toplevel_set_application_id&quot;</span>)]</span>
@@ -246,7 +246,7 @@
     <span class="doccomment">/// `parent_handle_str` refers.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Typically, the handle will originate from a</span>
-    <span class="doccomment">/// [method``GdkWayland`.WaylandToplevel`.export_handle] call in another process.</span>
+    <span class="doccomment">/// [``export_handle()``][`Self::export_handle()`] call in another process.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this API depends on an unstable Wayland protocol,</span>
     <span class="doccomment">/// and thus may require changes in the future.</span>
@@ -268,7 +268,7 @@
     }
 
     <span class="doccomment">/// Destroys the handle that was obtained with</span>
-    <span class="doccomment">/// [`Self::export_handle()`].</span>
+    <span class="doccomment">/// [`export_handle()`][Self::export_handle()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is an error to call this function on a surface that</span>
     <span class="doccomment">/// does not have a handle.</span>

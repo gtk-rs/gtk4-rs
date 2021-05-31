@@ -204,7 +204,7 @@
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// An object to build the uniforms data for a [`crate::GLShader`].</span>
+    <span class="doccomment">/// An object to build the uniforms data for a [`GLShader`][crate::GLShader].</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ShaderArgsBuilder</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GskShaderArgsBuilder</span><span class="op">&gt;</span>);
 
@@ -219,14 +219,14 @@
     <span class="doccomment">/// Allocates a builder that can be used to construct a new uniform data</span>
     <span class="doccomment">/// chunk.</span>
     <span class="doccomment">/// ## `shader`</span>
-    <span class="doccomment">/// a `GskGLShader`</span>
+    <span class="doccomment">/// a [`GLShader`][crate::GLShader]</span>
     <span class="doccomment">/// ## `initial_values`</span>
     <span class="doccomment">/// optional `GBytes` with initial values</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The newly allocated builder, free with</span>
-    <span class="doccomment">///  [method`Gsk.ShaderArgsBuilder`.unref]</span>
+    <span class="doccomment">///  `Gsk::`ShaderArgsBuilder::unref()``</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_shader_args_builder_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">shader</span>: <span class="kw-2">&amp;</span><span class="ident">GLShader</span>, <span class="ident">initial_values</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">glib::Bytes</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ShaderArgsBuilder</span> {
         <span class="macro">skip_assert_initialized!</span>();
@@ -238,7 +238,7 @@
         }
     }
 
-    <span class="doccomment">/// Creates a new [`crate::glib::Bytes`] args from the current state of the</span>
+    <span class="doccomment">/// Creates a new [`glib::Bytes`][crate::glib::Bytes] args from the current state of the</span>
     <span class="doccomment">/// given `self`, and frees the `self` instance.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Any uniforms of the shader that have not been explicitly set</span>
@@ -373,11 +373,11 @@
     <span class="doccomment">/// Any uniforms of the shader that have not been explicitly set on</span>
     <span class="doccomment">/// the `self` are zero-initialized.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The given `GskShaderArgsBuilder` is reset once this function returns;</span>
+    <span class="doccomment">/// The given [`ShaderArgsBuilder`][crate::ShaderArgsBuilder] is reset once this function returns;</span>
     <span class="doccomment">/// you cannot call this function multiple times on the same `self` instance.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is intended primarily for bindings. C code should use</span>
-    <span class="doccomment">/// [method`Gsk.ShaderArgsBuilder`.free_to_args].</span>
+    <span class="doccomment">/// [``free_to_args()``][`Self::free_to_args()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

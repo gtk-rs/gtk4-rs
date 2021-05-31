@@ -320,12 +320,12 @@
     <span class="doccomment">/// are supported.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// As an example, `gtk_list_store_new (3, G_TYPE_INT, G_TYPE_STRING,</span>
-    <span class="doccomment">/// GDK_TYPE_TEXTURE);` will create a new [`crate::ListStore`] with three columns, of type</span>
-    <span class="doccomment">/// int, string and [`crate::gdk::Texture`], respectively.</span>
+    <span class="doccomment">/// GDK_TYPE_TEXTURE);` will create a new [`ListStore`][crate::ListStore] with three columns, of type</span>
+    <span class="doccomment">/// int, string and [`gdk::Texture`][crate::gdk::Texture], respectively.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new [`crate::ListStore`]</span>
+    <span class="doccomment">/// a new [`ListStore`][crate::ListStore]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_newv&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">column_types</span>: <span class="kw-2">&amp;</span>[<span class="ident">Type</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
@@ -344,7 +344,7 @@
 }
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">GtkListStoreExtManual</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// A variant of [`crate::ListStore::insert_with_values()`] which</span>
+    <span class="doccomment">/// A variant of `gtk_list_store_insert_with_values()` which</span>
     <span class="doccomment">/// takes the columns and values as two arrays, instead of</span>
     <span class="doccomment">/// varargs.</span>
     <span class="doccomment">///</span>
@@ -360,7 +360,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// An unset [`crate::TreeIter`] to set to the new row</span>
+    <span class="doccomment">/// An unset [`TreeIter`][crate::TreeIter] to set to the new row</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_insert_with_values&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_insert_with_valuesv&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">insert_with_values</span>(
@@ -394,9 +394,9 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_set_valuesv&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_list_store_set_valist&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">iter</span>: <span class="kw-2">&amp;</span><span class="ident">TreeIter</span>, <span class="ident">columns_and_values</span>: <span class="kw-2">&amp;</span>[(<span class="ident">u32</span>, <span class="kw-2">&amp;</span><span class="kw">dyn</span> <span class="ident">ToValue</span>)]);
-    <span class="doccomment">/// This function is meant primarily for `GObjects` that inherit from [`crate::ListStore`],</span>
-    <span class="doccomment">/// and should only be used when constructing a new [`crate::ListStore`]. It will not</span>
-    <span class="doccomment">/// function after a row has been added, or a method on the [`crate::TreeModel`]</span>
+    <span class="doccomment">/// This function is meant primarily for `GObjects` that inherit from [`ListStore`][crate::ListStore],</span>
+    <span class="doccomment">/// and should only be used when constructing a new [`ListStore`][crate::ListStore]. It will not</span>
+    <span class="doccomment">/// function after a row has been added, or a method on the [`TreeModel`][crate::TreeModel]</span>
     <span class="doccomment">/// interface is called.</span>
     <span class="doccomment">/// ## `types`</span>
     <span class="doccomment">/// An array length n of `GTypes`</span>
@@ -407,7 +407,7 @@
     <span class="doccomment">/// The type of `value` must be convertible to the type of the</span>
     <span class="doccomment">/// column.</span>
     <span class="doccomment">/// ## `iter`</span>
-    <span class="doccomment">/// A valid [`crate::TreeIter`] for the row being modified</span>
+    <span class="doccomment">/// A valid [`TreeIter`][crate::TreeIter] for the row being modified</span>
     <span class="doccomment">/// ## `column`</span>
     <span class="doccomment">/// column number to modify</span>
     <span class="doccomment">/// ## `value`</span>

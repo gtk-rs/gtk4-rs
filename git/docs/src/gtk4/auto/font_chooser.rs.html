@@ -696,16 +696,16 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkFontChooser` is an interface that can be implemented by widgets</span>
+    <span class="doccomment">/// [`FontChooser`][crate::FontChooser] is an interface that can be implemented by widgets</span>
     <span class="doccomment">/// for choosing fonts.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In GTK, the main objects that implement this interface are</span>
-    <span class="doccomment">/// [class`Gtk.FontChooserWidget`], [class`Gtk.FontChooserDialog`] and</span>
-    <span class="doccomment">/// [class`Gtk.FontButton`].</span>
+    <span class="doccomment">/// [`FontChooserWidget`][crate::FontChooserWidget], [`FontChooserDialog`][crate::FontChooserDialog] and</span>
+    <span class="doccomment">/// [`FontButton`][crate::FontButton].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::FontChooserExt`], [`trait@crate::prelude::FontChooserExtManual`]</span>
+    <span class="doccomment">/// [`FontChooserExt`][trait@crate::prelude::FontChooserExt], [`FontChooserExtManual`][trait@crate::prelude::FontChooserExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FontChooser</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GtkFontChooser</span>, <span class="ident">ffi::GtkFontChooserIface</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -719,17 +719,17 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::FontButton`], [`struct@crate::FontChooserDialog`], [`struct@crate::FontChooserWidget`], [`struct@crate::FontChooser`]</span>
+<span class="doccomment">/// [`FontButton`][struct@crate::FontButton], [`FontChooserDialog`][struct@crate::FontChooserDialog], [`FontChooserWidget`][struct@crate::FontChooserWidget], [`FontChooser`][struct@crate::FontChooser]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">FontChooserExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Gets the currently-selected font name.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this can be a different string than what you set with</span>
-    <span class="doccomment">/// [method`Gtk.FontChooser`.set_font], as the font chooser widget may</span>
+    <span class="doccomment">/// [``set_font()``][`Self::set_font()`], as the font chooser widget may</span>
     <span class="doccomment">/// normalize font names and thus return a string with a different</span>
     <span class="doccomment">/// structure. For example, “Helvetica Italic Bold 12” could be</span>
     <span class="doccomment">/// normalized to “Helvetica Bold Italic 12”.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [method`Pango.FontDescription`.equal] if you want to compare two</span>
+    <span class="doccomment">/// Use `Pango::`FontDescription::equal()`` if you want to compare two</span>
     <span class="doccomment">/// font descriptions.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -744,37 +744,37 @@
     <span class="doccomment">/// Gets the currently-selected font.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this can be a different string than what you set with</span>
-    <span class="doccomment">/// [method`Gtk.FontChooser`.set_font], as the font chooser widget may</span>
+    <span class="doccomment">/// [``set_font()``][`Self::set_font()`], as the font chooser widget may</span>
     <span class="doccomment">/// normalize font names and thus return a string with a different</span>
     <span class="doccomment">/// structure. For example, “Helvetica Italic Bold 12” could be</span>
     <span class="doccomment">/// normalized to “Helvetica Bold Italic 12”.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [method`Pango.FontDescription`.equal] if you want to compare two</span>
+    <span class="doccomment">/// Use `Pango::`FontDescription::equal()`` if you want to compare two</span>
     <span class="doccomment">/// font descriptions.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `PangoFontDescription` for the</span>
+    <span class="doccomment">/// A [`pango::FontDescription`][crate::pango::FontDescription] for the</span>
     <span class="doccomment">///  current font, or [`None`] if no font is selected.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_font_chooser_get_font_desc&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_font_desc&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">font_desc</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango::FontDescription</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Gets the `PangoFontFace` representing the selected font group</span>
+    <span class="doccomment">/// Gets the [`pango::FontFace`][crate::pango::FontFace] representing the selected font group</span>
     <span class="doccomment">/// details (i.e. family, slant, weight, width, etc).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the selected font is not installed, returns [`None`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `PangoFontFace` representing the</span>
+    <span class="doccomment">/// A [`pango::FontFace`][crate::pango::FontFace] representing the</span>
     <span class="doccomment">///  selected font group details, or [`None`]. The returned object is owned by</span>
     <span class="doccomment">///  `self` and must not be modified or freed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_font_chooser_get_font_face&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_font_face&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">font_face</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango::FontFace</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Gets the `PangoFontFamily` representing the selected font family.</span>
+    <span class="doccomment">/// Gets the [`pango::FontFamily`][crate::pango::FontFamily] representing the selected font family.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Font families are a collection of font faces.</span>
     <span class="doccomment">///</span>
@@ -782,7 +782,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `PangoFontFamily` representing the</span>
+    <span class="doccomment">/// A [`pango::FontFamily`][crate::pango::FontFamily] representing the</span>
     <span class="doccomment">///  selected font family, or [`None`]. The returned object is owned by `self`</span>
     <span class="doccomment">///  and must not be modified or freed.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_font_chooser_get_font_family&quot;</span>)]</span>
@@ -803,7 +803,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `PangoFontMap`, or [`None`]</span>
+    <span class="doccomment">/// a [`pango::FontMap`][crate::pango::FontMap], or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_font_chooser_get_font_map&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_font_map&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">font_map</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">pango::FontMap</span><span class="op">&gt;</span>;
@@ -872,7 +872,7 @@
 
     <span class="doccomment">/// Sets the currently-selected font from `font_desc`.</span>
     <span class="doccomment">/// ## `font_desc`</span>
-    <span class="doccomment">/// a `PangoFontDescription`</span>
+    <span class="doccomment">/// a [`pango::FontDescription`][crate::pango::FontDescription]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_font_chooser_set_font_desc&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_font_desc</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">font_desc</span>: <span class="kw-2">&amp;</span><span class="ident">pango::FontDescription</span>);
 
@@ -902,7 +902,7 @@
     <span class="doccomment">/// pango_context_set_font_map (context, fontmap);</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">/// ## `fontmap`</span>
-    <span class="doccomment">/// a `PangoFontMap`</span>
+    <span class="doccomment">/// a [`pango::FontMap`][crate::pango::FontMap]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_font_chooser_set_font_map&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_font_map</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">pango::FontMap</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">fontmap</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>);
 

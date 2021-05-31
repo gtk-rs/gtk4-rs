@@ -85,7 +85,7 @@
 <span class="kw">use</span> <span class="ident">glib</span>::{<span class="ident">IsA</span>, <span class="ident">Object</span>, <span class="ident">Value</span>};
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A `GObject` value in a `GtkExpression`.</span>
+    <span class="doccomment">/// A `GObject` value in a [`Expression`][crate::Expression].</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ObjectExpression</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GtkObjectExpression</span><span class="op">&gt;</span>);
 
@@ -108,13 +108,13 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This expression is meant to break reference cycles.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If you want to keep a reference to `object`, use [ctor`Gtk.ConstantExpression`.new].</span>
+    <span class="doccomment">/// If you want to keep a reference to `object`, use [``ConstantExpression::new()``][crate::`ConstantExpression::new()`].</span>
     <span class="doccomment">/// ## `object`</span>
     <span class="doccomment">/// object to watch</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkExpression`</span>
+    <span class="doccomment">/// a new [`Expression`][crate::Expression]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_object_expression_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Object</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">object</span>: <span class="kw-2">&amp;</span><span class="ident">T</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">assert_initialized_main_thread!</span>();

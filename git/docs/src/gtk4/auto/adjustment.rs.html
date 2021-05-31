@@ -708,21 +708,21 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkAdjustment` is a model for a numeric value.</span>
+    <span class="doccomment">/// [`Adjustment`][crate::Adjustment] is a model for a numeric value.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The `GtkAdjustment has an associated lower and upper bound.</span>
     <span class="doccomment">/// It also contains step and page increments, and a page size.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Adjustments are used within several GTK widgets, including</span>
-    <span class="doccomment">/// [class@Gtk.SpinButton], [class@Gtk.Viewport], [class@Gtk.Scrollbar]</span>
-    <span class="doccomment">/// and [class@Gtk.Scale].</span>
+    <span class="doccomment">/// [`SpinButton`][crate::SpinButton], [`Viewport`][crate::Viewport], [`Scrollbar`][crate::Scrollbar]</span>
+    <span class="doccomment">/// and [`Scale`][crate::Scale].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The ``Adjustment`` object does not update the value itself. Instead</span>
-    <span class="doccomment">/// it is left up to the owner of the ``Adjustment`` to control the value.</span>
+    <span class="doccomment">/// The [`Adjustment`][crate::Adjustment] object does not update the value itself. Instead</span>
+    <span class="doccomment">/// it is left up to the owner of the [`Adjustment`][crate::Adjustment] to control the value.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::AdjustmentExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`AdjustmentExt`][trait@crate::prelude::AdjustmentExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Adjustment</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkAdjustment</span>, <span class="ident">ffi::GtkAdjustmentClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -731,7 +731,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Adjustment</span> {
-    <span class="doccomment">/// Creates a new `GtkAdjustment`.</span>
+    <span class="doccomment">/// Creates a new [`Adjustment`][crate::Adjustment].</span>
     <span class="doccomment">/// ## `value`</span>
     <span class="doccomment">/// the initial value</span>
     <span class="doccomment">/// ## `lower`</span>
@@ -747,7 +747,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkAdjustment`</span>
+    <span class="doccomment">/// a new [`Adjustment`][crate::Adjustment]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_adjustment_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
         <span class="ident">value</span>: <span class="ident">f64</span>,
@@ -839,7 +839,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the page-size is irrelevant and should be set to zero</span>
     <span class="doccomment">/// if the adjustment is used for a simple scalar value, e.g. in a</span>
-    <span class="doccomment">/// `GtkSpinButton`.</span>
+    <span class="doccomment">/// [`SpinButton`][crate::SpinButton].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">page_size</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">page_size</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">page_size</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">page_size</span>);
         <span class="self">self</span>
@@ -873,7 +873,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::Adjustment`]</span>
+<span class="doccomment">/// [`Adjustment`][struct@crate::Adjustment]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">AdjustmentExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Updates the value property to ensure that the range</span>
     <span class="doccomment">/// between `lower` and `upper` is in the current page.</span>
@@ -882,7 +882,7 @@
     <span class="doccomment">/// If the range is larger than the page size, then only the</span>
     <span class="doccomment">/// start of it will be in the current page.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A [signal`Gtk.Adjustment`::value-changed] signal will be emitted</span>
+    <span class="doccomment">/// A `signal::Adjustment::value-changed` signal will be emitted</span>
     <span class="doccomment">/// if the value is changed.</span>
     <span class="doccomment">/// ## `lower`</span>
     <span class="doccomment">/// the lower value</span>
@@ -894,10 +894,10 @@
     <span class="doccomment">/// Sets all properties of the adjustment at once.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Use this function to avoid multiple emissions of the</span>
-    <span class="doccomment">/// [signal`Gtk.Adjustment`::changed] signal. See</span>
-    <span class="doccomment">/// [method`Gtk.Adjustment`.set_lower] for an alternative</span>
+    <span class="doccomment">/// `signal::Adjustment::changed` signal. See</span>
+    <span class="doccomment">/// [``set_lower()``][`Self::set_lower()`] for an alternative</span>
     <span class="doccomment">/// way of compressing multiple emissions of</span>
-    <span class="doccomment">/// [signal`Gtk.Adjustment`::changed] into one.</span>
+    <span class="doccomment">/// `signal::Adjustment::changed` into one.</span>
     <span class="doccomment">/// ## `value`</span>
     <span class="doccomment">/// the new value</span>
     <span class="doccomment">/// ## `lower`</span>
@@ -987,16 +987,16 @@
     <span class="doccomment">/// Sets the minimum value of the adjustment.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When setting multiple adjustment properties via their individual</span>
-    <span class="doccomment">/// setters, multiple [signal`Gtk.Adjustment`::changed] signals will</span>
+    <span class="doccomment">/// setters, multiple `signal::Adjustment::changed` signals will</span>
     <span class="doccomment">/// be emitted. However, since the emission of the</span>
-    <span class="doccomment">/// [signal`Gtk.Adjustment`::changed] signal is tied to the emission</span>
+    <span class="doccomment">/// `signal::Adjustment::changed` signal is tied to the emission</span>
     <span class="doccomment">/// of the ::notify signals of the changed properties, it’s possible</span>
-    <span class="doccomment">/// to compress the [signal`Gtk.Adjustment`::changed] signals into one</span>
-    <span class="doccomment">/// by calling [`crate::glib::object::Object::freeze_notify()`] and [`crate::glib::object::Object::thaw_notify()`]</span>
+    <span class="doccomment">/// to compress the `signal::Adjustment::changed` signals into one</span>
+    <span class="doccomment">/// by calling `g_object_freeze_notify()` and `g_object_thaw_notify()`</span>
     <span class="doccomment">/// around the calls to the individual setters.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Alternatively, using a single [`crate::glib::object::Object::set()`] for all the properties</span>
-    <span class="doccomment">/// to change, or using [method`Gtk.Adjustment`.configure] has the same effect.</span>
+    <span class="doccomment">/// Alternatively, using a single `g_object_set()` for all the properties</span>
+    <span class="doccomment">/// to change, or using [``configure()``][`Self::configure()`] has the same effect.</span>
     <span class="doccomment">/// ## `lower`</span>
     <span class="doccomment">/// the new minimum value</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_adjustment_set_lower&quot;</span>)]</span>
@@ -1004,8 +1004,8 @@
 
     <span class="doccomment">/// Sets the page increment of the adjustment.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.Adjustment`.set_lower] about how to compress</span>
-    <span class="doccomment">/// multiple emissions of the [signal`Gtk.Adjustment`::changed]</span>
+    <span class="doccomment">/// See [``set_lower()``][`Self::set_lower()`] about how to compress</span>
+    <span class="doccomment">/// multiple emissions of the `signal::Adjustment::changed`</span>
     <span class="doccomment">/// signal when setting multiple adjustment properties.</span>
     <span class="doccomment">/// ## `page_increment`</span>
     <span class="doccomment">/// the new page increment</span>
@@ -1014,8 +1014,8 @@
 
     <span class="doccomment">/// Sets the page size of the adjustment.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.Adjustment`.set_lower] about how to compress</span>
-    <span class="doccomment">/// multiple emissions of the [signal`Gtk.Adjustment`::changed]</span>
+    <span class="doccomment">/// See [``set_lower()``][`Self::set_lower()`] about how to compress</span>
+    <span class="doccomment">/// multiple emissions of the `signal::Adjustment::changed`</span>
     <span class="doccomment">/// signal when setting multiple adjustment properties.</span>
     <span class="doccomment">/// ## `page_size`</span>
     <span class="doccomment">/// the new page size</span>
@@ -1024,8 +1024,8 @@
 
     <span class="doccomment">/// Sets the step increment of the adjustment.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.Adjustment`.set_lower] about how to compress</span>
-    <span class="doccomment">/// multiple emissions of the [signal`Gtk.Adjustment`::changed]</span>
+    <span class="doccomment">/// See [``set_lower()``][`Self::set_lower()`] about how to compress</span>
+    <span class="doccomment">/// multiple emissions of the `signal::Adjustment::changed`</span>
     <span class="doccomment">/// signal when setting multiple adjustment properties.</span>
     <span class="doccomment">/// ## `step_increment`</span>
     <span class="doccomment">/// the new step increment</span>
@@ -1037,33 +1037,33 @@
     <span class="doccomment">/// Note that values will be restricted by `upper - page-size`</span>
     <span class="doccomment">/// if the page-size property is nonzero.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.Adjustment`.set_lower] about how to compress</span>
-    <span class="doccomment">/// multiple emissions of the [signal`Gtk.Adjustment`::changed]</span>
+    <span class="doccomment">/// See [``set_lower()``][`Self::set_lower()`] about how to compress</span>
+    <span class="doccomment">/// multiple emissions of the `signal::Adjustment::changed`</span>
     <span class="doccomment">/// signal when setting multiple adjustment properties.</span>
     <span class="doccomment">/// ## `upper`</span>
     <span class="doccomment">/// the new maximum value</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_adjustment_set_upper&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_upper</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">upper</span>: <span class="ident">f64</span>);
 
-    <span class="doccomment">/// Sets the `GtkAdjustment` value.</span>
+    <span class="doccomment">/// Sets the [`Adjustment`][crate::Adjustment] value.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The value is clamped to lie between [property`Gtk.Adjustment`:lower]</span>
-    <span class="doccomment">/// and [property`Gtk.Adjustment`:upper].</span>
+    <span class="doccomment">/// The value is clamped to lie between `property::Adjustment::lower`</span>
+    <span class="doccomment">/// and `property::Adjustment::upper`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that for adjustments which are used in a `GtkScrollbar`,</span>
+    <span class="doccomment">/// Note that for adjustments which are used in a [`Scrollbar`][crate::Scrollbar],</span>
     <span class="doccomment">/// the effective range of allowed values goes from</span>
-    <span class="doccomment">/// [property`Gtk.Adjustment`:lower] to</span>
-    <span class="doccomment">/// [property`Gtk.Adjustment`:upper] - [property`Gtk.Adjustment`:page-size].</span>
+    <span class="doccomment">/// `property::Adjustment::lower` to</span>
+    <span class="doccomment">/// `property::Adjustment::upper` - `property::Adjustment::page-size`.</span>
     <span class="doccomment">/// ## `value`</span>
     <span class="doccomment">/// the new value</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_adjustment_set_value&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">value</span>: <span class="ident">f64</span>);
 
-    <span class="doccomment">/// Emitted when one or more of the `GtkAdjustment` properties have been</span>
+    <span class="doccomment">/// Emitted when one or more of the [`Adjustment`][crate::Adjustment] properties have been</span>
     <span class="doccomment">/// changed.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that the [property`Gtk.Adjustment`:value] property is</span>
-    <span class="doccomment">/// covered by the [signal`Gtk.Adjustment`::value-changed] signal.</span>
+    <span class="doccomment">/// Note that the `property::Adjustment::value` property is</span>
+    <span class="doccomment">/// covered by the `signal::Adjustment::value-changed` signal.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;changed&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_changed</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;
 

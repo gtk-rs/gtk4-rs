@@ -267,12 +267,12 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkEventControllerKey` is an event controller that provides access</span>
+    <span class="doccomment">/// [`EventControllerKey`][crate::EventControllerKey] is an event controller that provides access</span>
     <span class="doccomment">/// to key events.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::EventControllerExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`EventControllerExt`][trait@crate::prelude::EventControllerExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EventControllerKey</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkEventControllerKey</span>, <span class="ident">ffi::GtkEventControllerKeyClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -285,7 +285,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkEventControllerKey`</span>
+    <span class="doccomment">/// a new [`EventControllerKey`][crate::EventControllerKey]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_event_controller_key_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EventControllerKey</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -304,11 +304,11 @@
     <span class="doccomment">/// Forwards the current event of this `self` to a `widget`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function can only be used in handlers for the</span>
-    <span class="doccomment">/// [signal`Gtk.EventControllerKey`::key-pressed],</span>
-    <span class="doccomment">/// [signal`Gtk.EventControllerKey`::key-released]</span>
-    <span class="doccomment">/// or [signal`Gtk.EventControllerKey`::modifiers] signals.</span>
+    <span class="doccomment">/// `signal::EventControllerKey::key-pressed`,</span>
+    <span class="doccomment">/// `signal::EventControllerKey::key-released`</span>
+    <span class="doccomment">/// or `signal::EventControllerKey::modifiers` signals.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// a `GtkWidget`</span>
+    <span class="doccomment">/// a [`Widget`][crate::Widget]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -325,7 +325,7 @@
 
     <span class="doccomment">/// Gets the key group of the current event of this `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gdk.KeyEvent`.get_layout].</span>
+    <span class="doccomment">/// See `Gdk::`KeyEvent::get_layout()``.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -340,7 +340,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the `GtkIMContext`</span>
+    <span class="doccomment">/// the [`IMContext`][crate::IMContext]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_event_controller_key_get_im_context&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_im_context&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">im_context</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span> {
@@ -353,7 +353,7 @@
 
     <span class="doccomment">/// Sets the input method context of the key `self`.</span>
     <span class="doccomment">/// ## `im_context`</span>
-    <span class="doccomment">/// a `GtkIMContext`</span>
+    <span class="doccomment">/// a [`IMContext`][crate::IMContext]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_event_controller_key_set_im_context&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_im_context</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">IMContext</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">im_context</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
         <span class="kw">unsafe</span> {
@@ -367,8 +367,8 @@
     <span class="doccomment">/// Emitted whenever the input method context filters away</span>
     <span class="doccomment">/// a keypress and prevents the `controller` receiving it.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.EventControllerKey`.set_im_context] and</span>
-    <span class="doccomment">/// [method`Gtk.IMContext`.filter_keypress].</span>
+    <span class="doccomment">/// See [``set_im_context()``][`Self::set_im_context()`] and</span>
+    <span class="doccomment">/// [``IMContextExtManual::filter_keypress()``][crate::prelude::`IMContextExtManual::filter_keypress()`].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;im-update&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_im_update</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">im_update_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">EventControllerKey</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(

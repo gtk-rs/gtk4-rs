@@ -112,13 +112,13 @@
     <span class="doccomment">/// If `match_func` is [`None`], the filter matches all items.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the filter func changes its filtering behavior,</span>
-    <span class="doccomment">/// [`crate::prelude::FilterExt::changed()`] needs to be called.</span>
+    <span class="doccomment">/// [`FilterExt::changed()`][crate::prelude::FilterExt::changed()] needs to be called.</span>
     <span class="doccomment">/// ## `match_func`</span>
     <span class="doccomment">/// function to filter items</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkCustomFilter`</span>
+    <span class="doccomment">/// a new [`CustomFilter`][crate::CustomFilter]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_custom_filter_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="ident">filter_func</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>
     <span class="kw">where</span>
@@ -139,7 +139,7 @@
     <span class="doccomment">/// If `match_func` is [`None`], the filter matches all items.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the filter func changes its filtering behavior,</span>
-    <span class="doccomment">/// [`crate::prelude::FilterExt::changed()`] needs to be called.</span>
+    <span class="doccomment">/// [`FilterExt::changed()`][crate::prelude::FilterExt::changed()] needs to be called.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If a previous function was set, its `user_destroy` will be</span>
     <span class="doccomment">/// called now.</span>

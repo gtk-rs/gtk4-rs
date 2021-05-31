@@ -85,7 +85,7 @@
 <span class="kw">use</span> <span class="ident">std</span>::{<span class="ident">slice</span>, <span class="ident">str</span>};
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TextBufferExtManual</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Emitted to insert text in a `GtkTextBuffer`.</span>
+    <span class="doccomment">/// Emitted to insert text in a [`TextBuffer`][crate::TextBuffer].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Insertion actually occurs in the default handler.</span>
     <span class="doccomment">///</span>
@@ -95,7 +95,7 @@
     <span class="doccomment">/// it to point to the end of the inserted text.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// See also: [method`Gtk`,TextBuffer.insert],</span>
-    <span class="doccomment">/// [method`Gtk.TextBuffer`.insert_range].</span>
+    <span class="doccomment">/// [``TextBufferExt::insert_range()``][crate::prelude::`TextBufferExt::insert_range()`].</span>
     <span class="doccomment">/// ## `location`</span>
     <span class="doccomment">/// position to insert `text` in `textbuffer`</span>
     <span class="doccomment">/// ## `text`</span>

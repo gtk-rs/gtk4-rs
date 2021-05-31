@@ -250,23 +250,23 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// The `GtkActionable` interface provides a convenient way of asscociating</span>
+    <span class="doccomment">/// The [`Actionable`][crate::Actionable] interface provides a convenient way of asscociating</span>
     <span class="doccomment">/// widgets with actions.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// It primarily consists of two properties: [property`Gtk.Actionable`:action-name]</span>
-    <span class="doccomment">/// and [property`Gtk.Actionable`:action-target]. There are also some convenience</span>
+    <span class="doccomment">/// It primarily consists of two properties: `property::Actionable::action-name`</span>
+    <span class="doccomment">/// and `property::Actionable::action-target`. There are also some convenience</span>
     <span class="doccomment">/// APIs for setting these properties.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The action will be looked up in action groups that are found among</span>
     <span class="doccomment">/// the widgets ancestors. Most commonly, these will be the actions with</span>
     <span class="doccomment">/// the “win.” or “app.” prefix that are associated with the</span>
-    <span class="doccomment">/// `GtkApplicationWindow` or `GtkApplication`, but other action groups that</span>
-    <span class="doccomment">/// are added with [method`Gtk.Widget`.insert_action_group] will be consulted</span>
+    <span class="doccomment">/// [`ApplicationWindow`][crate::ApplicationWindow] or [`Application`][crate::Application], but other action groups that</span>
+    <span class="doccomment">/// are added with [``WidgetExt::insert_action_group()``][crate::prelude::`WidgetExt::insert_action_group()`] will be consulted</span>
     <span class="doccomment">/// as well.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::ActionableExt`], [`trait@crate::prelude::WidgetExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::AccessibleExt`], [`trait@crate::prelude::BuildableExt`], [`trait@crate::prelude::ConstraintTargetExt`], [`trait@crate::prelude::ActionableExtManual`], [`trait@crate::prelude::WidgetExtManual`], [`trait@crate::prelude::AccessibleExtManual`]</span>
+    <span class="doccomment">/// [`ActionableExt`][trait@crate::prelude::ActionableExt], [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`ActionableExtManual`][trait@crate::prelude::ActionableExtManual], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Actionable</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GtkActionable</span>, <span class="ident">ffi::GtkActionableInterface</span><span class="op">&gt;</span>) @<span class="ident">requires</span> <span class="ident">Widget</span>, <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -280,7 +280,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::Actionable`], [`struct@crate::Button`], [`struct@crate::CheckButton`], [`struct@crate::LinkButton`], [`struct@crate::ListBoxRow`], [`struct@crate::LockButton`], [`struct@crate::Switch`], [`struct@crate::ToggleButton`]</span>
+<span class="doccomment">/// [`Actionable`][struct@crate::Actionable], [`Button`][struct@crate::Button], [`CheckButton`][struct@crate::CheckButton], [`LinkButton`][struct@crate::LinkButton], [`ListBoxRow`][struct@crate::ListBoxRow], [`LockButton`][struct@crate::LockButton], [`Switch`][struct@crate::Switch], [`ToggleButton`][struct@crate::ToggleButton]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ActionableExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Gets the action name for `self`.</span>
     <span class="doccomment">///</span>
@@ -307,10 +307,10 @@
     <span class="doccomment">/// any previous action.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Usually this function is used when the widget is located (or will be</span>
-    <span class="doccomment">/// located) within the hierarchy of a `GtkApplicationWindow`.</span>
+    <span class="doccomment">/// located) within the hierarchy of a [`ApplicationWindow`][crate::ApplicationWindow].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Names are of the form “win.save” or “app.quit” for actions on the</span>
-    <span class="doccomment">/// containing `GtkApplicationWindow` or its associated `GtkApplication`,</span>
+    <span class="doccomment">/// containing [`ApplicationWindow`][crate::ApplicationWindow] or its associated [`Application`][crate::Application],</span>
     <span class="doccomment">/// respectively. This is the same form used for actions in the `GMenu`</span>
     <span class="doccomment">/// associated with the window.</span>
     <span class="doccomment">/// ## `action_name`</span>
@@ -323,7 +323,7 @@
     <span class="doccomment">/// If `target_value` is [`None`] then the target value is unset.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The target value has two purposes. First, it is used as the parameter</span>
-    <span class="doccomment">/// to activation of the action associated with the `GtkActionable` widget.</span>
+    <span class="doccomment">/// to activation of the action associated with the [`Actionable`][crate::Actionable] widget.</span>
     <span class="doccomment">/// Second, it is used to determine if the widget should be rendered as</span>
     <span class="doccomment">/// “active” — the widget is active if the state is equal to the given target.</span>
     <span class="doccomment">///</span>
@@ -337,7 +337,7 @@
     <span class="doccomment">/// be rendered as active (and the other buttons, with different targets,</span>
     <span class="doccomment">/// rendered inactive).</span>
     <span class="doccomment">/// ## `target_value`</span>
-    <span class="doccomment">/// a [`crate::glib::Variant`] to set as the target value, or [`None`]</span>
+    <span class="doccomment">/// a [`glib::Variant`][crate::glib::Variant] to set as the target value, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_actionable_set_action_target_value&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_action_target_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">target_value</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">glib::Variant</span><span class="op">&gt;</span>);
 
@@ -345,7 +345,7 @@
     <span class="doccomment">/// actionable widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// `detailed_action_name` is a string in the format accepted by</span>
-    <span class="doccomment">/// [`crate::gio::Action::parse_detailed_name()`].</span>
+    <span class="doccomment">/// [`gio::Action::parse_detailed_name()`][crate::gio::Action::parse_detailed_name()].</span>
     <span class="doccomment">/// ## `detailed_action_name`</span>
     <span class="doccomment">/// the detailed action name</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_actionable_set_detailed_action_name&quot;</span>)]</span>

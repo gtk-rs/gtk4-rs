@@ -193,17 +193,17 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A `GdkPopup` is a surface that is attached to another surface.</span>
+    <span class="doccomment">/// A [`Popup`][crate::Popup] is a surface that is attached to another surface.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GdkPopup` is positioned relative to its parent surface.</span>
+    <span class="doccomment">/// The [`Popup`][crate::Popup] is positioned relative to its parent surface.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GdkPopup`s are typically used to implement menus and similar popups.</span>
-    <span class="doccomment">/// They can be modal, which is indicated by the [property[`crate::Popup:autohide`] (XXX: @-reference does not belong to Popup!)]</span>
+    <span class="doccomment">/// [`Popup`][crate::Popup]s are typically used to implement menus and similar popups.</span>
+    <span class="doccomment">/// They can be modal, which is indicated by the `property::GdkPopup::autohide`</span>
     <span class="doccomment">/// property.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::PopupExt`], [`trait@crate::prelude::SurfaceExt`], [`trait@crate::prelude::SurfaceExtManual`]</span>
+    <span class="doccomment">/// [`PopupExt`][trait@crate::prelude::PopupExt], [`SurfaceExt`][trait@crate::prelude::SurfaceExt], [`SurfaceExtManual`][trait@crate::prelude::SurfaceExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Popup</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GdkPopup</span>, <span class="ident">ffi::GdkPopupInterface</span><span class="op">&gt;</span>) @<span class="ident">requires</span> <span class="ident">Surface</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -217,7 +217,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::Popup`]</span>
+<span class="doccomment">/// [`Popup`][struct@crate::Popup]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">PopupExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Returns whether this popup is set to hide on outside clicks.</span>
     <span class="doccomment">///</span>
@@ -257,8 +257,8 @@
 
     <span class="doccomment">/// Gets the current popup rectangle anchor.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The value returned may change after calling [method`Gdk.Popup`.present],</span>
-    <span class="doccomment">/// or after the [signal`Gdk.Surface`::layout] signal is emitted.</span>
+    <span class="doccomment">/// The value returned may change after calling [``present()``][`Self::present()`],</span>
+    <span class="doccomment">/// or after the `signal::Surface::layout` signal is emitted.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -269,8 +269,8 @@
 
     <span class="doccomment">/// Gets the current popup surface anchor.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The value returned may change after calling [method`Gdk.Popup`.present],</span>
-    <span class="doccomment">/// or after the [signal`Gdk.Surface`::layout] signal is emitted.</span>
+    <span class="doccomment">/// The value returned may change after calling [``present()``][`Self::present()`],</span>
+    <span class="doccomment">/// or after the `signal::Surface::layout` signal is emitted.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -279,27 +279,27 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_surface_anchor&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">surface_anchor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Gravity</span>;
 
-    <span class="doccomment">/// Present `self` after having processed the [`crate::PopupLayout`] rules.</span>
+    <span class="doccomment">/// Present `self` after having processed the [`PopupLayout`][crate::PopupLayout] rules.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the popup was previously now showing, it will be showed,</span>
     <span class="doccomment">/// otherwise it will change position according to `layout`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// After calling this function, the result should be handled in response</span>
-    <span class="doccomment">/// to the [signal[`crate::Surface::layout`] (XXX: @-reference does not belong to PopupExt!)] signal being emitted. The resulting</span>
-    <span class="doccomment">/// popup position can be queried using [method`Gdk.Popup`.get_position_x],</span>
-    <span class="doccomment">/// [method`Gdk.Popup`.get_position_y], and the resulting size will be sent as</span>
-    <span class="doccomment">/// parameters in the layout signal. Use [method`Gdk.Popup`.get_rect_anchor]</span>
-    <span class="doccomment">/// and [method`Gdk.Popup`.get_surface_anchor] to get the resulting anchors.</span>
+    <span class="doccomment">/// to the `signal::GdkSurface::layout` signal being emitted. The resulting</span>
+    <span class="doccomment">/// popup position can be queried using [``position_x()``][`Self::position_x()`],</span>
+    <span class="doccomment">/// [``position_y()``][`Self::position_y()`], and the resulting size will be sent as</span>
+    <span class="doccomment">/// parameters in the layout signal. Use [``rect_anchor()``][`Self::rect_anchor()`]</span>
+    <span class="doccomment">/// and [``surface_anchor()``][`Self::surface_anchor()`] to get the resulting anchors.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Presenting may fail, for example if the `self` is set to autohide</span>
     <span class="doccomment">/// and is immediately hidden upon being presented. If presenting failed,</span>
-    <span class="doccomment">/// the [signal`Gdk.Surface`::layout] signal will not me emitted.</span>
+    <span class="doccomment">/// the `signal::Surface::layout` signal will not me emitted.</span>
     <span class="doccomment">/// ## `width`</span>
     <span class="doccomment">/// the unconstrained popup width to layout</span>
     <span class="doccomment">/// ## `height`</span>
     <span class="doccomment">/// the unconstrained popup height to layout</span>
     <span class="doccomment">/// ## `layout`</span>
-    <span class="doccomment">/// the `GdkPopupLayout` object used to layout</span>
+    <span class="doccomment">/// the [`PopupLayout`][crate::PopupLayout] object used to layout</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

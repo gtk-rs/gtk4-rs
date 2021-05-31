@@ -273,12 +273,12 @@
 <span class="doccomment">/// A rectangular region with rounded corners.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Application code should normalize rectangles using</span>
-<span class="doccomment">/// [method`Gsk.RoundedRect`.normalize]; this function will ensure that</span>
+<span class="doccomment">/// [``normalize()``][`Self::normalize()`]; this function will ensure that</span>
 <span class="doccomment">/// the bounds of the rectangle are normalized and ensure that the corner</span>
 <span class="doccomment">/// values are positive and the corners do not overlap.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// All functions taking a `GskRoundedRect` as an argument will internally</span>
-<span class="doccomment">/// operate on a normalized copy; all functions returning a `GskRoundedRect`</span>
+<span class="doccomment">/// All functions taking a [`RoundedRect`][crate::RoundedRect] as an argument will internally</span>
+<span class="doccomment">/// operate on a normalized copy; all functions returning a [`RoundedRect`][crate::RoundedRect]</span>
 <span class="doccomment">/// will always return a normalized one.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// The algorithm used for normalizing corner sizes is described in</span>
@@ -326,9 +326,9 @@
         }
     }
 
-    <span class="doccomment">/// Initializes the given `GskRoundedRect` with the given values.</span>
+    <span class="doccomment">/// Initializes the given [`RoundedRect`][crate::RoundedRect] with the given values.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This function will implicitly normalize the `GskRoundedRect`</span>
+    <span class="doccomment">/// This function will implicitly normalize the [`RoundedRect`][crate::RoundedRect]</span>
     <span class="doccomment">/// before returning.</span>
     <span class="doccomment">/// ## `bounds`</span>
     <span class="doccomment">/// a `graphene_rect_t` describing the bounds</span>
@@ -435,7 +435,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the resized `GskRoundedRect`</span>
+    <span class="doccomment">/// the resized [`RoundedRect`][crate::RoundedRect]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_rounded_rect_shrink&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">shrink</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">top</span>: <span class="ident">f32</span>, <span class="ident">right</span>: <span class="ident">f32</span>, <span class="ident">bottom</span>: <span class="ident">f32</span>, <span class="ident">left</span>: <span class="ident">f32</span>) {
         <span class="kw">unsafe</span> {
@@ -446,8 +446,8 @@
     <span class="doccomment">/// Checks if all corners of `self` are right angles and the</span>
     <span class="doccomment">/// rectangle covers all of its bounds.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This information can be used to decide if [ctor`Gsk.ClipNode`.new]</span>
-    <span class="doccomment">/// or [ctor`Gsk.RoundedClipNode`.new] should be called.</span>
+    <span class="doccomment">/// This information can be used to decide if [``ClipNode::new()``][crate::`ClipNode::new()`]</span>
+    <span class="doccomment">/// or [``RoundedClipNode::new()``][crate::`RoundedClipNode::new()`] should be called.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

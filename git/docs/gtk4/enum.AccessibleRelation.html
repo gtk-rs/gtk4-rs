@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="The possible accessible relations of a `GtkAccessible`."><meta name="keywords" content="rust, rustlang, rust-lang, AccessibleRelation"><title>AccessibleRelation in gtk4 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings"></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="The possible accessible relations of a [`Accessible`][crate::Accessible]."><meta name="keywords" content="rust, rustlang, rust-lang, AccessibleRelation"><title>AccessibleRelation in gtk4 - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings"></script><script src="../storage.js"></script><script src="../crates.js"></script><noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../favicon-16x16.png">
 <link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc enum"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 
@@ -24,7 +24,7 @@ pub enum AccessibleRelation {
     RowSpan,
     SetSize,
     // some variants omitted
-</details>}</pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>The possible accessible relations of a <code>GtkAccessible</code>.</p>
+</details>}</pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>The possible accessible relations of a <a href="struct.Accessible.html" title="crate::Accessible"><code>Accessible</code></a>.</p>
 <p>Accessible relations can be references to other widgets,
 integers or strings.</p>
 </div></details><h2 id="variants" class="variants small-section-header">
@@ -38,7 +38,7 @@ in a table, grid, or treegrid. Value type: integer</p>
 position with respect to the total number of columns within a table,
 grid, or treegrid. Value type: integer</p>
 </div><div id="variant.ColIndexText" class="variant small-section-header"><a href="#variant.ColIndexText" class="anchor field"></a><code>ColIndexText</code></div><div class="docblock"><p>Defines a human readable text
-alternative of <a href="enum.AccessibleRelation.html#variant.ColIndex" title="Self::ColIndex"><code>Self::ColIndex</code></a>. Value type: string</p>
+alternative of <a href="enum.AccessibleRelation.html#variant.ColIndex" title="Self::ColIndex"><code>ColIndex</code></a>. Value type: string</p>
 </div><div id="variant.ColSpan" class="variant small-section-header"><a href="#variant.ColSpan" class="anchor field"></a><code>ColSpan</code></div><div class="docblock"><p>Defines the number of columns spanned
 by a cell or gridcell within a table, grid, or treegrid. Value type: integer</p>
 </div><div id="variant.Controls" class="variant small-section-header"><a href="#variant.Controls" class="anchor field"></a><code>Controls</code></div><div class="docblock"><p>Identifies the element (or elements) whose

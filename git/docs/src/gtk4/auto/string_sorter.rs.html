@@ -197,18 +197,18 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkStringSorter` is a `GtkSorter` that compares strings.</span>
+    <span class="doccomment">/// [`StringSorter`][crate::StringSorter] is a [`Sorter`][crate::Sorter] that compares strings.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It does the comparison in a linguistically correct way using the</span>
     <span class="doccomment">/// current locale by normalizing Unicode strings and possibly case-folding</span>
     <span class="doccomment">/// them before performing the comparison.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To obtain the strings to compare, this sorter evaluates a</span>
-    <span class="doccomment">/// [class`Gtk.Expression`].</span>
+    <span class="doccomment">/// [`Expression`][crate::Expression].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::SorterExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`SorterExt`][trait@crate::prelude::SorterExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StringSorter</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkStringSorter</span>, <span class="ident">ffi::GtkStringSorterClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Sorter</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -228,7 +228,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GtkExpression`, or [`None`]</span>
+    <span class="doccomment">/// a [`Expression`][crate::Expression], or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_string_sorter_get_expression&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_expression&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">expression</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Expression</span><span class="op">&gt;</span> {

@@ -231,9 +231,9 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A `GtkMapListModel` maps the items in a list model to different items.</span>
+    <span class="doccomment">/// A [`MapListModel`][crate::MapListModel] maps the items in a list model to different items.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkMapListModel` uses a [callback`Gtk.MapListModelMapFunc`].</span>
+    <span class="doccomment">/// [`MapListModel`][crate::MapListModel] uses a `callback::Gtk::MapListModelMapFunc.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Example: Create a list of `GtkEventControllers`</span>
     <span class="doccomment">/// ```c</span>
@@ -257,12 +257,12 @@
     <span class="doccomment">///                                     controllers);</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkMapListModel` will attempt to discard the mapped objects as soon as</span>
+    <span class="doccomment">/// [`MapListModel`][crate::MapListModel] will attempt to discard the mapped objects as soon as</span>
     <span class="doccomment">/// they are no longer needed and recreate them if necessary.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`trait@gio::prelude::ListModelExt`]</span>
+    <span class="doccomment">/// [`trait@glib::ObjectExt`], [`trait@gio::prelude::ListModelExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MapListModel</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkMapListModel</span>, <span class="ident">ffi::GtkMapListModelClass</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">gio::ListModel</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -271,7 +271,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">MapListModel</span> {
-    <span class="doccomment">/// Creates a new `GtkMapListModel` for the given arguments.</span>
+    <span class="doccomment">/// Creates a new [`MapListModel`][crate::MapListModel] for the given arguments.</span>
     <span class="doccomment">/// ## `model`</span>
     <span class="doccomment">/// The model to map or [`None`] for none</span>
     <span class="doccomment">/// ## `map_func`</span>
@@ -279,7 +279,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkMapListModel`</span>
+    <span class="doccomment">/// a new [`MapListModel`][crate::MapListModel]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_map_list_model_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::ListModel</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">glib::Object</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">glib::Object</span> <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(
         <span class="ident">model</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>,
@@ -346,7 +346,7 @@
     <span class="doccomment">/// The function will be called whenever an item needs to be mapped</span>
     <span class="doccomment">/// and must return the item to use for the given input item.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that `GtkMapListModel` may call this function multiple times</span>
+    <span class="doccomment">/// Note that [`MapListModel`][crate::MapListModel] may call this function multiple times</span>
     <span class="doccomment">/// on the same item, because it may delete items it doesn&#39;t need anymore.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// GTK makes no effort to ensure that `map_func` conforms to the item type</span>

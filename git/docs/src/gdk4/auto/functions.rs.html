@@ -175,7 +175,7 @@
 }
 
 <span class="doccomment">/// Transfers image data from a `cairo_surface_t` and converts it</span>
-<span class="doccomment">/// to a `GdkPixbuf`.</span>
+<span class="doccomment">/// to a [`gdk_pixbuf::Pixbuf`][crate::gdk_pixbuf::Pixbuf].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This allows you to efficiently read individual pixels from cairo surfaces.</span>
 <span class="doccomment">///</span>
@@ -222,11 +222,11 @@
 <span class="doccomment">/// stages will almost certainly convert the pixbuf back into a texture</span>
 <span class="doccomment">/// to draw it on screen.</span>
 <span class="doccomment">/// ## `texture`</span>
-<span class="doccomment">/// a `GdkTexture`</span>
+<span class="doccomment">/// a [`Texture`][crate::Texture]</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Returns</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// a new [`crate::gdk_pixbuf::Pixbuf`] or [`None`]</span>
+<span class="doccomment">/// a new [`gdk_pixbuf::Pixbuf`][crate::gdk_pixbuf::Pixbuf] or [`None`]</span>
 <span class="doccomment">///  in case of an error</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_pixbuf_get_from_texture&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pixbuf_get_from_texture</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Texture</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">texture</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gdk_pixbuf::Pixbuf</span><span class="op">&gt;</span> {
@@ -269,7 +269,7 @@
 <span class="doccomment">/// You can also include a `*` in the list to try all remaining backends.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This call must happen prior to functions that open a display, such</span>
-<span class="doccomment">/// as [func`Gdk.Display`.open], `gtk_init()`, or `gtk_init_check()`</span>
+<span class="doccomment">/// as [``Display::open()``][crate::`Display::open()`], ``gtk_init()``, or ``gtk_init_check()``</span>
 <span class="doccomment">/// in order to take effect.</span>
 <span class="doccomment">/// ## `backends`</span>
 <span class="doccomment">/// a comma-separated list of backends</span>

@@ -270,15 +270,15 @@
 <span class="kw">use</span> <span class="ident">std::convert</span>::{<span class="ident">AsRef</span>, <span class="ident">From</span>};
 <span class="kw">use</span> <span class="ident">std::mem</span>;
 
-<span class="doccomment">/// A `GdkRectangle` data type for representing rectangles.</span>
+<span class="doccomment">/// A [`Rectangle`][crate::Rectangle] data type for representing rectangles.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// `GdkRectangle` is identical to `cairo_rectangle_t`. Together with Cairo’s</span>
+<span class="doccomment">/// [`Rectangle`][crate::Rectangle] is identical to `cairo_rectangle_t`. Together with Cairo’s</span>
 <span class="doccomment">/// `cairo_region_t` data type, these are the central types for representing</span>
 <span class="doccomment">/// sets of pixels.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// The intersection of two rectangles can be computed with</span>
-<span class="doccomment">/// [method`Gdk.Rectangle`.intersect]; to find the union of two rectangles use</span>
-<span class="doccomment">/// [method`Gdk.Rectangle`.union].</span>
+<span class="doccomment">/// [``intersect()``][`Self::intersect()`]; to find the union of two rectangles use</span>
+<span class="doccomment">/// [``union()``][`Self::union()`].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// The `cairo_region_t` type provided by Cairo is usually used for managing</span>
 <span class="doccomment">/// non-rectangular clipping of graphical operations.</span>
@@ -296,7 +296,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">Rectangle</span> {
-    <span class="doccomment">/// Returns [`crate::true`] if `self` contains the point described by `x` and `y`.</span>
+    <span class="doccomment">/// Returns [`true`] if `self` contains the point described by `x` and `y`.</span>
     <span class="doccomment">/// ## `x`</span>
     <span class="doccomment">/// X coordinate</span>
     <span class="doccomment">/// ## `y`</span>
@@ -304,7 +304,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`crate::true`] if `self` contains the point</span>
+    <span class="doccomment">/// [`true`] if `self` contains the point</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_rectangle_contains_point&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">contains_point</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">x</span>: <span class="ident">i32</span>, <span class="ident">y</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="kw">unsafe</span> {
@@ -324,7 +324,7 @@
     <span class="doccomment">/// in whether the rectangles intersect, but not in the intersecting area</span>
     <span class="doccomment">/// itself, pass [`None`] for `dest`.</span>
     <span class="doccomment">/// ## `src2`</span>
-    <span class="doccomment">/// a `GdkRectangle`</span>
+    <span class="doccomment">/// a [`Rectangle`][crate::Rectangle]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -358,7 +358,7 @@
     <span class="doccomment">/// Note that this function does not ignore &#39;empty&#39; rectangles (ie. with</span>
     <span class="doccomment">/// zero width or height).</span>
     <span class="doccomment">/// ## `src2`</span>
-    <span class="doccomment">/// a `GdkRectangle`</span>
+    <span class="doccomment">/// a [`Rectangle`][crate::Rectangle]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

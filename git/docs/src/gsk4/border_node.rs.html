@@ -121,12 +121,12 @@
 );
 
 <span class="kw">impl</span> <span class="ident">BorderNode</span> {
-    <span class="doccomment">/// Creates a `GskRenderNode` that will stroke a border rectangle inside the</span>
+    <span class="doccomment">/// Creates a [`RenderNode`][crate::RenderNode] that will stroke a border rectangle inside the</span>
     <span class="doccomment">/// given `outline`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The 4 sides of the border can have different widths and colors.</span>
     <span class="doccomment">/// ## `outline`</span>
-    <span class="doccomment">/// a [`crate::RoundedRect`] describing the outline of the border</span>
+    <span class="doccomment">/// a [`RoundedRect`][crate::RoundedRect] describing the outline of the border</span>
     <span class="doccomment">/// ## `border_width`</span>
     <span class="doccomment">/// the stroke width of the border on</span>
     <span class="doccomment">///  the top, right, bottom and left side respectively.</span>
@@ -136,7 +136,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A new `GskRenderNode`</span>
+    <span class="doccomment">/// A new [`RenderNode`][crate::RenderNode]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_border_node_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
         <span class="ident">outline</span>: <span class="kw-2">&amp;</span><span class="ident">RoundedRect</span>,
@@ -156,7 +156,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// an array of 4 [`crate::gdk::RGBA`] structs</span>
+    <span class="doccomment">/// an array of 4 [`gdk::RGBA`][crate::gdk::RGBA] structs</span>
     <span class="doccomment">///  for the top, right, bottom and left color of the border</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_border_node_get_colors&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_colors&quot;</span>)]</span>

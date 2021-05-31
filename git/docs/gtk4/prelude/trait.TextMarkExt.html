@@ -12,13 +12,13 @@
 <div class="item-spacer"></div>    fn <a href="#tymethod.set_visible" class="fnname">set_visible</a>(&amp;self, setting: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>);
 }</pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Trait containing all <a href="../struct.TextMark.html" title="TextMark"><code>TextMark</code></a> methods.</p>
 <h1 id="implementors-1" class="section-header"><a href="#implementors-1">Implementors</a></h1>
-<p><a href="../struct.TextMark.html" title="crate::TextMark"><code>struct@crate::TextMark</code></a></p>
+<p><a href="../struct.TextMark.html" title="crate::TextMark"><code>TextMark</code></a></p>
 </div></details><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><h3 id="tymethod.buffer" class="method"><code>fn <a href="#tymethod.buffer" class="fnname">buffer</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../struct.TextBuffer.html" title="struct gtk4::TextBuffer">TextBuffer</a>&gt;</code><a class="srclink" href="../../src/gtk4/auto/text_mark.rs.html#160" title="goto source code">[src]</a></h3></summary><div class="docblock"><p>Gets the buffer this mark is located inside.</p>
 <p>Returns <a href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html#variant.None" title="None"><code>None</code></a> if the mark is deleted.</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>
-<p>the mark’s <code>GtkTextBuffer</code></p>
+<p>the mark’s <a href="../struct.TextBuffer.html" title="crate::TextBuffer"><code>TextBuffer</code></a></p>
 </div></details><details class="rustdoc-toggle" open><summary><h3 id="tymethod.is_deleted" class="method"><code>fn <a href="#tymethod.is_deleted" class="fnname">is_deleted</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code><a class="srclink" href="../../src/gtk4/auto/text_mark.rs.html#172" title="goto source code">[src]</a></h3></summary><div class="docblock"><p>Returns <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="true"><code>true</code></a> if the mark has been removed from its buffer.</p>
-<p>See [method<code>Gtk.TextBuffer</code>.add_mark] for a way to add it
+<p>See <a href="trait.TextBufferExt.html#tymethod.add_mark" title="crate::prelude::TextBufferExt::add_mark()"><code>TextBufferExt::add_mark()</code></a> for a way to add it
 to a buffer again.</p>
 <h1 id="returns-1" class="section-header"><a href="#returns-1">Returns</a></h1>
 <p>whether the mark is deleted</p>

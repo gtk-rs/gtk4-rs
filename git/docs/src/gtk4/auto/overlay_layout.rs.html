@@ -66,17 +66,17 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkOverlayLayout` is the layout manager used by `GtkOverlay`.</span>
+    <span class="doccomment">/// [`OverlayLayout`][crate::OverlayLayout] is the layout manager used by [`Overlay`][crate::Overlay].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It places widgets as overlays on top of the main child.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is not a reusable layout manager, since it expects its widget</span>
-    <span class="doccomment">/// to be a `GtkOverlay`. It only listed here so that its layout</span>
+    <span class="doccomment">/// to be a [`Overlay`][crate::Overlay]. It only listed here so that its layout</span>
     <span class="doccomment">/// properties get documented.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::LayoutManagerExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`LayoutManagerExt`][trait@crate::prelude::LayoutManagerExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">OverlayLayout</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkOverlayLayout</span>, <span class="ident">ffi::GtkOverlayLayoutClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">LayoutManager</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -85,7 +85,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">OverlayLayout</span> {
-    <span class="doccomment">/// Creates a new `GtkOverlayLayout` instance.</span>
+    <span class="doccomment">/// Creates a new [`OverlayLayout`][crate::OverlayLayout] instance.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

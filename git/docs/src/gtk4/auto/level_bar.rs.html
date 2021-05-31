@@ -1023,18 +1023,18 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkLevelBar` is a widget that can be used as a level indicator.</span>
+    <span class="doccomment">/// [`LevelBar`][crate::LevelBar] is a widget that can be used as a level indicator.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Typical use cases are displaying the strength of a password, or</span>
     <span class="doccomment">/// showing the charge level of a battery.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ![An example `LevelBar`](levelbar.png)</span>
+    <span class="doccomment">/// ![An example GtkLevelBar](levelbar.png)</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Use [method`Gtk.LevelBar`.set_value] to set the current value, and</span>
-    <span class="doccomment">/// [method`Gtk.LevelBar`.add_offset_value] to set the value offsets at which</span>
+    <span class="doccomment">/// Use [``set_value()``][`Self::set_value()`] to set the current value, and</span>
+    <span class="doccomment">/// [``add_offset_value()``][`Self::add_offset_value()`] to set the value offsets at which</span>
     <span class="doccomment">/// the bar will be considered in a different state. GTK will add a few</span>
-    <span class="doccomment">/// offsets by default on the level bar: `GTK_LEVEL_BAR_OFFSET_LOW`,</span>
-    <span class="doccomment">/// `GTK_LEVEL_BAR_OFFSET_HIGH` and `GTK_LEVEL_BAR_OFFSET_FULL`, with</span>
+    <span class="doccomment">/// offsets by default on the level bar: [`LEVEL_BAR_OFFSET_LOW`][crate::LEVEL_BAR_OFFSET_LOW],</span>
+    <span class="doccomment">/// [`LEVEL_BAR_OFFSET_HIGH`][crate::LEVEL_BAR_OFFSET_HIGH] and [`LEVEL_BAR_OFFSET_FULL`][crate::LEVEL_BAR_OFFSET_FULL], with</span>
     <span class="doccomment">/// values 0.25, 0.75 and 1.0 respectively.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that it is your responsibility to update preexisting offsets</span>
@@ -1076,11 +1076,11 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The default interval of values is between zero and one, but it’s possible</span>
-    <span class="doccomment">/// to modify the interval using [method`Gtk.LevelBar`.set_min_value] and</span>
-    <span class="doccomment">/// [method`Gtk.LevelBar`.set_max_value]. The value will be always drawn in</span>
+    <span class="doccomment">/// to modify the interval using [``set_min_value()``][`Self::set_min_value()`] and</span>
+    <span class="doccomment">/// [``set_max_value()``][`Self::set_max_value()`]. The value will be always drawn in</span>
     <span class="doccomment">/// proportion to the admissible interval, i.e. a value of 15 with a specified</span>
     <span class="doccomment">/// interval between 10 and 20 is equivalent to a value of 0.5 with an interval</span>
-    <span class="doccomment">/// between 0 and 1. When [`crate::LevelBarMode::Discrete`] is used, the bar level</span>
+    <span class="doccomment">/// between 0 and 1. When [`LevelBarMode::Discrete`][crate::LevelBarMode::Discrete] is used, the bar level</span>
     <span class="doccomment">/// is rendered as a finite number of separated blocks instead of a single one.</span>
     <span class="doccomment">/// The number of blocks that will be rendered is equal to the number of units</span>
     <span class="doccomment">/// specified by the admissible interval.</span>
@@ -1089,15 +1089,15 @@
     <span class="doccomment">/// set the minimum value to 0 and the maximum value to 5 after changing the</span>
     <span class="doccomment">/// indicator mode to discrete.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// # `LevelBar` as `Buildable`</span>
+    <span class="doccomment">/// # GtkLevelBar as GtkBuildable</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GtkLevelBar` implementation of the `GtkBuildable` interface supports a</span>
+    <span class="doccomment">/// The [`LevelBar`][crate::LevelBar] implementation of the [`Buildable`][crate::Buildable] interface supports a</span>
     <span class="doccomment">/// custom `&lt;offsets&gt;` element, which can contain any number of `&lt;offset&gt;` elements,</span>
     <span class="doccomment">/// each of which must have name and value attributes.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # CSS nodes</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
+    <span class="doccomment">/// ```text</span>
     <span class="doccomment">/// levelbar[.discrete]</span>
     <span class="doccomment">/// ╰── trough</span>
     <span class="doccomment">///     ├── block.filled.level-name</span>
@@ -1106,7 +1106,7 @@
     <span class="doccomment">///     ┊</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkLevelBar` has a main CSS node with name levelbar and one of the style</span>
+    <span class="doccomment">/// [`LevelBar`][crate::LevelBar] has a main CSS node with name levelbar and one of the style</span>
     <span class="doccomment">/// classes .discrete or .continuous and a subnode with name trough. Below the</span>
     <span class="doccomment">/// trough node are a number of nodes with name block and style class .filled</span>
     <span class="doccomment">/// or .empty. In continuous mode, there is exactly one node of each, in discrete</span>
@@ -1119,11 +1119,11 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkLevelBar` uses the [`crate::AccessibleRole::Meter`] role.</span>
+    <span class="doccomment">/// [`LevelBar`][crate::LevelBar] uses the [`AccessibleRole::Meter`][crate::AccessibleRole::Meter] role.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::WidgetExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::AccessibleExt`], [`trait@crate::prelude::BuildableExt`], [`trait@crate::prelude::ConstraintTargetExt`], [`trait@crate::prelude::OrientableExt`], [`trait@crate::prelude::WidgetExtManual`], [`trait@crate::prelude::AccessibleExtManual`]</span>
+    <span class="doccomment">/// [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`OrientableExt`][trait@crate::prelude::OrientableExt], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LevelBar</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkLevelBar</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Orientable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1132,18 +1132,18 @@
 }
 
 <span class="kw">impl</span> <span class="ident">LevelBar</span> {
-    <span class="doccomment">/// Creates a new `GtkLevelBar`.</span>
+    <span class="doccomment">/// Creates a new [`LevelBar`][crate::LevelBar].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GtkLevelBar`.</span>
+    <span class="doccomment">/// a [`LevelBar`][crate::LevelBar].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_level_bar_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LevelBar</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> { <span class="ident">Widget::from_glib_none</span>(<span class="ident">ffi::gtk_level_bar_new</span>()).<span class="ident">unsafe_cast</span>() }
     }
 
-    <span class="doccomment">/// Creates a new `GtkLevelBar` for the specified interval.</span>
+    <span class="doccomment">/// Creates a new [`LevelBar`][crate::LevelBar] for the specified interval.</span>
     <span class="doccomment">/// ## `min_value`</span>
     <span class="doccomment">/// a positive value</span>
     <span class="doccomment">/// ## `max_value`</span>
@@ -1151,7 +1151,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GtkLevelBar`</span>
+    <span class="doccomment">/// a [`LevelBar`][crate::LevelBar]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_level_bar_new_for_interval&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_for_interval&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_interval</span>(<span class="ident">min_value</span>: <span class="ident">f64</span>, <span class="ident">max_value</span>: <span class="ident">f64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LevelBar</span> {
@@ -1172,7 +1172,7 @@
     <span class="doccomment">/// Adds a new offset marker on `self` at the position specified by `value`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When the bar value is in the interval topped by `value` (or between `value`</span>
-    <span class="doccomment">/// and [property`Gtk.LevelBar`:max-value] in case the offset is the last one</span>
+    <span class="doccomment">/// and `property::LevelBar::max-value` in case the offset is the last one</span>
     <span class="doccomment">/// on the bar) a style class named `level-``name` will be applied</span>
     <span class="doccomment">/// when rendering the level bar fill.</span>
     <span class="doccomment">///</span>
@@ -1204,7 +1204,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_level_bar_get_inverted</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns the `max-value` of the `GtkLevelBar`.</span>
+    <span class="doccomment">/// Returns the `max-value` of the [`LevelBar`][crate::LevelBar].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1215,7 +1215,7 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_level_bar_get_max_value</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Returns the `min-value of the ``LevelBar``.</span>
+    <span class="doccomment">/// Returns the `min-value of the [`LevelBar`][crate::LevelBar].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1226,11 +1226,11 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_level_bar_get_min_value</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Returns the `mode` of the `GtkLevelBar`.</span>
+    <span class="doccomment">/// Returns the `mode` of the [`LevelBar`][crate::LevelBar].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GtkLevelBarMode`</span>
+    <span class="doccomment">/// a [`LevelBarMode`][crate::LevelBarMode]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_level_bar_get_mode&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_mode&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">LevelBarMode</span> {
@@ -1266,22 +1266,22 @@
         }
     }
 
-    <span class="doccomment">/// Returns the `value` of the `GtkLevelBar`.</span>
+    <span class="doccomment">/// Returns the `value` of the [`LevelBar`][crate::LevelBar].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a value in the interval between</span>
-    <span class="doccomment">///  `GtkLevelBar`:min-value and `GtkLevelBar`:max-value</span>
+    <span class="doccomment">///  [`LevelBar`][crate::LevelBar]:min-value and [`LevelBar`][crate::LevelBar]:max-value</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_level_bar_get_value&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_value&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f64</span> {
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_level_bar_get_value</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Removes an offset marker from a `GtkLevelBar`.</span>
+    <span class="doccomment">/// Removes an offset marker from a [`LevelBar`][crate::LevelBar].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The marker must have been previously added with</span>
-    <span class="doccomment">/// [method`Gtk.LevelBar`.add_offset_value].</span>
+    <span class="doccomment">/// [``add_offset_value()``][`Self::add_offset_value()`].</span>
     <span class="doccomment">/// ## `name`</span>
     <span class="doccomment">/// the name of an offset in the bar</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_level_bar_remove_offset_value&quot;</span>)]</span>
@@ -1291,7 +1291,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets whether the `GtkLevelBar` is inverted.</span>
+    <span class="doccomment">/// Sets whether the [`LevelBar`][crate::LevelBar] is inverted.</span>
     <span class="doccomment">/// ## `inverted`</span>
     <span class="doccomment">/// [`true`] to invert the level bar</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_level_bar_set_inverted&quot;</span>)]</span>
@@ -1301,7 +1301,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the `max-value` of the `GtkLevelBar`.</span>
+    <span class="doccomment">/// Sets the `max-value` of the [`LevelBar`][crate::LevelBar].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You probably want to update preexisting level offsets after calling</span>
     <span class="doccomment">/// this function.</span>
@@ -1314,7 +1314,7 @@
         }
     }
 
-    <span class="doccomment">/// Sets the `min-value` of the `GtkLevelBar`.</span>
+    <span class="doccomment">/// Sets the `min-value` of the [`LevelBar`][crate::LevelBar].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You probably want to update preexisting level offsets after calling</span>
     <span class="doccomment">/// this function.</span>
@@ -1327,9 +1327,9 @@
         }
     }
 
-    <span class="doccomment">/// Sets the `mode` of the `GtkLevelBar`.</span>
+    <span class="doccomment">/// Sets the `mode` of the [`LevelBar`][crate::LevelBar].</span>
     <span class="doccomment">/// ## `mode`</span>
-    <span class="doccomment">/// a `GtkLevelBarMode`</span>
+    <span class="doccomment">/// a [`LevelBarMode`][crate::LevelBarMode]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_level_bar_set_mode&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_mode</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">mode</span>: <span class="ident">LevelBarMode</span>) {
         <span class="kw">unsafe</span> {
@@ -1337,10 +1337,10 @@
         }
     }
 
-    <span class="doccomment">/// Sets the value of the `GtkLevelBar`.</span>
+    <span class="doccomment">/// Sets the value of the [`LevelBar`][crate::LevelBar].</span>
     <span class="doccomment">/// ## `value`</span>
     <span class="doccomment">/// a value in the interval between</span>
-    <span class="doccomment">///  [property`Gtk.LevelBar`:min-value] and [property`Gtk.LevelBar`:max-value]</span>
+    <span class="doccomment">///  `property::LevelBar::min-value` and `property::LevelBar::max-value`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_level_bar_set_value&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">value</span>: <span class="ident">f64</span>) {
         <span class="kw">unsafe</span> {
@@ -1350,7 +1350,7 @@
 
     <span class="doccomment">/// Emitted when an offset specified on the bar changes value.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This typically is the result of a [method`Gtk.LevelBar`.add_offset_value]</span>
+    <span class="doccomment">/// This typically is the result of a [``add_offset_value()``][`Self::add_offset_value()`]</span>
     <span class="doccomment">/// call.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The signal supports detailed connections; you can connect to the</span>
@@ -1700,16 +1700,16 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Determines the way `GtkLevelBar` interprets the value properties to draw the</span>
+    <span class="doccomment">/// Determines the way [`LevelBar`][crate::LevelBar] interprets the value properties to draw the</span>
     <span class="doccomment">/// level fill area.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Specifically, when the value is [`crate::LevelBarMode::Continuous`],</span>
-    <span class="doccomment">/// `GtkLevelBar` will draw a single block representing the current value in</span>
-    <span class="doccomment">/// that area; when the value is [`crate::LevelBarMode::Discrete`],</span>
+    <span class="doccomment">/// Specifically, when the value is [`LevelBarMode::Continuous`][crate::LevelBarMode::Continuous],</span>
+    <span class="doccomment">/// [`LevelBar`][crate::LevelBar] will draw a single block representing the current value in</span>
+    <span class="doccomment">/// that area; when the value is [`LevelBarMode::Discrete`][crate::LevelBarMode::Discrete],</span>
     <span class="doccomment">/// the widget will draw a succession of separate blocks filling the</span>
     <span class="doccomment">/// draw area, with the number of blocks being equal to the units separating</span>
-    <span class="doccomment">/// the integral roundings of [property`Gtk.LevelBar`:min-value] and</span>
-    <span class="doccomment">/// [property`Gtk.LevelBar`:max-value].</span>
+    <span class="doccomment">/// the integral roundings of `property::LevelBar::min-value` and</span>
+    <span class="doccomment">/// `property::LevelBar::max-value`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">mode</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">mode</span>: <span class="ident">LevelBarMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">mode</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">mode</span>);
         <span class="self">self</span>
@@ -1781,7 +1781,7 @@
     <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
-    <span class="doccomment">/// the widget will be queried using [signal`Gtk.Widget`::query-tooltip] to</span>
+    <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">has_tooltip</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">has_tooltip</span>);
@@ -1808,7 +1808,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The `GtkLayoutManager` instance to use to compute the preferred size</span>
+    <span class="doccomment">/// The [`LayoutManager`][crate::LayoutManager] instance to use to compute the preferred size</span>
     <span class="doccomment">/// of the widget, and allocate its children.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
@@ -1822,7 +1822,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -1835,7 +1835,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -1848,7 +1848,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -1858,7 +1858,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -1900,16 +1900,16 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_markup].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_markup</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_markup</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_markup</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_markup</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1917,16 +1917,16 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_text].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_text</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1964,7 +1964,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The accessible role of the given `GtkAccessible` implementation.</span>
+    <span class="doccomment">/// The accessible role of the given [`Accessible`][crate::Accessible] implementation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The accessible role cannot be changed once set.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accessible_role</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">accessible_role</span>: <span class="ident">AccessibleRole</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {

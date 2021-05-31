@@ -316,21 +316,21 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkTreeListRow` is used by `GtkTreeListModel` to represent items.</span>
+    <span class="doccomment">/// [`TreeListRow`][crate::TreeListRow] is used by [`TreeListModel`][crate::TreeListModel] to represent items.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It allows navigating the model as a tree and modify the state of rows.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkTreeListRow` instances are created by a `GtkTreeListModel` only</span>
-    <span class="doccomment">/// when the [property`Gtk.TreeListModel`:passthrough] property is not set.</span>
+    <span class="doccomment">/// [`TreeListRow`][crate::TreeListRow] instances are created by a [`TreeListModel`][crate::TreeListModel] only</span>
+    <span class="doccomment">/// when the `property::TreeListModel::passthrough` property is not set.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// There are various support objects that can make use of `GtkTreeListRow`</span>
-    <span class="doccomment">/// objects, such as the [class`Gtk.TreeExpander`] widget that allows displaying</span>
-    <span class="doccomment">/// an icon to expand or collapse a row or [class`Gtk.TreeListRowSorter`] that</span>
+    <span class="doccomment">/// There are various support objects that can make use of [`TreeListRow`][crate::TreeListRow]</span>
+    <span class="doccomment">/// objects, such as the [`TreeExpander`][crate::TreeExpander] widget that allows displaying</span>
+    <span class="doccomment">/// an icon to expand or collapse a row or [`TreeListRowSorter`][crate::TreeListRowSorter] that</span>
     <span class="doccomment">/// makes it possible to sort trees properly.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TreeListRow</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkTreeListRow</span>, <span class="ident">ffi::GtkTreeListRowClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -361,9 +361,9 @@
     <span class="doccomment">/// If the row is expanded, gets the model holding the children of `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This model is the model created by the</span>
-    <span class="doccomment">/// [callback`Gtk.TreeListModelCreateModelFunc`]</span>
+    <span class="doccomment">/// `callback::Gtk::TreeListModelCreateModelFunc</span>
     <span class="doccomment">/// and contains the original items, no matter what value</span>
-    <span class="doccomment">/// [property`Gtk.TreeListModel`:passthrough] is set to.</span>
+    <span class="doccomment">/// `property::TreeListModel::passthrough` is set to.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -437,7 +437,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_tree_list_row_get_parent</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Returns the position in the `GtkTreeListModel` that `self` occupies</span>
+    <span class="doccomment">/// Returns the position in the [`TreeListModel`][crate::TreeListModel] that `self` occupies</span>
     <span class="doccomment">/// at the moment.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -452,7 +452,7 @@
     <span class="doccomment">/// Checks if a row can be expanded.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This does not mean that the row is actually expanded,</span>
-    <span class="doccomment">/// this can be checked with [method`Gtk.TreeListRow`.get_expanded].</span>
+    <span class="doccomment">/// this can be checked with [``is_expanded()``][`Self::is_expanded()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If a row is expandable never changes until the row is destroyed.</span>
     <span class="doccomment">///</span>
@@ -467,7 +467,7 @@
     <span class="doccomment">/// Expands or collapses a row.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If a row is expanded, the model of calling the</span>
-    <span class="doccomment">/// [callback`Gtk.TreeListModelCreateModelFunc`] for the row&#39;s</span>
+    <span class="doccomment">/// `callback::Gtk::TreeListModelCreateModelFunc for the row&#39;s</span>
     <span class="doccomment">/// item will be inserted after this row. If a row is collapsed,</span>
     <span class="doccomment">/// those items will be removed from the model.</span>
     <span class="doccomment">///</span>

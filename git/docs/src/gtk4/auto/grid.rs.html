@@ -1227,29 +1227,29 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkGrid` is a container which arranges its child widgets in</span>
+    <span class="doccomment">/// [`Grid`][crate::Grid] is a container which arranges its child widgets in</span>
     <span class="doccomment">/// rows and columns.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ![An example `Grid`](grid.png)</span>
+    <span class="doccomment">/// ![An example GtkGrid](grid.png)</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It supports arbitrary positions and horizontal/vertical spans.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Children are added using [method`Gtk.Grid`.attach]. They can span multiple</span>
+    <span class="doccomment">/// Children are added using [``GridExt::attach()``][crate::prelude::`GridExt::attach()`]. They can span multiple</span>
     <span class="doccomment">/// rows or columns. It is also possible to add a child next to an existing</span>
-    <span class="doccomment">/// child, using [method`Gtk.Grid`.attach_next_to]. To remove a child from the</span>
-    <span class="doccomment">/// grid, use [method`Gtk.Grid`.remove].</span>
+    <span class="doccomment">/// child, using [``GridExt::attach_next_to()``][crate::prelude::`GridExt::attach_next_to()`]. To remove a child from the</span>
+    <span class="doccomment">/// grid, use [``GridExt::remove()``][crate::prelude::`GridExt::remove()`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The behaviour of `GtkGrid` when several children occupy the same grid</span>
+    <span class="doccomment">/// The behaviour of [`Grid`][crate::Grid] when several children occupy the same grid</span>
     <span class="doccomment">/// cell is undefined.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// # `Grid` as `Buildable`</span>
+    <span class="doccomment">/// # GtkGrid as GtkBuildable</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Every child in a `GtkGrid` has access to a custom [iface`Gtk.Buildable`]</span>
+    <span class="doccomment">/// Every child in a [`Grid`][crate::Grid] has access to a custom [`Buildable`][crate::Buildable]</span>
     <span class="doccomment">/// element, called ´`&lt;layout&gt;`´. It can by used to specify a position in the</span>
     <span class="doccomment">/// grid and optionally spans. All properties that can be used in the ´`&lt;layout&gt;`´</span>
-    <span class="doccomment">/// element are implemented by [class`Gtk.GridLayoutChild`].</span>
+    <span class="doccomment">/// element are implemented by [`GridLayoutChild`][crate::GridLayoutChild].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// It is implemented by `GtkWidget` using [class`Gtk.LayoutManager`].</span>
+    <span class="doccomment">/// It is implemented by [`Widget`][crate::Widget] using [`LayoutManager`][crate::LayoutManager].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To showcase it, here is a simple example:</span>
     <span class="doccomment">///</span>
@@ -1304,15 +1304,15 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # CSS nodes</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkGrid` uses a single CSS node with name `grid`.</span>
+    <span class="doccomment">/// [`Grid`][crate::Grid] uses a single CSS node with name `grid`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkGrid` uses the [`crate::AccessibleRole::Group`] role.</span>
+    <span class="doccomment">/// [`Grid`][crate::Grid] uses the [`AccessibleRole::Group`][crate::AccessibleRole::Group] role.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::GridExt`], [`trait@crate::prelude::WidgetExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::AccessibleExt`], [`trait@crate::prelude::BuildableExt`], [`trait@crate::prelude::ConstraintTargetExt`], [`trait@crate::prelude::OrientableExt`], [`trait@crate::prelude::WidgetExtManual`], [`trait@crate::prelude::AccessibleExtManual`]</span>
+    <span class="doccomment">/// [`GridExt`][trait@crate::prelude::GridExt], [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`OrientableExt`][trait@crate::prelude::OrientableExt], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Grid</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkGrid</span>, <span class="ident">ffi::GtkGridClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Orientable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1325,7 +1325,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the new `GtkGrid`</span>
+    <span class="doccomment">/// the new [`Grid`][crate::Grid]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_grid_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Grid</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -1510,7 +1510,7 @@
         <span class="ident">glib::Object::new</span>::<span class="op">&lt;</span><span class="ident">Grid</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="ident">properties</span>).<span class="ident">expect</span>(<span class="string">&quot;Failed to create an instance of Grid&quot;</span>)
     }
 
-    <span class="doccomment">/// The row to align to the baseline when valign is [`crate::Align::Baseline`].</span>
+    <span class="doccomment">/// The row to align to the baseline when valign is [`Align::Baseline`][crate::Align::Baseline].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">baseline_row</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">baseline_row</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">baseline_row</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">baseline_row</span>);
         <span class="self">self</span>
@@ -1600,7 +1600,7 @@
     <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
-    <span class="doccomment">/// the widget will be queried using [signal`Gtk.Widget`::query-tooltip] to</span>
+    <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">has_tooltip</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">has_tooltip</span>);
@@ -1627,7 +1627,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The `GtkLayoutManager` instance to use to compute the preferred size</span>
+    <span class="doccomment">/// The [`LayoutManager`][crate::LayoutManager] instance to use to compute the preferred size</span>
     <span class="doccomment">/// of the widget, and allocate its children.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
@@ -1641,7 +1641,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -1654,7 +1654,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -1667,7 +1667,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -1677,7 +1677,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -1719,16 +1719,16 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_markup].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_markup</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_markup</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_markup</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_markup</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1736,16 +1736,16 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_text].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_text</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1783,7 +1783,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The accessible role of the given `GtkAccessible` implementation.</span>
+    <span class="doccomment">/// The accessible role of the given [`Accessible`][crate::Accessible] implementation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The accessible role cannot be changed once set.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accessible_role</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">accessible_role</span>: <span class="ident">AccessibleRole</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
@@ -1804,7 +1804,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::Grid`]</span>
+<span class="doccomment">/// [`Grid`][struct@crate::Grid]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">GridExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Adds a widget to the grid.</span>
     <span class="doccomment">///</span>
@@ -1832,7 +1832,7 @@
     <span class="doccomment">/// at the end indicated by `side`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Attaching widgets labeled [1], [2], [3] with `sibling` == [`None`] and</span>
-    <span class="doccomment">/// `side` == [`crate::PositionType::Left`] yields a layout of [3][2][1].</span>
+    <span class="doccomment">/// `side` == [`PositionType::Left`][crate::PositionType::Left] yields a layout of [3][2][1].</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the widget to add</span>
     <span class="doccomment">/// ## `sibling`</span>
@@ -1897,7 +1897,7 @@
 
     <span class="doccomment">/// Returns the baseline position of `row`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.Grid`.set_row_baseline_position].</span>
+    <span class="doccomment">/// See [``set_row_baseline_position()``][`Self::set_row_baseline_position()`].</span>
     <span class="doccomment">/// ## `row`</span>
     <span class="doccomment">/// a row index</span>
     <span class="doccomment">///</span>
@@ -1939,8 +1939,8 @@
     <span class="doccomment">/// Inserts a row or column at the specified position.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The new row or column is placed next to `sibling`, on the side</span>
-    <span class="doccomment">/// determined by `side`. If `side` is [`crate::PositionType::Top`] or [`crate::PositionType::Bottom`],</span>
-    <span class="doccomment">/// a row is inserted. If `side` is [`crate::PositionType::Left`] of [`crate::PositionType::Right`],</span>
+    <span class="doccomment">/// determined by `side`. If `side` is [`PositionType::Top`][crate::PositionType::Top] or [`PositionType::Bottom`][crate::PositionType::Bottom],</span>
+    <span class="doccomment">/// a row is inserted. If `side` is [`PositionType::Left`][crate::PositionType::Left] of [`PositionType::Right`][crate::PositionType::Right],</span>
     <span class="doccomment">/// a column is inserted.</span>
     <span class="doccomment">/// ## `sibling`</span>
     <span class="doccomment">/// the child of `self` that the new row or column will be</span>
@@ -1960,9 +1960,9 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_grid_insert_row&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">insert_row</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">position</span>: <span class="ident">i32</span>);
 
-    <span class="doccomment">/// Queries the attach points and spans of `child` inside the given `GtkGrid`.</span>
+    <span class="doccomment">/// Queries the attach points and spans of `child` inside the given [`Grid`][crate::Grid].</span>
     <span class="doccomment">/// ## `child`</span>
-    <span class="doccomment">/// a `GtkWidget` child of `self`</span>
+    <span class="doccomment">/// a [`Widget`][crate::Widget] child of `self`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1984,7 +1984,7 @@
     <span class="doccomment">/// Removes a child from `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The child must have been added with</span>
-    <span class="doccomment">/// [method`Gtk.Grid`.attach] or [method`Gtk.Grid`.attach_next_to].</span>
+    <span class="doccomment">/// [``attach()``][`Self::attach()`] or [``attach_next_to()``][`Self::attach_next_to()`].</span>
     <span class="doccomment">/// ## `child`</span>
     <span class="doccomment">/// the child widget to remove</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_grid_remove&quot;</span>)]</span>
@@ -2037,11 +2037,11 @@
     <span class="doccomment">/// Sets how the baseline should be positioned on `row` of the</span>
     <span class="doccomment">/// grid, in case that row is assigned more space than is requested.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The default baseline position is [`crate::BaselinePosition::Center`].</span>
+    <span class="doccomment">/// The default baseline position is [`BaselinePosition::Center`][crate::BaselinePosition::Center].</span>
     <span class="doccomment">/// ## `row`</span>
     <span class="doccomment">/// a row index</span>
     <span class="doccomment">/// ## `pos`</span>
-    <span class="doccomment">/// a `GtkBaselinePosition`</span>
+    <span class="doccomment">/// a [`BaselinePosition`][crate::BaselinePosition]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_grid_set_row_baseline_position&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_row_baseline_position</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">row</span>: <span class="ident">i32</span>, <span class="ident">pos</span>: <span class="ident">BaselinePosition</span>);
 

@@ -485,7 +485,7 @@
 <span class="kw">use</span> <span class="ident">std::boxed::Box</span> <span class="kw">as</span> <span class="ident">Box_</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkExpression` provides a way to describe references to values.</span>
+    <span class="doccomment">/// [`Expression`][crate::Expression] provides a way to describe references to values.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// An important aspect of expressions is that the value can be obtained</span>
     <span class="doccomment">/// from a source that is several steps away. For example, an expression</span>
@@ -500,13 +500,13 @@
     <span class="doccomment">/// refers to. An evaluation always happens in the context of a current object</span>
     <span class="doccomment">/// called `this` (it mirrors the behavior of object-oriented languages),</span>
     <span class="doccomment">/// which may or may not influence the result of the evaluation. Use</span>
-    <span class="doccomment">/// [method`Gtk.Expression`.evaluate] for evaluating an expression.</span>
+    <span class="doccomment">/// [``evaluate()``][`Self::evaluate()`] for evaluating an expression.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Various methods for defining expressions exist, from simple constants via</span>
-    <span class="doccomment">/// [ctor`Gtk.ConstantExpression`.new] to looking up properties in a `GObject`</span>
-    <span class="doccomment">/// (even recursively) via [ctor`Gtk.PropertyExpression`.new] or providing</span>
+    <span class="doccomment">/// [``ConstantExpression::new()``][crate::`ConstantExpression::new()`] to looking up properties in a `GObject`</span>
+    <span class="doccomment">/// (even recursively) via [``PropertyExpression::new()``][crate::`PropertyExpression::new()`] or providing</span>
     <span class="doccomment">/// custom functions to transform and combine expressions via</span>
-    <span class="doccomment">/// [ctor`Gtk.ClosureExpression`.new].</span>
+    <span class="doccomment">/// [``ClosureExpression::new()``][crate::`ClosureExpression::new()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Here is an example of a complex expression:</span>
     <span class="doccomment">///</span>
@@ -517,36 +517,36 @@
     <span class="doccomment">///                                             color_expr, &quot;name&quot;);</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// when evaluated with `this` being a `GtkListItem`, it will obtain the</span>
-    <span class="doccomment">/// &quot;item&quot; property from the `GtkListItem`, and then obtain the &quot;name&quot; property</span>
+    <span class="doccomment">/// when evaluated with `this` being a [`ListItem`][crate::ListItem], it will obtain the</span>
+    <span class="doccomment">/// &quot;item&quot; property from the [`ListItem`][crate::ListItem], and then obtain the &quot;name&quot; property</span>
     <span class="doccomment">/// from the resulting object (which is assumed to be of type `GTK_TYPE_COLOR`).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A more concise way to describe this would be</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
+    <span class="doccomment">/// ```text</span>
     <span class="doccomment">///   this-&gt;item-&gt;name</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The most likely place where you will encounter expressions is in the context</span>
-    <span class="doccomment">/// of list models and list widgets using them. For example, `GtkDropDown` is</span>
-    <span class="doccomment">/// evaluating a `GtkExpression` to obtain strings from the items in its model</span>
+    <span class="doccomment">/// of list models and list widgets using them. For example, [`DropDown`][crate::DropDown] is</span>
+    <span class="doccomment">/// evaluating a [`Expression`][crate::Expression] to obtain strings from the items in its model</span>
     <span class="doccomment">/// that it can then use to match against the contents of its search entry.</span>
-    <span class="doccomment">/// `GtkStringFilter` is using a `GtkExpression` for similar reasons.</span>
+    <span class="doccomment">/// [`StringFilter`][crate::StringFilter] is using a [`Expression`][crate::Expression] for similar reasons.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// By default, expressions are not paying attention to changes and evaluation is</span>
     <span class="doccomment">/// just a snapshot of the current state at a given time. To get informed about</span>
-    <span class="doccomment">/// changes, an expression needs to be &quot;watched&quot; via a [struct`Gtk.ExpressionWatch`],</span>
+    <span class="doccomment">/// changes, an expression needs to be &quot;watched&quot; via a [`ExpressionWatch`][crate::ExpressionWatch],</span>
     <span class="doccomment">/// which will cause a callback to be called whenever the value of the expression may</span>
-    <span class="doccomment">/// have changed; [method`Gtk.Expression`.watch] starts watching an expression, and</span>
-    <span class="doccomment">/// [method`Gtk.ExpressionWatch`.unwatch] stops.</span>
+    <span class="doccomment">/// have changed; [``watch()``][`Self::watch()`] starts watching an expression, and</span>
+    <span class="doccomment">/// [``ExpressionWatch::unwatch()``][crate::`ExpressionWatch::unwatch()`] stops.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Watches can be created for automatically updating the property of an object,</span>
-    <span class="doccomment">/// similar to GObject&#39;s `GBinding` mechanism, by using [method`Gtk.Expression`.bind].</span>
+    <span class="doccomment">/// similar to GObject&#39;s `GBinding` mechanism, by using [``bind()``][`Self::bind()`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ## `Expression` in GObject properties</span>
+    <span class="doccomment">/// ## GtkExpression in GObject properties</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// In order to use a `GtkExpression` as a `GObject` property, you must use the</span>
-    <span class="doccomment">/// [id`gtk_param_spec_expression`] when creating a `GParamSpec` to install in the</span>
+    <span class="doccomment">/// In order to use a [`Expression`][crate::Expression] as a `GObject` property, you must use the</span>
+    <span class="doccomment">/// `gtk_param_spec_expression` when creating a `GParamSpec` to install in the</span>
     <span class="doccomment">/// `GObject` class being defined; for instance:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```c</span>
@@ -560,9 +560,9 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When implementing the `GObjectClass.set_property` and `GObjectClass.get_property`</span>
-    <span class="doccomment">/// virtual functions, you must use [id`gtk_value_get_expression`], to retrieve the</span>
-    <span class="doccomment">/// stored `GtkExpression` from the `GValue` container, and [id`gtk_value_set_expression`],</span>
-    <span class="doccomment">/// to store the `GtkExpression` into the `GValue`; for instance:</span>
+    <span class="doccomment">/// virtual functions, you must use `gtk_value_get_expression`, to retrieve the</span>
+    <span class="doccomment">/// stored [`Expression`][crate::Expression] from the `GValue` container, and `gtk_value_set_expression`,</span>
+    <span class="doccomment">/// to store the [`Expression`][crate::Expression] into the `GValue`; for instance:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```c</span>
     <span class="doccomment">///   // in set_property()...</span>
@@ -576,15 +576,15 @@
     <span class="doccomment">///     break;</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ## `Expression` in .ui files</span>
+    <span class="doccomment">/// ## GtkExpression in .ui files</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkBuilder` has support for creating expressions. The syntax here can be used where</span>
-    <span class="doccomment">/// a `GtkExpression` object is needed like in a `&lt;property&gt;` tag for an expression</span>
-    <span class="doccomment">/// property, or in a `&lt;binding&gt;` tag to bind a property to an expression.</span>
+    <span class="doccomment">/// [`Builder`][crate::Builder] has support for creating expressions. The syntax here can be used where</span>
+    <span class="doccomment">/// a [`Expression`][crate::Expression] object is needed like in a ``&lt;property&gt;`` tag for an expression</span>
+    <span class="doccomment">/// property, or in a ``&lt;binding&gt;`` tag to bind a property to an expression.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To create an property expression, use the `&lt;lookup&gt;` element. It can have a `type`</span>
+    <span class="doccomment">/// To create an property expression, use the ``&lt;lookup&gt;`` element. It can have a `type`</span>
     <span class="doccomment">/// attribute to specify the object type, and a `name` attribute to specify the property</span>
-    <span class="doccomment">/// to look up. The content of `&lt;lookup&gt;` can either be an element specfiying the expression</span>
+    <span class="doccomment">/// to look up. The content of ``&lt;lookup&gt;`` can either be an element specfiying the expression</span>
     <span class="doccomment">/// to use the object, or a string that specifies the name of the object to use.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Example:</span>
@@ -593,7 +593,7 @@
     <span class="doccomment">///   &lt;lookup name=&#39;search&#39;&gt;string_filter&lt;/lookup&gt;</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To create a constant expression, use the `&lt;constant&gt;` element. If the type attribute</span>
+    <span class="doccomment">/// To create a constant expression, use the ``&lt;constant&gt;`` element. If the type attribute</span>
     <span class="doccomment">/// is specified, the element content is interpreted as a value of that type. Otherwise,</span>
     <span class="doccomment">/// it is assumed to be an object. For instance:</span>
     <span class="doccomment">///</span>
@@ -602,7 +602,7 @@
     <span class="doccomment">///   &lt;constant type=&#39;gchararray&#39;&gt;Hello, world&lt;/constant&gt;</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To create a closure expression, use the `&lt;closure&gt;` element. The `type` and `function`</span>
+    <span class="doccomment">/// To create a closure expression, use the ``&lt;closure&gt;`` element. The `type` and `function`</span>
     <span class="doccomment">/// attributes specify what function to use for the closure, the content of the element</span>
     <span class="doccomment">/// contains the expressions for the parameters. For instance:</span>
     <span class="doccomment">///</span>
@@ -680,7 +680,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The type returned from [method`Gtk.Expression`.evaluate]</span>
+    <span class="doccomment">/// The type returned from [``evaluate()``][`Self::evaluate()`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_expression_get_value_type&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_value_type&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">value_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Type</span> {
@@ -691,9 +691,9 @@
     <span class="doccomment">/// Checks if the expression is static.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A static expression will never change its result when</span>
-    <span class="doccomment">/// [method`Gtk.Expression`.evaluate] is called on it with the same arguments.</span>
+    <span class="doccomment">/// [``evaluate()``][`Self::evaluate()`] is called on it with the same arguments.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// That means a call to [method`Gtk.Expression`.watch] is not necessary because</span>
+    <span class="doccomment">/// That means a call to [``watch()``][`Self::watch()`] is not necessary because</span>
     <span class="doccomment">/// it will never trigger a notify.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
@@ -707,7 +707,7 @@
 
     <span class="doccomment">/// Bind `target`&#39;s property named `property` to `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The value that `self` evaluates to is set via `g_object_set()` on</span>
+    <span class="doccomment">/// The value that `self` evaluates to is set via ``g_object_set()`` on</span>
     <span class="doccomment">/// `target`. This is repeated whenever `self` changes to ensure that</span>
     <span class="doccomment">/// the object&#39;s property stays synchronized with `self`.</span>
     <span class="doccomment">///</span>
@@ -716,7 +716,7 @@
     <span class="doccomment">/// expression.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that this function takes ownership of `self`. If you want</span>
-    <span class="doccomment">/// to keep it around, you should [method`Gtk.Expression`.ref] it beforehand.</span>
+    <span class="doccomment">/// to keep it around, you should `Gtk::`Expression::ref()`` it beforehand.</span>
     <span class="doccomment">/// ## `target`</span>
     <span class="doccomment">/// the target object to bind to</span>
     <span class="doccomment">/// ## `property`</span>
@@ -727,7 +727,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GtkExpressionWatch`</span>
+    <span class="doccomment">/// a [`ExpressionWatch`][crate::ExpressionWatch]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_expression_bind&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bind</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Object</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -750,7 +750,7 @@
     <span class="doccomment">/// in `value`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The `GType` of `value` will be the type given by</span>
-    <span class="doccomment">/// [method`Gtk.Expression`.get_value_type].</span>
+    <span class="doccomment">/// [``value_type()``][`Self::value_type()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is possible that expressions cannot be evaluated - for example</span>
     <span class="doccomment">/// when the expression references objects that have been destroyed or</span>
@@ -800,7 +800,7 @@
     <span class="doccomment">/// The newly installed watch. Note that the only</span>
     <span class="doccomment">///  reference held to the watch will be released when the watch is unwatched</span>
     <span class="doccomment">///  which can happen automatically, and not just via</span>
-    <span class="doccomment">///  [method`Gtk.ExpressionWatch`.unwatch]. You should call [method`Gtk.ExpressionWatch`.ref]</span>
+    <span class="doccomment">///  [``ExpressionWatch::unwatch()``][crate::`ExpressionWatch::unwatch()`]. You should call `Gtk::`ExpressionWatch::ref()``</span>
     <span class="doccomment">///  if you want to keep the watch around.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_expression_watch&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">watch</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Object</span><span class="op">&gt;</span>, <span class="ident">F</span>: <span class="ident">Fn</span>() <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(

@@ -944,56 +944,56 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkProgressBar` is typically used to display the progress of a long</span>
+    <span class="doccomment">/// [`ProgressBar`][crate::ProgressBar] is typically used to display the progress of a long</span>
     <span class="doccomment">/// running operation.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// It provides a visual clue that processing is underway. `GtkProgressBar`</span>
+    <span class="doccomment">/// It provides a visual clue that processing is underway. [`ProgressBar`][crate::ProgressBar]</span>
     <span class="doccomment">/// can be used in two different modes: percentage mode and activity mode.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ![An example `ProgressBar`](progressbar.png)</span>
+    <span class="doccomment">/// ![An example GtkProgressBar](progressbar.png)</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When an application can determine how much work needs to take place</span>
     <span class="doccomment">/// (e.g. read a fixed number of bytes from a file) and can monitor its</span>
-    <span class="doccomment">/// progress, it can use the `GtkProgressBar` in percentage mode and the</span>
+    <span class="doccomment">/// progress, it can use the [`ProgressBar`][crate::ProgressBar] in percentage mode and the</span>
     <span class="doccomment">/// user sees a growing bar indicating the percentage of the work that</span>
     <span class="doccomment">/// has been completed. In this mode, the application is required to call</span>
-    <span class="doccomment">/// [method`Gtk.ProgressBar`.set_fraction] periodically to update the progress bar.</span>
+    <span class="doccomment">/// [``set_fraction()``][`Self::set_fraction()`] periodically to update the progress bar.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When an application has no accurate way of knowing the amount of work</span>
-    <span class="doccomment">/// to do, it can use the `GtkProgressBar` in activity mode, which shows</span>
+    <span class="doccomment">/// to do, it can use the [`ProgressBar`][crate::ProgressBar] in activity mode, which shows</span>
     <span class="doccomment">/// activity by a block moving back and forth within the progress area. In</span>
-    <span class="doccomment">/// this mode, the application is required to call [method`Gtk.ProgressBar`.pulse]</span>
+    <span class="doccomment">/// this mode, the application is required to call [``pulse()``][`Self::pulse()`]</span>
     <span class="doccomment">/// periodically to update the progress bar.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// There is quite a bit of flexibility provided to control the appearance</span>
-    <span class="doccomment">/// of the `GtkProgressBar`. Functions are provided to control the orientation</span>
+    <span class="doccomment">/// of the [`ProgressBar`][crate::ProgressBar]. Functions are provided to control the orientation</span>
     <span class="doccomment">/// of the bar, optional text can be displayed along with the bar, and the</span>
     <span class="doccomment">/// step size used in activity mode can be set.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # CSS nodes</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
+    <span class="doccomment">/// ```text</span>
     <span class="doccomment">/// progressbar[.osd]</span>
     <span class="doccomment">/// ├── [text]</span>
     <span class="doccomment">/// ╰── trough[.empty][.full]</span>
     <span class="doccomment">///     ╰── progress[.pulse]</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkProgressBar` has a main CSS node with name progressbar and subnodes with</span>
+    <span class="doccomment">/// [`ProgressBar`][crate::ProgressBar] has a main CSS node with name progressbar and subnodes with</span>
     <span class="doccomment">/// names text and trough, of which the latter has a subnode named progress. The</span>
     <span class="doccomment">/// text subnode is only present if text is shown. The progress subnode has the</span>
     <span class="doccomment">/// style class .pulse when in activity mode. It gets the style classes .left,</span>
     <span class="doccomment">/// .right, .top or .bottom added when the progress &#39;touches&#39; the corresponding</span>
-    <span class="doccomment">/// end of the `ProgressBar`. The .osd class on the progressbar node is for use</span>
+    <span class="doccomment">/// end of the GtkProgressBar. The .osd class on the progressbar node is for use</span>
     <span class="doccomment">/// in overlays like the one Epiphany has for page loading progress.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkProgressBar` uses the [`crate::AccessibleRole::ProgressBar`] role.</span>
+    <span class="doccomment">/// [`ProgressBar`][crate::ProgressBar] uses the [`AccessibleRole::ProgressBar`][crate::AccessibleRole::ProgressBar] role.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::WidgetExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::AccessibleExt`], [`trait@crate::prelude::BuildableExt`], [`trait@crate::prelude::ConstraintTargetExt`], [`trait@crate::prelude::OrientableExt`], [`trait@crate::prelude::WidgetExtManual`], [`trait@crate::prelude::AccessibleExtManual`]</span>
+    <span class="doccomment">/// [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`OrientableExt`][trait@crate::prelude::OrientableExt], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ProgressBar</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkProgressBar</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Orientable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1002,11 +1002,11 @@
 }
 
 <span class="kw">impl</span> <span class="ident">ProgressBar</span> {
-    <span class="doccomment">/// Creates a new `GtkProgressBar`.</span>
+    <span class="doccomment">/// Creates a new [`ProgressBar`][crate::ProgressBar].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GtkProgressBar`.</span>
+    <span class="doccomment">/// a [`ProgressBar`][crate::ProgressBar].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_progress_bar_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProgressBar</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -1022,11 +1022,11 @@
 
     <span class="doccomment">/// Returns the ellipsizing position of the progress bar.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.ProgressBar`.set_ellipsize].</span>
+    <span class="doccomment">/// See [``set_ellipsize()``][`Self::set_ellipsize()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `PangoEllipsizeMode`</span>
+    <span class="doccomment">/// [`pango::EllipsizeMode`][crate::pango::EllipsizeMode]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_progress_bar_get_ellipsize&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_ellipsize&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ellipsize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">pango::EllipsizeMode</span> {
@@ -1057,7 +1057,7 @@
 
     <span class="doccomment">/// Retrieves the pulse step.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.ProgressBar`.set_pulse_step].</span>
+    <span class="doccomment">/// See [``set_pulse_step()``][`Self::set_pulse_step()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1068,9 +1068,9 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_progress_bar_get_pulse_step</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Returns whether the `GtkProgressBar` shows text.</span>
+    <span class="doccomment">/// Returns whether the [`ProgressBar`][crate::ProgressBar] shows text.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.ProgressBar`.set_show_text].</span>
+    <span class="doccomment">/// See [``set_show_text()``][`Self::set_show_text()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1099,9 +1099,9 @@
     <span class="doccomment">/// Indicates that some progress has been made, but you don’t know how much.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Causes the progress bar to enter “activity mode,” where a block</span>
-    <span class="doccomment">/// bounces back and forth. Each call to [method`Gtk.ProgressBar`.pulse]</span>
+    <span class="doccomment">/// bounces back and forth. Each call to [``pulse()``][`Self::pulse()`]</span>
     <span class="doccomment">/// causes the block to move by a little bit (the amount of movement</span>
-    <span class="doccomment">/// per pulse is determined by [method`Gtk.ProgressBar`.set_pulse_step]).</span>
+    <span class="doccomment">/// per pulse is determined by [``set_pulse_step()``][`Self::set_pulse_step()`]).</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_progress_bar_pulse&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pulse</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="kw">unsafe</span> {
@@ -1114,7 +1114,7 @@
     <span class="doccomment">/// The text is ellipsized if there is not enough space</span>
     <span class="doccomment">/// to render the entire string.</span>
     <span class="doccomment">/// ## `mode`</span>
-    <span class="doccomment">/// a `PangoEllipsizeMode`</span>
+    <span class="doccomment">/// a [`pango::EllipsizeMode`][crate::pango::EllipsizeMode]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_progress_bar_set_ellipsize&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_ellipsize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">mode</span>: <span class="ident">pango::EllipsizeMode</span>) {
         <span class="kw">unsafe</span> {
@@ -1151,7 +1151,7 @@
     <span class="doccomment">/// Sets the fraction of total progress bar length to move the</span>
     <span class="doccomment">/// bouncing block.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The bouncing block is moved when [method`Gtk.ProgressBar`.pulse]</span>
+    <span class="doccomment">/// The bouncing block is moved when [``pulse()``][`Self::pulse()`]</span>
     <span class="doccomment">/// is called.</span>
     <span class="doccomment">/// ## `fraction`</span>
     <span class="doccomment">/// fraction between 0.0 and 1.0</span>
@@ -1164,13 +1164,13 @@
 
     <span class="doccomment">/// Sets whether the progress bar will show text next to the bar.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The shown text is either the value of the [property`Gtk.ProgressBar`:text]</span>
-    <span class="doccomment">/// property or, if that is [`None`], the [property`Gtk.ProgressBar`:fraction] value,</span>
+    <span class="doccomment">/// The shown text is either the value of the `property::ProgressBar::text`</span>
+    <span class="doccomment">/// property or, if that is [`None`], the `property::ProgressBar::fraction` value,</span>
     <span class="doccomment">/// as a percentage.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To make a progress bar that is styled and sized suitably for containing</span>
-    <span class="doccomment">/// text (even if the actual text is blank), set [property`Gtk.ProgressBar`:show-text]</span>
-    <span class="doccomment">/// to [`true`] and [property`Gtk.ProgressBar`:text] to the empty string (not [`None`]).</span>
+    <span class="doccomment">/// text (even if the actual text is blank), set `property::ProgressBar::show-text`</span>
+    <span class="doccomment">/// to [`true`] and `property::ProgressBar::text` to the empty string (not [`None`]).</span>
     <span class="doccomment">/// ## `show_text`</span>
     <span class="doccomment">/// whether to show text</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_progress_bar_set_show_text&quot;</span>)]</span>
@@ -1182,15 +1182,15 @@
 
     <span class="doccomment">/// Causes the given `text` to appear next to the progress bar.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `text` is [`None`] and [property`Gtk.ProgressBar`:show-text] is [`true`],</span>
-    <span class="doccomment">/// the current value of [property`Gtk.ProgressBar`:fraction] will be displayed</span>
+    <span class="doccomment">/// If `text` is [`None`] and `property::ProgressBar::show-text` is [`true`],</span>
+    <span class="doccomment">/// the current value of `property::ProgressBar::fraction` will be displayed</span>
     <span class="doccomment">/// as a percentage.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If `text` is non-[`None`] and [property`Gtk.ProgressBar`:show-text] is [`true`],</span>
+    <span class="doccomment">/// If `text` is non-[`None`] and `property::ProgressBar::show-text` is [`true`],</span>
     <span class="doccomment">/// the text will be displayed. In this case, it will not display the progress</span>
     <span class="doccomment">/// percentage. If `text` is the empty string, the progress bar will still</span>
     <span class="doccomment">/// be styled and sized suitably for containing text, as long as</span>
-    <span class="doccomment">/// [property`Gtk.ProgressBar`:show-text] is [`true`].</span>
+    <span class="doccomment">/// `property::ProgressBar::show-text` is [`true`].</span>
     <span class="doccomment">/// ## `text`</span>
     <span class="doccomment">/// a UTF-8 string, or [`None`]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_progress_bar_set_text&quot;</span>)]</span>
@@ -1517,12 +1517,12 @@
     <span class="doccomment">/// The preferred place to ellipsize the string.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The text will be ellipsized if the progress bar does not have enough room</span>
-    <span class="doccomment">/// to display the entire string, specified as a `PangoEllipsizeMode`.</span>
+    <span class="doccomment">/// to display the entire string, specified as a [`pango::EllipsizeMode`][crate::pango::EllipsizeMode].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that setting this property to a value other than</span>
-    <span class="doccomment">/// [`crate::pango::EllipsizeMode::None`] has the side-effect that the progress bar requests</span>
+    <span class="doccomment">/// [`pango::EllipsizeMode::None`][crate::pango::EllipsizeMode::None] has the side-effect that the progress bar requests</span>
     <span class="doccomment">/// only enough space to display the ellipsis (&quot;...&quot;). Another means to set a</span>
-    <span class="doccomment">/// progress bar&#39;s width is [method`Gtk.Widget`.set_size_request].</span>
+    <span class="doccomment">/// progress bar&#39;s width is [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ellipsize</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">ellipsize</span>: <span class="ident">pango::EllipsizeMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">ellipsize</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">ellipsize</span>);
         <span class="self">self</span>
@@ -1549,13 +1549,13 @@
     <span class="doccomment">/// Sets whether the progress bar will show a text in addition</span>
     <span class="doccomment">/// to the bar itself.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The shown text is either the value of the [property`Gtk.ProgressBar`:text]</span>
-    <span class="doccomment">/// property or, if that is [`None`], the [property`Gtk.ProgressBar`:fraction]</span>
+    <span class="doccomment">/// The shown text is either the value of the `property::ProgressBar::text`</span>
+    <span class="doccomment">/// property or, if that is [`None`], the `property::ProgressBar::fraction`</span>
     <span class="doccomment">/// value, as a percentage.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To make a progress bar that is styled and sized suitably for showing text</span>
-    <span class="doccomment">/// (even if the actual text is blank), set [property`Gtk.ProgressBar`:show-text]</span>
-    <span class="doccomment">/// to [`true`] and [property`Gtk.ProgressBar`:text] to the empty string (not [`None`]).</span>
+    <span class="doccomment">/// (even if the actual text is blank), set `property::ProgressBar::show-text`</span>
+    <span class="doccomment">/// to [`true`] and `property::ProgressBar::text` to the empty string (not [`None`]).</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">show_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">show_text</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">show_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">show_text</span>);
         <span class="self">self</span>
@@ -1627,7 +1627,7 @@
     <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
-    <span class="doccomment">/// the widget will be queried using [signal`Gtk.Widget`::query-tooltip] to</span>
+    <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">has_tooltip</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">has_tooltip</span>);
@@ -1654,7 +1654,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The `GtkLayoutManager` instance to use to compute the preferred size</span>
+    <span class="doccomment">/// The [`LayoutManager`][crate::LayoutManager] instance to use to compute the preferred size</span>
     <span class="doccomment">/// of the widget, and allocate its children.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
@@ -1668,7 +1668,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -1681,7 +1681,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -1694,7 +1694,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -1704,7 +1704,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -1746,16 +1746,16 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_markup].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_markup</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_markup</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_markup</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_markup</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1763,16 +1763,16 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_text].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_text</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1810,7 +1810,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The accessible role of the given `GtkAccessible` implementation.</span>
+    <span class="doccomment">/// The accessible role of the given [`Accessible`][crate::Accessible] implementation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The accessible role cannot be changed once set.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accessible_role</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">accessible_role</span>: <span class="ident">AccessibleRole</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {

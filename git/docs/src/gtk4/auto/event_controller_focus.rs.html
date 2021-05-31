@@ -286,19 +286,19 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkEventControllerFocus` is an event controller to keep track of</span>
+    <span class="doccomment">/// [`EventControllerFocus`][crate::EventControllerFocus] is an event controller to keep track of</span>
     <span class="doccomment">/// keyboard focus.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The event controller offers [signal`Gtk.EventControllerFocus`::enter]</span>
-    <span class="doccomment">/// and [signal`Gtk.EventControllerFocus`::leave] signals, as well as</span>
-    <span class="doccomment">/// [property`Gtk.EventControllerFocus`:is-focus] and</span>
-    <span class="doccomment">/// [property`Gtk.EventControllerFocus`:contains-focus] properties</span>
+    <span class="doccomment">/// The event controller offers `signal::EventControllerFocus::enter`</span>
+    <span class="doccomment">/// and `signal::EventControllerFocus::leave` signals, as well as</span>
+    <span class="doccomment">/// `property::EventControllerFocus::is-focus` and</span>
+    <span class="doccomment">/// `property::EventControllerFocus::contains-focus` properties</span>
     <span class="doccomment">/// which are updated to reflect focus changes inside the widget hierarchy</span>
     <span class="doccomment">/// that is rooted at the controllers widget.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::EventControllerExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`EventControllerExt`][trait@crate::prelude::EventControllerExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EventControllerFocus</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkEventControllerFocus</span>, <span class="ident">ffi::GtkEventControllerFocusClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -311,7 +311,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkEventControllerFocus`</span>
+    <span class="doccomment">/// a new [`EventControllerFocus`][crate::EventControllerFocus]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_event_controller_focus_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">EventControllerFocus</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -363,7 +363,7 @@
     <span class="doccomment">/// certain cases (such as when the focus moves from a descendent</span>
     <span class="doccomment">/// of the widget to the widget itself). If you are interested</span>
     <span class="doccomment">/// in these cases, you can monitor the</span>
-    <span class="doccomment">/// [property`Gtk.EventControllerFocus`:is-focus]</span>
+    <span class="doccomment">/// `property::EventControllerFocus::is-focus`</span>
     <span class="doccomment">/// property for changes.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;enter&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_enter</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
@@ -394,7 +394,7 @@
     <span class="doccomment">/// even though the focus moves away from the widget, in</span>
     <span class="doccomment">/// certain cases (such as when the focus moves from the widget</span>
     <span class="doccomment">/// to a descendent). If you are interested in these cases, you</span>
-    <span class="doccomment">/// can monitor the [property`Gtk.EventControllerFocus`:is-focus]</span>
+    <span class="doccomment">/// can monitor the `property::EventControllerFocus::is-focus`</span>
     <span class="doccomment">/// property for changes.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;leave&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_leave</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {

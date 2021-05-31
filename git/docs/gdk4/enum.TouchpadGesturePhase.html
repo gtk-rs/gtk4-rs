@@ -12,17 +12,17 @@ pub enum TouchpadGesturePhase {
     // some variants omitted
 }</pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Specifies the current state of a touchpad gesture.</p>
 <p>All gestures are guaranteed to begin with an event with phase
-<a href="enum.TouchpadGesturePhase.html#variant.Begin" title="Self::Begin"><code>Self::Begin</code></a>, followed by 0 or several events
-with phase <a href="enum.TouchpadGesturePhase.html#variant.Update" title="Self::Update"><code>Self::Update</code></a>.</p>
+<a href="enum.TouchpadGesturePhase.html#variant.Begin" title="Self::Begin"><code>Begin</code></a>, followed by 0 or several events
+with phase <a href="enum.TouchpadGesturePhase.html#variant.Update" title="Self::Update"><code>Update</code></a>.</p>
 <p>A finished gesture may have 2 possible outcomes, an event with phase
-<a href="enum.TouchpadGesturePhase.html#variant.End" title="Self::End"><code>Self::End</code></a> will be emitted when the gesture is
+<a href="enum.TouchpadGesturePhase.html#variant.End" title="Self::End"><code>End</code></a> will be emitted when the gesture is
 considered successful, this should be used as the hint to perform any
 permanent changes.</p>
 <p>Cancelled gestures may be so for a variety of reasons, due to hardware
 or the compositor, or due to the gesture recognition layers hinting the
 gesture did not finish resolutely (eg. a 3rd finger being added during
 a pinch gesture). In these cases, the last event will report the phase
-<a href="enum.TouchpadGesturePhase.html#variant.Cancel" title="Self::Cancel"><code>Self::Cancel</code></a>, this should be used as a hint
+<a href="enum.TouchpadGesturePhase.html#variant.Cancel" title="Self::Cancel"><code>Cancel</code></a>, this should be used as a hint
 to undo any visible/permanent changes that were done throughout the
 progress of the gesture.</p>
 </div></details><h2 id="variants" class="variants small-section-header">

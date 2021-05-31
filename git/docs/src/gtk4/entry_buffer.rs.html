@@ -240,7 +240,7 @@
 <span class="kw">use</span> <span class="ident">libc</span>::{<span class="ident">c_int</span>, <span class="ident">c_uint</span>};
 
 <span class="kw">impl</span> <span class="ident">EntryBuffer</span> {
-    <span class="doccomment">/// Create a new `GtkEntryBuffer` object.</span>
+    <span class="doccomment">/// Create a new [`EntryBuffer`][crate::EntryBuffer] object.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Optionally, specify initial text to set in the buffer.</span>
     <span class="doccomment">/// ## `initial_chars`</span>
@@ -250,7 +250,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A new `GtkEntryBuffer` object.</span>
+    <span class="doccomment">/// A new [`EntryBuffer`][crate::EntryBuffer] object.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_buffer_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">initial_chars</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -288,7 +288,7 @@
 
     <span class="doccomment">/// Retrieves the length in bytes of the buffer.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.EntryBuffer`.get_length].</span>
+    <span class="doccomment">/// See [``EntryBufferExtManual::length()``][crate::prelude::`EntryBufferExtManual::length()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -311,7 +311,7 @@
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the maximum allowed number of characters</span>
-    <span class="doccomment">///  in [`crate::EntryBuffer`], or 0 if there is no maximum.</span>
+    <span class="doccomment">///  in [`EntryBuffer`][crate::EntryBuffer], or 0 if there is no maximum.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_entry_buffer_get_max_length&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_max_length&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">max_length</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>;
@@ -366,8 +366,8 @@
     <span class="doccomment">/// Sets the text in the buffer.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is roughly equivalent to calling</span>
-    <span class="doccomment">/// [method`Gtk.EntryBuffer`.delete_text] and</span>
-    <span class="doccomment">/// [method`Gtk.EntryBuffer`.insert_text].</span>
+    <span class="doccomment">/// [``EntryBufferExtManual::delete_text()``][crate::prelude::`EntryBufferExtManual::delete_text()`] and</span>
+    <span class="doccomment">/// [``EntryBufferExtManual::insert_text()``][crate::prelude::`EntryBufferExtManual::insert_text()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that `n_chars` is in characters, not in bytes.</span>
     <span class="doccomment">/// ## `chars`</span>

@@ -162,7 +162,7 @@
 );
 
 <span class="kw">impl</span> <span class="ident">InsetShadowNode</span> {
-    <span class="doccomment">/// Creates a `GskRenderNode` that will render an inset shadow</span>
+    <span class="doccomment">/// Creates a [`RenderNode`][crate::RenderNode] that will render an inset shadow</span>
     <span class="doccomment">/// into the box given by `outline`.</span>
     <span class="doccomment">/// ## `outline`</span>
     <span class="doccomment">/// outline of the region containing the shadow</span>
@@ -179,7 +179,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A new `GskRenderNode`</span>
+    <span class="doccomment">/// A new [`RenderNode`][crate::RenderNode]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_inset_shadow_node_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
         <span class="ident">outline</span>: <span class="kw-2">&amp;</span><span class="ident">RoundedRect</span>,

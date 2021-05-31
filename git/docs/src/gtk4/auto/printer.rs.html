@@ -661,19 +661,19 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A `GtkPrinter` object represents a printer.</span>
+    <span class="doccomment">/// A [`Printer`][crate::Printer] object represents a printer.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You only need to deal directly with printers if you use the</span>
-    <span class="doccomment">/// non-portable [class`Gtk.PrintUnixDialog`] API.</span>
+    <span class="doccomment">/// non-portable [`PrintUnixDialog`][crate::PrintUnixDialog] API.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GtkPrinter` allows to get status information about the printer,</span>
+    <span class="doccomment">/// A [`Printer`][crate::Printer] allows to get status information about the printer,</span>
     <span class="doccomment">/// such as its description, its location, the number of queued jobs,</span>
-    <span class="doccomment">/// etc. Most importantly, a `GtkPrinter` object can be used to create</span>
-    <span class="doccomment">/// a [class`Gtk.PrintJob`] object, which lets you print to the printer.</span>
+    <span class="doccomment">/// etc. Most importantly, a [`Printer`][crate::Printer] object can be used to create</span>
+    <span class="doccomment">/// a [`PrintJob`][crate::PrintJob] object, which lets you print to the printer.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Printer</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkPrinter</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -718,7 +718,7 @@
 
     <span class="doccomment">/// Compares two printers.</span>
     <span class="doccomment">/// ## `b`</span>
-    <span class="doccomment">/// another `GtkPrinter`</span>
+    <span class="doccomment">/// another [`Printer`][crate::Printer]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -737,13 +737,13 @@
 
     <span class="doccomment">/// Returns the printer’s capabilities.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is useful when you’re using `GtkPrintUnixDialog`’s</span>
+    <span class="doccomment">/// This is useful when you’re using [`PrintUnixDialog`][crate::PrintUnixDialog]’s</span>
     <span class="doccomment">/// manual-capabilities setting and need to know which settings</span>
     <span class="doccomment">/// the printer can handle and which you must handle yourself.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This will return 0 unless the printer’s details are</span>
-    <span class="doccomment">/// available, see [method`Gtk.Printer`.has_details] and</span>
-    <span class="doccomment">/// [method`Gtk.Printer`.request_details].</span>
+    <span class="doccomment">/// available, see [``has_details()``][`Self::has_details()`] and</span>
+    <span class="doccomment">/// [``request_details()``][`Self::request_details()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -758,7 +758,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly allocated `GtkPageSetup` with default page size</span>
+    <span class="doccomment">/// a newly allocated [`PageSetup`][crate::PageSetup] with default page size</span>
     <span class="doccomment">///  of the printer.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_printer_get_default_page_size&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_default_page_size&quot;</span>)]</span>
@@ -787,8 +787,8 @@
     <span class="doccomment">/// of the paper that the printer cannot print to.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note: This will not succeed unless the printer’s details are</span>
-    <span class="doccomment">/// available, see [method`Gtk.Printer`.has_details] and</span>
-    <span class="doccomment">/// [method`Gtk.Printer`.request_details].</span>
+    <span class="doccomment">/// available, see [``has_details()``][`Self::has_details()`] and</span>
+    <span class="doccomment">/// [``request_details()``][`Self::request_details()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -838,10 +838,10 @@
     <span class="doccomment">/// of the paper that the printer cannot print to.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note: This will not succeed unless the printer’s details are</span>
-    <span class="doccomment">/// available, see [method`Gtk.Printer`.has_details] and</span>
-    <span class="doccomment">/// [method`Gtk.Printer`.request_details].</span>
+    <span class="doccomment">/// available, see [``has_details()``][`Self::has_details()`] and</span>
+    <span class="doccomment">/// [``request_details()``][`Self::request_details()`].</span>
     <span class="doccomment">/// ## `paper_size`</span>
-    <span class="doccomment">/// a `GtkPaperSize`</span>
+    <span class="doccomment">/// a [`PaperSize`][crate::PaperSize]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1014,13 +1014,13 @@
     <span class="doccomment">/// Lists all the paper sizes `self` supports.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This will return and empty list unless the printer’s details</span>
-    <span class="doccomment">/// are available, see [method`Gtk.Printer`.has_details] and</span>
-    <span class="doccomment">/// [method`Gtk.Printer`.request_details].</span>
+    <span class="doccomment">/// are available, see [``has_details()``][`Self::has_details()`] and</span>
+    <span class="doccomment">/// [``request_details()``][`Self::request_details()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// a newly</span>
-    <span class="doccomment">///  allocated list of newly allocated `GtkPageSetup`s.</span>
+    <span class="doccomment">///  allocated list of newly allocated [`PageSetup`][crate::PageSetup]s.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_printer_list_papers&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">list_papers</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">PageSetup</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -1033,7 +1033,7 @@
     <span class="doccomment">/// Requests the printer details.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When the details are available, the</span>
-    <span class="doccomment">/// [signal`Gtk.Printer`::details-acquired] signal</span>
+    <span class="doccomment">/// `signal::Printer::details-acquired` signal</span>
     <span class="doccomment">/// will be emitted on `self`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_printer_request_details&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">request_details</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {

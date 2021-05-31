@@ -234,11 +234,11 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkLayoutChild` subclass for children in a `GtkOverlayLayout`.</span>
+    <span class="doccomment">/// [`LayoutChild`][crate::LayoutChild] subclass for children in a [`OverlayLayout`][crate::OverlayLayout].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::LayoutChildExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`LayoutChildExt`][trait@crate::prelude::LayoutChildExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">OverlayLayoutChild</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkOverlayLayoutChild</span>, <span class="ident">ffi::GtkOverlayLayoutChildClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">LayoutChild</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -399,20 +399,20 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Whether the child size should contribute to the `GtkOverlayLayout`&#39;s</span>
+    <span class="doccomment">/// Whether the child size should contribute to the [`OverlayLayout`][crate::OverlayLayout]&#39;s</span>
     <span class="doccomment">/// measurement.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">measure</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">measure</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">measure</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">measure</span>);
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The widget that is associated to the `GtkLayoutChild` instance.</span>
+    <span class="doccomment">/// The widget that is associated to the [`LayoutChild`][crate::LayoutChild] instance.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">child_widget</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">child_widget</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">child_widget</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">child_widget</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The layout manager that created the `GtkLayoutChild` instance.</span>
+    <span class="doccomment">/// The layout manager that created the [`LayoutChild`][crate::LayoutChild] instance.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">layout_manager</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">LayoutManager</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">layout_manager</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">layout_manager</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">layout_manager</span>.<span class="ident">clone</span>().<span class="ident">upcast</span>());
         <span class="self">self</span>

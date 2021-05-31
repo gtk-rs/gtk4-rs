@@ -296,37 +296,37 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// The `GdkContentFormats` structure is used to advertise and negotiate the</span>
+    <span class="doccomment">/// The [`ContentFormats`][crate::ContentFormats] structure is used to advertise and negotiate the</span>
     <span class="doccomment">/// format of content.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// You will encounter `GdkContentFormats` when interacting with objects</span>
+    <span class="doccomment">/// You will encounter [`ContentFormats`][crate::ContentFormats] when interacting with objects</span>
     <span class="doccomment">/// controlling operations that pass data between different widgets, window</span>
-    <span class="doccomment">/// or application, like [class`Gdk.Drag`], [class`Gdk.Drop`],</span>
-    <span class="doccomment">/// [class`Gdk.Clipboard`] or [class`Gdk.ContentProvider`].</span>
+    <span class="doccomment">/// or application, like [`Drag`][crate::Drag], [`Drop`][crate::Drop],</span>
+    <span class="doccomment">/// [`Clipboard`][crate::Clipboard] or [`ContentProvider`][crate::ContentProvider].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// GDK supports content in 2 forms: `GType` and mime type.</span>
     <span class="doccomment">/// Using `GTypes` is meant only for in-process content transfers. Mime types</span>
     <span class="doccomment">/// are meant to be used for data passing both in-process and out-of-process.</span>
     <span class="doccomment">/// The details of how data is passed is described in the documentation of</span>
     <span class="doccomment">/// the actual implementations. To transform between the two forms,</span>
-    <span class="doccomment">/// [class`Gdk.ContentSerializer`] and [class`Gdk.ContentDeserializer`] are used.</span>
+    <span class="doccomment">/// [`ContentSerializer`][crate::ContentSerializer] and [`ContentDeserializer`][crate::ContentDeserializer] are used.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GdkContentFormats` describes a set of possible formats content can be</span>
+    <span class="doccomment">/// A [`ContentFormats`][crate::ContentFormats] describes a set of possible formats content can be</span>
     <span class="doccomment">/// exchanged in. It is assumed that this set is ordered. `GTypes` are more</span>
     <span class="doccomment">/// important than mime types. Order between different `GTypes` or mime types</span>
     <span class="doccomment">/// is the order they were added in, most important first. Functions that</span>
-    <span class="doccomment">/// care about order, such as [method`Gdk.ContentFormats`.union], will describe</span>
+    <span class="doccomment">/// care about order, such as [``union()``][`Self::union()`], will describe</span>
     <span class="doccomment">/// in their documentation how they interpret that order, though in general the</span>
     <span class="doccomment">/// order of the first argument is considered the primary order of the result,</span>
     <span class="doccomment">/// followed by the order of further arguments.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// For debugging purposes, the function [method`Gdk.ContentFormats`.to_string]</span>
+    <span class="doccomment">/// For debugging purposes, the function `Gdk::`ContentFormats::to_string()``</span>
     <span class="doccomment">/// exists. It will print a comma-separated list of formats from most important</span>
     <span class="doccomment">/// to least important.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GdkContentFormats` is an immutable struct. After creation, you cannot change</span>
-    <span class="doccomment">/// the types it represents. Instead, new `GdkContentFormats` have to be created.</span>
-    <span class="doccomment">/// The [struct`Gdk.ContentFormatsBuilder`]` structure is meant to help in this</span>
+    <span class="doccomment">/// [`ContentFormats`][crate::ContentFormats] is an immutable struct. After creation, you cannot change</span>
+    <span class="doccomment">/// the types it represents. Instead, new [`ContentFormats`][crate::ContentFormats] have to be created.</span>
+    <span class="doccomment">/// The [`ContentFormatsBuilder`][crate::ContentFormatsBuilder]` structure is meant to help in this</span>
     <span class="doccomment">/// endeavor.</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ContentFormats</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GdkContentFormats</span><span class="op">&gt;</span>);
@@ -339,18 +339,18 @@
 }
 
 <span class="kw">impl</span> <span class="ident">ContentFormats</span> {
-    <span class="doccomment">/// Creates a new `GdkContentFormats` from an array of mime types.</span>
+    <span class="doccomment">/// Creates a new [`ContentFormats`][crate::ContentFormats] from an array of mime types.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The mime types must be valid and different from each other or the</span>
     <span class="doccomment">/// behavior of the return value is undefined. If you cannot guarantee</span>
-    <span class="doccomment">/// this, use `GdkContentFormatsBuilder` instead.</span>
+    <span class="doccomment">/// this, use [`ContentFormatsBuilder`][crate::ContentFormatsBuilder] instead.</span>
     <span class="doccomment">/// ## `mime_types`</span>
     <span class="doccomment">/// Pointer to an</span>
     <span class="doccomment">///  array of mime types</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the new `GdkContentFormats`.</span>
+    <span class="doccomment">/// the new [`ContentFormats`][crate::ContentFormats].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">mime_types</span>: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="ident">str</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentFormats</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -363,13 +363,13 @@
         }
     }
 
-    <span class="doccomment">/// Creates a new `GdkContentFormats` for a given `GType`.</span>
+    <span class="doccomment">/// Creates a new [`ContentFormats`][crate::ContentFormats] for a given `GType`.</span>
     <span class="doccomment">/// ## `type_`</span>
     <span class="doccomment">/// a `GType`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GdkContentFormats`</span>
+    <span class="doccomment">/// a new [`ContentFormats`][crate::ContentFormats]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_new_for_gtype&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_for_gtype&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_type</span>(<span class="ident">type_</span>: <span class="ident">glib::types::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentFormats</span> {
@@ -383,7 +383,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`true`] if the [`crate::glib::Type`] was found</span>
+    <span class="doccomment">/// [`true`] if the `GType` was found</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_contain_gtype&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;contain_gtype&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">contains_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">type_</span>: <span class="ident">glib::types::Type</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
@@ -428,7 +428,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If no matching `GType` is found, `G_TYPE_INVALID` is returned.</span>
     <span class="doccomment">/// ## `second`</span>
-    <span class="doccomment">/// the `GdkContentFormats` to intersect with</span>
+    <span class="doccomment">/// the [`ContentFormats`][crate::ContentFormats] to intersect with</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -449,7 +449,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If no matching mime type is found, [`None`] is returned.</span>
     <span class="doccomment">/// ## `second`</span>
-    <span class="doccomment">/// the `GdkContentFormats` to intersect with</span>
+    <span class="doccomment">/// the [`ContentFormats`][crate::ContentFormats] to intersect with</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -488,11 +488,11 @@
     <span class="doccomment">/// Append all missing types from `second` to `self`, in the order</span>
     <span class="doccomment">/// they had in `second`.</span>
     <span class="doccomment">/// ## `second`</span>
-    <span class="doccomment">/// the `GdkContentFormats` to merge from</span>
+    <span class="doccomment">/// the [`ContentFormats`][crate::ContentFormats] to merge from</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GdkContentFormats`</span>
+    <span class="doccomment">/// a new [`ContentFormats`][crate::ContentFormats]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_union&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">union</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">second</span>: <span class="kw-2">&amp;</span><span class="ident">ContentFormats</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ContentFormats</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -508,7 +508,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GdkContentFormats`</span>
+    <span class="doccomment">/// a new [`ContentFormats`][crate::ContentFormats]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_union_deserialize_gtypes&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;union_deserialize_gtypes&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">union_deserialize_types</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ContentFormats</span><span class="op">&gt;</span> {
@@ -524,7 +524,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GdkContentFormats`</span>
+    <span class="doccomment">/// a new [`ContentFormats`][crate::ContentFormats]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_union_deserialize_mime_types&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">union_deserialize_mime_types</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ContentFormats</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -539,7 +539,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GdkContentFormats`</span>
+    <span class="doccomment">/// a new [`ContentFormats`][crate::ContentFormats]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_union_serialize_gtypes&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;union_serialize_gtypes&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">union_serialize_types</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ContentFormats</span><span class="op">&gt;</span> {
@@ -555,7 +555,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GdkContentFormats`</span>
+    <span class="doccomment">/// a new [`ContentFormats`][crate::ContentFormats]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_formats_union_serialize_mime_types&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">union_serialize_mime_types</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">ContentFormats</span><span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {

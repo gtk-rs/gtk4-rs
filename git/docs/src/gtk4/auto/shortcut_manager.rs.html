@@ -59,22 +59,22 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// The `GtkShortcutManager` interface is used to implement</span>
+    <span class="doccomment">/// The [`ShortcutManager`][crate::ShortcutManager] interface is used to implement</span>
     <span class="doccomment">/// shortcut scopes.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is important for [iface`Gtk.Native`] widgets that have their</span>
+    <span class="doccomment">/// This is important for [`Native`][crate::Native] widgets that have their</span>
     <span class="doccomment">/// own surface, since the event controllers that are used to implement</span>
     <span class="doccomment">/// managed and global scopes are limited to the same native.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Examples for widgets implementing `GtkShortcutManager` are</span>
-    <span class="doccomment">/// [class`Gtk.Window`] and [class`Gtk.Popover`].</span>
+    <span class="doccomment">/// Examples for widgets implementing [`ShortcutManager`][crate::ShortcutManager] are</span>
+    <span class="doccomment">/// [`Window`][crate::Window] and [`Popover`][crate::Popover].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Every widget that implements `GtkShortcutManager` will be used as a</span>
-    <span class="doccomment">/// [`crate::ShortcutScope::Managed`].</span>
+    <span class="doccomment">/// Every widget that implements [`ShortcutManager`][crate::ShortcutManager] will be used as a</span>
+    <span class="doccomment">/// [`ShortcutScope::Managed`][crate::ShortcutScope::Managed].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::ShortcutManagerExt`]</span>
+    <span class="doccomment">/// [`ShortcutManagerExt`][trait@crate::prelude::ShortcutManagerExt]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ShortcutManager</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GtkShortcutManager</span>, <span class="ident">ffi::GtkShortcutManagerInterface</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -88,7 +88,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::AboutDialog`], [`struct@crate::AppChooserDialog`], [`struct@crate::ApplicationWindow`], [`struct@crate::Assistant`], [`struct@crate::ColorChooserDialog`], [`struct@crate::Dialog`], [`struct@crate::EmojiChooser`], [`struct@crate::FileChooserDialog`], [`struct@crate::FontChooserDialog`], [`struct@crate::MessageDialog`], [`struct@crate::PageSetupUnixDialog`], [`struct@crate::PopoverMenu`], [`struct@crate::Popover`], [`struct@crate::PrintUnixDialog`], [`struct@crate::ShortcutManager`], [`struct@crate::ShortcutsWindow`], [`struct@crate::Window`]</span>
+<span class="doccomment">/// [`AboutDialog`][struct@crate::AboutDialog], [`AppChooserDialog`][struct@crate::AppChooserDialog], [`ApplicationWindow`][struct@crate::ApplicationWindow], [`Assistant`][struct@crate::Assistant], [`ColorChooserDialog`][struct@crate::ColorChooserDialog], [`Dialog`][struct@crate::Dialog], [`EmojiChooser`][struct@crate::EmojiChooser], [`FileChooserDialog`][struct@crate::FileChooserDialog], [`FontChooserDialog`][struct@crate::FontChooserDialog], [`MessageDialog`][struct@crate::MessageDialog], [`PageSetupUnixDialog`][struct@crate::PageSetupUnixDialog], [`PopoverMenu`][struct@crate::PopoverMenu], [`Popover`][struct@crate::Popover], [`PrintUnixDialog`][struct@crate::PrintUnixDialog], [`ShortcutManager`][struct@crate::ShortcutManager], [`ShortcutsWindow`][struct@crate::ShortcutsWindow], [`Window`][struct@crate::Window]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ShortcutManagerExt</span>: <span class="lifetime">&#39;static</span> {}
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">ShortcutManager</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">ShortcutManagerExt</span> <span class="kw">for</span> <span class="ident">O</span> {}

@@ -185,13 +185,13 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// Contains information found when looking up an icon in `GtkIconTheme`.</span>
+    <span class="doccomment">/// Contains information found when looking up an icon in [`IconTheme`][crate::IconTheme].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkIconPaintable` implements `GdkPaintable`.</span>
+    <span class="doccomment">/// [`IconPaintable`][crate::IconPaintable] implements [`gdk::Paintable`][crate::gdk::Paintable].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`trait@gdk::prelude::PaintableExt`]</span>
+    <span class="doccomment">/// [`trait@glib::ObjectExt`], [`trait@gdk::prelude::PaintableExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">IconPaintable</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkIconPaintable</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">gdk::Paintable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -200,9 +200,9 @@
 }
 
 <span class="kw">impl</span> <span class="ident">IconPaintable</span> {
-    <span class="doccomment">/// Creates a `GtkIconPaintable` for a file with a given size and scale.</span>
+    <span class="doccomment">/// Creates a [`IconPaintable`][crate::IconPaintable] for a file with a given size and scale.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The icon can then be rendered by using it as a `GdkPaintable`.</span>
+    <span class="doccomment">/// The icon can then be rendered by using it as a [`gdk::Paintable`][crate::gdk::Paintable].</span>
     <span class="doccomment">/// ## `file`</span>
     <span class="doccomment">/// a `GFile`</span>
     <span class="doccomment">/// ## `size`</span>
@@ -212,8 +212,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GtkIconPaintable` containing</span>
-    <span class="doccomment">///  for the icon. Unref with [`crate::glib::object::Object::unref()`]</span>
+    <span class="doccomment">/// a [`IconPaintable`][crate::IconPaintable] containing</span>
+    <span class="doccomment">///  for the icon. Unref with `g_object_unref()`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_paintable_new_for_file&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_for_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::File</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">file</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">size</span>: <span class="ident">i32</span>, <span class="ident">scale</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">IconPaintable</span> {
@@ -240,8 +240,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the [`crate::gio::File`] for the icon, or [`None`].</span>
-    <span class="doccomment">///  Free with [`crate::glib::object::Object::unref()`].</span>
+    <span class="doccomment">/// the [`gio::File`][crate::gio::File] for the icon, or [`None`].</span>
+    <span class="doccomment">///  Free with `g_object_unref()`.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_icon_paintable_get_file&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_file&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">file</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">gio::File</span><span class="op">&gt;</span> {
@@ -252,7 +252,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// When an icon looked up in the icon theme was not available, the</span>
     <span class="doccomment">/// icon theme may use fallback icons - either those specified to</span>
-    <span class="doccomment">/// [`crate::IconTheme::lookup_icon()`] or the always-available</span>
+    <span class="doccomment">/// [`IconTheme::lookup_icon()`][crate::IconTheme::lookup_icon()] or the always-available</span>
     <span class="doccomment">/// &quot;image-missing&quot;. The icon chosen is returned by this function.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the icon was created without an icon theme, this function</span>
@@ -273,8 +273,8 @@
     <span class="doccomment">/// This currently uses only the file name and not the file contents</span>
     <span class="doccomment">/// for determining this. This behaviour may change in the future.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that to render a symbolic `GtkIconPaintable` properly (with</span>
-    <span class="doccomment">/// recoloring), you have to set its icon name on a `GtkImage`.</span>
+    <span class="doccomment">/// Note that to render a symbolic [`IconPaintable`][crate::IconPaintable] properly (with</span>
+    <span class="doccomment">/// recoloring), you have to set its icon name on a [`Image`][crate::Image].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

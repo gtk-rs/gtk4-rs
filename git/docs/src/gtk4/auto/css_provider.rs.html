@@ -238,16 +238,16 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkCssProvider` is an object implementing the `GtkStyleProvider` interface</span>
+    <span class="doccomment">/// [`CssProvider`][crate::CssProvider] is an object implementing the [`StyleProvider`][crate::StyleProvider] interface</span>
     <span class="doccomment">/// for CSS.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It is able to parse CSS-like input in order to style widgets.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// An application can make GTK parse a specific CSS style sheet by calling</span>
-    <span class="doccomment">/// [method`Gtk.CssProvider`.load_from_file] or</span>
-    <span class="doccomment">/// [method`Gtk.CssProvider`.load_from_resource]</span>
-    <span class="doccomment">/// and adding the provider with [method`Gtk.StyleContext`.add_provider] or</span>
-    <span class="doccomment">/// [func`Gtk.StyleContext`.add_provider_for_display].</span>
+    <span class="doccomment">/// [``load_from_file()``][`Self::load_from_file()`] or</span>
+    <span class="doccomment">/// [``load_from_resource()``][`Self::load_from_resource()`]</span>
+    <span class="doccomment">/// and adding the provider with [``StyleContextExt::add_provider()``][crate::prelude::`StyleContextExt::add_provider()`] or</span>
+    <span class="doccomment">/// [``StyleContext::add_provider_for_display()``][crate::`StyleContext::add_provider_for_display()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In addition, certain files will be read when GTK is initialized.</span>
     <span class="doccomment">/// First, the file `$XDG_CONFIG_HOME/gtk-4.0/gtk.css` is loaded if it</span>
@@ -257,20 +257,20 @@
     <span class="doccomment">/// `$XDG_DATA_DIRS/themes/THEME/gtk-VERSION/gtk-VARIANT.css` and</span>
     <span class="doccomment">/// `DATADIR/share/themes/THEME/gtk-VERSION/gtk-VARIANT.css`,</span>
     <span class="doccomment">/// where `THEME` is the name of the current theme (see the</span>
-    <span class="doccomment">/// [property`Gtk.Settings`:gtk-theme-name] setting), `VARIANT` is the</span>
+    <span class="doccomment">/// `property::Settings::gtk-theme-name` setting), `VARIANT` is the</span>
     <span class="doccomment">/// variant to load (see the</span>
-    <span class="doccomment">/// [property`Gtk.Settings`:gtk-application-prefer-dark-theme] setting),</span>
+    <span class="doccomment">/// `property::Settings::gtk-application-prefer-dark-theme` setting),</span>
     <span class="doccomment">/// `DATADIR` is the prefix configured when GTK was compiled (unless</span>
     <span class="doccomment">/// overridden by the `GTK_DATA_PREFIX` environment variable), and</span>
     <span class="doccomment">/// `VERSION` is the GTK version number. If no file is found for the</span>
     <span class="doccomment">/// current version, GTK tries older versions all the way back to 4.0.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To track errors while loading CSS, connect to the</span>
-    <span class="doccomment">/// [signal`Gtk.CssProvider`::parsing-error] signal.</span>
+    <span class="doccomment">/// `signal::CssProvider::parsing-error` signal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::StyleProviderExt`]</span>
+    <span class="doccomment">/// [`trait@glib::ObjectExt`], [`StyleProviderExt`][trait@crate::prelude::StyleProviderExt]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CssProvider</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkCssProvider</span>, <span class="ident">ffi::GtkCssProviderClass</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">StyleProvider</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -279,11 +279,11 @@
 }
 
 <span class="kw">impl</span> <span class="ident">CssProvider</span> {
-    <span class="doccomment">/// Returns a newly created `GtkCssProvider`.</span>
+    <span class="doccomment">/// Returns a newly created [`CssProvider`][crate::CssProvider].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A new `GtkCssProvider`</span>
+    <span class="doccomment">/// A new [`CssProvider`][crate::CssProvider]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_css_provider_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CssProvider</span> {
         <span class="macro">assert_initialized_main_thread!</span>();

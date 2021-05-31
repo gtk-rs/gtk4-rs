@@ -232,25 +232,25 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkSizeGroup` groups widgets together so they all request the same size.</span>
+    <span class="doccomment">/// [`SizeGroup`][crate::SizeGroup] groups widgets together so they all request the same size.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is typically useful when you want a column of widgets to have the</span>
-    <span class="doccomment">/// same size, but you can’t use a `GtkGrid`.</span>
+    <span class="doccomment">/// same size, but you can’t use a [`Grid`][crate::Grid].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// In detail, the size requested for each widget in a `GtkSizeGroup` is</span>
+    <span class="doccomment">/// In detail, the size requested for each widget in a [`SizeGroup`][crate::SizeGroup] is</span>
     <span class="doccomment">/// the maximum of the sizes that would have been requested for each</span>
     <span class="doccomment">/// widget in the size group if they were not in the size group. The mode</span>
-    <span class="doccomment">/// of the size group (see [method`Gtk.SizeGroup`.set_mode]) determines whether</span>
+    <span class="doccomment">/// of the size group (see [``set_mode()``][`Self::set_mode()`]) determines whether</span>
     <span class="doccomment">/// this applies to the horizontal size, the vertical size, or both sizes.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that size groups only affect the amount of space requested, not</span>
     <span class="doccomment">/// the size that the widgets finally receive. If you want the widgets in</span>
-    <span class="doccomment">/// a `GtkSizeGroup` to actually be the same size, you need to pack them in</span>
+    <span class="doccomment">/// a [`SizeGroup`][crate::SizeGroup] to actually be the same size, you need to pack them in</span>
     <span class="doccomment">/// such a way that they get the size they request and not more.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkSizeGroup` objects are referenced by each widget in the size group,</span>
-    <span class="doccomment">/// so once you have added all widgets to a `GtkSizeGroup`, you can drop</span>
-    <span class="doccomment">/// the initial reference to the size group with [`crate::glib::object::Object::unref()`]. If the</span>
+    <span class="doccomment">/// [`SizeGroup`][crate::SizeGroup] objects are referenced by each widget in the size group,</span>
+    <span class="doccomment">/// so once you have added all widgets to a [`SizeGroup`][crate::SizeGroup], you can drop</span>
+    <span class="doccomment">/// the initial reference to the size group with `g_object_unref()`. If the</span>
     <span class="doccomment">/// widgets in the size group are subsequently destroyed, then they will</span>
     <span class="doccomment">/// be removed from the size group and drop their references on the size</span>
     <span class="doccomment">/// group; when all widgets have been removed, the size group will be</span>
@@ -259,26 +259,26 @@
     <span class="doccomment">/// Widgets can be part of multiple size groups; GTK will compute the</span>
     <span class="doccomment">/// horizontal size of a widget from the horizontal requisition of all</span>
     <span class="doccomment">/// widgets that can be reached from the widget by a chain of size groups</span>
-    <span class="doccomment">/// of type [`crate::SizeGroupMode::Horizontal`] or [`crate::SizeGroupMode::Both`], and the</span>
+    <span class="doccomment">/// of type [`SizeGroupMode::Horizontal`][crate::SizeGroupMode::Horizontal] or [`SizeGroupMode::Both`][crate::SizeGroupMode::Both], and the</span>
     <span class="doccomment">/// vertical size from the vertical requisition of all widgets that can be</span>
     <span class="doccomment">/// reached from the widget by a chain of size groups of type</span>
-    <span class="doccomment">/// [`crate::SizeGroupMode::Vertical`] or [`crate::SizeGroupMode::Both`].</span>
+    <span class="doccomment">/// [`SizeGroupMode::Vertical`][crate::SizeGroupMode::Vertical] or [`SizeGroupMode::Both`][crate::SizeGroupMode::Both].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that only non-contextual sizes of every widget are ever consulted</span>
     <span class="doccomment">/// by size groups (since size groups have no knowledge of what size a widget</span>
     <span class="doccomment">/// will be allocated in one dimension, it cannot derive how much height</span>
     <span class="doccomment">/// a widget will receive for a given width). When grouping widgets that</span>
-    <span class="doccomment">/// trade height for width in mode [`crate::SizeGroupMode::Vertical`] or [`crate::SizeGroupMode::Both`]:</span>
+    <span class="doccomment">/// trade height for width in mode [`SizeGroupMode::Vertical`][crate::SizeGroupMode::Vertical] or [`SizeGroupMode::Both`][crate::SizeGroupMode::Both]:</span>
     <span class="doccomment">/// the height for the minimum width will be the requested height for all</span>
     <span class="doccomment">/// widgets in the group. The same is of course true when horizontally grouping</span>
     <span class="doccomment">/// width for height widgets.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Widgets that trade height-for-width should set a reasonably large minimum</span>
-    <span class="doccomment">/// width by way of [property`Gtk.Label`:width-chars] for instance. Widgets with</span>
+    <span class="doccomment">/// width by way of `property::Label::width-chars` for instance. Widgets with</span>
     <span class="doccomment">/// static sizes as well as widgets that grow (such as ellipsizing text) need no</span>
     <span class="doccomment">/// such considerations.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// # `SizeGroup` as `Buildable`</span>
+    <span class="doccomment">/// # GtkSizeGroup as GtkBuildable</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Size groups can be specified in a UI definition by placing an `&lt;object&gt;`</span>
     <span class="doccomment">/// element with `class=&quot;GtkSizeGroup&quot;` somewhere in the UI definition. The</span>
@@ -286,7 +286,7 @@
     <span class="doccomment">/// that may contain multiple `&lt;widget&gt;` elements, one for each member of the</span>
     <span class="doccomment">/// size group. The ”name” attribute gives the id of the widget.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// An example of a UI definition fragment with `GtkSizeGroup`:</span>
+    <span class="doccomment">/// An example of a UI definition fragment with [`SizeGroup`][crate::SizeGroup]:</span>
     <span class="doccomment">/// ```xml</span>
     <span class="doccomment">/// &lt;object class=&quot;GtkSizeGroup&quot;&gt;</span>
     <span class="doccomment">///   &lt;property name=&quot;mode&quot;&gt;horizontal&lt;/property&gt;</span>
@@ -299,7 +299,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::BuildableExt`]</span>
+    <span class="doccomment">/// [`trait@glib::ObjectExt`], [`BuildableExt`][trait@crate::prelude::BuildableExt]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SizeGroup</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkSizeGroup</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">Buildable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -308,32 +308,32 @@
 }
 
 <span class="kw">impl</span> <span class="ident">SizeGroup</span> {
-    <span class="doccomment">/// Create a new `GtkSizeGroup`.</span>
+    <span class="doccomment">/// Create a new [`SizeGroup`][crate::SizeGroup].</span>
     <span class="doccomment">/// ## `mode`</span>
     <span class="doccomment">/// the mode for the new size group.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly created `GtkSizeGroup`</span>
+    <span class="doccomment">/// a newly created [`SizeGroup`][crate::SizeGroup]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_size_group_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">mode</span>: <span class="ident">SizeGroupMode</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SizeGroup</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_size_group_new</span>(<span class="ident">mode</span>.<span class="ident">into_glib</span>())) }
     }
 
-    <span class="doccomment">/// Adds a widget to a `GtkSizeGroup`.</span>
+    <span class="doccomment">/// Adds a widget to a [`SizeGroup`][crate::SizeGroup].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In the future, the requisition</span>
     <span class="doccomment">/// of the widget will be determined as the maximum of its requisition</span>
     <span class="doccomment">/// and the requisition of the other widgets in the size group.</span>
     <span class="doccomment">/// Whether this applies horizontally, vertically, or in both directions</span>
     <span class="doccomment">/// depends on the mode of the size group.</span>
-    <span class="doccomment">/// See [method`Gtk.SizeGroup`.set_mode].</span>
+    <span class="doccomment">/// See [``set_mode()``][`Self::set_mode()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When the widget is destroyed or no longer referenced elsewhere, it</span>
     <span class="doccomment">/// will be removed from the size group.</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// the `GtkWidget` to add</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] to add</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_size_group_add_widget&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_widget</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
         <span class="kw">unsafe</span> {
@@ -368,9 +368,9 @@
         }
     }
 
-    <span class="doccomment">/// Removes a widget from a `GtkSizeGroup`.</span>
+    <span class="doccomment">/// Removes a widget from a [`SizeGroup`][crate::SizeGroup].</span>
     <span class="doccomment">/// ## `widget`</span>
-    <span class="doccomment">/// the `GtkWidget` to remove</span>
+    <span class="doccomment">/// the [`Widget`][crate::Widget] to remove</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_size_group_remove_widget&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove_widget</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">widget</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) {
         <span class="kw">unsafe</span> {
@@ -381,13 +381,13 @@
         }
     }
 
-    <span class="doccomment">/// Sets the `GtkSizeGroupMode` of the size group.</span>
+    <span class="doccomment">/// Sets the [`SizeGroupMode`][crate::SizeGroupMode] of the size group.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The mode of the size group determines whether the widgets in the</span>
     <span class="doccomment">/// size group should all have the same horizontal requisition</span>
-    <span class="doccomment">/// ([`crate::SizeGroupMode::Horizontal`]) all have the same vertical requisition</span>
-    <span class="doccomment">/// ([`crate::SizeGroupMode::Vertical`]), or should all have the same requisition</span>
-    <span class="doccomment">/// in both directions ([`crate::SizeGroupMode::Both`]).</span>
+    <span class="doccomment">/// ([`SizeGroupMode::Horizontal`][crate::SizeGroupMode::Horizontal]) all have the same vertical requisition</span>
+    <span class="doccomment">/// ([`SizeGroupMode::Vertical`][crate::SizeGroupMode::Vertical]), or should all have the same requisition</span>
+    <span class="doccomment">/// in both directions ([`SizeGroupMode::Both`][crate::SizeGroupMode::Both]).</span>
     <span class="doccomment">/// ## `mode`</span>
     <span class="doccomment">/// the mode to set for the size group.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_size_group_set_mode&quot;</span>)]</span>

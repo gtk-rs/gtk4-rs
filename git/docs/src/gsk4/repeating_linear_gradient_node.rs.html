@@ -87,7 +87,7 @@
 );
 
 <span class="kw">impl</span> <span class="ident">RepeatingLinearGradientNode</span> {
-    <span class="doccomment">/// Creates a `GskRenderNode` that will create a repeating linear gradient</span>
+    <span class="doccomment">/// Creates a [`RenderNode`][crate::RenderNode] that will create a repeating linear gradient</span>
     <span class="doccomment">/// from the given points and color stops, and render that into the area</span>
     <span class="doccomment">/// given by `bounds`.</span>
     <span class="doccomment">/// ## `bounds`</span>
@@ -98,13 +98,13 @@
     <span class="doccomment">/// the point at which the linear gradient will finish</span>
     <span class="doccomment">/// ## `color_stops`</span>
     <span class="doccomment">/// a pointer to an array of</span>
-    <span class="doccomment">/// `GskColorStop` defining the gradient. The offsets of all color stops</span>
+    <span class="doccomment">/// [`ColorStop`][crate::ColorStop] defining the gradient. The offsets of all color stops</span>
     <span class="doccomment">///  must be increasing. The first stop&#39;s offset must be &gt;= 0 and the last</span>
     <span class="doccomment">///  stop&#39;s offset must be &lt;= 1.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A new `GskRenderNode`</span>
+    <span class="doccomment">/// A new [`RenderNode`][crate::RenderNode]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gsk_repeating_linear_gradient_node_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">bounds</span>: <span class="kw-2">&amp;</span><span class="ident">Rect</span>, <span class="ident">start</span>: <span class="kw-2">&amp;</span><span class="ident">Point</span>, <span class="ident">end</span>: <span class="kw-2">&amp;</span><span class="ident">Point</span>, <span class="ident">color_stops</span>: <span class="kw-2">&amp;</span>[<span class="ident">ColorStop</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">assert_initialized_main_thread!</span>();

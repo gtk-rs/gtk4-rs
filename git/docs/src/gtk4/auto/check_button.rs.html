@@ -1047,16 +1047,16 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A `GtkCheckButton` places a label next to an indicator.</span>
+    <span class="doccomment">/// A [`CheckButton`][crate::CheckButton] places a label next to an indicator.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ![Example `GtkCheckButtons`](check-button.png)</span>
+    <span class="doccomment">/// ![Example GtkCheckButtons](check-button.png)</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GtkCheckButton` is created by calling either [ctor`Gtk.CheckButton`.new]</span>
-    <span class="doccomment">/// or [ctor`Gtk.CheckButton`.new_with_label].</span>
+    <span class="doccomment">/// A [`CheckButton`][crate::CheckButton] is created by calling either [``new()``][`Self::new()`]</span>
+    <span class="doccomment">/// or [``with_label()``][`Self::with_label()`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The state of a `GtkCheckButton` can be set specifically using</span>
-    <span class="doccomment">/// [method`Gtk.CheckButton`.set_active], and retrieved using</span>
-    <span class="doccomment">/// [method`Gtk.CheckButton`.get_active].</span>
+    <span class="doccomment">/// The state of a [`CheckButton`][crate::CheckButton] can be set specifically using</span>
+    <span class="doccomment">/// [``CheckButtonExt::set_active()``][crate::prelude::`CheckButtonExt::set_active()`], and retrieved using</span>
+    <span class="doccomment">/// [``CheckButtonExt::is_active()``][crate::prelude::`CheckButtonExt::is_active()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Inconsistent state</span>
     <span class="doccomment">///</span>
@@ -1066,8 +1066,8 @@
     <span class="doccomment">/// text or spreadsheet cells) that are affected by a check button,</span>
     <span class="doccomment">/// and the current values in that range are inconsistent.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To set a `GtkCheckButton` to inconsistent state, use</span>
-    <span class="doccomment">/// [method`Gtk.CheckButton`.set_inconsistent].</span>
+    <span class="doccomment">/// To set a [`CheckButton`][crate::CheckButton] to inconsistent state, use</span>
+    <span class="doccomment">/// [``CheckButtonExt::set_inconsistent()``][crate::prelude::`CheckButtonExt::set_inconsistent()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Grouping</span>
     <span class="doccomment">///</span>
@@ -1078,30 +1078,30 @@
     <span class="doccomment">/// Grouped check buttons use a different indicator, and are commonly referred</span>
     <span class="doccomment">/// to as *radio buttons*.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ![Example `GtkCheckButtons`](radio-button.png)</span>
+    <span class="doccomment">/// ![Example GtkCheckButtons](radio-button.png)</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To add a `GtkCheckButton` to a group, use [method`Gtk.CheckButton`.set_group].</span>
+    <span class="doccomment">/// To add a [`CheckButton`][crate::CheckButton] to a group, use [``CheckButtonExt::set_group()``][crate::prelude::`CheckButtonExt::set_group()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # CSS nodes</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
+    <span class="doccomment">/// ```text</span>
     <span class="doccomment">/// checkbutton[.text-button]</span>
     <span class="doccomment">/// ├── check</span>
     <span class="doccomment">/// ╰── [label]</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GtkCheckButton` has a main node with name checkbutton. If the</span>
-    <span class="doccomment">/// [property`Gtk.CheckButton`:label] property is set, it contains a label</span>
+    <span class="doccomment">/// A [`CheckButton`][crate::CheckButton] has a main node with name checkbutton. If the</span>
+    <span class="doccomment">/// `property::CheckButton::label` property is set, it contains a label</span>
     <span class="doccomment">/// child. The indicator node is named check when no group is set, and</span>
     <span class="doccomment">/// radio if the checkbutton is grouped together with other checkbuttons.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkCheckButton` uses the [`crate::AccessibleRole::Checkbox`] role.</span>
+    <span class="doccomment">/// [`CheckButton`][crate::CheckButton] uses the [`AccessibleRole::Checkbox`][crate::AccessibleRole::Checkbox] role.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::CheckButtonExt`], [`trait@crate::prelude::WidgetExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::AccessibleExt`], [`trait@crate::prelude::BuildableExt`], [`trait@crate::prelude::ConstraintTargetExt`], [`trait@crate::prelude::ActionableExt`], [`trait@crate::prelude::WidgetExtManual`], [`trait@crate::prelude::AccessibleExtManual`], [`trait@crate::prelude::ActionableExtManual`]</span>
+    <span class="doccomment">/// [`CheckButtonExt`][trait@crate::prelude::CheckButtonExt], [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`ActionableExt`][trait@crate::prelude::ActionableExt], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual], [`ActionableExtManual`][trait@crate::prelude::ActionableExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CheckButton</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkCheckButton</span>, <span class="ident">ffi::GtkCheckButtonClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Actionable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1110,24 +1110,24 @@
 }
 
 <span class="kw">impl</span> <span class="ident">CheckButton</span> {
-    <span class="doccomment">/// Creates a new `GtkCheckButton`.</span>
+    <span class="doccomment">/// Creates a new [`CheckButton`][crate::CheckButton].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkCheckButton`</span>
+    <span class="doccomment">/// a new [`CheckButton`][crate::CheckButton]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_check_button_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CheckButton</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> { <span class="ident">Widget::from_glib_none</span>(<span class="ident">ffi::gtk_check_button_new</span>()).<span class="ident">unsafe_cast</span>() }
     }
 
-    <span class="doccomment">/// Creates a new `GtkCheckButton` with the given text.</span>
+    <span class="doccomment">/// Creates a new [`CheckButton`][crate::CheckButton] with the given text.</span>
     <span class="doccomment">/// ## `label`</span>
     <span class="doccomment">/// the text for the check button.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkCheckButton`</span>
+    <span class="doccomment">/// a new [`CheckButton`][crate::CheckButton]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_check_button_new_with_label&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_with_label&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_label</span>(<span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CheckButton</span> {
@@ -1138,14 +1138,14 @@
         }
     }
 
-    <span class="doccomment">/// Creates a new `GtkCheckButton` with the given text and a mnemonic.</span>
+    <span class="doccomment">/// Creates a new [`CheckButton`][crate::CheckButton] with the given text and a mnemonic.</span>
     <span class="doccomment">/// ## `label`</span>
     <span class="doccomment">/// The text of the button, with an underscore</span>
     <span class="doccomment">///  in front of the mnemonic character</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkCheckButton`</span>
+    <span class="doccomment">/// a new [`CheckButton`][crate::CheckButton]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_check_button_new_with_mnemonic&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_with_mnemonic&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_mnemonic</span>(<span class="ident">label</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CheckButton</span> {
@@ -1438,7 +1438,7 @@
     <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
-    <span class="doccomment">/// the widget will be queried using [signal`Gtk.Widget`::query-tooltip] to</span>
+    <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">has_tooltip</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">has_tooltip</span>);
@@ -1465,7 +1465,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The `GtkLayoutManager` instance to use to compute the preferred size</span>
+    <span class="doccomment">/// The [`LayoutManager`][crate::LayoutManager] instance to use to compute the preferred size</span>
     <span class="doccomment">/// of the widget, and allocate its children.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
@@ -1479,7 +1479,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -1492,7 +1492,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -1505,7 +1505,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -1515,7 +1515,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -1557,16 +1557,16 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_markup].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_markup</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_markup</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_markup</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_markup</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1574,16 +1574,16 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_text].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_text</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1621,7 +1621,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The accessible role of the given `GtkAccessible` implementation.</span>
+    <span class="doccomment">/// The accessible role of the given [`Accessible`][crate::Accessible] implementation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The accessible role cannot be changed once set.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accessible_role</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">accessible_role</span>: <span class="ident">AccessibleRole</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
@@ -1646,7 +1646,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::CheckButton`]</span>
+<span class="doccomment">/// [`CheckButton`][struct@crate::CheckButton]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CheckButtonExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Returns whether the check button is active.</span>
     <span class="doccomment">///</span>
@@ -1680,8 +1680,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The value of the [property`Gtk.CheckButton`:use-underline] property.</span>
-    <span class="doccomment">///  See [method`Gtk.CheckButton`.set_use_underline] for details on how to set</span>
+    <span class="doccomment">/// The value of the `property::CheckButton::use-underline` property.</span>
+    <span class="doccomment">///  See [``set_use_underline()``][`Self::set_use_underline()`] for details on how to set</span>
     <span class="doccomment">///  a new value.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_check_button_get_use_underline&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_use_underline&quot;</span>)]</span>
@@ -1702,17 +1702,17 @@
     <span class="doccomment">/// Setting the group of a check button also changes the css name of the</span>
     <span class="doccomment">/// indicator widget&#39;s CSS node to &#39;radio&#39;.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that the same effect can be achieved via the [interface`Gtk.Actionable`]</span>
+    <span class="doccomment">/// Note that the same effect can be achieved via the [interface`Gtk`]</span>
     <span class="doccomment">/// API, by using the same action with parameter type and state type &#39;s&#39;</span>
     <span class="doccomment">/// for all buttons in the group, and giving each button its own target</span>
     <span class="doccomment">/// value.</span>
     <span class="doccomment">/// ## `group`</span>
-    <span class="doccomment">/// another `GtkCheckButton` to</span>
+    <span class="doccomment">/// another [`CheckButton`][crate::CheckButton] to</span>
     <span class="doccomment">///  form a group with</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_check_button_set_group&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_group</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">CheckButton</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">group</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>);
 
-    <span class="doccomment">/// Sets the `GtkCheckButton` to inconsistent state.</span>
+    <span class="doccomment">/// Sets the [`CheckButton`][crate::CheckButton] to inconsistent state.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// You shoud turn off the inconsistent state again if the user checks</span>
     <span class="doccomment">/// the check button. This has to be done manually.</span>
@@ -1723,9 +1723,9 @@
 
     <span class="doccomment">/// Sets the text of `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If [property`Gtk.CheckButton`:use-underline] is [`true`], an underscore</span>
+    <span class="doccomment">/// If `property::CheckButton::use-underline` is [`true`], an underscore</span>
     <span class="doccomment">/// in `label` is interpreted as mnemonic indicator, see</span>
-    <span class="doccomment">/// [method`Gtk.CheckButton`.set_use_underline] for details on this behavior.</span>
+    <span class="doccomment">/// [``set_use_underline()``][`Self::set_use_underline()`] for details on this behavior.</span>
     <span class="doccomment">/// ## `label`</span>
     <span class="doccomment">/// The text shown next to the indicator, or [`None`]</span>
     <span class="doccomment">///  to show no text</span>
@@ -1736,7 +1736,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If `setting` is [`true`], an underscore character in `self`&#39;s label</span>
     <span class="doccomment">/// indicates a mnemonic accelerator key. This behavior is similar</span>
-    <span class="doccomment">/// to [property`Gtk.Label`:use-underline].</span>
+    <span class="doccomment">/// to `property::Label::use-underline`.</span>
     <span class="doccomment">/// ## `setting`</span>
     <span class="doccomment">/// the new value to set</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_check_button_set_use_underline&quot;</span>)]</span>
@@ -1744,11 +1744,11 @@
 
     <span class="doccomment">/// Emitted to when the check button is activated.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `::activate` signal on `GtkCheckButton` is an action signal and</span>
+    <span class="doccomment">/// The `::activate` signal on [`CheckButton`][crate::CheckButton] is an action signal and</span>
     <span class="doccomment">/// emitting it causes the button to animate press then release.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Applications should never connect to this signal, but use the</span>
-    <span class="doccomment">/// [signal`Gtk.CheckButton`::toggled] signal.</span>
+    <span class="doccomment">/// `signal::CheckButton::toggled` signal.</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>))]</span>
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>)))]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;activate&quot;</span>)]</span>
@@ -1758,7 +1758,7 @@
     <span class="attribute">#[<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dox&quot;</span>, <span class="ident">doc</span>(<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;v4_2&quot;</span>)))]</span>
     <span class="kw">fn</span> <span class="ident">emit_activate</span>(<span class="kw-2">&amp;</span><span class="self">self</span>);
 
-    <span class="doccomment">/// Emitted when the buttons&#39;s [property`Gtk.CheckButton`:active]</span>
+    <span class="doccomment">/// Emitted when the buttons&#39;s `property::CheckButton::active`</span>
     <span class="doccomment">/// property changes.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;toggled&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">connect_toggled</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span>;

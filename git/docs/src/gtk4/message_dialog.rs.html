@@ -178,7 +178,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a simple dialog with some text the user may want to see.</span>
     <span class="doccomment">/// When the user clicks a button a “response” signal is emitted with</span>
-    <span class="doccomment">/// response IDs from [enum`Gtk.ResponseType`]. See [class`Gtk.Dialog`]</span>
+    <span class="doccomment">/// response IDs from [`ResponseType`][crate::ResponseType]. See [`Dialog`][crate::Dialog]</span>
     <span class="doccomment">/// for more details.</span>
     <span class="doccomment">/// ## `parent`</span>
     <span class="doccomment">/// transient parent, or [`None`] for none</span>
@@ -193,7 +193,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkMessageDialog`</span>
+    <span class="doccomment">/// a new [`MessageDialog`][crate::MessageDialog]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_message_dialog_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="ident">parent</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">T</span><span class="op">&gt;</span>,
@@ -222,15 +222,15 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a simple dialog with some text that is marked up with</span>
     <span class="doccomment">/// Pango markup. When the user clicks a button a “response” signal</span>
-    <span class="doccomment">/// is emitted with response IDs from [enum`Gtk.ResponseType`]. See</span>
-    <span class="doccomment">/// [class`Gtk.Dialog`] for more details.</span>
+    <span class="doccomment">/// is emitted with response IDs from [`ResponseType`][crate::ResponseType]. See</span>
+    <span class="doccomment">/// [`Dialog`][crate::Dialog] for more details.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Special XML characters in the `printf()` arguments passed to this</span>
     <span class="doccomment">/// function will automatically be escaped as necessary.</span>
     <span class="doccomment">/// (See `g_markup_printf_escaped()` for how this is implemented.)</span>
     <span class="doccomment">/// Usually this is what you want, but if you have an existing</span>
     <span class="doccomment">/// Pango markup string that you want to use literally as the</span>
-    <span class="doccomment">/// label, then you need to use [method`Gtk.MessageDialog`.set_markup]</span>
+    <span class="doccomment">/// label, then you need to use [``set_markup()``][`Self::set_markup()`]</span>
     <span class="doccomment">/// instead, since you can’t pass the markup string either</span>
     <span class="doccomment">/// as the format (it might contain “%” characters) or as a string</span>
     <span class="doccomment">/// argument.</span>
@@ -259,7 +259,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkMessageDialog`</span>
+    <span class="doccomment">/// a new [`MessageDialog`][crate::MessageDialog]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_message_dialog_new_with_markup&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_with_markup&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_markup</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span><span class="op">&gt;</span>(
@@ -287,7 +287,7 @@
     <span class="doccomment">/// The `message_format` is assumed to contain Pango markup.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Due to an oversight, this function does not escape special</span>
-    <span class="doccomment">/// XML characters like [ctor`Gtk.MessageDialog`.new_with_markup]</span>
+    <span class="doccomment">/// XML characters like [``with_markup()``][`Self::with_markup()`]</span>
     <span class="doccomment">/// does. Thus, if the arguments may contain special XML characters,</span>
     <span class="doccomment">/// you should use `g_markup_printf_escaped()` to escape it.</span>
     <span class="doccomment">///</span>

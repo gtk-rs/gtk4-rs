@@ -412,7 +412,7 @@
     <span class="doccomment">/// contents from.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When the operation is finished `callback` will be called. You must then</span>
-    <span class="doccomment">/// call [method`Gdk.Clipboard`.read_finish] to get the result of the operation.</span>
+    <span class="doccomment">/// call `Gdk::`Clipboard::read_finish()`` to get the result of the operation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The clipboard will choose the most suitable mime type from the given list</span>
     <span class="doccomment">/// to fulfill the request, preferring the ones listed first.</span>
@@ -517,14 +517,14 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the clipboard is not local, this function does nothing but report success.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `callback` must call [method`Gdk.Clipboard`.store_finish].</span>
+    <span class="doccomment">/// The `callback` must call `Gdk::`Clipboard::store_finish()``.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The purpose of this call is to preserve clipboard contents beyond the</span>
     <span class="doccomment">/// lifetime of an application, so this function is typically called on</span>
     <span class="doccomment">/// exit. Depending on the platform, the functionality may not be available</span>
     <span class="doccomment">/// unless a &quot;clipboard manager&quot; is running.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This function is called automatically when a [class`Gtk.Application`] is</span>
+    <span class="doccomment">/// This function is called automatically when a `Gtk::Application` is</span>
     <span class="doccomment">/// shut down, so you likely don&#39;t need to call it.</span>
     <span class="doccomment">/// ## `io_priority`</span>
     <span class="doccomment">/// the I/O priority of the request.</span>
@@ -587,17 +587,17 @@
     <span class="doccomment">/// `type_`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When the operation is finished `callback` will be called. You must then call</span>
-    <span class="doccomment">/// [method`Gdk.Clipboard`.read_value_finish] to get the resulting `GValue`.</span>
+    <span class="doccomment">/// `Gdk::`Clipboard::read_value_finish()`` to get the resulting `GValue`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// For local clipboard contents that are available in the given `GType`,</span>
     <span class="doccomment">/// the value will be copied directly. Otherwise, GDK will try to use</span>
-    <span class="doccomment">/// [func`content_deserialize_async`] to convert the clipboard&#39;s data.</span>
+    <span class="doccomment">/// [``content_deserialize_async()``][`crate::content_deserialize_async()`] to convert the clipboard&#39;s data.</span>
     <span class="doccomment">/// ## `type_`</span>
     <span class="doccomment">/// a `GType` to read</span>
     <span class="doccomment">/// ## `io_priority`</span>
     <span class="doccomment">/// the I/O priority of the request</span>
     <span class="doccomment">/// ## `cancellable`</span>
-    <span class="doccomment">/// optional [`crate::gio::Cancellable`] object, [`None`] to ignore.</span>
+    <span class="doccomment">/// optional [`gio::Cancellable`][crate::gio::Cancellable] object, [`None`] to ignore.</span>
     <span class="doccomment">/// ## `callback`</span>
     <span class="doccomment">/// callback to call when the request is satisfied</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_clipboard_read_value_async&quot;</span>)]</span>
@@ -662,10 +662,10 @@
     <span class="doccomment">/// Asynchronously request the `self` contents converted to a string.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When the operation is finished `callback` will be called. You must then</span>
-    <span class="doccomment">/// call [method`Gdk.Clipboard`.read_text_finish] to get the result.</span>
+    <span class="doccomment">/// call `Gdk::`Clipboard::read_text_finish()`` to get the result.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is a simple wrapper around [method`Gdk.Clipboard`.read_value_async].</span>
-    <span class="doccomment">/// Use that function or [method`Gdk.Clipboard`.read_async] directly if you</span>
+    <span class="doccomment">/// This is a simple wrapper around [``read_value_async()``][`Self::read_value_async()`].</span>
+    <span class="doccomment">/// Use that function or [``read_async()``][`Self::read_async()`] directly if you</span>
     <span class="doccomment">/// need more control over the operation.</span>
     <span class="doccomment">/// ## `cancellable`</span>
     <span class="doccomment">/// optional `GCancellable` object, [`None`] to ignore</span>
@@ -725,13 +725,13 @@
         }))
     }
 
-    <span class="doccomment">/// Asynchronously request the `self` contents converted to a `GdkPixbuf`.</span>
+    <span class="doccomment">/// Asynchronously request the `self` contents converted to a [`gdk_pixbuf::Pixbuf`][crate::gdk_pixbuf::Pixbuf].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When the operation is finished `callback` will be called. You must then</span>
-    <span class="doccomment">/// call [method`Gdk.Clipboard`.read_texture_finish] to get the result.</span>
+    <span class="doccomment">/// call `Gdk::`Clipboard::read_texture_finish()`` to get the result.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is a simple wrapper around [method`Gdk.Clipboard`.read_value_async].</span>
-    <span class="doccomment">/// Use that function or [methos`Gdk.Clipboard`.read_async] directly if you</span>
+    <span class="doccomment">/// This is a simple wrapper around [``read_value_async()``][`Self::read_value_async()`].</span>
+    <span class="doccomment">/// Use that function or [methos`Gdk`.read_async] directly if you</span>
     <span class="doccomment">/// need more control over the operation.</span>
     <span class="doccomment">/// ## `cancellable`</span>
     <span class="doccomment">/// optional `GCancellable` object, [`None`] to ignore.</span>

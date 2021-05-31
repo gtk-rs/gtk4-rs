@@ -96,7 +96,7 @@
 <span class="doccomment">/// Determines whether a given keyval and modifier mask constitute</span>
 <span class="doccomment">/// a valid keyboard accelerator.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// For example, the `GDK_KEY_a` keyval plus [`crate::gdk::ModifierType::ControlMask`] mark is valid,</span>
+<span class="doccomment">/// For example, the `GDK_KEY_a` keyval plus [`gdk::ModifierType::CONTROL_MASK`][crate::gdk::ModifierType::CONTROL_MASK] mark is valid,</span>
 <span class="doccomment">/// and matches the “Ctrl+a” accelerator. But, you can&#39;t, for instance, use</span>
 <span class="doccomment">/// the `GDK_KEY_Control_L` keyval as an accelerator.</span>
 <span class="doccomment">/// ## `keyval`</span>
@@ -152,7 +152,7 @@
 }
 
 <span class="doccomment">/// Return the type ids that have been registered after</span>
-<span class="doccomment">/// calling `gtk_test_register_all_types()`.</span>
+<span class="doccomment">/// calling [`test_register_all_types()`][crate::test_register_all_types()].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Returns</span>
 <span class="doccomment">///</span>

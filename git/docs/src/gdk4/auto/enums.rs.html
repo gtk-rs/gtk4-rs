@@ -2801,7 +2801,7 @@
     }
 }
 
-<span class="doccomment">/// Used in `GdkDrag` to the reason of a cancelled DND operation.</span>
+<span class="doccomment">/// Used in [`Drag`][crate::Drag] to the reason of a cancelled DND operation.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkDragCancelReason&quot;</span>)]</span>
@@ -2990,7 +2990,7 @@
     <span class="doccomment">/// A tablet pad group mode change.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_PAD_GROUP_MODE&quot;</span>)]</span>
     <span class="ident">PadGroupMode</span>,
-    <span class="doccomment">/// marks the end of the `EventType` enumeration.</span>
+    <span class="doccomment">/// marks the end of the GdkEventType enumeration.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_EVENT_LAST&quot;</span>)]</span>
     <span class="ident">EventLast</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -3237,7 +3237,7 @@
     }
 }
 
-<span class="doccomment">/// Error enumeration for `GdkGLContext`.</span>
+<span class="doccomment">/// Error enumeration for [`GLContext`][crate::GLContext].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkGLError&quot;</span>)]</span>
@@ -3366,7 +3366,7 @@
     }
 }
 
-<span class="doccomment">/// Defines the reference point of a surface and is used in [`crate::PopupLayout`].</span>
+<span class="doccomment">/// Defines the reference point of a surface and is used in [`PopupLayout`][crate::PopupLayout].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkGravity&quot;</span>)]</span>
@@ -3625,7 +3625,7 @@
 
 <span class="doccomment">/// Describes how well an event matches a given keyval and modifiers.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// `GdkKeyMatch` values are returned by [method`Gdk.KeyEvent`.matches].</span>
+<span class="doccomment">/// [`KeyMatch`][crate::KeyMatch] values are returned by [``KeyEvent::matches()``][crate::`KeyEvent::matches()`].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkKeyMatch&quot;</span>)]</span>
@@ -3719,7 +3719,7 @@
     }
 }
 
-<span class="doccomment">/// `GdkMemoryFormat` describes a format that bytes can have in memory.</span>
+<span class="doccomment">/// [`MemoryFormat`][crate::MemoryFormat] describes a format that bytes can have in memory.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// It describes formats by listing the contents of the memory passed to it.</span>
 <span class="doccomment">/// So GDK_MEMORY_A8R8G8B8 will be 1 byte (8 bits) of alpha, followed by a</span>
@@ -4007,7 +4007,7 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SCROLL_RIGHT&quot;</span>)]</span>
     <span class="ident">Right</span>,
     <span class="doccomment">/// the scrolling is determined by the delta values</span>
-    <span class="doccomment">///  in scroll events. See [`crate::ScrollEvent::get_deltas()`]</span>
+    <span class="doccomment">///  in scroll events. See [`ScrollEvent::deltas()`][crate::ScrollEvent::deltas()]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SCROLL_SMOOTH&quot;</span>)]</span>
     <span class="ident">Smooth</span>,
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">hidden</span>)]</span>
@@ -4333,11 +4333,11 @@
 <span class="doccomment">/// Specifies the current state of a touchpad gesture.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// All gestures are guaranteed to begin with an event with phase</span>
-<span class="doccomment">/// [`Self::Begin`], followed by 0 or several events</span>
-<span class="doccomment">/// with phase [`Self::Update`].</span>
+<span class="doccomment">/// [`Begin`][Self::Begin], followed by 0 or several events</span>
+<span class="doccomment">/// with phase [`Update`][Self::Update].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// A finished gesture may have 2 possible outcomes, an event with phase</span>
-<span class="doccomment">/// [`Self::End`] will be emitted when the gesture is</span>
+<span class="doccomment">/// [`End`][Self::End] will be emitted when the gesture is</span>
 <span class="doccomment">/// considered successful, this should be used as the hint to perform any</span>
 <span class="doccomment">/// permanent changes.</span>
 <span class="doccomment">///</span>
@@ -4345,7 +4345,7 @@
 <span class="doccomment">/// or the compositor, or due to the gesture recognition layers hinting the</span>
 <span class="doccomment">/// gesture did not finish resolutely (eg. a 3rd finger being added during</span>
 <span class="doccomment">/// a pinch gesture). In these cases, the last event will report the phase</span>
-<span class="doccomment">/// [`Self::Cancel`], this should be used as a hint</span>
+<span class="doccomment">/// [`Cancel`][Self::Cancel], this should be used as a hint</span>
 <span class="doccomment">/// to undo any visible/permanent changes that were done throughout the</span>
 <span class="doccomment">/// progress of the gesture.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
@@ -4448,7 +4448,7 @@
     }
 }
 
-<span class="doccomment">/// Error enumeration for [`crate::VulkanContext`].</span>
+<span class="doccomment">/// Error enumeration for [`VulkanContext`][crate::VulkanContext].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>, <span class="ident">Hash</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="attribute">#[<span class="ident">non_exhaustive</span>]</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkVulkanError&quot;</span>)]</span>

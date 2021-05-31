@@ -61,24 +61,24 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkBuilderScope` is an interface to provide language binding support</span>
-    <span class="doccomment">/// to `GtkBuilder`.</span>
+    <span class="doccomment">/// [`BuilderScope`][crate::BuilderScope] is an interface to provide language binding support</span>
+    <span class="doccomment">/// to [`Builder`][crate::Builder].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The goal of `GtkBuilderScope` is to look up programming-language-specific</span>
-    <span class="doccomment">/// values for strings that are given in a `GtkBuilder` UI file.</span>
+    <span class="doccomment">/// The goal of [`BuilderScope`][crate::BuilderScope] is to look up programming-language-specific</span>
+    <span class="doccomment">/// values for strings that are given in a [`Builder`][crate::Builder] UI file.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The primary intended audience is bindings that want to provide deeper</span>
-    <span class="doccomment">/// integration of `GtkBuilder` into the language.</span>
+    <span class="doccomment">/// integration of [`Builder`][crate::Builder] into the language.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GtkBuilderScope` instance may be used with multiple `GtkBuilder` objects,</span>
+    <span class="doccomment">/// A [`BuilderScope`][crate::BuilderScope] instance may be used with multiple [`Builder`][crate::Builder] objects,</span>
     <span class="doccomment">/// even at once.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// By default, GTK will use its own implementation of `GtkBuilderScope`</span>
-    <span class="doccomment">/// for the C language which can be created via [ctor`Gtk.BuilderCScope`.new].</span>
+    <span class="doccomment">/// By default, GTK will use its own implementation of [`BuilderScope`][crate::BuilderScope]</span>
+    <span class="doccomment">/// for the C language which can be created via `Gtk::`BuilderCScope::new()``.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::BuilderScopeExt`]</span>
+    <span class="doccomment">/// [`BuilderScopeExt`][trait@crate::prelude::BuilderScopeExt]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BuilderScope</span>(<span class="ident">Interface</span><span class="op">&lt;</span><span class="ident">ffi::GtkBuilderScope</span>, <span class="ident">ffi::GtkBuilderScopeInterface</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -92,7 +92,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::BuilderScope`]</span>
+<span class="doccomment">/// [`BuilderScope`][struct@crate::BuilderScope]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">BuilderScopeExt</span>: <span class="lifetime">&#39;static</span> {}
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">BuilderScope</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">BuilderScopeExt</span> <span class="kw">for</span> <span class="ident">O</span> {}

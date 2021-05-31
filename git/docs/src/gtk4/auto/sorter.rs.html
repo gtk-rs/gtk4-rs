@@ -210,30 +210,30 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkSorter` is an object to describe sorting criteria.</span>
+    <span class="doccomment">/// [`Sorter`][crate::Sorter] is an object to describe sorting criteria.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Its primary user is [class`Gtk.SortListModel`]</span>
+    <span class="doccomment">/// Its primary user is [`SortListModel`][crate::SortListModel]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The model will use a sorter to determine the order in which</span>
-    <span class="doccomment">/// its items should appear by calling [method`Gtk.Sorter`.compare]</span>
+    <span class="doccomment">/// its items should appear by calling `Gtk::`Sorter::compare()``</span>
     <span class="doccomment">/// for pairs of items.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Sorters may change their sorting behavior through their lifetime.</span>
-    <span class="doccomment">/// In that case, they will emit the [signal`Gtk.Sorter`::changed] signal</span>
+    <span class="doccomment">/// In that case, they will emit the `signal::Sorter::changed` signal</span>
     <span class="doccomment">/// to notify that the sort order is no longer valid and should be updated</span>
-    <span class="doccomment">/// by calling [`crate::prelude::SorterExt::compare()`] again.</span>
+    <span class="doccomment">/// by calling `gtk_sorter_compare()` again.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// GTK provides various pre-made sorter implementations for common sorting</span>
-    <span class="doccomment">/// operations. [class`Gtk.ColumnView`] has built-in support for sorting lists</span>
-    <span class="doccomment">/// via the [property`Gtk.ColumnViewColumn`:sorter] property, where the user can</span>
+    <span class="doccomment">/// operations. [`ColumnView`][crate::ColumnView] has built-in support for sorting lists</span>
+    <span class="doccomment">/// via the `property::ColumnViewColumn::sorter` property, where the user can</span>
     <span class="doccomment">/// change the sorting by clicking on list headers.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Of course, in particular for large lists, it is also possible to subclass</span>
-    <span class="doccomment">/// `GtkSorter` and provide one&#39;s own sorter.</span>
+    <span class="doccomment">/// [`Sorter`][crate::Sorter] and provide one&#39;s own sorter.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::SorterExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`SorterExt`][trait@crate::prelude::SorterExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Sorter</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkSorter</span>, <span class="ident">ffi::GtkSorterClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -247,19 +247,19 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::CustomSorter`], [`struct@crate::MultiSorter`], [`struct@crate::NumericSorter`], [`struct@crate::Sorter`], [`struct@crate::StringSorter`], [`struct@crate::TreeListRowSorter`]</span>
+<span class="doccomment">/// [`CustomSorter`][struct@crate::CustomSorter], [`MultiSorter`][struct@crate::MultiSorter], [`NumericSorter`][struct@crate::NumericSorter], [`Sorter`][struct@crate::Sorter], [`StringSorter`][struct@crate::StringSorter], [`TreeListRowSorter`][struct@crate::TreeListRowSorter]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">SorterExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Emits the [signal`Gtk.Sorter`::changed] signal to notify all users</span>
+    <span class="doccomment">/// Emits the `signal::Sorter::changed` signal to notify all users</span>
     <span class="doccomment">/// of the sorter that it has changed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Users of the sorter should then update the sort order via</span>
-    <span class="doccomment">/// [`Self::compare()`].</span>
+    <span class="doccomment">/// `gtk_sorter_compare()`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Depending on the `change` parameter, it may be possible to update</span>
     <span class="doccomment">/// the sort order without a full resorting. Refer to the</span>
-    <span class="doccomment">/// [enum`Gtk.SorterChange`] documentation for details.</span>
+    <span class="doccomment">/// [`SorterChange`][crate::SorterChange] documentation for details.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This function is intended for implementors of `GtkSorter`</span>
+    <span class="doccomment">/// This function is intended for implementors of [`Sorter`][crate::Sorter]</span>
     <span class="doccomment">/// subclasses and should not be called from other functions.</span>
     <span class="doccomment">/// ## `change`</span>
     <span class="doccomment">/// How the sorter changed</span>
@@ -277,7 +277,7 @@
     <span class="doccomment">///  then a ≤ c</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The sorter may signal it conforms to additional constraints</span>
-    <span class="doccomment">/// via the return value of [method`Gtk.Sorter`.get_order].</span>
+    <span class="doccomment">/// via the return value of [``order()``][`Self::order()`].</span>
     <span class="doccomment">/// ## `item1`</span>
     <span class="doccomment">/// first item to compare</span>
     <span class="doccomment">/// ## `item2`</span>
@@ -285,16 +285,16 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`crate::Ordering::Equal`] if `item1` == `item2`,</span>
-    <span class="doccomment">///  [`crate::Ordering::Smaller`] if `item1` &lt; `item2`,</span>
-    <span class="doccomment">///  [`crate::Ordering::Larger`] if `item1` &gt; `item2`</span>
+    <span class="doccomment">/// [`Ordering::Equal`][crate::Ordering::Equal] if `item1` == `item2`,</span>
+    <span class="doccomment">///  [`Ordering::Smaller`][crate::Ordering::Smaller] if `item1` &lt; `item2`,</span>
+    <span class="doccomment">///  [`Ordering::Larger`][crate::Ordering::Larger] if `item1` &gt; `item2`</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_sorter_compare&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">compare</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">glib::Object</span><span class="op">&gt;</span>, <span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">glib::Object</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">item1</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>, <span class="ident">item2</span>: <span class="kw-2">&amp;</span><span class="ident">Q</span>)
         <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Ordering</span>;
 
     <span class="doccomment">/// Gets the order that `self` conforms to.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [enum`Gtk.SorterOrder`] for details</span>
+    <span class="doccomment">/// See [`SorterOrder`][crate::SorterOrder] for details</span>
     <span class="doccomment">/// of the possible return values.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function is intended to allow optimizations.</span>
@@ -309,13 +309,13 @@
     <span class="doccomment">/// Emitted whenever the sorter changed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Users of the sorter should then update the sort order</span>
-    <span class="doccomment">/// again via [`Self::compare()`].</span>
+    <span class="doccomment">/// again via `gtk_sorter_compare()`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [class`Gtk.SortListModel`] handles this signal automatically.</span>
+    <span class="doccomment">/// [`SortListModel`][crate::SortListModel] handles this signal automatically.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Depending on the `change` parameter, it may be possible to update</span>
     <span class="doccomment">/// the sort order without a full resorting. Refer to the</span>
-    <span class="doccomment">/// [enum`Gtk.SorterChange`] documentation for details.</span>
+    <span class="doccomment">/// [`SorterChange`][crate::SorterChange] documentation for details.</span>
     <span class="doccomment">/// ## `change`</span>
     <span class="doccomment">/// how the sorter changed</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;changed&quot;</span>)]</span>

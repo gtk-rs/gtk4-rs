@@ -309,25 +309,25 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkGestureLongPress` is a `GtkGesture` for long presses.</span>
+    <span class="doccomment">/// [`GestureLongPress`][crate::GestureLongPress] is a [`Gesture`][crate::Gesture] for long presses.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This gesture is also known as “Press and Hold”.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When the timeout is exceeded, the gesture is triggering the</span>
-    <span class="doccomment">/// [signal`Gtk.GestureLongPress`::pressed] signal.</span>
+    <span class="doccomment">/// `signal::GestureLongPress::pressed` signal.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the touchpoint is lifted before the timeout passes, or if</span>
     <span class="doccomment">/// it drifts too far of the initial press point, the</span>
-    <span class="doccomment">/// [signal`Gtk.GestureLongPress`::cancelled] signal will be emitted.</span>
+    <span class="doccomment">/// `signal::GestureLongPress::cancelled` signal will be emitted.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// How long the timeout is before the ::pressed signal gets emitted is</span>
-    <span class="doccomment">/// determined by the [property`Gtk.Settings`:gtk-long-press-time] setting.</span>
-    <span class="doccomment">/// It can be modified by the [property`Gtk.GestureLongPress`:delay-factor]</span>
+    <span class="doccomment">/// determined by the `property::Settings::gtk-long-press-time` setting.</span>
+    <span class="doccomment">/// It can be modified by the `property::GestureLongPress::delay-factor`</span>
     <span class="doccomment">/// property.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::GestureSingleExt`], [`trait@crate::prelude::GestureExt`], [`trait@crate::prelude::EventControllerExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`GestureSingleExt`][trait@crate::prelude::GestureSingleExt], [`GestureExt`][trait@crate::prelude::GestureExt], [`EventControllerExt`][trait@crate::prelude::EventControllerExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GestureLongPress</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkGestureLongPress</span>, <span class="ident">ffi::GtkGestureLongPressClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">GestureSingle</span>, <span class="ident">Gesture</span>, <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -336,11 +336,11 @@
 }
 
 <span class="kw">impl</span> <span class="ident">GestureLongPress</span> {
-    <span class="doccomment">/// Returns a newly created `GtkGesture` that recognizes long presses.</span>
+    <span class="doccomment">/// Returns a newly created [`Gesture`][crate::Gesture] that recognizes long presses.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly created `GtkGestureLongPress`.</span>
+    <span class="doccomment">/// a newly created [`GestureLongPress`][crate::GestureLongPress].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_long_press_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GestureLongPress</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -379,7 +379,7 @@
     }
 
     <span class="doccomment">/// Emitted whenever a press moved too far, or was released</span>
-    <span class="doccomment">/// before [signal`Gtk.GestureLongPress`::pressed] happened.</span>
+    <span class="doccomment">/// before `signal::GestureLongPress::pressed` happened.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;cancelled&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_cancelled</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="self">Self</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="ident">F</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SignalHandlerId</span> {
         <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">cancelled_trampoline</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">&amp;</span><span class="ident">GestureLongPress</span>) <span class="op">+</span> <span class="lifetime">&#39;static</span><span class="op">&gt;</span>(

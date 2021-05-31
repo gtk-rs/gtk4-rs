@@ -69,16 +69,16 @@
 <span class="kw">use</span> <span class="ident">glib::IsA</span>;
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">TextViewExtManual</span> {
-    <span class="doccomment">/// Allow the `GtkTextView` input method to internally handle key press</span>
+    <span class="doccomment">/// Allow the [`TextView`][crate::TextView] input method to internally handle key press</span>
     <span class="doccomment">/// and release events.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If this function returns [`true`], then no further processing should be</span>
-    <span class="doccomment">/// done for this key event. See [method`Gtk.IMContext`.filter_keypress].</span>
+    <span class="doccomment">/// done for this key event. See [``IMContextExtManual::filter_keypress()``][crate::prelude::`IMContextExtManual::filter_keypress()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that you are expected to call this function from your handler</span>
     <span class="doccomment">/// when overriding key event handling. This is needed in the case when</span>
     <span class="doccomment">/// you need to insert your own key handling between the input method</span>
-    <span class="doccomment">/// and the default key event handling of the `GtkTextView`.</span>
+    <span class="doccomment">/// and the default key event handling of the [`TextView`][crate::TextView].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```c</span>
     <span class="doccomment">/// static gboolean</span>

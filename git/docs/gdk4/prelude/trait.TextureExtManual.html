@@ -9,7 +9,7 @@
 <p>This may be an expensive operation, as the actual texture data
 may reside on a GPU or on a remote display server.</p>
 <p>The data format of the downloaded data is equivalent to
-[<code>crate::cairo::Format::Argb32</code>], so every downloaded pixel requires
+<code>CAIRO_FORMAT_ARGB32</code>, so every downloaded pixel requires
 4 bytes of memory.</p>
 <p>Downloading a texture into a Cairo image surface:</p>
 <pre><code class="language-c">surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,

@@ -7,7 +7,7 @@
 <p>The format looks like “<code>&lt;Control&gt;</code>a” or “<code>&lt;Shift&gt;``&lt;Alt&gt;</code>F1”.</p>
 <p>The parser is fairly liberal and allows lower or upper case, and also
 abbreviations such as “<code>&lt;Ctl&gt;</code>” and “<code>&lt;Ctrl&gt;</code>”. Key names are parsed using
-[func<code>Gdk.keyval_from_name</code>]. For character keys the name is not the symbol,
+<code>keyval_from_name()</code>. For character keys the name is not the symbol,
 but the lowercase name, e.g. one would use “<code>&lt;Ctrl&gt;</code>minus” instead of
 “<code>&lt;Ctrl&gt;</code>-”.</p>
 <p>If the parse fails, <code>accelerator_key</code> and <code>accelerator_mods</code> will

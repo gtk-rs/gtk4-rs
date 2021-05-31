@@ -459,7 +459,7 @@
 <span class="doccomment">/// the clip region. The clip region is mainly useful for highlightling parts</span>
 <span class="doccomment">/// of text, such as when text is selected.</span>
 <span class="doccomment">/// ## `line`</span>
-<span class="doccomment">/// a `PangoLayoutLine`</span>
+<span class="doccomment">/// a [`pango::LayoutLine`][crate::pango::LayoutLine]</span>
 <span class="doccomment">/// ## `x_origin`</span>
 <span class="doccomment">/// X pixel where you intend to draw the layout line with this clip</span>
 <span class="doccomment">/// ## `y_origin`</span>
@@ -504,7 +504,7 @@
 <span class="doccomment">/// the clip region. The clip region is mainly useful for highlightling parts</span>
 <span class="doccomment">/// of text, such as when text is selected.</span>
 <span class="doccomment">/// ## `layout`</span>
-<span class="doccomment">/// a `PangoLayout`</span>
+<span class="doccomment">/// a [`pango::Layout`][crate::pango::Layout]</span>
 <span class="doccomment">/// ## `x_origin`</span>
 <span class="doccomment">/// X pixel where you intend to draw the layout with this clip</span>
 <span class="doccomment">/// ## `y_origin`</span>
@@ -542,7 +542,7 @@
 <span class="doccomment">/// indicate a higher priority.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// When the operation is finished, `callback` will be called. You must then</span>
-<span class="doccomment">/// call [func`content_deserialize_finish`] to get the result of the operation.</span>
+<span class="doccomment">/// call ``content_deserialize_finish()`` to get the result of the operation.</span>
 <span class="doccomment">/// ## `stream`</span>
 <span class="doccomment">/// a `GInputStream` to read the serialized content from</span>
 <span class="doccomment">/// ## `mime_type`</span>
@@ -772,7 +772,7 @@
 <span class="doccomment">/// indicate a higher priority.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// When the operation is finished, `callback` will be called. You must then</span>
-<span class="doccomment">/// call [func`content_serialize_finish`] to get the result of the operation.</span>
+<span class="doccomment">/// call ``content_serialize_finish()`` to get the result of the operation.</span>
 <span class="doccomment">/// ## `stream`</span>
 <span class="doccomment">/// a `GOutputStream` to write the serialized content to</span>
 <span class="doccomment">/// ## `mime_type`</span>
@@ -782,7 +782,7 @@
 <span class="doccomment">/// ## `io_priority`</span>
 <span class="doccomment">/// the I/O priority of the operation</span>
 <span class="doccomment">/// ## `cancellable`</span>
-<span class="doccomment">/// optional [`crate::gio::Cancellable`] object</span>
+<span class="doccomment">/// optional [`gio::Cancellable`][crate::gio::Cancellable] object</span>
 <span class="doccomment">/// ## `callback`</span>
 <span class="doccomment">/// callback to call when the operation is done</span>
 <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_serialize_async&quot;</span>)]</span>

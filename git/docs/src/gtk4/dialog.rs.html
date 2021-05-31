@@ -219,7 +219,7 @@
 <span class="kw">use</span> <span class="ident">std::rc::Rc</span>;
 
 <span class="kw">impl</span> <span class="ident">Dialog</span> {
-    <span class="doccomment">/// Creates a new `GtkDialog` with the given title and transient parent.</span>
+    <span class="doccomment">/// Creates a new [`Dialog`][crate::Dialog] with the given title and transient parent.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The `flags` argument can be used to make the dialog modal, have it</span>
     <span class="doccomment">/// destroyed along with its transient parent, or make it use a headerbar.</span>
@@ -227,16 +227,16 @@
     <span class="doccomment">/// Button text/response ID pairs should be listed in pairs, with a [`None`]</span>
     <span class="doccomment">/// pointer ending the list. Button text can be arbitrary text. A response</span>
     <span class="doccomment">/// ID can be any positive number, or one of the values in the</span>
-    <span class="doccomment">/// [enum`Gtk.ResponseType`] enumeration. If the user clicks one of these</span>
-    <span class="doccomment">/// buttons, `GtkDialog` will emit the [signal`Gtk.Dialog`::response] signal</span>
+    <span class="doccomment">/// [`ResponseType`][crate::ResponseType] enumeration. If the user clicks one of these</span>
+    <span class="doccomment">/// buttons, [`Dialog`][crate::Dialog] will emit the `signal::Dialog::response` signal</span>
     <span class="doccomment">/// with the corresponding response ID.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If a `GtkDialog` receives a delete event, it will emit ::response with a</span>
-    <span class="doccomment">/// response ID of [`crate::ResponseType::DeleteEvent`].</span>
+    <span class="doccomment">/// If a [`Dialog`][crate::Dialog] receives a delete event, it will emit ::response with a</span>
+    <span class="doccomment">/// response ID of [`ResponseType::DeleteEvent`][crate::ResponseType::DeleteEvent].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// However, destroying a dialog does not emit the ::response signal;</span>
     <span class="doccomment">/// so be careful relying on ::response when using the</span>
-    <span class="doccomment">/// [`crate::DialogFlags::DestroyWithParent`] flag.</span>
+    <span class="doccomment">/// [`DialogFlags::DESTROY_WITH_PARENT`][crate::DialogFlags::DESTROY_WITH_PARENT] flag.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Here’s a simple example:</span>
     <span class="doccomment">/// ```c</span>
@@ -257,13 +257,13 @@
     <span class="doccomment">/// ## `parent`</span>
     <span class="doccomment">/// Transient parent of the dialog, or [`None`]</span>
     <span class="doccomment">/// ## `flags`</span>
-    <span class="doccomment">/// from `GtkDialogFlags`</span>
+    <span class="doccomment">/// from [`DialogFlags`][crate::DialogFlags]</span>
     <span class="doccomment">/// ## `first_button_text`</span>
     <span class="doccomment">/// text to go in first button, or [`None`]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkDialog`</span>
+    <span class="doccomment">/// a new [`Dialog`][crate::Dialog]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_dialog_new_with_buttons&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_with_buttons&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_buttons</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span><span class="op">&gt;</span>(
@@ -291,9 +291,9 @@
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">DialogExtManual</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Adds multiple buttons.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is the same as calling [method`Gtk.Dialog`.add_button]</span>
+    <span class="doccomment">/// This is the same as calling [``DialogExt::add_button()``][crate::prelude::`DialogExt::add_button()`]</span>
     <span class="doccomment">/// repeatedly. The variable argument list should be [`None`]-terminated</span>
-    <span class="doccomment">/// as with [new`Gtk.Dialog`.new_with_buttons]. Each button must have both</span>
+    <span class="doccomment">/// as with [new`Gtk`.new_with_buttons]. Each button must have both</span>
     <span class="doccomment">/// text and response ID.</span>
     <span class="doccomment">/// ## `first_button_text`</span>
     <span class="doccomment">/// button text</span>
@@ -307,7 +307,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the response id of `widget`, or [`crate::ResponseType::None`]</span>
+    <span class="doccomment">/// the response id of `widget`, or [`ResponseType::None`][crate::ResponseType::None]</span>
     <span class="doccomment">///  if `widget` doesn’t have a response id set.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_dialog_get_response_for_widget&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_response_for_widget&quot;</span>)]</span>

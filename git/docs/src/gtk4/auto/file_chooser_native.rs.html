@@ -497,26 +497,26 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkFileChooserNative` is an abstraction of a dialog suitable</span>
+    <span class="doccomment">/// [`FileChooserNative`][crate::FileChooserNative] is an abstraction of a dialog suitable</span>
     <span class="doccomment">/// for use with “File Open” or “File Save as” commands.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// By default, this just uses a `GtkFileChooserDialog` to implement</span>
+    <span class="doccomment">/// By default, this just uses a [`FileChooserDialog`][crate::FileChooserDialog] to implement</span>
     <span class="doccomment">/// the actual dialog. However, on some platforms, such as Windows and</span>
     <span class="doccomment">/// macOS, the native platform file chooser is used instead. When the</span>
     <span class="doccomment">/// application is running in a sandboxed environment without direct</span>
-    <span class="doccomment">/// filesystem access (such as Flatpak), `GtkFileChooserNative` may call</span>
+    <span class="doccomment">/// filesystem access (such as Flatpak), [`FileChooserNative`][crate::FileChooserNative] may call</span>
     <span class="doccomment">/// the proper APIs (portals) to let the user choose a file and make it</span>
     <span class="doccomment">/// available to the application.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// While the API of `GtkFileChooserNative` closely mirrors `GtkFileChooserDialog`,</span>
-    <span class="doccomment">/// the main difference is that there is no access to any `GtkWindow` or `GtkWidget`</span>
+    <span class="doccomment">/// While the API of [`FileChooserNative`][crate::FileChooserNative] closely mirrors [`FileChooserDialog`][crate::FileChooserDialog],</span>
+    <span class="doccomment">/// the main difference is that there is no access to any [`Window`][crate::Window] or [`Widget`][crate::Widget]</span>
     <span class="doccomment">/// for the dialog. This is required, as there may not be one in the case of a</span>
     <span class="doccomment">/// platform native dialog.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Showing, hiding and running the dialog is handled by the</span>
-    <span class="doccomment">/// [class`Gtk.NativeDialog`] functions.</span>
+    <span class="doccomment">/// [`NativeDialog`][crate::NativeDialog] functions.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that unlike `GtkFileChooserDialog`, `GtkFileChooserNative` objects</span>
+    <span class="doccomment">/// Note that unlike [`FileChooserDialog`][crate::FileChooserDialog], [`FileChooserNative`][crate::FileChooserNative] objects</span>
     <span class="doccomment">/// are not toplevel widgets, and GTK does not keep them alive. It is your</span>
     <span class="doccomment">/// responsibility to keep a reference until you are done with the</span>
     <span class="doccomment">/// object.</span>
@@ -524,7 +524,7 @@
     <span class="doccomment">/// ## Typical usage</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In the simplest of cases, you can the following code to use</span>
-    <span class="doccomment">/// `GtkFileChooserNative` to select a file for opening:</span>
+    <span class="doccomment">/// [`FileChooserNative`][crate::FileChooserNative] to select a file for opening:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```c</span>
     <span class="doccomment">/// static void</span>
@@ -558,7 +558,7 @@
     <span class="doccomment">///   gtk_native_dialog_show (GTK_NATIVE_DIALOG (native));</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To use a `GtkFileChooserNative` for saving, you can use this:</span>
+    <span class="doccomment">/// To use a [`FileChooserNative`][crate::FileChooserNative] for saving, you can use this:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```c</span>
     <span class="doccomment">/// static void</span>
@@ -600,19 +600,19 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// For more information on how to best set up a file dialog,</span>
-    <span class="doccomment">/// see the [class`Gtk.FileChooserDialog`] documentation.</span>
+    <span class="doccomment">/// see the [`FileChooserDialog`][crate::FileChooserDialog] documentation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## Response Codes</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkFileChooserNative` inherits from [class`Gtk.NativeDialog`],</span>
-    <span class="doccomment">/// which means it will return [`crate::ResponseType::Accept`] if the user accepted,</span>
-    <span class="doccomment">/// and [`crate::ResponseType::Cancel`] if he pressed cancel. It can also return</span>
-    <span class="doccomment">/// [`crate::ResponseType::DeleteEvent`] if the window was unexpectedly closed.</span>
+    <span class="doccomment">/// [`FileChooserNative`][crate::FileChooserNative] inherits from [`NativeDialog`][crate::NativeDialog],</span>
+    <span class="doccomment">/// which means it will return [`ResponseType::Accept`][crate::ResponseType::Accept] if the user accepted,</span>
+    <span class="doccomment">/// and [`ResponseType::Cancel`][crate::ResponseType::Cancel] if he pressed cancel. It can also return</span>
+    <span class="doccomment">/// [`ResponseType::DeleteEvent`][crate::ResponseType::DeleteEvent] if the window was unexpectedly closed.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ## Differences from [`crate::FileChooserDialog`]</span>
+    <span class="doccomment">/// ## Differences from [`FileChooserDialog`][crate::FileChooserDialog]</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// There are a few things in the [iface`Gtk.FileChooser`] interface that</span>
-    <span class="doccomment">/// are not possible to use with `GtkFileChooserNative`, as such use would</span>
+    <span class="doccomment">/// There are a few things in the [`FileChooser`][crate::FileChooser] interface that</span>
+    <span class="doccomment">/// are not possible to use with [`FileChooserNative`][crate::FileChooserNative], as such use would</span>
     <span class="doccomment">/// prohibit the use of a native dialog.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// No operations that change the dialog work while the dialog is visible.</span>
@@ -621,12 +621,12 @@
     <span class="doccomment">/// ## Win32 details</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// On windows the `IFileDialog` implementation (added in Windows Vista) is</span>
-    <span class="doccomment">/// used. It supports many of the features that `GtkFileChooser` has, but</span>
+    <span class="doccomment">/// used. It supports many of the features that [`FileChooser`][crate::FileChooser] has, but</span>
     <span class="doccomment">/// there are some things it does not handle:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// * Any [class`Gtk.FileFilter`] added using a mimetype</span>
+    <span class="doccomment">/// * Any [`FileFilter`][crate::FileFilter] added using a mimetype</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If any of these features are used the regular `GtkFileChooserDialog`</span>
+    <span class="doccomment">/// If any of these features are used the regular [`FileChooserDialog`][crate::FileChooserDialog]</span>
     <span class="doccomment">/// will be used in place of the native one.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## Portal details</span>
@@ -639,14 +639,14 @@
     <span class="doccomment">/// ## macOS details</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// On macOS the `NSSavePanel` and `NSOpenPanel` classes are used to provide</span>
-    <span class="doccomment">/// native file chooser dialogs. Some features provided by `GtkFileChooser`</span>
+    <span class="doccomment">/// native file chooser dialogs. Some features provided by [`FileChooser`][crate::FileChooser]</span>
     <span class="doccomment">/// are not supported:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// * Shortcut folders.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::NativeDialogExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::FileChooserExt`], [`trait@crate::prelude::NativeDialogExtManual`]</span>
+    <span class="doccomment">/// [`NativeDialogExt`][trait@crate::prelude::NativeDialogExt], [`trait@glib::ObjectExt`], [`FileChooserExt`][trait@crate::prelude::FileChooserExt], [`NativeDialogExtManual`][trait@crate::prelude::NativeDialogExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FileChooserNative</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkFileChooserNative</span>, <span class="ident">ffi::GtkFileChooserNativeClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">NativeDialog</span>, @<span class="ident">implements</span> <span class="ident">FileChooser</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -655,7 +655,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">FileChooserNative</span> {
-    <span class="doccomment">/// Creates a new `GtkFileChooserNative`.</span>
+    <span class="doccomment">/// Creates a new [`FileChooserNative`][crate::FileChooserNative].</span>
     <span class="doccomment">/// ## `title`</span>
     <span class="doccomment">/// Title of the native, or [`None`]</span>
     <span class="doccomment">/// ## `parent`</span>
@@ -669,7 +669,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkFileChooserNative`</span>
+    <span class="doccomment">/// a new [`FileChooserNative`][crate::FileChooserNative]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_file_chooser_native_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Window</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="ident">title</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>,
@@ -921,7 +921,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Whether a file chooser not in [`crate::FileChooserAction::Open`] mode</span>
+    <span class="doccomment">/// Whether a file chooser not in [`FileChooserAction::Open`][crate::FileChooserAction::Open] mode</span>
     <span class="doccomment">/// will offer the user to create new folders.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_folders</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">create_folders</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">create_folders</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">create_folders</span>);

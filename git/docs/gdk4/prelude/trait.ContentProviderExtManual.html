@@ -8,9 +8,9 @@
 }</pre></div><h2 id="required-methods" class="small-section-header">Required methods<a href="#required-methods" class="anchor"></a></h2><div class="methods"><details class="rustdoc-toggle" open><summary><h3 id="tymethod.value" class="method"><code>fn <a href="#tymethod.value" class="fnname">value</a>(&amp;self, type_: <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/types/struct.Type.html" title="struct glib::types::Type">Type</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/value/struct.Value.html" title="struct glib::value::Value">Value</a>, <a class="struct" href="https://gtk-rs.org/gtk-rs-core/git/docs/glib/error/struct.Error.html" title="struct glib::error::Error">Error</a>&gt;</code><a class="srclink" href="../../src/gdk4/content_provider.rs.html#23" title="goto source code">[src]</a></h3></summary><div class="docblock"><p>Gets the contents of <code>self</code> stored in <code>value</code>.</p>
 <p>The <code>value</code> will have been initialized to the <code>GType</code> the value should be
 provided in. This given <code>GType</code> does not need to be listed in the formats
-returned by [method<code>Gdk.ContentProvider</code>.ref_formats]. However, if the
+returned by <a href="trait.ContentProviderExt.html#tymethod.formats" title="crate::prelude::ContentProviderExt::formats()"><code>ContentProviderExt::formats()</code></a>. However, if the
 given <code>GType</code> is not supported, this operation can fail and
-<a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/enums/enum.IOErrorEnum.html#variant.NotSupported" title="crate::gio::IOErrorEnum::NotSupported"><code>crate::gio::IOErrorEnum::NotSupported</code></a> will be reported.</p>
+<a href="https://gtk-rs.org/gtk-rs-core/git/docs/gio/auto/enums/enum.IOErrorEnum.html#variant.NotSupported" title="crate::gio::IOErrorEnum::NotSupported"><code>gio::IOErrorEnum::NotSupported</code></a> will be reported.</p>
 <h2 id="value" class="section-header"><a href="#value"><code>value</code></a></h2>
 <p>the <code>GValue</code> to fill</p>
 <h1 id="returns" class="section-header"><a href="#returns">Returns</a></h1>

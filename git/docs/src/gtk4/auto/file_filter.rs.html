@@ -258,34 +258,34 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkFileFilter` filters files by name or mime type.</span>
+    <span class="doccomment">/// [`FileFilter`][crate::FileFilter] filters files by name or mime type.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkFileFilter` can be used to restrict the files being shown in a</span>
-    <span class="doccomment">/// `GtkFileChooser`. Files can be filtered based on their name (with</span>
-    <span class="doccomment">/// [method`Gtk.FileFilter`.add_pattern]) or on their mime type (with</span>
-    <span class="doccomment">/// [method`Gtk.FileFilter`.add_mime_type]).</span>
+    <span class="doccomment">/// [`FileFilter`][crate::FileFilter] can be used to restrict the files being shown in a</span>
+    <span class="doccomment">/// [`FileChooser`][crate::FileChooser]. Files can be filtered based on their name (with</span>
+    <span class="doccomment">/// [``add_pattern()``][`Self::add_pattern()`]) or on their mime type (with</span>
+    <span class="doccomment">/// [``add_mime_type()``][`Self::add_mime_type()`]).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Filtering by mime types handles aliasing and subclassing of mime</span>
     <span class="doccomment">/// types; e.g. a filter for text/plain also matches a file with mime</span>
     <span class="doccomment">/// type application/rtf, since application/rtf is a subclass of</span>
-    <span class="doccomment">/// text/plain. Note that `GtkFileFilter` allows wildcards for the</span>
+    <span class="doccomment">/// text/plain. Note that [`FileFilter`][crate::FileFilter] allows wildcards for the</span>
     <span class="doccomment">/// subtype of a mime type, so you can e.g. filter for image/\*.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Normally, file filters are used by adding them to a `GtkFileChooser`</span>
-    <span class="doccomment">/// (see [method`Gtk.FileChooser`.add_filter]), but it is also possible to</span>
-    <span class="doccomment">/// manually use a file filter on any [class`Gtk.FilterListModel`] containing</span>
+    <span class="doccomment">/// Normally, file filters are used by adding them to a [`FileChooser`][crate::FileChooser]</span>
+    <span class="doccomment">/// (see [``FileChooserExt::add_filter()``][crate::prelude::`FileChooserExt::add_filter()`]), but it is also possible to</span>
+    <span class="doccomment">/// manually use a file filter on any [`FilterListModel`][crate::FilterListModel] containing</span>
     <span class="doccomment">/// `GFileInfo` objects.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// # `FileFilter` as `Buildable`</span>
+    <span class="doccomment">/// # GtkFileFilter as GtkBuildable</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GtkFileFilter` implementation of the `GtkBuildable` interface</span>
+    <span class="doccomment">/// The [`FileFilter`][crate::FileFilter] implementation of the [`Buildable`][crate::Buildable] interface</span>
     <span class="doccomment">/// supports adding rules using the `&lt;mime-types&gt;` and `&lt;patterns&gt;`</span>
     <span class="doccomment">/// elements and listing the rules within. Specifying a `&lt;mime-type&gt;`</span>
     <span class="doccomment">/// or `&lt;pattern&gt;` has the same effect as as calling</span>
-    <span class="doccomment">/// [method`Gtk.FileFilter`.add_mime_type] or</span>
-    <span class="doccomment">/// [method`Gtk.FileFilter`.add_pattern].</span>
+    <span class="doccomment">/// [``add_mime_type()``][`Self::add_mime_type()`] or</span>
+    <span class="doccomment">/// [``add_pattern()``][`Self::add_pattern()`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// An example of a UI definition fragment specifying `GtkFileFilter`</span>
+    <span class="doccomment">/// An example of a UI definition fragment specifying [`FileFilter`][crate::FileFilter]</span>
     <span class="doccomment">/// rules:</span>
     <span class="doccomment">/// ```xml</span>
     <span class="doccomment">/// &lt;object class=&quot;GtkFileFilter&quot;&gt;</span>
@@ -303,7 +303,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::FilterExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::BuildableExt`]</span>
+    <span class="doccomment">/// [`FilterExt`][trait@crate::prelude::FilterExt], [`trait@glib::ObjectExt`], [`BuildableExt`][trait@crate::prelude::BuildableExt]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FileFilter</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkFileFilter</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Filter</span>, @<span class="ident">implements</span> <span class="ident">Buildable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -312,13 +312,13 @@
 }
 
 <span class="kw">impl</span> <span class="ident">FileFilter</span> {
-    <span class="doccomment">/// Creates a new `GtkFileFilter` with no rules added to it.</span>
+    <span class="doccomment">/// Creates a new [`FileFilter`][crate::FileFilter] with no rules added to it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Such a filter doesn’t accept any files, so is not</span>
     <span class="doccomment">/// particularly useful until you add rules with</span>
-    <span class="doccomment">/// [method`Gtk.FileFilter`.add_mime_type],</span>
-    <span class="doccomment">/// [method`Gtk.FileFilter`.add_pattern], or</span>
-    <span class="doccomment">/// [method`Gtk.FileFilter`.add_pixbuf_formats].</span>
+    <span class="doccomment">/// [``add_mime_type()``][`Self::add_mime_type()`],</span>
+    <span class="doccomment">/// [``add_pattern()``][`Self::add_pattern()`], or</span>
+    <span class="doccomment">/// [``add_pixbuf_formats()``][`Self::add_pixbuf_formats()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To create a filter that accepts any file, use:</span>
     <span class="doccomment">/// ```c</span>
@@ -328,7 +328,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkFileFilter`</span>
+    <span class="doccomment">/// a new [`FileFilter`][crate::FileFilter]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_file_filter_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FileFilter</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -338,13 +338,13 @@
     <span class="doccomment">/// Deserialize a file filter from a `GVariant`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The variant must be in the format produced by</span>
-    <span class="doccomment">/// [method`Gtk.FileFilter`.to_gvariant].</span>
+    <span class="doccomment">/// [``to_gvariant()``][`Self::to_gvariant()`].</span>
     <span class="doccomment">/// ## `variant`</span>
     <span class="doccomment">/// an `a{sv}` `GVariant`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkFileFilter` object</span>
+    <span class="doccomment">/// a new [`FileFilter`][crate::FileFilter] object</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_file_filter_new_from_gvariant&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_from_gvariant&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_gvariant</span>(<span class="ident">variant</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Variant</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">FileFilter</span> {
@@ -377,9 +377,9 @@
     }
 
     <span class="doccomment">/// Adds a rule allowing image files in the formats supported</span>
-    <span class="doccomment">/// by `gdk_pixbuf::Pixbuf`.</span>
+    <span class="doccomment">/// by GdkPixbuf.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is equivalent to calling [method`Gtk.FileFilter`.add_mime_type]</span>
+    <span class="doccomment">/// This is equivalent to calling [``add_mime_type()``][`Self::add_mime_type()`]</span>
     <span class="doccomment">/// for all the supported mime types.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_file_filter_add_pixbuf_formats&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_pixbuf_formats</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) {
@@ -393,7 +393,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function will not typically be used by applications;</span>
     <span class="doccomment">/// it is intended principally for use in the implementation</span>
-    <span class="doccomment">/// of `GtkFileChooser`.</span>
+    <span class="doccomment">/// of [`FileChooser`][crate::FileChooser].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -410,7 +410,7 @@
 
     <span class="doccomment">/// Gets the human-readable name for the filter.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.FileFilter`.set_name].</span>
+    <span class="doccomment">/// See [``set_name()``][`Self::set_name()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

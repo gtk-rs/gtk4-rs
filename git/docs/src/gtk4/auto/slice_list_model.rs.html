@@ -294,7 +294,7 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkSliceListModel` is a list model that presents a slice of another model.</span>
+    <span class="doccomment">/// [`SliceListModel`][crate::SliceListModel] is a list model that presents a slice of another model.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is useful when implementing paging by setting the size to the number</span>
     <span class="doccomment">/// of elements per page and updating the offset whenever a different page is</span>
@@ -302,7 +302,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`], [`trait@gio::prelude::ListModelExt`]</span>
+    <span class="doccomment">/// [`trait@glib::ObjectExt`], [`trait@gio::prelude::ListModelExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SliceListModel</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkSliceListModel</span>, <span class="ident">ffi::GtkSliceListModelClass</span><span class="op">&gt;</span>) @<span class="ident">implements</span> <span class="ident">gio::ListModel</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -324,7 +324,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A new `GtkSliceListModel`</span>
+    <span class="doccomment">/// A new [`SliceListModel`][crate::SliceListModel]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_slice_list_model_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">gio::ListModel</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="ident">model</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">P</span><span class="op">&gt;</span>,
@@ -359,7 +359,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib_none</span>(<span class="ident">ffi::gtk_slice_list_model_get_model</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Gets the offset set via [`Self::set_offset()`].</span>
+    <span class="doccomment">/// Gets the offset set via [`set_offset()`][Self::set_offset()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -370,7 +370,7 @@
         <span class="kw">unsafe</span> { <span class="ident">ffi::gtk_slice_list_model_get_offset</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>) }
     }
 
-    <span class="doccomment">/// Gets the size set via [`Self::set_size()`].</span>
+    <span class="doccomment">/// Gets the size set via [`set_size()`][Self::set_size()].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

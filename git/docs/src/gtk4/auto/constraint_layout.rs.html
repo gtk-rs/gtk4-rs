@@ -350,18 +350,18 @@
 <span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// A layout manager using constraints to describe relations between widgets.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkConstraintLayout` is a layout manager that uses relations between</span>
-    <span class="doccomment">/// widget attributes, expressed via [class`Gtk.Constraint`] instances, to</span>
+    <span class="doccomment">/// [`ConstraintLayout`][crate::ConstraintLayout] is a layout manager that uses relations between</span>
+    <span class="doccomment">/// widget attributes, expressed via [`Constraint`][crate::Constraint] instances, to</span>
     <span class="doccomment">/// measure and allocate widgets.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ### How do constraints work</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Constraints are objects defining the relationship between attributes</span>
-    <span class="doccomment">/// of a widget; you can read the description of the [class`Gtk.Constraint`]</span>
+    <span class="doccomment">/// of a widget; you can read the description of the [`Constraint`][crate::Constraint]</span>
     <span class="doccomment">/// class to have a more in depth definition.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// By taking multiple constraints and applying them to the children of</span>
-    <span class="doccomment">/// a widget using `GtkConstraintLayout`, it&#39;s possible to describe</span>
+    <span class="doccomment">/// a widget using [`ConstraintLayout`][crate::ConstraintLayout], it&#39;s possible to describe</span>
     <span class="doccomment">/// complex layout policies; each constraint applied to a child or to the parent</span>
     <span class="doccomment">/// widgets contributes to the full description of the layout, in terms of</span>
     <span class="doccomment">/// parameters for resolving the value of each attribute.</span>
@@ -381,14 +381,14 @@
     <span class="doccomment">/// is undefined.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A constraint-based layout with conflicting constraints may be unsolvable,</span>
-    <span class="doccomment">/// and lead to an unstable layout. You can use the [property`Gtk.Constraint`:strength]</span>
-    <span class="doccomment">/// property of [class`Gtk.Constraint`] to &quot;nudge&quot; the layout towards a solution.</span>
+    <span class="doccomment">/// and lead to an unstable layout. You can use the `property::Constraint::strength`</span>
+    <span class="doccomment">/// property of [`Constraint`][crate::Constraint] to &quot;nudge&quot; the layout towards a solution.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ### `ConstraintLayout` as `Buildable`</span>
+    <span class="doccomment">/// ### GtkConstraintLayout as GtkBuildable</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkConstraintLayout` implements the [iface`Gtk.Buildable`] interface and</span>
+    <span class="doccomment">/// [`ConstraintLayout`][crate::ConstraintLayout] implements the [`Buildable`][crate::Buildable] interface and</span>
     <span class="doccomment">/// has a custom &quot;constraints&quot; element which allows describing constraints in</span>
-    <span class="doccomment">/// a [class`Gtk.Builder`] UI file.</span>
+    <span class="doccomment">/// a [`Builder`][crate::Builder] UI file.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// An example of a UI definition fragment specifying a constraint:</span>
     <span class="doccomment">///</span>
@@ -408,7 +408,7 @@
     <span class="doccomment">///   &lt;/object&gt;</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The definition above will add two constraints to the `ConstraintLayout`:</span>
+    <span class="doccomment">/// The definition above will add two constraints to the GtkConstraintLayout:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///  - a required constraint between the leading edge of &quot;button&quot; and</span>
     <span class="doccomment">///  the leading edge of the widget using the constraint layout, plus</span>
@@ -429,12 +429,12 @@
     <span class="doccomment">/// is assumed to be required.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The &quot;source&quot; and &quot;target&quot; attributes can be set to &quot;super&quot; to indicate</span>
-    <span class="doccomment">/// that the constraint target is the widget using the `ConstraintLayout`.</span>
+    <span class="doccomment">/// that the constraint target is the widget using the GtkConstraintLayout.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// There can be &quot;constant&quot; and &quot;multiplier&quot; attributes.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Additionally, the &quot;constraints&quot; element can also contain a description</span>
-    <span class="doccomment">/// of the ``GtkConstraintGuides`` used by the layout:</span>
+    <span class="doccomment">/// of the `GtkConstraintGuides` used by the layout:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```xml</span>
     <span class="doccomment">///   &lt;constraints&gt;</span>
@@ -462,11 +462,11 @@
     <span class="doccomment">/// The Visual Format Language describes all the constraints on a row or</span>
     <span class="doccomment">/// column, typically starting from the leading edge towards the trailing</span>
     <span class="doccomment">/// one. Each element of the layout is composed by &quot;views&quot;, which identify</span>
-    <span class="doccomment">/// a [iface`Gtk.ConstraintTarget`].</span>
+    <span class="doccomment">/// a [`ConstraintTarget`][crate::ConstraintTarget].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// For instance:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
+    <span class="doccomment">/// ```text</span>
     <span class="doccomment">///   [button]-[textField]</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
@@ -476,7 +476,7 @@
     <span class="doccomment">/// Using VFL is also possible to specify predicates that describe constraints</span>
     <span class="doccomment">/// on attributes like width and height:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
+    <span class="doccomment">/// ```text</span>
     <span class="doccomment">///   // Width must be greater than, or equal to 50</span>
     <span class="doccomment">///   [button(&gt;=50)]</span>
     <span class="doccomment">///</span>
@@ -487,7 +487,7 @@
     <span class="doccomment">/// The default orientation for a VFL description is horizontal, unless</span>
     <span class="doccomment">/// otherwise specified:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
+    <span class="doccomment">/// ```text</span>
     <span class="doccomment">///   // horizontal orientation, default attribute: width</span>
     <span class="doccomment">///   H:[button(&gt;=150)]</span>
     <span class="doccomment">///</span>
@@ -498,7 +498,7 @@
     <span class="doccomment">/// It&#39;s also possible to specify multiple predicates, as well as their</span>
     <span class="doccomment">/// strength:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
+    <span class="doccomment">/// ```text</span>
     <span class="doccomment">///   // minimum width of button must be 150</span>
     <span class="doccomment">///   // natural width of button can be 250</span>
     <span class="doccomment">///   [button(&gt;=150@required, ==250@medium)]</span>
@@ -506,7 +506,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Finally, it&#39;s also possible to use simple arithmetic operators:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
+    <span class="doccomment">/// ```text</span>
     <span class="doccomment">///   // width of button1 must be equal to width of button2</span>
     <span class="doccomment">///   // divided by 2 plus 12</span>
     <span class="doccomment">///   [button1(button2 / 2 + 12)]</span>
@@ -514,7 +514,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::LayoutManagerExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::BuildableExt`]</span>
+    <span class="doccomment">/// [`LayoutManagerExt`][trait@crate::prelude::LayoutManagerExt], [`trait@glib::ObjectExt`], [`BuildableExt`][trait@crate::prelude::BuildableExt]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ConstraintLayout</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkConstraintLayout</span>, <span class="ident">ffi::GtkConstraintLayoutClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">LayoutManager</span>, @<span class="ident">implements</span> <span class="ident">Buildable</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -523,11 +523,11 @@
 }
 
 <span class="kw">impl</span> <span class="ident">ConstraintLayout</span> {
-    <span class="doccomment">/// Creates a new `GtkConstraintLayout` layout manager.</span>
+    <span class="doccomment">/// Creates a new [`ConstraintLayout`][crate::ConstraintLayout] layout manager.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// the newly created `GtkConstraintLayout`</span>
+    <span class="doccomment">/// the newly created [`ConstraintLayout`][crate::ConstraintLayout]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_constraint_layout_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ConstraintLayout</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -536,19 +536,19 @@
 
     <span class="doccomment">/// Adds a constraint to the layout manager.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The [property`Gtk.Constraint`:source] and [property`Gtk.Constraint`:target]</span>
+    <span class="doccomment">/// The `property::Constraint::source` and `property::Constraint::target`</span>
     <span class="doccomment">/// properties of `constraint` can be:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">///  - set to `NULL` to indicate that the constraint refers to the</span>
     <span class="doccomment">///  widget using `layout`</span>
-    <span class="doccomment">///  - set to the [class`Gtk.Widget`] using `layout`</span>
-    <span class="doccomment">///  - set to a child of the [class`Gtk.Widget`] using `layout`</span>
-    <span class="doccomment">///  - set to a [class`Gtk.ConstraintGuide`] that is part of `layout`</span>
+    <span class="doccomment">///  - set to the [`Widget`][crate::Widget] using `layout`</span>
+    <span class="doccomment">///  - set to a child of the [`Widget`][crate::Widget] using `layout`</span>
+    <span class="doccomment">///  - set to a [`ConstraintGuide`][crate::ConstraintGuide] that is part of `layout`</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The `self` acquires the ownership of `constraint` after calling</span>
     <span class="doccomment">/// this function.</span>
     <span class="doccomment">/// ## `constraint`</span>
-    <span class="doccomment">/// a [class`Gtk.Constraint`]</span>
+    <span class="doccomment">/// a [`Constraint`][crate::Constraint]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_constraint_layout_add_constraint&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_constraint</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">constraint</span>: <span class="kw-2">&amp;</span><span class="ident">Constraint</span>) {
         <span class="kw">unsafe</span> {
@@ -567,7 +567,7 @@
     <span class="doccomment">/// The `layout` acquires the ownership of `guide` after calling</span>
     <span class="doccomment">/// this function.</span>
     <span class="doccomment">/// ## `guide`</span>
-    <span class="doccomment">/// a [class`Gtk.ConstraintGuide`] object</span>
+    <span class="doccomment">/// a [`ConstraintGuide`][crate::ConstraintGuide] object</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_constraint_layout_add_guide&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_guide</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">guide</span>: <span class="kw-2">&amp;</span><span class="ident">ConstraintGuide</span>) {
         <span class="kw">unsafe</span> {
@@ -632,7 +632,7 @@
     <span class="doccomment">/// Removes `constraint` from the layout manager,</span>
     <span class="doccomment">/// so that it no longer influences the layout.</span>
     <span class="doccomment">/// ## `constraint`</span>
-    <span class="doccomment">/// a [class`Gtk.Constraint`]</span>
+    <span class="doccomment">/// a [`Constraint`][crate::Constraint]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_constraint_layout_remove_constraint&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove_constraint</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">constraint</span>: <span class="kw-2">&amp;</span><span class="ident">Constraint</span>) {
         <span class="kw">unsafe</span> {
@@ -646,7 +646,7 @@
     <span class="doccomment">/// Removes `guide` from the layout manager,</span>
     <span class="doccomment">/// so that it no longer influences the layout.</span>
     <span class="doccomment">/// ## `guide`</span>
-    <span class="doccomment">/// a [class`Gtk.ConstraintGuide`] object</span>
+    <span class="doccomment">/// a [`ConstraintGuide`][crate::ConstraintGuide] object</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_constraint_layout_remove_guide&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">remove_guide</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">guide</span>: <span class="kw-2">&amp;</span><span class="ident">ConstraintGuide</span>) {
         <span class="kw">unsafe</span> {

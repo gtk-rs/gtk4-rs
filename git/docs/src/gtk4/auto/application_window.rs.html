@@ -971,47 +971,47 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkApplicationWindow` is a `GtkWindow` subclass that integrates with</span>
-    <span class="doccomment">/// `GtkApplication`.</span>
+    <span class="doccomment">/// [`ApplicationWindow`][crate::ApplicationWindow] is a [`Window`][crate::Window] subclass that integrates with</span>
+    <span class="doccomment">/// [`Application`][crate::Application].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Notably, `GtkApplicationWindow` can handle an application menubar.</span>
+    <span class="doccomment">/// Notably, [`ApplicationWindow`][crate::ApplicationWindow] can handle an application menubar.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This class implements the `GActionGroup` and `GActionMap` interfaces,</span>
     <span class="doccomment">/// to let you add window-specific actions that will be exported by the</span>
-    <span class="doccomment">/// associated [class`Gtk.Application`], together with its application-wide</span>
+    <span class="doccomment">/// associated [`gio::Application`][crate::gio::Application], together with its application-wide</span>
     <span class="doccomment">/// actions. Window-specific actions are prefixed with the “win.”</span>
     <span class="doccomment">/// prefix and application-wide actions are prefixed with the “app.”</span>
     <span class="doccomment">/// prefix. Actions must be addressed with the prefixed name when</span>
     <span class="doccomment">/// referring to them from a `GMenuModel`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that widgets that are placed inside a `GtkApplicationWindow`</span>
+    <span class="doccomment">/// Note that widgets that are placed inside a [`ApplicationWindow`][crate::ApplicationWindow]</span>
     <span class="doccomment">/// can also activate these actions, if they implement the</span>
-    <span class="doccomment">/// [iface`Gtk.Actionable`] interface.</span>
+    <span class="doccomment">/// [`Actionable`][crate::Actionable] interface.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The settings [property`Gtk.Settings`:gtk-shell-shows-app-menu] and</span>
-    <span class="doccomment">/// [property`Gtk.Settings`:gtk-shell-shows-menubar] tell GTK whether the</span>
+    <span class="doccomment">/// The settings `property::Settings::gtk-shell-shows-app-menu` and</span>
+    <span class="doccomment">/// `property::Settings::gtk-shell-shows-menubar` tell GTK whether the</span>
     <span class="doccomment">/// desktop environment is showing the application menu and menubar</span>
     <span class="doccomment">/// models outside the application as part of the desktop shell.</span>
     <span class="doccomment">/// For instance, on OS X, both menus will be displayed remotely;</span>
     <span class="doccomment">/// on Windows neither will be.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If the desktop environment does not display the menubar, then</span>
-    <span class="doccomment">/// `GtkApplicationWindow` will automatically show a menubar for it.</span>
+    <span class="doccomment">/// [`ApplicationWindow`][crate::ApplicationWindow] will automatically show a menubar for it.</span>
     <span class="doccomment">/// This behaviour can be overridden with the</span>
-    <span class="doccomment">/// [property`Gtk.ApplicationWindow`:show-menubar] property. If the</span>
+    <span class="doccomment">/// `property::ApplicationWindow::show-menubar` property. If the</span>
     <span class="doccomment">/// desktop environment does not display the application menu, then</span>
     <span class="doccomment">/// it will automatically be included in the menubar or in the windows</span>
     <span class="doccomment">/// client-side decorations.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [class`Gtk.PopoverMenu`] for information about the XML language</span>
-    <span class="doccomment">/// used by `GtkBuilder` for menu models.</span>
+    <span class="doccomment">/// See [`PopoverMenu`][crate::PopoverMenu] for information about the XML language</span>
+    <span class="doccomment">/// used by [`Builder`][crate::Builder] for menu models.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See also: [method`Gtk.Application`.set_menubar].</span>
+    <span class="doccomment">/// See also: [``GtkApplicationExt::set_menubar()``][crate::prelude::`GtkApplicationExt::set_menubar()`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ## A `ApplicationWindow` with a menubar</span>
+    <span class="doccomment">/// ## A GtkApplicationWindow with a menubar</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The code sample below shows how to set up a `GtkApplicationWindow`</span>
-    <span class="doccomment">/// with a menu bar defined on the [class`Gtk.Application`]:</span>
+    <span class="doccomment">/// The code sample below shows how to set up a [`ApplicationWindow`][crate::ApplicationWindow]</span>
+    <span class="doccomment">/// with a menu bar defined on the [`gio::Application`][crate::gio::Application]:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```c</span>
     <span class="doccomment">/// GtkApplication *app = gtk_application_new (&quot;org.gtk.test&quot;, 0);</span>
@@ -1045,7 +1045,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::ApplicationWindowExt`], [`trait@crate::prelude::GtkWindowExt`], [`trait@crate::prelude::WidgetExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::AccessibleExt`], [`trait@crate::prelude::BuildableExt`], [`trait@crate::prelude::ConstraintTargetExt`], [`trait@crate::prelude::NativeExt`], [`trait@crate::prelude::RootExt`], [`trait@crate::prelude::ShortcutManagerExt`], [`trait@gio::prelude::ActionGroupExt`], [`trait@gio::prelude::ActionMapExt`], [`trait@crate::prelude::WidgetExtManual`], [`trait@crate::prelude::AccessibleExtManual`]</span>
+    <span class="doccomment">/// [`ApplicationWindowExt`][trait@crate::prelude::ApplicationWindowExt], [`GtkWindowExt`][trait@crate::prelude::GtkWindowExt], [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`NativeExt`][trait@crate::prelude::NativeExt], [`RootExt`][trait@crate::prelude::RootExt], [`ShortcutManagerExt`][trait@crate::prelude::ShortcutManagerExt], [`trait@gio::prelude::ActionGroupExt`], [`trait@gio::prelude::ActionMapExt`], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ApplicationWindow</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkApplicationWindow</span>, <span class="ident">ffi::GtkApplicationWindowClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Window</span>, <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Native</span>, <span class="ident">Root</span>, <span class="ident">ShortcutManager</span>, <span class="ident">gio::ActionGroup</span>, <span class="ident">gio::ActionMap</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1054,13 +1054,13 @@
 }
 
 <span class="kw">impl</span> <span class="ident">ApplicationWindow</span> {
-    <span class="doccomment">/// Creates a new `GtkApplicationWindow`.</span>
+    <span class="doccomment">/// Creates a new [`ApplicationWindow`][crate::ApplicationWindow].</span>
     <span class="doccomment">/// ## `application`</span>
-    <span class="doccomment">/// a `GtkApplication`</span>
+    <span class="doccomment">/// a [`Application`][crate::Application]</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly created `GtkApplicationWindow`</span>
+    <span class="doccomment">/// a newly created [`ApplicationWindow`][crate::ApplicationWindow]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_application_window_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Application</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">application</span>: <span class="kw-2">&amp;</span><span class="ident">P</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ApplicationWindow</span> {
         <span class="macro">skip_assert_initialized!</span>();
@@ -1319,7 +1319,7 @@
     <span class="doccomment">/// If this property is [`true`], the window will display a menubar</span>
     <span class="doccomment">/// unless it is shown by the desktop shell.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.Application`.set_menubar].</span>
+    <span class="doccomment">/// See [``GtkApplicationExt::set_menubar()``][crate::prelude::`GtkApplicationExt::set_menubar()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If [`false`], the window will not display a menubar, regardless</span>
     <span class="doccomment">/// of whether the desktop shell is showing it or not.</span>
@@ -1328,10 +1328,10 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The `GtkApplication` associated with the window.</span>
+    <span class="doccomment">/// The [`Application`][crate::Application] associated with the window.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The application will be kept alive for at least as long as it</span>
-    <span class="doccomment">/// has any windows associated with it (see [`crate::gio::Application::hold()`]</span>
+    <span class="doccomment">/// has any windows associated with it (see `g_application_hold()`</span>
     <span class="doccomment">/// for a way to keep it alive without windows).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Normally, the connection between the application and the window</span>
@@ -1408,7 +1408,7 @@
     <span class="doccomment">/// Whether the window is fullscreen.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Setting this property is the equivalent of calling</span>
-    <span class="doccomment">/// [method`Gtk.Window`.fullscreen] or [method`Gtk.Window`.unfullscreen];</span>
+    <span class="doccomment">/// [``GtkWindowExt::fullscreen()``][crate::prelude::`GtkWindowExt::fullscreen()`] or [``GtkWindowExt::unfullscreen()``][crate::prelude::`GtkWindowExt::unfullscreen()`];</span>
     <span class="doccomment">/// either operation is asynchronous, which means you will need to</span>
     <span class="doccomment">/// connect to the ::notify signal in order to know whether the</span>
     <span class="doccomment">/// operation was successful.</span>
@@ -1434,7 +1434,7 @@
 
     <span class="doccomment">/// Specifies the name of the themed icon to use as the window icon.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [class`Gtk.IconTheme`] for more details.</span>
+    <span class="doccomment">/// See [`IconTheme`][crate::IconTheme] for more details.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">icon_name</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">icon_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">icon_name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">icon_name</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1443,7 +1443,7 @@
     <span class="doccomment">/// Whether the window is maximized.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Setting this property is the equivalent of calling</span>
-    <span class="doccomment">/// [method`Gtk.Window`.maximize] or [method`Gtk.Window`.unmaximize];</span>
+    <span class="doccomment">/// [``GtkWindowExt::maximize()``][crate::prelude::`GtkWindowExt::maximize()`] or [``GtkWindowExt::unmaximize()``][crate::prelude::`GtkWindowExt::unmaximize()`];</span>
     <span class="doccomment">/// either operation is asynchronous, which means you will need to</span>
     <span class="doccomment">/// connect to the ::notify signal in order to know whether the</span>
     <span class="doccomment">/// operation was successful.</span>
@@ -1551,7 +1551,7 @@
     <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
-    <span class="doccomment">/// the widget will be queried using [signal`Gtk.Widget`::query-tooltip] to</span>
+    <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">has_tooltip</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">has_tooltip</span>);
@@ -1578,7 +1578,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The `GtkLayoutManager` instance to use to compute the preferred size</span>
+    <span class="doccomment">/// The [`LayoutManager`][crate::LayoutManager] instance to use to compute the preferred size</span>
     <span class="doccomment">/// of the widget, and allocate its children.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
@@ -1592,7 +1592,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -1605,7 +1605,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -1618,7 +1618,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -1628,7 +1628,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -1670,16 +1670,16 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_markup].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_markup</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_markup</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_markup</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_markup</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1687,16 +1687,16 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_text].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_text</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1734,7 +1734,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The accessible role of the given `GtkAccessible` implementation.</span>
+    <span class="doccomment">/// The accessible role of the given [`Accessible`][crate::Accessible] implementation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The accessible role cannot be changed once set.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accessible_role</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">accessible_role</span>: <span class="ident">AccessibleRole</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
@@ -1749,11 +1749,11 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::ApplicationWindow`]</span>
+<span class="doccomment">/// [`ApplicationWindow`][struct@crate::ApplicationWindow]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ApplicationWindowExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Gets the `GtkShortcutsWindow` that is associated with `self`.</span>
+    <span class="doccomment">/// Gets the [`ShortcutsWindow`][crate::ShortcutsWindow] that is associated with `self`.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [method`Gtk.ApplicationWindow`.set_help_overlay].</span>
+    <span class="doccomment">/// See [``set_help_overlay()``][`Self::set_help_overlay()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -1765,12 +1765,12 @@
 
     <span class="doccomment">/// Returns the unique ID of the window.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  If the window has not yet been added to a `GtkApplication`, returns `0`.</span>
+    <span class="doccomment">///  If the window has not yet been added to a [`Application`][crate::Application], returns `0`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// the unique ID for `self`, or `0` if the window</span>
-    <span class="doccomment">///  has not yet been added to a `GtkApplication`</span>
+    <span class="doccomment">///  has not yet been added to a [`Application`][crate::Application]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_application_window_get_id&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_id&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u32</span>;
@@ -1792,7 +1792,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// `self` takes responsibility for destroying `help_overlay`.</span>
     <span class="doccomment">/// ## `help_overlay`</span>
-    <span class="doccomment">/// a `GtkShortcutsWindow`</span>
+    <span class="doccomment">/// a [`ShortcutsWindow`][crate::ShortcutsWindow]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_application_window_set_help_overlay&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">set_help_overlay</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">help_overlay</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">ShortcutsWindow</span><span class="op">&gt;</span>);
 

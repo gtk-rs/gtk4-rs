@@ -403,14 +403,14 @@
 <span class="kw">use</span> <span class="ident">std::ptr</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkGestureStylus` is a `GtkGesture` specific to stylus input.</span>
+    <span class="doccomment">/// [`GestureStylus`][crate::GestureStylus] is a [`Gesture`][crate::Gesture] specific to stylus input.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The provided signals just relay the basic information of the</span>
     <span class="doccomment">/// stylus events.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::GestureSingleExt`], [`trait@crate::prelude::GestureExt`], [`trait@crate::prelude::EventControllerExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`GestureSingleExt`][trait@crate::prelude::GestureSingleExt], [`GestureExt`][trait@crate::prelude::GestureExt], [`EventControllerExt`][trait@crate::prelude::EventControllerExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GestureStylus</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkGestureStylus</span>, <span class="ident">ffi::GtkGestureStylusClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">GestureSingle</span>, <span class="ident">Gesture</span>, <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -419,7 +419,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">GestureStylus</span> {
-    <span class="doccomment">/// Creates a new `GtkGestureStylus`.</span>
+    <span class="doccomment">/// Creates a new [`GestureStylus`][crate::GestureStylus].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -440,8 +440,8 @@
     <span class="doccomment">/// Returns the current value for the requested `axis`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function must be called from the handler of one of the</span>
-    <span class="doccomment">/// [signal`Gtk.GestureStylus`::down], [signal`Gtk.GestureStylus`::motion],</span>
-    <span class="doccomment">/// [signal`Gtk.GestureStylus`::up] or [signal`Gtk.GestureStylus`::proximity]</span>
+    <span class="doccomment">/// `signal::GestureStylus::down`, `signal::GestureStylus::motion`,</span>
+    <span class="doccomment">/// `signal::GestureStylus::up` or `signal::GestureStylus::proximity`</span>
     <span class="doccomment">/// signals.</span>
     <span class="doccomment">/// ## `axis`</span>
     <span class="doccomment">/// requested device axis</span>
@@ -478,9 +478,9 @@
     <span class="doccomment">/// accumulated coordinate/timing state before the emission of the</span>
     <span class="doccomment">/// current [Gtk.GestureStylus::motion] signal.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This function may only be called within a [signal`Gtk.GestureStylus`::motion]</span>
+    <span class="doccomment">/// This function may only be called within a `signal::GestureStylus::motion`</span>
     <span class="doccomment">/// signal handler, the state given in this signal and obtainable through</span>
-    <span class="doccomment">/// [method`Gtk.GestureStylus`.get_axis] express the latest (most up-to-date)</span>
+    <span class="doccomment">/// [``axis()``][`Self::axis()`] express the latest (most up-to-date)</span>
     <span class="doccomment">/// state in motion history.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The `backlog` is provided in chronological order.</span>
@@ -513,11 +513,11 @@
         }
     }
 
-    <span class="doccomment">/// Returns the `GdkDeviceTool` currently driving input through this gesture.</span>
+    <span class="doccomment">/// Returns the [`gdk::DeviceTool`][crate::gdk::DeviceTool] currently driving input through this gesture.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function must be called from the handler of one of the</span>
-    <span class="doccomment">/// [signal`Gtk.GestureStylus`::down], [signal`Gtk.GestureStylus`::motion],</span>
-    <span class="doccomment">/// [signal`Gtk.GestureStylus`::up] or [signal`Gtk.GestureStylus`::proximity]</span>
+    <span class="doccomment">/// `signal::GestureStylus::down`, `signal::GestureStylus::motion`,</span>
+    <span class="doccomment">/// `signal::GestureStylus::up` or `signal::GestureStylus::proximity`</span>
     <span class="doccomment">/// signals.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>

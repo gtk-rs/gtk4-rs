@@ -99,21 +99,21 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkLayoutChild` is the base class for objects that are meant to hold</span>
+    <span class="doccomment">/// [`LayoutChild`][crate::LayoutChild] is the base class for objects that are meant to hold</span>
     <span class="doccomment">/// layout properties.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If a `GtkLayoutManager` has per-child properties, like their packing type,</span>
+    <span class="doccomment">/// If a [`LayoutManager`][crate::LayoutManager] has per-child properties, like their packing type,</span>
     <span class="doccomment">/// or the horizontal and vertical span, or the icon name, then the layout</span>
-    <span class="doccomment">/// manager should use a `GtkLayoutChild` implementation to store those properties.</span>
+    <span class="doccomment">/// manager should use a [`LayoutChild`][crate::LayoutChild] implementation to store those properties.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GtkLayoutChild` instance is only ever valid while a widget is part</span>
+    <span class="doccomment">/// A [`LayoutChild`][crate::LayoutChild] instance is only ever valid while a widget is part</span>
     <span class="doccomment">/// of a layout.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is an Abstract Base Class, you cannot instantiate it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::LayoutChildExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`LayoutChildExt`][trait@crate::prelude::LayoutChildExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LayoutChild</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkLayoutChild</span>, <span class="ident">ffi::GtkLayoutChildClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -127,23 +127,23 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::ConstraintLayoutChild`], [`struct@crate::FixedLayoutChild`], [`struct@crate::GridLayoutChild`], [`struct@crate::LayoutChild`], [`struct@crate::OverlayLayoutChild`]</span>
+<span class="doccomment">/// [`ConstraintLayoutChild`][struct@crate::ConstraintLayoutChild], [`FixedLayoutChild`][struct@crate::FixedLayoutChild], [`GridLayoutChild`][struct@crate::GridLayoutChild], [`LayoutChild`][struct@crate::LayoutChild], [`OverlayLayoutChild`][struct@crate::OverlayLayoutChild]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">LayoutChildExt</span>: <span class="lifetime">&#39;static</span> {
-    <span class="doccomment">/// Retrieves the `GtkWidget` associated to the given `self`.</span>
+    <span class="doccomment">/// Retrieves the [`Widget`][crate::Widget] associated to the given `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a [`crate::Widget`]</span>
+    <span class="doccomment">/// a [`Widget`][crate::Widget]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_layout_child_get_child_widget&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_child_widget&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">child_widget</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Retrieves the `GtkLayoutManager` instance that created the</span>
+    <span class="doccomment">/// Retrieves the [`LayoutManager`][crate::LayoutManager] instance that created the</span>
     <span class="doccomment">/// given `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a `GtkLayoutManager`</span>
+    <span class="doccomment">/// a [`LayoutManager`][crate::LayoutManager]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_layout_child_get_layout_manager&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_layout_manager&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">layout_manager</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">LayoutManager</span><span class="op">&gt;</span>;

@@ -349,18 +349,18 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkDropControllerMotion` is an event controller tracking</span>
+    <span class="doccomment">/// [`DropControllerMotion`][crate::DropControllerMotion] is an event controller tracking</span>
     <span class="doccomment">/// the pointer during Drag-and-Drop operations.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// It is modeled after [class`Gtk.EventControllerMotion`] so if you</span>
+    <span class="doccomment">/// It is modeled after [`EventControllerMotion`][crate::EventControllerMotion] so if you</span>
     <span class="doccomment">/// have used that, this should feel really familiar.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This controller is not able to accept drops, use [class`Gtk.DropTarget`]</span>
+    <span class="doccomment">/// This controller is not able to accept drops, use [`DropTarget`][crate::DropTarget]</span>
     <span class="doccomment">/// for that purpose.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::EventControllerExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`EventControllerExt`][trait@crate::prelude::EventControllerExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DropControllerMotion</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkDropControllerMotion</span>, <span class="ident">ffi::GtkDropControllerMotionClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -374,7 +374,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkDropControllerMotion`</span>
+    <span class="doccomment">/// a new [`DropControllerMotion`][crate::DropControllerMotion]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_drop_controller_motion_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DropControllerMotion</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -405,12 +405,12 @@
         }
     }
 
-    <span class="doccomment">/// Returns the `GdkDrop` of a current Drag-and-Drop operation</span>
+    <span class="doccomment">/// Returns the [`gdk::Drop`][crate::gdk::Drop] of a current Drag-and-Drop operation</span>
     <span class="doccomment">/// over the widget of `self`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GdkDrop` currently</span>
+    <span class="doccomment">/// The [`gdk::Drop`][crate::gdk::Drop] currently</span>
     <span class="doccomment">///  happening within `self` or [`None`] if none</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_drop_controller_motion_get_drop&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;get_drop&quot;</span>)]</span>

@@ -86,12 +86,12 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A `GtkListItemFactory` creates widgets for the items taken from a `GListModel`.</span>
+    <span class="doccomment">/// A [`ListItemFactory`][crate::ListItemFactory] creates widgets for the items taken from a `GListModel`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is one of the core concepts of handling list widgets such</span>
-    <span class="doccomment">/// as [class`Gtk.ListView`] or [class`Gtk.GridView`].</span>
+    <span class="doccomment">/// as [`ListView`][crate::ListView] or [`GridView`][crate::GridView].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// The `GtkListItemFactory` is tasked with creating widgets for items</span>
+    <span class="doccomment">/// The [`ListItemFactory`][crate::ListItemFactory] is tasked with creating widgets for items</span>
     <span class="doccomment">/// taken from the model when the views need them and updating them as</span>
     <span class="doccomment">/// the items displayed by the view change.</span>
     <span class="doccomment">///</span>
@@ -101,7 +101,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Because views do not display the whole list at once but only a few</span>
     <span class="doccomment">/// items, they only need to maintain a few widgets at a time. They will</span>
-    <span class="doccomment">/// instruct the `GtkListItemFactory` to create these widgets and bind them</span>
+    <span class="doccomment">/// instruct the [`ListItemFactory`][crate::ListItemFactory] to create these widgets and bind them</span>
     <span class="doccomment">/// to the items that are currently displayed.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// As the list model changes or the user scrolls to the list, the items will</span>
@@ -110,34 +110,34 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The actual widgets used for displaying those widgets is provided by you.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// When the factory needs widgets created, it will create a `GtkListItem`</span>
+    <span class="doccomment">/// When the factory needs widgets created, it will create a [`ListItem`][crate::ListItem]</span>
     <span class="doccomment">/// and hand it to your code to set up a widget for. This list item will provide</span>
     <span class="doccomment">/// various properties with information about what item to display and provide</span>
     <span class="doccomment">/// you with some opportunities to configure its behavior. See the</span>
-    <span class="doccomment">/// [class`Gtk.ListItem`] documentation for further details.</span>
+    <span class="doccomment">/// [`ListItem`][crate::ListItem] documentation for further details.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Various implementations of `GtkListItemFactory` exist to allow you different</span>
+    <span class="doccomment">/// Various implementations of [`ListItemFactory`][crate::ListItemFactory] exist to allow you different</span>
     <span class="doccomment">/// ways to provide those widgets. The most common implementations are</span>
-    <span class="doccomment">/// [class`Gtk.BuilderListItemFactory`] which takes a `GtkBuilder` .ui file</span>
+    <span class="doccomment">/// [`BuilderListItemFactory`][crate::BuilderListItemFactory] which takes a [`Builder`][crate::Builder] .ui file</span>
     <span class="doccomment">/// and then creates widgets and manages everything automatically from the</span>
-    <span class="doccomment">/// information in that file and [class`Gtk.SignalListItemFactory`] which allows</span>
+    <span class="doccomment">/// information in that file and [`SignalListItemFactory`][crate::SignalListItemFactory] which allows</span>
     <span class="doccomment">/// you to connect to signals with your own code and retain full control over</span>
     <span class="doccomment">/// how the widgets are setup and managed.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GtkListItemFactory` is supposed to be final - that means its behavior should</span>
+    <span class="doccomment">/// A [`ListItemFactory`][crate::ListItemFactory] is supposed to be final - that means its behavior should</span>
     <span class="doccomment">/// not change and the first widget created from it should behave the same way as</span>
     <span class="doccomment">/// the last widget created from it.</span>
     <span class="doccomment">/// If you intend to do changes to the behavior, it is recommended that you create</span>
-    <span class="doccomment">/// a new `GtkListItemFactory` which will allow the views to recreate its widgets.</span>
+    <span class="doccomment">/// a new [`ListItemFactory`][crate::ListItemFactory] which will allow the views to recreate its widgets.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Once you have chosen your factory and created it, you need to set it</span>
     <span class="doccomment">/// on the view widget you want to use it with, such as via</span>
-    <span class="doccomment">/// [method`Gtk.ListView`.set_factory]. Reusing factories across different</span>
+    <span class="doccomment">/// [``ListView::set_factory()``][crate::`ListView::set_factory()`]. Reusing factories across different</span>
     <span class="doccomment">/// views is allowed, but very uncommon.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ListItemFactory</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkListItemFactory</span>, <span class="ident">ffi::GtkListItemFactoryClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {

@@ -197,15 +197,15 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkGestureZoom` is a `GtkGesture` for 2-finger pinch/zoom gestures.</span>
+    <span class="doccomment">/// [`GestureZoom`][crate::GestureZoom] is a [`Gesture`][crate::Gesture] for 2-finger pinch/zoom gestures.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Whenever the distance between both tracked sequences changes, the</span>
-    <span class="doccomment">/// [signal`Gtk.GestureZoom`::scale-changed] signal is emitted to report</span>
+    <span class="doccomment">/// `signal::GestureZoom::scale-changed` signal is emitted to report</span>
     <span class="doccomment">/// the scale factor.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::GestureExt`], [`trait@crate::prelude::EventControllerExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`GestureExt`][trait@crate::prelude::GestureExt], [`EventControllerExt`][trait@crate::prelude::EventControllerExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GestureZoom</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkGestureZoom</span>, <span class="ident">ffi::GtkGestureZoomClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Gesture</span>, <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -214,12 +214,12 @@
 }
 
 <span class="kw">impl</span> <span class="ident">GestureZoom</span> {
-    <span class="doccomment">/// Returns a newly created `GtkGesture` that recognizes</span>
+    <span class="doccomment">/// Returns a newly created [`Gesture`][crate::Gesture] that recognizes</span>
     <span class="doccomment">/// pinch/zoom gestures.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a newly created `GtkGestureZoom`</span>
+    <span class="doccomment">/// a newly created [`GestureZoom`][crate::GestureZoom]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_gesture_zoom_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">GestureZoom</span> {
         <span class="macro">assert_initialized_main_thread!</span>();

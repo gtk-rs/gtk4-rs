@@ -22,7 +22,7 @@ in the
 <a href="http://www.freedesktop.org/Standards/wm-spec">Extended Window Manager Hints</a> specification.</p>
 <h1 id="returns-2" class="section-header"><a href="#returns-2">Returns</a></h1>
 <p>the number of workspaces, or 0 if workspaces are not supported</p>
-</div></details><details class="rustdoc-toggle method-toggle" open><summary><h4 id="method.screen_number" class="method"><code>pub fn <a href="#method.screen_number" class="fnname">screen_number</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a href="#method.screen_number" class="anchor"></a><a class="srclink" href="../src/gdk4_x11/auto/x11_screen.rs.html#75-77" title="goto source code">[src]</a></h4></summary><div class="docblock"><p>Returns the index of a <a href="struct.X11Screen.html" title="crate::X11Screen"><code>crate::X11Screen</code></a>.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><h4 id="method.screen_number" class="method"><code>pub fn <a href="#method.screen_number" class="fnname">screen_number</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.i32.html">i32</a></code><a href="#method.screen_number" class="anchor"></a><a class="srclink" href="../src/gdk4_x11/auto/x11_screen.rs.html#75-77" title="goto source code">[src]</a></h4></summary><div class="docblock"><p>Returns the index of a <a href="struct.X11Screen.html" title="crate::X11Screen"><code>X11Screen</code></a>.</p>
 <h1 id="returns-3" class="section-header"><a href="#returns-3">Returns</a></h1>
 <p>the position of <code>self</code> among the screens
 of its display</p>
@@ -39,8 +39,8 @@ can change over time; so you shouldn’t use this function in
 a way that impacts persistent application state. A common bug
 is that your application can start up before the window manager
 does when the user logs in, and before the window manager starts
-<a href="struct.X11Screen.html#method.supports_net_wm_hint" title="Self::supports_net_wm_hint()"><code>Self::supports_net_wm_hint()</code></a> will return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> for every property.
-You can monitor the window_manager_changed signal on <a href="struct.X11Screen.html" title="crate::X11Screen"><code>crate::X11Screen</code></a> to detect
+<a href="struct.X11Screen.html#method.supports_net_wm_hint" title="Self::supports_net_wm_hint()"><code>supports_net_wm_hint()</code></a> will return <a href="https://doc.rust-lang.org/nightly/std/primitive.bool.html" title="false"><code>false</code></a> for every property.
+You can monitor the window_manager_changed signal on <a href="struct.X11Screen.html" title="crate::X11Screen"><code>X11Screen</code></a> to detect
 a window manager change.</p>
 <h2 id="property_name" class="section-header"><a href="#property_name"><code>property_name</code></a></h2>
 <p>name of the WM property</p>

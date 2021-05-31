@@ -75,10 +75,10 @@
     <span class="doccomment">/// Creates a new texture for an existing GL texture.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Note that the GL texture must not be modified until `destroy` is called,</span>
-    <span class="doccomment">/// which will happen when the `Texture` object is finalized, or due to</span>
-    <span class="doccomment">/// an explicit call of [method`Gdk.GLTexture`.release].</span>
+    <span class="doccomment">/// which will happen when the GdkTexture object is finalized, or due to</span>
+    <span class="doccomment">/// an explicit call of [``release()``][`Self::release()`].</span>
     <span class="doccomment">/// ## `context`</span>
-    <span class="doccomment">/// a `GdkGLContext`</span>
+    <span class="doccomment">/// a [`GLContext`][crate::GLContext]</span>
     <span class="doccomment">/// ## `id`</span>
     <span class="doccomment">/// the ID of a texture that was created with `context`</span>
     <span class="doccomment">/// ## `width`</span>
@@ -88,7 +88,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A newly-created `GdkTexture`</span>
+    <span class="doccomment">/// A newly-created [`Texture`][crate::Texture]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_gl_texture_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="ident">GLContext</span>, <span class="ident">id</span>: <span class="ident">u32</span>, <span class="ident">width</span>: <span class="ident">i32</span>, <span class="ident">height</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">ffi::gdk_gl_texture_new</span>(

@@ -401,19 +401,19 @@
 <span class="kw">use</span> <span class="ident">std::ptr</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// A `GdkContentProvider` is used to provide content for the clipboard or</span>
+    <span class="doccomment">/// A [`ContentProvider`][crate::ContentProvider] is used to provide content for the clipboard or</span>
     <span class="doccomment">/// for drag-and-drop operations in a number of formats.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// To create a `GdkContentProvider`, use [ctor`Gdk.ContentProvider`.new_for_value]</span>
-    <span class="doccomment">/// or [ctor`Gdk.ContentProvider`.new_for_bytes].</span>
+    <span class="doccomment">/// To create a [`ContentProvider`][crate::ContentProvider], use [``for_value()``][`Self::for_value()`]</span>
+    <span class="doccomment">/// or [``for_bytes()``][`Self::for_bytes()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// GDK knows how to handle common text and image formats out-of-the-box. See</span>
-    <span class="doccomment">/// [class`Gdk.ContentSerializer`] and [class`Gdk.ContentDeserializer`] if you want</span>
+    <span class="doccomment">/// [`ContentSerializer`][crate::ContentSerializer] and [`ContentDeserializer`][crate::ContentDeserializer] if you want</span>
     <span class="doccomment">/// to add support for application-specific data formats.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::ContentProviderExt`], [`trait@crate::prelude::ContentProviderExtManual`]</span>
+    <span class="doccomment">/// [`ContentProviderExt`][trait@crate::prelude::ContentProviderExt], [`ContentProviderExtManual`][trait@crate::prelude::ContentProviderExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ContentProvider</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GdkContentProvider</span>, <span class="ident">ffi::GdkContentProviderClass</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -431,7 +431,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GdkContentProvider`</span>
+    <span class="doccomment">/// a new [`ContentProvider`][crate::ContentProvider]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_provider_new_for_bytes&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_for_bytes&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_bytes</span>(<span class="ident">mime_type</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">bytes</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Bytes</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentProvider</span> {
@@ -450,7 +450,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GdkContentProvider`</span>
+    <span class="doccomment">/// a new [`ContentProvider`][crate::ContentProvider]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_provider_new_for_value&quot;</span>)]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;new_for_value&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">for_value</span>(<span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="ident">glib::Value</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentProvider</span> {
@@ -479,11 +479,11 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">/// ## `providers`</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">///  The ``GdkContentProviders`` to present the union of</span>
+    <span class="doccomment">///  The `GdkContentProviders` to present the union of</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GdkContentProvider`</span>
+    <span class="doccomment">/// a new [`ContentProvider`][crate::ContentProvider]</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_provider_new_union&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_union</span>(<span class="ident">providers</span>: <span class="kw-2">&amp;</span>[<span class="ident">ContentProvider</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ContentProvider</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -503,7 +503,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// # Implementors</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// [`struct@crate::ContentProvider`]</span>
+<span class="doccomment">/// [`ContentProvider`][struct@crate::ContentProvider]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ContentProviderExt</span>: <span class="lifetime">&#39;static</span> {
     <span class="doccomment">/// Emits the ::content-changed signal.</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gdk_content_provider_content_changed&quot;</span>)]</span>
@@ -523,7 +523,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// An example of such an application would be a clipboard manager.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This can be assumed to be a subset of [method`Gdk.ContentProvider`.ref_formats].</span>
+    <span class="doccomment">/// This can be assumed to be a subset of [``formats()``][`Self::formats()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -536,12 +536,12 @@
     <span class="doccomment">/// `mime_type`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// When the operation is finished `callback` will be called. You must then call</span>
-    <span class="doccomment">/// [method`Gdk.ContentProvider`.write_mime_type_finish] to get the result</span>
+    <span class="doccomment">/// `Gdk::`ContentProvider::write_mime_type_finish()`` to get the result</span>
     <span class="doccomment">/// of the operation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The given mime type does not need to be listed in the formats returned by</span>
-    <span class="doccomment">/// [method`Gdk.ContentProvider`.ref_formats]. However, if the given `GType` is</span>
-    <span class="doccomment">/// not supported, [`crate::gio::IOErrorEnum::NotSupported`] will be reported.</span>
+    <span class="doccomment">/// [``formats()``][`Self::formats()`]. However, if the given `GType` is</span>
+    <span class="doccomment">/// not supported, [`gio::IOErrorEnum::NotSupported`][crate::gio::IOErrorEnum::NotSupported] will be reported.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The given `stream` will not be closed.</span>
     <span class="doccomment">/// ## `mime_type`</span>

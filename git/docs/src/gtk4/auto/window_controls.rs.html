@@ -715,16 +715,16 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkWindowControls` shows window frame controls.</span>
+    <span class="doccomment">/// [`WindowControls`][crate::WindowControls] shows window frame controls.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Typical window frame controls are minimize, maximize and close buttons,</span>
     <span class="doccomment">/// and the window icon.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ![An example `WindowControls`](windowcontrols.png)</span>
+    <span class="doccomment">/// ![An example GtkWindowControls](windowcontrols.png)</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkWindowControls` only displays start or end side of the controls (see</span>
-    <span class="doccomment">/// [property`Gtk.WindowControls`:side]), so it&#39;s intended to be always used</span>
-    <span class="doccomment">/// in pair with another `GtkWindowControls` for the opposite side, for example:</span>
+    <span class="doccomment">/// [`WindowControls`][crate::WindowControls] only displays start or end side of the controls (see</span>
+    <span class="doccomment">/// `property::WindowControls::side`), so it&#39;s intended to be always used</span>
+    <span class="doccomment">/// in pair with another [`WindowControls`][crate::WindowControls] for the opposite side, for example:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```xml</span>
     <span class="doccomment">/// &lt;object class=&quot;GtkBox&quot;&gt;</span>
@@ -746,7 +746,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # CSS nodes</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ```</span>
+    <span class="doccomment">/// ```text</span>
     <span class="doccomment">/// windowcontrols</span>
     <span class="doccomment">/// ├── [image.icon]</span>
     <span class="doccomment">/// ├── [button.minimize]</span>
@@ -754,21 +754,21 @@
     <span class="doccomment">/// ╰── [button.close]</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A `GtkWindowControls`&#39; CSS node is called windowcontrols. It contains</span>
+    <span class="doccomment">/// A [`WindowControls`][crate::WindowControls]&#39; CSS node is called windowcontrols. It contains</span>
     <span class="doccomment">/// subnodes corresponding to each title button. Which of the title buttons</span>
     <span class="doccomment">/// exist and where they are placed exactly depends on the desktop environment</span>
-    <span class="doccomment">/// and [property`Gtk.WindowControls`:decoration-layout] value.</span>
+    <span class="doccomment">/// and `property::WindowControls::decoration-layout` value.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// When [property`Gtk.WindowControls`:empty] is [`true`], it gets the .empty</span>
+    <span class="doccomment">/// When `property::WindowControls::empty` is [`true`], it gets the .empty</span>
     <span class="doccomment">/// style class.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Accessibility</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkWindowControls` uses the [`crate::AccessibleRole::Group`] role.</span>
+    <span class="doccomment">/// [`WindowControls`][crate::WindowControls] uses the [`AccessibleRole::Group`][crate::AccessibleRole::Group] role.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::WidgetExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::AccessibleExt`], [`trait@crate::prelude::BuildableExt`], [`trait@crate::prelude::ConstraintTargetExt`], [`trait@crate::prelude::WidgetExtManual`], [`trait@crate::prelude::AccessibleExtManual`]</span>
+    <span class="doccomment">/// [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WindowControls</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkWindowControls</span>, <span class="ident">ffi::GtkWindowControlsClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -777,13 +777,13 @@
 }
 
 <span class="kw">impl</span> <span class="ident">WindowControls</span> {
-    <span class="doccomment">/// Creates a new `GtkWindowControls`.</span>
+    <span class="doccomment">/// Creates a new [`WindowControls`][crate::WindowControls].</span>
     <span class="doccomment">/// ## `side`</span>
     <span class="doccomment">/// the side</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// a new `GtkWindowControls`.</span>
+    <span class="doccomment">/// a new [`WindowControls`][crate::WindowControls].</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_controls_new&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">side</span>: <span class="ident">PackType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">WindowControls</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
@@ -799,7 +799,7 @@
         <span class="ident">WindowControlsBuilder::default</span>()
     }
 
-    <span class="doccomment">/// Gets the decoration layout of this `GtkWindowControls`.</span>
+    <span class="doccomment">/// Gets the decoration layout of this [`WindowControls`][crate::WindowControls].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -825,7 +825,7 @@
         <span class="kw">unsafe</span> { <span class="ident">from_glib</span>(<span class="ident">ffi::gtk_window_controls_get_empty</span>(<span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>)) }
     }
 
-    <span class="doccomment">/// Gets the side to which this `GtkWindowControls` instance belongs.</span>
+    <span class="doccomment">/// Gets the side to which this [`WindowControls`][crate::WindowControls] instance belongs.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
@@ -838,7 +838,7 @@
 
     <span class="doccomment">/// Sets the decoration layout for the title buttons.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This overrides the [property`Gtk.Settings`:gtk-decoration-layout]</span>
+    <span class="doccomment">/// This overrides the `property::Settings::gtk-decoration-layout`</span>
     <span class="doccomment">/// setting.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The format of the string is button names, separated by commas.</span>
@@ -849,7 +849,7 @@
     <span class="doccomment">/// For example, “icon:minimize,maximize,close” specifies a icon</span>
     <span class="doccomment">/// on the left, and minimize, maximize and close buttons on the right.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// If [property`Gtk.WindowControls`:side] value is [`crate::PackType::Start`] (XXX: @-reference does not belong to WindowControls!), `self`</span>
+    <span class="doccomment">/// If `property::WindowControls::side` value is [`PackType::Start`][crate::PackType::Start], `self`</span>
     <span class="doccomment">/// will display the part before the colon, otherwise after that.</span>
     <span class="doccomment">/// ## `layout`</span>
     <span class="doccomment">/// a decoration layout, or [`None`] to</span>
@@ -864,9 +864,9 @@
         }
     }
 
-    <span class="doccomment">/// Determines which part of decoration layout the `GtkWindowControls` uses.</span>
+    <span class="doccomment">/// Determines which part of decoration layout the [`WindowControls`][crate::WindowControls] uses.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [property`Gtk.WindowControls`:decoration-layout].</span>
+    <span class="doccomment">/// See `property::WindowControls::decoration-layout`.</span>
     <span class="doccomment">/// ## `side`</span>
     <span class="doccomment">/// a side</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_window_controls_set_side&quot;</span>)]</span>
@@ -1103,7 +1103,7 @@
     <span class="doccomment">/// The decoration layout for window buttons.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If this property is not set, the</span>
-    <span class="doccomment">/// [property`Gtk.Settings`:gtk-decoration-layout] setting is used.</span>
+    <span class="doccomment">/// `property::Settings::gtk-decoration-layout` setting is used.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">decoration_layout</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">decoration_layout</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">decoration_layout</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">decoration_layout</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1111,7 +1111,7 @@
 
     <span class="doccomment">/// Whether the widget shows start or end side of the decoration layout.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [property`Gtk.WindowControls`:decoration_layout].</span>
+    <span class="doccomment">/// See `property::WindowControls::decoration_layout`.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">side</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">side</span>: <span class="ident">PackType</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">side</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">side</span>);
         <span class="self">self</span>
@@ -1177,7 +1177,7 @@
     <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
-    <span class="doccomment">/// the widget will be queried using [signal`Gtk.Widget`::query-tooltip] to</span>
+    <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">has_tooltip</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">has_tooltip</span>);
@@ -1204,7 +1204,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The `GtkLayoutManager` instance to use to compute the preferred size</span>
+    <span class="doccomment">/// The [`LayoutManager`][crate::LayoutManager] instance to use to compute the preferred size</span>
     <span class="doccomment">/// of the widget, and allocate its children.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
@@ -1218,7 +1218,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -1231,7 +1231,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -1244,7 +1244,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -1254,7 +1254,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -1296,16 +1296,16 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_markup].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_markup</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_markup</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_markup</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_markup</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1313,16 +1313,16 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_text].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_text</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1360,7 +1360,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The accessible role of the given `GtkAccessible` implementation.</span>
+    <span class="doccomment">/// The accessible role of the given [`Accessible`][crate::Accessible] implementation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The accessible role cannot be changed once set.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accessible_role</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">accessible_role</span>: <span class="ident">AccessibleRole</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {

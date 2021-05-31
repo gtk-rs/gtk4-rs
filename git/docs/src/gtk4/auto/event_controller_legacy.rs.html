@@ -179,7 +179,7 @@
 <span class="kw">use</span> <span class="ident">std::mem::transmute</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkEventControllerLegacy` is an event controller that provides raw</span>
+    <span class="doccomment">/// [`EventControllerLegacy`][crate::EventControllerLegacy] is an event controller that provides raw</span>
     <span class="doccomment">/// access to the event stream.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// It should only be used as a last resort if none of the other event</span>
@@ -187,7 +187,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::EventControllerExt`], [`trait@glib::object::ObjectExt`]</span>
+    <span class="doccomment">/// [`EventControllerExt`][trait@crate::prelude::EventControllerExt], [`trait@glib::ObjectExt`]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EventControllerLegacy</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkEventControllerLegacy</span>, <span class="ident">ffi::GtkEventControllerLegacyClass</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">EventController</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -218,7 +218,7 @@
 
     <span class="doccomment">/// Emitted for each GDK event delivered to `controller`.</span>
     <span class="doccomment">/// ## `event`</span>
-    <span class="doccomment">/// the `GdkEvent` which triggered this signal</span>
+    <span class="doccomment">/// the [`gdk::Event`][crate::gdk::Event] which triggered this signal</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>

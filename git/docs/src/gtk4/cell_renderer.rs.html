@@ -127,15 +127,15 @@
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">CellRendererExtManual</span> {
     <span class="doccomment">/// Passes an activate event to the cell renderer for possible processing.</span>
-    <span class="doccomment">/// Some cell renderers may use events; for example, [`crate::CellRendererToggle`]</span>
+    <span class="doccomment">/// Some cell renderers may use events; for example, [`CellRendererToggle`][crate::CellRendererToggle]</span>
     <span class="doccomment">/// toggles when it gets a mouse click.</span>
     <span class="doccomment">/// ## `event`</span>
-    <span class="doccomment">/// a [`crate::gdk::Event`]</span>
+    <span class="doccomment">/// a [`gdk::Event`][crate::gdk::Event]</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// widget that received the event</span>
     <span class="doccomment">/// ## `path`</span>
     <span class="doccomment">/// widget-dependent string representation of the event location;</span>
-    <span class="doccomment">///  e.g. for [`crate::TreeView`], a string representation of [`crate::TreePath`]</span>
+    <span class="doccomment">///  e.g. for [`TreeView`][crate::TreeView], a string representation of [`TreePath`][crate::TreePath]</span>
     <span class="doccomment">/// ## `background_area`</span>
     <span class="doccomment">/// background area as passed to `gtk_cell_renderer_render()`</span>
     <span class="doccomment">/// ## `cell_area`</span>
@@ -157,15 +157,15 @@
         <span class="ident">flags</span>: <span class="ident">CellRendererState</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 
-    <span class="doccomment">/// Starts editing the contents of this `self`, through a new [`crate::CellEditable`]</span>
-    <span class="doccomment">/// widget created by the [`crate::CellRendererClass.start_editing`] virtual function.</span>
+    <span class="doccomment">/// Starts editing the contents of this `self`, through a new [`CellEditable`][crate::CellEditable]</span>
+    <span class="doccomment">/// widget created by the `GtkCellRendererClass.start_editing` virtual function.</span>
     <span class="doccomment">/// ## `event`</span>
-    <span class="doccomment">/// a [`crate::gdk::Event`]</span>
+    <span class="doccomment">/// a [`gdk::Event`][crate::gdk::Event]</span>
     <span class="doccomment">/// ## `widget`</span>
     <span class="doccomment">/// widget that received the event</span>
     <span class="doccomment">/// ## `path`</span>
     <span class="doccomment">/// widget-dependent string representation of the event location;</span>
-    <span class="doccomment">///  e.g. for [`crate::TreeView`], a string representation of [`crate::TreePath`]</span>
+    <span class="doccomment">///  e.g. for [`TreeView`][crate::TreeView], a string representation of [`TreePath`][crate::TreePath]</span>
     <span class="doccomment">/// ## `background_area`</span>
     <span class="doccomment">/// background area as passed to `gtk_cell_renderer_render()`</span>
     <span class="doccomment">/// ## `cell_area`</span>
@@ -175,7 +175,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Returns</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// A new [`crate::CellEditable`] for editing this</span>
+    <span class="doccomment">/// A new [`CellEditable`][crate::CellEditable] for editing this</span>
     <span class="doccomment">///  `self`, or [`None`] if editing is not possible</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_cell_renderer_start_editing&quot;</span>)]</span>
     <span class="kw">fn</span> <span class="ident">start_editing</span><span class="op">&lt;</span><span class="ident">Q</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">Widget</span><span class="op">&gt;</span>, <span class="ident">R</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">gdk::Event</span><span class="op">&gt;</span><span class="op">&gt;</span>(

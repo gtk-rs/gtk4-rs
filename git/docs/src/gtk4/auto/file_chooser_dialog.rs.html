@@ -967,29 +967,29 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 
 <span class="macro">glib::wrapper!</span> {
-    <span class="doccomment">/// `GtkFileChooserDialog` is a dialog suitable for use with</span>
+    <span class="doccomment">/// [`FileChooserDialog`][crate::FileChooserDialog] is a dialog suitable for use with</span>
     <span class="doccomment">/// “File Open” or “File Save” commands.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// ![An example `FileChooserDialog`](filechooser.png)</span>
+    <span class="doccomment">/// ![An example GtkFileChooserDialog](filechooser.png)</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This widget works by putting a [class`Gtk.FileChooserWidget`]</span>
-    <span class="doccomment">/// inside a [class`Gtk.Dialog`]. It exposes the [iface`Gtk.FileChooser`]</span>
-    <span class="doccomment">/// interface, so you can use all of the [iface`Gtk.FileChooser`] functions</span>
-    <span class="doccomment">/// on the file chooser dialog as well as those for [class`Gtk.Dialog`].</span>
+    <span class="doccomment">/// This widget works by putting a [`FileChooserWidget`][crate::FileChooserWidget]</span>
+    <span class="doccomment">/// inside a [`Dialog`][crate::Dialog]. It exposes the [`FileChooser`][crate::FileChooser]</span>
+    <span class="doccomment">/// interface, so you can use all of the [`FileChooser`][crate::FileChooser] functions</span>
+    <span class="doccomment">/// on the file chooser dialog as well as those for [`Dialog`][crate::Dialog].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that `GtkFileChooserDialog` does not have any methods of its</span>
+    <span class="doccomment">/// Note that [`FileChooserDialog`][crate::FileChooserDialog] does not have any methods of its</span>
     <span class="doccomment">/// own. Instead, you should use the functions that work on a</span>
-    <span class="doccomment">/// [iface`Gtk.FileChooser`].</span>
+    <span class="doccomment">/// [`FileChooser`][crate::FileChooser].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// If you want to integrate well with the platform you should use the</span>
-    <span class="doccomment">/// [class`Gtk.FileChooserNative`] API, which will use a platform-specific</span>
-    <span class="doccomment">/// dialog if available and fall back to `GtkFileChooserDialog`</span>
+    <span class="doccomment">/// [`FileChooserNative`][crate::FileChooserNative] API, which will use a platform-specific</span>
+    <span class="doccomment">/// dialog if available and fall back to [`FileChooserDialog`][crate::FileChooserDialog]</span>
     <span class="doccomment">/// otherwise.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## Typical usage</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In the simplest of cases, you can the following code to use</span>
-    <span class="doccomment">/// `GtkFileChooserDialog` to select a file for opening:</span>
+    <span class="doccomment">/// [`FileChooserDialog`][crate::FileChooserDialog] to select a file for opening:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```c</span>
     <span class="doccomment">/// static void</span>
@@ -1076,18 +1076,18 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## Setting up a file chooser dialog</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// There are various cases in which you may need to use a `GtkFileChooserDialog`:</span>
+    <span class="doccomment">/// There are various cases in which you may need to use a [`FileChooserDialog`][crate::FileChooserDialog]:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// - To select a file for opening, use [`crate::FileChooserAction::Open`].</span>
+    <span class="doccomment">/// - To select a file for opening, use [`FileChooserAction::Open`][crate::FileChooserAction::Open].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// - To save a file for the first time, use [`crate::FileChooserAction::Save`],</span>
+    <span class="doccomment">/// - To save a file for the first time, use [`FileChooserAction::Save`][crate::FileChooserAction::Save],</span>
     <span class="doccomment">///  and suggest a name such as “Untitled” with</span>
-    <span class="doccomment">///  [method`Gtk.FileChooser`.set_current_name].</span>
+    <span class="doccomment">///  [``FileChooserExt::set_current_name()``][crate::prelude::`FileChooserExt::set_current_name()`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// - To save a file under a different name, use [`crate::FileChooserAction::Save`],</span>
-    <span class="doccomment">///  and set the existing file with [method`Gtk.FileChooser`.set_file].</span>
+    <span class="doccomment">/// - To save a file under a different name, use [`FileChooserAction::Save`][crate::FileChooserAction::Save],</span>
+    <span class="doccomment">///  and set the existing file with [``FileChooserExt::set_file()``][crate::prelude::`FileChooserExt::set_file()`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// - To choose a folder instead of a filem use [`crate::FileChooserAction::SelectFolder`].</span>
+    <span class="doccomment">/// - To choose a folder instead of a filem use [`FileChooserAction::SelectFolder`][crate::FileChooserAction::SelectFolder].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// In general, you should only cause the file chooser to show a specific</span>
     <span class="doccomment">/// folder when it is appropriate to use [method`Gtk`,FileChooser.set_file],</span>
@@ -1096,10 +1096,10 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## Response Codes</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// `GtkFileChooserDialog` inherits from [class`Gtk.Dialog`], so buttons that</span>
-    <span class="doccomment">/// go in its action area have response codes such as [`crate::ResponseType::Accept`] and</span>
-    <span class="doccomment">/// [`crate::ResponseType::Cancel`]. For example, you could call</span>
-    <span class="doccomment">/// [ctor`Gtk.FileChooserDialog`.new] as follows:</span>
+    <span class="doccomment">/// [`FileChooserDialog`][crate::FileChooserDialog] inherits from [`Dialog`][crate::Dialog], so buttons that</span>
+    <span class="doccomment">/// go in its action area have response codes such as [`ResponseType::Accept`][crate::ResponseType::Accept] and</span>
+    <span class="doccomment">/// [`ResponseType::Cancel`][crate::ResponseType::Cancel]. For example, you could call</span>
+    <span class="doccomment">/// [``new()``][`Self::new()`] as follows:</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```c</span>
     <span class="doccomment">/// GtkWidget *dialog;</span>
@@ -1116,28 +1116,28 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This will create buttons for “Cancel” and “Open” that use predefined</span>
-    <span class="doccomment">/// response identifiers from [enum`Gtk.ResponseType`]. For most dialog</span>
+    <span class="doccomment">/// response identifiers from [`ResponseType`][crate::ResponseType]. For most dialog</span>
     <span class="doccomment">/// boxes you can use your own custom response codes rather than the</span>
-    <span class="doccomment">/// ones in [enum`Gtk.ResponseType`], but `GtkFileChooserDialog` assumes that</span>
+    <span class="doccomment">/// ones in [`ResponseType`][crate::ResponseType], but [`FileChooserDialog`][crate::FileChooserDialog] assumes that</span>
     <span class="doccomment">/// its “accept”-type action, e.g. an “Open” or “Save” button,</span>
     <span class="doccomment">/// will have one of the following response codes:</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// - [`crate::ResponseType::Accept`]</span>
-    <span class="doccomment">/// - [`crate::ResponseType::Ok`]</span>
-    <span class="doccomment">/// - [`crate::ResponseType::Yes`]</span>
-    <span class="doccomment">/// - [`crate::ResponseType::Apply`]</span>
+    <span class="doccomment">/// - [`ResponseType::Accept`][crate::ResponseType::Accept]</span>
+    <span class="doccomment">/// - [`ResponseType::Ok`][crate::ResponseType::Ok]</span>
+    <span class="doccomment">/// - [`ResponseType::Yes`][crate::ResponseType::Yes]</span>
+    <span class="doccomment">/// - [`ResponseType::Apply`][crate::ResponseType::Apply]</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// This is because `GtkFileChooserDialog` must intercept responses and switch</span>
+    <span class="doccomment">/// This is because [`FileChooserDialog`][crate::FileChooserDialog] must intercept responses and switch</span>
     <span class="doccomment">/// to folders if appropriate, rather than letting the dialog terminate — the</span>
     <span class="doccomment">/// implementation uses these known response codes to know which responses can</span>
     <span class="doccomment">/// be blocked if appropriate.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// To summarize, make sure you use a predefined response code</span>
-    <span class="doccomment">/// when you use `GtkFileChooserDialog` to ensure proper operation.</span>
+    <span class="doccomment">/// when you use [`FileChooserDialog`][crate::FileChooserDialog] to ensure proper operation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Implements</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`trait@crate::prelude::DialogExt`], [`trait@crate::prelude::GtkWindowExt`], [`trait@crate::prelude::WidgetExt`], [`trait@glib::object::ObjectExt`], [`trait@crate::prelude::AccessibleExt`], [`trait@crate::prelude::BuildableExt`], [`trait@crate::prelude::ConstraintTargetExt`], [`trait@crate::prelude::NativeExt`], [`trait@crate::prelude::RootExt`], [`trait@crate::prelude::ShortcutManagerExt`], [`trait@crate::prelude::FileChooserExt`], [`trait@crate::prelude::DialogExtManual`], [`trait@crate::prelude::WidgetExtManual`], [`trait@crate::prelude::AccessibleExtManual`]</span>
+    <span class="doccomment">/// [`DialogExt`][trait@crate::prelude::DialogExt], [`GtkWindowExt`][trait@crate::prelude::GtkWindowExt], [`WidgetExt`][trait@crate::prelude::WidgetExt], [`trait@glib::ObjectExt`], [`AccessibleExt`][trait@crate::prelude::AccessibleExt], [`BuildableExt`][trait@crate::prelude::BuildableExt], [`ConstraintTargetExt`][trait@crate::prelude::ConstraintTargetExt], [`NativeExt`][trait@crate::prelude::NativeExt], [`RootExt`][trait@crate::prelude::RootExt], [`ShortcutManagerExt`][trait@crate::prelude::ShortcutManagerExt], [`FileChooserExt`][trait@crate::prelude::FileChooserExt], [`DialogExtManual`][trait@crate::prelude::DialogExtManual], [`WidgetExtManual`][trait@crate::prelude::WidgetExtManual], [`AccessibleExtManual`][trait@crate::prelude::AccessibleExtManual]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FileChooserDialog</span>(<span class="ident">Object</span><span class="op">&lt;</span><span class="ident">ffi::GtkFileChooserDialog</span><span class="op">&gt;</span>) @<span class="ident">extends</span> <span class="ident">Dialog</span>, <span class="ident">Window</span>, <span class="ident">Widget</span>, @<span class="ident">implements</span> <span class="ident">Accessible</span>, <span class="ident">Buildable</span>, <span class="ident">ConstraintTarget</span>, <span class="ident">Native</span>, <span class="ident">Root</span>, <span class="ident">ShortcutManager</span>, <span class="ident">FileChooser</span>;
 
     <span class="kw">match</span> <span class="kw">fn</span> {
@@ -1414,9 +1414,9 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// ## Creating a dialog with headerbar</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Builtin `GtkDialog` subclasses such as [class`Gtk.ColorChooserDialog`]</span>
+    <span class="doccomment">/// Builtin [`Dialog`][crate::Dialog] subclasses such as [`ColorChooserDialog`][crate::ColorChooserDialog]</span>
     <span class="doccomment">/// set this property according to platform conventions (using the</span>
-    <span class="doccomment">/// [property`Gtk.Settings`:gtk-dialogs-use-header] setting).</span>
+    <span class="doccomment">/// `property::Settings::gtk-dialogs-use-header` setting).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Here is how you can achieve the same:</span>
     <span class="doccomment">///</span>
@@ -1429,10 +1429,10 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The `GtkApplication` associated with the window.</span>
+    <span class="doccomment">/// The [`Application`][crate::Application] associated with the window.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The application will be kept alive for at least as long as it</span>
-    <span class="doccomment">/// has any windows associated with it (see [`crate::gio::Application::hold()`]</span>
+    <span class="doccomment">/// has any windows associated with it (see `g_application_hold()`</span>
     <span class="doccomment">/// for a way to keep it alive without windows).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Normally, the connection between the application and the window</span>
@@ -1509,7 +1509,7 @@
     <span class="doccomment">/// Whether the window is fullscreen.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Setting this property is the equivalent of calling</span>
-    <span class="doccomment">/// [method`Gtk.Window`.fullscreen] or [method`Gtk.Window`.unfullscreen];</span>
+    <span class="doccomment">/// [``GtkWindowExt::fullscreen()``][crate::prelude::`GtkWindowExt::fullscreen()`] or [``GtkWindowExt::unfullscreen()``][crate::prelude::`GtkWindowExt::unfullscreen()`];</span>
     <span class="doccomment">/// either operation is asynchronous, which means you will need to</span>
     <span class="doccomment">/// connect to the ::notify signal in order to know whether the</span>
     <span class="doccomment">/// operation was successful.</span>
@@ -1535,7 +1535,7 @@
 
     <span class="doccomment">/// Specifies the name of the themed icon to use as the window icon.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// See [class`Gtk.IconTheme`] for more details.</span>
+    <span class="doccomment">/// See [`IconTheme`][crate::IconTheme] for more details.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">icon_name</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">icon_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">icon_name</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">icon_name</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1544,7 +1544,7 @@
     <span class="doccomment">/// Whether the window is maximized.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Setting this property is the equivalent of calling</span>
-    <span class="doccomment">/// [method`Gtk.Window`.maximize] or [method`Gtk.Window`.unmaximize];</span>
+    <span class="doccomment">/// [``GtkWindowExt::maximize()``][crate::prelude::`GtkWindowExt::maximize()`] or [``GtkWindowExt::unmaximize()``][crate::prelude::`GtkWindowExt::unmaximize()`];</span>
     <span class="doccomment">/// either operation is asynchronous, which means you will need to</span>
     <span class="doccomment">/// connect to the ::notify signal in order to know whether the</span>
     <span class="doccomment">/// operation was successful.</span>
@@ -1652,7 +1652,7 @@
     <span class="doccomment">/// Enables or disables the emission of the ::query-tooltip signal on `widget`.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// A value of [`true`] indicates that `widget` can have a tooltip, in this case</span>
-    <span class="doccomment">/// the widget will be queried using [signal`Gtk.Widget`::query-tooltip] to</span>
+    <span class="doccomment">/// the widget will be queried using `signal::Widget::query-tooltip` to</span>
     <span class="doccomment">/// determine whether it will provide a tooltip or not.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">has_tooltip</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">has_tooltip</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">has_tooltip</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">has_tooltip</span>);
@@ -1679,7 +1679,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The `GtkLayoutManager` instance to use to compute the preferred size</span>
+    <span class="doccomment">/// The [`LayoutManager`][crate::LayoutManager] instance to use to compute the preferred size</span>
     <span class="doccomment">/// of the widget, and allocate its children.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property is meant to be set by widget implementations,</span>
@@ -1693,7 +1693,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_bottom</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_bottom</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_bottom</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_bottom</span>);
         <span class="self">self</span>
@@ -1706,7 +1706,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_end</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_end</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_end</span>);
         <span class="self">self</span>
@@ -1719,7 +1719,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_start</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_start</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_start</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_start</span>);
         <span class="self">self</span>
@@ -1729,7 +1729,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// This property adds margin outside of the widget&#39;s normal size</span>
     <span class="doccomment">/// request, the margin will be added in addition to the size from</span>
-    <span class="doccomment">/// [method`Gtk.Widget`.set_size_request] for example.</span>
+    <span class="doccomment">/// [``WidgetExt::set_size_request()``][crate::prelude::`WidgetExt::set_size_request()`] for example.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">margin_top</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">margin_top</span>: <span class="ident">i32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">margin_top</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">margin_top</span>);
         <span class="self">self</span>
@@ -1771,16 +1771,16 @@
     <span class="doccomment">/// Sets the text of tooltip to be the given string, which is marked up</span>
     <span class="doccomment">/// with Pango markup.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_markup].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_markup()``][crate::`Tooltip::set_markup()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_markup</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_markup</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_markup</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_markup</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1788,16 +1788,16 @@
 
     <span class="doccomment">/// Sets the text of tooltip to be the given string.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Also see [method`Gtk.Tooltip`.set_text].</span>
+    <span class="doccomment">/// Also see [``Tooltip::set_text()``][crate::`Tooltip::set_text()`].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a convenience property which will take care of getting the</span>
     <span class="doccomment">/// tooltip shown if the given string is not [`None`]:</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:has-tooltip] will automatically be set to [`true`]</span>
-    <span class="doccomment">/// and there will be taken care of [signal`Gtk.Widget`::query-tooltip] in</span>
+    <span class="doccomment">/// `property::Widget::has-tooltip` will automatically be set to [`true`]</span>
+    <span class="doccomment">/// and there will be taken care of `signal::Widget::query-tooltip` in</span>
     <span class="doccomment">/// the default signal handler.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Note that if both [property`Gtk.Widget`:tooltip-text] and</span>
-    <span class="doccomment">/// [property`Gtk.Widget`:tooltip-markup] are set, the last one wins.</span>
+    <span class="doccomment">/// Note that if both `property::Widget::tooltip-text` and</span>
+    <span class="doccomment">/// `property::Widget::tooltip-markup` are set, the last one wins.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tooltip_text</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">tooltip_text</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">tooltip_text</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">tooltip_text</span>.<span class="ident">to_string</span>());
         <span class="self">self</span>
@@ -1835,7 +1835,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// The accessible role of the given `GtkAccessible` implementation.</span>
+    <span class="doccomment">/// The accessible role of the given [`Accessible`][crate::Accessible] implementation.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The accessible role cannot be changed once set.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">accessible_role</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">accessible_role</span>: <span class="ident">AccessibleRole</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
@@ -1849,7 +1849,7 @@
         <span class="self">self</span>
     }
 
-    <span class="doccomment">/// Whether a file chooser not in [`crate::FileChooserAction::Open`] mode</span>
+    <span class="doccomment">/// Whether a file chooser not in [`FileChooserAction::Open`][crate::FileChooserAction::Open] mode</span>
     <span class="doccomment">/// will offer the user to create new folders.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_folders</span>(<span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">create_folders</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">self</span>.<span class="ident">create_folders</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">create_folders</span>);
