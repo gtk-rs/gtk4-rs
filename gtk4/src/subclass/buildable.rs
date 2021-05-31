@@ -11,7 +11,7 @@ pub trait BuildableImpl: ObjectImpl {
     fn set_id(&self, buildable: &Self::Type, id: &str) {
         self.parent_set_id(buildable, id)
     }
-    fn id(&self, buildable: &Self::Type) -> GString {
+    fn id(&self, buildable: &Self::Type) -> Option<GString> {
         self.parent_id(buildable)
     }
     fn add_child(
@@ -79,7 +79,7 @@ pub trait BuildableImpl: ObjectImpl {
 
 pub trait BuildableImplExt: ObjectSubclass {
     fn parent_set_id(&self, buildable: &Self::Type, id: &str);
-    fn parent_id(&self, buildable: &Self::Type) -> GString;
+    fn parent_id(&self, buildable: &Self::Type) -> Option<GString>;
     fn parent_add_child(
         &self,
         buildable: &Self::Type,
@@ -127,7 +127,7 @@ impl<T: BuildableImpl> BuildableImplExt for T {
         }
     }
 
-    fn parent_id(&self, buildable: &Self::Type) -> GString {
+    fn parent_id(&self, buildable: &Self::Type) -> Option<GString> {
         unsafe {
             let type_data = Self::type_data();
             let parent_iface =
