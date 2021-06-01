@@ -5,6 +5,7 @@ use glib::translate::*;
 use std::fmt;
 
 #[repr(C)]
+#[doc(alias = "GdkTimeCoord")]
 pub struct TimeCoord(ffi::GdkTimeCoord);
 
 impl TimeCoord {

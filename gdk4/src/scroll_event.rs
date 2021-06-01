@@ -6,6 +6,7 @@ use std::fmt;
 use std::mem;
 
 glib::wrapper! {
+    #[doc(alias = "GdkScrollEvent")]
     pub struct ScrollEvent(Shared<ffi::GdkScrollEvent>);
 
     match fn {

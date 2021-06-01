@@ -7,6 +7,7 @@ use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+    #[doc(alias = "GtkExpression")]
     pub struct Expression(Shared<ffi::GtkExpression>);
 
     match fn {

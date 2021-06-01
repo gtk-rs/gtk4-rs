@@ -6,6 +6,7 @@ use graphene::{Point, Rect};
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+    #[doc(alias = "GskRepeatingLinearGradientNode")]
     pub struct RepeatingLinearGradientNode(Shared<ffi::GskRepeatingLinearGradientNode>);
 
     match fn {

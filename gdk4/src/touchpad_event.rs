@@ -6,6 +6,7 @@ use std::fmt;
 use std::mem;
 
 glib::wrapper! {
+    #[doc(alias = "GdkTouchpadEvent")]
     pub struct TouchpadEvent(Shared<ffi::GdkTouchpadEvent>);
 
     match fn {

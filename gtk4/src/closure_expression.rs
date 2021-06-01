@@ -6,6 +6,7 @@ use glib::{value::ValueType, StaticType, Value};
 
 glib::wrapper! {
     #[derive(Debug)]
+    #[doc(alias = "GtkClosureExpression")]
     pub struct ClosureExpression(Shared<ffi::GtkClosureExpression>);
 
     match fn {

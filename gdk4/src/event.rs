@@ -7,6 +7,7 @@ use std::fmt;
 use std::mem;
 
 glib::wrapper! {
+    #[doc(alias = "GdkEvent")]
     pub struct Event(Shared<ffi::GdkEvent>);
 
     match fn {

@@ -5,6 +5,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GdkFocusEvent")]
     pub struct FocusEvent(Shared<ffi::GdkFocusEvent>);
 
     match fn {

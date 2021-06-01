@@ -5,6 +5,7 @@ use glib::{ToValue, Value};
 
 glib::wrapper! {
     #[derive(Debug)]
+    #[doc(alias = "GtkConstantExpression")]
     pub struct ConstantExpression(Shared<ffi::GtkConstantExpression>);
 
     match fn {

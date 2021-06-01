@@ -5,6 +5,7 @@ use glib::Value;
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+    #[doc(alias = "GtkExpressionWatch")]
     pub struct ExpressionWatch(Shared<ffi::GtkExpressionWatch>);
 
     match fn {

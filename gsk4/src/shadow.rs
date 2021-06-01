@@ -7,6 +7,7 @@ use std::ptr;
 
 #[derive(Clone, Copy, Debug)]
 #[repr(C)]
+#[doc(alias = "GskShadow")]
 pub struct Shadow(ffi::GskShadow);
 
 impl Shadow {

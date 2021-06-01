@@ -4,6 +4,7 @@ use glib::translate::*;
 
 #[derive(Debug)]
 #[repr(transparent)]
+#[doc(alias = "GdkToplevelSize")]
 pub struct ToplevelSize(ffi::GdkToplevelSize);
 
 impl ToplevelSize {

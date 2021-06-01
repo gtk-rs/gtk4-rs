@@ -5,6 +5,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GdkDeleteEvent")]
     pub struct DeleteEvent(Shared<ffi::GdkDeleteEvent>);
 
     match fn {

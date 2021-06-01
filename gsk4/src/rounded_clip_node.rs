@@ -5,6 +5,7 @@ use glib::translate::*;
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+    #[doc(alias = "GskRoundedClipNode")]
     pub struct RoundedClipNode(Shared<ffi::GskRoundedClipNode>);
 
     match fn {

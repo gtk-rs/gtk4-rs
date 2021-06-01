@@ -5,6 +5,7 @@ use glib::translate::*;
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+    #[doc(alias = "GskTransformNode")]
     pub struct TransformNode(Shared<ffi::GskTransformNode>);
 
     match fn {

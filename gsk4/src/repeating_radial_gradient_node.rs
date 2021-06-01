@@ -5,6 +5,7 @@ use glib::translate::*;
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+    #[doc(alias = "GskRepeatingRadialGradientNode")]
     pub struct RepeatingRadialGradientNode(Shared<ffi::GskRepeatingRadialGradientNode>);
 
     match fn {
