@@ -6,6 +6,7 @@ use glib::translate::*;
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+    #[doc(alias = "GskGLShaderNode")]
     pub struct GLShaderNode(Shared<ffi::GskGLShaderNode>);
 
     match fn {

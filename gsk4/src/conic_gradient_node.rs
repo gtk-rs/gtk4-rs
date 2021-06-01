@@ -6,6 +6,7 @@ use std::mem;
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+    #[doc(alias = "GskConicGradientNode")]
     pub struct ConicGradientNode(Shared<ffi::GskConicGradientNode>);
 
     match fn {

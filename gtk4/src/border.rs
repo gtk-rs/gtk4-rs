@@ -6,6 +6,7 @@ use std::ops;
 
 glib::wrapper! {
     #[derive(PartialEq, Eq, PartialOrd, Ord, Hash)]
+    #[doc(alias = "GtkBorder")]
     pub struct Border(Boxed<ffi::GtkBorder>);
 
     match fn {

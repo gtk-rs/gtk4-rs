@@ -6,6 +6,7 @@ use glib::ParamSpec;
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+    #[doc(alias = "GtkParamSpecExpression")]
     pub struct ParamSpecExpression(Shared<ffi::GtkParamSpecExpression>);
 
     match fn {

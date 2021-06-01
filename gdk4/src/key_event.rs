@@ -6,6 +6,7 @@ use std::fmt;
 use std::mem;
 
 glib::wrapper! {
+    #[doc(alias = "GdkKeyEvent")]
     pub struct KeyEvent(Shared<ffi::GdkKeyEvent>);
 
     match fn {

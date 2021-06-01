@@ -6,6 +6,7 @@ use glib::translate::*;
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+    #[doc(alias = "GskTextureNode")]
     pub struct TextureNode(Shared<ffi::GskTextureNode>);
 
     match fn {

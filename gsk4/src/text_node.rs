@@ -7,6 +7,7 @@ use std::mem;
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+    #[doc(alias = "GskTextNode")]
     pub struct TextNode(Shared<ffi::GskTextNode>);
 
     match fn {

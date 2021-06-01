@@ -10,6 +10,7 @@ use std::ptr;
 // Can't use get_type here as this is not a boxed type but another fundamental type
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+    #[doc(alias = "GskRenderNode")]
     pub struct RenderNode(Shared<ffi::GskRenderNode>);
 
     match fn {

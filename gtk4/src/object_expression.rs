@@ -5,6 +5,7 @@ use glib::{IsA, Object, Value};
 
 glib::wrapper! {
     #[derive(Debug)]
+    #[doc(alias = "GtkObjectExpression")]
     pub struct ObjectExpression(Shared<ffi::GtkObjectExpression>);
 
     match fn {

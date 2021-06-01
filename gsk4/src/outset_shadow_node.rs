@@ -5,6 +5,7 @@ use glib::translate::*;
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+    #[doc(alias = "GskOutsetShadowNode")]
     pub struct OutsetShadowNode(Shared<ffi::GskOutsetShadowNode>);
 
     match fn {

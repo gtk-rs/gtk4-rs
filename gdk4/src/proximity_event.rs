@@ -5,6 +5,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GdkProximityEvent")]
     pub struct ProximityEvent(Shared<ffi::GdkProximityEvent>);
 
     match fn {

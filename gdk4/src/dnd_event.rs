@@ -5,6 +5,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GdkDNDEvent")]
     pub struct DNDEvent(Shared<ffi::GdkDNDEvent>);
 
     match fn {

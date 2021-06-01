@@ -6,6 +6,7 @@ use glib::{Type, Value};
 
 glib::wrapper! {
     #[derive(Debug)]
+    #[doc(alias = "GtkPropertyExpression")]
     pub struct PropertyExpression(Shared<ffi::GtkPropertyExpression>);
 
     match fn {

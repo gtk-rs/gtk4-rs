@@ -7,6 +7,7 @@ use std::mem;
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+    #[doc(alias = "GskLinearGradientNode")]
     pub struct LinearGradientNode(Shared<ffi::GskLinearGradientNode>);
 
     match fn {

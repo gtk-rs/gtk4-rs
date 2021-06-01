@@ -5,6 +5,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GdkGrabBrokenEvent")]
     pub struct GrabBrokenEvent(Shared<ffi::GdkGrabBrokenEvent>);
 
     match fn {

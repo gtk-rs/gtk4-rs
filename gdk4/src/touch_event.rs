@@ -5,6 +5,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GdkTouchEvent")]
     pub struct TouchEvent(Shared<ffi::GdkTouchEvent>);
 
     match fn {
