@@ -14,6 +14,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GdkDrawContext")]
     pub struct DrawContext(Object<ffi::GdkDrawContext>);
 
     match fn {

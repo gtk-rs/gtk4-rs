@@ -15,6 +15,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkScrollable")]
     pub struct Scrollable(Interface<ffi::GtkScrollable, ffi::GtkScrollableInterface>);
 
     match fn {

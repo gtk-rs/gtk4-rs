@@ -29,6 +29,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkComboBox")]
     pub struct ComboBox(Object<ffi::GtkComboBox, ffi::GtkComboBoxClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, CellEditable, CellLayout;
 
     match fn {
@@ -75,7 +76,8 @@ impl ComboBox {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ComboBox`]
+    /// Creates a new builder-style object to construct a [`ComboBox`].
+    ///
     /// This method returns an instance of [`ComboBoxBuilder`] which can be used to create a [`ComboBox`].
     pub fn builder() -> ComboBoxBuilder {
         ComboBoxBuilder::default()

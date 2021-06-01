@@ -23,6 +23,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkFlowBoxChild")]
     pub struct FlowBoxChild(Object<ffi::GtkFlowBoxChild, ffi::GtkFlowBoxChildClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
@@ -38,7 +39,8 @@ impl FlowBoxChild {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`FlowBoxChild`]
+    /// Creates a new builder-style object to construct a [`FlowBoxChild`].
+    ///
     /// This method returns an instance of [`FlowBoxChildBuilder`] which can be used to create a [`FlowBoxChild`].
     pub fn builder() -> FlowBoxChildBuilder {
         FlowBoxChildBuilder::default()

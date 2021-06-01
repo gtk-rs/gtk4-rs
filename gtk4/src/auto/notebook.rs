@@ -29,6 +29,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkNotebook")]
     pub struct Notebook(Object<ffi::GtkNotebook>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
@@ -44,7 +45,8 @@ impl Notebook {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Notebook`]
+    /// Creates a new builder-style object to construct a [`Notebook`].
+    ///
     /// This method returns an instance of [`NotebookBuilder`] which can be used to create a [`Notebook`].
     pub fn builder() -> NotebookBuilder {
         NotebookBuilder::default()

@@ -11,6 +11,7 @@ use glib::ToValue;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkAlternativeTrigger")]
     pub struct AlternativeTrigger(Object<ffi::GtkAlternativeTrigger, ffi::GtkAlternativeTriggerClass>) @extends ShortcutTrigger;
 
     match fn {
@@ -35,7 +36,8 @@ impl AlternativeTrigger {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`AlternativeTrigger`]
+    /// Creates a new builder-style object to construct a [`AlternativeTrigger`].
+    ///
     /// This method returns an instance of [`AlternativeTriggerBuilder`] which can be used to create a [`AlternativeTrigger`].
     pub fn builder() -> AlternativeTriggerBuilder {
         AlternativeTriggerBuilder::default()

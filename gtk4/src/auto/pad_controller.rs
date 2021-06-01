@@ -15,6 +15,7 @@ use glib::ToValue;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkPadController")]
     pub struct PadController(Object<ffi::GtkPadController, ffi::GtkPadControllerClass>) @extends EventController;
 
     match fn {
@@ -35,7 +36,8 @@ impl PadController {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`PadController`]
+    /// Creates a new builder-style object to construct a [`PadController`].
+    ///
     /// This method returns an instance of [`PadControllerBuilder`] which can be used to create a [`PadController`].
     pub fn builder() -> PadControllerBuilder {
         PadControllerBuilder::default()

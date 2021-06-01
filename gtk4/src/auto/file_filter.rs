@@ -13,6 +13,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkFileFilter")]
     pub struct FileFilter(Object<ffi::GtkFileFilter>) @extends Filter, @implements Buildable;
 
     match fn {

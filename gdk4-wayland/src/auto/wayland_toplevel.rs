@@ -8,6 +8,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GdkWaylandToplevel")]
     pub struct WaylandToplevel(Object<ffi::GdkWaylandToplevel>) @extends WaylandSurface, gdk::Surface, @implements gdk::Toplevel;
 
     match fn {

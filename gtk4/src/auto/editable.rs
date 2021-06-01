@@ -19,6 +19,7 @@ use std::mem;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkEditable")]
     pub struct Editable(Interface<ffi::GtkEditable, ffi::GtkEditableInterface>) @requires Widget, Accessible, Buildable, ConstraintTarget;
 
     match fn {

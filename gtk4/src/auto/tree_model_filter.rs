@@ -13,6 +13,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkTreeModelFilter")]
     pub struct TreeModelFilter(Object<ffi::GtkTreeModelFilter, ffi::GtkTreeModelFilterClass>) @implements TreeDragSource, TreeModel;
 
     match fn {

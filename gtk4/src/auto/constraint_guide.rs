@@ -16,6 +16,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkConstraintGuide")]
     pub struct ConstraintGuide(Object<ffi::GtkConstraintGuide, ffi::GtkConstraintGuideClass>) @implements ConstraintTarget;
 
     match fn {
@@ -31,7 +32,8 @@ impl ConstraintGuide {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ConstraintGuide`]
+    /// Creates a new builder-style object to construct a [`ConstraintGuide`].
+    ///
     /// This method returns an instance of [`ConstraintGuideBuilder`] which can be used to create a [`ConstraintGuide`].
     pub fn builder() -> ConstraintGuideBuilder {
         ConstraintGuideBuilder::default()

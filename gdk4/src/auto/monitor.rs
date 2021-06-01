@@ -15,6 +15,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GdkMonitor")]
     pub struct Monitor(Object<ffi::GdkMonitor, ffi::GdkMonitorClass>);
 
     match fn {

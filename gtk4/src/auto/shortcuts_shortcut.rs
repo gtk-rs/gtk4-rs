@@ -26,6 +26,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkShortcutsShortcut")]
     pub struct ShortcutsShortcut(Object<ffi::GtkShortcutsShortcut, ffi::GtkShortcutsShortcutClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
@@ -35,7 +36,8 @@ glib::wrapper! {
 
 impl ShortcutsShortcut {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ShortcutsShortcut`]
+    /// Creates a new builder-style object to construct a [`ShortcutsShortcut`].
+    ///
     /// This method returns an instance of [`ShortcutsShortcutBuilder`] which can be used to create a [`ShortcutsShortcut`].
     pub fn builder() -> ShortcutsShortcutBuilder {
         ShortcutsShortcutBuilder::default()

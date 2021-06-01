@@ -18,6 +18,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkGridLayoutChild")]
     pub struct GridLayoutChild(Object<ffi::GtkGridLayoutChild, ffi::GtkGridLayoutChildClass>) @extends LayoutChild;
 
     match fn {
@@ -27,7 +28,8 @@ glib::wrapper! {
 
 impl GridLayoutChild {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GridLayoutChild`]
+    /// Creates a new builder-style object to construct a [`GridLayoutChild`].
+    ///
     /// This method returns an instance of [`GridLayoutChildBuilder`] which can be used to create a [`GridLayoutChild`].
     pub fn builder() -> GridLayoutChildBuilder {
         GridLayoutChildBuilder::default()

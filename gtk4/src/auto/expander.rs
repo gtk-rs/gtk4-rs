@@ -24,6 +24,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkExpander")]
     pub struct Expander(Object<ffi::GtkExpander>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
@@ -51,7 +52,8 @@ impl Expander {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Expander`]
+    /// Creates a new builder-style object to construct a [`Expander`].
+    ///
     /// This method returns an instance of [`ExpanderBuilder`] which can be used to create a [`Expander`].
     pub fn builder() -> ExpanderBuilder {
         ExpanderBuilder::default()

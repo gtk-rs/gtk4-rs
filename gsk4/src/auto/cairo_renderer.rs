@@ -8,6 +8,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GskCairoRenderer")]
     pub struct CairoRenderer(Object<ffi::GskCairoRenderer, ffi::GskCairoRendererClass>) @extends Renderer;
 
     match fn {

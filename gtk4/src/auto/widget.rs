@@ -37,6 +37,7 @@ use std::mem;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkWidget")]
     pub struct Widget(Object<ffi::GtkWidget, ffi::GtkWidgetClass>) @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {

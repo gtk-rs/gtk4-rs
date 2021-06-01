@@ -5,6 +5,7 @@
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GdkWaylandGLContext")]
     pub struct WaylandGLContext(Object<ffi::GdkWaylandGLContext, ffi::GdkWaylandGLContextClass>) @extends gdk::GLContext, gdk::DrawContext;
 
     match fn {

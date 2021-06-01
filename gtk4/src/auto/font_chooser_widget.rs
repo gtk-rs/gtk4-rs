@@ -25,6 +25,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkFontChooserWidget")]
     pub struct FontChooserWidget(Object<ffi::GtkFontChooserWidget>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, FontChooser;
 
     match fn {
@@ -40,7 +41,8 @@ impl FontChooserWidget {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`FontChooserWidget`]
+    /// Creates a new builder-style object to construct a [`FontChooserWidget`].
+    ///
     /// This method returns an instance of [`FontChooserWidgetBuilder`] which can be used to create a [`FontChooserWidget`].
     pub fn builder() -> FontChooserWidgetBuilder {
         FontChooserWidgetBuilder::default()

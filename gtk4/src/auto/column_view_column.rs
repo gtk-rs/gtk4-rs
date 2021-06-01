@@ -18,6 +18,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkColumnViewColumn")]
     pub struct ColumnViewColumn(Object<ffi::GtkColumnViewColumn, ffi::GtkColumnViewColumnClass>);
 
     match fn {
@@ -41,7 +42,8 @@ impl ColumnViewColumn {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ColumnViewColumn`]
+    /// Creates a new builder-style object to construct a [`ColumnViewColumn`].
+    ///
     /// This method returns an instance of [`ColumnViewColumnBuilder`] which can be used to create a [`ColumnViewColumn`].
     pub fn builder() -> ColumnViewColumnBuilder {
         ColumnViewColumnBuilder::default()

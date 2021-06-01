@@ -11,6 +11,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkBookmarkList")]
     pub struct BookmarkList(Object<ffi::GtkBookmarkList, ffi::GtkBookmarkListClass>) @implements gio::ListModel;
 
     match fn {

@@ -6,6 +6,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GdkWaylandDisplay")]
     pub struct WaylandDisplay(Object<ffi::GdkWaylandDisplay, ffi::GdkWaylandDisplayClass>) @extends gdk::Display;
 
     match fn {

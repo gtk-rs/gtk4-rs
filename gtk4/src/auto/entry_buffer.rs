@@ -14,6 +14,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkEntryBuffer")]
     pub struct EntryBuffer(Object<ffi::GtkEntryBuffer, ffi::GtkEntryBufferClass>);
 
     match fn {
@@ -23,7 +24,8 @@ glib::wrapper! {
 
 impl EntryBuffer {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`EntryBuffer`]
+    /// Creates a new builder-style object to construct a [`EntryBuffer`].
+    ///
     /// This method returns an instance of [`EntryBufferBuilder`] which can be used to create a [`EntryBuffer`].
     pub fn builder() -> EntryBufferBuilder {
         EntryBufferBuilder::default()

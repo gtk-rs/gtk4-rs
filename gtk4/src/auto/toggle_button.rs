@@ -24,6 +24,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkToggleButton")]
     pub struct ToggleButton(Object<ffi::GtkToggleButton, ffi::GtkToggleButtonClass>) @extends Button, Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
@@ -63,7 +64,8 @@ impl ToggleButton {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ToggleButton`]
+    /// Creates a new builder-style object to construct a [`ToggleButton`].
+    ///
     /// This method returns an instance of [`ToggleButtonBuilder`] which can be used to create a [`ToggleButton`].
     pub fn builder() -> ToggleButtonBuilder {
         ToggleButtonBuilder::default()

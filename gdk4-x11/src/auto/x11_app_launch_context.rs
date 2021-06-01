@@ -5,6 +5,7 @@
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GdkX11AppLaunchContext")]
     pub struct X11AppLaunchContext(Object<ffi::GdkX11AppLaunchContext, ffi::GdkX11AppLaunchContextClass>) @extends gdk::AppLaunchContext, gio::AppLaunchContext;
 
     match fn {

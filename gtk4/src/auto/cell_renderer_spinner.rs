@@ -17,6 +17,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkCellRendererSpinner")]
     pub struct CellRendererSpinner(Object<ffi::GtkCellRendererSpinner>) @extends CellRenderer;
 
     match fn {
@@ -32,7 +33,8 @@ impl CellRendererSpinner {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`CellRendererSpinner`]
+    /// Creates a new builder-style object to construct a [`CellRendererSpinner`].
+    ///
     /// This method returns an instance of [`CellRendererSpinnerBuilder`] which can be used to create a [`CellRendererSpinner`].
     pub fn builder() -> CellRendererSpinnerBuilder {
         CellRendererSpinnerBuilder::default()

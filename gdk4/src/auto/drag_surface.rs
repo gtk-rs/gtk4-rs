@@ -8,6 +8,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GdkDragSurface")]
     pub struct DragSurface(Interface<ffi::GdkDragSurface, ffi::GdkDragSurfaceInterface>) @requires Surface;
 
     match fn {

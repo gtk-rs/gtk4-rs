@@ -14,6 +14,7 @@ use std::mem;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GdkFrameClock")]
     pub struct FrameClock(Object<ffi::GdkFrameClock, ffi::GdkFrameClockClass>);
 
     match fn {

@@ -24,6 +24,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkTreeExpander")]
     pub struct TreeExpander(Object<ffi::GtkTreeExpander, ffi::GtkTreeExpanderClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
@@ -39,7 +40,8 @@ impl TreeExpander {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TreeExpander`]
+    /// Creates a new builder-style object to construct a [`TreeExpander`].
+    ///
     /// This method returns an instance of [`TreeExpanderBuilder`] which can be used to create a [`TreeExpander`].
     pub fn builder() -> TreeExpanderBuilder {
         TreeExpanderBuilder::default()

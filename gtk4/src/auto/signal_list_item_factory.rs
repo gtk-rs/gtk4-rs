@@ -14,6 +14,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkSignalListItemFactory")]
     pub struct SignalListItemFactory(Object<ffi::GtkSignalListItemFactory, ffi::GtkSignalListItemFactoryClass>) @extends ListItemFactory;
 
     match fn {

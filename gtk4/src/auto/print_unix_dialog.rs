@@ -33,6 +33,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkPrintUnixDialog")]
     pub struct PrintUnixDialog(Object<ffi::GtkPrintUnixDialog>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
 
     match fn {
@@ -54,7 +55,8 @@ impl PrintUnixDialog {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`PrintUnixDialog`]
+    /// Creates a new builder-style object to construct a [`PrintUnixDialog`].
+    ///
     /// This method returns an instance of [`PrintUnixDialogBuilder`] which can be used to create a [`PrintUnixDialog`].
     pub fn builder() -> PrintUnixDialogBuilder {
         PrintUnixDialogBuilder::default()

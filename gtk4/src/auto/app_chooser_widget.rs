@@ -24,6 +24,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkAppChooserWidget")]
     pub struct AppChooserWidget(Object<ffi::GtkAppChooserWidget>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, AppChooser;
 
     match fn {
@@ -44,7 +45,8 @@ impl AppChooserWidget {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`AppChooserWidget`]
+    /// Creates a new builder-style object to construct a [`AppChooserWidget`].
+    ///
     /// This method returns an instance of [`AppChooserWidgetBuilder`] which can be used to create a [`AppChooserWidget`].
     pub fn builder() -> AppChooserWidgetBuilder {
         AppChooserWidgetBuilder::default()

@@ -15,6 +15,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkEventController")]
     pub struct EventController(Object<ffi::GtkEventController, ffi::GtkEventControllerClass>);
 
     match fn {

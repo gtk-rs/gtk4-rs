@@ -14,6 +14,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkTextTagTable")]
     pub struct TextTagTable(Object<ffi::GtkTextTagTable>) @implements Buildable;
 
     match fn {

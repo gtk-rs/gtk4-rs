@@ -13,6 +13,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkTreeSortable")]
     pub struct TreeSortable(Interface<ffi::GtkTreeSortable, ffi::GtkTreeSortableIface>) @requires TreeModel;
 
     match fn {

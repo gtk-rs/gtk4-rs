@@ -17,6 +17,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkDropControllerMotion")]
     pub struct DropControllerMotion(Object<ffi::GtkDropControllerMotion, ffi::GtkDropControllerMotionClass>) @extends EventController;
 
     match fn {
@@ -34,7 +35,8 @@ impl DropControllerMotion {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`DropControllerMotion`]
+    /// Creates a new builder-style object to construct a [`DropControllerMotion`].
+    ///
     /// This method returns an instance of [`DropControllerMotionBuilder`] which can be used to create a [`DropControllerMotion`].
     pub fn builder() -> DropControllerMotionBuilder {
         DropControllerMotionBuilder::default()

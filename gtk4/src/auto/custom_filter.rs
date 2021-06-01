@@ -6,6 +6,7 @@ use crate::Filter;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkCustomFilter")]
     pub struct CustomFilter(Object<ffi::GtkCustomFilter, ffi::GtkCustomFilterClass>) @extends Filter;
 
     match fn {

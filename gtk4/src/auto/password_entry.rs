@@ -25,6 +25,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkPasswordEntry")]
     pub struct PasswordEntry(Object<ffi::GtkPasswordEntry, ffi::GtkPasswordEntryClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
 
     match fn {
@@ -40,7 +41,8 @@ impl PasswordEntry {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`PasswordEntry`]
+    /// Creates a new builder-style object to construct a [`PasswordEntry`].
+    ///
     /// This method returns an instance of [`PasswordEntryBuilder`] which can be used to create a [`PasswordEntry`].
     pub fn builder() -> PasswordEntryBuilder {
         PasswordEntryBuilder::default()

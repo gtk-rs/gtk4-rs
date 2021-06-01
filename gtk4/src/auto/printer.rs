@@ -18,6 +18,7 @@ use std::mem;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkPrinter")]
     pub struct Printer(Object<ffi::GtkPrinter>);
 
     match fn {
@@ -32,7 +33,8 @@ impl Printer {
     //}
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Printer`]
+    /// Creates a new builder-style object to construct a [`Printer`].
+    ///
     /// This method returns an instance of [`PrinterBuilder`] which can be used to create a [`Printer`].
     pub fn builder() -> PrinterBuilder {
         PrinterBuilder::default()

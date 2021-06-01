@@ -12,6 +12,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkCenterLayout")]
     pub struct CenterLayout(Object<ffi::GtkCenterLayout, ffi::GtkCenterLayoutClass>) @extends LayoutManager;
 
     match fn {

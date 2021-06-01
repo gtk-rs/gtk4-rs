@@ -7,6 +7,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkNeverTrigger")]
     pub struct NeverTrigger(Object<ffi::GtkNeverTrigger, ffi::GtkNeverTriggerClass>) @extends ShortcutTrigger;
 
     match fn {

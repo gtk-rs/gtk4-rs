@@ -13,6 +13,7 @@ use std::fmt;
 use std::ptr;
 
 glib::wrapper! {
+    #[doc(alias = "GskGLShader")]
     pub struct GLShader(Object<ffi::GskGLShader, ffi::GskGLShaderClass>);
 
     match fn {
@@ -44,7 +45,8 @@ impl GLShader {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GLShader`]
+    /// Creates a new builder-style object to construct a [`GLShader`].
+    ///
     /// This method returns an instance of [`GLShaderBuilder`] which can be used to create a [`GLShader`].
     pub fn builder() -> GLShaderBuilder {
         GLShaderBuilder::default()

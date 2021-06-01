@@ -26,6 +26,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkCenterBox")]
     pub struct CenterBox(Object<ffi::GtkCenterBox, ffi::GtkCenterBoxClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
@@ -41,7 +42,8 @@ impl CenterBox {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`CenterBox`]
+    /// Creates a new builder-style object to construct a [`CenterBox`].
+    ///
     /// This method returns an instance of [`CenterBoxBuilder`] which can be used to create a [`CenterBox`].
     pub fn builder() -> CenterBoxBuilder {
         CenterBoxBuilder::default()

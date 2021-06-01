@@ -5,6 +5,7 @@
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GdkSnapshot")]
     pub struct Snapshot(Object<ffi::GdkSnapshot, ffi::GdkSnapshotClass>);
 
     match fn {

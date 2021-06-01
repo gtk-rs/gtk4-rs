@@ -40,6 +40,7 @@ use std::mem::transmute;
 use std::ptr;
 
 glib::wrapper! {
+    #[doc(alias = "GtkIconView")]
     pub struct IconView(Object<ffi::GtkIconView>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, CellLayout, Scrollable;
 
     match fn {
@@ -79,7 +80,8 @@ impl IconView {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`IconView`]
+    /// Creates a new builder-style object to construct a [`IconView`].
+    ///
     /// This method returns an instance of [`IconViewBuilder`] which can be used to create a [`IconView`].
     pub fn builder() -> IconViewBuilder {
         IconViewBuilder::default()

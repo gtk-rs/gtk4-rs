@@ -20,6 +20,7 @@ use std::mem;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkGestureDrag")]
     pub struct GestureDrag(Object<ffi::GtkGestureDrag, ffi::GtkGestureDragClass>) @extends GestureSingle, Gesture, EventController;
 
     match fn {
@@ -35,7 +36,8 @@ impl GestureDrag {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GestureDrag`]
+    /// Creates a new builder-style object to construct a [`GestureDrag`].
+    ///
     /// This method returns an instance of [`GestureDragBuilder`] which can be used to create a [`GestureDrag`].
     pub fn builder() -> GestureDragBuilder {
         GestureDragBuilder::default()

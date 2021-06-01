@@ -18,6 +18,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkBoxLayout")]
     pub struct BoxLayout(Object<ffi::GtkBoxLayout, ffi::GtkBoxLayoutClass>) @extends LayoutManager, @implements Orientable;
 
     match fn {
@@ -36,7 +37,8 @@ impl BoxLayout {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`BoxLayout`]
+    /// Creates a new builder-style object to construct a [`BoxLayout`].
+    ///
     /// This method returns an instance of [`BoxLayoutBuilder`] which can be used to create a [`BoxLayout`].
     pub fn builder() -> BoxLayoutBuilder {
         BoxLayoutBuilder::default()

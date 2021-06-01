@@ -9,6 +9,7 @@ use std::fmt;
 use std::ptr;
 
 glib::wrapper! {
+    #[doc(alias = "GdkTexture")]
     pub struct Texture(Object<ffi::GdkTexture, ffi::GdkTextureClass>) @implements Paintable;
 
     match fn {

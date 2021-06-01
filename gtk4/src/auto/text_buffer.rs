@@ -19,6 +19,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkTextBuffer")]
     pub struct TextBuffer(Object<ffi::GtkTextBuffer, ffi::GtkTextBufferClass>);
 
     match fn {
@@ -34,7 +35,8 @@ impl TextBuffer {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TextBuffer`]
+    /// Creates a new builder-style object to construct a [`TextBuffer`].
+    ///
     /// This method returns an instance of [`TextBufferBuilder`] which can be used to create a [`TextBuffer`].
     pub fn builder() -> TextBufferBuilder {
         TextBufferBuilder::default()

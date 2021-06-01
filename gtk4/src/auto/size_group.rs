@@ -15,6 +15,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkSizeGroup")]
     pub struct SizeGroup(Object<ffi::GtkSizeGroup>) @implements Buildable;
 
     match fn {

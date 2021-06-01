@@ -13,6 +13,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GdkDisplayManager")]
     pub struct DisplayManager(Object<ffi::GdkDisplayManager>);
 
     match fn {

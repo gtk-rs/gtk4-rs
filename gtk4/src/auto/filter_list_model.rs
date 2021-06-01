@@ -16,6 +16,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkFilterListModel")]
     pub struct FilterListModel(Object<ffi::GtkFilterListModel, ffi::GtkFilterListModelClass>) @implements gio::ListModel;
 
     match fn {
@@ -39,7 +40,8 @@ impl FilterListModel {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`FilterListModel`]
+    /// Creates a new builder-style object to construct a [`FilterListModel`].
+    ///
     /// This method returns an instance of [`FilterListModelBuilder`] which can be used to create a [`FilterListModel`].
     pub fn builder() -> FilterListModelBuilder {
         FilterListModelBuilder::default()

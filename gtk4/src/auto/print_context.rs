@@ -8,6 +8,7 @@ use std::fmt;
 use std::mem;
 
 glib::wrapper! {
+    #[doc(alias = "GtkPrintContext")]
     pub struct PrintContext(Object<ffi::GtkPrintContext>);
 
     match fn {

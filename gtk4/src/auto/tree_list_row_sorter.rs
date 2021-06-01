@@ -13,6 +13,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkTreeListRowSorter")]
     pub struct TreeListRowSorter(Object<ffi::GtkTreeListRowSorter, ffi::GtkTreeListRowSorterClass>) @extends Sorter;
 
     match fn {

@@ -16,6 +16,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkNotebookPage")]
     pub struct NotebookPage(Object<ffi::GtkNotebookPage>);
 
     match fn {
@@ -25,7 +26,8 @@ glib::wrapper! {
 
 impl NotebookPage {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`NotebookPage`]
+    /// Creates a new builder-style object to construct a [`NotebookPage`].
+    ///
     /// This method returns an instance of [`NotebookPageBuilder`] which can be used to create a [`NotebookPage`].
     pub fn builder() -> NotebookPageBuilder {
         NotebookPageBuilder::default()

@@ -12,6 +12,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkDirectoryList")]
     pub struct DirectoryList(Object<ffi::GtkDirectoryList, ffi::GtkDirectoryListClass>) @implements gio::ListModel;
 
     match fn {

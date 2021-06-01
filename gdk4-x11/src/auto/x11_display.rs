@@ -11,6 +11,7 @@ use std::ptr;
 use x11::xlib;
 
 glib::wrapper! {
+    #[doc(alias = "GdkX11Display")]
     pub struct X11Display(Object<ffi::GdkX11Display, ffi::GdkX11DisplayClass>) @extends gdk::Display;
 
     match fn {

@@ -12,6 +12,7 @@ use glib::ToValue;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkBuilderListItemFactory")]
     pub struct BuilderListItemFactory(Object<ffi::GtkBuilderListItemFactory, ffi::GtkBuilderListItemFactoryClass>) @extends ListItemFactory;
 
     match fn {
@@ -53,7 +54,8 @@ impl BuilderListItemFactory {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`BuilderListItemFactory`]
+    /// Creates a new builder-style object to construct a [`BuilderListItemFactory`].
+    ///
     /// This method returns an instance of [`BuilderListItemFactoryBuilder`] which can be used to create a [`BuilderListItemFactory`].
     pub fn builder() -> BuilderListItemFactoryBuilder {
         BuilderListItemFactoryBuilder::default()

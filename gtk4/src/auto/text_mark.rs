@@ -11,6 +11,7 @@ use glib::ToValue;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkTextMark")]
     pub struct TextMark(Object<ffi::GtkTextMark, ffi::GtkTextMarkClass>);
 
     match fn {
@@ -31,7 +32,8 @@ impl TextMark {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TextMark`]
+    /// Creates a new builder-style object to construct a [`TextMark`].
+    ///
     /// This method returns an instance of [`TextMarkBuilder`] which can be used to create a [`TextMark`].
     pub fn builder() -> TextMarkBuilder {
         TextMarkBuilder::default()

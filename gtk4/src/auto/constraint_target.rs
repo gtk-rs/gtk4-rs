@@ -6,6 +6,7 @@ use glib::object::IsA;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkConstraintTarget")]
     pub struct ConstraintTarget(Interface<ffi::GtkConstraintTarget, ffi::GtkConstraintTargetInterface>);
 
     match fn {

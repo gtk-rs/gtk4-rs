@@ -15,6 +15,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkSliceListModel")]
     pub struct SliceListModel(Object<ffi::GtkSliceListModel, ffi::GtkSliceListModelClass>) @implements gio::ListModel;
 
     match fn {
@@ -40,7 +41,8 @@ impl SliceListModel {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`SliceListModel`]
+    /// Creates a new builder-style object to construct a [`SliceListModel`].
+    ///
     /// This method returns an instance of [`SliceListModelBuilder`] which can be used to create a [`SliceListModel`].
     pub fn builder() -> SliceListModelBuilder {
         SliceListModelBuilder::default()

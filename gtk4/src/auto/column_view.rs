@@ -30,6 +30,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkColumnView")]
     pub struct ColumnView(Object<ffi::GtkColumnView, ffi::GtkColumnViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;
 
     match fn {
@@ -50,7 +51,8 @@ impl ColumnView {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ColumnView`]
+    /// Creates a new builder-style object to construct a [`ColumnView`].
+    ///
     /// This method returns an instance of [`ColumnViewBuilder`] which can be used to create a [`ColumnView`].
     pub fn builder() -> ColumnViewBuilder {
         ColumnViewBuilder::default()

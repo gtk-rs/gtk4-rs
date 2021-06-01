@@ -27,6 +27,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkText")]
     pub struct Text(Object<ffi::GtkText>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
 
     match fn {
@@ -54,7 +55,8 @@ impl Text {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Text`]
+    /// Creates a new builder-style object to construct a [`Text`].
+    ///
     /// This method returns an instance of [`TextBuilder`] which can be used to create a [`Text`].
     pub fn builder() -> TextBuilder {
         TextBuilder::default()

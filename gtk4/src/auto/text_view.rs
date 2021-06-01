@@ -40,6 +40,7 @@ use std::mem;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkTextView")]
     pub struct TextView(Object<ffi::GtkTextView, ffi::GtkTextViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;
 
     match fn {
@@ -67,7 +68,8 @@ impl TextView {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TextView`]
+    /// Creates a new builder-style object to construct a [`TextView`].
+    ///
     /// This method returns an instance of [`TextViewBuilder`] which can be used to create a [`TextView`].
     pub fn builder() -> TextViewBuilder {
         TextViewBuilder::default()

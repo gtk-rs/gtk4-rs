@@ -20,6 +20,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkDragSource")]
     pub struct DragSource(Object<ffi::GtkDragSource, ffi::GtkDragSourceClass>) @extends GestureSingle, Gesture, EventController;
 
     match fn {
@@ -35,7 +36,8 @@ impl DragSource {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`DragSource`]
+    /// Creates a new builder-style object to construct a [`DragSource`].
+    ///
     /// This method returns an instance of [`DragSourceBuilder`] which can be used to create a [`DragSource`].
     pub fn builder() -> DragSourceBuilder {
         DragSourceBuilder::default()

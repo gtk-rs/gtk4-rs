@@ -6,6 +6,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GdkContentSerializer")]
     pub struct ContentSerializer(Object<ffi::GdkContentSerializer>);
 
     match fn {

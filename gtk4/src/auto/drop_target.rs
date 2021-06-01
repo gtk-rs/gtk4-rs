@@ -17,6 +17,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkDropTarget")]
     pub struct DropTarget(Object<ffi::GtkDropTarget, ffi::GtkDropTargetClass>) @extends EventController;
 
     match fn {
@@ -37,7 +38,8 @@ impl DropTarget {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`DropTarget`]
+    /// Creates a new builder-style object to construct a [`DropTarget`].
+    ///
     /// This method returns an instance of [`DropTargetBuilder`] which can be used to create a [`DropTarget`].
     pub fn builder() -> DropTargetBuilder {
         DropTargetBuilder::default()

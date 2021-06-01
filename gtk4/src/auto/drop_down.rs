@@ -25,6 +25,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkDropDown")]
     pub struct DropDown(Object<ffi::GtkDropDown, ffi::GtkDropDownClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
@@ -46,7 +47,8 @@ impl DropDown {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`DropDown`]
+    /// Creates a new builder-style object to construct a [`DropDown`].
+    ///
     /// This method returns an instance of [`DropDownBuilder`] which can be used to create a [`DropDown`].
     pub fn builder() -> DropDownBuilder {
         DropDownBuilder::default()

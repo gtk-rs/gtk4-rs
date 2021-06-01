@@ -24,6 +24,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkStackSidebar")]
     pub struct StackSidebar(Object<ffi::GtkStackSidebar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
@@ -39,7 +40,8 @@ impl StackSidebar {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`StackSidebar`]
+    /// Creates a new builder-style object to construct a [`StackSidebar`].
+    ///
     /// This method returns an instance of [`StackSidebarBuilder`] which can be used to create a [`StackSidebar`].
     pub fn builder() -> StackSidebarBuilder {
         StackSidebarBuilder::default()

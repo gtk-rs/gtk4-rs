@@ -22,6 +22,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkFrame")]
     pub struct Frame(Object<ffi::GtkFrame, ffi::GtkFrameClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
@@ -37,7 +38,8 @@ impl Frame {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Frame`]
+    /// Creates a new builder-style object to construct a [`Frame`].
+    ///
     /// This method returns an instance of [`FrameBuilder`] which can be used to create a [`Frame`].
     pub fn builder() -> FrameBuilder {
         FrameBuilder::default()

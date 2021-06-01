@@ -17,6 +17,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkEventControllerLegacy")]
     pub struct EventControllerLegacy(Object<ffi::GtkEventControllerLegacy, ffi::GtkEventControllerLegacyClass>) @extends EventController;
 
     match fn {
@@ -34,7 +35,8 @@ impl EventControllerLegacy {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`EventControllerLegacy`]
+    /// Creates a new builder-style object to construct a [`EventControllerLegacy`].
+    ///
     /// This method returns an instance of [`EventControllerLegacyBuilder`] which can be used to create a [`EventControllerLegacy`].
     pub fn builder() -> EventControllerLegacyBuilder {
         EventControllerLegacyBuilder::default()

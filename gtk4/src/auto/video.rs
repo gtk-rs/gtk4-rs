@@ -24,6 +24,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkVideo")]
     pub struct Video(Object<ffi::GtkVideo, ffi::GtkVideoClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
@@ -87,7 +88,8 @@ impl Video {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Video`]
+    /// Creates a new builder-style object to construct a [`Video`].
+    ///
     /// This method returns an instance of [`VideoBuilder`] which can be used to create a [`Video`].
     pub fn builder() -> VideoBuilder {
         VideoBuilder::default()

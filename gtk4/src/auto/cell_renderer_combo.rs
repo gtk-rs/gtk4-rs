@@ -21,6 +21,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkCellRendererCombo")]
     pub struct CellRendererCombo(Object<ffi::GtkCellRendererCombo>) @extends CellRendererText, CellRenderer;
 
     match fn {
@@ -36,7 +37,8 @@ impl CellRendererCombo {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`CellRendererCombo`]
+    /// Creates a new builder-style object to construct a [`CellRendererCombo`].
+    ///
     /// This method returns an instance of [`CellRendererComboBuilder`] which can be used to create a [`CellRendererCombo`].
     pub fn builder() -> CellRendererComboBuilder {
         CellRendererComboBuilder::default()

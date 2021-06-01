@@ -16,6 +16,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkBoolFilter")]
     pub struct BoolFilter(Object<ffi::GtkBoolFilter, ffi::GtkBoolFilterClass>) @extends Filter;
 
     match fn {
@@ -25,7 +26,8 @@ glib::wrapper! {
 
 impl BoolFilter {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`BoolFilter`]
+    /// Creates a new builder-style object to construct a [`BoolFilter`].
+    ///
     /// This method returns an instance of [`BoolFilterBuilder`] which can be used to create a [`BoolFilter`].
     pub fn builder() -> BoolFilterBuilder {
         BoolFilterBuilder::default()

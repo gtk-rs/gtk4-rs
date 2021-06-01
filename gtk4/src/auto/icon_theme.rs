@@ -18,6 +18,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkIconTheme")]
     pub struct IconTheme(Object<ffi::GtkIconTheme>);
 
     match fn {
@@ -33,7 +34,8 @@ impl IconTheme {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`IconTheme`]
+    /// Creates a new builder-style object to construct a [`IconTheme`].
+    ///
     /// This method returns an instance of [`IconThemeBuilder`] which can be used to create a [`IconTheme`].
     pub fn builder() -> IconThemeBuilder {
         IconThemeBuilder::default()

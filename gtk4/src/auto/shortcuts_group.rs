@@ -28,6 +28,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkShortcutsGroup")]
     pub struct ShortcutsGroup(Object<ffi::GtkShortcutsGroup, ffi::GtkShortcutsGroupClass>) @extends Box, Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
@@ -37,7 +38,8 @@ glib::wrapper! {
 
 impl ShortcutsGroup {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ShortcutsGroup`]
+    /// Creates a new builder-style object to construct a [`ShortcutsGroup`].
+    ///
     /// This method returns an instance of [`ShortcutsGroupBuilder`] which can be used to create a [`ShortcutsGroup`].
     pub fn builder() -> ShortcutsGroupBuilder {
         ShortcutsGroupBuilder::default()

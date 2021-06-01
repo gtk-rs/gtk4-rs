@@ -10,6 +10,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GdkPopup")]
     pub struct Popup(Interface<ffi::GdkPopup, ffi::GdkPopupInterface>) @requires Surface;
 
     match fn {

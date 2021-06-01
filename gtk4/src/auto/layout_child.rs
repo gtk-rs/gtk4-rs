@@ -9,6 +9,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkLayoutChild")]
     pub struct LayoutChild(Object<ffi::GtkLayoutChild, ffi::GtkLayoutChildClass>);
 
     match fn {

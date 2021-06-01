@@ -18,6 +18,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkGestureZoom")]
     pub struct GestureZoom(Object<ffi::GtkGestureZoom, ffi::GtkGestureZoomClass>) @extends Gesture, EventController;
 
     match fn {
@@ -33,7 +34,8 @@ impl GestureZoom {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GestureZoom`]
+    /// Creates a new builder-style object to construct a [`GestureZoom`].
+    ///
     /// This method returns an instance of [`GestureZoomBuilder`] which can be used to create a [`GestureZoom`].
     pub fn builder() -> GestureZoomBuilder {
         GestureZoomBuilder::default()

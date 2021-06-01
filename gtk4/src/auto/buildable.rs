@@ -7,6 +7,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkBuildable")]
     pub struct Buildable(Interface<ffi::GtkBuildable, ffi::GtkBuildableIface>);
 
     match fn {

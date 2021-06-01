@@ -19,6 +19,7 @@ use std::mem::transmute;
 use std::ptr;
 
 glib::wrapper! {
+    #[doc(alias = "GtkIMContext")]
     pub struct IMContext(Object<ffi::GtkIMContext, ffi::GtkIMContextClass>);
 
     match fn {

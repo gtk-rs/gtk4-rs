@@ -15,6 +15,7 @@ use std::pin::Pin;
 use std::ptr;
 
 glib::wrapper! {
+    #[doc(alias = "GdkContentProvider")]
     pub struct ContentProvider(Object<ffi::GdkContentProvider, ffi::GdkContentProviderClass>);
 
     match fn {

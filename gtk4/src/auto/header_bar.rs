@@ -23,6 +23,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkHeaderBar")]
     pub struct HeaderBar(Object<ffi::GtkHeaderBar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
@@ -38,7 +39,8 @@ impl HeaderBar {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`HeaderBar`]
+    /// Creates a new builder-style object to construct a [`HeaderBar`].
+    ///
     /// This method returns an instance of [`HeaderBarBuilder`] which can be used to create a [`HeaderBar`].
     pub fn builder() -> HeaderBarBuilder {
         HeaderBarBuilder::default()

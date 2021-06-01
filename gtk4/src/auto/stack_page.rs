@@ -18,6 +18,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkStackPage")]
     pub struct StackPage(Object<ffi::GtkStackPage>) @implements Accessible;
 
     match fn {
@@ -27,7 +28,8 @@ glib::wrapper! {
 
 impl StackPage {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`StackPage`]
+    /// Creates a new builder-style object to construct a [`StackPage`].
+    ///
     /// This method returns an instance of [`StackPageBuilder`] which can be used to create a [`StackPage`].
     pub fn builder() -> StackPageBuilder {
         StackPageBuilder::default()

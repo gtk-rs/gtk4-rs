@@ -18,6 +18,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkGestureSingle")]
     pub struct GestureSingle(Object<ffi::GtkGestureSingle, ffi::GtkGestureSingleClass>) @extends Gesture, EventController;
 
     match fn {
@@ -27,7 +28,8 @@ glib::wrapper! {
 
 impl GestureSingle {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GestureSingle`]
+    /// Creates a new builder-style object to construct a [`GestureSingle`].
+    ///
     /// This method returns an instance of [`GestureSingleBuilder`] which can be used to create a [`GestureSingle`].
     pub fn builder() -> GestureSingleBuilder {
         GestureSingleBuilder::default()

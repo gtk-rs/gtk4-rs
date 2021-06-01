@@ -24,6 +24,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkMediaControls")]
     pub struct MediaControls(Object<ffi::GtkMediaControls, ffi::GtkMediaControlsClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
@@ -44,7 +45,8 @@ impl MediaControls {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`MediaControls`]
+    /// Creates a new builder-style object to construct a [`MediaControls`].
+    ///
     /// This method returns an instance of [`MediaControlsBuilder`] which can be used to create a [`MediaControls`].
     pub fn builder() -> MediaControlsBuilder {
         MediaControlsBuilder::default()

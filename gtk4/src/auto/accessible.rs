@@ -17,6 +17,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkAccessible")]
     pub struct Accessible(Interface<ffi::GtkAccessible, ffi::GtkAccessibleInterface>);
 
     match fn {

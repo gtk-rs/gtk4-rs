@@ -6,6 +6,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GdkContentDeserializer")]
     pub struct ContentDeserializer(Object<ffi::GdkContentDeserializer>);
 
     match fn {

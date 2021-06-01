@@ -7,6 +7,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkStringList")]
     pub struct StringList(Object<ffi::GtkStringList, ffi::GtkStringListClass>) @implements gio::ListModel, Buildable;
 
     match fn {
