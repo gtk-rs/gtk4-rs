@@ -31,16 +31,16 @@ the <a href="#features">features</a> section for how to do this globally in your
 
 <div class="example-wrap"><pre class="rust rust-example-rendered">
 <span class="kw">use</span> <span class="ident">gtk::prelude</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">gtk</span>::{<span class="ident">ApplicationBuilder</span>, <span class="ident">ApplicationWindowBuilder</span>};
+<span class="kw">use</span> <span class="ident">gtk</span>::{<span class="ident">Application</span>, <span class="ident">ApplicationWindow</span>};
 
 <span class="kw">fn</span> <span class="ident">main</span>() {
-    <span class="kw">let</span> <span class="ident">app</span> <span class="op">=</span> <span class="ident">ApplicationBuilder::new</span>()
+    <span class="kw">let</span> <span class="ident">app</span> <span class="op">=</span> <span class="ident">Application::builder</span>()
         .<span class="ident">application_id</span>(<span class="string">&quot;org.example.HelloWorld&quot;</span>)
         .<span class="ident">build</span>();
 
     <span class="ident">app</span>.<span class="ident">connect_activate</span>(<span class="op">|</span><span class="ident">app</span><span class="op">|</span> {
         <span class="comment">// We create the main window.</span>
-        <span class="kw">let</span> <span class="ident">win</span> <span class="op">=</span> <span class="ident">ApplicationWindowBuilder::new</span>()
+        <span class="kw">let</span> <span class="ident">window</span> <span class="op">=</span> <span class="ident">ApplicationWindow::builder</span>()
             .<span class="ident">application</span>(<span class="ident">app</span>)
             .<span class="ident">default_width</span>(<span class="number">320</span>)
             .<span class="ident">default_height</span>(<span class="number">200</span>)
@@ -48,7 +48,7 @@ the <a href="#features">features</a> section for how to do this globally in your
             .<span class="ident">build</span>();
 
         <span class="comment">// Show the window.</span>
-        <span class="ident">win</span>.<span class="ident">show</span>();
+        <span class="ident">window</span>.<span class="ident">show</span>();
     });
 
     <span class="ident">app</span>.<span class="ident">run</span>();
@@ -59,15 +59,15 @@ and run the main event loop.</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered">
 <span class="kw">use</span> <span class="ident">gtk::prelude</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">gtk</span>::{<span class="ident">ApplicationBuilder</span>, <span class="ident">ApplicationWindowBuilder</span>, <span class="ident">Button</span>};
+<span class="kw">use</span> <span class="ident">gtk</span>::{<span class="ident">Application</span>, <span class="ident">ApplicationWindow</span>, <span class="ident">Button</span>};
 
 <span class="kw">fn</span> <span class="ident">main</span>() {
-    <span class="kw">let</span> <span class="ident">application</span> <span class="op">=</span> <span class="ident">ApplicationBuilder::new</span>()
+    <span class="kw">let</span> <span class="ident">application</span> <span class="op">=</span> <span class="ident">Application::builder</span>()
         .<span class="ident">application_id</span>(<span class="string">&quot;com.example.FirstGtkApp&quot;</span>)
         .<span class="ident">build</span>();
 
     <span class="ident">application</span>.<span class="ident">connect_activate</span>(<span class="op">|</span><span class="ident">app</span><span class="op">|</span> {
-        <span class="kw">let</span> <span class="ident">window</span> <span class="op">=</span> <span class="ident">ApplicationWindowBuilder::new</span>()
+        <span class="kw">let</span> <span class="ident">window</span> <span class="op">=</span> <span class="ident">ApplicationWindow::builder</span>()
             .<span class="ident">application</span>(<span class="ident">app</span>)
             .<span class="ident">title</span>(<span class="string">&quot;First GTK Program&quot;</span>)
             .<span class="ident">default_width</span>(<span class="number">350</span>)

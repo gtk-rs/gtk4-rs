@@ -418,16 +418,16 @@
 <span class="doccomment">//! ```no_run</span>
 <span class="doccomment">//! # use gtk4 as gtk;</span>
 <span class="doccomment">//! use gtk::prelude::*;</span>
-<span class="doccomment">//! use gtk::{ApplicationBuilder, ApplicationWindowBuilder};</span>
+<span class="doccomment">//! use gtk::{Application, ApplicationWindow};</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! fn main() {</span>
-<span class="doccomment">//!     let app = ApplicationBuilder::new()</span>
+<span class="doccomment">//!     let app = Application::builder()</span>
 <span class="doccomment">//!         .application_id(&quot;org.example.HelloWorld&quot;)</span>
 <span class="doccomment">//!         .build();</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//!     app.connect_activate(|app| {</span>
 <span class="doccomment">//!         // We create the main window.</span>
-<span class="doccomment">//!         let win = ApplicationWindowBuilder::new()</span>
+<span class="doccomment">//!         let window = ApplicationWindow::builder()</span>
 <span class="doccomment">//!             .application(app)</span>
 <span class="doccomment">//!             .default_width(320)</span>
 <span class="doccomment">//!             .default_height(200)</span>
@@ -435,7 +435,7 @@
 <span class="doccomment">//!             .build();</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//!         // Show the window.</span>
-<span class="doccomment">//!         win.show();</span>
+<span class="doccomment">//!         window.show();</span>
 <span class="doccomment">//!     });</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//!     app.run();</span>
@@ -450,15 +450,15 @@
 <span class="doccomment">//! ```no_run</span>
 <span class="doccomment">//! # use gtk4 as gtk;</span>
 <span class="doccomment">//! use gtk::prelude::*;</span>
-<span class="doccomment">//! use gtk::{ApplicationBuilder, ApplicationWindowBuilder, Button};</span>
+<span class="doccomment">//! use gtk::{Application, ApplicationWindow, Button};</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! fn main() {</span>
-<span class="doccomment">//!     let application = ApplicationBuilder::new()</span>
+<span class="doccomment">//!     let application = Application::builder()</span>
 <span class="doccomment">//!         .application_id(&quot;com.example.FirstGtkApp&quot;)</span>
 <span class="doccomment">//!         .build();</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//!     application.connect_activate(|app| {</span>
-<span class="doccomment">//!         let window = ApplicationWindowBuilder::new()</span>
+<span class="doccomment">//!         let window = ApplicationWindow::builder()</span>
 <span class="doccomment">//!             .application(app)</span>
 <span class="doccomment">//!             .title(&quot;First GTK Program&quot;)</span>
 <span class="doccomment">//!             .default_width(350)</span>
