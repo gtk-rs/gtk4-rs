@@ -812,31 +812,31 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AnchorHints</span>: <span class="ident">u32</span> {
         <span class="doccomment">/// allow flipping anchors horizontally</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_ANCHOR_FLIP_X&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">FLIP_X</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">FLIP_X</span> <span class="op">=</span> <span class="ident">ffi::GDK_ANCHOR_FLIP_X</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// allow flipping anchors vertically</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_ANCHOR_FLIP_Y&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">FLIP_Y</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">const</span> <span class="ident">FLIP_Y</span> <span class="op">=</span> <span class="ident">ffi::GDK_ANCHOR_FLIP_Y</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// allow sliding surface horizontally</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_ANCHOR_SLIDE_X&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">SLIDE_X</span> <span class="op">=</span> <span class="number">4</span>;
+        <span class="kw">const</span> <span class="ident">SLIDE_X</span> <span class="op">=</span> <span class="ident">ffi::GDK_ANCHOR_SLIDE_X</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// allow sliding surface vertically</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_ANCHOR_SLIDE_Y&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">SLIDE_Y</span> <span class="op">=</span> <span class="number">8</span>;
+        <span class="kw">const</span> <span class="ident">SLIDE_Y</span> <span class="op">=</span> <span class="ident">ffi::GDK_ANCHOR_SLIDE_Y</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// allow resizing surface horizontally</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_ANCHOR_RESIZE_X&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">RESIZE_X</span> <span class="op">=</span> <span class="number">16</span>;
+        <span class="kw">const</span> <span class="ident">RESIZE_X</span> <span class="op">=</span> <span class="ident">ffi::GDK_ANCHOR_RESIZE_X</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// allow resizing surface vertically</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_ANCHOR_RESIZE_Y&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">RESIZE_Y</span> <span class="op">=</span> <span class="number">32</span>;
+        <span class="kw">const</span> <span class="ident">RESIZE_Y</span> <span class="op">=</span> <span class="ident">ffi::GDK_ANCHOR_RESIZE_Y</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// allow flipping anchors on both axes</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_ANCHOR_FLIP&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">FLIP</span> <span class="op">=</span> <span class="number">3</span>;
+        <span class="kw">const</span> <span class="ident">FLIP</span> <span class="op">=</span> <span class="ident">ffi::GDK_ANCHOR_FLIP</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// allow sliding surface on both axes</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_ANCHOR_SLIDE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">SLIDE</span> <span class="op">=</span> <span class="number">12</span>;
+        <span class="kw">const</span> <span class="ident">SLIDE</span> <span class="op">=</span> <span class="ident">ffi::GDK_ANCHOR_SLIDE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// allow resizing surface on both axes</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_ANCHOR_RESIZE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">RESIZE</span> <span class="op">=</span> <span class="number">48</span>;
+        <span class="kw">const</span> <span class="ident">RESIZE</span> <span class="op">=</span> <span class="ident">ffi::GDK_ANCHOR_RESIZE</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
@@ -902,37 +902,37 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AxisFlags</span>: <span class="ident">u32</span> {
         <span class="doccomment">/// X axis is present</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_AXIS_FLAG_X&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">X</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">const</span> <span class="ident">X</span> <span class="op">=</span> <span class="ident">ffi::GDK_AXIS_FLAG_X</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Y axis is present</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_AXIS_FLAG_Y&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">Y</span> <span class="op">=</span> <span class="number">4</span>;
+        <span class="kw">const</span> <span class="ident">Y</span> <span class="op">=</span> <span class="ident">ffi::GDK_AXIS_FLAG_Y</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Scroll X delta axis is present</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_AXIS_FLAG_DELTA_X&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">DELTA_X</span> <span class="op">=</span> <span class="number">8</span>;
+        <span class="kw">const</span> <span class="ident">DELTA_X</span> <span class="op">=</span> <span class="ident">ffi::GDK_AXIS_FLAG_DELTA_X</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Scroll Y delta axis is present</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_AXIS_FLAG_DELTA_Y&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">DELTA_Y</span> <span class="op">=</span> <span class="number">16</span>;
+        <span class="kw">const</span> <span class="ident">DELTA_Y</span> <span class="op">=</span> <span class="ident">ffi::GDK_AXIS_FLAG_DELTA_Y</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Pressure axis is present</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_AXIS_FLAG_PRESSURE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">PRESSURE</span> <span class="op">=</span> <span class="number">32</span>;
+        <span class="kw">const</span> <span class="ident">PRESSURE</span> <span class="op">=</span> <span class="ident">ffi::GDK_AXIS_FLAG_PRESSURE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// X tilt axis is present</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_AXIS_FLAG_XTILT&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">XTILT</span> <span class="op">=</span> <span class="number">64</span>;
+        <span class="kw">const</span> <span class="ident">XTILT</span> <span class="op">=</span> <span class="ident">ffi::GDK_AXIS_FLAG_XTILT</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Y tilt axis is present</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_AXIS_FLAG_YTILT&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">YTILT</span> <span class="op">=</span> <span class="number">128</span>;
+        <span class="kw">const</span> <span class="ident">YTILT</span> <span class="op">=</span> <span class="ident">ffi::GDK_AXIS_FLAG_YTILT</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Wheel axis is present</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_AXIS_FLAG_WHEEL&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">WHEEL</span> <span class="op">=</span> <span class="number">256</span>;
+        <span class="kw">const</span> <span class="ident">WHEEL</span> <span class="op">=</span> <span class="ident">ffi::GDK_AXIS_FLAG_WHEEL</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Distance axis is present</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_AXIS_FLAG_DISTANCE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">DISTANCE</span> <span class="op">=</span> <span class="number">512</span>;
+        <span class="kw">const</span> <span class="ident">DISTANCE</span> <span class="op">=</span> <span class="ident">ffi::GDK_AXIS_FLAG_DISTANCE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Z-axis rotation is present</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_AXIS_FLAG_ROTATION&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">ROTATION</span> <span class="op">=</span> <span class="number">1024</span>;
+        <span class="kw">const</span> <span class="ident">ROTATION</span> <span class="op">=</span> <span class="ident">ffi::GDK_AXIS_FLAG_ROTATION</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Slider axis is present</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_AXIS_FLAG_SLIDER&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">SLIDER</span> <span class="op">=</span> <span class="number">2048</span>;
+        <span class="kw">const</span> <span class="ident">SLIDER</span> <span class="op">=</span> <span class="ident">ffi::GDK_AXIS_FLAG_SLIDER</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
@@ -999,19 +999,19 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DragAction</span>: <span class="ident">u32</span> {
         <span class="doccomment">/// Copy the data.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_ACTION_COPY&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">COPY</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">COPY</span> <span class="op">=</span> <span class="ident">ffi::GDK_ACTION_COPY</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Move the data, i.e. first copy it, then delete</span>
         <span class="doccomment">///  it from the source using the DELETE target of the X selection protocol.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_ACTION_MOVE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">MOVE</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">const</span> <span class="ident">MOVE</span> <span class="op">=</span> <span class="ident">ffi::GDK_ACTION_MOVE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Add a link to the data. Note that this is only</span>
         <span class="doccomment">///  useful if source and destination agree on what it means, and is not</span>
         <span class="doccomment">///  supported on all platforms.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_ACTION_LINK&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">LINK</span> <span class="op">=</span> <span class="number">4</span>;
+        <span class="kw">const</span> <span class="ident">LINK</span> <span class="op">=</span> <span class="ident">ffi::GDK_ACTION_LINK</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Ask the user what to do with the data.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_ACTION_ASK&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">ASK</span> <span class="op">=</span> <span class="number">8</span>;
+        <span class="kw">const</span> <span class="ident">ASK</span> <span class="op">=</span> <span class="ident">ffi::GDK_ACTION_ASK</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
@@ -1087,28 +1087,28 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FrameClockPhase</span>: <span class="ident">u32</span> {
         <span class="doccomment">/// no phase</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_FRAME_CLOCK_PHASE_NONE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">NONE</span> <span class="op">=</span> <span class="number">0</span>;
+        <span class="kw">const</span> <span class="ident">NONE</span> <span class="op">=</span> <span class="ident">ffi::GDK_FRAME_CLOCK_PHASE_NONE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// corresponds to GdkFrameClock::flush-events. Should not be handled by applications.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_FRAME_CLOCK_PHASE_FLUSH_EVENTS&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">FLUSH_EVENTS</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">FLUSH_EVENTS</span> <span class="op">=</span> <span class="ident">ffi::GDK_FRAME_CLOCK_PHASE_FLUSH_EVENTS</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// corresponds to GdkFrameClock::before-paint. Should not be handled by applications.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_FRAME_CLOCK_PHASE_BEFORE_PAINT&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">BEFORE_PAINT</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">const</span> <span class="ident">BEFORE_PAINT</span> <span class="op">=</span> <span class="ident">ffi::GDK_FRAME_CLOCK_PHASE_BEFORE_PAINT</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// corresponds to GdkFrameClock::update.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_FRAME_CLOCK_PHASE_UPDATE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">UPDATE</span> <span class="op">=</span> <span class="number">4</span>;
+        <span class="kw">const</span> <span class="ident">UPDATE</span> <span class="op">=</span> <span class="ident">ffi::GDK_FRAME_CLOCK_PHASE_UPDATE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// corresponds to GdkFrameClock::layout. Should not be handled by applicatiosn.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_FRAME_CLOCK_PHASE_LAYOUT&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">LAYOUT</span> <span class="op">=</span> <span class="number">8</span>;
+        <span class="kw">const</span> <span class="ident">LAYOUT</span> <span class="op">=</span> <span class="ident">ffi::GDK_FRAME_CLOCK_PHASE_LAYOUT</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// corresponds to GdkFrameClock::paint.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_FRAME_CLOCK_PHASE_PAINT&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">PAINT</span> <span class="op">=</span> <span class="number">16</span>;
+        <span class="kw">const</span> <span class="ident">PAINT</span> <span class="op">=</span> <span class="ident">ffi::GDK_FRAME_CLOCK_PHASE_PAINT</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// corresponds to GdkFrameClock::resume-events. Should not be handled by applications.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_FRAME_CLOCK_PHASE_RESUME_EVENTS&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">RESUME_EVENTS</span> <span class="op">=</span> <span class="number">32</span>;
+        <span class="kw">const</span> <span class="ident">RESUME_EVENTS</span> <span class="op">=</span> <span class="ident">ffi::GDK_FRAME_CLOCK_PHASE_RESUME_EVENTS</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// corresponds to GdkFrameClock::after-paint. Should not be handled by applications.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_FRAME_CLOCK_PHASE_AFTER_PAINT&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">AFTER_PAINT</span> <span class="op">=</span> <span class="number">64</span>;
+        <span class="kw">const</span> <span class="ident">AFTER_PAINT</span> <span class="op">=</span> <span class="ident">ffi::GDK_FRAME_CLOCK_PHASE_AFTER_PAINT</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
@@ -1182,43 +1182,43 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ModifierType</span>: <span class="ident">u32</span> {
         <span class="doccomment">/// the Shift key.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SHIFT_MASK&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">SHIFT_MASK</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">SHIFT_MASK</span> <span class="op">=</span> <span class="ident">ffi::GDK_SHIFT_MASK</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// a Lock key (depending on the modifier mapping of the</span>
         <span class="doccomment">///  X server this may either be CapsLock or ShiftLock).</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_LOCK_MASK&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">LOCK_MASK</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">const</span> <span class="ident">LOCK_MASK</span> <span class="op">=</span> <span class="ident">ffi::GDK_LOCK_MASK</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// the Control key.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_CONTROL_MASK&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">CONTROL_MASK</span> <span class="op">=</span> <span class="number">4</span>;
+        <span class="kw">const</span> <span class="ident">CONTROL_MASK</span> <span class="op">=</span> <span class="ident">ffi::GDK_CONTROL_MASK</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// the fourth modifier key (it depends on the modifier</span>
         <span class="doccomment">///  mapping of the X server which key is interpreted as this modifier, but</span>
         <span class="doccomment">///  normally it is the Alt key).</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_ALT_MASK&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">ALT_MASK</span> <span class="op">=</span> <span class="number">8</span>;
+        <span class="kw">const</span> <span class="ident">ALT_MASK</span> <span class="op">=</span> <span class="ident">ffi::GDK_ALT_MASK</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// the first mouse button.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_BUTTON1_MASK&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">BUTTON1_MASK</span> <span class="op">=</span> <span class="number">256</span>;
+        <span class="kw">const</span> <span class="ident">BUTTON1_MASK</span> <span class="op">=</span> <span class="ident">ffi::GDK_BUTTON1_MASK</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// the second mouse button.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_BUTTON2_MASK&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">BUTTON2_MASK</span> <span class="op">=</span> <span class="number">512</span>;
+        <span class="kw">const</span> <span class="ident">BUTTON2_MASK</span> <span class="op">=</span> <span class="ident">ffi::GDK_BUTTON2_MASK</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// the third mouse button.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_BUTTON3_MASK&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">BUTTON3_MASK</span> <span class="op">=</span> <span class="number">1024</span>;
+        <span class="kw">const</span> <span class="ident">BUTTON3_MASK</span> <span class="op">=</span> <span class="ident">ffi::GDK_BUTTON3_MASK</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// the fourth mouse button.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_BUTTON4_MASK&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">BUTTON4_MASK</span> <span class="op">=</span> <span class="number">2048</span>;
+        <span class="kw">const</span> <span class="ident">BUTTON4_MASK</span> <span class="op">=</span> <span class="ident">ffi::GDK_BUTTON4_MASK</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// the fifth mouse button.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_BUTTON5_MASK&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">BUTTON5_MASK</span> <span class="op">=</span> <span class="number">4096</span>;
+        <span class="kw">const</span> <span class="ident">BUTTON5_MASK</span> <span class="op">=</span> <span class="ident">ffi::GDK_BUTTON5_MASK</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// the Super modifier</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SUPER_MASK&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">SUPER_MASK</span> <span class="op">=</span> <span class="number">67108864</span>;
+        <span class="kw">const</span> <span class="ident">SUPER_MASK</span> <span class="op">=</span> <span class="ident">ffi::GDK_SUPER_MASK</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// the Hyper modifier</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_HYPER_MASK&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">HYPER_MASK</span> <span class="op">=</span> <span class="number">134217728</span>;
+        <span class="kw">const</span> <span class="ident">HYPER_MASK</span> <span class="op">=</span> <span class="ident">ffi::GDK_HYPER_MASK</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// the Meta modifier</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_META_MASK&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">META_MASK</span> <span class="op">=</span> <span class="number">268435456</span>;
+        <span class="kw">const</span> <span class="ident">META_MASK</span> <span class="op">=</span> <span class="ident">ffi::GDK_META_MASK</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
@@ -1288,12 +1288,12 @@
         <span class="doccomment">///  The `signal::GdkPaintable::invalidate-size` signal will never be</span>
         <span class="doccomment">///  emitted.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_PAINTABLE_STATIC_SIZE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">SIZE</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">SIZE</span> <span class="op">=</span> <span class="ident">ffi::GDK_PAINTABLE_STATIC_SIZE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// The content is immutable.</span>
         <span class="doccomment">///  The `signal::GdkPaintable::invalidate-contents` signal will never be</span>
         <span class="doccomment">///  emitted.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_PAINTABLE_STATIC_CONTENTS&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">CONTENTS</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">const</span> <span class="ident">CONTENTS</span> <span class="op">=</span> <span class="ident">ffi::GDK_PAINTABLE_STATIC_CONTENTS</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
@@ -1359,28 +1359,28 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SeatCapabilities</span>: <span class="ident">u32</span> {
         <span class="doccomment">/// No input capabilities</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SEAT_CAPABILITY_NONE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">NONE</span> <span class="op">=</span> <span class="number">0</span>;
+        <span class="kw">const</span> <span class="ident">NONE</span> <span class="op">=</span> <span class="ident">ffi::GDK_SEAT_CAPABILITY_NONE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// The seat has a pointer (e.g. mouse)</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SEAT_CAPABILITY_POINTER&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">POINTER</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">POINTER</span> <span class="op">=</span> <span class="ident">ffi::GDK_SEAT_CAPABILITY_POINTER</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// The seat has touchscreen(s) attached</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SEAT_CAPABILITY_TOUCH&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">TOUCH</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">const</span> <span class="ident">TOUCH</span> <span class="op">=</span> <span class="ident">ffi::GDK_SEAT_CAPABILITY_TOUCH</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// The seat has drawing tablet(s) attached</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SEAT_CAPABILITY_TABLET_STYLUS&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">TABLET_STYLUS</span> <span class="op">=</span> <span class="number">4</span>;
+        <span class="kw">const</span> <span class="ident">TABLET_STYLUS</span> <span class="op">=</span> <span class="ident">ffi::GDK_SEAT_CAPABILITY_TABLET_STYLUS</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// The seat has keyboard(s) attached</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SEAT_CAPABILITY_KEYBOARD&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">KEYBOARD</span> <span class="op">=</span> <span class="number">8</span>;
+        <span class="kw">const</span> <span class="ident">KEYBOARD</span> <span class="op">=</span> <span class="ident">ffi::GDK_SEAT_CAPABILITY_KEYBOARD</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// The seat has drawing tablet pad(s) attached</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SEAT_CAPABILITY_TABLET_PAD&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">TABLET_PAD</span> <span class="op">=</span> <span class="number">16</span>;
+        <span class="kw">const</span> <span class="ident">TABLET_PAD</span> <span class="op">=</span> <span class="ident">ffi::GDK_SEAT_CAPABILITY_TABLET_PAD</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// The union of all pointing capabilities</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SEAT_CAPABILITY_ALL_POINTING&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">ALL_POINTING</span> <span class="op">=</span> <span class="number">7</span>;
+        <span class="kw">const</span> <span class="ident">ALL_POINTING</span> <span class="op">=</span> <span class="ident">ffi::GDK_SEAT_CAPABILITY_ALL_POINTING</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// The union of all capabilities</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_SEAT_CAPABILITY_ALL&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">ALL</span> <span class="op">=</span> <span class="number">15</span>;
+        <span class="kw">const</span> <span class="ident">ALL</span> <span class="op">=</span> <span class="ident">ffi::GDK_SEAT_CAPABILITY_ALL</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
@@ -1452,52 +1452,52 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ToplevelState</span>: <span class="ident">u32</span> {
         <span class="doccomment">/// the surface is minimized</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOPLEVEL_STATE_MINIMIZED&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">MINIMIZED</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">MINIMIZED</span> <span class="op">=</span> <span class="ident">ffi::GDK_TOPLEVEL_STATE_MINIMIZED</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// the surface is maximized</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOPLEVEL_STATE_MAXIMIZED&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">MAXIMIZED</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">const</span> <span class="ident">MAXIMIZED</span> <span class="op">=</span> <span class="ident">ffi::GDK_TOPLEVEL_STATE_MAXIMIZED</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// the surface is sticky</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOPLEVEL_STATE_STICKY&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">STICKY</span> <span class="op">=</span> <span class="number">4</span>;
+        <span class="kw">const</span> <span class="ident">STICKY</span> <span class="op">=</span> <span class="ident">ffi::GDK_TOPLEVEL_STATE_STICKY</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// the surface is maximized without decorations</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOPLEVEL_STATE_FULLSCREEN&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">FULLSCREEN</span> <span class="op">=</span> <span class="number">8</span>;
+        <span class="kw">const</span> <span class="ident">FULLSCREEN</span> <span class="op">=</span> <span class="ident">ffi::GDK_TOPLEVEL_STATE_FULLSCREEN</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// the surface is kept above other surfaces</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOPLEVEL_STATE_ABOVE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">ABOVE</span> <span class="op">=</span> <span class="number">16</span>;
+        <span class="kw">const</span> <span class="ident">ABOVE</span> <span class="op">=</span> <span class="ident">ffi::GDK_TOPLEVEL_STATE_ABOVE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// the surface is kept below other surfaces</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOPLEVEL_STATE_BELOW&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">BELOW</span> <span class="op">=</span> <span class="number">32</span>;
+        <span class="kw">const</span> <span class="ident">BELOW</span> <span class="op">=</span> <span class="ident">ffi::GDK_TOPLEVEL_STATE_BELOW</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// the surface is presented as focused (with active decorations)</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOPLEVEL_STATE_FOCUSED&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">FOCUSED</span> <span class="op">=</span> <span class="number">64</span>;
+        <span class="kw">const</span> <span class="ident">FOCUSED</span> <span class="op">=</span> <span class="ident">ffi::GDK_TOPLEVEL_STATE_FOCUSED</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// the surface is in a tiled state</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOPLEVEL_STATE_TILED&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">TILED</span> <span class="op">=</span> <span class="number">128</span>;
+        <span class="kw">const</span> <span class="ident">TILED</span> <span class="op">=</span> <span class="ident">ffi::GDK_TOPLEVEL_STATE_TILED</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// whether the top edge is tiled</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOPLEVEL_STATE_TOP_TILED&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">TOP_TILED</span> <span class="op">=</span> <span class="number">256</span>;
+        <span class="kw">const</span> <span class="ident">TOP_TILED</span> <span class="op">=</span> <span class="ident">ffi::GDK_TOPLEVEL_STATE_TOP_TILED</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// whether the top edge is resizable</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOPLEVEL_STATE_TOP_RESIZABLE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">TOP_RESIZABLE</span> <span class="op">=</span> <span class="number">512</span>;
+        <span class="kw">const</span> <span class="ident">TOP_RESIZABLE</span> <span class="op">=</span> <span class="ident">ffi::GDK_TOPLEVEL_STATE_TOP_RESIZABLE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// whether the right edge is tiled</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOPLEVEL_STATE_RIGHT_TILED&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">RIGHT_TILED</span> <span class="op">=</span> <span class="number">1024</span>;
+        <span class="kw">const</span> <span class="ident">RIGHT_TILED</span> <span class="op">=</span> <span class="ident">ffi::GDK_TOPLEVEL_STATE_RIGHT_TILED</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// whether the right edge is resizable</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOPLEVEL_STATE_RIGHT_RESIZABLE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">RIGHT_RESIZABLE</span> <span class="op">=</span> <span class="number">2048</span>;
+        <span class="kw">const</span> <span class="ident">RIGHT_RESIZABLE</span> <span class="op">=</span> <span class="ident">ffi::GDK_TOPLEVEL_STATE_RIGHT_RESIZABLE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// whether the bottom edge is tiled</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOPLEVEL_STATE_BOTTOM_TILED&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">BOTTOM_TILED</span> <span class="op">=</span> <span class="number">4096</span>;
+        <span class="kw">const</span> <span class="ident">BOTTOM_TILED</span> <span class="op">=</span> <span class="ident">ffi::GDK_TOPLEVEL_STATE_BOTTOM_TILED</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// whether the bottom edge is resizable</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOPLEVEL_STATE_BOTTOM_RESIZABLE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">BOTTOM_RESIZABLE</span> <span class="op">=</span> <span class="number">8192</span>;
+        <span class="kw">const</span> <span class="ident">BOTTOM_RESIZABLE</span> <span class="op">=</span> <span class="ident">ffi::GDK_TOPLEVEL_STATE_BOTTOM_RESIZABLE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// whether the left edge is tiled</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOPLEVEL_STATE_LEFT_TILED&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">LEFT_TILED</span> <span class="op">=</span> <span class="number">16384</span>;
+        <span class="kw">const</span> <span class="ident">LEFT_TILED</span> <span class="op">=</span> <span class="ident">ffi::GDK_TOPLEVEL_STATE_LEFT_TILED</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// whether the left edge is resizable</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GDK_TOPLEVEL_STATE_LEFT_RESIZABLE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">LEFT_RESIZABLE</span> <span class="op">=</span> <span class="number">32768</span>;
+        <span class="kw">const</span> <span class="ident">LEFT_RESIZABLE</span> <span class="op">=</span> <span class="ident">ffi::GDK_TOPLEVEL_STATE_LEFT_RESIZABLE</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 

@@ -1359,18 +1359,18 @@
         <span class="doccomment">/// Inhibit ending the user session</span>
         <span class="doccomment">///  by logging out or by shutting down the computer</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_APPLICATION_INHIBIT_LOGOUT&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">LOGOUT</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">LOGOUT</span> <span class="op">=</span> <span class="ident">ffi::GTK_APPLICATION_INHIBIT_LOGOUT</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Inhibit user switching</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_APPLICATION_INHIBIT_SWITCH&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">SWITCH</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">const</span> <span class="ident">SWITCH</span> <span class="op">=</span> <span class="ident">ffi::GTK_APPLICATION_INHIBIT_SWITCH</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Inhibit suspending the</span>
         <span class="doccomment">///  session or computer</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_APPLICATION_INHIBIT_SUSPEND&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">SUSPEND</span> <span class="op">=</span> <span class="number">4</span>;
+        <span class="kw">const</span> <span class="ident">SUSPEND</span> <span class="op">=</span> <span class="ident">ffi::GTK_APPLICATION_INHIBIT_SUSPEND</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Inhibit the session being</span>
         <span class="doccomment">///  marked as idle (and possibly locked)</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_APPLICATION_INHIBIT_IDLE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">IDLE</span> <span class="op">=</span> <span class="number">8</span>;
+        <span class="kw">const</span> <span class="ident">IDLE</span> <span class="op">=</span> <span class="ident">ffi::GTK_APPLICATION_INHIBIT_IDLE</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
@@ -1442,7 +1442,7 @@
         <span class="doccomment">/// The closure should be created swapped. See</span>
         <span class="doccomment">///  `g_cclosure_new_swap()` for details.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_BUILDER_CLOSURE_SWAPPED&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">SWAPPED</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">SWAPPED</span> <span class="op">=</span> <span class="ident">ffi::GTK_BUILDER_CLOSURE_SWAPPED</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
@@ -1509,25 +1509,25 @@
         <span class="doccomment">/// The cell is currently selected, and</span>
         <span class="doccomment">///  probably has a selection colored background to render to.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CELL_RENDERER_SELECTED&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">SELECTED</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">SELECTED</span> <span class="op">=</span> <span class="ident">ffi::GTK_CELL_RENDERER_SELECTED</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// The mouse is hovering over the cell.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CELL_RENDERER_PRELIT&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">PRELIT</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">const</span> <span class="ident">PRELIT</span> <span class="op">=</span> <span class="ident">ffi::GTK_CELL_RENDERER_PRELIT</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// The cell is drawn in an insensitive manner</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CELL_RENDERER_INSENSITIVE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">INSENSITIVE</span> <span class="op">=</span> <span class="number">4</span>;
+        <span class="kw">const</span> <span class="ident">INSENSITIVE</span> <span class="op">=</span> <span class="ident">ffi::GTK_CELL_RENDERER_INSENSITIVE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// The cell is in a sorted row</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CELL_RENDERER_SORTED&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">SORTED</span> <span class="op">=</span> <span class="number">8</span>;
+        <span class="kw">const</span> <span class="ident">SORTED</span> <span class="op">=</span> <span class="ident">ffi::GTK_CELL_RENDERER_SORTED</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// The cell is in the focus row.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CELL_RENDERER_FOCUSED&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">FOCUSED</span> <span class="op">=</span> <span class="number">16</span>;
+        <span class="kw">const</span> <span class="ident">FOCUSED</span> <span class="op">=</span> <span class="ident">ffi::GTK_CELL_RENDERER_FOCUSED</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// The cell is in a row that can be expanded</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CELL_RENDERER_EXPANDABLE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">EXPANDABLE</span> <span class="op">=</span> <span class="number">32</span>;
+        <span class="kw">const</span> <span class="ident">EXPANDABLE</span> <span class="op">=</span> <span class="ident">ffi::GTK_CELL_RENDERER_EXPANDABLE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// The cell is in a row that is expanded</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_CELL_RENDERER_EXPANDED&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">EXPANDED</span> <span class="op">=</span> <span class="number">64</span>;
+        <span class="kw">const</span> <span class="ident">EXPANDED</span> <span class="op">=</span> <span class="ident">ffi::GTK_CELL_RENDERER_EXPANDED</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
@@ -1591,41 +1591,41 @@
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkDebugFlags&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DebugFlags</span>: <span class="ident">u32</span> {
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DEBUG_TEXT&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">TEXT</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">TEXT</span> <span class="op">=</span> <span class="ident">ffi::GTK_DEBUG_TEXT</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DEBUG_TREE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">TREE</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">const</span> <span class="ident">TREE</span> <span class="op">=</span> <span class="ident">ffi::GTK_DEBUG_TREE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DEBUG_KEYBINDINGS&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">KEYBINDINGS</span> <span class="op">=</span> <span class="number">4</span>;
+        <span class="kw">const</span> <span class="ident">KEYBINDINGS</span> <span class="op">=</span> <span class="ident">ffi::GTK_DEBUG_KEYBINDINGS</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DEBUG_MODULES&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">MODULES</span> <span class="op">=</span> <span class="number">8</span>;
+        <span class="kw">const</span> <span class="ident">MODULES</span> <span class="op">=</span> <span class="ident">ffi::GTK_DEBUG_MODULES</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DEBUG_GEOMETRY&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">GEOMETRY</span> <span class="op">=</span> <span class="number">16</span>;
+        <span class="kw">const</span> <span class="ident">GEOMETRY</span> <span class="op">=</span> <span class="ident">ffi::GTK_DEBUG_GEOMETRY</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DEBUG_ICONTHEME&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">ICONTHEME</span> <span class="op">=</span> <span class="number">32</span>;
+        <span class="kw">const</span> <span class="ident">ICONTHEME</span> <span class="op">=</span> <span class="ident">ffi::GTK_DEBUG_ICONTHEME</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DEBUG_PRINTING&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">PRINTING</span> <span class="op">=</span> <span class="number">64</span>;
+        <span class="kw">const</span> <span class="ident">PRINTING</span> <span class="op">=</span> <span class="ident">ffi::GTK_DEBUG_PRINTING</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DEBUG_BUILDER&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">BUILDER</span> <span class="op">=</span> <span class="number">128</span>;
+        <span class="kw">const</span> <span class="ident">BUILDER</span> <span class="op">=</span> <span class="ident">ffi::GTK_DEBUG_BUILDER</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DEBUG_SIZE_REQUEST&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">SIZE_REQUEST</span> <span class="op">=</span> <span class="number">256</span>;
+        <span class="kw">const</span> <span class="ident">SIZE_REQUEST</span> <span class="op">=</span> <span class="ident">ffi::GTK_DEBUG_SIZE_REQUEST</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DEBUG_NO_CSS_CACHE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">NO_CSS_CACHE</span> <span class="op">=</span> <span class="number">512</span>;
+        <span class="kw">const</span> <span class="ident">NO_CSS_CACHE</span> <span class="op">=</span> <span class="ident">ffi::GTK_DEBUG_NO_CSS_CACHE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DEBUG_INTERACTIVE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">INTERACTIVE</span> <span class="op">=</span> <span class="number">1024</span>;
+        <span class="kw">const</span> <span class="ident">INTERACTIVE</span> <span class="op">=</span> <span class="ident">ffi::GTK_DEBUG_INTERACTIVE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DEBUG_TOUCHSCREEN&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">TOUCHSCREEN</span> <span class="op">=</span> <span class="number">2048</span>;
+        <span class="kw">const</span> <span class="ident">TOUCHSCREEN</span> <span class="op">=</span> <span class="ident">ffi::GTK_DEBUG_TOUCHSCREEN</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DEBUG_ACTIONS&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">ACTIONS</span> <span class="op">=</span> <span class="number">4096</span>;
+        <span class="kw">const</span> <span class="ident">ACTIONS</span> <span class="op">=</span> <span class="ident">ffi::GTK_DEBUG_ACTIONS</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DEBUG_LAYOUT&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">LAYOUT</span> <span class="op">=</span> <span class="number">8192</span>;
+        <span class="kw">const</span> <span class="ident">LAYOUT</span> <span class="op">=</span> <span class="ident">ffi::GTK_DEBUG_LAYOUT</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DEBUG_SNAPSHOT&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">SNAPSHOT</span> <span class="op">=</span> <span class="number">16384</span>;
+        <span class="kw">const</span> <span class="ident">SNAPSHOT</span> <span class="op">=</span> <span class="ident">ffi::GTK_DEBUG_SNAPSHOT</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DEBUG_CONSTRAINTS&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">CONSTRAINTS</span> <span class="op">=</span> <span class="number">32768</span>;
+        <span class="kw">const</span> <span class="ident">CONSTRAINTS</span> <span class="op">=</span> <span class="ident">ffi::GTK_DEBUG_CONSTRAINTS</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DEBUG_BUILDER_OBJECTS&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">BUILDER_OBJECTS</span> <span class="op">=</span> <span class="number">65536</span>;
+        <span class="kw">const</span> <span class="ident">BUILDER_OBJECTS</span> <span class="op">=</span> <span class="ident">ffi::GTK_DEBUG_BUILDER_OBJECTS</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DEBUG_A11Y&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">A11Y</span> <span class="op">=</span> <span class="number">131072</span>;
+        <span class="kw">const</span> <span class="ident">A11Y</span> <span class="op">=</span> <span class="ident">ffi::GTK_DEBUG_A11Y</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
@@ -1691,14 +1691,14 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DialogFlags</span>: <span class="ident">u32</span> {
         <span class="doccomment">/// Make the constructed dialog modal</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DIALOG_MODAL&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">MODAL</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">MODAL</span> <span class="op">=</span> <span class="ident">ffi::GTK_DIALOG_MODAL</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Destroy the dialog when its parent is destroyed</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DIALOG_DESTROY_WITH_PARENT&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">DESTROY_WITH_PARENT</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">const</span> <span class="ident">DESTROY_WITH_PARENT</span> <span class="op">=</span> <span class="ident">ffi::GTK_DIALOG_DESTROY_WITH_PARENT</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Create dialog with actions in header</span>
         <span class="doccomment">///  bar instead of action area</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_DIALOG_USE_HEADER_BAR&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">USE_HEADER_BAR</span> <span class="op">=</span> <span class="number">4</span>;
+        <span class="kw">const</span> <span class="ident">USE_HEADER_BAR</span> <span class="op">=</span> <span class="ident">ffi::GTK_DIALOG_USE_HEADER_BAR</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
@@ -1764,22 +1764,22 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EventControllerScrollFlags</span>: <span class="ident">u32</span> {
         <span class="doccomment">/// Don&#39;t emit scroll.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_EVENT_CONTROLLER_SCROLL_NONE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">NONE</span> <span class="op">=</span> <span class="number">0</span>;
+        <span class="kw">const</span> <span class="ident">NONE</span> <span class="op">=</span> <span class="ident">ffi::GTK_EVENT_CONTROLLER_SCROLL_NONE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Emit scroll with vertical deltas.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_EVENT_CONTROLLER_SCROLL_VERTICAL&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">VERTICAL</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">VERTICAL</span> <span class="op">=</span> <span class="ident">ffi::GTK_EVENT_CONTROLLER_SCROLL_VERTICAL</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Emit scroll with horizontal deltas.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_EVENT_CONTROLLER_SCROLL_HORIZONTAL&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">HORIZONTAL</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">const</span> <span class="ident">HORIZONTAL</span> <span class="op">=</span> <span class="ident">ffi::GTK_EVENT_CONTROLLER_SCROLL_HORIZONTAL</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Only emit deltas that are multiples of 1.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_EVENT_CONTROLLER_SCROLL_DISCRETE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">DISCRETE</span> <span class="op">=</span> <span class="number">4</span>;
+        <span class="kw">const</span> <span class="ident">DISCRETE</span> <span class="op">=</span> <span class="ident">ffi::GTK_EVENT_CONTROLLER_SCROLL_DISCRETE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Emit ::decelerate after continuous scroll finishes.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_EVENT_CONTROLLER_SCROLL_KINETIC&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">KINETIC</span> <span class="op">=</span> <span class="number">8</span>;
+        <span class="kw">const</span> <span class="ident">KINETIC</span> <span class="op">=</span> <span class="ident">ffi::GTK_EVENT_CONTROLLER_SCROLL_KINETIC</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Emit scroll on both axes.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">BOTH_AXES</span> <span class="op">=</span> <span class="number">3</span>;
+        <span class="kw">const</span> <span class="ident">BOTH_AXES</span> <span class="op">=</span> <span class="ident">ffi::GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
@@ -1849,19 +1849,19 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FontChooserLevel</span>: <span class="ident">u32</span> {
         <span class="doccomment">/// Allow selecting a font family</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_FONT_CHOOSER_LEVEL_FAMILY&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">FAMILY</span> <span class="op">=</span> <span class="number">0</span>;
+        <span class="kw">const</span> <span class="ident">FAMILY</span> <span class="op">=</span> <span class="ident">ffi::GTK_FONT_CHOOSER_LEVEL_FAMILY</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Allow selecting a specific font face</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_FONT_CHOOSER_LEVEL_STYLE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">STYLE</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">STYLE</span> <span class="op">=</span> <span class="ident">ffi::GTK_FONT_CHOOSER_LEVEL_STYLE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Allow selecting a specific font size</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_FONT_CHOOSER_LEVEL_SIZE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">SIZE</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">const</span> <span class="ident">SIZE</span> <span class="op">=</span> <span class="ident">ffi::GTK_FONT_CHOOSER_LEVEL_SIZE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Allow changing OpenType font variation axes</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_FONT_CHOOSER_LEVEL_VARIATIONS&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">VARIATIONS</span> <span class="op">=</span> <span class="number">4</span>;
+        <span class="kw">const</span> <span class="ident">VARIATIONS</span> <span class="op">=</span> <span class="ident">ffi::GTK_FONT_CHOOSER_LEVEL_VARIATIONS</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Allow selecting specific OpenType font features</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_FONT_CHOOSER_LEVEL_FEATURES&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">FEATURES</span> <span class="op">=</span> <span class="number">8</span>;
+        <span class="kw">const</span> <span class="ident">FEATURES</span> <span class="op">=</span> <span class="ident">ffi::GTK_FONT_CHOOSER_LEVEL_FEATURES</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
@@ -1928,15 +1928,15 @@
         <span class="doccomment">/// Try to always load regular icons, even</span>
         <span class="doccomment">///  when symbolic icon names are given</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ICON_LOOKUP_FORCE_REGULAR&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">FORCE_REGULAR</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">FORCE_REGULAR</span> <span class="op">=</span> <span class="ident">ffi::GTK_ICON_LOOKUP_FORCE_REGULAR</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Try to always load symbolic icons, even</span>
         <span class="doccomment">///  when regular icon names are given</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ICON_LOOKUP_FORCE_SYMBOLIC&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">FORCE_SYMBOLIC</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">const</span> <span class="ident">FORCE_SYMBOLIC</span> <span class="op">=</span> <span class="ident">ffi::GTK_ICON_LOOKUP_FORCE_SYMBOLIC</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Starts loading the texture in the background</span>
         <span class="doccomment">///  so it is ready when later needed.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_ICON_LOOKUP_PRELOAD&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">PRELOAD</span> <span class="op">=</span> <span class="number">4</span>;
+        <span class="kw">const</span> <span class="ident">PRELOAD</span> <span class="op">=</span> <span class="ident">ffi::GTK_ICON_LOOKUP_PRELOAD</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
@@ -2012,47 +2012,47 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">InputHints</span>: <span class="ident">u32</span> {
         <span class="doccomment">/// No special behaviour suggested</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_INPUT_HINT_NONE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">NONE</span> <span class="op">=</span> <span class="number">0</span>;
+        <span class="kw">const</span> <span class="ident">NONE</span> <span class="op">=</span> <span class="ident">ffi::GTK_INPUT_HINT_NONE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Suggest checking for typos</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_INPUT_HINT_SPELLCHECK&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">SPELLCHECK</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">SPELLCHECK</span> <span class="op">=</span> <span class="ident">ffi::GTK_INPUT_HINT_SPELLCHECK</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Suggest not checking for typos</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_INPUT_HINT_NO_SPELLCHECK&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">NO_SPELLCHECK</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">const</span> <span class="ident">NO_SPELLCHECK</span> <span class="op">=</span> <span class="ident">ffi::GTK_INPUT_HINT_NO_SPELLCHECK</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Suggest word completion</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_INPUT_HINT_WORD_COMPLETION&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">WORD_COMPLETION</span> <span class="op">=</span> <span class="number">4</span>;
+        <span class="kw">const</span> <span class="ident">WORD_COMPLETION</span> <span class="op">=</span> <span class="ident">ffi::GTK_INPUT_HINT_WORD_COMPLETION</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Suggest to convert all text to lowercase</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_INPUT_HINT_LOWERCASE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">LOWERCASE</span> <span class="op">=</span> <span class="number">8</span>;
+        <span class="kw">const</span> <span class="ident">LOWERCASE</span> <span class="op">=</span> <span class="ident">ffi::GTK_INPUT_HINT_LOWERCASE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Suggest to capitalize all text</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_INPUT_HINT_UPPERCASE_CHARS&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">UPPERCASE_CHARS</span> <span class="op">=</span> <span class="number">16</span>;
+        <span class="kw">const</span> <span class="ident">UPPERCASE_CHARS</span> <span class="op">=</span> <span class="ident">ffi::GTK_INPUT_HINT_UPPERCASE_CHARS</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Suggest to capitalize the first</span>
         <span class="doccomment">///  character of each word</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_INPUT_HINT_UPPERCASE_WORDS&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">UPPERCASE_WORDS</span> <span class="op">=</span> <span class="number">32</span>;
+        <span class="kw">const</span> <span class="ident">UPPERCASE_WORDS</span> <span class="op">=</span> <span class="ident">ffi::GTK_INPUT_HINT_UPPERCASE_WORDS</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Suggest to capitalize the</span>
         <span class="doccomment">///  first word of each sentence</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_INPUT_HINT_UPPERCASE_SENTENCES&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">UPPERCASE_SENTENCES</span> <span class="op">=</span> <span class="number">64</span>;
+        <span class="kw">const</span> <span class="ident">UPPERCASE_SENTENCES</span> <span class="op">=</span> <span class="ident">ffi::GTK_INPUT_HINT_UPPERCASE_SENTENCES</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Suggest to not show an onscreen keyboard</span>
         <span class="doccomment">///  (e.g for a calculator that already has all the keys).</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_INPUT_HINT_INHIBIT_OSK&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">INHIBIT_OSK</span> <span class="op">=</span> <span class="number">128</span>;
+        <span class="kw">const</span> <span class="ident">INHIBIT_OSK</span> <span class="op">=</span> <span class="ident">ffi::GTK_INPUT_HINT_INHIBIT_OSK</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// The text is vertical</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_INPUT_HINT_VERTICAL_WRITING&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">VERTICAL_WRITING</span> <span class="op">=</span> <span class="number">256</span>;
+        <span class="kw">const</span> <span class="ident">VERTICAL_WRITING</span> <span class="op">=</span> <span class="ident">ffi::GTK_INPUT_HINT_VERTICAL_WRITING</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Suggest offering Emoji support</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_INPUT_HINT_EMOJI&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">EMOJI</span> <span class="op">=</span> <span class="number">512</span>;
+        <span class="kw">const</span> <span class="ident">EMOJI</span> <span class="op">=</span> <span class="ident">ffi::GTK_INPUT_HINT_EMOJI</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Suggest not offering Emoji support</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_INPUT_HINT_NO_EMOJI&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">NO_EMOJI</span> <span class="op">=</span> <span class="number">1024</span>;
+        <span class="kw">const</span> <span class="ident">NO_EMOJI</span> <span class="op">=</span> <span class="ident">ffi::GTK_INPUT_HINT_NO_EMOJI</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Request that the input method should not</span>
         <span class="doccomment">///  update personalized data (like typing history)</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_INPUT_HINT_PRIVATE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">PRIVATE</span> <span class="op">=</span> <span class="number">2048</span>;
+        <span class="kw">const</span> <span class="ident">PRIVATE</span> <span class="op">=</span> <span class="ident">ffi::GTK_INPUT_HINT_PRIVATE</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
@@ -2118,13 +2118,13 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PickFlags</span>: <span class="ident">u32</span> {
         <span class="doccomment">/// The default behavior, include widgets that are receiving events</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PICK_DEFAULT&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">DEFAULT</span> <span class="op">=</span> <span class="number">0</span>;
+        <span class="kw">const</span> <span class="ident">DEFAULT</span> <span class="op">=</span> <span class="ident">ffi::GTK_PICK_DEFAULT</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Include widgets that are insensitive</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PICK_INSENSITIVE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">INSENSITIVE</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">INSENSITIVE</span> <span class="op">=</span> <span class="ident">ffi::GTK_PICK_INSENSITIVE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Include widgets that are marked as non-targetable. See `property::Widget::can-target`</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_PICK_NON_TARGETABLE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">NON_TARGETABLE</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">const</span> <span class="ident">NON_TARGETABLE</span> <span class="op">=</span> <span class="ident">ffi::GTK_PICK_NON_TARGETABLE</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
@@ -2193,7 +2193,7 @@
         <span class="doccomment">///  popovers. Without this flag, submenus are created as</span>
         <span class="doccomment">///  sliding pages that replace the main menu.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_POPOVER_MENU_NESTED&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">NESTED</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">NESTED</span> <span class="op">=</span> <span class="ident">ffi::GTK_POPOVER_MENU_NESTED</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
@@ -2263,7 +2263,7 @@
         <span class="doccomment">///  action that can be activated. If this flag is not set,</span>
         <span class="doccomment">///  a future activation may select a different action.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_SHORTCUT_ACTION_EXCLUSIVE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">EXCLUSIVE</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">EXCLUSIVE</span> <span class="op">=</span> <span class="ident">ffi::GTK_SHORTCUT_ACTION_EXCLUSIVE</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
@@ -2333,52 +2333,52 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StateFlags</span>: <span class="ident">u32</span> {
         <span class="doccomment">/// State during normal operation</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STATE_FLAG_NORMAL&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">NORMAL</span> <span class="op">=</span> <span class="number">0</span>;
+        <span class="kw">const</span> <span class="ident">NORMAL</span> <span class="op">=</span> <span class="ident">ffi::GTK_STATE_FLAG_NORMAL</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Widget is active</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STATE_FLAG_ACTIVE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">ACTIVE</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">ACTIVE</span> <span class="op">=</span> <span class="ident">ffi::GTK_STATE_FLAG_ACTIVE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Widget has a mouse pointer over it</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STATE_FLAG_PRELIGHT&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">PRELIGHT</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">const</span> <span class="ident">PRELIGHT</span> <span class="op">=</span> <span class="ident">ffi::GTK_STATE_FLAG_PRELIGHT</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Widget is selected</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STATE_FLAG_SELECTED&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">SELECTED</span> <span class="op">=</span> <span class="number">4</span>;
+        <span class="kw">const</span> <span class="ident">SELECTED</span> <span class="op">=</span> <span class="ident">ffi::GTK_STATE_FLAG_SELECTED</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Widget is insensitive</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STATE_FLAG_INSENSITIVE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">INSENSITIVE</span> <span class="op">=</span> <span class="number">8</span>;
+        <span class="kw">const</span> <span class="ident">INSENSITIVE</span> <span class="op">=</span> <span class="ident">ffi::GTK_STATE_FLAG_INSENSITIVE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Widget is inconsistent</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STATE_FLAG_INCONSISTENT&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">INCONSISTENT</span> <span class="op">=</span> <span class="number">16</span>;
+        <span class="kw">const</span> <span class="ident">INCONSISTENT</span> <span class="op">=</span> <span class="ident">ffi::GTK_STATE_FLAG_INCONSISTENT</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Widget has the keyboard focus</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STATE_FLAG_FOCUSED&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">FOCUSED</span> <span class="op">=</span> <span class="number">32</span>;
+        <span class="kw">const</span> <span class="ident">FOCUSED</span> <span class="op">=</span> <span class="ident">ffi::GTK_STATE_FLAG_FOCUSED</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Widget is in a background toplevel window</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STATE_FLAG_BACKDROP&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">BACKDROP</span> <span class="op">=</span> <span class="number">64</span>;
+        <span class="kw">const</span> <span class="ident">BACKDROP</span> <span class="op">=</span> <span class="ident">ffi::GTK_STATE_FLAG_BACKDROP</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Widget is in left-to-right text direction</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STATE_FLAG_DIR_LTR&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">DIR_LTR</span> <span class="op">=</span> <span class="number">128</span>;
+        <span class="kw">const</span> <span class="ident">DIR_LTR</span> <span class="op">=</span> <span class="ident">ffi::GTK_STATE_FLAG_DIR_LTR</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Widget is in right-to-left text direction</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STATE_FLAG_DIR_RTL&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">DIR_RTL</span> <span class="op">=</span> <span class="number">256</span>;
+        <span class="kw">const</span> <span class="ident">DIR_RTL</span> <span class="op">=</span> <span class="ident">ffi::GTK_STATE_FLAG_DIR_RTL</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Widget is a link</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STATE_FLAG_LINK&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">LINK</span> <span class="op">=</span> <span class="number">512</span>;
+        <span class="kw">const</span> <span class="ident">LINK</span> <span class="op">=</span> <span class="ident">ffi::GTK_STATE_FLAG_LINK</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// The location the widget points to has already been visited</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STATE_FLAG_VISITED&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">VISITED</span> <span class="op">=</span> <span class="number">1024</span>;
+        <span class="kw">const</span> <span class="ident">VISITED</span> <span class="op">=</span> <span class="ident">ffi::GTK_STATE_FLAG_VISITED</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Widget is checked</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STATE_FLAG_CHECKED&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">CHECKED</span> <span class="op">=</span> <span class="number">2048</span>;
+        <span class="kw">const</span> <span class="ident">CHECKED</span> <span class="op">=</span> <span class="ident">ffi::GTK_STATE_FLAG_CHECKED</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Widget is highlighted as a drop target for DND</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STATE_FLAG_DROP_ACTIVE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">DROP_ACTIVE</span> <span class="op">=</span> <span class="number">4096</span>;
+        <span class="kw">const</span> <span class="ident">DROP_ACTIVE</span> <span class="op">=</span> <span class="ident">ffi::GTK_STATE_FLAG_DROP_ACTIVE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Widget has the visible focus</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STATE_FLAG_FOCUS_VISIBLE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">FOCUS_VISIBLE</span> <span class="op">=</span> <span class="number">8192</span>;
+        <span class="kw">const</span> <span class="ident">FOCUS_VISIBLE</span> <span class="op">=</span> <span class="ident">ffi::GTK_STATE_FLAG_FOCUS_VISIBLE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Widget contains the keyboard focus</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STATE_FLAG_FOCUS_WITHIN&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">FOCUS_WITHIN</span> <span class="op">=</span> <span class="number">16384</span>;
+        <span class="kw">const</span> <span class="ident">FOCUS_WITHIN</span> <span class="op">=</span> <span class="ident">ffi::GTK_STATE_FLAG_FOCUS_WITHIN</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
@@ -2446,19 +2446,19 @@
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StyleContextPrintFlags</span>: <span class="ident">u32</span> {
         <span class="doccomment">/// Default value.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STYLE_CONTEXT_PRINT_NONE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">NONE</span> <span class="op">=</span> <span class="number">0</span>;
+        <span class="kw">const</span> <span class="ident">NONE</span> <span class="op">=</span> <span class="ident">ffi::GTK_STYLE_CONTEXT_PRINT_NONE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Print the entire tree of</span>
         <span class="doccomment">///  CSS nodes starting at the style context&#39;s node</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STYLE_CONTEXT_PRINT_RECURSE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">RECURSE</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">RECURSE</span> <span class="op">=</span> <span class="ident">ffi::GTK_STYLE_CONTEXT_PRINT_RECURSE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Show the values of the</span>
         <span class="doccomment">///  CSS properties for each node</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STYLE_CONTEXT_PRINT_SHOW_STYLE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">SHOW_STYLE</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">const</span> <span class="ident">SHOW_STYLE</span> <span class="op">=</span> <span class="ident">ffi::GTK_STYLE_CONTEXT_PRINT_SHOW_STYLE</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Show information about</span>
         <span class="doccomment">///  what changes affect the styles</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_STYLE_CONTEXT_PRINT_SHOW_CHANGE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">SHOW_CHANGE</span> <span class="op">=</span> <span class="number">4</span>;
+        <span class="kw">const</span> <span class="ident">SHOW_CHANGE</span> <span class="op">=</span> <span class="ident">ffi::GTK_STYLE_CONTEXT_PRINT_SHOW_CHANGE</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
@@ -2529,15 +2529,15 @@
         <span class="doccomment">/// Search only visible data. A search match may</span>
         <span class="doccomment">/// have invisible text interspersed.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_TEXT_SEARCH_VISIBLE_ONLY&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">VISIBLE_ONLY</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">VISIBLE_ONLY</span> <span class="op">=</span> <span class="ident">ffi::GTK_TEXT_SEARCH_VISIBLE_ONLY</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// Search only text. A match may have paintables or</span>
         <span class="doccomment">/// child widgets mixed inside the matched range.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_TEXT_SEARCH_TEXT_ONLY&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">TEXT_ONLY</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">const</span> <span class="ident">TEXT_ONLY</span> <span class="op">=</span> <span class="ident">ffi::GTK_TEXT_SEARCH_TEXT_ONLY</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// The text will be matched regardless of</span>
         <span class="doccomment">/// what case it is in.</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_TEXT_SEARCH_CASE_INSENSITIVE&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">CASE_INSENSITIVE</span> <span class="op">=</span> <span class="number">4</span>;
+        <span class="kw">const</span> <span class="ident">CASE_INSENSITIVE</span> <span class="op">=</span> <span class="ident">ffi::GTK_TEXT_SEARCH_CASE_INSENSITIVE</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
@@ -2609,11 +2609,11 @@
         <span class="doccomment">/// iterators survive all signals</span>
         <span class="doccomment">///  emitted by the tree</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_TREE_MODEL_ITERS_PERSIST&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">ITERS_PERSIST</span> <span class="op">=</span> <span class="number">1</span>;
+        <span class="kw">const</span> <span class="ident">ITERS_PERSIST</span> <span class="op">=</span> <span class="ident">ffi::GTK_TREE_MODEL_ITERS_PERSIST</span> <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="doccomment">/// the model is a list only, and never</span>
         <span class="doccomment">///  has children</span>
         <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GTK_TREE_MODEL_LIST_ONLY&quot;</span>)]</span>
-        <span class="kw">const</span> <span class="ident">LIST_ONLY</span> <span class="op">=</span> <span class="number">2</span>;
+        <span class="kw">const</span> <span class="ident">LIST_ONLY</span> <span class="op">=</span> <span class="ident">ffi::GTK_TREE_MODEL_LIST_ONLY</span> <span class="kw">as</span> <span class="ident">u32</span>;
     }
 }
 
