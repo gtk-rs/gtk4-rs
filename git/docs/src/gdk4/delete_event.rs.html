@@ -31,6 +31,7 @@
 <span id="26">26</span>
 <span id="27">27</span>
 <span id="28">28</span>
+<span id="29">29</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -40,6 +41,7 @@
 
 <span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// An event related to closing a top-level surface.</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkDeleteEvent&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DeleteEvent</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GdkDeleteEvent</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {

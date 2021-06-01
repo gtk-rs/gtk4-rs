@@ -78,6 +78,7 @@
 <span id="73">73</span>
 <span id="74">74</span>
 <span id="75">75</span>
+<span id="76">76</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -87,6 +88,7 @@
 <span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// A `GObject` value in a [`Expression`][crate::Expression].</span>
     <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GtkObjectExpression&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ObjectExpression</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GtkObjectExpression</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {

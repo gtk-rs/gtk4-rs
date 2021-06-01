@@ -46,6 +46,7 @@
 <span id="41">41</span>
 <span id="42">42</span>
 <span id="43">43</span>
+<span id="44">44</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -55,6 +56,7 @@
 
 <span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// An event related to drag and drop operations.</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkDNDEvent&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DNDEvent</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GdkDNDEvent</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {

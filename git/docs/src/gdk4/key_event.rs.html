@@ -172,6 +172,7 @@
 <span id="167">167</span>
 <span id="168">168</span>
 <span id="169">169</span>
+<span id="170">170</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -182,6 +183,7 @@
 
 <span class="macro">glib::wrapper!</span> {
     <span class="doccomment">/// An event related to a key-based device.</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkKeyEvent&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">KeyEvent</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GdkKeyEvent</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {

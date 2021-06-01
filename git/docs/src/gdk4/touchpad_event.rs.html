@@ -120,6 +120,7 @@
 <span id="115">115</span>
 <span id="116">116</span>
 <span id="117">117</span>
+<span id="118">118</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -135,6 +136,7 @@
     <span class="doccomment">/// sequences of begin, update, end events, and leaves gesture</span>
     <span class="doccomment">/// recognition to the clients, touchpad gestures are typically</span>
     <span class="doccomment">/// processed by the system, resulting in these events.</span>
+    <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkTouchpadEvent&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TouchpadEvent</span>(<span class="ident">Shared</span><span class="op">&lt;</span><span class="ident">ffi::GdkTouchpadEvent</span><span class="op">&gt;</span>);
 
     <span class="kw">match</span> <span class="kw">fn</span> {

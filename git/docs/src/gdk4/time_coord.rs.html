@@ -96,6 +96,7 @@
 <span id="91">91</span>
 <span id="92">92</span>
 <span id="93">93</span>
+<span id="94">94</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -105,6 +106,7 @@
 
 <span class="doccomment">/// A [`TimeCoord`][crate::TimeCoord] stores a single event in a motion history.</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
+<span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;GdkTimeCoord&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TimeCoord</span>(<span class="ident">ffi::GdkTimeCoord</span>);
 
 <span class="kw">impl</span> <span class="ident">TimeCoord</span> {
