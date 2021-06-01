@@ -23,6 +23,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkSpinner")]
     pub struct Spinner(Object<ffi::GtkSpinner>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
@@ -38,7 +39,8 @@ impl Spinner {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Spinner`]
+    /// Creates a new builder-style object to construct a [`Spinner`].
+    ///
     /// This method returns an instance of [`SpinnerBuilder`] which can be used to create a [`Spinner`].
     pub fn builder() -> SpinnerBuilder {
         SpinnerBuilder::default()

@@ -12,6 +12,7 @@ use glib::ToValue;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkConstraintLayoutChild")]
     pub struct ConstraintLayoutChild(Object<ffi::GtkConstraintLayoutChild, ffi::GtkConstraintLayoutChildClass>) @extends LayoutChild;
 
     match fn {
@@ -21,7 +22,8 @@ glib::wrapper! {
 
 impl ConstraintLayoutChild {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ConstraintLayoutChild`]
+    /// Creates a new builder-style object to construct a [`ConstraintLayoutChild`].
+    ///
     /// This method returns an instance of [`ConstraintLayoutChildBuilder`] which can be used to create a [`ConstraintLayoutChild`].
     pub fn builder() -> ConstraintLayoutChildBuilder {
         ConstraintLayoutChildBuilder::default()

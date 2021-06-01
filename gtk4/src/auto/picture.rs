@@ -23,6 +23,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkPicture")]
     pub struct Picture(Object<ffi::GtkPicture, ffi::GtkPictureClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
@@ -96,7 +97,8 @@ impl Picture {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Picture`]
+    /// Creates a new builder-style object to construct a [`Picture`].
+    ///
     /// This method returns an instance of [`PictureBuilder`] which can be used to create a [`Picture`].
     pub fn builder() -> PictureBuilder {
         PictureBuilder::default()

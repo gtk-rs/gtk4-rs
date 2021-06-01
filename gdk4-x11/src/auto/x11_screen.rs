@@ -12,6 +12,7 @@ use std::mem::transmute;
 use x11::xlib;
 
 glib::wrapper! {
+    #[doc(alias = "GdkX11Screen")]
     pub struct X11Screen(Object<ffi::GdkX11Screen, ffi::GdkX11ScreenClass>);
 
     match fn {

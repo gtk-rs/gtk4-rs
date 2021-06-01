@@ -15,6 +15,7 @@ use std::mem;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkCellAreaContext")]
     pub struct CellAreaContext(Object<ffi::GtkCellAreaContext, ffi::GtkCellAreaContextClass>);
 
     match fn {

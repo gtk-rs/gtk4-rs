@@ -17,6 +17,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkAssistantPage")]
     pub struct AssistantPage(Object<ffi::GtkAssistantPage>);
 
     match fn {
@@ -26,7 +27,8 @@ glib::wrapper! {
 
 impl AssistantPage {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`AssistantPage`]
+    /// Creates a new builder-style object to construct a [`AssistantPage`].
+    ///
     /// This method returns an instance of [`AssistantPageBuilder`] which can be used to create a [`AssistantPage`].
     pub fn builder() -> AssistantPageBuilder {
         AssistantPageBuilder::default()

@@ -8,6 +8,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GdkGLTexture")]
     pub struct GLTexture(Object<ffi::GdkGLTexture, ffi::GdkGLTextureClass>) @extends Texture, @implements Paintable;
 
     match fn {

@@ -24,6 +24,7 @@ use std::mem::transmute;
 use std::ptr;
 
 glib::wrapper! {
+    #[doc(alias = "GtkPrintJob")]
     pub struct PrintJob(Object<ffi::GtkPrintJob>);
 
     match fn {
@@ -51,7 +52,8 @@ impl PrintJob {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`PrintJob`]
+    /// Creates a new builder-style object to construct a [`PrintJob`].
+    ///
     /// This method returns an instance of [`PrintJobBuilder`] which can be used to create a [`PrintJob`].
     pub fn builder() -> PrintJobBuilder {
         PrintJobBuilder::default()

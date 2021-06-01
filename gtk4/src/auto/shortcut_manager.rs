@@ -6,6 +6,7 @@ use glib::object::IsA;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkShortcutManager")]
     pub struct ShortcutManager(Interface<ffi::GtkShortcutManager, ffi::GtkShortcutManagerInterface>);
 
     match fn {

@@ -11,6 +11,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkConstraintLayout")]
     pub struct ConstraintLayout(Object<ffi::GtkConstraintLayout, ffi::GtkConstraintLayoutClass>) @extends LayoutManager, @implements Buildable;
 
     match fn {

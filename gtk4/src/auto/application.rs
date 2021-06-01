@@ -16,6 +16,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkApplication")]
     pub struct Application(Object<ffi::GtkApplication, ffi::GtkApplicationClass>) @extends gio::Application, @implements gio::ActionGroup, gio::ActionMap;
 
     match fn {
@@ -25,7 +26,8 @@ glib::wrapper! {
 
 impl Application {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Application`]
+    /// Creates a new builder-style object to construct a [`Application`].
+    ///
     /// This method returns an instance of [`ApplicationBuilder`] which can be used to create a [`Application`].
     pub fn builder() -> ApplicationBuilder {
         ApplicationBuilder::default()

@@ -21,6 +21,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GdkToplevel")]
     pub struct Toplevel(Interface<ffi::GdkToplevel, ffi::GdkToplevelInterface>) @requires Surface;
 
     match fn {

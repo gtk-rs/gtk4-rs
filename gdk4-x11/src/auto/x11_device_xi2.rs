@@ -11,6 +11,7 @@ use glib::ToValue;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GdkX11DeviceXI2")]
     pub struct X11DeviceXI2(Object<ffi::GdkX11DeviceXI2, ffi::GdkX11DeviceXI2Class>) @extends gdk::Device;
 
     match fn {
@@ -20,7 +21,8 @@ glib::wrapper! {
 
 impl X11DeviceXI2 {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`X11DeviceXI2`]
+    /// Creates a new builder-style object to construct a [`X11DeviceXI2`].
+    ///
     /// This method returns an instance of [`X11DeviceXI2Builder`] which can be used to create a [`X11DeviceXI2`].
     pub fn builder() -> X11DeviceXI2Builder {
         X11DeviceXI2Builder::default()

@@ -21,6 +21,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkShortcutController")]
     pub struct ShortcutController(Object<ffi::GtkShortcutController, ffi::GtkShortcutControllerClass>) @extends EventController, @implements gio::ListModel, Buildable;
 
     match fn {
@@ -48,7 +49,8 @@ impl ShortcutController {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ShortcutController`]
+    /// Creates a new builder-style object to construct a [`ShortcutController`].
+    ///
     /// This method returns an instance of [`ShortcutControllerBuilder`] which can be used to create a [`ShortcutController`].
     pub fn builder() -> ShortcutControllerBuilder {
         ShortcutControllerBuilder::default()

@@ -24,6 +24,7 @@ use std::mem::transmute;
 use std::ptr;
 
 glib::wrapper! {
+    #[doc(alias = "GdkSurface")]
     pub struct Surface(Object<ffi::GdkSurface, ffi::GdkSurfaceClass>);
 
     match fn {

@@ -8,6 +8,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GskNglRenderer")]
     pub struct NglRenderer(Object<ffi::GskNglRenderer, ffi::GskNglRendererClass>) @extends Renderer;
 
     match fn {

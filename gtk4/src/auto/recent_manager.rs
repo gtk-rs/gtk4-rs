@@ -16,6 +16,7 @@ use std::mem::transmute;
 use std::ptr;
 
 glib::wrapper! {
+    #[doc(alias = "GtkRecentManager")]
     pub struct RecentManager(Object<ffi::GtkRecentManager, ffi::GtkRecentManagerClass>);
 
     match fn {

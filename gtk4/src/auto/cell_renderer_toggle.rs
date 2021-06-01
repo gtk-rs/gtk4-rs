@@ -17,6 +17,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkCellRendererToggle")]
     pub struct CellRendererToggle(Object<ffi::GtkCellRendererToggle>) @extends CellRenderer;
 
     match fn {
@@ -32,7 +33,8 @@ impl CellRendererToggle {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`CellRendererToggle`]
+    /// Creates a new builder-style object to construct a [`CellRendererToggle`].
+    ///
     /// This method returns an instance of [`CellRendererToggleBuilder`] which can be used to create a [`CellRendererToggle`].
     pub fn builder() -> CellRendererToggleBuilder {
         CellRendererToggleBuilder::default()

@@ -15,6 +15,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkSorter")]
     pub struct Sorter(Object<ffi::GtkSorter, ffi::GtkSorterClass>);
 
     match fn {

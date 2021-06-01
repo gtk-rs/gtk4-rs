@@ -16,6 +16,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkStyleContext")]
     pub struct StyleContext(Object<ffi::GtkStyleContext, ffi::GtkStyleContextClass>);
 
     match fn {

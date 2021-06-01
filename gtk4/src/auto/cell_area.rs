@@ -27,6 +27,7 @@ use std::mem;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkCellArea")]
     pub struct CellArea(Object<ffi::GtkCellArea, ffi::GtkCellAreaClass>) @implements Buildable, CellLayout;
 
     match fn {

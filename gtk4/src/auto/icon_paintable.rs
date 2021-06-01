@@ -10,6 +10,7 @@ use glib::ToValue;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkIconPaintable")]
     pub struct IconPaintable(Object<ffi::GtkIconPaintable>) @implements gdk::Paintable;
 
     match fn {
@@ -32,7 +33,8 @@ impl IconPaintable {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`IconPaintable`]
+    /// Creates a new builder-style object to construct a [`IconPaintable`].
+    ///
     /// This method returns an instance of [`IconPaintableBuilder`] which can be used to create a [`IconPaintable`].
     pub fn builder() -> IconPaintableBuilder {
         IconPaintableBuilder::default()

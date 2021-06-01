@@ -23,6 +23,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkWindowHandle")]
     pub struct WindowHandle(Object<ffi::GtkWindowHandle, ffi::GtkWindowHandleClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
@@ -38,7 +39,8 @@ impl WindowHandle {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`WindowHandle`]
+    /// Creates a new builder-style object to construct a [`WindowHandle`].
+    ///
     /// This method returns an instance of [`WindowHandleBuilder`] which can be used to create a [`WindowHandle`].
     pub fn builder() -> WindowHandleBuilder {
         WindowHandleBuilder::default()

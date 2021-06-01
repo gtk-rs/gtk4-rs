@@ -25,6 +25,7 @@ use std::mem::transmute;
 use std::ptr;
 
 glib::wrapper! {
+    #[doc(alias = "GtkPrintOperation")]
     pub struct PrintOperation(Object<ffi::GtkPrintOperation, ffi::GtkPrintOperationClass>) @implements PrintOperationPreview;
 
     match fn {
@@ -40,7 +41,8 @@ impl PrintOperation {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`PrintOperation`]
+    /// Creates a new builder-style object to construct a [`PrintOperation`].
+    ///
     /// This method returns an instance of [`PrintOperationBuilder`] which can be used to create a [`PrintOperation`].
     pub fn builder() -> PrintOperationBuilder {
         PrintOperationBuilder::default()

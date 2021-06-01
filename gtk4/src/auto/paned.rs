@@ -27,6 +27,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkPaned")]
     pub struct Paned(Object<ffi::GtkPaned>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable;
 
     match fn {
@@ -42,7 +43,8 @@ impl Paned {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Paned`]
+    /// Creates a new builder-style object to construct a [`Paned`].
+    ///
     /// This method returns an instance of [`PanedBuilder`] which can be used to create a [`Paned`].
     pub fn builder() -> PanedBuilder {
         PanedBuilder::default()

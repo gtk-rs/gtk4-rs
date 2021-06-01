@@ -5,6 +5,7 @@
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkListItemFactory")]
     pub struct ListItemFactory(Object<ffi::GtkListItemFactory, ffi::GtkListItemFactoryClass>);
 
     match fn {

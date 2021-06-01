@@ -24,6 +24,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkColorChooserWidget")]
     pub struct ColorChooserWidget(Object<ffi::GtkColorChooserWidget>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, ColorChooser;
 
     match fn {
@@ -39,7 +40,8 @@ impl ColorChooserWidget {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ColorChooserWidget`]
+    /// Creates a new builder-style object to construct a [`ColorChooserWidget`].
+    ///
     /// This method returns an instance of [`ColorChooserWidgetBuilder`] which can be used to create a [`ColorChooserWidget`].
     pub fn builder() -> ColorChooserWidgetBuilder {
         ColorChooserWidgetBuilder::default()

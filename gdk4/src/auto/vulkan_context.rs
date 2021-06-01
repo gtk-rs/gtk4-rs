@@ -12,6 +12,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GdkVulkanContext")]
     pub struct VulkanContext(Object<ffi::GdkVulkanContext>) @extends DrawContext;
 
     match fn {

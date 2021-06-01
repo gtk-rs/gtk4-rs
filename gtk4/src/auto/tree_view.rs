@@ -39,6 +39,7 @@ use std::mem::transmute;
 use std::ptr;
 
 glib::wrapper! {
+    #[doc(alias = "GtkTreeView")]
     pub struct TreeView(Object<ffi::GtkTreeView, ffi::GtkTreeViewClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Scrollable;
 
     match fn {
@@ -66,7 +67,8 @@ impl TreeView {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TreeView`]
+    /// Creates a new builder-style object to construct a [`TreeView`].
+    ///
     /// This method returns an instance of [`TreeViewBuilder`] which can be used to create a [`TreeView`].
     pub fn builder() -> TreeViewBuilder {
         TreeViewBuilder::default()

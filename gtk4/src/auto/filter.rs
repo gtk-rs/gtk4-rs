@@ -14,6 +14,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkFilter")]
     pub struct Filter(Object<ffi::GtkFilter, ffi::GtkFilterClass>);
 
     match fn {

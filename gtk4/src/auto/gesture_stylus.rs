@@ -21,6 +21,7 @@ use std::mem::transmute;
 use std::ptr;
 
 glib::wrapper! {
+    #[doc(alias = "GtkGestureStylus")]
     pub struct GestureStylus(Object<ffi::GtkGestureStylus, ffi::GtkGestureStylusClass>) @extends GestureSingle, Gesture, EventController;
 
     match fn {
@@ -36,7 +37,8 @@ impl GestureStylus {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GestureStylus`]
+    /// Creates a new builder-style object to construct a [`GestureStylus`].
+    ///
     /// This method returns an instance of [`GestureStylusBuilder`] which can be used to create a [`GestureStylus`].
     pub fn builder() -> GestureStylusBuilder {
         GestureStylusBuilder::default()

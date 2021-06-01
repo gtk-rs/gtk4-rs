@@ -20,6 +20,7 @@ use std::pin::Pin;
 use std::ptr;
 
 glib::wrapper! {
+    #[doc(alias = "GdkDrop")]
     pub struct Drop(Object<ffi::GdkDrop>);
 
     match fn {

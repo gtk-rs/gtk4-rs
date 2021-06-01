@@ -8,6 +8,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkSnapshot")]
     pub struct Snapshot(Object<ffi::GtkSnapshot, ffi::GtkSnapshotClass>) @extends gdk::Snapshot;
 
     match fn {

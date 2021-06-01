@@ -16,6 +16,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkSingleSelection")]
     pub struct SingleSelection(Object<ffi::GtkSingleSelection, ffi::GtkSingleSelectionClass>) @implements gio::ListModel, SelectionModel;
 
     match fn {
@@ -35,7 +36,8 @@ impl SingleSelection {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`SingleSelection`]
+    /// Creates a new builder-style object to construct a [`SingleSelection`].
+    ///
     /// This method returns an instance of [`SingleSelectionBuilder`] which can be used to create a [`SingleSelection`].
     pub fn builder() -> SingleSelectionBuilder {
         SingleSelectionBuilder::default()

@@ -16,6 +16,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkTreeListModel")]
     pub struct TreeListModel(Object<ffi::GtkTreeListModel, ffi::GtkTreeListModelClass>) @implements gio::ListModel;
 
     match fn {
@@ -69,7 +70,8 @@ impl TreeListModel {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TreeListModel`]
+    /// Creates a new builder-style object to construct a [`TreeListModel`].
+    ///
     /// This method returns an instance of [`TreeListModelBuilder`] which can be used to create a [`TreeListModel`].
     pub fn builder() -> TreeListModelBuilder {
         TreeListModelBuilder::default()

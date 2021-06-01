@@ -31,6 +31,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkEntry")]
     pub struct Entry(Object<ffi::GtkEntry, ffi::GtkEntryClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, CellEditable, Editable;
 
     match fn {
@@ -58,7 +59,8 @@ impl Entry {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Entry`]
+    /// Creates a new builder-style object to construct a [`Entry`].
+    ///
     /// This method returns an instance of [`EntryBuilder`] which can be used to create a [`Entry`].
     pub fn builder() -> EntryBuilder {
         EntryBuilder::default()

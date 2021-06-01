@@ -23,6 +23,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkPopoverMenuBar")]
     pub struct PopoverMenuBar(Object<ffi::GtkPopoverMenuBar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
@@ -44,7 +45,8 @@ impl PopoverMenuBar {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`PopoverMenuBar`]
+    /// Creates a new builder-style object to construct a [`PopoverMenuBar`].
+    ///
     /// This method returns an instance of [`PopoverMenuBarBuilder`] which can be used to create a [`PopoverMenuBar`].
     pub fn builder() -> PopoverMenuBarBuilder {
         PopoverMenuBarBuilder::default()

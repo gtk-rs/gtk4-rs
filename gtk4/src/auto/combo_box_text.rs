@@ -23,6 +23,7 @@ use glib::ToValue;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkComboBoxText")]
     pub struct ComboBoxText(Object<ffi::GtkComboBoxText>) @extends ComboBox, Widget, @implements Accessible, Buildable, ConstraintTarget, CellEditable, CellLayout;
 
     match fn {
@@ -45,7 +46,8 @@ impl ComboBoxText {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ComboBoxText`]
+    /// Creates a new builder-style object to construct a [`ComboBoxText`].
+    ///
     /// This method returns an instance of [`ComboBoxTextBuilder`] which can be used to create a [`ComboBoxText`].
     pub fn builder() -> ComboBoxTextBuilder {
         ComboBoxTextBuilder::default()

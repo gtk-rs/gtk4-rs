@@ -20,6 +20,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GdkDrag")]
     pub struct Drag(Object<ffi::GdkDrag>);
 
     match fn {

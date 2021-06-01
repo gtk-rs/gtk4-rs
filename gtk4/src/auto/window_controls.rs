@@ -24,6 +24,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkWindowControls")]
     pub struct WindowControls(Object<ffi::GtkWindowControls, ffi::GtkWindowControlsClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
@@ -41,7 +42,8 @@ impl WindowControls {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`WindowControls`]
+    /// Creates a new builder-style object to construct a [`WindowControls`].
+    ///
     /// This method returns an instance of [`WindowControlsBuilder`] which can be used to create a [`WindowControls`].
     pub fn builder() -> WindowControlsBuilder {
         WindowControlsBuilder::default()

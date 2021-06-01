@@ -8,6 +8,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GskBroadwayRenderer")]
     pub struct BroadwayRenderer(Object<ffi::GskBroadwayRenderer, ffi::GskBroadwayRendererClass>) @extends Renderer;
 
     match fn {

@@ -17,6 +17,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkTextTag")]
     pub struct TextTag(Object<ffi::GtkTextTag, ffi::GtkTextTagClass>);
 
     match fn {
@@ -32,7 +33,8 @@ impl TextTag {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TextTag`]
+    /// Creates a new builder-style object to construct a [`TextTag`].
+    ///
     /// This method returns an instance of [`TextTagBuilder`] which can be used to create a [`TextTag`].
     pub fn builder() -> TextTagBuilder {
         TextTagBuilder::default()

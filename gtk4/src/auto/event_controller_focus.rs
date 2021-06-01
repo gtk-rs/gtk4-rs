@@ -17,6 +17,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkEventControllerFocus")]
     pub struct EventControllerFocus(Object<ffi::GtkEventControllerFocus, ffi::GtkEventControllerFocusClass>) @extends EventController;
 
     match fn {
@@ -34,7 +35,8 @@ impl EventControllerFocus {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`EventControllerFocus`]
+    /// Creates a new builder-style object to construct a [`EventControllerFocus`].
+    ///
     /// This method returns an instance of [`EventControllerFocusBuilder`] which can be used to create a [`EventControllerFocus`].
     pub fn builder() -> EventControllerFocusBuilder {
         EventControllerFocusBuilder::default()

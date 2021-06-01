@@ -24,6 +24,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkEditableLabel")]
     pub struct EditableLabel(Object<ffi::GtkEditableLabel, ffi::GtkEditableLabelClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
 
     match fn {
@@ -41,7 +42,8 @@ impl EditableLabel {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`EditableLabel`]
+    /// Creates a new builder-style object to construct a [`EditableLabel`].
+    ///
     /// This method returns an instance of [`EditableLabelBuilder`] which can be used to create a [`EditableLabel`].
     pub fn builder() -> EditableLabelBuilder {
         EditableLabelBuilder::default()

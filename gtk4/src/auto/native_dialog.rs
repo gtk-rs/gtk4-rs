@@ -15,6 +15,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkNativeDialog")]
     pub struct NativeDialog(Object<ffi::GtkNativeDialog, ffi::GtkNativeDialogClass>);
 
     match fn {

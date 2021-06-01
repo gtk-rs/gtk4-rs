@@ -23,6 +23,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkStatusbar")]
     pub struct Statusbar(Object<ffi::GtkStatusbar>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
@@ -38,7 +39,8 @@ impl Statusbar {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Statusbar`]
+    /// Creates a new builder-style object to construct a [`Statusbar`].
+    ///
     /// This method returns an instance of [`StatusbarBuilder`] which can be used to create a [`Statusbar`].
     pub fn builder() -> StatusbarBuilder {
         StatusbarBuilder::default()

@@ -8,6 +8,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkOverlayLayout")]
     pub struct OverlayLayout(Object<ffi::GtkOverlayLayout, ffi::GtkOverlayLayoutClass>) @extends LayoutManager;
 
     match fn {

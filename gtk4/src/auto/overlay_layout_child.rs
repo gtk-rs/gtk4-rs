@@ -18,6 +18,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkOverlayLayoutChild")]
     pub struct OverlayLayoutChild(Object<ffi::GtkOverlayLayoutChild, ffi::GtkOverlayLayoutChildClass>) @extends LayoutChild;
 
     match fn {
@@ -27,7 +28,8 @@ glib::wrapper! {
 
 impl OverlayLayoutChild {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`OverlayLayoutChild`]
+    /// Creates a new builder-style object to construct a [`OverlayLayoutChild`].
+    ///
     /// This method returns an instance of [`OverlayLayoutChildBuilder`] which can be used to create a [`OverlayLayoutChild`].
     pub fn builder() -> OverlayLayoutChildBuilder {
         OverlayLayoutChildBuilder::default()

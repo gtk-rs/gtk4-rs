@@ -11,6 +11,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkTreeListRow")]
     pub struct TreeListRow(Object<ffi::GtkTreeListRow, ffi::GtkTreeListRowClass>);
 
     match fn {

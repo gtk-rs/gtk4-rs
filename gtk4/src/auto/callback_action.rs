@@ -9,6 +9,7 @@ use std::boxed::Box as Box_;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkCallbackAction")]
     pub struct CallbackAction(Object<ffi::GtkCallbackAction, ffi::GtkCallbackActionClass>) @extends ShortcutAction;
 
     match fn {

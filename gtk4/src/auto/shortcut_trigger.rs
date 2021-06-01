@@ -7,6 +7,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkShortcutTrigger")]
     pub struct ShortcutTrigger(Object<ffi::GtkShortcutTrigger, ffi::GtkShortcutTriggerClass>);
 
     match fn {

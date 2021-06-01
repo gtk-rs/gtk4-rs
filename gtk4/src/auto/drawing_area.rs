@@ -22,6 +22,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkDrawingArea")]
     pub struct DrawingArea(Object<ffi::GtkDrawingArea, ffi::GtkDrawingAreaClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget;
 
     match fn {
@@ -37,7 +38,8 @@ impl DrawingArea {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`DrawingArea`]
+    /// Creates a new builder-style object to construct a [`DrawingArea`].
+    ///
     /// This method returns an instance of [`DrawingAreaBuilder`] which can be used to create a [`DrawingArea`].
     pub fn builder() -> DrawingAreaBuilder {
         DrawingAreaBuilder::default()

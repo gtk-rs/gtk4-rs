@@ -18,6 +18,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkListBase")]
     pub struct ListBase(Object<ffi::GtkListBase, ffi::GtkListBaseClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable, Scrollable;
 
     match fn {

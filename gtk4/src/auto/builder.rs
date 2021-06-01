@@ -15,6 +15,7 @@ use std::mem::transmute;
 use std::ptr;
 
 glib::wrapper! {
+    #[doc(alias = "GtkBuilder")]
     pub struct Builder(Object<ffi::GtkBuilder, ffi::GtkBuilderClass>);
 
     match fn {

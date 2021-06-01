@@ -13,6 +13,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkMediaFile")]
     pub struct MediaFile(Object<ffi::GtkMediaFile, ffi::GtkMediaFileClass>) @extends MediaStream, @implements gdk::Paintable;
 
     match fn {

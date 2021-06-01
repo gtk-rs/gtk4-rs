@@ -13,6 +13,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkNoSelection")]
     pub struct NoSelection(Object<ffi::GtkNoSelection, ffi::GtkNoSelectionClass>) @implements gio::ListModel, SelectionModel;
 
     match fn {

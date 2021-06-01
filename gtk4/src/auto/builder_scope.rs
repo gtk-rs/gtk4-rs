@@ -6,6 +6,7 @@ use glib::object::IsA;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkBuilderScope")]
     pub struct BuilderScope(Interface<ffi::GtkBuilderScope, ffi::GtkBuilderScopeInterface>);
 
     match fn {

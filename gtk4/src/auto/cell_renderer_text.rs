@@ -17,6 +17,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkCellRendererText")]
     pub struct CellRendererText(Object<ffi::GtkCellRendererText, ffi::GtkCellRendererTextClass>) @extends CellRenderer;
 
     match fn {
@@ -32,7 +33,8 @@ impl CellRendererText {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`CellRendererText`]
+    /// Creates a new builder-style object to construct a [`CellRendererText`].
+    ///
     /// This method returns an instance of [`CellRendererTextBuilder`] which can be used to create a [`CellRendererText`].
     pub fn builder() -> CellRendererTextBuilder {
         CellRendererTextBuilder::default()

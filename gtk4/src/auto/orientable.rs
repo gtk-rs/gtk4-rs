@@ -13,6 +13,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkOrientable")]
     pub struct Orientable(Interface<ffi::GtkOrientable, ffi::GtkOrientableIface>);
 
     match fn {

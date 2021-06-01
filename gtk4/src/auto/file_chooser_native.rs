@@ -20,6 +20,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkFileChooserNative")]
     pub struct FileChooserNative(Object<ffi::GtkFileChooserNative, ffi::GtkFileChooserNativeClass>) @extends NativeDialog, @implements FileChooser;
 
     match fn {
@@ -49,7 +50,8 @@ impl FileChooserNative {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`FileChooserNative`]
+    /// Creates a new builder-style object to construct a [`FileChooserNative`].
+    ///
     /// This method returns an instance of [`FileChooserNativeBuilder`] which can be used to create a [`FileChooserNative`].
     pub fn builder() -> FileChooserNativeBuilder {
         FileChooserNativeBuilder::default()

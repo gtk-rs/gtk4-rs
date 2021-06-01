@@ -17,6 +17,7 @@ use std::mem;
 use std::ptr;
 
 glib::wrapper! {
+    #[doc(alias = "GtkPrintSettings")]
     pub struct PrintSettings(Object<ffi::GtkPrintSettings>);
 
     match fn {

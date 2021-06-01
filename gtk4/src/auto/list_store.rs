@@ -13,6 +13,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkListStore")]
     pub struct ListStore(Object<ffi::GtkListStore, ffi::GtkListStoreClass>) @implements Buildable, TreeDragDest, TreeDragSource, TreeModel, TreeSortable;
 
     match fn {

@@ -18,6 +18,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkCellRendererProgress")]
     pub struct CellRendererProgress(Object<ffi::GtkCellRendererProgress>) @extends CellRenderer, @implements Orientable;
 
     match fn {
@@ -33,7 +34,8 @@ impl CellRendererProgress {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`CellRendererProgress`]
+    /// Creates a new builder-style object to construct a [`CellRendererProgress`].
+    ///
     /// This method returns an instance of [`CellRendererProgressBuilder`] which can be used to create a [`CellRendererProgress`].
     pub fn builder() -> CellRendererProgressBuilder {
         CellRendererProgressBuilder::default()

@@ -18,6 +18,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkEventControllerScroll")]
     pub struct EventControllerScroll(Object<ffi::GtkEventControllerScroll, ffi::GtkEventControllerScrollClass>) @extends EventController;
 
     match fn {
@@ -36,7 +37,8 @@ impl EventControllerScroll {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`EventControllerScroll`]
+    /// Creates a new builder-style object to construct a [`EventControllerScroll`].
+    ///
     /// This method returns an instance of [`EventControllerScrollBuilder`] which can be used to create a [`EventControllerScroll`].
     pub fn builder() -> EventControllerScrollBuilder {
         EventControllerScrollBuilder::default()

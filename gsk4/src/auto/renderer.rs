@@ -13,6 +13,7 @@ use std::mem::transmute;
 use std::ptr;
 
 glib::wrapper! {
+    #[doc(alias = "GskRenderer")]
     pub struct Renderer(Object<ffi::GskRenderer, ffi::GskRendererClass>);
 
     match fn {

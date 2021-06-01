@@ -25,6 +25,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkSearchEntry")]
     pub struct SearchEntry(Object<ffi::GtkSearchEntry>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Editable;
 
     match fn {
@@ -40,7 +41,8 @@ impl SearchEntry {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`SearchEntry`]
+    /// Creates a new builder-style object to construct a [`SearchEntry`].
+    ///
     /// This method returns an instance of [`SearchEntryBuilder`] which can be used to create a [`SearchEntry`].
     pub fn builder() -> SearchEntryBuilder {
         SearchEntryBuilder::default()

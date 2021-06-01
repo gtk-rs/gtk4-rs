@@ -16,6 +16,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkATContext")]
     pub struct ATContext(Object<ffi::GtkATContext, ffi::GtkATContextClass>);
 
     match fn {

@@ -9,6 +9,7 @@ use std::fmt;
 use x11::xlib;
 
 glib::wrapper! {
+    #[doc(alias = "GdkX11Surface")]
     pub struct X11Surface(Object<ffi::GdkX11Surface, ffi::GdkX11SurfaceClass>) @extends gdk::Surface;
 
     match fn {

@@ -8,6 +8,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkBinLayout")]
     pub struct BinLayout(Object<ffi::GtkBinLayout, ffi::GtkBinLayoutClass>) @extends LayoutManager;
 
     match fn {

@@ -20,6 +20,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkEventControllerKey")]
     pub struct EventControllerKey(Object<ffi::GtkEventControllerKey, ffi::GtkEventControllerKeyClass>) @extends EventController;
 
     match fn {
@@ -37,7 +38,8 @@ impl EventControllerKey {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`EventControllerKey`]
+    /// Creates a new builder-style object to construct a [`EventControllerKey`].
+    ///
     /// This method returns an instance of [`EventControllerKeyBuilder`] which can be used to create a [`EventControllerKey`].
     pub fn builder() -> EventControllerKeyBuilder {
         EventControllerKeyBuilder::default()

@@ -25,6 +25,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkDragIcon")]
     pub struct DragIcon(Object<ffi::GtkDragIcon, ffi::GtkDragIconClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root;
 
     match fn {
@@ -34,7 +35,8 @@ glib::wrapper! {
 
 impl DragIcon {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`DragIcon`]
+    /// Creates a new builder-style object to construct a [`DragIcon`].
+    ///
     /// This method returns an instance of [`DragIconBuilder`] which can be used to create a [`DragIcon`].
     pub fn builder() -> DragIconBuilder {
         DragIconBuilder::default()

@@ -8,6 +8,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GskVulkanRenderer")]
     pub struct VulkanRenderer(Object<ffi::GskVulkanRenderer, ffi::GskVulkanRendererClass>) @extends Renderer;
 
     match fn {

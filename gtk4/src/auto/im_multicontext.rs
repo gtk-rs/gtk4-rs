@@ -13,6 +13,7 @@ use glib::ToValue;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkIMMulticontext")]
     pub struct IMMulticontext(Object<ffi::GtkIMMulticontext, ffi::GtkIMMulticontextClass>) @extends IMContext;
 
     match fn {
@@ -28,7 +29,8 @@ impl IMMulticontext {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`IMMulticontext`]
+    /// Creates a new builder-style object to construct a [`IMMulticontext`].
+    ///
     /// This method returns an instance of [`IMMulticontextBuilder`] which can be used to create a [`IMMulticontext`].
     pub fn builder() -> IMMulticontextBuilder {
         IMMulticontextBuilder::default()

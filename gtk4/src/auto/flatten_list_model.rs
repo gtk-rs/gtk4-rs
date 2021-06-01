@@ -12,6 +12,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkFlattenListModel")]
     pub struct FlattenListModel(Object<ffi::GtkFlattenListModel, ffi::GtkFlattenListModelClass>) @implements gio::ListModel;
 
     match fn {

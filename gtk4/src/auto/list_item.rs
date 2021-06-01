@@ -16,6 +16,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkListItem")]
     pub struct ListItem(Object<ffi::GtkListItem, ffi::GtkListItemClass>);
 
     match fn {
@@ -25,7 +26,8 @@ glib::wrapper! {
 
 impl ListItem {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ListItem`]
+    /// Creates a new builder-style object to construct a [`ListItem`].
+    ///
     /// This method returns an instance of [`ListItemBuilder`] which can be used to create a [`ListItem`].
     pub fn builder() -> ListItemBuilder {
         ListItemBuilder::default()

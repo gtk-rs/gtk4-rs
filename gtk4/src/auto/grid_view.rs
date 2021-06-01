@@ -31,6 +31,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkGridView")]
     pub struct GridView(Object<ffi::GtkGridView, ffi::GtkGridViewClass>) @extends ListBase, Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable, Scrollable;
 
     match fn {
@@ -55,7 +56,8 @@ impl GridView {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GridView`]
+    /// Creates a new builder-style object to construct a [`GridView`].
+    ///
     /// This method returns an instance of [`GridViewBuilder`] which can be used to create a [`GridView`].
     pub fn builder() -> GridViewBuilder {
         GridViewBuilder::default()

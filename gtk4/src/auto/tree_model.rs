@@ -15,6 +15,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkTreeModel")]
     pub struct TreeModel(Interface<ffi::GtkTreeModel, ffi::GtkTreeModelIface>);
 
     match fn {

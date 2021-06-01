@@ -12,6 +12,7 @@ use glib::ToValue;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkIMContextSimple")]
     pub struct IMContextSimple(Object<ffi::GtkIMContextSimple, ffi::GtkIMContextSimpleClass>) @extends IMContext;
 
     match fn {
@@ -27,7 +28,8 @@ impl IMContextSimple {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`IMContextSimple`]
+    /// Creates a new builder-style object to construct a [`IMContextSimple`].
+    ///
     /// This method returns an instance of [`IMContextSimpleBuilder`] which can be used to create a [`IMContextSimple`].
     pub fn builder() -> IMContextSimpleBuilder {
         IMContextSimpleBuilder::default()

@@ -13,6 +13,7 @@ use glib::ToValue;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkConstraint")]
     pub struct Constraint(Object<ffi::GtkConstraint, ffi::GtkConstraintClass>);
 
     match fn {
@@ -68,7 +69,8 @@ impl Constraint {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Constraint`]
+    /// Creates a new builder-style object to construct a [`Constraint`].
+    ///
     /// This method returns an instance of [`ConstraintBuilder`] which can be used to create a [`Constraint`].
     pub fn builder() -> ConstraintBuilder {
         ConstraintBuilder::default()

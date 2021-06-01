@@ -29,6 +29,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkAboutDialog")]
     pub struct AboutDialog(Object<ffi::GtkAboutDialog>) @extends Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
 
     match fn {
@@ -44,7 +45,8 @@ impl AboutDialog {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`AboutDialog`]
+    /// Creates a new builder-style object to construct a [`AboutDialog`].
+    ///
     /// This method returns an instance of [`AboutDialogBuilder`] which can be used to create a [`AboutDialog`].
     pub fn builder() -> AboutDialogBuilder {
         AboutDialogBuilder::default()

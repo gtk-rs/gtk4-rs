@@ -7,6 +7,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkSignalAction")]
     pub struct SignalAction(Object<ffi::GtkSignalAction, ffi::GtkSignalActionClass>) @extends ShortcutAction;
 
     match fn {

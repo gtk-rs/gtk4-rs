@@ -24,6 +24,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkListBoxRow")]
     pub struct ListBoxRow(Object<ffi::GtkListBoxRow, ffi::GtkListBoxRowClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
@@ -39,7 +40,8 @@ impl ListBoxRow {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ListBoxRow`]
+    /// Creates a new builder-style object to construct a [`ListBoxRow`].
+    ///
     /// This method returns an instance of [`ListBoxRowBuilder`] which can be used to create a [`ListBoxRow`].
     pub fn builder() -> ListBoxRowBuilder {
         ListBoxRowBuilder::default()

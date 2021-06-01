@@ -12,6 +12,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkStyleProvider")]
     pub struct StyleProvider(Interface<ffi::GtkStyleProvider>);
 
     match fn {

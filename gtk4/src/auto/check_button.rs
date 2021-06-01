@@ -26,6 +26,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkCheckButton")]
     pub struct CheckButton(Object<ffi::GtkCheckButton, ffi::GtkCheckButtonClass>) @extends Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
@@ -63,7 +64,8 @@ impl CheckButton {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`CheckButton`]
+    /// Creates a new builder-style object to construct a [`CheckButton`].
+    ///
     /// This method returns an instance of [`CheckButtonBuilder`] which can be used to create a [`CheckButton`].
     pub fn builder() -> CheckButtonBuilder {
         CheckButtonBuilder::default()

@@ -17,6 +17,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkDropTargetAsync")]
     pub struct DropTargetAsync(Object<ffi::GtkDropTargetAsync, ffi::GtkDropTargetAsyncClass>) @extends EventController;
 
     match fn {
@@ -37,7 +38,8 @@ impl DropTargetAsync {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`DropTargetAsync`]
+    /// Creates a new builder-style object to construct a [`DropTargetAsync`].
+    ///
     /// This method returns an instance of [`DropTargetAsyncBuilder`] which can be used to create a [`DropTargetAsync`].
     pub fn builder() -> DropTargetAsyncBuilder {
         DropTargetAsyncBuilder::default()

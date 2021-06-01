@@ -7,6 +7,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GdkCairoContext")]
     pub struct CairoContext(Object<ffi::GdkCairoContext>) @extends DrawContext;
 
     match fn {

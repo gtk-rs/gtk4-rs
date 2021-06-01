@@ -17,6 +17,7 @@ use std::mem::transmute;
 use std::ptr;
 
 glib::wrapper! {
+    #[doc(alias = "GtkTreeSelection")]
     pub struct TreeSelection(Object<ffi::GtkTreeSelection>);
 
     match fn {

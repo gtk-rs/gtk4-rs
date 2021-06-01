@@ -25,6 +25,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkLinkButton")]
     pub struct LinkButton(Object<ffi::GtkLinkButton>) @extends Button, Widget, @implements Accessible, Buildable, ConstraintTarget, Actionable;
 
     match fn {
@@ -55,7 +56,8 @@ impl LinkButton {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`LinkButton`]
+    /// Creates a new builder-style object to construct a [`LinkButton`].
+    ///
     /// This method returns an instance of [`LinkButtonBuilder`] which can be used to create a [`LinkButton`].
     pub fn builder() -> LinkButtonBuilder {
         LinkButtonBuilder::default()

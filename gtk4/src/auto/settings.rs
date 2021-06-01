@@ -16,6 +16,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkSettings")]
     pub struct Settings(Object<ffi::GtkSettings>) @implements StyleProvider;
 
     match fn {
@@ -25,7 +26,8 @@ glib::wrapper! {
 
 impl Settings {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Settings`]
+    /// Creates a new builder-style object to construct a [`Settings`].
+    ///
     /// This method returns an instance of [`SettingsBuilder`] which can be used to create a [`Settings`].
     pub fn builder() -> SettingsBuilder {
         SettingsBuilder::default()

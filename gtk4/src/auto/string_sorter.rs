@@ -16,6 +16,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkStringSorter")]
     pub struct StringSorter(Object<ffi::GtkStringSorter, ffi::GtkStringSorterClass>) @extends Sorter;
 
     match fn {
@@ -25,7 +26,8 @@ glib::wrapper! {
 
 impl StringSorter {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`StringSorter`]
+    /// Creates a new builder-style object to construct a [`StringSorter`].
+    ///
     /// This method returns an instance of [`StringSorterBuilder`] which can be used to create a [`StringSorter`].
     pub fn builder() -> StringSorterBuilder {
         StringSorterBuilder::default()

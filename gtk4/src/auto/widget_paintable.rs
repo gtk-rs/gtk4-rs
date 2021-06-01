@@ -13,6 +13,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkWidgetPaintable")]
     pub struct WidgetPaintable(Object<ffi::GtkWidgetPaintable, ffi::GtkWidgetPaintableClass>) @implements gdk::Paintable;
 
     match fn {

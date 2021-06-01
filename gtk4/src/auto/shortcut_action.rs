@@ -9,6 +9,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkShortcutAction")]
     pub struct ShortcutAction(Object<ffi::GtkShortcutAction, ffi::GtkShortcutActionClass>);
 
     match fn {

@@ -5,6 +5,7 @@
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GdkWaylandSeat")]
     pub struct WaylandSeat(Object<ffi::GdkWaylandSeat, ffi::GdkWaylandSeatClass>) @extends gdk::Seat;
 
     match fn {

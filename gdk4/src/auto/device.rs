@@ -21,6 +21,7 @@ use std::mem;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GdkDevice")]
     pub struct Device(Object<ffi::GdkDevice>);
 
     match fn {

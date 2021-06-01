@@ -17,6 +17,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkStringFilter")]
     pub struct StringFilter(Object<ffi::GtkStringFilter, ffi::GtkStringFilterClass>) @extends Filter;
 
     match fn {
@@ -26,7 +27,8 @@ glib::wrapper! {
 
 impl StringFilter {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`StringFilter`]
+    /// Creates a new builder-style object to construct a [`StringFilter`].
+    ///
     /// This method returns an instance of [`StringFilterBuilder`] which can be used to create a [`StringFilter`].
     pub fn builder() -> StringFilterBuilder {
         StringFilterBuilder::default()

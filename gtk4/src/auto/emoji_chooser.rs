@@ -27,6 +27,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkEmojiChooser")]
     pub struct EmojiChooser(Object<ffi::GtkEmojiChooser, ffi::GtkEmojiChooserClass>) @extends Popover, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, ShortcutManager;
 
     match fn {
@@ -42,7 +43,8 @@ impl EmojiChooser {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`EmojiChooser`]
+    /// Creates a new builder-style object to construct a [`EmojiChooser`].
+    ///
     /// This method returns an instance of [`EmojiChooserBuilder`] which can be used to create a [`EmojiChooser`].
     pub fn builder() -> EmojiChooserBuilder {
         EmojiChooserBuilder::default()

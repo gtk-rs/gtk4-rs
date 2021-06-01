@@ -31,6 +31,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkListView")]
     pub struct ListView(Object<ffi::GtkListView, ffi::GtkListViewClass>) @extends ListBase, Widget, @implements Accessible, Buildable, ConstraintTarget, Orientable, Scrollable;
 
     match fn {
@@ -55,7 +56,8 @@ impl ListView {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ListView`]
+    /// Creates a new builder-style object to construct a [`ListView`].
+    ///
     /// This method returns an instance of [`ListViewBuilder`] which can be used to create a [`ListView`].
     pub fn builder() -> ListViewBuilder {
         ListViewBuilder::default()

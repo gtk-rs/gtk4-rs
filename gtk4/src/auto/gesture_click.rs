@@ -19,6 +19,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkGestureClick")]
     pub struct GestureClick(Object<ffi::GtkGestureClick, ffi::GtkGestureClickClass>) @extends GestureSingle, Gesture, EventController;
 
     match fn {
@@ -34,7 +35,8 @@ impl GestureClick {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GestureClick`]
+    /// Creates a new builder-style object to construct a [`GestureClick`].
+    ///
     /// This method returns an instance of [`GestureClickBuilder`] which can be used to create a [`GestureClick`].
     pub fn builder() -> GestureClickBuilder {
         GestureClickBuilder::default()

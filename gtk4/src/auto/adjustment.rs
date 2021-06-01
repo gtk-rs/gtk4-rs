@@ -14,6 +14,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkAdjustment")]
     pub struct Adjustment(Object<ffi::GtkAdjustment, ffi::GtkAdjustmentClass>);
 
     match fn {
@@ -45,7 +46,8 @@ impl Adjustment {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Adjustment`]
+    /// Creates a new builder-style object to construct a [`Adjustment`].
+    ///
     /// This method returns an instance of [`AdjustmentBuilder`] which can be used to create a [`Adjustment`].
     pub fn builder() -> AdjustmentBuilder {
         AdjustmentBuilder::default()

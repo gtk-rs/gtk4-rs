@@ -16,6 +16,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GdkSeat")]
     pub struct Seat(Object<ffi::GdkSeat>);
 
     match fn {

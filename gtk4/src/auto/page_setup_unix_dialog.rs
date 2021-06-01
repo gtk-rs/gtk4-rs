@@ -26,6 +26,7 @@ use glib::ToValue;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkPageSetupUnixDialog")]
     pub struct PageSetupUnixDialog(Object<ffi::GtkPageSetupUnixDialog>) @extends Dialog, Window, Widget, @implements Accessible, Buildable, ConstraintTarget, Native, Root, ShortcutManager;
 
     match fn {
@@ -47,7 +48,8 @@ impl PageSetupUnixDialog {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`PageSetupUnixDialog`]
+    /// Creates a new builder-style object to construct a [`PageSetupUnixDialog`].
+    ///
     /// This method returns an instance of [`PageSetupUnixDialogBuilder`] which can be used to create a [`PageSetupUnixDialog`].
     pub fn builder() -> PageSetupUnixDialogBuilder {
         PageSetupUnixDialogBuilder::default()

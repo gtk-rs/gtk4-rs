@@ -16,6 +16,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkGridLayout")]
     pub struct GridLayout(Object<ffi::GtkGridLayout, ffi::GtkGridLayoutClass>) @extends LayoutManager;
 
     match fn {
@@ -31,7 +32,8 @@ impl GridLayout {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GridLayout`]
+    /// Creates a new builder-style object to construct a [`GridLayout`].
+    ///
     /// This method returns an instance of [`GridLayoutBuilder`] which can be used to create a [`GridLayout`].
     pub fn builder() -> GridLayoutBuilder {
         GridLayoutBuilder::default()

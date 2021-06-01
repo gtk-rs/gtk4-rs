@@ -12,6 +12,7 @@ use glib::translate::*;
 use std::fmt;
 
 glib::wrapper! {
+    #[doc(alias = "GtkTreeModelSort")]
     pub struct TreeModelSort(Object<ffi::GtkTreeModelSort, ffi::GtkTreeModelSortClass>) @implements TreeDragSource, TreeModel, TreeSortable;
 
     match fn {

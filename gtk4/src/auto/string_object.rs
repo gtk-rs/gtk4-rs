@@ -11,6 +11,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkStringObject")]
     pub struct StringObject(Object<ffi::GtkStringObject, ffi::GtkStringObjectClass>);
 
     match fn {

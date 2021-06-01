@@ -13,6 +13,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkMultiSelection")]
     pub struct MultiSelection(Object<ffi::GtkMultiSelection, ffi::GtkMultiSelectionClass>) @implements gio::ListModel, SelectionModel;
 
     match fn {

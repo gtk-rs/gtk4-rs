@@ -17,6 +17,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkShortcut")]
     pub struct Shortcut(Object<ffi::GtkShortcut, ffi::GtkShortcutClass>);
 
     match fn {
@@ -46,7 +47,8 @@ impl Shortcut {
     //}
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Shortcut`]
+    /// Creates a new builder-style object to construct a [`Shortcut`].
+    ///
     /// This method returns an instance of [`ShortcutBuilder`] which can be used to create a [`Shortcut`].
     pub fn builder() -> ShortcutBuilder {
         ShortcutBuilder::default()

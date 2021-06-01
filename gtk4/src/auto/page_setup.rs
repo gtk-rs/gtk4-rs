@@ -10,6 +10,7 @@ use std::fmt;
 use std::ptr;
 
 glib::wrapper! {
+    #[doc(alias = "GtkPageSetup")]
     pub struct PageSetup(Object<ffi::GtkPageSetup>);
 
     match fn {

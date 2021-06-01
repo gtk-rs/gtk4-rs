@@ -17,6 +17,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkNumericSorter")]
     pub struct NumericSorter(Object<ffi::GtkNumericSorter, ffi::GtkNumericSorterClass>) @extends Sorter;
 
     match fn {
@@ -26,7 +27,8 @@ glib::wrapper! {
 
 impl NumericSorter {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`NumericSorter`]
+    /// Creates a new builder-style object to construct a [`NumericSorter`].
+    ///
     /// This method returns an instance of [`NumericSorterBuilder`] which can be used to create a [`NumericSorter`].
     pub fn builder() -> NumericSorterBuilder {
         NumericSorterBuilder::default()

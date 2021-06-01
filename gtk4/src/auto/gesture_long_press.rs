@@ -19,6 +19,7 @@ use std::fmt;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkGestureLongPress")]
     pub struct GestureLongPress(Object<ffi::GtkGestureLongPress, ffi::GtkGestureLongPressClass>) @extends GestureSingle, Gesture, EventController;
 
     match fn {
@@ -34,7 +35,8 @@ impl GestureLongPress {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GestureLongPress`]
+    /// Creates a new builder-style object to construct a [`GestureLongPress`].
+    ///
     /// This method returns an instance of [`GestureLongPressBuilder`] which can be used to create a [`GestureLongPress`].
     pub fn builder() -> GestureLongPressBuilder {
         GestureLongPressBuilder::default()

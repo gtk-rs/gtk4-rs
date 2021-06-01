@@ -20,6 +20,7 @@ use std::mem;
 use std::mem::transmute;
 
 glib::wrapper! {
+    #[doc(alias = "GtkGestureSwipe")]
     pub struct GestureSwipe(Object<ffi::GtkGestureSwipe, ffi::GtkGestureSwipeClass>) @extends GestureSingle, Gesture, EventController;
 
     match fn {
@@ -35,7 +36,8 @@ impl GestureSwipe {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GestureSwipe`]
+    /// Creates a new builder-style object to construct a [`GestureSwipe`].
+    ///
     /// This method returns an instance of [`GestureSwipeBuilder`] which can be used to create a [`GestureSwipe`].
     pub fn builder() -> GestureSwipeBuilder {
         GestureSwipeBuilder::default()
