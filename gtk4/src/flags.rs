@@ -12,25 +12,25 @@ bitflags! {
     #[doc(alias = "GtkPrintCapabilities")]
     pub struct PrintCapabilities: u32 {
         #[doc(alias = "GTK_PRINT_CAPABILITY_PAGE_SET")]
-        const PAGE_SET = 1;
+        const PAGE_SET = ffi::GTK_PRINT_CAPABILITY_PAGE_SET;
         #[doc(alias = "GTK_PRINT_CAPABILITY_COPIES")]
-        const COPIES = 2;
+        const COPIES = ffi::GTK_PRINT_CAPABILITY_COPIES;
         #[doc(alias = "GTK_PRINT_CAPABILITY_COLLATE")]
-        const COLLATE = 4;
+        const COLLATE = ffi::GTK_PRINT_CAPABILITY_COLLATE;
         #[doc(alias = "GTK_PRINT_CAPABILITY_REVERSE")]
-        const REVERSE = 8;
+        const REVERSE = ffi::GTK_PRINT_CAPABILITY_REVERSE;
         #[doc(alias = "GTK_PRINT_CAPABILITY_SCALE")]
-        const SCALE = 16;
+        const SCALE = ffi::GTK_PRINT_CAPABILITY_SCALE;
         #[doc(alias = "GTK_PRINT_CAPABILITY_GENERATE_PDF")]
-        const GENERATE_PDF = 32;
+        const GENERATE_PDF = ffi::GTK_PRINT_CAPABILITY_GENERATE_PDF;
         #[doc(alias = "GTK_PRINT_CAPABILITY_GENERATE_PS")]
-        const GENERATE_PS = 64;
+        const GENERATE_PS = ffi::GTK_PRINT_CAPABILITY_GENERATE_PS;
         #[doc(alias = "GTK_PRINT_CAPABILITY_PREVIEW")]
-        const PREVIEW = 128;
+        const PREVIEW = ffi::GTK_PRINT_CAPABILITY_PREVIEW;
         #[doc(alias = "GTK_PRINT_CAPABILITY_NUMBER_UP")]
-        const NUMBER_UP = 256;
+        const NUMBER_UP = ffi::GTK_PRINT_CAPABILITY_NUMBER_UP;
         #[doc(alias = "GTK_PRINT_CAPABILITY_NUMBER_UP_LAYOUT")]
-        const NUMBER_UP_LAYOUT = 512;
+        const NUMBER_UP_LAYOUT = ffi::GTK_PRINT_CAPABILITY_NUMBER_UP_LAYOUT;
     }
 }
 
