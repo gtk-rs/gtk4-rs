@@ -6,6 +6,7 @@ use glib::{StaticType, Type, Value};
 use std::fmt;
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
+#[doc(alias = "GtkResponseType")]
 pub enum ResponseType {
     #[doc(alias = "GTK_RESPONSE_NONE")]
     None,
