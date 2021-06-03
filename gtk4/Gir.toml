@@ -855,19 +855,15 @@ manual_traits = ["ComboBoxExtManual"]
 [[object]]
 name = "Gtk.ConstraintGuide"
 status = "generate"
-manual_traits = ["ConstraintGuideExtManual"]
     [[object.function]]
     name = "get_max_size"
     manual = true # missing inout annotation
-    doc_trait_name = "ConstraintGuideExtManual"
     [[object.function]]
     name = "get_min_size" # missing inout annotation
     manual = true
-    doc_trait_name = "ConstraintGuideExtManual"
     [[object.function]]
     name = "get_nat_size" # missing inout annotation
     manual = true
-    doc_trait_name = "ConstraintGuideExtManual"
 
 [[object]]
 name = "Gtk.ConstraintLayout"
@@ -1064,7 +1060,6 @@ manual_traits = ["EntryBufferExtManual"]
 [[object]]
 name = "Gtk.EntryCompletion"
 status = "generate"
-manual_traits = ["EntryCompletionExtManual"]
     [[object.signal]]
     name = "insert-prefix"
     inhibit = true
@@ -1076,8 +1071,8 @@ manual_traits = ["EntryCompletionExtManual"]
     inhibit = true
     [[object.function]]
     name = "get_entry"
+    rename = "entry"
     manual = true # upcast to Entry
-    doc_trait_name = "EntryCompletionExtManual"
 
 [[object]]
 name = "Gtk.EventController"
@@ -1265,11 +1260,9 @@ manual_traits = ["IMContextExtManual"]
 [[object]]
 name = "Gtk.IMContextSimple"
 status = "generate"
-manual_traits = ["IMContextSimpleExtManual"]
     [[object.function]]
     name = "add_compose_file"
     manual = true # use AsRef<Path>
-    doc_trait_name = "IMContextSimpleExtManual"
     [[object.function]]
     name = "add_table"
     ignore = true #TODO: We don't understand API
@@ -1361,7 +1354,6 @@ trust_return_value_nullability = false
 name = "Gtk.ListStore"
 status = "generate"
 trait_name = "GtkListStoreExt"
-manual_traits = ["GtkListStoreExtManual"]
     [[object.function]]
     pattern = ".+"
         [[object.function.parameter]]
@@ -1376,7 +1368,6 @@ manual_traits = ["GtkListStoreExtManual"]
     [[object.function]]
     name = "set_value"
     manual = true
-    doc_trait_name = "GtkListStoreExtManual"
     [[object.function]]
     name = "set_valuesv"
     ignore = true
@@ -1386,7 +1377,6 @@ manual_traits = ["GtkListStoreExtManual"]
     [[object.function]]
     name = "set"
     manual = true
-    doc_trait_name = "GtkListStoreExtManual"
     [[object.function]]
     name = "swap"
         [[object.function.parameter]]
@@ -1409,15 +1399,12 @@ manual_traits = ["GtkListStoreExtManual"]
     name = "insert_with_valuesv"
     rename = "insert_with_values"
     manual = true
-    doc_trait_name = "GtkListStoreExtManual"
     [[object.function]]
     name = "reorder"
     manual = true # needs to assert the passed new_order = n_total_items
-    doc_trait_name = "GtkListStoreExtManual"
     [[object.function]]
     name = "set_column_types"
     manual = true
-    doc_trait_name = "GtkListStoreExtManual"
 
 [[object]]
 name = "Gtk.LockButton"
@@ -1610,7 +1597,6 @@ status = "generate"
 [[object]]
 name = "Gtk.Overlay"
 status = "generate"
-manual_traits = ["OverlayExtManual"]
 
 [[object]]
 name = "Gtk.PadController"
@@ -1828,23 +1814,18 @@ status = "generate"
 [[object]]
 name = "Gtk.ShortcutTrigger"
 status = "generate"
-manual_traits = ["ShortcutTriggerExtManual"]
     [[object.function]]
     name = "equal"
     manual = true # complains about the trait IsA<T> being so generic
-    doc_trait_name = "ShortcutTriggerExtManual"
     [[object.function]]
     name = "hash"
     manual = true # complains about the trait IsA<T> being so generic
-    doc_trait_name = "ShortcutTriggerExtManual"
     [[object.function]]
     name = "compare"
     manual = true # complains about the trait IsA<T> being so generic
-    doc_trait_name = "ShortcutTriggerExtManual"
     [[object.function]]
     name = "trigger"
     manual = true # to handle gdk::Event
-    doc_trait_name = "ShortcutTriggerExtManual"
 
 [[object]]
 name = "Gtk.SignalAction"
@@ -1894,7 +1875,6 @@ trust_return_value_nullability = false
 [[object]]
 name = "Gtk.SpinButton"
 status = "generate"
-manual_traits = ["SpinButtonExtManual"]
     [[object.signal]]
     name = "output"
     inhibit = true
@@ -2335,7 +2315,6 @@ manual_traits = ["TreeSortableExtManual"]
 [[object]]
 name = "Gtk.TreeStore"
 status = "generate"
-manual_traits = ["TreeStoreExtManual"]
     [[object.function]]
     pattern = ".+"
         [[object.function.parameter]]
@@ -2373,18 +2352,15 @@ manual_traits = ["TreeStoreExtManual"]
     [[object.function]]
     name = "set_value"
     manual = true
-    doc_trait_name = "TreeStoreExtManual"
     [[object.function]]
     name = "set_valist"
     ignore = true # not useful for Rust bindings
     [[object.function]]
     name = "reorder"
     manual = true
-    doc_trait_name = "TreeStoreExtManual"
     [[object.function]]
     name = "set"
     manual = true
-    doc_trait_name = "TreeStoreExtManual"
     [[object.function]]
     name = "new"
     manual = true
@@ -2407,11 +2383,9 @@ manual_traits = ["TreeStoreExtManual"]
     name = "insert_with_valuesv"
     rename = "insert_with_values"
     manual = true
-    doc_trait_name = "TreeStoreExtManual"
     [[object.function]]
     name = "set_column_types"
     manual = true
-    doc_trait_name = "TreeStoreExtManual"
 
 [[object]]
 name = "Gtk.TreeView"
