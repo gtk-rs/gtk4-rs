@@ -93,7 +93,7 @@ In the "bind" step we bind the data in our model to the individual list items.
 
 We only want single items to be selectable, so we choose [`SingleSelection`](../docs/gtk4/struct.SingleSelection.html).
 The other options would have been [`MultiSelection`](../docs/gtk4/struct.MultiSelection.html) or [`NoSelection`](../docs/gtk4/struct.NoSelection.html).
-Then we pass the model and the factory to the [`ListView`](../git/docs/gtk4/struct.ListView.html).
+Then we pass the model and the factory to the [`ListView`](../docs/gtk4/struct.ListView.html).
 
 <span class="filename">Filename: listings/lists/2/main.rs</span>
 
@@ -149,7 +149,7 @@ This relates to how the view works internally.
 Not every model item belongs to a single widget, but the widgets get recycled instead as you scroll through the view.
 That also means that in our case, multiple numbers will be bound to the same widget.
 
-Situations like these are so common that GTK offers an alternative to property binding: [expressions](../git/docs/gtk4/struct.Expression.html).
+Situations like these are so common that GTK offers an alternative to property binding: [expressions](../docs/gtk4/struct.Expression.html).
 As a first step it allows us to remove the "bind" step.
 Let us see how the "setup" step now works.
 
@@ -160,8 +160,8 @@ Let us see how the "setup" step now works.
 ```
 
 An expression describes a reference to a value.
-So when we create a [`ConstantExpression`](../git/docs/gtk4/struct.ConstantExpression.html) of `list_item`, we create a reference to a `ListItem`.
-We then create a [`PropertyExpression`](../git/docs/gtk4/struct.PropertyExpression.html) to get a reference to the "item" property of `list_item`.
+So when we create a [`ConstantExpression`](../docs/gtk4/struct.ConstantExpression.html) of `list_item`, we create a reference to a `ListItem`.
+We then create a [`PropertyExpression`](../docs/gtk4/struct.PropertyExpression.html) to get a reference to the "item" property of `list_item`.
 With another `PropertyExpression` we get a reference to the "number" property of the "item" property of `list_item`.
 That already makes the first power of expressions obvious: It allows nested relationships.
 Finally, we bind "number" to "label".
@@ -207,4 +207,4 @@ We now know how to display a list of data.
 Small amount of elements can be handled by `ListBox` or `FlowBox`.
 These widgets are easy to use and allow, if necessary, to be bound to a model such as [`gio::ListStore`](http://gtk-rs.org/docs/gio/struct.ListStore.html).
 Their data can then be modified, sorted and filtered more easily.
-However, if we need the widgets to be scalable we still need to use [`ListView`](../git/docs/gtk4/struct.ListView.html), [`ColumnView`](../git/docs/gtk4/struct.ColumnView.html) or [`GridView`](../git/docs/gtk4/struct.GridView.html) instead.
+However, if we need the widgets to be scalable we still need to use [`ListView`](../docs/gtk4/struct.ListView.html), [`ColumnView`](../docs/gtk4/struct.ColumnView.html) or [`GridView`](../docs/gtk4/struct.GridView.html) instead.
