@@ -2,17 +2,12 @@
 
 use crate::Texture;
 use glib::translate::*;
-use glib::IsA;
 
-pub trait TextureExtManual: 'static {
+impl Texture {
     #[doc(alias = "gdk_texture_download")]
-    fn download(&self, data: &mut [u8], stride: usize);
-}
-
-impl<O: IsA<Texture>> TextureExtManual for O {
-    fn download(&self, data: &mut [u8], stride: usize) {
+    pub fn download(&self, data: &mut [u8], stride: usize) {
         unsafe {
-            ffi::gdk_texture_download(self.as_ref().to_glib_none().0, data.as_mut_ptr(), stride);
+            ffi::gdk_texture_download(self.to_glib_none().0, data.as_mut_ptr(), stride);
         }
     }
 }
