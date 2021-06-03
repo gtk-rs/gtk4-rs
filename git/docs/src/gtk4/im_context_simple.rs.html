@@ -24,55 +24,27 @@
 <span id="19">19</span>
 <span id="20">20</span>
 <span id="21">21</span>
-<span id="22">22</span>
-<span id="23">23</span>
-<span id="24">24</span>
-<span id="25">25</span>
-<span id="26">26</span>
-<span id="27">27</span>
-<span id="28">28</span>
-<span id="29">29</span>
-<span id="30">30</span>
-<span id="31">31</span>
-<span id="32">32</span>
-<span id="33">33</span>
-<span id="34">34</span>
-<span id="35">35</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
 <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::IMContextSimple</span>;
 <span class="kw">use</span> <span class="ident">glib::translate</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">glib::IsA</span>;
 <span class="kw">use</span> <span class="ident">std::path::Path</span>;
 
-<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy::upper_case_acronyms</span>)]</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">IMContextSimpleExtManual</span>: <span class="lifetime">&#39;static</span> {
+<span class="kw">impl</span> <span class="ident">IMContextSimple</span> {
+    <span class="doccomment">/// Adds an additional table from the X11 compose file.</span>
+    <span class="doccomment">/// ## `compose_file`</span>
+    <span class="doccomment">/// The path of compose file</span>
     <span class="attribute">#[<span class="ident">doc</span>(<span class="ident">alias</span> <span class="op">=</span> <span class="string">&quot;gtk_im_context_simple_add_compose_file&quot;</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">add_compose_file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">compose_file</span>: <span class="ident">P</span>);
-    <span class="comment">//fn add_table(&amp;self, data: &amp;[u16], max_seq_len: u32, n_seqs: u32);</span>
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">O</span>: <span class="ident">IsA</span><span class="op">&lt;</span><span class="ident">IMContextSimple</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="ident">IMContextSimpleExtManual</span> <span class="kw">for</span> <span class="ident">O</span> {
-    <span class="kw">fn</span> <span class="ident">add_compose_file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">compose_file</span>: <span class="ident">P</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_compose_file</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">Path</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">compose_file</span>: <span class="ident">P</span>) {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">compose_file</span> <span class="op">=</span> <span class="ident">compose_file</span>.<span class="ident">as_ref</span>();
             <span class="ident">ffi::gtk_im_context_simple_add_compose_file</span>(
-                <span class="self">self</span>.<span class="ident">as_ref</span>().<span class="ident">to_glib_none</span>().<span class="number">0</span>,
+                <span class="self">self</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
                 <span class="ident">compose_file</span>.<span class="ident">to_glib_none</span>().<span class="number">0</span>,
             );
         }
     }
-
-    <span class="comment">/*fn add_table(&amp;self, data: &amp;[u16], max_seq_len: u32, n_seqs: u32) {
-        assert!(max_seq_len * n_seqs &lt; data.len() as u32);
-        unsafe {
-            ffi::gtk_im_context_simple_add_table(self.as_ref().to_glib_none().0,
-                                                 data.to_glib_none().0,
-                                                 max_seq_len as i32,
-                                                 n_seqs as i32);
-        }
-    }*/</span>
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="gtk4" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
