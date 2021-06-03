@@ -544,7 +544,7 @@ We connect to it to create a <code>Label</code> for every requested widget.</p>
 </span></code></pre></pre>
 <p>We only want single items to be selectable, so we choose <a href="../docs/gtk4/struct.SingleSelection.html"><code>SingleSelection</code></a>.
 The other options would have been <a href="../docs/gtk4/struct.MultiSelection.html"><code>MultiSelection</code></a> or <a href="../docs/gtk4/struct.NoSelection.html"><code>NoSelection</code></a>.
-Then we pass the model and the factory to the <a href="../git/docs/gtk4/struct.ListView.html"><code>ListView</code></a>.</p>
+Then we pass the model and the factory to the <a href="../docs/gtk4/struct.ListView.html"><code>ListView</code></a>.</p>
 <p><span class="filename">Filename: listings/lists/2/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod integer_object;
 </span><span class="boring">
@@ -929,7 +929,7 @@ you will notice that sometimes multiple numbers change even though you only acti
 This relates to how the view works internally.
 Not every model item belongs to a single widget, but the widgets get recycled instead as you scroll through the view.
 That also means that in our case, multiple numbers will be bound to the same widget.</p>
-<p>Situations like these are so common that GTK offers an alternative to property binding: <a href="../git/docs/gtk4/struct.Expression.html">expressions</a>.
+<p>Situations like these are so common that GTK offers an alternative to property binding: <a href="../docs/gtk4/struct.Expression.html">expressions</a>.
 As a first step it allows us to remove the &quot;bind&quot; step.
 Let us see how the &quot;setup&quot; step now works.</p>
 <p><span class="filename">Filename: listings/lists/4/main.rs</span></p>
@@ -1016,8 +1016,8 @@ Let us see how the &quot;setup&quot; step now works.</p>
 </span><span class="boring">}
 </span></code></pre></pre>
 <p>An expression describes a reference to a value.
-So when we create a <a href="../git/docs/gtk4/struct.ConstantExpression.html"><code>ConstantExpression</code></a> of <code>list_item</code>, we create a reference to a <code>ListItem</code>.
-We then create a <a href="../git/docs/gtk4/struct.PropertyExpression.html"><code>PropertyExpression</code></a> to get a reference to the &quot;item&quot; property of <code>list_item</code>.
+So when we create a <a href="../docs/gtk4/struct.ConstantExpression.html"><code>ConstantExpression</code></a> of <code>list_item</code>, we create a reference to a <code>ListItem</code>.
+We then create a <a href="../docs/gtk4/struct.PropertyExpression.html"><code>PropertyExpression</code></a> to get a reference to the &quot;item&quot; property of <code>list_item</code>.
 With another <code>PropertyExpression</code> we get a reference to the &quot;number&quot; property of the &quot;item&quot; property of <code>list_item</code>.
 That already makes the first power of expressions obvious: It allows nested relationships.
 Finally, we bind &quot;number&quot; to &quot;label&quot;.
@@ -1434,7 +1434,7 @@ We can, for example, filter our model to only allow even numbers.</p>
 Small amount of elements can be handled by <code>ListBox</code> or <code>FlowBox</code>.
 These widgets are easy to use and allow, if necessary, to be bound to a model such as <a href="http://gtk-rs.org/docs/gio/struct.ListStore.html"><code>gio::ListStore</code></a>.
 Their data can then be modified, sorted and filtered more easily.
-However, if we need the widgets to be scalable we still need to use <a href="../git/docs/gtk4/struct.ListView.html"><code>ListView</code></a>, <a href="../git/docs/gtk4/struct.ColumnView.html"><code>ColumnView</code></a> or <a href="../git/docs/gtk4/struct.GridView.html"><code>GridView</code></a> instead.</p>
+However, if we need the widgets to be scalable we still need to use <a href="../docs/gtk4/struct.ListView.html"><code>ListView</code></a>, <a href="../docs/gtk4/struct.ColumnView.html"><code>ColumnView</code></a> or <a href="../docs/gtk4/struct.GridView.html"><code>GridView</code></a> instead.</p>
 
                     </main>
 
