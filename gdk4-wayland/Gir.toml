@@ -96,6 +96,7 @@ status = "generate"
 [[object]]
 name = "GdkWayland.WaylandSurface"
 status = "generate"
+manual_traits = ["WaylandSurfaceExtManual"]
     [[object.function]]
     name = "get_wl_surface"
     manual = true
