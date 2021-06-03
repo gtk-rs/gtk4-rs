@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 use crate::{ListStore, TreeIter, TreeModel};
-use glib::object::{Cast, IsA};
+use glib::object::Cast;
 use glib::translate::*;
 use glib::{ToValue, Type, Value};
 use libc::c_int;
@@ -23,33 +23,10 @@ impl ListStore {
             ))
         }
     }
-}
 
-pub trait GtkListStoreExtManual: 'static {
     #[doc(alias = "gtk_list_store_insert_with_values")]
     #[doc(alias = "gtk_list_store_insert_with_valuesv")]
-    fn insert_with_values(
-        &self,
-        position: Option<u32>,
-        columns_and_values: &[(u32, &dyn ToValue)],
-    ) -> TreeIter;
-
-    #[doc(alias = "gtk_list_store_reorder")]
-    fn reorder(&self, new_order: &[u32]);
-
-    #[doc(alias = "gtk_list_store_set")]
-    #[doc(alias = "gtk_list_store_set_valuesv")]
-    #[doc(alias = "gtk_list_store_set_valist")]
-    fn set(&self, iter: &TreeIter, columns_and_values: &[(u32, &dyn ToValue)]);
-    #[doc(alias = "gtk_list_store_set_column_types")]
-    fn set_column_types(&self, types: &[glib::Type]);
-
-    #[doc(alias = "gtk_list_store_set_value")]
-    fn set_value(&self, iter: &TreeIter, column: u32, value: &Value);
-}
-
-impl<O: IsA<ListStore>> GtkListStoreExtManual for O {
-    fn insert_with_values(
+    pub fn insert_with_values(
         &self,
         position: Option<u32>,
         columns_and_values: &[(u32, &dyn ToValue)],
@@ -60,9 +37,9 @@ impl<O: IsA<ListStore>> GtkListStoreExtManual for O {
                 "can't have more than {} rows",
                 i32::max_value()
             );
-            let n_columns = ffi::gtk_tree_model_get_n_columns(
-                self.as_ref().upcast_ref::<TreeModel>().to_glib_none().0,
-            ) as u32;
+            let n_columns =
+                ffi::gtk_tree_model_get_n_columns(self.upcast_ref::<TreeModel>().to_glib_none().0)
+                    as u32;
             assert!(
                 columns_and_values.len() <= n_columns as usize,
                 "got values for {} columns but only {} columns exist",
@@ -77,7 +54,7 @@ impl<O: IsA<ListStore>> GtkListStoreExtManual for O {
                     n_columns
                 );
                 let type_ = from_glib(ffi::gtk_tree_model_get_column_type(
-                    self.as_ref().upcast_ref::<TreeModel>().to_glib_none().0,
+                    self.upcast_ref::<TreeModel>().to_glib_none().0,
                     *column as c_int,
                 ));
                 assert!(
@@ -100,7 +77,7 @@ impl<O: IsA<ListStore>> GtkListStoreExtManual for O {
 
             let mut iter = TreeIter::uninitialized();
             ffi::gtk_list_store_insert_with_valuesv(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 iter.to_glib_none_mut().0,
                 position.map_or(-1, |n| n as c_int),
                 mut_override(columns.as_ptr() as *const c_int),
@@ -111,10 +88,11 @@ impl<O: IsA<ListStore>> GtkListStoreExtManual for O {
         }
     }
 
-    fn reorder(&self, new_order: &[u32]) {
+    #[doc(alias = "gtk_list_store_reorder")]
+    pub fn reorder(&self, new_order: &[u32]) {
         unsafe {
             let count = ffi::gtk_tree_model_iter_n_children(
-                self.as_ref().upcast_ref::<TreeModel>().to_glib_none().0,
+                self.upcast_ref::<TreeModel>().to_glib_none().0,
                 ptr::null_mut(),
             );
             let safe_count = count as usize == new_order.len();
@@ -137,18 +115,21 @@ impl<O: IsA<ListStore>> GtkListStoreExtManual for O {
             );
             if safe_count && safe_values {
                 ffi::gtk_list_store_reorder(
-                    self.as_ref().to_glib_none().0,
+                    self.to_glib_none().0,
                     mut_override(new_order.as_ptr() as *const c_int),
                 );
             }
         }
     }
 
-    fn set(&self, iter: &TreeIter, columns_and_values: &[(u32, &dyn ToValue)]) {
+    #[doc(alias = "gtk_list_store_set")]
+    #[doc(alias = "gtk_list_store_set_valuesv")]
+    #[doc(alias = "gtk_list_store_set_valist")]
+    pub fn set(&self, iter: &TreeIter, columns_and_values: &[(u32, &dyn ToValue)]) {
         unsafe {
-            let n_columns = ffi::gtk_tree_model_get_n_columns(
-                self.as_ref().upcast_ref::<TreeModel>().to_glib_none().0,
-            ) as u32;
+            let n_columns =
+                ffi::gtk_tree_model_get_n_columns(self.upcast_ref::<TreeModel>().to_glib_none().0)
+                    as u32;
             assert!(
                 columns_and_values.len() <= n_columns as usize,
                 "got values for {} columns but only {} columns exist",
@@ -163,7 +144,7 @@ impl<O: IsA<ListStore>> GtkListStoreExtManual for O {
                     n_columns
                 );
                 let type_ = from_glib(ffi::gtk_tree_model_get_column_type(
-                    self.as_ref().upcast_ref::<TreeModel>().to_glib_none().0,
+                    self.upcast_ref::<TreeModel>().to_glib_none().0,
                     *column as c_int,
                 ));
                 assert!(
@@ -185,7 +166,7 @@ impl<O: IsA<ListStore>> GtkListStoreExtManual for O {
                 .collect::<Vec<_>>();
 
             ffi::gtk_list_store_set_valuesv(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
                 mut_override(columns.as_ptr() as *const c_int),
                 mut_override(values.as_ptr() as *const glib::gobject_ffi::GValue),
@@ -194,22 +175,24 @@ impl<O: IsA<ListStore>> GtkListStoreExtManual for O {
         }
     }
 
-    fn set_column_types(&self, types: &[glib::Type]) {
+    #[doc(alias = "gtk_list_store_set_column_types")]
+    pub fn set_column_types(&self, types: &[glib::Type]) {
         unsafe {
             let types_ptr: Vec<glib::ffi::GType> = types.iter().map(|t| t.into_glib()).collect();
             ffi::gtk_list_store_set_column_types(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 types.len() as i32,
                 mut_override(types_ptr.as_ptr()),
             )
         }
     }
 
-    fn set_value(&self, iter: &TreeIter, column: u32, value: &Value) {
+    #[doc(alias = "gtk_list_store_set_value")]
+    pub fn set_value(&self, iter: &TreeIter, column: u32, value: &Value) {
         unsafe {
-            let columns = ffi::gtk_tree_model_get_n_columns(
-                self.as_ref().upcast_ref::<TreeModel>().to_glib_none().0,
-            ) as u32;
+            let columns =
+                ffi::gtk_tree_model_get_n_columns(self.upcast_ref::<TreeModel>().to_glib_none().0)
+                    as u32;
             assert!(
                 column < columns,
                 "got column {} which is higher than the number of columns {}",
@@ -218,7 +201,7 @@ impl<O: IsA<ListStore>> GtkListStoreExtManual for O {
             );
 
             let type_ = from_glib(ffi::gtk_tree_model_get_column_type(
-                self.as_ref().upcast_ref::<TreeModel>().to_glib_none().0,
+                self.upcast_ref::<TreeModel>().to_glib_none().0,
                 column as c_int,
             ));
             assert!(
@@ -230,7 +213,7 @@ impl<O: IsA<ListStore>> GtkListStoreExtManual for O {
             );
 
             ffi::gtk_list_store_set_value(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 mut_override(iter.to_glib_none().0),
                 column as c_int,
                 mut_override(value.to_glib_none().0),
