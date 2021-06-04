@@ -1659,7 +1659,8 @@ trust_return_value_nullability = false
 
 [[object]]
 name = "Gtk.PrintCapabilities"
-status = "manual" # to cfg_condition on linux see gtk-rs.com/gir/issues1081
+status = "generate"
+cfg_condition = "target_os = \"linux\""
 
 [[object]]
 name = "Gtk.PrintContext"

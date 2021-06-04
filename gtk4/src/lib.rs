@@ -266,7 +266,6 @@ mod enums;
 mod event_controller_key;
 mod expression_watch;
 mod file_chooser_dialog;
-mod flags;
 mod flow_box;
 mod font_chooser;
 mod functions;
@@ -331,9 +330,6 @@ pub use css_location::CssLocation;
 pub use directory_list::DirectoryListBuilder;
 pub use expression::{Expression, NONE_EXPRESSION};
 pub use expression_watch::ExpressionWatch;
-#[cfg(any(target_os = "linux", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
-pub use flags::PrintCapabilities;
 pub use functions::*;
 pub use glib::signal::Inhibit;
 pub use keyval_trigger::KeyvalTrigger;
