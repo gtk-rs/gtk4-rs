@@ -142,6 +142,11 @@ path = "settings/1/main.rs"
 name = "settings_2"
 path = "settings/2/main.rs"
 
+# todo_app
+[[bin]]
+name = "todo_app"
+path = "todo_app/1/main.rs"
+
 # widgets
 [[bin]]
 name = "widgets_1"
@@ -150,4 +155,3 @@ path = "widgets/1/main.rs"
 [[bin]]
 name = "widgets_2"
 path = "widgets/2/main.rs"
-

@@ -14,7 +14,7 @@
 - [Settings](settings.md)
 - [Saving Window State](saving_window_state.md)
 - [Lists](lists.md)
-- [Building a Simple To-Do App]()
+- [Building a Simple To-Do App](todo_app.md)
 - [Interface Builder]()
     - [GtkBuilder]()
     - [Templates]()
