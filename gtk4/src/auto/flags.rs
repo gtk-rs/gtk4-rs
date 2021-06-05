@@ -820,6 +820,97 @@ impl ToValue for PopoverMenuFlags {
     }
 }
 
+#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+bitflags! {
+    #[doc(alias = "GtkPrintCapabilities")]
+    pub struct PrintCapabilities: u32 {
+        #[doc(alias = "GTK_PRINT_CAPABILITY_PAGE_SET")]
+        const PAGE_SET = ffi::GTK_PRINT_CAPABILITY_PAGE_SET as u32;
+        #[doc(alias = "GTK_PRINT_CAPABILITY_COPIES")]
+        const COPIES = ffi::GTK_PRINT_CAPABILITY_COPIES as u32;
+        #[doc(alias = "GTK_PRINT_CAPABILITY_COLLATE")]
+        const COLLATE = ffi::GTK_PRINT_CAPABILITY_COLLATE as u32;
+        #[doc(alias = "GTK_PRINT_CAPABILITY_REVERSE")]
+        const REVERSE = ffi::GTK_PRINT_CAPABILITY_REVERSE as u32;
+        #[doc(alias = "GTK_PRINT_CAPABILITY_SCALE")]
+        const SCALE = ffi::GTK_PRINT_CAPABILITY_SCALE as u32;
+        #[doc(alias = "GTK_PRINT_CAPABILITY_GENERATE_PDF")]
+        const GENERATE_PDF = ffi::GTK_PRINT_CAPABILITY_GENERATE_PDF as u32;
+        #[doc(alias = "GTK_PRINT_CAPABILITY_GENERATE_PS")]
+        const GENERATE_PS = ffi::GTK_PRINT_CAPABILITY_GENERATE_PS as u32;
+        #[doc(alias = "GTK_PRINT_CAPABILITY_PREVIEW")]
+        const PREVIEW = ffi::GTK_PRINT_CAPABILITY_PREVIEW as u32;
+        #[doc(alias = "GTK_PRINT_CAPABILITY_NUMBER_UP")]
+        const NUMBER_UP = ffi::GTK_PRINT_CAPABILITY_NUMBER_UP as u32;
+        #[doc(alias = "GTK_PRINT_CAPABILITY_NUMBER_UP_LAYOUT")]
+        const NUMBER_UP_LAYOUT = ffi::GTK_PRINT_CAPABILITY_NUMBER_UP_LAYOUT as u32;
+    }
+}
+
+#[cfg(any(target_os = "linux", feature = "dox"))]
+impl fmt::Display for PrintCapabilities {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
+    }
+}
+
+#[cfg(any(target_os = "linux", feature = "dox"))]
+#[doc(hidden)]
+impl IntoGlib for PrintCapabilities {
+    type GlibType = ffi::GtkPrintCapabilities;
+
+    fn into_glib(self) -> ffi::GtkPrintCapabilities {
+        self.bits()
+    }
+}
+
+#[cfg(any(target_os = "linux", feature = "dox"))]
+#[doc(hidden)]
+impl FromGlib<ffi::GtkPrintCapabilities> for PrintCapabilities {
+    unsafe fn from_glib(value: ffi::GtkPrintCapabilities) -> Self {
+        skip_assert_initialized!();
+        Self::from_bits_truncate(value)
+    }
+}
+
+#[cfg(any(target_os = "linux", feature = "dox"))]
+impl StaticType for PrintCapabilities {
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::gtk_print_capabilities_get_type()) }
+    }
+}
+
+#[cfg(any(target_os = "linux", feature = "dox"))]
+impl glib::value::ValueType for PrintCapabilities {
+    type Type = Self;
+}
+
+#[cfg(any(target_os = "linux", feature = "dox"))]
+unsafe impl<'a> FromValue<'a> for PrintCapabilities {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
+    }
+}
+
+#[cfg(any(target_os = "linux", feature = "dox"))]
+impl ToValue for PrintCapabilities {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_flags(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
 bitflags! {
     #[doc(alias = "GtkShortcutActionFlags")]
     pub struct ShortcutActionFlags: u32 {

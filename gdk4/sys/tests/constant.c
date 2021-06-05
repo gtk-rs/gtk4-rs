@@ -21,6 +21,7 @@
                     unsigned long: "%lu", \
                     long long: "%lld", \
                     unsigned long long: "%llu", \
+                    float: "%f", \
                     double: "%f", \
                     long double: "%ld"), \
            CONSTANT_NAME); \

@@ -1110,6 +1110,9 @@ pub use self::flags::IconLookupFlags;
 pub use self::flags::InputHints;
 pub use self::flags::PickFlags;
 pub use self::flags::PopoverMenuFlags;
+#[cfg(any(target_os = "linux", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(target_os = "linux")))]
+pub use self::flags::PrintCapabilities;
 pub use self::flags::ShortcutActionFlags;
 pub use self::flags::StateFlags;
 pub use self::flags::StyleContextPrintFlags;
