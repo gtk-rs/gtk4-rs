@@ -70,6 +70,13 @@ impl ObjectImpl for TodoRow {
             _ => unimplemented!(),
         }
     }
+
+    fn constructed(&self, obj: &Self::Type) {
+        self.parent_constructed(obj);
+
+        obj.append(&self.completed_button);
+        obj.append(&self.content_label)
+    }
 }
 // ANCHOR_END: object_impl
 

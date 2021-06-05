@@ -9,8 +9,8 @@ use std::cell::{Cell, RefCell};
 // Object holding the state
 #[derive(Default)]
 pub struct TodoObject {
-    content: RefCell<String>,
     completed: Cell<bool>,
+    content: RefCell<String>,
 }
 
 // The central trait for subclassing a GObject
@@ -27,18 +27,6 @@ impl ObjectImpl for TodoObject {
     fn properties() -> &'static [ParamSpec] {
         static PROPERTIES: Lazy<Vec<ParamSpec>> = Lazy::new(|| {
             vec![
-                ParamSpec::new_string(
-                    // Name
-                    "content",
-                    // Nickname
-                    "content",
-                    // Short description
-                    "content",
-                    // Default value
-                    None,
-                    // The property can be read and written to
-                    ParamFlags::READWRITE,
-                ),
                 ParamSpec::new_boolean(
                     // Name
                     "completed",
@@ -51,6 +39,18 @@ impl ObjectImpl for TodoObject {
                     // The property can be read and written to
                     ParamFlags::READWRITE,
                 ),
+                ParamSpec::new_string(
+                    // Name
+                    "content",
+                    // Nickname
+                    "content",
+                    // Short description
+                    "content",
+                    // Default value
+                    None,
+                    // The property can be read and written to
+                    ParamFlags::READWRITE,
+                ),
             ]
         });
         PROPERTIES.as_ref()
@@ -58,13 +58,13 @@ impl ObjectImpl for TodoObject {
 
     fn set_property(&self, _obj: &Self::Type, _id: usize, value: &Value, pspec: &ParamSpec) {
         match pspec.name() {
-            "content" => {
-                let input_value = value.get().unwrap();
-                self.content.replace(input_value);
-            }
             "completed" => {
                 let input_value = value.get().unwrap();
                 self.completed.replace(input_value);
+            }
+            "content" => {
+                let input_value = value.get().unwrap();
+                self.content.replace(input_value);
             }
             _ => unimplemented!(),
         }
@@ -72,8 +72,8 @@ impl ObjectImpl for TodoObject {
 
     fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
         match pspec.name() {
-            "content" => self.content.borrow().to_value(),
             "completed" => self.completed.get().to_value(),
+            "content" => self.content.borrow().to_value(),
             _ => unimplemented!(),
         }
     }
