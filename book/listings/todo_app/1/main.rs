@@ -1,11 +1,14 @@
 mod todo_object;
+mod todo_row;
 
 use gtk::gio;
 use gtk::prelude::*;
 use gtk::Application;
 use gtk::ApplicationWindow;
-use gtk::{Label, ListView, PolicyType, ScrolledWindow, SignalListItemFactory, SingleSelection};
+use gtk::{ListView, PolicyType, ScrolledWindow, SignalListItemFactory, SingleSelection};
+
 use todo_object::TodoObject;
+use todo_row::TodoRow;
 
 fn main() {
     // Create a new application
@@ -29,9 +32,9 @@ fn build_ui(application: &Application) {
 
     let factory = SignalListItemFactory::new();
     factory.connect_setup(move |_, list_item| {
-        // Create label
-        let label = Label::new(None);
-        list_item.set_child(Some(&label));
+        // Create todo row
+        let todo_row = TodoRow::new();
+        list_item.set_child(Some(&todo_row));
     });
 
     let selection_model = SingleSelection::new(Some(&model));

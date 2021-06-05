@@ -144,7 +144,7 @@ path = "settings/2/main.rs"
 
 # todo_app
 [[bin]]
-name = "todo_app"
+name = "todo_app_1"
 path = "todo_app/1/main.rs"
 
 # widgets
