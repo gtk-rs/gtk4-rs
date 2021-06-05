@@ -1,4 +1,5 @@
-use gtk::glib::clone;
+use glib::clone;
+use gtk::glib;
 use gtk::prelude::*;
 
 fn main() {
