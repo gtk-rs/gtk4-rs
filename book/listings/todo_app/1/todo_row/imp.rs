@@ -2,20 +2,20 @@ use glib::{ParamFlags, ParamSpec, Value};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{CheckButton, Label};
+use gtk::{CheckButton, Entry};
 use once_cell::sync::Lazy;
 
 // Object holding the state
 pub struct TodoRow {
     completed_button: CheckButton,
-    content_label: Label,
+    content_entry: Entry,
 }
 
 impl Default for TodoRow {
     fn default() -> Self {
         Self {
             completed_button: CheckButton::new(),
-            content_label: Label::new(None),
+            content_entry: Entry::new(),
         }
     }
 }
@@ -48,13 +48,13 @@ impl ObjectImpl for TodoRow {
                 ),
                 ParamSpec::new_object(
                     // Name
-                    "content-label",
+                    "content-entry",
                     // Nickname
-                    "content-label",
+                    "content-entry",
                     // Short description
-                    "content-label",
+                    "content-entry",
                     // Object Type
-                    Label::static_type(),
+                    Entry::static_type(),
                     // The property can be read
                     ParamFlags::READABLE,
                 ),
@@ -66,7 +66,7 @@ impl ObjectImpl for TodoRow {
     fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
         match pspec.name() {
             "completed-button" => self.completed_button.to_value(),
-            "content-label" => self.content_label.to_value(),
+            "content-entry" => self.content_entry.to_value(),
             _ => unimplemented!(),
         }
     }
@@ -75,7 +75,7 @@ impl ObjectImpl for TodoRow {
         self.parent_constructed(obj);
 
         obj.append(&self.completed_button);
-        obj.append(&self.content_label)
+        obj.append(&self.content_entry)
     }
 }
 // ANCHOR_END: object_impl

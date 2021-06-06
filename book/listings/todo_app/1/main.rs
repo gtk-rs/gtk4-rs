@@ -7,7 +7,7 @@ use gtk::Application;
 use gtk::ApplicationWindow;
 use gtk::{gio, glib};
 use gtk::{
-    CheckButton, ConstantExpression, Label, ListView, PolicyType, PropertyExpression,
+    CheckButton, ConstantExpression, Entry, ListView, PolicyType, PropertyExpression,
     ScrolledWindow, SignalListItemFactory, SingleSelection,
 };
 
@@ -68,12 +68,19 @@ fn build_ui(application: &Application) {
             .get::<CheckButton>()
             .expect("The property needs to be of type `CheckButton`.");
 
-        // Get `content_label` from `TodoRow`
-        let content_label = todo_row
-            .property("content-label")
+        // Get `content_entry` from `TodoRow`
+        let content_entry = todo_row
+            .property("content-entry")
             .expect("The property needs to exist and be readable.")
-            .get::<Label>()
-            .expect("The property needs to be of type `Label`.");
+            .get::<Entry>()
+            .expect("The property needs to be of type `Entry`.");
+
+        // Get `content_buffer` from `content_entry`
+        let content_buffer = content_entry
+                .property("buffer")
+                .expect("The property needs to exist and be readable.")
+                .get::<gtk::EntryBuffer>()
+                .expect("The property needs to be of type `Entry`.");
 
         // Bind
         let binding_completed = todo_object
@@ -82,7 +89,7 @@ fn build_ui(application: &Application) {
             .build()
             .unwrap();
         let binding_content = todo_object
-            .bind_property("content", &content_label, "label")
+            .bind_property("content", &content_buffer, "text")
             .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
             .build()
             .unwrap();
