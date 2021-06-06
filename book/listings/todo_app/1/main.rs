@@ -1,10 +1,11 @@
 mod todo_object;
 mod todo_row;
 
-use gtk::gio;
+use glib::BindingFlags;
 use gtk::prelude::*;
 use gtk::Application;
 use gtk::ApplicationWindow;
+use gtk::{gio, glib};
 use gtk::{
     CheckButton, ConstantExpression, Label, ListView, PolicyType, PropertyExpression,
     ScrolledWindow, SignalListItemFactory, SingleSelection,
@@ -32,53 +33,70 @@ fn build_ui(application: &Application) {
         .build();
 
     let model = gio::ListStore::new(TodoObject::static_type());
-
-    model.append(&TodoObject::new("What's up?".to_string(), true));
+    for i in 0..1000 {
+        model.append(&TodoObject::new(i.to_string(), true));
+    }
 
     let factory = SignalListItemFactory::new();
     factory.connect_setup(move |_, list_item| {
         // Create todo row
         let todo_row = TodoRow::new();
         list_item.set_child(Some(&todo_row));
+    });
 
-        let list_item_expression = ConstantExpression::new(list_item);
-        let todo_object_expression = PropertyExpression::new(
-            gtk::ListItem::static_type(),
-            Some(&list_item_expression),
-            "item",
-        );
+    let bindings_map = std::rc::Rc::new(std::cell::RefCell::new(std::collections::HashMap::new()));
 
-        // Create expression describing `list_item->item->completed`
-        let completed_expression = PropertyExpression::new(
-            TodoObject::static_type(),
-            Some(&todo_object_expression),
-            "completed",
-        );
+    factory.connect_bind(glib::clone!(@strong bindings_map => move |_, list_item| {
+        // Get `TodoObject` from `ListItem`
+        let todo_object = list_item
+            .item()
+            .expect("The item has to exist.")
+            .downcast::<TodoObject>()
+            .expect("The item has to be an `TodoObject`.");
 
-        // Create expression describing `list_item->item->content`
-        let content_expression = PropertyExpression::new(
-            TodoObject::static_type(),
-            Some(&todo_object_expression),
-            "content",
-        );
+        // Get `TodoRow` from `ListItem`
+        let todo_row = list_item
+            .child()
+            .expect("The child has to exist.")
+            .downcast::<TodoRow>()
+            .expect("The child has to be a `TodoRow`.");
 
-        // Get widgets from `TodoRow`
+        // Get `completed_button` from `TodoRow`
         let completed_button = todo_row
             .property("completed-button")
             .expect("The property needs to exist and be readable.")
             .get::<CheckButton>()
             .expect("The property needs to be of type `CheckButton`.");
 
+        // Get `content_label` from `TodoRow`
         let content_label = todo_row
             .property("content-label")
             .expect("The property needs to exist and be readable.")
             .get::<Label>()
             .expect("The property needs to be of type `Label`.");
 
-        // Bind `TodoRow` to `TodoObject`
-        completed_expression.bind(&completed_button, "active", Some(&completed_button));
-        content_expression.bind(&content_label, "label", Some(&content_label));
-    });
+        // Bind
+        let binding_completed = todo_object
+            .bind_property("completed", &completed_button, "active")
+            .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
+            .build()
+            .unwrap();
+        let binding_content = todo_object
+            .bind_property("content", &content_label, "label")
+            .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
+            .build()
+            .unwrap();
+
+        let id = list_item.position();
+        bindings_map.borrow_mut().insert(id, (binding_completed, binding_content));
+    }));
+
+    factory.connect_unbind(glib::clone!(@strong bindings_map => move |_, list_item| {
+        let id = list_item.position();
+        let (binding_completed,binding_content )= bindings_map.borrow_mut().remove(&id).unwrap();
+        binding_completed.unbind();
+        binding_content.unbind();
+    }));
 
     let selection_model = SingleSelection::new(Some(&model));
     let list_view = ListView::new(Some(&selection_model), Some(&factory));
