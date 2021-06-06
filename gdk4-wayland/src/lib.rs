@@ -8,6 +8,7 @@ pub use wayland_client;
 
 mod auto;
 
+pub mod prelude;
 pub use auto::*;
 
 mod wayland_device;
