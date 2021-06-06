@@ -1,5 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+// rustdoc-stripper-ignore-next
+//! # Rust GSK 4 bindings
+//!
+//! This library contains safe Rust bindings for [GSK4](https://docs.gtk.org/gsk4/).
+//!
+//! GSK is an intermediate layer that isolates GTK from the details of the OpenGL or Vulkan implementation.
+
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
 #![allow(clippy::derive_hash_xor_eq)]
 #![allow(clippy::too_many_arguments)]
