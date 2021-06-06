@@ -1,5 +1,12 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+// rustdoc-stripper-ignore-next
+//! # Rust GDK 4 bindings
+//!
+//! This library contains safe Rust bindings for [GDK 4](https://docs.gtk.org/gdk4/).
+//!
+//! GDK is an intermediate layer that isolates GTK from the details of the windowing system.
+
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
 #![allow(clippy::type_complexity)]
 #![allow(clippy::derive_hash_xor_eq)]

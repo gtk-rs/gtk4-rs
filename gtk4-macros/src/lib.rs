@@ -1,5 +1,9 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
+//! # GTK 4 Macros
+//!
+//! The crate aims to provide useful macros to use with the GTK 4 Rust bindings.
+
 mod attribute_parser;
 mod composite_template_derive;
 mod util;
