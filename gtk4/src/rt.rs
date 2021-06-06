@@ -80,10 +80,10 @@ pub unsafe fn set_initialized() {
     IS_MAIN_THREAD.with(|c| c.set(true));
 }
 
-/// Tries to initialize GTK+.
+/// Tries to initialize GTK.
 ///
 /// Call either this function or [`Application::new`][new] before using any
-/// other GTK+ functions.
+/// other GTK functions.
 ///
 /// [new]: struct.Application.html#method.new
 ///
