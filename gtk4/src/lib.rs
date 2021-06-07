@@ -4,18 +4,18 @@
 //! # Rust GTK 4 bindings
 //!
 //! This library contains safe Rust bindings for [GTK 4](http://www.gtk.org), a
-//! multi-platform GUI toolkit. It is a part of [Gtk-rs](http://gtk-rs.org/).
+//! multi-platform GUI toolkit. It is a part of [gtk-rs](http://gtk-rs.org/).
 //!
 //! Most of this documentation is generated from the C API.
 //! Until all parts of the documentation have been reviewed there will be incongruities
 //! with the actual Rust API.
 //!
-//! For a gentle introduction to Gtk-rs we recommend the online book
+//! For a gentle introduction to gtk-rs we recommend the online book
 //! [*GUI development with Rust and GTK 4*](../../book/).
 //!
 //! See also
 //!
-//! - [Gtk-rs documentation overview](https://gtk-rs.org/docs-src/)
+//! - [gtk-rs documentation overview](https://gtk-rs.org/docs-src/)
 //!
 //! - [General `GLib` family types and object system overview](mod@glib)
 //!

@@ -1,5 +1,5 @@
 [package]
-authors = ["The Gtk-rs Project Developers"]
+authors = ["The gtk-rs Project Developers"]
 build = "build.rs"
 description = "FFI bindings of GDK4 X11"
 documentation = "https://gtk-rs.org/gtk4-rs/git/docs/gdk4_x11_sys/"

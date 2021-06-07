@@ -1,5 +1,5 @@
 [package]
-authors = ["The Gtk-rs Project Developers"]
+authors = ["The gtk-rs Project Developers"]
 description = "Rust bindings of the GDK 4 Wayland library"
 documentation = "https://gtk-rs.org/gtk4-rs/stable/docs/gdk4_wayland/"
 edition = "2018"

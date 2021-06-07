@@ -1,5 +1,5 @@
 [package]
-authors = ["The Gtk-rs Project Developers"]
+authors = ["The gtk-rs Project Developers"]
 description = "Rust bindings of the GSK 4 library"
 documentation = "https://gtk-rs.org/gtk4-rs/stable/docs/gsk4"
 edition = "2018"
