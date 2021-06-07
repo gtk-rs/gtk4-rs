@@ -1,5 +1,5 @@
 [package]
-authors = ["The Gtk-rs Project Developers"]
+authors = ["The gtk-rs Project Developers"]
 categories = ["api-bindings", "gui"]
 description = "Macros helpers for GTK 4 bindings"
 documentation = "https://gtk-rs.org/gtk4-rs/stable/docs/gtk4_macros"
