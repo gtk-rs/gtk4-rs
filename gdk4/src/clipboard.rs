@@ -71,14 +71,11 @@ impl Clipboard {
             .copied()
             .map(String::from)
             .collect::<Vec<_>>();
-        Box::pin(gio::GioFuture::new(self, move |obj, send| {
-            let cancellable = gio::Cancellable::new();
+        Box::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             let mime_types = mime_types.iter().map(|s| s.as_str()).collect::<Vec<_>>();
-            obj.read_async(&mime_types, io_priority, Some(&cancellable), move |res| {
+            obj.read_async(&mime_types, io_priority, Some(cancellable), move |res| {
                 send.resolve(res);
             });
-
-            cancellable
         }))
     }
 
@@ -132,13 +129,10 @@ impl Clipboard {
         &self,
         io_priority: glib::Priority,
     ) -> Pin<Box<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>> {
-        Box::pin(gio::GioFuture::new(self, move |obj, send| {
-            let cancellable = gio::Cancellable::new();
-            obj.store_async(io_priority, Some(&cancellable), move |res| {
+        Box::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+            obj.store_async(io_priority, Some(cancellable), move |res| {
                 send.resolve(res);
             });
-
-            cancellable
         }))
     }
 
@@ -191,13 +185,10 @@ impl Clipboard {
         io_priority: glib::Priority,
     ) -> Pin<Box<dyn std::future::Future<Output = Result<glib::Value, glib::Error>> + 'static>>
     {
-        Box::pin(gio::GioFuture::new(self, move |obj, send| {
-            let cancellable = gio::Cancellable::new();
-            obj.read_value_async(type_, io_priority, Some(&cancellable), move |res| {
+        Box::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+            obj.read_value_async(type_, io_priority, Some(cancellable), move |res| {
                 send.resolve(res);
             });
-
-            cancellable
         }))
     }
 
@@ -245,13 +236,10 @@ impl Clipboard {
     ) -> Pin<
         Box<dyn std::future::Future<Output = Result<Option<glib::GString>, glib::Error>> + 'static>,
     > {
-        Box::pin(gio::GioFuture::new(self, move |obj, send| {
-            let cancellable = gio::Cancellable::new();
-            obj.read_text_async(Some(&cancellable), move |res| {
+        Box::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+            obj.read_text_async(Some(cancellable), move |res| {
                 send.resolve(res);
             });
-
-            cancellable
         }))
     }
 
@@ -298,13 +286,10 @@ impl Clipboard {
         &self,
     ) -> Pin<Box<dyn std::future::Future<Output = Result<Option<Texture>, glib::Error>> + 'static>>
     {
-        Box::pin(gio::GioFuture::new(self, move |obj, send| {
-            let cancellable = gio::Cancellable::new();
-            obj.read_texture_async(Some(&cancellable), move |res| {
+        Box::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+            obj.read_texture_async(Some(cancellable), move |res| {
                 send.resolve(res);
             });
-
-            cancellable
         }))
     }
 }

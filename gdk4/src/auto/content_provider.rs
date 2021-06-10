@@ -184,19 +184,16 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>> {
         let mime_type = String::from(mime_type);
         let stream = stream.clone();
-        Box_::pin(gio::GioFuture::new(self, move |obj, send| {
-            let cancellable = gio::Cancellable::new();
+        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             obj.write_mime_type_async(
                 &mime_type,
                 &stream,
                 io_priority,
-                Some(&cancellable),
+                Some(cancellable),
                 move |res| {
                     send.resolve(res);
                 },
             );
-
-            cancellable
         }))
     }
 
