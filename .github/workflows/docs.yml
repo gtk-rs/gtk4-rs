@@ -46,7 +46,12 @@ jobs:
           git sparse-checkout set docs/reference/gtk/images
           git checkout master
           mv ./docs/reference/gtk/images/*.png ../target/doc/gtk4
-
+      - name: Grab gtk-rs LOGO
+        run: |
+          sudo dnf install ImageMagick -y
+          wget https://raw.githubusercontent.com/gtk-rs/gtk-rs.github.io/master/logo.svg
+          convert -density 1200 -resize 256x256 -background none logo.svg ./target/doc/rust-logo.png
+          for size in 16 32 ; do convert -density 1200 -resize "${size}x${size}" -background none logo.svg "./target/doc/favicon-${size}x${size}.png" ; done
       - name: deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'release' }}
