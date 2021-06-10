@@ -109,20 +109,17 @@ pub fn content_deserialize_async_future<P: IsA<gio::InputStream> + Clone + 'stat
 
     let stream = stream.clone();
     let mime_type = String::from(mime_type);
-    Box::pin(gio::GioFuture::new(&(), move |_obj, send| {
-        let cancellable = gio::Cancellable::new();
+    Box::pin(gio::GioFuture::new(&(), move |_obj, cancellable, send| {
         content_deserialize_async(
             &stream,
             &mime_type,
             type_,
             io_priority,
-            Some(&cancellable),
+            Some(cancellable),
             move |res| {
                 send.resolve(res);
             },
         );
-
-        cancellable
     }))
 }
 
@@ -302,19 +299,16 @@ pub fn content_serialize_async_future<P: IsA<gio::OutputStream> + Clone + 'stati
     let stream = stream.clone();
     let mime_type = String::from(mime_type);
     let value = value.clone();
-    Box::pin(gio::GioFuture::new(&(), move |_obj, send| {
-        let cancellable = gio::Cancellable::new();
+    Box::pin(gio::GioFuture::new(&(), move |_obj, cancellable, send| {
         content_serialize_async(
             &stream,
             &mime_type,
             &value,
             io_priority,
-            Some(&cancellable),
+            Some(cancellable),
             move |res| {
                 send.resolve(res);
             },
         );
-
-        cancellable
     }))
 }

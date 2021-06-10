@@ -233,23 +233,23 @@ impl<T: ContentProviderImpl> ContentProviderImplExt for T {
     ) -> Pin<Box<dyn Future<Output = Result<(), glib::Error>> + 'static>> {
         let stream = stream.clone();
         let mime_type = String::from(mime_type);
-        Box::pin(gio::GioFuture::new(provider, move |obj, send| {
-            let cancellable = gio::Cancellable::new();
-            let self_ = Self::from_instance(&obj);
+        Box::pin(gio::GioFuture::new(
+            provider,
+            move |obj, cancellable, send| {
+                let self_ = Self::from_instance(&obj);
 
-            self_.parent_write_mime_type_async(
-                &self_.instance(),
-                &mime_type,
-                &stream,
-                io_priority,
-                Some(&cancellable),
-                move |res| {
-                    send.resolve(res);
-                },
-            );
-
-            cancellable
-        }))
+                self_.parent_write_mime_type_async(
+                    &self_.instance(),
+                    &mime_type,
+                    &stream,
+                    io_priority,
+                    Some(cancellable),
+                    move |res| {
+                        send.resolve(res);
+                    },
+                );
+            },
+        ))
     }
 
     fn parent_value(&self, provider: &Self::Type, type_: glib::Type) -> Result<Value, glib::Error> {

@@ -72,14 +72,11 @@ impl Drop {
             .copied()
             .map(String::from)
             .collect::<Vec<_>>();
-        Box::pin(gio::GioFuture::new(self, move |obj, send| {
-            let cancellable = gio::Cancellable::new();
+        Box::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
             let mime_types = mime_types.iter().map(|s| s.as_str()).collect::<Vec<_>>();
-            obj.read_async(&mime_types, io_priority, Some(&cancellable), move |res| {
+            obj.read_async(&mime_types, io_priority, Some(cancellable), move |res| {
                 send.resolve(res);
             });
-
-            cancellable
         }))
     }
 }
