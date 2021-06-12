@@ -11,8 +11,6 @@
 #![allow(clippy::type_complexity)]
 #![allow(clippy::derive_hash_xor_eq)]
 #![allow(clippy::too_many_arguments)]
-#![doc(html_logo_url = "https://gtk-rs.org/logo.svg")]
-#![doc(html_favicon_url = "https://gtk-rs.org/logo.svg")]
 
 pub use cairo;
 pub use ffi;
