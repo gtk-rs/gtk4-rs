@@ -1,7 +1,7 @@
 FROM fedora:latest
 
 RUN dnf update -y
-RUN dnf install git xorg-x11-server-Xvfb procps-ng 'dnf-command(builddep)' -y
+RUN dnf install git xorg-x11-server-Xvfb procps-ng wget 'dnf-command(builddep)' -y
 RUN dnf builddep gtk4 -y
 
 # build gtk4 from the latest release
