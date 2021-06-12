@@ -1,8 +1,5 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-#![doc(html_logo_url = "https://gtk-rs.org/logo.svg")]
-#![doc(html_favicon_url = "https://gtk-rs.org/logo.svg")]
-
 //! # GTK 4 Macros
 //!
 //! The crate aims to provide useful macros to use with the GTK 4 Rust bindings.

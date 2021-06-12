@@ -1,7 +1,5 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-#![doc(html_logo_url = "https://gtk-rs.org/logo.svg")]
-#![doc(html_favicon_url = "https://gtk-rs.org/logo.svg")]
 // rustdoc-stripper-ignore-next
 //! # Rust GDK 4 X11 bindings
 //!
