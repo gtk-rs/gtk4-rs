@@ -132,7 +132,6 @@ generate = [
     "Gtk.License",
     "Gtk.ListBase",
     "Gtk.ListBoxRow",
-    "Gtk.ListItem",
     "Gtk.ListItemFactory",
     "Gtk.ListView",
     "Gtk.MediaControls",
@@ -644,6 +643,7 @@ generate_builder = false
 [[object]]
 name = "Gtk.BuilderListItemFactory"
 status = "generate"
+generate_builder = false
 trust_return_value_nullability = false
 
 [[object]]
@@ -1349,6 +1349,11 @@ trust_return_value_nullability = false
         [[object.function.parameter]]
         name = "sort_func"
         nullable = false # we add a manual unset_sort_func
+
+[[object]]
+name = "Gtk.ListItem"
+status = "generate"
+generate_builder = false
 
 [[object]]
 name = "Gtk.ListStore"

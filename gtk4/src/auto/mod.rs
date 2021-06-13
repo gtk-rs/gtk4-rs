@@ -94,7 +94,6 @@ pub use self::builder::Builder;
 
 mod builder_list_item_factory;
 pub use self::builder_list_item_factory::BuilderListItemFactory;
-pub use self::builder_list_item_factory::BuilderListItemFactoryBuilder;
 
 mod builder_scope;
 pub use self::builder_scope::{BuilderScope, NONE_BUILDER_SCOPE};
@@ -513,7 +512,6 @@ pub use self::list_box_row::{ListBoxRow, NONE_LIST_BOX_ROW};
 
 mod list_item;
 pub use self::list_item::ListItem;
-pub use self::list_item::ListItemBuilder;
 
 mod list_item_factory;
 pub use self::list_item_factory::{ListItemFactory, NONE_LIST_ITEM_FACTORY};
