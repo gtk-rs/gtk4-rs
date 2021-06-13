@@ -173,10 +173,10 @@ For example, this is how you would use a <code>Value</code> representing an <cod
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">
 </span><span class="boring">fn main() {
-</span>    // Store `Option&lt;String&gt;` as `Value`
+</span>    // Store `i32` as `Value`
     let integer_value = 10.to_value();
 
-    // Retrieve `String` from `Value`
+    // Retrieve `i32` from `Value`
     let integer = integer_value
         .get::&lt;i32&gt;()
         .expect(&quot;The value needs to be of type `i32`.&quot;);
@@ -220,10 +220,10 @@ You can still access it the same way as with the <code>i32</code> above.
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">
 </span><span class="boring">fn main() {
-</span><span class="boring">    // Store `Option&lt;String&gt;` as `Value`
+</span><span class="boring">    // Store `i32` as `Value`
 </span><span class="boring">    let integer_value = 10.to_value();
 </span><span class="boring">
-</span><span class="boring">    // Retrieve `String` from `Value`
+</span><span class="boring">    // Retrieve `i32` from `Value`
 </span><span class="boring">    let integer = integer_value
 </span><span class="boring">        .get::&lt;i32&gt;()
 </span><span class="boring">        .expect(&quot;The value needs to be of type `i32`.&quot;);
@@ -263,10 +263,10 @@ You can still access it the same way as with the <code>i32</code> above.
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">
 </span><span class="boring">fn main() {
-</span><span class="boring">    // Store `Option&lt;String&gt;` as `Value`
+</span><span class="boring">    // Store `i32` as `Value`
 </span><span class="boring">    let integer_value = 10.to_value();
 </span><span class="boring">
-</span><span class="boring">    // Retrieve `String` from `Value`
+</span><span class="boring">    // Retrieve `i32` from `Value`
 </span><span class="boring">    let integer = integer_value
 </span><span class="boring">        .get::&lt;i32&gt;()
 </span><span class="boring">        .expect(&quot;The value needs to be of type `i32`.&quot;);
