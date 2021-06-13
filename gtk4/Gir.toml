@@ -208,7 +208,6 @@ generate = [
     "Gtk.SpinButtonUpdatePolicy",
     "Gtk.Spinner",
     "Gtk.SpinType",
-    "Gtk.StackPage",
     "Gtk.StackSidebar",
     "Gtk.StackSwitcher",
     "Gtk.StackTransitionType",
@@ -582,6 +581,7 @@ trust_return_value_nullability = false
 [[object]]
 name = "Gtk.AssistantPage"
 status = "generate"
+generate_builder = false
 trust_return_value_nullability = false
 
 [[object]]
@@ -1575,6 +1575,7 @@ trust_return_value_nullability = false
 [[object]]
 name = "Gtk.NotebookPage"
 status = "generate"
+generate_builder = false
 trust_return_value_nullability = false
 
 [[object]]
@@ -1895,6 +1896,11 @@ status = "generate"
     [[object.function]]
     name = "get_interpolate_size"
     rename = "interpolates_size"
+
+[[object]]
+name = "Gtk.StackPage"
+status = "generate"
+generate_builder = false
 
 [[object]]
 name = "Gtk.StringFilter"

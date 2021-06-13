@@ -4,8 +4,6 @@
 
 use crate::AssistantPageType;
 use crate::Widget;
-use glib::object::Cast;
-use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
@@ -26,14 +24,6 @@ glib::wrapper! {
 }
 
 impl AssistantPage {
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`AssistantPage`].
-    ///
-    /// This method returns an instance of [`AssistantPageBuilder`] which can be used to create a [`AssistantPage`].
-    pub fn builder() -> AssistantPageBuilder {
-        AssistantPageBuilder::default()
-    }
-
     #[doc(alias = "gtk_assistant_page_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Option<Widget> {
@@ -182,64 +172,6 @@ impl AssistantPage {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`AssistantPage`].
-pub struct AssistantPageBuilder {
-    child: Option<Widget>,
-    complete: Option<bool>,
-    page_type: Option<AssistantPageType>,
-    title: Option<String>,
-}
-
-impl AssistantPageBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`AssistantPageBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`AssistantPage`].
-    pub fn build(self) -> AssistantPage {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref child) = self.child {
-            properties.push(("child", child));
-        }
-        if let Some(ref complete) = self.complete {
-            properties.push(("complete", complete));
-        }
-        if let Some(ref page_type) = self.page_type {
-            properties.push(("page-type", page_type));
-        }
-        if let Some(ref title) = self.title {
-            properties.push(("title", title));
-        }
-        glib::Object::new::<AssistantPage>(&properties)
-            .expect("Failed to create an instance of AssistantPage")
-    }
-
-    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
-        self.child = Some(child.clone().upcast());
-        self
-    }
-
-    pub fn complete(mut self, complete: bool) -> Self {
-        self.complete = Some(complete);
-        self
-    }
-
-    pub fn page_type(mut self, page_type: AssistantPageType) -> Self {
-        self.page_type = Some(page_type);
-        self
-    }
-
-    pub fn title(mut self, title: &str) -> Self {
-        self.title = Some(title.to_string());
-        self
     }
 }
 
