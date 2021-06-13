@@ -7,8 +7,6 @@ use crate::ListItemFactory;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::fmt;
 
 glib::wrapper! {
@@ -53,14 +51,6 @@ impl BuilderListItemFactory {
         }
     }
 
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`BuilderListItemFactory`].
-    ///
-    /// This method returns an instance of [`BuilderListItemFactoryBuilder`] which can be used to create a [`BuilderListItemFactory`].
-    pub fn builder() -> BuilderListItemFactoryBuilder {
-        BuilderListItemFactoryBuilder::default()
-    }
-
     #[doc(alias = "gtk_builder_list_item_factory_get_bytes")]
     #[doc(alias = "get_bytes")]
     pub fn bytes(&self) -> Option<glib::Bytes> {
@@ -89,55 +79,6 @@ impl BuilderListItemFactory {
                 self.to_glib_none().0,
             ))
         }
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`BuilderListItemFactory`].
-pub struct BuilderListItemFactoryBuilder {
-    bytes: Option<glib::Bytes>,
-    resource: Option<String>,
-    scope: Option<BuilderScope>,
-}
-
-impl BuilderListItemFactoryBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`BuilderListItemFactoryBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`BuilderListItemFactory`].
-    pub fn build(self) -> BuilderListItemFactory {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref bytes) = self.bytes {
-            properties.push(("bytes", bytes));
-        }
-        if let Some(ref resource) = self.resource {
-            properties.push(("resource", resource));
-        }
-        if let Some(ref scope) = self.scope {
-            properties.push(("scope", scope));
-        }
-        glib::Object::new::<BuilderListItemFactory>(&properties)
-            .expect("Failed to create an instance of BuilderListItemFactory")
-    }
-
-    pub fn bytes(mut self, bytes: &glib::Bytes) -> Self {
-        self.bytes = Some(bytes.clone());
-        self
-    }
-
-    pub fn resource(mut self, resource: &str) -> Self {
-        self.resource = Some(resource.to_string());
-        self
-    }
-
-    pub fn scope<P: IsA<BuilderScope>>(mut self, scope: &P) -> Self {
-        self.scope = Some(scope.clone().upcast());
-        self
     }
 }
 
