@@ -2,10 +2,10 @@ use gtk::prelude::*;
 
 fn main() {
     // ANCHOR: i32
-    // Store `Option<String>` as `Value`
+    // Store `i32` as `Value`
     let integer_value = 10.to_value();
 
-    // Retrieve `String` from `Value`
+    // Retrieve `i32` from `Value`
     let integer = integer_value
         .get::<i32>()
         .expect("The value needs to be of type `i32`.");

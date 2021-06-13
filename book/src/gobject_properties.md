@@ -5,7 +5,7 @@ Properties provide a public API for accessing state of GObjects.
 Let us see how this is done by experimenting with the `Switch` widget.
 One of its properties is the [state](https://docs.gtk.org/gtk4/property.Switch.state.html).
 According to the GTK docs, it can be read and be written to.
-That is why, `gtk-rs` provides corresponding [`state`](../docs/gtk4/struct.Switch.html#method.state) and [`set_state`](../docs/gtk4/docs/gtk4/struct.Switch.html#method.set_state) methods.
+That is why `gtk-rs` provides corresponding [`state`](../docs/gtk4/struct.Switch.html#method.state) and [`set_state`](../docs/gtk4/docs/gtk4/struct.Switch.html#method.set_state) methods.
 
 <span class="filename">Filename: listings/gobject_properties/1/main.rs</span>
 
@@ -21,8 +21,8 @@ Because they can be used for properties of different types, they operate with `g
 {{#rustdoc_include ../listings/gobject_properties/2/main.rs:switch}}
 ```
 
-Dealing with a `glib::Value` is quite verbose
-This is why you will only want to use the generic methods for accessing properties you have added to your custom GObjects.
+Dealing with a `glib::Value` is quite verbose.
+This is why you only want to use the generic methods for accessing properties you have added to your custom GObjects.
 
 Properties can not only be accessed via getters & setters, they can also be bound to each other.
 Let us see how that would look like for two `Switch` instances.
@@ -42,13 +42,13 @@ We also want the binding to be bidirectional, so we specify this with the [`Bind
 {{#rustdoc_include ../listings/gobject_properties/3/main.rs:bind_state}}
 ```
 
-Whenever we now click on one of the two switches, the other one gets toggled as well.
+Now when we click on one of the two switches, the other one is toggled as well.
 
 <div style="text-align:center"><img src="img/gobject_properties_switches.png" /></div>
 
 We can also add properties to custom GObjects.
-We can demonstrate that, by binding the `number` of our `CustomButton` to a property.
-For that, we need to be able to [lazily evaluate](https://en.wikipedia.org/wiki/Lazy_evaluation) expressions.
+We can demonstrate that by binding the `number` of our `CustomButton` to a property.
+For that we need to be able to [lazily evaluate](https://en.wikipedia.org/wiki/Lazy_evaluation) expressions.
 The crate `once_cell` provides the `Lazy` type which allows us to do that.
 `once_cell` is already part of Rust nightly.
 Until it hits stable, we will add it as external dependency.
@@ -63,7 +63,7 @@ once_cell = "1"
 Now we define the "number" property within the `ObjectImpl` implementation.
 The `properties` method describes our set of properties.
 When naming our property, we make sure to do that in [kebab-case](https://wiki.c2.com/?KebabCase).
-Then, we describe its type, range and default value.
+Then we describe its type, range and default value.
 We also declare that the property can be read and be written to.
 `set_property` describes how the underlying values can be changed.
 `property` takes care of returning the underlying value.
@@ -99,7 +99,7 @@ By leveraging [`transform_to`](http://gtk-rs.org/docs/glib/object/struct.Binding
 ```rust ,no_run
 {{#rustdoc_include ../listings/gobject_properties/4/main.rs:bind_numbers}}
 ```
-If we now click on one button, the "number" and "label" properties of the other button change as well.
+Now if we click on one button, the "number" and "label" properties of the other button change as well.
 
 <div style="text-align:center"><img src="img/gobject_properties_buttons.png"/></div>
 
@@ -114,9 +114,9 @@ We can do this like this:
 
 Now, whenever the "number" property gets changed, the closure gets executed and prints the current value of "number".
 
-You will want to introduce properties to your custom GObjects whenever you want
-- to allow consumers to be able to access internal state,
-- to bind state of (different) GObjects or
-- to notify consumers whenever the property value changes.
+Introducing properties to your custom GObjects is useful if you want to
+- allow consumers to be able to access internal state
+- bind state of (different) GObjects
+- notify consumers whenever a property value changes
 
 
