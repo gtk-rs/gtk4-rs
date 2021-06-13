@@ -167,7 +167,6 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
         }
     }
 
-    #[doc(alias = "selection-changed")]
     fn connect_selection_changed<F: Fn(&Self, u32, u32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn selection_changed_trampoline<
             P: IsA<SelectionModel>,

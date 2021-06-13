@@ -338,7 +338,6 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    #[doc(alias = "enter-monitor")]
     fn connect_enter_monitor<F: Fn(&Self, &Monitor) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn enter_monitor_trampoline<
             P: IsA<Surface>,
@@ -367,7 +366,6 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    #[doc(alias = "event")]
     fn connect_event<F: Fn(&Self, &Event) -> bool + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn event_trampoline<
             P: IsA<Surface>,
@@ -397,7 +395,6 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    #[doc(alias = "layout")]
     fn connect_layout<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn layout_trampoline<P: IsA<Surface>, F: Fn(&P, i32, i32) + 'static>(
             this: *mut ffi::GdkSurface,
@@ -425,7 +422,6 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    #[doc(alias = "leave-monitor")]
     fn connect_leave_monitor<F: Fn(&Self, &Monitor) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn leave_monitor_trampoline<
             P: IsA<Surface>,
@@ -454,7 +450,6 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    #[doc(alias = "render")]
     fn connect_render<F: Fn(&Self, &cairo::Region) -> bool + 'static>(
         &self,
         f: F,
@@ -487,7 +482,6 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    #[doc(alias = "cursor")]
     fn connect_cursor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cursor_trampoline<P: IsA<Surface>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkSurface,
@@ -510,7 +504,6 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    #[doc(alias = "height")]
     fn connect_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_height_trampoline<P: IsA<Surface>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkSurface,
@@ -533,7 +526,6 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    #[doc(alias = "mapped")]
     fn connect_mapped_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_mapped_trampoline<P: IsA<Surface>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkSurface,
@@ -556,7 +548,6 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    #[doc(alias = "scale-factor")]
     fn connect_scale_factor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scale_factor_trampoline<
             P: IsA<Surface>,
@@ -582,7 +573,6 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         }
     }
 
-    #[doc(alias = "width")]
     fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_trampoline<P: IsA<Surface>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkSurface,

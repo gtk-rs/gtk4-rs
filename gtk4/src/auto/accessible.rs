@@ -91,7 +91,6 @@ impl<O: IsA<Accessible>> AccessibleExt for O {
         }
     }
 
-    #[doc(alias = "accessible-role")]
     fn connect_accessible_role_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_accessible_role_trampoline<
             P: IsA<Accessible>,

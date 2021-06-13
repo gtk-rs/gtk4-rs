@@ -163,7 +163,6 @@ impl<O: IsA<NativeDialog>> NativeDialogExt for O {
         }
     }
 
-    #[doc(alias = "response")]
     fn connect_response<F: Fn(&Self, ResponseType) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn response_trampoline<
             P: IsA<NativeDialog>,
@@ -192,7 +191,6 @@ impl<O: IsA<NativeDialog>> NativeDialogExt for O {
         }
     }
 
-    #[doc(alias = "modal")]
     fn connect_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_modal_trampoline<P: IsA<NativeDialog>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkNativeDialog,
@@ -215,7 +213,6 @@ impl<O: IsA<NativeDialog>> NativeDialogExt for O {
         }
     }
 
-    #[doc(alias = "title")]
     fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<P: IsA<NativeDialog>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkNativeDialog,
@@ -238,7 +235,6 @@ impl<O: IsA<NativeDialog>> NativeDialogExt for O {
         }
     }
 
-    #[doc(alias = "transient-for")]
     fn connect_transient_for_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_transient_for_trampoline<
             P: IsA<NativeDialog>,
@@ -264,7 +260,6 @@ impl<O: IsA<NativeDialog>> NativeDialogExt for O {
         }
     }
 
-    #[doc(alias = "visible")]
     fn connect_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_visible_trampoline<
             P: IsA<NativeDialog>,

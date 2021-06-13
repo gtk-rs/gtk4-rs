@@ -452,7 +452,6 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
         }
     }
 
-    #[doc(alias = "resize")]
     fn connect_resize<F: Fn(&Self, i32, i32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn resize_trampoline<
             P: IsA<DrawingArea>,
@@ -483,7 +482,6 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
         }
     }
 
-    #[doc(alias = "content-height")]
     fn connect_content_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_content_height_trampoline<
             P: IsA<DrawingArea>,
@@ -509,7 +507,6 @@ impl<O: IsA<DrawingArea>> DrawingAreaExt for O {
         }
     }
 
-    #[doc(alias = "content-width")]
     fn connect_content_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_content_width_trampoline<
             P: IsA<DrawingArea>,

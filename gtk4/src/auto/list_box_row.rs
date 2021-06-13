@@ -534,7 +534,6 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
         }
     }
 
-    #[doc(alias = "activate")]
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<P: IsA<ListBoxRow>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkListBoxRow,
@@ -564,7 +563,6 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
         };
     }
 
-    #[doc(alias = "activatable")]
     fn connect_activatable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_activatable_trampoline<
             P: IsA<ListBoxRow>,
@@ -590,7 +588,6 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
         }
     }
 
-    #[doc(alias = "child")]
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<P: IsA<ListBoxRow>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkListBoxRow,
@@ -613,7 +610,6 @@ impl<O: IsA<ListBoxRow>> ListBoxRowExt for O {
         }
     }
 
-    #[doc(alias = "selectable")]
     fn connect_selectable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selectable_trampoline<
             P: IsA<ListBoxRow>,

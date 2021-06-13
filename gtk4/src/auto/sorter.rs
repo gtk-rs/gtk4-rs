@@ -66,7 +66,6 @@ impl<O: IsA<Sorter>> SorterExt for O {
         unsafe { from_glib(ffi::gtk_sorter_get_order(self.as_ref().to_glib_none().0)) }
     }
 
-    #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self, SorterChange) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<
             P: IsA<Sorter>,

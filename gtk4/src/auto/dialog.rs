@@ -691,7 +691,6 @@ impl<O: IsA<Dialog>> DialogExt for O {
         }
     }
 
-    #[doc(alias = "close")]
     fn connect_close<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn close_trampoline<P: IsA<Dialog>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkDialog,
@@ -721,7 +720,6 @@ impl<O: IsA<Dialog>> DialogExt for O {
         };
     }
 
-    #[doc(alias = "response")]
     fn connect_response<F: Fn(&Self, ResponseType) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn response_trampoline<
             P: IsA<Dialog>,

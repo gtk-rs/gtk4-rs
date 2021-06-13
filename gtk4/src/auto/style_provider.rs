@@ -28,7 +28,6 @@ pub trait StyleProviderExt: 'static {
 }
 
 impl<O: IsA<StyleProvider>> StyleProviderExt for O {
-    #[doc(alias = "gtk-private-changed")]
     fn connect_gtk_private_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn gtk_private_changed_trampoline<
             P: IsA<StyleProvider>,

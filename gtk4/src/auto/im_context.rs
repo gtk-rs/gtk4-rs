@@ -340,7 +340,6 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    #[doc(alias = "commit")]
     fn connect_commit<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn commit_trampoline<P: IsA<IMContext>, F: Fn(&P, &str) + 'static>(
             this: *mut ffi::GtkIMContext,
@@ -366,7 +365,6 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    #[doc(alias = "delete-surrounding")]
     fn connect_delete_surrounding<F: Fn(&Self, i32, i32) -> bool + 'static>(
         &self,
         f: F,
@@ -401,7 +399,6 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    #[doc(alias = "preedit-changed")]
     fn connect_preedit_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn preedit_changed_trampoline<P: IsA<IMContext>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkIMContext,
@@ -423,7 +420,6 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    #[doc(alias = "preedit-end")]
     fn connect_preedit_end<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn preedit_end_trampoline<P: IsA<IMContext>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkIMContext,
@@ -445,7 +441,6 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    #[doc(alias = "preedit-start")]
     fn connect_preedit_start<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn preedit_start_trampoline<P: IsA<IMContext>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkIMContext,
@@ -467,7 +462,6 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    #[doc(alias = "retrieve-surrounding")]
     fn connect_retrieve_surrounding<F: Fn(&Self) -> bool + 'static>(
         &self,
         f: F,
@@ -495,7 +489,6 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    #[doc(alias = "input-hints")]
     fn connect_input_hints_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_hints_trampoline<
             P: IsA<IMContext>,
@@ -521,7 +514,6 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         }
     }
 
-    #[doc(alias = "input-purpose")]
     fn connect_input_purpose_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_purpose_trampoline<
             P: IsA<IMContext>,

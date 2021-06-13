@@ -102,7 +102,6 @@ impl<O: IsA<Seat>> SeatExt for O {
         }
     }
 
-    #[doc(alias = "device-added")]
     fn connect_device_added<F: Fn(&Self, &Device) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn device_added_trampoline<P: IsA<Seat>, F: Fn(&P, &Device) + 'static>(
             this: *mut ffi::GdkSeat,
@@ -128,7 +127,6 @@ impl<O: IsA<Seat>> SeatExt for O {
         }
     }
 
-    #[doc(alias = "device-removed")]
     fn connect_device_removed<F: Fn(&Self, &Device) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn device_removed_trampoline<
             P: IsA<Seat>,
@@ -157,7 +155,6 @@ impl<O: IsA<Seat>> SeatExt for O {
         }
     }
 
-    #[doc(alias = "tool-added")]
     fn connect_tool_added<F: Fn(&Self, &DeviceTool) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn tool_added_trampoline<
             P: IsA<Seat>,
@@ -186,7 +183,6 @@ impl<O: IsA<Seat>> SeatExt for O {
         }
     }
 
-    #[doc(alias = "tool-removed")]
     fn connect_tool_removed<F: Fn(&Self, &DeviceTool) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn tool_removed_trampoline<
             P: IsA<Seat>,

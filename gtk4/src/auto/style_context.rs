@@ -296,7 +296,6 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
         }
     }
 
-    #[doc(alias = "display")]
     fn connect_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_display_trampoline<
             P: IsA<StyleContext>,

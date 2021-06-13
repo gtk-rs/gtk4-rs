@@ -401,7 +401,6 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    #[doc(alias = "decorated")]
     fn connect_decorated_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_decorated_trampoline<P: IsA<Toplevel>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkToplevel,
@@ -424,7 +423,6 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    #[doc(alias = "deletable")]
     fn connect_deletable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_deletable_trampoline<P: IsA<Toplevel>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkToplevel,
@@ -447,7 +445,6 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    #[doc(alias = "fullscreen-mode")]
     fn connect_fullscreen_mode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_fullscreen_mode_trampoline<
             P: IsA<Toplevel>,
@@ -473,7 +470,6 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    #[doc(alias = "icon-list")]
     fn connect_icon_list_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_list_trampoline<P: IsA<Toplevel>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkToplevel,
@@ -496,7 +492,6 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    #[doc(alias = "modal")]
     fn connect_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_modal_trampoline<P: IsA<Toplevel>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkToplevel,
@@ -519,7 +514,6 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    #[doc(alias = "shortcuts-inhibited")]
     fn connect_shortcuts_inhibited_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_shortcuts_inhibited_trampoline<
             P: IsA<Toplevel>,
@@ -545,7 +539,6 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    #[doc(alias = "startup-id")]
     fn connect_startup_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_startup_id_trampoline<P: IsA<Toplevel>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkToplevel,
@@ -568,7 +561,6 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    #[doc(alias = "state")]
     fn connect_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_state_trampoline<P: IsA<Toplevel>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkToplevel,
@@ -591,7 +583,6 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    #[doc(alias = "title")]
     fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<P: IsA<Toplevel>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkToplevel,
@@ -614,7 +605,6 @@ impl<O: IsA<Toplevel>> ToplevelExt for O {
         }
     }
 
-    #[doc(alias = "transient-for")]
     fn connect_transient_for_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_transient_for_trampoline<
             P: IsA<Toplevel>,

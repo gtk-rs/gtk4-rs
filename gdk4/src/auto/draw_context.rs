@@ -86,7 +86,6 @@ impl<O: IsA<DrawContext>> DrawContextExt for O {
         }
     }
 
-    #[doc(alias = "display")]
     fn connect_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_display_trampoline<P: IsA<DrawContext>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDrawContext,

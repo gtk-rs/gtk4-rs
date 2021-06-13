@@ -167,7 +167,6 @@ impl<O: IsA<Monitor>> MonitorExt for O {
         unsafe { from_glib(ffi::gdk_monitor_is_valid(self.as_ref().to_glib_none().0)) }
     }
 
-    #[doc(alias = "invalidate")]
     fn connect_invalidate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn invalidate_trampoline<P: IsA<Monitor>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkMonitor,
@@ -189,7 +188,6 @@ impl<O: IsA<Monitor>> MonitorExt for O {
         }
     }
 
-    #[doc(alias = "connector")]
     fn connect_connector_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_connector_trampoline<P: IsA<Monitor>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkMonitor,
@@ -212,7 +210,6 @@ impl<O: IsA<Monitor>> MonitorExt for O {
         }
     }
 
-    #[doc(alias = "geometry")]
     fn connect_geometry_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_geometry_trampoline<P: IsA<Monitor>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkMonitor,
@@ -235,7 +232,6 @@ impl<O: IsA<Monitor>> MonitorExt for O {
         }
     }
 
-    #[doc(alias = "height-mm")]
     fn connect_height_mm_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_height_mm_trampoline<P: IsA<Monitor>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkMonitor,
@@ -258,7 +254,6 @@ impl<O: IsA<Monitor>> MonitorExt for O {
         }
     }
 
-    #[doc(alias = "manufacturer")]
     fn connect_manufacturer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_manufacturer_trampoline<
             P: IsA<Monitor>,
@@ -284,7 +279,6 @@ impl<O: IsA<Monitor>> MonitorExt for O {
         }
     }
 
-    #[doc(alias = "model")]
     fn connect_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_model_trampoline<P: IsA<Monitor>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkMonitor,
@@ -307,7 +301,6 @@ impl<O: IsA<Monitor>> MonitorExt for O {
         }
     }
 
-    #[doc(alias = "refresh-rate")]
     fn connect_refresh_rate_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_refresh_rate_trampoline<
             P: IsA<Monitor>,
@@ -333,7 +326,6 @@ impl<O: IsA<Monitor>> MonitorExt for O {
         }
     }
 
-    #[doc(alias = "scale-factor")]
     fn connect_scale_factor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scale_factor_trampoline<
             P: IsA<Monitor>,
@@ -359,7 +351,6 @@ impl<O: IsA<Monitor>> MonitorExt for O {
         }
     }
 
-    #[doc(alias = "subpixel-layout")]
     fn connect_subpixel_layout_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_subpixel_layout_trampoline<
             P: IsA<Monitor>,
@@ -385,7 +376,6 @@ impl<O: IsA<Monitor>> MonitorExt for O {
         }
     }
 
-    #[doc(alias = "valid")]
     fn connect_valid_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_valid_trampoline<P: IsA<Monitor>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkMonitor,
@@ -408,7 +398,6 @@ impl<O: IsA<Monitor>> MonitorExt for O {
         }
     }
 
-    #[doc(alias = "width-mm")]
     fn connect_width_mm_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_mm_trampoline<P: IsA<Monitor>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkMonitor,

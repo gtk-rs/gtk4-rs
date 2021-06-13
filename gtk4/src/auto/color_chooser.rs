@@ -82,7 +82,6 @@ impl<O: IsA<ColorChooser>> ColorChooserExt for O {
         }
     }
 
-    #[doc(alias = "color-activated")]
     fn connect_color_activated<F: Fn(&Self, &gdk::RGBA) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn color_activated_trampoline<
             P: IsA<ColorChooser>,
@@ -111,7 +110,6 @@ impl<O: IsA<ColorChooser>> ColorChooserExt for O {
         }
     }
 
-    #[doc(alias = "rgba")]
     fn connect_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rgba_trampoline<P: IsA<ColorChooser>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkColorChooser,
@@ -134,7 +132,6 @@ impl<O: IsA<ColorChooser>> ColorChooserExt for O {
         }
     }
 
-    #[doc(alias = "use-alpha")]
     fn connect_use_alpha_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_alpha_trampoline<
             P: IsA<ColorChooser>,

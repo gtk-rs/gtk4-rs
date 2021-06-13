@@ -167,7 +167,6 @@ impl<O: IsA<MediaFile>> MediaFileExt for O {
         }
     }
 
-    #[doc(alias = "file")]
     fn connect_file_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_file_trampoline<P: IsA<MediaFile>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkMediaFile,
@@ -190,7 +189,6 @@ impl<O: IsA<MediaFile>> MediaFileExt for O {
         }
     }
 
-    #[doc(alias = "input-stream")]
     fn connect_input_stream_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_stream_trampoline<
             P: IsA<MediaFile>,

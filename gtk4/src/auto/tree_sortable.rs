@@ -49,7 +49,6 @@ impl<O: IsA<TreeSortable>> TreeSortableExt for O {
         }
     }
 
-    #[doc(alias = "sort-column-changed")]
     fn connect_sort_column_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn sort_column_changed_trampoline<
             P: IsA<TreeSortable>,

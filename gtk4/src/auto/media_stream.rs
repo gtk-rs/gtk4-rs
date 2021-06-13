@@ -363,7 +363,6 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    #[doc(alias = "duration")]
     fn connect_duration_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_duration_trampoline<
             P: IsA<MediaStream>,
@@ -389,7 +388,6 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    #[doc(alias = "ended")]
     fn connect_ended_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_ended_trampoline<P: IsA<MediaStream>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkMediaStream,
@@ -412,7 +410,6 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    #[doc(alias = "error")]
     fn connect_error_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_error_trampoline<P: IsA<MediaStream>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkMediaStream,
@@ -435,7 +432,6 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    #[doc(alias = "has-audio")]
     fn connect_has_audio_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_audio_trampoline<
             P: IsA<MediaStream>,
@@ -461,7 +457,6 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    #[doc(alias = "has-video")]
     fn connect_has_video_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_video_trampoline<
             P: IsA<MediaStream>,
@@ -487,7 +482,6 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    #[doc(alias = "loop")]
     fn connect_loop_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_loop_trampoline<P: IsA<MediaStream>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkMediaStream,
@@ -510,7 +504,6 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    #[doc(alias = "muted")]
     fn connect_muted_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_muted_trampoline<P: IsA<MediaStream>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkMediaStream,
@@ -533,7 +526,6 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    #[doc(alias = "playing")]
     fn connect_playing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_playing_trampoline<P: IsA<MediaStream>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkMediaStream,
@@ -556,7 +548,6 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    #[doc(alias = "prepared")]
     fn connect_prepared_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_prepared_trampoline<
             P: IsA<MediaStream>,
@@ -582,7 +573,6 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    #[doc(alias = "seekable")]
     fn connect_seekable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_seekable_trampoline<
             P: IsA<MediaStream>,
@@ -608,7 +598,6 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    #[doc(alias = "seeking")]
     fn connect_seeking_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_seeking_trampoline<P: IsA<MediaStream>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkMediaStream,
@@ -631,7 +620,6 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    #[doc(alias = "timestamp")]
     fn connect_timestamp_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_timestamp_trampoline<
             P: IsA<MediaStream>,
@@ -657,7 +645,6 @@ impl<O: IsA<MediaStream>> MediaStreamExt for O {
         }
     }
 
-    #[doc(alias = "volume")]
     fn connect_volume_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_volume_trampoline<P: IsA<MediaStream>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkMediaStream,

@@ -290,7 +290,6 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
-    #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<P: IsA<Device>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDevice,
@@ -312,7 +311,6 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
-    #[doc(alias = "tool-changed")]
     fn connect_tool_changed<F: Fn(&Self, &DeviceTool) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn tool_changed_trampoline<
             P: IsA<Device>,
@@ -341,7 +339,6 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
-    #[doc(alias = "caps-lock-state")]
     fn connect_caps_lock_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_caps_lock_state_trampoline<
             P: IsA<Device>,
@@ -367,7 +364,6 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
-    #[doc(alias = "direction")]
     fn connect_direction_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_direction_trampoline<P: IsA<Device>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDevice,
@@ -390,7 +386,6 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
-    #[doc(alias = "has-bidi-layouts")]
     fn connect_has_bidi_layouts_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_bidi_layouts_trampoline<
             P: IsA<Device>,
@@ -416,7 +411,6 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
-    #[doc(alias = "modifier-state")]
     fn connect_modifier_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_modifier_state_trampoline<
             P: IsA<Device>,
@@ -442,7 +436,6 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
-    #[doc(alias = "n-axes")]
     fn connect_n_axes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_n_axes_trampoline<P: IsA<Device>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDevice,
@@ -465,7 +458,6 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
-    #[doc(alias = "num-lock-state")]
     fn connect_num_lock_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_num_lock_state_trampoline<
             P: IsA<Device>,
@@ -491,7 +483,6 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
-    #[doc(alias = "scroll-lock-state")]
     fn connect_scroll_lock_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scroll_lock_state_trampoline<
             P: IsA<Device>,
@@ -517,7 +508,6 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
-    #[doc(alias = "seat")]
     fn connect_seat_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_seat_trampoline<P: IsA<Device>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDevice,
@@ -540,7 +530,6 @@ impl<O: IsA<Device>> DeviceExt for O {
         }
     }
 
-    #[doc(alias = "tool")]
     fn connect_tool_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tool_trampoline<P: IsA<Device>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDevice,

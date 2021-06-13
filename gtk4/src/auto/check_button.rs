@@ -569,7 +569,6 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
 
     #[cfg(any(feature = "v4_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
-    #[doc(alias = "activate")]
     fn connect_activate<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_trampoline<P: IsA<CheckButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCheckButton,
@@ -601,7 +600,6 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         };
     }
 
-    #[doc(alias = "toggled")]
     fn connect_toggled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn toggled_trampoline<P: IsA<CheckButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCheckButton,
@@ -623,7 +621,6 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
-    #[doc(alias = "active")]
     fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_active_trampoline<P: IsA<CheckButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCheckButton,
@@ -646,7 +643,6 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
-    #[doc(alias = "group")]
     fn connect_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_group_trampoline<P: IsA<CheckButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCheckButton,
@@ -669,7 +665,6 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
-    #[doc(alias = "inconsistent")]
     fn connect_inconsistent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_inconsistent_trampoline<
             P: IsA<CheckButton>,
@@ -695,7 +690,6 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
-    #[doc(alias = "label")]
     fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_label_trampoline<P: IsA<CheckButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCheckButton,
@@ -718,7 +712,6 @@ impl<O: IsA<CheckButton>> CheckButtonExt for O {
         }
     }
 
-    #[doc(alias = "use-underline")]
     fn connect_use_underline_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_underline_trampoline<
             P: IsA<CheckButton>,
