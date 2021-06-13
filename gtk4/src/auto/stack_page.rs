@@ -3,16 +3,11 @@
 // DO NOT EDIT
 
 use crate::Accessible;
-use crate::AccessibleRole;
 use crate::Widget;
-use glib::object::Cast;
-use glib::object::IsA;
 use glib::object::ObjectType as ObjectType_;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -27,14 +22,6 @@ glib::wrapper! {
 }
 
 impl StackPage {
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`StackPage`].
-    ///
-    /// This method returns an instance of [`StackPageBuilder`] which can be used to create a [`StackPage`].
-    pub fn builder() -> StackPageBuilder {
-        StackPageBuilder::default()
-    }
-
     #[doc(alias = "gtk_stack_page_get_child")]
     #[doc(alias = "get_child")]
     pub fn child(&self) -> Widget {
@@ -236,100 +223,6 @@ impl StackPage {
                 Box_::into_raw(f),
             )
         }
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A builder for generating a [`StackPage`].
-pub struct StackPageBuilder {
-    child: Option<Widget>,
-    icon_name: Option<String>,
-    name: Option<String>,
-    needs_attention: Option<bool>,
-    title: Option<String>,
-    use_underline: Option<bool>,
-    visible: Option<bool>,
-    accessible_role: Option<AccessibleRole>,
-}
-
-impl StackPageBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`StackPageBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`StackPage`].
-    pub fn build(self) -> StackPage {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref child) = self.child {
-            properties.push(("child", child));
-        }
-        if let Some(ref icon_name) = self.icon_name {
-            properties.push(("icon-name", icon_name));
-        }
-        if let Some(ref name) = self.name {
-            properties.push(("name", name));
-        }
-        if let Some(ref needs_attention) = self.needs_attention {
-            properties.push(("needs-attention", needs_attention));
-        }
-        if let Some(ref title) = self.title {
-            properties.push(("title", title));
-        }
-        if let Some(ref use_underline) = self.use_underline {
-            properties.push(("use-underline", use_underline));
-        }
-        if let Some(ref visible) = self.visible {
-            properties.push(("visible", visible));
-        }
-        if let Some(ref accessible_role) = self.accessible_role {
-            properties.push(("accessible-role", accessible_role));
-        }
-        glib::Object::new::<StackPage>(&properties)
-            .expect("Failed to create an instance of StackPage")
-    }
-
-    pub fn child<P: IsA<Widget>>(mut self, child: &P) -> Self {
-        self.child = Some(child.clone().upcast());
-        self
-    }
-
-    pub fn icon_name(mut self, icon_name: &str) -> Self {
-        self.icon_name = Some(icon_name.to_string());
-        self
-    }
-
-    pub fn name(mut self, name: &str) -> Self {
-        self.name = Some(name.to_string());
-        self
-    }
-
-    pub fn needs_attention(mut self, needs_attention: bool) -> Self {
-        self.needs_attention = Some(needs_attention);
-        self
-    }
-
-    pub fn title(mut self, title: &str) -> Self {
-        self.title = Some(title.to_string());
-        self
-    }
-
-    pub fn use_underline(mut self, use_underline: bool) -> Self {
-        self.use_underline = Some(use_underline);
-        self
-    }
-
-    pub fn visible(mut self, visible: bool) -> Self {
-        self.visible = Some(visible);
-        self
-    }
-
-    pub fn accessible_role(mut self, accessible_role: AccessibleRole) -> Self {
-        self.accessible_role = Some(accessible_role);
-        self
     }
 }
 

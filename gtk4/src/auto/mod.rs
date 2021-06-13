@@ -66,7 +66,6 @@ pub use self::assistant::AssistantBuilder;
 
 mod assistant_page;
 pub use self::assistant_page::AssistantPage;
-pub use self::assistant_page::AssistantPageBuilder;
 
 mod bin_layout;
 pub use self::bin_layout::BinLayout;
@@ -585,7 +584,6 @@ pub use self::notebook::NotebookBuilder;
 
 mod notebook_page;
 pub use self::notebook_page::NotebookPage;
-pub use self::notebook_page::NotebookPageBuilder;
 
 mod nothing_action;
 pub use self::nothing_action::NothingAction;
@@ -828,7 +826,6 @@ pub use self::stack::StackBuilder;
 
 mod stack_page;
 pub use self::stack_page::StackPage;
-pub use self::stack_page::StackPageBuilder;
 
 mod stack_sidebar;
 pub use self::stack_sidebar::StackSidebar;
