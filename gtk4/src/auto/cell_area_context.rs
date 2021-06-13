@@ -261,7 +261,6 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
-    #[doc(alias = "minimum-height")]
     fn connect_minimum_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_minimum_height_trampoline<
             P: IsA<CellAreaContext>,
@@ -287,7 +286,6 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
-    #[doc(alias = "minimum-width")]
     fn connect_minimum_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_minimum_width_trampoline<
             P: IsA<CellAreaContext>,
@@ -313,7 +311,6 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
-    #[doc(alias = "natural-height")]
     fn connect_natural_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_natural_height_trampoline<
             P: IsA<CellAreaContext>,
@@ -339,7 +336,6 @@ impl<O: IsA<CellAreaContext>> CellAreaContextExt for O {
         }
     }
 
-    #[doc(alias = "natural-width")]
     fn connect_natural_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_natural_width_trampoline<
             P: IsA<CellAreaContext>,

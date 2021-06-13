@@ -53,7 +53,6 @@ impl<O: IsA<Orientable>> OrientableExt for O {
         }
     }
 
-    #[doc(alias = "orientation")]
     fn connect_orientation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_orientation_trampoline<
             P: IsA<Orientable>,

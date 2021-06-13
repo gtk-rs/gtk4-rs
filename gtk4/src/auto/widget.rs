@@ -2009,7 +2009,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "destroy")]
     fn connect_destroy<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn destroy_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2031,7 +2030,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "direction-changed")]
     fn connect_direction_changed<F: Fn(&Self, TextDirection) + 'static>(
         &self,
         f: F,
@@ -2063,7 +2061,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "hide")]
     fn connect_hide<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn hide_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2085,7 +2082,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "keynav-failed")]
     fn connect_keynav_failed<F: Fn(&Self, DirectionType) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
@@ -2118,7 +2114,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "map")]
     fn connect_map<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn map_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2140,7 +2135,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "mnemonic-activate")]
     fn connect_mnemonic_activate<F: Fn(&Self, bool) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
@@ -2173,7 +2167,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "move-focus")]
     fn connect_move_focus<F: Fn(&Self, DirectionType) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn move_focus_trampoline<
             P: IsA<Widget>,
@@ -2210,7 +2203,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         };
     }
 
-    #[doc(alias = "query-tooltip")]
     fn connect_query_tooltip<F: Fn(&Self, i32, i32, bool, &Tooltip) -> bool + 'static>(
         &self,
         f: F,
@@ -2249,7 +2241,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "realize")]
     fn connect_realize<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn realize_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2271,7 +2262,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "show")]
     fn connect_show<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn show_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2293,7 +2283,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "state-flags-changed")]
     fn connect_state_flags_changed<F: Fn(&Self, StateFlags) + 'static>(
         &self,
         f: F,
@@ -2325,7 +2314,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "unmap")]
     fn connect_unmap<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn unmap_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2347,7 +2335,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "unrealize")]
     fn connect_unrealize<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn unrealize_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2369,7 +2356,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "can-focus")]
     fn connect_can_focus_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_can_focus_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2392,7 +2378,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "can-target")]
     fn connect_can_target_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_can_target_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2415,7 +2400,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "css-classes")]
     fn connect_css_classes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_css_classes_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2438,7 +2422,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "cursor")]
     fn connect_cursor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cursor_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2461,7 +2444,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "focus-on-click")]
     fn connect_focus_on_click_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_focus_on_click_trampoline<
             P: IsA<Widget>,
@@ -2487,7 +2469,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "focusable")]
     fn connect_focusable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_focusable_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2510,7 +2491,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "halign")]
     fn connect_halign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_halign_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2533,7 +2513,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "has-default")]
     fn connect_has_default_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_default_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2556,7 +2535,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "has-focus")]
     fn connect_has_focus_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_focus_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2579,7 +2557,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "has-tooltip")]
     fn connect_has_tooltip_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_has_tooltip_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2602,7 +2579,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "height-request")]
     fn connect_height_request_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_height_request_trampoline<
             P: IsA<Widget>,
@@ -2628,7 +2604,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "hexpand")]
     fn connect_hexpand_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_hexpand_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2651,7 +2626,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "hexpand-set")]
     fn connect_hexpand_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_hexpand_set_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2674,7 +2648,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "layout-manager")]
     fn connect_layout_manager_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_layout_manager_trampoline<
             P: IsA<Widget>,
@@ -2700,7 +2673,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "margin-bottom")]
     fn connect_margin_bottom_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_margin_bottom_trampoline<
             P: IsA<Widget>,
@@ -2726,7 +2698,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "margin-end")]
     fn connect_margin_end_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_margin_end_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2749,7 +2720,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "margin-start")]
     fn connect_margin_start_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_margin_start_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2772,7 +2742,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "margin-top")]
     fn connect_margin_top_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_margin_top_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2795,7 +2764,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "name")]
     fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2818,7 +2786,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "opacity")]
     fn connect_opacity_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_opacity_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2841,7 +2808,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "overflow")]
     fn connect_overflow_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_overflow_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2864,7 +2830,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "parent")]
     fn connect_parent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_parent_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2887,7 +2852,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "receives-default")]
     fn connect_receives_default_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_receives_default_trampoline<
             P: IsA<Widget>,
@@ -2913,7 +2877,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "root")]
     fn connect_root_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_root_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2936,7 +2899,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "scale-factor")]
     fn connect_scale_factor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scale_factor_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2959,7 +2921,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "sensitive")]
     fn connect_sensitive_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_sensitive_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -2982,7 +2943,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "tooltip-markup")]
     fn connect_tooltip_markup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tooltip_markup_trampoline<
             P: IsA<Widget>,
@@ -3008,7 +2968,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "tooltip-text")]
     fn connect_tooltip_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tooltip_text_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -3031,7 +2990,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "valign")]
     fn connect_valign_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_valign_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -3054,7 +3012,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "vexpand")]
     fn connect_vexpand_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_vexpand_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -3077,7 +3034,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "vexpand-set")]
     fn connect_vexpand_set_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_vexpand_set_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -3100,7 +3056,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "visible")]
     fn connect_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_visible_trampoline<P: IsA<Widget>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWidget,
@@ -3123,7 +3078,6 @@ impl<O: IsA<Widget>> WidgetExt for O {
         }
     }
 
-    #[doc(alias = "width-request")]
     fn connect_width_request_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_request_trampoline<
             P: IsA<Widget>,

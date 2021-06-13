@@ -190,7 +190,6 @@ impl<O: IsA<Drag>> DragExt for O {
         }
     }
 
-    #[doc(alias = "cancel")]
     fn connect_cancel<F: Fn(&Self, DragCancelReason) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn cancel_trampoline<
             P: IsA<Drag>,
@@ -219,7 +218,6 @@ impl<O: IsA<Drag>> DragExt for O {
         }
     }
 
-    #[doc(alias = "dnd-finished")]
     fn connect_dnd_finished<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn dnd_finished_trampoline<P: IsA<Drag>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDrag,
@@ -241,7 +239,6 @@ impl<O: IsA<Drag>> DragExt for O {
         }
     }
 
-    #[doc(alias = "drop-performed")]
     fn connect_drop_performed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn drop_performed_trampoline<P: IsA<Drag>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDrag,
@@ -263,7 +260,6 @@ impl<O: IsA<Drag>> DragExt for O {
         }
     }
 
-    #[doc(alias = "actions")]
     fn connect_actions_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_actions_trampoline<P: IsA<Drag>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDrag,
@@ -286,7 +282,6 @@ impl<O: IsA<Drag>> DragExt for O {
         }
     }
 
-    #[doc(alias = "display")]
     fn connect_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_display_trampoline<P: IsA<Drag>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkDrag,
@@ -309,7 +304,6 @@ impl<O: IsA<Drag>> DragExt for O {
         }
     }
 
-    #[doc(alias = "selected-action")]
     fn connect_selected_action_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_action_trampoline<
             P: IsA<Drag>,

@@ -66,7 +66,6 @@ impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
         }
     }
 
-    #[doc(alias = "got-page-size")]
     fn connect_got_page_size<F: Fn(&Self, &PrintContext, &PageSetup) + 'static>(
         &self,
         f: F,
@@ -100,7 +99,6 @@ impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
         }
     }
 
-    #[doc(alias = "ready")]
     fn connect_ready<F: Fn(&Self, &PrintContext) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn ready_trampoline<
             P: IsA<PrintOperationPreview>,

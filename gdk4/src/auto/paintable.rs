@@ -157,7 +157,6 @@ impl<O: IsA<Paintable>> PaintableExt for O {
         }
     }
 
-    #[doc(alias = "invalidate-contents")]
     fn connect_invalidate_contents<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn invalidate_contents_trampoline<
             P: IsA<Paintable>,
@@ -182,7 +181,6 @@ impl<O: IsA<Paintable>> PaintableExt for O {
         }
     }
 
-    #[doc(alias = "invalidate-size")]
     fn connect_invalidate_size<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn invalidate_size_trampoline<P: IsA<Paintable>, F: Fn(&P) + 'static>(
             this: *mut ffi::GdkPaintable,

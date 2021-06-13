@@ -1376,7 +1376,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "activate-default")]
     fn connect_activate_default<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_default_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
@@ -1406,7 +1405,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         };
     }
 
-    #[doc(alias = "activate-focus")]
     fn connect_activate_focus<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn activate_focus_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
@@ -1436,7 +1434,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         };
     }
 
-    #[doc(alias = "close-request")]
     fn connect_close_request<F: Fn(&Self) -> glib::signal::Inhibit + 'static>(
         &self,
         f: F,
@@ -1464,7 +1461,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "enable-debugging")]
     fn connect_enable_debugging<F: Fn(&Self, bool) -> bool + 'static>(
         &self,
         f: F,
@@ -1508,7 +1504,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
             .expect("Return Value for `emit_enable_debugging`")
     }
 
-    #[doc(alias = "keys-changed")]
     fn connect_keys_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn keys_changed_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
@@ -1530,7 +1525,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "application")]
     fn connect_application_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_application_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
@@ -1553,7 +1547,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "child")]
     fn connect_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
@@ -1576,7 +1569,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "decorated")]
     fn connect_decorated_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_decorated_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
@@ -1599,7 +1591,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "default-height")]
     fn connect_default_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_default_height_trampoline<
             P: IsA<Window>,
@@ -1625,7 +1616,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "default-widget")]
     fn connect_default_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_default_widget_trampoline<
             P: IsA<Window>,
@@ -1651,7 +1641,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "default-width")]
     fn connect_default_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_default_width_trampoline<
             P: IsA<Window>,
@@ -1677,7 +1666,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "deletable")]
     fn connect_deletable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_deletable_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
@@ -1700,7 +1688,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "destroy-with-parent")]
     fn connect_destroy_with_parent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_destroy_with_parent_trampoline<
             P: IsA<Window>,
@@ -1726,7 +1713,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "display")]
     fn connect_display_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_display_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
@@ -1749,7 +1735,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "focus-visible")]
     fn connect_focus_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_focus_visible_trampoline<
             P: IsA<Window>,
@@ -1775,7 +1760,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "focus-widget")]
     fn connect_focus_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_focus_widget_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
@@ -1798,7 +1782,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "fullscreened")]
     fn connect_fullscreened_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_fullscreened_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
@@ -1823,7 +1806,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
 
     #[cfg(any(feature = "v4_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
-    #[doc(alias = "handle-menubar-accel")]
     fn connect_handle_menubar_accel_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_handle_menubar_accel_trampoline<
             P: IsA<Window>,
@@ -1849,7 +1831,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "hide-on-close")]
     fn connect_hide_on_close_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_hide_on_close_trampoline<
             P: IsA<Window>,
@@ -1875,7 +1856,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "icon-name")]
     fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_icon_name_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
@@ -1898,7 +1878,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "is-active")]
     fn connect_is_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_is_active_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
@@ -1921,7 +1900,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "maximized")]
     fn connect_maximized_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_maximized_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
@@ -1944,7 +1922,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "mnemonics-visible")]
     fn connect_mnemonics_visible_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_mnemonics_visible_trampoline<
             P: IsA<Window>,
@@ -1970,7 +1947,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "modal")]
     fn connect_modal_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_modal_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
@@ -1993,7 +1969,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "resizable")]
     fn connect_resizable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_resizable_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
@@ -2016,7 +1991,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "startup-id")]
     fn connect_startup_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_startup_id_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
@@ -2039,7 +2013,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "title")]
     fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkWindow,
@@ -2062,7 +2035,6 @@ impl<O: IsA<Window>> GtkWindowExt for O {
         }
     }
 
-    #[doc(alias = "transient-for")]
     fn connect_transient_for_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_transient_for_trampoline<
             P: IsA<Window>,

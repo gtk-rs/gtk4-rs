@@ -177,7 +177,6 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
-    #[doc(alias = "name")]
     fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<
             P: IsA<EventController>,
@@ -203,7 +202,6 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
-    #[doc(alias = "propagation-limit")]
     fn connect_propagation_limit_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_propagation_limit_trampoline<
             P: IsA<EventController>,
@@ -229,7 +227,6 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
-    #[doc(alias = "propagation-phase")]
     fn connect_propagation_phase_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_propagation_phase_trampoline<
             P: IsA<EventController>,
@@ -255,7 +252,6 @@ impl<O: IsA<EventController>> EventControllerExt for O {
         }
     }
 
-    #[doc(alias = "widget")]
     fn connect_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_widget_trampoline<
             P: IsA<EventController>,

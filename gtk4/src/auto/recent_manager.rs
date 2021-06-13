@@ -211,7 +211,6 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
         }
     }
 
-    #[doc(alias = "changed")]
     fn connect_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn changed_trampoline<P: IsA<RecentManager>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkRecentManager,
@@ -233,7 +232,6 @@ impl<O: IsA<RecentManager>> RecentManagerExt for O {
         }
     }
 
-    #[doc(alias = "size")]
     fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_size_trampoline<P: IsA<RecentManager>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkRecentManager,

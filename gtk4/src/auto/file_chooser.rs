@@ -361,7 +361,6 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    #[doc(alias = "action")]
     fn connect_action_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_action_trampoline<P: IsA<FileChooser>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkFileChooser,
@@ -384,7 +383,6 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    #[doc(alias = "create-folders")]
     fn connect_create_folders_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_create_folders_trampoline<
             P: IsA<FileChooser>,
@@ -410,7 +408,6 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    #[doc(alias = "filter")]
     fn connect_filter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_filter_trampoline<P: IsA<FileChooser>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkFileChooser,
@@ -433,7 +430,6 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    #[doc(alias = "filters")]
     fn connect_filters_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_filters_trampoline<P: IsA<FileChooser>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkFileChooser,
@@ -456,7 +452,6 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    #[doc(alias = "select-multiple")]
     fn connect_select_multiple_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_select_multiple_trampoline<
             P: IsA<FileChooser>,
@@ -482,7 +477,6 @@ impl<O: IsA<FileChooser>> FileChooserExt for O {
         }
     }
 
-    #[doc(alias = "shortcut-folders")]
     fn connect_shortcut_folders_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_shortcut_folders_trampoline<
             P: IsA<FileChooser>,

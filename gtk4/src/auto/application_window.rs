@@ -625,7 +625,6 @@ impl<O: IsA<ApplicationWindow>> ApplicationWindowExt for O {
         }
     }
 
-    #[doc(alias = "show-menubar")]
     fn connect_show_menubar_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_show_menubar_trampoline<
             P: IsA<ApplicationWindow>,

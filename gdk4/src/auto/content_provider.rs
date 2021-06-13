@@ -197,7 +197,6 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
         }))
     }
 
-    #[doc(alias = "content-changed")]
     fn connect_content_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn content_changed_trampoline<
             P: IsA<ContentProvider>,
@@ -222,7 +221,6 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
         }
     }
 
-    #[doc(alias = "formats")]
     fn connect_formats_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_formats_trampoline<
             P: IsA<ContentProvider>,
@@ -248,7 +246,6 @@ impl<O: IsA<ContentProvider>> ContentProviderExt for O {
         }
     }
 
-    #[doc(alias = "storable-formats")]
     fn connect_storable_formats_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_storable_formats_trampoline<
             P: IsA<ContentProvider>,

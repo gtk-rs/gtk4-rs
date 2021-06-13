@@ -510,7 +510,6 @@ impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
         }
     }
 
-    #[doc(alias = "toggled")]
     fn connect_toggled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn toggled_trampoline<P: IsA<ToggleButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkToggleButton,
@@ -532,7 +531,6 @@ impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
         }
     }
 
-    #[doc(alias = "active")]
     fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_active_trampoline<P: IsA<ToggleButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkToggleButton,
@@ -555,7 +553,6 @@ impl<O: IsA<ToggleButton>> ToggleButtonExt for O {
         }
     }
 
-    #[doc(alias = "group")]
     fn connect_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_group_trampoline<P: IsA<ToggleButton>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkToggleButton,

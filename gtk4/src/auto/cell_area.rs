@@ -796,7 +796,6 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    #[doc(alias = "add-editable")]
     fn connect_add_editable<
         F: Fn(&Self, &CellRenderer, &CellEditable, &gdk::Rectangle, TreePath) + 'static,
     >(
@@ -837,7 +836,6 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    #[doc(alias = "apply-attributes")]
     fn connect_apply_attributes<F: Fn(&Self, &TreeModel, &TreeIter, bool, bool) + 'static>(
         &self,
         f: F,
@@ -875,7 +873,6 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    #[doc(alias = "focus-changed")]
     fn connect_focus_changed<F: Fn(&Self, &CellRenderer, TreePath) + 'static>(
         &self,
         f: F,
@@ -910,7 +907,6 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    #[doc(alias = "remove-editable")]
     fn connect_remove_editable<F: Fn(&Self, &CellRenderer, &CellEditable) + 'static>(
         &self,
         f: F,
@@ -944,7 +940,6 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    #[doc(alias = "edit-widget")]
     fn connect_edit_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_edit_widget_trampoline<
             P: IsA<CellArea>,
@@ -970,7 +965,6 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    #[doc(alias = "edited-cell")]
     fn connect_edited_cell_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_edited_cell_trampoline<
             P: IsA<CellArea>,
@@ -996,7 +990,6 @@ impl<O: IsA<CellArea>> CellAreaExt for O {
         }
     }
 
-    #[doc(alias = "focus-cell")]
     fn connect_focus_cell_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_focus_cell_trampoline<P: IsA<CellArea>, F: Fn(&P) + 'static>(
             this: *mut ffi::GtkCellArea,
