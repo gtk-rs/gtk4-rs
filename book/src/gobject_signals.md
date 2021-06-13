@@ -25,7 +25,7 @@ connected to it with the generic [`connect_local`](http://gtk-rs.org/docs/glib/o
 Similar to the generic way of accessing properties, the advantage of `connect_local` is that it also works with custom signals[^1].
 
 Let us see how we can create our own signals.
-Again, we do that by extending our `CustomButton`.
+Again we do that by extending our `CustomButton`.
 First we override the necessary methods in `ObjectImpl`.
 
 <span class="filename">Filename: listings/gobject_signals/3/custom_button/imp.rs</span>
