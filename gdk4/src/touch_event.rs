@@ -24,7 +24,7 @@ define_event! {
 impl TouchEvent {
     #[doc(alias = "gdk_touch_event_get_emulating_pointer")]
     #[doc(alias = "get_emulating_pointer")]
-    pub fn emulates_pointer(&self) -> bool {
+    pub fn is_emulating_pointer(&self) -> bool {
         unsafe {
             from_glib(ffi::gdk_touch_event_get_emulating_pointer(
                 self.to_glib_none().0,
@@ -36,7 +36,7 @@ impl TouchEvent {
 impl fmt::Display for TouchEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         f.debug_struct("TouchEvent")
-            .field("emulating_pointer", &self.emulates_pointer())
+            .field("is_emulating_pointer", &self.is_emulating_pointer())
             .finish()
     }
 }
