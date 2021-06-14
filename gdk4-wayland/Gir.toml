@@ -99,4 +99,5 @@ status = "generate"
 manual_traits = ["WaylandSurfaceExtManual"]
     [[object.function]]
     name = "get_wl_surface"
+    rename = "wl_surface"
     manual = true
