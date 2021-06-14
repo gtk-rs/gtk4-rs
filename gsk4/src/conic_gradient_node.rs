@@ -53,6 +53,14 @@ impl ConicGradientNode {
         }
     }
 
+    #[doc(alias = "gsk_conic_gradient_node_get_angle")]
+    #[doc(alias = "get_angle")]
+    #[cfg(any(feature = "v4_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v4_2")))]
+    pub fn angle(&self) -> f32 {
+        unsafe { ffi::gsk_conic_gradient_node_get_angle(self.to_glib_none().0) }
+    }
+
     #[doc(alias = "gsk_conic_gradient_node_get_color_stops")]
     #[doc(alias = "get_color_stops")]
     pub fn color_stops(&self) -> Vec<ColorStop> {
