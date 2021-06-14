@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use crate::Texture;
-use glib::object::IsA;
 use glib::translate::*;
 
 #[doc(alias = "gdk_intern_mime_type")]
@@ -33,13 +32,9 @@ pub fn pixbuf_get_from_surface(
 }
 
 #[doc(alias = "gdk_pixbuf_get_from_texture")]
-pub fn pixbuf_get_from_texture<P: IsA<Texture>>(texture: &P) -> Option<gdk_pixbuf::Pixbuf> {
+pub fn pixbuf_get_from_texture(texture: &Texture) -> Option<gdk_pixbuf::Pixbuf> {
     skip_assert_initialized!();
-    unsafe {
-        from_glib_full(ffi::gdk_pixbuf_get_from_texture(
-            texture.as_ref().to_glib_none().0,
-        ))
-    }
+    unsafe { from_glib_full(ffi::gdk_pixbuf_get_from_texture(texture.to_glib_none().0)) }
 }
 
 #[doc(alias = "gdk_set_allowed_backends")]
