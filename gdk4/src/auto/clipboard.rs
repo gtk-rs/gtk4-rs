@@ -83,12 +83,9 @@ impl Clipboard {
     }
 
     #[doc(alias = "gdk_clipboard_set_texture")]
-    pub fn set_texture<P: IsA<Texture>>(&self, texture: &P) {
+    pub fn set_texture(&self, texture: &Texture) {
         unsafe {
-            ffi::gdk_clipboard_set_texture(
-                self.to_glib_none().0,
-                texture.as_ref().to_glib_none().0,
-            );
+            ffi::gdk_clipboard_set_texture(self.to_glib_none().0, texture.to_glib_none().0);
         }
     }
 

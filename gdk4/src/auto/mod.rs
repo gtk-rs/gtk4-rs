@@ -84,7 +84,7 @@ mod surface;
 pub use self::surface::{Surface, NONE_SURFACE};
 
 mod texture;
-pub use self::texture::{Texture, NONE_TEXTURE};
+pub use self::texture::Texture;
 
 mod toplevel;
 pub use self::toplevel::{Toplevel, NONE_TOPLEVEL};
@@ -158,6 +158,5 @@ pub mod traits {
     pub use super::popup::PopupExt;
     pub use super::seat::SeatExt;
     pub use super::surface::SurfaceExt;
-    pub use super::texture::TextureExt;
     pub use super::toplevel::ToplevelExt;
 }

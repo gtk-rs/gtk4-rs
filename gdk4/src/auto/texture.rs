@@ -50,36 +50,24 @@ impl Texture {
             ))
         }
     }
-}
 
-pub const NONE_TEXTURE: Option<&Texture> = None;
-
-pub trait TextureExt: 'static {
     #[doc(alias = "gdk_texture_get_height")]
     #[doc(alias = "get_height")]
-    fn height(&self) -> i32;
+    pub fn height(&self) -> i32 {
+        unsafe { ffi::gdk_texture_get_height(self.to_glib_none().0) }
+    }
 
     #[doc(alias = "gdk_texture_get_width")]
     #[doc(alias = "get_width")]
-    fn width(&self) -> i32;
+    pub fn width(&self) -> i32 {
+        unsafe { ffi::gdk_texture_get_width(self.to_glib_none().0) }
+    }
 
     #[doc(alias = "gdk_texture_save_to_png")]
-    fn save_to_png(&self, filename: &str) -> bool;
-}
-
-impl<O: IsA<Texture>> TextureExt for O {
-    fn height(&self) -> i32 {
-        unsafe { ffi::gdk_texture_get_height(self.as_ref().to_glib_none().0) }
-    }
-
-    fn width(&self) -> i32 {
-        unsafe { ffi::gdk_texture_get_width(self.as_ref().to_glib_none().0) }
-    }
-
-    fn save_to_png(&self, filename: &str) -> bool {
+    pub fn save_to_png(&self, filename: &str) -> bool {
         unsafe {
             from_glib(ffi::gdk_texture_save_to_png(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 filename.to_glib_none().0,
             ))
         }
