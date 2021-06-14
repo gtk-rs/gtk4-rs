@@ -243,7 +243,7 @@ connected to it with the generic <a href="http://gtk-rs.org/docs/glib/object/tra
 </span></code></pre></pre>
 <p>Similar to the generic way of accessing properties, the advantage of <code>connect_local</code> is that it also works with custom signals<sup class="footnote-reference"><a href="#1">1</a></sup>.</p>
 <p>Let us see how we can create our own signals.
-Again, we do that by extending our <code>CustomButton</code>.
+Again we do that by extending our <code>CustomButton</code>.
 First we override the necessary methods in <code>ObjectImpl</code>.</p>
 <p><span class="filename">Filename: listings/gobject_signals/3/custom_button/imp.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::subclass::Signal;

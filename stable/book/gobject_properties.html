@@ -151,7 +151,7 @@
 <p>Let us see how this is done by experimenting with the <code>Switch</code> widget.
 One of its properties is the <a href="https://docs.gtk.org/gtk4/property.Switch.state.html">state</a>.
 According to the GTK docs, it can be read and be written to.
-That is why, <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/struct.Switch.html#method.state"><code>state</code></a> and <a href="../docs/gtk4/docs/gtk4/struct.Switch.html#method.set_state"><code>set_state</code></a> methods.</p>
+That is why <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/struct.Switch.html#method.state"><code>state</code></a> and <a href="../docs/gtk4/docs/gtk4/struct.Switch.html#method.set_state"><code>set_state</code></a> methods.</p>
 <p><span class="filename">Filename: listings/gobject_properties/1/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Align, Box, Orientation, Switch};
@@ -252,8 +252,8 @@ Because they can be used for properties of different types, they operate with <c
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre></pre>
-<p>Dealing with a <code>glib::Value</code> is quite verbose
-This is why you will only want to use the generic methods for accessing properties you have added to your custom GObjects.</p>
+<p>Dealing with a <code>glib::Value</code> is quite verbose.
+This is why you only want to use the generic methods for accessing properties you have added to your custom GObjects.</p>
 <p>Properties can not only be accessed via getters &amp; setters, they can also be bound to each other.
 Let us see how that would look like for two <code>Switch</code> instances.</p>
 <p><span class="filename">Filename: listings/gobject_properties/3/main.rs</span></p>
@@ -354,11 +354,11 @@ We also want the binding to be bidirectional, so we specify this with the <a hre
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre></pre>
-<p>Whenever we now click on one of the two switches, the other one gets toggled as well.</p>
+<p>Now when we click on one of the two switches, the other one is toggled as well.</p>
 <div style="text-align:center"><img src="img/gobject_properties_switches.png" /></div>
 <p>We can also add properties to custom GObjects.
-We can demonstrate that, by binding the <code>number</code> of our <code>CustomButton</code> to a property.
-For that, we need to be able to <a href="https://en.wikipedia.org/wiki/Lazy_evaluation">lazily evaluate</a> expressions.
+We can demonstrate that by binding the <code>number</code> of our <code>CustomButton</code> to a property.
+For that we need to be able to <a href="https://en.wikipedia.org/wiki/Lazy_evaluation">lazily evaluate</a> expressions.
 The crate <code>once_cell</code> provides the <code>Lazy</code> type which allows us to do that.
 <code>once_cell</code> is already part of Rust nightly.
 Until it hits stable, we will add it as external dependency.</p>
@@ -369,7 +369,7 @@ once_cell = &quot;1&quot;
 <p>Now we define the &quot;number&quot; property within the <code>ObjectImpl</code> implementation.
 The <code>properties</code> method describes our set of properties.
 When naming our property, we make sure to do that in <a href="https://wiki.c2.com/?KebabCase">kebab-case</a>.
-Then, we describe its type, range and default value.
+Then we describe its type, range and default value.
 We also declare that the property can be read and be written to.
 <code>set_property</code> describes how the underlying values can be changed.
 <code>property</code> takes care of returning the underlying value.
@@ -626,7 +626,7 @@ By leveraging <a href="http://gtk-rs.org/docs/glib/object/struct.BindingBuilder.
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre></pre>
-<p>If we now click on one button, the &quot;number&quot; and &quot;label&quot; properties of the other button change as well.</p>
+<p>Now if we click on one button, the &quot;number&quot; and &quot;label&quot; properties of the other button change as well.</p>
 <div style="text-align:center"><img src="img/gobject_properties_buttons.png"/></div>
 <p>The final nice feature of properties is, that you can connect a callback to the event when a property gets changed.
 We can do this like this:</p>
@@ -709,11 +709,11 @@ We can do this like this:</p>
 </span><span class="boring">}
 </span></code></pre></pre>
 <p>Now, whenever the &quot;number&quot; property gets changed, the closure gets executed and prints the current value of &quot;number&quot;.</p>
-<p>You will want to introduce properties to your custom GObjects whenever you want</p>
+<p>Introducing properties to your custom GObjects is useful if you want to</p>
 <ul>
-<li>to allow consumers to be able to access internal state,</li>
-<li>to bind state of (different) GObjects or</li>
-<li>to notify consumers whenever the property value changes.</li>
+<li>allow consumers to be able to access internal state</li>
+<li>bind state of (different) GObjects</li>
+<li>notify consumers whenever a property value changes</li>
 </ul>
 
                     </main>
