@@ -311,7 +311,6 @@ mod text_buffer;
 mod text_view;
 mod tree_model;
 mod tree_model_filter;
-mod tree_model_sort;
 mod tree_path;
 mod tree_row_reference;
 mod tree_selection;
