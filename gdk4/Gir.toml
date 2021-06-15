@@ -507,4 +507,5 @@ manual_traits = ["ToplevelExtManual"]
     doc_trait_name = "ToplevelExtManual"
     [[object.signal]]
     name = "compute-size"
-    ignore = true # manual
+    manual = true
+    doc_trait_name = "ToplevelExtManual"
