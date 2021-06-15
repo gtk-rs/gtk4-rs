@@ -229,8 +229,6 @@ generate = [
     "Gtk.TextWindowType",
     "Gtk.ToggleButton",
     "Gtk.Tooltip",
-    "Gtk.TreeDragDest",
-    "Gtk.TreeDragSource",
     "Gtk.TreeExpander",
     "Gtk.TreeModelFlags",
     "Gtk.TreeViewColumnSizing",
@@ -453,6 +451,11 @@ trust_return_value_nullability = false
     pattern = "tree_[gs]et_row_drag_data"
         [[object.function.parameter]]
         name = "selection_data"
+        const = true
+    [[object.function]]
+    name = "tree_create_row_drag_content"
+        [[object.function.parameter]]
+        name = "path"
         const = true
     [[object.function]]
     name = "show_about_dialog"
@@ -803,6 +806,7 @@ status = "generate"
     name = "set_displayed_row"
         [[object.function.parameter]]
         name = "path"
+        const = true
         nullable = false
 
 [[object]]
@@ -2048,6 +2052,29 @@ manual_traits = ["TextViewExtManual"]
     name = "set_tabs"
         [[object.function.parameter]]
         name = "tabs"
+        const = true
+
+[[object]]
+name = "Gtk.TreeDragDest"
+status = "generate"
+    [[object.function]]
+    name = "drag_data_received"
+        [[object.function.parameter]]
+        name = "dest"
+        const = true
+    [[object.function]]
+    name = "row_drop_possible"
+        [[object.function.parameter]]
+        name = "dest_path"
+        const = true
+
+[[object]]
+name = "Gtk.TreeDragSource"
+status = "generate"
+    [[object.function]]
+    pattern = "(drag_data_delete|drag_data_get|row_draggable)"
+        [[object.function.parameter]]
+        name = "path"
         const = true
 
 [[object]]

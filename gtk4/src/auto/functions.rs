@@ -714,13 +714,13 @@ pub fn test_widget_wait_for_draw<P: IsA<Widget>>(widget: &P) {
 #[doc(alias = "gtk_tree_create_row_drag_content")]
 pub fn tree_create_row_drag_content<P: IsA<TreeModel>>(
     tree_model: &P,
-    path: &mut TreePath,
+    path: &TreePath,
 ) -> Option<gdk::ContentProvider> {
     skip_assert_initialized!();
     unsafe {
         from_glib_full(ffi::gtk_tree_create_row_drag_content(
             tree_model.as_ref().to_glib_none().0,
-            path.to_glib_none_mut().0,
+            mut_override(path.to_glib_none().0),
         ))
     }
 }
