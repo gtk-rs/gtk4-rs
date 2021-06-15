@@ -488,7 +488,7 @@ manual_traits = ["SurfaceExtManual"]
 [[object]]
 name = "Gdk.Texture"
 status = "generate"
-final_type = true
+manual_traits = ["TextureExtManual"]
     [[object.function]]
     name = "download"
     manual = true

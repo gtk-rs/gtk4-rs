@@ -4,6 +4,7 @@
 
 use crate::Texture;
 use glib::object::Cast;
+use glib::object::IsA;
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
@@ -33,8 +34,8 @@ impl Cursor {
 
     #[doc(alias = "gdk_cursor_new_from_texture")]
     #[doc(alias = "new_from_texture")]
-    pub fn from_texture(
-        texture: &Texture,
+    pub fn from_texture<P: IsA<Texture>>(
+        texture: &P,
         hotspot_x: i32,
         hotspot_y: i32,
         fallback: Option<&Cursor>,
@@ -42,7 +43,7 @@ impl Cursor {
         skip_assert_initialized!();
         unsafe {
             from_glib_full(ffi::gdk_cursor_new_from_texture(
-                texture.to_glib_none().0,
+                texture.as_ref().to_glib_none().0,
                 hotspot_x,
                 hotspot_y,
                 fallback.to_glib_none().0,
@@ -149,8 +150,8 @@ impl CursorBuilder {
         self
     }
 
-    pub fn texture(mut self, texture: &Texture) -> Self {
-        self.texture = Some(texture.clone());
+    pub fn texture<P: IsA<Texture>>(mut self, texture: &P) -> Self {
+        self.texture = Some(texture.clone().upcast());
         self
     }
 }
