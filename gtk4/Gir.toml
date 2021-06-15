@@ -1362,7 +1362,7 @@ generate_builder = false
 [[object]]
 name = "Gtk.ListStore"
 status = "generate"
-trait_name = "GtkListStoreExt"
+final_type = true
     [[object.function]]
     pattern = ".+"
         [[object.function.parameter]]
@@ -2356,6 +2356,7 @@ manual_traits = ["TreeSortableExtManual"]
 [[object]]
 name = "Gtk.TreeStore"
 status = "generate"
+final_type = true
     [[object.function]]
     pattern = ".+"
         [[object.function.parameter]]

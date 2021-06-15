@@ -516,7 +516,7 @@ mod list_item_factory;
 pub use self::list_item_factory::{ListItemFactory, NONE_LIST_ITEM_FACTORY};
 
 mod list_store;
-pub use self::list_store::{ListStore, NONE_LIST_STORE};
+pub use self::list_store::ListStore;
 
 mod list_view;
 pub use self::list_view::ListView;
@@ -932,7 +932,7 @@ mod tree_sortable;
 pub use self::tree_sortable::{TreeSortable, NONE_TREE_SORTABLE};
 
 mod tree_store;
-pub use self::tree_store::{TreeStore, NONE_TREE_STORE};
+pub use self::tree_store::TreeStore;
 
 mod tree_view;
 pub use self::tree_view::TreeViewBuilder;
@@ -1210,7 +1210,6 @@ pub mod traits {
     pub use super::layout_manager::LayoutManagerExt;
     pub use super::list_base::ListBaseExt;
     pub use super::list_box_row::ListBoxRowExt;
-    pub use super::list_store::GtkListStoreExt;
     pub use super::media_file::MediaFileExt;
     pub use super::media_stream::MediaStreamExt;
     pub use super::mount_operation::MountOperationExt;
@@ -1246,7 +1245,6 @@ pub mod traits {
     pub use super::tree_model_filter::TreeModelFilterExt;
     pub use super::tree_model_sort::TreeModelSortExt;
     pub use super::tree_sortable::TreeSortableExt;
-    pub use super::tree_store::TreeStoreExt;
     pub use super::tree_view::TreeViewExt;
     pub use super::widget::WidgetExt;
     pub use super::window::GtkWindowExt;
