@@ -1821,18 +1821,23 @@ status = "generate"
 [[object]]
 name = "Gtk.ShortcutTrigger"
 status = "generate"
+manual_traits = ["ShortcutTriggerExtManual"]
     [[object.function]]
     name = "equal"
     manual = true # complains about the trait IsA<T> being so generic
+    doc_trait_name = "ShortcutTriggerExtManual"
     [[object.function]]
     name = "hash"
     manual = true # complains about the trait IsA<T> being so generic
+    doc_trait_name = "ShortcutTriggerExtManual"
     [[object.function]]
     name = "compare"
     manual = true # complains about the trait IsA<T> being so generic
+    doc_trait_name = "ShortcutTriggerExtManual"
     [[object.function]]
     name = "trigger"
     manual = true # to handle gdk::Event
+    doc_trait_name = "ShortcutTriggerExtManual"
 
 [[object]]
 name = "Gtk.SignalAction"
