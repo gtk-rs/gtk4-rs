@@ -2116,9 +2116,6 @@ manual_traits = ["TreeModelExtManual"]
     name = "rows_reordered_with_length"
     ignore = true
     [[object.function]]
-    name = "sort_new_with_model"
-    ignore = true # Replaced by TreeModelSort::new
-    [[object.function]]
     name = 'unref_node'
     ignore = true # unsafe
     [[object.function]]
