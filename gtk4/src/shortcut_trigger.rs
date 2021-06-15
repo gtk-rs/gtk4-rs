@@ -4,24 +4,25 @@ use crate::ShortcutTrigger;
 use glib::translate::*;
 use glib::IsA;
 
-impl ShortcutTrigger {
+pub trait ShortcutTriggerExtManual {
     #[doc(alias = "gtk_shortcut_trigger_compare")]
-    pub fn compare<P: IsA<ShortcutTrigger>>(&self, trigger2: &P) -> std::cmp::Ordering {
-        unsafe {
-            from_glib(ffi::gtk_shortcut_trigger_compare(
-                ToGlibPtr::<*mut ffi::GtkShortcutTrigger>::to_glib_none(self).0
-                    as glib::ffi::gconstpointer,
-                ToGlibPtr::<*mut ffi::GtkShortcutTrigger>::to_glib_none(trigger2.as_ref()).0
-                    as glib::ffi::gconstpointer,
-            ))
-        }
-    }
+    fn compare<P: IsA<ShortcutTrigger>>(&self, trigger2: &P) -> std::cmp::Ordering;
 
     #[doc(alias = "gtk_shortcut_trigger_equal")]
-    pub fn equal<P: IsA<ShortcutTrigger>>(&self, trigger2: &P) -> bool {
+    fn equal<P: IsA<ShortcutTrigger>>(&self, trigger2: &P) -> bool;
+
+    #[doc(alias = "gtk_shortcut_trigger_hash")]
+    fn hash(&self) -> u32;
+
+    #[doc(alias = "gtk_shortcut_trigger_trigger")]
+    fn trigger(&self, event: &gdk::Event, enable_mnemonics: bool) -> gdk::KeyMatch;
+}
+
+impl<O: IsA<ShortcutTrigger>> ShortcutTriggerExtManual for O {
+    fn compare<P: IsA<ShortcutTrigger>>(&self, trigger2: &P) -> std::cmp::Ordering {
         unsafe {
-            from_glib(ffi::gtk_shortcut_trigger_equal(
-                ToGlibPtr::<*mut ffi::GtkShortcutTrigger>::to_glib_none(self).0
+            from_glib(ffi::gtk_shortcut_trigger_compare(
+                ToGlibPtr::<*mut ffi::GtkShortcutTrigger>::to_glib_none(self.as_ref()).0
                     as glib::ffi::gconstpointer,
                 ToGlibPtr::<*mut ffi::GtkShortcutTrigger>::to_glib_none(trigger2.as_ref()).0
                     as glib::ffi::gconstpointer,
@@ -29,21 +30,30 @@ impl ShortcutTrigger {
         }
     }
 
-    #[doc(alias = "gtk_shortcut_trigger_hash")]
-    pub fn hash(&self) -> u32 {
+    fn equal<P: IsA<ShortcutTrigger>>(&self, trigger2: &P) -> bool {
+        unsafe {
+            from_glib(ffi::gtk_shortcut_trigger_equal(
+                ToGlibPtr::<*mut ffi::GtkShortcutTrigger>::to_glib_none(self.as_ref()).0
+                    as glib::ffi::gconstpointer,
+                ToGlibPtr::<*mut ffi::GtkShortcutTrigger>::to_glib_none(trigger2.as_ref()).0
+                    as glib::ffi::gconstpointer,
+            ))
+        }
+    }
+
+    fn hash(&self) -> u32 {
         unsafe {
             ffi::gtk_shortcut_trigger_hash(
-                ToGlibPtr::<*mut ffi::GtkShortcutTrigger>::to_glib_none(self).0
+                ToGlibPtr::<*mut ffi::GtkShortcutTrigger>::to_glib_none(self.as_ref()).0
                     as glib::ffi::gconstpointer,
             )
         }
     }
 
-    #[doc(alias = "gtk_shortcut_trigger_trigger")]
-    pub fn trigger(&self, event: &gdk::Event, enable_mnemonics: bool) -> gdk::KeyMatch {
+    fn trigger(&self, event: &gdk::Event, enable_mnemonics: bool) -> gdk::KeyMatch {
         unsafe {
             from_glib(ffi::gtk_shortcut_trigger_trigger(
-                self.to_glib_none().0,
+                self.as_ref().to_glib_none().0,
                 event.to_glib_none().0,
                 enable_mnemonics.into_glib(),
             ))
