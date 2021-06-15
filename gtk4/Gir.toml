@@ -960,7 +960,7 @@ status = "generate"
     [[object.signal]]
     name = "drop"
     # manual: FromGlibPtrBorrow<*mut GValue>` is not implemented for `Value`
-    ignore = true
+    manual = true
     [[object.function]]
     name = "get_gtypes"
     rename = "types"
@@ -980,7 +980,7 @@ manual_traits = ["EditableExtManual"]
     doc_trait_name = "EditableExtManual"
     [[object.signal]]
     name = "insert-text"
-    ignore = true # manual
+    manual = true
     doc_trait_name = "EditableExtManual"
     [[object.function]]
     name = "install_properties"
@@ -1816,7 +1816,7 @@ name = "Gtk.ShortcutsSection"
 status = "generate"
     [[object.signal]]
     name = "change-current-page"
-    ignore = true # manual
+    manual = true
 
 [[object]]
 name = "Gtk.ShortcutTrigger"
@@ -1945,7 +1945,7 @@ status = "generate"
 
     [[object.signal]]
     pattern = ".+"
-    ignore = true # manual
+    manual = true
     [[object.function]]
     name = "set_tabs"
         [[object.function.parameter]]
@@ -1968,7 +1968,7 @@ manual_traits = ["TextBufferExtManual"]
     bypass_auto_rename = true
     [[object.signal]]
     name = "insert-text"
-    ignore = true # manual
+    manual = true
     doc_trait_name = "TextBufferExtManual"
     [[object.function]]
     name = "create_tag"
