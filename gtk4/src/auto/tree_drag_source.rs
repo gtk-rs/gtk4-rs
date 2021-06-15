@@ -20,39 +20,39 @@ pub const NONE_TREE_DRAG_SOURCE: Option<&TreeDragSource> = None;
 
 pub trait TreeDragSourceExt: 'static {
     #[doc(alias = "gtk_tree_drag_source_drag_data_delete")]
-    fn drag_data_delete(&self, path: &mut TreePath) -> bool;
+    fn drag_data_delete(&self, path: &TreePath) -> bool;
 
     #[doc(alias = "gtk_tree_drag_source_drag_data_get")]
-    fn drag_data_get(&self, path: &mut TreePath) -> Option<gdk::ContentProvider>;
+    fn drag_data_get(&self, path: &TreePath) -> Option<gdk::ContentProvider>;
 
     #[doc(alias = "gtk_tree_drag_source_row_draggable")]
-    fn row_draggable(&self, path: &mut TreePath) -> bool;
+    fn row_draggable(&self, path: &TreePath) -> bool;
 }
 
 impl<O: IsA<TreeDragSource>> TreeDragSourceExt for O {
-    fn drag_data_delete(&self, path: &mut TreePath) -> bool {
+    fn drag_data_delete(&self, path: &TreePath) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_drag_source_drag_data_delete(
                 self.as_ref().to_glib_none().0,
-                path.to_glib_none_mut().0,
+                mut_override(path.to_glib_none().0),
             ))
         }
     }
 
-    fn drag_data_get(&self, path: &mut TreePath) -> Option<gdk::ContentProvider> {
+    fn drag_data_get(&self, path: &TreePath) -> Option<gdk::ContentProvider> {
         unsafe {
             from_glib_full(ffi::gtk_tree_drag_source_drag_data_get(
                 self.as_ref().to_glib_none().0,
-                path.to_glib_none_mut().0,
+                mut_override(path.to_glib_none().0),
             ))
         }
     }
 
-    fn row_draggable(&self, path: &mut TreePath) -> bool {
+    fn row_draggable(&self, path: &TreePath) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_drag_source_row_draggable(
                 self.as_ref().to_glib_none().0,
-                path.to_glib_none_mut().0,
+                mut_override(path.to_glib_none().0),
             ))
         }
     }

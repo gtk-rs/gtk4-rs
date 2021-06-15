@@ -20,28 +20,28 @@ pub const NONE_TREE_DRAG_DEST: Option<&TreeDragDest> = None;
 
 pub trait TreeDragDestExt: 'static {
     #[doc(alias = "gtk_tree_drag_dest_drag_data_received")]
-    fn drag_data_received(&self, dest: &mut TreePath, value: &glib::Value) -> bool;
+    fn drag_data_received(&self, dest: &TreePath, value: &glib::Value) -> bool;
 
     #[doc(alias = "gtk_tree_drag_dest_row_drop_possible")]
-    fn row_drop_possible(&self, dest_path: &mut TreePath, value: &glib::Value) -> bool;
+    fn row_drop_possible(&self, dest_path: &TreePath, value: &glib::Value) -> bool;
 }
 
 impl<O: IsA<TreeDragDest>> TreeDragDestExt for O {
-    fn drag_data_received(&self, dest: &mut TreePath, value: &glib::Value) -> bool {
+    fn drag_data_received(&self, dest: &TreePath, value: &glib::Value) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_drag_dest_drag_data_received(
                 self.as_ref().to_glib_none().0,
-                dest.to_glib_none_mut().0,
+                mut_override(dest.to_glib_none().0),
                 value.to_glib_none().0,
             ))
         }
     }
 
-    fn row_drop_possible(&self, dest_path: &mut TreePath, value: &glib::Value) -> bool {
+    fn row_drop_possible(&self, dest_path: &TreePath, value: &glib::Value) -> bool {
         unsafe {
             from_glib(ffi::gtk_tree_drag_dest_row_drop_possible(
                 self.as_ref().to_glib_none().0,
-                dest_path.to_glib_none_mut().0,
+                mut_override(dest_path.to_glib_none().0),
                 value.to_glib_none().0,
             ))
         }

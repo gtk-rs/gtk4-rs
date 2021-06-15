@@ -126,9 +126,12 @@ impl CellView {
     }
 
     #[doc(alias = "gtk_cell_view_set_displayed_row")]
-    pub fn set_displayed_row(&self, path: &mut TreePath) {
+    pub fn set_displayed_row(&self, path: &TreePath) {
         unsafe {
-            ffi::gtk_cell_view_set_displayed_row(self.to_glib_none().0, path.to_glib_none_mut().0);
+            ffi::gtk_cell_view_set_displayed_row(
+                self.to_glib_none().0,
+                mut_override(path.to_glib_none().0),
+            );
         }
     }
 
