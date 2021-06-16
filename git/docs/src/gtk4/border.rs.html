@@ -152,6 +152,18 @@
 <span id="148">148</span>
 <span id="149">149</span>
 <span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
 </pre><pre class="rust">
 <span class="comment">// Take a look at the license at the top of the repository in the LICENSE file.</span>
 
@@ -201,6 +213,14 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">assert_initialized_main_thread!</span>();
         <span class="kw">unsafe</span> { <span class="ident">from_glib_full</span>(<span class="ident">ffi::gtk_border_new</span>()) }
+    }
+
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Creates a new builder-style object to construct a [`Border`].</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This method returns an instance of [`BorderBuilder`] which can be used to create a [`Border`].</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">builder</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">BorderBuilder</span> {
+        <span class="ident">BorderBuilder::default</span>()
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">left</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">i16</span> {
@@ -262,6 +282,8 @@
 }
 
 <span class="kw">impl</span> <span class="ident">BorderBuilder</span> {
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Create a new [`BorderBuilder`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="self">Self</span><span class="ident">::default</span>()
     }
@@ -286,6 +308,8 @@
         <span class="self">self</span>
     }
 
+    <span class="comment">// rustdoc-stripper-ignore-next</span>
+    <span class="doccomment">/// Build the [`Border`].</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Border</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">border</span> <span class="op">=</span> <span class="ident">Border::default</span>();
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">left</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">left</span> {
