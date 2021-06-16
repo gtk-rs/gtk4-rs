@@ -9,6 +9,6 @@ glib::wrapper! {
 
 impl VirtualMethodsAppWindow {
     pub fn new<P: glib::IsA<gtk::Application>>(app: &P) -> Self {
-        glib::Object::new(&[("application", app)]).expect("Failed to create VideoPlayerWindow")
+        glib::Object::new(&[("application", app)]).expect("Failed to create VirtualMethodAppWindow")
     }
 }

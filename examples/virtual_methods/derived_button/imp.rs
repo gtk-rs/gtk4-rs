@@ -1,7 +1,7 @@
 use crate::base_button::*;
 use gtk::{gio, glib, prelude::*, subclass::prelude::*};
 
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct DerivedButton {}
 
 #[glib::object_subclass]
@@ -9,10 +9,6 @@ impl ObjectSubclass for DerivedButton {
     const NAME: &'static str = "ExampleDerivedButton";
     type ParentType = BaseButton;
     type Type = super::DerivedButton;
-
-    fn new() -> Self {
-        Self {}
-    }
 }
 
 impl ObjectImpl for DerivedButton {}
@@ -21,8 +17,12 @@ impl ButtonImpl for DerivedButton {}
 
 /// Implement the base trait and override the functions
 impl BaseButtonImpl for DerivedButton {
-    fn sync_method(&self, obj: &BaseButton) {
-        obj.set_label("DerivedButton sync");
+    fn sync_method(&self, obj: &BaseButton, extra_text: Box<Option<String>>) {
+        if let Some(text) = *extra_text {
+            obj.set_label(&format!("DerivedButton sync {}", text));
+        } else {
+            obj.set_label("DerivedButton sync");
+        }
     }
 
     fn async_method(&self, obj: &BaseButton) -> PinnedFuture {

@@ -1,7 +1,13 @@
 use crate::base_button::*;
-use gtk::{glib, prelude::*, subclass::prelude::*, CompositeTemplate};
+use crate::derived_button::DerivedButton;
+use gtk::{
+    glib::{self, clone},
+    prelude::*,
+    subclass::prelude::*,
+    CompositeTemplate,
+};
 
-#[derive(Debug, CompositeTemplate)]
+#[derive(Debug, CompositeTemplate, Default)]
 #[template(file = "window.ui")]
 pub struct VirtualMethodsAppWindow {
     #[template_child]
@@ -16,14 +22,9 @@ impl ObjectSubclass for VirtualMethodsAppWindow {
     type ParentType = gtk::ApplicationWindow;
     type Type = super::VirtualMethodsAppWindow;
 
-    fn new() -> Self {
-        Self {
-            base_button: TemplateChild::default(),
-            derived_button: TemplateChild::default(),
-        }
-    }
-
     fn class_init(klass: &mut Self::Class) {
+        BaseButton::static_type();
+        DerivedButton::static_type();
         Self::bind_template(klass);
     }
 
@@ -37,16 +38,15 @@ impl ObjectImpl for VirtualMethodsAppWindow {
         self.base_button.connect_clicked(|b| {
             let ctx = glib::MainContext::default();
             let b = b.clone();
-            ctx.spawn_local(async move {
+            ctx.spawn_local(clone!(@weak b => async move {
                 b.async_method().await.unwrap();
-            });
+            }));
         });
         self.derived_button.connect_clicked(|b| {
             let ctx = glib::MainContext::default();
-            let b = b.clone();
-            ctx.spawn_local(async move {
+            ctx.spawn_local(clone!(@weak b => async move {
                 b.async_method().await.unwrap();
-            });
+            }));
         });
     }
 }
