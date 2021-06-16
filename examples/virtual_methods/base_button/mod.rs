@@ -8,7 +8,8 @@ use gtk::glib::{
     Error,
 };
 use gtk::prelude::*;
-use std::{future::Future, pin::Pin};
+
+use self::imp::PinnedFuture;
 
 glib::wrapper! {
     pub struct BaseButton(ObjectSubclass<imp::BaseButton>)
@@ -18,7 +19,7 @@ glib::wrapper! {
 /// Public trait that implements our functions for everything that derives from BaseButton
 pub trait BaseButtonExt {
     fn sync_method(&self);
-    fn async_method(&self) -> Pin<Box<dyn Future<Output = Result<(), Error>> + 'static>>;
+    fn async_method(&self) -> PinnedFuture;
 }
 
 /// We call into imp::BaseButton_$method_name for each function. These will retrieve the
@@ -29,7 +30,7 @@ impl<O: IsA<BaseButton>> BaseButtonExt for O {
         unsafe { imp::BaseButton_sync_method(self.as_ref().to_glib_none().0) }
     }
 
-    fn async_method(&self) -> Pin<Box<dyn Future<Output = Result<(), Error>> + 'static>> {
+    fn async_method(&self) -> PinnedFuture {
         unsafe { imp::BaseButton_async_method(self.as_ref().to_glib_none().0) }
     }
 }
@@ -41,10 +42,7 @@ pub trait BaseButtonImpl: ObjectImpl + 'static {
         self.parent_sync_method(obj)
     }
 
-    fn async_method(
-        &self,
-        obj: &BaseButton,
-    ) -> Pin<Box<dyn Future<Output = Result<(), Error>> + 'static>> {
+    fn async_method(&self, obj: &BaseButton) -> PinnedFuture {
         self.parent_async_method(obj)
     }
 
@@ -60,10 +58,7 @@ pub trait BaseButtonImpl: ObjectImpl + 'static {
         }
     }
 
-    fn parent_async_method(
-        &self,
-        obj: &BaseButton,
-    ) -> Pin<Box<dyn Future<Output = Result<(), Error>> + 'static>> {
+    fn parent_async_method(&self, obj: &BaseButton) -> PinnedFuture {
         unsafe {
             let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut imp::BaseButtonClass;
@@ -103,7 +98,7 @@ where
 
 unsafe extern "C" fn async_method_trampoline<T: ObjectSubclass>(
     this: *mut imp::BaseButtonInstance,
-) -> Pin<Box<dyn Future<Output = Result<(), Error>> + 'static>>
+) -> PinnedFuture
 where
     T: BaseButtonImpl,
 {

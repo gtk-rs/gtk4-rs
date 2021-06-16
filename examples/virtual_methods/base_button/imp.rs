@@ -8,16 +8,14 @@ use gtk::{
 use std::{future::Future, pin::Pin};
 
 pub type BaseButtonInstance = <BaseButton as super::ObjectSubclass>::Instance;
+pub type PinnedFuture = Pin<Box<dyn Future<Output = Result<(), Error>> + 'static>>;
+
 /// GObject glue code for our BaseButtonClass which holds the function pointers to our virtual functions.
 #[repr(C)]
 pub struct BaseButtonClass {
     pub parent_class: gtk::ffi::GtkButtonClass,
     pub sync_method: Option<unsafe extern "C" fn(*mut BaseButtonInstance)>,
-    pub async_method: Option<
-        unsafe extern "C" fn(
-            *mut BaseButtonInstance,
-        ) -> Pin<Box<dyn Future<Output = Result<(), Error>> + 'static>>,
-    >,
+    pub async_method: Option<unsafe extern "C" fn(*mut BaseButtonInstance) -> PinnedFuture>,
 }
 
 unsafe impl ClassStruct for BaseButtonClass {
@@ -49,7 +47,7 @@ unsafe extern "C" fn sync_method_default_trampoline(this: *mut BaseButtonInstanc
 
 unsafe extern "C" fn async_method_default_trampoline(
     this: *mut BaseButtonInstance,
-) -> Pin<Box<dyn Future<Output = Result<(), Error>> + 'static>> {
+) -> PinnedFuture {
     let imp = (*this).impl_();
     imp.async_method(&from_glib_borrow(this))
 }
@@ -62,9 +60,7 @@ pub unsafe extern "C" fn BaseButton_sync_method(this: *mut BaseButtonInstance) {
 }
 
 #[no_mangle]
-pub unsafe extern "C" fn BaseButton_async_method(
-    this: *mut BaseButtonInstance,
-) -> Pin<Box<dyn Future<Output = Result<(), Error>> + 'static>> {
+pub unsafe extern "C" fn BaseButton_async_method(this: *mut BaseButtonInstance) -> PinnedFuture {
     let klass = glib::subclass::types::InstanceStruct::class(&*this);
     klass.async_method.unwrap()(this)
 }
@@ -75,10 +71,7 @@ impl BaseButton {
         obj.set_label("BaseButton sync");
     }
 
-    fn async_method(
-        &self,
-        obj: &super::BaseButton,
-    ) -> Pin<Box<dyn Future<Output = Result<(), Error>> + 'static>> {
+    fn async_method(&self, obj: &super::BaseButton) -> PinnedFuture {
         let cloned_obj = obj.clone();
         Box::pin(gio::GioFuture::new(obj, move |_, _, send| {
             cloned_obj.set_label("BaseButton async");

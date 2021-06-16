@@ -1,6 +1,5 @@
 use crate::base_button::*;
 use gtk::{gio, glib, prelude::*, subclass::prelude::*};
-use std::{future::Future, pin::Pin};
 
 #[derive(Debug)]
 pub struct DerivedButton {}
@@ -26,10 +25,7 @@ impl BaseButtonImpl for DerivedButton {
         obj.set_label("DerivedButton sync");
     }
 
-    fn async_method(
-        &self,
-        obj: &BaseButton,
-    ) -> Pin<Box<dyn Future<Output = Result<(), glib::Error>> + 'static>> {
+    fn async_method(&self, obj: &BaseButton) -> PinnedFuture {
         let obj_cloned = obj.clone();
         Box::pin(gio::GioFuture::new(obj, move |_, _, send| {
             obj_cloned.set_label("DerivedButton async");
