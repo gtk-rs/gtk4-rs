@@ -25,7 +25,9 @@ pub trait BaseButtonExt {
 /// and call the correct implementation of the function.
 impl<O: IsA<BaseButton>> BaseButtonExt for O {
     fn sync_method(&self, extra_text: Box<Option<String>>) {
-        unsafe { imp::base_button_sync_method(self.as_ref().to_glib_none().0, extra_text) }
+        unsafe {
+            imp::base_button_sync_method(self.as_ref().to_glib_none().0, Box::into_raw(extra_text))
+        }
     }
 
     fn async_method(&self) -> PinnedFuture {
@@ -49,7 +51,7 @@ pub trait BaseButtonImpl: ButtonImpl + ObjectImpl + 'static {
             let data = Self::type_data();
             let parent_class = data.as_ref().parent_class() as *mut imp::BaseButtonClass;
             if let Some(ref f) = (*parent_class).sync_method {
-                f(obj.to_glib_none().0, extra_text)
+                f(obj.to_glib_none().0, Box::into_raw(extra_text))
             } else {
                 unimplemented!()
             }
@@ -87,13 +89,13 @@ unsafe impl<T: BaseButtonImpl> IsSubclassable<T> for BaseButton {
 // Virtual method default implementation trampolines
 unsafe extern "C" fn sync_method_trampoline<T: ObjectSubclass>(
     this: *mut imp::BaseButtonInstance,
-    extra_text: Box<Option<String>>,
+    extra_text: *mut Option<String>,
 ) where
     T: BaseButtonImpl,
 {
     let instance = &*(this as *const T::Instance);
     let imp = instance.impl_();
-    imp.sync_method(&from_glib_borrow(this), extra_text)
+    imp.sync_method(&from_glib_borrow(this), Box::from_raw(extra_text))
 }
 
 unsafe extern "C" fn async_method_trampoline<T: ObjectSubclass>(

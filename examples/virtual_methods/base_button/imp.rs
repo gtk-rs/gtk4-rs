@@ -15,7 +15,7 @@ pub type PinnedFuture = Pin<Box<dyn Future<Output = Result<(), Error>> + 'static
 pub struct BaseButtonClass {
     pub parent_class: gtk::ffi::GtkButtonClass,
     pub sync_method:
-        Option<unsafe extern "C" fn(*mut BaseButtonInstance, extra_text: Box<Option<String>>)>,
+        Option<unsafe extern "C" fn(*mut BaseButtonInstance, extra_text: *mut Option<String>)>,
     pub async_method: Option<unsafe extern "C" fn(*mut BaseButtonInstance) -> PinnedFuture>,
 }
 
@@ -43,10 +43,10 @@ pub struct BaseButton {}
 // Virtual method default implementation trampolines
 unsafe extern "C" fn sync_method_default_trampoline(
     this: *mut BaseButtonInstance,
-    extra_text: Box<Option<String>>,
+    extra_text: *mut Option<String>,
 ) {
     let imp = (*this).impl_();
-    imp.sync_method(&from_glib_borrow(this), extra_text)
+    imp.sync_method(&from_glib_borrow(this), Box::from_raw(extra_text))
 }
 
 unsafe extern "C" fn async_method_default_trampoline(
@@ -58,7 +58,7 @@ unsafe extern "C" fn async_method_default_trampoline(
 
 pub unsafe extern "C" fn base_button_sync_method(
     this: *mut BaseButtonInstance,
-    extra_text: Box<Option<String>>,
+    extra_text: *mut Option<String>,
 ) {
     let klass = glib::subclass::types::InstanceStruct::class(&*this);
 
