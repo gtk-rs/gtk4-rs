@@ -39,6 +39,14 @@ impl Border {
         unsafe { from_glib_full(ffi::gtk_border_new()) }
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`Border`].
+    ///
+    /// This method returns an instance of [`BorderBuilder`] which can be used to create a [`Border`].
+    pub fn builder() -> BorderBuilder {
+        BorderBuilder::default()
+    }
+
     pub fn left(&self) -> i16 {
         self.left
     }
@@ -98,6 +106,8 @@ pub struct BorderBuilder {
 }
 
 impl BorderBuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`BorderBuilder`].
     pub fn new() -> Self {
         Self::default()
     }
@@ -122,6 +132,8 @@ impl BorderBuilder {
         self
     }
 
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Border`].
     pub fn build(self) -> Border {
         let mut border = Border::default();
         if let Some(left) = self.left {
