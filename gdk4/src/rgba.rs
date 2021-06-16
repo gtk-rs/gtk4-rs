@@ -11,6 +11,61 @@ use std::str::FromStr;
 #[derive(Debug)]
 pub struct RgbaParseError;
 
+#[derive(Debug, Default)]
+pub struct RGBABuilder {
+    red: Option<f32>,
+    green: Option<f32>,
+    blue: Option<f32>,
+    alpha: Option<f32>,
+}
+
+impl RGBABuilder {
+    // rustdoc-stripper-ignore-next
+    /// Create a new [`RGBABuilder`].
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn blue(mut self, blue: f32) -> Self {
+        self.blue = Some(blue);
+        self
+    }
+
+    pub fn green(mut self, green: f32) -> Self {
+        self.green = Some(green);
+        self
+    }
+
+    pub fn red(mut self, red: f32) -> Self {
+        self.red = Some(red);
+        self
+    }
+
+    pub fn alpha(mut self, alpha: f32) -> Self {
+        self.alpha = Some(alpha);
+        self
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Build the [`RGBA`].
+    pub fn build(self) -> RGBA {
+        let mut rgba = RGBA::white();
+        if let Some(blue) = self.blue {
+            rgba.blue = blue;
+        }
+        if let Some(red) = self.red {
+            rgba.red = red;
+        }
+        if let Some(green) = self.green {
+            rgba.green = green;
+        }
+        if let Some(alpha) = self.alpha {
+            rgba.alpha = alpha;
+        }
+        rgba
+    }
+}
+
 #[derive(Clone, Copy, Debug)]
 #[repr(C)]
 #[doc(alias = "GdkRGBA")]
@@ -23,6 +78,14 @@ pub struct RGBA {
 }
 
 impl RGBA {
+    // rustdoc-stripper-ignore-next
+    /// Creates a new builder-style object to construct a [`RGBA`].
+    ///
+    /// This method returns an instance of [`RGBABuilder`] which can be used to create a [`RGBA`].
+    pub fn builder() -> RGBABuilder {
+        RGBABuilder::default()
+    }
+
     #[doc(alias = "gdk_rgba_is_opaque")]
     pub fn is_opaque(&self) -> bool {
         skip_assert_initialized!();

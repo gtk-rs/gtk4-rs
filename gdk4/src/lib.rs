@@ -121,7 +121,7 @@ pub use motion_event::MotionEvent;
 pub use pad_event::PadEvent;
 pub use proximity_event::ProximityEvent;
 pub use rectangle::Rectangle;
-pub use rgba::{RgbaParseError, RGBA};
+pub use rgba::{RGBABuilder, RgbaParseError, RGBA};
 pub use scroll_event::ScrollEvent;
 pub use time_coord::TimeCoord;
 pub use toplevel_size::ToplevelSize;
