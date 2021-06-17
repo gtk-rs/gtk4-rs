@@ -1,0 +1,9 @@
+
+.tile {
+  padding: 0px;
+  border-radius: 8px;
+  border: 1px solid @borders;
+  color: @theme_fg_color;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+  background: @theme_base_color;
+}

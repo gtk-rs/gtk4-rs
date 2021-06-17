@@ -7,8 +7,8 @@ use gtk::Application;
 use gtk::ApplicationWindow;
 use gtk::{gio, glib};
 use gtk::{
-    CheckButton, ConstantExpression, Entry, ListView, PolicyType, PropertyExpression,
-    ScrolledWindow, SignalListItemFactory, SingleSelection,
+    CheckButton, ConstantExpression, Label, ListView, NoSelection, PolicyType, PropertyExpression,
+    ScrolledWindow, SignalListItemFactory,
 };
 
 use todo_object::TodoObject;
@@ -17,6 +17,18 @@ use todo_row::TodoRow;
 fn main() {
     // Create a new application
     let app = Application::new(Some("org.gtk.example"), Default::default());
+    app.connect_startup(|app| {
+        // The CSS "magic" happens here.
+        let provider = gtk::CssProvider::new();
+        provider.load_from_data(include_bytes!("style.css"));
+        // We give the CssProvided to the default screen so the CSS rules we added
+        // can be applied to our window.
+        gtk::StyleContext::add_provider_for_display(
+            &gtk::gdk::Display::default().expect("Error initializing gtk css provider."),
+            &provider,
+            gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
+        );
+    });
     app.connect_activate(build_ui);
 
     // Run the application
@@ -68,19 +80,13 @@ fn build_ui(application: &Application) {
             .get::<CheckButton>()
             .expect("The property needs to be of type `CheckButton`.");
 
-        // Get `content_entry` from `TodoRow`
-        let content_entry = todo_row
-            .property("content-entry")
+        // Get `content_label` from `TodoRow`
+        let content_label = todo_row
+            .property("content-label")
             .expect("The property needs to exist and be readable.")
-            .get::<Entry>()
-            .expect("The property needs to be of type `Entry`.");
+            .get::<Label>()
+            .expect("The property needs to be of type `Label`.");
 
-        // Get `content_buffer` from `content_entry`
-        let content_buffer = content_entry
-                .property("buffer")
-                .expect("The property needs to exist and be readable.")
-                .get::<gtk::EntryBuffer>()
-                .expect("The property needs to be of type `Entry`.");
 
         // Bind
         let binding_completed = todo_object
@@ -89,7 +95,7 @@ fn build_ui(application: &Application) {
             .build()
             .unwrap();
         let binding_content = todo_object
-            .bind_property("content", &content_buffer, "text")
+            .bind_property("content", &content_label, "label")
             .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
             .build()
             .unwrap();
@@ -98,21 +104,29 @@ fn build_ui(application: &Application) {
         bindings_map.borrow_mut().insert(id, (binding_completed, binding_content));
     }));
 
-    factory.connect_unbind(glib::clone!(@strong bindings_map => move |_, list_item| {
-        let id = list_item.position();
-        let (binding_completed,binding_content )= bindings_map.borrow_mut().remove(&id).unwrap();
-        binding_completed.unbind();
-        binding_content.unbind();
-    }));
-
-    let selection_model = SingleSelection::new(Some(&model));
+    let selection_model = NoSelection::new(Some(&model));
     let list_view = ListView::new(Some(&selection_model), Some(&factory));
 
     let scrolled_window = ScrolledWindow::builder()
         .hscrollbar_policy(PolicyType::Never) // Disable horizontal scrolling
         .min_content_width(360)
+        .min_content_height(360)
         .child(&list_view)
         .build();
-    window.set_child(Some(&scrolled_window));
+
+    let entry = gtk::Entry::new();
+
+    let gtk_box = gtk::Box::builder()
+        .orientation(gtk::Orientation::Vertical)
+        .margin_top(12)
+        .margin_bottom(12)
+        .margin_start(12)
+        .margin_end(12)
+        .spacing(12)
+        .build();
+    gtk_box.append(&entry);
+    gtk_box.append(&scrolled_window);
+
+    window.set_child(Some(&gtk_box));
     window.show();
 }

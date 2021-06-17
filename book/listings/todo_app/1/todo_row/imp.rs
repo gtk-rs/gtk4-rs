@@ -2,20 +2,30 @@ use glib::{ParamFlags, ParamSpec, Value};
 use gtk::glib;
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
-use gtk::{CheckButton, Entry};
+use gtk::{CheckButton, Label};
 use once_cell::sync::Lazy;
 
 // Object holding the state
 pub struct TodoRow {
     completed_button: CheckButton,
-    content_entry: Entry,
+    content_label: Label,
 }
 
 impl Default for TodoRow {
     fn default() -> Self {
         Self {
-            completed_button: CheckButton::new(),
-            content_entry: Entry::new(),
+            completed_button: CheckButton::builder()
+                .margin_top(12)
+                .margin_bottom(12)
+                .margin_start(12)
+                .margin_end(12)
+                .build(),
+            content_label: Label::builder()
+                .margin_top(12)
+                .margin_bottom(12)
+                .margin_start(12)
+                .margin_end(12)
+                .build(),
         }
     }
 }
@@ -48,13 +58,13 @@ impl ObjectImpl for TodoRow {
                 ),
                 ParamSpec::new_object(
                     // Name
-                    "content-entry",
+                    "content-label",
                     // Nickname
-                    "content-entry",
+                    "content-label",
                     // Short description
-                    "content-entry",
+                    "content-label",
                     // Object Type
-                    Entry::static_type(),
+                    Label::static_type(),
                     // The property can be read
                     ParamFlags::READABLE,
                 ),
@@ -66,7 +76,7 @@ impl ObjectImpl for TodoRow {
     fn property(&self, _obj: &Self::Type, _id: usize, pspec: &ParamSpec) -> Value {
         match pspec.name() {
             "completed-button" => self.completed_button.to_value(),
-            "content-entry" => self.content_entry.to_value(),
+            "content-label" => self.content_label.to_value(),
             _ => unimplemented!(),
         }
     }
@@ -75,7 +85,7 @@ impl ObjectImpl for TodoRow {
         self.parent_constructed(obj);
 
         obj.append(&self.completed_button);
-        obj.append(&self.content_entry)
+        obj.append(&self.content_label)
     }
 }
 // ANCHOR_END: object_impl
