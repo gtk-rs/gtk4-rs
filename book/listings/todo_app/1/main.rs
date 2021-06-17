@@ -109,6 +109,11 @@ fn build_ui(application: &Application) {
         .build();
 
     let entry = gtk::Entry::new();
+    let combo_box = gtk::ComboBoxText::new();
+    combo_box.append_text("All");
+    combo_box.append_text("Open");
+    combo_box.append_text("Done");
+    combo_box.set_active(Some(0));
 
     let gtk_box = gtk::Box::builder()
         .orientation(gtk::Orientation::Vertical)
@@ -116,10 +121,11 @@ fn build_ui(application: &Application) {
         .margin_bottom(12)
         .margin_start(12)
         .margin_end(12)
-        .spacing(12)
+        .spacing(6)
         .build();
     gtk_box.append(&entry);
     gtk_box.append(&scrolled_window);
+    gtk_box.append(&combo_box);
 
     window.set_child(Some(&gtk_box));
     window.show();
