@@ -40,8 +40,8 @@ fn build_ui(application: &Application) {
     let window = ApplicationWindow::builder()
         .application(application)
         .title("My GTK App")
-        .default_width(600)
-        .default_height(300)
+        .default_width(360)
+        .default_height(360)
         .build();
 
     let model = gio::ListStore::new(TodoObject::static_type());
@@ -56,9 +56,7 @@ fn build_ui(application: &Application) {
         list_item.set_child(Some(&todo_row));
     });
 
-    let bindings_map = std::rc::Rc::new(std::cell::RefCell::new(std::collections::HashMap::new()));
-
-    factory.connect_bind(glib::clone!(@strong bindings_map => move |_, list_item| {
+    factory.connect_bind(move |_, list_item| {
         // Get `TodoObject` from `ListItem`
         let todo_object = list_item
             .item()
@@ -87,7 +85,6 @@ fn build_ui(application: &Application) {
             .get::<Label>()
             .expect("The property needs to be of type `Label`.");
 
-
         // Bind
         let binding_completed = todo_object
             .bind_property("completed", &completed_button, "active")
@@ -99,10 +96,7 @@ fn build_ui(application: &Application) {
             .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
             .build()
             .unwrap();
-
-        let id = list_item.position();
-        bindings_map.borrow_mut().insert(id, (binding_completed, binding_content));
-    }));
+    });
 
     let selection_model = NoSelection::new(Some(&model));
     let list_view = ListView::new(Some(&selection_model), Some(&factory));
