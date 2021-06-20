@@ -46,7 +46,10 @@ fn build_ui(application: &Application) {
 
     let model = gio::ListStore::new(TodoObject::static_type());
     for i in 0..1000 {
-        model.append(&TodoObject::new(i.to_string(), true));
+        model.append(&TodoObject::new(
+            format!("My important todo entry number {}", i),
+            true,
+        ));
     }
 
     let factory = SignalListItemFactory::new();
@@ -71,31 +74,18 @@ fn build_ui(application: &Application) {
             .downcast::<TodoRow>()
             .expect("The child has to be a `TodoRow`.");
 
-        // Get `completed_button` from `TodoRow`
-        let completed_button = todo_row
-            .property("completed-button")
-            .expect("The property needs to exist and be readable.")
-            .get::<CheckButton>()
-            .expect("The property needs to be of type `CheckButton`.");
+        todo_row.bind_item(&todo_object);
+    });
 
-        // Get `content_label` from `TodoRow`
-        let content_label = todo_row
-            .property("content-label")
-            .expect("The property needs to exist and be readable.")
-            .get::<Label>()
-            .expect("The property needs to be of type `Label`.");
+    factory.connect_unbind(move |_, list_item| {
+        // Get `TodoRow` from `ListItem`
+        let todo_row = list_item
+            .child()
+            .expect("The child has to exist.")
+            .downcast::<TodoRow>()
+            .expect("The child has to be a `TodoRow`.");
 
-        // Bind
-        let binding_completed = todo_object
-            .bind_property("completed", &completed_button, "active")
-            .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
-            .build()
-            .unwrap();
-        let binding_content = todo_object
-            .bind_property("content", &content_label, "label")
-            .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
-            .build()
-            .unwrap();
+        todo_row.unbind_item();
     });
 
     let selection_model = NoSelection::new(Some(&model));

@@ -1,18 +1,18 @@
-use super::bindings::Bindings;
 use crate::todo_object::TodoObject;
-use glib::{ParamFlags, ParamSpec, Value};
-use gtk::glib;
+use glib::{Binding, BindingFlags, ParamFlags, ParamSpec, Value};
 use gtk::prelude::*;
 use gtk::subclass::prelude::*;
+use gtk::{glib, pango};
 use gtk::{CheckButton, Label};
 use once_cell::sync::Lazy;
+use pango::{AttrList, Attribute};
 use std::cell::RefCell;
 
 // Object holding the state
 pub struct TodoRow {
     completed_button: CheckButton,
     content_label: Label,
-    bindings: RefCell<Option<Bindings>>,
+    bindings: RefCell<Vec<Binding>>,
 }
 
 impl Default for TodoRow {
@@ -102,12 +102,47 @@ impl WidgetImpl for TodoRow {}
 impl BoxImpl for TodoRow {}
 
 impl TodoRow {
-    pub fn set_item(&self, item: Option<&TodoObject>) {
-        if let Some(item) = item {
-            todo!("Bind");
-        } else {
-            todo!("Unbind");
-            self.bindings.replace(None);
+    pub fn bind_item(&self, item: &TodoObject) {
+        let completed_button_binding = item
+            .bind_property("completed", &self.completed_button, "active")
+            .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
+            .build()
+            .unwrap();
+        self.bindings.borrow_mut().push(completed_button_binding);
+
+        let content_label_binding = item
+            .bind_property("content", &self.content_label, "label")
+            .flags(BindingFlags::SYNC_CREATE | BindingFlags::BIDIRECTIONAL)
+            .build()
+            .unwrap();
+        self.bindings.borrow_mut().push(content_label_binding);
+
+        let completed_label_binding = item
+            .bind_property("completed", &self.content_label, "attributes")
+            .flags(BindingFlags::SYNC_CREATE | BindingFlags::DEFAULT)
+            .transform_to(|_, completed_value| {
+                let attribute_list = AttrList::new();
+                let completed = completed_value
+                    .get::<bool>()
+                    .expect("The value needs to be of type `bool`.");
+                if completed {
+                    let attribute = Attribute::new_strikethrough(true);
+                    attribute_list.insert(attribute);
+                }
+                Some(attribute_list.to_value())
+            })
+            .build()
+            .unwrap();
+        self.bindings.borrow_mut().push(completed_label_binding);
+    }
+
+    pub fn unbind_item(&self) {
+        // Unbind
+        for binding in self.bindings.borrow().iter() {
+            binding.unbind();
         }
+
+        // Clear the vector
+        self.bindings.borrow_mut().clear();
     }
 }

@@ -1,4 +1,3 @@
-mod bindings;
 mod imp;
 
 use crate::todo_object::TodoObject;
@@ -19,8 +18,13 @@ impl TodoRow {
         obj
     }
 
-    pub fn set_item(&self, item: Option<&TodoObject>) {
+    pub fn bind_item(&self, item: &TodoObject) {
         let imp = imp::TodoRow::from_instance(self);
-        imp.set_item(item);
+        imp.bind_item(item);
+    }
+
+    pub fn unbind_item(&self) {
+        let imp = imp::TodoRow::from_instance(self);
+        imp.unbind_item();
     }
 }
