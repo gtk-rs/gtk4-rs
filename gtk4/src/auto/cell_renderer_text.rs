@@ -2075,7 +2075,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             let f: &F = &*(f as *const F);
             let path = from_glib_full(crate::ffi::gtk_tree_path_new_from_string(path));
             f(
-                &CellRendererText::from_glib_borrow(this).unsafe_cast_ref(),
+                CellRendererText::from_glib_borrow(this).unsafe_cast_ref(),
                 path,
                 &glib::GString::from_glib_borrow(new_text),
             )
@@ -2103,7 +2103,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2128,7 +2128,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2153,7 +2153,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2178,7 +2178,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2203,7 +2203,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2228,7 +2228,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2253,7 +2253,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2278,7 +2278,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2303,7 +2303,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2328,7 +2328,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2353,7 +2353,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2378,7 +2378,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2403,7 +2403,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2428,7 +2428,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2453,7 +2453,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2478,7 +2478,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2503,7 +2503,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2528,7 +2528,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2553,7 +2553,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2578,7 +2578,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2603,7 +2603,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2628,7 +2628,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2653,7 +2653,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2678,7 +2678,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2703,7 +2703,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2728,7 +2728,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2756,7 +2756,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2781,7 +2781,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2806,7 +2806,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2831,7 +2831,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2856,7 +2856,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2881,7 +2881,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2906,7 +2906,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2931,7 +2931,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2956,7 +2956,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2981,7 +2981,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -3006,7 +3006,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -3031,7 +3031,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -3056,7 +3056,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -3081,7 +3081,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -3106,7 +3106,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -3131,7 +3131,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -3156,7 +3156,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -3181,7 +3181,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -3206,7 +3206,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -3231,7 +3231,7 @@ impl<O: IsA<CellRendererText>> CellRendererTextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellRendererText::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

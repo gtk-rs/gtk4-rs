@@ -369,7 +369,7 @@ impl<O: IsA<Editable>> EditableExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
+            f(Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -396,7 +396,7 @@ impl<O: IsA<Editable>> EditableExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &Editable::from_glib_borrow(this).unsafe_cast_ref(),
+                Editable::from_glib_borrow(this).unsafe_cast_ref(),
                 start_pos,
                 end_pos,
             )
@@ -424,7 +424,7 @@ impl<O: IsA<Editable>> EditableExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
+            f(Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -446,7 +446,7 @@ impl<O: IsA<Editable>> EditableExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
+            f(Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -471,7 +471,7 @@ impl<O: IsA<Editable>> EditableExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
+            f(Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -496,7 +496,7 @@ impl<O: IsA<Editable>> EditableExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
+            f(Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -521,7 +521,7 @@ impl<O: IsA<Editable>> EditableExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
+            f(Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -543,7 +543,7 @@ impl<O: IsA<Editable>> EditableExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
+            f(Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -568,7 +568,7 @@ impl<O: IsA<Editable>> EditableExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
+            f(Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -590,7 +590,7 @@ impl<O: IsA<Editable>> EditableExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Editable::from_glib_borrow(this).unsafe_cast_ref())
+            f(Editable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

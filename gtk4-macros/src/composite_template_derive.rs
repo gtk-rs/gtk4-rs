@@ -27,7 +27,7 @@ fn gen_set_template(source: TemplateSource) -> TokenStream {
 
 fn gen_template_child_bindings(fields: &syn::Fields) -> TokenStream {
     let crate_ident = crate_ident_new();
-    let attributed_fields = match parse_fields(&fields) {
+    let attributed_fields = match parse_fields(fields) {
         Ok(fields) => fields,
         Err(err) => abort!(err.span(), err.to_string()),
     };
@@ -38,7 +38,7 @@ fn gen_template_child_bindings(fields: &syn::Fields) -> TokenStream {
             let ident = &field.ident;
             field.attr.args.iter().for_each(|arg| match arg {
                 FieldAttributeArg::Id(value) => {
-                    value_id = &value;
+                    value_id = value;
                 }
             });
 
@@ -60,7 +60,7 @@ pub fn impl_composite_template(input: &syn::DeriveInput) -> TokenStream {
     let name = &input.ident;
     let crate_ident = crate_ident_new();
 
-    let source = match parse_template_source(&input) {
+    let source = match parse_template_source(input) {
         Ok(v) => v,
         Err(e) => abort_call_site!(
             "{}: derive(CompositeTemplate) requires #[template(...)] to specify 'file', 'resource', or 'string'",
@@ -75,7 +75,7 @@ pub fn impl_composite_template(input: &syn::DeriveInput) -> TokenStream {
         _ => abort_call_site!("derive(CompositeTemplate) only supports structs"),
     };
 
-    let template_children = gen_template_child_bindings(&fields);
+    let template_children = gen_template_child_bindings(fields);
 
     quote! {
         impl #crate_ident::subclass::widget::CompositeTemplate for #name {

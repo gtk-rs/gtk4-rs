@@ -635,7 +635,7 @@ impl<O: IsA<ApplicationWindow>> ApplicationWindowExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ApplicationWindow::from_glib_borrow(this).unsafe_cast_ref())
+            f(ApplicationWindow::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

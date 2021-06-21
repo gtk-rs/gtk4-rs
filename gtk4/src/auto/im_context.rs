@@ -348,7 +348,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &IMContext::from_glib_borrow(this).unsafe_cast_ref(),
+                IMContext::from_glib_borrow(this).unsafe_cast_ref(),
                 &glib::GString::from_glib_borrow(str),
             )
         }
@@ -380,7 +380,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(
-                &IMContext::from_glib_borrow(this).unsafe_cast_ref(),
+                IMContext::from_glib_borrow(this).unsafe_cast_ref(),
                 offset,
                 n_chars,
             )
@@ -405,7 +405,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&IMContext::from_glib_borrow(this).unsafe_cast_ref())
+            f(IMContext::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -426,7 +426,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&IMContext::from_glib_borrow(this).unsafe_cast_ref())
+            f(IMContext::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -447,7 +447,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&IMContext::from_glib_borrow(this).unsafe_cast_ref())
+            f(IMContext::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -474,7 +474,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&IMContext::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
+            f(IMContext::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -499,7 +499,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&IMContext::from_glib_borrow(this).unsafe_cast_ref())
+            f(IMContext::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -524,7 +524,7 @@ impl<O: IsA<IMContext>> IMContextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&IMContext::from_glib_borrow(this).unsafe_cast_ref())
+            f(IMContext::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

@@ -88,6 +88,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: "recursive"
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
       - run: python3 ./generator.py --yes ./
       - run: git diff --exit-code
 

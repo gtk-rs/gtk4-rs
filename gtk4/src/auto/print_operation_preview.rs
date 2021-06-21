@@ -81,7 +81,7 @@ impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &PrintOperationPreview::from_glib_borrow(this).unsafe_cast_ref(),
+                PrintOperationPreview::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(context),
                 &from_glib_borrow(page_setup),
             )
@@ -110,7 +110,7 @@ impl<O: IsA<PrintOperationPreview>> PrintOperationPreviewExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &PrintOperationPreview::from_glib_borrow(this).unsafe_cast_ref(),
+                PrintOperationPreview::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(context),
             )
         }

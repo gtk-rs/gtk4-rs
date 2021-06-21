@@ -2015,7 +2015,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2044,7 +2044,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &Widget::from_glib_borrow(this).unsafe_cast_ref(),
+                Widget::from_glib_borrow(this).unsafe_cast_ref(),
                 from_glib(previous_direction),
             )
         }
@@ -2067,7 +2067,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2096,7 +2096,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(
-                &Widget::from_glib_borrow(this).unsafe_cast_ref(),
+                Widget::from_glib_borrow(this).unsafe_cast_ref(),
                 from_glib(direction),
             )
             .into_glib()
@@ -2120,7 +2120,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2149,7 +2149,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(
-                &Widget::from_glib_borrow(this).unsafe_cast_ref(),
+                Widget::from_glib_borrow(this).unsafe_cast_ref(),
                 from_glib(group_cycling),
             )
             .into_glib()
@@ -2178,7 +2178,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &Widget::from_glib_borrow(this).unsafe_cast_ref(),
+                Widget::from_glib_borrow(this).unsafe_cast_ref(),
                 from_glib(direction),
             )
         }
@@ -2220,7 +2220,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(
-                &Widget::from_glib_borrow(this).unsafe_cast_ref(),
+                Widget::from_glib_borrow(this).unsafe_cast_ref(),
                 x,
                 y,
                 from_glib(keyboard_mode),
@@ -2247,7 +2247,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2268,7 +2268,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2297,7 +2297,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &Widget::from_glib_borrow(this).unsafe_cast_ref(),
+                Widget::from_glib_borrow(this).unsafe_cast_ref(),
                 from_glib(flags),
             )
         }
@@ -2320,7 +2320,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2341,7 +2341,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2363,7 +2363,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2385,7 +2385,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2407,7 +2407,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2429,7 +2429,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2454,7 +2454,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2476,7 +2476,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2498,7 +2498,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2520,7 +2520,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2542,7 +2542,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2564,7 +2564,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2589,7 +2589,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2611,7 +2611,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2633,7 +2633,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2658,7 +2658,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2683,7 +2683,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2705,7 +2705,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2727,7 +2727,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2749,7 +2749,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2771,7 +2771,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2793,7 +2793,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2815,7 +2815,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2837,7 +2837,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2862,7 +2862,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2884,7 +2884,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2906,7 +2906,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2928,7 +2928,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2953,7 +2953,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2975,7 +2975,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2997,7 +2997,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -3019,7 +3019,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -3041,7 +3041,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -3063,7 +3063,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -3088,7 +3088,7 @@ impl<O: IsA<Widget>> WidgetExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Widget::from_glib_borrow(this).unsafe_cast_ref())
+            f(Widget::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
