@@ -75,7 +75,7 @@ impl<O: IsA<Filter>> FilterExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &Filter::from_glib_borrow(this).unsafe_cast_ref(),
+                Filter::from_glib_borrow(this).unsafe_cast_ref(),
                 from_glib(change),
             )
         }

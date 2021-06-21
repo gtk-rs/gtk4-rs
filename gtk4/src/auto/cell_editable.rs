@@ -94,7 +94,7 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellEditable::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellEditable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -115,7 +115,7 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellEditable::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellEditable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -140,7 +140,7 @@ impl<O: IsA<CellEditable>> CellEditableExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&CellEditable::from_glib_borrow(this).unsafe_cast_ref())
+            f(CellEditable::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

@@ -317,7 +317,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &Gesture::from_glib_borrow(this).unsafe_cast_ref(),
+                Gesture::from_glib_borrow(this).unsafe_cast_ref(),
                 Option::<gdk::EventSequence>::from_glib_borrow(sequence)
                     .as_ref()
                     .as_ref(),
@@ -350,7 +350,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &Gesture::from_glib_borrow(this).unsafe_cast_ref(),
+                Gesture::from_glib_borrow(this).unsafe_cast_ref(),
                 Option::<gdk::EventSequence>::from_glib_borrow(sequence)
                     .as_ref()
                     .as_ref(),
@@ -383,7 +383,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &Gesture::from_glib_borrow(this).unsafe_cast_ref(),
+                Gesture::from_glib_borrow(this).unsafe_cast_ref(),
                 Option::<gdk::EventSequence>::from_glib_borrow(sequence)
                     .as_ref()
                     .as_ref(),
@@ -419,7 +419,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &Gesture::from_glib_borrow(this).unsafe_cast_ref(),
+                Gesture::from_glib_borrow(this).unsafe_cast_ref(),
                 Option::<gdk::EventSequence>::from_glib_borrow(sequence)
                     .as_ref()
                     .as_ref(),
@@ -453,7 +453,7 @@ impl<O: IsA<Gesture>> GestureExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &Gesture::from_glib_borrow(this).unsafe_cast_ref(),
+                Gesture::from_glib_borrow(this).unsafe_cast_ref(),
                 Option::<gdk::EventSequence>::from_glib_borrow(sequence)
                     .as_ref()
                     .as_ref(),

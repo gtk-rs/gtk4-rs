@@ -2227,7 +2227,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref())
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2248,7 +2248,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref())
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2279,7 +2279,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(
-                &TreeView::from_glib_borrow(this).unsafe_cast_ref(),
+                TreeView::from_glib_borrow(this).unsafe_cast_ref(),
                 from_glib(object),
                 from_glib(p0),
                 from_glib(p1),
@@ -2327,7 +2327,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(
-                &TreeView::from_glib_borrow(this).unsafe_cast_ref(),
+                TreeView::from_glib_borrow(this).unsafe_cast_ref(),
                 from_glib(step),
                 direction,
                 from_glib(extend),
@@ -2380,7 +2380,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &TreeView::from_glib_borrow(this).unsafe_cast_ref(),
+                TreeView::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(path),
                 &from_glib_borrow(column),
             )
@@ -2421,7 +2421,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &TreeView::from_glib_borrow(this).unsafe_cast_ref(),
+                TreeView::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(iter),
                 &from_glib_borrow(path),
             )
@@ -2454,7 +2454,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &TreeView::from_glib_borrow(this).unsafe_cast_ref(),
+                TreeView::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(iter),
                 &from_glib_borrow(path),
             )
@@ -2481,7 +2481,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2519,7 +2519,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2559,7 +2559,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(
-                &TreeView::from_glib_borrow(this).unsafe_cast_ref(),
+                TreeView::from_glib_borrow(this).unsafe_cast_ref(),
                 from_glib(object),
             )
             .into_glib()
@@ -2600,7 +2600,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2643,7 +2643,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(
-                &TreeView::from_glib_borrow(this).unsafe_cast_ref(),
+                TreeView::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(iter),
                 &from_glib_borrow(path),
             )
@@ -2679,7 +2679,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(
-                &TreeView::from_glib_borrow(this).unsafe_cast_ref(),
+                TreeView::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(iter),
                 &from_glib_borrow(path),
             )
@@ -2707,7 +2707,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2742,7 +2742,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2781,7 +2781,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref())
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2806,7 +2806,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref())
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2831,7 +2831,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref())
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2856,7 +2856,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref())
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2881,7 +2881,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref())
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2906,7 +2906,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref())
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2931,7 +2931,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref())
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2956,7 +2956,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref())
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -2981,7 +2981,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref())
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -3006,7 +3006,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref())
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -3031,7 +3031,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref())
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -3053,7 +3053,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref())
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -3078,7 +3078,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref())
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -3103,7 +3103,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref())
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -3128,7 +3128,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref())
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -3153,7 +3153,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref())
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -3178,7 +3178,7 @@ impl<O: IsA<TreeView>> TreeViewExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&TreeView::from_glib_borrow(this).unsafe_cast_ref())
+            f(TreeView::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

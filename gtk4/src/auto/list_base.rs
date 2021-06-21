@@ -44,7 +44,7 @@ impl<O: IsA<ListBase>> ListBaseExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ListBase::from_glib_borrow(this).unsafe_cast_ref())
+            f(ListBase::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

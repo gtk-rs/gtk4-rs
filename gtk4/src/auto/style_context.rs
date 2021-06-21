@@ -306,7 +306,7 @@ impl<O: IsA<StyleContext>> StyleContextExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&StyleContext::from_glib_borrow(this).unsafe_cast_ref())
+            f(StyleContext::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

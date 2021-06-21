@@ -316,7 +316,7 @@ impl<O: IsA<Display>> DisplayExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &Display::from_glib_borrow(this).unsafe_cast_ref(),
+                Display::from_glib_borrow(this).unsafe_cast_ref(),
                 from_glib(is_error),
             )
         }
@@ -339,7 +339,7 @@ impl<O: IsA<Display>> DisplayExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Display::from_glib_borrow(this).unsafe_cast_ref())
+            f(Display::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -362,7 +362,7 @@ impl<O: IsA<Display>> DisplayExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &Display::from_glib_borrow(this).unsafe_cast_ref(),
+                Display::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(seat),
             )
         }
@@ -390,7 +390,7 @@ impl<O: IsA<Display>> DisplayExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &Display::from_glib_borrow(this).unsafe_cast_ref(),
+                Display::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(seat),
             )
         }
@@ -418,7 +418,7 @@ impl<O: IsA<Display>> DisplayExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &Display::from_glib_borrow(this).unsafe_cast_ref(),
+                Display::from_glib_borrow(this).unsafe_cast_ref(),
                 &glib::GString::from_glib_borrow(setting),
             )
         }
@@ -442,7 +442,7 @@ impl<O: IsA<Display>> DisplayExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Display::from_glib_borrow(this).unsafe_cast_ref())
+            f(Display::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -467,7 +467,7 @@ impl<O: IsA<Display>> DisplayExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Display::from_glib_borrow(this).unsafe_cast_ref())
+            f(Display::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -489,7 +489,7 @@ impl<O: IsA<Display>> DisplayExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Display::from_glib_borrow(this).unsafe_cast_ref())
+            f(Display::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

@@ -314,7 +314,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &FontChooser::from_glib_borrow(this).unsafe_cast_ref(),
+                FontChooser::from_glib_borrow(this).unsafe_cast_ref(),
                 &glib::GString::from_glib_borrow(fontname),
             )
         }
@@ -338,7 +338,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&FontChooser::from_glib_borrow(this).unsafe_cast_ref())
+            f(FontChooser::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -363,7 +363,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&FontChooser::from_glib_borrow(this).unsafe_cast_ref())
+            f(FontChooser::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -388,7 +388,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&FontChooser::from_glib_borrow(this).unsafe_cast_ref())
+            f(FontChooser::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -413,7 +413,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&FontChooser::from_glib_borrow(this).unsafe_cast_ref())
+            f(FontChooser::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -435,7 +435,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&FontChooser::from_glib_borrow(this).unsafe_cast_ref())
+            f(FontChooser::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -460,7 +460,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&FontChooser::from_glib_borrow(this).unsafe_cast_ref())
+            f(FontChooser::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -485,7 +485,7 @@ impl<O: IsA<FontChooser>> FontChooserExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&FontChooser::from_glib_borrow(this).unsafe_cast_ref())
+            f(FontChooser::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

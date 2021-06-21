@@ -179,7 +179,7 @@ impl<O: IsA<SelectionModel>> SelectionModelExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &SelectionModel::from_glib_borrow(this).unsafe_cast_ref(),
+                SelectionModel::from_glib_borrow(this).unsafe_cast_ref(),
                 position,
                 n_items,
             )

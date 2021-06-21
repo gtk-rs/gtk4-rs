@@ -201,7 +201,7 @@ impl<O: IsA<Drag>> DragExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &Drag::from_glib_borrow(this).unsafe_cast_ref(),
+                Drag::from_glib_borrow(this).unsafe_cast_ref(),
                 from_glib(reason),
             )
         }
@@ -224,7 +224,7 @@ impl<O: IsA<Drag>> DragExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Drag::from_glib_borrow(this).unsafe_cast_ref())
+            f(Drag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -245,7 +245,7 @@ impl<O: IsA<Drag>> DragExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Drag::from_glib_borrow(this).unsafe_cast_ref())
+            f(Drag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -267,7 +267,7 @@ impl<O: IsA<Drag>> DragExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Drag::from_glib_borrow(this).unsafe_cast_ref())
+            f(Drag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -289,7 +289,7 @@ impl<O: IsA<Drag>> DragExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Drag::from_glib_borrow(this).unsafe_cast_ref())
+            f(Drag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -314,7 +314,7 @@ impl<O: IsA<Drag>> DragExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Drag::from_glib_borrow(this).unsafe_cast_ref())
+            f(Drag::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

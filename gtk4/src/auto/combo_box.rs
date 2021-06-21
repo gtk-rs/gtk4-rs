@@ -854,7 +854,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ComboBox::from_glib_borrow(this).unsafe_cast_ref())
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -883,7 +883,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         ) -> *mut libc::c_char {
             let f: &F = &*(f as *const F);
             f(
-                &ComboBox::from_glib_borrow(this).unsafe_cast_ref(),
+                ComboBox::from_glib_borrow(this).unsafe_cast_ref(),
                 &glib::GString::from_glib_borrow(path),
             )
             .to_glib_full()
@@ -912,7 +912,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &ComboBox::from_glib_borrow(this).unsafe_cast_ref(),
+                ComboBox::from_glib_borrow(this).unsafe_cast_ref(),
                 from_glib(scroll_type),
             )
         }
@@ -943,7 +943,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             f: glib::ffi::gpointer,
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
-            f(&ComboBox::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref()).into_glib()
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -973,7 +973,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ComboBox::from_glib_borrow(this).unsafe_cast_ref())
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1003,7 +1003,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ComboBox::from_glib_borrow(this).unsafe_cast_ref())
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1025,7 +1025,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ComboBox::from_glib_borrow(this).unsafe_cast_ref())
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1050,7 +1050,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ComboBox::from_glib_borrow(this).unsafe_cast_ref())
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1072,7 +1072,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ComboBox::from_glib_borrow(this).unsafe_cast_ref())
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1097,7 +1097,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ComboBox::from_glib_borrow(this).unsafe_cast_ref())
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1119,7 +1119,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ComboBox::from_glib_borrow(this).unsafe_cast_ref())
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1141,7 +1141,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ComboBox::from_glib_borrow(this).unsafe_cast_ref())
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1163,7 +1163,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ComboBox::from_glib_borrow(this).unsafe_cast_ref())
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1188,7 +1188,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ComboBox::from_glib_borrow(this).unsafe_cast_ref())
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -1213,7 +1213,7 @@ impl<O: IsA<ComboBox>> ComboBoxExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&ComboBox::from_glib_borrow(this).unsafe_cast_ref())
+            f(ComboBox::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

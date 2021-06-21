@@ -349,7 +349,7 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &Surface::from_glib_borrow(this).unsafe_cast_ref(),
+                Surface::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(monitor),
             )
         }
@@ -377,7 +377,7 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(
-                &Surface::from_glib_borrow(this).unsafe_cast_ref(),
+                Surface::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(event),
             )
             .into_glib()
@@ -404,7 +404,7 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &Surface::from_glib_borrow(this).unsafe_cast_ref(),
+                Surface::from_glib_borrow(this).unsafe_cast_ref(),
                 width,
                 height,
             )
@@ -433,7 +433,7 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         ) {
             let f: &F = &*(f as *const F);
             f(
-                &Surface::from_glib_borrow(this).unsafe_cast_ref(),
+                Surface::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(monitor),
             )
         }
@@ -464,7 +464,7 @@ impl<O: IsA<Surface>> SurfaceExt for O {
         ) -> glib::ffi::gboolean {
             let f: &F = &*(f as *const F);
             f(
-                &Surface::from_glib_borrow(this).unsafe_cast_ref(),
+                Surface::from_glib_borrow(this).unsafe_cast_ref(),
                 &from_glib_borrow(region),
             )
             .into_glib()
@@ -489,7 +489,7 @@ impl<O: IsA<Surface>> SurfaceExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Surface::from_glib_borrow(this).unsafe_cast_ref())
+            f(Surface::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -511,7 +511,7 @@ impl<O: IsA<Surface>> SurfaceExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Surface::from_glib_borrow(this).unsafe_cast_ref())
+            f(Surface::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -533,7 +533,7 @@ impl<O: IsA<Surface>> SurfaceExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Surface::from_glib_borrow(this).unsafe_cast_ref())
+            f(Surface::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -558,7 +558,7 @@ impl<O: IsA<Surface>> SurfaceExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Surface::from_glib_borrow(this).unsafe_cast_ref())
+            f(Surface::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -580,7 +580,7 @@ impl<O: IsA<Surface>> SurfaceExt for O {
             f: glib::ffi::gpointer,
         ) {
             let f: &F = &*(f as *const F);
-            f(&Surface::from_glib_borrow(this).unsafe_cast_ref())
+            f(Surface::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
