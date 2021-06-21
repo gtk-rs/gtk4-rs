@@ -146,6 +146,7 @@
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
 #![allow(clippy::derive_hash_xor_eq)]
 #![allow(clippy::too_many_arguments)]
+#![allow(clippy::wrong_self_convention)]
 
 pub use ffi;
 // Re-export gtk dependencies

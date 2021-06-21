@@ -148,7 +148,7 @@ fn parse_field_attr_meta(
     ));
     let value = match ty {
         FieldAttributeType::TemplateChild => match ident_str.as_str() {
-            "id" => FieldAttributeArg::Id(parse_field_attr_value_str(&name_value)?),
+            "id" => FieldAttributeArg::Id(parse_field_attr_value_str(name_value)?),
             _ => return unknown_err,
         },
     };
@@ -164,7 +164,7 @@ fn parse_field_attr_args(
     match attr.parse_meta()? {
         Meta::List(list) => {
             for meta in &list.nested {
-                let new_arg = parse_field_attr_meta(ty, &meta)?;
+                let new_arg = parse_field_attr_meta(ty, meta)?;
                 for arg in &field_attribute_args {
                     // Comparison of enum variants, not data
                     if std::mem::discriminant(arg) == std::mem::discriminant(&new_arg) {
@@ -210,7 +210,7 @@ fn parse_field(field: &Field) -> Result<Option<AttributedField>, Error> {
         };
 
         if let Some(ty) = ty {
-            let args = parse_field_attr_args(&ty, &field_attr)?;
+            let args = parse_field_attr_args(&ty, field_attr)?;
 
             if attr.is_none() {
                 attr = Some(FieldAttribute {
