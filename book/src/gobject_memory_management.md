@@ -138,7 +138,7 @@ Every time the button is clicked, `glib::clone` tries to upgrade the weak refere
 If we now for example click on one button and the other button is not there anymore, `upgrade` will return `None`.
 Per default, it immediately returns from the closure with `()` as return value.
 In case the closure expects a different return value or a panic is preferred `@default-return` or `@default-panic`.
-For more information about `glib::clone`, please have a look at the [docs](https://docs.rs/glib/latest/glib/macro.clone.html).
+For more information about `glib::clone`, please have a look at the [docs](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.clone.html).
 
 Notice that we kept the *strong* reference to `number`.
 If we had a *weak* reference, no one would have kept `number` alive and the closure would have never been called.
