@@ -62,7 +62,7 @@ jobs:
           keep_files: false
           destination_dir: ${{ env.DEST }}/docs
 
-      - run: python3 ./gir-rustdoc/gir-rustdoc.py --project-title 'GTK 4 Rust bindings' html-index --early-section 'Book' '<ul><li><a href="git/book">Development</a></li></ul>'
+      - run: python3 ./gir-rustdoc/gir-rustdoc.py --project-title 'GTK 4 Rust bindings' html-index --early-section 'Book' '<ul><li><a href="stable/latest/book">Latest stable</a></li><li><a href="git/book">Development</a></li></ul>'
       - name: deploy index page
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'release' }}
