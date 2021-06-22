@@ -11,8 +11,10 @@ links = "gtk-4"
 name = "gtk4-sys"
 repository = "https://github.com/gtk-rs/gtk4-rs"
 version = "0.1.0"
+
 [package.metadata.docs.rs]
 features = ["dox"]
+
 [package.metadata.system-deps.gtk4]
 name = "gtk4"
 version = "4.0.0"
@@ -31,31 +33,31 @@ v4_2 = []
 libc = "0.2"
 
 [dependencies.cairo-sys-rs]
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.14.0"
 
 [dependencies.gdk-pixbuf-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.14.0"
 
 [dependencies.gdk4-sys]
-path = "../../gdk4/sys"
+version = "0.1.0"
 
 [dependencies.gio-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.14.0"
 
 [dependencies.glib-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.14.0"
 
 [dependencies.gobject-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.14.0"
 
 [dependencies.graphene-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.14.0"
 
 [dependencies.gsk4-sys]
-path = "../../gsk4/sys"
+version = "0.1.0"
 
 [dependencies.pango-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.14.0"
 
 [build-dependencies]
 system-deps = "3"

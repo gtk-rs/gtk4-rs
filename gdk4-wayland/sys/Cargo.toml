@@ -10,9 +10,11 @@ license = "MIT"
 name = "gdk4-wayland-sys"
 repository = "https://github.com/gtk-rs/gtk4-rs"
 version = "0.1.0"
+
 [package.metadata.system-deps.gtk4_wayland]
 name = "gtk4-wayland"
 version = "4.0.0"
+
 [package.metadata.docs.rs]
 features = ["dox"]
 
@@ -26,7 +28,7 @@ dox = []
 libc = "0.2"
 
 [dependencies.glib-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core.git"
+version = "0.14.0"
 
 [build-dependencies]
 system-deps = "3"

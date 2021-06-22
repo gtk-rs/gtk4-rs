@@ -18,10 +18,10 @@ dox = ["ffi/dox"]
 features = ["dox"]
 
 [dependencies]
-ffi = {path = "./sys", package = "gdk4-wayland-sys"}
-gdk = {path = "../gdk4", package = "gdk4"}
-gio = {git = "https://github.com/gtk-rs/gtk-rs-core", features = ["v2_66"]}
-glib = {git = "https://github.com/gtk-rs/gtk-rs-core", features = ["v2_66"]}
+ffi = {package = "gdk4-wayland-sys", version = "0.1.0"}
+gdk = {package = "gdk4", version = "0.1.0"}
+gio = {features = ["v2_66"], version = "0.14.0"}
+glib = {features = ["v2_66"], version = "0.14.0"}
 libc = "0.2"
 wayland-client = {version = "0.28", features = ["use_system_lib"]}
 
