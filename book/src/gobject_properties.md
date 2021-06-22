@@ -12,7 +12,7 @@ That is why `gtk-rs` provides corresponding [`state`](../docs/gtk4/struct.Switch
 ```rust ,no_run
 {{#rustdoc_include ../listings/gobject_properties/1/main.rs:switch}}
 ```
-Alternatively, we can use the general [`property`](http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.property) and [`set_property`](http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.set_property) methods.
+Alternatively, we can use the general [`property`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.property) and [`set_property`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.set_property) methods.
 Because they can be used for properties of different types, they operate with `glib::Value`.
 
 <span class="filename">Filename: listings/gobject_properties/2/main.rs</span>
@@ -34,7 +34,7 @@ Let us see how that would look like for two `Switch` instances.
 ```
 
 In our case, we want to bind the "state" property of `switch_1` to the "state" property of `switch_2`.
-We also want the binding to be bidirectional, so we specify this with the [`BindingFlags`](http://gtk-rs.org/docs/glib/struct.BindingFlags.html).
+We also want the binding to be bidirectional, so we specify this with the [`BindingFlags`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.BindingFlags.html).
 
 <span class="filename">Filename: listings/gobject_properties/3/main.rs</span>
 
@@ -92,7 +92,7 @@ Let us see what we can do with this by creating two custom buttons.
 ```
 
 We have already seen that bound properties do not necessarily have to be of the same type.
-By leveraging [`transform_to`](http://gtk-rs.org/docs/glib/object/struct.BindingBuilder.html#method.transform_to) and [`transform_from`](http://gtk-rs.org/docs/glib/object/struct.BindingBuilder.html#method.transform_from), we can assure that `button_2` always displays a number which is 1 higher than the number of `button_1`.
+By leveraging [`transform_to`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.BindingBuilder.html#method.transform_to) and [`transform_from`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.BindingBuilder.html#method.transform_from), we can assure that `button_2` always displays a number which is 1 higher than the number of `button_1`.
 
 <span class="filename">Filename: listings/gobject_properties/4/main.rs</span>
 

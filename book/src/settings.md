@@ -65,9 +65,9 @@ But we can make this even better.
 The `Switch` has a property "state" and `Settings` allows us to bind properties to a specific setting.
 So let us do exactly that.
 
-We can remove the [`boolean`](http://gtk-rs.org/docs/gio/trait.SettingsExt.html#tymethod.boolean) call before initializing the `Switch` as well as the `connect_state_set` call.
+We can remove the [`boolean`](http://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/trait.SettingsExt.html#tymethod.boolean) call before initializing the `Switch` as well as the `connect_state_set` call.
 We then bind the setting to the property by specifying the key, object and name of the property.
-Additionally, we specify [`SettingsBindFlags`](https://gtk-rs.org/docs/gio/struct.SettingsBindFlags.html) to control the direction in which the binding works.
+Additionally, we specify [`SettingsBindFlags`](https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SettingsBindFlags.html) to control the direction in which the binding works.
 
 <span class="filename">Filename: listings/settings/2/main.rs</span>
 
