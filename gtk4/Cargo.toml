@@ -2,7 +2,7 @@
 authors = ["The gtk-rs Project Developers"]
 categories = ["api-bindings", "gui"]
 description = "Rust bindings of the GTK 4 library"
-documentation = "https://gtk-rs.org/gtk4-rs/stable/docs/gtk4"
+documentation = "https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4"
 edition = "2018"
 homepage = "https://gtk-rs.org/"
 keywords = ["gtk", "gtk4", "gtk-rs", "gnome", "GUI"]

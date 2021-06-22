@@ -10,7 +10,7 @@ Currently, the minimum supported Rust version is `1.51.0`.
 
 ## Documentation
 
-- The Rust API [Stable]/[Development](https://gtk-rs.org/gtk4-rs/git/docs/gtk4_macros/)
+- The Rust API [Stable](https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4_macros)/[Development](https://gtk-rs.org/gtk4-rs/git/docs/gtk4_macros/)
 
 ## Available Macros
 
