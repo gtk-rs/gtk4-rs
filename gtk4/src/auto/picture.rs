@@ -97,9 +97,9 @@ impl Picture {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Picture`].
+    /// Creates a new builder-pattern struct instance to construct [`Picture`] objects.
     ///
-    /// This method returns an instance of [`PictureBuilder`] which can be used to create a [`Picture`].
+    /// This method returns an instance of [`PictureBuilder`] which can be used to create [`Picture`] objects.
     pub fn builder() -> PictureBuilder {
         PictureBuilder::default()
     }
@@ -333,7 +333,9 @@ impl Default for Picture {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Picture`].
+/// A [builder-pattern] type to construct [`Picture`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct PictureBuilder {
     alternative_text: Option<String>,
     can_shrink: Option<bool>,

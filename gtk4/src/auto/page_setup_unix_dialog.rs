@@ -48,9 +48,9 @@ impl PageSetupUnixDialog {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`PageSetupUnixDialog`].
+    /// Creates a new builder-pattern struct instance to construct [`PageSetupUnixDialog`] objects.
     ///
-    /// This method returns an instance of [`PageSetupUnixDialogBuilder`] which can be used to create a [`PageSetupUnixDialog`].
+    /// This method returns an instance of [`PageSetupUnixDialogBuilder`] which can be used to create [`PageSetupUnixDialog`] objects.
     pub fn builder() -> PageSetupUnixDialogBuilder {
         PageSetupUnixDialogBuilder::default()
     }
@@ -98,7 +98,9 @@ impl PageSetupUnixDialog {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`PageSetupUnixDialog`].
+/// A [builder-pattern] type to construct [`PageSetupUnixDialog`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct PageSetupUnixDialogBuilder {
     use_header_bar: Option<i32>,
     application: Option<Application>,

@@ -46,9 +46,9 @@ impl FileChooserWidget {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`FileChooserWidget`].
+    /// Creates a new builder-pattern struct instance to construct [`FileChooserWidget`] objects.
     ///
-    /// This method returns an instance of [`FileChooserWidgetBuilder`] which can be used to create a [`FileChooserWidget`].
+    /// This method returns an instance of [`FileChooserWidgetBuilder`] which can be used to create [`FileChooserWidget`] objects.
     pub fn builder() -> FileChooserWidgetBuilder {
         FileChooserWidgetBuilder::default()
     }
@@ -513,7 +513,9 @@ impl FileChooserWidget {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`FileChooserWidget`].
+/// A [builder-pattern] type to construct [`FileChooserWidget`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct FileChooserWidgetBuilder {
     search_mode: Option<bool>,
     can_focus: Option<bool>,

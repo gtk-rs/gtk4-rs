@@ -22,9 +22,9 @@ glib::wrapper! {
 
 impl ConstraintLayoutChild {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ConstraintLayoutChild`].
+    /// Creates a new builder-pattern struct instance to construct [`ConstraintLayoutChild`] objects.
     ///
-    /// This method returns an instance of [`ConstraintLayoutChildBuilder`] which can be used to create a [`ConstraintLayoutChild`].
+    /// This method returns an instance of [`ConstraintLayoutChildBuilder`] which can be used to create [`ConstraintLayoutChild`] objects.
     pub fn builder() -> ConstraintLayoutChildBuilder {
         ConstraintLayoutChildBuilder::default()
     }
@@ -32,7 +32,9 @@ impl ConstraintLayoutChild {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ConstraintLayoutChild`].
+/// A [builder-pattern] type to construct [`ConstraintLayoutChild`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ConstraintLayoutChildBuilder {
     child_widget: Option<Widget>,
     layout_manager: Option<LayoutManager>,

@@ -56,9 +56,9 @@ impl LinkButton {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`LinkButton`].
+    /// Creates a new builder-pattern struct instance to construct [`LinkButton`] objects.
     ///
-    /// This method returns an instance of [`LinkButtonBuilder`] which can be used to create a [`LinkButton`].
+    /// This method returns an instance of [`LinkButtonBuilder`] which can be used to create [`LinkButton`] objects.
     pub fn builder() -> LinkButtonBuilder {
         LinkButtonBuilder::default()
     }
@@ -165,7 +165,9 @@ impl LinkButton {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`LinkButton`].
+/// A [builder-pattern] type to construct [`LinkButton`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct LinkButtonBuilder {
     uri: Option<String>,
     visited: Option<bool>,

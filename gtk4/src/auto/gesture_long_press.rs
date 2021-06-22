@@ -35,9 +35,9 @@ impl GestureLongPress {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GestureLongPress`].
+    /// Creates a new builder-pattern struct instance to construct [`GestureLongPress`] objects.
     ///
-    /// This method returns an instance of [`GestureLongPressBuilder`] which can be used to create a [`GestureLongPress`].
+    /// This method returns an instance of [`GestureLongPressBuilder`] which can be used to create [`GestureLongPress`] objects.
     pub fn builder() -> GestureLongPressBuilder {
         GestureLongPressBuilder::default()
     }
@@ -133,7 +133,9 @@ impl Default for GestureLongPress {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`GestureLongPress`].
+/// A [builder-pattern] type to construct [`GestureLongPress`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct GestureLongPressBuilder {
     delay_factor: Option<f64>,
     button: Option<u32>,

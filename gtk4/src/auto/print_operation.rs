@@ -41,9 +41,9 @@ impl PrintOperation {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`PrintOperation`].
+    /// Creates a new builder-pattern struct instance to construct [`PrintOperation`] objects.
     ///
-    /// This method returns an instance of [`PrintOperationBuilder`] which can be used to create a [`PrintOperation`].
+    /// This method returns an instance of [`PrintOperationBuilder`] which can be used to create [`PrintOperation`] objects.
     pub fn builder() -> PrintOperationBuilder {
         PrintOperationBuilder::default()
     }
@@ -57,7 +57,9 @@ impl Default for PrintOperation {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`PrintOperation`].
+/// A [builder-pattern] type to construct [`PrintOperation`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct PrintOperationBuilder {
     allow_async: Option<bool>,
     current_page: Option<i32>,

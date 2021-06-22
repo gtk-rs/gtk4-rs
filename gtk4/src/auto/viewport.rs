@@ -51,9 +51,9 @@ impl Viewport {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Viewport`].
+    /// Creates a new builder-pattern struct instance to construct [`Viewport`] objects.
     ///
-    /// This method returns an instance of [`ViewportBuilder`] which can be used to create a [`Viewport`].
+    /// This method returns an instance of [`ViewportBuilder`] which can be used to create [`Viewport`] objects.
     pub fn builder() -> ViewportBuilder {
         ViewportBuilder::default()
     }
@@ -139,7 +139,9 @@ impl Viewport {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Viewport`].
+/// A [builder-pattern] type to construct [`Viewport`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ViewportBuilder {
     child: Option<Widget>,
     scroll_to_focus: Option<bool>,

@@ -27,9 +27,9 @@ glib::wrapper! {
 
 impl StringFilter {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`StringFilter`].
+    /// Creates a new builder-pattern struct instance to construct [`StringFilter`] objects.
     ///
-    /// This method returns an instance of [`StringFilterBuilder`] which can be used to create a [`StringFilter`].
+    /// This method returns an instance of [`StringFilterBuilder`] which can be used to create [`StringFilter`] objects.
     pub fn builder() -> StringFilterBuilder {
         StringFilterBuilder::default()
     }
@@ -178,7 +178,9 @@ impl StringFilter {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`StringFilter`].
+/// A [builder-pattern] type to construct [`StringFilter`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct StringFilterBuilder {
     expression: Option<Expression>,
     ignore_case: Option<bool>,

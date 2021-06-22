@@ -35,9 +35,9 @@ impl GestureClick {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GestureClick`].
+    /// Creates a new builder-pattern struct instance to construct [`GestureClick`] objects.
     ///
-    /// This method returns an instance of [`GestureClickBuilder`] which can be used to create a [`GestureClick`].
+    /// This method returns an instance of [`GestureClickBuilder`] which can be used to create [`GestureClick`] objects.
     pub fn builder() -> GestureClickBuilder {
         GestureClickBuilder::default()
     }
@@ -160,7 +160,9 @@ impl Default for GestureClick {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`GestureClick`].
+/// A [builder-pattern] type to construct [`GestureClick`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct GestureClickBuilder {
     button: Option<u32>,
     exclusive: Option<bool>,

@@ -41,9 +41,9 @@ impl Switch {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Switch`].
+    /// Creates a new builder-pattern struct instance to construct [`Switch`] objects.
     ///
-    /// This method returns an instance of [`SwitchBuilder`] which can be used to create a [`Switch`].
+    /// This method returns an instance of [`SwitchBuilder`] which can be used to create [`Switch`] objects.
     pub fn builder() -> SwitchBuilder {
         SwitchBuilder::default()
     }
@@ -187,7 +187,9 @@ impl Default for Switch {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Switch`].
+/// A [builder-pattern] type to construct [`Switch`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct SwitchBuilder {
     active: Option<bool>,
     state: Option<bool>,

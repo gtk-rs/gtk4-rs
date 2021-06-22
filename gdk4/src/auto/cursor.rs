@@ -52,9 +52,9 @@ impl Cursor {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Cursor`].
+    /// Creates a new builder-pattern struct instance to construct [`Cursor`] objects.
     ///
-    /// This method returns an instance of [`CursorBuilder`] which can be used to create a [`Cursor`].
+    /// This method returns an instance of [`CursorBuilder`] which can be used to create [`Cursor`] objects.
     pub fn builder() -> CursorBuilder {
         CursorBuilder::default()
     }
@@ -92,7 +92,9 @@ impl Cursor {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Cursor`].
+/// A [builder-pattern] type to construct [`Cursor`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct CursorBuilder {
     fallback: Option<Cursor>,
     hotspot_x: Option<i32>,

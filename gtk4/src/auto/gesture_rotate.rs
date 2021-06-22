@@ -34,9 +34,9 @@ impl GestureRotate {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GestureRotate`].
+    /// Creates a new builder-pattern struct instance to construct [`GestureRotate`] objects.
     ///
-    /// This method returns an instance of [`GestureRotateBuilder`] which can be used to create a [`GestureRotate`].
+    /// This method returns an instance of [`GestureRotateBuilder`] which can be used to create [`GestureRotate`] objects.
     pub fn builder() -> GestureRotateBuilder {
         GestureRotateBuilder::default()
     }
@@ -80,7 +80,9 @@ impl Default for GestureRotate {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`GestureRotate`].
+/// A [builder-pattern] type to construct [`GestureRotate`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct GestureRotateBuilder {
     n_points: Option<u32>,
     name: Option<String>,

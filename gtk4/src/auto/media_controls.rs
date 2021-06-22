@@ -45,9 +45,9 @@ impl MediaControls {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`MediaControls`].
+    /// Creates a new builder-pattern struct instance to construct [`MediaControls`] objects.
     ///
-    /// This method returns an instance of [`MediaControlsBuilder`] which can be used to create a [`MediaControls`].
+    /// This method returns an instance of [`MediaControlsBuilder`] which can be used to create [`MediaControls`] objects.
     pub fn builder() -> MediaControlsBuilder {
         MediaControlsBuilder::default()
     }
@@ -98,7 +98,9 @@ impl MediaControls {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`MediaControls`].
+/// A [builder-pattern] type to construct [`MediaControls`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct MediaControlsBuilder {
     media_stream: Option<MediaStream>,
     can_focus: Option<bool>,

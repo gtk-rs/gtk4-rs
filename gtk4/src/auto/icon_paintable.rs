@@ -33,9 +33,9 @@ impl IconPaintable {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`IconPaintable`].
+    /// Creates a new builder-pattern struct instance to construct [`IconPaintable`] objects.
     ///
-    /// This method returns an instance of [`IconPaintableBuilder`] which can be used to create a [`IconPaintable`].
+    /// This method returns an instance of [`IconPaintableBuilder`] which can be used to create [`IconPaintable`] objects.
     pub fn builder() -> IconPaintableBuilder {
         IconPaintableBuilder::default()
     }
@@ -60,7 +60,9 @@ impl IconPaintable {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`IconPaintable`].
+/// A [builder-pattern] type to construct [`IconPaintable`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct IconPaintableBuilder {
     file: Option<gio::File>,
     icon_name: Option<String>,

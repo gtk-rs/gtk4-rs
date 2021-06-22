@@ -21,9 +21,9 @@ glib::wrapper! {
 
 impl DeviceTool {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`DeviceTool`].
+    /// Creates a new builder-pattern struct instance to construct [`DeviceTool`] objects.
     ///
-    /// This method returns an instance of [`DeviceToolBuilder`] which can be used to create a [`DeviceTool`].
+    /// This method returns an instance of [`DeviceToolBuilder`] which can be used to create [`DeviceTool`] objects.
     pub fn builder() -> DeviceToolBuilder {
         DeviceToolBuilder::default()
     }
@@ -55,7 +55,9 @@ impl DeviceTool {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`DeviceTool`].
+/// A [builder-pattern] type to construct [`DeviceTool`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct DeviceToolBuilder {
     axes: Option<AxisFlags>,
     hardware_id: Option<u64>,

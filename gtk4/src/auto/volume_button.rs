@@ -43,9 +43,9 @@ impl VolumeButton {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`VolumeButton`].
+    /// Creates a new builder-pattern struct instance to construct [`VolumeButton`] objects.
     ///
-    /// This method returns an instance of [`VolumeButtonBuilder`] which can be used to create a [`VolumeButton`].
+    /// This method returns an instance of [`VolumeButtonBuilder`] which can be used to create [`VolumeButton`] objects.
     pub fn builder() -> VolumeButtonBuilder {
         VolumeButtonBuilder::default()
     }
@@ -108,7 +108,9 @@ impl Default for VolumeButton {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`VolumeButton`].
+/// A [builder-pattern] type to construct [`VolumeButton`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct VolumeButtonBuilder {
     use_symbolic: Option<bool>,
     adjustment: Option<Adjustment>,

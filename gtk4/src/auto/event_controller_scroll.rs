@@ -37,9 +37,9 @@ impl EventControllerScroll {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`EventControllerScroll`].
+    /// Creates a new builder-pattern struct instance to construct [`EventControllerScroll`] objects.
     ///
-    /// This method returns an instance of [`EventControllerScrollBuilder`] which can be used to create a [`EventControllerScroll`].
+    /// This method returns an instance of [`EventControllerScrollBuilder`] which can be used to create [`EventControllerScroll`] objects.
     pub fn builder() -> EventControllerScrollBuilder {
         EventControllerScrollBuilder::default()
     }
@@ -186,7 +186,9 @@ impl EventControllerScroll {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`EventControllerScroll`].
+/// A [builder-pattern] type to construct [`EventControllerScroll`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct EventControllerScrollBuilder {
     flags: Option<EventControllerScrollFlags>,
     name: Option<String>,

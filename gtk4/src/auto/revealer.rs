@@ -40,9 +40,9 @@ impl Revealer {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Revealer`].
+    /// Creates a new builder-pattern struct instance to construct [`Revealer`] objects.
     ///
-    /// This method returns an instance of [`RevealerBuilder`] which can be used to create a [`Revealer`].
+    /// This method returns an instance of [`RevealerBuilder`] which can be used to create [`Revealer`] objects.
     pub fn builder() -> RevealerBuilder {
         RevealerBuilder::default()
     }
@@ -235,7 +235,9 @@ impl Default for Revealer {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Revealer`].
+/// A [builder-pattern] type to construct [`Revealer`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct RevealerBuilder {
     child: Option<Widget>,
     reveal_child: Option<bool>,

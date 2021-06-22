@@ -55,9 +55,9 @@ impl Text {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Text`].
+    /// Creates a new builder-pattern struct instance to construct [`Text`] objects.
     ///
-    /// This method returns an instance of [`TextBuilder`] which can be used to create a [`Text`].
+    /// This method returns an instance of [`TextBuilder`] which can be used to create [`Text`] objects.
     pub fn builder() -> TextBuilder {
         TextBuilder::default()
     }
@@ -807,7 +807,9 @@ impl Default for Text {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Text`].
+/// A [builder-pattern] type to construct [`Text`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct TextBuilder {
     activates_default: Option<bool>,
     attributes: Option<pango::AttrList>,

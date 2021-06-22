@@ -53,9 +53,9 @@ impl Label {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Label`].
+    /// Creates a new builder-pattern struct instance to construct [`Label`] objects.
     ///
-    /// This method returns an instance of [`LabelBuilder`] which can be used to create a [`Label`].
+    /// This method returns an instance of [`LabelBuilder`] which can be used to create [`Label`] objects.
     pub fn builder() -> LabelBuilder {
         LabelBuilder::default()
     }
@@ -933,7 +933,9 @@ impl Label {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Label`].
+/// A [builder-pattern] type to construct [`Label`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct LabelBuilder {
     attributes: Option<pango::AttrList>,
     ellipsize: Option<pango::EllipsizeMode>,

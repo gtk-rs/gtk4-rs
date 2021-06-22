@@ -41,9 +41,9 @@ glib::wrapper! {
 
 impl MessageDialog {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`MessageDialog`].
+    /// Creates a new builder-pattern struct instance to construct [`MessageDialog`] objects.
     ///
-    /// This method returns an instance of [`MessageDialogBuilder`] which can be used to create a [`MessageDialog`].
+    /// This method returns an instance of [`MessageDialogBuilder`] which can be used to create [`MessageDialog`] objects.
     pub fn builder() -> MessageDialogBuilder {
         MessageDialogBuilder::default()
     }
@@ -339,7 +339,9 @@ impl MessageDialog {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`MessageDialog`].
+/// A [builder-pattern] type to construct [`MessageDialog`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct MessageDialogBuilder {
     buttons: Option<ButtonsType>,
     message_type: Option<MessageType>,

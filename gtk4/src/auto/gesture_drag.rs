@@ -36,9 +36,9 @@ impl GestureDrag {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GestureDrag`].
+    /// Creates a new builder-pattern struct instance to construct [`GestureDrag`] objects.
     ///
-    /// This method returns an instance of [`GestureDragBuilder`] which can be used to create a [`GestureDrag`].
+    /// This method returns an instance of [`GestureDragBuilder`] which can be used to create [`GestureDrag`] objects.
     pub fn builder() -> GestureDragBuilder {
         GestureDragBuilder::default()
     }
@@ -52,7 +52,9 @@ impl Default for GestureDrag {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`GestureDrag`].
+/// A [builder-pattern] type to construct [`GestureDrag`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct GestureDragBuilder {
     button: Option<u32>,
     exclusive: Option<bool>,

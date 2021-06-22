@@ -36,9 +36,9 @@ impl AlternativeTrigger {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`AlternativeTrigger`].
+    /// Creates a new builder-pattern struct instance to construct [`AlternativeTrigger`] objects.
     ///
-    /// This method returns an instance of [`AlternativeTriggerBuilder`] which can be used to create a [`AlternativeTrigger`].
+    /// This method returns an instance of [`AlternativeTriggerBuilder`] which can be used to create [`AlternativeTrigger`] objects.
     pub fn builder() -> AlternativeTriggerBuilder {
         AlternativeTriggerBuilder::default()
     }
@@ -66,7 +66,9 @@ impl AlternativeTrigger {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`AlternativeTrigger`].
+/// A [builder-pattern] type to construct [`AlternativeTrigger`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct AlternativeTriggerBuilder {
     first: Option<ShortcutTrigger>,
     second: Option<ShortcutTrigger>,

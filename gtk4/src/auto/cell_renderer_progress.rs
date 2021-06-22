@@ -34,9 +34,9 @@ impl CellRendererProgress {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`CellRendererProgress`].
+    /// Creates a new builder-pattern struct instance to construct [`CellRendererProgress`] objects.
     ///
-    /// This method returns an instance of [`CellRendererProgressBuilder`] which can be used to create a [`CellRendererProgress`].
+    /// This method returns an instance of [`CellRendererProgressBuilder`] which can be used to create [`CellRendererProgress`] objects.
     pub fn builder() -> CellRendererProgressBuilder {
         CellRendererProgressBuilder::default()
     }
@@ -340,7 +340,9 @@ impl Default for CellRendererProgress {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`CellRendererProgress`].
+/// A [builder-pattern] type to construct [`CellRendererProgress`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct CellRendererProgressBuilder {
     inverted: Option<bool>,
     pulse: Option<i32>,

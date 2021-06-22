@@ -39,9 +39,9 @@ impl GLArea {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GLArea`].
+    /// Creates a new builder-pattern struct instance to construct [`GLArea`] objects.
     ///
-    /// This method returns an instance of [`GLAreaBuilder`] which can be used to create a [`GLArea`].
+    /// This method returns an instance of [`GLAreaBuilder`] which can be used to create [`GLArea`] objects.
     pub fn builder() -> GLAreaBuilder {
         GLAreaBuilder::default()
     }
@@ -55,7 +55,9 @@ impl Default for GLArea {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`GLArea`].
+/// A [builder-pattern] type to construct [`GLArea`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct GLAreaBuilder {
     auto_render: Option<bool>,
     has_depth_buffer: Option<bool>,

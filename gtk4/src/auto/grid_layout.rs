@@ -32,9 +32,9 @@ impl GridLayout {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GridLayout`].
+    /// Creates a new builder-pattern struct instance to construct [`GridLayout`] objects.
     ///
-    /// This method returns an instance of [`GridLayoutBuilder`] which can be used to create a [`GridLayout`].
+    /// This method returns an instance of [`GridLayoutBuilder`] which can be used to create [`GridLayout`] objects.
     pub fn builder() -> GridLayoutBuilder {
         GridLayoutBuilder::default()
     }
@@ -267,7 +267,9 @@ impl Default for GridLayout {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`GridLayout`].
+/// A [builder-pattern] type to construct [`GridLayout`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct GridLayoutBuilder {
     baseline_row: Option<i32>,
     column_homogeneous: Option<bool>,

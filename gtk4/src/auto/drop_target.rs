@@ -38,9 +38,9 @@ impl DropTarget {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`DropTarget`].
+    /// Creates a new builder-pattern struct instance to construct [`DropTarget`] objects.
     ///
-    /// This method returns an instance of [`DropTargetBuilder`] which can be used to create a [`DropTarget`].
+    /// This method returns an instance of [`DropTargetBuilder`] which can be used to create [`DropTarget`] objects.
     pub fn builder() -> DropTargetBuilder {
         DropTargetBuilder::default()
     }
@@ -320,7 +320,9 @@ impl DropTarget {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`DropTarget`].
+/// A [builder-pattern] type to construct [`DropTarget`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct DropTargetBuilder {
     actions: Option<gdk::DragAction>,
     preload: Option<bool>,

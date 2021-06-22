@@ -40,9 +40,9 @@ impl TreeExpander {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TreeExpander`].
+    /// Creates a new builder-pattern struct instance to construct [`TreeExpander`] objects.
     ///
-    /// This method returns an instance of [`TreeExpanderBuilder`] which can be used to create a [`TreeExpander`].
+    /// This method returns an instance of [`TreeExpanderBuilder`] which can be used to create [`TreeExpander`] objects.
     pub fn builder() -> TreeExpanderBuilder {
         TreeExpanderBuilder::default()
     }
@@ -160,7 +160,9 @@ impl Default for TreeExpander {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`TreeExpander`].
+/// A [builder-pattern] type to construct [`TreeExpander`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct TreeExpanderBuilder {
     child: Option<Widget>,
     list_row: Option<TreeListRow>,

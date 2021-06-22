@@ -28,9 +28,9 @@ glib::wrapper! {
 
 impl GestureSingle {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GestureSingle`].
+    /// Creates a new builder-pattern struct instance to construct [`GestureSingle`] objects.
     ///
-    /// This method returns an instance of [`GestureSingleBuilder`] which can be used to create a [`GestureSingle`].
+    /// This method returns an instance of [`GestureSingleBuilder`] which can be used to create [`GestureSingle`] objects.
     pub fn builder() -> GestureSingleBuilder {
         GestureSingleBuilder::default()
     }
@@ -38,7 +38,9 @@ impl GestureSingle {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`GestureSingle`].
+/// A [builder-pattern] type to construct [`GestureSingle`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct GestureSingleBuilder {
     button: Option<u32>,
     exclusive: Option<bool>,

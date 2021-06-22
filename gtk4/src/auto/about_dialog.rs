@@ -45,9 +45,9 @@ impl AboutDialog {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`AboutDialog`].
+    /// Creates a new builder-pattern struct instance to construct [`AboutDialog`] objects.
     ///
-    /// This method returns an instance of [`AboutDialogBuilder`] which can be used to create a [`AboutDialog`].
+    /// This method returns an instance of [`AboutDialogBuilder`] which can be used to create [`AboutDialog`] objects.
     pub fn builder() -> AboutDialogBuilder {
         AboutDialogBuilder::default()
     }
@@ -744,7 +744,9 @@ impl Default for AboutDialog {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`AboutDialog`].
+/// A [builder-pattern] type to construct [`AboutDialog`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct AboutDialogBuilder {
     artists: Option<Vec<String>>,
     authors: Option<Vec<String>>,

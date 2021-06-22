@@ -35,9 +35,9 @@ impl EventControllerFocus {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`EventControllerFocus`].
+    /// Creates a new builder-pattern struct instance to construct [`EventControllerFocus`] objects.
     ///
-    /// This method returns an instance of [`EventControllerFocusBuilder`] which can be used to create a [`EventControllerFocus`].
+    /// This method returns an instance of [`EventControllerFocusBuilder`] which can be used to create [`EventControllerFocus`] objects.
     pub fn builder() -> EventControllerFocusBuilder {
         EventControllerFocusBuilder::default()
     }
@@ -161,7 +161,9 @@ impl Default for EventControllerFocus {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`EventControllerFocus`].
+/// A [builder-pattern] type to construct [`EventControllerFocus`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct EventControllerFocusBuilder {
     name: Option<String>,
     propagation_limit: Option<PropagationLimit>,

@@ -42,9 +42,9 @@ impl WindowControls {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`WindowControls`].
+    /// Creates a new builder-pattern struct instance to construct [`WindowControls`] objects.
     ///
-    /// This method returns an instance of [`WindowControlsBuilder`] which can be used to create a [`WindowControls`].
+    /// This method returns an instance of [`WindowControlsBuilder`] which can be used to create [`WindowControls`] objects.
     pub fn builder() -> WindowControlsBuilder {
         WindowControlsBuilder::default()
     }
@@ -165,7 +165,9 @@ impl WindowControls {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`WindowControls`].
+/// A [builder-pattern] type to construct [`WindowControls`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct WindowControlsBuilder {
     decoration_layout: Option<String>,
     side: Option<PackType>,

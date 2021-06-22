@@ -37,9 +37,9 @@ impl BoxLayout {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`BoxLayout`].
+    /// Creates a new builder-pattern struct instance to construct [`BoxLayout`] objects.
     ///
-    /// This method returns an instance of [`BoxLayoutBuilder`] which can be used to create a [`BoxLayout`].
+    /// This method returns an instance of [`BoxLayoutBuilder`] which can be used to create [`BoxLayout`] objects.
     pub fn builder() -> BoxLayoutBuilder {
         BoxLayoutBuilder::default()
     }
@@ -162,7 +162,9 @@ impl BoxLayout {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`BoxLayout`].
+/// A [builder-pattern] type to construct [`BoxLayout`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct BoxLayoutBuilder {
     baseline_position: Option<BaselinePosition>,
     homogeneous: Option<bool>,

@@ -27,9 +27,9 @@ glib::wrapper! {
 
 impl NumericSorter {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`NumericSorter`].
+    /// Creates a new builder-pattern struct instance to construct [`NumericSorter`] objects.
     ///
-    /// This method returns an instance of [`NumericSorterBuilder`] which can be used to create a [`NumericSorter`].
+    /// This method returns an instance of [`NumericSorterBuilder`] which can be used to create [`NumericSorter`] objects.
     pub fn builder() -> NumericSorterBuilder {
         NumericSorterBuilder::default()
     }
@@ -110,7 +110,9 @@ impl NumericSorter {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`NumericSorter`].
+/// A [builder-pattern] type to construct [`NumericSorter`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct NumericSorterBuilder {
     expression: Option<Expression>,
     sort_order: Option<SortType>,

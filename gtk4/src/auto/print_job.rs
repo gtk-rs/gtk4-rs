@@ -52,9 +52,9 @@ impl PrintJob {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`PrintJob`].
+    /// Creates a new builder-pattern struct instance to construct [`PrintJob`] objects.
     ///
-    /// This method returns an instance of [`PrintJobBuilder`] which can be used to create a [`PrintJob`].
+    /// This method returns an instance of [`PrintJobBuilder`] which can be used to create [`PrintJob`] objects.
     pub fn builder() -> PrintJobBuilder {
         PrintJobBuilder::default()
     }
@@ -346,7 +346,9 @@ impl PrintJob {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`PrintJob`].
+/// A [builder-pattern] type to construct [`PrintJob`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct PrintJobBuilder {
     page_setup: Option<PageSetup>,
     printer: Option<Printer>,

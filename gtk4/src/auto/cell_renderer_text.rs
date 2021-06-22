@@ -33,9 +33,9 @@ impl CellRendererText {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`CellRendererText`].
+    /// Creates a new builder-pattern struct instance to construct [`CellRendererText`] objects.
     ///
-    /// This method returns an instance of [`CellRendererTextBuilder`] which can be used to create a [`CellRendererText`].
+    /// This method returns an instance of [`CellRendererTextBuilder`] which can be used to create [`CellRendererText`] objects.
     pub fn builder() -> CellRendererTextBuilder {
         CellRendererTextBuilder::default()
     }
@@ -49,7 +49,9 @@ impl Default for CellRendererText {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`CellRendererText`].
+/// A [builder-pattern] type to construct [`CellRendererText`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct CellRendererTextBuilder {
     align_set: Option<bool>,
     alignment: Option<pango::Alignment>,

@@ -55,9 +55,9 @@ impl PrintUnixDialog {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`PrintUnixDialog`].
+    /// Creates a new builder-pattern struct instance to construct [`PrintUnixDialog`] objects.
     ///
-    /// This method returns an instance of [`PrintUnixDialogBuilder`] which can be used to create a [`PrintUnixDialog`].
+    /// This method returns an instance of [`PrintUnixDialogBuilder`] which can be used to create [`PrintUnixDialog`] objects.
     pub fn builder() -> PrintUnixDialogBuilder {
         PrintUnixDialogBuilder::default()
     }
@@ -453,7 +453,9 @@ impl PrintUnixDialog {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`PrintUnixDialog`].
+/// A [builder-pattern] type to construct [`PrintUnixDialog`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct PrintUnixDialogBuilder {
     current_page: Option<i32>,
     embed_page_setup: Option<bool>,

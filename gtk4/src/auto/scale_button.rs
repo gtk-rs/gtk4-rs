@@ -51,9 +51,9 @@ impl ScaleButton {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ScaleButton`].
+    /// Creates a new builder-pattern struct instance to construct [`ScaleButton`] objects.
     ///
-    /// This method returns an instance of [`ScaleButtonBuilder`] which can be used to create a [`ScaleButton`].
+    /// This method returns an instance of [`ScaleButtonBuilder`] which can be used to create [`ScaleButton`] objects.
     pub fn builder() -> ScaleButtonBuilder {
         ScaleButtonBuilder::default()
     }
@@ -61,7 +61,9 @@ impl ScaleButton {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ScaleButton`].
+/// A [builder-pattern] type to construct [`ScaleButton`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ScaleButtonBuilder {
     adjustment: Option<Adjustment>,
     icons: Option<Vec<String>>,

@@ -40,9 +40,9 @@ impl SortListModel {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`SortListModel`].
+    /// Creates a new builder-pattern struct instance to construct [`SortListModel`] objects.
     ///
-    /// This method returns an instance of [`SortListModelBuilder`] which can be used to create a [`SortListModel`].
+    /// This method returns an instance of [`SortListModelBuilder`] which can be used to create [`SortListModel`] objects.
     pub fn builder() -> SortListModelBuilder {
         SortListModelBuilder::default()
     }
@@ -200,7 +200,9 @@ impl SortListModel {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`SortListModel`].
+/// A [builder-pattern] type to construct [`SortListModel`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct SortListModelBuilder {
     incremental: Option<bool>,
     model: Option<gio::ListModel>,

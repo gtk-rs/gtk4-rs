@@ -38,9 +38,9 @@ glib::wrapper! {
 
 impl ShortcutsGroup {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ShortcutsGroup`].
+    /// Creates a new builder-pattern struct instance to construct [`ShortcutsGroup`] objects.
     ///
-    /// This method returns an instance of [`ShortcutsGroupBuilder`] which can be used to create a [`ShortcutsGroup`].
+    /// This method returns an instance of [`ShortcutsGroupBuilder`] which can be used to create [`ShortcutsGroup`] objects.
     pub fn builder() -> ShortcutsGroupBuilder {
         ShortcutsGroupBuilder::default()
     }
@@ -251,7 +251,9 @@ impl ShortcutsGroup {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ShortcutsGroup`].
+/// A [builder-pattern] type to construct [`ShortcutsGroup`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ShortcutsGroupBuilder {
     accel_size_group: Option<SizeGroup>,
     title: Option<String>,

@@ -40,9 +40,9 @@ impl StackSwitcher {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`StackSwitcher`].
+    /// Creates a new builder-pattern struct instance to construct [`StackSwitcher`] objects.
     ///
-    /// This method returns an instance of [`StackSwitcherBuilder`] which can be used to create a [`StackSwitcher`].
+    /// This method returns an instance of [`StackSwitcherBuilder`] which can be used to create [`StackSwitcher`] objects.
     pub fn builder() -> StackSwitcherBuilder {
         StackSwitcherBuilder::default()
     }
@@ -92,7 +92,9 @@ impl Default for StackSwitcher {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`StackSwitcher`].
+/// A [builder-pattern] type to construct [`StackSwitcher`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct StackSwitcherBuilder {
     stack: Option<Stack>,
     can_focus: Option<bool>,

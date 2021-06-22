@@ -69,9 +69,9 @@ impl Constraint {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Constraint`].
+    /// Creates a new builder-pattern struct instance to construct [`Constraint`] objects.
     ///
-    /// This method returns an instance of [`ConstraintBuilder`] which can be used to create a [`Constraint`].
+    /// This method returns an instance of [`ConstraintBuilder`] which can be used to create [`Constraint`] objects.
     pub fn builder() -> ConstraintBuilder {
         ConstraintBuilder::default()
     }
@@ -150,7 +150,9 @@ impl Constraint {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Constraint`].
+/// A [builder-pattern] type to construct [`Constraint`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ConstraintBuilder {
     constant: Option<f64>,
     multiplier: Option<f64>,

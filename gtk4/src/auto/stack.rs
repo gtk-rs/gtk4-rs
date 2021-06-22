@@ -42,9 +42,9 @@ impl Stack {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Stack`].
+    /// Creates a new builder-pattern struct instance to construct [`Stack`] objects.
     ///
-    /// This method returns an instance of [`StackBuilder`] which can be used to create a [`Stack`].
+    /// This method returns an instance of [`StackBuilder`] which can be used to create [`Stack`] objects.
     pub fn builder() -> StackBuilder {
         StackBuilder::default()
     }
@@ -461,7 +461,9 @@ impl Default for Stack {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Stack`].
+/// A [builder-pattern] type to construct [`Stack`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct StackBuilder {
     hhomogeneous: Option<bool>,
     interpolate_size: Option<bool>,

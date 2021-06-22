@@ -35,9 +35,9 @@ impl EventControllerLegacy {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`EventControllerLegacy`].
+    /// Creates a new builder-pattern struct instance to construct [`EventControllerLegacy`] objects.
     ///
-    /// This method returns an instance of [`EventControllerLegacyBuilder`] which can be used to create a [`EventControllerLegacy`].
+    /// This method returns an instance of [`EventControllerLegacyBuilder`] which can be used to create [`EventControllerLegacy`] objects.
     pub fn builder() -> EventControllerLegacyBuilder {
         EventControllerLegacyBuilder::default()
     }
@@ -79,7 +79,9 @@ impl Default for EventControllerLegacy {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`EventControllerLegacy`].
+/// A [builder-pattern] type to construct [`EventControllerLegacy`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct EventControllerLegacyBuilder {
     name: Option<String>,
     propagation_limit: Option<PropagationLimit>,

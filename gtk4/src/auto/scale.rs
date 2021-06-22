@@ -65,9 +65,9 @@ impl Scale {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Scale`].
+    /// Creates a new builder-pattern struct instance to construct [`Scale`] objects.
     ///
-    /// This method returns an instance of [`ScaleBuilder`] which can be used to create a [`Scale`].
+    /// This method returns an instance of [`ScaleBuilder`] which can be used to create [`Scale`] objects.
     pub fn builder() -> ScaleBuilder {
         ScaleBuilder::default()
     }
@@ -75,7 +75,9 @@ impl Scale {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Scale`].
+/// A [builder-pattern] type to construct [`Scale`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ScaleBuilder {
     digits: Option<i32>,
     draw_value: Option<bool>,

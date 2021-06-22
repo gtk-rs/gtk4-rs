@@ -39,9 +39,9 @@ impl Calendar {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Calendar`].
+    /// Creates a new builder-pattern struct instance to construct [`Calendar`] objects.
     ///
-    /// This method returns an instance of [`CalendarBuilder`] which can be used to create a [`Calendar`].
+    /// This method returns an instance of [`CalendarBuilder`] which can be used to create [`Calendar`] objects.
     pub fn builder() -> CalendarBuilder {
         CalendarBuilder::default()
     }
@@ -464,7 +464,9 @@ impl Default for Calendar {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Calendar`].
+/// A [builder-pattern] type to construct [`Calendar`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct CalendarBuilder {
     day: Option<i32>,
     month: Option<i32>,

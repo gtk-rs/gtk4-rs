@@ -47,9 +47,9 @@ impl EntryCompletion {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`EntryCompletion`].
+    /// Creates a new builder-pattern struct instance to construct [`EntryCompletion`] objects.
     ///
-    /// This method returns an instance of [`EntryCompletionBuilder`] which can be used to create a [`EntryCompletion`].
+    /// This method returns an instance of [`EntryCompletionBuilder`] which can be used to create [`EntryCompletion`] objects.
     pub fn builder() -> EntryCompletionBuilder {
         EntryCompletionBuilder::default()
     }
@@ -626,7 +626,9 @@ impl Default for EntryCompletion {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`EntryCompletion`].
+/// A [builder-pattern] type to construct [`EntryCompletion`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct EntryCompletionBuilder {
     cell_area: Option<CellArea>,
     inline_completion: Option<bool>,

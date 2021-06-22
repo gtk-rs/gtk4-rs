@@ -35,9 +35,9 @@ impl CellRendererSpin {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`CellRendererSpin`].
+    /// Creates a new builder-pattern struct instance to construct [`CellRendererSpin`] objects.
     ///
-    /// This method returns an instance of [`CellRendererSpinBuilder`] which can be used to create a [`CellRendererSpin`].
+    /// This method returns an instance of [`CellRendererSpinBuilder`] which can be used to create [`CellRendererSpin`] objects.
     pub fn builder() -> CellRendererSpinBuilder {
         CellRendererSpinBuilder::default()
     }
@@ -194,7 +194,9 @@ impl Default for CellRendererSpin {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`CellRendererSpin`].
+/// A [builder-pattern] type to construct [`CellRendererSpin`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct CellRendererSpinBuilder {
     adjustment: Option<Adjustment>,
     climb_rate: Option<f64>,

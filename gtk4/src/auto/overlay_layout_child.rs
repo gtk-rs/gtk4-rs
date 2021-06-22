@@ -28,9 +28,9 @@ glib::wrapper! {
 
 impl OverlayLayoutChild {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`OverlayLayoutChild`].
+    /// Creates a new builder-pattern struct instance to construct [`OverlayLayoutChild`] objects.
     ///
-    /// This method returns an instance of [`OverlayLayoutChildBuilder`] which can be used to create a [`OverlayLayoutChild`].
+    /// This method returns an instance of [`OverlayLayoutChildBuilder`] which can be used to create [`OverlayLayoutChild`] objects.
     pub fn builder() -> OverlayLayoutChildBuilder {
         OverlayLayoutChildBuilder::default()
     }
@@ -123,7 +123,9 @@ impl OverlayLayoutChild {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`OverlayLayoutChild`].
+/// A [builder-pattern] type to construct [`OverlayLayoutChild`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct OverlayLayoutChildBuilder {
     clip_overlay: Option<bool>,
     measure: Option<bool>,

@@ -26,9 +26,9 @@ glib::wrapper! {
 
 impl BoolFilter {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`BoolFilter`].
+    /// Creates a new builder-pattern struct instance to construct [`BoolFilter`] objects.
     ///
-    /// This method returns an instance of [`BoolFilterBuilder`] which can be used to create a [`BoolFilter`].
+    /// This method returns an instance of [`BoolFilterBuilder`] which can be used to create [`BoolFilter`] objects.
     pub fn builder() -> BoolFilterBuilder {
         BoolFilterBuilder::default()
     }
@@ -101,7 +101,9 @@ impl BoolFilter {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`BoolFilter`].
+/// A [builder-pattern] type to construct [`BoolFilter`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct BoolFilterBuilder {
     expression: Option<Expression>,
     invert: Option<bool>,

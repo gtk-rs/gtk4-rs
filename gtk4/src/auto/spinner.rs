@@ -39,9 +39,9 @@ impl Spinner {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Spinner`].
+    /// Creates a new builder-pattern struct instance to construct [`Spinner`] objects.
     ///
-    /// This method returns an instance of [`SpinnerBuilder`] which can be used to create a [`Spinner`].
+    /// This method returns an instance of [`SpinnerBuilder`] which can be used to create [`Spinner`] objects.
     pub fn builder() -> SpinnerBuilder {
         SpinnerBuilder::default()
     }
@@ -105,7 +105,9 @@ impl Default for Spinner {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Spinner`].
+/// A [builder-pattern] type to construct [`Spinner`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct SpinnerBuilder {
     spinning: Option<bool>,
     can_focus: Option<bool>,

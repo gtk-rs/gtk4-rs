@@ -26,9 +26,9 @@ glib::wrapper! {
 
 impl StringSorter {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`StringSorter`].
+    /// Creates a new builder-pattern struct instance to construct [`StringSorter`] objects.
     ///
-    /// This method returns an instance of [`StringSorterBuilder`] which can be used to create a [`StringSorter`].
+    /// This method returns an instance of [`StringSorterBuilder`] which can be used to create [`StringSorter`] objects.
     pub fn builder() -> StringSorterBuilder {
         StringSorterBuilder::default()
     }
@@ -105,7 +105,9 @@ impl StringSorter {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`StringSorter`].
+/// A [builder-pattern] type to construct [`StringSorter`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct StringSorterBuilder {
     expression: Option<Expression>,
     ignore_case: Option<bool>,

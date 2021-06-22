@@ -88,9 +88,9 @@ impl Video {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Video`].
+    /// Creates a new builder-pattern struct instance to construct [`Video`] objects.
     ///
-    /// This method returns an instance of [`VideoBuilder`] which can be used to create a [`Video`].
+    /// This method returns an instance of [`VideoBuilder`] which can be used to create [`Video`] objects.
     pub fn builder() -> VideoBuilder {
         VideoBuilder::default()
     }
@@ -268,7 +268,9 @@ impl Default for Video {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Video`].
+/// A [builder-pattern] type to construct [`Video`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct VideoBuilder {
     autoplay: Option<bool>,
     file: Option<gio::File>,

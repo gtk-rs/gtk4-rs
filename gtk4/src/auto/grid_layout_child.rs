@@ -28,9 +28,9 @@ glib::wrapper! {
 
 impl GridLayoutChild {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GridLayoutChild`].
+    /// Creates a new builder-pattern struct instance to construct [`GridLayoutChild`] objects.
     ///
-    /// This method returns an instance of [`GridLayoutChildBuilder`] which can be used to create a [`GridLayoutChild`].
+    /// This method returns an instance of [`GridLayoutChildBuilder`] which can be used to create [`GridLayoutChild`] objects.
     pub fn builder() -> GridLayoutChildBuilder {
         GridLayoutChildBuilder::default()
     }
@@ -182,7 +182,9 @@ impl GridLayoutChild {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`GridLayoutChild`].
+/// A [builder-pattern] type to construct [`GridLayoutChild`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct GridLayoutChildBuilder {
     column: Option<i32>,
     column_span: Option<i32>,

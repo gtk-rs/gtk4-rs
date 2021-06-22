@@ -40,9 +40,9 @@ impl SearchBar {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`SearchBar`].
+    /// Creates a new builder-pattern struct instance to construct [`SearchBar`] objects.
     ///
-    /// This method returns an instance of [`SearchBarBuilder`] which can be used to create a [`SearchBar`].
+    /// This method returns an instance of [`SearchBarBuilder`] which can be used to create [`SearchBar`] objects.
     pub fn builder() -> SearchBarBuilder {
         SearchBarBuilder::default()
     }
@@ -233,7 +233,9 @@ impl Default for SearchBar {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`SearchBar`].
+/// A [builder-pattern] type to construct [`SearchBar`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct SearchBarBuilder {
     child: Option<Widget>,
     key_capture_widget: Option<Widget>,

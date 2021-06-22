@@ -38,9 +38,9 @@ impl DropTargetAsync {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`DropTargetAsync`].
+    /// Creates a new builder-pattern struct instance to construct [`DropTargetAsync`] objects.
     ///
-    /// This method returns an instance of [`DropTargetAsyncBuilder`] which can be used to create a [`DropTargetAsync`].
+    /// This method returns an instance of [`DropTargetAsyncBuilder`] which can be used to create [`DropTargetAsync`] objects.
     pub fn builder() -> DropTargetAsyncBuilder {
         DropTargetAsyncBuilder::default()
     }
@@ -278,7 +278,9 @@ impl DropTargetAsync {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`DropTargetAsync`].
+/// A [builder-pattern] type to construct [`DropTargetAsync`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct DropTargetAsyncBuilder {
     actions: Option<gdk::DragAction>,
     formats: Option<gdk::ContentFormats>,

@@ -40,9 +40,9 @@ impl GesturePan {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GesturePan`].
+    /// Creates a new builder-pattern struct instance to construct [`GesturePan`] objects.
     ///
-    /// This method returns an instance of [`GesturePanBuilder`] which can be used to create a [`GesturePan`].
+    /// This method returns an instance of [`GesturePanBuilder`] which can be used to create [`GesturePan`] objects.
     pub fn builder() -> GesturePanBuilder {
         GesturePanBuilder::default()
     }
@@ -110,7 +110,9 @@ impl GesturePan {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`GesturePan`].
+/// A [builder-pattern] type to construct [`GesturePan`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct GesturePanBuilder {
     orientation: Option<Orientation>,
     button: Option<u32>,

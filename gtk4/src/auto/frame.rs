@@ -38,9 +38,9 @@ impl Frame {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Frame`].
+    /// Creates a new builder-pattern struct instance to construct [`Frame`] objects.
     ///
-    /// This method returns an instance of [`FrameBuilder`] which can be used to create a [`Frame`].
+    /// This method returns an instance of [`FrameBuilder`] which can be used to create [`Frame`] objects.
     pub fn builder() -> FrameBuilder {
         FrameBuilder::default()
     }
@@ -48,7 +48,9 @@ impl Frame {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Frame`].
+/// A [builder-pattern] type to construct [`Frame`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct FrameBuilder {
     child: Option<Widget>,
     label: Option<String>,

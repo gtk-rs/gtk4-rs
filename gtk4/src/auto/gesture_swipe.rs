@@ -36,9 +36,9 @@ impl GestureSwipe {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GestureSwipe`].
+    /// Creates a new builder-pattern struct instance to construct [`GestureSwipe`] objects.
     ///
-    /// This method returns an instance of [`GestureSwipeBuilder`] which can be used to create a [`GestureSwipe`].
+    /// This method returns an instance of [`GestureSwipeBuilder`] which can be used to create [`GestureSwipe`] objects.
     pub fn builder() -> GestureSwipeBuilder {
         GestureSwipeBuilder::default()
     }
@@ -97,7 +97,9 @@ impl Default for GestureSwipe {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`GestureSwipe`].
+/// A [builder-pattern] type to construct [`GestureSwipe`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct GestureSwipeBuilder {
     button: Option<u32>,
     exclusive: Option<bool>,

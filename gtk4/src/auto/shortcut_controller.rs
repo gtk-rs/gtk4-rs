@@ -49,9 +49,9 @@ impl ShortcutController {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ShortcutController`].
+    /// Creates a new builder-pattern struct instance to construct [`ShortcutController`] objects.
     ///
-    /// This method returns an instance of [`ShortcutControllerBuilder`] which can be used to create a [`ShortcutController`].
+    /// This method returns an instance of [`ShortcutControllerBuilder`] which can be used to create [`ShortcutController`] objects.
     pub fn builder() -> ShortcutControllerBuilder {
         ShortcutControllerBuilder::default()
     }
@@ -200,7 +200,9 @@ impl Default for ShortcutController {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ShortcutController`].
+/// A [builder-pattern] type to construct [`ShortcutController`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ShortcutControllerBuilder {
     mnemonic_modifiers: Option<gdk::ModifierType>,
     model: Option<gio::ListModel>,

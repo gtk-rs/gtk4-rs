@@ -33,9 +33,9 @@ impl TextTag {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TextTag`].
+    /// Creates a new builder-pattern struct instance to construct [`TextTag`] objects.
     ///
-    /// This method returns an instance of [`TextTagBuilder`] which can be used to create a [`TextTag`].
+    /// This method returns an instance of [`TextTagBuilder`] which can be used to create [`TextTag`] objects.
     pub fn builder() -> TextTagBuilder {
         TextTagBuilder::default()
     }
@@ -43,7 +43,9 @@ impl TextTag {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`TextTag`].
+/// A [builder-pattern] type to construct [`TextTag`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct TextTagBuilder {
     accumulative_margin: Option<bool>,
     allow_breaks: Option<bool>,

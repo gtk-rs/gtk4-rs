@@ -43,9 +43,9 @@ impl Grid {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Grid`].
+    /// Creates a new builder-pattern struct instance to construct [`Grid`] objects.
     ///
-    /// This method returns an instance of [`GridBuilder`] which can be used to create a [`Grid`].
+    /// This method returns an instance of [`GridBuilder`] which can be used to create [`Grid`] objects.
     pub fn builder() -> GridBuilder {
         GridBuilder::default()
     }
@@ -59,7 +59,9 @@ impl Default for Grid {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Grid`].
+/// A [builder-pattern] type to construct [`Grid`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct GridBuilder {
     baseline_row: Option<i32>,
     column_homogeneous: Option<bool>,

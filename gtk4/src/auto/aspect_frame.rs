@@ -47,9 +47,9 @@ impl AspectFrame {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`AspectFrame`].
+    /// Creates a new builder-pattern struct instance to construct [`AspectFrame`] objects.
     ///
-    /// This method returns an instance of [`AspectFrameBuilder`] which can be used to create a [`AspectFrame`].
+    /// This method returns an instance of [`AspectFrameBuilder`] which can be used to create [`AspectFrame`] objects.
     pub fn builder() -> AspectFrameBuilder {
         AspectFrameBuilder::default()
     }
@@ -240,7 +240,9 @@ impl AspectFrame {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`AspectFrame`].
+/// A [builder-pattern] type to construct [`AspectFrame`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct AspectFrameBuilder {
     child: Option<Widget>,
     obey_child: Option<bool>,

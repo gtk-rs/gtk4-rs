@@ -26,9 +26,9 @@ glib::wrapper! {
 
 impl Application {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Application`].
+    /// Creates a new builder-pattern struct instance to construct [`Application`] objects.
     ///
-    /// This method returns an instance of [`ApplicationBuilder`] which can be used to create a [`Application`].
+    /// This method returns an instance of [`ApplicationBuilder`] which can be used to create [`Application`] objects.
     pub fn builder() -> ApplicationBuilder {
         ApplicationBuilder::default()
     }
@@ -36,7 +36,9 @@ impl Application {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Application`].
+/// A [builder-pattern] type to construct [`Application`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ApplicationBuilder {
     menubar: Option<gio::MenuModel>,
     register_session: Option<bool>,

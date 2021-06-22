@@ -35,9 +35,9 @@ impl DropControllerMotion {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`DropControllerMotion`].
+    /// Creates a new builder-pattern struct instance to construct [`DropControllerMotion`] objects.
     ///
-    /// This method returns an instance of [`DropControllerMotionBuilder`] which can be used to create a [`DropControllerMotion`].
+    /// This method returns an instance of [`DropControllerMotionBuilder`] which can be used to create [`DropControllerMotion`] objects.
     pub fn builder() -> DropControllerMotionBuilder {
         DropControllerMotionBuilder::default()
     }
@@ -222,7 +222,9 @@ impl Default for DropControllerMotion {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`DropControllerMotion`].
+/// A [builder-pattern] type to construct [`DropControllerMotion`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct DropControllerMotionBuilder {
     name: Option<String>,
     propagation_limit: Option<PropagationLimit>,

@@ -29,9 +29,9 @@ glib::wrapper! {
 
 impl Clipboard {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Clipboard`].
+    /// Creates a new builder-pattern struct instance to construct [`Clipboard`] objects.
     ///
-    /// This method returns an instance of [`ClipboardBuilder`] which can be used to create a [`Clipboard`].
+    /// This method returns an instance of [`ClipboardBuilder`] which can be used to create [`Clipboard`] objects.
     pub fn builder() -> ClipboardBuilder {
         ClipboardBuilder::default()
     }
@@ -186,7 +186,9 @@ impl Clipboard {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Clipboard`].
+/// A [builder-pattern] type to construct [`Clipboard`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ClipboardBuilder {
     display: Option<Display>,
 }

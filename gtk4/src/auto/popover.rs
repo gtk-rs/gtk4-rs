@@ -43,9 +43,9 @@ impl Popover {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Popover`].
+    /// Creates a new builder-pattern struct instance to construct [`Popover`] objects.
     ///
-    /// This method returns an instance of [`PopoverBuilder`] which can be used to create a [`Popover`].
+    /// This method returns an instance of [`PopoverBuilder`] which can be used to create [`Popover`] objects.
     pub fn builder() -> PopoverBuilder {
         PopoverBuilder::default()
     }
@@ -59,7 +59,9 @@ impl Default for Popover {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Popover`].
+/// A [builder-pattern] type to construct [`Popover`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct PopoverBuilder {
     autohide: Option<bool>,
     cascade_popdown: Option<bool>,

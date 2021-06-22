@@ -40,9 +40,9 @@ impl ColorChooserWidget {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ColorChooserWidget`].
+    /// Creates a new builder-pattern struct instance to construct [`ColorChooserWidget`] objects.
     ///
-    /// This method returns an instance of [`ColorChooserWidgetBuilder`] which can be used to create a [`ColorChooserWidget`].
+    /// This method returns an instance of [`ColorChooserWidgetBuilder`] which can be used to create [`ColorChooserWidget`] objects.
     pub fn builder() -> ColorChooserWidgetBuilder {
         ColorChooserWidgetBuilder::default()
     }
@@ -105,7 +105,9 @@ impl Default for ColorChooserWidget {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ColorChooserWidget`].
+/// A [builder-pattern] type to construct [`ColorChooserWidget`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ColorChooserWidgetBuilder {
     show_editor: Option<bool>,
     can_focus: Option<bool>,

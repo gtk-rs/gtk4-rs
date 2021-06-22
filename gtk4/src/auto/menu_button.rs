@@ -41,9 +41,9 @@ impl MenuButton {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`MenuButton`].
+    /// Creates a new builder-pattern struct instance to construct [`MenuButton`] objects.
     ///
-    /// This method returns an instance of [`MenuButtonBuilder`] which can be used to create a [`MenuButton`].
+    /// This method returns an instance of [`MenuButtonBuilder`] which can be used to create [`MenuButton`] objects.
     pub fn builder() -> MenuButtonBuilder {
         MenuButtonBuilder::default()
     }
@@ -365,7 +365,9 @@ impl Default for MenuButton {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`MenuButton`].
+/// A [builder-pattern] type to construct [`MenuButton`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct MenuButtonBuilder {
     direction: Option<ArrowType>,
     has_frame: Option<bool>,

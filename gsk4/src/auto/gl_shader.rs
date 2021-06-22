@@ -45,9 +45,9 @@ impl GLShader {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GLShader`].
+    /// Creates a new builder-pattern struct instance to construct [`GLShader`] objects.
     ///
-    /// This method returns an instance of [`GLShaderBuilder`] which can be used to create a [`GLShader`].
+    /// This method returns an instance of [`GLShaderBuilder`] which can be used to create [`GLShader`] objects.
     pub fn builder() -> GLShaderBuilder {
         GLShaderBuilder::default()
     }
@@ -210,7 +210,9 @@ impl GLShader {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`GLShader`].
+/// A [builder-pattern] type to construct [`GLShader`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct GLShaderBuilder {
     resource: Option<String>,
     source: Option<glib::Bytes>,

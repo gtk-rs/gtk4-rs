@@ -45,9 +45,9 @@ impl Notebook {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Notebook`].
+    /// Creates a new builder-pattern struct instance to construct [`Notebook`] objects.
     ///
-    /// This method returns an instance of [`NotebookBuilder`] which can be used to create a [`Notebook`].
+    /// This method returns an instance of [`NotebookBuilder`] which can be used to create [`Notebook`] objects.
     pub fn builder() -> NotebookBuilder {
         NotebookBuilder::default()
     }
@@ -885,7 +885,9 @@ impl Default for Notebook {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Notebook`].
+/// A [builder-pattern] type to construct [`Notebook`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct NotebookBuilder {
     enable_popup: Option<bool>,
     group_name: Option<String>,

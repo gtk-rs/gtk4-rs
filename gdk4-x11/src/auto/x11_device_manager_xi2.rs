@@ -21,9 +21,9 @@ glib::wrapper! {
 
 impl X11DeviceManagerXI2 {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`X11DeviceManagerXI2`].
+    /// Creates a new builder-pattern struct instance to construct [`X11DeviceManagerXI2`] objects.
     ///
-    /// This method returns an instance of [`X11DeviceManagerXI2Builder`] which can be used to create a [`X11DeviceManagerXI2`].
+    /// This method returns an instance of [`X11DeviceManagerXI2Builder`] which can be used to create [`X11DeviceManagerXI2`] objects.
     pub fn builder() -> X11DeviceManagerXI2Builder {
         X11DeviceManagerXI2Builder::default()
     }
@@ -87,7 +87,9 @@ impl X11DeviceManagerXI2 {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`X11DeviceManagerXI2`].
+/// A [builder-pattern] type to construct [`X11DeviceManagerXI2`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct X11DeviceManagerXI2Builder {
     display: Option<gdk::Display>,
     major: Option<i32>,

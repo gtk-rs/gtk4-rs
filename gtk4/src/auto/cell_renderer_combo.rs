@@ -37,9 +37,9 @@ impl CellRendererCombo {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`CellRendererCombo`].
+    /// Creates a new builder-pattern struct instance to construct [`CellRendererCombo`] objects.
     ///
-    /// This method returns an instance of [`CellRendererComboBuilder`] which can be used to create a [`CellRendererCombo`].
+    /// This method returns an instance of [`CellRendererComboBuilder`] which can be used to create [`CellRendererCombo`] objects.
     pub fn builder() -> CellRendererComboBuilder {
         CellRendererComboBuilder::default()
     }
@@ -228,7 +228,9 @@ impl Default for CellRendererCombo {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`CellRendererCombo`].
+/// A [builder-pattern] type to construct [`CellRendererCombo`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct CellRendererComboBuilder {
     has_entry: Option<bool>,
     model: Option<TreeModel>,
