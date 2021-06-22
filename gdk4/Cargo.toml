@@ -1,7 +1,7 @@
 [package]
 authors = ["The gtk-rs Project Developers"]
 description = "Rust bindings of the GDK 4 library"
-documentation = "https://gtk-rs.org/gtk4-rs/stable/docs/gdk4/"
+documentation = "https://gtk-rs.org/gtk4-rs/stable/latest/docs/gdk4/"
 edition = "2018"
 homepage = "https://gtk-rs.org/"
 keywords = ["gdk", "gdk4", "gtk", "gtk-rs", "gnome", "GUI"]

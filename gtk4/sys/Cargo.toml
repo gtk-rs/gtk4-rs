@@ -2,7 +2,7 @@
 authors = ["The gtk-rs Project Developers"]
 build = "build.rs"
 description = "FFI bindings of GTK 4"
-documentation = "https://gtk-rs.org/gtk4-rs/stable/docs/gtk4_sys"
+documentation = "https://gtk-rs.org/gtk4-rs/stable/latest/docs/gtk4_sys"
 edition = "2018"
 homepage = "http://gtk-rs.org/"
 keywords = ["gtk", "gtk4", "ffi", "gtk-rs", "gnome"]

@@ -2,7 +2,7 @@
 authors = ["The gtk-rs Project Developers"]
 build = "build.rs"
 description = "FFI bindings of GSK 4"
-documentation = "https://gtk-rs.org/gtk4-rs/stable/docs/gsk4_sys/"
+documentation = "https://gtk-rs.org/gtk4-rs/stable/latest/docs/gsk4_sys/"
 edition = "2018"
 homepage = "http://gtk-rs.org/"
 keywords = ["gsk", "ffi", "gtk-rs", "gnome"]
