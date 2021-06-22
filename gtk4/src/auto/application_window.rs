@@ -49,9 +49,9 @@ impl ApplicationWindow {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ApplicationWindow`].
+    /// Creates a new builder-pattern struct instance to construct [`ApplicationWindow`] objects.
     ///
-    /// This method returns an instance of [`ApplicationWindowBuilder`] which can be used to create a [`ApplicationWindow`].
+    /// This method returns an instance of [`ApplicationWindowBuilder`] which can be used to create [`ApplicationWindow`] objects.
     pub fn builder() -> ApplicationWindowBuilder {
         ApplicationWindowBuilder::default()
     }
@@ -59,7 +59,9 @@ impl ApplicationWindow {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ApplicationWindow`].
+/// A [builder-pattern] type to construct [`ApplicationWindow`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ApplicationWindowBuilder {
     show_menubar: Option<bool>,
     application: Option<Application>,

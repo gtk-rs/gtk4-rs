@@ -35,9 +35,9 @@ glib::wrapper! {
 
 impl DragIcon {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`DragIcon`].
+    /// Creates a new builder-pattern struct instance to construct [`DragIcon`] objects.
     ///
-    /// This method returns an instance of [`DragIconBuilder`] which can be used to create a [`DragIcon`].
+    /// This method returns an instance of [`DragIconBuilder`] which can be used to create [`DragIcon`] objects.
     pub fn builder() -> DragIconBuilder {
         DragIconBuilder::default()
     }
@@ -119,7 +119,9 @@ impl DragIcon {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`DragIcon`].
+/// A [builder-pattern] type to construct [`DragIcon`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct DragIconBuilder {
     child: Option<Widget>,
     can_focus: Option<bool>,

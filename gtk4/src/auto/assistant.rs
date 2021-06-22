@@ -47,9 +47,9 @@ impl Assistant {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Assistant`].
+    /// Creates a new builder-pattern struct instance to construct [`Assistant`] objects.
     ///
-    /// This method returns an instance of [`AssistantBuilder`] which can be used to create a [`Assistant`].
+    /// This method returns an instance of [`AssistantBuilder`] which can be used to create [`Assistant`] objects.
     pub fn builder() -> AssistantBuilder {
         AssistantBuilder::default()
     }
@@ -440,7 +440,9 @@ impl Default for Assistant {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Assistant`].
+/// A [builder-pattern] type to construct [`Assistant`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct AssistantBuilder {
     use_header_bar: Option<i32>,
     application: Option<Application>,

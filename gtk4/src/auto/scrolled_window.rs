@@ -47,9 +47,9 @@ impl ScrolledWindow {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ScrolledWindow`].
+    /// Creates a new builder-pattern struct instance to construct [`ScrolledWindow`] objects.
     ///
-    /// This method returns an instance of [`ScrolledWindowBuilder`] which can be used to create a [`ScrolledWindow`].
+    /// This method returns an instance of [`ScrolledWindowBuilder`] which can be used to create [`ScrolledWindow`] objects.
     pub fn builder() -> ScrolledWindowBuilder {
         ScrolledWindowBuilder::default()
     }
@@ -955,7 +955,9 @@ impl Default for ScrolledWindow {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ScrolledWindow`].
+/// A [builder-pattern] type to construct [`ScrolledWindow`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ScrolledWindowBuilder {
     child: Option<Widget>,
     hadjustment: Option<Adjustment>,

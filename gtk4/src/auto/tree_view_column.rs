@@ -58,9 +58,9 @@ impl TreeViewColumn {
     //}
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TreeViewColumn`].
+    /// Creates a new builder-pattern struct instance to construct [`TreeViewColumn`] objects.
     ///
-    /// This method returns an instance of [`TreeViewColumnBuilder`] which can be used to create a [`TreeViewColumn`].
+    /// This method returns an instance of [`TreeViewColumnBuilder`] which can be used to create [`TreeViewColumn`] objects.
     pub fn builder() -> TreeViewColumnBuilder {
         TreeViewColumnBuilder::default()
     }
@@ -939,7 +939,9 @@ impl Default for TreeViewColumn {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`TreeViewColumn`].
+/// A [builder-pattern] type to construct [`TreeViewColumn`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct TreeViewColumnBuilder {
     alignment: Option<f32>,
     cell_area: Option<CellArea>,

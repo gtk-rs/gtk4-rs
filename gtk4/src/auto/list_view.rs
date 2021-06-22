@@ -56,9 +56,9 @@ impl ListView {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ListView`].
+    /// Creates a new builder-pattern struct instance to construct [`ListView`] objects.
     ///
-    /// This method returns an instance of [`ListViewBuilder`] which can be used to create a [`ListView`].
+    /// This method returns an instance of [`ListViewBuilder`] which can be used to create [`ListView`] objects.
     pub fn builder() -> ListViewBuilder {
         ListViewBuilder::default()
     }
@@ -302,7 +302,9 @@ impl ListView {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ListView`].
+/// A [builder-pattern] type to construct [`ListView`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ListViewBuilder {
     enable_rubberband: Option<bool>,
     factory: Option<ListItemFactory>,

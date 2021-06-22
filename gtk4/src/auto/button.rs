@@ -72,9 +72,9 @@ impl Button {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Button`].
+    /// Creates a new builder-pattern struct instance to construct [`Button`] objects.
     ///
-    /// This method returns an instance of [`ButtonBuilder`] which can be used to create a [`Button`].
+    /// This method returns an instance of [`ButtonBuilder`] which can be used to create [`Button`] objects.
     pub fn builder() -> ButtonBuilder {
         ButtonBuilder::default()
     }
@@ -88,7 +88,9 @@ impl Default for Button {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Button`].
+/// A [builder-pattern] type to construct [`Button`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ButtonBuilder {
     child: Option<Widget>,
     has_frame: Option<bool>,

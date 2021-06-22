@@ -35,9 +35,9 @@ impl Fixed {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Fixed`].
+    /// Creates a new builder-pattern struct instance to construct [`Fixed`] objects.
     ///
-    /// This method returns an instance of [`FixedBuilder`] which can be used to create a [`Fixed`].
+    /// This method returns an instance of [`FixedBuilder`] which can be used to create [`Fixed`] objects.
     pub fn builder() -> FixedBuilder {
         FixedBuilder::default()
     }
@@ -51,7 +51,9 @@ impl Default for Fixed {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Fixed`].
+/// A [builder-pattern] type to construct [`Fixed`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct FixedBuilder {
     can_focus: Option<bool>,
     can_target: Option<bool>,

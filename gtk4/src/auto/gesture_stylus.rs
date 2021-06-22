@@ -37,9 +37,9 @@ impl GestureStylus {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GestureStylus`].
+    /// Creates a new builder-pattern struct instance to construct [`GestureStylus`] objects.
     ///
-    /// This method returns an instance of [`GestureStylusBuilder`] which can be used to create a [`GestureStylus`].
+    /// This method returns an instance of [`GestureStylusBuilder`] which can be used to create [`GestureStylus`] objects.
     pub fn builder() -> GestureStylusBuilder {
         GestureStylusBuilder::default()
     }
@@ -200,7 +200,9 @@ impl Default for GestureStylus {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`GestureStylus`].
+/// A [builder-pattern] type to construct [`GestureStylus`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct GestureStylusBuilder {
     button: Option<u32>,
     exclusive: Option<bool>,

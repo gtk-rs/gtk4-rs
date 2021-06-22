@@ -45,9 +45,9 @@ impl PopoverMenuBar {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`PopoverMenuBar`].
+    /// Creates a new builder-pattern struct instance to construct [`PopoverMenuBar`] objects.
     ///
-    /// This method returns an instance of [`PopoverMenuBarBuilder`] which can be used to create a [`PopoverMenuBar`].
+    /// This method returns an instance of [`PopoverMenuBarBuilder`] which can be used to create [`PopoverMenuBar`] objects.
     pub fn builder() -> PopoverMenuBarBuilder {
         PopoverMenuBarBuilder::default()
     }
@@ -119,7 +119,9 @@ impl PopoverMenuBar {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`PopoverMenuBar`].
+/// A [builder-pattern] type to construct [`PopoverMenuBar`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct PopoverMenuBarBuilder {
     menu_model: Option<gio::MenuModel>,
     can_focus: Option<bool>,

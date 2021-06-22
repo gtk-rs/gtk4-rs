@@ -48,9 +48,9 @@ impl FontChooserDialog {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`FontChooserDialog`].
+    /// Creates a new builder-pattern struct instance to construct [`FontChooserDialog`] objects.
     ///
-    /// This method returns an instance of [`FontChooserDialogBuilder`] which can be used to create a [`FontChooserDialog`].
+    /// This method returns an instance of [`FontChooserDialogBuilder`] which can be used to create [`FontChooserDialog`] objects.
     pub fn builder() -> FontChooserDialogBuilder {
         FontChooserDialogBuilder::default()
     }
@@ -58,7 +58,9 @@ impl FontChooserDialog {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`FontChooserDialog`].
+/// A [builder-pattern] type to construct [`FontChooserDialog`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct FontChooserDialogBuilder {
     use_header_bar: Option<i32>,
     application: Option<Application>,

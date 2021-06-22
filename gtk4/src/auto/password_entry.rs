@@ -41,9 +41,9 @@ impl PasswordEntry {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`PasswordEntry`].
+    /// Creates a new builder-pattern struct instance to construct [`PasswordEntry`] objects.
     ///
-    /// This method returns an instance of [`PasswordEntryBuilder`] which can be used to create a [`PasswordEntry`].
+    /// This method returns an instance of [`PasswordEntryBuilder`] which can be used to create [`PasswordEntry`] objects.
     pub fn builder() -> PasswordEntryBuilder {
         PasswordEntryBuilder::default()
     }
@@ -276,7 +276,9 @@ impl Default for PasswordEntry {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`PasswordEntry`].
+/// A [builder-pattern] type to construct [`PasswordEntry`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct PasswordEntryBuilder {
     activates_default: Option<bool>,
     extra_menu: Option<gio::MenuModel>,

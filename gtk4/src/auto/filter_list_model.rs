@@ -40,9 +40,9 @@ impl FilterListModel {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`FilterListModel`].
+    /// Creates a new builder-pattern struct instance to construct [`FilterListModel`] objects.
     ///
-    /// This method returns an instance of [`FilterListModelBuilder`] which can be used to create a [`FilterListModel`].
+    /// This method returns an instance of [`FilterListModelBuilder`] which can be used to create [`FilterListModel`] objects.
     pub fn builder() -> FilterListModelBuilder {
         FilterListModelBuilder::default()
     }
@@ -200,7 +200,9 @@ impl FilterListModel {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`FilterListModel`].
+/// A [builder-pattern] type to construct [`FilterListModel`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct FilterListModelBuilder {
     filter: Option<Filter>,
     incremental: Option<bool>,

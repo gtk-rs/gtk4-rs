@@ -42,9 +42,9 @@ impl ColumnViewColumn {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ColumnViewColumn`].
+    /// Creates a new builder-pattern struct instance to construct [`ColumnViewColumn`] objects.
     ///
-    /// This method returns an instance of [`ColumnViewColumnBuilder`] which can be used to create a [`ColumnViewColumn`].
+    /// This method returns an instance of [`ColumnViewColumnBuilder`] which can be used to create [`ColumnViewColumn`] objects.
     pub fn builder() -> ColumnViewColumnBuilder {
         ColumnViewColumnBuilder::default()
     }
@@ -406,7 +406,9 @@ impl ColumnViewColumn {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ColumnViewColumn`].
+/// A [builder-pattern] type to construct [`ColumnViewColumn`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ColumnViewColumnBuilder {
     expand: Option<bool>,
     factory: Option<ListItemFactory>,

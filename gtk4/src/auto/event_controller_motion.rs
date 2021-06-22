@@ -35,9 +35,9 @@ impl EventControllerMotion {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`EventControllerMotion`].
+    /// Creates a new builder-pattern struct instance to construct [`EventControllerMotion`] objects.
     ///
-    /// This method returns an instance of [`EventControllerMotionBuilder`] which can be used to create a [`EventControllerMotion`].
+    /// This method returns an instance of [`EventControllerMotionBuilder`] which can be used to create [`EventControllerMotion`] objects.
     pub fn builder() -> EventControllerMotionBuilder {
         EventControllerMotionBuilder::default()
     }
@@ -191,7 +191,9 @@ impl Default for EventControllerMotion {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`EventControllerMotion`].
+/// A [builder-pattern] type to construct [`EventControllerMotion`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct EventControllerMotionBuilder {
     name: Option<String>,
     propagation_limit: Option<PropagationLimit>,

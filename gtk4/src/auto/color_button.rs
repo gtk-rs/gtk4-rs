@@ -50,9 +50,9 @@ impl ColorButton {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ColorButton`].
+    /// Creates a new builder-pattern struct instance to construct [`ColorButton`] objects.
     ///
-    /// This method returns an instance of [`ColorButtonBuilder`] which can be used to create a [`ColorButton`].
+    /// This method returns an instance of [`ColorButtonBuilder`] which can be used to create [`ColorButton`] objects.
     pub fn builder() -> ColorButtonBuilder {
         ColorButtonBuilder::default()
     }
@@ -209,7 +209,9 @@ impl Default for ColorButton {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ColorButton`].
+/// A [builder-pattern] type to construct [`ColorButton`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ColorButtonBuilder {
     modal: Option<bool>,
     show_editor: Option<bool>,

@@ -43,9 +43,9 @@ impl InfoBar {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`InfoBar`].
+    /// Creates a new builder-pattern struct instance to construct [`InfoBar`] objects.
     ///
-    /// This method returns an instance of [`InfoBarBuilder`] which can be used to create a [`InfoBar`].
+    /// This method returns an instance of [`InfoBarBuilder`] which can be used to create [`InfoBar`] objects.
     pub fn builder() -> InfoBarBuilder {
         InfoBarBuilder::default()
     }
@@ -298,7 +298,9 @@ impl Default for InfoBar {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`InfoBar`].
+/// A [builder-pattern] type to construct [`InfoBar`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct InfoBarBuilder {
     message_type: Option<MessageType>,
     revealed: Option<bool>,

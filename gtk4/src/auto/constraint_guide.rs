@@ -32,9 +32,9 @@ impl ConstraintGuide {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ConstraintGuide`].
+    /// Creates a new builder-pattern struct instance to construct [`ConstraintGuide`] objects.
     ///
-    /// This method returns an instance of [`ConstraintGuideBuilder`] which can be used to create a [`ConstraintGuide`].
+    /// This method returns an instance of [`ConstraintGuideBuilder`] which can be used to create [`ConstraintGuide`] objects.
     pub fn builder() -> ConstraintGuideBuilder {
         ConstraintGuideBuilder::default()
     }
@@ -439,7 +439,9 @@ impl Default for ConstraintGuide {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ConstraintGuide`].
+/// A [builder-pattern] type to construct [`ConstraintGuide`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ConstraintGuideBuilder {
     max_height: Option<i32>,
     max_width: Option<i32>,

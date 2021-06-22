@@ -53,9 +53,9 @@ impl LevelBar {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`LevelBar`].
+    /// Creates a new builder-pattern struct instance to construct [`LevelBar`] objects.
     ///
-    /// This method returns an instance of [`LevelBarBuilder`] which can be used to create a [`LevelBar`].
+    /// This method returns an instance of [`LevelBarBuilder`] which can be used to create [`LevelBar`] objects.
     pub fn builder() -> LevelBarBuilder {
         LevelBarBuilder::default()
     }
@@ -320,7 +320,9 @@ impl Default for LevelBar {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`LevelBar`].
+/// A [builder-pattern] type to construct [`LevelBar`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct LevelBarBuilder {
     inverted: Option<bool>,
     max_value: Option<f64>,

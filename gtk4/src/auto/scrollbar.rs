@@ -48,9 +48,9 @@ impl Scrollbar {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Scrollbar`].
+    /// Creates a new builder-pattern struct instance to construct [`Scrollbar`] objects.
     ///
-    /// This method returns an instance of [`ScrollbarBuilder`] which can be used to create a [`Scrollbar`].
+    /// This method returns an instance of [`ScrollbarBuilder`] which can be used to create [`Scrollbar`] objects.
     pub fn builder() -> ScrollbarBuilder {
         ScrollbarBuilder::default()
     }
@@ -97,7 +97,9 @@ impl Scrollbar {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Scrollbar`].
+/// A [builder-pattern] type to construct [`Scrollbar`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ScrollbarBuilder {
     adjustment: Option<Adjustment>,
     can_focus: Option<bool>,

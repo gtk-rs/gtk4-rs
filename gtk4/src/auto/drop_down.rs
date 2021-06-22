@@ -47,9 +47,9 @@ impl DropDown {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`DropDown`].
+    /// Creates a new builder-pattern struct instance to construct [`DropDown`] objects.
     ///
-    /// This method returns an instance of [`DropDownBuilder`] which can be used to create a [`DropDown`].
+    /// This method returns an instance of [`DropDownBuilder`] which can be used to create [`DropDown`] objects.
     pub fn builder() -> DropDownBuilder {
         DropDownBuilder::default()
     }
@@ -304,7 +304,9 @@ impl DropDown {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`DropDown`].
+/// A [builder-pattern] type to construct [`DropDown`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct DropDownBuilder {
     enable_search: Option<bool>,
     expression: Option<Expression>,

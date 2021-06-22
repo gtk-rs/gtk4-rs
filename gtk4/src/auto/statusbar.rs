@@ -39,9 +39,9 @@ impl Statusbar {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Statusbar`].
+    /// Creates a new builder-pattern struct instance to construct [`Statusbar`] objects.
     ///
-    /// This method returns an instance of [`StatusbarBuilder`] which can be used to create a [`Statusbar`].
+    /// This method returns an instance of [`StatusbarBuilder`] which can be used to create [`Statusbar`] objects.
     pub fn builder() -> StatusbarBuilder {
         StatusbarBuilder::default()
     }
@@ -148,7 +148,9 @@ impl Default for Statusbar {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Statusbar`].
+/// A [builder-pattern] type to construct [`Statusbar`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct StatusbarBuilder {
     can_focus: Option<bool>,
     can_target: Option<bool>,

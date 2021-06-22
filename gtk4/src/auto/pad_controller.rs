@@ -36,9 +36,9 @@ impl PadController {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`PadController`].
+    /// Creates a new builder-pattern struct instance to construct [`PadController`] objects.
     ///
-    /// This method returns an instance of [`PadControllerBuilder`] which can be used to create a [`PadController`].
+    /// This method returns an instance of [`PadControllerBuilder`] which can be used to create [`PadController`] objects.
     pub fn builder() -> PadControllerBuilder {
         PadControllerBuilder::default()
     }
@@ -94,7 +94,9 @@ impl PadController {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`PadController`].
+/// A [builder-pattern] type to construct [`PadController`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct PadControllerBuilder {
     action_group: Option<gio::ActionGroup>,
     pad: Option<gdk::Device>,

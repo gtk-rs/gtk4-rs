@@ -29,9 +29,9 @@ impl IMMulticontext {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`IMMulticontext`].
+    /// Creates a new builder-pattern struct instance to construct [`IMMulticontext`] objects.
     ///
-    /// This method returns an instance of [`IMMulticontextBuilder`] which can be used to create a [`IMMulticontext`].
+    /// This method returns an instance of [`IMMulticontextBuilder`] which can be used to create [`IMMulticontext`] objects.
     pub fn builder() -> IMMulticontextBuilder {
         IMMulticontextBuilder::default()
     }
@@ -45,7 +45,9 @@ impl Default for IMMulticontext {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`IMMulticontext`].
+/// A [builder-pattern] type to construct [`IMMulticontext`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct IMMulticontextBuilder {
     input_hints: Option<InputHints>,
     input_purpose: Option<InputPurpose>,

@@ -36,9 +36,9 @@ impl MountOperation {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`MountOperation`].
+    /// Creates a new builder-pattern struct instance to construct [`MountOperation`] objects.
     ///
-    /// This method returns an instance of [`MountOperationBuilder`] which can be used to create a [`MountOperation`].
+    /// This method returns an instance of [`MountOperationBuilder`] which can be used to create [`MountOperation`] objects.
     pub fn builder() -> MountOperationBuilder {
         MountOperationBuilder::default()
     }
@@ -46,7 +46,9 @@ impl MountOperation {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`MountOperation`].
+/// A [builder-pattern] type to construct [`MountOperation`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct MountOperationBuilder {
     display: Option<gdk::Display>,
     parent: Option<Window>,

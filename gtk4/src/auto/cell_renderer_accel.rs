@@ -35,9 +35,9 @@ impl CellRendererAccel {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`CellRendererAccel`].
+    /// Creates a new builder-pattern struct instance to construct [`CellRendererAccel`] objects.
     ///
-    /// This method returns an instance of [`CellRendererAccelBuilder`] which can be used to create a [`CellRendererAccel`].
+    /// This method returns an instance of [`CellRendererAccelBuilder`] which can be used to create [`CellRendererAccel`] objects.
     pub fn builder() -> CellRendererAccelBuilder {
         CellRendererAccelBuilder::default()
     }
@@ -311,7 +311,9 @@ impl Default for CellRendererAccel {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`CellRendererAccel`].
+/// A [builder-pattern] type to construct [`CellRendererAccel`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct CellRendererAccelBuilder {
     accel_key: Option<u32>,
     accel_mode: Option<CellRendererAccelMode>,

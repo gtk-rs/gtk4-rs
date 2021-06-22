@@ -43,9 +43,9 @@ impl EmojiChooser {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`EmojiChooser`].
+    /// Creates a new builder-pattern struct instance to construct [`EmojiChooser`] objects.
     ///
-    /// This method returns an instance of [`EmojiChooserBuilder`] which can be used to create a [`EmojiChooser`].
+    /// This method returns an instance of [`EmojiChooserBuilder`] which can be used to create [`EmojiChooser`] objects.
     pub fn builder() -> EmojiChooserBuilder {
         EmojiChooserBuilder::default()
     }
@@ -85,7 +85,9 @@ impl Default for EmojiChooser {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`EmojiChooser`].
+/// A [builder-pattern] type to construct [`EmojiChooser`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct EmojiChooserBuilder {
     autohide: Option<bool>,
     cascade_popdown: Option<bool>,

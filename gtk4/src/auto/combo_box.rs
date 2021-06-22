@@ -76,9 +76,9 @@ impl ComboBox {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ComboBox`].
+    /// Creates a new builder-pattern struct instance to construct [`ComboBox`] objects.
     ///
-    /// This method returns an instance of [`ComboBoxBuilder`] which can be used to create a [`ComboBox`].
+    /// This method returns an instance of [`ComboBoxBuilder`] which can be used to create [`ComboBox`] objects.
     pub fn builder() -> ComboBoxBuilder {
         ComboBoxBuilder::default()
     }
@@ -92,7 +92,9 @@ impl Default for ComboBox {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ComboBox`].
+/// A [builder-pattern] type to construct [`ComboBox`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ComboBoxBuilder {
     active: Option<i32>,
     active_id: Option<String>,

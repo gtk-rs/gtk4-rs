@@ -32,9 +32,9 @@ impl TextMark {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TextMark`].
+    /// Creates a new builder-pattern struct instance to construct [`TextMark`] objects.
     ///
-    /// This method returns an instance of [`TextMarkBuilder`] which can be used to create a [`TextMark`].
+    /// This method returns an instance of [`TextMarkBuilder`] which can be used to create [`TextMark`] objects.
     pub fn builder() -> TextMarkBuilder {
         TextMarkBuilder::default()
     }
@@ -42,7 +42,9 @@ impl TextMark {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`TextMark`].
+/// A [builder-pattern] type to construct [`TextMark`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct TextMarkBuilder {
     left_gravity: Option<bool>,
     name: Option<String>,

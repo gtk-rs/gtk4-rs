@@ -34,9 +34,9 @@ impl GestureZoom {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GestureZoom`].
+    /// Creates a new builder-pattern struct instance to construct [`GestureZoom`] objects.
     ///
-    /// This method returns an instance of [`GestureZoomBuilder`] which can be used to create a [`GestureZoom`].
+    /// This method returns an instance of [`GestureZoomBuilder`] which can be used to create [`GestureZoom`] objects.
     pub fn builder() -> GestureZoomBuilder {
         GestureZoomBuilder::default()
     }
@@ -79,7 +79,9 @@ impl Default for GestureZoom {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`GestureZoom`].
+/// A [builder-pattern] type to construct [`GestureZoom`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct GestureZoomBuilder {
     n_points: Option<u32>,
     name: Option<String>,

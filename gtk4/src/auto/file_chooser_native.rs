@@ -50,9 +50,9 @@ impl FileChooserNative {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`FileChooserNative`].
+    /// Creates a new builder-pattern struct instance to construct [`FileChooserNative`] objects.
     ///
-    /// This method returns an instance of [`FileChooserNativeBuilder`] which can be used to create a [`FileChooserNative`].
+    /// This method returns an instance of [`FileChooserNativeBuilder`] which can be used to create [`FileChooserNative`] objects.
     pub fn builder() -> FileChooserNativeBuilder {
         FileChooserNativeBuilder::default()
     }
@@ -146,7 +146,9 @@ impl FileChooserNative {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`FileChooserNative`].
+/// A [builder-pattern] type to construct [`FileChooserNative`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct FileChooserNativeBuilder {
     accept_label: Option<String>,
     cancel_label: Option<String>,

@@ -42,9 +42,9 @@ impl EditableLabel {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`EditableLabel`].
+    /// Creates a new builder-pattern struct instance to construct [`EditableLabel`] objects.
     ///
-    /// This method returns an instance of [`EditableLabelBuilder`] which can be used to create a [`EditableLabel`].
+    /// This method returns an instance of [`EditableLabelBuilder`] which can be used to create [`EditableLabel`] objects.
     pub fn builder() -> EditableLabelBuilder {
         EditableLabelBuilder::default()
     }
@@ -95,7 +95,9 @@ impl EditableLabel {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`EditableLabel`].
+/// A [builder-pattern] type to construct [`EditableLabel`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct EditableLabelBuilder {
     can_focus: Option<bool>,
     can_target: Option<bool>,

@@ -68,9 +68,9 @@ impl TextView {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TextView`].
+    /// Creates a new builder-pattern struct instance to construct [`TextView`] objects.
     ///
-    /// This method returns an instance of [`TextViewBuilder`] which can be used to create a [`TextView`].
+    /// This method returns an instance of [`TextViewBuilder`] which can be used to create [`TextView`] objects.
     pub fn builder() -> TextViewBuilder {
         TextViewBuilder::default()
     }
@@ -84,7 +84,9 @@ impl Default for TextView {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`TextView`].
+/// A [builder-pattern] type to construct [`TextView`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct TextViewBuilder {
     accepts_tab: Option<bool>,
     bottom_margin: Option<i32>,

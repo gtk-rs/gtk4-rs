@@ -46,9 +46,9 @@ impl Adjustment {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Adjustment`].
+    /// Creates a new builder-pattern struct instance to construct [`Adjustment`] objects.
     ///
-    /// This method returns an instance of [`AdjustmentBuilder`] which can be used to create a [`Adjustment`].
+    /// This method returns an instance of [`AdjustmentBuilder`] which can be used to create [`Adjustment`] objects.
     pub fn builder() -> AdjustmentBuilder {
         AdjustmentBuilder::default()
     }
@@ -56,7 +56,9 @@ impl Adjustment {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Adjustment`].
+/// A [builder-pattern] type to construct [`Adjustment`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct AdjustmentBuilder {
     lower: Option<f64>,
     page_increment: Option<f64>,

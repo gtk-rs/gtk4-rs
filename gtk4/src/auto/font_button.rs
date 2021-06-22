@@ -53,9 +53,9 @@ impl FontButton {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`FontButton`].
+    /// Creates a new builder-pattern struct instance to construct [`FontButton`] objects.
     ///
-    /// This method returns an instance of [`FontButtonBuilder`] which can be used to create a [`FontButton`].
+    /// This method returns an instance of [`FontButtonBuilder`] which can be used to create [`FontButton`] objects.
     pub fn builder() -> FontButtonBuilder {
         FontButtonBuilder::default()
     }
@@ -235,7 +235,9 @@ impl Default for FontButton {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`FontButton`].
+/// A [builder-pattern] type to construct [`FontButton`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct FontButtonBuilder {
     modal: Option<bool>,
     title: Option<String>,

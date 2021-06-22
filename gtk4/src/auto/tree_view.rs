@@ -67,9 +67,9 @@ impl TreeView {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TreeView`].
+    /// Creates a new builder-pattern struct instance to construct [`TreeView`] objects.
     ///
-    /// This method returns an instance of [`TreeViewBuilder`] which can be used to create a [`TreeView`].
+    /// This method returns an instance of [`TreeViewBuilder`] which can be used to create [`TreeView`] objects.
     pub fn builder() -> TreeViewBuilder {
         TreeViewBuilder::default()
     }
@@ -83,7 +83,9 @@ impl Default for TreeView {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`TreeView`].
+/// A [builder-pattern] type to construct [`TreeView`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct TreeViewBuilder {
     activate_on_single_click: Option<bool>,
     enable_grid_lines: Option<TreeViewGridLines>,

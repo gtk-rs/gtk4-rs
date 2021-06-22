@@ -111,9 +111,9 @@ impl Image {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Image`].
+    /// Creates a new builder-pattern struct instance to construct [`Image`] objects.
     ///
-    /// This method returns an instance of [`ImageBuilder`] which can be used to create a [`Image`].
+    /// This method returns an instance of [`ImageBuilder`] which can be used to create [`Image`] objects.
     pub fn builder() -> ImageBuilder {
         ImageBuilder::default()
     }
@@ -541,7 +541,9 @@ impl Default for Image {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Image`].
+/// A [builder-pattern] type to construct [`Image`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ImageBuilder {
     file: Option<String>,
     gicon: Option<gio::Icon>,

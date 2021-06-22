@@ -39,9 +39,9 @@ impl WindowHandle {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`WindowHandle`].
+    /// Creates a new builder-pattern struct instance to construct [`WindowHandle`] objects.
     ///
-    /// This method returns an instance of [`WindowHandleBuilder`] which can be used to create a [`WindowHandle`].
+    /// This method returns an instance of [`WindowHandleBuilder`] which can be used to create [`WindowHandle`] objects.
     pub fn builder() -> WindowHandleBuilder {
         WindowHandleBuilder::default()
     }
@@ -94,7 +94,9 @@ impl Default for WindowHandle {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`WindowHandle`].
+/// A [builder-pattern] type to construct [`WindowHandle`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct WindowHandleBuilder {
     child: Option<Widget>,
     can_focus: Option<bool>,

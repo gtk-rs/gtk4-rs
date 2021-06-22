@@ -45,9 +45,9 @@ impl AppChooserWidget {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`AppChooserWidget`].
+    /// Creates a new builder-pattern struct instance to construct [`AppChooserWidget`] objects.
     ///
-    /// This method returns an instance of [`AppChooserWidgetBuilder`] which can be used to create a [`AppChooserWidget`].
+    /// This method returns an instance of [`AppChooserWidgetBuilder`] which can be used to create [`AppChooserWidget`] objects.
     pub fn builder() -> AppChooserWidgetBuilder {
         AppChooserWidgetBuilder::default()
     }
@@ -365,7 +365,9 @@ impl AppChooserWidget {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`AppChooserWidget`].
+/// A [builder-pattern] type to construct [`AppChooserWidget`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct AppChooserWidgetBuilder {
     default_text: Option<String>,
     show_all: Option<bool>,

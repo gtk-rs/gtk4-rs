@@ -37,9 +37,9 @@ impl CellAreaBox {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`CellAreaBox`].
+    /// Creates a new builder-pattern struct instance to construct [`CellAreaBox`] objects.
     ///
-    /// This method returns an instance of [`CellAreaBoxBuilder`] which can be used to create a [`CellAreaBox`].
+    /// This method returns an instance of [`CellAreaBoxBuilder`] which can be used to create [`CellAreaBox`] objects.
     pub fn builder() -> CellAreaBoxBuilder {
         CellAreaBoxBuilder::default()
     }
@@ -127,7 +127,9 @@ impl Default for CellAreaBox {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`CellAreaBox`].
+/// A [builder-pattern] type to construct [`CellAreaBox`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct CellAreaBoxBuilder {
     spacing: Option<i32>,
     focus_cell: Option<CellRenderer>,

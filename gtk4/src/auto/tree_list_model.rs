@@ -70,9 +70,9 @@ impl TreeListModel {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`TreeListModel`].
+    /// Creates a new builder-pattern struct instance to construct [`TreeListModel`] objects.
     ///
-    /// This method returns an instance of [`TreeListModelBuilder`] which can be used to create a [`TreeListModel`].
+    /// This method returns an instance of [`TreeListModelBuilder`] which can be used to create [`TreeListModel`] objects.
     pub fn builder() -> TreeListModelBuilder {
         TreeListModelBuilder::default()
     }
@@ -181,7 +181,9 @@ impl TreeListModel {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`TreeListModel`].
+/// A [builder-pattern] type to construct [`TreeListModel`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct TreeListModelBuilder {
     autoexpand: Option<bool>,
     passthrough: Option<bool>,

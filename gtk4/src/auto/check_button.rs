@@ -64,9 +64,9 @@ impl CheckButton {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`CheckButton`].
+    /// Creates a new builder-pattern struct instance to construct [`CheckButton`] objects.
     ///
-    /// This method returns an instance of [`CheckButtonBuilder`] which can be used to create a [`CheckButton`].
+    /// This method returns an instance of [`CheckButtonBuilder`] which can be used to create [`CheckButton`] objects.
     pub fn builder() -> CheckButtonBuilder {
         CheckButtonBuilder::default()
     }
@@ -80,7 +80,9 @@ impl Default for CheckButton {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`CheckButton`].
+/// A [builder-pattern] type to construct [`CheckButton`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct CheckButtonBuilder {
     active: Option<bool>,
     group: Option<CheckButton>,

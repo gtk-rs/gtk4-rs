@@ -39,9 +39,9 @@ impl ActionBar {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ActionBar`].
+    /// Creates a new builder-pattern struct instance to construct [`ActionBar`] objects.
     ///
-    /// This method returns an instance of [`ActionBarBuilder`] which can be used to create a [`ActionBar`].
+    /// This method returns an instance of [`ActionBarBuilder`] which can be used to create [`ActionBar`] objects.
     pub fn builder() -> ActionBarBuilder {
         ActionBarBuilder::default()
     }
@@ -128,7 +128,9 @@ impl Default for ActionBar {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ActionBar`].
+/// A [builder-pattern] type to construct [`ActionBar`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ActionBarBuilder {
     revealed: Option<bool>,
     can_focus: Option<bool>,

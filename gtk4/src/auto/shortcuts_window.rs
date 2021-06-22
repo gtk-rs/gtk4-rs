@@ -39,9 +39,9 @@ glib::wrapper! {
 
 impl ShortcutsWindow {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ShortcutsWindow`].
+    /// Creates a new builder-pattern struct instance to construct [`ShortcutsWindow`] objects.
     ///
-    /// This method returns an instance of [`ShortcutsWindowBuilder`] which can be used to create a [`ShortcutsWindow`].
+    /// This method returns an instance of [`ShortcutsWindowBuilder`] which can be used to create [`ShortcutsWindow`] objects.
     pub fn builder() -> ShortcutsWindowBuilder {
         ShortcutsWindowBuilder::default()
     }
@@ -207,7 +207,9 @@ impl ShortcutsWindow {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ShortcutsWindow`].
+/// A [builder-pattern] type to construct [`ShortcutsWindow`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ShortcutsWindowBuilder {
     section_name: Option<String>,
     view_name: Option<String>,

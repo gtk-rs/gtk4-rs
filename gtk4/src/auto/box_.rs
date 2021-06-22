@@ -43,9 +43,9 @@ impl Box {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Box`].
+    /// Creates a new builder-pattern struct instance to construct [`Box`] objects.
     ///
-    /// This method returns an instance of [`BoxBuilder`] which can be used to create a [`Box`].
+    /// This method returns an instance of [`BoxBuilder`] which can be used to create [`Box`] objects.
     pub fn builder() -> BoxBuilder {
         BoxBuilder::default()
     }
@@ -53,7 +53,9 @@ impl Box {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Box`].
+/// A [builder-pattern] type to construct [`Box`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct BoxBuilder {
     baseline_position: Option<BaselinePosition>,
     homogeneous: Option<bool>,

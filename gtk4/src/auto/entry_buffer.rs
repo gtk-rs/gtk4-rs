@@ -24,9 +24,9 @@ glib::wrapper! {
 
 impl EntryBuffer {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`EntryBuffer`].
+    /// Creates a new builder-pattern struct instance to construct [`EntryBuffer`] objects.
     ///
-    /// This method returns an instance of [`EntryBufferBuilder`] which can be used to create a [`EntryBuffer`].
+    /// This method returns an instance of [`EntryBufferBuilder`] which can be used to create [`EntryBuffer`] objects.
     pub fn builder() -> EntryBufferBuilder {
         EntryBufferBuilder::default()
     }
@@ -34,7 +34,9 @@ impl EntryBuffer {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`EntryBuffer`].
+/// A [builder-pattern] type to construct [`EntryBuffer`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct EntryBufferBuilder {
     max_length: Option<i32>,
     text: Option<String>,

@@ -47,9 +47,9 @@ impl Shortcut {
     //}
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Shortcut`].
+    /// Creates a new builder-pattern struct instance to construct [`Shortcut`] objects.
     ///
-    /// This method returns an instance of [`ShortcutBuilder`] which can be used to create a [`Shortcut`].
+    /// This method returns an instance of [`ShortcutBuilder`] which can be used to create [`Shortcut`] objects.
     pub fn builder() -> ShortcutBuilder {
         ShortcutBuilder::default()
     }
@@ -171,7 +171,9 @@ impl Shortcut {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Shortcut`].
+/// A [builder-pattern] type to construct [`Shortcut`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ShortcutBuilder {
     action: Option<ShortcutAction>,
     arguments: Option<glib::Variant>,

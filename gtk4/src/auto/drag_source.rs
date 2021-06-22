@@ -36,9 +36,9 @@ impl DragSource {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`DragSource`].
+    /// Creates a new builder-pattern struct instance to construct [`DragSource`] objects.
     ///
-    /// This method returns an instance of [`DragSourceBuilder`] which can be used to create a [`DragSource`].
+    /// This method returns an instance of [`DragSourceBuilder`] which can be used to create [`DragSource`] objects.
     pub fn builder() -> DragSourceBuilder {
         DragSourceBuilder::default()
     }
@@ -271,7 +271,9 @@ impl Default for DragSource {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`DragSource`].
+/// A [builder-pattern] type to construct [`DragSource`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct DragSourceBuilder {
     actions: Option<gdk::DragAction>,
     content: Option<gdk::ContentProvider>,

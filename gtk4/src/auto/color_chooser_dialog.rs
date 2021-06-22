@@ -52,9 +52,9 @@ impl ColorChooserDialog {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ColorChooserDialog`].
+    /// Creates a new builder-pattern struct instance to construct [`ColorChooserDialog`] objects.
     ///
-    /// This method returns an instance of [`ColorChooserDialogBuilder`] which can be used to create a [`ColorChooserDialog`].
+    /// This method returns an instance of [`ColorChooserDialogBuilder`] which can be used to create [`ColorChooserDialog`] objects.
     pub fn builder() -> ColorChooserDialogBuilder {
         ColorChooserDialogBuilder::default()
     }
@@ -111,7 +111,9 @@ impl ColorChooserDialog {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ColorChooserDialog`].
+/// A [builder-pattern] type to construct [`ColorChooserDialog`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ColorChooserDialogBuilder {
     show_editor: Option<bool>,
     use_header_bar: Option<i32>,

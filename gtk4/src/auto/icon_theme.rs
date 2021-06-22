@@ -34,9 +34,9 @@ impl IconTheme {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`IconTheme`].
+    /// Creates a new builder-pattern struct instance to construct [`IconTheme`] objects.
     ///
-    /// This method returns an instance of [`IconThemeBuilder`] which can be used to create a [`IconTheme`].
+    /// This method returns an instance of [`IconThemeBuilder`] which can be used to create [`IconTheme`] objects.
     pub fn builder() -> IconThemeBuilder {
         IconThemeBuilder::default()
     }
@@ -335,7 +335,9 @@ impl Default for IconTheme {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`IconTheme`].
+/// A [builder-pattern] type to construct [`IconTheme`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct IconThemeBuilder {
     display: Option<gdk::Display>,
     resource_path: Option<Vec<String>>,

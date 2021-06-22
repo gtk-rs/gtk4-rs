@@ -37,9 +37,9 @@ glib::wrapper! {
 
 impl ShortcutsSection {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ShortcutsSection`].
+    /// Creates a new builder-pattern struct instance to construct [`ShortcutsSection`] objects.
     ///
-    /// This method returns an instance of [`ShortcutsSectionBuilder`] which can be used to create a [`ShortcutsSection`].
+    /// This method returns an instance of [`ShortcutsSectionBuilder`] which can be used to create [`ShortcutsSection`] objects.
     pub fn builder() -> ShortcutsSectionBuilder {
         ShortcutsSectionBuilder::default()
     }
@@ -241,7 +241,9 @@ impl ShortcutsSection {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ShortcutsSection`].
+/// A [builder-pattern] type to construct [`ShortcutsSection`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ShortcutsSectionBuilder {
     max_height: Option<u32>,
     section_name: Option<String>,

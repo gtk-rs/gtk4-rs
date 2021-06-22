@@ -42,9 +42,9 @@ impl CenterBox {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`CenterBox`].
+    /// Creates a new builder-pattern struct instance to construct [`CenterBox`] objects.
     ///
-    /// This method returns an instance of [`CenterBoxBuilder`] which can be used to create a [`CenterBox`].
+    /// This method returns an instance of [`CenterBoxBuilder`] which can be used to create [`CenterBox`] objects.
     pub fn builder() -> CenterBoxBuilder {
         CenterBoxBuilder::default()
     }
@@ -149,7 +149,9 @@ impl Default for CenterBox {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`CenterBox`].
+/// A [builder-pattern] type to construct [`CenterBox`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct CenterBoxBuilder {
     baseline_position: Option<BaselinePosition>,
     can_focus: Option<bool>,

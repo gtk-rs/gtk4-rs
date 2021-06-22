@@ -33,9 +33,9 @@ impl CellRendererToggle {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`CellRendererToggle`].
+    /// Creates a new builder-pattern struct instance to construct [`CellRendererToggle`] objects.
     ///
-    /// This method returns an instance of [`CellRendererToggleBuilder`] which can be used to create a [`CellRendererToggle`].
+    /// This method returns an instance of [`CellRendererToggleBuilder`] which can be used to create [`CellRendererToggle`] objects.
     pub fn builder() -> CellRendererToggleBuilder {
         CellRendererToggleBuilder::default()
     }
@@ -245,7 +245,9 @@ impl Default for CellRendererToggle {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`CellRendererToggle`].
+/// A [builder-pattern] type to construct [`CellRendererToggle`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct CellRendererToggleBuilder {
     activatable: Option<bool>,
     active: Option<bool>,

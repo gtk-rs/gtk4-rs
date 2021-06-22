@@ -38,9 +38,9 @@ impl EventControllerKey {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`EventControllerKey`].
+    /// Creates a new builder-pattern struct instance to construct [`EventControllerKey`] objects.
     ///
-    /// This method returns an instance of [`EventControllerKeyBuilder`] which can be used to create a [`EventControllerKey`].
+    /// This method returns an instance of [`EventControllerKeyBuilder`] which can be used to create [`EventControllerKey`] objects.
     pub fn builder() -> EventControllerKeyBuilder {
         EventControllerKeyBuilder::default()
     }
@@ -140,7 +140,9 @@ impl Default for EventControllerKey {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`EventControllerKey`].
+/// A [builder-pattern] type to construct [`EventControllerKey`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct EventControllerKeyBuilder {
     name: Option<String>,
     propagation_limit: Option<PropagationLimit>,

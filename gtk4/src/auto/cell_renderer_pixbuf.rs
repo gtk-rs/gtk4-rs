@@ -34,9 +34,9 @@ impl CellRendererPixbuf {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`CellRendererPixbuf`].
+    /// Creates a new builder-pattern struct instance to construct [`CellRendererPixbuf`] objects.
     ///
-    /// This method returns an instance of [`CellRendererPixbufBuilder`] which can be used to create a [`CellRendererPixbuf`].
+    /// This method returns an instance of [`CellRendererPixbufBuilder`] which can be used to create [`CellRendererPixbuf`] objects.
     pub fn builder() -> CellRendererPixbufBuilder {
         CellRendererPixbufBuilder::default()
     }
@@ -385,7 +385,9 @@ impl Default for CellRendererPixbuf {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`CellRendererPixbuf`].
+/// A [builder-pattern] type to construct [`CellRendererPixbuf`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct CellRendererPixbufBuilder {
     gicon: Option<gio::Icon>,
     icon_name: Option<String>,

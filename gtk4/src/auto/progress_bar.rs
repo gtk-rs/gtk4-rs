@@ -41,9 +41,9 @@ impl ProgressBar {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ProgressBar`].
+    /// Creates a new builder-pattern struct instance to construct [`ProgressBar`] objects.
     ///
-    /// This method returns an instance of [`ProgressBarBuilder`] which can be used to create a [`ProgressBar`].
+    /// This method returns an instance of [`ProgressBarBuilder`] which can be used to create [`ProgressBar`] objects.
     pub fn builder() -> ProgressBarBuilder {
         ProgressBarBuilder::default()
     }
@@ -280,7 +280,9 @@ impl Default for ProgressBar {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ProgressBar`].
+/// A [builder-pattern] type to construct [`ProgressBar`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ProgressBarBuilder {
     ellipsize: Option<pango::EllipsizeMode>,
     fraction: Option<f64>,

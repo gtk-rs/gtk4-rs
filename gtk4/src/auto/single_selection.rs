@@ -36,9 +36,9 @@ impl SingleSelection {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`SingleSelection`].
+    /// Creates a new builder-pattern struct instance to construct [`SingleSelection`] objects.
     ///
-    /// This method returns an instance of [`SingleSelectionBuilder`] which can be used to create a [`SingleSelection`].
+    /// This method returns an instance of [`SingleSelectionBuilder`] which can be used to create [`SingleSelection`] objects.
     pub fn builder() -> SingleSelectionBuilder {
         SingleSelectionBuilder::default()
     }
@@ -237,7 +237,9 @@ impl SingleSelection {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`SingleSelection`].
+/// A [builder-pattern] type to construct [`SingleSelection`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct SingleSelectionBuilder {
     autoselect: Option<bool>,
     can_unselect: Option<bool>,

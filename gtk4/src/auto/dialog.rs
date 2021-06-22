@@ -47,9 +47,9 @@ impl Dialog {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Dialog`].
+    /// Creates a new builder-pattern struct instance to construct [`Dialog`] objects.
     ///
-    /// This method returns an instance of [`DialogBuilder`] which can be used to create a [`Dialog`].
+    /// This method returns an instance of [`DialogBuilder`] which can be used to create [`Dialog`] objects.
     pub fn builder() -> DialogBuilder {
         DialogBuilder::default()
     }
@@ -63,7 +63,9 @@ impl Default for Dialog {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Dialog`].
+/// A [builder-pattern] type to construct [`Dialog`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct DialogBuilder {
     use_header_bar: Option<i32>,
     application: Option<Application>,

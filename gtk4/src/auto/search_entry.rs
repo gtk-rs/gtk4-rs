@@ -41,9 +41,9 @@ impl SearchEntry {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`SearchEntry`].
+    /// Creates a new builder-pattern struct instance to construct [`SearchEntry`] objects.
     ///
-    /// This method returns an instance of [`SearchEntryBuilder`] which can be used to create a [`SearchEntry`].
+    /// This method returns an instance of [`SearchEntryBuilder`] which can be used to create [`SearchEntry`] objects.
     pub fn builder() -> SearchEntryBuilder {
         SearchEntryBuilder::default()
     }
@@ -342,7 +342,9 @@ impl Default for SearchEntry {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`SearchEntry`].
+/// A [builder-pattern] type to construct [`SearchEntry`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct SearchEntryBuilder {
     activates_default: Option<bool>,
     placeholder_text: Option<String>,

@@ -59,9 +59,9 @@ impl Entry {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Entry`].
+    /// Creates a new builder-pattern struct instance to construct [`Entry`] objects.
     ///
-    /// This method returns an instance of [`EntryBuilder`] which can be used to create a [`Entry`].
+    /// This method returns an instance of [`EntryBuilder`] which can be used to create [`Entry`] objects.
     pub fn builder() -> EntryBuilder {
         EntryBuilder::default()
     }
@@ -75,7 +75,9 @@ impl Default for Entry {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Entry`].
+/// A [builder-pattern] type to construct [`Entry`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct EntryBuilder {
     activates_default: Option<bool>,
     attributes: Option<pango::AttrList>,

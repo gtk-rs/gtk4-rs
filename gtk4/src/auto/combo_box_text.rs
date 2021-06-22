@@ -46,9 +46,9 @@ impl ComboBoxText {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ComboBoxText`].
+    /// Creates a new builder-pattern struct instance to construct [`ComboBoxText`] objects.
     ///
-    /// This method returns an instance of [`ComboBoxTextBuilder`] which can be used to create a [`ComboBoxText`].
+    /// This method returns an instance of [`ComboBoxTextBuilder`] which can be used to create [`ComboBoxText`] objects.
     pub fn builder() -> ComboBoxTextBuilder {
         ComboBoxTextBuilder::default()
     }
@@ -145,7 +145,9 @@ impl Default for ComboBoxText {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ComboBoxText`].
+/// A [builder-pattern] type to construct [`ComboBoxText`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ComboBoxTextBuilder {
     active: Option<i32>,
     active_id: Option<String>,

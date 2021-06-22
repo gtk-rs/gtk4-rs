@@ -70,9 +70,9 @@ impl SpinButton {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`SpinButton`].
+    /// Creates a new builder-pattern struct instance to construct [`SpinButton`] objects.
     ///
-    /// This method returns an instance of [`SpinButtonBuilder`] which can be used to create a [`SpinButton`].
+    /// This method returns an instance of [`SpinButtonBuilder`] which can be used to create [`SpinButton`] objects.
     pub fn builder() -> SpinButtonBuilder {
         SpinButtonBuilder::default()
     }
@@ -577,7 +577,9 @@ impl SpinButton {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`SpinButton`].
+/// A [builder-pattern] type to construct [`SpinButton`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct SpinButtonBuilder {
     adjustment: Option<Adjustment>,
     climb_rate: Option<f64>,

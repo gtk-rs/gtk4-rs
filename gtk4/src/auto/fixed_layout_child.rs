@@ -28,9 +28,9 @@ glib::wrapper! {
 
 impl FixedLayoutChild {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`FixedLayoutChild`].
+    /// Creates a new builder-pattern struct instance to construct [`FixedLayoutChild`] objects.
     ///
-    /// This method returns an instance of [`FixedLayoutChildBuilder`] which can be used to create a [`FixedLayoutChild`].
+    /// This method returns an instance of [`FixedLayoutChildBuilder`] which can be used to create [`FixedLayoutChild`] objects.
     pub fn builder() -> FixedLayoutChildBuilder {
         FixedLayoutChildBuilder::default()
     }
@@ -81,7 +81,9 @@ impl FixedLayoutChild {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`FixedLayoutChild`].
+/// A [builder-pattern] type to construct [`FixedLayoutChild`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct FixedLayoutChildBuilder {
     transform: Option<gsk::Transform>,
     child_widget: Option<Widget>,

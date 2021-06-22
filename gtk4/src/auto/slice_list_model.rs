@@ -41,9 +41,9 @@ impl SliceListModel {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`SliceListModel`].
+    /// Creates a new builder-pattern struct instance to construct [`SliceListModel`] objects.
     ///
-    /// This method returns an instance of [`SliceListModelBuilder`] which can be used to create a [`SliceListModel`].
+    /// This method returns an instance of [`SliceListModelBuilder`] which can be used to create [`SliceListModel`] objects.
     pub fn builder() -> SliceListModelBuilder {
         SliceListModelBuilder::default()
     }
@@ -162,7 +162,9 @@ impl SliceListModel {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`SliceListModel`].
+/// A [builder-pattern] type to construct [`SliceListModel`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct SliceListModelBuilder {
     model: Option<gio::ListModel>,
     offset: Option<u32>,

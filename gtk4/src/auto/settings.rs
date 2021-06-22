@@ -26,9 +26,9 @@ glib::wrapper! {
 
 impl Settings {
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Settings`].
+    /// Creates a new builder-pattern struct instance to construct [`Settings`] objects.
     ///
-    /// This method returns an instance of [`SettingsBuilder`] which can be used to create a [`Settings`].
+    /// This method returns an instance of [`SettingsBuilder`] which can be used to create [`Settings`] objects.
     pub fn builder() -> SettingsBuilder {
         SettingsBuilder::default()
     }
@@ -2635,7 +2635,9 @@ impl Settings {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Settings`].
+/// A [builder-pattern] type to construct [`Settings`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct SettingsBuilder {
     gtk_alternative_button_order: Option<bool>,
     gtk_alternative_sort_arrows: Option<bool>,

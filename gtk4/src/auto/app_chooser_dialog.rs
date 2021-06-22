@@ -76,9 +76,9 @@ impl AppChooserDialog {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`AppChooserDialog`].
+    /// Creates a new builder-pattern struct instance to construct [`AppChooserDialog`] objects.
     ///
-    /// This method returns an instance of [`AppChooserDialogBuilder`] which can be used to create a [`AppChooserDialog`].
+    /// This method returns an instance of [`AppChooserDialogBuilder`] which can be used to create [`AppChooserDialog`] objects.
     pub fn builder() -> AppChooserDialogBuilder {
         AppChooserDialogBuilder::default()
     }
@@ -153,7 +153,9 @@ impl AppChooserDialog {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`AppChooserDialog`].
+/// A [builder-pattern] type to construct [`AppChooserDialog`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct AppChooserDialogBuilder {
     gfile: Option<gio::File>,
     heading: Option<String>,

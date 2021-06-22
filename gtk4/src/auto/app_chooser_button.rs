@@ -45,9 +45,9 @@ impl AppChooserButton {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`AppChooserButton`].
+    /// Creates a new builder-pattern struct instance to construct [`AppChooserButton`] objects.
     ///
-    /// This method returns an instance of [`AppChooserButtonBuilder`] which can be used to create a [`AppChooserButton`].
+    /// This method returns an instance of [`AppChooserButtonBuilder`] which can be used to create [`AppChooserButton`] objects.
     pub fn builder() -> AppChooserButtonBuilder {
         AppChooserButtonBuilder::default()
     }
@@ -315,7 +315,9 @@ impl AppChooserButton {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`AppChooserButton`].
+/// A [builder-pattern] type to construct [`AppChooserButton`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct AppChooserButtonBuilder {
     heading: Option<String>,
     modal: Option<bool>,

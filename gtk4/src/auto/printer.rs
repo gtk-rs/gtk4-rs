@@ -33,9 +33,9 @@ impl Printer {
     //}
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`Printer`].
+    /// Creates a new builder-pattern struct instance to construct [`Printer`] objects.
     ///
-    /// This method returns an instance of [`PrinterBuilder`] which can be used to create a [`Printer`].
+    /// This method returns an instance of [`PrinterBuilder`] which can be used to create [`Printer`] objects.
     pub fn builder() -> PrinterBuilder {
         PrinterBuilder::default()
     }
@@ -388,7 +388,9 @@ impl fmt::Display for Printer {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`Printer`].
+/// A [builder-pattern] type to construct [`Printer`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct PrinterBuilder {
     accepts_pdf: Option<bool>,
     accepts_ps: Option<bool>,

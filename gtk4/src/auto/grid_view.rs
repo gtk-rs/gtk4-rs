@@ -56,9 +56,9 @@ impl GridView {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`GridView`].
+    /// Creates a new builder-pattern struct instance to construct [`GridView`] objects.
     ///
-    /// This method returns an instance of [`GridViewBuilder`] which can be used to create a [`GridView`].
+    /// This method returns an instance of [`GridViewBuilder`] which can be used to create [`GridView`] objects.
     pub fn builder() -> GridViewBuilder {
         GridViewBuilder::default()
     }
@@ -331,7 +331,9 @@ impl GridView {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`GridView`].
+/// A [builder-pattern] type to construct [`GridView`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct GridViewBuilder {
     enable_rubberband: Option<bool>,
     factory: Option<ListItemFactory>,

@@ -28,9 +28,9 @@ impl IMContextSimple {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`IMContextSimple`].
+    /// Creates a new builder-pattern struct instance to construct [`IMContextSimple`] objects.
     ///
-    /// This method returns an instance of [`IMContextSimpleBuilder`] which can be used to create a [`IMContextSimple`].
+    /// This method returns an instance of [`IMContextSimpleBuilder`] which can be used to create [`IMContextSimple`] objects.
     pub fn builder() -> IMContextSimpleBuilder {
         IMContextSimpleBuilder::default()
     }
@@ -44,7 +44,9 @@ impl Default for IMContextSimple {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`IMContextSimple`].
+/// A [builder-pattern] type to construct [`IMContextSimple`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct IMContextSimpleBuilder {
     input_hints: Option<InputHints>,
     input_purpose: Option<InputPurpose>,

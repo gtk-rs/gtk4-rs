@@ -80,9 +80,9 @@ impl IconView {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`IconView`].
+    /// Creates a new builder-pattern struct instance to construct [`IconView`] objects.
     ///
-    /// This method returns an instance of [`IconViewBuilder`] which can be used to create a [`IconView`].
+    /// This method returns an instance of [`IconViewBuilder`] which can be used to create [`IconView`] objects.
     pub fn builder() -> IconViewBuilder {
         IconViewBuilder::default()
     }
@@ -1361,7 +1361,9 @@ impl Default for IconView {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`IconView`].
+/// A [builder-pattern] type to construct [`IconView`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct IconViewBuilder {
     activate_on_single_click: Option<bool>,
     cell_area: Option<CellArea>,

@@ -46,9 +46,9 @@ impl LockButton {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`LockButton`].
+    /// Creates a new builder-pattern struct instance to construct [`LockButton`] objects.
     ///
-    /// This method returns an instance of [`LockButtonBuilder`] which can be used to create a [`LockButton`].
+    /// This method returns an instance of [`LockButtonBuilder`] which can be used to create [`LockButton`] objects.
     pub fn builder() -> LockButtonBuilder {
         LockButtonBuilder::default()
     }
@@ -345,7 +345,9 @@ impl LockButton {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`LockButton`].
+/// A [builder-pattern] type to construct [`LockButton`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct LockButtonBuilder {
     permission: Option<gio::Permission>,
     text_lock: Option<String>,

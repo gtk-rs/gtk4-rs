@@ -51,9 +51,9 @@ impl ColumnView {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`ColumnView`].
+    /// Creates a new builder-pattern struct instance to construct [`ColumnView`] objects.
     ///
-    /// This method returns an instance of [`ColumnViewBuilder`] which can be used to create a [`ColumnView`].
+    /// This method returns an instance of [`ColumnViewBuilder`] which can be used to create [`ColumnView`] objects.
     pub fn builder() -> ColumnViewBuilder {
         ColumnViewBuilder::default()
     }
@@ -441,7 +441,9 @@ impl ColumnView {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`ColumnView`].
+/// A [builder-pattern] type to construct [`ColumnView`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct ColumnViewBuilder {
     enable_rubberband: Option<bool>,
     model: Option<SelectionModel>,

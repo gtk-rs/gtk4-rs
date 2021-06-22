@@ -41,9 +41,9 @@ impl FontChooserWidget {
     }
 
     // rustdoc-stripper-ignore-next
-    /// Creates a new builder-style object to construct a [`FontChooserWidget`].
+    /// Creates a new builder-pattern struct instance to construct [`FontChooserWidget`] objects.
     ///
-    /// This method returns an instance of [`FontChooserWidgetBuilder`] which can be used to create a [`FontChooserWidget`].
+    /// This method returns an instance of [`FontChooserWidgetBuilder`] which can be used to create [`FontChooserWidget`] objects.
     pub fn builder() -> FontChooserWidgetBuilder {
         FontChooserWidgetBuilder::default()
     }
@@ -95,7 +95,9 @@ impl Default for FontChooserWidget {
 
 #[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
-/// A builder for generating a [`FontChooserWidget`].
+/// A [builder-pattern] type to construct [`FontChooserWidget`] objects.
+///
+/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 pub struct FontChooserWidgetBuilder {
     can_focus: Option<bool>,
     can_target: Option<bool>,
