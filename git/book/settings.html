@@ -394,9 +394,9 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 But we can make this even better.
 The <code>Switch</code> has a property &quot;state&quot; and <code>Settings</code> allows us to bind properties to a specific setting.
 So let us do exactly that.</p>
-<p>We can remove the <a href="http://gtk-rs.org/docs/gio/trait.SettingsExt.html#tymethod.boolean"><code>boolean</code></a> call before initializing the <code>Switch</code> as well as the <code>connect_state_set</code> call.
+<p>We can remove the <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/trait.SettingsExt.html#tymethod.boolean"><code>boolean</code></a> call before initializing the <code>Switch</code> as well as the <code>connect_state_set</code> call.
 We then bind the setting to the property by specifying the key, object and name of the property.
-Additionally, we specify <a href="https://gtk-rs.org/docs/gio/struct.SettingsBindFlags.html"><code>SettingsBindFlags</code></a> to control the direction in which the binding works.</p>
+Additionally, we specify <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SettingsBindFlags.html"><code>SettingsBindFlags</code></a> to control the direction in which the binding works.</p>
 <p><span class="filename">Filename: listings/settings/2/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::{Settings, SettingsBindFlags};
 </span><span class="boring">use gtk::gio;

@@ -324,7 +324,7 @@ We want to send a <code>bool</code> to inform, whether we want the button to rea
 </span></code></pre></pre>
 <p>Spawning threads is not the only way to run operations asynchronously.
 You can also let the main loop take care of running <code>async</code> functions.
-If you do that from the main thread use <a href="http://gtk-rs.org/docs/glib/struct.MainContext.html#method.spawn_local"><code>spawn_local</code></a>, from other threads <a href="http://gtk-rs.org/docs/glib/struct.MainContext.html#method.spawn"><code>spawn</code></a> has to be used.
+If you do that from the main thread use <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn_local"><code>spawn_local</code></a>, from other threads <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn"><code>spawn</code></a> has to be used.
 The converted code looks and behaves very similar to the multi-threaded code.</p>
 <p><span class="filename">Filename: listings/main_event_loop/4/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::{clone, timeout_future_seconds, Continue, MainContext, PRIORITY_DEFAULT};

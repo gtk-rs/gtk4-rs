@@ -249,7 +249,7 @@ The following figure demonstrates how this works in practice.</p>
 <div style="text-align:center"><img src="img/scalable_lists_concept.png"/></div>
 <p>100 000 elements is something <code>ListBox</code> will struggle with, so let us use this to demonstrate scalable lists.</p>
 <p>We start by defining and filling up our model.
-The model is an instance of <a href="https://gtk-rs.org/docs/gio/struct.ListStore.html"><code>gio::ListStore</code></a>.
+The model is an instance of <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.ListStore.html"><code>gio::ListStore</code></a>.
 The main limitation here is that <code>gio::ListStore</code> only accepts GObjects.
 What we would need is a GObject which holds an integer and exposes it as property.
 To get that we just have to adapt the <code>CustomButton</code> we created in the subclassing <a href="gobject_subclassing.html">chapter</a>.
@@ -1409,7 +1409,7 @@ We can, for example, filter our model to only allow even numbers.</p>
 <div style="text-align:center"><img src="img/lists_list_view_2.png"/></div>
 <p>We now know how to display a list of data.
 Small amount of elements can be handled by <code>ListBox</code> or <code>FlowBox</code>.
-These widgets are easy to use and allow, if necessary, to be bound to a model such as <a href="http://gtk-rs.org/docs/gio/struct.ListStore.html"><code>gio::ListStore</code></a>.
+These widgets are easy to use and allow, if necessary, to be bound to a model such as <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.ListStore.html"><code>gio::ListStore</code></a>.
 Their data can then be modified, sorted and filtered more easily.
 However, if we need the widgets to be scalable we still need to use <a href="../docs/gtk4/struct.ListView.html"><code>ListView</code></a>, <a href="../docs/gtk4/struct.ColumnView.html"><code>ColumnView</code></a> or <a href="../docs/gtk4/struct.GridView.html"><code>GridView</code></a> instead.</p>
 

@@ -193,7 +193,7 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/trait.ButtonExt.
 </span><span class="boring">}
 </span></code></pre></pre>
 <p>If we wanted to, we could have 
-connected to it with the generic <a href="http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.connect_local"><code>connect_local</code></a> method.</p>
+connected to it with the generic <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.connect_local"><code>connect_local</code></a> method.</p>
 <p><span class="filename">Filename: listings/gobject_signals/2/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
@@ -535,7 +535,7 @@ Whenever we now receive the &quot;max-number-reached&quot; signal, the accompany
 <p>You now know how to connect to every kind of signal and how to create your own.
 Custom signals are especially useful, if you want to notify consumers of your GObject that a certain event occurred.</p>
 <div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
-<p>If you want to connect from a different thread than the main thread, make sure to use <a href="http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.connect"><code>connect</code></a> instead of <code>connect_local</code>. However, that also means that your connected closure has to implement <a href="https://doc.rust-lang.org/stable/core/marker/trait.Send.html"><code>Send</code></a> + <a href="https://doc.rust-lang.org/stable/core/marker/trait.Sync.html"><code>Sync</code></a>.</p>
+<p>If you want to connect from a different thread than the main thread, make sure to use <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.connect"><code>connect</code></a> instead of <code>connect_local</code>. However, that also means that your connected closure has to implement <a href="https://doc.rust-lang.org/stable/core/marker/trait.Send.html"><code>Send</code></a> + <a href="https://doc.rust-lang.org/stable/core/marker/trait.Sync.html"><code>Sync</code></a>.</p>
 </div>
 
                     </main>

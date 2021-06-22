@@ -828,7 +828,7 @@ Every time the button is clicked, <code>glib::clone</code> tries to upgrade the 
 If we now for example click on one button and the other button is not there anymore, <code>upgrade</code> will return <code>None</code>.
 Per default, it immediately returns from the closure with <code>()</code> as return value.
 In case the closure expects a different return value or a panic is preferred <code>@default-return</code> or <code>@default-panic</code>.
-For more information about <code>glib::clone</code>, please have a look at the <a href="https://docs.rs/glib/latest/glib/macro.clone.html">docs</a>.</p>
+For more information about <code>glib::clone</code>, please have a look at the <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.clone.html">docs</a>.</p>
 <p>Notice that we kept the <em>strong</em> reference to <code>number</code>.
 If we had a <em>weak</em> reference, no one would have kept <code>number</code> alive and the closure would have never been called.
 Thinking about this, <code>button_increase</code> and <code>button_decrease</code> are also dropped at the end of the scope of <code>build_ui</code>.
@@ -1118,7 +1118,7 @@ impl Default for CustomButton {
 </span><span class="boring">// It is only there to make mdbook happy
 </span><span class="boring">fn main() {}
 </span></code></pre></pre>
-<p><a href="http://gtk-rs.org/docs/glib/macro.glib_wrapper.html"><code>glib::wrapper!</code></a> does the most of the work of subclassing for us.
+<p><a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/macro.glib_wrapper.html"><code>glib::wrapper!</code></a> does the most of the work of subclassing for us.
 We only have to point to the implementation struct and which ancestor GObjects we extend.
 Please note that the list of ancestor GObjects does not mention <code>glib::Object</code>.
 This is because <code>glib::Object</code> is <em>always</em> the base class in the object hierarchy and therefore already implied.</p>
@@ -1260,7 +1260,7 @@ Every time we click on the button, the number displayed by the label increases b
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="generic-values"><a class="header" href="#generic-values">Generic Values</a></h1>
 <p>Some GObject-related functions rely on generic values for their arguments or return parameters.
-Enums in C are not as powerful as the one in Rust, which is why <a href="http://gtk-rs.org/docs/glib/value/struct.Value.html"><code>glib::Value</code></a> is used for this.
+Enums in C are not as powerful as the one in Rust, which is why <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/value/struct.Value.html"><code>glib::Value</code></a> is used for this.
 Conceptually though, there are similar to a Rust enum defined like this:</p>
 <pre><pre class="playground"><code class="language-rust">
 <span class="boring">#![allow(unused)]
@@ -1469,7 +1469,7 @@ That is why <code>gtk-rs</code> provides corresponding <a href="../docs/gtk4/str
 </span><span class="boring">    window.present();
 </span><span class="boring">}
 </span></code></pre></pre>
-<p>Alternatively, we can use the general <a href="http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.property"><code>property</code></a> and <a href="http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.set_property"><code>set_property</code></a> methods.
+<p>Alternatively, we can use the general <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.property"><code>property</code></a> and <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.set_property"><code>set_property</code></a> methods.
 Because they can be used for properties of different types, they operate with <code>glib::Value</code>.</p>
 <p><span class="filename">Filename: listings/gobject_properties/2/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
@@ -1575,7 +1575,7 @@ Let us see how that would look like for two <code>Switch</code> instances.</p>
 </span><span class="boring">}
 </span></code></pre></pre>
 <p>In our case, we want to bind the &quot;state&quot; property of <code>switch_1</code> to the &quot;state&quot; property of <code>switch_2</code>.
-We also want the binding to be bidirectional, so we specify this with the <a href="http://gtk-rs.org/docs/glib/struct.BindingFlags.html"><code>BindingFlags</code></a>.</p>
+We also want the binding to be bidirectional, so we specify this with the <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.BindingFlags.html"><code>BindingFlags</code></a>.</p>
 <p><span class="filename">Filename: listings/gobject_properties/3/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::BindingFlags;
 </span><span class="boring">use gtk::{glib, Align, Orientation, Switch};
@@ -1817,7 +1817,7 @@ Now we do not have to adapt the label in the &quot;clicked&quot; callback anymor
 </span><span class="boring">}
 </span></code></pre></pre>
 <p>We have already seen that bound properties do not necessarily have to be of the same type.
-By leveraging <a href="http://gtk-rs.org/docs/glib/object/struct.BindingBuilder.html#method.transform_to"><code>transform_to</code></a> and <a href="http://gtk-rs.org/docs/glib/object/struct.BindingBuilder.html#method.transform_from"><code>transform_from</code></a>, we can assure that <code>button_2</code> always displays a number which is 1 higher than the number of <code>button_1</code>.</p>
+By leveraging <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.BindingBuilder.html#method.transform_to"><code>transform_to</code></a> and <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/struct.BindingBuilder.html#method.transform_from"><code>transform_from</code></a>, we can assure that <code>button_2</code> always displays a number which is 1 higher than the number of <code>button_1</code>.</p>
 <p><span class="filename">Filename: listings/gobject_properties/4/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">mod custom_button;
 </span><span class="boring">
@@ -2032,7 +2032,7 @@ In our &quot;Hello World&quot; example we <a href="../docs/gtk4/trait.ButtonExt.
 </span><span class="boring">}
 </span></code></pre></pre>
 <p>If we wanted to, we could have 
-connected to it with the generic <a href="http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.connect_local"><code>connect_local</code></a> method.</p>
+connected to it with the generic <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.connect_local"><code>connect_local</code></a> method.</p>
 <p><span class="filename">Filename: listings/gobject_signals/2/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gtk::prelude::*;
 </span><span class="boring">use gtk::{Application, ApplicationWindow, Button};
@@ -2374,7 +2374,7 @@ Whenever we now receive the &quot;max-number-reached&quot; signal, the accompany
 <p>You now know how to connect to every kind of signal and how to create your own.
 Custom signals are especially useful, if you want to notify consumers of your GObject that a certain event occurred.</p>
 <div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
-<p>If you want to connect from a different thread than the main thread, make sure to use <a href="http://gtk-rs.org/docs/glib/object/trait.ObjectExt.html#tymethod.connect"><code>connect</code></a> instead of <code>connect_local</code>. However, that also means that your connected closure has to implement <a href="https://doc.rust-lang.org/stable/core/marker/trait.Send.html"><code>Send</code></a> + <a href="https://doc.rust-lang.org/stable/core/marker/trait.Sync.html"><code>Sync</code></a>.</p>
+<p>If you want to connect from a different thread than the main thread, make sure to use <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/object/trait.ObjectExt.html#tymethod.connect"><code>connect</code></a> instead of <code>connect_local</code>. However, that also means that your connected closure has to implement <a href="https://doc.rust-lang.org/stable/core/marker/trait.Send.html"><code>Send</code></a> + <a href="https://doc.rust-lang.org/stable/core/marker/trait.Sync.html"><code>Sync</code></a>.</p>
 </div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="the-main-event-loop"><a class="header" href="#the-main-event-loop">The main event loop</a></h1>
 <p>We now got comfortable using callbacks, but how do they actually work?
@@ -2554,7 +2554,7 @@ We want to send a <code>bool</code> to inform, whether we want the button to rea
 </span></code></pre></pre>
 <p>Spawning threads is not the only way to run operations asynchronously.
 You can also let the main loop take care of running <code>async</code> functions.
-If you do that from the main thread use <a href="http://gtk-rs.org/docs/glib/struct.MainContext.html#method.spawn_local"><code>spawn_local</code></a>, from other threads <a href="http://gtk-rs.org/docs/glib/struct.MainContext.html#method.spawn"><code>spawn</code></a> has to be used.
+If you do that from the main thread use <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn_local"><code>spawn_local</code></a>, from other threads <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/glib/struct.MainContext.html#method.spawn"><code>spawn</code></a> has to be used.
 The converted code looks and behaves very similar to the multi-threaded code.</p>
 <p><span class="filename">Filename: listings/main_event_loop/4/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use glib::{clone, timeout_future_seconds, Continue, MainContext, PRIORITY_DEFAULT};
@@ -2983,9 +2983,9 @@ That is why we probably want to use a build system like <a href="https://mesonbu
 But we can make this even better.
 The <code>Switch</code> has a property &quot;state&quot; and <code>Settings</code> allows us to bind properties to a specific setting.
 So let us do exactly that.</p>
-<p>We can remove the <a href="http://gtk-rs.org/docs/gio/trait.SettingsExt.html#tymethod.boolean"><code>boolean</code></a> call before initializing the <code>Switch</code> as well as the <code>connect_state_set</code> call.
+<p>We can remove the <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/trait.SettingsExt.html#tymethod.boolean"><code>boolean</code></a> call before initializing the <code>Switch</code> as well as the <code>connect_state_set</code> call.
 We then bind the setting to the property by specifying the key, object and name of the property.
-Additionally, we specify <a href="https://gtk-rs.org/docs/gio/struct.SettingsBindFlags.html"><code>SettingsBindFlags</code></a> to control the direction in which the binding works.</p>
+Additionally, we specify <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.SettingsBindFlags.html"><code>SettingsBindFlags</code></a> to control the direction in which the binding works.</p>
 <p><span class="filename">Filename: listings/settings/2/main.rs</span></p>
 <pre><pre class="playground"><code class="language-rust no_run"><span class="boring">use gio::{Settings, SettingsBindFlags};
 </span><span class="boring">use gtk::gio;
@@ -3330,7 +3330,7 @@ The following figure demonstrates how this works in practice.</p>
 <div style="text-align:center"><img src="img/scalable_lists_concept.png"/></div>
 <p>100 000 elements is something <code>ListBox</code> will struggle with, so let us use this to demonstrate scalable lists.</p>
 <p>We start by defining and filling up our model.
-The model is an instance of <a href="https://gtk-rs.org/docs/gio/struct.ListStore.html"><code>gio::ListStore</code></a>.
+The model is an instance of <a href="https://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.ListStore.html"><code>gio::ListStore</code></a>.
 The main limitation here is that <code>gio::ListStore</code> only accepts GObjects.
 What we would need is a GObject which holds an integer and exposes it as property.
 To get that we just have to adapt the <code>CustomButton</code> we created in the subclassing <a href="gobject_subclassing.html">chapter</a>.
@@ -4490,7 +4490,7 @@ We can, for example, filter our model to only allow even numbers.</p>
 <div style="text-align:center"><img src="img/lists_list_view_2.png"/></div>
 <p>We now know how to display a list of data.
 Small amount of elements can be handled by <code>ListBox</code> or <code>FlowBox</code>.
-These widgets are easy to use and allow, if necessary, to be bound to a model such as <a href="http://gtk-rs.org/docs/gio/struct.ListStore.html"><code>gio::ListStore</code></a>.
+These widgets are easy to use and allow, if necessary, to be bound to a model such as <a href="http://gtk-rs.org/gtk-rs-core/stable/latest/docs/gio/struct.ListStore.html"><code>gio::ListStore</code></a>.
 Their data can then be modified, sorted and filtered more easily.
 However, if we need the widgets to be scalable we still need to use <a href="../docs/gtk4/struct.ListView.html"><code>ListView</code></a>, <a href="../docs/gtk4/struct.ColumnView.html"><code>ColumnView</code></a> or <a href="../docs/gtk4/struct.GridView.html"><code>GridView</code></a> instead.</p>
 
