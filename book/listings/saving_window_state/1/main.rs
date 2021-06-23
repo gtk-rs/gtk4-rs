@@ -18,9 +18,9 @@ fn main() {
 }
 // ANCHOR_END: main
 
-fn build_ui(application: &Application) {
+fn build_ui(app: &Application) {
     // Create a window
-    let window = CustomWindow::new(application);
+    let window = CustomWindow::new(app);
 
     // ANCHOR: button
     // Create a button
