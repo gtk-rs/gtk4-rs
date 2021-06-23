@@ -40,6 +40,7 @@ version = "0.14.0"
 
 [dependencies.gdk4-sys]
 version = "0.1.0"
+path = "./../../gdk4/sys"
 
 [dependencies.gio-sys]
 version = "0.14.0"
@@ -55,6 +56,7 @@ version = "0.14.0"
 
 [dependencies.gsk4-sys]
 version = "0.1.0"
+path = "./../../gsk4/sys"
 
 [dependencies.pango-sys]
 version = "0.14.0"

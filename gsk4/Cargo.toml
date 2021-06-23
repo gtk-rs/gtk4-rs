@@ -26,8 +26,8 @@ features = ["dox"]
 [dependencies]
 bitflags = "1.0"
 cairo-rs = "0.14.0"
-ffi = {package = "gsk4-sys", version = "0.1.0"}
-gdk = {package = "gdk4", version = "0.1.0"}
+ffi = {package = "gsk4-sys", path = "./sys", version = "0.1.0"}
+gdk = {package = "gdk4", path = "../gdk4", version = "0.1.0"}
 glib = {features = ["v2_66"], version = "0.14.0"}
 graphene = {package = "graphene-rs", version = "0.14.0"}
 libc = "0.2"

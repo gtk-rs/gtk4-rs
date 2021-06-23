@@ -10,6 +10,7 @@ once_cell = "1.5"
 
 [dependencies.gtk]
 version = "0.1"
+path = "./../gtk4"
 package = "gtk4"
 
 [[bin]]
