@@ -10,10 +10,8 @@ license = "MIT"
 name = "gsk4-sys"
 repository = "https://github.com/gtk-rs/gtk4-rs"
 version = "0.1.0"
-
 [package.metadata.docs.rs]
 features = ["dox"]
-
 [package.metadata.system-deps.gtk4]
 name = "gtk4"
 version = "4.0.0"
@@ -36,6 +34,7 @@ version = "0.14.0"
 
 [dependencies.gdk4-sys]
 version = "0.1.0"
+path = "./../../gdk4/sys"
 
 [dependencies.glib-sys]
 version = "0.14.0"

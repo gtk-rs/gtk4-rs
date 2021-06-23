@@ -25,4 +25,4 @@ quote = "1.0"
 syn = {version = "1.0", default-features = false, features = ["full"]}
 
 [dev-dependencies]
-gtk = { path = "../gtk4", package = "gtk4" }
+gtk = { version = "0.1", path = "./../gtk4", package = "gtk4" }

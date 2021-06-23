@@ -11,6 +11,7 @@ pretty_env_logger = "0.4"
 [dependencies.gtk]
 version = "0.1"
 package = "gtk4"
+path = "./../../gtk4"
 
 # gobject_memory_management
 [[bin]]

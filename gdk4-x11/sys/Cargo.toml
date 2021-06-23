@@ -10,11 +10,9 @@ license = "MIT"
 name = "gdk4-x11-sys"
 repository = "https://github.com/gtk-rs/gtk4-rs"
 version = "0.1.0"
-
 [package.metadata.system-deps.gtk4_x11]
 name = "gtk4-x11"
 version = "4.0.0"
-
 [package.metadata.docs.rs]
 features = ["dox"]
 
@@ -30,6 +28,7 @@ x11 = "2.18"
 
 [dependencies.gdk4-sys]
 version = "0.1.0"
+path = "./../../gdk4/sys"
 
 [dependencies.glib-sys]
 version = "0.14.0"
