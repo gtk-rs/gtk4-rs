@@ -9,7 +9,7 @@ log = "0.4"
 pretty_env_logger = "0.4"
 
 [dependencies.gtk]
-path = "../../gtk4"
+version = "0.1"
 package = "gtk4"
 
 # gobject_memory_management
